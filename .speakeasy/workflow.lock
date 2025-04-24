@@ -1,5 +1,11 @@
 speakeasyVersion: 1.539.2
 sources:
+    Glean API:
+        sourceNamespace: glean-api-specs
+        sourceRevisionDigest: sha256:57e3640581a128d3fe18376fa9d80f8340eadf0dc0982aa35c09bef0980967b3
+        sourceBlobDigest: sha256:6bc72f74f71a240fd856970a3e7f199b01435c1dbe606428131177cb092508c3
+        tags:
+            - latest
     Glean-OAS:
         sourceNamespace: glean-oas
         sourceRevisionDigest: sha256:8841834dd58ddd4e2dcf98fc90fbd06fbf3626a29df941503cce55b9548a5317
@@ -9,28 +15,27 @@ sources:
             - 0.9.0
 targets:
     glean:
-        source: Glean-OAS
-        sourceNamespace: glean-oas
-        sourceRevisionDigest: sha256:8841834dd58ddd4e2dcf98fc90fbd06fbf3626a29df941503cce55b9548a5317
+        source: Glean API
+        sourceNamespace: glean-api-specs
+        sourceRevisionDigest: sha256:57e3640581a128d3fe18376fa9d80f8340eadf0dc0982aa35c09bef0980967b3
         sourceBlobDigest: sha256:6bc72f74f71a240fd856970a3e7f199b01435c1dbe606428131177cb092508c3
-        codeSamplesNamespace: glean-oas-java-code-samples
-        codeSamplesRevisionDigest: sha256:6e9c6c1b6b9b56c34248b33c1062094ca550f476ab9d4b8c0705e9368f99310b
+        codeSamplesNamespace: glean-api-specs-java-code-samples
+        codeSamplesRevisionDigest: sha256:c2f6fa21610e37d43925a5679cb0f6cf371a6926bd73fc8c146c3098ba1b04da
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
-        Glean-OAS:
+        Glean API:
             inputs:
-                - location: https://raw.githubusercontent.com/gleanwork/open-api/d39b214b0c876212322d625b662b37e63760b261/overlayed_specs/glean-merged-spec.yaml
-            registry:
-                location: registry.speakeasyapi.dev/glean-el2/sdk/glean-oas
+                - location: registry.speakeasyapi.dev/glean-el2/sdk/glean-api-specs
+            output: .speakeasy/glean-merged-spec.yaml
     targets:
         glean:
             target: java
-            source: Glean-OAS
+            source: Glean API
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/glean-el2/sdk/glean-oas-java-code-samples
+                    location: registry.speakeasyapi.dev/glean-el2/sdk/glean-api-specs-java-code-samples
                 labelOverride:
                     fixedValue: Java (SDK)
                 blocking: false

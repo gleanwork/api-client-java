@@ -53,7 +53,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.glean:api-client:0.0.1'
+implementation 'com.glean:api-client:0.0.3'
 ```
 
 Maven:
@@ -61,7 +61,7 @@ Maven:
 <dependency>
     <groupId>com.glean</groupId>
     <artifactId>api-client</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.3</version>
 </dependency>
 ```
 

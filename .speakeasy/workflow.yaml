@@ -1,18 +1,17 @@
 workflowVersion: 1.0.0
 speakeasyVersion: latest
 sources:
-    Glean-OAS:
+    Glean API:
         inputs:
-            - location: https://raw.githubusercontent.com/gleanwork/open-api/d39b214b0c876212322d625b662b37e63760b261/overlayed_specs/glean-merged-spec.yaml
-        registry:
-            location: registry.speakeasyapi.dev/glean-el2/sdk/glean-oas
+            - location: registry.speakeasyapi.dev/glean-el2/sdk/glean-api-specs
+        output: .speakeasy/glean-merged-spec.yaml
 targets:
     glean:
         target: java
-        source: Glean-OAS
+        source: Glean API
         codeSamples:
             registry:
-                location: registry.speakeasyapi.dev/glean-el2/sdk/glean-oas-java-code-samples
+                location: registry.speakeasyapi.dev/glean-el2/sdk/glean-api-specs-java-code-samples
             labelOverride:
                 fixedValue: Java (SDK)
             blocking: false
