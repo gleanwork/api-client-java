@@ -1,0 +1,11 @@
+# ErrorInfo
+
+
+## Fields
+
+| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `badGmailToken`                                                                          | *Optional\<Boolean>*                                                                     | :heavy_minus_sign:                                                                       | Indicates the gmail results could not be fetched due to bad token.                       |
+| `badOutlookToken`                                                                        | *Optional\<Boolean>*                                                                     | :heavy_minus_sign:                                                                       | Indicates the outlook results could not be fetched due to bad token.                     |
+| `invalidOperators`                                                                       | List\<[InvalidOperatorValueError](../../models/components/InvalidOperatorValueError.md)> | :heavy_minus_sign:                                                                       | Indicates results could not be fetched due to invalid operators in the query.            |
+| `errorMessages`                                                                          | List\<[ErrorMessage](../../models/components/ErrorMessage.md)>                           | :heavy_minus_sign:                                                                       | N/A                                                                                      |

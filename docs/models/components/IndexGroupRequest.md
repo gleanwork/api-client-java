@@ -1,0 +1,12 @@
+# IndexGroupRequest
+
+Describes the request body of the /indexgroup API call
+
+
+## Fields
+
+| Field                                                                                                           | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
+| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `version`                                                                                                       | *Optional\<Long>*                                                                                               | :heavy_minus_sign:                                                                                              | Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done. |
+| `datasource`                                                                                                    | *String*                                                                                                        | :heavy_check_mark:                                                                                              | The datasource for which the group is added                                                                     |
+| `group`                                                                                                         | [DatasourceGroupDefinition](../../models/components/DatasourceGroupDefinition.md)                               | :heavy_check_mark:                                                                                              | describes a group in the datasource                                                                             |

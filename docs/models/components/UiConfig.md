@@ -1,0 +1,9 @@
+# UiConfig
+
+
+## Fields
+
+| Field                                                                                            | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `format`                                                                                         | [Optional\<FeedEntryFormat>](../../models/components/FeedEntryFormat.md)                         | :heavy_minus_sign:                                                                               | defines how to render this particular displayable list card                                      |
+| `additionalFlags`                                                                                | [Optional\<DisplayableListItemUIConfig>](../../models/components/DisplayableListItemUIConfig.md) | :heavy_minus_sign:                                                                               | UI configurations for each item of the list                                                      |

@@ -1,0 +1,13 @@
+# DocumentAnalytics
+
+
+## Fields
+
+| Field                                                                              | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `documentSpec`                                                                     | [Optional\<DocumentSpecUnion>](../../models/components/DocumentSpecUnion.md)       | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `visitorCount`                                                                     | [Optional\<CountInfo>](../../models/components/CountInfo.md)                       | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `clickerCount`                                                                     | [Optional\<CountInfo>](../../models/components/CountInfo.md)                       | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `userImpressionCount`                                                              | [Optional\<CountInfo>](../../models/components/CountInfo.md)                       | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `visitCount`                                                                       | [Optional\<CountInfo>](../../models/components/CountInfo.md)                       | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `facetAnalytics`                                                                   | List\<[DocumentFacetAnalytics](../../models/components/DocumentFacetAnalytics.md)> | :heavy_minus_sign:                                                                 | N/A                                                                                |

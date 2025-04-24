@@ -1,0 +1,9 @@
+# ChatMetadataResult
+
+
+## Fields
+
+| Field                                                                                               | Type                                                                                                | Required                                                                                            | Description                                                                                         |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `chat`                                                                                              | [Optional\<ChatMetadata>](../../models/components/ChatMetadata.md)                                  | :heavy_minus_sign:                                                                                  | Metadata of a Chat a user had with Glean Assistant. This contains no actual conversational content. |
+| `trackingToken`                                                                                     | *Optional\<String>*                                                                                 | :heavy_minus_sign:                                                                                  | An opaque token that represents this particular Chat. To be used for `/feedback` reporting.         |

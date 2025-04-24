@@ -1,0 +1,12 @@
+# IndexUserRequest
+
+Describes the request body of the /indexuser API call
+
+
+## Fields
+
+| Field                                                                                                           | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
+| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `version`                                                                                                       | *Optional\<Long>*                                                                                               | :heavy_minus_sign:                                                                                              | Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done. |
+| `datasource`                                                                                                    | *String*                                                                                                        | :heavy_check_mark:                                                                                              | The datasource for which the user is added                                                                      |
+| `user`                                                                                                          | [DatasourceUserDefinition](../../models/components/DatasourceUserDefinition.md)                                 | :heavy_check_mark:                                                                                              | describes a user in the datasource                                                                              |

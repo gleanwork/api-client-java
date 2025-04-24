@@ -1,0 +1,9 @@
+# UgcDraft
+
+
+## Fields
+
+| Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `announcement`                                                                                       | [Optional\<AnnouncementMutableProperties>](../../models/components/AnnouncementMutableProperties.md) | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |
+| `answer`                                                                                             | [Optional\<AnswerMutableProperties>](../../models/components/AnswerMutableProperties.md)             | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |

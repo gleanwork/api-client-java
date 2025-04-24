@@ -1,0 +1,14 @@
+# SummarizeRequest
+
+Summary of the document
+
+
+## Fields
+
+| Field                                                                                       | Type                                                                                        | Required                                                                                    | Description                                                                                 |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `timestamp`                                                                                 | [OffsetDateTime](https://docs.oracle.com/javase/8/docs/api/java/time/OffsetDateTime.html)   | :heavy_minus_sign:                                                                          | The ISO 8601 timestamp associated with the client request.                                  |
+| `query`                                                                                     | *Optional\<String>*                                                                         | :heavy_minus_sign:                                                                          | Optional query that the summary should be about                                             |
+| `preferredSummaryLength`                                                                    | *Optional\<Long>*                                                                           | :heavy_minus_sign:                                                                          | Optional length of summary output. If not given, defaults to 500 chars.                     |
+| `documentSpecs`                                                                             | List\<[DocumentSpecUnion](../../models/components/DocumentSpecUnion.md)>                    | :heavy_check_mark:                                                                          | Specifications of documents to summarize                                                    |
+| `trackingToken`                                                                             | *Optional\<String>*                                                                         | :heavy_minus_sign:                                                                          | An opaque token that represents this particular result. To be used for /feedback reporting. |

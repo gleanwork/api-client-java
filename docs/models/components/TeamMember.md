@@ -1,0 +1,12 @@
+# TeamMember
+
+Information about a team's member
+
+
+## Fields
+
+| Field                                                                                                      | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `email`                                                                                                    | *String*                                                                                                   | :heavy_check_mark:                                                                                         | The member's email                                                                                         |
+| `relationship`                                                                                             | *Optional\<String>*                                                                                        | :heavy_minus_sign:                                                                                         | The member's relationship to the team, an enum of `MEMBER`, `MANAGER`, `LEAD`, `POINT_OF_CONTACT`, `OTHER` |
+| `joinDate`                                                                                                 | [LocalDate](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html)                            | :heavy_minus_sign:                                                                                         | The member's start date                                                                                    |
