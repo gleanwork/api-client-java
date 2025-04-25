@@ -22,7 +22,7 @@ java:
   clientServerStatusCodesAsErrors: true
   companyEmail: info@glean.com
   companyName: Glean
-  companyURL: www.glean.com
+  companyURL: https://www.glean.com
   defaultErrorName: APIException
   flattenGlobalSecurity: true
   githubURL: github.com/gleanwork/api-client-java
@@ -42,5 +42,5 @@ java:
     url: https://mit-license.org/
   maxMethodParams: 4
   outputModelSuffix: output
-  projectName: openapi
+  projectName: api-client
   templateVersion: v2

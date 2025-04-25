@@ -1,29 +1,7 @@
-# openapi
+# api-client-java
 
-Developer-friendly & type-safe Java SDK specifically catered to leverage *openapi* API.
-
-<div align="left">
-    <a href="https://www.speakeasy.com/?utm_source=openapi&utm_campaign=java"><img src="https://custom-icon-badges.demolab.com/badge/-Built%20By%20Speakeasy-212015?style=for-the-badge&logoColor=FBE331&logo=speakeasy&labelColor=545454" /></a>
-    <a href="https://mit-license.org/">
-        <img src="https://img.shields.io/badge/License-MIT-blue.svg" style="width: 100px; height: 28px;" />
-    </a>
-</div>
-
-
-<br /><br />
-> [!IMPORTANT]
-> This SDK is not yet ready for production use. To complete setup please follow the steps outlined in your [workspace](https://app.speakeasy.com/org/glean-el2/sdk). Delete this section before > publishing to a package manager.
-
-<!-- Start Summary [summary] -->
-## Summary
-
-Glean API: # Introduction
-In addition to the data sources that Glean has built-in support for, Glean also provides a REST API that enables customers to put arbitrary content in the search index. This is useful, for example, for doing permissions-aware search over content in internal tools that reside on-prem as well as for searching over applications that Glean does not currently support first class. In addition these APIs allow the customer to push organization data (people info, organization structure etc) into Glean.
-
-# Usage guidelines
-This API is evolving fast. Glean will provide advance notice of any planned backwards incompatible changes along
-with a 6-month sunset period for anything that requires developers to adopt the new versions.
-<!-- End Summary [summary] -->
+The Glean Java SDK provides convenient access to the Glean REST API for Java 8+. It includes POJOs for all API models, fluent builders for requests, and supports both synchronous and asynchronous execution using standard HTTP clients.
+<!-- No Summary [summary] -->
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents

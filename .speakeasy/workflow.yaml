@@ -9,9 +9,15 @@ targets:
     glean:
         target: java
         source: Glean API
+        publish:
+            java:
+                ossrhUsername: $ossrh_username
+                ossrhPassword: $ossrh_password
+                gpgSecretKey: $java_gpg_secret_key
+                gpgPassPhrase: $java_gpg_passphrase
         codeSamples:
             registry:
                 location: registry.speakeasyapi.dev/glean-el2/sdk/glean-api-specs-java-code-samples
             labelOverride:
-                fixedValue: Java (SDK)
+                fixedValue: Java (Client)
             blocking: false
