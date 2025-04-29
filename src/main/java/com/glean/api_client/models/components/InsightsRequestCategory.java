@@ -9,6 +9,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 public enum InsightsRequestCategory {
+    AGENTS("AGENTS"),
     AI("AI"),
     AI_APPS("AI_APPS"),
     ANNOUNCEMENTS("ANNOUNCEMENTS"),

@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public class GetchatapplicationRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private GetChatApplicationRequest getChatApplicationRequest;
@@ -22,15 +22,15 @@ public class GetchatapplicationRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public GetchatapplicationRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public GetchatapplicationRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public GetchatapplicationRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public GetchatapplicationRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -67,7 +67,7 @@ public class GetchatapplicationRequestBuilder {
     public GetchatapplicationResponse call() throws Exception {
 
         return sdk.getApplication(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             timezoneOffset,
             getChatApplicationRequest);

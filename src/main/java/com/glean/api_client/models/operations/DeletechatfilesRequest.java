@@ -19,8 +19,8 @@ public class DeletechatfilesRequest {
     /**
      * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      */
-    @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Scio-Actas")
-    private Optional<String> xScioActas;
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Glean-ActAs")
+    private Optional<String> xGleanActAs;
 
     /**
      * Auth type being used to access the endpoint (should be non-empty only for global tokens).
@@ -39,15 +39,15 @@ public class DeletechatfilesRequest {
 
     @JsonCreator
     public DeletechatfilesRequest(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<Long> timezoneOffset,
             DeleteChatFilesRequest deleteChatFilesRequest) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
         Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
         Utils.checkNotNull(timezoneOffset, "timezoneOffset");
         Utils.checkNotNull(deleteChatFilesRequest, "deleteChatFilesRequest");
-        this.xScioActas = xScioActas;
+        this.xGleanActAs = xGleanActAs;
         this.xGleanAuthType = xGleanAuthType;
         this.timezoneOffset = timezoneOffset;
         this.deleteChatFilesRequest = deleteChatFilesRequest;
@@ -62,8 +62,8 @@ public class DeletechatfilesRequest {
      * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      */
     @JsonIgnore
-    public Optional<String> xScioActas() {
-        return xScioActas;
+    public Optional<String> xGleanActAs() {
+        return xGleanActAs;
     }
 
     /**
@@ -94,18 +94,18 @@ public class DeletechatfilesRequest {
     /**
      * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      */
-    public DeletechatfilesRequest withXScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.ofNullable(xScioActas);
+    public DeletechatfilesRequest withXGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.ofNullable(xGleanActAs);
         return this;
     }
 
     /**
      * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      */
-    public DeletechatfilesRequest withXScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public DeletechatfilesRequest withXGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
 
@@ -162,7 +162,7 @@ public class DeletechatfilesRequest {
         }
         DeletechatfilesRequest other = (DeletechatfilesRequest) o;
         return 
-            Objects.deepEquals(this.xScioActas, other.xScioActas) &&
+            Objects.deepEquals(this.xGleanActAs, other.xGleanActAs) &&
             Objects.deepEquals(this.xGleanAuthType, other.xGleanAuthType) &&
             Objects.deepEquals(this.timezoneOffset, other.timezoneOffset) &&
             Objects.deepEquals(this.deleteChatFilesRequest, other.deleteChatFilesRequest);
@@ -171,7 +171,7 @@ public class DeletechatfilesRequest {
     @Override
     public int hashCode() {
         return Objects.hash(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             timezoneOffset,
             deleteChatFilesRequest);
@@ -180,7 +180,7 @@ public class DeletechatfilesRequest {
     @Override
     public String toString() {
         return Utils.toString(DeletechatfilesRequest.class,
-                "xScioActas", xScioActas,
+                "xGleanActAs", xGleanActAs,
                 "xGleanAuthType", xGleanAuthType,
                 "timezoneOffset", timezoneOffset,
                 "deleteChatFilesRequest", deleteChatFilesRequest);
@@ -188,7 +188,7 @@ public class DeletechatfilesRequest {
     
     public final static class Builder {
  
-        private Optional<String> xScioActas = Optional.empty();
+        private Optional<String> xGleanActAs = Optional.empty();
  
         private Optional<String> xGleanAuthType = Optional.empty();
  
@@ -203,18 +203,18 @@ public class DeletechatfilesRequest {
         /**
          * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
          */
-        public Builder xScioActas(String xScioActas) {
-            Utils.checkNotNull(xScioActas, "xScioActas");
-            this.xScioActas = Optional.ofNullable(xScioActas);
+        public Builder xGleanActAs(String xGleanActAs) {
+            Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+            this.xGleanActAs = Optional.ofNullable(xGleanActAs);
             return this;
         }
 
         /**
          * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
          */
-        public Builder xScioActas(Optional<String> xScioActas) {
-            Utils.checkNotNull(xScioActas, "xScioActas");
-            this.xScioActas = xScioActas;
+        public Builder xGleanActAs(Optional<String> xGleanActAs) {
+            Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+            this.xGleanActAs = xGleanActAs;
             return this;
         }
 
@@ -262,7 +262,7 @@ public class DeletechatfilesRequest {
         
         public DeletechatfilesRequest build() {
             return new DeletechatfilesRequest(
-                xScioActas,
+                xGleanActAs,
                 xGleanAuthType,
                 timezoneOffset,
                 deleteChatFilesRequest);

@@ -87,7 +87,7 @@ public class Announcement {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("channel")
-    private Optional<? extends AnnouncementChannel1> channel;
+    private Optional<? extends AnnouncementChannel> channel;
 
     /**
      * This determines whether this is an external-link post or a regular announcement post. TEXT - Regular announcement that can contain rich text. LINK - Announcement that is linked to an external site.
@@ -177,7 +177,7 @@ public class Announcement {
             @JsonProperty("audienceFilters") Optional<? extends List<FacetFilter>> audienceFilters,
             @JsonProperty("sourceDocumentId") Optional<String> sourceDocumentId,
             @JsonProperty("hideAttribution") Optional<Boolean> hideAttribution,
-            @JsonProperty("channel") Optional<? extends AnnouncementChannel1> channel,
+            @JsonProperty("channel") Optional<? extends AnnouncementChannel> channel,
             @JsonProperty("postType") Optional<? extends AnnouncementPostType> postType,
             @JsonProperty("isPrioritized") Optional<Boolean> isPrioritized,
             @JsonProperty("viewUrl") Optional<String> viewUrl,
@@ -325,8 +325,8 @@ public class Announcement {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<AnnouncementChannel1> channel() {
-        return (Optional<AnnouncementChannel1>) channel;
+    public Optional<AnnouncementChannel> channel() {
+        return (Optional<AnnouncementChannel>) channel;
     }
 
     /**
@@ -593,7 +593,7 @@ public class Announcement {
     /**
      * This determines whether this is a Social Feed post or a regular announcement.
      */
-    public Announcement withChannel(AnnouncementChannel1 channel) {
+    public Announcement withChannel(AnnouncementChannel channel) {
         Utils.checkNotNull(channel, "channel");
         this.channel = Optional.ofNullable(channel);
         return this;
@@ -602,7 +602,7 @@ public class Announcement {
     /**
      * This determines whether this is a Social Feed post or a regular announcement.
      */
-    public Announcement withChannel(Optional<? extends AnnouncementChannel1> channel) {
+    public Announcement withChannel(Optional<? extends AnnouncementChannel> channel) {
         Utils.checkNotNull(channel, "channel");
         this.channel = channel;
         return this;
@@ -929,7 +929,7 @@ public class Announcement {
  
         private Optional<Boolean> hideAttribution = Optional.empty();
  
-        private Optional<? extends AnnouncementChannel1> channel = Optional.empty();
+        private Optional<? extends AnnouncementChannel> channel = Optional.empty();
  
         private Optional<? extends AnnouncementPostType> postType = Optional.empty();
  
@@ -1126,7 +1126,7 @@ public class Announcement {
         /**
          * This determines whether this is a Social Feed post or a regular announcement.
          */
-        public Builder channel(AnnouncementChannel1 channel) {
+        public Builder channel(AnnouncementChannel channel) {
             Utils.checkNotNull(channel, "channel");
             this.channel = Optional.ofNullable(channel);
             return this;
@@ -1135,7 +1135,7 @@ public class Announcement {
         /**
          * This determines whether this is a Social Feed post or a regular announcement.
          */
-        public Builder channel(Optional<? extends AnnouncementChannel1> channel) {
+        public Builder channel(Optional<? extends AnnouncementChannel> channel) {
             Utils.checkNotNull(channel, "channel");
             this.channel = channel;
             return this;

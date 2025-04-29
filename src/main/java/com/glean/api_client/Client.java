@@ -10,12 +10,9 @@ public class Client {
     private final Announcements announcements;
     private final Answers answers;
     private final ClientAuthentication authentication;
-    private final Calendar calendar;
     private final Chat chat;
     private final Collections collections;
-    private final DisplayableLists displayableLists;
     private final ClientDocuments documents;
-    private final Images images;
     private final Insights insights;
     private final Messages messages;
     private final Pins pins;
@@ -23,8 +20,6 @@ public class Client {
     private final Entities entities;
     private final ClientShortcuts shortcuts;
     private final Summarize summarize;
-    private final Tools tools;
-    private final User user;
     private final Verification verification;
 
     Client(SDKConfiguration sdkConfiguration) {
@@ -34,12 +29,9 @@ public class Client {
         this.announcements = new Announcements(this.sdkConfiguration);
         this.answers = new Answers(this.sdkConfiguration);
         this.authentication = new ClientAuthentication(this.sdkConfiguration);
-        this.calendar = new Calendar(this.sdkConfiguration);
         this.chat = new Chat(this.sdkConfiguration);
         this.collections = new Collections(this.sdkConfiguration);
-        this.displayableLists = new DisplayableLists(this.sdkConfiguration);
         this.documents = new ClientDocuments(this.sdkConfiguration);
-        this.images = new Images(this.sdkConfiguration);
         this.insights = new Insights(this.sdkConfiguration);
         this.messages = new Messages(this.sdkConfiguration);
         this.pins = new Pins(this.sdkConfiguration);
@@ -47,8 +39,6 @@ public class Client {
         this.entities = new Entities(this.sdkConfiguration);
         this.shortcuts = new ClientShortcuts(this.sdkConfiguration);
         this.summarize = new Summarize(this.sdkConfiguration);
-        this.tools = new Tools(this.sdkConfiguration);
-        this.user = new User(this.sdkConfiguration);
         this.verification = new Verification(this.sdkConfiguration);
     }
 
@@ -72,10 +62,6 @@ public class Client {
         return authentication;
     }
 
-    public final Calendar calendar() {
-        return calendar;
-    }
-
     public final Chat chat() {
         return chat;
     }
@@ -84,16 +70,8 @@ public class Client {
         return collections;
     }
 
-    public final DisplayableLists displayableLists() {
-        return displayableLists;
-    }
-
     public final ClientDocuments documents() {
         return documents;
-    }
-
-    public final Images images() {
-        return images;
     }
 
     public final Insights insights() {
@@ -122,14 +100,6 @@ public class Client {
 
     public final Summarize summarize() {
         return summarize;
-    }
-
-    public final Tools tools() {
-        return tools;
-    }
-
-    public final User user() {
-        return user;
     }
 
     public final Verification verification() {

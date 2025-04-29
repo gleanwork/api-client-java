@@ -18,8 +18,8 @@ public class GetpinRequest {
     /**
      * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      */
-    @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Scio-Actas")
-    private Optional<String> xScioActas;
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Glean-ActAs")
+    private Optional<String> xGleanActAs;
 
     /**
      * Auth type being used to access the endpoint (should be non-empty only for global tokens).
@@ -35,13 +35,13 @@ public class GetpinRequest {
 
     @JsonCreator
     public GetpinRequest(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             GetPinRequest getPinRequest) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
         Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
         Utils.checkNotNull(getPinRequest, "getPinRequest");
-        this.xScioActas = xScioActas;
+        this.xGleanActAs = xGleanActAs;
         this.xGleanAuthType = xGleanAuthType;
         this.getPinRequest = getPinRequest;
     }
@@ -55,8 +55,8 @@ public class GetpinRequest {
      * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      */
     @JsonIgnore
-    public Optional<String> xScioActas() {
-        return xScioActas;
+    public Optional<String> xGleanActAs() {
+        return xGleanActAs;
     }
 
     /**
@@ -82,18 +82,18 @@ public class GetpinRequest {
     /**
      * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      */
-    public GetpinRequest withXScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.ofNullable(xScioActas);
+    public GetpinRequest withXGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.ofNullable(xGleanActAs);
         return this;
     }
 
     /**
      * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      */
-    public GetpinRequest withXScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public GetpinRequest withXGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
 
@@ -135,7 +135,7 @@ public class GetpinRequest {
         }
         GetpinRequest other = (GetpinRequest) o;
         return 
-            Objects.deepEquals(this.xScioActas, other.xScioActas) &&
+            Objects.deepEquals(this.xGleanActAs, other.xGleanActAs) &&
             Objects.deepEquals(this.xGleanAuthType, other.xGleanAuthType) &&
             Objects.deepEquals(this.getPinRequest, other.getPinRequest);
     }
@@ -143,7 +143,7 @@ public class GetpinRequest {
     @Override
     public int hashCode() {
         return Objects.hash(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             getPinRequest);
     }
@@ -151,14 +151,14 @@ public class GetpinRequest {
     @Override
     public String toString() {
         return Utils.toString(GetpinRequest.class,
-                "xScioActas", xScioActas,
+                "xGleanActAs", xGleanActAs,
                 "xGleanAuthType", xGleanAuthType,
                 "getPinRequest", getPinRequest);
     }
     
     public final static class Builder {
  
-        private Optional<String> xScioActas = Optional.empty();
+        private Optional<String> xGleanActAs = Optional.empty();
  
         private Optional<String> xGleanAuthType = Optional.empty();
  
@@ -171,18 +171,18 @@ public class GetpinRequest {
         /**
          * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
          */
-        public Builder xScioActas(String xScioActas) {
-            Utils.checkNotNull(xScioActas, "xScioActas");
-            this.xScioActas = Optional.ofNullable(xScioActas);
+        public Builder xGleanActAs(String xGleanActAs) {
+            Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+            this.xGleanActAs = Optional.ofNullable(xGleanActAs);
             return this;
         }
 
         /**
          * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
          */
-        public Builder xScioActas(Optional<String> xScioActas) {
-            Utils.checkNotNull(xScioActas, "xScioActas");
-            this.xScioActas = xScioActas;
+        public Builder xGleanActAs(Optional<String> xGleanActAs) {
+            Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+            this.xGleanActAs = xGleanActAs;
             return this;
         }
 
@@ -215,7 +215,7 @@ public class GetpinRequest {
         
         public GetpinRequest build() {
             return new GetpinRequest(
-                xScioActas,
+                xGleanActAs,
                 xGleanAuthType,
                 getPinRequest);
         }

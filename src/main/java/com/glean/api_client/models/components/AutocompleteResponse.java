@@ -50,7 +50,7 @@ public class AutocompleteResponse {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("errorInfo")
-    private Optional<? extends ErrorInfo> errorInfo;
+    private Optional<? extends GleanDataError> gleanDataError;
 
     /**
      * Time in milliseconds the backend took to respond to the request.
@@ -66,21 +66,21 @@ public class AutocompleteResponse {
             @JsonProperty("sessionInfo") Optional<? extends SessionInfo> sessionInfo,
             @JsonProperty("results") Optional<? extends List<AutocompleteResult>> results,
             @JsonProperty("groups") Optional<? extends List<AutocompleteResultGroup>> groups,
-            @JsonProperty("errorInfo") Optional<? extends ErrorInfo> errorInfo,
+            @JsonProperty("errorInfo") Optional<? extends GleanDataError> gleanDataError,
             @JsonProperty("backendTimeMillis") Optional<Long> backendTimeMillis) {
         Utils.checkNotNull(experimentIds, "experimentIds");
         Utils.checkNotNull(trackingToken, "trackingToken");
         Utils.checkNotNull(sessionInfo, "sessionInfo");
         Utils.checkNotNull(results, "results");
         Utils.checkNotNull(groups, "groups");
-        Utils.checkNotNull(errorInfo, "errorInfo");
+        Utils.checkNotNull(gleanDataError, "gleanDataError");
         Utils.checkNotNull(backendTimeMillis, "backendTimeMillis");
         this.experimentIds = experimentIds;
         this.trackingToken = trackingToken;
         this.sessionInfo = sessionInfo;
         this.results = results;
         this.groups = groups;
-        this.errorInfo = errorInfo;
+        this.gleanDataError = gleanDataError;
         this.backendTimeMillis = backendTimeMillis;
     }
     
@@ -128,8 +128,8 @@ public class AutocompleteResponse {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ErrorInfo> errorInfo() {
-        return (Optional<ErrorInfo>) errorInfo;
+    public Optional<GleanDataError> gleanDataError() {
+        return (Optional<GleanDataError>) gleanDataError;
     }
 
     /**
@@ -222,15 +222,15 @@ public class AutocompleteResponse {
         return this;
     }
 
-    public AutocompleteResponse withErrorInfo(ErrorInfo errorInfo) {
-        Utils.checkNotNull(errorInfo, "errorInfo");
-        this.errorInfo = Optional.ofNullable(errorInfo);
+    public AutocompleteResponse withGleanDataError(GleanDataError gleanDataError) {
+        Utils.checkNotNull(gleanDataError, "gleanDataError");
+        this.gleanDataError = Optional.ofNullable(gleanDataError);
         return this;
     }
 
-    public AutocompleteResponse withErrorInfo(Optional<? extends ErrorInfo> errorInfo) {
-        Utils.checkNotNull(errorInfo, "errorInfo");
-        this.errorInfo = errorInfo;
+    public AutocompleteResponse withGleanDataError(Optional<? extends GleanDataError> gleanDataError) {
+        Utils.checkNotNull(gleanDataError, "gleanDataError");
+        this.gleanDataError = gleanDataError;
         return this;
     }
 
@@ -268,7 +268,7 @@ public class AutocompleteResponse {
             Objects.deepEquals(this.sessionInfo, other.sessionInfo) &&
             Objects.deepEquals(this.results, other.results) &&
             Objects.deepEquals(this.groups, other.groups) &&
-            Objects.deepEquals(this.errorInfo, other.errorInfo) &&
+            Objects.deepEquals(this.gleanDataError, other.gleanDataError) &&
             Objects.deepEquals(this.backendTimeMillis, other.backendTimeMillis);
     }
     
@@ -280,7 +280,7 @@ public class AutocompleteResponse {
             sessionInfo,
             results,
             groups,
-            errorInfo,
+            gleanDataError,
             backendTimeMillis);
     }
     
@@ -292,7 +292,7 @@ public class AutocompleteResponse {
                 "sessionInfo", sessionInfo,
                 "results", results,
                 "groups", groups,
-                "errorInfo", errorInfo,
+                "gleanDataError", gleanDataError,
                 "backendTimeMillis", backendTimeMillis);
     }
     
@@ -308,7 +308,7 @@ public class AutocompleteResponse {
  
         private Optional<? extends List<AutocompleteResultGroup>> groups = Optional.empty();
  
-        private Optional<? extends ErrorInfo> errorInfo = Optional.empty();
+        private Optional<? extends GleanDataError> gleanDataError = Optional.empty();
  
         private Optional<Long> backendTimeMillis = Optional.empty();
         
@@ -394,15 +394,15 @@ public class AutocompleteResponse {
             return this;
         }
 
-        public Builder errorInfo(ErrorInfo errorInfo) {
-            Utils.checkNotNull(errorInfo, "errorInfo");
-            this.errorInfo = Optional.ofNullable(errorInfo);
+        public Builder gleanDataError(GleanDataError gleanDataError) {
+            Utils.checkNotNull(gleanDataError, "gleanDataError");
+            this.gleanDataError = Optional.ofNullable(gleanDataError);
             return this;
         }
 
-        public Builder errorInfo(Optional<? extends ErrorInfo> errorInfo) {
-            Utils.checkNotNull(errorInfo, "errorInfo");
-            this.errorInfo = errorInfo;
+        public Builder gleanDataError(Optional<? extends GleanDataError> gleanDataError) {
+            Utils.checkNotNull(gleanDataError, "gleanDataError");
+            this.gleanDataError = gleanDataError;
             return this;
         }
 
@@ -431,7 +431,7 @@ public class AutocompleteResponse {
                 sessionInfo,
                 results,
                 groups,
-                errorInfo,
+                gleanDataError,
                 backendTimeMillis);
         }
     }

@@ -22,7 +22,7 @@ public class UiConfig {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("format")
-    private Optional<? extends FeedEntryFormat> format;
+    private Optional<? extends Format> format;
 
     /**
      * UI configurations for each item of the list
@@ -33,7 +33,7 @@ public class UiConfig {
 
     @JsonCreator
     public UiConfig(
-            @JsonProperty("format") Optional<? extends FeedEntryFormat> format,
+            @JsonProperty("format") Optional<? extends Format> format,
             @JsonProperty("additionalFlags") Optional<? extends DisplayableListItemUIConfig> additionalFlags) {
         Utils.checkNotNull(format, "format");
         Utils.checkNotNull(additionalFlags, "additionalFlags");
@@ -50,8 +50,8 @@ public class UiConfig {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<FeedEntryFormat> format() {
-        return (Optional<FeedEntryFormat>) format;
+    public Optional<Format> format() {
+        return (Optional<Format>) format;
     }
 
     /**
@@ -70,7 +70,7 @@ public class UiConfig {
     /**
      * defines how to render this particular displayable list card
      */
-    public UiConfig withFormat(FeedEntryFormat format) {
+    public UiConfig withFormat(Format format) {
         Utils.checkNotNull(format, "format");
         this.format = Optional.ofNullable(format);
         return this;
@@ -79,7 +79,7 @@ public class UiConfig {
     /**
      * defines how to render this particular displayable list card
      */
-    public UiConfig withFormat(Optional<? extends FeedEntryFormat> format) {
+    public UiConfig withFormat(Optional<? extends Format> format) {
         Utils.checkNotNull(format, "format");
         this.format = format;
         return this;
@@ -134,7 +134,7 @@ public class UiConfig {
     
     public final static class Builder {
  
-        private Optional<? extends FeedEntryFormat> format = Optional.empty();
+        private Optional<? extends Format> format = Optional.empty();
  
         private Optional<? extends DisplayableListItemUIConfig> additionalFlags = Optional.empty();
         
@@ -145,7 +145,7 @@ public class UiConfig {
         /**
          * defines how to render this particular displayable list card
          */
-        public Builder format(FeedEntryFormat format) {
+        public Builder format(Format format) {
             Utils.checkNotNull(format, "format");
             this.format = Optional.ofNullable(format);
             return this;
@@ -154,7 +154,7 @@ public class UiConfig {
         /**
          * defines how to render this particular displayable list card
          */
-        public Builder format(Optional<? extends FeedEntryFormat> format) {
+        public Builder format(Optional<? extends Format> format) {
             Utils.checkNotNull(format, "format");
             this.format = format;
             return this;

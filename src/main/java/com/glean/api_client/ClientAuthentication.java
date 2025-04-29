@@ -6,8 +6,6 @@ package com.glean.api_client;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.models.components.CreateAuthTokenResponse;
 import com.glean.api_client.models.errors.APIException;
-import com.glean.api_client.models.operations.CreateanonymoustokenRequestBuilder;
-import com.glean.api_client.models.operations.CreateanonymoustokenResponse;
 import com.glean.api_client.models.operations.CreateauthtokenRequest;
 import com.glean.api_client.models.operations.CreateauthtokenRequestBuilder;
 import com.glean.api_client.models.operations.CreateauthtokenResponse;
@@ -27,7 +25,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class ClientAuthentication implements
-            MethodCallCreateanonymoustoken,
             MethodCallCreateauthtoken {
 
     private final SDKConfiguration sdkConfiguration;
@@ -35,137 +32,6 @@ public class ClientAuthentication implements
     ClientAuthentication(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-
-    /**
-     * Create anonymous token
-     * 
-     * <p>Create an authentication token for an anonymous user of external search.
-     * 
-     * @return The call builder
-     */
-    public CreateanonymoustokenRequestBuilder createAnonymousToken() {
-        return new CreateanonymoustokenRequestBuilder(this);
-    }
-
-    /**
-     * Create anonymous token
-     * 
-     * <p>Create an authentication token for an anonymous user of external search.
-     * 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public CreateanonymoustokenResponse createAnonymousTokenDirect() throws Exception {
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/rest/api/v1/createanonymoustoken");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "createanonymoustoken", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "403", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "createanonymoustoken",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "createanonymoustoken",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "createanonymoustoken",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        CreateanonymoustokenResponse.Builder _resBuilder = 
-            CreateanonymoustokenResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        CreateanonymoustokenResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                CreateAuthTokenResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<CreateAuthTokenResponse>() {});
-                _res.withCreateAuthTokenResponse(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "403", "429", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
-    }
-
 
 
     /**
@@ -196,18 +62,18 @@ public class ClientAuthentication implements
      * 
      * <p>Creates an authentication token for the authenticated user.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateauthtokenResponse createToken(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType) throws Exception {
         CreateauthtokenRequest request =
             CreateauthtokenRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .build();
         

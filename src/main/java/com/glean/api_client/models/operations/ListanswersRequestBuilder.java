@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class ListanswersRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private ListAnswersRequest listAnswersRequest;
     private final SDKMethodInterfaces.MethodCallListanswers sdk;
@@ -20,15 +20,15 @@ public class ListanswersRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public ListanswersRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public ListanswersRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public ListanswersRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public ListanswersRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -53,7 +53,7 @@ public class ListanswersRequestBuilder {
     public ListanswersResponse call() throws Exception {
 
         return sdk.list(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             listAnswersRequest);
     }

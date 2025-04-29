@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class AddverificationreminderRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private ReminderRequest reminderRequest;
     private final SDKMethodInterfaces.MethodCallAddverificationreminder sdk;
@@ -20,15 +20,15 @@ public class AddverificationreminderRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public AddverificationreminderRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public AddverificationreminderRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public AddverificationreminderRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public AddverificationreminderRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -53,7 +53,7 @@ public class AddverificationreminderRequestBuilder {
     public AddverificationreminderResponse call() throws Exception {
 
         return sdk.addReminder(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             reminderRequest);
     }

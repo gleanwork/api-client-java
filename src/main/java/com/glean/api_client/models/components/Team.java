@@ -111,6 +111,13 @@ public class Team {
     private Optional<? extends List<TeamEmail>> emails;
 
     /**
+     * Customizable fields for additional team information.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("customFields")
+    private Optional<? extends List<CustomFieldData>> customFields;
+
+    /**
      * The datasource profiles of the team
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -174,6 +181,7 @@ public class Team {
             @JsonProperty("members") Optional<? extends List<PersonToTeamRelationship>> members,
             @JsonProperty("memberCount") Optional<Long> memberCount,
             @JsonProperty("emails") Optional<? extends List<TeamEmail>> emails,
+            @JsonProperty("customFields") Optional<? extends List<CustomFieldData>> customFields,
             @JsonProperty("datasourceProfiles") Optional<? extends List<DatasourceProfile>> datasourceProfiles,
             @JsonProperty("datasource") Optional<String> datasource,
             @JsonProperty("createdFrom") Optional<String> createdFrom,
@@ -194,6 +202,7 @@ public class Team {
         Utils.checkNotNull(members, "members");
         Utils.checkNotNull(memberCount, "memberCount");
         Utils.checkNotNull(emails, "emails");
+        Utils.checkNotNull(customFields, "customFields");
         Utils.checkNotNull(datasourceProfiles, "datasourceProfiles");
         Utils.checkNotNull(datasource, "datasource");
         Utils.checkNotNull(createdFrom, "createdFrom");
@@ -214,6 +223,7 @@ public class Team {
         this.members = members;
         this.memberCount = memberCount;
         this.emails = emails;
+        this.customFields = customFields;
         this.datasourceProfiles = datasourceProfiles;
         this.datasource = datasource;
         this.createdFrom = createdFrom;
@@ -226,7 +236,7 @@ public class Team {
     public Team(
             String id,
             String name) {
-        this(Optional.empty(), Optional.empty(), id, name, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), id, name, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -332,6 +342,15 @@ public class Team {
     @JsonIgnore
     public Optional<List<TeamEmail>> emails() {
         return (Optional<List<TeamEmail>>) emails;
+    }
+
+    /**
+     * Customizable fields for additional team information.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<CustomFieldData>> customFields() {
+        return (Optional<List<CustomFieldData>>) customFields;
     }
 
     /**
@@ -607,6 +626,24 @@ public class Team {
     }
 
     /**
+     * Customizable fields for additional team information.
+     */
+    public Team withCustomFields(List<CustomFieldData> customFields) {
+        Utils.checkNotNull(customFields, "customFields");
+        this.customFields = Optional.ofNullable(customFields);
+        return this;
+    }
+
+    /**
+     * Customizable fields for additional team information.
+     */
+    public Team withCustomFields(Optional<? extends List<CustomFieldData>> customFields) {
+        Utils.checkNotNull(customFields, "customFields");
+        this.customFields = customFields;
+        return this;
+    }
+
+    /**
      * The datasource profiles of the team
      */
     public Team withDatasourceProfiles(List<DatasourceProfile> datasourceProfiles) {
@@ -756,6 +793,7 @@ public class Team {
             Objects.deepEquals(this.members, other.members) &&
             Objects.deepEquals(this.memberCount, other.memberCount) &&
             Objects.deepEquals(this.emails, other.emails) &&
+            Objects.deepEquals(this.customFields, other.customFields) &&
             Objects.deepEquals(this.datasourceProfiles, other.datasourceProfiles) &&
             Objects.deepEquals(this.datasource, other.datasource) &&
             Objects.deepEquals(this.createdFrom, other.createdFrom) &&
@@ -781,6 +819,7 @@ public class Team {
             members,
             memberCount,
             emails,
+            customFields,
             datasourceProfiles,
             datasource,
             createdFrom,
@@ -806,6 +845,7 @@ public class Team {
                 "members", members,
                 "memberCount", memberCount,
                 "emails", emails,
+                "customFields", customFields,
                 "datasourceProfiles", datasourceProfiles,
                 "datasource", datasource,
                 "createdFrom", createdFrom,
@@ -842,6 +882,8 @@ public class Team {
         private Optional<Long> memberCount = Optional.empty();
  
         private Optional<? extends List<TeamEmail>> emails = Optional.empty();
+ 
+        private Optional<? extends List<CustomFieldData>> customFields = Optional.empty();
  
         private Optional<? extends List<DatasourceProfile>> datasourceProfiles = Optional.empty();
  
@@ -1072,6 +1114,24 @@ public class Team {
         }
 
         /**
+         * Customizable fields for additional team information.
+         */
+        public Builder customFields(List<CustomFieldData> customFields) {
+            Utils.checkNotNull(customFields, "customFields");
+            this.customFields = Optional.ofNullable(customFields);
+            return this;
+        }
+
+        /**
+         * Customizable fields for additional team information.
+         */
+        public Builder customFields(Optional<? extends List<CustomFieldData>> customFields) {
+            Utils.checkNotNull(customFields, "customFields");
+            this.customFields = customFields;
+            return this;
+        }
+
+        /**
          * The datasource profiles of the team
          */
         public Builder datasourceProfiles(List<DatasourceProfile> datasourceProfiles) {
@@ -1218,6 +1278,7 @@ public class Team {
                 members,
                 memberCount,
                 emails,
+                customFields,
                 datasourceProfiles,
                 datasource,
                 createdFrom,

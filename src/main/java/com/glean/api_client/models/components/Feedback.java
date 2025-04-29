@@ -87,7 +87,7 @@ public class Feedback {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("channels")
-    private Optional<? extends List<FeedbackChannel1>> channels;
+    private Optional<? extends List<FeedbackChannel>> channels;
 
     /**
      * The URL the client was at when the feedback event triggered.
@@ -133,6 +133,13 @@ public class Feedback {
     @JsonProperty("applicationId")
     private Optional<String> applicationId;
 
+    /**
+     * The agent ID of the client that sent the feedback event.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("agentId")
+    private Optional<String> agentId;
+
     @JsonCreator
     public Feedback(
             @JsonProperty("id") Optional<String> id,
@@ -145,7 +152,7 @@ public class Feedback {
             @JsonProperty("timestamp") Optional<OffsetDateTime> timestamp,
             @JsonProperty("user") Optional<? extends User> user,
             @JsonProperty("pathname") Optional<String> pathname,
-            @JsonProperty("channels") Optional<? extends List<FeedbackChannel1>> channels,
+            @JsonProperty("channels") Optional<? extends List<FeedbackChannel>> channels,
             @JsonProperty("url") Optional<String> url,
             @JsonProperty("uiTree") Optional<? extends List<String>> uiTree,
             @JsonProperty("uiElement") Optional<String> uiElement,
@@ -153,7 +160,8 @@ public class Feedback {
             @JsonProperty("seenFeedbackInfo") Optional<? extends SeenFeedbackInfo> seenFeedbackInfo,
             @JsonProperty("userViewInfo") Optional<? extends UserViewInfo> userViewInfo,
             @JsonProperty("workflowFeedbackInfo") Optional<? extends WorkflowFeedbackInfo> workflowFeedbackInfo,
-            @JsonProperty("applicationId") Optional<String> applicationId) {
+            @JsonProperty("applicationId") Optional<String> applicationId,
+            @JsonProperty("agentId") Optional<String> agentId) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(category, "category");
         Utils.checkNotNull(trackingTokens, "trackingTokens");
@@ -173,6 +181,7 @@ public class Feedback {
         Utils.checkNotNull(userViewInfo, "userViewInfo");
         Utils.checkNotNull(workflowFeedbackInfo, "workflowFeedbackInfo");
         Utils.checkNotNull(applicationId, "applicationId");
+        Utils.checkNotNull(agentId, "agentId");
         this.id = id;
         this.category = category;
         this.trackingTokens = trackingTokens;
@@ -192,12 +201,13 @@ public class Feedback {
         this.userViewInfo = userViewInfo;
         this.workflowFeedbackInfo = workflowFeedbackInfo;
         this.applicationId = applicationId;
+        this.agentId = agentId;
     }
     
     public Feedback(
             List<String> trackingTokens,
             Event event) {
-        this(Optional.empty(), Optional.empty(), trackingTokens, event, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), trackingTokens, event, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -282,8 +292,8 @@ public class Feedback {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<FeedbackChannel1>> channels() {
-        return (Optional<List<FeedbackChannel1>>) channels;
+    public Optional<List<FeedbackChannel>> channels() {
+        return (Optional<List<FeedbackChannel>>) channels;
     }
 
     /**
@@ -341,6 +351,14 @@ public class Feedback {
     @JsonIgnore
     public Optional<String> applicationId() {
         return applicationId;
+    }
+
+    /**
+     * The agent ID of the client that sent the feedback event.
+     */
+    @JsonIgnore
+    public Optional<String> agentId() {
+        return agentId;
     }
 
     public final static Builder builder() {
@@ -500,7 +518,7 @@ public class Feedback {
     /**
      * Where the feedback will be sent, e.g. to Glean, the user's company, or both. If no channels are specified, feedback will go only to Glean.
      */
-    public Feedback withChannels(List<FeedbackChannel1> channels) {
+    public Feedback withChannels(List<FeedbackChannel> channels) {
         Utils.checkNotNull(channels, "channels");
         this.channels = Optional.ofNullable(channels);
         return this;
@@ -509,7 +527,7 @@ public class Feedback {
     /**
      * Where the feedback will be sent, e.g. to Glean, the user's company, or both. If no channels are specified, feedback will go only to Glean.
      */
-    public Feedback withChannels(Optional<? extends List<FeedbackChannel1>> channels) {
+    public Feedback withChannels(Optional<? extends List<FeedbackChannel>> channels) {
         Utils.checkNotNull(channels, "channels");
         this.channels = channels;
         return this;
@@ -635,6 +653,24 @@ public class Feedback {
         return this;
     }
 
+    /**
+     * The agent ID of the client that sent the feedback event.
+     */
+    public Feedback withAgentId(String agentId) {
+        Utils.checkNotNull(agentId, "agentId");
+        this.agentId = Optional.ofNullable(agentId);
+        return this;
+    }
+
+    /**
+     * The agent ID of the client that sent the feedback event.
+     */
+    public Feedback withAgentId(Optional<String> agentId) {
+        Utils.checkNotNull(agentId, "agentId");
+        this.agentId = agentId;
+        return this;
+    }
+
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -664,7 +700,8 @@ public class Feedback {
             Objects.deepEquals(this.seenFeedbackInfo, other.seenFeedbackInfo) &&
             Objects.deepEquals(this.userViewInfo, other.userViewInfo) &&
             Objects.deepEquals(this.workflowFeedbackInfo, other.workflowFeedbackInfo) &&
-            Objects.deepEquals(this.applicationId, other.applicationId);
+            Objects.deepEquals(this.applicationId, other.applicationId) &&
+            Objects.deepEquals(this.agentId, other.agentId);
     }
     
     @Override
@@ -688,7 +725,8 @@ public class Feedback {
             seenFeedbackInfo,
             userViewInfo,
             workflowFeedbackInfo,
-            applicationId);
+            applicationId,
+            agentId);
     }
     
     @Override
@@ -712,7 +750,8 @@ public class Feedback {
                 "seenFeedbackInfo", seenFeedbackInfo,
                 "userViewInfo", userViewInfo,
                 "workflowFeedbackInfo", workflowFeedbackInfo,
-                "applicationId", applicationId);
+                "applicationId", applicationId,
+                "agentId", agentId);
     }
     
     public final static class Builder {
@@ -737,7 +776,7 @@ public class Feedback {
  
         private Optional<String> pathname = Optional.empty();
  
-        private Optional<? extends List<FeedbackChannel1>> channels = Optional.empty();
+        private Optional<? extends List<FeedbackChannel>> channels = Optional.empty();
  
         private Optional<String> url = Optional.empty();
  
@@ -754,6 +793,8 @@ public class Feedback {
         private Optional<? extends WorkflowFeedbackInfo> workflowFeedbackInfo = Optional.empty();
  
         private Optional<String> applicationId = Optional.empty();
+ 
+        private Optional<String> agentId = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -912,7 +953,7 @@ public class Feedback {
         /**
          * Where the feedback will be sent, e.g. to Glean, the user's company, or both. If no channels are specified, feedback will go only to Glean.
          */
-        public Builder channels(List<FeedbackChannel1> channels) {
+        public Builder channels(List<FeedbackChannel> channels) {
             Utils.checkNotNull(channels, "channels");
             this.channels = Optional.ofNullable(channels);
             return this;
@@ -921,7 +962,7 @@ public class Feedback {
         /**
          * Where the feedback will be sent, e.g. to Glean, the user's company, or both. If no channels are specified, feedback will go only to Glean.
          */
-        public Builder channels(Optional<? extends List<FeedbackChannel1>> channels) {
+        public Builder channels(Optional<? extends List<FeedbackChannel>> channels) {
             Utils.checkNotNull(channels, "channels");
             this.channels = channels;
             return this;
@@ -1046,6 +1087,24 @@ public class Feedback {
             this.applicationId = applicationId;
             return this;
         }
+
+        /**
+         * The agent ID of the client that sent the feedback event.
+         */
+        public Builder agentId(String agentId) {
+            Utils.checkNotNull(agentId, "agentId");
+            this.agentId = Optional.ofNullable(agentId);
+            return this;
+        }
+
+        /**
+         * The agent ID of the client that sent the feedback event.
+         */
+        public Builder agentId(Optional<String> agentId) {
+            Utils.checkNotNull(agentId, "agentId");
+            this.agentId = agentId;
+            return this;
+        }
         
         public Feedback build() {
             return new Feedback(
@@ -1067,7 +1126,8 @@ public class Feedback {
                 seenFeedbackInfo,
                 userViewInfo,
                 workflowFeedbackInfo,
-                applicationId);
+                applicationId,
+                agentId);
         }
     }
 }

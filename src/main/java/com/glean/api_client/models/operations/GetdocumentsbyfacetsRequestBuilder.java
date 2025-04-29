@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class GetdocumentsbyfacetsRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private Optional<? extends GetDocumentsByFacetsRequest> getDocumentsByFacetsRequest = Optional.empty();
     private final SDKMethodInterfaces.MethodCallGetdocumentsbyfacets sdk;
@@ -20,15 +20,15 @@ public class GetdocumentsbyfacetsRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public GetdocumentsbyfacetsRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public GetdocumentsbyfacetsRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public GetdocumentsbyfacetsRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public GetdocumentsbyfacetsRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -59,7 +59,7 @@ public class GetdocumentsbyfacetsRequestBuilder {
     public GetdocumentsbyfacetsResponse call() throws Exception {
 
         return sdk.getByFacets(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             getDocumentsByFacetsRequest);
     }

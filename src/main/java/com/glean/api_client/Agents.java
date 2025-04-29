@@ -80,7 +80,7 @@ public class Agents implements
      * 
      * <p>Trigger an Agent with a given id.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param runAgentRequest 
@@ -88,14 +88,14 @@ public class Agents implements
      * @throws Exception if the API call fails
      */
     public RunagentResponse runagent(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<Long> timezoneOffset,
             RunAgentRequest runAgentRequest) throws Exception {
         RunagentRequest request =
             RunagentRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .timezoneOffset(timezoneOffset)
                 .runAgentRequest(runAgentRequest)
@@ -259,7 +259,7 @@ public class Agents implements
      * 
      * <p>Lists all agents that are available.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param requestBody 
@@ -267,14 +267,14 @@ public class Agents implements
      * @throws Exception if the API call fails
      */
     public ListagentsResponse listagents(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<Long> timezoneOffset,
             Optional<? extends Object> requestBody) throws Exception {
         ListagentsRequest request =
             ListagentsRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .timezoneOffset(timezoneOffset)
                 .requestBody(requestBody)
@@ -437,7 +437,7 @@ public class Agents implements
      * 
      * <p>Get the inputs to an agent with a given id.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param getAgentInputsRequest 
@@ -445,14 +445,14 @@ public class Agents implements
      * @throws Exception if the API call fails
      */
     public GetagentinputsResponse getagentinputs(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<Long> timezoneOffset,
             GetAgentInputsRequest getAgentInputsRequest) throws Exception {
         GetagentinputsRequest request =
             GetagentinputsRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .timezoneOffset(timezoneOffset)
                 .getAgentInputsRequest(getAgentInputsRequest)

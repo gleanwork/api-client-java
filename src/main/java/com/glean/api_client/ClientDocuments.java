@@ -6,8 +6,6 @@ package com.glean.api_client;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.models.components.GetDocPermissionsRequest;
 import com.glean.api_client.models.components.GetDocPermissionsResponse;
-import com.glean.api_client.models.components.GetDocumentAnalyticsRequest;
-import com.glean.api_client.models.components.GetDocumentAnalyticsResponse;
 import com.glean.api_client.models.components.GetDocumentsByFacetsRequest;
 import com.glean.api_client.models.components.GetDocumentsByFacetsResponse;
 import com.glean.api_client.models.components.GetDocumentsRequest;
@@ -16,9 +14,6 @@ import com.glean.api_client.models.errors.APIException;
 import com.glean.api_client.models.operations.GetdocpermissionsRequest;
 import com.glean.api_client.models.operations.GetdocpermissionsRequestBuilder;
 import com.glean.api_client.models.operations.GetdocpermissionsResponse;
-import com.glean.api_client.models.operations.GetdocumentanalyticsRequest;
-import com.glean.api_client.models.operations.GetdocumentanalyticsRequestBuilder;
-import com.glean.api_client.models.operations.GetdocumentanalyticsResponse;
 import com.glean.api_client.models.operations.GetdocumentsRequest;
 import com.glean.api_client.models.operations.GetdocumentsRequestBuilder;
 import com.glean.api_client.models.operations.GetdocumentsResponse;
@@ -46,8 +41,7 @@ import java.util.Optional;
 public class ClientDocuments implements
             MethodCallGetdocpermissions,
             MethodCallGetdocuments,
-            MethodCallGetdocumentsbyfacets,
-            MethodCallGetdocumentanalytics {
+            MethodCallGetdocumentsbyfacets {
 
     private final SDKConfiguration sdkConfiguration;
 
@@ -86,20 +80,20 @@ public class ClientDocuments implements
      * 
      * <p>Read the emails of all users who have access to the given document.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param getDocPermissionsRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetdocpermissionsResponse getPermissions(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             GetDocPermissionsRequest getDocPermissionsRequest) throws Exception {
         GetdocpermissionsRequest request =
             GetdocpermissionsRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .getDocPermissionsRequest(getDocPermissionsRequest)
                 .build();
@@ -257,20 +251,20 @@ public class ClientDocuments implements
      * 
      * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`) for the given list of Glean Document IDs or URLs specified in the request.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param getDocumentsRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetdocumentsResponse get(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<? extends GetDocumentsRequest> getDocumentsRequest) throws Exception {
         GetdocumentsRequest request =
             GetdocumentsRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .getDocumentsRequest(getDocumentsRequest)
                 .build();
@@ -425,20 +419,20 @@ public class ClientDocuments implements
      * 
      * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`) macthing the given facet conditions.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param getDocumentsByFacetsRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetdocumentsbyfacetsResponse getByFacets(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<? extends GetDocumentsByFacetsRequest> getDocumentsByFacetsRequest) throws Exception {
         GetdocumentsbyfacetsRequest request =
             GetdocumentsbyfacetsRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .getDocumentsByFacetsRequest(getDocumentsByFacetsRequest)
                 .build();
@@ -541,174 +535,6 @@ public class ClientDocuments implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "404", "429", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
-    }
-
-
-
-    /**
-     * Read document analytics
-     * 
-     * <p>Read the document analytics information for the given list of Glean Document IDs or URLs specified in the request
-     * 
-     * @return The call builder
-     */
-    public GetdocumentanalyticsRequestBuilder getAnalytics() {
-        return new GetdocumentanalyticsRequestBuilder(this);
-    }
-
-    /**
-     * Read document analytics
-     * 
-     * <p>Read the document analytics information for the given list of Glean Document IDs or URLs specified in the request
-     * 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public GetdocumentanalyticsResponse getAnalyticsDirect() throws Exception {
-        return getAnalytics(Optional.empty(), Optional.empty(), Optional.empty());
-    }
-    
-    /**
-     * Read document analytics
-     * 
-     * <p>Read the document analytics information for the given list of Glean Document IDs or URLs specified in the request
-     * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param getDocumentAnalyticsRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public GetdocumentanalyticsResponse getAnalytics(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            Optional<? extends GetDocumentAnalyticsRequest> getDocumentAnalyticsRequest) throws Exception {
-        GetdocumentanalyticsRequest request =
-            GetdocumentanalyticsRequest
-                .builder()
-                .xScioActas(xScioActas)
-                .xGleanAuthType(xGleanAuthType)
-                .getDocumentAnalyticsRequest(getDocumentAnalyticsRequest)
-                .build();
-        
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/rest/api/v1/getdocumentanalytics");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "getDocumentAnalyticsRequest",
-                "json",
-                false);
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "getdocumentanalytics", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "getdocumentanalytics",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "getdocumentanalytics",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "getdocumentanalytics",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        GetdocumentanalyticsResponse.Builder _resBuilder = 
-            GetdocumentanalyticsResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        GetdocumentanalyticsResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                GetDocumentAnalyticsResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<GetDocumentAnalyticsResponse>() {});
-                _res.withGetDocumentAnalyticsResponse(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX")) {
             // no content 
             throw new APIException(
                     _httpRes, 

@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class DeleteshortcutRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private DeleteShortcutRequest deleteShortcutRequest;
     private final SDKMethodInterfaces.MethodCallDeleteshortcut sdk;
@@ -20,15 +20,15 @@ public class DeleteshortcutRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public DeleteshortcutRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public DeleteshortcutRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public DeleteshortcutRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public DeleteshortcutRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -53,7 +53,7 @@ public class DeleteshortcutRequestBuilder {
     public DeleteshortcutResponse call() throws Exception {
 
         return sdk.delete(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             deleteShortcutRequest);
     }

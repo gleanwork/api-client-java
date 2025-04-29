@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class GetdocpermissionsRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private GetDocPermissionsRequest getDocPermissionsRequest;
     private final SDKMethodInterfaces.MethodCallGetdocpermissions sdk;
@@ -20,15 +20,15 @@ public class GetdocpermissionsRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public GetdocpermissionsRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public GetdocpermissionsRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public GetdocpermissionsRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public GetdocpermissionsRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -53,7 +53,7 @@ public class GetdocpermissionsRequestBuilder {
     public GetdocpermissionsResponse call() throws Exception {
 
         return sdk.getPermissions(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             getDocPermissionsRequest);
     }

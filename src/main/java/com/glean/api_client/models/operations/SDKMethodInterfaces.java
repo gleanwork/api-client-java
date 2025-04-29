@@ -5,8 +5,6 @@ package com.glean.api_client.models.operations;
 
 import com.glean.api_client.models.components.Activity;
 import com.glean.api_client.models.components.AddCollectionItemsRequest;
-import com.glean.api_client.models.components.AddCredentialRequest;
-import com.glean.api_client.models.components.AskRequest;
 import com.glean.api_client.models.components.AutocompleteRequest;
 import com.glean.api_client.models.components.BulkIndexDocumentsRequest;
 import com.glean.api_client.models.components.BulkIndexEmployeesRequest;
@@ -17,63 +15,47 @@ import com.glean.api_client.models.components.BulkIndexTeamsRequest;
 import com.glean.api_client.models.components.BulkIndexUsersRequest;
 import com.glean.api_client.models.components.ChatRequest;
 import com.glean.api_client.models.components.CheckDocumentAccessRequest;
-import com.glean.api_client.models.components.CollectionBaseMutableProperties;
 import com.glean.api_client.models.components.CreateAnnouncementRequest;
 import com.glean.api_client.models.components.CreateAnswerRequest;
 import com.glean.api_client.models.components.CreateCollectionRequest;
-import com.glean.api_client.models.components.CreateDisplayableListsRequest;
-import com.glean.api_client.models.components.CreateDraftAnnouncementRequest;
 import com.glean.api_client.models.components.CreateShortcutRequest;
 import com.glean.api_client.models.components.CustomDatasourceConfig;
 import com.glean.api_client.models.components.DebugDocumentRequest;
 import com.glean.api_client.models.components.DebugDocumentsRequest;
 import com.glean.api_client.models.components.DebugUserRequest;
 import com.glean.api_client.models.components.DeleteAnnouncementRequest;
-import com.glean.api_client.models.components.DeleteAnswerBoardsRequest;
 import com.glean.api_client.models.components.DeleteAnswerRequest;
 import com.glean.api_client.models.components.DeleteChatFilesRequest;
 import com.glean.api_client.models.components.DeleteChatsRequest;
 import com.glean.api_client.models.components.DeleteCollectionItemRequest;
 import com.glean.api_client.models.components.DeleteCollectionRequest;
-import com.glean.api_client.models.components.DeleteDisplayableListsRequest;
 import com.glean.api_client.models.components.DeleteDocumentRequest;
 import com.glean.api_client.models.components.DeleteEmployeeRequest;
 import com.glean.api_client.models.components.DeleteGroupRequest;
 import com.glean.api_client.models.components.DeleteMembershipRequest;
-import com.glean.api_client.models.components.DeleteQueryHistoryRequest;
 import com.glean.api_client.models.components.DeleteShortcutRequest;
 import com.glean.api_client.models.components.DeleteTeamRequest;
 import com.glean.api_client.models.components.DeleteUserRequest;
-import com.glean.api_client.models.components.EditAnswerBoardRequest;
 import com.glean.api_client.models.components.EditAnswerRequest;
 import com.glean.api_client.models.components.EditCollectionItemRequest;
 import com.glean.api_client.models.components.EditCollectionRequest;
-import com.glean.api_client.models.components.EditDocumentCollectionsRequest;
 import com.glean.api_client.models.components.EditPinRequest;
-import com.glean.api_client.models.components.EmailRequest;
-import com.glean.api_client.models.components.ExecuteActionToolRequest;
 import com.glean.api_client.models.components.FeedRequest;
 import com.glean.api_client.models.components.Feedback;
 import com.glean.api_client.models.components.GetAgentInputsRequest;
-import com.glean.api_client.models.components.GetAnnouncementRequest;
-import com.glean.api_client.models.components.GetAnswerBoardRequest;
 import com.glean.api_client.models.components.GetAnswerRequest;
 import com.glean.api_client.models.components.GetChatApplicationRequest;
 import com.glean.api_client.models.components.GetChatFilesRequest;
 import com.glean.api_client.models.components.GetChatRequest;
 import com.glean.api_client.models.components.GetCollectionRequest;
 import com.glean.api_client.models.components.GetDatasourceConfigRequest;
-import com.glean.api_client.models.components.GetDisplayableListsRequest;
 import com.glean.api_client.models.components.GetDocPermissionsRequest;
-import com.glean.api_client.models.components.GetDocumentAnalyticsRequest;
 import com.glean.api_client.models.components.GetDocumentCountRequest;
 import com.glean.api_client.models.components.GetDocumentStatusRequest;
 import com.glean.api_client.models.components.GetDocumentsByFacetsRequest;
 import com.glean.api_client.models.components.GetDocumentsRequest;
-import com.glean.api_client.models.components.GetEventsRequest;
 import com.glean.api_client.models.components.GetPinRequest;
 import com.glean.api_client.models.components.GetShortcutRequestUnion;
-import com.glean.api_client.models.components.GetSimilarShortcutsRequest;
 import com.glean.api_client.models.components.GetUserCountRequest;
 import com.glean.api_client.models.components.GreenlistUsersRequest;
 import com.glean.api_client.models.components.IndexDocumentRequest;
@@ -85,39 +67,22 @@ import com.glean.api_client.models.components.IndexMembershipRequest;
 import com.glean.api_client.models.components.IndexTeamRequest;
 import com.glean.api_client.models.components.IndexUserRequest;
 import com.glean.api_client.models.components.InsightsRequest;
-import com.glean.api_client.models.components.InviteRequest;
-import com.glean.api_client.models.components.ListAnnouncementsRequest;
-import com.glean.api_client.models.components.ListAnswerBoardsRequest;
 import com.glean.api_client.models.components.ListAnswersRequest;
 import com.glean.api_client.models.components.ListCollectionsRequest;
 import com.glean.api_client.models.components.ListEntitiesRequest;
 import com.glean.api_client.models.components.ListShortcutsPaginatedRequest;
 import com.glean.api_client.models.components.MessagesRequest;
-import com.glean.api_client.models.components.MoveCollectionItemRequest;
 import com.glean.api_client.models.components.PeopleRequest;
-import com.glean.api_client.models.components.PeopleSuggestRequest;
-import com.glean.api_client.models.components.PinCollectionRequest;
 import com.glean.api_client.models.components.PinRequest;
-import com.glean.api_client.models.components.PreviewUgcRequest;
 import com.glean.api_client.models.components.ProcessAllDocumentsRequest;
 import com.glean.api_client.models.components.ProcessAllMembershipsRequest;
-import com.glean.api_client.models.components.PublicConfigRequest;
-import com.glean.api_client.models.components.PublishDraftAnnouncementRequest;
 import com.glean.api_client.models.components.RecommendationsRequest;
 import com.glean.api_client.models.components.ReminderRequest;
-import com.glean.api_client.models.components.RemoveCredentialRequest;
 import com.glean.api_client.models.components.RunAgentRequest;
 import com.glean.api_client.models.components.SearchRequest;
-import com.glean.api_client.models.components.ShortcutMutableProperties;
-import com.glean.api_client.models.components.StructuredTextMutableProperties;
 import com.glean.api_client.models.components.SummarizeRequest;
-import com.glean.api_client.models.components.TeamsRequest;
 import com.glean.api_client.models.components.Unpin;
-import com.glean.api_client.models.components.UnpublishAnnouncementRequest;
 import com.glean.api_client.models.components.UpdateAnnouncementRequest;
-import com.glean.api_client.models.components.UpdateAnswerLikesRequest;
-import com.glean.api_client.models.components.UpdateDisplayableListsRequest;
-import com.glean.api_client.models.components.UpdateDraftAnnouncementRequest;
 import com.glean.api_client.models.components.UpdatePermissionsRequest;
 import com.glean.api_client.models.components.UpdateShortcutRequest;
 import com.glean.api_client.models.components.UploadChatFilesRequest;
@@ -138,7 +103,7 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallFeedback {
         FeedbackResponse reportActivity(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<String> feedbackQueryParameter,
             Optional<? extends Feedback> feedback1) throws Exception;
@@ -146,213 +111,69 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallCreateannouncement {
         CreateannouncementResponse create(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             CreateAnnouncementRequest createAnnouncementRequest) throws Exception;
     }
 
-    public interface MethodCallCreatedraftannouncement {
-        CreatedraftannouncementResponse createDraft(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            CreateDraftAnnouncementRequest createDraftAnnouncementRequest) throws Exception;
-    }
-
     public interface MethodCallDeleteannouncement {
         DeleteannouncementResponse delete(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             DeleteAnnouncementRequest deleteAnnouncementRequest) throws Exception;
-    }
-
-    public interface MethodCallDeletedraftannouncement {
-        DeletedraftannouncementResponse deleteDraft(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            DeleteAnnouncementRequest deleteAnnouncementRequest) throws Exception;
-    }
-
-    public interface MethodCallGetannouncement {
-        GetannouncementResponse get(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            GetAnnouncementRequest getAnnouncementRequest) throws Exception;
-    }
-
-    public interface MethodCallGetdraftannouncement {
-        GetdraftannouncementResponse getDraft(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            GetAnnouncementRequest getAnnouncementRequest) throws Exception;
-    }
-
-    public interface MethodCallListannouncements {
-        ListannouncementsResponse list(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            ListAnnouncementsRequest listAnnouncementsRequest) throws Exception;
-    }
-
-    public interface MethodCallPreviewannouncement {
-        PreviewannouncementResponse preview(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            StructuredTextMutableProperties structuredTextMutableProperties) throws Exception;
-    }
-
-    public interface MethodCallPreviewannouncementdraft {
-        PreviewannouncementdraftResponse previewDraft(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            PreviewUgcRequest previewUgcRequest) throws Exception;
-    }
-
-    public interface MethodCallPublishdraftannouncement {
-        PublishdraftannouncementResponse publish(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            PublishDraftAnnouncementRequest publishDraftAnnouncementRequest) throws Exception;
-    }
-
-    public interface MethodCallUnpublishannouncement {
-        UnpublishannouncementResponse unpublish(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            UnpublishAnnouncementRequest unpublishAnnouncementRequest) throws Exception;
     }
 
     public interface MethodCallUpdateannouncement {
         UpdateannouncementResponse update(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             UpdateAnnouncementRequest updateAnnouncementRequest) throws Exception;
     }
 
-    public interface MethodCallUpdatedraftannouncement {
-        UpdatedraftannouncementResponse updateDraft(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            UpdateDraftAnnouncementRequest updateDraftAnnouncementRequest) throws Exception;
-    }
-
     public interface MethodCallCreateanswer {
         CreateanswerResponse create(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             CreateAnswerRequest createAnswerRequest) throws Exception;
     }
 
     public interface MethodCallDeleteanswer {
         DeleteanswerResponse delete(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             DeleteAnswerRequest deleteAnswerRequest) throws Exception;
     }
 
     public interface MethodCallEditanswer {
         EditanswerResponse edit(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             EditAnswerRequest editAnswerRequest) throws Exception;
     }
 
     public interface MethodCallGetanswer {
         GetanswerResponse get(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             GetAnswerRequest getAnswerRequest) throws Exception;
     }
 
     public interface MethodCallListanswers {
         ListanswersResponse list(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             ListAnswersRequest listAnswersRequest) throws Exception;
     }
 
-    public interface MethodCallPreviewanswer {
-        PreviewanswerResponse preview(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            StructuredTextMutableProperties structuredTextMutableProperties) throws Exception;
-    }
-
-    public interface MethodCallPreviewanswerdraft {
-        PreviewanswerdraftResponse previewDraft(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            PreviewUgcRequest previewUgcRequest) throws Exception;
-    }
-
-    public interface MethodCallUpdateanswerlikes {
-        UpdateanswerlikesResponse updateLikes(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            UpdateAnswerLikesRequest updateAnswerLikesRequest) throws Exception;
-    }
-
-    public interface MethodCallCreateanswerboard {
-        CreateanswerboardResponse createBoard(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            CollectionBaseMutableProperties collectionBaseMutableProperties) throws Exception;
-    }
-
-    public interface MethodCallDeleteanswerboards {
-        DeleteanswerboardsResponse deleteBoard(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            DeleteAnswerBoardsRequest deleteAnswerBoardsRequest) throws Exception;
-    }
-
-    public interface MethodCallEditanswerboard {
-        EditanswerboardResponse updateBoard(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            EditAnswerBoardRequest editAnswerBoardRequest) throws Exception;
-    }
-
-    public interface MethodCallGetanswerboard {
-        GetanswerboardResponse getBoard(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            GetAnswerBoardRequest getAnswerBoardRequest) throws Exception;
-    }
-
-    public interface MethodCallListanswerboards {
-        ListanswerboardsResponse listBoards(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            ListAnswerBoardsRequest listAnswerBoardsRequest) throws Exception;
-    }
-
-    public interface MethodCallCreateanonymoustoken {
-        CreateanonymoustokenResponse createAnonymousTokenDirect() throws Exception;
-    }
-
     public interface MethodCallCreateauthtoken {
         CreateauthtokenResponse createToken(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType) throws Exception;
-    }
-
-    public interface MethodCallGetevents {
-        GeteventsResponse getEvents(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            GetEventsRequest getEventsRequest) throws Exception;
-    }
-
-    public interface MethodCallAsk {
-        AskResponse ask(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            Optional<? extends AskRequest> askRequest) throws Exception;
     }
 
     public interface MethodCallChat {
         ChatResponse start(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<Long> timezoneOffset,
             ChatRequest chatRequest) throws Exception;
@@ -360,14 +181,14 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallDeleteallchats {
         DeleteallchatsResponse deleteAll(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<Long> timezoneOffset) throws Exception;
     }
 
     public interface MethodCallDeletechats {
         DeletechatsResponse delete(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<Long> timezoneOffset,
             DeleteChatsRequest deleteChatsRequest) throws Exception;
@@ -375,7 +196,7 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallGetchat {
         GetchatResponse get(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<Long> timezoneOffset,
             GetChatRequest getChatRequest) throws Exception;
@@ -383,14 +204,14 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallListchats {
         ListchatsResponse list(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<Long> timezoneOffset) throws Exception;
     }
 
     public interface MethodCallGetchatapplication {
         GetchatapplicationResponse getApplication(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<Long> timezoneOffset,
             GetChatApplicationRequest getChatApplicationRequest) throws Exception;
@@ -398,7 +219,7 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallUploadchatfiles {
         UploadchatfilesResponse uploadFiles(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<Long> timezoneOffset,
             UploadChatFilesRequest uploadChatFilesRequest) throws Exception;
@@ -406,7 +227,7 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallGetchatfiles {
         GetchatfilesResponse getFiles(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<Long> timezoneOffset,
             GetChatFilesRequest getChatFilesRequest) throws Exception;
@@ -414,7 +235,7 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallDeletechatfiles {
         DeletechatfilesResponse deleteFiles(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<Long> timezoneOffset,
             DeleteChatFilesRequest deleteChatFilesRequest) throws Exception;
@@ -422,311 +243,210 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallAddcollectionitems {
         AddcollectionitemsResponse addItems(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             AddCollectionItemsRequest addCollectionItemsRequest) throws Exception;
     }
 
     public interface MethodCallCreatecollection {
         CreatecollectionResponse create(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             CreateCollectionRequest createCollectionRequest) throws Exception;
     }
 
     public interface MethodCallDeletecollection {
         DeletecollectionResponse delete(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             DeleteCollectionRequest deleteCollectionRequest) throws Exception;
     }
 
     public interface MethodCallDeletecollectionitem {
         DeletecollectionitemResponse deleteItem(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             DeleteCollectionItemRequest deleteCollectionItemRequest) throws Exception;
     }
 
     public interface MethodCallEditcollection {
         EditcollectionResponse update(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             EditCollectionRequest editCollectionRequest) throws Exception;
     }
 
     public interface MethodCallEditcollectionitem {
         EditcollectionitemResponse editItem(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             EditCollectionItemRequest editCollectionItemRequest) throws Exception;
     }
 
-    public interface MethodCallEditdocumentcollections {
-        EditdocumentcollectionsResponse edit(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            EditDocumentCollectionsRequest editDocumentCollectionsRequest) throws Exception;
-    }
-
     public interface MethodCallGetcollection {
         GetcollectionResponse get(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             GetCollectionRequest getCollectionRequest) throws Exception;
     }
 
     public interface MethodCallListcollections {
         ListcollectionsResponse list(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             ListCollectionsRequest listCollectionsRequest) throws Exception;
     }
 
-    public interface MethodCallMovecollectionitem {
-        MovecollectionitemResponse moveItem(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            MoveCollectionItemRequest moveCollectionItemRequest) throws Exception;
-    }
-
-    public interface MethodCallPincollection {
-        PincollectionResponse pin(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            PinCollectionRequest pinCollectionRequest) throws Exception;
-    }
-
-    public interface MethodCallCreatedisplayablelists {
-        CreatedisplayablelistsResponse create(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            CreateDisplayableListsRequest createDisplayableListsRequest) throws Exception;
-    }
-
-    public interface MethodCallDeletedisplayablelists {
-        DeletedisplayablelistsResponse delete(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            DeleteDisplayableListsRequest deleteDisplayableListsRequest) throws Exception;
-    }
-
-    public interface MethodCallGetdisplayablelists {
-        GetdisplayablelistsResponse get(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            GetDisplayableListsRequest getDisplayableListsRequest) throws Exception;
-    }
-
-    public interface MethodCallUpdatedisplayablelists {
-        UpdatedisplayablelistsResponse update(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            UpdateDisplayableListsRequest updateDisplayableListsRequest) throws Exception;
-    }
-
     public interface MethodCallGetdocpermissions {
         GetdocpermissionsResponse getPermissions(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             GetDocPermissionsRequest getDocPermissionsRequest) throws Exception;
     }
 
     public interface MethodCallGetdocuments {
         GetdocumentsResponse get(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<? extends GetDocumentsRequest> getDocumentsRequest) throws Exception;
     }
 
     public interface MethodCallGetdocumentsbyfacets {
         GetdocumentsbyfacetsResponse getByFacets(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<? extends GetDocumentsByFacetsRequest> getDocumentsByFacetsRequest) throws Exception;
     }
 
-    public interface MethodCallGetdocumentanalytics {
-        GetdocumentanalyticsResponse getAnalytics(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            Optional<? extends GetDocumentAnalyticsRequest> getDocumentAnalyticsRequest) throws Exception;
-    }
-
-    public interface MethodCallImages {
-        ImagesResponse get(
-            ImagesRequest request) throws Exception;
-    }
-
-    public interface MethodCallUploadimage {
-        UploadimageResponse upload(
-            UploadimageRequest request) throws Exception;
-    }
-
     public interface MethodCallInsights {
         InsightsResponse get(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             InsightsRequest insightsRequest) throws Exception;
     }
 
     public interface MethodCallMessages {
         MessagesResponse get(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             MessagesRequest messagesRequest) throws Exception;
     }
 
     public interface MethodCallEditpin {
         EditpinResponse edit(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             EditPinRequest editPinRequest) throws Exception;
     }
 
     public interface MethodCallGetpin {
         GetpinResponse get(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             GetPinRequest getPinRequest) throws Exception;
     }
 
     public interface MethodCallListpins {
         ListpinsResponse list(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             ListpinsRequestBody requestBody) throws Exception;
     }
 
     public interface MethodCallPin {
         PinResponse create(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             PinRequest pinRequest) throws Exception;
     }
 
     public interface MethodCallUnpin {
         UnpinResponse remove(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Unpin unpin) throws Exception;
     }
 
     public interface MethodCallAdminsearch {
         AdminsearchResponse admin(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<? extends SearchRequest> searchRequest) throws Exception;
     }
 
     public interface MethodCallAutocomplete {
         AutocompleteResponse autocomplete(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             AutocompleteRequest autocompleteRequest) throws Exception;
     }
 
     public interface MethodCallFeed {
         FeedResponse getFeed(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             FeedRequest feedRequest) throws Exception;
     }
 
-    public interface MethodCallPeoplesuggest {
-        PeoplesuggestResponse suggestPeople(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            PeopleSuggestRequest peopleSuggestRequest) throws Exception;
-    }
-
-    public interface MethodCallPeoplesuggestadmin {
-        PeoplesuggestadminResponse suggestPeopleAdmin(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            PeopleSuggestRequest peopleSuggestRequest) throws Exception;
-    }
-
     public interface MethodCallRecommendations {
         RecommendationsResponse recommendations(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<? extends RecommendationsRequest> recommendationsRequest) throws Exception;
     }
 
     public interface MethodCallSearch {
         SearchResponse execute(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<? extends SearchRequest> searchRequest) throws Exception;
     }
 
     public interface MethodCallListentities {
         ListentitiesResponse list(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             ListEntitiesRequest listEntitiesRequest) throws Exception;
     }
 
     public interface MethodCallPeople {
         PeopleResponse readPeople(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             PeopleRequest peopleRequest) throws Exception;
     }
 
-    public interface MethodCallTeams {
-        TeamsResponse getTeams(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            TeamsRequest teamsRequest) throws Exception;
-    }
-
     public interface MethodCallCreateshortcut {
         CreateshortcutResponse create(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             CreateShortcutRequest createShortcutRequest) throws Exception;
     }
 
     public interface MethodCallDeleteshortcut {
         DeleteshortcutResponse delete(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             DeleteShortcutRequest deleteShortcutRequest) throws Exception;
     }
 
     public interface MethodCallGetshortcut {
         GetshortcutResponse get(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             GetShortcutRequestUnion getShortcutRequest) throws Exception;
     }
 
-    public interface MethodCallGetsimilarshortcuts {
-        GetsimilarshortcutsResponse getSimilar(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            GetSimilarShortcutsRequest getSimilarShortcutsRequest) throws Exception;
-    }
-
     public interface MethodCallListshortcuts {
         ListshortcutsResponse list(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             ListShortcutsPaginatedRequest listShortcutsPaginatedRequest) throws Exception;
     }
 
-    public interface MethodCallPreviewshortcut {
-        PreviewshortcutResponse preview(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            ShortcutMutableProperties shortcutMutableProperties) throws Exception;
-    }
-
     public interface MethodCallUpdateshortcut {
         UpdateshortcutResponse update(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             UpdateShortcutRequest updateShortcutRequest) throws Exception;
     }
@@ -738,83 +458,35 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallSummarize {
         SummarizeResponse generate(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             SummarizeRequest summarizeRequest) throws Exception;
     }
 
-    public interface MethodCallExecuteactiontool {
-        ExecuteactiontoolResponse executeAction(
-            Optional<Long> timezoneOffset,
-            ExecuteActionToolRequest executeActionToolRequest) throws Exception;
-    }
-
-    public interface MethodCallAddcredential {
-        AddcredentialResponse addCredential(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            AddCredentialRequest addCredentialRequest) throws Exception;
-    }
-
-    public interface MethodCallDeletequeryhistory {
-        DeletequeryhistoryResponse deleteQueryHistory(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            DeleteQueryHistoryRequest deleteQueryHistoryRequest) throws Exception;
-    }
-
-    public interface MethodCallInvite {
-        InviteResponse invite(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            InviteRequest inviteRequest) throws Exception;
-    }
-
-    public interface MethodCallPublicconfig {
-        PublicconfigResponse getPublicConfig(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            Optional<? extends PublicConfigRequest> publicConfigRequest) throws Exception;
-    }
-
-    public interface MethodCallRemovecredential {
-        RemovecredentialResponse removeCredential(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            RemoveCredentialRequest removeCredentialRequest) throws Exception;
-    }
-
-    public interface MethodCallSupportEmail {
-        SupportEmailResponse sendSupportEmail(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            EmailRequest emailRequest) throws Exception;
-    }
-
     public interface MethodCallAddverificationreminder {
         AddverificationreminderResponse addReminder(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             ReminderRequest reminderRequest) throws Exception;
     }
 
     public interface MethodCallListverifications {
         ListverificationsResponse list(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<Long> count) throws Exception;
     }
 
     public interface MethodCallVerify {
         VerifyResponse verify(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             VerifyRequest verifyRequest) throws Exception;
     }
 
     public interface MethodCallRunagent {
         RunagentResponse runagent(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<Long> timezoneOffset,
             RunAgentRequest runAgentRequest) throws Exception;
@@ -822,7 +494,7 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallListagents {
         ListagentsResponse listagents(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<Long> timezoneOffset,
             Optional<? extends Object> requestBody) throws Exception;
@@ -830,7 +502,7 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallGetagentinputs {
         GetagentinputsResponse getagentinputs(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<Long> timezoneOffset,
             GetAgentInputsRequest getAgentInputsRequest) throws Exception;
