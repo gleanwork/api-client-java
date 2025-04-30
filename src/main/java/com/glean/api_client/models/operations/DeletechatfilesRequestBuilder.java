@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public class DeletechatfilesRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private DeleteChatFilesRequest deleteChatFilesRequest;
@@ -22,15 +22,15 @@ public class DeletechatfilesRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public DeletechatfilesRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public DeletechatfilesRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public DeletechatfilesRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public DeletechatfilesRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -67,7 +67,7 @@ public class DeletechatfilesRequestBuilder {
     public DeletechatfilesResponse call() throws Exception {
 
         return sdk.deleteFiles(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             timezoneOffset,
             deleteChatFilesRequest);

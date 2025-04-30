@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public class ListpinsRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private ListpinsRequestBody requestBody;
     private final SDKMethodInterfaces.MethodCallListpins sdk;
@@ -19,15 +19,15 @@ public class ListpinsRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public ListpinsRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public ListpinsRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public ListpinsRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public ListpinsRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -52,7 +52,7 @@ public class ListpinsRequestBuilder {
     public ListpinsResponse call() throws Exception {
 
         return sdk.list(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             requestBody);
     }

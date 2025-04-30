@@ -40,6 +40,10 @@ public class InsightsRequest {
     @JsonProperty("aiAppRequestOptions")
     private Optional<? extends InsightsAiAppRequestOptions> aiAppRequestOptions;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("agentsRequestOptions")
+    private Optional<? extends InsightsAgentsRequestOptions> agentsRequestOptions;
+
     /**
      * Types of activity that should count in the definition of an Assistant Active User. Affects only insights for AI category.
      */
@@ -60,25 +64,28 @@ public class InsightsRequest {
             @JsonProperty("departments") Optional<? extends List<String>> departments,
             @JsonProperty("dayRange") Optional<? extends Period> dayRange,
             @JsonProperty("aiAppRequestOptions") Optional<? extends InsightsAiAppRequestOptions> aiAppRequestOptions,
+            @JsonProperty("agentsRequestOptions") Optional<? extends InsightsAgentsRequestOptions> agentsRequestOptions,
             @JsonProperty("assistantActivityTypes") Optional<? extends List<AssistantActivityType>> assistantActivityTypes,
             @JsonProperty("disablePerUserInsights") Optional<Boolean> disablePerUserInsights) {
         Utils.checkNotNull(categories, "categories");
         Utils.checkNotNull(departments, "departments");
         Utils.checkNotNull(dayRange, "dayRange");
         Utils.checkNotNull(aiAppRequestOptions, "aiAppRequestOptions");
+        Utils.checkNotNull(agentsRequestOptions, "agentsRequestOptions");
         Utils.checkNotNull(assistantActivityTypes, "assistantActivityTypes");
         Utils.checkNotNull(disablePerUserInsights, "disablePerUserInsights");
         this.categories = categories;
         this.departments = departments;
         this.dayRange = dayRange;
         this.aiAppRequestOptions = aiAppRequestOptions;
+        this.agentsRequestOptions = agentsRequestOptions;
         this.assistantActivityTypes = assistantActivityTypes;
         this.disablePerUserInsights = disablePerUserInsights;
     }
     
     public InsightsRequest(
             List<InsightsRequestCategory> categories) {
-        this(categories, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(categories, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -108,6 +115,12 @@ public class InsightsRequest {
     @JsonIgnore
     public Optional<InsightsAiAppRequestOptions> aiAppRequestOptions() {
         return (Optional<InsightsAiAppRequestOptions>) aiAppRequestOptions;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<InsightsAgentsRequestOptions> agentsRequestOptions() {
+        return (Optional<InsightsAgentsRequestOptions>) agentsRequestOptions;
     }
 
     /**
@@ -182,6 +195,18 @@ public class InsightsRequest {
         return this;
     }
 
+    public InsightsRequest withAgentsRequestOptions(InsightsAgentsRequestOptions agentsRequestOptions) {
+        Utils.checkNotNull(agentsRequestOptions, "agentsRequestOptions");
+        this.agentsRequestOptions = Optional.ofNullable(agentsRequestOptions);
+        return this;
+    }
+
+    public InsightsRequest withAgentsRequestOptions(Optional<? extends InsightsAgentsRequestOptions> agentsRequestOptions) {
+        Utils.checkNotNull(agentsRequestOptions, "agentsRequestOptions");
+        this.agentsRequestOptions = agentsRequestOptions;
+        return this;
+    }
+
     /**
      * Types of activity that should count in the definition of an Assistant Active User. Affects only insights for AI category.
      */
@@ -233,6 +258,7 @@ public class InsightsRequest {
             Objects.deepEquals(this.departments, other.departments) &&
             Objects.deepEquals(this.dayRange, other.dayRange) &&
             Objects.deepEquals(this.aiAppRequestOptions, other.aiAppRequestOptions) &&
+            Objects.deepEquals(this.agentsRequestOptions, other.agentsRequestOptions) &&
             Objects.deepEquals(this.assistantActivityTypes, other.assistantActivityTypes) &&
             Objects.deepEquals(this.disablePerUserInsights, other.disablePerUserInsights);
     }
@@ -244,6 +270,7 @@ public class InsightsRequest {
             departments,
             dayRange,
             aiAppRequestOptions,
+            agentsRequestOptions,
             assistantActivityTypes,
             disablePerUserInsights);
     }
@@ -255,6 +282,7 @@ public class InsightsRequest {
                 "departments", departments,
                 "dayRange", dayRange,
                 "aiAppRequestOptions", aiAppRequestOptions,
+                "agentsRequestOptions", agentsRequestOptions,
                 "assistantActivityTypes", assistantActivityTypes,
                 "disablePerUserInsights", disablePerUserInsights);
     }
@@ -268,6 +296,8 @@ public class InsightsRequest {
         private Optional<? extends Period> dayRange = Optional.empty();
  
         private Optional<? extends InsightsAiAppRequestOptions> aiAppRequestOptions = Optional.empty();
+ 
+        private Optional<? extends InsightsAgentsRequestOptions> agentsRequestOptions = Optional.empty();
  
         private Optional<? extends List<AssistantActivityType>> assistantActivityTypes = Optional.empty();
  
@@ -328,6 +358,18 @@ public class InsightsRequest {
             return this;
         }
 
+        public Builder agentsRequestOptions(InsightsAgentsRequestOptions agentsRequestOptions) {
+            Utils.checkNotNull(agentsRequestOptions, "agentsRequestOptions");
+            this.agentsRequestOptions = Optional.ofNullable(agentsRequestOptions);
+            return this;
+        }
+
+        public Builder agentsRequestOptions(Optional<? extends InsightsAgentsRequestOptions> agentsRequestOptions) {
+            Utils.checkNotNull(agentsRequestOptions, "agentsRequestOptions");
+            this.agentsRequestOptions = agentsRequestOptions;
+            return this;
+        }
+
         /**
          * Types of activity that should count in the definition of an Assistant Active User. Affects only insights for AI category.
          */
@@ -370,6 +412,7 @@ public class InsightsRequest {
                 departments,
                 dayRange,
                 aiAppRequestOptions,
+                agentsRequestOptions,
                 assistantActivityTypes,
                 disablePerUserInsights);
         }

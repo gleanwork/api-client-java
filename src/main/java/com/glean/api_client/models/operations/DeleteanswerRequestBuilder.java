@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class DeleteanswerRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private DeleteAnswerRequest deleteAnswerRequest;
     private final SDKMethodInterfaces.MethodCallDeleteanswer sdk;
@@ -20,15 +20,15 @@ public class DeleteanswerRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public DeleteanswerRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public DeleteanswerRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public DeleteanswerRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public DeleteanswerRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -53,7 +53,7 @@ public class DeleteanswerRequestBuilder {
     public DeleteanswerResponse call() throws Exception {
 
         return sdk.delete(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             deleteAnswerRequest);
     }

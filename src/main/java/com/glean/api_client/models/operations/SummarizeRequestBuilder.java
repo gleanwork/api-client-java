@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class SummarizeRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private SummarizeRequest summarizeRequest;
     private final SDKMethodInterfaces.MethodCallSummarize sdk;
@@ -20,15 +20,15 @@ public class SummarizeRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public SummarizeRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public SummarizeRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public SummarizeRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public SummarizeRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -53,7 +53,7 @@ public class SummarizeRequestBuilder {
     public SummarizeResponse call() throws Exception {
 
         return sdk.generate(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             summarizeRequest);
     }

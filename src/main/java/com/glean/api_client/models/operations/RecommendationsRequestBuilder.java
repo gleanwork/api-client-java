@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class RecommendationsRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private Optional<? extends RecommendationsRequest> recommendationsRequest = Optional.empty();
     private final SDKMethodInterfaces.MethodCallRecommendations sdk;
@@ -20,15 +20,15 @@ public class RecommendationsRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public RecommendationsRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public RecommendationsRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public RecommendationsRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public RecommendationsRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -59,7 +59,7 @@ public class RecommendationsRequestBuilder {
     public RecommendationsResponse call() throws Exception {
 
         return sdk.recommendations(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             recommendationsRequest);
     }

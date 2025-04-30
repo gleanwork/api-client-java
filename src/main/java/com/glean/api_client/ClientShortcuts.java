@@ -9,12 +9,8 @@ import com.glean.api_client.models.components.CreateShortcutResponse;
 import com.glean.api_client.models.components.DeleteShortcutRequest;
 import com.glean.api_client.models.components.GetShortcutRequestUnion;
 import com.glean.api_client.models.components.GetShortcutResponse;
-import com.glean.api_client.models.components.GetSimilarShortcutsRequest;
-import com.glean.api_client.models.components.GetSimilarShortcutsResponse;
 import com.glean.api_client.models.components.ListShortcutsPaginatedRequest;
 import com.glean.api_client.models.components.ListShortcutsPaginatedResponse;
-import com.glean.api_client.models.components.PreviewShortcutResponse;
-import com.glean.api_client.models.components.ShortcutMutableProperties;
 import com.glean.api_client.models.components.UpdateShortcutRequest;
 import com.glean.api_client.models.components.UpdateShortcutResponse;
 import com.glean.api_client.models.components.UploadShortcutsRequest;
@@ -28,17 +24,11 @@ import com.glean.api_client.models.operations.DeleteshortcutResponse;
 import com.glean.api_client.models.operations.GetshortcutRequest;
 import com.glean.api_client.models.operations.GetshortcutRequestBuilder;
 import com.glean.api_client.models.operations.GetshortcutResponse;
-import com.glean.api_client.models.operations.GetsimilarshortcutsRequest;
-import com.glean.api_client.models.operations.GetsimilarshortcutsRequestBuilder;
-import com.glean.api_client.models.operations.GetsimilarshortcutsResponse;
 import com.glean.api_client.models.operations.ListshortcutsRequest;
 import com.glean.api_client.models.operations.ListshortcutsRequestBuilder;
 import com.glean.api_client.models.operations.ListshortcutsResponse;
 import com.glean.api_client.models.operations.PostApiIndexV1UploadshortcutsRequestBuilder;
 import com.glean.api_client.models.operations.PostApiIndexV1UploadshortcutsResponse;
-import com.glean.api_client.models.operations.PreviewshortcutRequest;
-import com.glean.api_client.models.operations.PreviewshortcutRequestBuilder;
-import com.glean.api_client.models.operations.PreviewshortcutResponse;
 import com.glean.api_client.models.operations.SDKMethodInterfaces.*;
 import com.glean.api_client.models.operations.UpdateshortcutRequest;
 import com.glean.api_client.models.operations.UpdateshortcutRequestBuilder;
@@ -64,9 +54,7 @@ public class ClientShortcuts implements
             MethodCallCreateshortcut,
             MethodCallDeleteshortcut,
             MethodCallGetshortcut,
-            MethodCallGetsimilarshortcuts,
             MethodCallListshortcuts,
-            MethodCallPreviewshortcut,
             MethodCallUpdateshortcut,
             MethodCallPostApiIndexV1Uploadshortcuts {
 
@@ -107,20 +95,20 @@ public class ClientShortcuts implements
      * 
      * <p>Create a user-generated shortcut that contains an alias and destination URL.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param createShortcutRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateshortcutResponse create(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             CreateShortcutRequest createShortcutRequest) throws Exception {
         CreateshortcutRequest request =
             CreateshortcutRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .createShortcutRequest(createShortcutRequest)
                 .build();
@@ -280,20 +268,20 @@ public class ClientShortcuts implements
      * 
      * <p>Delete an existing user-generated shortcut.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param deleteShortcutRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeleteshortcutResponse delete(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             DeleteShortcutRequest deleteShortcutRequest) throws Exception {
         DeleteshortcutRequest request =
             DeleteshortcutRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .deleteShortcutRequest(deleteShortcutRequest)
                 .build();
@@ -442,20 +430,20 @@ public class ClientShortcuts implements
      * 
      * <p>Read a particular shortcut's details given its ID.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param getShortcutRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetshortcutResponse get(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             GetShortcutRequestUnion getShortcutRequest) throws Exception {
         GetshortcutRequest request =
             GetshortcutRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .getShortcutRequest(getShortcutRequest)
                 .build();
@@ -586,179 +574,6 @@ public class ClientShortcuts implements
 
 
     /**
-     * Get similar shortcuts
-     * 
-     * <p>Get shortcuts with similar aliases to a given alias.
-     * 
-     * @return The call builder
-     */
-    public GetsimilarshortcutsRequestBuilder getSimilar() {
-        return new GetsimilarshortcutsRequestBuilder(this);
-    }
-
-    /**
-     * Get similar shortcuts
-     * 
-     * <p>Get shortcuts with similar aliases to a given alias.
-     * 
-     * @param getSimilarShortcutsRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public GetsimilarshortcutsResponse getSimilar(
-            GetSimilarShortcutsRequest getSimilarShortcutsRequest) throws Exception {
-        return getSimilar(Optional.empty(), Optional.empty(), getSimilarShortcutsRequest);
-    }
-    
-    /**
-     * Get similar shortcuts
-     * 
-     * <p>Get shortcuts with similar aliases to a given alias.
-     * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param getSimilarShortcutsRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public GetsimilarshortcutsResponse getSimilar(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            GetSimilarShortcutsRequest getSimilarShortcutsRequest) throws Exception {
-        GetsimilarshortcutsRequest request =
-            GetsimilarshortcutsRequest
-                .builder()
-                .xScioActas(xScioActas)
-                .xGleanAuthType(xGleanAuthType)
-                .getSimilarShortcutsRequest(getSimilarShortcutsRequest)
-                .build();
-        
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/rest/api/v1/getsimilarshortcuts");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "getSimilarShortcutsRequest",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "getsimilarshortcuts", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "getsimilarshortcuts",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "getsimilarshortcuts",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "getsimilarshortcuts",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        GetsimilarshortcutsResponse.Builder _resBuilder = 
-            GetsimilarshortcutsResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        GetsimilarshortcutsResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                GetSimilarShortcutsResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<GetSimilarShortcutsResponse>() {});
-                _res.withGetSimilarShortcutsResponse(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
-    }
-
-
-
-    /**
      * List shortcuts
      * 
      * <p>List shortcuts editable/owned by the currently authenticated user.
@@ -788,20 +603,20 @@ public class ClientShortcuts implements
      * 
      * <p>List shortcuts editable/owned by the currently authenticated user.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param listShortcutsPaginatedRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListshortcutsResponse list(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             ListShortcutsPaginatedRequest listShortcutsPaginatedRequest) throws Exception {
         ListshortcutsRequest request =
             ListshortcutsRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .listShortcutsPaginatedRequest(listShortcutsPaginatedRequest)
                 .build();
@@ -932,179 +747,6 @@ public class ClientShortcuts implements
 
 
     /**
-     * Preview shortcut
-     * 
-     * <p>Preview a shortcut that contains an alias and destination URL.
-     * 
-     * @return The call builder
-     */
-    public PreviewshortcutRequestBuilder preview() {
-        return new PreviewshortcutRequestBuilder(this);
-    }
-
-    /**
-     * Preview shortcut
-     * 
-     * <p>Preview a shortcut that contains an alias and destination URL.
-     * 
-     * @param shortcutMutableProperties 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public PreviewshortcutResponse preview(
-            ShortcutMutableProperties shortcutMutableProperties) throws Exception {
-        return preview(Optional.empty(), Optional.empty(), shortcutMutableProperties);
-    }
-    
-    /**
-     * Preview shortcut
-     * 
-     * <p>Preview a shortcut that contains an alias and destination URL.
-     * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param shortcutMutableProperties 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public PreviewshortcutResponse preview(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            ShortcutMutableProperties shortcutMutableProperties) throws Exception {
-        PreviewshortcutRequest request =
-            PreviewshortcutRequest
-                .builder()
-                .xScioActas(xScioActas)
-                .xGleanAuthType(xGleanAuthType)
-                .shortcutMutableProperties(shortcutMutableProperties)
-                .build();
-        
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/rest/api/v1/previewshortcut");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "shortcutMutableProperties",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "previewshortcut", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "previewshortcut",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "previewshortcut",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "previewshortcut",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        PreviewshortcutResponse.Builder _resBuilder = 
-            PreviewshortcutResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        PreviewshortcutResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                PreviewShortcutResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<PreviewShortcutResponse>() {});
-                _res.withPreviewShortcutResponse(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
-    }
-
-
-
-    /**
      * Update shortcut
      * 
      * <p>Updates the shortcut with the given ID.
@@ -1134,20 +776,20 @@ public class ClientShortcuts implements
      * 
      * <p>Updates the shortcut with the given ID.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param updateShortcutRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public UpdateshortcutResponse update(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             UpdateShortcutRequest updateShortcutRequest) throws Exception {
         UpdateshortcutRequest request =
             UpdateshortcutRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .updateShortcutRequest(updateShortcutRequest)
                 .build();

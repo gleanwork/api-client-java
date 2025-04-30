@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class CreateannouncementRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private CreateAnnouncementRequest createAnnouncementRequest;
     private final SDKMethodInterfaces.MethodCallCreateannouncement sdk;
@@ -20,15 +20,15 @@ public class CreateannouncementRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public CreateannouncementRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public CreateannouncementRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public CreateannouncementRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public CreateannouncementRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -53,7 +53,7 @@ public class CreateannouncementRequestBuilder {
     public CreateannouncementResponse call() throws Exception {
 
         return sdk.create(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             createAnnouncementRequest);
     }

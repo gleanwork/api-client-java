@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class MessagesRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private MessagesRequest messagesRequest;
     private final SDKMethodInterfaces.MethodCallMessages sdk;
@@ -20,15 +20,15 @@ public class MessagesRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public MessagesRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public MessagesRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public MessagesRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public MessagesRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -53,7 +53,7 @@ public class MessagesRequestBuilder {
     public MessagesResponse call() throws Exception {
 
         return sdk.get(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             messagesRequest);
     }

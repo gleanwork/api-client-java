@@ -8,8 +8,6 @@
 * [admin](#admin) - Search the index (admin)
 * [autocomplete](#autocomplete) - Autocomplete
 * [getFeed](#getfeed) - Feed of documents and events
-* [suggestPeople](#suggestpeople) - Suggest people
-* [suggestPeopleAdmin](#suggestpeopleadmin) - Suggest people (admin)
 * [recommendations](#recommendations) - Recommend documents
 * [execute](#execute) - Search
 
@@ -24,7 +22,7 @@ package hello.world;
 
 import com.glean.api_client.Glean;
 import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.errors.ErrorInfo;
+import com.glean.api_client.models.errors.GleanDataError;
 import com.glean.api_client.models.operations.AdminsearchResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
@@ -34,7 +32,7 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorInfo, Exception {
+    public static void main(String[] args) throws GleanDataError, Exception {
 
         Glean sdk = Glean.builder()
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
@@ -230,7 +228,7 @@ public class Application {
 
 | Parameter                                                                                                                                                                                                                                                                                                                                                                 | Type                                                                                                                                                                                                                                                                                                                                                                      | Required                                                                                                                                                                                                                                                                                                                                                                  | Description                                                                                                                                                                                                                                                                                                                                                               | Example                                                                                                                                                                                                                                                                                                                                                                   |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `xScioActas`                                                                                                                                                                                                                                                                                                                                                              | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                        | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).                                                                                                                                                                                                                                                  |                                                                                                                                                                                                                                                                                                                                                                           |
+| `xGleanActAs`                                                                                                                                                                                                                                                                                                                                                             | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                        | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).                                                                                                                                                                                                                                                  |                                                                                                                                                                                                                                                                                                                                                                           |
 | `xGleanAuthType`                                                                                                                                                                                                                                                                                                                                                          | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                        | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                                                                                                                                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                           |
 | `searchRequest`                                                                                                                                                                                                                                                                                                                                                           | [Optional\<SearchRequest>](../../models/components/SearchRequest.md)                                                                                                                                                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                        | Admin search request                                                                                                                                                                                                                                                                                                                                                      | {<br/>"trackingToken": "trackingToken",<br/>"query": "vacation policy",<br/>"pageSize": 10,<br/>"requestOptions": {<br/>"facetFilters": [<br/>{<br/>"fieldName": "type",<br/>"values": [<br/>{<br/>"value": "article",<br/>"relationType": "EQUALS"<br/>},<br/>{<br/>"value": "document",<br/>"relationType": "EQUALS"<br/>}<br/>]<br/>},<br/>{<br/>"fieldName": "department",<br/>"values": [<br/>{<br/>"value": "engineering",<br/>"relationType": "EQUALS"<br/>}<br/>]<br/>}<br/>]<br/>}<br/>} |
 
@@ -240,10 +238,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| models/errors/ErrorInfo    | 403, 422                   | application/json           |
-| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| models/errors/GleanDataError | 403, 422                     | application/json             |
+| models/errors/APIException   | 4XX, 5XX                     | \*/\*                        |
 
 ## autocomplete
 
@@ -297,7 +295,7 @@ public class Application {
 
 | Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              | Example                                                                                                                  |
 | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xScioActas`                                                                                                             | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |                                                                                                                          |
+| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |                                                                                                                          |
 | `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |                                                                                                                          |
 | `autocompleteRequest`                                                                                                    | [AutocompleteRequest](../../models/components/AutocompleteRequest.md)                                                    | :heavy_check_mark:                                                                                                       | Autocomplete request                                                                                                     | {<br/>"trackingToken": "trackingToken",<br/>"query": "what is a que",<br/>"datasource": "GDRIVE",<br/>"resultSize": 10<br/>} |
 
@@ -350,126 +348,13 @@ public class Application {
 
 | Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
 | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xScioActas`                                                                                                             | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
+| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
 | `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
 | `feedRequest`                                                                                                            | [FeedRequest](../../models/components/FeedRequest.md)                                                                    | :heavy_check_mark:                                                                                                       | Includes request params, client data and more for making user's feed.                                                    |
 
 ### Response
 
 **[FeedResponse](../../models/operations/FeedResponse.md)**
-
-### Errors
-
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
-
-## suggestPeople
-
-Retrieves a list of suggested people for given type. Includes information about the persons.
-
-### Example Usage
-
-```java
-package hello.world;
-
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.PeopleSuggestRequest;
-import com.glean.api_client.models.components.PeopleSuggestionCategory;
-import com.glean.api_client.models.operations.PeoplesuggestResponse;
-import java.lang.Exception;
-import java.util.List;
-
-public class Application {
-
-    public static void main(String[] args) throws Exception {
-
-        Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
-            .build();
-
-        PeoplesuggestResponse res = sdk.client().search().suggestPeople()
-                .peopleSuggestRequest(PeopleSuggestRequest.builder()
-                    .categories(List.of(
-                        PeopleSuggestionCategory.INVITE_NONUSERS,
-                        PeopleSuggestionCategory.INVITE_NONUSERS))
-                    .build())
-                .call();
-
-        if (res.peopleSuggestResponse().isPresent()) {
-            // handle response
-        }
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xScioActas`                                                                                                             | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `peopleSuggestRequest`                                                                                                   | [PeopleSuggestRequest](../../models/components/PeopleSuggestRequest.md)                                                  | :heavy_check_mark:                                                                                                       | Includes request params for type of suggestions.                                                                         |
-
-### Response
-
-**[PeoplesuggestResponse](../../models/operations/PeoplesuggestResponse.md)**
-
-### Errors
-
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
-
-## suggestPeopleAdmin
-
-Returns a list of suggested people for given type for admin's view. Includes information about the persons.
-
-### Example Usage
-
-```java
-package hello.world;
-
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.PeopleSuggestRequest;
-import com.glean.api_client.models.components.PeopleSuggestionCategory;
-import com.glean.api_client.models.operations.PeoplesuggestadminResponse;
-import java.lang.Exception;
-import java.util.List;
-
-public class Application {
-
-    public static void main(String[] args) throws Exception {
-
-        Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
-            .build();
-
-        PeoplesuggestadminResponse res = sdk.client().search().suggestPeopleAdmin()
-                .peopleSuggestRequest(PeopleSuggestRequest.builder()
-                    .categories(List.of(
-                        PeopleSuggestionCategory.INVITE_NONUSERS))
-                    .build())
-                .call();
-
-        if (res.peopleSuggestResponse().isPresent()) {
-            // handle response
-        }
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xScioActas`                                                                                                             | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `peopleSuggestRequest`                                                                                                   | [PeopleSuggestRequest](../../models/components/PeopleSuggestRequest.md)                                                  | :heavy_check_mark:                                                                                                       | Includes request params for type of suggestions.                                                                         |
-
-### Response
-
-**[PeoplesuggestadminResponse](../../models/operations/PeoplesuggestadminResponse.md)**
 
 ### Errors
 
@@ -647,7 +532,7 @@ public class Application {
 
 | Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
 | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xScioActas`                                                                                                             | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
+| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
 | `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
 | `recommendationsRequest`                                                                                                 | [Optional\<RecommendationsRequest>](../../models/components/RecommendationsRequest.md)                                   | :heavy_minus_sign:                                                                                                       | Recommendations request                                                                                                  |
 
@@ -672,7 +557,7 @@ package hello.world;
 
 import com.glean.api_client.Glean;
 import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.errors.ErrorInfo;
+import com.glean.api_client.models.errors.GleanDataError;
 import com.glean.api_client.models.operations.SearchResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
@@ -682,7 +567,7 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorInfo, Exception {
+    public static void main(String[] args) throws GleanDataError, Exception {
 
         Glean sdk = Glean.builder()
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
@@ -867,7 +752,7 @@ public class Application {
 
 | Parameter                                                                                                                                                                                                                                                                                                                                                                 | Type                                                                                                                                                                                                                                                                                                                                                                      | Required                                                                                                                                                                                                                                                                                                                                                                  | Description                                                                                                                                                                                                                                                                                                                                                               | Example                                                                                                                                                                                                                                                                                                                                                                   |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `xScioActas`                                                                                                                                                                                                                                                                                                                                                              | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                        | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).                                                                                                                                                                                                                                                  |                                                                                                                                                                                                                                                                                                                                                                           |
+| `xGleanActAs`                                                                                                                                                                                                                                                                                                                                                             | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                        | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).                                                                                                                                                                                                                                                  |                                                                                                                                                                                                                                                                                                                                                                           |
 | `xGleanAuthType`                                                                                                                                                                                                                                                                                                                                                          | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                        | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                                                                                                                                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                           |
 | `searchRequest`                                                                                                                                                                                                                                                                                                                                                           | [Optional\<SearchRequest>](../../models/components/SearchRequest.md)                                                                                                                                                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                        | Search request                                                                                                                                                                                                                                                                                                                                                            | {<br/>"trackingToken": "trackingToken",<br/>"query": "vacation policy",<br/>"pageSize": 10,<br/>"requestOptions": {<br/>"facetFilters": [<br/>{<br/>"fieldName": "type",<br/>"values": [<br/>{<br/>"value": "article",<br/>"relationType": "EQUALS"<br/>},<br/>{<br/>"value": "document",<br/>"relationType": "EQUALS"<br/>}<br/>]<br/>},<br/>{<br/>"fieldName": "department",<br/>"values": [<br/>{<br/>"value": "engineering",<br/>"relationType": "EQUALS"<br/>}<br/>]<br/>}<br/>]<br/>}<br/>} |
 
@@ -877,7 +762,7 @@ public class Application {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| models/errors/ErrorInfo    | 403, 422                   | application/json           |
-| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| models/errors/GleanDataError | 403, 422                     | application/json             |
+| models/errors/APIException   | 4XX, 5XX                     | \*/\*                        |

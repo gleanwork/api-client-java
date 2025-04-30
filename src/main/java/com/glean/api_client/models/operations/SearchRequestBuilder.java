@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class SearchRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private Optional<? extends SearchRequest> searchRequest = Optional.empty();
     private final SDKMethodInterfaces.MethodCallSearch sdk;
@@ -20,15 +20,15 @@ public class SearchRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public SearchRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public SearchRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public SearchRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public SearchRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -59,7 +59,7 @@ public class SearchRequestBuilder {
     public SearchResponse call() throws Exception {
 
         return sdk.execute(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             searchRequest);
     }

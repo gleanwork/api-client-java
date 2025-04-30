@@ -77,20 +77,20 @@ public class Verification implements
      * 
      * <p>Creates a verification reminder for the document. Users can create verification reminders from different product surfaces.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param reminderRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public AddverificationreminderResponse addReminder(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             ReminderRequest reminderRequest) throws Exception {
         AddverificationreminderRequest request =
             AddverificationreminderRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .reminderRequest(reminderRequest)
                 .build();
@@ -248,20 +248,20 @@ public class Verification implements
      * 
      * <p>Returns the information to be rendered in verification dashboard. Includes information for each document owned by user regarding their verifications.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param count Maximum number of documents to return
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListverificationsResponse list(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<Long> count) throws Exception {
         ListverificationsRequest request =
             ListverificationsRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .count(count)
                 .build();
@@ -413,20 +413,20 @@ public class Verification implements
      * 
      * <p>Verify documents to keep the knowledge up to date within customer corpus.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param verifyRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public VerifyResponse verify(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             VerifyRequest verifyRequest) throws Exception {
         com.glean.api_client.models.operations.VerifyRequest request =
             com.glean.api_client.models.operations.VerifyRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .verifyRequest(verifyRequest)
                 .build();

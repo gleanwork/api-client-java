@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class EditcollectionRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private EditCollectionRequest editCollectionRequest;
     private final SDKMethodInterfaces.MethodCallEditcollection sdk;
@@ -20,15 +20,15 @@ public class EditcollectionRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public EditcollectionRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public EditcollectionRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public EditcollectionRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public EditcollectionRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -53,7 +53,7 @@ public class EditcollectionRequestBuilder {
     public EditcollectionResponse call() throws Exception {
 
         return sdk.update(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             editCollectionRequest);
     }

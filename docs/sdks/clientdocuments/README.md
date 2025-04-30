@@ -8,7 +8,6 @@
 * [getPermissions](#getpermissions) - Read document permissions
 * [get](#get) - Read documents
 * [getByFacets](#getbyfacets) - Read documents by facets
-* [getAnalytics](#getanalytics) - Read document analytics
 
 ## getPermissions
 
@@ -48,7 +47,7 @@ public class Application {
 
 | Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
 | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xScioActas`                                                                                                             | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
+| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
 | `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
 | `getDocPermissionsRequest`                                                                                               | [GetDocPermissionsRequest](../../models/components/GetDocPermissionsRequest.md)                                          | :heavy_check_mark:                                                                                                       | Document permissions request                                                                                             |
 
@@ -97,7 +96,7 @@ public class Application {
 
 | Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
 | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xScioActas`                                                                                                             | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
+| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
 | `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
 | `getDocumentsRequest`                                                                                                    | [Optional\<GetDocumentsRequest>](../../models/components/GetDocumentsRequest.md)                                         | :heavy_minus_sign:                                                                                                       | Information about documents requested.                                                                                   |
 
@@ -181,62 +180,13 @@ public class Application {
 
 | Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
 | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xScioActas`                                                                                                             | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
+| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
 | `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
 | `getDocumentsByFacetsRequest`                                                                                            | [Optional\<GetDocumentsByFacetsRequest>](../../models/components/GetDocumentsByFacetsRequest.md)                         | :heavy_minus_sign:                                                                                                       | Information about facet conditions for documents to be retrieved.                                                        |
 
 ### Response
 
 **[GetdocumentsbyfacetsResponse](../../models/operations/GetdocumentsbyfacetsResponse.md)**
-
-### Errors
-
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
-
-## getAnalytics
-
-Read the document analytics information for the given list of Glean Document IDs or URLs specified in the request
-
-### Example Usage
-
-```java
-package hello.world;
-
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.operations.GetdocumentanalyticsResponse;
-import java.lang.Exception;
-
-public class Application {
-
-    public static void main(String[] args) throws Exception {
-
-        Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
-            .build();
-
-        GetdocumentanalyticsResponse res = sdk.client().documents().getAnalytics()
-                .call();
-
-        if (res.getDocumentAnalyticsResponse().isPresent()) {
-            // handle response
-        }
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xScioActas`                                                                                                             | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `getDocumentAnalyticsRequest`                                                                                            | [Optional\<GetDocumentAnalyticsRequest>](../../models/components/GetDocumentAnalyticsRequest.md)                         | :heavy_minus_sign:                                                                                                       | Information about analytics requested.                                                                                   |
-
-### Response
-
-**[GetdocumentanalyticsResponse](../../models/operations/GetdocumentanalyticsResponse.md)**
 
 ### Errors
 

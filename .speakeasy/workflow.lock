@@ -1,11 +1,12 @@
-speakeasyVersion: 1.539.2
+speakeasyVersion: 1.540.1
 sources:
     Glean API:
         sourceNamespace: glean-api-specs
-        sourceRevisionDigest: sha256:57e3640581a128d3fe18376fa9d80f8340eadf0dc0982aa35c09bef0980967b3
-        sourceBlobDigest: sha256:6bc72f74f71a240fd856970a3e7f199b01435c1dbe606428131177cb092508c3
+        sourceRevisionDigest: sha256:76998fb28dd75d8e3829f812a49bcf1027287d19b8dd46d73ac09af4bb839cd6
+        sourceBlobDigest: sha256:02dae61341a702b82c050ed3828f22d5a82de8e9f2fa6a99ddab6ad0dfe4a38a
         tags:
             - latest
+            - speakeasy-sdk-regen-1745978264
     Glean-OAS:
         sourceNamespace: glean-oas
         sourceRevisionDigest: sha256:8841834dd58ddd4e2dcf98fc90fbd06fbf3626a29df941503cce55b9548a5317
@@ -17,10 +18,10 @@ targets:
     glean:
         source: Glean API
         sourceNamespace: glean-api-specs
-        sourceRevisionDigest: sha256:57e3640581a128d3fe18376fa9d80f8340eadf0dc0982aa35c09bef0980967b3
-        sourceBlobDigest: sha256:6bc72f74f71a240fd856970a3e7f199b01435c1dbe606428131177cb092508c3
+        sourceRevisionDigest: sha256:76998fb28dd75d8e3829f812a49bcf1027287d19b8dd46d73ac09af4bb839cd6
+        sourceBlobDigest: sha256:02dae61341a702b82c050ed3828f22d5a82de8e9f2fa6a99ddab6ad0dfe4a38a
         codeSamplesNamespace: glean-api-specs-java-code-samples
-        codeSamplesRevisionDigest: sha256:c2f6fa21610e37d43925a5679cb0f6cf371a6926bd73fc8c146c3098ba1b04da
+        codeSamplesRevisionDigest: sha256:c0db4c1a2d0de4170c6f976bfb5e1d85aab945f92020fff6eceaf05499cc3c40
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -33,9 +34,15 @@ workflow:
         glean:
             target: java
             source: Glean API
+            publish:
+                java:
+                    ossrhUsername: $ossrh_username
+                    ossrhPassword: $ossrh_password
+                    gpgSecretKey: $java_gpg_secret_key
+                    gpgPassPhrase: $java_gpg_passphrase
             codeSamples:
                 registry:
                     location: registry.speakeasyapi.dev/glean-el2/sdk/glean-api-specs-java-code-samples
                 labelOverride:
-                    fixedValue: Java (SDK)
+                    fixedValue: Java (Client)
                 blocking: false

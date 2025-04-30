@@ -66,20 +66,20 @@ public class Summarize implements
      * 
      * <p>Generate an AI summary of the requested documents.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param summarizeRequest Summary of the document
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public SummarizeResponse generate(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             SummarizeRequest summarizeRequest) throws Exception {
         com.glean.api_client.models.operations.SummarizeRequest request =
             com.glean.api_client.models.operations.SummarizeRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .summarizeRequest(summarizeRequest)
                 .build();
