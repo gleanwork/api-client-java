@@ -20,7 +20,7 @@ java:
   additionalPlugins: []
   artifactID: api-client
   clientServerStatusCodesAsErrors: true
-  companyEmail: info@glean.com
+  companyEmail: support@glean.com
   companyName: Glean
   companyURL: https://www.glean.com
   defaultErrorName: APIException
