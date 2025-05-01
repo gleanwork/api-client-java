@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public class RunagentRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private RunAgentRequest runAgentRequest;
@@ -22,15 +22,15 @@ public class RunagentRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public RunagentRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public RunagentRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public RunagentRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public RunagentRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -67,7 +67,7 @@ public class RunagentRequestBuilder {
     public RunagentResponse call() throws Exception {
 
         return sdk.runagent(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             timezoneOffset,
             runAgentRequest);

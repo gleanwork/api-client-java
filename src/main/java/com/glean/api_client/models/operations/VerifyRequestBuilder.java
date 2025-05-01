@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class VerifyRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private VerifyRequest verifyRequest;
     private final SDKMethodInterfaces.MethodCallVerify sdk;
@@ -20,15 +20,15 @@ public class VerifyRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public VerifyRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public VerifyRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public VerifyRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public VerifyRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -53,7 +53,7 @@ public class VerifyRequestBuilder {
     public VerifyResponse call() throws Exception {
 
         return sdk.verify(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             verifyRequest);
     }

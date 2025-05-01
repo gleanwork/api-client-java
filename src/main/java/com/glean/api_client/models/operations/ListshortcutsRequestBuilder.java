@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class ListshortcutsRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private ListShortcutsPaginatedRequest listShortcutsPaginatedRequest;
     private final SDKMethodInterfaces.MethodCallListshortcuts sdk;
@@ -20,15 +20,15 @@ public class ListshortcutsRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public ListshortcutsRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public ListshortcutsRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public ListshortcutsRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public ListshortcutsRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -53,7 +53,7 @@ public class ListshortcutsRequestBuilder {
     public ListshortcutsResponse call() throws Exception {
 
         return sdk.list(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             listShortcutsPaginatedRequest);
     }

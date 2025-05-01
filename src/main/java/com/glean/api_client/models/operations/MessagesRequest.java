@@ -17,8 +17,8 @@ public class MessagesRequest {
     /**
      * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      */
-    @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Scio-Actas")
-    private Optional<String> xScioActas;
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Glean-ActAs")
+    private Optional<String> xGleanActAs;
 
     /**
      * Auth type being used to access the endpoint (should be non-empty only for global tokens).
@@ -34,13 +34,13 @@ public class MessagesRequest {
 
     @JsonCreator
     public MessagesRequest(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             com.glean.api_client.models.components.MessagesRequest messagesRequest) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
         Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
         Utils.checkNotNull(messagesRequest, "messagesRequest");
-        this.xScioActas = xScioActas;
+        this.xGleanActAs = xGleanActAs;
         this.xGleanAuthType = xGleanAuthType;
         this.messagesRequest = messagesRequest;
     }
@@ -54,8 +54,8 @@ public class MessagesRequest {
      * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      */
     @JsonIgnore
-    public Optional<String> xScioActas() {
-        return xScioActas;
+    public Optional<String> xGleanActAs() {
+        return xGleanActAs;
     }
 
     /**
@@ -81,18 +81,18 @@ public class MessagesRequest {
     /**
      * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      */
-    public MessagesRequest withXScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.ofNullable(xScioActas);
+    public MessagesRequest withXGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.ofNullable(xGleanActAs);
         return this;
     }
 
     /**
      * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      */
-    public MessagesRequest withXScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public MessagesRequest withXGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
 
@@ -134,7 +134,7 @@ public class MessagesRequest {
         }
         MessagesRequest other = (MessagesRequest) o;
         return 
-            Objects.deepEquals(this.xScioActas, other.xScioActas) &&
+            Objects.deepEquals(this.xGleanActAs, other.xGleanActAs) &&
             Objects.deepEquals(this.xGleanAuthType, other.xGleanAuthType) &&
             Objects.deepEquals(this.messagesRequest, other.messagesRequest);
     }
@@ -142,7 +142,7 @@ public class MessagesRequest {
     @Override
     public int hashCode() {
         return Objects.hash(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             messagesRequest);
     }
@@ -150,14 +150,14 @@ public class MessagesRequest {
     @Override
     public String toString() {
         return Utils.toString(MessagesRequest.class,
-                "xScioActas", xScioActas,
+                "xGleanActAs", xGleanActAs,
                 "xGleanAuthType", xGleanAuthType,
                 "messagesRequest", messagesRequest);
     }
     
     public final static class Builder {
  
-        private Optional<String> xScioActas = Optional.empty();
+        private Optional<String> xGleanActAs = Optional.empty();
  
         private Optional<String> xGleanAuthType = Optional.empty();
  
@@ -170,18 +170,18 @@ public class MessagesRequest {
         /**
          * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
          */
-        public Builder xScioActas(String xScioActas) {
-            Utils.checkNotNull(xScioActas, "xScioActas");
-            this.xScioActas = Optional.ofNullable(xScioActas);
+        public Builder xGleanActAs(String xGleanActAs) {
+            Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+            this.xGleanActAs = Optional.ofNullable(xGleanActAs);
             return this;
         }
 
         /**
          * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
          */
-        public Builder xScioActas(Optional<String> xScioActas) {
-            Utils.checkNotNull(xScioActas, "xScioActas");
-            this.xScioActas = xScioActas;
+        public Builder xGleanActAs(Optional<String> xGleanActAs) {
+            Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+            this.xGleanActAs = xGleanActAs;
             return this;
         }
 
@@ -214,7 +214,7 @@ public class MessagesRequest {
         
         public MessagesRequest build() {
             return new MessagesRequest(
-                xScioActas,
+                xGleanActAs,
                 xGleanAuthType,
                 messagesRequest);
         }

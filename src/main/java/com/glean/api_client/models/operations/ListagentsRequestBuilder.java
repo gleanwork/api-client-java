@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public class ListagentsRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private Optional<? extends Object> requestBody = Optional.empty();
@@ -22,15 +22,15 @@ public class ListagentsRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public ListagentsRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public ListagentsRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public ListagentsRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public ListagentsRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -73,7 +73,7 @@ public class ListagentsRequestBuilder {
     public ListagentsResponse call() throws Exception {
 
         return sdk.listagents(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             timezoneOffset,
             requestBody);

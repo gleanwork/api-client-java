@@ -66,20 +66,20 @@ public class Insights implements
      * 
      * <p>Reads the aggregate information for each user, query, and content.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param insightsRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public InsightsResponse get(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             InsightsRequest insightsRequest) throws Exception {
         com.glean.api_client.models.operations.InsightsRequest request =
             com.glean.api_client.models.operations.InsightsRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .insightsRequest(insightsRequest)
                 .build();

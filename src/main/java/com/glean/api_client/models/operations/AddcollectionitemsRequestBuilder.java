@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class AddcollectionitemsRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private AddCollectionItemsRequest addCollectionItemsRequest;
     private final SDKMethodInterfaces.MethodCallAddcollectionitems sdk;
@@ -20,15 +20,15 @@ public class AddcollectionitemsRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public AddcollectionitemsRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public AddcollectionitemsRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public AddcollectionitemsRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public AddcollectionitemsRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -53,7 +53,7 @@ public class AddcollectionitemsRequestBuilder {
     public AddcollectionitemsResponse call() throws Exception {
 
         return sdk.addItems(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             addCollectionItemsRequest);
     }

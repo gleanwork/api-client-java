@@ -18,8 +18,8 @@ public class EditpinRequest {
     /**
      * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      */
-    @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Scio-Actas")
-    private Optional<String> xScioActas;
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Glean-ActAs")
+    private Optional<String> xGleanActAs;
 
     /**
      * Auth type being used to access the endpoint (should be non-empty only for global tokens).
@@ -35,13 +35,13 @@ public class EditpinRequest {
 
     @JsonCreator
     public EditpinRequest(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             EditPinRequest editPinRequest) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
         Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
         Utils.checkNotNull(editPinRequest, "editPinRequest");
-        this.xScioActas = xScioActas;
+        this.xGleanActAs = xGleanActAs;
         this.xGleanAuthType = xGleanAuthType;
         this.editPinRequest = editPinRequest;
     }
@@ -55,8 +55,8 @@ public class EditpinRequest {
      * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      */
     @JsonIgnore
-    public Optional<String> xScioActas() {
-        return xScioActas;
+    public Optional<String> xGleanActAs() {
+        return xGleanActAs;
     }
 
     /**
@@ -82,18 +82,18 @@ public class EditpinRequest {
     /**
      * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      */
-    public EditpinRequest withXScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.ofNullable(xScioActas);
+    public EditpinRequest withXGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.ofNullable(xGleanActAs);
         return this;
     }
 
     /**
      * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      */
-    public EditpinRequest withXScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public EditpinRequest withXGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
 
@@ -135,7 +135,7 @@ public class EditpinRequest {
         }
         EditpinRequest other = (EditpinRequest) o;
         return 
-            Objects.deepEquals(this.xScioActas, other.xScioActas) &&
+            Objects.deepEquals(this.xGleanActAs, other.xGleanActAs) &&
             Objects.deepEquals(this.xGleanAuthType, other.xGleanAuthType) &&
             Objects.deepEquals(this.editPinRequest, other.editPinRequest);
     }
@@ -143,7 +143,7 @@ public class EditpinRequest {
     @Override
     public int hashCode() {
         return Objects.hash(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             editPinRequest);
     }
@@ -151,14 +151,14 @@ public class EditpinRequest {
     @Override
     public String toString() {
         return Utils.toString(EditpinRequest.class,
-                "xScioActas", xScioActas,
+                "xGleanActAs", xGleanActAs,
                 "xGleanAuthType", xGleanAuthType,
                 "editPinRequest", editPinRequest);
     }
     
     public final static class Builder {
  
-        private Optional<String> xScioActas = Optional.empty();
+        private Optional<String> xGleanActAs = Optional.empty();
  
         private Optional<String> xGleanAuthType = Optional.empty();
  
@@ -171,18 +171,18 @@ public class EditpinRequest {
         /**
          * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
          */
-        public Builder xScioActas(String xScioActas) {
-            Utils.checkNotNull(xScioActas, "xScioActas");
-            this.xScioActas = Optional.ofNullable(xScioActas);
+        public Builder xGleanActAs(String xGleanActAs) {
+            Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+            this.xGleanActAs = Optional.ofNullable(xGleanActAs);
             return this;
         }
 
         /**
          * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
          */
-        public Builder xScioActas(Optional<String> xScioActas) {
-            Utils.checkNotNull(xScioActas, "xScioActas");
-            this.xScioActas = xScioActas;
+        public Builder xGleanActAs(Optional<String> xGleanActAs) {
+            Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+            this.xGleanActAs = xGleanActAs;
             return this;
         }
 
@@ -215,7 +215,7 @@ public class EditpinRequest {
         
         public EditpinRequest build() {
             return new EditpinRequest(
-                xScioActas,
+                xGleanActAs,
                 xGleanAuthType,
                 editPinRequest);
         }

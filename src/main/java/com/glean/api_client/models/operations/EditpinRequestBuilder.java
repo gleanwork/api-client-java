@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class EditpinRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private EditPinRequest editPinRequest;
     private final SDKMethodInterfaces.MethodCallEditpin sdk;
@@ -20,15 +20,15 @@ public class EditpinRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public EditpinRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public EditpinRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public EditpinRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public EditpinRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -53,7 +53,7 @@ public class EditpinRequestBuilder {
     public EditpinResponse call() throws Exception {
 
         return sdk.edit(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             editPinRequest);
     }

@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class FeedbackRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private Optional<String> feedbackQueryParameter = Optional.empty();
     private Optional<? extends Feedback> feedback1 = Optional.empty();
@@ -21,15 +21,15 @@ public class FeedbackRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public FeedbackRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public FeedbackRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public FeedbackRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public FeedbackRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -72,7 +72,7 @@ public class FeedbackRequestBuilder {
     public FeedbackResponse call() throws Exception {
 
         return sdk.reportActivity(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             feedbackQueryParameter,
             feedback1);

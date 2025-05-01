@@ -1,9 +1,0 @@
-# GetDraftAnnouncementResponse
-
-
-## Fields
-
-| Field                                                                        | Type                                                                         | Required                                                                     | Description                                                                  | Example                                                                      |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `announcement`                                                               | [Optional\<Announcement>](../../models/components/Announcement.md)           | :heavy_minus_sign:                                                           | N/A                                                                          | {<br/>"draftId": 342<br/>}                                                   |
-| `error`                                                                      | [Optional\<AnnouncementError>](../../models/components/AnnouncementError.md) | :heavy_minus_sign:                                                           | N/A                                                                          |                                                                              |

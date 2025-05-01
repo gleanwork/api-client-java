@@ -65,7 +65,7 @@ public class Activities implements
      * 
      * <p>Report events that happen to results within a Glean client UI, such as search result views and clicks.  This signal improves search quality.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param feedbackQueryParameter A URL encoded versions of Feedback. This is useful for requests.
      * @param feedback1 
@@ -73,14 +73,14 @@ public class Activities implements
      * @throws Exception if the API call fails
      */
     public FeedbackResponse reportActivity(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<String> feedbackQueryParameter,
             Optional<? extends Feedback> feedback1) throws Exception {
         FeedbackRequest request =
             FeedbackRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .feedbackQueryParameter(feedbackQueryParameter)
                 .feedback1(feedback1)

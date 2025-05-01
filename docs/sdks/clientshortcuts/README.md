@@ -8,9 +8,7 @@
 * [create](#create) - Create shortcut
 * [delete](#delete) - Delete shortcut
 * [get](#get) - Read shortcut
-* [getSimilar](#getsimilar) - Get similar shortcuts
 * [list](#list) - List shortcuts
-* [preview](#preview) - Preview shortcut
 * [update](#update) - Update shortcut
 * [upload](#upload) - Upload shortcuts
 
@@ -111,7 +109,7 @@ public class Application {
 
 | Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
 | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xScioActas`                                                                                                             | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
+| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
 | `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
 | `createShortcutRequest`                                                                                                  | [CreateShortcutRequest](../../models/components/CreateShortcutRequest.md)                                                | :heavy_check_mark:                                                                                                       | CreateShortcut request                                                                                                   |
 
@@ -162,7 +160,7 @@ public class Application {
 
 | Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
 | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xScioActas`                                                                                                             | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
+| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
 | `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
 | `deleteShortcutRequest`                                                                                                  | [DeleteShortcutRequest](../../models/components/DeleteShortcutRequest.md)                                                | :heavy_check_mark:                                                                                                       | DeleteShortcut request                                                                                                   |
 
@@ -216,66 +214,13 @@ public class Application {
 
 | Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
 | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xScioActas`                                                                                                             | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
+| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
 | `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
 | `getShortcutRequest`                                                                                                     | [GetShortcutRequestUnion](../../models/components/GetShortcutRequestUnion.md)                                            | :heavy_check_mark:                                                                                                       | GetShortcut request                                                                                                      |
 
 ### Response
 
 **[GetshortcutResponse](../../models/operations/GetshortcutResponse.md)**
-
-### Errors
-
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
-
-## getSimilar
-
-Get shortcuts with similar aliases to a given alias.
-
-### Example Usage
-
-```java
-package hello.world;
-
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.GetSimilarShortcutsRequest;
-import com.glean.api_client.models.operations.GetsimilarshortcutsResponse;
-import java.lang.Exception;
-
-public class Application {
-
-    public static void main(String[] args) throws Exception {
-
-        Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
-            .build();
-
-        GetsimilarshortcutsResponse res = sdk.client().shortcuts().getSimilar()
-                .getSimilarShortcutsRequest(GetSimilarShortcutsRequest.builder()
-                    .alias("<value>")
-                    .build())
-                .call();
-
-        if (res.getSimilarShortcutsResponse().isPresent()) {
-            // handle response
-        }
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xScioActas`                                                                                                             | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `getSimilarShortcutsRequest`                                                                                             | [GetSimilarShortcutsRequest](../../models/components/GetSimilarShortcutsRequest.md)                                      | :heavy_check_mark:                                                                                                       | GetSimilarShortcuts request                                                                                              |
-
-### Response
-
-**[GetsimilarshortcutsResponse](../../models/operations/GetsimilarshortcutsResponse.md)**
 
 ### Errors
 
@@ -336,126 +281,13 @@ public class Application {
 
 | Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
 | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xScioActas`                                                                                                             | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
+| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
 | `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
 | `listShortcutsPaginatedRequest`                                                                                          | [ListShortcutsPaginatedRequest](../../models/components/ListShortcutsPaginatedRequest.md)                                | :heavy_check_mark:                                                                                                       | Filters, sorters, paging params required for pagination                                                                  |
 
 ### Response
 
 **[ListshortcutsResponse](../../models/operations/ListshortcutsResponse.md)**
-
-### Errors
-
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
-
-## preview
-
-Preview a shortcut that contains an alias and destination URL.
-
-### Example Usage
-
-```java
-package hello.world;
-
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.PreviewshortcutResponse;
-import java.lang.Exception;
-import java.time.LocalDate;
-import java.util.List;
-
-public class Application {
-
-    public static void main(String[] args) throws Exception {
-
-        Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
-            .build();
-
-        PreviewshortcutResponse res = sdk.client().shortcuts().preview()
-                .shortcutMutableProperties(ShortcutMutableProperties.builder()
-                    .addedRoles(List.of(
-                        UserRoleSpecification.builder()
-                            .role(UserRole.ANSWER_MODERATOR)
-                            .person(Person.builder()
-                                .name("George Clooney")
-                                .obfuscatedId("abc123")
-                                .relatedDocuments(List.of())
-                                .metadata(PersonMetadata.builder()
-                                    .type(PersonMetadataType.FULL_TIME)
-                                    .title("Actor")
-                                    .department("Movies")
-                                    .email("george@example.com")
-                                    .location("Hollywood, CA")
-                                    .phone("6505551234")
-                                    .photoUrl("https://example.com/george.jpg")
-                                    .startDate(LocalDate.parse("2000-01-23"))
-                                    .datasourceProfile(List.of(
-                                        DatasourceProfile.builder()
-                                            .datasource("github")
-                                            .handle("<value>")
-                                            .build(),
-                                        DatasourceProfile.builder()
-                                            .datasource("github")
-                                            .handle("<value>")
-                                            .build()))
-                                    .querySuggestions(QuerySuggestionList.builder()
-                                        .suggestions(List.of())
-                                        .build())
-                                    .inviteInfo(InviteInfo.builder()
-                                        .invites(List.of())
-                                        .build())
-                                    .customFields(List.of())
-                                    .badges(List.of(
-                                        Badge.builder()
-                                            .key("deployment_name_new_hire")
-                                            .displayName("New hire")
-                                            .iconConfig(IconConfig.builder()
-                                                .color("#343CED")
-                                                .key("person_icon")
-                                                .iconType(IconType.GLYPH)
-                                                .name("user")
-                                                .build())
-                                            .build()))
-                                    .build())
-                                .build())
-                            .build(),
-                        UserRoleSpecification.builder()
-                            .role(UserRole.VIEWER)
-                            .build()))
-                    .removedRoles(List.of(
-                        UserRoleSpecification.builder()
-                            .role(UserRole.OWNER)
-                            .build(),
-                        UserRoleSpecification.builder()
-                            .role(UserRole.ANSWER_MODERATOR)
-                            .build(),
-                        UserRoleSpecification.builder()
-                            .role(UserRole.VERIFIER)
-                            .build()))
-                    .build())
-                .call();
-
-        if (res.previewShortcutResponse().isPresent()) {
-            // handle response
-        }
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xScioActas`                                                                                                             | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `shortcutMutableProperties`                                                                                              | [ShortcutMutableProperties](../../models/components/ShortcutMutableProperties.md)                                        | :heavy_check_mark:                                                                                                       | CreateShortcut request                                                                                                   |
-
-### Response
-
-**[PreviewshortcutResponse](../../models/operations/PreviewshortcutResponse.md)**
 
 ### Errors
 
@@ -556,7 +388,7 @@ public class Application {
 
 | Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
 | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xScioActas`                                                                                                             | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
+| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
 | `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
 | `updateShortcutRequest`                                                                                                  | [UpdateShortcutRequest](../../models/components/UpdateShortcutRequest.md)                                                | :heavy_check_mark:                                                                                                       | Shortcut content. Id need to be specified for the shortcut.                                                              |
 

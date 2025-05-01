@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public class GetchatfilesRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private GetChatFilesRequest getChatFilesRequest;
@@ -22,15 +22,15 @@ public class GetchatfilesRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public GetchatfilesRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public GetchatfilesRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public GetchatfilesRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public GetchatfilesRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -67,7 +67,7 @@ public class GetchatfilesRequestBuilder {
     public GetchatfilesResponse call() throws Exception {
 
         return sdk.getFiles(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             timezoneOffset,
             getChatFilesRequest);

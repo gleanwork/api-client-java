@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class AutocompleteRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private AutocompleteRequest autocompleteRequest;
     private final SDKMethodInterfaces.MethodCallAutocomplete sdk;
@@ -20,15 +20,15 @@ public class AutocompleteRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public AutocompleteRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public AutocompleteRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public AutocompleteRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public AutocompleteRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -53,7 +53,7 @@ public class AutocompleteRequestBuilder {
     public AutocompleteResponse call() throws Exception {
 
         return sdk.autocomplete(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             autocompleteRequest);
     }

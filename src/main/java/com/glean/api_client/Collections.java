@@ -15,15 +15,10 @@ import com.glean.api_client.models.components.EditCollectionItemRequest;
 import com.glean.api_client.models.components.EditCollectionItemResponse;
 import com.glean.api_client.models.components.EditCollectionRequest;
 import com.glean.api_client.models.components.EditCollectionResponse;
-import com.glean.api_client.models.components.EditDocumentCollectionsRequest;
-import com.glean.api_client.models.components.EditDocumentCollectionsResponse;
 import com.glean.api_client.models.components.GetCollectionRequest;
 import com.glean.api_client.models.components.GetCollectionResponse;
 import com.glean.api_client.models.components.ListCollectionsRequest;
 import com.glean.api_client.models.components.ListCollectionsResponse;
-import com.glean.api_client.models.components.MoveCollectionItemRequest;
-import com.glean.api_client.models.components.MoveCollectionItemResponse;
-import com.glean.api_client.models.components.PinCollectionRequest;
 import com.glean.api_client.models.errors.APIException;
 import com.glean.api_client.models.errors.CollectionError;
 import com.glean.api_client.models.operations.AddcollectionitemsRequest;
@@ -44,21 +39,12 @@ import com.glean.api_client.models.operations.EditcollectionResponse;
 import com.glean.api_client.models.operations.EditcollectionitemRequest;
 import com.glean.api_client.models.operations.EditcollectionitemRequestBuilder;
 import com.glean.api_client.models.operations.EditcollectionitemResponse;
-import com.glean.api_client.models.operations.EditdocumentcollectionsRequest;
-import com.glean.api_client.models.operations.EditdocumentcollectionsRequestBuilder;
-import com.glean.api_client.models.operations.EditdocumentcollectionsResponse;
 import com.glean.api_client.models.operations.GetcollectionRequest;
 import com.glean.api_client.models.operations.GetcollectionRequestBuilder;
 import com.glean.api_client.models.operations.GetcollectionResponse;
 import com.glean.api_client.models.operations.ListcollectionsRequest;
 import com.glean.api_client.models.operations.ListcollectionsRequestBuilder;
 import com.glean.api_client.models.operations.ListcollectionsResponse;
-import com.glean.api_client.models.operations.MovecollectionitemRequest;
-import com.glean.api_client.models.operations.MovecollectionitemRequestBuilder;
-import com.glean.api_client.models.operations.MovecollectionitemResponse;
-import com.glean.api_client.models.operations.PincollectionRequest;
-import com.glean.api_client.models.operations.PincollectionRequestBuilder;
-import com.glean.api_client.models.operations.PincollectionResponse;
 import com.glean.api_client.models.operations.SDKMethodInterfaces.*;
 import com.glean.api_client.utils.HTTPClient;
 import com.glean.api_client.utils.HTTPRequest;
@@ -84,11 +70,8 @@ public class Collections implements
             MethodCallDeletecollectionitem,
             MethodCallEditcollection,
             MethodCallEditcollectionitem,
-            MethodCallEditdocumentcollections,
             MethodCallGetcollection,
-            MethodCallListcollections,
-            MethodCallMovecollectionitem,
-            MethodCallPincollection {
+            MethodCallListcollections {
 
     private final SDKConfiguration sdkConfiguration;
 
@@ -127,20 +110,20 @@ public class Collections implements
      * 
      * <p>Add items to a Collection.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param addCollectionItemsRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public AddcollectionitemsResponse addItems(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             AddCollectionItemsRequest addCollectionItemsRequest) throws Exception {
         AddcollectionitemsRequest request =
             AddcollectionitemsRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .addCollectionItemsRequest(addCollectionItemsRequest)
                 .build();
@@ -300,20 +283,20 @@ public class Collections implements
      * 
      * <p>Create a publicly visible (empty) Collection of documents.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param createCollectionRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreatecollectionResponse create(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             CreateCollectionRequest createCollectionRequest) throws Exception {
         CreatecollectionRequest request =
             CreatecollectionRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .createCollectionRequest(createCollectionRequest)
                 .build();
@@ -487,20 +470,20 @@ public class Collections implements
      * 
      * <p>Delete a Collection given the Collection's ID.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param deleteCollectionRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeletecollectionResponse delete(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             DeleteCollectionRequest deleteCollectionRequest) throws Exception {
         DeletecollectionRequest request =
             DeletecollectionRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .deleteCollectionRequest(deleteCollectionRequest)
                 .build();
@@ -663,20 +646,20 @@ public class Collections implements
      * 
      * <p>Delete a single item from a Collection.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param deleteCollectionItemRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeletecollectionitemResponse deleteItem(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             DeleteCollectionItemRequest deleteCollectionItemRequest) throws Exception {
         DeletecollectionitemRequest request =
             DeletecollectionitemRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .deleteCollectionItemRequest(deleteCollectionItemRequest)
                 .build();
@@ -836,20 +819,20 @@ public class Collections implements
      * 
      * <p>Update the properties of an existing Collection.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param editCollectionRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public EditcollectionResponse update(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             EditCollectionRequest editCollectionRequest) throws Exception {
         EditcollectionRequest request =
             EditcollectionRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .editCollectionRequest(editCollectionRequest)
                 .build();
@@ -1023,20 +1006,20 @@ public class Collections implements
      * 
      * <p>Update the URL, Glean Document ID, description of an item within a Collection given its ID.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param editCollectionItemRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public EditcollectionitemResponse editItem(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             EditCollectionItemRequest editCollectionItemRequest) throws Exception {
         EditcollectionitemRequest request =
             EditcollectionitemRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .editCollectionItemRequest(editCollectionItemRequest)
                 .build();
@@ -1167,179 +1150,6 @@ public class Collections implements
 
 
     /**
-     * Update document Collections
-     * 
-     * <p>Update the Collections that a document belongs to.
-     * 
-     * @return The call builder
-     */
-    public EditdocumentcollectionsRequestBuilder edit() {
-        return new EditdocumentcollectionsRequestBuilder(this);
-    }
-
-    /**
-     * Update document Collections
-     * 
-     * <p>Update the Collections that a document belongs to.
-     * 
-     * @param editDocumentCollectionsRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public EditdocumentcollectionsResponse edit(
-            EditDocumentCollectionsRequest editDocumentCollectionsRequest) throws Exception {
-        return edit(Optional.empty(), Optional.empty(), editDocumentCollectionsRequest);
-    }
-    
-    /**
-     * Update document Collections
-     * 
-     * <p>Update the Collections that a document belongs to.
-     * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param editDocumentCollectionsRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public EditdocumentcollectionsResponse edit(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            EditDocumentCollectionsRequest editDocumentCollectionsRequest) throws Exception {
-        EditdocumentcollectionsRequest request =
-            EditdocumentcollectionsRequest
-                .builder()
-                .xScioActas(xScioActas)
-                .xGleanAuthType(xGleanAuthType)
-                .editDocumentCollectionsRequest(editDocumentCollectionsRequest)
-                .build();
-        
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/rest/api/v1/editdocumentcollections");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "editDocumentCollectionsRequest",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "editdocumentcollections", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "editdocumentcollections",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "editdocumentcollections",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "editdocumentcollections",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        EditdocumentcollectionsResponse.Builder _resBuilder = 
-            EditdocumentcollectionsResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        EditdocumentcollectionsResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                EditDocumentCollectionsResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<EditDocumentCollectionsResponse>() {});
-                _res.withEditDocumentCollectionsResponse(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
-    }
-
-
-
-    /**
      * Read Collection
      * 
      * <p>Read the details of a Collection given its ID. Does not fetch items in this Collection.
@@ -1369,20 +1179,20 @@ public class Collections implements
      * 
      * <p>Read the details of a Collection given its ID. Does not fetch items in this Collection.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param getCollectionRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetcollectionResponse get(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             GetCollectionRequest getCollectionRequest) throws Exception {
         GetcollectionRequest request =
             GetcollectionRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .getCollectionRequest(getCollectionRequest)
                 .build();
@@ -1542,20 +1352,20 @@ public class Collections implements
      * 
      * <p>List all existing Collections.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param listCollectionsRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListcollectionsResponse list(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             ListCollectionsRequest listCollectionsRequest) throws Exception {
         ListcollectionsRequest request =
             ListcollectionsRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .listCollectionsRequest(listCollectionsRequest)
                 .build();
@@ -1651,352 +1461,6 @@ public class Collections implements
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<ListCollectionsResponse>() {});
                 _res.withListCollectionsResponse(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
-    }
-
-
-
-    /**
-     * Move Collection item
-     * 
-     * <p>Reorder a Collection by moving a CollectionItem below another CollectionItem.
-     * 
-     * @return The call builder
-     */
-    public MovecollectionitemRequestBuilder moveItem() {
-        return new MovecollectionitemRequestBuilder(this);
-    }
-
-    /**
-     * Move Collection item
-     * 
-     * <p>Reorder a Collection by moving a CollectionItem below another CollectionItem.
-     * 
-     * @param moveCollectionItemRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public MovecollectionitemResponse moveItem(
-            MoveCollectionItemRequest moveCollectionItemRequest) throws Exception {
-        return moveItem(Optional.empty(), Optional.empty(), moveCollectionItemRequest);
-    }
-    
-    /**
-     * Move Collection item
-     * 
-     * <p>Reorder a Collection by moving a CollectionItem below another CollectionItem.
-     * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param moveCollectionItemRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public MovecollectionitemResponse moveItem(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            MoveCollectionItemRequest moveCollectionItemRequest) throws Exception {
-        MovecollectionitemRequest request =
-            MovecollectionitemRequest
-                .builder()
-                .xScioActas(xScioActas)
-                .xGleanAuthType(xGleanAuthType)
-                .moveCollectionItemRequest(moveCollectionItemRequest)
-                .build();
-        
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/rest/api/v1/movecollectionitem");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "moveCollectionItemRequest",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "movecollectionitem", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "422", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "movecollectionitem",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "movecollectionitem",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "movecollectionitem",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        MovecollectionitemResponse.Builder _resBuilder = 
-            MovecollectionitemResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        MovecollectionitemResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                MoveCollectionItemResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<MoveCollectionItemResponse>() {});
-                _res.withMoveCollectionItemResponse(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "422", "429", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
-    }
-
-
-
-    /**
-     * Pin Collection
-     * 
-     * <p>Given the Collection id and category, pins the Collection to the home page for all company users.
-     * 
-     * @return The call builder
-     */
-    public PincollectionRequestBuilder pin() {
-        return new PincollectionRequestBuilder(this);
-    }
-
-    /**
-     * Pin Collection
-     * 
-     * <p>Given the Collection id and category, pins the Collection to the home page for all company users.
-     * 
-     * @param pinCollectionRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public PincollectionResponse pin(
-            PinCollectionRequest pinCollectionRequest) throws Exception {
-        return pin(Optional.empty(), Optional.empty(), pinCollectionRequest);
-    }
-    
-    /**
-     * Pin Collection
-     * 
-     * <p>Given the Collection id and category, pins the Collection to the home page for all company users.
-     * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param pinCollectionRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public PincollectionResponse pin(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            PinCollectionRequest pinCollectionRequest) throws Exception {
-        PincollectionRequest request =
-            PincollectionRequest
-                .builder()
-                .xScioActas(xScioActas)
-                .xGleanAuthType(xGleanAuthType)
-                .pinCollectionRequest(pinCollectionRequest)
-                .build();
-        
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/rest/api/v1/pincollection");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "pinCollectionRequest",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "pincollection", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "pincollection",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "pincollection",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "pincollection",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        PincollectionResponse.Builder _resBuilder = 
-            PincollectionResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        PincollectionResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                GetCollectionResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<GetCollectionResponse>() {});
-                _res.withGetCollectionResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(
