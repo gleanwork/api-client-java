@@ -89,20 +89,20 @@ public class Pins implements
      * 
      * <p>Update an existing user-generated pin.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param editPinRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public EditpinResponse edit(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             EditPinRequest editPinRequest) throws Exception {
         EditpinRequest request =
             EditpinRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .editPinRequest(editPinRequest)
                 .build();
@@ -262,20 +262,20 @@ public class Pins implements
      * 
      * <p>Read pin details given its ID.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param getPinRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetpinResponse get(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             GetPinRequest getPinRequest) throws Exception {
         GetpinRequest request =
             GetpinRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .getPinRequest(getPinRequest)
                 .build();
@@ -435,20 +435,20 @@ public class Pins implements
      * 
      * <p>Lists all pins.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param requestBody List pins request
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListpinsResponse list(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             ListpinsRequestBody requestBody) throws Exception {
         ListpinsRequest request =
             ListpinsRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .requestBody(requestBody)
                 .build();
@@ -608,20 +608,20 @@ public class Pins implements
      * 
      * <p>Pin a document as a result for a given search query.Pin results that are known to be a good match.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param pinRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public PinResponse create(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             PinRequest pinRequest) throws Exception {
         com.glean.api_client.models.operations.PinRequest request =
             com.glean.api_client.models.operations.PinRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .pinRequest(pinRequest)
                 .build();
@@ -781,20 +781,20 @@ public class Pins implements
      * 
      * <p>Unpin a previously pinned result.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param unpin 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public UnpinResponse remove(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Unpin unpin) throws Exception {
         UnpinRequest request =
             UnpinRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .unpin(unpin)
                 .build();

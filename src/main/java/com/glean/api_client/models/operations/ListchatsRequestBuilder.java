@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class ListchatsRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private final SDKMethodInterfaces.MethodCallListchats sdk;
@@ -20,15 +20,15 @@ public class ListchatsRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public ListchatsRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public ListchatsRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public ListchatsRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public ListchatsRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -59,7 +59,7 @@ public class ListchatsRequestBuilder {
     public ListchatsResponse call() throws Exception {
 
         return sdk.list(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             timezoneOffset);
     }

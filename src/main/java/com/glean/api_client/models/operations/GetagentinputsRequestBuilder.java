@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public class GetagentinputsRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private GetAgentInputsRequest getAgentInputsRequest;
@@ -22,15 +22,15 @@ public class GetagentinputsRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public GetagentinputsRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public GetagentinputsRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public GetagentinputsRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public GetagentinputsRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -67,7 +67,7 @@ public class GetagentinputsRequestBuilder {
     public GetagentinputsResponse call() throws Exception {
 
         return sdk.getagentinputs(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             timezoneOffset,
             getAgentInputsRequest);

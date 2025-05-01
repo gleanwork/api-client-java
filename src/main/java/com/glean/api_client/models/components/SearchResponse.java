@@ -45,7 +45,7 @@ public class SearchResponse {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("errorInfo")
-    private Optional<? extends ErrorInfo> errorInfo;
+    private Optional<? extends GleanDataError> gleanDataError;
 
     /**
      * A platform-generated request ID to correlate backend logs.
@@ -122,7 +122,7 @@ public class SearchResponse {
             @JsonProperty("results") Optional<? extends List<SearchResult>> results,
             @JsonProperty("structuredResults") Optional<? extends List<StructuredResult>> structuredResults,
             @JsonProperty("generatedQnaResult") Optional<? extends GeneratedQna> generatedQnaResult,
-            @JsonProperty("errorInfo") Optional<? extends ErrorInfo> errorInfo,
+            @JsonProperty("errorInfo") Optional<? extends GleanDataError> gleanDataError,
             @JsonProperty("requestID") Optional<String> requestID,
             @JsonProperty("backendTimeMillis") Optional<Long> backendTimeMillis,
             @JsonProperty("experimentIds") Optional<? extends List<Long>> experimentIds,
@@ -139,7 +139,7 @@ public class SearchResponse {
         Utils.checkNotNull(results, "results");
         Utils.checkNotNull(structuredResults, "structuredResults");
         Utils.checkNotNull(generatedQnaResult, "generatedQnaResult");
-        Utils.checkNotNull(errorInfo, "errorInfo");
+        Utils.checkNotNull(gleanDataError, "gleanDataError");
         Utils.checkNotNull(requestID, "requestID");
         Utils.checkNotNull(backendTimeMillis, "backendTimeMillis");
         Utils.checkNotNull(experimentIds, "experimentIds");
@@ -156,7 +156,7 @@ public class SearchResponse {
         this.results = results;
         this.structuredResults = structuredResults;
         this.generatedQnaResult = generatedQnaResult;
-        this.errorInfo = errorInfo;
+        this.gleanDataError = gleanDataError;
         this.requestID = requestID;
         this.backendTimeMillis = backendTimeMillis;
         this.experimentIds = experimentIds;
@@ -208,8 +208,8 @@ public class SearchResponse {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ErrorInfo> errorInfo() {
-        return (Optional<ErrorInfo>) errorInfo;
+    public Optional<GleanDataError> gleanDataError() {
+        return (Optional<GleanDataError>) gleanDataError;
     }
 
     /**
@@ -368,15 +368,15 @@ public class SearchResponse {
         return this;
     }
 
-    public SearchResponse withErrorInfo(ErrorInfo errorInfo) {
-        Utils.checkNotNull(errorInfo, "errorInfo");
-        this.errorInfo = Optional.ofNullable(errorInfo);
+    public SearchResponse withGleanDataError(GleanDataError gleanDataError) {
+        Utils.checkNotNull(gleanDataError, "gleanDataError");
+        this.gleanDataError = Optional.ofNullable(gleanDataError);
         return this;
     }
 
-    public SearchResponse withErrorInfo(Optional<? extends ErrorInfo> errorInfo) {
-        Utils.checkNotNull(errorInfo, "errorInfo");
-        this.errorInfo = errorInfo;
+    public SearchResponse withGleanDataError(Optional<? extends GleanDataError> gleanDataError) {
+        Utils.checkNotNull(gleanDataError, "gleanDataError");
+        this.gleanDataError = gleanDataError;
         return this;
     }
 
@@ -576,7 +576,7 @@ public class SearchResponse {
             Objects.deepEquals(this.results, other.results) &&
             Objects.deepEquals(this.structuredResults, other.structuredResults) &&
             Objects.deepEquals(this.generatedQnaResult, other.generatedQnaResult) &&
-            Objects.deepEquals(this.errorInfo, other.errorInfo) &&
+            Objects.deepEquals(this.gleanDataError, other.gleanDataError) &&
             Objects.deepEquals(this.requestID, other.requestID) &&
             Objects.deepEquals(this.backendTimeMillis, other.backendTimeMillis) &&
             Objects.deepEquals(this.experimentIds, other.experimentIds) &&
@@ -598,7 +598,7 @@ public class SearchResponse {
             results,
             structuredResults,
             generatedQnaResult,
-            errorInfo,
+            gleanDataError,
             requestID,
             backendTimeMillis,
             experimentIds,
@@ -620,7 +620,7 @@ public class SearchResponse {
                 "results", results,
                 "structuredResults", structuredResults,
                 "generatedQnaResult", generatedQnaResult,
-                "errorInfo", errorInfo,
+                "gleanDataError", gleanDataError,
                 "requestID", requestID,
                 "backendTimeMillis", backendTimeMillis,
                 "experimentIds", experimentIds,
@@ -646,7 +646,7 @@ public class SearchResponse {
  
         private Optional<? extends GeneratedQna> generatedQnaResult = Optional.empty();
  
-        private Optional<? extends ErrorInfo> errorInfo = Optional.empty();
+        private Optional<? extends GleanDataError> gleanDataError = Optional.empty();
  
         private Optional<String> requestID = Optional.empty();
  
@@ -740,15 +740,15 @@ public class SearchResponse {
             return this;
         }
 
-        public Builder errorInfo(ErrorInfo errorInfo) {
-            Utils.checkNotNull(errorInfo, "errorInfo");
-            this.errorInfo = Optional.ofNullable(errorInfo);
+        public Builder gleanDataError(GleanDataError gleanDataError) {
+            Utils.checkNotNull(gleanDataError, "gleanDataError");
+            this.gleanDataError = Optional.ofNullable(gleanDataError);
             return this;
         }
 
-        public Builder errorInfo(Optional<? extends ErrorInfo> errorInfo) {
-            Utils.checkNotNull(errorInfo, "errorInfo");
-            this.errorInfo = errorInfo;
+        public Builder gleanDataError(Optional<? extends GleanDataError> gleanDataError) {
+            Utils.checkNotNull(gleanDataError, "gleanDataError");
+            this.gleanDataError = gleanDataError;
             return this;
         }
 
@@ -939,7 +939,7 @@ public class SearchResponse {
                 results,
                 structuredResults,
                 generatedQnaResult,
-                errorInfo,
+                gleanDataError,
                 requestID,
                 backendTimeMillis,
                 experimentIds,

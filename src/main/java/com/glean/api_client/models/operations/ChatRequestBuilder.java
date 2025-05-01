@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public class ChatRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private ChatRequest chatRequest;
@@ -22,15 +22,15 @@ public class ChatRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public ChatRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public ChatRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public ChatRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public ChatRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -67,7 +67,7 @@ public class ChatRequestBuilder {
     public ChatResponse call() throws Exception {
 
         return sdk.start(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             timezoneOffset,
             chatRequest);

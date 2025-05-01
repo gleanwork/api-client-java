@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class GetdocumentsRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private Optional<? extends GetDocumentsRequest> getDocumentsRequest = Optional.empty();
     private final SDKMethodInterfaces.MethodCallGetdocuments sdk;
@@ -20,15 +20,15 @@ public class GetdocumentsRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public GetdocumentsRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public GetdocumentsRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public GetdocumentsRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public GetdocumentsRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -59,7 +59,7 @@ public class GetdocumentsRequestBuilder {
     public GetdocumentsResponse call() throws Exception {
 
         return sdk.get(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             getDocumentsRequest);
     }

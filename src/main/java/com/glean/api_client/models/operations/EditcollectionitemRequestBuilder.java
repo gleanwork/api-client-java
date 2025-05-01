@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class EditcollectionitemRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private EditCollectionItemRequest editCollectionItemRequest;
     private final SDKMethodInterfaces.MethodCallEditcollectionitem sdk;
@@ -20,15 +20,15 @@ public class EditcollectionitemRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public EditcollectionitemRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public EditcollectionitemRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public EditcollectionitemRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public EditcollectionitemRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -53,7 +53,7 @@ public class EditcollectionitemRequestBuilder {
     public EditcollectionitemResponse call() throws Exception {
 
         return sdk.editItem(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             editCollectionItemRequest);
     }

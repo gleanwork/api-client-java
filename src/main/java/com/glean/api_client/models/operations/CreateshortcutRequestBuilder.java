@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class CreateshortcutRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private CreateShortcutRequest createShortcutRequest;
     private final SDKMethodInterfaces.MethodCallCreateshortcut sdk;
@@ -20,15 +20,15 @@ public class CreateshortcutRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public CreateshortcutRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public CreateshortcutRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public CreateshortcutRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public CreateshortcutRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -53,7 +53,7 @@ public class CreateshortcutRequestBuilder {
     public CreateshortcutResponse call() throws Exception {
 
         return sdk.create(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             createShortcutRequest);
     }

@@ -27,7 +27,7 @@ public class Glean {
      * SERVERS contains the list of server urls available to the SDK.
      */
     public static final String[] SERVERS = {
-        "https://{domain}-be.glean.com",
+        "https://domain-be.glean.com",
     };
 
     private final Client client;

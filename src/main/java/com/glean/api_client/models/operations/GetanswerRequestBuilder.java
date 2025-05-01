@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class GetanswerRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private GetAnswerRequest getAnswerRequest;
     private final SDKMethodInterfaces.MethodCallGetanswer sdk;
@@ -20,15 +20,15 @@ public class GetanswerRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public GetanswerRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public GetanswerRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public GetanswerRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public GetanswerRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -53,7 +53,7 @@ public class GetanswerRequestBuilder {
     public GetanswerResponse call() throws Exception {
 
         return sdk.get(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             getAnswerRequest);
     }

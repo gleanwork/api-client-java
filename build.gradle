@@ -14,6 +14,7 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id 'signing'
+    id 'cl.franciscosolis.sonatype-central-upload' version '1.0.3'
 }
 
 compileJava.options.encoding = "UTF-8"
@@ -43,6 +44,7 @@ group = "${groupId}"
 
 jar {
     dependsOn(":generatePomFileForMavenPublication")
+    archiveBaseName = "${artifactId}"
 
     into("META-INF/maven/com.glean/api-client") {
         from("$buildDir/pom.xml")
@@ -70,6 +72,27 @@ sourcesJar {
 javadocJar {
     archiveBaseName = "${artifactId}"
 }
+sonatypeCentralUpload {
+    // This is your Sonatype generated username
+    username = System.getenv("SONATYPE_USERNAME")
+    // This is your sonatype generated password
+    password = System.getenv("SONATYPE_PASSWORD")
+
+    // This is a list of files to upload. Ideally you would point to your jar file, source and javadoc jar (required by central)
+    archives = files(
+      "$buildDir/libs/${artifactId}-${version}.jar",
+      "$buildDir/libs/${artifactId}-${version}-sources.jar",
+      "$buildDir/libs/${artifactId}-${version}-javadoc.jar"
+    )
+
+    // This is the pom file to upload. This is required by central
+    pom = file("$buildDir/pom.xml")
+
+    // This is your PGP private key. This is required to sign your files
+    signingKey = System.getenv("SONATYPE_SIGNING_KEY")
+    // This is your PGP private key passphrase to decrypt your private key
+    signingKeyPassphrase = System.getenv("SIGNING_KEY_PASSPHRASE")
+}
 
 
 publishing {
@@ -80,7 +103,7 @@ publishing {
             // https://github.com/gradle/gradle/issues/18619
             groupId = "com.glean"
             artifactId = "api-client"
-            version = "0.0.3"
+            version = "0.1.0-beta.1"
 
             from components.java
 
@@ -102,12 +125,12 @@ publishing {
                     developer {
                         name = 'Glean'
                         organization = 'Glean'
-                        email = 'info@glean.com'
+                        email = 'support@glean.com'
                     }
                 }
                 organization {
                     name = 'Glean'
-                    url = 'www.glean.com'
+                    url = 'https://www.glean.com'
                 }
             }
         }

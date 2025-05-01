@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class UpdateannouncementRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private UpdateAnnouncementRequest updateAnnouncementRequest;
     private final SDKMethodInterfaces.MethodCallUpdateannouncement sdk;
@@ -20,15 +20,15 @@ public class UpdateannouncementRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public UpdateannouncementRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public UpdateannouncementRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public UpdateannouncementRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public UpdateannouncementRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -53,7 +53,7 @@ public class UpdateannouncementRequestBuilder {
     public UpdateannouncementResponse call() throws Exception {
 
         return sdk.update(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             updateAnnouncementRequest);
     }

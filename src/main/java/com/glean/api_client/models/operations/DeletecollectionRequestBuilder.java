@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class DeletecollectionRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private DeleteCollectionRequest deleteCollectionRequest;
     private final SDKMethodInterfaces.MethodCallDeletecollection sdk;
@@ -20,15 +20,15 @@ public class DeletecollectionRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public DeletecollectionRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public DeletecollectionRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public DeletecollectionRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public DeletecollectionRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -53,7 +53,7 @@ public class DeletecollectionRequestBuilder {
     public DeletecollectionResponse call() throws Exception {
 
         return sdk.delete(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             deleteCollectionRequest);
     }

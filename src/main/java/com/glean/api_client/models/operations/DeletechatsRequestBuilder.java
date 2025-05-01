@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public class DeletechatsRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private DeleteChatsRequest deleteChatsRequest;
@@ -22,15 +22,15 @@ public class DeletechatsRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public DeletechatsRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public DeletechatsRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public DeletechatsRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public DeletechatsRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -67,7 +67,7 @@ public class DeletechatsRequestBuilder {
     public DeletechatsResponse call() throws Exception {
 
         return sdk.delete(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             timezoneOffset,
             deleteChatsRequest);

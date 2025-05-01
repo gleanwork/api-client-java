@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class DeleteannouncementRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private DeleteAnnouncementRequest deleteAnnouncementRequest;
     private final SDKMethodInterfaces.MethodCallDeleteannouncement sdk;
@@ -20,15 +20,15 @@ public class DeleteannouncementRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public DeleteannouncementRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public DeleteannouncementRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public DeleteannouncementRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public DeleteannouncementRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -53,7 +53,7 @@ public class DeleteannouncementRequestBuilder {
     public DeleteannouncementResponse call() throws Exception {
 
         return sdk.delete(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             deleteAnnouncementRequest);
     }

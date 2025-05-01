@@ -15,8 +15,7 @@ import java.util.Optional;
  */
 public enum AgentEnum {
     DEFAULT("DEFAULT"),
-    GPT("GPT"),
-    DEEP_RESEARCH("DEEP_RESEARCH");
+    GPT("GPT");
 
     @JsonValue
     private final String value;

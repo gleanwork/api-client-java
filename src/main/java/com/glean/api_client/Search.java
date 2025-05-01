@@ -6,14 +6,12 @@ package com.glean.api_client;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.models.components.AutocompleteRequest;
 import com.glean.api_client.models.components.FeedRequest;
-import com.glean.api_client.models.components.PeopleSuggestRequest;
-import com.glean.api_client.models.components.PeopleSuggestResponse;
 import com.glean.api_client.models.components.RecommendationsRequest;
 import com.glean.api_client.models.components.ResultsResponse;
 import com.glean.api_client.models.components.SearchRequest;
 import com.glean.api_client.models.components.SearchResponse;
 import com.glean.api_client.models.errors.APIException;
-import com.glean.api_client.models.errors.ErrorInfo;
+import com.glean.api_client.models.errors.GleanDataError;
 import com.glean.api_client.models.operations.AdminsearchRequest;
 import com.glean.api_client.models.operations.AdminsearchRequestBuilder;
 import com.glean.api_client.models.operations.AdminsearchResponse;
@@ -21,12 +19,6 @@ import com.glean.api_client.models.operations.AutocompleteRequestBuilder;
 import com.glean.api_client.models.operations.AutocompleteResponse;
 import com.glean.api_client.models.operations.FeedRequestBuilder;
 import com.glean.api_client.models.operations.FeedResponse;
-import com.glean.api_client.models.operations.PeoplesuggestRequest;
-import com.glean.api_client.models.operations.PeoplesuggestRequestBuilder;
-import com.glean.api_client.models.operations.PeoplesuggestResponse;
-import com.glean.api_client.models.operations.PeoplesuggestadminRequest;
-import com.glean.api_client.models.operations.PeoplesuggestadminRequestBuilder;
-import com.glean.api_client.models.operations.PeoplesuggestadminResponse;
 import com.glean.api_client.models.operations.RecommendationsRequestBuilder;
 import com.glean.api_client.models.operations.RecommendationsResponse;
 import com.glean.api_client.models.operations.SDKMethodInterfaces.*;
@@ -52,8 +44,6 @@ public class Search implements
             MethodCallAdminsearch,
             MethodCallAutocomplete,
             MethodCallFeed,
-            MethodCallPeoplesuggest,
-            MethodCallPeoplesuggestadmin,
             MethodCallRecommendations,
             MethodCallSearch {
 
@@ -92,20 +82,20 @@ public class Search implements
      * 
      * <p>Retrieves results for search query without respect for permissions. This is available only to privileged users.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param searchRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public AdminsearchResponse admin(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<? extends SearchRequest> searchRequest) throws Exception {
         AdminsearchRequest request =
             AdminsearchRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .searchRequest(searchRequest)
                 .build();
@@ -209,9 +199,9 @@ public class Search implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "403", "422")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ErrorInfo _out = Utils.mapper().readValue(
+                GleanDataError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ErrorInfo>() {});
+                    new TypeReference<GleanDataError>() {});
                 throw _out;
             } else {
                 throw new APIException(
@@ -276,20 +266,20 @@ public class Search implements
      * 
      * <p>Retrieve query suggestions, operators and documents for the given partially typed query.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param autocompleteRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public AutocompleteResponse autocomplete(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             AutocompleteRequest autocompleteRequest) throws Exception {
         com.glean.api_client.models.operations.AutocompleteRequest request =
             com.glean.api_client.models.operations.AutocompleteRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .autocompleteRequest(autocompleteRequest)
                 .build();
@@ -449,20 +439,20 @@ public class Search implements
      * 
      * <p>The personalized feed/home includes different types of contents including suggestions, recents, calendar events and many more.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param feedRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public FeedResponse getFeed(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             FeedRequest feedRequest) throws Exception {
         com.glean.api_client.models.operations.FeedRequest request =
             com.glean.api_client.models.operations.FeedRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .feedRequest(feedRequest)
                 .build();
@@ -593,352 +583,6 @@ public class Search implements
 
 
     /**
-     * Suggest people
-     * 
-     * <p>Retrieves a list of suggested people for given type. Includes information about the persons.
-     * 
-     * @return The call builder
-     */
-    public PeoplesuggestRequestBuilder suggestPeople() {
-        return new PeoplesuggestRequestBuilder(this);
-    }
-
-    /**
-     * Suggest people
-     * 
-     * <p>Retrieves a list of suggested people for given type. Includes information about the persons.
-     * 
-     * @param peopleSuggestRequest Includes request params for type of suggestions.
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public PeoplesuggestResponse suggestPeople(
-            PeopleSuggestRequest peopleSuggestRequest) throws Exception {
-        return suggestPeople(Optional.empty(), Optional.empty(), peopleSuggestRequest);
-    }
-    
-    /**
-     * Suggest people
-     * 
-     * <p>Retrieves a list of suggested people for given type. Includes information about the persons.
-     * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param peopleSuggestRequest Includes request params for type of suggestions.
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public PeoplesuggestResponse suggestPeople(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            PeopleSuggestRequest peopleSuggestRequest) throws Exception {
-        PeoplesuggestRequest request =
-            PeoplesuggestRequest
-                .builder()
-                .xScioActas(xScioActas)
-                .xGleanAuthType(xGleanAuthType)
-                .peopleSuggestRequest(peopleSuggestRequest)
-                .build();
-        
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/rest/api/v1/peoplesuggest");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "peopleSuggestRequest",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "peoplesuggest", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "peoplesuggest",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "peoplesuggest",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "peoplesuggest",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        PeoplesuggestResponse.Builder _resBuilder = 
-            PeoplesuggestResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        PeoplesuggestResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                PeopleSuggestResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<PeopleSuggestResponse>() {});
-                _res.withPeopleSuggestResponse(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
-    }
-
-
-
-    /**
-     * Suggest people (admin)
-     * 
-     * <p>Returns a list of suggested people for given type for admin's view. Includes information about the persons.
-     * 
-     * @return The call builder
-     */
-    public PeoplesuggestadminRequestBuilder suggestPeopleAdmin() {
-        return new PeoplesuggestadminRequestBuilder(this);
-    }
-
-    /**
-     * Suggest people (admin)
-     * 
-     * <p>Returns a list of suggested people for given type for admin's view. Includes information about the persons.
-     * 
-     * @param peopleSuggestRequest Includes request params for type of suggestions.
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public PeoplesuggestadminResponse suggestPeopleAdmin(
-            PeopleSuggestRequest peopleSuggestRequest) throws Exception {
-        return suggestPeopleAdmin(Optional.empty(), Optional.empty(), peopleSuggestRequest);
-    }
-    
-    /**
-     * Suggest people (admin)
-     * 
-     * <p>Returns a list of suggested people for given type for admin's view. Includes information about the persons.
-     * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param peopleSuggestRequest Includes request params for type of suggestions.
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public PeoplesuggestadminResponse suggestPeopleAdmin(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            PeopleSuggestRequest peopleSuggestRequest) throws Exception {
-        PeoplesuggestadminRequest request =
-            PeoplesuggestadminRequest
-                .builder()
-                .xScioActas(xScioActas)
-                .xGleanAuthType(xGleanAuthType)
-                .peopleSuggestRequest(peopleSuggestRequest)
-                .build();
-        
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/rest/api/v1/peoplesuggestadmin");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "peopleSuggestRequest",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "peoplesuggestadmin", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "peoplesuggestadmin",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "peoplesuggestadmin",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "peoplesuggestadmin",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        PeoplesuggestadminResponse.Builder _resBuilder = 
-            PeoplesuggestadminResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        PeoplesuggestadminResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                PeopleSuggestResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<PeopleSuggestResponse>() {});
-                _res.withPeopleSuggestResponse(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
-    }
-
-
-
-    /**
      * Recommend documents
      * 
      * <p>Retrieve recommended documents for the given URL or Glean Document ID.
@@ -966,20 +610,20 @@ public class Search implements
      * 
      * <p>Retrieve recommended documents for the given URL or Glean Document ID.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param recommendationsRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public RecommendationsResponse recommendations(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<? extends RecommendationsRequest> recommendationsRequest) throws Exception {
         com.glean.api_client.models.operations.RecommendationsRequest request =
             com.glean.api_client.models.operations.RecommendationsRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .recommendationsRequest(recommendationsRequest)
                 .build();
@@ -1138,20 +782,20 @@ public class Search implements
      * 
      * <p>Retrieve results from the index for the given query and filters.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param searchRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public com.glean.api_client.models.operations.SearchResponse execute(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             Optional<? extends SearchRequest> searchRequest) throws Exception {
         com.glean.api_client.models.operations.SearchRequest request =
             com.glean.api_client.models.operations.SearchRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .searchRequest(searchRequest)
                 .build();
@@ -1255,9 +899,9 @@ public class Search implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "403", "422")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ErrorInfo _out = Utils.mapper().readValue(
+                GleanDataError _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ErrorInfo>() {});
+                    new TypeReference<GleanDataError>() {});
                 throw _out;
             } else {
                 throw new APIException(

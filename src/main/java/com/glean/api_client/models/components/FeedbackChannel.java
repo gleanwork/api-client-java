@@ -9,8 +9,8 @@ import java.util.Objects;
 import java.util.Optional;
 
 public enum FeedbackChannel {
-    GLEAN_CHANNEL("GLEAN_CHANNEL"),
-    COMPANY_CHANNEL("COMPANY_CHANNEL");
+    COMPANY("COMPANY"),
+    GLEAN("GLEAN");
 
     @JsonValue
     private final String value;

@@ -11,11 +11,8 @@
 * [deleteItem](#deleteitem) - Delete Collection item
 * [update](#update) - Update Collection
 * [editItem](#edititem) - Update Collection item
-* [edit](#edit) - Update document Collections
 * [get](#get) - Read Collection
 * [list](#list) - List Collections
-* [moveItem](#moveitem) - Move Collection item
-* [pin](#pin) - Pin Collection
 
 ## addItems
 
@@ -56,7 +53,7 @@ public class Application {
 
 | Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
 | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xScioActas`                                                                                                             | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
+| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
 | `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
 | `addCollectionItemsRequest`                                                                                              | [AddCollectionItemsRequest](../../models/components/AddCollectionItemsRequest.md)                                        | :heavy_check_mark:                                                                                                       | Data describing the add operation.                                                                                       |
 
@@ -180,7 +177,7 @@ public class Application {
 
 | Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
 | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xScioActas`                                                                                                             | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
+| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
 | `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
 | `createCollectionRequest`                                                                                                | [CreateCollectionRequest](../../models/components/CreateCollectionRequest.md)                                            | :heavy_check_mark:                                                                                                       | Collection content plus any additional metadata for the request.                                                         |
 
@@ -236,7 +233,7 @@ public class Application {
 
 | Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
 | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xScioActas`                                                                                                             | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
+| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
 | `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
 | `deleteCollectionRequest`                                                                                                | [DeleteCollectionRequest](../../models/components/DeleteCollectionRequest.md)                                            | :heavy_check_mark:                                                                                                       | DeleteCollection request                                                                                                 |
 
@@ -291,7 +288,7 @@ public class Application {
 
 | Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
 | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xScioActas`                                                                                                             | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
+| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
 | `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
 | `deleteCollectionItemRequest`                                                                                            | [DeleteCollectionItemRequest](../../models/components/DeleteCollectionItemRequest.md)                                    | :heavy_check_mark:                                                                                                       | Data describing the delete operation.                                                                                    |
 
@@ -413,7 +410,7 @@ public class Application {
 
 | Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
 | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xScioActas`                                                                                                             | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
+| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
 | `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
 | `editCollectionRequest`                                                                                                  | [EditCollectionRequest](../../models/components/EditCollectionRequest.md)                                                | :heavy_check_mark:                                                                                                       | Collection content plus any additional metadata for the request.                                                         |
 
@@ -468,65 +465,13 @@ public class Application {
 
 | Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
 | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xScioActas`                                                                                                             | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
+| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
 | `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
 | `editCollectionItemRequest`                                                                                              | [EditCollectionItemRequest](../../models/components/EditCollectionItemRequest.md)                                        | :heavy_check_mark:                                                                                                       | Edit Collection Items request                                                                                            |
 
 ### Response
 
 **[EditcollectionitemResponse](../../models/operations/EditcollectionitemResponse.md)**
-
-### Errors
-
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
-
-## edit
-
-Update the Collections that a document belongs to.
-
-### Example Usage
-
-```java
-package hello.world;
-
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.EditDocumentCollectionsRequest;
-import com.glean.api_client.models.operations.EditdocumentcollectionsResponse;
-import java.lang.Exception;
-
-public class Application {
-
-    public static void main(String[] args) throws Exception {
-
-        Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
-            .build();
-
-        EditdocumentcollectionsResponse res = sdk.client().collections().edit()
-                .editDocumentCollectionsRequest(EditDocumentCollectionsRequest.builder()
-                    .build())
-                .call();
-
-        if (res.editDocumentCollectionsResponse().isPresent()) {
-            // handle response
-        }
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xScioActas`                                                                                                             | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `editDocumentCollectionsRequest`                                                                                         | [EditDocumentCollectionsRequest](../../models/components/EditDocumentCollectionsRequest.md)                              | :heavy_check_mark:                                                                                                       | Data describing the edit operation.                                                                                      |
-
-### Response
-
-**[EditdocumentcollectionsResponse](../../models/operations/EditdocumentcollectionsResponse.md)**
 
 ### Errors
 
@@ -573,7 +518,7 @@ public class Application {
 
 | Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
 | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xScioActas`                                                                                                             | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
+| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
 | `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
 | `getCollectionRequest`                                                                                                   | [GetCollectionRequest](../../models/components/GetCollectionRequest.md)                                                  | :heavy_check_mark:                                                                                                       | GetCollection request                                                                                                    |
 
@@ -625,119 +570,13 @@ public class Application {
 
 | Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
 | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xScioActas`                                                                                                             | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
+| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
 | `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
 | `listCollectionsRequest`                                                                                                 | [ListCollectionsRequest](../../models/components/ListCollectionsRequest.md)                                              | :heavy_check_mark:                                                                                                       | ListCollections request                                                                                                  |
 
 ### Response
 
 **[ListcollectionsResponse](../../models/operations/ListcollectionsResponse.md)**
-
-### Errors
-
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
-
-## moveItem
-
-Reorder a Collection by moving a CollectionItem below another CollectionItem.
-
-### Example Usage
-
-```java
-package hello.world;
-
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.MoveCollectionItemRequest;
-import com.glean.api_client.models.operations.MovecollectionitemResponse;
-import java.lang.Exception;
-
-public class Application {
-
-    public static void main(String[] args) throws Exception {
-
-        Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
-            .build();
-
-        MovecollectionitemResponse res = sdk.client().collections().moveItem()
-                .moveCollectionItemRequest(MoveCollectionItemRequest.builder()
-                    .collectionId(451684L)
-                    .itemId("<id>")
-                    .build())
-                .call();
-
-        if (res.moveCollectionItemResponse().isPresent()) {
-            // handle response
-        }
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xScioActas`                                                                                                             | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `moveCollectionItemRequest`                                                                                              | [MoveCollectionItemRequest](../../models/components/MoveCollectionItemRequest.md)                                        | :heavy_check_mark:                                                                                                       | MoveCollectionItems request                                                                                              |
-
-### Response
-
-**[MovecollectionitemResponse](../../models/operations/MovecollectionitemResponse.md)**
-
-### Errors
-
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
-
-## pin
-
-Given the Collection id and category, pins the Collection to the home page for all company users.
-
-### Example Usage
-
-```java
-package hello.world;
-
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.PinCollectionRequest;
-import com.glean.api_client.models.operations.PincollectionResponse;
-import java.lang.Exception;
-
-public class Application {
-
-    public static void main(String[] args) throws Exception {
-
-        Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
-            .build();
-
-        PincollectionResponse res = sdk.client().collections().pin()
-                .pinCollectionRequest(PinCollectionRequest.builder()
-                    .build())
-                .call();
-
-        if (res.getCollectionResponse().isPresent()) {
-            // handle response
-        }
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xScioActas`                                                                                                             | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `pinCollectionRequest`                                                                                                   | [PinCollectionRequest](../../models/components/PinCollectionRequest.md)                                                  | :heavy_check_mark:                                                                                                       | PinCollection request                                                                                                    |
-
-### Response
-
-**[PincollectionResponse](../../models/operations/PincollectionResponse.md)**
 
 ### Errors
 

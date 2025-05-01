@@ -6,8 +6,7 @@ The Glean Java SDK provides convenient access to the Glean REST API for Java 8+.
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
-* [openapi](#openapi)
-* [Usage guidelines](#usage-guidelines)
+* [api-client-java](#api-client-java)
   * [SDK Installation](#sdk-installation)
   * [SDK Example Usage](#sdk-example-usage)
   * [Authentication](#authentication)
@@ -31,7 +30,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.glean:api-client:0.0.3'
+implementation 'com.glean:api-client:0.1.0-beta.1'
 ```
 
 Maven:
@@ -39,7 +38,7 @@ Maven:
 <dependency>
     <groupId>com.glean</groupId>
     <artifactId>api-client</artifactId>
-    <version>0.0.3</version>
+    <version>0.1.0-beta.1</version>
 </dependency>
 ```
 
@@ -91,9 +90,8 @@ package hello.world;
 
 import com.glean.api_client.Glean;
 import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.ActivityResponse;
+import com.glean.api_client.models.operations.ChatResponse;
 import java.lang.Exception;
-import java.time.OffsetDateTime;
 import java.util.List;
 
 public class Application {
@@ -104,37 +102,21 @@ public class Application {
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        Activity req = Activity.builder()
-                .events(List.of(
-                    ActivityEvent.builder()
-                        .action(ActivityEventAction.HISTORICAL_VIEW)
-                        .timestamp(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
-                        .url("https://example.com/")
-                        .build(),
-                    ActivityEvent.builder()
-                        .action(ActivityEventAction.SEARCH)
-                        .timestamp(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
-                        .url("https://example.com/search?q=query")
-                        .params(ActivityEventParams.builder()
-                            .query("query")
-                            .build())
-                        .build(),
-                    ActivityEvent.builder()
-                        .action(ActivityEventAction.VIEW)
-                        .timestamp(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
-                        .url("https://example.com/")
-                        .params(ActivityEventParams.builder()
-                            .duration(20L)
-                            .referrer("https://example.com/document")
-                            .build())
-                        .build()))
-                .build();
-
-        ActivityResponse res = sdk.client().activity().report()
-                .request(req)
+        ChatResponse res = sdk.client().chat().start()
+                .chatRequest(ChatRequest.builder()
+                    .messages(List.of(
+                        ChatMessage.builder()
+                            .fragments(List.of(
+                                ChatMessageFragment.builder()
+                                    .text("What are the company holidays this year?")
+                                    .build()))
+                            .build()))
+                    .build())
                 .call();
 
-        // handle response
+        if (res.chatResponse().isPresent()) {
+            // handle response
+        }
     }
 }
 ```
@@ -232,18 +214,8 @@ public class Application {
 #### [client().announcements()](docs/sdks/announcements/README.md)
 
 * [create](docs/sdks/announcements/README.md#create) - Create Announcement
-* [createDraft](docs/sdks/announcements/README.md#createdraft) - Create draft Announcement
 * [delete](docs/sdks/announcements/README.md#delete) - Delete Announcement
-* [deleteDraft](docs/sdks/announcements/README.md#deletedraft) - Delete draft Announcement
-* [get](docs/sdks/announcements/README.md#get) - Read Announcement
-* [getDraft](docs/sdks/announcements/README.md#getdraft) - Read draft Announcement
-* [list](docs/sdks/announcements/README.md#list) - List Announcements
-* [preview](docs/sdks/announcements/README.md#preview) - Preview Announcement
-* [previewDraft](docs/sdks/announcements/README.md#previewdraft) - Preview draft Announcement
-* [publish](docs/sdks/announcements/README.md#publish) - Publish draft Announcement
-* [unpublish](docs/sdks/announcements/README.md#unpublish) - Unpublish Announcement
 * [update](docs/sdks/announcements/README.md#update) - Update Announcement
-* [updateDraft](docs/sdks/announcements/README.md#updatedraft) - Update draft Announcement
 
 #### [client().answers()](docs/sdks/answers/README.md)
 
@@ -252,27 +224,13 @@ public class Application {
 * [edit](docs/sdks/answers/README.md#edit) - Update Answer
 * [get](docs/sdks/answers/README.md#get) - Read Answer
 * [list](docs/sdks/answers/README.md#list) - List Answers
-* [preview](docs/sdks/answers/README.md#preview) - Preview Answer
-* [previewDraft](docs/sdks/answers/README.md#previewdraft) - Preview draft Answer
-* [updateLikes](docs/sdks/answers/README.md#updatelikes) - Update Answer likes
-* [~~createBoard~~](docs/sdks/answers/README.md#createboard) - Create Answer Board :warning: **Deprecated**
-* [~~deleteBoard~~](docs/sdks/answers/README.md#deleteboard) - Delete Answer Board :warning: **Deprecated**
-* [~~updateBoard~~](docs/sdks/answers/README.md#updateboard) - Update Answer Board :warning: **Deprecated**
-* [~~getBoard~~](docs/sdks/answers/README.md#getboard) - Read Answer Board :warning: **Deprecated**
-* [~~listBoards~~](docs/sdks/answers/README.md#listboards) - List Answer Boards :warning: **Deprecated**
 
 #### [client().authentication()](docs/sdks/clientauthentication/README.md)
 
-* [createAnonymousToken](docs/sdks/clientauthentication/README.md#createanonymoustoken) - Create anonymous token
 * [createToken](docs/sdks/clientauthentication/README.md#createtoken) - Create authentication token
-
-#### [client().calendar()](docs/sdks/calendar/README.md)
-
-* [getEvents](docs/sdks/calendar/README.md#getevents) - Read events
 
 #### [client().chat()](docs/sdks/chat/README.md)
 
-* [ask](docs/sdks/chat/README.md#ask) - Detect and answer questions
 * [start](docs/sdks/chat/README.md#start) - Chat
 * [deleteAll](docs/sdks/chat/README.md#deleteall) - Deletes all saved Chats owned by a user
 * [delete](docs/sdks/chat/README.md#delete) - Deletes saved Chats
@@ -291,36 +249,19 @@ public class Application {
 * [deleteItem](docs/sdks/collections/README.md#deleteitem) - Delete Collection item
 * [update](docs/sdks/collections/README.md#update) - Update Collection
 * [editItem](docs/sdks/collections/README.md#edititem) - Update Collection item
-* [edit](docs/sdks/collections/README.md#edit) - Update document Collections
 * [get](docs/sdks/collections/README.md#get) - Read Collection
 * [list](docs/sdks/collections/README.md#list) - List Collections
-* [moveItem](docs/sdks/collections/README.md#moveitem) - Move Collection item
-* [pin](docs/sdks/collections/README.md#pin) - Pin Collection
-
-#### [client().displayableLists()](docs/sdks/displayablelists/README.md)
-
-* [create](docs/sdks/displayablelists/README.md#create) - Create displayable lists
-* [delete](docs/sdks/displayablelists/README.md#delete) - Delete displayable lists
-* [get](docs/sdks/displayablelists/README.md#get) - Read displayable lists
-* [update](docs/sdks/displayablelists/README.md#update) - Update displayable lists
 
 #### [client().documents()](docs/sdks/clientdocuments/README.md)
 
 * [getPermissions](docs/sdks/clientdocuments/README.md#getpermissions) - Read document permissions
 * [get](docs/sdks/clientdocuments/README.md#get) - Read documents
 * [getByFacets](docs/sdks/clientdocuments/README.md#getbyfacets) - Read documents by facets
-* [getAnalytics](docs/sdks/clientdocuments/README.md#getanalytics) - Read document analytics
 
 #### [client().entities()](docs/sdks/entities/README.md)
 
 * [list](docs/sdks/entities/README.md#list) - List entities
 * [readPeople](docs/sdks/entities/README.md#readpeople) - Read people
-* [getTeams](docs/sdks/entities/README.md#getteams) - Read teams
-
-#### [client().images()](docs/sdks/images/README.md)
-
-* [get](docs/sdks/images/README.md#get) - Get image
-* [upload](docs/sdks/images/README.md#upload) - Upload images
 
 #### [client().insights()](docs/sdks/insights/README.md)
 
@@ -343,8 +284,6 @@ public class Application {
 * [admin](docs/sdks/search/README.md#admin) - Search the index (admin)
 * [autocomplete](docs/sdks/search/README.md#autocomplete) - Autocomplete
 * [getFeed](docs/sdks/search/README.md#getfeed) - Feed of documents and events
-* [suggestPeople](docs/sdks/search/README.md#suggestpeople) - Suggest people
-* [suggestPeopleAdmin](docs/sdks/search/README.md#suggestpeopleadmin) - Suggest people (admin)
 * [recommendations](docs/sdks/search/README.md#recommendations) - Recommend documents
 * [execute](docs/sdks/search/README.md#execute) - Search
 
@@ -353,28 +292,13 @@ public class Application {
 * [create](docs/sdks/clientshortcuts/README.md#create) - Create shortcut
 * [delete](docs/sdks/clientshortcuts/README.md#delete) - Delete shortcut
 * [get](docs/sdks/clientshortcuts/README.md#get) - Read shortcut
-* [getSimilar](docs/sdks/clientshortcuts/README.md#getsimilar) - Get similar shortcuts
 * [list](docs/sdks/clientshortcuts/README.md#list) - List shortcuts
-* [preview](docs/sdks/clientshortcuts/README.md#preview) - Preview shortcut
 * [update](docs/sdks/clientshortcuts/README.md#update) - Update shortcut
 * [upload](docs/sdks/clientshortcuts/README.md#upload) - Upload shortcuts
 
 #### [client().summarize()](docs/sdks/summarize/README.md)
 
 * [generate](docs/sdks/summarize/README.md#generate) - Summarize documents
-
-#### [client().tools()](docs/sdks/tools/README.md)
-
-* [executeAction](docs/sdks/tools/README.md#executeaction) - Execute Action Tool
-
-#### [client().user()](docs/sdks/user/README.md)
-
-* [addCredential](docs/sdks/user/README.md#addcredential) - Create credentials
-* [deleteQueryHistory](docs/sdks/user/README.md#deletequeryhistory) - Delete query history
-* [invite](docs/sdks/user/README.md#invite) - Send invitation
-* [getPublicConfig](docs/sdks/user/README.md#getpublicconfig) - Read public client configuration
-* [removeCredential](docs/sdks/user/README.md#removecredential) - Delete credentials
-* [sendSupportEmail](docs/sdks/user/README.md#sendsupportemail) - Send support email
 
 #### [client().verification()](docs/sdks/verification/README.md)
 
@@ -456,12 +380,12 @@ public class Application {
 
 Handling errors in this SDK should largely match your expectations. All operations return a response object or raise an exception.
 
-By default, an API error will throw a `models/errors/APIException` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `ask` method throws the following exceptions:
+By default, an API error will throw a `models/errors/APIException` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `create` method throws the following exceptions:
 
-| Error Type                 | Status Code | Content Type     |
-| -------------------------- | ----------- | ---------------- |
-| models/errors/ErrorInfo    | 403, 422    | application/json |
-| models/errors/APIException | 4XX, 5XX    | \*/\*            |
+| Error Type                    | Status Code | Content Type     |
+| ----------------------------- | ----------- | ---------------- |
+| models/errors/CollectionError | 422         | application/json |
+| models/errors/APIException    | 4XX, 5XX    | \*/\*            |
 
 ### Example
 
@@ -470,189 +394,95 @@ package hello.world;
 
 import com.glean.api_client.Glean;
 import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.errors.ErrorInfo;
-import com.glean.api_client.models.operations.AskResponse;
+import com.glean.api_client.models.errors.CollectionError;
+import com.glean.api_client.models.operations.CreatecollectionResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorInfo, Exception {
+    public static void main(String[] args) throws CollectionError, Exception {
 
         Glean sdk = Glean.builder()
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        AskResponse res = sdk.client().chat().ask()
-                .askRequest(AskRequest.builder()
-                    .searchRequest(SearchRequest.builder()
-                        .query("vacation policy")
-                        .trackingToken("trackingToken")
-                        .sourceDocument(Document.builder()
-                            .metadata(DocumentMetadata.builder()
-                                .datasource("datasource")
-                                .objectType("Feature Request")
-                                .container("container")
-                                .parentId("JIRA_EN-1337")
-                                .mimeType("mimeType")
-                                .documentId("documentId")
-                                .createTime(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
-                                .updateTime(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
-                                .author(Person.builder()
-                                    .name("George Clooney")
-                                    .obfuscatedId("abc123")
-                                    .relatedDocuments(List.of())
-                                    .metadata(PersonMetadata.builder()
-                                        .type(PersonMetadataType.FULL_TIME)
-                                        .title("Actor")
-                                        .department("Movies")
-                                        .email("george@example.com")
-                                        .location("Hollywood, CA")
-                                        .phone("6505551234")
-                                        .photoUrl("https://example.com/george.jpg")
-                                        .startDate(LocalDate.parse("2000-01-23"))
-                                        .datasourceProfile(List.of(
-                                            DatasourceProfile.builder()
-                                                .datasource("github")
-                                                .handle("<value>")
-                                                .build()))
-                                        .querySuggestions(QuerySuggestionList.builder()
-                                            .suggestions(List.of())
-                                            .build())
-                                        .inviteInfo(InviteInfo.builder()
-                                            .invites(List.of())
-                                            .build())
-                                        .customFields(List.of())
-                                        .badges(List.of(
-                                            Badge.builder()
-                                                .key("deployment_name_new_hire")
-                                                .displayName("New hire")
-                                                .iconConfig(IconConfig.builder()
-                                                    .color("#343CED")
-                                                    .key("person_icon")
-                                                    .iconType(IconType.GLYPH)
-                                                    .name("user")
-                                                    .build())
-                                                .build()))
-                                        .build())
-                                    .build())
-                                .owner(Person.builder()
-                                    .name("George Clooney")
-                                    .obfuscatedId("abc123")
-                                    .build())
-                                .mentionedPeople(List.of())
-                                .components(List.of(
-                                    "Backend",
-                                    "Networking"))
-                                .status("[\"Done\"]")
-                                .pins(List.of())
-                                .assignedTo(Person.builder()
-                                    .name("George Clooney")
-                                    .obfuscatedId("abc123")
-                                    .build())
-                                .updatedBy(Person.builder()
-                                    .name("George Clooney")
-                                    .obfuscatedId("abc123")
-                                    .build())
-                                .collections(List.of())
-                                .interactions(DocumentInteractions.builder()
-                                    .reacts(List.of())
-                                    .shares(List.of())
-                                    .build())
-                                .verification(Verification.builder()
-                                    .state(State.UNVERIFIED)
-                                    .metadata(VerificationMetadata.builder()
-                                        .lastVerifier(Person.builder()
-                                            .name("George Clooney")
-                                            .obfuscatedId("abc123")
-                                            .build())
-                                        .reminders(List.of())
-                                        .lastReminder(Reminder.builder()
-                                            .assignee(Person.builder()
-                                                .name("George Clooney")
-                                                .obfuscatedId("abc123")
-                                                .build())
-                                            .remindAt(892381L)
-                                            .requestor(Person.builder()
-                                                .name("George Clooney")
-                                                .obfuscatedId("abc123")
-                                                .build())
-                                            .build())
-                                        .candidateVerifiers(List.of())
-                                        .build())
-                                    .build())
-                                .customData(Map.ofEntries(
-                                    Map.entry("someCustomField", CustomDataValue.builder()
-                                        .build())))
-                                .contactPerson(Person.builder()
-                                    .name("George Clooney")
-                                    .obfuscatedId("abc123")
-                                    .build())
-                                .build())
-                            .build())
-                        .pageSize(100L)
-                        .maxSnippetSize(400L)
-                        .inputDetails(SearchRequestInputDetails.builder()
-                            .hasCopyPaste(true)
-                            .build())
-                        .requestOptions(SearchRequestOptions.builder()
-                            .facetBucketSize(132988L)
-                            .datasourceFilter("JIRA")
-                            .datasourcesFilter(List.of(
-                                "JIRA"))
-                            .queryOverridesFacetFilters(true)
-                            .facetFilters(List.of(
-                                FacetFilter.builder()
-                                    .fieldName("type")
-                                    .values(List.of(
-                                        FacetFilterValue.builder()
-                                            .value("Spreadsheet")
-                                            .relationType(RelationType.EQUALS)
-                                            .build(),
-                                        FacetFilterValue.builder()
-                                            .value("Presentation")
-                                            .relationType(RelationType.EQUALS)
-                                            .build()))
-                                    .build()))
-                            .facetFilterSets(List.of(
-                                FacetFilterSet.builder()
-                                    .filters(List.of(
-                                        FacetFilter.builder()
-                                            .fieldName("type")
-                                            .values(List.of(
-                                                FacetFilterValue.builder()
-                                                    .value("Spreadsheet")
-                                                    .relationType(RelationType.EQUALS)
-                                                    .build(),
-                                                FacetFilterValue.builder()
-                                                    .value("Presentation")
-                                                    .relationType(RelationType.EQUALS)
-                                                    .build()))
-                                            .build()))
-                                    .build()))
-                            .authTokens(List.of(
-                                AuthToken.builder()
-                                    .accessToken("123abc")
-                                    .datasource("gmail")
-                                    .scope("email profile https://www.googleapis.com/auth/gmail.readonly")
-                                    .tokenType("Bearer")
-                                    .authUser("1")
-                                    .build()))
-                            .build())
-                        .timeoutMillis(5000L)
-                        .people(List.of(
-                            Person.builder()
+        CreatecollectionResponse res = sdk.client().collections().create()
+                .createCollectionRequest(CreateCollectionRequest.builder()
+                    .name("<value>")
+                    .addedRoles(List.of(
+                        UserRoleSpecification.builder()
+                            .role(UserRole.OWNER)
+                            .person(Person.builder()
                                 .name("George Clooney")
                                 .obfuscatedId("abc123")
-                                .build()))
-                        .build())
+                                .relatedDocuments(List.of())
+                                .metadata(PersonMetadata.builder()
+                                    .type(PersonMetadataType.FULL_TIME)
+                                    .title("Actor")
+                                    .department("Movies")
+                                    .email("george@example.com")
+                                    .location("Hollywood, CA")
+                                    .phone("6505551234")
+                                    .photoUrl("https://example.com/george.jpg")
+                                    .startDate(LocalDate.parse("2000-01-23"))
+                                    .datasourceProfile(List.of(
+                                        DatasourceProfile.builder()
+                                            .datasource("github")
+                                            .handle("<value>")
+                                            .build()))
+                                    .querySuggestions(QuerySuggestionList.builder()
+                                        .suggestions(List.of())
+                                        .build())
+                                    .inviteInfo(InviteInfo.builder()
+                                        .invites(List.of())
+                                        .build())
+                                    .customFields(List.of())
+                                    .badges(List.of(
+                                        Badge.builder()
+                                            .key("deployment_name_new_hire")
+                                            .displayName("New hire")
+                                            .iconConfig(IconConfig.builder()
+                                                .color("#343CED")
+                                                .key("person_icon")
+                                                .iconType(IconType.GLYPH)
+                                                .name("user")
+                                                .build())
+                                            .build()))
+                                    .build())
+                                .build())
+                            .build(),
+                        UserRoleSpecification.builder()
+                            .role(UserRole.VERIFIER)
+                            .build()))
+                    .removedRoles(List.of(
+                        UserRoleSpecification.builder()
+                            .role(UserRole.VERIFIER)
+                            .build(),
+                        UserRoleSpecification.builder()
+                            .role(UserRole.ANSWER_MODERATOR)
+                            .build(),
+                        UserRoleSpecification.builder()
+                            .role(UserRole.OWNER)
+                            .build()))
+                    .audienceFilters(List.of(
+                        FacetFilter.builder()
+                            .fieldName("type")
+                            .values(List.of(
+                                FacetFilterValue.builder()
+                                    .value("Spreadsheet")
+                                    .relationType(RelationType.EQUALS)
+                                    .build(),
+                                FacetFilterValue.builder()
+                                    .value("Presentation")
+                                    .relationType(RelationType.EQUALS)
+                                    .build()))
+                            .build()))
                     .build())
                 .call();
 
-        if (res.askResponse().isPresent()) {
+        if (res.createCollectionResponse().isPresent()) {
             // handle response
         }
     }

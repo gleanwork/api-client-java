@@ -7,7 +7,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.models.components.ListEntitiesRequest;
 import com.glean.api_client.models.components.ListEntitiesResponse;
 import com.glean.api_client.models.components.PeopleRequest;
-import com.glean.api_client.models.components.TeamsRequest;
 import com.glean.api_client.models.errors.APIException;
 import com.glean.api_client.models.operations.ListentitiesRequest;
 import com.glean.api_client.models.operations.ListentitiesRequestBuilder;
@@ -15,8 +14,6 @@ import com.glean.api_client.models.operations.ListentitiesResponse;
 import com.glean.api_client.models.operations.PeopleRequestBuilder;
 import com.glean.api_client.models.operations.PeopleResponse;
 import com.glean.api_client.models.operations.SDKMethodInterfaces.*;
-import com.glean.api_client.models.operations.TeamsRequestBuilder;
-import com.glean.api_client.models.operations.TeamsResponse;
 import com.glean.api_client.utils.HTTPClient;
 import com.glean.api_client.utils.HTTPRequest;
 import com.glean.api_client.utils.Hook.AfterErrorContextImpl;
@@ -36,8 +33,7 @@ import java.util.Optional;
 
 public class Entities implements
             MethodCallListentities,
-            MethodCallPeople,
-            MethodCallTeams {
+            MethodCallPeople {
 
     private final SDKConfiguration sdkConfiguration;
 
@@ -76,20 +72,20 @@ public class Entities implements
      * 
      * <p>List some set of details for all entities that fit the given criteria and return in the requested order. Does not support negation in filters, assumes relation type EQUALS. There is a limit of 10000 entities that can be retrieved via this endpoint.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param listEntitiesRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListentitiesResponse list(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             ListEntitiesRequest listEntitiesRequest) throws Exception {
         ListentitiesRequest request =
             ListentitiesRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .listEntitiesRequest(listEntitiesRequest)
                 .build();
@@ -249,20 +245,20 @@ public class Entities implements
      * 
      * <p>Read people details for the given IDs.
      * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
+     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
      * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param peopleRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public PeopleResponse readPeople(
-            Optional<String> xScioActas,
+            Optional<String> xGleanActAs,
             Optional<String> xGleanAuthType,
             PeopleRequest peopleRequest) throws Exception {
         com.glean.api_client.models.operations.PeopleRequest request =
             com.glean.api_client.models.operations.PeopleRequest
                 .builder()
-                .xScioActas(xScioActas)
+                .xGleanActAs(xGleanActAs)
                 .xGleanAuthType(xGleanAuthType)
                 .peopleRequest(peopleRequest)
                 .build();
@@ -358,179 +354,6 @@ public class Entities implements
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<com.glean.api_client.models.components.PeopleResponse>() {});
                 _res.withPeopleResponse(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
-    }
-
-
-
-    /**
-     * Read teams
-     * 
-     * <p>Read the details of the teams with the given IDs.
-     * 
-     * @return The call builder
-     */
-    public TeamsRequestBuilder getTeams() {
-        return new TeamsRequestBuilder(this);
-    }
-
-    /**
-     * Read teams
-     * 
-     * <p>Read the details of the teams with the given IDs.
-     * 
-     * @param teamsRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public TeamsResponse getTeams(
-            TeamsRequest teamsRequest) throws Exception {
-        return getTeams(Optional.empty(), Optional.empty(), teamsRequest);
-    }
-    
-    /**
-     * Read teams
-     * 
-     * <p>Read the details of the teams with the given IDs.
-     * 
-     * @param xScioActas Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param teamsRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public TeamsResponse getTeams(
-            Optional<String> xScioActas,
-            Optional<String> xGleanAuthType,
-            TeamsRequest teamsRequest) throws Exception {
-        com.glean.api_client.models.operations.TeamsRequest request =
-            com.glean.api_client.models.operations.TeamsRequest
-                .builder()
-                .xScioActas(xScioActas)
-                .xGleanAuthType(xGleanAuthType)
-                .teamsRequest(teamsRequest)
-                .build();
-        
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/rest/api/v1/teams");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "teamsRequest",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "teams", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "teams",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "teams",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "teams",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        TeamsResponse.Builder _resBuilder = 
-            TeamsResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        TeamsResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.glean.api_client.models.components.TeamsResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.glean.api_client.models.components.TeamsResponse>() {});
-                _res.withTeamsResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(

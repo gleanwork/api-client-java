@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class PeopleRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private PeopleRequest peopleRequest;
     private final SDKMethodInterfaces.MethodCallPeople sdk;
@@ -20,15 +20,15 @@ public class PeopleRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public PeopleRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public PeopleRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public PeopleRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public PeopleRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -53,7 +53,7 @@ public class PeopleRequestBuilder {
     public PeopleResponse call() throws Exception {
 
         return sdk.readPeople(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             peopleRequest);
     }

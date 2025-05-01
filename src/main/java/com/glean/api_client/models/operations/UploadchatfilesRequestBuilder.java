@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public class UploadchatfilesRequestBuilder {
 
-    private Optional<String> xScioActas = Optional.empty();
+    private Optional<String> xGleanActAs = Optional.empty();
     private Optional<String> xGleanAuthType = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private UploadChatFilesRequest uploadChatFilesRequest;
@@ -22,15 +22,15 @@ public class UploadchatfilesRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public UploadchatfilesRequestBuilder xScioActas(String xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = Optional.of(xScioActas);
+    public UploadchatfilesRequestBuilder xGleanActAs(String xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = Optional.of(xGleanActAs);
         return this;
     }
 
-    public UploadchatfilesRequestBuilder xScioActas(Optional<String> xScioActas) {
-        Utils.checkNotNull(xScioActas, "xScioActas");
-        this.xScioActas = xScioActas;
+    public UploadchatfilesRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
+        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
+        this.xGleanActAs = xGleanActAs;
         return this;
     }
                 
@@ -67,7 +67,7 @@ public class UploadchatfilesRequestBuilder {
     public UploadchatfilesResponse call() throws Exception {
 
         return sdk.uploadFiles(
-            xScioActas,
+            xGleanActAs,
             xGleanAuthType,
             timezoneOffset,
             uploadChatFilesRequest);

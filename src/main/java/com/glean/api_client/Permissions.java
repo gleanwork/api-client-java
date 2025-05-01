@@ -83,7 +83,7 @@ public class Permissions implements
     /**
      * Update document permissions
      * 
-     * <p>Updates the permissions for a given document without modifying document content. **This endpoint is not yet generally available. Please contact Glean support to enable this feature.**
+     * <p>Updates the permissions for a given document without modifying document content.
      * 
      * @return The call builder
      */
@@ -94,7 +94,7 @@ public class Permissions implements
     /**
      * Update document permissions
      * 
-     * <p>Updates the permissions for a given document without modifying document content. **This endpoint is not yet generally available. Please contact Glean support to enable this feature.**
+     * <p>Updates the permissions for a given document without modifying document content.
      * 
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
