@@ -19,5 +19,5 @@ targets:
             registry:
                 location: registry.speakeasyapi.dev/glean-el2/sdk/glean-api-specs-java-code-samples
             labelOverride:
-                fixedValue: Java (Client)
+                fixedValue: Java (API Client)
             blocking: false
