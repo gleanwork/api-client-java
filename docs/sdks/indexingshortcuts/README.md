@@ -17,10 +17,10 @@ Replaces all the currently indexed shortcuts using paginated batch API calls. No
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.BulkIndexShortcutsRequest;
-import com.glean.api_client.models.components.ExternalShortcut;
-import com.glean.api_client.models.operations.PostApiIndexV1BulkindexshortcutsResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.BulkIndexShortcutsRequest;
+import com.glean.api_client.glean_api_client.models.components.ExternalShortcut;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1BulkindexshortcutsResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -77,10 +77,10 @@ Creates glean shortcuts for uploaded shortcuts info. Glean would host the shortc
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.IndexingShortcut;
-import com.glean.api_client.models.components.UploadShortcutsRequest;
-import com.glean.api_client.models.operations.PostApiIndexV1UploadshortcutsResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.IndexingShortcut;
+import com.glean.api_client.glean_api_client.models.components.UploadShortcutsRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1UploadshortcutsResponse;
 import java.lang.Exception;
 import java.util.List;
 

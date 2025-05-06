@@ -18,9 +18,9 @@ Trigger an Agent with a given id.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.RunAgentRequest;
-import com.glean.api_client.models.operations.RunagentResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.RunAgentRequest;
+import com.glean.api_client.glean_api_client.models.operations.RunagentResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -69,8 +69,8 @@ Lists all agents that are available.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.operations.ListagentsResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.operations.ListagentsResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -117,9 +117,9 @@ Get the inputs to an agent with a given id.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.GetAgentInputsRequest;
-import com.glean.api_client.models.operations.GetagentinputsResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.GetAgentInputsRequest;
+import com.glean.api_client.glean_api_client.models.operations.GetagentinputsResponse;
 import java.lang.Exception;
 
 public class Application {

@@ -16,8 +16,8 @@ Creates an authentication token for the authenticated user.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.operations.CreateauthtokenResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.operations.CreateauthtokenResponse;
 import java.lang.Exception;
 
 public class Application {

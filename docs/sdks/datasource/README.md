@@ -20,8 +20,8 @@ Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/docs/i
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.operations.PostApiIndexV1DebugDatasourceStatusResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DebugDatasourceStatusResponse;
 import java.lang.Exception;
 
 public class Application {

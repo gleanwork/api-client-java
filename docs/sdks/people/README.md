@@ -28,9 +28,9 @@ Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/docs/i
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.DebugUserRequest;
-import com.glean.api_client.models.operations.PostApiIndexV1DebugDatasourceUserResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.DebugUserRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DebugDatasourceUserResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -86,9 +86,9 @@ Tip: Use [/debug/{datasource}/status](https://developers.glean.com/docs/indexing
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.GetUserCountRequest;
-import com.glean.api_client.models.operations.PostApiIndexV1GetusercountResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.GetUserCountRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1GetusercountResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -139,9 +139,9 @@ Adds an employee or updates information about an employee
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.PostApiIndexV1IndexemployeeResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1IndexemployeeResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -203,9 +203,9 @@ Replaces all the currently indexed employees using paginated batch API calls. Pl
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.BulkIndexEmployeesRequest;
-import com.glean.api_client.models.operations.PostApiIndexV1BulkindexemployeesResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.BulkIndexEmployeesRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1BulkindexemployeesResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -257,8 +257,8 @@ Schedules the immediate processing of employees and teams uploaded through the i
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.operations.PostApiIndexV1ProcessallemployeesandteamsResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1ProcessallemployeesandteamsResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -296,9 +296,9 @@ Delete an employee. Silently succeeds if employee is not present.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.DeleteEmployeeRequest;
-import com.glean.api_client.models.operations.PostApiIndexV1DeleteemployeeResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.DeleteEmployeeRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DeleteemployeeResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -347,9 +347,9 @@ Adds a team or updates information about a team
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.PostApiIndexV1IndexteamResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1IndexteamResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -425,9 +425,9 @@ Delete a team based on provided id.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.DeleteTeamRequest;
-import com.glean.api_client.models.operations.PostApiIndexV1DeleteteamResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.DeleteTeamRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DeleteteamResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -476,9 +476,9 @@ Replaces all the currently indexed teams using paginated batch API calls. Please
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.BulkIndexTeamsRequest;
-import com.glean.api_client.models.operations.PostApiIndexV1BulkindexteamsResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.BulkIndexTeamsRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1BulkindexteamsResponse;
 import java.lang.Exception;
 import java.util.List;
 

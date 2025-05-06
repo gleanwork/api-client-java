@@ -27,10 +27,10 @@ Updates the permissions for a given document without modifying document content.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.DocumentPermissionsDefinition;
-import com.glean.api_client.models.components.UpdatePermissionsRequest;
-import com.glean.api_client.models.operations.PostApiIndexV1UpdatepermissionsResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.DocumentPermissionsDefinition;
+import com.glean.api_client.glean_api_client.models.components.UpdatePermissionsRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1UpdatepermissionsResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -81,10 +81,10 @@ Adds a datasource user or updates an existing user.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.DatasourceUserDefinition;
-import com.glean.api_client.models.components.IndexUserRequest;
-import com.glean.api_client.models.operations.PostApiIndexV1IndexuserResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.DatasourceUserDefinition;
+import com.glean.api_client.glean_api_client.models.components.IndexUserRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1IndexuserResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -137,10 +137,10 @@ Replaces the users in a datasource using paginated batch API calls. Please refer
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.BulkIndexUsersRequest;
-import com.glean.api_client.models.components.DatasourceUserDefinition;
-import com.glean.api_client.models.operations.PostApiIndexV1BulkindexusersResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.BulkIndexUsersRequest;
+import com.glean.api_client.glean_api_client.models.components.DatasourceUserDefinition;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1BulkindexusersResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -204,10 +204,10 @@ Add or update a group in the datasource.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.DatasourceGroupDefinition;
-import com.glean.api_client.models.components.IndexGroupRequest;
-import com.glean.api_client.models.operations.PostApiIndexV1IndexgroupResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.DatasourceGroupDefinition;
+import com.glean.api_client.glean_api_client.models.components.IndexGroupRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1IndexgroupResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -259,10 +259,10 @@ Replaces the groups in a datasource using paginated batch API calls. Please refe
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.BulkIndexGroupsRequest;
-import com.glean.api_client.models.components.DatasourceGroupDefinition;
-import com.glean.api_client.models.operations.PostApiIndexV1BulkindexgroupsResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.BulkIndexGroupsRequest;
+import com.glean.api_client.glean_api_client.models.components.DatasourceGroupDefinition;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1BulkindexgroupsResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -320,10 +320,10 @@ Add the memberships of a group in the datasource.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.DatasourceMembershipDefinition;
-import com.glean.api_client.models.components.IndexMembershipRequest;
-import com.glean.api_client.models.operations.PostApiIndexV1IndexmembershipResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.DatasourceMembershipDefinition;
+import com.glean.api_client.glean_api_client.models.components.IndexMembershipRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1IndexmembershipResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -375,10 +375,10 @@ Replaces the memberships for a group in a datasource using paginated batch API c
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.BulkIndexMembershipsRequest;
-import com.glean.api_client.models.components.DatasourceBulkMembershipDefinition;
-import com.glean.api_client.models.operations.PostApiIndexV1BulkindexmembershipsResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.BulkIndexMembershipsRequest;
+import com.glean.api_client.glean_api_client.models.components.DatasourceBulkMembershipDefinition;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1BulkindexmembershipsResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -437,9 +437,9 @@ Schedules the immediate processing of all group memberships uploaded through the
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.ProcessAllMembershipsRequest;
-import com.glean.api_client.models.operations.PostApiIndexV1ProcessallmembershipsResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.ProcessAllMembershipsRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1ProcessallmembershipsResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -487,9 +487,9 @@ Delete the user from the datasource. Silently succeeds if user is not present.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.DeleteUserRequest;
-import com.glean.api_client.models.operations.PostApiIndexV1DeleteuserResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.DeleteUserRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DeleteuserResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -539,9 +539,9 @@ Delete group from the datasource. Silently succeeds if group is not present.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.DeleteGroupRequest;
-import com.glean.api_client.models.operations.PostApiIndexV1DeletegroupResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.DeleteGroupRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DeletegroupResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -591,10 +591,10 @@ Delete membership to a group in the specified datasource. Silently succeeds if m
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.DatasourceMembershipDefinition;
-import com.glean.api_client.models.components.DeleteMembershipRequest;
-import com.glean.api_client.models.operations.PostApiIndexV1DeletemembershipResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.DatasourceMembershipDefinition;
+import com.glean.api_client.glean_api_client.models.components.DeleteMembershipRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DeletemembershipResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -646,9 +646,9 @@ Allow the datasource be visible to the specified beta users. The default behavio
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.GreenlistUsersRequest;
-import com.glean.api_client.models.operations.PostApiIndexV1BetausersResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.GreenlistUsersRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1BetausersResponse;
 import java.lang.Exception;
 import java.util.List;
 

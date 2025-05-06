@@ -27,10 +27,10 @@ Adds a document to the index or updates an existing document.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.DocumentDefinition;
-import com.glean.api_client.models.components.IndexDocumentRequest;
-import com.glean.api_client.models.operations.PostApiIndexV1IndexdocumentResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.DocumentDefinition;
+import com.glean.api_client.glean_api_client.models.components.IndexDocumentRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1IndexdocumentResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -81,10 +81,10 @@ Adds or updates multiple documents in the index. Please refer to the [bulk index
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.DocumentDefinition;
-import com.glean.api_client.models.components.IndexDocumentsRequest;
-import com.glean.api_client.models.operations.PostApiIndexV1IndexdocumentsResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.DocumentDefinition;
+import com.glean.api_client.glean_api_client.models.components.IndexDocumentsRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1IndexdocumentsResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -138,10 +138,10 @@ Replaces the documents in a datasource using paginated batch API calls. Please r
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.BulkIndexDocumentsRequest;
-import com.glean.api_client.models.components.DocumentDefinition;
-import com.glean.api_client.models.operations.PostApiIndexV1BulkindexdocumentsResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.BulkIndexDocumentsRequest;
+import com.glean.api_client.glean_api_client.models.components.DocumentDefinition;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1BulkindexdocumentsResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -207,9 +207,9 @@ For more frequent document processing, contact Glean support.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.ProcessAllDocumentsRequest;
-import com.glean.api_client.models.operations.PostApiIndexV1ProcessalldocumentsResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.ProcessAllDocumentsRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1ProcessalldocumentsResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -257,9 +257,9 @@ Deletes the specified document from the index. Succeeds if document is not prese
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.DeleteDocumentRequest;
-import com.glean.api_client.models.operations.PostApiIndexV1DeletedocumentResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.DeleteDocumentRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DeletedocumentResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -313,9 +313,9 @@ Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/docs/i
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.DebugDocumentRequest;
-import com.glean.api_client.models.operations.PostApiIndexV1DebugDatasourceDocumentResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.DebugDocumentRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DebugDatasourceDocumentResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -370,10 +370,10 @@ Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/docs/i
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.DebugDocumentRequest;
-import com.glean.api_client.models.components.DebugDocumentsRequest;
-import com.glean.api_client.models.operations.PostApiIndexV1DebugDatasourceDocumentsResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.DebugDocumentRequest;
+import com.glean.api_client.glean_api_client.models.components.DebugDocumentsRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DebugDatasourceDocumentsResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -436,9 +436,9 @@ Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/docs/i
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.CheckDocumentAccessRequest;
-import com.glean.api_client.models.operations.PostApiIndexV1CheckdocumentaccessResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.CheckDocumentAccessRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1CheckdocumentaccessResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -497,9 +497,9 @@ Tip: Use [/debug/{datasource}/document](https://developers.glean.com/docs/indexi
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.GetDocumentStatusRequest;
-import com.glean.api_client.models.operations.PostApiIndexV1GetdocumentstatusResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.GetDocumentStatusRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1GetdocumentstatusResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -557,9 +557,9 @@ Tip: Use [/debug/{datasource}/status](https://developers.glean.com/docs/indexing
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.GetDocumentCountRequest;
-import com.glean.api_client.models.operations.PostApiIndexV1GetdocumentcountResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.GetDocumentCountRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1GetdocumentcountResponse;
 import java.lang.Exception;
 
 public class Application {

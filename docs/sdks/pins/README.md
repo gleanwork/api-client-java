@@ -20,9 +20,9 @@ Update an existing user-generated pin.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.EditpinResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.operations.EditpinResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -86,9 +86,9 @@ Read pin details given its ID.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.GetPinRequest;
-import com.glean.api_client.models.operations.GetpinResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.GetPinRequest;
+import com.glean.api_client.glean_api_client.models.operations.GetpinResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -138,9 +138,9 @@ Lists all pins.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.operations.ListpinsRequest;
-import com.glean.api_client.models.operations.ListpinsResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.operations.ListpinsRequest;
+import com.glean.api_client.glean_api_client.models.operations.ListpinsResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -190,9 +190,9 @@ Pin a document as a result for a given search query.Pin results that are known t
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.PinResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.operations.PinResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -256,9 +256,9 @@ Unpin a previously pinned result.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.Unpin;
-import com.glean.api_client.models.operations.UnpinResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.Unpin;
+import com.glean.api_client.glean_api_client.models.operations.UnpinResponse;
 import java.lang.Exception;
 
 public class Application {

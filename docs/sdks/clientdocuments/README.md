@@ -19,9 +19,9 @@ Read the emails of all users who have access to the given document.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.GetDocPermissionsRequest;
-import com.glean.api_client.models.operations.GetdocpermissionsResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.GetDocPermissionsRequest;
+import com.glean.api_client.glean_api_client.models.operations.GetdocpermissionsResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -71,9 +71,9 @@ Read the documents including metadata (does not include enhanced metadata via `/
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.GetdocumentsResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.operations.GetdocumentsResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -127,9 +127,9 @@ Read the documents including metadata (does not include enhanced metadata via `/
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.GetdocumentsbyfacetsResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.operations.GetdocumentsbyfacetsResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -211,9 +211,9 @@ Generate an AI summary of the requested documents.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.SummarizeResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.operations.SummarizeResponse;
 import java.lang.Exception;
 import java.util.List;
 

@@ -20,10 +20,10 @@ Retrieves results for search query without respect for permissions. This is avai
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.errors.GleanDataError;
-import com.glean.api_client.models.operations.AdminsearchResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.errors.GleanDataError;
+import com.glean.api_client.glean_api_client.models.operations.AdminsearchResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
@@ -253,10 +253,10 @@ Retrieve query suggestions, operators and documents for the given partially type
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.AuthToken;
-import com.glean.api_client.models.components.AutocompleteRequest;
-import com.glean.api_client.models.operations.AutocompleteResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.AuthToken;
+import com.glean.api_client.glean_api_client.models.components.AutocompleteRequest;
+import com.glean.api_client.glean_api_client.models.operations.AutocompleteResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -319,9 +319,9 @@ The personalized feed/home includes different types of contents including sugges
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.FeedRequest;
-import com.glean.api_client.models.operations.FeedResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.FeedRequest;
+import com.glean.api_client.glean_api_client.models.operations.FeedResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -372,9 +372,9 @@ Retrieve recommended documents for the given URL or Glean Document ID.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.RecommendationsResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.operations.RecommendationsResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
@@ -557,10 +557,10 @@ Retrieve results from the index for the given query and filters.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.errors.GleanDataError;
-import com.glean.api_client.models.operations.SearchResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.errors.GleanDataError;
+import com.glean.api_client.glean_api_client.models.operations.SearchResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
