@@ -46,7 +46,7 @@ jar {
     dependsOn(":generatePomFileForMavenPublication")
     archiveBaseName = "${artifactId}"
 
-    into("META-INF/maven/com.glean/api-client") {
+    into("META-INF/maven/com.glean.api-client/glean-api-client") {
         from("$buildDir/pom.xml")
     }
 }
@@ -101,9 +101,9 @@ publishing {
         maven(MavenPublication) {
             // note that properties can't yet be used below!
             // https://github.com/gradle/gradle/issues/18619
-            groupId = "com.glean"
-            artifactId = "api-client"
-            version = "0.1.0-beta.2"
+            groupId = "com.glean.api-client"
+            artifactId = "glean-api-client"
+            version = "0.2.0"
 
             from components.java
 

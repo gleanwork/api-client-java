@@ -16,10 +16,10 @@ Reads the aggregate information for each user, query, and content.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.InsightsRequest;
-import com.glean.api_client.models.components.InsightsRequestCategory;
-import com.glean.api_client.models.operations.InsightsResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.InsightsRequest;
+import com.glean.api_client.glean_api_client.models.components.InsightsRequestCategory;
+import com.glean.api_client.glean_api_client.models.operations.InsightsResponse;
 import java.lang.Exception;
 import java.util.List;
 

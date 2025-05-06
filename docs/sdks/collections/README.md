@@ -23,9 +23,9 @@ Add items to a Collection.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.AddCollectionItemsRequest;
-import com.glean.api_client.models.operations.AddcollectionitemsResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.AddCollectionItemsRequest;
+import com.glean.api_client.glean_api_client.models.operations.AddcollectionitemsResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -76,10 +76,10 @@ Create a publicly visible (empty) Collection of documents.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.errors.CollectionError;
-import com.glean.api_client.models.operations.CreatecollectionResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.errors.CollectionError;
+import com.glean.api_client.glean_api_client.models.operations.CreatecollectionResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
 import java.util.List;
@@ -201,10 +201,10 @@ Delete a Collection given the Collection's ID.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.DeleteCollectionRequest;
-import com.glean.api_client.models.errors.CollectionError;
-import com.glean.api_client.models.operations.DeletecollectionResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.DeleteCollectionRequest;
+import com.glean.api_client.glean_api_client.models.errors.CollectionError;
+import com.glean.api_client.glean_api_client.models.operations.DeletecollectionResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -257,9 +257,9 @@ Delete a single item from a Collection.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.DeleteCollectionItemRequest;
-import com.glean.api_client.models.operations.DeletecollectionitemResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.DeleteCollectionItemRequest;
+import com.glean.api_client.glean_api_client.models.operations.DeletecollectionitemResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -311,10 +311,10 @@ Update the properties of an existing Collection.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.errors.CollectionError;
-import com.glean.api_client.models.operations.EditcollectionResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.errors.CollectionError;
+import com.glean.api_client.glean_api_client.models.operations.EditcollectionResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
 import java.util.List;
@@ -434,9 +434,9 @@ Update the URL, Glean Document ID, description of an item within a Collection gi
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.EditCollectionItemRequest;
-import com.glean.api_client.models.operations.EditcollectionitemResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.EditCollectionItemRequest;
+import com.glean.api_client.glean_api_client.models.operations.EditcollectionitemResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -488,9 +488,9 @@ Read the details of a Collection given its ID. Does not fetch items in this Coll
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.GetCollectionRequest;
-import com.glean.api_client.models.operations.GetcollectionResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.GetCollectionRequest;
+import com.glean.api_client.glean_api_client.models.operations.GetcollectionResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -541,9 +541,9 @@ List all existing Collections.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.ListCollectionsRequest;
-import com.glean.api_client.models.operations.ListcollectionsResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.ListCollectionsRequest;
+import com.glean.api_client.glean_api_client.models.operations.ListcollectionsResponse;
 import java.lang.Exception;
 
 public class Application {

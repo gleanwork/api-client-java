@@ -2,9 +2,9 @@
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.ChatResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.operations.ChatResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -38,9 +38,9 @@ public class Application {
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.ChatStreamResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.operations.ChatStreamResponse;
 import java.lang.Exception;
 import java.util.List;
 

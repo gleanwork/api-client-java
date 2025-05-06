@@ -25,9 +25,9 @@ Have a conversation with Glean AI.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.ChatResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.operations.ChatResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -84,8 +84,8 @@ Deletes all saved Chats a user has had and all their contained conversational co
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.operations.DeleteallchatsResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.operations.DeleteallchatsResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -129,9 +129,9 @@ Deletes saved Chats and all their contained conversational content.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.DeleteChatsRequest;
-import com.glean.api_client.models.operations.DeletechatsResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.DeleteChatsRequest;
+import com.glean.api_client.glean_api_client.models.operations.DeletechatsResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -182,9 +182,9 @@ Retrieves the chat history between Glean Assistant and the user for a given Chat
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.GetChatRequest;
-import com.glean.api_client.models.operations.GetchatResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.GetChatRequest;
+import com.glean.api_client.glean_api_client.models.operations.GetchatResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -234,8 +234,8 @@ Retrieves all the saved Chats between Glean Assistant and the user. The returned
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.operations.ListchatsResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.operations.ListchatsResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -281,9 +281,9 @@ Gets the Chat application details for the specified application ID.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.GetChatApplicationRequest;
-import com.glean.api_client.models.operations.GetchatapplicationResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.GetChatApplicationRequest;
+import com.glean.api_client.glean_api_client.models.operations.GetchatapplicationResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -333,9 +333,9 @@ Upload files for Chat.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.UploadChatFilesRequest;
-import com.glean.api_client.models.operations.UploadchatfilesResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.UploadChatFilesRequest;
+import com.glean.api_client.glean_api_client.models.operations.UploadchatfilesResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -386,9 +386,9 @@ Get files uploaded by a user for Chat.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.GetChatFilesRequest;
-import com.glean.api_client.models.operations.GetchatfilesResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.GetChatFilesRequest;
+import com.glean.api_client.glean_api_client.models.operations.GetchatfilesResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -441,9 +441,9 @@ Delete files uploaded by a user for Chat.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.DeleteChatFilesRequest;
-import com.glean.api_client.models.operations.DeletechatfilesResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.DeleteChatFilesRequest;
+import com.glean.api_client.glean_api_client.models.operations.DeletechatfilesResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -493,9 +493,9 @@ Have a conversation with Glean AI.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.ChatStreamResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.operations.ChatStreamResponse;
 import java.lang.Exception;
 import java.util.List;
 

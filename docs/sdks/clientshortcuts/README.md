@@ -20,9 +20,9 @@ Create a user-generated shortcut that contains an alias and destination URL.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.CreateshortcutResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.operations.CreateshortcutResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
 import java.util.List;
@@ -131,9 +131,9 @@ Delete an existing user-generated shortcut.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.DeleteShortcutRequest;
-import com.glean.api_client.models.operations.DeleteshortcutResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.DeleteShortcutRequest;
+import com.glean.api_client.glean_api_client.models.operations.DeleteshortcutResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -182,10 +182,10 @@ Read a particular shortcut's details given its ID.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.GetShortcutRequest;
-import com.glean.api_client.models.components.GetShortcutRequestUnion;
-import com.glean.api_client.models.operations.GetshortcutResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.GetShortcutRequest;
+import com.glean.api_client.glean_api_client.models.components.GetShortcutRequestUnion;
+import com.glean.api_client.glean_api_client.models.operations.GetshortcutResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -236,9 +236,9 @@ List shortcuts editable/owned by the currently authenticated user.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.ListshortcutsResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.operations.ListshortcutsResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -303,9 +303,9 @@ Updates the shortcut with the given ID.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.UpdateshortcutResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.operations.UpdateshortcutResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
 import java.util.List;

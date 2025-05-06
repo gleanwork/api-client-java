@@ -20,9 +20,9 @@ Create a user-generated Answer that contains a question and answer.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.CreateanswerResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.operations.CreateanswerResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
 import java.util.List;
@@ -159,9 +159,9 @@ Delete an existing user-generated Answer.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.DeleteAnswerRequest;
-import com.glean.api_client.models.operations.DeleteanswerResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.DeleteAnswerRequest;
+import com.glean.api_client.glean_api_client.models.operations.DeleteanswerResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -211,9 +211,9 @@ Update an existing user-generated Answer.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.EditanswerResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.operations.EditanswerResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
 import java.util.List;
@@ -338,9 +338,9 @@ Read the details of a particular Answer given its ID.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.GetAnswerRequest;
-import com.glean.api_client.models.operations.GetanswerResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.GetAnswerRequest;
+import com.glean.api_client.glean_api_client.models.operations.GetanswerResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -392,9 +392,9 @@ List Answers created by the current user.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.ListAnswersRequest;
-import com.glean.api_client.models.operations.ListanswersResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.ListAnswersRequest;
+import com.glean.api_client.glean_api_client.models.operations.ListanswersResponse;
 import java.lang.Exception;
 
 public class Application {

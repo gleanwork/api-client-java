@@ -16,8 +16,8 @@ Rotates the secret value inside the Indexing API token and returns the new raw s
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.operations.PostApiIndexV1RotatetokenResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1RotatetokenResponse;
 import java.lang.Exception;
 
 public class Application {

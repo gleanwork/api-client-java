@@ -18,9 +18,9 @@ Create a textual announcement visible to some set of users based on department a
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.CreateannouncementResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.operations.CreateannouncementResponse;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -92,9 +92,9 @@ Delete an existing user-generated announcement.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.DeleteAnnouncementRequest;
-import com.glean.api_client.models.operations.DeleteannouncementResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.DeleteAnnouncementRequest;
+import com.glean.api_client.glean_api_client.models.operations.DeleteannouncementResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -143,9 +143,9 @@ Update a textual announcement visible to some set of users based on department a
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.UpdateannouncementResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.operations.UpdateannouncementResponse;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
 import java.util.List;

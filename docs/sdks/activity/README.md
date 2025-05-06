@@ -17,9 +17,9 @@ Report user activity that occurs on indexed documents such as viewing or editing
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.ActivityResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.operations.ActivityResponse;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -92,10 +92,10 @@ Report events that happen to results within a Glean client UI, such as search re
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.Event;
-import com.glean.api_client.models.components.Feedback;
-import com.glean.api_client.models.operations.FeedbackResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.Event;
+import com.glean.api_client.glean_api_client.models.components.Feedback;
+import com.glean.api_client.glean_api_client.models.operations.FeedbackResponse;
 import java.lang.Exception;
 import java.util.List;
 

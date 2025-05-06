@@ -18,9 +18,9 @@ Creates a verification reminder for the document. Users can create verification 
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.ReminderRequest;
-import com.glean.api_client.models.operations.AddverificationreminderResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.ReminderRequest;
+import com.glean.api_client.glean_api_client.models.operations.AddverificationreminderResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -71,8 +71,8 @@ Returns the information to be rendered in verification dashboard. Includes infor
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.operations.ListverificationsResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.operations.ListverificationsResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -118,9 +118,9 @@ Verify documents to keep the knowledge up to date within customer corpus.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.VerifyRequest;
-import com.glean.api_client.models.operations.VerifyResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.VerifyRequest;
+import com.glean.api_client.glean_api_client.models.operations.VerifyResponse;
 import java.lang.Exception;
 
 public class Application {

@@ -60,15 +60,15 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.glean:api-client:0.1.0-beta.2'
+implementation 'com.glean.api-client:glean-api-client:0.2.0'
 ```
 
 Maven:
 ```xml
 <dependency>
-    <groupId>com.glean</groupId>
-    <artifactId>api-client</artifactId>
-    <version>0.1.0-beta.2</version>
+    <groupId>com.glean.api-client</groupId>
+    <artifactId>glean-api-client</artifactId>
+    <version>0.2.0</version>
 </dependency>
 ```
 
@@ -118,9 +118,9 @@ Another option is to set the System property `-Djdk.httpclient.HttpClient.log=al
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.ChatResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.operations.ChatResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -156,9 +156,9 @@ public class Application {
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.ChatStreamResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.operations.ChatStreamResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -205,9 +205,9 @@ To authenticate with the API the `apiToken` parameter must be set when initializ
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.ActivityResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.operations.ActivityResponse;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -483,10 +483,10 @@ By default, an API error will throw a `models/errors/APIException` exception. Wh
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.errors.CollectionError;
-import com.glean.api_client.models.operations.CreatecollectionResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.errors.CollectionError;
+import com.glean.api_client.glean_api_client.models.operations.CreatecollectionResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
 import java.util.List;
@@ -599,9 +599,9 @@ The default server `https://{domain}-be.glean.com` contains variables and is set
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.ActivityResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.operations.ActivityResponse;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -656,9 +656,9 @@ The default server can be overridden globally using the `.serverURL(String serve
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.ActivityResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.operations.ActivityResponse;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
 import java.util.List;

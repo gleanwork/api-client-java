@@ -17,9 +17,9 @@ List some set of details for all entities that fit the given criteria and return
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.ListentitiesResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.operations.ListentitiesResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -84,9 +84,9 @@ Read people details for the given IDs.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.PeopleRequest;
-import com.glean.api_client.models.operations.PeopleResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.PeopleRequest;
+import com.glean.api_client.glean_api_client.models.operations.PeopleResponse;
 import java.lang.Exception;
 import java.util.List;
 

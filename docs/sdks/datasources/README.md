@@ -17,9 +17,9 @@ Add or update a custom datasource and its schema.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.PostApiIndexV1AdddatasourceResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1AdddatasourceResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -87,9 +87,9 @@ Fetches the datasource config for the specified custom datasource.
 ```java
 package hello.world;
 
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.GetDatasourceConfigRequest;
-import com.glean.api_client.models.operations.PostApiIndexV1GetdatasourceconfigResponse;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.GetDatasourceConfigRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1GetdatasourceconfigResponse;
 import java.lang.Exception;
 
 public class Application {
