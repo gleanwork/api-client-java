@@ -6,61 +6,32 @@ package com.glean.api_client.models.operations;
 import com.glean.api_client.models.components.GetDocumentsRequest;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
 import java.util.Optional;
 
 public class GetdocumentsRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
-    private Optional<? extends GetDocumentsRequest> getDocumentsRequest = Optional.empty();
+    private Optional<? extends GetDocumentsRequest> request = Optional.empty();
     private final SDKMethodInterfaces.MethodCallGetdocuments sdk;
 
     public GetdocumentsRequestBuilder(SDKMethodInterfaces.MethodCallGetdocuments sdk) {
         this.sdk = sdk;
     }
                 
-    public GetdocumentsRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
+    public GetdocumentsRequestBuilder request(GetDocumentsRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = Optional.of(request);
         return this;
     }
 
-    public GetdocumentsRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public GetdocumentsRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public GetdocumentsRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
-                
-    public GetdocumentsRequestBuilder getDocumentsRequest(GetDocumentsRequest getDocumentsRequest) {
-        Utils.checkNotNull(getDocumentsRequest, "getDocumentsRequest");
-        this.getDocumentsRequest = Optional.of(getDocumentsRequest);
-        return this;
-    }
-
-    public GetdocumentsRequestBuilder getDocumentsRequest(Optional<? extends GetDocumentsRequest> getDocumentsRequest) {
-        Utils.checkNotNull(getDocumentsRequest, "getDocumentsRequest");
-        this.getDocumentsRequest = getDocumentsRequest;
+    public GetdocumentsRequestBuilder request(Optional<? extends GetDocumentsRequest> request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public GetdocumentsResponse call() throws Exception {
 
-        return sdk.get(
-            xGleanActAs,
-            xGleanAuthType,
-            getDocumentsRequest);
+        return sdk.retrieve(
+            request);
     }
 }

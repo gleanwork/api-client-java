@@ -6,55 +6,25 @@ package com.glean.api_client.models.operations;
 import com.glean.api_client.models.components.UpdateAnnouncementRequest;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
-import java.util.Optional;
 
 public class UpdateannouncementRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
-    private UpdateAnnouncementRequest updateAnnouncementRequest;
+    private UpdateAnnouncementRequest request;
     private final SDKMethodInterfaces.MethodCallUpdateannouncement sdk;
 
     public UpdateannouncementRequestBuilder(SDKMethodInterfaces.MethodCallUpdateannouncement sdk) {
         this.sdk = sdk;
     }
-                
-    public UpdateannouncementRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
 
-    public UpdateannouncementRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public UpdateannouncementRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public UpdateannouncementRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
-
-    public UpdateannouncementRequestBuilder updateAnnouncementRequest(UpdateAnnouncementRequest updateAnnouncementRequest) {
-        Utils.checkNotNull(updateAnnouncementRequest, "updateAnnouncementRequest");
-        this.updateAnnouncementRequest = updateAnnouncementRequest;
+    public UpdateannouncementRequestBuilder request(UpdateAnnouncementRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public UpdateannouncementResponse call() throws Exception {
 
         return sdk.update(
-            xGleanActAs,
-            xGleanAuthType,
-            updateAnnouncementRequest);
+            request);
     }
 }

@@ -7,43 +7,16 @@ import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
 import java.lang.Object;
-import java.lang.String;
 import java.util.Optional;
 
 public class ListagentsRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private Optional<? extends Object> requestBody = Optional.empty();
     private final SDKMethodInterfaces.MethodCallListagents sdk;
 
     public ListagentsRequestBuilder(SDKMethodInterfaces.MethodCallListagents sdk) {
         this.sdk = sdk;
-    }
-                
-    public ListagentsRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
-
-    public ListagentsRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public ListagentsRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public ListagentsRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
     }
                 
     public ListagentsRequestBuilder timezoneOffset(long timezoneOffset) {
@@ -72,9 +45,7 @@ public class ListagentsRequestBuilder {
 
     public ListagentsResponse call() throws Exception {
 
-        return sdk.listagents(
-            xGleanActAs,
-            xGleanAuthType,
+        return sdk.list(
             timezoneOffset,
             requestBody);
     }

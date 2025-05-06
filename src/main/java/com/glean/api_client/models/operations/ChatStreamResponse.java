@@ -13,8 +13,9 @@ import java.lang.Override;
 import java.lang.String;
 import java.net.http.HttpResponse;
 import java.util.Objects;
+import java.util.Optional;
 
-public class PostApiIndexV1IndexemployeelistResponse implements Response {
+public class ChatStreamResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -31,17 +32,32 @@ public class PostApiIndexV1IndexemployeelistResponse implements Response {
      */
     private HttpResponse<InputStream> rawResponse;
 
+    /**
+     * OK
+     */
+    private Optional<String> chatRequestStream;
+
     @JsonCreator
-    public PostApiIndexV1IndexemployeelistResponse(
+    public ChatStreamResponse(
             String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse) {
+            HttpResponse<InputStream> rawResponse,
+            Optional<String> chatRequestStream) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
+        Utils.checkNotNull(chatRequestStream, "chatRequestStream");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
+        this.chatRequestStream = chatRequestStream;
+    }
+    
+    public ChatStreamResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(contentType, statusCode, rawResponse, Optional.empty());
     }
 
     /**
@@ -68,6 +84,14 @@ public class PostApiIndexV1IndexemployeelistResponse implements Response {
         return rawResponse;
     }
 
+    /**
+     * OK
+     */
+    @JsonIgnore
+    public Optional<String> chatRequestStream() {
+        return chatRequestStream;
+    }
+
     public final static Builder builder() {
         return new Builder();
     }    
@@ -75,7 +99,7 @@ public class PostApiIndexV1IndexemployeelistResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
-    public PostApiIndexV1IndexemployeelistResponse withContentType(String contentType) {
+    public ChatStreamResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
         return this;
@@ -84,7 +108,7 @@ public class PostApiIndexV1IndexemployeelistResponse implements Response {
     /**
      * HTTP response status code for this operation
      */
-    public PostApiIndexV1IndexemployeelistResponse withStatusCode(int statusCode) {
+    public ChatStreamResponse withStatusCode(int statusCode) {
         Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
@@ -93,9 +117,27 @@ public class PostApiIndexV1IndexemployeelistResponse implements Response {
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    public PostApiIndexV1IndexemployeelistResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
+    public ChatStreamResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.rawResponse = rawResponse;
+        return this;
+    }
+
+    /**
+     * OK
+     */
+    public ChatStreamResponse withChatRequestStream(String chatRequestStream) {
+        Utils.checkNotNull(chatRequestStream, "chatRequestStream");
+        this.chatRequestStream = Optional.ofNullable(chatRequestStream);
+        return this;
+    }
+
+    /**
+     * OK
+     */
+    public ChatStreamResponse withChatRequestStream(Optional<String> chatRequestStream) {
+        Utils.checkNotNull(chatRequestStream, "chatRequestStream");
+        this.chatRequestStream = chatRequestStream;
         return this;
     }
 
@@ -108,11 +150,12 @@ public class PostApiIndexV1IndexemployeelistResponse implements Response {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        PostApiIndexV1IndexemployeelistResponse other = (PostApiIndexV1IndexemployeelistResponse) o;
+        ChatStreamResponse other = (ChatStreamResponse) o;
         return 
             Objects.deepEquals(this.contentType, other.contentType) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse);
+            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
+            Objects.deepEquals(this.chatRequestStream, other.chatRequestStream);
     }
     
     @Override
@@ -120,15 +163,17 @@ public class PostApiIndexV1IndexemployeelistResponse implements Response {
         return Objects.hash(
             contentType,
             statusCode,
-            rawResponse);
+            rawResponse,
+            chatRequestStream);
     }
     
     @Override
     public String toString() {
-        return Utils.toString(PostApiIndexV1IndexemployeelistResponse.class,
+        return Utils.toString(ChatStreamResponse.class,
                 "contentType", contentType,
                 "statusCode", statusCode,
-                "rawResponse", rawResponse);
+                "rawResponse", rawResponse,
+                "chatRequestStream", chatRequestStream);
     }
     
     public final static class Builder {
@@ -138,6 +183,8 @@ public class PostApiIndexV1IndexemployeelistResponse implements Response {
         private Integer statusCode;
  
         private HttpResponse<InputStream> rawResponse;
+ 
+        private Optional<String> chatRequestStream = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -169,12 +216,31 @@ public class PostApiIndexV1IndexemployeelistResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
+
+        /**
+         * OK
+         */
+        public Builder chatRequestStream(String chatRequestStream) {
+            Utils.checkNotNull(chatRequestStream, "chatRequestStream");
+            this.chatRequestStream = Optional.ofNullable(chatRequestStream);
+            return this;
+        }
+
+        /**
+         * OK
+         */
+        public Builder chatRequestStream(Optional<String> chatRequestStream) {
+            Utils.checkNotNull(chatRequestStream, "chatRequestStream");
+            this.chatRequestStream = chatRequestStream;
+            return this;
+        }
         
-        public PostApiIndexV1IndexemployeelistResponse build() {
-            return new PostApiIndexV1IndexemployeelistResponse(
+        public ChatStreamResponse build() {
+            return new ChatStreamResponse(
                 contentType,
                 statusCode,
-                rawResponse);
+                rawResponse,
+                chatRequestStream);
         }
     }
 }

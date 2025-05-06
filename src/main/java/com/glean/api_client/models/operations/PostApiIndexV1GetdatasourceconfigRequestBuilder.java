@@ -24,7 +24,7 @@ public class PostApiIndexV1GetdatasourceconfigRequestBuilder {
 
     public PostApiIndexV1GetdatasourceconfigResponse call() throws Exception {
 
-        return sdk.getConfig(
+        return sdk.retrieveConfig(
             request);
     }
 }

@@ -6,6 +6,7 @@
 ### Available Operations
 
 * [bulkIndex](#bulkindex) - Bulk index external shortcuts
+* [upload](#upload) - Upload shortcuts
 
 ## bulkIndex
 
@@ -60,6 +61,65 @@ public class Application {
 ### Response
 
 **[PostApiIndexV1BulkindexshortcutsResponse](../../models/operations/PostApiIndexV1BulkindexshortcutsResponse.md)**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
+
+## upload
+
+Creates glean shortcuts for uploaded shortcuts info. Glean would host the shortcuts, and they can be managed in the knowledge tab once uploaded.
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.glean.api_client.Glean;
+import com.glean.api_client.models.components.IndexingShortcut;
+import com.glean.api_client.models.components.UploadShortcutsRequest;
+import com.glean.api_client.models.operations.PostApiIndexV1UploadshortcutsResponse;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Glean sdk = Glean.builder()
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+            .build();
+
+        UploadShortcutsRequest req = UploadShortcutsRequest.builder()
+                .uploadId("<id>")
+                .shortcuts(List.of(
+                    IndexingShortcut.builder()
+                        .inputAlias("<value>")
+                        .destinationUrl("https://needy-harp.name")
+                        .createdBy("<value>")
+                        .build()))
+                .build();
+
+        PostApiIndexV1UploadshortcutsResponse res = sdk.indexing().shortcuts().upload()
+                .request(req)
+                .call();
+
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [UploadShortcutsRequest](../../models/shared/UploadShortcutsRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+
+### Response
+
+**[PostApiIndexV1UploadshortcutsResponse](../../models/operations/PostApiIndexV1UploadshortcutsResponse.md)**
 
 ### Errors
 

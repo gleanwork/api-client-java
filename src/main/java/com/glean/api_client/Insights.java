@@ -43,7 +43,7 @@ public class Insights implements
      * 
      * @return The call builder
      */
-    public InsightsRequestBuilder get() {
+    public InsightsRequestBuilder retrieve() {
         return new InsightsRequestBuilder(this);
     }
 
@@ -52,38 +52,12 @@ public class Insights implements
      * 
      * <p>Reads the aggregate information for each user, query, and content.
      * 
-     * @param insightsRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public InsightsResponse get(
-            InsightsRequest insightsRequest) throws Exception {
-        return get(Optional.empty(), Optional.empty(), insightsRequest);
-    }
-    
-    /**
-     * Read insights
-     * 
-     * <p>Reads the aggregate information for each user, query, and content.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param insightsRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public InsightsResponse get(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            InsightsRequest insightsRequest) throws Exception {
-        com.glean.api_client.models.operations.InsightsRequest request =
-            com.glean.api_client.models.operations.InsightsRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .insightsRequest(insightsRequest)
-                .build();
-        
+    public InsightsResponse retrieve(
+            InsightsRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -94,10 +68,10 @@ public class Insights implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<InsightsRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "insightsRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -107,7 +81,6 @@ public class Insights implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  

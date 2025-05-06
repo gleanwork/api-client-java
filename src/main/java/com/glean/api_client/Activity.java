@@ -4,9 +4,13 @@
 package com.glean.api_client;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.glean.api_client.models.components.Feedback;
 import com.glean.api_client.models.errors.APIException;
 import com.glean.api_client.models.operations.ActivityRequestBuilder;
 import com.glean.api_client.models.operations.ActivityResponse;
+import com.glean.api_client.models.operations.FeedbackRequest;
+import com.glean.api_client.models.operations.FeedbackRequestBuilder;
+import com.glean.api_client.models.operations.FeedbackResponse;
 import com.glean.api_client.models.operations.SDKMethodInterfaces.*;
 import com.glean.api_client.utils.HTTPClient;
 import com.glean.api_client.utils.HTTPRequest;
@@ -26,7 +30,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class Activity implements
-            MethodCallActivity {
+            MethodCallActivity,
+            MethodCallFeedback {
 
     private final SDKConfiguration sdkConfiguration;
 
@@ -140,6 +145,164 @@ public class Activity implements
                 .rawResponse(_httpRes);
 
         ActivityResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            // no content 
+            return _res;
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX")) {
+            // no content 
+            throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
+            // no content 
+            throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        throw new APIException(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
+
+
+    /**
+     * Report client activity
+     * 
+     * <p>Report events that happen to results within a Glean client UI, such as search result views and clicks.  This signal improves search quality.
+     * 
+     * @return The call builder
+     */
+    public FeedbackRequestBuilder feedback() {
+        return new FeedbackRequestBuilder(this);
+    }
+
+    /**
+     * Report client activity
+     * 
+     * <p>Report events that happen to results within a Glean client UI, such as search result views and clicks.  This signal improves search quality.
+     * 
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public FeedbackResponse feedbackDirect() throws Exception {
+        return feedback(Optional.empty(), Optional.empty());
+    }
+    
+    /**
+     * Report client activity
+     * 
+     * <p>Report events that happen to results within a Glean client UI, such as search result views and clicks.  This signal improves search quality.
+     * 
+     * @param feedbackQueryParameter A URL encoded versions of Feedback. This is useful for requests.
+     * @param feedback1 
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public FeedbackResponse feedback(
+            Optional<String> feedbackQueryParameter,
+            Optional<? extends Feedback> feedback1) throws Exception {
+        FeedbackRequest request =
+            FeedbackRequest
+                .builder()
+                .feedbackQueryParameter(feedbackQueryParameter)
+                .feedback1(feedback1)
+                .build();
+        
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+        String _url = Utils.generateURL(
+                _baseUrl,
+                "/rest/api/v1/feedback");
+        
+        HTTPRequest _req = new HTTPRequest(_url, "POST");
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Object>() {});
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
+                _convertedRequest, 
+                "feedback1",
+                "json",
+                false);
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
+        _req.addHeader("Accept", "*/*")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                FeedbackRequest.class,
+                request, 
+                null));
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      _baseUrl,
+                      "feedback", 
+                      Optional.of(List.of()), 
+                      _hookSecuritySource),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            _baseUrl,
+                            "feedback",
+                            Optional.of(List.of()),
+                            _hookSecuritySource),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            _baseUrl,
+                            "feedback",
+                            Optional.of(List.of()), 
+                            _hookSecuritySource),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            _baseUrl,
+                            "feedback",
+                            Optional.of(List.of()),
+                            _hookSecuritySource), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        FeedbackResponse.Builder _resBuilder = 
+            FeedbackResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        FeedbackResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             // no content 

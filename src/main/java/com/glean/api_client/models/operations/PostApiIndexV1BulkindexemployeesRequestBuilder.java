@@ -24,7 +24,7 @@ public class PostApiIndexV1BulkindexemployeesRequestBuilder {
 
     public PostApiIndexV1BulkindexemployeesResponse call() throws Exception {
 
-        return sdk.bulkIndexEmployees(
+        return sdk.bulkIndex(
             request);
     }
 }

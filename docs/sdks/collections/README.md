@@ -10,8 +10,8 @@
 * [delete](#delete) - Delete Collection
 * [deleteItem](#deleteitem) - Delete Collection item
 * [update](#update) - Update Collection
-* [editItem](#edititem) - Update Collection item
-* [get](#get) - Read Collection
+* [updateItem](#updateitem) - Update Collection item
+* [retrieve](#retrieve) - Read Collection
 * [list](#list) - List Collections
 
 ## addItems
@@ -36,10 +36,12 @@ public class Application {
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
+        AddCollectionItemsRequest req = AddCollectionItemsRequest.builder()
+                .collectionId(6460.15)
+                .build();
+
         AddcollectionitemsResponse res = sdk.client().collections().addItems()
-                .addCollectionItemsRequest(AddCollectionItemsRequest.builder()
-                    .collectionId(6460.15)
-                    .build())
+                .request(req)
                 .call();
 
         if (res.addCollectionItemsResponse().isPresent()) {
@@ -51,11 +53,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `addCollectionItemsRequest`                                                                                              | [AddCollectionItemsRequest](../../models/components/AddCollectionItemsRequest.md)                                        | :heavy_check_mark:                                                                                                       | Data describing the add operation.                                                                                       |
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `request`                                                                     | [AddCollectionItemsRequest](../../models/shared/AddCollectionItemsRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
 
 ### Response
 
@@ -92,78 +92,80 @@ public class Application {
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        CreatecollectionResponse res = sdk.client().collections().create()
-                .createCollectionRequest(CreateCollectionRequest.builder()
-                    .name("<value>")
-                    .addedRoles(List.of(
-                        UserRoleSpecification.builder()
-                            .role(UserRole.OWNER)
-                            .person(Person.builder()
-                                .name("George Clooney")
-                                .obfuscatedId("abc123")
-                                .relatedDocuments(List.of())
-                                .metadata(PersonMetadata.builder()
-                                    .type(PersonMetadataType.FULL_TIME)
-                                    .title("Actor")
-                                    .department("Movies")
-                                    .email("george@example.com")
-                                    .location("Hollywood, CA")
-                                    .phone("6505551234")
-                                    .photoUrl("https://example.com/george.jpg")
-                                    .startDate(LocalDate.parse("2000-01-23"))
-                                    .datasourceProfile(List.of(
-                                        DatasourceProfile.builder()
-                                            .datasource("github")
-                                            .handle("<value>")
-                                            .build()))
-                                    .querySuggestions(QuerySuggestionList.builder()
-                                        .suggestions(List.of())
-                                        .build())
-                                    .inviteInfo(InviteInfo.builder()
-                                        .invites(List.of())
-                                        .build())
-                                    .customFields(List.of())
-                                    .badges(List.of(
-                                        Badge.builder()
-                                            .key("deployment_name_new_hire")
-                                            .displayName("New hire")
-                                            .iconConfig(IconConfig.builder()
-                                                .color("#343CED")
-                                                .key("person_icon")
-                                                .iconType(IconType.GLYPH)
-                                                .name("user")
-                                                .build())
-                                            .build()))
+        CreateCollectionRequest req = CreateCollectionRequest.builder()
+                .name("<value>")
+                .addedRoles(List.of(
+                    UserRoleSpecification.builder()
+                        .role(UserRole.OWNER)
+                        .person(Person.builder()
+                            .name("George Clooney")
+                            .obfuscatedId("abc123")
+                            .relatedDocuments(List.of())
+                            .metadata(PersonMetadata.builder()
+                                .type(PersonMetadataType.FULL_TIME)
+                                .title("Actor")
+                                .department("Movies")
+                                .email("george@example.com")
+                                .location("Hollywood, CA")
+                                .phone("6505551234")
+                                .photoUrl("https://example.com/george.jpg")
+                                .startDate(LocalDate.parse("2000-01-23"))
+                                .datasourceProfile(List.of(
+                                    DatasourceProfile.builder()
+                                        .datasource("github")
+                                        .handle("<value>")
+                                        .build()))
+                                .querySuggestions(QuerySuggestionList.builder()
+                                    .suggestions(List.of())
                                     .build())
+                                .inviteInfo(InviteInfo.builder()
+                                    .invites(List.of())
+                                    .build())
+                                .customFields(List.of())
+                                .badges(List.of(
+                                    Badge.builder()
+                                        .key("deployment_name_new_hire")
+                                        .displayName("New hire")
+                                        .iconConfig(IconConfig.builder()
+                                            .color("#343CED")
+                                            .key("person_icon")
+                                            .iconType(IconType.GLYPH)
+                                            .name("user")
+                                            .build())
+                                        .build()))
                                 .build())
-                            .build(),
-                        UserRoleSpecification.builder()
-                            .role(UserRole.VERIFIER)
-                            .build()))
-                    .removedRoles(List.of(
-                        UserRoleSpecification.builder()
-                            .role(UserRole.VERIFIER)
-                            .build(),
-                        UserRoleSpecification.builder()
-                            .role(UserRole.ANSWER_MODERATOR)
-                            .build(),
-                        UserRoleSpecification.builder()
-                            .role(UserRole.OWNER)
-                            .build()))
-                    .audienceFilters(List.of(
-                        FacetFilter.builder()
-                            .fieldName("type")
-                            .values(List.of(
-                                FacetFilterValue.builder()
-                                    .value("Spreadsheet")
-                                    .relationType(RelationType.EQUALS)
-                                    .build(),
-                                FacetFilterValue.builder()
-                                    .value("Presentation")
-                                    .relationType(RelationType.EQUALS)
-                                    .build()))
-                            .build()))
-                    .build())
+                            .build())
+                        .build(),
+                    UserRoleSpecification.builder()
+                        .role(UserRole.VERIFIER)
+                        .build()))
+                .removedRoles(List.of(
+                    UserRoleSpecification.builder()
+                        .role(UserRole.VERIFIER)
+                        .build(),
+                    UserRoleSpecification.builder()
+                        .role(UserRole.ANSWER_MODERATOR)
+                        .build(),
+                    UserRoleSpecification.builder()
+                        .role(UserRole.OWNER)
+                        .build()))
+                .audienceFilters(List.of(
+                    FacetFilter.builder()
+                        .fieldName("type")
+                        .values(List.of(
+                            FacetFilterValue.builder()
+                                .value("Spreadsheet")
+                                .relationType(RelationType.EQUALS)
+                                .build(),
+                            FacetFilterValue.builder()
+                                .value("Presentation")
+                                .relationType(RelationType.EQUALS)
+                                .build()))
+                        .build()))
+                .build();
+
+        CreatecollectionResponse res = sdk.client().collections().create()
+                .request(req)
                 .call();
 
         if (res.createCollectionResponse().isPresent()) {
@@ -175,11 +177,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `createCollectionRequest`                                                                                                | [CreateCollectionRequest](../../models/components/CreateCollectionRequest.md)                                            | :heavy_check_mark:                                                                                                       | Collection content plus any additional metadata for the request.                                                         |
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `request`                                                                 | [CreateCollectionRequest](../../models/shared/CreateCollectionRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
 
 ### Response
 
@@ -216,12 +216,14 @@ public class Application {
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
+        DeleteCollectionRequest req = DeleteCollectionRequest.builder()
+                .ids(List.of(
+                    698486L,
+                    386564L))
+                .build();
+
         DeletecollectionResponse res = sdk.client().collections().delete()
-                .deleteCollectionRequest(DeleteCollectionRequest.builder()
-                    .ids(List.of(
-                        698486L,
-                        386564L))
-                    .build())
+                .request(req)
                 .call();
 
         // handle response
@@ -231,11 +233,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `deleteCollectionRequest`                                                                                                | [DeleteCollectionRequest](../../models/components/DeleteCollectionRequest.md)                                            | :heavy_check_mark:                                                                                                       | DeleteCollection request                                                                                                 |
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `request`                                                                 | [DeleteCollectionRequest](../../models/shared/DeleteCollectionRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
 
 ### Response
 
@@ -270,11 +270,13 @@ public class Application {
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
+        DeleteCollectionItemRequest req = DeleteCollectionItemRequest.builder()
+                .collectionId(1357.59)
+                .itemId("<id>")
+                .build();
+
         DeletecollectionitemResponse res = sdk.client().collections().deleteItem()
-                .deleteCollectionItemRequest(DeleteCollectionItemRequest.builder()
-                    .collectionId(1357.59)
-                    .itemId("<id>")
-                    .build())
+                .request(req)
                 .call();
 
         if (res.deleteCollectionItemResponse().isPresent()) {
@@ -286,11 +288,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `deleteCollectionItemRequest`                                                                                            | [DeleteCollectionItemRequest](../../models/components/DeleteCollectionItemRequest.md)                                    | :heavy_check_mark:                                                                                                       | Data describing the delete operation.                                                                                    |
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `request`                                                                         | [DeleteCollectionItemRequest](../../models/shared/DeleteCollectionItemRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
 
 ### Response
 
@@ -327,76 +327,78 @@ public class Application {
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        EditcollectionResponse res = sdk.client().collections().update()
-                .editCollectionRequest(EditCollectionRequest.builder()
-                    .name("<value>")
-                    .id(720396L)
-                    .addedRoles(List.of(
-                        UserRoleSpecification.builder()
-                            .role(UserRole.ANSWER_MODERATOR)
-                            .person(Person.builder()
-                                .name("George Clooney")
-                                .obfuscatedId("abc123")
-                                .relatedDocuments(List.of())
-                                .metadata(PersonMetadata.builder()
-                                    .type(PersonMetadataType.FULL_TIME)
-                                    .title("Actor")
-                                    .department("Movies")
-                                    .email("george@example.com")
-                                    .location("Hollywood, CA")
-                                    .phone("6505551234")
-                                    .photoUrl("https://example.com/george.jpg")
-                                    .startDate(LocalDate.parse("2000-01-23"))
-                                    .datasourceProfile(List.of(
-                                        DatasourceProfile.builder()
-                                            .datasource("github")
-                                            .handle("<value>")
-                                            .build()))
-                                    .querySuggestions(QuerySuggestionList.builder()
-                                        .suggestions(List.of())
-                                        .build())
-                                    .inviteInfo(InviteInfo.builder()
-                                        .invites(List.of())
-                                        .build())
-                                    .customFields(List.of())
-                                    .badges(List.of(
-                                        Badge.builder()
-                                            .key("deployment_name_new_hire")
-                                            .displayName("New hire")
-                                            .iconConfig(IconConfig.builder()
-                                                .color("#343CED")
-                                                .key("person_icon")
-                                                .iconType(IconType.GLYPH)
-                                                .name("user")
-                                                .build())
-                                            .build()))
+        EditCollectionRequest req = EditCollectionRequest.builder()
+                .name("<value>")
+                .id(720396L)
+                .addedRoles(List.of(
+                    UserRoleSpecification.builder()
+                        .role(UserRole.ANSWER_MODERATOR)
+                        .person(Person.builder()
+                            .name("George Clooney")
+                            .obfuscatedId("abc123")
+                            .relatedDocuments(List.of())
+                            .metadata(PersonMetadata.builder()
+                                .type(PersonMetadataType.FULL_TIME)
+                                .title("Actor")
+                                .department("Movies")
+                                .email("george@example.com")
+                                .location("Hollywood, CA")
+                                .phone("6505551234")
+                                .photoUrl("https://example.com/george.jpg")
+                                .startDate(LocalDate.parse("2000-01-23"))
+                                .datasourceProfile(List.of(
+                                    DatasourceProfile.builder()
+                                        .datasource("github")
+                                        .handle("<value>")
+                                        .build()))
+                                .querySuggestions(QuerySuggestionList.builder()
+                                    .suggestions(List.of())
                                     .build())
+                                .inviteInfo(InviteInfo.builder()
+                                    .invites(List.of())
+                                    .build())
+                                .customFields(List.of())
+                                .badges(List.of(
+                                    Badge.builder()
+                                        .key("deployment_name_new_hire")
+                                        .displayName("New hire")
+                                        .iconConfig(IconConfig.builder()
+                                            .color("#343CED")
+                                            .key("person_icon")
+                                            .iconType(IconType.GLYPH)
+                                            .name("user")
+                                            .build())
+                                        .build()))
                                 .build())
-                            .build(),
-                        UserRoleSpecification.builder()
-                            .role(UserRole.EDITOR)
-                            .build(),
-                        UserRoleSpecification.builder()
-                            .role(UserRole.ANSWER_MODERATOR)
-                            .build()))
-                    .removedRoles(List.of(
-                        UserRoleSpecification.builder()
-                            .role(UserRole.ANSWER_MODERATOR)
-                            .build()))
-                    .audienceFilters(List.of(
-                        FacetFilter.builder()
-                            .fieldName("type")
-                            .values(List.of(
-                                FacetFilterValue.builder()
-                                    .value("Spreadsheet")
-                                    .relationType(RelationType.EQUALS)
-                                    .build(),
-                                FacetFilterValue.builder()
-                                    .value("Presentation")
-                                    .relationType(RelationType.EQUALS)
-                                    .build()))
-                            .build()))
-                    .build())
+                            .build())
+                        .build(),
+                    UserRoleSpecification.builder()
+                        .role(UserRole.EDITOR)
+                        .build(),
+                    UserRoleSpecification.builder()
+                        .role(UserRole.ANSWER_MODERATOR)
+                        .build()))
+                .removedRoles(List.of(
+                    UserRoleSpecification.builder()
+                        .role(UserRole.ANSWER_MODERATOR)
+                        .build()))
+                .audienceFilters(List.of(
+                    FacetFilter.builder()
+                        .fieldName("type")
+                        .values(List.of(
+                            FacetFilterValue.builder()
+                                .value("Spreadsheet")
+                                .relationType(RelationType.EQUALS)
+                                .build(),
+                            FacetFilterValue.builder()
+                                .value("Presentation")
+                                .relationType(RelationType.EQUALS)
+                                .build()))
+                        .build()))
+                .build();
+
+        EditcollectionResponse res = sdk.client().collections().update()
+                .request(req)
                 .call();
 
         if (res.editCollectionResponse().isPresent()) {
@@ -408,11 +410,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `editCollectionRequest`                                                                                                  | [EditCollectionRequest](../../models/components/EditCollectionRequest.md)                                                | :heavy_check_mark:                                                                                                       | Collection content plus any additional metadata for the request.                                                         |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [EditCollectionRequest](../../models/shared/EditCollectionRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
 
 ### Response
 
@@ -425,7 +425,7 @@ public class Application {
 | models/errors/CollectionError | 422                           | application/json              |
 | models/errors/APIException    | 4XX, 5XX                      | \*/\*                         |
 
-## editItem
+## updateItem
 
 Update the URL, Glean Document ID, description of an item within a Collection given its ID.
 
@@ -447,11 +447,13 @@ public class Application {
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        EditcollectionitemResponse res = sdk.client().collections().editItem()
-                .editCollectionItemRequest(EditCollectionItemRequest.builder()
-                    .collectionId(795203L)
-                    .itemId("<id>")
-                    .build())
+        EditCollectionItemRequest req = EditCollectionItemRequest.builder()
+                .collectionId(795203L)
+                .itemId("<id>")
+                .build();
+
+        EditcollectionitemResponse res = sdk.client().collections().updateItem()
+                .request(req)
                 .call();
 
         if (res.editCollectionItemResponse().isPresent()) {
@@ -463,11 +465,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `editCollectionItemRequest`                                                                                              | [EditCollectionItemRequest](../../models/components/EditCollectionItemRequest.md)                                        | :heavy_check_mark:                                                                                                       | Edit Collection Items request                                                                                            |
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `request`                                                                     | [EditCollectionItemRequest](../../models/shared/EditCollectionItemRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
 
 ### Response
 
@@ -479,7 +479,7 @@ public class Application {
 | -------------------------- | -------------------------- | -------------------------- |
 | models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
 
-## get
+## retrieve
 
 Read the details of a Collection given its ID. Does not fetch items in this Collection.
 
@@ -501,10 +501,12 @@ public class Application {
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        GetcollectionResponse res = sdk.client().collections().get()
-                .getCollectionRequest(GetCollectionRequest.builder()
-                    .id(700347L)
-                    .build())
+        GetCollectionRequest req = GetCollectionRequest.builder()
+                .id(700347L)
+                .build();
+
+        GetcollectionResponse res = sdk.client().collections().retrieve()
+                .request(req)
                 .call();
 
         if (res.getCollectionResponse().isPresent()) {
@@ -516,11 +518,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `getCollectionRequest`                                                                                                   | [GetCollectionRequest](../../models/components/GetCollectionRequest.md)                                                  | :heavy_check_mark:                                                                                                       | GetCollection request                                                                                                    |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [GetCollectionRequest](../../models/shared/GetCollectionRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 
 ### Response
 
@@ -554,9 +554,11 @@ public class Application {
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
+        ListCollectionsRequest req = ListCollectionsRequest.builder()
+                .build();
+
         ListcollectionsResponse res = sdk.client().collections().list()
-                .listCollectionsRequest(ListCollectionsRequest.builder()
-                    .build())
+                .request(req)
                 .call();
 
         if (res.listCollectionsResponse().isPresent()) {
@@ -568,11 +570,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `listCollectionsRequest`                                                                                                 | [ListCollectionsRequest](../../models/components/ListCollectionsRequest.md)                                              | :heavy_check_mark:                                                                                                       | ListCollections request                                                                                                  |
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [ListCollectionsRequest](../../models/shared/ListCollectionsRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
 
 ### Response
 

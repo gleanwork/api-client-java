@@ -5,9 +5,9 @@
 
 ### Available Operations
 
-* [get](#get) - Read insights
+* [retrieve](#retrieve) - Read insights
 
-## get
+## retrieve
 
 Reads the aggregate information for each user, query, and content.
 
@@ -31,12 +31,14 @@ public class Application {
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        InsightsResponse res = sdk.client().insights().get()
-                .insightsRequest(InsightsRequest.builder()
-                    .categories(List.of(
-                        InsightsRequestCategory.CONTENT,
-                        InsightsRequestCategory.CONTENT))
-                    .build())
+        InsightsRequest req = InsightsRequest.builder()
+                .categories(List.of(
+                    InsightsRequestCategory.CONTENT,
+                    InsightsRequestCategory.CONTENT))
+                .build();
+
+        InsightsResponse res = sdk.client().insights().retrieve()
+                .request(req)
                 .call();
 
         if (res.insightsResponse().isPresent()) {
@@ -48,11 +50,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `insightsRequest`                                                                                                        | [InsightsRequest](../../models/components/InsightsRequest.md)                                                            | :heavy_check_mark:                                                                                                       | Includes request params for insights dashboard data.                                                                     |
+| Parameter                                                 | Type                                                      | Required                                                  | Description                                               |
+| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
+| `request`                                                 | [InsightsRequest](../../models/shared/InsightsRequest.md) | :heavy_check_mark:                                        | The request object to use for the request.                |
 
 ### Response
 

@@ -5,17 +5,18 @@
 
 ### Available Operations
 
-* [start](#start) - Chat
+* [create](#create) - Chat
 * [deleteAll](#deleteall) - Deletes all saved Chats owned by a user
 * [delete](#delete) - Deletes saved Chats
-* [get](#get) - Retrieves a Chat
+* [retrieve](#retrieve) - Retrieves a Chat
 * [list](#list) - Retrieves all saved Chats
-* [getApplication](#getapplication) - Gets the metadata for a custom Chat application
+* [retrieveApplication](#retrieveapplication) - Gets the metadata for a custom Chat application
 * [uploadFiles](#uploadfiles) - Upload files for Chat.
-* [getFiles](#getfiles) - Get files uploaded by a user for Chat.
+* [retrieveFiles](#retrievefiles) - Get files uploaded by a user for Chat.
 * [deleteFiles](#deletefiles) - Delete files uploaded by a user for chat.
+* [createStream](#createstream) - Chat
 
-## start
+## create
 
 Have a conversation with Glean AI.
 
@@ -38,7 +39,7 @@ public class Application {
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        ChatResponse res = sdk.client().chat().start()
+        ChatResponse res = sdk.client().chat().create()
                 .chatRequest(ChatRequest.builder()
                     .messages(List.of(
                         ChatMessage.builder()
@@ -59,12 +60,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `timezoneOffset`                                                                                                         | *Optional\<Long>*                                                                                                        | :heavy_minus_sign:                                                                                                       | The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.               |
-| `chatRequest`                                                                                                            | [ChatRequest](../../models/components/ChatRequest.md)                                                                    | :heavy_check_mark:                                                                                                       | Includes chat history for Glean AI to respond to.                                                                        |
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `timezoneOffset`                                                                                           | *Optional\<Long>*                                                                                          | :heavy_minus_sign:                                                                                         | The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC. |
+| `chatRequest`                                                                                              | [ChatRequest](../../models/components/ChatRequest.md)                                                      | :heavy_check_mark:                                                                                         | Includes chat history for Glean AI to respond to.                                                          |
 
 ### Response
 
@@ -107,11 +106,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `timezoneOffset`                                                                                                         | *Optional\<Long>*                                                                                                        | :heavy_minus_sign:                                                                                                       | The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.               |
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `timezoneOffset`                                                                                           | *Optional\<Long>*                                                                                          | :heavy_minus_sign:                                                                                         | The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC. |
 
 ### Response
 
@@ -161,12 +158,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `timezoneOffset`                                                                                                         | *Optional\<Long>*                                                                                                        | :heavy_minus_sign:                                                                                                       | The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.               |
-| `deleteChatsRequest`                                                                                                     | [DeleteChatsRequest](../../models/components/DeleteChatsRequest.md)                                                      | :heavy_check_mark:                                                                                                       | N/A                                                                                                                      |
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `timezoneOffset`                                                                                           | *Optional\<Long>*                                                                                          | :heavy_minus_sign:                                                                                         | The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC. |
+| `deleteChatsRequest`                                                                                       | [DeleteChatsRequest](../../models/components/DeleteChatsRequest.md)                                        | :heavy_check_mark:                                                                                         | N/A                                                                                                        |
 
 ### Response
 
@@ -178,7 +173,7 @@ public class Application {
 | -------------------------- | -------------------------- | -------------------------- |
 | models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
 
-## get
+## retrieve
 
 Retrieves the chat history between Glean Assistant and the user for a given Chat.
 
@@ -200,7 +195,7 @@ public class Application {
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        GetchatResponse res = sdk.client().chat().get()
+        GetchatResponse res = sdk.client().chat().retrieve()
                 .getChatRequest(GetChatRequest.builder()
                     .id("<id>")
                     .build())
@@ -215,12 +210,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `timezoneOffset`                                                                                                         | *Optional\<Long>*                                                                                                        | :heavy_minus_sign:                                                                                                       | The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.               |
-| `getChatRequest`                                                                                                         | [GetChatRequest](../../models/components/GetChatRequest.md)                                                              | :heavy_check_mark:                                                                                                       | N/A                                                                                                                      |
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `timezoneOffset`                                                                                           | *Optional\<Long>*                                                                                          | :heavy_minus_sign:                                                                                         | The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC. |
+| `getChatRequest`                                                                                           | [GetChatRequest](../../models/components/GetChatRequest.md)                                                | :heavy_check_mark:                                                                                         | N/A                                                                                                        |
 
 ### Response
 
@@ -265,11 +258,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `timezoneOffset`                                                                                                         | *Optional\<Long>*                                                                                                        | :heavy_minus_sign:                                                                                                       | The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.               |
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `timezoneOffset`                                                                                           | *Optional\<Long>*                                                                                          | :heavy_minus_sign:                                                                                         | The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC. |
 
 ### Response
 
@@ -281,7 +272,7 @@ public class Application {
 | -------------------------- | -------------------------- | -------------------------- |
 | models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
 
-## getApplication
+## retrieveApplication
 
 Gets the Chat application details for the specified application ID.
 
@@ -303,7 +294,7 @@ public class Application {
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        GetchatapplicationResponse res = sdk.client().chat().getApplication()
+        GetchatapplicationResponse res = sdk.client().chat().retrieveApplication()
                 .getChatApplicationRequest(GetChatApplicationRequest.builder()
                     .id("<id>")
                     .build())
@@ -318,12 +309,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `timezoneOffset`                                                                                                         | *Optional\<Long>*                                                                                                        | :heavy_minus_sign:                                                                                                       | The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.               |
-| `getChatApplicationRequest`                                                                                              | [GetChatApplicationRequest](../../models/components/GetChatApplicationRequest.md)                                        | :heavy_check_mark:                                                                                                       | N/A                                                                                                                      |
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `timezoneOffset`                                                                                           | *Optional\<Long>*                                                                                          | :heavy_minus_sign:                                                                                         | The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC. |
+| `getChatApplicationRequest`                                                                                | [GetChatApplicationRequest](../../models/components/GetChatApplicationRequest.md)                          | :heavy_check_mark:                                                                                         | N/A                                                                                                        |
 
 ### Response
 
@@ -373,12 +362,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `timezoneOffset`                                                                                                         | *Optional\<Long>*                                                                                                        | :heavy_minus_sign:                                                                                                       | The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.               |
-| `uploadChatFilesRequest`                                                                                                 | [UploadChatFilesRequest](../../models/components/UploadChatFilesRequest.md)                                              | :heavy_check_mark:                                                                                                       | N/A                                                                                                                      |
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `timezoneOffset`                                                                                           | *Optional\<Long>*                                                                                          | :heavy_minus_sign:                                                                                         | The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC. |
+| `uploadChatFilesRequest`                                                                                   | [UploadChatFilesRequest](../../models/components/UploadChatFilesRequest.md)                                | :heavy_check_mark:                                                                                         | N/A                                                                                                        |
 
 ### Response
 
@@ -390,7 +377,7 @@ public class Application {
 | -------------------------- | -------------------------- | -------------------------- |
 | models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
 
-## getFiles
+## retrieveFiles
 
 Get files uploaded by a user for Chat.
 
@@ -413,7 +400,7 @@ public class Application {
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        GetchatfilesResponse res = sdk.client().chat().getFiles()
+        GetchatfilesResponse res = sdk.client().chat().retrieveFiles()
                 .getChatFilesRequest(GetChatFilesRequest.builder()
                     .fileIds(List.of(
                         "<value>",
@@ -430,12 +417,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `timezoneOffset`                                                                                                         | *Optional\<Long>*                                                                                                        | :heavy_minus_sign:                                                                                                       | The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.               |
-| `getChatFilesRequest`                                                                                                    | [GetChatFilesRequest](../../models/components/GetChatFilesRequest.md)                                                    | :heavy_check_mark:                                                                                                       | N/A                                                                                                                      |
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `timezoneOffset`                                                                                           | *Optional\<Long>*                                                                                          | :heavy_minus_sign:                                                                                         | The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC. |
+| `getChatFilesRequest`                                                                                      | [GetChatFilesRequest](../../models/components/GetChatFilesRequest.md)                                      | :heavy_check_mark:                                                                                         | N/A                                                                                                        |
 
 ### Response
 
@@ -484,16 +469,73 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `timezoneOffset`                                                                                                         | *Optional\<Long>*                                                                                                        | :heavy_minus_sign:                                                                                                       | The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.               |
-| `deleteChatFilesRequest`                                                                                                 | [DeleteChatFilesRequest](../../models/components/DeleteChatFilesRequest.md)                                              | :heavy_check_mark:                                                                                                       | N/A                                                                                                                      |
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `timezoneOffset`                                                                                           | *Optional\<Long>*                                                                                          | :heavy_minus_sign:                                                                                         | The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC. |
+| `deleteChatFilesRequest`                                                                                   | [DeleteChatFilesRequest](../../models/components/DeleteChatFilesRequest.md)                                | :heavy_check_mark:                                                                                         | N/A                                                                                                        |
 
 ### Response
 
 **[DeletechatfilesResponse](../../models/operations/DeletechatfilesResponse.md)**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
+
+## createStream
+
+Have a conversation with Glean AI.
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.glean.api_client.Glean;
+import com.glean.api_client.models.components.*;
+import com.glean.api_client.models.operations.ChatStreamResponse;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Glean sdk = Glean.builder()
+                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+            .build();
+
+        ChatStreamResponse res = sdk.client().chat().createStream()
+                .chatRequest(ChatRequest.builder()
+                    .messages(List.of(
+                        ChatMessage.builder()
+                            .fragments(List.of(
+                                ChatMessageFragment.builder()
+                                    .text("What are the company holidays this year?")
+                                    .build()))
+                            .build()))
+                    .build())
+                .call();
+
+        if (res.chatRequestStream().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `timezoneOffset`                                                                                           | *Optional\<Long>*                                                                                          | :heavy_minus_sign:                                                                                         | The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC. |
+| `chatRequest`                                                                                              | [ChatRequest](../../models/components/ChatRequest.md)                                                      | :heavy_check_mark:                                                                                         | Includes chat history for Glean AI to respond to.                                                          |
+
+### Response
+
+**[ChatStreamResponse](../../models/operations/ChatStreamResponse.md)**
 
 ### Errors
 

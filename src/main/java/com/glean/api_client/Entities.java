@@ -8,7 +8,6 @@ import com.glean.api_client.models.components.ListEntitiesRequest;
 import com.glean.api_client.models.components.ListEntitiesResponse;
 import com.glean.api_client.models.components.PeopleRequest;
 import com.glean.api_client.models.errors.APIException;
-import com.glean.api_client.models.operations.ListentitiesRequest;
 import com.glean.api_client.models.operations.ListentitiesRequestBuilder;
 import com.glean.api_client.models.operations.ListentitiesResponse;
 import com.glean.api_client.models.operations.PeopleRequestBuilder;
@@ -58,38 +57,12 @@ public class Entities implements
      * 
      * <p>List some set of details for all entities that fit the given criteria and return in the requested order. Does not support negation in filters, assumes relation type EQUALS. There is a limit of 10000 entities that can be retrieved via this endpoint.
      * 
-     * @param listEntitiesRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListentitiesResponse list(
-            ListEntitiesRequest listEntitiesRequest) throws Exception {
-        return list(Optional.empty(), Optional.empty(), listEntitiesRequest);
-    }
-    
-    /**
-     * List entities
-     * 
-     * <p>List some set of details for all entities that fit the given criteria and return in the requested order. Does not support negation in filters, assumes relation type EQUALS. There is a limit of 10000 entities that can be retrieved via this endpoint.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param listEntitiesRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public ListentitiesResponse list(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            ListEntitiesRequest listEntitiesRequest) throws Exception {
-        ListentitiesRequest request =
-            ListentitiesRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .listEntitiesRequest(listEntitiesRequest)
-                .build();
-        
+            ListEntitiesRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -100,10 +73,10 @@ public class Entities implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<ListEntitiesRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "listEntitiesRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -113,7 +86,6 @@ public class Entities implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -231,38 +203,12 @@ public class Entities implements
      * 
      * <p>Read people details for the given IDs.
      * 
-     * @param peopleRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public PeopleResponse readPeople(
-            PeopleRequest peopleRequest) throws Exception {
-        return readPeople(Optional.empty(), Optional.empty(), peopleRequest);
-    }
-    
-    /**
-     * Read people
-     * 
-     * <p>Read people details for the given IDs.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param peopleRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public PeopleResponse readPeople(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            PeopleRequest peopleRequest) throws Exception {
-        com.glean.api_client.models.operations.PeopleRequest request =
-            com.glean.api_client.models.operations.PeopleRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .peopleRequest(peopleRequest)
-                .build();
-        
+            PeopleRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -273,10 +219,10 @@ public class Entities implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<PeopleRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "peopleRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -286,7 +232,6 @@ public class Entities implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  

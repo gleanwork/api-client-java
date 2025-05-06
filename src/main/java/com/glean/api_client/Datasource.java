@@ -4,110 +4,80 @@
 package com.glean.api_client;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.glean.api_client.models.components.SummarizeRequest;
+import com.glean.api_client.models.components.DebugDatasourceStatusResponse;
 import com.glean.api_client.models.errors.APIException;
+import com.glean.api_client.models.operations.PostApiIndexV1DebugDatasourceStatusRequest;
+import com.glean.api_client.models.operations.PostApiIndexV1DebugDatasourceStatusRequestBuilder;
+import com.glean.api_client.models.operations.PostApiIndexV1DebugDatasourceStatusResponse;
 import com.glean.api_client.models.operations.SDKMethodInterfaces.*;
-import com.glean.api_client.models.operations.SummarizeRequestBuilder;
-import com.glean.api_client.models.operations.SummarizeResponse;
 import com.glean.api_client.utils.HTTPClient;
 import com.glean.api_client.utils.HTTPRequest;
 import com.glean.api_client.utils.Hook.AfterErrorContextImpl;
 import com.glean.api_client.utils.Hook.AfterSuccessContextImpl;
 import com.glean.api_client.utils.Hook.BeforeRequestContextImpl;
-import com.glean.api_client.utils.SerializedBody;
-import com.glean.api_client.utils.Utils.JsonShape;
 import com.glean.api_client.utils.Utils;
 import java.io.InputStream;
 import java.lang.Exception;
-import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 
-public class Summarize implements
-            MethodCallSummarize {
+public class Datasource implements
+            MethodCallPostApiIndexV1DebugDatasourceStatus {
 
     private final SDKConfiguration sdkConfiguration;
 
-    Summarize(SDKConfiguration sdkConfiguration) {
+    Datasource(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
 
 
     /**
-     * Summarize documents
+     * Beta: Get datasource status
      * 
-     * <p>Generate an AI summary of the requested documents.
+     * <p>Gather information about the datasource's overall status. Currently in beta, might undergo breaking changes without prior notice.
+     * 
+     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/docs/indexing_api/indexing_api_troubleshooting/) for more information.
      * 
      * @return The call builder
      */
-    public SummarizeRequestBuilder generate() {
-        return new SummarizeRequestBuilder(this);
+    public PostApiIndexV1DebugDatasourceStatusRequestBuilder status() {
+        return new PostApiIndexV1DebugDatasourceStatusRequestBuilder(this);
     }
 
     /**
-     * Summarize documents
+     * Beta: Get datasource status
      * 
-     * <p>Generate an AI summary of the requested documents.
+     * <p>Gather information about the datasource's overall status. Currently in beta, might undergo breaking changes without prior notice.
      * 
-     * @param summarizeRequest Summary of the document
+     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/docs/indexing_api/indexing_api_troubleshooting/) for more information.
+     * 
+     * @param datasource The datasource to get debug status for.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public SummarizeResponse generate(
-            SummarizeRequest summarizeRequest) throws Exception {
-        return generate(Optional.empty(), Optional.empty(), summarizeRequest);
-    }
-    
-    /**
-     * Summarize documents
-     * 
-     * <p>Generate an AI summary of the requested documents.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param summarizeRequest Summary of the document
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public SummarizeResponse generate(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            SummarizeRequest summarizeRequest) throws Exception {
-        com.glean.api_client.models.operations.SummarizeRequest request =
-            com.glean.api_client.models.operations.SummarizeRequest
+    public PostApiIndexV1DebugDatasourceStatusResponse status(
+            String datasource) throws Exception {
+        PostApiIndexV1DebugDatasourceStatusRequest request =
+            PostApiIndexV1DebugDatasourceStatusRequest
                 .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .summarizeRequest(summarizeRequest)
+                .datasource(datasource)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
+                PostApiIndexV1DebugDatasourceStatusRequest.class,
                 _baseUrl,
-                "/rest/api/v1/summarize");
+                "/api/index/v1/debug/{datasource}/status",
+                request, null);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "summarizeRequest",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
+        _req.addHeader("Accept", "application/json; charset=UTF-8")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -118,19 +88,19 @@ public class Summarize implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       _baseUrl,
-                      "summarize", 
+                      "post_/api/index/v1/debug/{datasource}/status", 
                       Optional.of(List.of()), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
             _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX", "5XX")) {
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
                             _baseUrl,
-                            "summarize",
+                            "post_/api/index/v1/debug/{datasource}/status",
                             Optional.of(List.of()),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
@@ -140,7 +110,7 @@ public class Summarize implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             _baseUrl,
-                            "summarize",
+                            "post_/api/index/v1/debug/{datasource}/status",
                             Optional.of(List.of()), 
                             _hookSecuritySource),
                          _httpRes);
@@ -150,7 +120,7 @@ public class Summarize implements
                     .afterError(
                         new AfterErrorContextImpl(
                             _baseUrl,
-                            "summarize",
+                            "post_/api/index/v1/debug/{datasource}/status",
                             Optional.of(List.of()),
                             _hookSecuritySource), 
                         Optional.empty(),
@@ -160,21 +130,21 @@ public class Summarize implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        SummarizeResponse.Builder _resBuilder = 
-            SummarizeResponse
+        PostApiIndexV1DebugDatasourceStatusResponse.Builder _resBuilder = 
+            PostApiIndexV1DebugDatasourceStatusResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        SummarizeResponse _res = _resBuilder.build();
+        PostApiIndexV1DebugDatasourceStatusResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                com.glean.api_client.models.components.SummarizeResponse _out = Utils.mapper().readValue(
+            if (Utils.contentTypeMatches(_contentType, "application/json; charset=UTF-8")) {
+                DebugDatasourceStatusResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<com.glean.api_client.models.components.SummarizeResponse>() {});
-                _res.withSummarizeResponse(Optional.ofNullable(_out));
+                    new TypeReference<DebugDatasourceStatusResponse>() {});
+                _res.withDebugDatasourceStatusResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(
@@ -184,7 +154,7 @@ public class Summarize implements
                     Utils.extractByteArrayFromBody(_httpRes));
             }
         }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX")) {
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "4XX")) {
             // no content 
             throw new APIException(
                     _httpRes, 

@@ -5,13 +5,13 @@
 
 ### Available Operations
 
-* [edit](#edit) - Update pin
-* [get](#get) - Read pin
+* [update](#update) - Update pin
+* [retrieve](#retrieve) - Read pin
 * [list](#list) - List pins
 * [create](#create) - Create pin
 * [remove](#remove) - Delete pin
 
-## edit
+## update
 
 Update an existing user-generated pin.
 
@@ -34,22 +34,24 @@ public class Application {
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        EditpinResponse res = sdk.client().pins().edit()
-                .editPinRequest(EditPinRequest.builder()
-                    .audienceFilters(List.of(
-                        FacetFilter.builder()
-                            .fieldName("type")
-                            .values(List.of(
-                                FacetFilterValue.builder()
-                                    .value("Spreadsheet")
-                                    .relationType(RelationType.EQUALS)
-                                    .build(),
-                                FacetFilterValue.builder()
-                                    .value("Presentation")
-                                    .relationType(RelationType.EQUALS)
-                                    .build()))
-                            .build()))
-                    .build())
+        EditPinRequest req = EditPinRequest.builder()
+                .audienceFilters(List.of(
+                    FacetFilter.builder()
+                        .fieldName("type")
+                        .values(List.of(
+                            FacetFilterValue.builder()
+                                .value("Spreadsheet")
+                                .relationType(RelationType.EQUALS)
+                                .build(),
+                            FacetFilterValue.builder()
+                                .value("Presentation")
+                                .relationType(RelationType.EQUALS)
+                                .build()))
+                        .build()))
+                .build();
+
+        EditpinResponse res = sdk.client().pins().update()
+                .request(req)
                 .call();
 
         if (res.pinDocument().isPresent()) {
@@ -61,11 +63,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `editPinRequest`                                                                                                         | [EditPinRequest](../../models/components/EditPinRequest.md)                                                              | :heavy_check_mark:                                                                                                       | Edit pins request                                                                                                        |
+| Parameter                                               | Type                                                    | Required                                                | Description                                             |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `request`                                               | [EditPinRequest](../../models/shared/EditPinRequest.md) | :heavy_check_mark:                                      | The request object to use for the request.              |
 
 ### Response
 
@@ -77,7 +77,7 @@ public class Application {
 | -------------------------- | -------------------------- | -------------------------- |
 | models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
 
-## get
+## retrieve
 
 Read pin details given its ID.
 
@@ -99,9 +99,11 @@ public class Application {
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        GetpinResponse res = sdk.client().pins().get()
-                .getPinRequest(GetPinRequest.builder()
-                    .build())
+        GetPinRequest req = GetPinRequest.builder()
+                .build();
+
+        GetpinResponse res = sdk.client().pins().retrieve()
+                .request(req)
                 .call();
 
         if (res.getPinResponse().isPresent()) {
@@ -113,11 +115,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `getPinRequest`                                                                                                          | [GetPinRequest](../../models/components/GetPinRequest.md)                                                                | :heavy_check_mark:                                                                                                       | Get pin request                                                                                                          |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `request`                                             | [GetPinRequest](../../models/shared/GetPinRequest.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
 
 ### Response
 
@@ -139,7 +139,7 @@ Lists all pins.
 package hello.world;
 
 import com.glean.api_client.Glean;
-import com.glean.api_client.models.operations.ListpinsRequestBody;
+import com.glean.api_client.models.operations.ListpinsRequest;
 import com.glean.api_client.models.operations.ListpinsResponse;
 import java.lang.Exception;
 
@@ -151,9 +151,11 @@ public class Application {
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
+        ListpinsRequest req = ListpinsRequest.builder()
+                .build();
+
         ListpinsResponse res = sdk.client().pins().list()
-                .requestBody(ListpinsRequestBody.builder()
-                    .build())
+                .request(req)
                 .call();
 
         if (res.listPinsResponse().isPresent()) {
@@ -165,11 +167,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `requestBody`                                                                                                            | [ListpinsRequestBody](../../models/operations/ListpinsRequestBody.md)                                                    | :heavy_check_mark:                                                                                                       | List pins request                                                                                                        |
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `request`                                                     | [ListpinsRequest](../../models/operations/ListpinsRequest.md) | :heavy_check_mark:                                            | The request object to use for the request.                    |
 
 ### Response
 
@@ -204,22 +204,24 @@ public class Application {
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
+        PinRequest req = PinRequest.builder()
+                .audienceFilters(List.of(
+                    FacetFilter.builder()
+                        .fieldName("type")
+                        .values(List.of(
+                            FacetFilterValue.builder()
+                                .value("Spreadsheet")
+                                .relationType(RelationType.EQUALS)
+                                .build(),
+                            FacetFilterValue.builder()
+                                .value("Presentation")
+                                .relationType(RelationType.EQUALS)
+                                .build()))
+                        .build()))
+                .build();
+
         PinResponse res = sdk.client().pins().create()
-                .pinRequest(PinRequest.builder()
-                    .audienceFilters(List.of(
-                        FacetFilter.builder()
-                            .fieldName("type")
-                            .values(List.of(
-                                FacetFilterValue.builder()
-                                    .value("Spreadsheet")
-                                    .relationType(RelationType.EQUALS)
-                                    .build(),
-                                FacetFilterValue.builder()
-                                    .value("Presentation")
-                                    .relationType(RelationType.EQUALS)
-                                    .build()))
-                            .build()))
-                    .build())
+                .request(req)
                 .call();
 
         if (res.pinDocument().isPresent()) {
@@ -231,11 +233,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `pinRequest`                                                                                                             | [PinRequest](../../models/components/PinRequest.md)                                                                      | :heavy_check_mark:                                                                                                       | Details about the document and query for the pin.                                                                        |
+| Parameter                                       | Type                                            | Required                                        | Description                                     |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| `request`                                       | [PinRequest](../../models/shared/PinRequest.md) | :heavy_check_mark:                              | The request object to use for the request.      |
 
 ### Response
 
@@ -269,9 +269,11 @@ public class Application {
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
+        Unpin req = Unpin.builder()
+                .build();
+
         UnpinResponse res = sdk.client().pins().remove()
-                .unpin(Unpin.builder()
-                    .build())
+                .request(req)
                 .call();
 
         // handle response
@@ -281,11 +283,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `unpin`                                                                                                                  | [Unpin](../../models/components/Unpin.md)                                                                                | :heavy_check_mark:                                                                                                       | Details about the pin being unpinned.                                                                                    |
+| Parameter                                  | Type                                       | Required                                   | Description                                |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| `request`                                  | [Unpin](../../models/shared/Unpin.md)      | :heavy_check_mark:                         | The request object to use for the request. |
 
 ### Response
 

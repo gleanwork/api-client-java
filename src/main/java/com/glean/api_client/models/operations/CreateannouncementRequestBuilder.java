@@ -6,55 +6,25 @@ package com.glean.api_client.models.operations;
 import com.glean.api_client.models.components.CreateAnnouncementRequest;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
-import java.util.Optional;
 
 public class CreateannouncementRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
-    private CreateAnnouncementRequest createAnnouncementRequest;
+    private CreateAnnouncementRequest request;
     private final SDKMethodInterfaces.MethodCallCreateannouncement sdk;
 
     public CreateannouncementRequestBuilder(SDKMethodInterfaces.MethodCallCreateannouncement sdk) {
         this.sdk = sdk;
     }
-                
-    public CreateannouncementRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
 
-    public CreateannouncementRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public CreateannouncementRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public CreateannouncementRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
-
-    public CreateannouncementRequestBuilder createAnnouncementRequest(CreateAnnouncementRequest createAnnouncementRequest) {
-        Utils.checkNotNull(createAnnouncementRequest, "createAnnouncementRequest");
-        this.createAnnouncementRequest = createAnnouncementRequest;
+    public CreateannouncementRequestBuilder request(CreateAnnouncementRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public CreateannouncementResponse call() throws Exception {
 
         return sdk.create(
-            xGleanActAs,
-            xGleanAuthType,
-            createAnnouncementRequest);
+            request);
     }
 }

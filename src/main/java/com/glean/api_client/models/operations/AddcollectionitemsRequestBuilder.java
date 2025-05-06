@@ -6,55 +6,25 @@ package com.glean.api_client.models.operations;
 import com.glean.api_client.models.components.AddCollectionItemsRequest;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
-import java.util.Optional;
 
 public class AddcollectionitemsRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
-    private AddCollectionItemsRequest addCollectionItemsRequest;
+    private AddCollectionItemsRequest request;
     private final SDKMethodInterfaces.MethodCallAddcollectionitems sdk;
 
     public AddcollectionitemsRequestBuilder(SDKMethodInterfaces.MethodCallAddcollectionitems sdk) {
         this.sdk = sdk;
     }
-                
-    public AddcollectionitemsRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
 
-    public AddcollectionitemsRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public AddcollectionitemsRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public AddcollectionitemsRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
-
-    public AddcollectionitemsRequestBuilder addCollectionItemsRequest(AddCollectionItemsRequest addCollectionItemsRequest) {
-        Utils.checkNotNull(addCollectionItemsRequest, "addCollectionItemsRequest");
-        this.addCollectionItemsRequest = addCollectionItemsRequest;
+    public AddcollectionitemsRequestBuilder request(AddCollectionItemsRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public AddcollectionitemsResponse call() throws Exception {
 
         return sdk.addItems(
-            xGleanActAs,
-            xGleanAuthType,
-            addCollectionItemsRequest);
+            request);
     }
 }

@@ -13,19 +13,14 @@ import com.glean.api_client.models.components.GetAnswerResponse;
 import com.glean.api_client.models.components.ListAnswersRequest;
 import com.glean.api_client.models.components.ListAnswersResponse;
 import com.glean.api_client.models.errors.APIException;
-import com.glean.api_client.models.operations.CreateanswerRequest;
 import com.glean.api_client.models.operations.CreateanswerRequestBuilder;
 import com.glean.api_client.models.operations.CreateanswerResponse;
-import com.glean.api_client.models.operations.DeleteanswerRequest;
 import com.glean.api_client.models.operations.DeleteanswerRequestBuilder;
 import com.glean.api_client.models.operations.DeleteanswerResponse;
-import com.glean.api_client.models.operations.EditanswerRequest;
 import com.glean.api_client.models.operations.EditanswerRequestBuilder;
 import com.glean.api_client.models.operations.EditanswerResponse;
-import com.glean.api_client.models.operations.GetanswerRequest;
 import com.glean.api_client.models.operations.GetanswerRequestBuilder;
 import com.glean.api_client.models.operations.GetanswerResponse;
-import com.glean.api_client.models.operations.ListanswersRequest;
 import com.glean.api_client.models.operations.ListanswersRequestBuilder;
 import com.glean.api_client.models.operations.ListanswersResponse;
 import com.glean.api_client.models.operations.SDKMethodInterfaces.*;
@@ -76,38 +71,12 @@ public class Answers implements
      * 
      * <p>Create a user-generated Answer that contains a question and answer.
      * 
-     * @param createAnswerRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateanswerResponse create(
-            CreateAnswerRequest createAnswerRequest) throws Exception {
-        return create(Optional.empty(), Optional.empty(), createAnswerRequest);
-    }
-    
-    /**
-     * Create Answer
-     * 
-     * <p>Create a user-generated Answer that contains a question and answer.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param createAnswerRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public CreateanswerResponse create(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            CreateAnswerRequest createAnswerRequest) throws Exception {
-        CreateanswerRequest request =
-            CreateanswerRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .createAnswerRequest(createAnswerRequest)
-                .build();
-        
+            CreateAnswerRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -118,10 +87,10 @@ public class Answers implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<CreateAnswerRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "createAnswerRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -131,7 +100,6 @@ public class Answers implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -249,38 +217,12 @@ public class Answers implements
      * 
      * <p>Delete an existing user-generated Answer.
      * 
-     * @param deleteAnswerRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeleteanswerResponse delete(
-            DeleteAnswerRequest deleteAnswerRequest) throws Exception {
-        return delete(Optional.empty(), Optional.empty(), deleteAnswerRequest);
-    }
-    
-    /**
-     * Delete Answer
-     * 
-     * <p>Delete an existing user-generated Answer.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param deleteAnswerRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public DeleteanswerResponse delete(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            DeleteAnswerRequest deleteAnswerRequest) throws Exception {
-        DeleteanswerRequest request =
-            DeleteanswerRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .deleteAnswerRequest(deleteAnswerRequest)
-                .build();
-        
+            DeleteAnswerRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -291,10 +233,10 @@ public class Answers implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<DeleteAnswerRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "deleteAnswerRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -304,7 +246,6 @@ public class Answers implements
         _req.addHeader("Accept", "*/*")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -402,7 +343,7 @@ public class Answers implements
      * 
      * @return The call builder
      */
-    public EditanswerRequestBuilder edit() {
+    public EditanswerRequestBuilder update() {
         return new EditanswerRequestBuilder(this);
     }
 
@@ -411,38 +352,12 @@ public class Answers implements
      * 
      * <p>Update an existing user-generated Answer.
      * 
-     * @param editAnswerRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public EditanswerResponse edit(
-            EditAnswerRequest editAnswerRequest) throws Exception {
-        return edit(Optional.empty(), Optional.empty(), editAnswerRequest);
-    }
-    
-    /**
-     * Update Answer
-     * 
-     * <p>Update an existing user-generated Answer.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param editAnswerRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public EditanswerResponse edit(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            EditAnswerRequest editAnswerRequest) throws Exception {
-        EditanswerRequest request =
-            EditanswerRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .editAnswerRequest(editAnswerRequest)
-                .build();
-        
+    public EditanswerResponse update(
+            EditAnswerRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -453,10 +368,10 @@ public class Answers implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<EditAnswerRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "editAnswerRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -466,7 +381,6 @@ public class Answers implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -575,7 +489,7 @@ public class Answers implements
      * 
      * @return The call builder
      */
-    public GetanswerRequestBuilder get() {
+    public GetanswerRequestBuilder retrieve() {
         return new GetanswerRequestBuilder(this);
     }
 
@@ -584,38 +498,12 @@ public class Answers implements
      * 
      * <p>Read the details of a particular Answer given its ID.
      * 
-     * @param getAnswerRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetanswerResponse get(
-            GetAnswerRequest getAnswerRequest) throws Exception {
-        return get(Optional.empty(), Optional.empty(), getAnswerRequest);
-    }
-    
-    /**
-     * Read Answer
-     * 
-     * <p>Read the details of a particular Answer given its ID.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param getAnswerRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public GetanswerResponse get(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            GetAnswerRequest getAnswerRequest) throws Exception {
-        GetanswerRequest request =
-            GetanswerRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .getAnswerRequest(getAnswerRequest)
-                .build();
-        
+    public GetanswerResponse retrieve(
+            GetAnswerRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -626,10 +514,10 @@ public class Answers implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<GetAnswerRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "getAnswerRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -639,7 +527,6 @@ public class Answers implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -757,38 +644,12 @@ public class Answers implements
      * 
      * <p>List Answers created by the current user.
      * 
-     * @param listAnswersRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListanswersResponse list(
-            ListAnswersRequest listAnswersRequest) throws Exception {
-        return list(Optional.empty(), Optional.empty(), listAnswersRequest);
-    }
-    
-    /**
-     * List Answers
-     * 
-     * <p>List Answers created by the current user.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param listAnswersRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public ListanswersResponse list(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            ListAnswersRequest listAnswersRequest) throws Exception {
-        ListanswersRequest request =
-            ListanswersRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .listAnswersRequest(listAnswersRequest)
-                .build();
-        
+            ListAnswersRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -799,10 +660,10 @@ public class Answers implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<ListAnswersRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "listAnswersRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -812,7 +673,6 @@ public class Answers implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  

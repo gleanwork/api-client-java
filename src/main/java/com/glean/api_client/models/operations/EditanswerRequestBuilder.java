@@ -6,55 +6,25 @@ package com.glean.api_client.models.operations;
 import com.glean.api_client.models.components.EditAnswerRequest;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
-import java.util.Optional;
 
 public class EditanswerRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
-    private EditAnswerRequest editAnswerRequest;
+    private EditAnswerRequest request;
     private final SDKMethodInterfaces.MethodCallEditanswer sdk;
 
     public EditanswerRequestBuilder(SDKMethodInterfaces.MethodCallEditanswer sdk) {
         this.sdk = sdk;
     }
-                
-    public EditanswerRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
 
-    public EditanswerRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public EditanswerRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public EditanswerRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
-
-    public EditanswerRequestBuilder editAnswerRequest(EditAnswerRequest editAnswerRequest) {
-        Utils.checkNotNull(editAnswerRequest, "editAnswerRequest");
-        this.editAnswerRequest = editAnswerRequest;
+    public EditanswerRequestBuilder request(EditAnswerRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public EditanswerResponse call() throws Exception {
 
-        return sdk.edit(
-            xGleanActAs,
-            xGleanAuthType,
-            editAnswerRequest);
+        return sdk.update(
+            request);
     }
 }

@@ -6,55 +6,25 @@ package com.glean.api_client.models.operations;
 import com.glean.api_client.models.components.DeleteCollectionItemRequest;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
-import java.util.Optional;
 
 public class DeletecollectionitemRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
-    private DeleteCollectionItemRequest deleteCollectionItemRequest;
+    private DeleteCollectionItemRequest request;
     private final SDKMethodInterfaces.MethodCallDeletecollectionitem sdk;
 
     public DeletecollectionitemRequestBuilder(SDKMethodInterfaces.MethodCallDeletecollectionitem sdk) {
         this.sdk = sdk;
     }
-                
-    public DeletecollectionitemRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
 
-    public DeletecollectionitemRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public DeletecollectionitemRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public DeletecollectionitemRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
-
-    public DeletecollectionitemRequestBuilder deleteCollectionItemRequest(DeleteCollectionItemRequest deleteCollectionItemRequest) {
-        Utils.checkNotNull(deleteCollectionItemRequest, "deleteCollectionItemRequest");
-        this.deleteCollectionItemRequest = deleteCollectionItemRequest;
+    public DeletecollectionitemRequestBuilder request(DeleteCollectionItemRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public DeletecollectionitemResponse call() throws Exception {
 
         return sdk.deleteItem(
-            xGleanActAs,
-            xGleanAuthType,
-            deleteCollectionItemRequest);
+            request);
     }
 }

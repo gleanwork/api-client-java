@@ -19,6 +19,16 @@ import java.util.function.Consumer;
  * <p># Usage guidelines
  * This API is evolving fast. Glean will provide advance notice of any planned backwards incompatible changes along
  * with a 6-month sunset period for anything that requires developers to adopt the new versions.
+ * 
+ * <p># API Clients
+ * Official API clients for the Glean Indexing API are available in multiple languages:
+ * 
+ * <p>- [Python](https://github.com/gleanwork/api-client-python)
+ * - [TypeScript](https://github.com/gleanwork/api-client-typescript)
+ * - [Go](https://github.com/gleanwork/api-client-go)
+ * - [Java](https://github.com/gleanwork/api-client-java)
+ * 
+ * <p>These API clients provide type-safe, idiomatic interfaces for working with Glean IndexingAPIs in your language of choice.
  */
 public class Glean {
 
@@ -27,21 +37,15 @@ public class Glean {
      * SERVERS contains the list of server urls available to the SDK.
      */
     public static final String[] SERVERS = {
-        "https://domain-be.glean.com",
+        "https://{domain}-be.glean.com",
     };
 
     private final Client client;
-
-    private final Agents agents;
 
     private final Indexing indexing;
 
     public Client client() {
         return client;
-    }
-
-    public Agents agents() {
-        return agents;
     }
 
     public Indexing indexing() {
@@ -203,7 +207,6 @@ public class Glean {
     private Glean(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.client = new Client(sdkConfiguration);
-        this.agents = new Agents(sdkConfiguration);
         this.indexing = new Indexing(sdkConfiguration);
         this.sdkConfiguration.initialize();
     }

@@ -1,15 +1,15 @@
 # Agents
-(*agents()*)
+(*client().agents()*)
 
 ## Overview
 
 ### Available Operations
 
-* [runagent](#runagent) - Runs an Agent.
-* [listagents](#listagents) - Lists all agents.
-* [getagentinputs](#getagentinputs) - Gets the inputs to an agent.
+* [run](#run) - Runs an Agent.
+* [list](#list) - Lists all agents.
+* [retrieveInputs](#retrieveinputs) - Gets the inputs to an agent.
 
-## runagent
+## run
 
 Trigger an Agent with a given id.
 
@@ -31,7 +31,7 @@ public class Application {
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        RunagentResponse res = sdk.agents().runagent()
+        RunagentResponse res = sdk.client().agents().run()
                 .runAgentRequest(RunAgentRequest.builder()
                     .build())
                 .call();
@@ -45,12 +45,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `timezoneOffset`                                                                                                         | *Optional\<Long>*                                                                                                        | :heavy_minus_sign:                                                                                                       | The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.               |
-| `runAgentRequest`                                                                                                        | [RunAgentRequest](../../models/components/RunAgentRequest.md)                                                            | :heavy_check_mark:                                                                                                       | N/A                                                                                                                      |
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `timezoneOffset`                                                                                           | *Optional\<Long>*                                                                                          | :heavy_minus_sign:                                                                                         | The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC. |
+| `runAgentRequest`                                                                                          | [RunAgentRequest](../../models/components/RunAgentRequest.md)                                              | :heavy_check_mark:                                                                                         | N/A                                                                                                        |
 
 ### Response
 
@@ -62,7 +60,7 @@ public class Application {
 | -------------------------- | -------------------------- | -------------------------- |
 | models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
 
-## listagents
+## list
 
 Lists all agents that are available.
 
@@ -83,7 +81,7 @@ public class Application {
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        ListagentsResponse res = sdk.agents().listagents()
+        ListagentsResponse res = sdk.client().agents().list()
                 .call();
 
         if (res.listAgentsResponse().isPresent()) {
@@ -95,12 +93,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `timezoneOffset`                                                                                                         | *Optional\<Long>*                                                                                                        | :heavy_minus_sign:                                                                                                       | The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.               |
-| `requestBody`                                                                                                            | *Optional\<Object>*                                                                                                      | :heavy_minus_sign:                                                                                                       | N/A                                                                                                                      |
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `timezoneOffset`                                                                                           | *Optional\<Long>*                                                                                          | :heavy_minus_sign:                                                                                         | The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC. |
+| `requestBody`                                                                                              | *Optional\<Object>*                                                                                        | :heavy_minus_sign:                                                                                         | N/A                                                                                                        |
 
 ### Response
 
@@ -112,7 +108,7 @@ public class Application {
 | -------------------------- | -------------------------- | -------------------------- |
 | models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
 
-## getagentinputs
+## retrieveInputs
 
 Get the inputs to an agent with a given id.
 
@@ -134,7 +130,7 @@ public class Application {
                 .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        GetagentinputsResponse res = sdk.agents().getagentinputs()
+        GetagentinputsResponse res = sdk.client().agents().retrieveInputs()
                 .getAgentInputsRequest(GetAgentInputsRequest.builder()
                     .build())
                 .call();
@@ -148,12 +144,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `timezoneOffset`                                                                                                         | *Optional\<Long>*                                                                                                        | :heavy_minus_sign:                                                                                                       | The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.               |
-| `getAgentInputsRequest`                                                                                                  | [GetAgentInputsRequest](../../models/components/GetAgentInputsRequest.md)                                                | :heavy_check_mark:                                                                                                       | N/A                                                                                                                      |
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `timezoneOffset`                                                                                           | *Optional\<Long>*                                                                                          | :heavy_minus_sign:                                                                                         | The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC. |
+| `getAgentInputsRequest`                                                                                    | [GetAgentInputsRequest](../../models/components/GetAgentInputsRequest.md)                                  | :heavy_check_mark:                                                                                         | N/A                                                                                                        |
 
 ### Response
 
