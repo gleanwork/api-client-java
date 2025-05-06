@@ -19,7 +19,7 @@ java:
   version: 0.1.0-beta.2
   additionalDependencies: []
   additionalPlugins: []
-  artifactID: api-client
+  artifactID: glean-api-client
   clientServerStatusCodesAsErrors: true
   companyEmail: support@glean.com
   companyName: Glean
@@ -27,7 +27,7 @@ java:
   defaultErrorName: APIException
   flattenGlobalSecurity: true
   githubURL: github.com/gleanwork/api-client-java
-  groupID: com.glean
+  groupID: com.glean.api-client
   imports:
     option: openapi
     paths:
@@ -43,5 +43,5 @@ java:
     url: https://mit-license.org/
   maxMethodParams: 4
   outputModelSuffix: output
-  projectName: api-client
+  projectName: glean-api-client
   templateVersion: v2
