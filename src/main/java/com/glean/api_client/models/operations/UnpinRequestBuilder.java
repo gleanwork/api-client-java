@@ -6,55 +6,25 @@ package com.glean.api_client.models.operations;
 import com.glean.api_client.models.components.Unpin;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
-import java.util.Optional;
 
 public class UnpinRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
-    private Unpin unpin;
+    private Unpin request;
     private final SDKMethodInterfaces.MethodCallUnpin sdk;
 
     public UnpinRequestBuilder(SDKMethodInterfaces.MethodCallUnpin sdk) {
         this.sdk = sdk;
     }
-                
-    public UnpinRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
 
-    public UnpinRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public UnpinRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public UnpinRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
-
-    public UnpinRequestBuilder unpin(Unpin unpin) {
-        Utils.checkNotNull(unpin, "unpin");
-        this.unpin = unpin;
+    public UnpinRequestBuilder request(Unpin request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public UnpinResponse call() throws Exception {
 
         return sdk.remove(
-            xGleanActAs,
-            xGleanAuthType,
-            unpin);
+            request);
     }
 }

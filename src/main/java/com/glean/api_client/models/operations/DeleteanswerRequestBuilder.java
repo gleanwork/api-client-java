@@ -6,55 +6,25 @@ package com.glean.api_client.models.operations;
 import com.glean.api_client.models.components.DeleteAnswerRequest;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
-import java.util.Optional;
 
 public class DeleteanswerRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
-    private DeleteAnswerRequest deleteAnswerRequest;
+    private DeleteAnswerRequest request;
     private final SDKMethodInterfaces.MethodCallDeleteanswer sdk;
 
     public DeleteanswerRequestBuilder(SDKMethodInterfaces.MethodCallDeleteanswer sdk) {
         this.sdk = sdk;
     }
-                
-    public DeleteanswerRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
 
-    public DeleteanswerRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public DeleteanswerRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public DeleteanswerRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
-
-    public DeleteanswerRequestBuilder deleteAnswerRequest(DeleteAnswerRequest deleteAnswerRequest) {
-        Utils.checkNotNull(deleteAnswerRequest, "deleteAnswerRequest");
-        this.deleteAnswerRequest = deleteAnswerRequest;
+    public DeleteanswerRequestBuilder request(DeleteAnswerRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public DeleteanswerResponse call() throws Exception {
 
         return sdk.delete(
-            xGleanActAs,
-            xGleanAuthType,
-            deleteAnswerRequest);
+            request);
     }
 }

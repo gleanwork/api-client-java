@@ -24,7 +24,7 @@ public class PostApiIndexV1GetdocumentcountRequestBuilder {
 
     public PostApiIndexV1GetdocumentcountResponse call() throws Exception {
 
-        return sdk.getDocumentCount(
+        return sdk.count(
             request);
     }
 }

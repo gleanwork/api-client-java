@@ -7,8 +7,8 @@
 
 * [create](#create) - Create Answer
 * [delete](#delete) - Delete Answer
-* [edit](#edit) - Update Answer
-* [get](#get) - Read Answer
+* [update](#update) - Update Answer
+* [retrieve](#retrieve) - Read Answer
 * [list](#list) - List Answers
 
 ## create
@@ -32,204 +32,11 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        CreateanswerResponse res = sdk.client().answers().create()
-                .createAnswerRequest(CreateAnswerRequest.builder()
-                    .data(AnswerCreationData.builder()
-                        .question("Why is the sky blue?")
-                        .bodyText("From https://en.wikipedia.org/wiki/Diffuse_sky_radiation, the sky is blue because blue light is more strongly scattered than longer-wavelength light.")
-                        .audienceFilters(List.of(
-                            FacetFilter.builder()
-                                .fieldName("type")
-                                .values(List.of(
-                                    FacetFilterValue.builder()
-                                        .value("Spreadsheet")
-                                        .relationType(RelationType.EQUALS)
-                                        .build(),
-                                    FacetFilterValue.builder()
-                                        .value("Presentation")
-                                        .relationType(RelationType.EQUALS)
-                                        .build()))
-                                .build()))
-                        .addedRoles(List.of(
-                            UserRoleSpecification.builder()
-                                .role(UserRole.OWNER)
-                                .person(Person.builder()
-                                    .name("George Clooney")
-                                    .obfuscatedId("abc123")
-                                    .relatedDocuments(List.of())
-                                    .metadata(PersonMetadata.builder()
-                                        .type(PersonMetadataType.FULL_TIME)
-                                        .title("Actor")
-                                        .department("Movies")
-                                        .email("george@example.com")
-                                        .location("Hollywood, CA")
-                                        .phone("6505551234")
-                                        .photoUrl("https://example.com/george.jpg")
-                                        .startDate(LocalDate.parse("2000-01-23"))
-                                        .datasourceProfile(List.of(
-                                            DatasourceProfile.builder()
-                                                .datasource("github")
-                                                .handle("<value>")
-                                                .build()))
-                                        .querySuggestions(QuerySuggestionList.builder()
-                                            .suggestions(List.of())
-                                            .build())
-                                        .inviteInfo(InviteInfo.builder()
-                                            .invites(List.of())
-                                            .build())
-                                        .customFields(List.of())
-                                        .badges(List.of(
-                                            Badge.builder()
-                                                .key("deployment_name_new_hire")
-                                                .displayName("New hire")
-                                                .iconConfig(IconConfig.builder()
-                                                    .color("#343CED")
-                                                    .key("person_icon")
-                                                    .iconType(IconType.GLYPH)
-                                                    .name("user")
-                                                    .build())
-                                                .build()))
-                                        .build())
-                                    .build())
-                                .build(),
-                            UserRoleSpecification.builder()
-                                .role(UserRole.VERIFIER)
-                                .build()))
-                        .removedRoles(List.of(
-                            UserRoleSpecification.builder()
-                                .role(UserRole.VERIFIER)
-                                .build(),
-                            UserRoleSpecification.builder()
-                                .role(UserRole.ANSWER_MODERATOR)
-                                .build(),
-                            UserRoleSpecification.builder()
-                                .role(UserRole.OWNER)
-                                .build()))
-                        .roles(List.of(
-                            UserRoleSpecification.builder()
-                                .role(UserRole.ANSWER_MODERATOR)
-                                .build(),
-                            UserRoleSpecification.builder()
-                                .role(UserRole.OWNER)
-                                .build(),
-                            UserRoleSpecification.builder()
-                                .role(UserRole.VERIFIER)
-                                .build()))
-                        .combinedAnswerText(StructuredTextMutableProperties.builder()
-                            .text("From https://en.wikipedia.org/wiki/Diffuse_sky_radiation, the sky is blue because blue light is more strongly scattered than longer-wavelength light.")
-                            .build())
-                        .build())
-                    .build())
-                .call();
-
-        if (res.answer().isPresent()) {
-            // handle response
-        }
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `createAnswerRequest`                                                                                                    | [CreateAnswerRequest](../../models/components/CreateAnswerRequest.md)                                                    | :heavy_check_mark:                                                                                                       | CreateAnswer request                                                                                                     |
-
-### Response
-
-**[CreateanswerResponse](../../models/operations/CreateanswerResponse.md)**
-
-### Errors
-
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
-
-## delete
-
-Delete an existing user-generated Answer.
-
-### Example Usage
-
-```java
-package hello.world;
-
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.DeleteAnswerRequest;
-import com.glean.api_client.models.operations.DeleteanswerResponse;
-import java.lang.Exception;
-
-public class Application {
-
-    public static void main(String[] args) throws Exception {
-
-        Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
-            .build();
-
-        DeleteanswerResponse res = sdk.client().answers().delete()
-                .deleteAnswerRequest(DeleteAnswerRequest.builder()
-                    .id(3L)
-                    .docId("ANSWERS_answer_3")
-                    .build())
-                .call();
-
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `deleteAnswerRequest`                                                                                                    | [DeleteAnswerRequest](../../models/components/DeleteAnswerRequest.md)                                                    | :heavy_check_mark:                                                                                                       | DeleteAnswer request                                                                                                     |
-
-### Response
-
-**[DeleteanswerResponse](../../models/operations/DeleteanswerResponse.md)**
-
-### Errors
-
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
-
-## edit
-
-Update an existing user-generated Answer.
-
-### Example Usage
-
-```java
-package hello.world;
-
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.EditanswerResponse;
-import java.lang.Exception;
-import java.time.LocalDate;
-import java.util.List;
-
-public class Application {
-
-    public static void main(String[] args) throws Exception {
-
-        Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
-            .build();
-
-        EditanswerResponse res = sdk.client().answers().edit()
-                .editAnswerRequest(EditAnswerRequest.builder()
-                    .id(3L)
-                    .docId("ANSWERS_answer_3")
+        CreateAnswerRequest req = CreateAnswerRequest.builder()
+                .data(AnswerCreationData.builder()
                     .question("Why is the sky blue?")
                     .bodyText("From https://en.wikipedia.org/wiki/Diffuse_sky_radiation, the sky is blue because blue light is more strongly scattered than longer-wavelength light.")
                     .audienceFilters(List.of(
@@ -247,7 +54,7 @@ public class Application {
                             .build()))
                     .addedRoles(List.of(
                         UserRoleSpecification.builder()
-                            .role(UserRole.EDITOR)
+                            .role(UserRole.OWNER)
                             .person(Person.builder()
                                 .name("George Clooney")
                                 .obfuscatedId("abc123")
@@ -286,10 +93,19 @@ public class Application {
                                             .build()))
                                     .build())
                                 .build())
+                            .build(),
+                        UserRoleSpecification.builder()
+                            .role(UserRole.VERIFIER)
                             .build()))
                     .removedRoles(List.of(
                         UserRoleSpecification.builder()
-                            .role(UserRole.EDITOR)
+                            .role(UserRole.VERIFIER)
+                            .build(),
+                        UserRoleSpecification.builder()
+                            .role(UserRole.ANSWER_MODERATOR)
+                            .build(),
+                        UserRoleSpecification.builder()
+                            .role(UserRole.OWNER)
                             .build()))
                     .roles(List.of(
                         UserRoleSpecification.builder()
@@ -297,11 +113,18 @@ public class Application {
                             .build(),
                         UserRoleSpecification.builder()
                             .role(UserRole.OWNER)
+                            .build(),
+                        UserRoleSpecification.builder()
+                            .role(UserRole.VERIFIER)
                             .build()))
                     .combinedAnswerText(StructuredTextMutableProperties.builder()
                         .text("From https://en.wikipedia.org/wiki/Diffuse_sky_radiation, the sky is blue because blue light is more strongly scattered than longer-wavelength light.")
                         .build())
                     .build())
+                .build();
+
+        CreateanswerResponse res = sdk.client().answers().create()
+                .request(req)
                 .call();
 
         if (res.answer().isPresent()) {
@@ -313,11 +136,188 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `editAnswerRequest`                                                                                                      | [EditAnswerRequest](../../models/components/EditAnswerRequest.md)                                                        | :heavy_check_mark:                                                                                                       | EditAnswer request                                                                                                       |
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `request`                                                         | [CreateAnswerRequest](../../models/shared/CreateAnswerRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+
+### Response
+
+**[CreateanswerResponse](../../models/operations/CreateanswerResponse.md)**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
+
+## delete
+
+Delete an existing user-generated Answer.
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.glean.api_client.Glean;
+import com.glean.api_client.models.components.DeleteAnswerRequest;
+import com.glean.api_client.models.operations.DeleteanswerResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+            .build();
+
+        DeleteAnswerRequest req = DeleteAnswerRequest.builder()
+                .id(3L)
+                .docId("ANSWERS_answer_3")
+                .build();
+
+        DeleteanswerResponse res = sdk.client().answers().delete()
+                .request(req)
+                .call();
+
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `request`                                                         | [DeleteAnswerRequest](../../models/shared/DeleteAnswerRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+
+### Response
+
+**[DeleteanswerResponse](../../models/operations/DeleteanswerResponse.md)**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
+
+## update
+
+Update an existing user-generated Answer.
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.glean.api_client.Glean;
+import com.glean.api_client.models.components.*;
+import com.glean.api_client.models.operations.EditanswerResponse;
+import java.lang.Exception;
+import java.time.LocalDate;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+            .build();
+
+        EditAnswerRequest req = EditAnswerRequest.builder()
+                .id(3L)
+                .docId("ANSWERS_answer_3")
+                .question("Why is the sky blue?")
+                .bodyText("From https://en.wikipedia.org/wiki/Diffuse_sky_radiation, the sky is blue because blue light is more strongly scattered than longer-wavelength light.")
+                .audienceFilters(List.of(
+                    FacetFilter.builder()
+                        .fieldName("type")
+                        .values(List.of(
+                            FacetFilterValue.builder()
+                                .value("Spreadsheet")
+                                .relationType(RelationType.EQUALS)
+                                .build(),
+                            FacetFilterValue.builder()
+                                .value("Presentation")
+                                .relationType(RelationType.EQUALS)
+                                .build()))
+                        .build()))
+                .addedRoles(List.of(
+                    UserRoleSpecification.builder()
+                        .role(UserRole.EDITOR)
+                        .person(Person.builder()
+                            .name("George Clooney")
+                            .obfuscatedId("abc123")
+                            .relatedDocuments(List.of())
+                            .metadata(PersonMetadata.builder()
+                                .type(PersonMetadataType.FULL_TIME)
+                                .title("Actor")
+                                .department("Movies")
+                                .email("george@example.com")
+                                .location("Hollywood, CA")
+                                .phone("6505551234")
+                                .photoUrl("https://example.com/george.jpg")
+                                .startDate(LocalDate.parse("2000-01-23"))
+                                .datasourceProfile(List.of(
+                                    DatasourceProfile.builder()
+                                        .datasource("github")
+                                        .handle("<value>")
+                                        .build()))
+                                .querySuggestions(QuerySuggestionList.builder()
+                                    .suggestions(List.of())
+                                    .build())
+                                .inviteInfo(InviteInfo.builder()
+                                    .invites(List.of())
+                                    .build())
+                                .customFields(List.of())
+                                .badges(List.of(
+                                    Badge.builder()
+                                        .key("deployment_name_new_hire")
+                                        .displayName("New hire")
+                                        .iconConfig(IconConfig.builder()
+                                            .color("#343CED")
+                                            .key("person_icon")
+                                            .iconType(IconType.GLYPH)
+                                            .name("user")
+                                            .build())
+                                        .build()))
+                                .build())
+                            .build())
+                        .build()))
+                .removedRoles(List.of(
+                    UserRoleSpecification.builder()
+                        .role(UserRole.EDITOR)
+                        .build()))
+                .roles(List.of(
+                    UserRoleSpecification.builder()
+                        .role(UserRole.ANSWER_MODERATOR)
+                        .build(),
+                    UserRoleSpecification.builder()
+                        .role(UserRole.OWNER)
+                        .build()))
+                .combinedAnswerText(StructuredTextMutableProperties.builder()
+                    .text("From https://en.wikipedia.org/wiki/Diffuse_sky_radiation, the sky is blue because blue light is more strongly scattered than longer-wavelength light.")
+                    .build())
+                .build();
+
+        EditanswerResponse res = sdk.client().answers().update()
+                .request(req)
+                .call();
+
+        if (res.answer().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `request`                                                     | [EditAnswerRequest](../../models/shared/EditAnswerRequest.md) | :heavy_check_mark:                                            | The request object to use for the request.                    |
 
 ### Response
 
@@ -329,7 +329,7 @@ public class Application {
 | -------------------------- | -------------------------- | -------------------------- |
 | models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
 
-## get
+## retrieve
 
 Read the details of a particular Answer given its ID.
 
@@ -348,14 +348,16 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        GetanswerResponse res = sdk.client().answers().get()
-                .getAnswerRequest(GetAnswerRequest.builder()
-                    .id(3L)
-                    .docId("ANSWERS_answer_3")
-                    .build())
+        GetAnswerRequest req = GetAnswerRequest.builder()
+                .id(3L)
+                .docId("ANSWERS_answer_3")
+                .build();
+
+        GetanswerResponse res = sdk.client().answers().retrieve()
+                .request(req)
                 .call();
 
         if (res.getAnswerResponse().isPresent()) {
@@ -367,11 +369,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `getAnswerRequest`                                                                                                       | [GetAnswerRequest](../../models/components/GetAnswerRequest.md)                                                          | :heavy_check_mark:                                                                                                       | GetAnswer request                                                                                                        |
+| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| `request`                                                   | [GetAnswerRequest](../../models/shared/GetAnswerRequest.md) | :heavy_check_mark:                                          | The request object to use for the request.                  |
 
 ### Response
 
@@ -402,12 +402,14 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
+        ListAnswersRequest req = ListAnswersRequest.builder()
+                .build();
+
         ListanswersResponse res = sdk.client().answers().list()
-                .listAnswersRequest(ListAnswersRequest.builder()
-                    .build())
+                .request(req)
                 .call();
 
         if (res.listAnswersResponse().isPresent()) {
@@ -419,11 +421,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `listAnswersRequest`                                                                                                     | [ListAnswersRequest](../../models/components/ListAnswersRequest.md)                                                      | :heavy_check_mark:                                                                                                       | ListAnswers request                                                                                                      |
+| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `request`                                                       | [ListAnswersRequest](../../models/shared/ListAnswersRequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
 
 ### Response
 

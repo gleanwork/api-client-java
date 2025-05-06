@@ -12,7 +12,6 @@ import com.glean.api_client.models.components.SearchRequest;
 import com.glean.api_client.models.components.SearchResponse;
 import com.glean.api_client.models.errors.APIException;
 import com.glean.api_client.models.errors.GleanDataError;
-import com.glean.api_client.models.operations.AdminsearchRequest;
 import com.glean.api_client.models.operations.AdminsearchRequestBuilder;
 import com.glean.api_client.models.operations.AdminsearchResponse;
 import com.glean.api_client.models.operations.AutocompleteRequestBuilder;
@@ -61,7 +60,7 @@ public class Search implements
      * 
      * @return The call builder
      */
-    public AdminsearchRequestBuilder admin() {
+    public AdminsearchRequestBuilder queryAsAdmin() {
         return new AdminsearchRequestBuilder(this);
     }
 
@@ -73,8 +72,8 @@ public class Search implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AdminsearchResponse adminDirect() throws Exception {
-        return admin(Optional.empty(), Optional.empty(), Optional.empty());
+    public AdminsearchResponse queryAsAdminDirect() throws Exception {
+        return queryAsAdmin(Optional.empty());
     }
     
     /**
@@ -82,24 +81,12 @@ public class Search implements
      * 
      * <p>Retrieves results for search query without respect for permissions. This is available only to privileged users.
      * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param searchRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AdminsearchResponse admin(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            Optional<? extends SearchRequest> searchRequest) throws Exception {
-        AdminsearchRequest request =
-            AdminsearchRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .searchRequest(searchRequest)
-                .build();
-        
+    public AdminsearchResponse queryAsAdmin(
+            Optional<? extends SearchRequest> request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -110,17 +97,16 @@ public class Search implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<Optional<? extends SearchRequest>>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "searchRequest",
+                "request",
                 "json",
                 false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -252,38 +238,12 @@ public class Search implements
      * 
      * <p>Retrieve query suggestions, operators and documents for the given partially typed query.
      * 
-     * @param autocompleteRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public AutocompleteResponse autocomplete(
-            AutocompleteRequest autocompleteRequest) throws Exception {
-        return autocomplete(Optional.empty(), Optional.empty(), autocompleteRequest);
-    }
-    
-    /**
-     * Autocomplete
-     * 
-     * <p>Retrieve query suggestions, operators and documents for the given partially typed query.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param autocompleteRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public AutocompleteResponse autocomplete(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            AutocompleteRequest autocompleteRequest) throws Exception {
-        com.glean.api_client.models.operations.AutocompleteRequest request =
-            com.glean.api_client.models.operations.AutocompleteRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .autocompleteRequest(autocompleteRequest)
-                .build();
-        
+            AutocompleteRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -294,10 +254,10 @@ public class Search implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<AutocompleteRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "autocompleteRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -307,7 +267,6 @@ public class Search implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -416,7 +375,7 @@ public class Search implements
      * 
      * @return The call builder
      */
-    public FeedRequestBuilder getFeed() {
+    public FeedRequestBuilder retrieveFeed() {
         return new FeedRequestBuilder(this);
     }
 
@@ -425,38 +384,12 @@ public class Search implements
      * 
      * <p>The personalized feed/home includes different types of contents including suggestions, recents, calendar events and many more.
      * 
-     * @param feedRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FeedResponse getFeed(
-            FeedRequest feedRequest) throws Exception {
-        return getFeed(Optional.empty(), Optional.empty(), feedRequest);
-    }
-    
-    /**
-     * Feed of documents and events
-     * 
-     * <p>The personalized feed/home includes different types of contents including suggestions, recents, calendar events and many more.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param feedRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public FeedResponse getFeed(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            FeedRequest feedRequest) throws Exception {
-        com.glean.api_client.models.operations.FeedRequest request =
-            com.glean.api_client.models.operations.FeedRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .feedRequest(feedRequest)
-                .build();
-        
+    public FeedResponse retrieveFeed(
+            FeedRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -467,10 +400,10 @@ public class Search implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<FeedRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "feedRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -480,7 +413,6 @@ public class Search implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -602,7 +534,7 @@ public class Search implements
      * @throws Exception if the API call fails
      */
     public RecommendationsResponse recommendationsDirect() throws Exception {
-        return recommendations(Optional.empty(), Optional.empty(), Optional.empty());
+        return recommendations(Optional.empty());
     }
     
     /**
@@ -610,24 +542,12 @@ public class Search implements
      * 
      * <p>Retrieve recommended documents for the given URL or Glean Document ID.
      * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param recommendationsRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public RecommendationsResponse recommendations(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            Optional<? extends RecommendationsRequest> recommendationsRequest) throws Exception {
-        com.glean.api_client.models.operations.RecommendationsRequest request =
-            com.glean.api_client.models.operations.RecommendationsRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .recommendationsRequest(recommendationsRequest)
-                .build();
-        
+            Optional<? extends RecommendationsRequest> request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -638,17 +558,16 @@ public class Search implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<Optional<? extends RecommendationsRequest>>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "recommendationsRequest",
+                "request",
                 "json",
                 false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -761,7 +680,7 @@ public class Search implements
      * 
      * @return The call builder
      */
-    public SearchRequestBuilder execute() {
+    public SearchRequestBuilder query() {
         return new SearchRequestBuilder(this);
     }
 
@@ -773,8 +692,8 @@ public class Search implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.glean.api_client.models.operations.SearchResponse executeDirect() throws Exception {
-        return execute(Optional.empty(), Optional.empty(), Optional.empty());
+    public com.glean.api_client.models.operations.SearchResponse queryDirect() throws Exception {
+        return query(Optional.empty());
     }
     
     /**
@@ -782,24 +701,12 @@ public class Search implements
      * 
      * <p>Retrieve results from the index for the given query and filters.
      * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param searchRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public com.glean.api_client.models.operations.SearchResponse execute(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            Optional<? extends SearchRequest> searchRequest) throws Exception {
-        com.glean.api_client.models.operations.SearchRequest request =
-            com.glean.api_client.models.operations.SearchRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .searchRequest(searchRequest)
-                .build();
-        
+    public com.glean.api_client.models.operations.SearchResponse query(
+            Optional<? extends SearchRequest> request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -810,17 +717,16 @@ public class Search implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<Optional<? extends SearchRequest>>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "searchRequest",
+                "request",
                 "json",
                 false);
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  

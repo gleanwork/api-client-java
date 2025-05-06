@@ -15,27 +15,27 @@ import java.util.Objects;
 public class Security implements HasSecurity {
 
     @SpeakeasyMetadata("security:scheme=true,type=http,subtype=bearer,name=Authorization")
-    private String bearerAuth;
+    private String apiToken;
 
     @JsonCreator
     public Security(
-            String bearerAuth) {
-        Utils.checkNotNull(bearerAuth, "bearerAuth");
-        this.bearerAuth = bearerAuth;
+            String apiToken) {
+        Utils.checkNotNull(apiToken, "apiToken");
+        this.apiToken = apiToken;
     }
 
     @JsonIgnore
-    public String bearerAuth() {
-        return bearerAuth;
+    public String apiToken() {
+        return apiToken;
     }
 
     public final static Builder builder() {
         return new Builder();
     }    
 
-    public Security withBearerAuth(String bearerAuth) {
-        Utils.checkNotNull(bearerAuth, "bearerAuth");
-        this.bearerAuth = bearerAuth;
+    public Security withAPIToken(String apiToken) {
+        Utils.checkNotNull(apiToken, "apiToken");
+        this.apiToken = apiToken;
         return this;
     }
 
@@ -50,38 +50,38 @@ public class Security implements HasSecurity {
         }
         Security other = (Security) o;
         return 
-            Objects.deepEquals(this.bearerAuth, other.bearerAuth);
+            Objects.deepEquals(this.apiToken, other.apiToken);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
-            bearerAuth);
+            apiToken);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Security.class,
-                "bearerAuth", bearerAuth);
+                "apiToken", apiToken);
     }
     
     public final static class Builder {
  
-        private String bearerAuth;
+        private String apiToken;
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder bearerAuth(String bearerAuth) {
-            Utils.checkNotNull(bearerAuth, "bearerAuth");
-            this.bearerAuth = bearerAuth;
+        public Builder apiToken(String apiToken) {
+            Utils.checkNotNull(apiToken, "apiToken");
+            this.apiToken = apiToken;
             return this;
         }
         
         public Security build() {
             return new Security(
-                bearerAuth);
+                apiToken);
         }
     }
 }

@@ -6,55 +6,25 @@ package com.glean.api_client.models.operations;
 import com.glean.api_client.models.components.ListShortcutsPaginatedRequest;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
-import java.util.Optional;
 
 public class ListshortcutsRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
-    private ListShortcutsPaginatedRequest listShortcutsPaginatedRequest;
+    private ListShortcutsPaginatedRequest request;
     private final SDKMethodInterfaces.MethodCallListshortcuts sdk;
 
     public ListshortcutsRequestBuilder(SDKMethodInterfaces.MethodCallListshortcuts sdk) {
         this.sdk = sdk;
     }
-                
-    public ListshortcutsRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
 
-    public ListshortcutsRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public ListshortcutsRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public ListshortcutsRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
-
-    public ListshortcutsRequestBuilder listShortcutsPaginatedRequest(ListShortcutsPaginatedRequest listShortcutsPaginatedRequest) {
-        Utils.checkNotNull(listShortcutsPaginatedRequest, "listShortcutsPaginatedRequest");
-        this.listShortcutsPaginatedRequest = listShortcutsPaginatedRequest;
+    public ListshortcutsRequestBuilder request(ListShortcutsPaginatedRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public ListshortcutsResponse call() throws Exception {
 
         return sdk.list(
-            xGleanActAs,
-            xGleanAuthType,
-            listShortcutsPaginatedRequest);
+            request);
     }
 }

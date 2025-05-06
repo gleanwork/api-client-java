@@ -6,42 +6,15 @@ package com.glean.api_client.models.operations;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
-import java.lang.String;
 import java.util.Optional;
 
 public class ListverificationsRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
     private Optional<Long> count = Optional.empty();
     private final SDKMethodInterfaces.MethodCallListverifications sdk;
 
     public ListverificationsRequestBuilder(SDKMethodInterfaces.MethodCallListverifications sdk) {
         this.sdk = sdk;
-    }
-                
-    public ListverificationsRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
-
-    public ListverificationsRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public ListverificationsRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public ListverificationsRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
     }
                 
     public ListverificationsRequestBuilder count(long count) {
@@ -59,8 +32,6 @@ public class ListverificationsRequestBuilder {
     public ListverificationsResponse call() throws Exception {
 
         return sdk.list(
-            xGleanActAs,
-            xGleanAuthType,
             count);
     }
 }

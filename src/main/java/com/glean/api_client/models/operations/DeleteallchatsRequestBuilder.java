@@ -6,42 +6,15 @@ package com.glean.api_client.models.operations;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
-import java.lang.String;
 import java.util.Optional;
 
 public class DeleteallchatsRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private final SDKMethodInterfaces.MethodCallDeleteallchats sdk;
 
     public DeleteallchatsRequestBuilder(SDKMethodInterfaces.MethodCallDeleteallchats sdk) {
         this.sdk = sdk;
-    }
-                
-    public DeleteallchatsRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
-
-    public DeleteallchatsRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public DeleteallchatsRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public DeleteallchatsRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
     }
                 
     public DeleteallchatsRequestBuilder timezoneOffset(long timezoneOffset) {
@@ -59,8 +32,6 @@ public class DeleteallchatsRequestBuilder {
     public DeleteallchatsResponse call() throws Exception {
 
         return sdk.deleteAll(
-            xGleanActAs,
-            xGleanAuthType,
             timezoneOffset);
     }
 }

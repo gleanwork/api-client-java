@@ -5,9 +5,9 @@
 
 ### Available Operations
 
-* [get](#get) - Read messages
+* [retrieve](#retrieve) - Read messages
 
-## get
+## retrieve
 
 Retrieves list of messages from messaging/chat datasources (e.g. Slack, Teams).
 
@@ -27,14 +27,16 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        MessagesResponse res = sdk.client().messages().get()
-                .messagesRequest(MessagesRequest.builder()
-                    .idType(IdType.CONVERSATION_ID)
-                    .id("<id>")
-                    .build())
+        MessagesRequest req = MessagesRequest.builder()
+                .idType(IdType.CONVERSATION_ID)
+                .id("<id>")
+                .build();
+
+        MessagesResponse res = sdk.client().messages().retrieve()
+                .request(req)
                 .call();
 
         if (res.messagesResponse().isPresent()) {
@@ -46,11 +48,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `messagesRequest`                                                                                                        | [MessagesRequest](../../models/components/MessagesRequest.md)                                                            | :heavy_check_mark:                                                                                                       | Includes request params such as the id for channel/message and direction.                                                |
+| Parameter                                                 | Type                                                      | Required                                                  | Description                                               |
+| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
+| `request`                                                 | [MessagesRequest](../../models/shared/MessagesRequest.md) | :heavy_check_mark:                                        | The request object to use for the request.                |
 
 ### Response
 

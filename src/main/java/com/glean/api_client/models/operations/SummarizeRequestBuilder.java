@@ -6,55 +6,25 @@ package com.glean.api_client.models.operations;
 import com.glean.api_client.models.components.SummarizeRequest;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
-import java.util.Optional;
 
 public class SummarizeRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
-    private SummarizeRequest summarizeRequest;
+    private SummarizeRequest request;
     private final SDKMethodInterfaces.MethodCallSummarize sdk;
 
     public SummarizeRequestBuilder(SDKMethodInterfaces.MethodCallSummarize sdk) {
         this.sdk = sdk;
     }
-                
-    public SummarizeRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
 
-    public SummarizeRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public SummarizeRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public SummarizeRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
-
-    public SummarizeRequestBuilder summarizeRequest(SummarizeRequest summarizeRequest) {
-        Utils.checkNotNull(summarizeRequest, "summarizeRequest");
-        this.summarizeRequest = summarizeRequest;
+    public SummarizeRequestBuilder request(SummarizeRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public SummarizeResponse call() throws Exception {
 
-        return sdk.generate(
-            xGleanActAs,
-            xGleanAuthType,
-            summarizeRequest);
+        return sdk.summarize(
+            request);
     }
 }

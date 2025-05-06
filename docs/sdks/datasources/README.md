@@ -6,7 +6,7 @@
 ### Available Operations
 
 * [add](#add) - Add or update datasource
-* [getConfig](#getconfig) - Get datasource config
+* [retrieveConfig](#retrieveconfig) - Get datasource config
 
 ## add
 
@@ -28,7 +28,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CustomDatasourceConfig req = CustomDatasourceConfig.builder()
@@ -78,7 +78,7 @@ public class Application {
 | -------------------------- | -------------------------- | -------------------------- |
 | models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
 
-## getConfig
+## retrieveConfig
 
 Fetches the datasource config for the specified custom datasource.
 
@@ -97,14 +97,14 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         GetDatasourceConfigRequest req = GetDatasourceConfigRequest.builder()
                 .datasource("<value>")
                 .build();
 
-        PostApiIndexV1GetdatasourceconfigResponse res = sdk.indexing().datasources().getConfig()
+        PostApiIndexV1GetdatasourceconfigResponse res = sdk.indexing().datasources().retrieveConfig()
                 .request(req)
                 .call();
 

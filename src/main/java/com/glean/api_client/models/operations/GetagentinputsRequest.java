@@ -17,18 +17,6 @@ import java.util.Optional;
 public class GetagentinputsRequest {
 
     /**
-     * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     */
-    @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Glean-ActAs")
-    private Optional<String> xGleanActAs;
-
-    /**
-     * Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     */
-    @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Glean-Auth-Type")
-    private Optional<String> xGleanAuthType;
-
-    /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=timezoneOffset")
@@ -39,39 +27,17 @@ public class GetagentinputsRequest {
 
     @JsonCreator
     public GetagentinputsRequest(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
             Optional<Long> timezoneOffset,
             GetAgentInputsRequest getAgentInputsRequest) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
         Utils.checkNotNull(timezoneOffset, "timezoneOffset");
         Utils.checkNotNull(getAgentInputsRequest, "getAgentInputsRequest");
-        this.xGleanActAs = xGleanActAs;
-        this.xGleanAuthType = xGleanAuthType;
         this.timezoneOffset = timezoneOffset;
         this.getAgentInputsRequest = getAgentInputsRequest;
     }
     
     public GetagentinputsRequest(
             GetAgentInputsRequest getAgentInputsRequest) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), getAgentInputsRequest);
-    }
-
-    /**
-     * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     */
-    @JsonIgnore
-    public Optional<String> xGleanActAs() {
-        return xGleanActAs;
-    }
-
-    /**
-     * Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     */
-    @JsonIgnore
-    public Optional<String> xGleanAuthType() {
-        return xGleanAuthType;
+        this(Optional.empty(), getAgentInputsRequest);
     }
 
     /**
@@ -90,42 +56,6 @@ public class GetagentinputsRequest {
     public final static Builder builder() {
         return new Builder();
     }    
-
-    /**
-     * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     */
-    public GetagentinputsRequest withXGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.ofNullable(xGleanActAs);
-        return this;
-    }
-
-    /**
-     * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     */
-    public GetagentinputsRequest withXGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-
-    /**
-     * Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     */
-    public GetagentinputsRequest withXGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.ofNullable(xGleanAuthType);
-        return this;
-    }
-
-    /**
-     * Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     */
-    public GetagentinputsRequest withXGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
 
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
@@ -162,8 +92,6 @@ public class GetagentinputsRequest {
         }
         GetagentinputsRequest other = (GetagentinputsRequest) o;
         return 
-            Objects.deepEquals(this.xGleanActAs, other.xGleanActAs) &&
-            Objects.deepEquals(this.xGleanAuthType, other.xGleanAuthType) &&
             Objects.deepEquals(this.timezoneOffset, other.timezoneOffset) &&
             Objects.deepEquals(this.getAgentInputsRequest, other.getAgentInputsRequest);
     }
@@ -171,8 +99,6 @@ public class GetagentinputsRequest {
     @Override
     public int hashCode() {
         return Objects.hash(
-            xGleanActAs,
-            xGleanAuthType,
             timezoneOffset,
             getAgentInputsRequest);
     }
@@ -180,17 +106,11 @@ public class GetagentinputsRequest {
     @Override
     public String toString() {
         return Utils.toString(GetagentinputsRequest.class,
-                "xGleanActAs", xGleanActAs,
-                "xGleanAuthType", xGleanAuthType,
                 "timezoneOffset", timezoneOffset,
                 "getAgentInputsRequest", getAgentInputsRequest);
     }
     
     public final static class Builder {
- 
-        private Optional<String> xGleanActAs = Optional.empty();
- 
-        private Optional<String> xGleanAuthType = Optional.empty();
  
         private Optional<Long> timezoneOffset = Optional.empty();
  
@@ -198,42 +118,6 @@ public class GetagentinputsRequest {
         
         private Builder() {
           // force use of static builder() method
-        }
-
-        /**
-         * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-         */
-        public Builder xGleanActAs(String xGleanActAs) {
-            Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-            this.xGleanActAs = Optional.ofNullable(xGleanActAs);
-            return this;
-        }
-
-        /**
-         * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-         */
-        public Builder xGleanActAs(Optional<String> xGleanActAs) {
-            Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-            this.xGleanActAs = xGleanActAs;
-            return this;
-        }
-
-        /**
-         * Auth type being used to access the endpoint (should be non-empty only for global tokens).
-         */
-        public Builder xGleanAuthType(String xGleanAuthType) {
-            Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-            this.xGleanAuthType = Optional.ofNullable(xGleanAuthType);
-            return this;
-        }
-
-        /**
-         * Auth type being used to access the endpoint (should be non-empty only for global tokens).
-         */
-        public Builder xGleanAuthType(Optional<String> xGleanAuthType) {
-            Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-            this.xGleanAuthType = xGleanAuthType;
-            return this;
         }
 
         /**
@@ -262,8 +146,6 @@ public class GetagentinputsRequest {
         
         public GetagentinputsRequest build() {
             return new GetagentinputsRequest(
-                xGleanActAs,
-                xGleanAuthType,
                 timezoneOffset,
                 getAgentInputsRequest);
         }

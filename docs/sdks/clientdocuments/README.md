@@ -5,11 +5,12 @@
 
 ### Available Operations
 
-* [getPermissions](#getpermissions) - Read document permissions
-* [get](#get) - Read documents
-* [getByFacets](#getbyfacets) - Read documents by facets
+* [retrievePermissions](#retrievepermissions) - Read document permissions
+* [retrieve](#retrieve) - Read documents
+* [retrieveByFacets](#retrievebyfacets) - Read documents by facets
+* [summarize](#summarize) - Summarize documents
 
-## getPermissions
+## retrievePermissions
 
 Read the emails of all users who have access to the given document.
 
@@ -28,12 +29,14 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        GetdocpermissionsResponse res = sdk.client().documents().getPermissions()
-                .getDocPermissionsRequest(GetDocPermissionsRequest.builder()
-                    .build())
+        GetDocPermissionsRequest req = GetDocPermissionsRequest.builder()
+                .build();
+
+        GetdocpermissionsResponse res = sdk.client().documents().retrievePermissions()
+                .request(req)
                 .call();
 
         if (res.getDocPermissionsResponse().isPresent()) {
@@ -45,11 +48,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `getDocPermissionsRequest`                                                                                               | [GetDocPermissionsRequest](../../models/components/GetDocPermissionsRequest.md)                                          | :heavy_check_mark:                                                                                                       | Document permissions request                                                                                             |
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [GetDocPermissionsRequest](../../models/shared/GetDocPermissionsRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
 
 ### Response
 
@@ -61,7 +62,7 @@ public class Application {
 | -------------------------- | -------------------------- | -------------------------- |
 | models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
 
-## get
+## retrieve
 
 Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`) for the given list of Glean Document IDs or URLs specified in the request.
 
@@ -71,18 +72,27 @@ Read the documents including metadata (does not include enhanced metadata via `/
 package hello.world;
 
 import com.glean.api_client.Glean;
+import com.glean.api_client.models.components.*;
 import com.glean.api_client.models.operations.GetdocumentsResponse;
 import java.lang.Exception;
+import java.util.List;
 
 public class Application {
 
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        GetdocumentsResponse res = sdk.client().documents().get()
+        GetDocumentsRequest req = GetDocumentsRequest.builder()
+                .documentSpecs(List.of(
+                    DocumentSpecUnion.of(DocumentSpec2.builder()
+                        .build())))
+                .build();
+
+        GetdocumentsResponse res = sdk.client().documents().retrieve()
+                .request(req)
                 .call();
 
         if (res.getDocumentsResponse().isPresent()) {
@@ -94,11 +104,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `getDocumentsRequest`                                                                                                    | [Optional\<GetDocumentsRequest>](../../models/components/GetDocumentsRequest.md)                                         | :heavy_minus_sign:                                                                                                       | Information about documents requested.                                                                                   |
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `request`                                                         | [GetDocumentsRequest](../../models/shared/GetDocumentsRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
 
 ### Response
 
@@ -110,7 +118,7 @@ public class Application {
 | -------------------------- | -------------------------- | -------------------------- |
 | models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
 
-## getByFacets
+## retrieveByFacets
 
 Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`) macthing the given facet conditions.
 
@@ -130,43 +138,45 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        GetdocumentsbyfacetsResponse res = sdk.client().documents().getByFacets()
-                .getDocumentsByFacetsRequest(GetDocumentsByFacetsRequest.builder()
-                    .filterSets(List.of(
-                        FacetFilterSet.builder()
-                            .filters(List.of(
-                                FacetFilter.builder()
-                                    .fieldName("type")
-                                    .values(List.of(
-                                        FacetFilterValue.builder()
-                                            .value("Spreadsheet")
-                                            .relationType(RelationType.EQUALS)
-                                            .build(),
-                                        FacetFilterValue.builder()
-                                            .value("Presentation")
-                                            .relationType(RelationType.EQUALS)
-                                            .build()))
-                                    .build()))
-                            .build(),
-                        FacetFilterSet.builder()
-                            .filters(List.of(
-                                FacetFilter.builder()
-                                    .fieldName("type")
-                                    .values(List.of(
-                                        FacetFilterValue.builder()
-                                            .value("Spreadsheet")
-                                            .relationType(RelationType.EQUALS)
-                                            .build(),
-                                        FacetFilterValue.builder()
-                                            .value("Presentation")
-                                            .relationType(RelationType.EQUALS)
-                                            .build()))
-                                    .build()))
-                            .build()))
-                    .build())
+        GetDocumentsByFacetsRequest req = GetDocumentsByFacetsRequest.builder()
+                .filterSets(List.of(
+                    FacetFilterSet.builder()
+                        .filters(List.of(
+                            FacetFilter.builder()
+                                .fieldName("type")
+                                .values(List.of(
+                                    FacetFilterValue.builder()
+                                        .value("Spreadsheet")
+                                        .relationType(RelationType.EQUALS)
+                                        .build(),
+                                    FacetFilterValue.builder()
+                                        .value("Presentation")
+                                        .relationType(RelationType.EQUALS)
+                                        .build()))
+                                .build()))
+                        .build(),
+                    FacetFilterSet.builder()
+                        .filters(List.of(
+                            FacetFilter.builder()
+                                .fieldName("type")
+                                .values(List.of(
+                                    FacetFilterValue.builder()
+                                        .value("Spreadsheet")
+                                        .relationType(RelationType.EQUALS)
+                                        .build(),
+                                    FacetFilterValue.builder()
+                                        .value("Presentation")
+                                        .relationType(RelationType.EQUALS)
+                                        .build()))
+                                .build()))
+                        .build()))
+                .build();
+
+        GetdocumentsbyfacetsResponse res = sdk.client().documents().retrieveByFacets()
+                .request(req)
                 .call();
 
         if (res.getDocumentsByFacetsResponse().isPresent()) {
@@ -178,15 +188,71 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `getDocumentsByFacetsRequest`                                                                                            | [Optional\<GetDocumentsByFacetsRequest>](../../models/components/GetDocumentsByFacetsRequest.md)                         | :heavy_minus_sign:                                                                                                       | Information about facet conditions for documents to be retrieved.                                                        |
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `request`                                                                         | [GetDocumentsByFacetsRequest](../../models/shared/GetDocumentsByFacetsRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
 
 ### Response
 
 **[GetdocumentsbyfacetsResponse](../../models/operations/GetdocumentsbyfacetsResponse.md)**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
+
+## summarize
+
+Generate an AI summary of the requested documents.
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.glean.api_client.Glean;
+import com.glean.api_client.models.components.*;
+import com.glean.api_client.models.operations.SummarizeResponse;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+            .build();
+
+        SummarizeRequest req = SummarizeRequest.builder()
+                .documentSpecs(List.of(
+                    DocumentSpecUnion.of(DocumentSpec1.builder()
+                        .build()),
+                    DocumentSpecUnion.of(DocumentSpec1.builder()
+                        .build())))
+                .build();
+
+        SummarizeResponse res = sdk.client().documents().summarize()
+                .request(req)
+                .call();
+
+        if (res.summarizeResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| `request`                                                   | [SummarizeRequest](../../models/shared/SummarizeRequest.md) | :heavy_check_mark:                                          | The request object to use for the request.                  |
+
+### Response
+
+**[SummarizeResponse](../../models/operations/SummarizeResponse.md)**
 
 ### Errors
 

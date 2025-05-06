@@ -12,20 +12,16 @@ import com.glean.api_client.models.components.PinDocument;
 import com.glean.api_client.models.components.PinRequest;
 import com.glean.api_client.models.components.Unpin;
 import com.glean.api_client.models.errors.APIException;
-import com.glean.api_client.models.operations.EditpinRequest;
 import com.glean.api_client.models.operations.EditpinRequestBuilder;
 import com.glean.api_client.models.operations.EditpinResponse;
-import com.glean.api_client.models.operations.GetpinRequest;
 import com.glean.api_client.models.operations.GetpinRequestBuilder;
 import com.glean.api_client.models.operations.GetpinResponse;
 import com.glean.api_client.models.operations.ListpinsRequest;
-import com.glean.api_client.models.operations.ListpinsRequestBody;
 import com.glean.api_client.models.operations.ListpinsRequestBuilder;
 import com.glean.api_client.models.operations.ListpinsResponse;
 import com.glean.api_client.models.operations.PinRequestBuilder;
 import com.glean.api_client.models.operations.PinResponse;
 import com.glean.api_client.models.operations.SDKMethodInterfaces.*;
-import com.glean.api_client.models.operations.UnpinRequest;
 import com.glean.api_client.models.operations.UnpinRequestBuilder;
 import com.glean.api_client.models.operations.UnpinResponse;
 import com.glean.api_client.utils.HTTPClient;
@@ -66,7 +62,7 @@ public class Pins implements
      * 
      * @return The call builder
      */
-    public EditpinRequestBuilder edit() {
+    public EditpinRequestBuilder update() {
         return new EditpinRequestBuilder(this);
     }
 
@@ -75,38 +71,12 @@ public class Pins implements
      * 
      * <p>Update an existing user-generated pin.
      * 
-     * @param editPinRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public EditpinResponse edit(
-            EditPinRequest editPinRequest) throws Exception {
-        return edit(Optional.empty(), Optional.empty(), editPinRequest);
-    }
-    
-    /**
-     * Update pin
-     * 
-     * <p>Update an existing user-generated pin.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param editPinRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public EditpinResponse edit(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            EditPinRequest editPinRequest) throws Exception {
-        EditpinRequest request =
-            EditpinRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .editPinRequest(editPinRequest)
-                .build();
-        
+    public EditpinResponse update(
+            EditPinRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -117,10 +87,10 @@ public class Pins implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<EditPinRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "editPinRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -130,7 +100,6 @@ public class Pins implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -239,7 +208,7 @@ public class Pins implements
      * 
      * @return The call builder
      */
-    public GetpinRequestBuilder get() {
+    public GetpinRequestBuilder retrieve() {
         return new GetpinRequestBuilder(this);
     }
 
@@ -248,38 +217,12 @@ public class Pins implements
      * 
      * <p>Read pin details given its ID.
      * 
-     * @param getPinRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetpinResponse get(
-            GetPinRequest getPinRequest) throws Exception {
-        return get(Optional.empty(), Optional.empty(), getPinRequest);
-    }
-    
-    /**
-     * Read pin
-     * 
-     * <p>Read pin details given its ID.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param getPinRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public GetpinResponse get(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            GetPinRequest getPinRequest) throws Exception {
-        GetpinRequest request =
-            GetpinRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .getPinRequest(getPinRequest)
-                .build();
-        
+    public GetpinResponse retrieve(
+            GetPinRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -290,10 +233,10 @@ public class Pins implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<GetPinRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "getPinRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -303,7 +246,6 @@ public class Pins implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -421,38 +363,12 @@ public class Pins implements
      * 
      * <p>Lists all pins.
      * 
-     * @param requestBody List pins request
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListpinsResponse list(
-            ListpinsRequestBody requestBody) throws Exception {
-        return list(Optional.empty(), Optional.empty(), requestBody);
-    }
-    
-    /**
-     * List pins
-     * 
-     * <p>Lists all pins.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param requestBody List pins request
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public ListpinsResponse list(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            ListpinsRequestBody requestBody) throws Exception {
-        ListpinsRequest request =
-            ListpinsRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .requestBody(requestBody)
-                .build();
-        
+            ListpinsRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -463,10 +379,10 @@ public class Pins implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<ListpinsRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "requestBody",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -476,7 +392,6 @@ public class Pins implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -594,38 +509,12 @@ public class Pins implements
      * 
      * <p>Pin a document as a result for a given search query.Pin results that are known to be a good match.
      * 
-     * @param pinRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public PinResponse create(
-            PinRequest pinRequest) throws Exception {
-        return create(Optional.empty(), Optional.empty(), pinRequest);
-    }
-    
-    /**
-     * Create pin
-     * 
-     * <p>Pin a document as a result for a given search query.Pin results that are known to be a good match.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param pinRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public PinResponse create(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            PinRequest pinRequest) throws Exception {
-        com.glean.api_client.models.operations.PinRequest request =
-            com.glean.api_client.models.operations.PinRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .pinRequest(pinRequest)
-                .build();
-        
+            PinRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -636,10 +525,10 @@ public class Pins implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<PinRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "pinRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -649,7 +538,6 @@ public class Pins implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -767,38 +655,12 @@ public class Pins implements
      * 
      * <p>Unpin a previously pinned result.
      * 
-     * @param unpin 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public UnpinResponse remove(
-            Unpin unpin) throws Exception {
-        return remove(Optional.empty(), Optional.empty(), unpin);
-    }
-    
-    /**
-     * Delete pin
-     * 
-     * <p>Unpin a previously pinned result.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param unpin 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public UnpinResponse remove(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            Unpin unpin) throws Exception {
-        UnpinRequest request =
-            UnpinRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .unpin(unpin)
-                .build();
-        
+            Unpin request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -809,10 +671,10 @@ public class Pins implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<Unpin>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "unpin",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -822,7 +684,6 @@ public class Pins implements
         _req.addHeader("Accept", "*/*")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  

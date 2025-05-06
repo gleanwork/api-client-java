@@ -7,20 +7,20 @@ public class Indexing {
     private final SDKConfiguration sdkConfiguration;
     private final IndexingDocuments documents;
     private final Permissions permissions;
-    private final Troubleshooting troubleshooting;
+    private final Datasource datasource;
+    private final People people;
     private final Datasources datasources;
     private final IndexingAuthentication authentication;
-    private final People people;
     private final IndexingShortcuts shortcuts;
 
     Indexing(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.documents = new IndexingDocuments(this.sdkConfiguration);
         this.permissions = new Permissions(this.sdkConfiguration);
-        this.troubleshooting = new Troubleshooting(this.sdkConfiguration);
+        this.datasource = new Datasource(this.sdkConfiguration);
+        this.people = new People(this.sdkConfiguration);
         this.datasources = new Datasources(this.sdkConfiguration);
         this.authentication = new IndexingAuthentication(this.sdkConfiguration);
-        this.people = new People(this.sdkConfiguration);
         this.shortcuts = new IndexingShortcuts(this.sdkConfiguration);
     }
 
@@ -32,8 +32,12 @@ public class Indexing {
         return permissions;
     }
 
-    public final Troubleshooting troubleshooting() {
-        return troubleshooting;
+    public final Datasource datasource() {
+        return datasource;
+    }
+
+    public final People people() {
+        return people;
     }
 
     public final Datasources datasources() {
@@ -42,10 +46,6 @@ public class Indexing {
 
     public final IndexingAuthentication authentication() {
         return authentication;
-    }
-
-    public final People people() {
-        return people;
     }
 
     public final IndexingShortcuts shortcuts() {

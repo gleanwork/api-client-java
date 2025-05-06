@@ -13,24 +13,16 @@ import com.glean.api_client.models.components.ListShortcutsPaginatedRequest;
 import com.glean.api_client.models.components.ListShortcutsPaginatedResponse;
 import com.glean.api_client.models.components.UpdateShortcutRequest;
 import com.glean.api_client.models.components.UpdateShortcutResponse;
-import com.glean.api_client.models.components.UploadShortcutsRequest;
 import com.glean.api_client.models.errors.APIException;
-import com.glean.api_client.models.operations.CreateshortcutRequest;
 import com.glean.api_client.models.operations.CreateshortcutRequestBuilder;
 import com.glean.api_client.models.operations.CreateshortcutResponse;
-import com.glean.api_client.models.operations.DeleteshortcutRequest;
 import com.glean.api_client.models.operations.DeleteshortcutRequestBuilder;
 import com.glean.api_client.models.operations.DeleteshortcutResponse;
-import com.glean.api_client.models.operations.GetshortcutRequest;
 import com.glean.api_client.models.operations.GetshortcutRequestBuilder;
 import com.glean.api_client.models.operations.GetshortcutResponse;
-import com.glean.api_client.models.operations.ListshortcutsRequest;
 import com.glean.api_client.models.operations.ListshortcutsRequestBuilder;
 import com.glean.api_client.models.operations.ListshortcutsResponse;
-import com.glean.api_client.models.operations.PostApiIndexV1UploadshortcutsRequestBuilder;
-import com.glean.api_client.models.operations.PostApiIndexV1UploadshortcutsResponse;
 import com.glean.api_client.models.operations.SDKMethodInterfaces.*;
-import com.glean.api_client.models.operations.UpdateshortcutRequest;
 import com.glean.api_client.models.operations.UpdateshortcutRequestBuilder;
 import com.glean.api_client.models.operations.UpdateshortcutResponse;
 import com.glean.api_client.utils.HTTPClient;
@@ -55,8 +47,7 @@ public class ClientShortcuts implements
             MethodCallDeleteshortcut,
             MethodCallGetshortcut,
             MethodCallListshortcuts,
-            MethodCallUpdateshortcut,
-            MethodCallPostApiIndexV1Uploadshortcuts {
+            MethodCallUpdateshortcut {
 
     private final SDKConfiguration sdkConfiguration;
 
@@ -81,38 +72,12 @@ public class ClientShortcuts implements
      * 
      * <p>Create a user-generated shortcut that contains an alias and destination URL.
      * 
-     * @param createShortcutRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateshortcutResponse create(
-            CreateShortcutRequest createShortcutRequest) throws Exception {
-        return create(Optional.empty(), Optional.empty(), createShortcutRequest);
-    }
-    
-    /**
-     * Create shortcut
-     * 
-     * <p>Create a user-generated shortcut that contains an alias and destination URL.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param createShortcutRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public CreateshortcutResponse create(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            CreateShortcutRequest createShortcutRequest) throws Exception {
-        CreateshortcutRequest request =
-            CreateshortcutRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .createShortcutRequest(createShortcutRequest)
-                .build();
-        
+            CreateShortcutRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -123,10 +88,10 @@ public class ClientShortcuts implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<CreateShortcutRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "createShortcutRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -136,7 +101,6 @@ public class ClientShortcuts implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -254,38 +218,12 @@ public class ClientShortcuts implements
      * 
      * <p>Delete an existing user-generated shortcut.
      * 
-     * @param deleteShortcutRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeleteshortcutResponse delete(
-            DeleteShortcutRequest deleteShortcutRequest) throws Exception {
-        return delete(Optional.empty(), Optional.empty(), deleteShortcutRequest);
-    }
-    
-    /**
-     * Delete shortcut
-     * 
-     * <p>Delete an existing user-generated shortcut.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param deleteShortcutRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public DeleteshortcutResponse delete(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            DeleteShortcutRequest deleteShortcutRequest) throws Exception {
-        DeleteshortcutRequest request =
-            DeleteshortcutRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .deleteShortcutRequest(deleteShortcutRequest)
-                .build();
-        
+            DeleteShortcutRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -296,10 +234,10 @@ public class ClientShortcuts implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<DeleteShortcutRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "deleteShortcutRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -309,7 +247,6 @@ public class ClientShortcuts implements
         _req.addHeader("Accept", "*/*")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -407,7 +344,7 @@ public class ClientShortcuts implements
      * 
      * @return The call builder
      */
-    public GetshortcutRequestBuilder get() {
+    public GetshortcutRequestBuilder retrieve() {
         return new GetshortcutRequestBuilder(this);
     }
 
@@ -416,38 +353,12 @@ public class ClientShortcuts implements
      * 
      * <p>Read a particular shortcut's details given its ID.
      * 
-     * @param getShortcutRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetshortcutResponse get(
-            GetShortcutRequestUnion getShortcutRequest) throws Exception {
-        return get(Optional.empty(), Optional.empty(), getShortcutRequest);
-    }
-    
-    /**
-     * Read shortcut
-     * 
-     * <p>Read a particular shortcut's details given its ID.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param getShortcutRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public GetshortcutResponse get(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            GetShortcutRequestUnion getShortcutRequest) throws Exception {
-        GetshortcutRequest request =
-            GetshortcutRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .getShortcutRequest(getShortcutRequest)
-                .build();
-        
+    public GetshortcutResponse retrieve(
+            GetShortcutRequestUnion request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -458,10 +369,10 @@ public class ClientShortcuts implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<GetShortcutRequestUnion>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "getShortcutRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -471,7 +382,6 @@ public class ClientShortcuts implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -589,38 +499,12 @@ public class ClientShortcuts implements
      * 
      * <p>List shortcuts editable/owned by the currently authenticated user.
      * 
-     * @param listShortcutsPaginatedRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListshortcutsResponse list(
-            ListShortcutsPaginatedRequest listShortcutsPaginatedRequest) throws Exception {
-        return list(Optional.empty(), Optional.empty(), listShortcutsPaginatedRequest);
-    }
-    
-    /**
-     * List shortcuts
-     * 
-     * <p>List shortcuts editable/owned by the currently authenticated user.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param listShortcutsPaginatedRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public ListshortcutsResponse list(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            ListShortcutsPaginatedRequest listShortcutsPaginatedRequest) throws Exception {
-        ListshortcutsRequest request =
-            ListshortcutsRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .listShortcutsPaginatedRequest(listShortcutsPaginatedRequest)
-                .build();
-        
+            ListShortcutsPaginatedRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -631,10 +515,10 @@ public class ClientShortcuts implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<ListShortcutsPaginatedRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "listShortcutsPaginatedRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -644,7 +528,6 @@ public class ClientShortcuts implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -762,38 +645,12 @@ public class ClientShortcuts implements
      * 
      * <p>Updates the shortcut with the given ID.
      * 
-     * @param updateShortcutRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public UpdateshortcutResponse update(
-            UpdateShortcutRequest updateShortcutRequest) throws Exception {
-        return update(Optional.empty(), Optional.empty(), updateShortcutRequest);
-    }
-    
-    /**
-     * Update shortcut
-     * 
-     * <p>Updates the shortcut with the given ID.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param updateShortcutRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public UpdateshortcutResponse update(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            UpdateShortcutRequest updateShortcutRequest) throws Exception {
-        UpdateshortcutRequest request =
-            UpdateshortcutRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .updateShortcutRequest(updateShortcutRequest)
-                .build();
-        
+            UpdateShortcutRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -804,10 +661,10 @@ public class ClientShortcuts implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<UpdateShortcutRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "updateShortcutRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -817,7 +674,6 @@ public class ClientShortcuts implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -895,141 +751,6 @@ public class ClientShortcuts implements
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
-    }
-
-
-
-    /**
-     * Upload shortcuts
-     * 
-     * <p>Creates glean shortcuts for uploaded shortcuts info. Glean would host the shortcuts, and they can be managed in the knowledge tab once uploaded.
-     * 
-     * @return The call builder
-     */
-    public PostApiIndexV1UploadshortcutsRequestBuilder upload() {
-        return new PostApiIndexV1UploadshortcutsRequestBuilder(this);
-    }
-
-    /**
-     * Upload shortcuts
-     * 
-     * <p>Creates glean shortcuts for uploaded shortcuts info. Glean would host the shortcuts, and they can be managed in the knowledge tab once uploaded.
-     * 
-     * @param request The request object containing all of the parameters for the API call.
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public PostApiIndexV1UploadshortcutsResponse upload(
-            UploadShortcutsRequest request) throws Exception {
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/api/index/v1/uploadshortcuts");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<UploadShortcutsRequest>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "request",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "*/*")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "post_/api/index/v1/uploadshortcuts", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "409", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "post_/api/index/v1/uploadshortcuts",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "post_/api/index/v1/uploadshortcuts",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "post_/api/index/v1/uploadshortcuts",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        PostApiIndexV1UploadshortcutsResponse.Builder _resBuilder = 
-            PostApiIndexV1UploadshortcutsResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        PostApiIndexV1UploadshortcutsResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            // no content 
-            return _res;
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "409", "4XX")) {
             // no content 
             throw new APIException(
                     _httpRes, 

@@ -24,7 +24,7 @@ public class PostApiIndexV1DebugDatasourceStatusRequestBuilder {
 
     public PostApiIndexV1DebugDatasourceStatusResponse call() throws Exception {
 
-        return sdk.getDatasourceStatus(
+        return sdk.status(
             datasource);
     }
 }

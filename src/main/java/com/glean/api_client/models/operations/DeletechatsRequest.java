@@ -17,18 +17,6 @@ import java.util.Optional;
 public class DeletechatsRequest {
 
     /**
-     * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     */
-    @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Glean-ActAs")
-    private Optional<String> xGleanActAs;
-
-    /**
-     * Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     */
-    @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Glean-Auth-Type")
-    private Optional<String> xGleanAuthType;
-
-    /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=timezoneOffset")
@@ -39,39 +27,17 @@ public class DeletechatsRequest {
 
     @JsonCreator
     public DeletechatsRequest(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
             Optional<Long> timezoneOffset,
             DeleteChatsRequest deleteChatsRequest) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
         Utils.checkNotNull(timezoneOffset, "timezoneOffset");
         Utils.checkNotNull(deleteChatsRequest, "deleteChatsRequest");
-        this.xGleanActAs = xGleanActAs;
-        this.xGleanAuthType = xGleanAuthType;
         this.timezoneOffset = timezoneOffset;
         this.deleteChatsRequest = deleteChatsRequest;
     }
     
     public DeletechatsRequest(
             DeleteChatsRequest deleteChatsRequest) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), deleteChatsRequest);
-    }
-
-    /**
-     * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     */
-    @JsonIgnore
-    public Optional<String> xGleanActAs() {
-        return xGleanActAs;
-    }
-
-    /**
-     * Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     */
-    @JsonIgnore
-    public Optional<String> xGleanAuthType() {
-        return xGleanAuthType;
+        this(Optional.empty(), deleteChatsRequest);
     }
 
     /**
@@ -90,42 +56,6 @@ public class DeletechatsRequest {
     public final static Builder builder() {
         return new Builder();
     }    
-
-    /**
-     * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     */
-    public DeletechatsRequest withXGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.ofNullable(xGleanActAs);
-        return this;
-    }
-
-    /**
-     * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     */
-    public DeletechatsRequest withXGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-
-    /**
-     * Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     */
-    public DeletechatsRequest withXGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.ofNullable(xGleanAuthType);
-        return this;
-    }
-
-    /**
-     * Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     */
-    public DeletechatsRequest withXGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
 
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
@@ -162,8 +92,6 @@ public class DeletechatsRequest {
         }
         DeletechatsRequest other = (DeletechatsRequest) o;
         return 
-            Objects.deepEquals(this.xGleanActAs, other.xGleanActAs) &&
-            Objects.deepEquals(this.xGleanAuthType, other.xGleanAuthType) &&
             Objects.deepEquals(this.timezoneOffset, other.timezoneOffset) &&
             Objects.deepEquals(this.deleteChatsRequest, other.deleteChatsRequest);
     }
@@ -171,8 +99,6 @@ public class DeletechatsRequest {
     @Override
     public int hashCode() {
         return Objects.hash(
-            xGleanActAs,
-            xGleanAuthType,
             timezoneOffset,
             deleteChatsRequest);
     }
@@ -180,17 +106,11 @@ public class DeletechatsRequest {
     @Override
     public String toString() {
         return Utils.toString(DeletechatsRequest.class,
-                "xGleanActAs", xGleanActAs,
-                "xGleanAuthType", xGleanAuthType,
                 "timezoneOffset", timezoneOffset,
                 "deleteChatsRequest", deleteChatsRequest);
     }
     
     public final static class Builder {
- 
-        private Optional<String> xGleanActAs = Optional.empty();
- 
-        private Optional<String> xGleanAuthType = Optional.empty();
  
         private Optional<Long> timezoneOffset = Optional.empty();
  
@@ -198,42 +118,6 @@ public class DeletechatsRequest {
         
         private Builder() {
           // force use of static builder() method
-        }
-
-        /**
-         * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-         */
-        public Builder xGleanActAs(String xGleanActAs) {
-            Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-            this.xGleanActAs = Optional.ofNullable(xGleanActAs);
-            return this;
-        }
-
-        /**
-         * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-         */
-        public Builder xGleanActAs(Optional<String> xGleanActAs) {
-            Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-            this.xGleanActAs = xGleanActAs;
-            return this;
-        }
-
-        /**
-         * Auth type being used to access the endpoint (should be non-empty only for global tokens).
-         */
-        public Builder xGleanAuthType(String xGleanAuthType) {
-            Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-            this.xGleanAuthType = Optional.ofNullable(xGleanAuthType);
-            return this;
-        }
-
-        /**
-         * Auth type being used to access the endpoint (should be non-empty only for global tokens).
-         */
-        public Builder xGleanAuthType(Optional<String> xGleanAuthType) {
-            Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-            this.xGleanAuthType = xGleanAuthType;
-            return this;
         }
 
         /**
@@ -262,8 +146,6 @@ public class DeletechatsRequest {
         
         public DeletechatsRequest build() {
             return new DeletechatsRequest(
-                xGleanActAs,
-                xGleanAuthType,
                 timezoneOffset,
                 deleteChatsRequest);
         }

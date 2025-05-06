@@ -6,55 +6,25 @@ package com.glean.api_client.models.operations;
 import com.glean.api_client.models.components.CreateCollectionRequest;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
-import java.util.Optional;
 
 public class CreatecollectionRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
-    private CreateCollectionRequest createCollectionRequest;
+    private CreateCollectionRequest request;
     private final SDKMethodInterfaces.MethodCallCreatecollection sdk;
 
     public CreatecollectionRequestBuilder(SDKMethodInterfaces.MethodCallCreatecollection sdk) {
         this.sdk = sdk;
     }
-                
-    public CreatecollectionRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
 
-    public CreatecollectionRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public CreatecollectionRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public CreatecollectionRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
-
-    public CreatecollectionRequestBuilder createCollectionRequest(CreateCollectionRequest createCollectionRequest) {
-        Utils.checkNotNull(createCollectionRequest, "createCollectionRequest");
-        this.createCollectionRequest = createCollectionRequest;
+    public CreatecollectionRequestBuilder request(CreateCollectionRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public CreatecollectionResponse call() throws Exception {
 
         return sdk.create(
-            xGleanActAs,
-            xGleanAuthType,
-            createCollectionRequest);
+            request);
     }
 }

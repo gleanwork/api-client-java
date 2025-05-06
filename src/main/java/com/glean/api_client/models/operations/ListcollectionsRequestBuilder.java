@@ -6,55 +6,25 @@ package com.glean.api_client.models.operations;
 import com.glean.api_client.models.components.ListCollectionsRequest;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
-import java.util.Optional;
 
 public class ListcollectionsRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
-    private ListCollectionsRequest listCollectionsRequest;
+    private ListCollectionsRequest request;
     private final SDKMethodInterfaces.MethodCallListcollections sdk;
 
     public ListcollectionsRequestBuilder(SDKMethodInterfaces.MethodCallListcollections sdk) {
         this.sdk = sdk;
     }
-                
-    public ListcollectionsRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
 
-    public ListcollectionsRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public ListcollectionsRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public ListcollectionsRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
-
-    public ListcollectionsRequestBuilder listCollectionsRequest(ListCollectionsRequest listCollectionsRequest) {
-        Utils.checkNotNull(listCollectionsRequest, "listCollectionsRequest");
-        this.listCollectionsRequest = listCollectionsRequest;
+    public ListcollectionsRequestBuilder request(ListCollectionsRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public ListcollectionsResponse call() throws Exception {
 
         return sdk.list(
-            xGleanActAs,
-            xGleanAuthType,
-            listCollectionsRequest);
+            request);
     }
 }

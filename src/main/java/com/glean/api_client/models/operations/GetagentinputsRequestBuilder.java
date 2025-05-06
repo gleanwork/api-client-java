@@ -7,43 +7,16 @@ import com.glean.api_client.models.components.GetAgentInputsRequest;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
-import java.lang.String;
 import java.util.Optional;
 
 public class GetagentinputsRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private GetAgentInputsRequest getAgentInputsRequest;
     private final SDKMethodInterfaces.MethodCallGetagentinputs sdk;
 
     public GetagentinputsRequestBuilder(SDKMethodInterfaces.MethodCallGetagentinputs sdk) {
         this.sdk = sdk;
-    }
-                
-    public GetagentinputsRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
-
-    public GetagentinputsRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public GetagentinputsRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public GetagentinputsRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
     }
                 
     public GetagentinputsRequestBuilder timezoneOffset(long timezoneOffset) {
@@ -66,9 +39,7 @@ public class GetagentinputsRequestBuilder {
 
     public GetagentinputsResponse call() throws Exception {
 
-        return sdk.getagentinputs(
-            xGleanActAs,
-            xGleanAuthType,
+        return sdk.retrieveInputs(
             timezoneOffset,
             getAgentInputsRequest);
     }

@@ -8,7 +8,6 @@ import com.glean.api_client.models.components.ReminderRequest;
 import com.glean.api_client.models.components.VerificationFeed;
 import com.glean.api_client.models.components.VerifyRequest;
 import com.glean.api_client.models.errors.APIException;
-import com.glean.api_client.models.operations.AddverificationreminderRequest;
 import com.glean.api_client.models.operations.AddverificationreminderRequestBuilder;
 import com.glean.api_client.models.operations.AddverificationreminderResponse;
 import com.glean.api_client.models.operations.ListverificationsRequest;
@@ -63,38 +62,12 @@ public class Verification implements
      * 
      * <p>Creates a verification reminder for the document. Users can create verification reminders from different product surfaces.
      * 
-     * @param reminderRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public AddverificationreminderResponse addReminder(
-            ReminderRequest reminderRequest) throws Exception {
-        return addReminder(Optional.empty(), Optional.empty(), reminderRequest);
-    }
-    
-    /**
-     * Create verification
-     * 
-     * <p>Creates a verification reminder for the document. Users can create verification reminders from different product surfaces.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param reminderRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public AddverificationreminderResponse addReminder(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            ReminderRequest reminderRequest) throws Exception {
-        AddverificationreminderRequest request =
-            AddverificationreminderRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .reminderRequest(reminderRequest)
-                .build();
-        
+            ReminderRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -105,10 +78,10 @@ public class Verification implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<ReminderRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "reminderRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -118,7 +91,6 @@ public class Verification implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -240,7 +212,7 @@ public class Verification implements
      * @throws Exception if the API call fails
      */
     public ListverificationsResponse listDirect() throws Exception {
-        return list(Optional.empty(), Optional.empty(), Optional.empty());
+        return list(Optional.empty());
     }
     
     /**
@@ -248,21 +220,15 @@ public class Verification implements
      * 
      * <p>Returns the information to be rendered in verification dashboard. Includes information for each document owned by user regarding their verifications.
      * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param count Maximum number of documents to return
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListverificationsResponse list(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
             Optional<Long> count) throws Exception {
         ListverificationsRequest request =
             ListverificationsRequest
                 .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
                 .count(count)
                 .build();
         
@@ -281,7 +247,6 @@ public class Verification implements
                 ListverificationsRequest.class,
                 request, 
                 null));
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -399,38 +364,12 @@ public class Verification implements
      * 
      * <p>Verify documents to keep the knowledge up to date within customer corpus.
      * 
-     * @param verifyRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public VerifyResponse verify(
-            VerifyRequest verifyRequest) throws Exception {
-        return verify(Optional.empty(), Optional.empty(), verifyRequest);
-    }
-    
-    /**
-     * Update verification
-     * 
-     * <p>Verify documents to keep the knowledge up to date within customer corpus.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param verifyRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public VerifyResponse verify(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            VerifyRequest verifyRequest) throws Exception {
-        com.glean.api_client.models.operations.VerifyRequest request =
-            com.glean.api_client.models.operations.VerifyRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .verifyRequest(verifyRequest)
-                .build();
-        
+            VerifyRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -441,10 +380,10 @@ public class Verification implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<VerifyRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "verifyRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -454,7 +393,6 @@ public class Verification implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  

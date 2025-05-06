@@ -182,7 +182,7 @@ public class Datasources implements
      * 
      * @return The call builder
      */
-    public PostApiIndexV1GetdatasourceconfigRequestBuilder getConfig() {
+    public PostApiIndexV1GetdatasourceconfigRequestBuilder retrieveConfig() {
         return new PostApiIndexV1GetdatasourceconfigRequestBuilder(this);
     }
 
@@ -195,7 +195,7 @@ public class Datasources implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1GetdatasourceconfigResponse getConfig(
+    public PostApiIndexV1GetdatasourceconfigResponse retrieveConfig(
             GetDatasourceConfigRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());

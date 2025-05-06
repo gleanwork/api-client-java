@@ -3,49 +3,18 @@
  */
 package com.glean.api_client.models.operations;
 
-import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
-import java.util.Optional;
 
 public class CreateauthtokenRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
     private final SDKMethodInterfaces.MethodCallCreateauthtoken sdk;
 
     public CreateauthtokenRequestBuilder(SDKMethodInterfaces.MethodCallCreateauthtoken sdk) {
         this.sdk = sdk;
     }
-                
-    public CreateauthtokenRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
-
-    public CreateauthtokenRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public CreateauthtokenRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public CreateauthtokenRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
 
     public CreateauthtokenResponse call() throws Exception {
 
-        return sdk.createToken(
-            xGleanActAs,
-            xGleanAuthType);
+        return sdk.createTokenDirect();
     }
 }

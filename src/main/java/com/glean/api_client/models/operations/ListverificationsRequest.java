@@ -16,18 +16,6 @@ import java.util.Optional;
 public class ListverificationsRequest {
 
     /**
-     * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     */
-    @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Glean-ActAs")
-    private Optional<String> xGleanActAs;
-
-    /**
-     * Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     */
-    @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Glean-Auth-Type")
-    private Optional<String> xGleanAuthType;
-
-    /**
      * Maximum number of documents to return
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=count")
@@ -35,35 +23,13 @@ public class ListverificationsRequest {
 
     @JsonCreator
     public ListverificationsRequest(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
             Optional<Long> count) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
         Utils.checkNotNull(count, "count");
-        this.xGleanActAs = xGleanActAs;
-        this.xGleanAuthType = xGleanAuthType;
         this.count = count;
     }
     
     public ListverificationsRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
-    }
-
-    /**
-     * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     */
-    @JsonIgnore
-    public Optional<String> xGleanActAs() {
-        return xGleanActAs;
-    }
-
-    /**
-     * Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     */
-    @JsonIgnore
-    public Optional<String> xGleanAuthType() {
-        return xGleanAuthType;
+        this(Optional.empty());
     }
 
     /**
@@ -77,42 +43,6 @@ public class ListverificationsRequest {
     public final static Builder builder() {
         return new Builder();
     }    
-
-    /**
-     * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     */
-    public ListverificationsRequest withXGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.ofNullable(xGleanActAs);
-        return this;
-    }
-
-    /**
-     * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     */
-    public ListverificationsRequest withXGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-
-    /**
-     * Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     */
-    public ListverificationsRequest withXGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.ofNullable(xGleanAuthType);
-        return this;
-    }
-
-    /**
-     * Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     */
-    public ListverificationsRequest withXGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
 
     /**
      * Maximum number of documents to return
@@ -143,73 +73,27 @@ public class ListverificationsRequest {
         }
         ListverificationsRequest other = (ListverificationsRequest) o;
         return 
-            Objects.deepEquals(this.xGleanActAs, other.xGleanActAs) &&
-            Objects.deepEquals(this.xGleanAuthType, other.xGleanAuthType) &&
             Objects.deepEquals(this.count, other.count);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
-            xGleanActAs,
-            xGleanAuthType,
             count);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ListverificationsRequest.class,
-                "xGleanActAs", xGleanActAs,
-                "xGleanAuthType", xGleanAuthType,
                 "count", count);
     }
     
     public final static class Builder {
  
-        private Optional<String> xGleanActAs = Optional.empty();
- 
-        private Optional<String> xGleanAuthType = Optional.empty();
- 
         private Optional<Long> count = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
-        }
-
-        /**
-         * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-         */
-        public Builder xGleanActAs(String xGleanActAs) {
-            Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-            this.xGleanActAs = Optional.ofNullable(xGleanActAs);
-            return this;
-        }
-
-        /**
-         * Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-         */
-        public Builder xGleanActAs(Optional<String> xGleanActAs) {
-            Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-            this.xGleanActAs = xGleanActAs;
-            return this;
-        }
-
-        /**
-         * Auth type being used to access the endpoint (should be non-empty only for global tokens).
-         */
-        public Builder xGleanAuthType(String xGleanAuthType) {
-            Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-            this.xGleanAuthType = Optional.ofNullable(xGleanAuthType);
-            return this;
-        }
-
-        /**
-         * Auth type being used to access the endpoint (should be non-empty only for global tokens).
-         */
-        public Builder xGleanAuthType(Optional<String> xGleanAuthType) {
-            Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-            this.xGleanAuthType = xGleanAuthType;
-            return this;
         }
 
         /**
@@ -232,8 +116,6 @@ public class ListverificationsRequest {
         
         public ListverificationsRequest build() {
             return new ListverificationsRequest(
-                xGleanActAs,
-                xGleanAuthType,
                 count);
         }
     }

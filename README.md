@@ -36,6 +36,7 @@ Remember that each namespace requires its own authentication token type as descr
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
 * [api-client-java](#api-client-java)
+  * [Unified SDK Architecture](#unified-sdk-architecture)
   * [SDK Installation](#sdk-installation)
   * [SDK Example Usage](#sdk-example-usage)
   * [Authentication](#authentication)
@@ -59,7 +60,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.glean:api-client:0.1.0-beta.1'
+implementation 'com.glean:api-client:0.1.0-beta.2'
 ```
 
 Maven:
@@ -67,7 +68,7 @@ Maven:
 <dependency>
     <groupId>com.glean</groupId>
     <artifactId>api-client</artifactId>
-    <version>0.1.0-beta.1</version>
+    <version>0.1.0-beta.2</version>
 </dependency>
 ```
 
@@ -112,7 +113,7 @@ Another option is to set the System property `-Djdk.httpclient.HttpClient.log=al
 <!-- Start SDK Example Usage [usage] -->
 ## SDK Example Usage
 
-### Example
+### Example 1
 
 ```java
 package hello.world;
@@ -128,10 +129,10 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        ChatResponse res = sdk.client().chat().start()
+        ChatResponse res = sdk.client().chat().create()
                 .chatRequest(ChatRequest.builder()
                     .messages(List.of(
                         ChatMessage.builder()
@@ -149,6 +150,44 @@ public class Application {
     }
 }
 ```
+
+### Example 2
+
+```java
+package hello.world;
+
+import com.glean.api_client.Glean;
+import com.glean.api_client.models.components.*;
+import com.glean.api_client.models.operations.ChatStreamResponse;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+            .build();
+
+        ChatStreamResponse res = sdk.client().chat().createStream()
+                .chatRequest(ChatRequest.builder()
+                    .messages(List.of(
+                        ChatMessage.builder()
+                            .fragments(List.of(
+                                ChatMessageFragment.builder()
+                                    .text("What are the company holidays this year?")
+                                    .build()))
+                            .build()))
+                    .build())
+                .call();
+
+        if (res.chatRequestStream().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
 <!-- End SDK Example Usage [usage] -->
 
 <!-- Start Authentication [security] -->
@@ -158,11 +197,11 @@ public class Application {
 
 This SDK supports the following security scheme globally:
 
-| Name         | Type | Scheme      |
-| ------------ | ---- | ----------- |
-| `bearerAuth` | http | HTTP Bearer |
+| Name       | Type | Scheme      |
+| ---------- | ---- | ----------- |
+| `apiToken` | http | HTTP Bearer |
 
-To authenticate with the API the `bearerAuth` parameter must be set when initializing the SDK client instance. For example:
+To authenticate with the API the `apiToken` parameter must be set when initializing the SDK client instance. For example:
 ```java
 package hello.world;
 
@@ -178,7 +217,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         Activity req = Activity.builder()
@@ -252,22 +291,19 @@ For more information on obtaining the appropriate token type, please contact you
 <details open>
 <summary>Available methods</summary>
 
-### [agents()](docs/sdks/agents/README.md)
-
-* [runagent](docs/sdks/agents/README.md#runagent) - Runs an Agent.
-* [listagents](docs/sdks/agents/README.md#listagents) - Lists all agents.
-* [getagentinputs](docs/sdks/agents/README.md#getagentinputs) - Gets the inputs to an agent.
-
 ### [client()](docs/sdks/client/README.md)
 
-
-#### [client().activities()](docs/sdks/activities/README.md)
-
-* [reportActivity](docs/sdks/activities/README.md#reportactivity) - Report client activity
 
 #### [client().activity()](docs/sdks/activity/README.md)
 
 * [report](docs/sdks/activity/README.md#report) - Report document activity
+* [feedback](docs/sdks/activity/README.md#feedback) - Report client activity
+
+#### [client().agents()](docs/sdks/agents/README.md)
+
+* [run](docs/sdks/agents/README.md#run) - Runs an Agent.
+* [list](docs/sdks/agents/README.md#list) - Lists all agents.
+* [retrieveInputs](docs/sdks/agents/README.md#retrieveinputs) - Gets the inputs to an agent.
 
 #### [client().announcements()](docs/sdks/announcements/README.md)
 
@@ -279,8 +315,8 @@ For more information on obtaining the appropriate token type, please contact you
 
 * [create](docs/sdks/answers/README.md#create) - Create Answer
 * [delete](docs/sdks/answers/README.md#delete) - Delete Answer
-* [edit](docs/sdks/answers/README.md#edit) - Update Answer
-* [get](docs/sdks/answers/README.md#get) - Read Answer
+* [update](docs/sdks/answers/README.md#update) - Update Answer
+* [retrieve](docs/sdks/answers/README.md#retrieve) - Read Answer
 * [list](docs/sdks/answers/README.md#list) - List Answers
 
 #### [client().authentication()](docs/sdks/clientauthentication/README.md)
@@ -289,15 +325,16 @@ For more information on obtaining the appropriate token type, please contact you
 
 #### [client().chat()](docs/sdks/chat/README.md)
 
-* [start](docs/sdks/chat/README.md#start) - Chat
+* [create](docs/sdks/chat/README.md#create) - Chat
 * [deleteAll](docs/sdks/chat/README.md#deleteall) - Deletes all saved Chats owned by a user
 * [delete](docs/sdks/chat/README.md#delete) - Deletes saved Chats
-* [get](docs/sdks/chat/README.md#get) - Retrieves a Chat
+* [retrieve](docs/sdks/chat/README.md#retrieve) - Retrieves a Chat
 * [list](docs/sdks/chat/README.md#list) - Retrieves all saved Chats
-* [getApplication](docs/sdks/chat/README.md#getapplication) - Gets the metadata for a custom Chat application
+* [retrieveApplication](docs/sdks/chat/README.md#retrieveapplication) - Gets the metadata for a custom Chat application
 * [uploadFiles](docs/sdks/chat/README.md#uploadfiles) - Upload files for Chat.
-* [getFiles](docs/sdks/chat/README.md#getfiles) - Get files uploaded by a user for Chat.
+* [retrieveFiles](docs/sdks/chat/README.md#retrievefiles) - Get files uploaded by a user for Chat.
 * [deleteFiles](docs/sdks/chat/README.md#deletefiles) - Delete files uploaded by a user for chat.
+* [createStream](docs/sdks/chat/README.md#createstream) - Chat
 
 #### [client().collections()](docs/sdks/collections/README.md)
 
@@ -306,15 +343,16 @@ For more information on obtaining the appropriate token type, please contact you
 * [delete](docs/sdks/collections/README.md#delete) - Delete Collection
 * [deleteItem](docs/sdks/collections/README.md#deleteitem) - Delete Collection item
 * [update](docs/sdks/collections/README.md#update) - Update Collection
-* [editItem](docs/sdks/collections/README.md#edititem) - Update Collection item
-* [get](docs/sdks/collections/README.md#get) - Read Collection
+* [updateItem](docs/sdks/collections/README.md#updateitem) - Update Collection item
+* [retrieve](docs/sdks/collections/README.md#retrieve) - Read Collection
 * [list](docs/sdks/collections/README.md#list) - List Collections
 
 #### [client().documents()](docs/sdks/clientdocuments/README.md)
 
-* [getPermissions](docs/sdks/clientdocuments/README.md#getpermissions) - Read document permissions
-* [get](docs/sdks/clientdocuments/README.md#get) - Read documents
-* [getByFacets](docs/sdks/clientdocuments/README.md#getbyfacets) - Read documents by facets
+* [retrievePermissions](docs/sdks/clientdocuments/README.md#retrievepermissions) - Read document permissions
+* [retrieve](docs/sdks/clientdocuments/README.md#retrieve) - Read documents
+* [retrieveByFacets](docs/sdks/clientdocuments/README.md#retrievebyfacets) - Read documents by facets
+* [summarize](docs/sdks/clientdocuments/README.md#summarize) - Summarize documents
 
 #### [client().entities()](docs/sdks/entities/README.md)
 
@@ -323,40 +361,35 @@ For more information on obtaining the appropriate token type, please contact you
 
 #### [client().insights()](docs/sdks/insights/README.md)
 
-* [get](docs/sdks/insights/README.md#get) - Read insights
+* [retrieve](docs/sdks/insights/README.md#retrieve) - Read insights
 
 #### [client().messages()](docs/sdks/messages/README.md)
 
-* [get](docs/sdks/messages/README.md#get) - Read messages
+* [retrieve](docs/sdks/messages/README.md#retrieve) - Read messages
 
 #### [client().pins()](docs/sdks/pins/README.md)
 
-* [edit](docs/sdks/pins/README.md#edit) - Update pin
-* [get](docs/sdks/pins/README.md#get) - Read pin
+* [update](docs/sdks/pins/README.md#update) - Update pin
+* [retrieve](docs/sdks/pins/README.md#retrieve) - Read pin
 * [list](docs/sdks/pins/README.md#list) - List pins
 * [create](docs/sdks/pins/README.md#create) - Create pin
 * [remove](docs/sdks/pins/README.md#remove) - Delete pin
 
 #### [client().search()](docs/sdks/search/README.md)
 
-* [admin](docs/sdks/search/README.md#admin) - Search the index (admin)
+* [queryAsAdmin](docs/sdks/search/README.md#queryasadmin) - Search the index (admin)
 * [autocomplete](docs/sdks/search/README.md#autocomplete) - Autocomplete
-* [getFeed](docs/sdks/search/README.md#getfeed) - Feed of documents and events
+* [retrieveFeed](docs/sdks/search/README.md#retrievefeed) - Feed of documents and events
 * [recommendations](docs/sdks/search/README.md#recommendations) - Recommend documents
-* [execute](docs/sdks/search/README.md#execute) - Search
+* [query](docs/sdks/search/README.md#query) - Search
 
 #### [client().shortcuts()](docs/sdks/clientshortcuts/README.md)
 
 * [create](docs/sdks/clientshortcuts/README.md#create) - Create shortcut
 * [delete](docs/sdks/clientshortcuts/README.md#delete) - Delete shortcut
-* [get](docs/sdks/clientshortcuts/README.md#get) - Read shortcut
+* [retrieve](docs/sdks/clientshortcuts/README.md#retrieve) - Read shortcut
 * [list](docs/sdks/clientshortcuts/README.md#list) - List shortcuts
 * [update](docs/sdks/clientshortcuts/README.md#update) - Update shortcut
-* [upload](docs/sdks/clientshortcuts/README.md#upload) - Upload shortcuts
-
-#### [client().summarize()](docs/sdks/summarize/README.md)
-
-* [generate](docs/sdks/summarize/README.md#generate) - Summarize documents
 
 #### [client().verification()](docs/sdks/verification/README.md)
 
@@ -372,10 +405,15 @@ For more information on obtaining the appropriate token type, please contact you
 
 * [rotateToken](docs/sdks/indexingauthentication/README.md#rotatetoken) - Rotate token
 
+#### [indexing().datasource()](docs/sdks/datasource/README.md)
+
+* [status](docs/sdks/datasource/README.md#status) - Beta: Get datasource status
+
+
 #### [indexing().datasources()](docs/sdks/datasources/README.md)
 
 * [add](docs/sdks/datasources/README.md#add) - Add or update datasource
-* [getConfig](docs/sdks/datasources/README.md#getconfig) - Get datasource config
+* [retrieveConfig](docs/sdks/datasources/README.md#retrieveconfig) - Get datasource config
 
 #### [indexing().documents()](docs/sdks/indexingdocuments/README.md)
 
@@ -384,12 +422,21 @@ For more information on obtaining the appropriate token type, please contact you
 * [bulkIndex](docs/sdks/indexingdocuments/README.md#bulkindex) - Bulk index documents
 * [processAll](docs/sdks/indexingdocuments/README.md#processall) - Schedules the processing of uploaded documents
 * [delete](docs/sdks/indexingdocuments/README.md#delete) - Delete document
+* [debug](docs/sdks/indexingdocuments/README.md#debug) - Beta: Get document information
+
+* [debugMany](docs/sdks/indexingdocuments/README.md#debugmany) - Beta: Get information of a batch of documents
+
+* [checkAccess](docs/sdks/indexingdocuments/README.md#checkaccess) - Check document access
+* [~~status~~](docs/sdks/indexingdocuments/README.md#status) - Get document upload and indexing status :warning: **Deprecated**
+* [~~count~~](docs/sdks/indexingdocuments/README.md#count) - Get document count :warning: **Deprecated**
 
 #### [indexing().people()](docs/sdks/people/README.md)
 
+* [debug](docs/sdks/people/README.md#debug) - Beta: Get user information
+
+* [~~count~~](docs/sdks/people/README.md#count) - Get user count :warning: **Deprecated**
 * [index](docs/sdks/people/README.md#index) - Index employee
-* [bulkIndexEmployees](docs/sdks/people/README.md#bulkindexemployees) - Bulk index employees
-* [~~bulkIndex~~](docs/sdks/people/README.md#bulkindex) - Bulk index employees :warning: **Deprecated**
+* [bulkIndex](docs/sdks/people/README.md#bulkindex) - Bulk index employees
 * [processAllEmployeesAndTeams](docs/sdks/people/README.md#processallemployeesandteams) - Schedules the processing of uploaded employees and teams
 * [delete](docs/sdks/people/README.md#delete) - Delete employee
 * [indexTeam](docs/sdks/people/README.md#indexteam) - Index team
@@ -414,21 +461,7 @@ For more information on obtaining the appropriate token type, please contact you
 #### [indexing().shortcuts()](docs/sdks/indexingshortcuts/README.md)
 
 * [bulkIndex](docs/sdks/indexingshortcuts/README.md#bulkindex) - Bulk index external shortcuts
-
-#### [indexing().troubleshooting()](docs/sdks/troubleshooting/README.md)
-
-* [getDatasourceStatus](docs/sdks/troubleshooting/README.md#getdatasourcestatus) - Beta: Get datasource status
-
-* [postDocumentDebug](docs/sdks/troubleshooting/README.md#postdocumentdebug) - Beta: Get document information
-
-* [postDocumentsDebug](docs/sdks/troubleshooting/README.md#postdocumentsdebug) - Beta: Get information of a batch of documents
-
-* [debugUser](docs/sdks/troubleshooting/README.md#debuguser) - Beta: Get user information
-
-* [checkAccess](docs/sdks/troubleshooting/README.md#checkaccess) - Check document access
-* [~~getStatus~~](docs/sdks/troubleshooting/README.md#getstatus) - Get document upload and indexing status :warning: **Deprecated**
-* [~~getDocumentCount~~](docs/sdks/troubleshooting/README.md#getdocumentcount) - Get document count :warning: **Deprecated**
-* [~~getUserCount~~](docs/sdks/troubleshooting/README.md#getusercount) - Get user count :warning: **Deprecated**
+* [upload](docs/sdks/indexingshortcuts/README.md#upload) - Upload shortcuts
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -463,81 +496,83 @@ public class Application {
     public static void main(String[] args) throws CollectionError, Exception {
 
         Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        CreatecollectionResponse res = sdk.client().collections().create()
-                .createCollectionRequest(CreateCollectionRequest.builder()
-                    .name("<value>")
-                    .addedRoles(List.of(
-                        UserRoleSpecification.builder()
-                            .role(UserRole.OWNER)
-                            .person(Person.builder()
-                                .name("George Clooney")
-                                .obfuscatedId("abc123")
-                                .relatedDocuments(List.of())
-                                .metadata(PersonMetadata.builder()
-                                    .type(PersonMetadataType.FULL_TIME)
-                                    .title("Actor")
-                                    .department("Movies")
-                                    .email("george@example.com")
-                                    .location("Hollywood, CA")
-                                    .phone("6505551234")
-                                    .photoUrl("https://example.com/george.jpg")
-                                    .startDate(LocalDate.parse("2000-01-23"))
-                                    .datasourceProfile(List.of(
-                                        DatasourceProfile.builder()
-                                            .datasource("github")
-                                            .handle("<value>")
-                                            .build()))
-                                    .querySuggestions(QuerySuggestionList.builder()
-                                        .suggestions(List.of())
-                                        .build())
-                                    .inviteInfo(InviteInfo.builder()
-                                        .invites(List.of())
-                                        .build())
-                                    .customFields(List.of())
-                                    .badges(List.of(
-                                        Badge.builder()
-                                            .key("deployment_name_new_hire")
-                                            .displayName("New hire")
-                                            .iconConfig(IconConfig.builder()
-                                                .color("#343CED")
-                                                .key("person_icon")
-                                                .iconType(IconType.GLYPH)
-                                                .name("user")
-                                                .build())
-                                            .build()))
+        CreateCollectionRequest req = CreateCollectionRequest.builder()
+                .name("<value>")
+                .addedRoles(List.of(
+                    UserRoleSpecification.builder()
+                        .role(UserRole.OWNER)
+                        .person(Person.builder()
+                            .name("George Clooney")
+                            .obfuscatedId("abc123")
+                            .relatedDocuments(List.of())
+                            .metadata(PersonMetadata.builder()
+                                .type(PersonMetadataType.FULL_TIME)
+                                .title("Actor")
+                                .department("Movies")
+                                .email("george@example.com")
+                                .location("Hollywood, CA")
+                                .phone("6505551234")
+                                .photoUrl("https://example.com/george.jpg")
+                                .startDate(LocalDate.parse("2000-01-23"))
+                                .datasourceProfile(List.of(
+                                    DatasourceProfile.builder()
+                                        .datasource("github")
+                                        .handle("<value>")
+                                        .build()))
+                                .querySuggestions(QuerySuggestionList.builder()
+                                    .suggestions(List.of())
                                     .build())
+                                .inviteInfo(InviteInfo.builder()
+                                    .invites(List.of())
+                                    .build())
+                                .customFields(List.of())
+                                .badges(List.of(
+                                    Badge.builder()
+                                        .key("deployment_name_new_hire")
+                                        .displayName("New hire")
+                                        .iconConfig(IconConfig.builder()
+                                            .color("#343CED")
+                                            .key("person_icon")
+                                            .iconType(IconType.GLYPH)
+                                            .name("user")
+                                            .build())
+                                        .build()))
                                 .build())
-                            .build(),
-                        UserRoleSpecification.builder()
-                            .role(UserRole.VERIFIER)
-                            .build()))
-                    .removedRoles(List.of(
-                        UserRoleSpecification.builder()
-                            .role(UserRole.VERIFIER)
-                            .build(),
-                        UserRoleSpecification.builder()
-                            .role(UserRole.ANSWER_MODERATOR)
-                            .build(),
-                        UserRoleSpecification.builder()
-                            .role(UserRole.OWNER)
-                            .build()))
-                    .audienceFilters(List.of(
-                        FacetFilter.builder()
-                            .fieldName("type")
-                            .values(List.of(
-                                FacetFilterValue.builder()
-                                    .value("Spreadsheet")
-                                    .relationType(RelationType.EQUALS)
-                                    .build(),
-                                FacetFilterValue.builder()
-                                    .value("Presentation")
-                                    .relationType(RelationType.EQUALS)
-                                    .build()))
-                            .build()))
-                    .build())
+                            .build())
+                        .build(),
+                    UserRoleSpecification.builder()
+                        .role(UserRole.VERIFIER)
+                        .build()))
+                .removedRoles(List.of(
+                    UserRoleSpecification.builder()
+                        .role(UserRole.VERIFIER)
+                        .build(),
+                    UserRoleSpecification.builder()
+                        .role(UserRole.ANSWER_MODERATOR)
+                        .build(),
+                    UserRoleSpecification.builder()
+                        .role(UserRole.OWNER)
+                        .build()))
+                .audienceFilters(List.of(
+                    FacetFilter.builder()
+                        .fieldName("type")
+                        .values(List.of(
+                            FacetFilterValue.builder()
+                                .value("Spreadsheet")
+                                .relationType(RelationType.EQUALS)
+                                .build(),
+                            FacetFilterValue.builder()
+                                .value("Presentation")
+                                .relationType(RelationType.EQUALS)
+                                .build()))
+                        .build()))
+                .build();
+
+        CreatecollectionResponse res = sdk.client().collections().create()
+                .request(req)
                 .call();
 
         if (res.createCollectionResponse().isPresent()) {
@@ -577,7 +612,7 @@ public class Application {
 
         Glean sdk = Glean.builder()
                 .domain("scared-pearl.biz")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         Activity req = Activity.builder()
@@ -634,7 +669,7 @@ public class Application {
 
         Glean sdk = Glean.builder()
                 .serverURL("https://domain-be.glean.com")
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         Activity req = Activity.builder()

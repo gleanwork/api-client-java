@@ -24,7 +24,7 @@ public class PostApiIndexV1GetdocumentstatusRequestBuilder {
 
     public PostApiIndexV1GetdocumentstatusResponse call() throws Exception {
 
-        return sdk.getStatus(
+        return sdk.status(
             request);
     }
 }

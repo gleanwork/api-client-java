@@ -7,43 +7,16 @@ import com.glean.api_client.models.components.GetChatFilesRequest;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
-import java.lang.String;
 import java.util.Optional;
 
 public class GetchatfilesRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private GetChatFilesRequest getChatFilesRequest;
     private final SDKMethodInterfaces.MethodCallGetchatfiles sdk;
 
     public GetchatfilesRequestBuilder(SDKMethodInterfaces.MethodCallGetchatfiles sdk) {
         this.sdk = sdk;
-    }
-                
-    public GetchatfilesRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
-
-    public GetchatfilesRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public GetchatfilesRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public GetchatfilesRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
     }
                 
     public GetchatfilesRequestBuilder timezoneOffset(long timezoneOffset) {
@@ -66,9 +39,7 @@ public class GetchatfilesRequestBuilder {
 
     public GetchatfilesResponse call() throws Exception {
 
-        return sdk.getFiles(
-            xGleanActAs,
-            xGleanAuthType,
+        return sdk.retrieveFiles(
             timezoneOffset,
             getChatFilesRequest);
     }

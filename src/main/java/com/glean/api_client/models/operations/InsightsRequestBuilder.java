@@ -6,55 +6,25 @@ package com.glean.api_client.models.operations;
 import com.glean.api_client.models.components.InsightsRequest;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
-import java.util.Optional;
 
 public class InsightsRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
-    private InsightsRequest insightsRequest;
+    private InsightsRequest request;
     private final SDKMethodInterfaces.MethodCallInsights sdk;
 
     public InsightsRequestBuilder(SDKMethodInterfaces.MethodCallInsights sdk) {
         this.sdk = sdk;
     }
-                
-    public InsightsRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
 
-    public InsightsRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public InsightsRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public InsightsRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
-
-    public InsightsRequestBuilder insightsRequest(InsightsRequest insightsRequest) {
-        Utils.checkNotNull(insightsRequest, "insightsRequest");
-        this.insightsRequest = insightsRequest;
+    public InsightsRequestBuilder request(InsightsRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public InsightsResponse call() throws Exception {
 
-        return sdk.get(
-            xGleanActAs,
-            xGleanAuthType,
-            insightsRequest);
+        return sdk.retrieve(
+            request);
     }
 }

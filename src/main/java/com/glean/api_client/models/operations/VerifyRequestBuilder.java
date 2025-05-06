@@ -6,55 +6,25 @@ package com.glean.api_client.models.operations;
 import com.glean.api_client.models.components.VerifyRequest;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
-import java.util.Optional;
 
 public class VerifyRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
-    private VerifyRequest verifyRequest;
+    private VerifyRequest request;
     private final SDKMethodInterfaces.MethodCallVerify sdk;
 
     public VerifyRequestBuilder(SDKMethodInterfaces.MethodCallVerify sdk) {
         this.sdk = sdk;
     }
-                
-    public VerifyRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
 
-    public VerifyRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public VerifyRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public VerifyRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
-
-    public VerifyRequestBuilder verifyRequest(VerifyRequest verifyRequest) {
-        Utils.checkNotNull(verifyRequest, "verifyRequest");
-        this.verifyRequest = verifyRequest;
+    public VerifyRequestBuilder request(VerifyRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public VerifyResponse call() throws Exception {
 
         return sdk.verify(
-            xGleanActAs,
-            xGleanAuthType,
-            verifyRequest);
+            request);
     }
 }
