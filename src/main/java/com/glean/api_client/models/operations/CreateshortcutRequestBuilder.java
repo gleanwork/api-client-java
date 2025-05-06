@@ -6,55 +6,25 @@ package com.glean.api_client.models.operations;
 import com.glean.api_client.models.components.CreateShortcutRequest;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
-import java.util.Optional;
 
 public class CreateshortcutRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
-    private CreateShortcutRequest createShortcutRequest;
+    private CreateShortcutRequest request;
     private final SDKMethodInterfaces.MethodCallCreateshortcut sdk;
 
     public CreateshortcutRequestBuilder(SDKMethodInterfaces.MethodCallCreateshortcut sdk) {
         this.sdk = sdk;
     }
-                
-    public CreateshortcutRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
 
-    public CreateshortcutRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public CreateshortcutRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public CreateshortcutRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
-
-    public CreateshortcutRequestBuilder createShortcutRequest(CreateShortcutRequest createShortcutRequest) {
-        Utils.checkNotNull(createShortcutRequest, "createShortcutRequest");
-        this.createShortcutRequest = createShortcutRequest;
+    public CreateshortcutRequestBuilder request(CreateShortcutRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public CreateshortcutResponse call() throws Exception {
 
         return sdk.create(
-            xGleanActAs,
-            xGleanAuthType,
-            createShortcutRequest);
+            request);
     }
 }

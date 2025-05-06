@@ -6,55 +6,25 @@ package com.glean.api_client.models.operations;
 import com.glean.api_client.models.components.EditCollectionRequest;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
-import java.util.Optional;
 
 public class EditcollectionRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
-    private EditCollectionRequest editCollectionRequest;
+    private EditCollectionRequest request;
     private final SDKMethodInterfaces.MethodCallEditcollection sdk;
 
     public EditcollectionRequestBuilder(SDKMethodInterfaces.MethodCallEditcollection sdk) {
         this.sdk = sdk;
     }
-                
-    public EditcollectionRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
 
-    public EditcollectionRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public EditcollectionRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public EditcollectionRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
-
-    public EditcollectionRequestBuilder editCollectionRequest(EditCollectionRequest editCollectionRequest) {
-        Utils.checkNotNull(editCollectionRequest, "editCollectionRequest");
-        this.editCollectionRequest = editCollectionRequest;
+    public EditcollectionRequestBuilder request(EditCollectionRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public EditcollectionResponse call() throws Exception {
 
         return sdk.update(
-            xGleanActAs,
-            xGleanAuthType,
-            editCollectionRequest);
+            request);
     }
 }

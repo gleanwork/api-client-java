@@ -28,13 +28,15 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
+        ReminderRequest req = ReminderRequest.builder()
+                .documentId("<id>")
+                .build();
+
         AddverificationreminderResponse res = sdk.client().verification().addReminder()
-                .reminderRequest(ReminderRequest.builder()
-                    .documentId("<id>")
-                    .build())
+                .request(req)
                 .call();
 
         if (res.verification().isPresent()) {
@@ -46,11 +48,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `reminderRequest`                                                                                                        | [ReminderRequest](../../models/components/ReminderRequest.md)                                                            | :heavy_check_mark:                                                                                                       | Details about the reminder.                                                                                              |
+| Parameter                                                 | Type                                                      | Required                                                  | Description                                               |
+| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
+| `request`                                                 | [ReminderRequest](../../models/shared/ReminderRequest.md) | :heavy_check_mark:                                        | The request object to use for the request.                |
 
 ### Response
 
@@ -80,7 +80,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         ListverificationsResponse res = sdk.client().verification().list()
@@ -95,11 +95,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `count`                                                                                                                  | *Optional\<Long>*                                                                                                        | :heavy_minus_sign:                                                                                                       | Maximum number of documents to return                                                                                    |
+| Parameter                             | Type                                  | Required                              | Description                           |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| `count`                               | *Optional\<Long>*                     | :heavy_minus_sign:                    | Maximum number of documents to return |
 
 ### Response
 
@@ -130,13 +128,15 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
+        VerifyRequest req = VerifyRequest.builder()
+                .documentId("<id>")
+                .build();
+
         VerifyResponse res = sdk.client().verification().verify()
-                .verifyRequest(VerifyRequest.builder()
-                    .documentId("<id>")
-                    .build())
+                .request(req)
                 .call();
 
         if (res.verification().isPresent()) {
@@ -148,11 +148,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `verifyRequest`                                                                                                          | [VerifyRequest](../../models/components/VerifyRequest.md)                                                                | :heavy_check_mark:                                                                                                       | Details about the verification request.                                                                                  |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `request`                                             | [VerifyRequest](../../models/shared/VerifyRequest.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
 
 ### Response
 

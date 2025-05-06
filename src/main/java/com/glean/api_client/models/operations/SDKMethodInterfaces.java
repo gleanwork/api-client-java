@@ -60,7 +60,6 @@ import com.glean.api_client.models.components.GetUserCountRequest;
 import com.glean.api_client.models.components.GreenlistUsersRequest;
 import com.glean.api_client.models.components.IndexDocumentRequest;
 import com.glean.api_client.models.components.IndexDocumentsRequest;
-import com.glean.api_client.models.components.IndexEmployeeListRequest;
 import com.glean.api_client.models.components.IndexEmployeeRequest;
 import com.glean.api_client.models.components.IndexGroupRequest;
 import com.glean.api_client.models.components.IndexMembershipRequest;
@@ -102,410 +101,299 @@ public class SDKMethodInterfaces {
     }
 
     public interface MethodCallFeedback {
-        FeedbackResponse reportActivity(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
+        FeedbackResponse feedback(
             Optional<String> feedbackQueryParameter,
             Optional<? extends Feedback> feedback1) throws Exception;
     }
 
     public interface MethodCallCreateannouncement {
         CreateannouncementResponse create(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            CreateAnnouncementRequest createAnnouncementRequest) throws Exception;
+            CreateAnnouncementRequest request) throws Exception;
     }
 
     public interface MethodCallDeleteannouncement {
         DeleteannouncementResponse delete(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            DeleteAnnouncementRequest deleteAnnouncementRequest) throws Exception;
+            DeleteAnnouncementRequest request) throws Exception;
     }
 
     public interface MethodCallUpdateannouncement {
         UpdateannouncementResponse update(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            UpdateAnnouncementRequest updateAnnouncementRequest) throws Exception;
+            UpdateAnnouncementRequest request) throws Exception;
     }
 
     public interface MethodCallCreateanswer {
         CreateanswerResponse create(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            CreateAnswerRequest createAnswerRequest) throws Exception;
+            CreateAnswerRequest request) throws Exception;
     }
 
     public interface MethodCallDeleteanswer {
         DeleteanswerResponse delete(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            DeleteAnswerRequest deleteAnswerRequest) throws Exception;
+            DeleteAnswerRequest request) throws Exception;
     }
 
     public interface MethodCallEditanswer {
-        EditanswerResponse edit(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            EditAnswerRequest editAnswerRequest) throws Exception;
+        EditanswerResponse update(
+            EditAnswerRequest request) throws Exception;
     }
 
     public interface MethodCallGetanswer {
-        GetanswerResponse get(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            GetAnswerRequest getAnswerRequest) throws Exception;
+        GetanswerResponse retrieve(
+            GetAnswerRequest request) throws Exception;
     }
 
     public interface MethodCallListanswers {
         ListanswersResponse list(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            ListAnswersRequest listAnswersRequest) throws Exception;
+            ListAnswersRequest request) throws Exception;
     }
 
     public interface MethodCallCreateauthtoken {
-        CreateauthtokenResponse createToken(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType) throws Exception;
+        CreateauthtokenResponse createTokenDirect() throws Exception;
     }
 
     public interface MethodCallChat {
-        ChatResponse start(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
+        ChatResponse create(
             Optional<Long> timezoneOffset,
             ChatRequest chatRequest) throws Exception;
     }
 
     public interface MethodCallDeleteallchats {
         DeleteallchatsResponse deleteAll(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
             Optional<Long> timezoneOffset) throws Exception;
     }
 
     public interface MethodCallDeletechats {
         DeletechatsResponse delete(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
             Optional<Long> timezoneOffset,
             DeleteChatsRequest deleteChatsRequest) throws Exception;
     }
 
     public interface MethodCallGetchat {
-        GetchatResponse get(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
+        GetchatResponse retrieve(
             Optional<Long> timezoneOffset,
             GetChatRequest getChatRequest) throws Exception;
     }
 
     public interface MethodCallListchats {
         ListchatsResponse list(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
             Optional<Long> timezoneOffset) throws Exception;
     }
 
     public interface MethodCallGetchatapplication {
-        GetchatapplicationResponse getApplication(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
+        GetchatapplicationResponse retrieveApplication(
             Optional<Long> timezoneOffset,
             GetChatApplicationRequest getChatApplicationRequest) throws Exception;
     }
 
     public interface MethodCallUploadchatfiles {
         UploadchatfilesResponse uploadFiles(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
             Optional<Long> timezoneOffset,
             UploadChatFilesRequest uploadChatFilesRequest) throws Exception;
     }
 
     public interface MethodCallGetchatfiles {
-        GetchatfilesResponse getFiles(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
+        GetchatfilesResponse retrieveFiles(
             Optional<Long> timezoneOffset,
             GetChatFilesRequest getChatFilesRequest) throws Exception;
     }
 
     public interface MethodCallDeletechatfiles {
         DeletechatfilesResponse deleteFiles(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
             Optional<Long> timezoneOffset,
             DeleteChatFilesRequest deleteChatFilesRequest) throws Exception;
     }
 
-    public interface MethodCallAddcollectionitems {
-        AddcollectionitemsResponse addItems(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            AddCollectionItemsRequest addCollectionItemsRequest) throws Exception;
-    }
-
-    public interface MethodCallCreatecollection {
-        CreatecollectionResponse create(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            CreateCollectionRequest createCollectionRequest) throws Exception;
-    }
-
-    public interface MethodCallDeletecollection {
-        DeletecollectionResponse delete(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            DeleteCollectionRequest deleteCollectionRequest) throws Exception;
-    }
-
-    public interface MethodCallDeletecollectionitem {
-        DeletecollectionitemResponse deleteItem(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            DeleteCollectionItemRequest deleteCollectionItemRequest) throws Exception;
-    }
-
-    public interface MethodCallEditcollection {
-        EditcollectionResponse update(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            EditCollectionRequest editCollectionRequest) throws Exception;
-    }
-
-    public interface MethodCallEditcollectionitem {
-        EditcollectionitemResponse editItem(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            EditCollectionItemRequest editCollectionItemRequest) throws Exception;
-    }
-
-    public interface MethodCallGetcollection {
-        GetcollectionResponse get(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            GetCollectionRequest getCollectionRequest) throws Exception;
-    }
-
-    public interface MethodCallListcollections {
-        ListcollectionsResponse list(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            ListCollectionsRequest listCollectionsRequest) throws Exception;
-    }
-
-    public interface MethodCallGetdocpermissions {
-        GetdocpermissionsResponse getPermissions(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            GetDocPermissionsRequest getDocPermissionsRequest) throws Exception;
-    }
-
-    public interface MethodCallGetdocuments {
-        GetdocumentsResponse get(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            Optional<? extends GetDocumentsRequest> getDocumentsRequest) throws Exception;
-    }
-
-    public interface MethodCallGetdocumentsbyfacets {
-        GetdocumentsbyfacetsResponse getByFacets(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            Optional<? extends GetDocumentsByFacetsRequest> getDocumentsByFacetsRequest) throws Exception;
-    }
-
-    public interface MethodCallInsights {
-        InsightsResponse get(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            InsightsRequest insightsRequest) throws Exception;
-    }
-
-    public interface MethodCallMessages {
-        MessagesResponse get(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            MessagesRequest messagesRequest) throws Exception;
-    }
-
-    public interface MethodCallEditpin {
-        EditpinResponse edit(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            EditPinRequest editPinRequest) throws Exception;
-    }
-
-    public interface MethodCallGetpin {
-        GetpinResponse get(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            GetPinRequest getPinRequest) throws Exception;
-    }
-
-    public interface MethodCallListpins {
-        ListpinsResponse list(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            ListpinsRequestBody requestBody) throws Exception;
-    }
-
-    public interface MethodCallPin {
-        PinResponse create(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            PinRequest pinRequest) throws Exception;
-    }
-
-    public interface MethodCallUnpin {
-        UnpinResponse remove(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            Unpin unpin) throws Exception;
-    }
-
-    public interface MethodCallAdminsearch {
-        AdminsearchResponse admin(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            Optional<? extends SearchRequest> searchRequest) throws Exception;
-    }
-
-    public interface MethodCallAutocomplete {
-        AutocompleteResponse autocomplete(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            AutocompleteRequest autocompleteRequest) throws Exception;
-    }
-
-    public interface MethodCallFeed {
-        FeedResponse getFeed(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            FeedRequest feedRequest) throws Exception;
-    }
-
-    public interface MethodCallRecommendations {
-        RecommendationsResponse recommendations(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            Optional<? extends RecommendationsRequest> recommendationsRequest) throws Exception;
-    }
-
-    public interface MethodCallSearch {
-        SearchResponse execute(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            Optional<? extends SearchRequest> searchRequest) throws Exception;
-    }
-
-    public interface MethodCallListentities {
-        ListentitiesResponse list(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            ListEntitiesRequest listEntitiesRequest) throws Exception;
-    }
-
-    public interface MethodCallPeople {
-        PeopleResponse readPeople(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            PeopleRequest peopleRequest) throws Exception;
-    }
-
-    public interface MethodCallCreateshortcut {
-        CreateshortcutResponse create(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            CreateShortcutRequest createShortcutRequest) throws Exception;
-    }
-
-    public interface MethodCallDeleteshortcut {
-        DeleteshortcutResponse delete(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            DeleteShortcutRequest deleteShortcutRequest) throws Exception;
-    }
-
-    public interface MethodCallGetshortcut {
-        GetshortcutResponse get(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            GetShortcutRequestUnion getShortcutRequest) throws Exception;
-    }
-
-    public interface MethodCallListshortcuts {
-        ListshortcutsResponse list(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            ListShortcutsPaginatedRequest listShortcutsPaginatedRequest) throws Exception;
-    }
-
-    public interface MethodCallUpdateshortcut {
-        UpdateshortcutResponse update(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            UpdateShortcutRequest updateShortcutRequest) throws Exception;
-    }
-
-    public interface MethodCallPostApiIndexV1Uploadshortcuts {
-        PostApiIndexV1UploadshortcutsResponse upload(
-            UploadShortcutsRequest request) throws Exception;
-    }
-
-    public interface MethodCallSummarize {
-        SummarizeResponse generate(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            SummarizeRequest summarizeRequest) throws Exception;
-    }
-
-    public interface MethodCallAddverificationreminder {
-        AddverificationreminderResponse addReminder(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            ReminderRequest reminderRequest) throws Exception;
-    }
-
-    public interface MethodCallListverifications {
-        ListverificationsResponse list(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            Optional<Long> count) throws Exception;
-    }
-
-    public interface MethodCallVerify {
-        VerifyResponse verify(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            VerifyRequest verifyRequest) throws Exception;
+    public interface MethodCallChatStream {
+        ChatStreamResponse createStream(
+            Optional<Long> timezoneOffset,
+            ChatRequest chatRequest) throws Exception;
     }
 
     public interface MethodCallRunagent {
-        RunagentResponse runagent(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
+        RunagentResponse run(
             Optional<Long> timezoneOffset,
             RunAgentRequest runAgentRequest) throws Exception;
     }
 
     public interface MethodCallListagents {
-        ListagentsResponse listagents(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
+        ListagentsResponse list(
             Optional<Long> timezoneOffset,
             Optional<? extends Object> requestBody) throws Exception;
     }
 
     public interface MethodCallGetagentinputs {
-        GetagentinputsResponse getagentinputs(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
+        GetagentinputsResponse retrieveInputs(
             Optional<Long> timezoneOffset,
             GetAgentInputsRequest getAgentInputsRequest) throws Exception;
+    }
+
+    public interface MethodCallAddcollectionitems {
+        AddcollectionitemsResponse addItems(
+            AddCollectionItemsRequest request) throws Exception;
+    }
+
+    public interface MethodCallCreatecollection {
+        CreatecollectionResponse create(
+            CreateCollectionRequest request) throws Exception;
+    }
+
+    public interface MethodCallDeletecollection {
+        DeletecollectionResponse delete(
+            DeleteCollectionRequest request) throws Exception;
+    }
+
+    public interface MethodCallDeletecollectionitem {
+        DeletecollectionitemResponse deleteItem(
+            DeleteCollectionItemRequest request) throws Exception;
+    }
+
+    public interface MethodCallEditcollection {
+        EditcollectionResponse update(
+            EditCollectionRequest request) throws Exception;
+    }
+
+    public interface MethodCallEditcollectionitem {
+        EditcollectionitemResponse updateItem(
+            EditCollectionItemRequest request) throws Exception;
+    }
+
+    public interface MethodCallGetcollection {
+        GetcollectionResponse retrieve(
+            GetCollectionRequest request) throws Exception;
+    }
+
+    public interface MethodCallListcollections {
+        ListcollectionsResponse list(
+            ListCollectionsRequest request) throws Exception;
+    }
+
+    public interface MethodCallGetdocpermissions {
+        GetdocpermissionsResponse retrievePermissions(
+            GetDocPermissionsRequest request) throws Exception;
+    }
+
+    public interface MethodCallGetdocuments {
+        GetdocumentsResponse retrieve(
+            Optional<? extends GetDocumentsRequest> request) throws Exception;
+    }
+
+    public interface MethodCallGetdocumentsbyfacets {
+        GetdocumentsbyfacetsResponse retrieveByFacets(
+            Optional<? extends GetDocumentsByFacetsRequest> request) throws Exception;
+    }
+
+    public interface MethodCallSummarize {
+        SummarizeResponse summarize(
+            SummarizeRequest request) throws Exception;
+    }
+
+    public interface MethodCallInsights {
+        InsightsResponse retrieve(
+            InsightsRequest request) throws Exception;
+    }
+
+    public interface MethodCallMessages {
+        MessagesResponse retrieve(
+            MessagesRequest request) throws Exception;
+    }
+
+    public interface MethodCallEditpin {
+        EditpinResponse update(
+            EditPinRequest request) throws Exception;
+    }
+
+    public interface MethodCallGetpin {
+        GetpinResponse retrieve(
+            GetPinRequest request) throws Exception;
+    }
+
+    public interface MethodCallListpins {
+        ListpinsResponse list(
+            ListpinsRequest request) throws Exception;
+    }
+
+    public interface MethodCallPin {
+        PinResponse create(
+            PinRequest request) throws Exception;
+    }
+
+    public interface MethodCallUnpin {
+        UnpinResponse remove(
+            Unpin request) throws Exception;
+    }
+
+    public interface MethodCallAdminsearch {
+        AdminsearchResponse queryAsAdmin(
+            Optional<? extends SearchRequest> request) throws Exception;
+    }
+
+    public interface MethodCallAutocomplete {
+        AutocompleteResponse autocomplete(
+            AutocompleteRequest request) throws Exception;
+    }
+
+    public interface MethodCallFeed {
+        FeedResponse retrieveFeed(
+            FeedRequest request) throws Exception;
+    }
+
+    public interface MethodCallRecommendations {
+        RecommendationsResponse recommendations(
+            Optional<? extends RecommendationsRequest> request) throws Exception;
+    }
+
+    public interface MethodCallSearch {
+        SearchResponse query(
+            Optional<? extends SearchRequest> request) throws Exception;
+    }
+
+    public interface MethodCallListentities {
+        ListentitiesResponse list(
+            ListEntitiesRequest request) throws Exception;
+    }
+
+    public interface MethodCallPeople {
+        PeopleResponse readPeople(
+            PeopleRequest request) throws Exception;
+    }
+
+    public interface MethodCallCreateshortcut {
+        CreateshortcutResponse create(
+            CreateShortcutRequest request) throws Exception;
+    }
+
+    public interface MethodCallDeleteshortcut {
+        DeleteshortcutResponse delete(
+            DeleteShortcutRequest request) throws Exception;
+    }
+
+    public interface MethodCallGetshortcut {
+        GetshortcutResponse retrieve(
+            GetShortcutRequestUnion request) throws Exception;
+    }
+
+    public interface MethodCallListshortcuts {
+        ListshortcutsResponse list(
+            ListShortcutsPaginatedRequest request) throws Exception;
+    }
+
+    public interface MethodCallUpdateshortcut {
+        UpdateshortcutResponse update(
+            UpdateShortcutRequest request) throws Exception;
+    }
+
+    public interface MethodCallAddverificationreminder {
+        AddverificationreminderResponse addReminder(
+            ReminderRequest request) throws Exception;
+    }
+
+    public interface MethodCallListverifications {
+        ListverificationsResponse list(
+            Optional<Long> count) throws Exception;
+    }
+
+    public interface MethodCallVerify {
+        VerifyResponse verify(
+            VerifyRequest request) throws Exception;
     }
 
     public interface MethodCallPostApiIndexV1Indexdocument {
@@ -531,6 +419,33 @@ public class SDKMethodInterfaces {
     public interface MethodCallPostApiIndexV1Deletedocument {
         PostApiIndexV1DeletedocumentResponse delete(
             DeleteDocumentRequest request) throws Exception;
+    }
+
+    public interface MethodCallPostApiIndexV1DebugDatasourceDocument {
+        PostApiIndexV1DebugDatasourceDocumentResponse debug(
+            String datasource,
+            DebugDocumentRequest debugDocumentRequest) throws Exception;
+    }
+
+    public interface MethodCallPostApiIndexV1DebugDatasourceDocuments {
+        PostApiIndexV1DebugDatasourceDocumentsResponse debugMany(
+            String datasource,
+            DebugDocumentsRequest debugDocumentsRequest) throws Exception;
+    }
+
+    public interface MethodCallPostApiIndexV1Checkdocumentaccess {
+        PostApiIndexV1CheckdocumentaccessResponse checkAccess(
+            CheckDocumentAccessRequest request) throws Exception;
+    }
+
+    public interface MethodCallPostApiIndexV1Getdocumentstatus {
+        PostApiIndexV1GetdocumentstatusResponse status(
+            GetDocumentStatusRequest request) throws Exception;
+    }
+
+    public interface MethodCallPostApiIndexV1Getdocumentcount {
+        PostApiIndexV1GetdocumentcountResponse count(
+            GetDocumentCountRequest request) throws Exception;
     }
 
     public interface MethodCallPostApiIndexV1Updatepermissions {
@@ -594,60 +509,19 @@ public class SDKMethodInterfaces {
     }
 
     public interface MethodCallPostApiIndexV1DebugDatasourceStatus {
-        PostApiIndexV1DebugDatasourceStatusResponse getDatasourceStatus(
+        PostApiIndexV1DebugDatasourceStatusResponse status(
             String datasource) throws Exception;
     }
 
-    public interface MethodCallPostApiIndexV1DebugDatasourceDocument {
-        PostApiIndexV1DebugDatasourceDocumentResponse postDocumentDebug(
-            String datasource,
-            DebugDocumentRequest debugDocumentRequest) throws Exception;
-    }
-
-    public interface MethodCallPostApiIndexV1DebugDatasourceDocuments {
-        PostApiIndexV1DebugDatasourceDocumentsResponse postDocumentsDebug(
-            String datasource,
-            DebugDocumentsRequest debugDocumentsRequest) throws Exception;
-    }
-
     public interface MethodCallPostApiIndexV1DebugDatasourceUser {
-        PostApiIndexV1DebugDatasourceUserResponse debugUser(
+        PostApiIndexV1DebugDatasourceUserResponse debug(
             String datasource,
             DebugUserRequest debugUserRequest) throws Exception;
     }
 
-    public interface MethodCallPostApiIndexV1Checkdocumentaccess {
-        PostApiIndexV1CheckdocumentaccessResponse checkAccess(
-            CheckDocumentAccessRequest request) throws Exception;
-    }
-
-    public interface MethodCallPostApiIndexV1Getdocumentstatus {
-        PostApiIndexV1GetdocumentstatusResponse getStatus(
-            GetDocumentStatusRequest request) throws Exception;
-    }
-
-    public interface MethodCallPostApiIndexV1Getdocumentcount {
-        PostApiIndexV1GetdocumentcountResponse getDocumentCount(
-            GetDocumentCountRequest request) throws Exception;
-    }
-
     public interface MethodCallPostApiIndexV1Getusercount {
-        PostApiIndexV1GetusercountResponse getUserCount(
+        PostApiIndexV1GetusercountResponse count(
             GetUserCountRequest request) throws Exception;
-    }
-
-    public interface MethodCallPostApiIndexV1Adddatasource {
-        PostApiIndexV1AdddatasourceResponse add(
-            CustomDatasourceConfig request) throws Exception;
-    }
-
-    public interface MethodCallPostApiIndexV1Getdatasourceconfig {
-        PostApiIndexV1GetdatasourceconfigResponse getConfig(
-            GetDatasourceConfigRequest request) throws Exception;
-    }
-
-    public interface MethodCallPostApiIndexV1Rotatetoken {
-        PostApiIndexV1RotatetokenResponse rotateTokenDirect() throws Exception;
     }
 
     public interface MethodCallPostApiIndexV1Indexemployee {
@@ -656,13 +530,8 @@ public class SDKMethodInterfaces {
     }
 
     public interface MethodCallPostApiIndexV1Bulkindexemployees {
-        PostApiIndexV1BulkindexemployeesResponse bulkIndexEmployees(
+        PostApiIndexV1BulkindexemployeesResponse bulkIndex(
             BulkIndexEmployeesRequest request) throws Exception;
-    }
-
-    public interface MethodCallPostApiIndexV1Indexemployeelist {
-        PostApiIndexV1IndexemployeelistResponse bulkIndex(
-            IndexEmployeeListRequest request) throws Exception;
     }
 
     public interface MethodCallPostApiIndexV1Processallemployeesandteams {
@@ -689,8 +558,27 @@ public class SDKMethodInterfaces {
             BulkIndexTeamsRequest request) throws Exception;
     }
 
+    public interface MethodCallPostApiIndexV1Adddatasource {
+        PostApiIndexV1AdddatasourceResponse add(
+            CustomDatasourceConfig request) throws Exception;
+    }
+
+    public interface MethodCallPostApiIndexV1Getdatasourceconfig {
+        PostApiIndexV1GetdatasourceconfigResponse retrieveConfig(
+            GetDatasourceConfigRequest request) throws Exception;
+    }
+
+    public interface MethodCallPostApiIndexV1Rotatetoken {
+        PostApiIndexV1RotatetokenResponse rotateTokenDirect() throws Exception;
+    }
+
     public interface MethodCallPostApiIndexV1Bulkindexshortcuts {
         PostApiIndexV1BulkindexshortcutsResponse bulkIndex(
             BulkIndexShortcutsRequest request) throws Exception;
+    }
+
+    public interface MethodCallPostApiIndexV1Uploadshortcuts {
+        PostApiIndexV1UploadshortcutsResponse upload(
+            UploadShortcutsRequest request) throws Exception;
     }
 }

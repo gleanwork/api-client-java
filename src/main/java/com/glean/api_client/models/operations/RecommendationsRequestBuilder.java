@@ -6,61 +6,32 @@ package com.glean.api_client.models.operations;
 import com.glean.api_client.models.components.RecommendationsRequest;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
 import java.util.Optional;
 
 public class RecommendationsRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
-    private Optional<? extends RecommendationsRequest> recommendationsRequest = Optional.empty();
+    private Optional<? extends RecommendationsRequest> request = Optional.empty();
     private final SDKMethodInterfaces.MethodCallRecommendations sdk;
 
     public RecommendationsRequestBuilder(SDKMethodInterfaces.MethodCallRecommendations sdk) {
         this.sdk = sdk;
     }
                 
-    public RecommendationsRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
+    public RecommendationsRequestBuilder request(RecommendationsRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = Optional.of(request);
         return this;
     }
 
-    public RecommendationsRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public RecommendationsRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public RecommendationsRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
-                
-    public RecommendationsRequestBuilder recommendationsRequest(RecommendationsRequest recommendationsRequest) {
-        Utils.checkNotNull(recommendationsRequest, "recommendationsRequest");
-        this.recommendationsRequest = Optional.of(recommendationsRequest);
-        return this;
-    }
-
-    public RecommendationsRequestBuilder recommendationsRequest(Optional<? extends RecommendationsRequest> recommendationsRequest) {
-        Utils.checkNotNull(recommendationsRequest, "recommendationsRequest");
-        this.recommendationsRequest = recommendationsRequest;
+    public RecommendationsRequestBuilder request(Optional<? extends RecommendationsRequest> request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public RecommendationsResponse call() throws Exception {
 
         return sdk.recommendations(
-            xGleanActAs,
-            xGleanAuthType,
-            recommendationsRequest);
+            request);
     }
 }

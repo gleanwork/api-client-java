@@ -6,55 +6,25 @@ package com.glean.api_client.models.operations;
 import com.glean.api_client.models.components.GetDocPermissionsRequest;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
-import java.util.Optional;
 
 public class GetdocpermissionsRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
-    private GetDocPermissionsRequest getDocPermissionsRequest;
+    private GetDocPermissionsRequest request;
     private final SDKMethodInterfaces.MethodCallGetdocpermissions sdk;
 
     public GetdocpermissionsRequestBuilder(SDKMethodInterfaces.MethodCallGetdocpermissions sdk) {
         this.sdk = sdk;
     }
-                
-    public GetdocpermissionsRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
 
-    public GetdocpermissionsRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public GetdocpermissionsRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public GetdocpermissionsRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
-
-    public GetdocpermissionsRequestBuilder getDocPermissionsRequest(GetDocPermissionsRequest getDocPermissionsRequest) {
-        Utils.checkNotNull(getDocPermissionsRequest, "getDocPermissionsRequest");
-        this.getDocPermissionsRequest = getDocPermissionsRequest;
+    public GetdocpermissionsRequestBuilder request(GetDocPermissionsRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public GetdocpermissionsResponse call() throws Exception {
 
-        return sdk.getPermissions(
-            xGleanActAs,
-            xGleanAuthType,
-            getDocPermissionsRequest);
+        return sdk.retrievePermissions(
+            request);
     }
 }

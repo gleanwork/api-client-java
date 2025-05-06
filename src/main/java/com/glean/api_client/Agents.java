@@ -57,7 +57,7 @@ public class Agents implements
      * 
      * @return The call builder
      */
-    public RunagentRequestBuilder runagent() {
+    public RunagentRequestBuilder run() {
         return new RunagentRequestBuilder(this);
     }
 
@@ -70,9 +70,9 @@ public class Agents implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public RunagentResponse runagent(
+    public RunagentResponse run(
             RunAgentRequest runAgentRequest) throws Exception {
-        return runagent(Optional.empty(), Optional.empty(), Optional.empty(), runAgentRequest);
+        return run(Optional.empty(), runAgentRequest);
     }
     
     /**
@@ -80,23 +80,17 @@ public class Agents implements
      * 
      * <p>Trigger an Agent with a given id.
      * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param runAgentRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public RunagentResponse runagent(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
+    public RunagentResponse run(
             Optional<Long> timezoneOffset,
             RunAgentRequest runAgentRequest) throws Exception {
         RunagentRequest request =
             RunagentRequest
                 .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
                 .timezoneOffset(timezoneOffset)
                 .runAgentRequest(runAgentRequest)
                 .build();
@@ -129,7 +123,6 @@ public class Agents implements
                 RunagentRequest.class,
                 request, 
                 null));
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -238,7 +231,7 @@ public class Agents implements
      * 
      * @return The call builder
      */
-    public ListagentsRequestBuilder listagents() {
+    public ListagentsRequestBuilder list() {
         return new ListagentsRequestBuilder(this);
     }
 
@@ -250,8 +243,8 @@ public class Agents implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListagentsResponse listagentsDirect() throws Exception {
-        return listagents(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    public ListagentsResponse listDirect() throws Exception {
+        return list(Optional.empty(), Optional.empty());
     }
     
     /**
@@ -259,23 +252,17 @@ public class Agents implements
      * 
      * <p>Lists all agents that are available.
      * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param requestBody 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListagentsResponse listagents(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
+    public ListagentsResponse list(
             Optional<Long> timezoneOffset,
             Optional<? extends Object> requestBody) throws Exception {
         ListagentsRequest request =
             ListagentsRequest
                 .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
                 .timezoneOffset(timezoneOffset)
                 .requestBody(requestBody)
                 .build();
@@ -305,7 +292,6 @@ public class Agents implements
                 ListagentsRequest.class,
                 request, 
                 null));
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -414,7 +400,7 @@ public class Agents implements
      * 
      * @return The call builder
      */
-    public GetagentinputsRequestBuilder getagentinputs() {
+    public GetagentinputsRequestBuilder retrieveInputs() {
         return new GetagentinputsRequestBuilder(this);
     }
 
@@ -427,9 +413,9 @@ public class Agents implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetagentinputsResponse getagentinputs(
+    public GetagentinputsResponse retrieveInputs(
             GetAgentInputsRequest getAgentInputsRequest) throws Exception {
-        return getagentinputs(Optional.empty(), Optional.empty(), Optional.empty(), getAgentInputsRequest);
+        return retrieveInputs(Optional.empty(), getAgentInputsRequest);
     }
     
     /**
@@ -437,23 +423,17 @@ public class Agents implements
      * 
      * <p>Get the inputs to an agent with a given id.
      * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param getAgentInputsRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetagentinputsResponse getagentinputs(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
+    public GetagentinputsResponse retrieveInputs(
             Optional<Long> timezoneOffset,
             GetAgentInputsRequest getAgentInputsRequest) throws Exception {
         GetagentinputsRequest request =
             GetagentinputsRequest
                 .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
                 .timezoneOffset(timezoneOffset)
                 .getAgentInputsRequest(getAgentInputsRequest)
                 .build();
@@ -486,7 +466,6 @@ public class Agents implements
                 GetagentinputsRequest.class,
                 request, 
                 null));
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  

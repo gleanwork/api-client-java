@@ -6,55 +6,25 @@ package com.glean.api_client.models.operations;
 import com.glean.api_client.models.components.PinRequest;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
-import java.util.Optional;
 
 public class PinRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
-    private PinRequest pinRequest;
+    private PinRequest request;
     private final SDKMethodInterfaces.MethodCallPin sdk;
 
     public PinRequestBuilder(SDKMethodInterfaces.MethodCallPin sdk) {
         this.sdk = sdk;
     }
-                
-    public PinRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
 
-    public PinRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public PinRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public PinRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
-
-    public PinRequestBuilder pinRequest(PinRequest pinRequest) {
-        Utils.checkNotNull(pinRequest, "pinRequest");
-        this.pinRequest = pinRequest;
+    public PinRequestBuilder request(PinRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public PinResponse call() throws Exception {
 
         return sdk.create(
-            xGleanActAs,
-            xGleanAuthType,
-            pinRequest);
+            request);
     }
 }

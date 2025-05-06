@@ -6,9 +6,12 @@ package com.glean.api_client;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.models.components.BulkIndexEmployeesRequest;
 import com.glean.api_client.models.components.BulkIndexTeamsRequest;
+import com.glean.api_client.models.components.DebugUserRequest;
+import com.glean.api_client.models.components.DebugUserResponse;
 import com.glean.api_client.models.components.DeleteEmployeeRequest;
 import com.glean.api_client.models.components.DeleteTeamRequest;
-import com.glean.api_client.models.components.IndexEmployeeListRequest;
+import com.glean.api_client.models.components.GetUserCountRequest;
+import com.glean.api_client.models.components.GetUserCountResponse;
 import com.glean.api_client.models.components.IndexEmployeeRequest;
 import com.glean.api_client.models.components.IndexTeamRequest;
 import com.glean.api_client.models.errors.APIException;
@@ -16,14 +19,17 @@ import com.glean.api_client.models.operations.PostApiIndexV1BulkindexemployeesRe
 import com.glean.api_client.models.operations.PostApiIndexV1BulkindexemployeesResponse;
 import com.glean.api_client.models.operations.PostApiIndexV1BulkindexteamsRequestBuilder;
 import com.glean.api_client.models.operations.PostApiIndexV1BulkindexteamsResponse;
+import com.glean.api_client.models.operations.PostApiIndexV1DebugDatasourceUserRequest;
+import com.glean.api_client.models.operations.PostApiIndexV1DebugDatasourceUserRequestBuilder;
+import com.glean.api_client.models.operations.PostApiIndexV1DebugDatasourceUserResponse;
 import com.glean.api_client.models.operations.PostApiIndexV1DeleteemployeeRequestBuilder;
 import com.glean.api_client.models.operations.PostApiIndexV1DeleteemployeeResponse;
 import com.glean.api_client.models.operations.PostApiIndexV1DeleteteamRequestBuilder;
 import com.glean.api_client.models.operations.PostApiIndexV1DeleteteamResponse;
+import com.glean.api_client.models.operations.PostApiIndexV1GetusercountRequestBuilder;
+import com.glean.api_client.models.operations.PostApiIndexV1GetusercountResponse;
 import com.glean.api_client.models.operations.PostApiIndexV1IndexemployeeRequestBuilder;
 import com.glean.api_client.models.operations.PostApiIndexV1IndexemployeeResponse;
-import com.glean.api_client.models.operations.PostApiIndexV1IndexemployeelistRequestBuilder;
-import com.glean.api_client.models.operations.PostApiIndexV1IndexemployeelistResponse;
 import com.glean.api_client.models.operations.PostApiIndexV1IndexteamRequestBuilder;
 import com.glean.api_client.models.operations.PostApiIndexV1IndexteamResponse;
 import com.glean.api_client.models.operations.PostApiIndexV1ProcessallemployeesandteamsRequestBuilder;
@@ -48,9 +54,10 @@ import java.util.List;
 import java.util.Optional;
 
 public class People implements
+            MethodCallPostApiIndexV1DebugDatasourceUser,
+            MethodCallPostApiIndexV1Getusercount,
             MethodCallPostApiIndexV1Indexemployee,
             MethodCallPostApiIndexV1Bulkindexemployees,
-            MethodCallPostApiIndexV1Indexemployeelist,
             MethodCallPostApiIndexV1Processallemployeesandteams,
             MethodCallPostApiIndexV1Deleteemployee,
             MethodCallPostApiIndexV1Indexteam,
@@ -62,6 +69,321 @@ public class People implements
     People(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
+
+    /**
+     * Beta: Get user information
+     * 
+     * <p>Gives various information that would help in debugging related to a particular user. Currently in beta, might undergo breaking changes without prior notice.
+     * 
+     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/docs/indexing_api/indexing_api_troubleshooting/) for more information.
+     * 
+     * @return The call builder
+     */
+    public PostApiIndexV1DebugDatasourceUserRequestBuilder debug() {
+        return new PostApiIndexV1DebugDatasourceUserRequestBuilder(this);
+    }
+
+    /**
+     * Beta: Get user information
+     * 
+     * <p>Gives various information that would help in debugging related to a particular user. Currently in beta, might undergo breaking changes without prior notice.
+     * 
+     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/docs/indexing_api/indexing_api_troubleshooting/) for more information.
+     * 
+     * @param datasource The datasource to which the user belongs
+     * @param debugUserRequest Describes the request body of the /debug/{datasource}/user API call
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public PostApiIndexV1DebugDatasourceUserResponse debug(
+            String datasource,
+            DebugUserRequest debugUserRequest) throws Exception {
+        PostApiIndexV1DebugDatasourceUserRequest request =
+            PostApiIndexV1DebugDatasourceUserRequest
+                .builder()
+                .datasource(datasource)
+                .debugUserRequest(debugUserRequest)
+                .build();
+        
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+        String _url = Utils.generateURL(
+                PostApiIndexV1DebugDatasourceUserRequest.class,
+                _baseUrl,
+                "/api/index/v1/debug/{datasource}/user",
+                request, null);
+        
+        HTTPRequest _req = new HTTPRequest(_url, "POST");
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Object>() {});
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
+                _convertedRequest, 
+                "debugUserRequest",
+                "json",
+                false);
+        if (_serializedRequestBody == null) {
+            throw new Exception("Request body is required");
+        }
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
+        _req.addHeader("Accept", "application/json; charset=UTF-8")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      _baseUrl,
+                      "post_/api/index/v1/debug/{datasource}/user", 
+                      Optional.of(List.of()), 
+                      _hookSecuritySource),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "4XX", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            _baseUrl,
+                            "post_/api/index/v1/debug/{datasource}/user",
+                            Optional.of(List.of()),
+                            _hookSecuritySource),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            _baseUrl,
+                            "post_/api/index/v1/debug/{datasource}/user",
+                            Optional.of(List.of()), 
+                            _hookSecuritySource),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            _baseUrl,
+                            "post_/api/index/v1/debug/{datasource}/user",
+                            Optional.of(List.of()),
+                            _hookSecuritySource), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        PostApiIndexV1DebugDatasourceUserResponse.Builder _resBuilder = 
+            PostApiIndexV1DebugDatasourceUserResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        PostApiIndexV1DebugDatasourceUserResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json; charset=UTF-8")) {
+                DebugUserResponse _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<DebugUserResponse>() {});
+                _res.withDebugUserResponse(Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "4XX")) {
+            // no content 
+            throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
+            // no content 
+            throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        throw new APIException(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
+
+
+    /**
+     * Get user count
+     * 
+     * <p>Fetches user count for the specified custom datasource.
+     * 
+     * <p>Tip: Use [/debug/{datasource}/status](https://developers.glean.com/docs/indexing_api/indexing_api_troubleshooting/#debug-datasource-status) for richer information.
+     * 
+     * @return The call builder
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public PostApiIndexV1GetusercountRequestBuilder count() {
+        return new PostApiIndexV1GetusercountRequestBuilder(this);
+    }
+
+    /**
+     * Get user count
+     * 
+     * <p>Fetches user count for the specified custom datasource.
+     * 
+     * <p>Tip: Use [/debug/{datasource}/status](https://developers.glean.com/docs/indexing_api/indexing_api_troubleshooting/#debug-datasource-status) for richer information.
+     * 
+     * @param request The request object containing all of the parameters for the API call.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public PostApiIndexV1GetusercountResponse count(
+            GetUserCountRequest request) throws Exception {
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+        String _url = Utils.generateURL(
+                _baseUrl,
+                "/api/index/v1/getusercount");
+        
+        HTTPRequest _req = new HTTPRequest(_url, "POST");
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<GetUserCountRequest>() {});
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
+                _convertedRequest, 
+                "request",
+                "json",
+                false);
+        if (_serializedRequestBody == null) {
+            throw new Exception("Request body is required");
+        }
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      _baseUrl,
+                      "post_/api/index/v1/getusercount", 
+                      Optional.of(List.of()), 
+                      _hookSecuritySource),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "409", "4XX", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            _baseUrl,
+                            "post_/api/index/v1/getusercount",
+                            Optional.of(List.of()),
+                            _hookSecuritySource),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            _baseUrl,
+                            "post_/api/index/v1/getusercount",
+                            Optional.of(List.of()), 
+                            _hookSecuritySource),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            _baseUrl,
+                            "post_/api/index/v1/getusercount",
+                            Optional.of(List.of()),
+                            _hookSecuritySource), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        PostApiIndexV1GetusercountResponse.Builder _resBuilder = 
+            PostApiIndexV1GetusercountResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        PostApiIndexV1GetusercountResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                GetUserCountResponse _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<GetUserCountResponse>() {});
+                _res.withGetUserCountResponse(Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "409", "4XX")) {
+            // no content 
+            throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
+            // no content 
+            throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        throw new APIException(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
 
 
     /**
@@ -206,7 +528,7 @@ public class People implements
      * 
      * @return The call builder
      */
-    public PostApiIndexV1BulkindexemployeesRequestBuilder bulkIndexEmployees() {
+    public PostApiIndexV1BulkindexemployeesRequestBuilder bulkIndex() {
         return new PostApiIndexV1BulkindexemployeesRequestBuilder(this);
     }
 
@@ -219,7 +541,7 @@ public class People implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1BulkindexemployeesResponse bulkIndexEmployees(
+    public PostApiIndexV1BulkindexemployeesResponse bulkIndex(
             BulkIndexEmployeesRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
@@ -304,145 +626,6 @@ public class People implements
                 .rawResponse(_httpRes);
 
         PostApiIndexV1BulkindexemployeesResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            // no content 
-            return _res;
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "409", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
-    }
-
-
-
-    /**
-     * Bulk index employees
-     * 
-     * <p>Bulk upload details of all the employees. This deletes all employees uploaded in the prior batch. SOON TO BE DEPRECATED in favor of /bulkindexemployees.
-     * 
-     * @return The call builder
-     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public PostApiIndexV1IndexemployeelistRequestBuilder bulkIndex() {
-        return new PostApiIndexV1IndexemployeelistRequestBuilder(this);
-    }
-
-    /**
-     * Bulk index employees
-     * 
-     * <p>Bulk upload details of all the employees. This deletes all employees uploaded in the prior batch. SOON TO BE DEPRECATED in favor of /bulkindexemployees.
-     * 
-     * @param request The request object containing all of the parameters for the API call.
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public PostApiIndexV1IndexemployeelistResponse bulkIndex(
-            IndexEmployeeListRequest request) throws Exception {
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/api/index/v1/indexemployeelist");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<IndexEmployeeListRequest>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "request",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "*/*")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      _baseUrl,
-                      "post_/api/index/v1/indexemployeelist", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "409", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "post_/api/index/v1/indexemployeelist",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            _baseUrl,
-                            "post_/api/index/v1/indexemployeelist",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            _baseUrl,
-                            "post_/api/index/v1/indexemployeelist",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        PostApiIndexV1IndexemployeelistResponse.Builder _resBuilder = 
-            PostApiIndexV1IndexemployeelistResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        PostApiIndexV1IndexemployeelistResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             // no content 

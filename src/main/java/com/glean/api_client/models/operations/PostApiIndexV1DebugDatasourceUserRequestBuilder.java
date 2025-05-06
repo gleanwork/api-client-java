@@ -32,7 +32,7 @@ public class PostApiIndexV1DebugDatasourceUserRequestBuilder {
 
     public PostApiIndexV1DebugDatasourceUserResponse call() throws Exception {
 
-        return sdk.debugUser(
+        return sdk.debug(
             datasource,
             debugUserRequest);
     }

@@ -6,42 +6,15 @@ package com.glean.api_client.models.operations;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
-import java.lang.String;
 import java.util.Optional;
 
 public class ListchatsRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private final SDKMethodInterfaces.MethodCallListchats sdk;
 
     public ListchatsRequestBuilder(SDKMethodInterfaces.MethodCallListchats sdk) {
         this.sdk = sdk;
-    }
-                
-    public ListchatsRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
-
-    public ListchatsRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public ListchatsRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public ListchatsRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
     }
                 
     public ListchatsRequestBuilder timezoneOffset(long timezoneOffset) {
@@ -59,8 +32,6 @@ public class ListchatsRequestBuilder {
     public ListchatsResponse call() throws Exception {
 
         return sdk.list(
-            xGleanActAs,
-            xGleanAuthType,
             timezoneOffset);
     }
 }

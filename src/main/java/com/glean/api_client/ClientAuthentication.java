@@ -6,7 +6,6 @@ package com.glean.api_client;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.models.components.CreateAuthTokenResponse;
 import com.glean.api_client.models.errors.APIException;
-import com.glean.api_client.models.operations.CreateauthtokenRequest;
 import com.glean.api_client.models.operations.CreateauthtokenRequestBuilder;
 import com.glean.api_client.models.operations.CreateauthtokenResponse;
 import com.glean.api_client.models.operations.SDKMethodInterfaces.*;
@@ -54,29 +53,6 @@ public class ClientAuthentication implements
      * @throws Exception if the API call fails
      */
     public CreateauthtokenResponse createTokenDirect() throws Exception {
-        return createToken(Optional.empty(), Optional.empty());
-    }
-    
-    /**
-     * Create authentication token
-     * 
-     * <p>Creates an authentication token for the authenticated user.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public CreateauthtokenResponse createToken(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType) throws Exception {
-        CreateauthtokenRequest request =
-            CreateauthtokenRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .build();
-        
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -87,7 +63,6 @@ public class ClientAuthentication implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  

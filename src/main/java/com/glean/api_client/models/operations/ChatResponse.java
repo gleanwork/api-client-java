@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Objects;
 import java.util.Optional;
@@ -35,14 +36,14 @@ public class ChatResponse implements Response {
     /**
      * OK
      */
-    private Optional<String> chatResponse;
+    private Optional<? extends com.glean.api_client.models.components.ChatResponse> chatResponse;
 
     @JsonCreator
     public ChatResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<String> chatResponse) {
+            Optional<? extends com.glean.api_client.models.components.ChatResponse> chatResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
@@ -87,9 +88,10 @@ public class ChatResponse implements Response {
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> chatResponse() {
-        return chatResponse;
+    public Optional<com.glean.api_client.models.components.ChatResponse> chatResponse() {
+        return (Optional<com.glean.api_client.models.components.ChatResponse>) chatResponse;
     }
 
     public final static Builder builder() {
@@ -126,7 +128,7 @@ public class ChatResponse implements Response {
     /**
      * OK
      */
-    public ChatResponse withChatResponse(String chatResponse) {
+    public ChatResponse withChatResponse(com.glean.api_client.models.components.ChatResponse chatResponse) {
         Utils.checkNotNull(chatResponse, "chatResponse");
         this.chatResponse = Optional.ofNullable(chatResponse);
         return this;
@@ -135,7 +137,7 @@ public class ChatResponse implements Response {
     /**
      * OK
      */
-    public ChatResponse withChatResponse(Optional<String> chatResponse) {
+    public ChatResponse withChatResponse(Optional<? extends com.glean.api_client.models.components.ChatResponse> chatResponse) {
         Utils.checkNotNull(chatResponse, "chatResponse");
         this.chatResponse = chatResponse;
         return this;
@@ -184,7 +186,7 @@ public class ChatResponse implements Response {
  
         private HttpResponse<InputStream> rawResponse;
  
-        private Optional<String> chatResponse = Optional.empty();
+        private Optional<? extends com.glean.api_client.models.components.ChatResponse> chatResponse = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -220,7 +222,7 @@ public class ChatResponse implements Response {
         /**
          * OK
          */
-        public Builder chatResponse(String chatResponse) {
+        public Builder chatResponse(com.glean.api_client.models.components.ChatResponse chatResponse) {
             Utils.checkNotNull(chatResponse, "chatResponse");
             this.chatResponse = Optional.ofNullable(chatResponse);
             return this;
@@ -229,7 +231,7 @@ public class ChatResponse implements Response {
         /**
          * OK
          */
-        public Builder chatResponse(Optional<String> chatResponse) {
+        public Builder chatResponse(Optional<? extends com.glean.api_client.models.components.ChatResponse> chatResponse) {
             Utils.checkNotNull(chatResponse, "chatResponse");
             this.chatResponse = chatResponse;
             return this;

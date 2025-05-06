@@ -21,28 +21,20 @@ import com.glean.api_client.models.components.ListCollectionsRequest;
 import com.glean.api_client.models.components.ListCollectionsResponse;
 import com.glean.api_client.models.errors.APIException;
 import com.glean.api_client.models.errors.CollectionError;
-import com.glean.api_client.models.operations.AddcollectionitemsRequest;
 import com.glean.api_client.models.operations.AddcollectionitemsRequestBuilder;
 import com.glean.api_client.models.operations.AddcollectionitemsResponse;
-import com.glean.api_client.models.operations.CreatecollectionRequest;
 import com.glean.api_client.models.operations.CreatecollectionRequestBuilder;
 import com.glean.api_client.models.operations.CreatecollectionResponse;
-import com.glean.api_client.models.operations.DeletecollectionRequest;
 import com.glean.api_client.models.operations.DeletecollectionRequestBuilder;
 import com.glean.api_client.models.operations.DeletecollectionResponse;
-import com.glean.api_client.models.operations.DeletecollectionitemRequest;
 import com.glean.api_client.models.operations.DeletecollectionitemRequestBuilder;
 import com.glean.api_client.models.operations.DeletecollectionitemResponse;
-import com.glean.api_client.models.operations.EditcollectionRequest;
 import com.glean.api_client.models.operations.EditcollectionRequestBuilder;
 import com.glean.api_client.models.operations.EditcollectionResponse;
-import com.glean.api_client.models.operations.EditcollectionitemRequest;
 import com.glean.api_client.models.operations.EditcollectionitemRequestBuilder;
 import com.glean.api_client.models.operations.EditcollectionitemResponse;
-import com.glean.api_client.models.operations.GetcollectionRequest;
 import com.glean.api_client.models.operations.GetcollectionRequestBuilder;
 import com.glean.api_client.models.operations.GetcollectionResponse;
-import com.glean.api_client.models.operations.ListcollectionsRequest;
 import com.glean.api_client.models.operations.ListcollectionsRequestBuilder;
 import com.glean.api_client.models.operations.ListcollectionsResponse;
 import com.glean.api_client.models.operations.SDKMethodInterfaces.*;
@@ -96,38 +88,12 @@ public class Collections implements
      * 
      * <p>Add items to a Collection.
      * 
-     * @param addCollectionItemsRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public AddcollectionitemsResponse addItems(
-            AddCollectionItemsRequest addCollectionItemsRequest) throws Exception {
-        return addItems(Optional.empty(), Optional.empty(), addCollectionItemsRequest);
-    }
-    
-    /**
-     * Add Collection item
-     * 
-     * <p>Add items to a Collection.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param addCollectionItemsRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public AddcollectionitemsResponse addItems(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            AddCollectionItemsRequest addCollectionItemsRequest) throws Exception {
-        AddcollectionitemsRequest request =
-            AddcollectionitemsRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .addCollectionItemsRequest(addCollectionItemsRequest)
-                .build();
-        
+            AddCollectionItemsRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -138,10 +104,10 @@ public class Collections implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<AddCollectionItemsRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "addCollectionItemsRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -151,7 +117,6 @@ public class Collections implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -269,38 +234,12 @@ public class Collections implements
      * 
      * <p>Create a publicly visible (empty) Collection of documents.
      * 
-     * @param createCollectionRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreatecollectionResponse create(
-            CreateCollectionRequest createCollectionRequest) throws Exception {
-        return create(Optional.empty(), Optional.empty(), createCollectionRequest);
-    }
-    
-    /**
-     * Create Collection
-     * 
-     * <p>Create a publicly visible (empty) Collection of documents.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param createCollectionRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public CreatecollectionResponse create(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            CreateCollectionRequest createCollectionRequest) throws Exception {
-        CreatecollectionRequest request =
-            CreatecollectionRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .createCollectionRequest(createCollectionRequest)
-                .build();
-        
+            CreateCollectionRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -311,10 +250,10 @@ public class Collections implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<CreateCollectionRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "createCollectionRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -324,7 +263,6 @@ public class Collections implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -456,38 +394,12 @@ public class Collections implements
      * 
      * <p>Delete a Collection given the Collection's ID.
      * 
-     * @param deleteCollectionRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeletecollectionResponse delete(
-            DeleteCollectionRequest deleteCollectionRequest) throws Exception {
-        return delete(Optional.empty(), Optional.empty(), deleteCollectionRequest);
-    }
-    
-    /**
-     * Delete Collection
-     * 
-     * <p>Delete a Collection given the Collection's ID.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param deleteCollectionRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public DeletecollectionResponse delete(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            DeleteCollectionRequest deleteCollectionRequest) throws Exception {
-        DeletecollectionRequest request =
-            DeletecollectionRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .deleteCollectionRequest(deleteCollectionRequest)
-                .build();
-        
+            DeleteCollectionRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -498,10 +410,10 @@ public class Collections implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<DeleteCollectionRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "deleteCollectionRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -511,7 +423,6 @@ public class Collections implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -632,38 +543,12 @@ public class Collections implements
      * 
      * <p>Delete a single item from a Collection.
      * 
-     * @param deleteCollectionItemRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeletecollectionitemResponse deleteItem(
-            DeleteCollectionItemRequest deleteCollectionItemRequest) throws Exception {
-        return deleteItem(Optional.empty(), Optional.empty(), deleteCollectionItemRequest);
-    }
-    
-    /**
-     * Delete Collection item
-     * 
-     * <p>Delete a single item from a Collection.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param deleteCollectionItemRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public DeletecollectionitemResponse deleteItem(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            DeleteCollectionItemRequest deleteCollectionItemRequest) throws Exception {
-        DeletecollectionitemRequest request =
-            DeletecollectionitemRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .deleteCollectionItemRequest(deleteCollectionItemRequest)
-                .build();
-        
+            DeleteCollectionItemRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -674,10 +559,10 @@ public class Collections implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<DeleteCollectionItemRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "deleteCollectionItemRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -687,7 +572,6 @@ public class Collections implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -805,38 +689,12 @@ public class Collections implements
      * 
      * <p>Update the properties of an existing Collection.
      * 
-     * @param editCollectionRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public EditcollectionResponse update(
-            EditCollectionRequest editCollectionRequest) throws Exception {
-        return update(Optional.empty(), Optional.empty(), editCollectionRequest);
-    }
-    
-    /**
-     * Update Collection
-     * 
-     * <p>Update the properties of an existing Collection.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param editCollectionRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public EditcollectionResponse update(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            EditCollectionRequest editCollectionRequest) throws Exception {
-        EditcollectionRequest request =
-            EditcollectionRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .editCollectionRequest(editCollectionRequest)
-                .build();
-        
+            EditCollectionRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -847,10 +705,10 @@ public class Collections implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<EditCollectionRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "editCollectionRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -860,7 +718,6 @@ public class Collections implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -983,7 +840,7 @@ public class Collections implements
      * 
      * @return The call builder
      */
-    public EditcollectionitemRequestBuilder editItem() {
+    public EditcollectionitemRequestBuilder updateItem() {
         return new EditcollectionitemRequestBuilder(this);
     }
 
@@ -992,38 +849,12 @@ public class Collections implements
      * 
      * <p>Update the URL, Glean Document ID, description of an item within a Collection given its ID.
      * 
-     * @param editCollectionItemRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public EditcollectionitemResponse editItem(
-            EditCollectionItemRequest editCollectionItemRequest) throws Exception {
-        return editItem(Optional.empty(), Optional.empty(), editCollectionItemRequest);
-    }
-    
-    /**
-     * Update Collection item
-     * 
-     * <p>Update the URL, Glean Document ID, description of an item within a Collection given its ID.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param editCollectionItemRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public EditcollectionitemResponse editItem(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            EditCollectionItemRequest editCollectionItemRequest) throws Exception {
-        EditcollectionitemRequest request =
-            EditcollectionitemRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .editCollectionItemRequest(editCollectionItemRequest)
-                .build();
-        
+    public EditcollectionitemResponse updateItem(
+            EditCollectionItemRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -1034,10 +865,10 @@ public class Collections implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<EditCollectionItemRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "editCollectionItemRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -1047,7 +878,6 @@ public class Collections implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -1156,7 +986,7 @@ public class Collections implements
      * 
      * @return The call builder
      */
-    public GetcollectionRequestBuilder get() {
+    public GetcollectionRequestBuilder retrieve() {
         return new GetcollectionRequestBuilder(this);
     }
 
@@ -1165,38 +995,12 @@ public class Collections implements
      * 
      * <p>Read the details of a Collection given its ID. Does not fetch items in this Collection.
      * 
-     * @param getCollectionRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetcollectionResponse get(
-            GetCollectionRequest getCollectionRequest) throws Exception {
-        return get(Optional.empty(), Optional.empty(), getCollectionRequest);
-    }
-    
-    /**
-     * Read Collection
-     * 
-     * <p>Read the details of a Collection given its ID. Does not fetch items in this Collection.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param getCollectionRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public GetcollectionResponse get(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            GetCollectionRequest getCollectionRequest) throws Exception {
-        GetcollectionRequest request =
-            GetcollectionRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .getCollectionRequest(getCollectionRequest)
-                .build();
-        
+    public GetcollectionResponse retrieve(
+            GetCollectionRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -1207,10 +1011,10 @@ public class Collections implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<GetCollectionRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "getCollectionRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -1220,7 +1024,6 @@ public class Collections implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -1338,38 +1141,12 @@ public class Collections implements
      * 
      * <p>List all existing Collections.
      * 
-     * @param listCollectionsRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListcollectionsResponse list(
-            ListCollectionsRequest listCollectionsRequest) throws Exception {
-        return list(Optional.empty(), Optional.empty(), listCollectionsRequest);
-    }
-    
-    /**
-     * List Collections
-     * 
-     * <p>List all existing Collections.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param listCollectionsRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public ListcollectionsResponse list(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            ListCollectionsRequest listCollectionsRequest) throws Exception {
-        ListcollectionsRequest request =
-            ListcollectionsRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .listCollectionsRequest(listCollectionsRequest)
-                .build();
-        
+            ListCollectionsRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -1380,10 +1157,10 @@ public class Collections implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<ListCollectionsRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "listCollectionsRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -1393,7 +1170,6 @@ public class Collections implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  

@@ -11,38 +11,12 @@ import java.util.Optional;
 
 public class FeedbackRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
     private Optional<String> feedbackQueryParameter = Optional.empty();
     private Optional<? extends Feedback> feedback1 = Optional.empty();
     private final SDKMethodInterfaces.MethodCallFeedback sdk;
 
     public FeedbackRequestBuilder(SDKMethodInterfaces.MethodCallFeedback sdk) {
         this.sdk = sdk;
-    }
-                
-    public FeedbackRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
-
-    public FeedbackRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public FeedbackRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public FeedbackRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
     }
                 
     public FeedbackRequestBuilder feedbackQueryParameter(String feedbackQueryParameter) {
@@ -71,9 +45,7 @@ public class FeedbackRequestBuilder {
 
     public FeedbackResponse call() throws Exception {
 
-        return sdk.reportActivity(
-            xGleanActAs,
-            xGleanAuthType,
+        return sdk.feedback(
             feedbackQueryParameter,
             feedback1);
     }

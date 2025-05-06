@@ -6,55 +6,25 @@ package com.glean.api_client.models.operations;
 import com.glean.api_client.models.components.ReminderRequest;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
-import java.util.Optional;
 
 public class AddverificationreminderRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
-    private ReminderRequest reminderRequest;
+    private ReminderRequest request;
     private final SDKMethodInterfaces.MethodCallAddverificationreminder sdk;
 
     public AddverificationreminderRequestBuilder(SDKMethodInterfaces.MethodCallAddverificationreminder sdk) {
         this.sdk = sdk;
     }
-                
-    public AddverificationreminderRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
 
-    public AddverificationreminderRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public AddverificationreminderRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public AddverificationreminderRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
-
-    public AddverificationreminderRequestBuilder reminderRequest(ReminderRequest reminderRequest) {
-        Utils.checkNotNull(reminderRequest, "reminderRequest");
-        this.reminderRequest = reminderRequest;
+    public AddverificationreminderRequestBuilder request(ReminderRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public AddverificationreminderResponse call() throws Exception {
 
         return sdk.addReminder(
-            xGleanActAs,
-            xGleanAuthType,
-            reminderRequest);
+            request);
     }
 }

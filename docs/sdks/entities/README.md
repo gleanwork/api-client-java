@@ -28,26 +28,28 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
+        ListEntitiesRequest req = ListEntitiesRequest.builder()
+                .filter(List.of(
+                    FacetFilter.builder()
+                        .fieldName("type")
+                        .values(List.of(
+                            FacetFilterValue.builder()
+                                .value("Spreadsheet")
+                                .relationType(RelationType.EQUALS)
+                                .build(),
+                            FacetFilterValue.builder()
+                                .value("Presentation")
+                                .relationType(RelationType.EQUALS)
+                                .build()))
+                        .build()))
+                .pageSize(100L)
+                .build();
+
         ListentitiesResponse res = sdk.client().entities().list()
-                .listEntitiesRequest(ListEntitiesRequest.builder()
-                    .filter(List.of(
-                        FacetFilter.builder()
-                            .fieldName("type")
-                            .values(List.of(
-                                FacetFilterValue.builder()
-                                    .value("Spreadsheet")
-                                    .relationType(RelationType.EQUALS)
-                                    .build(),
-                                FacetFilterValue.builder()
-                                    .value("Presentation")
-                                    .relationType(RelationType.EQUALS)
-                                    .build()))
-                            .build()))
-                    .pageSize(100L)
-                    .build())
+                .request(req)
                 .call();
 
         if (res.listEntitiesResponse().isPresent()) {
@@ -59,11 +61,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `listEntitiesRequest`                                                                                                    | [ListEntitiesRequest](../../models/components/ListEntitiesRequest.md)                                                    | :heavy_check_mark:                                                                                                       | List people request                                                                                                      |
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `request`                                                         | [ListEntitiesRequest](../../models/shared/ListEntitiesRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
 
 ### Response
 
@@ -95,15 +95,17 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
+        PeopleRequest req = PeopleRequest.builder()
+                .obfuscatedIds(List.of(
+                    "abc123",
+                    "abc456"))
+                .build();
+
         PeopleResponse res = sdk.client().entities().readPeople()
-                .peopleRequest(PeopleRequest.builder()
-                    .obfuscatedIds(List.of(
-                        "abc123",
-                        "abc456"))
-                    .build())
+                .request(req)
                 .call();
 
         if (res.peopleResponse().isPresent()) {
@@ -115,11 +117,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              | Example                                                                                                                  |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |                                                                                                                          |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |                                                                                                                          |
-| `peopleRequest`                                                                                                          | [PeopleRequest](../../models/components/PeopleRequest.md)                                                                | :heavy_check_mark:                                                                                                       | People request                                                                                                           | {<br/>"obfuscatedIds": [<br/>"abc123",<br/>"abc456"<br/>]<br/>}                                                          |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `request`                                             | [PeopleRequest](../../models/shared/PeopleRequest.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
 
 ### Response
 

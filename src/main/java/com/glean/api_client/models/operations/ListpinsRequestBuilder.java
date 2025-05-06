@@ -5,55 +5,25 @@ package com.glean.api_client.models.operations;
 
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
-import java.util.Optional;
 
 public class ListpinsRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
-    private ListpinsRequestBody requestBody;
+    private ListpinsRequest request;
     private final SDKMethodInterfaces.MethodCallListpins sdk;
 
     public ListpinsRequestBuilder(SDKMethodInterfaces.MethodCallListpins sdk) {
         this.sdk = sdk;
     }
-                
-    public ListpinsRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
 
-    public ListpinsRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public ListpinsRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public ListpinsRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
-
-    public ListpinsRequestBuilder requestBody(ListpinsRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public ListpinsRequestBuilder request(ListpinsRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public ListpinsResponse call() throws Exception {
 
         return sdk.list(
-            xGleanActAs,
-            xGleanAuthType,
-            requestBody);
+            request);
     }
 }

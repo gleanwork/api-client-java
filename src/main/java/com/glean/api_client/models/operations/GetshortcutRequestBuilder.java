@@ -6,55 +6,25 @@ package com.glean.api_client.models.operations;
 import com.glean.api_client.models.components.GetShortcutRequestUnion;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
-import java.util.Optional;
 
 public class GetshortcutRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
-    private GetShortcutRequestUnion getShortcutRequest;
+    private GetShortcutRequestUnion request;
     private final SDKMethodInterfaces.MethodCallGetshortcut sdk;
 
     public GetshortcutRequestBuilder(SDKMethodInterfaces.MethodCallGetshortcut sdk) {
         this.sdk = sdk;
     }
-                
-    public GetshortcutRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
 
-    public GetshortcutRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public GetshortcutRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public GetshortcutRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
-
-    public GetshortcutRequestBuilder getShortcutRequest(GetShortcutRequestUnion getShortcutRequest) {
-        Utils.checkNotNull(getShortcutRequest, "getShortcutRequest");
-        this.getShortcutRequest = getShortcutRequest;
+    public GetshortcutRequestBuilder request(GetShortcutRequestUnion request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public GetshortcutResponse call() throws Exception {
 
-        return sdk.get(
-            xGleanActAs,
-            xGleanAuthType,
-            getShortcutRequest);
+        return sdk.retrieve(
+            request);
     }
 }

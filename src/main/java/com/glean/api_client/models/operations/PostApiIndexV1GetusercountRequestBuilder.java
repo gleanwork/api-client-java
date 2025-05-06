@@ -24,7 +24,7 @@ public class PostApiIndexV1GetusercountRequestBuilder {
 
     public PostApiIndexV1GetusercountResponse call() throws Exception {
 
-        return sdk.getUserCount(
+        return sdk.count(
             request);
     }
 }

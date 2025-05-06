@@ -7,43 +7,16 @@ import com.glean.api_client.models.components.DeleteChatFilesRequest;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
-import java.lang.String;
 import java.util.Optional;
 
 public class DeletechatfilesRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private DeleteChatFilesRequest deleteChatFilesRequest;
     private final SDKMethodInterfaces.MethodCallDeletechatfiles sdk;
 
     public DeletechatfilesRequestBuilder(SDKMethodInterfaces.MethodCallDeletechatfiles sdk) {
         this.sdk = sdk;
-    }
-                
-    public DeletechatfilesRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
-
-    public DeletechatfilesRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public DeletechatfilesRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public DeletechatfilesRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
     }
                 
     public DeletechatfilesRequestBuilder timezoneOffset(long timezoneOffset) {
@@ -67,8 +40,6 @@ public class DeletechatfilesRequestBuilder {
     public DeletechatfilesResponse call() throws Exception {
 
         return sdk.deleteFiles(
-            xGleanActAs,
-            xGleanAuthType,
             timezoneOffset,
             deleteChatFilesRequest);
     }

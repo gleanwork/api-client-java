@@ -9,14 +9,11 @@ import com.glean.api_client.models.components.CreateAnnouncementRequest;
 import com.glean.api_client.models.components.DeleteAnnouncementRequest;
 import com.glean.api_client.models.components.UpdateAnnouncementRequest;
 import com.glean.api_client.models.errors.APIException;
-import com.glean.api_client.models.operations.CreateannouncementRequest;
 import com.glean.api_client.models.operations.CreateannouncementRequestBuilder;
 import com.glean.api_client.models.operations.CreateannouncementResponse;
-import com.glean.api_client.models.operations.DeleteannouncementRequest;
 import com.glean.api_client.models.operations.DeleteannouncementRequestBuilder;
 import com.glean.api_client.models.operations.DeleteannouncementResponse;
 import com.glean.api_client.models.operations.SDKMethodInterfaces.*;
-import com.glean.api_client.models.operations.UpdateannouncementRequest;
 import com.glean.api_client.models.operations.UpdateannouncementRequestBuilder;
 import com.glean.api_client.models.operations.UpdateannouncementResponse;
 import com.glean.api_client.utils.HTTPClient;
@@ -64,38 +61,12 @@ public class Announcements implements
      * 
      * <p>Create a textual announcement visible to some set of users based on department and location.
      * 
-     * @param createAnnouncementRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateannouncementResponse create(
-            CreateAnnouncementRequest createAnnouncementRequest) throws Exception {
-        return create(Optional.empty(), Optional.empty(), createAnnouncementRequest);
-    }
-    
-    /**
-     * Create Announcement
-     * 
-     * <p>Create a textual announcement visible to some set of users based on department and location.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param createAnnouncementRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public CreateannouncementResponse create(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            CreateAnnouncementRequest createAnnouncementRequest) throws Exception {
-        CreateannouncementRequest request =
-            CreateannouncementRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .createAnnouncementRequest(createAnnouncementRequest)
-                .build();
-        
+            CreateAnnouncementRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -106,10 +77,10 @@ public class Announcements implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<CreateAnnouncementRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "createAnnouncementRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -119,7 +90,6 @@ public class Announcements implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -237,38 +207,12 @@ public class Announcements implements
      * 
      * <p>Delete an existing user-generated announcement.
      * 
-     * @param deleteAnnouncementRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeleteannouncementResponse delete(
-            DeleteAnnouncementRequest deleteAnnouncementRequest) throws Exception {
-        return delete(Optional.empty(), Optional.empty(), deleteAnnouncementRequest);
-    }
-    
-    /**
-     * Delete Announcement
-     * 
-     * <p>Delete an existing user-generated announcement.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param deleteAnnouncementRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public DeleteannouncementResponse delete(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            DeleteAnnouncementRequest deleteAnnouncementRequest) throws Exception {
-        DeleteannouncementRequest request =
-            DeleteannouncementRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .deleteAnnouncementRequest(deleteAnnouncementRequest)
-                .build();
-        
+            DeleteAnnouncementRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -279,10 +223,10 @@ public class Announcements implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<DeleteAnnouncementRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "deleteAnnouncementRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -292,7 +236,6 @@ public class Announcements implements
         _req.addHeader("Accept", "*/*")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -399,38 +342,12 @@ public class Announcements implements
      * 
      * <p>Update a textual announcement visible to some set of users based on department and location.
      * 
-     * @param updateAnnouncementRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public UpdateannouncementResponse update(
-            UpdateAnnouncementRequest updateAnnouncementRequest) throws Exception {
-        return update(Optional.empty(), Optional.empty(), updateAnnouncementRequest);
-    }
-    
-    /**
-     * Update Announcement
-     * 
-     * <p>Update a textual announcement visible to some set of users based on department and location.
-     * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
-     * @param updateAnnouncementRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public UpdateannouncementResponse update(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
-            UpdateAnnouncementRequest updateAnnouncementRequest) throws Exception {
-        UpdateannouncementRequest request =
-            UpdateannouncementRequest
-                .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
-                .updateAnnouncementRequest(updateAnnouncementRequest)
-                .build();
-        
+            UpdateAnnouncementRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -441,10 +358,10 @@ public class Announcements implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<UpdateAnnouncementRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "updateAnnouncementRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -454,7 +371,6 @@ public class Announcements implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  

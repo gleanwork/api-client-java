@@ -19,6 +19,9 @@ import com.glean.api_client.models.components.UploadChatFilesResponse;
 import com.glean.api_client.models.errors.APIException;
 import com.glean.api_client.models.operations.ChatRequestBuilder;
 import com.glean.api_client.models.operations.ChatResponse;
+import com.glean.api_client.models.operations.ChatStreamRequest;
+import com.glean.api_client.models.operations.ChatStreamRequestBuilder;
+import com.glean.api_client.models.operations.ChatStreamResponse;
 import com.glean.api_client.models.operations.DeleteallchatsRequest;
 import com.glean.api_client.models.operations.DeleteallchatsRequestBuilder;
 import com.glean.api_client.models.operations.DeleteallchatsResponse;
@@ -71,7 +74,8 @@ public class Chat implements
             MethodCallGetchatapplication,
             MethodCallUploadchatfiles,
             MethodCallGetchatfiles,
-            MethodCallDeletechatfiles {
+            MethodCallDeletechatfiles,
+            MethodCallChatStream {
 
     private final SDKConfiguration sdkConfiguration;
 
@@ -87,7 +91,7 @@ public class Chat implements
      * 
      * @return The call builder
      */
-    public ChatRequestBuilder start() {
+    public ChatRequestBuilder create() {
         return new ChatRequestBuilder(this);
     }
 
@@ -100,9 +104,9 @@ public class Chat implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ChatResponse start(
+    public ChatResponse create(
             ChatRequest chatRequest) throws Exception {
-        return start(Optional.empty(), Optional.empty(), Optional.empty(), chatRequest);
+        return create(Optional.empty(), chatRequest);
     }
     
     /**
@@ -110,23 +114,17 @@ public class Chat implements
      * 
      * <p>Have a conversation with Glean AI.
      * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param chatRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ChatResponse start(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
+    public ChatResponse create(
             Optional<Long> timezoneOffset,
             ChatRequest chatRequest) throws Exception {
         com.glean.api_client.models.operations.ChatRequest request =
             com.glean.api_client.models.operations.ChatRequest
                 .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
                 .timezoneOffset(timezoneOffset)
                 .chatRequest(chatRequest)
                 .build();
@@ -151,7 +149,7 @@ public class Chat implements
             throw new Exception("Request body is required");
         }
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "text/plain")
+        _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
 
@@ -159,7 +157,6 @@ public class Chat implements
                 com.glean.api_client.models.operations.ChatRequest.class,
                 request, 
                 null));
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -222,8 +219,10 @@ public class Chat implements
         ChatResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "text/plain")) {
-                String _out = Utils.toUtf8AndClose(_httpRes.body());
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                com.glean.api_client.models.components.ChatResponse _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<com.glean.api_client.models.components.ChatResponse>() {});
                 _res.withChatResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
@@ -279,7 +278,7 @@ public class Chat implements
      * @throws Exception if the API call fails
      */
     public DeleteallchatsResponse deleteAllDirect() throws Exception {
-        return deleteAll(Optional.empty(), Optional.empty(), Optional.empty());
+        return deleteAll(Optional.empty());
     }
     
     /**
@@ -287,21 +286,15 @@ public class Chat implements
      * 
      * <p>Deletes all saved Chats a user has had and all their contained conversational content.
      * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeleteallchatsResponse deleteAll(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
             Optional<Long> timezoneOffset) throws Exception {
         DeleteallchatsRequest request =
             DeleteallchatsRequest
                 .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
                 .timezoneOffset(timezoneOffset)
                 .build();
         
@@ -320,7 +313,6 @@ public class Chat implements
                 DeleteallchatsRequest.class,
                 request, 
                 null));
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -433,7 +425,7 @@ public class Chat implements
      */
     public DeletechatsResponse delete(
             DeleteChatsRequest deleteChatsRequest) throws Exception {
-        return delete(Optional.empty(), Optional.empty(), Optional.empty(), deleteChatsRequest);
+        return delete(Optional.empty(), deleteChatsRequest);
     }
     
     /**
@@ -441,23 +433,17 @@ public class Chat implements
      * 
      * <p>Deletes saved Chats and all their contained conversational content.
      * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param deleteChatsRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeletechatsResponse delete(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
             Optional<Long> timezoneOffset,
             DeleteChatsRequest deleteChatsRequest) throws Exception {
         DeletechatsRequest request =
             DeletechatsRequest
                 .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
                 .timezoneOffset(timezoneOffset)
                 .deleteChatsRequest(deleteChatsRequest)
                 .build();
@@ -490,7 +476,6 @@ public class Chat implements
                 DeletechatsRequest.class,
                 request, 
                 null));
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -588,7 +573,7 @@ public class Chat implements
      * 
      * @return The call builder
      */
-    public GetchatRequestBuilder get() {
+    public GetchatRequestBuilder retrieve() {
         return new GetchatRequestBuilder(this);
     }
 
@@ -601,9 +586,9 @@ public class Chat implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetchatResponse get(
+    public GetchatResponse retrieve(
             GetChatRequest getChatRequest) throws Exception {
-        return get(Optional.empty(), Optional.empty(), Optional.empty(), getChatRequest);
+        return retrieve(Optional.empty(), getChatRequest);
     }
     
     /**
@@ -611,23 +596,17 @@ public class Chat implements
      * 
      * <p>Retrieves the chat history between Glean Assistant and the user for a given Chat.
      * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param getChatRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetchatResponse get(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
+    public GetchatResponse retrieve(
             Optional<Long> timezoneOffset,
             GetChatRequest getChatRequest) throws Exception {
         GetchatRequest request =
             GetchatRequest
                 .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
                 .timezoneOffset(timezoneOffset)
                 .getChatRequest(getChatRequest)
                 .build();
@@ -660,7 +639,6 @@ public class Chat implements
                 GetchatRequest.class,
                 request, 
                 null));
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -782,7 +760,7 @@ public class Chat implements
      * @throws Exception if the API call fails
      */
     public ListchatsResponse listDirect() throws Exception {
-        return list(Optional.empty(), Optional.empty(), Optional.empty());
+        return list(Optional.empty());
     }
     
     /**
@@ -790,21 +768,15 @@ public class Chat implements
      * 
      * <p>Retrieves all the saved Chats between Glean Assistant and the user. The returned Chats contain only metadata and no conversational content.
      * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListchatsResponse list(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
             Optional<Long> timezoneOffset) throws Exception {
         ListchatsRequest request =
             ListchatsRequest
                 .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
                 .timezoneOffset(timezoneOffset)
                 .build();
         
@@ -823,7 +795,6 @@ public class Chat implements
                 ListchatsRequest.class,
                 request, 
                 null));
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -932,7 +903,7 @@ public class Chat implements
      * 
      * @return The call builder
      */
-    public GetchatapplicationRequestBuilder getApplication() {
+    public GetchatapplicationRequestBuilder retrieveApplication() {
         return new GetchatapplicationRequestBuilder(this);
     }
 
@@ -945,9 +916,9 @@ public class Chat implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetchatapplicationResponse getApplication(
+    public GetchatapplicationResponse retrieveApplication(
             GetChatApplicationRequest getChatApplicationRequest) throws Exception {
-        return getApplication(Optional.empty(), Optional.empty(), Optional.empty(), getChatApplicationRequest);
+        return retrieveApplication(Optional.empty(), getChatApplicationRequest);
     }
     
     /**
@@ -955,23 +926,17 @@ public class Chat implements
      * 
      * <p>Gets the Chat application details for the specified application ID.
      * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param getChatApplicationRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetchatapplicationResponse getApplication(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
+    public GetchatapplicationResponse retrieveApplication(
             Optional<Long> timezoneOffset,
             GetChatApplicationRequest getChatApplicationRequest) throws Exception {
         GetchatapplicationRequest request =
             GetchatapplicationRequest
                 .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
                 .timezoneOffset(timezoneOffset)
                 .getChatApplicationRequest(getChatApplicationRequest)
                 .build();
@@ -1004,7 +969,6 @@ public class Chat implements
                 GetchatapplicationRequest.class,
                 request, 
                 null));
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -1128,7 +1092,7 @@ public class Chat implements
      */
     public UploadchatfilesResponse uploadFiles(
             UploadChatFilesRequest uploadChatFilesRequest) throws Exception {
-        return uploadFiles(Optional.empty(), Optional.empty(), Optional.empty(), uploadChatFilesRequest);
+        return uploadFiles(Optional.empty(), uploadChatFilesRequest);
     }
     
     /**
@@ -1136,23 +1100,17 @@ public class Chat implements
      * 
      * <p>Upload files for Chat.
      * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param uploadChatFilesRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public UploadchatfilesResponse uploadFiles(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
             Optional<Long> timezoneOffset,
             UploadChatFilesRequest uploadChatFilesRequest) throws Exception {
         UploadchatfilesRequest request =
             UploadchatfilesRequest
                 .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
                 .timezoneOffset(timezoneOffset)
                 .uploadChatFilesRequest(uploadChatFilesRequest)
                 .build();
@@ -1185,7 +1143,6 @@ public class Chat implements
                 UploadchatfilesRequest.class,
                 request, 
                 null));
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -1294,7 +1251,7 @@ public class Chat implements
      * 
      * @return The call builder
      */
-    public GetchatfilesRequestBuilder getFiles() {
+    public GetchatfilesRequestBuilder retrieveFiles() {
         return new GetchatfilesRequestBuilder(this);
     }
 
@@ -1307,9 +1264,9 @@ public class Chat implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetchatfilesResponse getFiles(
+    public GetchatfilesResponse retrieveFiles(
             GetChatFilesRequest getChatFilesRequest) throws Exception {
-        return getFiles(Optional.empty(), Optional.empty(), Optional.empty(), getChatFilesRequest);
+        return retrieveFiles(Optional.empty(), getChatFilesRequest);
     }
     
     /**
@@ -1317,23 +1274,17 @@ public class Chat implements
      * 
      * <p>Get files uploaded by a user for Chat.
      * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param getChatFilesRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetchatfilesResponse getFiles(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
+    public GetchatfilesResponse retrieveFiles(
             Optional<Long> timezoneOffset,
             GetChatFilesRequest getChatFilesRequest) throws Exception {
         GetchatfilesRequest request =
             GetchatfilesRequest
                 .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
                 .timezoneOffset(timezoneOffset)
                 .getChatFilesRequest(getChatFilesRequest)
                 .build();
@@ -1366,7 +1317,6 @@ public class Chat implements
                 GetchatfilesRequest.class,
                 request, 
                 null));
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -1490,7 +1440,7 @@ public class Chat implements
      */
     public DeletechatfilesResponse deleteFiles(
             DeleteChatFilesRequest deleteChatFilesRequest) throws Exception {
-        return deleteFiles(Optional.empty(), Optional.empty(), Optional.empty(), deleteChatFilesRequest);
+        return deleteFiles(Optional.empty(), deleteChatFilesRequest);
     }
     
     /**
@@ -1498,23 +1448,17 @@ public class Chat implements
      * 
      * <p>Delete files uploaded by a user for Chat.
      * 
-     * @param xGleanActAs Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens).
-     * @param xGleanAuthType Auth type being used to access the endpoint (should be non-empty only for global tokens).
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param deleteChatFilesRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeletechatfilesResponse deleteFiles(
-            Optional<String> xGleanActAs,
-            Optional<String> xGleanAuthType,
             Optional<Long> timezoneOffset,
             DeleteChatFilesRequest deleteChatFilesRequest) throws Exception {
         DeletechatfilesRequest request =
             DeletechatfilesRequest
                 .builder()
-                .xGleanActAs(xGleanActAs)
-                .xGleanAuthType(xGleanAuthType)
                 .timezoneOffset(timezoneOffset)
                 .deleteChatFilesRequest(deleteChatFilesRequest)
                 .build();
@@ -1547,7 +1491,6 @@ public class Chat implements
                 DeletechatfilesRequest.class,
                 request, 
                 null));
-        _req.addHeaders(Utils.getHeadersFromMetadata(request, null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -1614,6 +1557,178 @@ public class Chat implements
             return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "403", "429", "4XX")) {
+            // no content 
+            throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
+            // no content 
+            throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        throw new APIException(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
+
+
+    /**
+     * Chat
+     * 
+     * <p>Have a conversation with Glean AI.
+     * 
+     * @return The call builder
+     */
+    public ChatStreamRequestBuilder createStream() {
+        return new ChatStreamRequestBuilder(this);
+    }
+
+    /**
+     * Chat
+     * 
+     * <p>Have a conversation with Glean AI.
+     * 
+     * @param chatRequest 
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public ChatStreamResponse createStream(
+            ChatRequest chatRequest) throws Exception {
+        return createStream(Optional.empty(), chatRequest);
+    }
+    
+    /**
+     * Chat
+     * 
+     * <p>Have a conversation with Glean AI.
+     * 
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param chatRequest 
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public ChatStreamResponse createStream(
+            Optional<Long> timezoneOffset,
+            ChatRequest chatRequest) throws Exception {
+        ChatStreamRequest request =
+            ChatStreamRequest
+                .builder()
+                .timezoneOffset(timezoneOffset)
+                .chatRequest(chatRequest)
+                .build();
+        
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+        String _url = Utils.generateURL(
+                _baseUrl,
+                "/rest/api/v1/chat#stream");
+        
+        HTTPRequest _req = new HTTPRequest(_url, "POST");
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<Object>() {});
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
+                _convertedRequest, 
+                "chatRequest",
+                "json",
+                false);
+        if (_serializedRequestBody == null) {
+            throw new Exception("Request body is required");
+        }
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
+        _req.addHeader("Accept", "text/plain")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                ChatStreamRequest.class,
+                request, 
+                null));
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      _baseUrl,
+                      "chatStream", 
+                      Optional.of(List.of()), 
+                      _hookSecuritySource),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "408", "429", "4XX", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            _baseUrl,
+                            "chatStream",
+                            Optional.of(List.of()),
+                            _hookSecuritySource),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            _baseUrl,
+                            "chatStream",
+                            Optional.of(List.of()), 
+                            _hookSecuritySource),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            _baseUrl,
+                            "chatStream",
+                            Optional.of(List.of()),
+                            _hookSecuritySource), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        ChatStreamResponse.Builder _resBuilder = 
+            ChatStreamResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        ChatStreamResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "text/plain")) {
+                String _out = Utils.toUtf8AndClose(_httpRes.body());
+                _res.withChatRequestStream(Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "408", "429", "4XX")) {
             // no content 
             throw new APIException(
                     _httpRes, 

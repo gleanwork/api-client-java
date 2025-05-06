@@ -6,55 +6,25 @@ package com.glean.api_client.models.operations;
 import com.glean.api_client.models.components.ListEntitiesRequest;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
-import java.util.Optional;
 
 public class ListentitiesRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
-    private ListEntitiesRequest listEntitiesRequest;
+    private ListEntitiesRequest request;
     private final SDKMethodInterfaces.MethodCallListentities sdk;
 
     public ListentitiesRequestBuilder(SDKMethodInterfaces.MethodCallListentities sdk) {
         this.sdk = sdk;
     }
-                
-    public ListentitiesRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
 
-    public ListentitiesRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public ListentitiesRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public ListentitiesRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
-
-    public ListentitiesRequestBuilder listEntitiesRequest(ListEntitiesRequest listEntitiesRequest) {
-        Utils.checkNotNull(listEntitiesRequest, "listEntitiesRequest");
-        this.listEntitiesRequest = listEntitiesRequest;
+    public ListentitiesRequestBuilder request(ListEntitiesRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public ListentitiesResponse call() throws Exception {
 
         return sdk.list(
-            xGleanActAs,
-            xGleanAuthType,
-            listEntitiesRequest);
+            request);
     }
 }

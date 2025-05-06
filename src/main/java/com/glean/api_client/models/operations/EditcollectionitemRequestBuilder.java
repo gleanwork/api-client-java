@@ -6,55 +6,25 @@ package com.glean.api_client.models.operations;
 import com.glean.api_client.models.components.EditCollectionItemRequest;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
-import java.util.Optional;
 
 public class EditcollectionitemRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
-    private EditCollectionItemRequest editCollectionItemRequest;
+    private EditCollectionItemRequest request;
     private final SDKMethodInterfaces.MethodCallEditcollectionitem sdk;
 
     public EditcollectionitemRequestBuilder(SDKMethodInterfaces.MethodCallEditcollectionitem sdk) {
         this.sdk = sdk;
     }
-                
-    public EditcollectionitemRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
 
-    public EditcollectionitemRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public EditcollectionitemRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public EditcollectionitemRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
-
-    public EditcollectionitemRequestBuilder editCollectionItemRequest(EditCollectionItemRequest editCollectionItemRequest) {
-        Utils.checkNotNull(editCollectionItemRequest, "editCollectionItemRequest");
-        this.editCollectionItemRequest = editCollectionItemRequest;
+    public EditcollectionitemRequestBuilder request(EditCollectionItemRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public EditcollectionitemResponse call() throws Exception {
 
-        return sdk.editItem(
-            xGleanActAs,
-            xGleanAuthType,
-            editCollectionItemRequest);
+        return sdk.updateItem(
+            request);
     }
 }

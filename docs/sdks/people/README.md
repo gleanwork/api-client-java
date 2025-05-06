@@ -5,14 +5,130 @@
 
 ### Available Operations
 
+* [debug](#debug) - Beta: Get user information
+
+* [~~count~~](#count) - Get user count :warning: **Deprecated**
 * [index](#index) - Index employee
-* [bulkIndexEmployees](#bulkindexemployees) - Bulk index employees
-* [~~bulkIndex~~](#bulkindex) - Bulk index employees :warning: **Deprecated**
+* [bulkIndex](#bulkindex) - Bulk index employees
 * [processAllEmployeesAndTeams](#processallemployeesandteams) - Schedules the processing of uploaded employees and teams
 * [delete](#delete) - Delete employee
 * [indexTeam](#indexteam) - Index team
 * [deleteTeam](#deleteteam) - Delete team
 * [bulkIndexTeams](#bulkindexteams) - Bulk index teams
+
+## debug
+
+Gives various information that would help in debugging related to a particular user. Currently in beta, might undergo breaking changes without prior notice.
+
+Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/docs/indexing_api/indexing_api_troubleshooting/) for more information.
+
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.glean.api_client.Glean;
+import com.glean.api_client.models.components.DebugUserRequest;
+import com.glean.api_client.models.operations.PostApiIndexV1DebugDatasourceUserResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+            .build();
+
+        PostApiIndexV1DebugDatasourceUserResponse res = sdk.indexing().people().debug()
+                .datasource("<value>")
+                .debugUserRequest(DebugUserRequest.builder()
+                    .email("u1@foo.com")
+                    .build())
+                .call();
+
+        if (res.debugUserResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `datasource`                                                    | *String*                                                        | :heavy_check_mark:                                              | The datasource to which the user belongs                        |
+| `debugUserRequest`                                              | [DebugUserRequest](../../models/components/DebugUserRequest.md) | :heavy_check_mark:                                              | N/A                                                             |
+
+### Response
+
+**[PostApiIndexV1DebugDatasourceUserResponse](../../models/operations/PostApiIndexV1DebugDatasourceUserResponse.md)**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
+
+## ~~count~~
+
+Fetches user count for the specified custom datasource.
+
+Tip: Use [/debug/{datasource}/status](https://developers.glean.com/docs/indexing_api/indexing_api_troubleshooting/#debug-datasource-status) for richer information.
+
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.glean.api_client.Glean;
+import com.glean.api_client.models.components.GetUserCountRequest;
+import com.glean.api_client.models.operations.PostApiIndexV1GetusercountResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+            .build();
+
+        GetUserCountRequest req = GetUserCountRequest.builder()
+                .datasource("<value>")
+                .build();
+
+        PostApiIndexV1GetusercountResponse res = sdk.indexing().people().count()
+                .request(req)
+                .call();
+
+        if (res.getUserCountResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `request`                                                         | [GetUserCountRequest](../../models/shared/GetUserCountRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+
+### Response
+
+**[PostApiIndexV1GetusercountResponse](../../models/operations/PostApiIndexV1GetusercountResponse.md)**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
 
 ## index
 
@@ -34,7 +150,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         IndexEmployeeRequest req = IndexEmployeeRequest.builder()
@@ -78,7 +194,7 @@ public class Application {
 | -------------------------- | -------------------------- | -------------------------- |
 | models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
 
-## bulkIndexEmployees
+## bulkIndex
 
 Replaces all the currently indexed employees using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/docs/indexing_api_bulk_indexing/#bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
 
@@ -98,7 +214,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         BulkIndexEmployeesRequest req = BulkIndexEmployeesRequest.builder()
@@ -106,7 +222,7 @@ public class Application {
                 .employees(List.of())
                 .build();
 
-        PostApiIndexV1BulkindexemployeesResponse res = sdk.indexing().people().bulkIndexEmployees()
+        PostApiIndexV1BulkindexemployeesResponse res = sdk.indexing().people().bulkIndex()
                 .request(req)
                 .call();
 
@@ -124,94 +240,6 @@ public class Application {
 ### Response
 
 **[PostApiIndexV1BulkindexemployeesResponse](../../models/operations/PostApiIndexV1BulkindexemployeesResponse.md)**
-
-### Errors
-
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
-
-## ~~bulkIndex~~
-
-Bulk upload details of all the employees. This deletes all employees uploaded in the prior batch. SOON TO BE DEPRECATED in favor of /bulkindexemployees.
-
-> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
-
-### Example Usage
-
-```java
-package hello.world;
-
-import com.glean.api_client.Glean;
-import com.glean.api_client.models.components.*;
-import com.glean.api_client.models.operations.PostApiIndexV1IndexemployeelistResponse;
-import java.lang.Exception;
-import java.util.List;
-
-public class Application {
-
-    public static void main(String[] args) throws Exception {
-
-        Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
-            .build();
-
-        IndexEmployeeListRequest req = IndexEmployeeListRequest.builder()
-                .employees(List.of(
-                    IndexEmployeeRequest.builder()
-                        .employee(EmployeeInfoDefinition.builder()
-                            .email("Kiera_Bashirian18@yahoo.com")
-                            .department("<value>")
-                            .datasourceProfiles(List.of(
-                                DatasourceProfile.builder()
-                                    .datasource("github")
-                                    .handle("<value>")
-                                    .build(),
-                                DatasourceProfile.builder()
-                                    .datasource("github")
-                                    .handle("<value>")
-                                    .build()))
-                            .build())
-                        .build(),
-                    IndexEmployeeRequest.builder()
-                        .employee(EmployeeInfoDefinition.builder()
-                            .email("Madie_Hayes48@gmail.com")
-                            .department("<value>")
-                            .datasourceProfiles(List.of(
-                                DatasourceProfile.builder()
-                                    .datasource("github")
-                                    .handle("<value>")
-                                    .build(),
-                                DatasourceProfile.builder()
-                                    .datasource("github")
-                                    .handle("<value>")
-                                    .build(),
-                                DatasourceProfile.builder()
-                                    .datasource("github")
-                                    .handle("<value>")
-                                    .build()))
-                            .build())
-                        .build()))
-                .build();
-
-        PostApiIndexV1IndexemployeelistResponse res = sdk.indexing().people().bulkIndex()
-                .request(req)
-                .call();
-
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
-| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `request`                                                                   | [IndexEmployeeListRequest](../../models/shared/IndexEmployeeListRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
-
-### Response
-
-**[PostApiIndexV1IndexemployeelistResponse](../../models/operations/PostApiIndexV1IndexemployeelistResponse.md)**
 
 ### Errors
 
@@ -238,7 +266,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         PostApiIndexV1ProcessallemployeesandteamsResponse res = sdk.indexing().people().processAllEmployeesAndTeams()
@@ -278,7 +306,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         DeleteEmployeeRequest req = DeleteEmployeeRequest.builder()
@@ -330,7 +358,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         IndexTeamRequest req = IndexTeamRequest.builder()
@@ -407,7 +435,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         DeleteTeamRequest req = DeleteTeamRequest.builder()
@@ -459,7 +487,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         BulkIndexTeamsRequest req = BulkIndexTeamsRequest.builder()

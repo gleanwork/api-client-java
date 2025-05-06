@@ -6,55 +6,25 @@ package com.glean.api_client.models.operations;
 import com.glean.api_client.models.components.DeleteShortcutRequest;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
-import java.util.Optional;
 
 public class DeleteshortcutRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
-    private DeleteShortcutRequest deleteShortcutRequest;
+    private DeleteShortcutRequest request;
     private final SDKMethodInterfaces.MethodCallDeleteshortcut sdk;
 
     public DeleteshortcutRequestBuilder(SDKMethodInterfaces.MethodCallDeleteshortcut sdk) {
         this.sdk = sdk;
     }
-                
-    public DeleteshortcutRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
 
-    public DeleteshortcutRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public DeleteshortcutRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public DeleteshortcutRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
-
-    public DeleteshortcutRequestBuilder deleteShortcutRequest(DeleteShortcutRequest deleteShortcutRequest) {
-        Utils.checkNotNull(deleteShortcutRequest, "deleteShortcutRequest");
-        this.deleteShortcutRequest = deleteShortcutRequest;
+    public DeleteshortcutRequestBuilder request(DeleteShortcutRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public DeleteshortcutResponse call() throws Exception {
 
         return sdk.delete(
-            xGleanActAs,
-            xGleanAuthType,
-            deleteShortcutRequest);
+            request);
     }
 }

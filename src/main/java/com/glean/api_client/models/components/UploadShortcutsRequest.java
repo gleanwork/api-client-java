@@ -54,7 +54,7 @@ public class UploadShortcutsRequest {
      * Batch of shortcuts information
      */
     @JsonProperty("shortcuts")
-    private List<Shortcut> shortcuts;
+    private List<IndexingShortcut> shortcuts;
 
     @JsonCreator
     public UploadShortcutsRequest(
@@ -62,7 +62,7 @@ public class UploadShortcutsRequest {
             @JsonProperty("isFirstPage") Optional<Boolean> isFirstPage,
             @JsonProperty("isLastPage") Optional<Boolean> isLastPage,
             @JsonProperty("forceRestartUpload") Optional<Boolean> forceRestartUpload,
-            @JsonProperty("shortcuts") List<Shortcut> shortcuts) {
+            @JsonProperty("shortcuts") List<IndexingShortcut> shortcuts) {
         Utils.checkNotNull(uploadId, "uploadId");
         Utils.checkNotNull(isFirstPage, "isFirstPage");
         Utils.checkNotNull(isLastPage, "isLastPage");
@@ -77,7 +77,7 @@ public class UploadShortcutsRequest {
     
     public UploadShortcutsRequest(
             String uploadId,
-            List<Shortcut> shortcuts) {
+            List<IndexingShortcut> shortcuts) {
         this(uploadId, Optional.empty(), Optional.empty(), Optional.empty(), shortcuts);
     }
 
@@ -117,7 +117,7 @@ public class UploadShortcutsRequest {
      * Batch of shortcuts information
      */
     @JsonIgnore
-    public List<Shortcut> shortcuts() {
+    public List<IndexingShortcut> shortcuts() {
         return shortcuts;
     }
 
@@ -191,7 +191,7 @@ public class UploadShortcutsRequest {
     /**
      * Batch of shortcuts information
      */
-    public UploadShortcutsRequest withShortcuts(List<Shortcut> shortcuts) {
+    public UploadShortcutsRequest withShortcuts(List<IndexingShortcut> shortcuts) {
         Utils.checkNotNull(shortcuts, "shortcuts");
         this.shortcuts = shortcuts;
         return this;
@@ -245,7 +245,7 @@ public class UploadShortcutsRequest {
  
         private Optional<Boolean> forceRestartUpload = Optional.empty();
  
-        private List<Shortcut> shortcuts;
+        private List<IndexingShortcut> shortcuts;
         
         private Builder() {
           // force use of static builder() method
@@ -317,7 +317,7 @@ public class UploadShortcutsRequest {
         /**
          * Batch of shortcuts information
          */
-        public Builder shortcuts(List<Shortcut> shortcuts) {
+        public Builder shortcuts(List<IndexingShortcut> shortcuts) {
             Utils.checkNotNull(shortcuts, "shortcuts");
             this.shortcuts = shortcuts;
             return this;

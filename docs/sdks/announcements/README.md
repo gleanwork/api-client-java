@@ -30,32 +30,34 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        CreateannouncementResponse res = sdk.client().announcements().create()
-                .createAnnouncementRequest(CreateAnnouncementRequest.builder()
-                    .startTime(OffsetDateTime.parse("2024-06-17T07:14:55.338Z"))
-                    .endTime(OffsetDateTime.parse("2024-11-30T17:06:07.804Z"))
-                    .title("<value>")
-                    .body(StructuredText.builder()
-                        .text("From https://en.wikipedia.org/wiki/Diffuse_sky_radiation, the sky is blue because blue light is more strongly scattered than longer-wavelength light.")
-                        .structuredList(List.of())
-                        .build())
-                    .audienceFilters(List.of(
-                        FacetFilter.builder()
-                            .fieldName("type")
-                            .values(List.of(
-                                FacetFilterValue.builder()
-                                    .value("Spreadsheet")
-                                    .relationType(RelationType.EQUALS)
-                                    .build(),
-                                FacetFilterValue.builder()
-                                    .value("Presentation")
-                                    .relationType(RelationType.EQUALS)
-                                    .build()))
-                            .build()))
+        CreateAnnouncementRequest req = CreateAnnouncementRequest.builder()
+                .startTime(OffsetDateTime.parse("2024-06-17T07:14:55.338Z"))
+                .endTime(OffsetDateTime.parse("2024-11-30T17:06:07.804Z"))
+                .title("<value>")
+                .body(StructuredText.builder()
+                    .text("From https://en.wikipedia.org/wiki/Diffuse_sky_radiation, the sky is blue because blue light is more strongly scattered than longer-wavelength light.")
+                    .structuredList(List.of())
                     .build())
+                .audienceFilters(List.of(
+                    FacetFilter.builder()
+                        .fieldName("type")
+                        .values(List.of(
+                            FacetFilterValue.builder()
+                                .value("Spreadsheet")
+                                .relationType(RelationType.EQUALS)
+                                .build(),
+                            FacetFilterValue.builder()
+                                .value("Presentation")
+                                .relationType(RelationType.EQUALS)
+                                .build()))
+                        .build()))
+                .build();
+
+        CreateannouncementResponse res = sdk.client().announcements().create()
+                .request(req)
                 .call();
 
         if (res.announcement().isPresent()) {
@@ -67,11 +69,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `createAnnouncementRequest`                                                                                              | [CreateAnnouncementRequest](../../models/components/CreateAnnouncementRequest.md)                                        | :heavy_check_mark:                                                                                                       | Announcement content                                                                                                     |
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `request`                                                                     | [CreateAnnouncementRequest](../../models/shared/CreateAnnouncementRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
 
 ### Response
 
@@ -102,13 +102,15 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
+        DeleteAnnouncementRequest req = DeleteAnnouncementRequest.builder()
+                .id(545907L)
+                .build();
+
         DeleteannouncementResponse res = sdk.client().announcements().delete()
-                .deleteAnnouncementRequest(DeleteAnnouncementRequest.builder()
-                    .id(545907L)
-                    .build())
+                .request(req)
                 .call();
 
         // handle response
@@ -118,11 +120,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `deleteAnnouncementRequest`                                                                                              | [DeleteAnnouncementRequest](../../models/components/DeleteAnnouncementRequest.md)                                        | :heavy_check_mark:                                                                                                       | Delete announcement request                                                                                              |
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `request`                                                                     | [DeleteAnnouncementRequest](../../models/shared/DeleteAnnouncementRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
 
 ### Response
 
@@ -155,33 +155,35 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .bearerAuth("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        UpdateannouncementResponse res = sdk.client().announcements().update()
-                .updateAnnouncementRequest(UpdateAnnouncementRequest.builder()
-                    .startTime(OffsetDateTime.parse("2025-07-28T19:04:48.565Z"))
-                    .endTime(OffsetDateTime.parse("2024-10-16T10:52:42.015Z"))
-                    .title("<value>")
-                    .id(761625L)
-                    .body(StructuredText.builder()
-                        .text("From https://en.wikipedia.org/wiki/Diffuse_sky_radiation, the sky is blue because blue light is more strongly scattered than longer-wavelength light.")
-                        .structuredList(List.of())
-                        .build())
-                    .audienceFilters(List.of(
-                        FacetFilter.builder()
-                            .fieldName("type")
-                            .values(List.of(
-                                FacetFilterValue.builder()
-                                    .value("Spreadsheet")
-                                    .relationType(RelationType.EQUALS)
-                                    .build(),
-                                FacetFilterValue.builder()
-                                    .value("Presentation")
-                                    .relationType(RelationType.EQUALS)
-                                    .build()))
-                            .build()))
+        UpdateAnnouncementRequest req = UpdateAnnouncementRequest.builder()
+                .startTime(OffsetDateTime.parse("2025-07-28T19:04:48.565Z"))
+                .endTime(OffsetDateTime.parse("2024-10-16T10:52:42.015Z"))
+                .title("<value>")
+                .id(761625L)
+                .body(StructuredText.builder()
+                    .text("From https://en.wikipedia.org/wiki/Diffuse_sky_radiation, the sky is blue because blue light is more strongly scattered than longer-wavelength light.")
+                    .structuredList(List.of())
                     .build())
+                .audienceFilters(List.of(
+                    FacetFilter.builder()
+                        .fieldName("type")
+                        .values(List.of(
+                            FacetFilterValue.builder()
+                                .value("Spreadsheet")
+                                .relationType(RelationType.EQUALS)
+                                .build(),
+                            FacetFilterValue.builder()
+                                .value("Presentation")
+                                .relationType(RelationType.EQUALS)
+                                .build()))
+                        .build()))
+                .build();
+
+        UpdateannouncementResponse res = sdk.client().announcements().update()
+                .request(req)
                 .call();
 
         if (res.announcement().isPresent()) {
@@ -193,11 +195,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `xGleanActAs`                                                                                                            | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Email address of a user on whose behalf the request is intended to be made (should be non-empty only for global tokens). |
-| `xGleanAuthType`                                                                                                         | *Optional\<String>*                                                                                                      | :heavy_minus_sign:                                                                                                       | Auth type being used to access the endpoint (should be non-empty only for global tokens).                                |
-| `updateAnnouncementRequest`                                                                                              | [UpdateAnnouncementRequest](../../models/components/UpdateAnnouncementRequest.md)                                        | :heavy_check_mark:                                                                                                       | Announcement content. Id need to be specified for the announcement.                                                      |
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `request`                                                                     | [UpdateAnnouncementRequest](../../models/shared/UpdateAnnouncementRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
 
 ### Response
 

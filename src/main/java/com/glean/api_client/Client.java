@@ -6,11 +6,11 @@ public class Client {
 
     private final SDKConfiguration sdkConfiguration;
     private final Activity activity;
-    private final Activities activities;
     private final Announcements announcements;
     private final Answers answers;
     private final ClientAuthentication authentication;
     private final Chat chat;
+    private final Agents agents;
     private final Collections collections;
     private final ClientDocuments documents;
     private final Insights insights;
@@ -19,17 +19,16 @@ public class Client {
     private final Search search;
     private final Entities entities;
     private final ClientShortcuts shortcuts;
-    private final Summarize summarize;
     private final Verification verification;
 
     Client(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.activity = new Activity(this.sdkConfiguration);
-        this.activities = new Activities(this.sdkConfiguration);
         this.announcements = new Announcements(this.sdkConfiguration);
         this.answers = new Answers(this.sdkConfiguration);
         this.authentication = new ClientAuthentication(this.sdkConfiguration);
         this.chat = new Chat(this.sdkConfiguration);
+        this.agents = new Agents(this.sdkConfiguration);
         this.collections = new Collections(this.sdkConfiguration);
         this.documents = new ClientDocuments(this.sdkConfiguration);
         this.insights = new Insights(this.sdkConfiguration);
@@ -38,16 +37,11 @@ public class Client {
         this.search = new Search(this.sdkConfiguration);
         this.entities = new Entities(this.sdkConfiguration);
         this.shortcuts = new ClientShortcuts(this.sdkConfiguration);
-        this.summarize = new Summarize(this.sdkConfiguration);
         this.verification = new Verification(this.sdkConfiguration);
     }
 
     public final Activity activity() {
         return activity;
-    }
-
-    public final Activities activities() {
-        return activities;
     }
 
     public final Announcements announcements() {
@@ -64,6 +58,10 @@ public class Client {
 
     public final Chat chat() {
         return chat;
+    }
+
+    public final Agents agents() {
+        return agents;
     }
 
     public final Collections collections() {
@@ -96,10 +94,6 @@ public class Client {
 
     public final ClientShortcuts shortcuts() {
         return shortcuts;
-    }
-
-    public final Summarize summarize() {
-        return summarize;
     }
 
     public final Verification verification() {

@@ -6,61 +6,32 @@ package com.glean.api_client.models.operations;
 import com.glean.api_client.models.components.SearchRequest;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
 import java.util.Optional;
 
 public class SearchRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
-    private Optional<? extends SearchRequest> searchRequest = Optional.empty();
+    private Optional<? extends SearchRequest> request = Optional.empty();
     private final SDKMethodInterfaces.MethodCallSearch sdk;
 
     public SearchRequestBuilder(SDKMethodInterfaces.MethodCallSearch sdk) {
         this.sdk = sdk;
     }
                 
-    public SearchRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
+    public SearchRequestBuilder request(SearchRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = Optional.of(request);
         return this;
     }
 
-    public SearchRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public SearchRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public SearchRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
-                
-    public SearchRequestBuilder searchRequest(SearchRequest searchRequest) {
-        Utils.checkNotNull(searchRequest, "searchRequest");
-        this.searchRequest = Optional.of(searchRequest);
-        return this;
-    }
-
-    public SearchRequestBuilder searchRequest(Optional<? extends SearchRequest> searchRequest) {
-        Utils.checkNotNull(searchRequest, "searchRequest");
-        this.searchRequest = searchRequest;
+    public SearchRequestBuilder request(Optional<? extends SearchRequest> request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public SearchResponse call() throws Exception {
 
-        return sdk.execute(
-            xGleanActAs,
-            xGleanAuthType,
-            searchRequest);
+        return sdk.query(
+            request);
     }
 }

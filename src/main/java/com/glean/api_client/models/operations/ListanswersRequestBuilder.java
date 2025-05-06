@@ -6,55 +6,25 @@ package com.glean.api_client.models.operations;
 import com.glean.api_client.models.components.ListAnswersRequest;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
-import java.lang.String;
-import java.util.Optional;
 
 public class ListanswersRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
-    private ListAnswersRequest listAnswersRequest;
+    private ListAnswersRequest request;
     private final SDKMethodInterfaces.MethodCallListanswers sdk;
 
     public ListanswersRequestBuilder(SDKMethodInterfaces.MethodCallListanswers sdk) {
         this.sdk = sdk;
     }
-                
-    public ListanswersRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
 
-    public ListanswersRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public ListanswersRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public ListanswersRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
-    }
-
-    public ListanswersRequestBuilder listAnswersRequest(ListAnswersRequest listAnswersRequest) {
-        Utils.checkNotNull(listAnswersRequest, "listAnswersRequest");
-        this.listAnswersRequest = listAnswersRequest;
+    public ListanswersRequestBuilder request(ListAnswersRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
 
     public ListanswersResponse call() throws Exception {
 
         return sdk.list(
-            xGleanActAs,
-            xGleanAuthType,
-            listAnswersRequest);
+            request);
     }
 }

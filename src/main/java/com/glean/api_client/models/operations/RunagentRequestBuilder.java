@@ -7,43 +7,16 @@ import com.glean.api_client.models.components.RunAgentRequest;
 import com.glean.api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
-import java.lang.String;
 import java.util.Optional;
 
 public class RunagentRequestBuilder {
 
-    private Optional<String> xGleanActAs = Optional.empty();
-    private Optional<String> xGleanAuthType = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private RunAgentRequest runAgentRequest;
     private final SDKMethodInterfaces.MethodCallRunagent sdk;
 
     public RunagentRequestBuilder(SDKMethodInterfaces.MethodCallRunagent sdk) {
         this.sdk = sdk;
-    }
-                
-    public RunagentRequestBuilder xGleanActAs(String xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = Optional.of(xGleanActAs);
-        return this;
-    }
-
-    public RunagentRequestBuilder xGleanActAs(Optional<String> xGleanActAs) {
-        Utils.checkNotNull(xGleanActAs, "xGleanActAs");
-        this.xGleanActAs = xGleanActAs;
-        return this;
-    }
-                
-    public RunagentRequestBuilder xGleanAuthType(String xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = Optional.of(xGleanAuthType);
-        return this;
-    }
-
-    public RunagentRequestBuilder xGleanAuthType(Optional<String> xGleanAuthType) {
-        Utils.checkNotNull(xGleanAuthType, "xGleanAuthType");
-        this.xGleanAuthType = xGleanAuthType;
-        return this;
     }
                 
     public RunagentRequestBuilder timezoneOffset(long timezoneOffset) {
@@ -66,9 +39,7 @@ public class RunagentRequestBuilder {
 
     public RunagentResponse call() throws Exception {
 
-        return sdk.runagent(
-            xGleanActAs,
-            xGleanAuthType,
+        return sdk.run(
             timezoneOffset,
             runAgentRequest);
     }
