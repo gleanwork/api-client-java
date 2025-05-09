@@ -35,13 +35,13 @@ class SDKConfiguration {
     @SuppressWarnings("serial")
     List<Map<String, String>> serverDefaults = new ArrayList<>(){ {
         add(new HashMap<>(){ {
-            put("domain", "domain");
+            put("instance", "instance-name");
         } });
     } };
     private static final String LANGUAGE = "java";
     public static final String OPENAPI_DOC_VERSION = "0.9.0";
-    public static final String SDK_VERSION = "0.2.0";
-    public static final String GEN_VERSION = "2.597.9";
+    public static final String SDK_VERSION = "0.2.1";
+    public static final String GEN_VERSION = "2.598.21";
     private static final String BASE_PACKAGE = "com.glean.api_client.glean_api_client";
     public static final String USER_AGENT = 
             String.format("speakeasy-sdk/%s %s %s %s %s",
