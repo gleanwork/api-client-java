@@ -15,7 +15,8 @@ Each namespace has its own authentication requirements and access patterns. Whil
 ```java
 // Example of accessing Client namespace
 Glean glean = Glean.builder()
-        .bearerAuth("client-token")
+        .apiToken("client-token")
+        .instance("instance-name")
         .build();
 glean.client().search().query()
         .searchRequest(SearchRequest.builder().query("search term").build())
@@ -23,7 +24,8 @@ glean.client().search().query()
 
 // Example of accessing Indexing namespace 
 Glean glean = Glean.builder()
-        .bearerAuth("indexing-token")
+        .apiToken("indexing-token")
+        .instance("instance-name")
         .build();
 glean.indexing().documents().index()
         .request(DocumentBulkIndexRequest.builder() /* document data */ .build())
