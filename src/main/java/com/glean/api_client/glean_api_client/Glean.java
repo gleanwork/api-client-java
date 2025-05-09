@@ -37,7 +37,7 @@ public class Glean {
      * SERVERS contains the list of server urls available to the SDK.
      */
     public static final String[] SERVERS = {
-        "https://{domain}-be.glean.com",
+        "https://{instance}-be.glean.com",
     };
 
     private final Client client;
@@ -144,17 +144,17 @@ public class Glean {
             return this;
         }
         /**
-         * Sets the domain variable for url substitution.
+         * Sets the instance variable for url substitution.
          *
-         * @param domain The value to set.
+         * @param instance The value to set.
          * @return The builder instance.
          */
-        public Builder domain(String domain) {
+        public Builder instance(String instance) {
             for (Map<String, String> server : this.sdkConfiguration.serverDefaults) {
-                if (!server.containsKey("domain")) {
+                if (!server.containsKey("instance")) {
                     continue;
                 }
-                server.put("domain", domain.toString());
+                server.put("instance", instance.toString());
             }
 
             return this;
