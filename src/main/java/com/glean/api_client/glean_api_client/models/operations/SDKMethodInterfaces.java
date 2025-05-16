@@ -5,6 +5,7 @@ package com.glean.api_client.glean_api_client.models.operations;
 
 import com.glean.api_client.glean_api_client.models.components.Activity;
 import com.glean.api_client.glean_api_client.models.components.AddCollectionItemsRequest;
+import com.glean.api_client.glean_api_client.models.components.AgentRunCreate;
 import com.glean.api_client.glean_api_client.models.components.AutocompleteRequest;
 import com.glean.api_client.glean_api_client.models.components.BulkIndexDocumentsRequest;
 import com.glean.api_client.glean_api_client.models.components.BulkIndexEmployeesRequest;
@@ -18,6 +19,7 @@ import com.glean.api_client.glean_api_client.models.components.CheckDocumentAcce
 import com.glean.api_client.glean_api_client.models.components.CreateAnnouncementRequest;
 import com.glean.api_client.glean_api_client.models.components.CreateAnswerRequest;
 import com.glean.api_client.glean_api_client.models.components.CreateCollectionRequest;
+import com.glean.api_client.glean_api_client.models.components.CreateDlpReportRequest;
 import com.glean.api_client.glean_api_client.models.components.CreateShortcutRequest;
 import com.glean.api_client.glean_api_client.models.components.CustomDatasourceConfig;
 import com.glean.api_client.glean_api_client.models.components.DebugDocumentRequest;
@@ -42,7 +44,6 @@ import com.glean.api_client.glean_api_client.models.components.EditCollectionReq
 import com.glean.api_client.glean_api_client.models.components.EditPinRequest;
 import com.glean.api_client.glean_api_client.models.components.FeedRequest;
 import com.glean.api_client.glean_api_client.models.components.Feedback;
-import com.glean.api_client.glean_api_client.models.components.GetAgentInputsRequest;
 import com.glean.api_client.glean_api_client.models.components.GetAnswerRequest;
 import com.glean.api_client.glean_api_client.models.components.GetChatApplicationRequest;
 import com.glean.api_client.glean_api_client.models.components.GetChatFilesRequest;
@@ -77,20 +78,24 @@ import com.glean.api_client.glean_api_client.models.components.ProcessAllDocumen
 import com.glean.api_client.glean_api_client.models.components.ProcessAllMembershipsRequest;
 import com.glean.api_client.glean_api_client.models.components.RecommendationsRequest;
 import com.glean.api_client.glean_api_client.models.components.ReminderRequest;
-import com.glean.api_client.glean_api_client.models.components.RunAgentRequest;
+import com.glean.api_client.glean_api_client.models.components.SearchAgentsRequest;
 import com.glean.api_client.glean_api_client.models.components.SearchRequest;
 import com.glean.api_client.glean_api_client.models.components.SummarizeRequest;
 import com.glean.api_client.glean_api_client.models.components.Unpin;
 import com.glean.api_client.glean_api_client.models.components.UpdateAnnouncementRequest;
+import com.glean.api_client.glean_api_client.models.components.UpdateDlpConfigRequest;
+import com.glean.api_client.glean_api_client.models.components.UpdateDlpReportRequest;
+import com.glean.api_client.glean_api_client.models.components.UpdateDocumentVisibilityOverridesRequest;
 import com.glean.api_client.glean_api_client.models.components.UpdatePermissionsRequest;
 import com.glean.api_client.glean_api_client.models.components.UpdateShortcutRequest;
 import com.glean.api_client.glean_api_client.models.components.UploadChatFilesRequest;
 import com.glean.api_client.glean_api_client.models.components.UploadShortcutsRequest;
 import com.glean.api_client.glean_api_client.models.components.VerifyRequest;
+import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.Long;
-import java.lang.Object;
 import java.lang.String;
+import java.util.List;
 import java.util.Optional;
 
 public class SDKMethodInterfaces {
@@ -208,22 +213,31 @@ public class SDKMethodInterfaces {
             ChatRequest chatRequest) throws Exception;
     }
 
-    public interface MethodCallRunagent {
-        RunagentResponse run(
+    public interface MethodCallGetAgent {
+        GetAgentResponse retrieve(
             Optional<Long> timezoneOffset,
-            RunAgentRequest runAgentRequest) throws Exception;
+            String agentId) throws Exception;
     }
 
-    public interface MethodCallListagents {
-        ListagentsResponse list(
+    public interface MethodCallGetAgentSchemas {
+        GetAgentSchemasResponse retrieveSchemas(
             Optional<Long> timezoneOffset,
-            Optional<? extends Object> requestBody) throws Exception;
+            String agentId) throws Exception;
     }
 
-    public interface MethodCallGetagentinputs {
-        GetagentinputsResponse retrieveInputs(
-            Optional<Long> timezoneOffset,
-            GetAgentInputsRequest getAgentInputsRequest) throws Exception;
+    public interface MethodCallSearchAgents {
+        SearchAgentsResponse list(
+            SearchAgentsRequest request) throws Exception;
+    }
+
+    public interface MethodCallCreateAndStreamRun {
+        CreateAndStreamRunResponse runStream(
+            AgentRunCreate request) throws Exception;
+    }
+
+    public interface MethodCallCreateAndWaitRun {
+        CreateAndWaitRunResponse run(
+            AgentRunCreate request) throws Exception;
     }
 
     public interface MethodCallAddcollectionitems {
@@ -394,6 +408,59 @@ public class SDKMethodInterfaces {
     public interface MethodCallVerify {
         VerifyResponse verify(
             VerifyRequest request) throws Exception;
+    }
+
+    public interface MethodCallGetpolicy {
+        GetpolicyResponse retrieve(
+            String id,
+            Optional<Long> version) throws Exception;
+    }
+
+    public interface MethodCallUpdatepolicy {
+        UpdatepolicyResponse update(
+            String id,
+            UpdateDlpReportRequest updateDlpReportRequest) throws Exception;
+    }
+
+    public interface MethodCallGetpolicies {
+        GetpoliciesResponse list(
+            Optional<Boolean> autoHide,
+            Optional<String> frequency) throws Exception;
+    }
+
+    public interface MethodCallCreatepolicy {
+        CreatepolicyResponse create(
+            CreateDlpReportRequest request) throws Exception;
+    }
+
+    public interface MethodCallDownloadpolicycsv {
+        DownloadpolicycsvResponse download(
+            String id) throws Exception;
+    }
+
+    public interface MethodCallCreatereport {
+        CreatereportResponse create(
+            UpdateDlpConfigRequest request) throws Exception;
+    }
+
+    public interface MethodCallDownloadreportcsv {
+        DownloadreportcsvResponse download(
+            String id) throws Exception;
+    }
+
+    public interface MethodCallGetreportstatus {
+        GetreportstatusResponse status(
+            String id) throws Exception;
+    }
+
+    public interface MethodCallGetdocvisibility {
+        GetdocvisibilityResponse list(
+            Optional<? extends List<String>> docIds) throws Exception;
+    }
+
+    public interface MethodCallSetdocvisibility {
+        SetdocvisibilityResponse create(
+            UpdateDocumentVisibilityOverridesRequest request) throws Exception;
     }
 
     public interface MethodCallPostApiIndexV1Indexdocument {

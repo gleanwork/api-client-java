@@ -18,8 +18,7 @@ Replaces all the currently indexed shortcuts using paginated batch API calls. No
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.BulkIndexShortcutsRequest;
-import com.glean.api_client.glean_api_client.models.components.ExternalShortcut;
+import com.glean.api_client.glean_api_client.models.components.*;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1BulkindexshortcutsResponse;
 import java.lang.Exception;
 import java.util.List;
@@ -29,7 +28,9 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         BulkIndexShortcutsRequest req = BulkIndexShortcutsRequest.builder()
@@ -37,9 +38,15 @@ public class Application {
                 .shortcuts(List.of(
                     ExternalShortcut.builder()
                         .inputAlias("<value>")
-                        .destinationUrl("https://only-juggernaut.com/")
+                        .destinationUrl("https://plump-tune-up.biz/")
                         .createdBy("<value>")
-                        .intermediateUrl("https://descriptive-electronics.name")
+                        .intermediateUrl("https://lean-sightseeing.net")
+                        .build(),
+                    ExternalShortcut.builder()
+                        .inputAlias("<value>")
+                        .destinationUrl("https://plump-tune-up.biz/")
+                        .createdBy("<value>")
+                        .intermediateUrl("https://lean-sightseeing.net")
                         .build()))
                 .build();
 
@@ -78,8 +85,7 @@ Creates glean shortcuts for uploaded shortcuts info. Glean would host the shortc
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.IndexingShortcut;
-import com.glean.api_client.glean_api_client.models.components.UploadShortcutsRequest;
+import com.glean.api_client.glean_api_client.models.components.*;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1UploadshortcutsResponse;
 import java.lang.Exception;
 import java.util.List;
@@ -89,7 +95,9 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         UploadShortcutsRequest req = UploadShortcutsRequest.builder()
@@ -97,7 +105,17 @@ public class Application {
                 .shortcuts(List.of(
                     IndexingShortcut.builder()
                         .inputAlias("<value>")
-                        .destinationUrl("https://needy-harp.name")
+                        .destinationUrl("https://majestic-pharmacopoeia.info/")
+                        .createdBy("<value>")
+                        .build(),
+                    IndexingShortcut.builder()
+                        .inputAlias("<value>")
+                        .destinationUrl("https://majestic-pharmacopoeia.info/")
+                        .createdBy("<value>")
+                        .build(),
+                    IndexingShortcut.builder()
+                        .inputAlias("<value>")
+                        .destinationUrl("https://majestic-pharmacopoeia.info/")
                         .createdBy("<value>")
                         .build()))
                 .build();

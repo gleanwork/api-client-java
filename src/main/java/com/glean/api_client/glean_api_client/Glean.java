@@ -74,16 +74,15 @@ public class Glean {
             this.sdkConfiguration.defaultClient = client;
             return this;
         }
+        
         /**
-         * Configures the SDK security to use the provided secret.
+         * Configures the SDK to use the provided security details.
          *
-         * @param apiToken The secret to use for all requests.
+         * @param security The security details to use for all requests.
          * @return The builder instance.
          */
-        public Builder apiToken(String apiToken) {
-            this.sdkConfiguration.securitySource = SecuritySource.of(com.glean.api_client.glean_api_client.models.components.Security.builder()
-              .apiToken(apiToken)
-              .build());
+        public Builder security(com.glean.api_client.glean_api_client.models.components.Security security) {
+            this.sdkConfiguration.securitySource = SecuritySource.of(security);
             return this;
         }
 

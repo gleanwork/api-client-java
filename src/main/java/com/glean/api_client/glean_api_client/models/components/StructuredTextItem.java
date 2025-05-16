@@ -29,21 +29,31 @@ public class StructuredTextItem {
     @JsonProperty("text")
     private Optional<String> text;
 
+    /**
+     * A single object that can support any object in the work graph. Only a single object will be populated.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("structuredResult")
+    private Optional<? extends StructuredResult> structuredResult;
+
     @JsonCreator
     public StructuredTextItem(
             @JsonProperty("link") Optional<String> link,
             @JsonProperty("document") Optional<? extends Document> document,
-            @JsonProperty("text") Optional<String> text) {
+            @JsonProperty("text") Optional<String> text,
+            @JsonProperty("structuredResult") Optional<? extends StructuredResult> structuredResult) {
         Utils.checkNotNull(link, "link");
         Utils.checkNotNull(document, "document");
         Utils.checkNotNull(text, "text");
+        Utils.checkNotNull(structuredResult, "structuredResult");
         this.link = link;
         this.document = document;
         this.text = text;
+        this.structuredResult = structuredResult;
     }
     
     public StructuredTextItem() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -60,6 +70,15 @@ public class StructuredTextItem {
     @JsonIgnore
     public Optional<String> text() {
         return text;
+    }
+
+    /**
+     * A single object that can support any object in the work graph. Only a single object will be populated.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<StructuredResult> structuredResult() {
+        return (Optional<StructuredResult>) structuredResult;
     }
 
     public final static Builder builder() {
@@ -102,6 +121,24 @@ public class StructuredTextItem {
         return this;
     }
 
+    /**
+     * A single object that can support any object in the work graph. Only a single object will be populated.
+     */
+    public StructuredTextItem withStructuredResult(StructuredResult structuredResult) {
+        Utils.checkNotNull(structuredResult, "structuredResult");
+        this.structuredResult = Optional.ofNullable(structuredResult);
+        return this;
+    }
+
+    /**
+     * A single object that can support any object in the work graph. Only a single object will be populated.
+     */
+    public StructuredTextItem withStructuredResult(Optional<? extends StructuredResult> structuredResult) {
+        Utils.checkNotNull(structuredResult, "structuredResult");
+        this.structuredResult = structuredResult;
+        return this;
+    }
+
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -115,7 +152,8 @@ public class StructuredTextItem {
         return 
             Objects.deepEquals(this.link, other.link) &&
             Objects.deepEquals(this.document, other.document) &&
-            Objects.deepEquals(this.text, other.text);
+            Objects.deepEquals(this.text, other.text) &&
+            Objects.deepEquals(this.structuredResult, other.structuredResult);
     }
     
     @Override
@@ -123,7 +161,8 @@ public class StructuredTextItem {
         return Objects.hash(
             link,
             document,
-            text);
+            text,
+            structuredResult);
     }
     
     @Override
@@ -131,7 +170,8 @@ public class StructuredTextItem {
         return Utils.toString(StructuredTextItem.class,
                 "link", link,
                 "document", document,
-                "text", text);
+                "text", text,
+                "structuredResult", structuredResult);
     }
     
     public final static class Builder {
@@ -141,6 +181,8 @@ public class StructuredTextItem {
         private Optional<? extends Document> document = Optional.empty();
  
         private Optional<String> text = Optional.empty();
+ 
+        private Optional<? extends StructuredResult> structuredResult = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -181,12 +223,31 @@ public class StructuredTextItem {
             this.text = text;
             return this;
         }
+
+        /**
+         * A single object that can support any object in the work graph. Only a single object will be populated.
+         */
+        public Builder structuredResult(StructuredResult structuredResult) {
+            Utils.checkNotNull(structuredResult, "structuredResult");
+            this.structuredResult = Optional.ofNullable(structuredResult);
+            return this;
+        }
+
+        /**
+         * A single object that can support any object in the work graph. Only a single object will be populated.
+         */
+        public Builder structuredResult(Optional<? extends StructuredResult> structuredResult) {
+            Utils.checkNotNull(structuredResult, "structuredResult");
+            this.structuredResult = structuredResult;
+            return this;
+        }
         
         public StructuredTextItem build() {
             return new StructuredTextItem(
                 link,
                 document,
-                text);
+                text,
+                structuredResult);
         }
     }
 }

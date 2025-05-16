@@ -30,6 +30,7 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.DebugUserRequest;
+import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DebugDatasourceUserResponse;
 import java.lang.Exception;
 
@@ -38,7 +39,9 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         PostApiIndexV1DebugDatasourceUserResponse res = sdk.indexing().people().debug()
@@ -88,6 +91,7 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.GetUserCountRequest;
+import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1GetusercountResponse;
 import java.lang.Exception;
 
@@ -96,7 +100,9 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         GetUserCountRequest req = GetUserCountRequest.builder()
@@ -150,18 +156,16 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         IndexEmployeeRequest req = IndexEmployeeRequest.builder()
                 .employee(EmployeeInfoDefinition.builder()
-                    .email("Santos.Turcotte@yahoo.com")
+                    .email("Jerrold_Hermann@hotmail.com")
                     .department("<value>")
                     .datasourceProfiles(List.of(
-                        DatasourceProfile.builder()
-                            .datasource("github")
-                            .handle("<value>")
-                            .build(),
                         DatasourceProfile.builder()
                             .datasource("github")
                             .handle("<value>")
@@ -204,7 +208,7 @@ Replaces all the currently indexed employees using paginated batch API calls. Pl
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.BulkIndexEmployeesRequest;
+import com.glean.api_client.glean_api_client.models.components.*;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1BulkindexemployeesResponse;
 import java.lang.Exception;
 import java.util.List;
@@ -214,12 +218,41 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         BulkIndexEmployeesRequest req = BulkIndexEmployeesRequest.builder()
                 .uploadId("<id>")
-                .employees(List.of())
+                .employees(List.of(
+                    EmployeeInfoDefinition.builder()
+                        .email("Robin.Stoltenberg@yahoo.com")
+                        .department("<value>")
+                        .datasourceProfiles(List.of(
+                            DatasourceProfile.builder()
+                                .datasource("github")
+                                .handle("<value>")
+                                .build()))
+                        .build(),
+                    EmployeeInfoDefinition.builder()
+                        .email("Robin.Stoltenberg@yahoo.com")
+                        .department("<value>")
+                        .datasourceProfiles(List.of(
+                            DatasourceProfile.builder()
+                                .datasource("github")
+                                .handle("<value>")
+                                .build()))
+                        .build(),
+                    EmployeeInfoDefinition.builder()
+                        .email("Robin.Stoltenberg@yahoo.com")
+                        .department("<value>")
+                        .datasourceProfiles(List.of(
+                            DatasourceProfile.builder()
+                                .datasource("github")
+                                .handle("<value>")
+                                .build()))
+                        .build()))
                 .build();
 
         PostApiIndexV1BulkindexemployeesResponse res = sdk.indexing().people().bulkIndex()
@@ -258,6 +291,7 @@ Schedules the immediate processing of employees and teams uploaded through the i
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1ProcessallemployeesandteamsResponse;
 import java.lang.Exception;
 
@@ -266,7 +300,9 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         PostApiIndexV1ProcessallemployeesandteamsResponse res = sdk.indexing().people().processAllEmployeesAndTeams()
@@ -298,6 +334,7 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.DeleteEmployeeRequest;
+import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DeleteemployeeResponse;
 import java.lang.Exception;
 
@@ -306,7 +343,9 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         DeleteEmployeeRequest req = DeleteEmployeeRequest.builder()
@@ -358,7 +397,9 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         IndexTeamRequest req = IndexTeamRequest.builder()
@@ -367,13 +408,7 @@ public class Application {
                     .name("<value>")
                     .members(List.of(
                         TeamMember.builder()
-                            .email("Rachelle20@yahoo.com")
-                            .build(),
-                        TeamMember.builder()
-                            .email("Rebeka.Gerhold@hotmail.com")
-                            .build(),
-                        TeamMember.builder()
-                            .email("Jace86@yahoo.com")
+                            .email("Nasir.Hilll73@hotmail.com")
                             .build()))
                     .datasourceProfiles(List.of(
                         DatasourceProfile.builder()
@@ -427,6 +462,7 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.DeleteTeamRequest;
+import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DeleteteamResponse;
 import java.lang.Exception;
 
@@ -435,7 +471,9 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         DeleteTeamRequest req = DeleteTeamRequest.builder()
@@ -477,7 +515,7 @@ Replaces all the currently indexed teams using paginated batch API calls. Please
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.BulkIndexTeamsRequest;
+import com.glean.api_client.glean_api_client.models.components.*;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1BulkindexteamsResponse;
 import java.lang.Exception;
 import java.util.List;
@@ -487,12 +525,56 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         BulkIndexTeamsRequest req = BulkIndexTeamsRequest.builder()
                 .uploadId("<id>")
-                .teams(List.of())
+                .teams(List.of(
+                    TeamInfoDefinition.builder()
+                        .id("<id>")
+                        .name("<value>")
+                        .members(List.of())
+                        .datasourceProfiles(List.of(
+                            DatasourceProfile.builder()
+                                .datasource("github")
+                                .handle("<value>")
+                                .build(),
+                            DatasourceProfile.builder()
+                                .datasource("github")
+                                .handle("<value>")
+                                .build()))
+                        .build(),
+                    TeamInfoDefinition.builder()
+                        .id("<id>")
+                        .name("<value>")
+                        .members(List.of())
+                        .datasourceProfiles(List.of(
+                            DatasourceProfile.builder()
+                                .datasource("github")
+                                .handle("<value>")
+                                .build(),
+                            DatasourceProfile.builder()
+                                .datasource("github")
+                                .handle("<value>")
+                                .build()))
+                        .build(),
+                    TeamInfoDefinition.builder()
+                        .id("<id>")
+                        .name("<value>")
+                        .members(List.of())
+                        .datasourceProfiles(List.of(
+                            DatasourceProfile.builder()
+                                .datasource("github")
+                                .handle("<value>")
+                                .build(),
+                            DatasourceProfile.builder()
+                                .datasource("github")
+                                .handle("<value>")
+                                .build()))
+                        .build()))
                 .build();
 
         PostApiIndexV1BulkindexteamsResponse res = sdk.indexing().people().bulkIndexTeams()

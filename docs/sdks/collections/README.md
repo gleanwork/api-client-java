@@ -25,6 +25,7 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.AddCollectionItemsRequest;
+import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.AddcollectionitemsResponse;
 import java.lang.Exception;
 
@@ -33,11 +34,13 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         AddCollectionItemsRequest req = AddCollectionItemsRequest.builder()
-                .collectionId(6460.15)
+                .collectionId(7742.68)
                 .build();
 
         AddcollectionitemsResponse res = sdk.client().collections().addItems()
@@ -91,14 +94,16 @@ public class Application {
     public static void main(String[] args) throws CollectionError, Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         CreateCollectionRequest req = CreateCollectionRequest.builder()
                 .name("<value>")
                 .addedRoles(List.of(
                     UserRoleSpecification.builder()
-                        .role(UserRole.OWNER)
+                        .role(UserRole.VERIFIER)
                         .person(Person.builder()
                             .name("George Clooney")
                             .obfuscatedId("abc123")
@@ -113,7 +118,7 @@ public class Application {
                                         .label("Mortimer's PRs")
                                         .datasource("github")
                                         .requestOptions(SearchRequestOptions.builder()
-                                            .facetBucketSize(134365L)
+                                            .facetBucketSize(977077L)
                                             .datasourceFilter("JIRA")
                                             .datasourcesFilter(List.of(
                                                 "JIRA"))
@@ -132,6 +137,21 @@ public class Application {
                                                             .build()))
                                                     .build()))
                                             .facetFilterSets(List.of(
+                                                FacetFilterSet.builder()
+                                                    .filters(List.of(
+                                                        FacetFilter.builder()
+                                                            .fieldName("type")
+                                                            .values(List.of(
+                                                                FacetFilterValue.builder()
+                                                                    .value("Spreadsheet")
+                                                                    .relationType(RelationType.EQUALS)
+                                                                    .build(),
+                                                                FacetFilterValue.builder()
+                                                                    .value("Presentation")
+                                                                    .relationType(RelationType.EQUALS)
+                                                                    .build()))
+                                                            .build()))
+                                                    .build(),
                                                 FacetFilterSet.builder()
                                                     .filters(List.of(
                                                         FacetFilter.builder()
@@ -173,7 +193,7 @@ public class Application {
                                             .build())
                                         .ranges(List.of(
                                             TextRange.builder()
-                                                .startIndex(796474L)
+                                                .startIndex(86650L)
                                                 .document(Document.builder()
                                                     .metadata(DocumentMetadata.builder()
                                                         .datasource("datasource")
@@ -204,44 +224,12 @@ public class Application {
                                                                                 .relationType(RelationType.EQUALS)
                                                                                 .build()))
                                                                         .build()))
-                                                                .build(),
-                                                            PinDocument.builder()
-                                                                .documentId("<id>")
-                                                                .audienceFilters(List.of(
-                                                                    FacetFilter.builder()
-                                                                        .fieldName("type")
-                                                                        .values(List.of(
-                                                                            FacetFilterValue.builder()
-                                                                                .value("Spreadsheet")
-                                                                                .relationType(RelationType.EQUALS)
-                                                                                .build(),
-                                                                            FacetFilterValue.builder()
-                                                                                .value("Presentation")
-                                                                                .relationType(RelationType.EQUALS)
-                                                                                .build()))
-                                                                        .build()))
-                                                                .build(),
-                                                            PinDocument.builder()
-                                                                .documentId("<id>")
-                                                                .audienceFilters(List.of(
-                                                                    FacetFilter.builder()
-                                                                        .fieldName("type")
-                                                                        .values(List.of(
-                                                                            FacetFilterValue.builder()
-                                                                                .value("Spreadsheet")
-                                                                                .relationType(RelationType.EQUALS)
-                                                                                .build(),
-                                                                            FacetFilterValue.builder()
-                                                                                .value("Presentation")
-                                                                                .relationType(RelationType.EQUALS)
-                                                                                .build()))
-                                                                        .build()))
                                                                 .build()))
                                                         .collections(List.of(
                                                             Collection.builder()
                                                                 .name("<value>")
-                                                                .description("fumigate convection though zowie")
-                                                                .id(496323L)
+                                                                .description("meaty dial elegantly while react")
+                                                                .id(854591L)
                                                                 .audienceFilters(List.of(
                                                                     FacetFilter.builder()
                                                                         .fieldName("type")
@@ -257,8 +245,22 @@ public class Application {
                                                                         .build()))
                                                                 .items(List.of(
                                                                     CollectionItem.builder()
-                                                                        .collectionId(782367L)
-                                                                        .itemType(CollectionItemItemType.DOCUMENT)
+                                                                        .collectionId(697663L)
+                                                                        .itemType(CollectionItemItemType.TEXT)
+                                                                        .shortcut(Shortcut.builder()
+                                                                            .inputAlias("<value>")
+                                                                            .build())
+                                                                        .build(),
+                                                                    CollectionItem.builder()
+                                                                        .collectionId(697663L)
+                                                                        .itemType(CollectionItemItemType.TEXT)
+                                                                        .shortcut(Shortcut.builder()
+                                                                            .inputAlias("<value>")
+                                                                            .build())
+                                                                        .build(),
+                                                                    CollectionItem.builder()
+                                                                        .collectionId(697663L)
+                                                                        .itemType(CollectionItemItemType.TEXT)
                                                                         .shortcut(Shortcut.builder()
                                                                             .inputAlias("<value>")
                                                                             .build())
@@ -269,22 +271,20 @@ public class Application {
                                                                 Reaction.builder()
                                                                     .build(),
                                                                 Reaction.builder()
-                                                                    .build(),
-                                                                Reaction.builder()
                                                                     .build()))
                                                             .shares(List.of(
                                                                 Share.builder()
-                                                                    .numDaysAgo(219974L)
+                                                                    .numDaysAgo(365776L)
                                                                     .build(),
                                                                 Share.builder()
-                                                                    .numDaysAgo(449221L)
+                                                                    .numDaysAgo(365776L)
                                                                     .build(),
                                                                 Share.builder()
-                                                                    .numDaysAgo(427887L)
+                                                                    .numDaysAgo(365776L)
                                                                     .build()))
                                                             .build())
                                                         .verification(Verification.builder()
-                                                            .state(State.VERIFIED)
+                                                            .state(State.DEPRECATED)
                                                             .metadata(VerificationMetadata.builder()
                                                                 .reminders(List.of(
                                                                     Reminder.builder()
@@ -292,18 +292,24 @@ public class Application {
                                                                             .name("George Clooney")
                                                                             .obfuscatedId("abc123")
                                                                             .build())
-                                                                        .remindAt(491427L)
+                                                                        .remindAt(268615L)
                                                                         .build()))
                                                                 .lastReminder(Reminder.builder()
                                                                     .assignee(Person.builder()
                                                                         .name("George Clooney")
                                                                         .obfuscatedId("abc123")
                                                                         .build())
-                                                                    .remindAt(490420L)
+                                                                    .remindAt(423482L)
                                                                     .build())
                                                                 .build())
                                                             .build())
                                                         .shortcuts(List.of(
+                                                            Shortcut.builder()
+                                                                .inputAlias("<value>")
+                                                                .build(),
+                                                            Shortcut.builder()
+                                                                .inputAlias("<value>")
+                                                                .build(),
                                                             Shortcut.builder()
                                                                 .inputAlias("<value>")
                                                                 .build()))
@@ -339,7 +345,7 @@ public class Application {
                                         .label("Mortimer's PRs")
                                         .datasource("github")
                                         .requestOptions(SearchRequestOptions.builder()
-                                            .facetBucketSize(45416L)
+                                            .facetBucketSize(977077L)
                                             .datasourceFilter("JIRA")
                                             .datasourcesFilter(List.of(
                                                 "JIRA"))
@@ -412,10 +418,149 @@ public class Application {
                                                     .authUser("1")
                                                     .build()))
                                             .build())
+                                        .ranges(List.of(
+                                            TextRange.builder()
+                                                .startIndex(86650L)
+                                                .document(Document.builder()
+                                                    .metadata(DocumentMetadata.builder()
+                                                        .datasource("datasource")
+                                                        .objectType("Feature Request")
+                                                        .container("container")
+                                                        .parentId("JIRA_EN-1337")
+                                                        .mimeType("mimeType")
+                                                        .documentId("documentId")
+                                                        .createTime(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
+                                                        .updateTime(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
+                                                        .components(List.of(
+                                                            "Backend",
+                                                            "Networking"))
+                                                        .status("[\"Done\"]")
+                                                        .pins(List.of(
+                                                            PinDocument.builder()
+                                                                .documentId("<id>")
+                                                                .audienceFilters(List.of(
+                                                                    FacetFilter.builder()
+                                                                        .fieldName("type")
+                                                                        .values(List.of(
+                                                                            FacetFilterValue.builder()
+                                                                                .value("Spreadsheet")
+                                                                                .relationType(RelationType.EQUALS)
+                                                                                .build(),
+                                                                            FacetFilterValue.builder()
+                                                                                .value("Presentation")
+                                                                                .relationType(RelationType.EQUALS)
+                                                                                .build()))
+                                                                        .build()))
+                                                                .build()))
+                                                        .collections(List.of(
+                                                            Collection.builder()
+                                                                .name("<value>")
+                                                                .description("meaty dial elegantly while react")
+                                                                .id(854591L)
+                                                                .audienceFilters(List.of(
+                                                                    FacetFilter.builder()
+                                                                        .fieldName("type")
+                                                                        .values(List.of(
+                                                                            FacetFilterValue.builder()
+                                                                                .value("Spreadsheet")
+                                                                                .relationType(RelationType.EQUALS)
+                                                                                .build(),
+                                                                            FacetFilterValue.builder()
+                                                                                .value("Presentation")
+                                                                                .relationType(RelationType.EQUALS)
+                                                                                .build()))
+                                                                        .build()))
+                                                                .items(List.of(
+                                                                    CollectionItem.builder()
+                                                                        .collectionId(697663L)
+                                                                        .itemType(CollectionItemItemType.TEXT)
+                                                                        .shortcut(Shortcut.builder()
+                                                                            .inputAlias("<value>")
+                                                                            .build())
+                                                                        .build(),
+                                                                    CollectionItem.builder()
+                                                                        .collectionId(697663L)
+                                                                        .itemType(CollectionItemItemType.TEXT)
+                                                                        .shortcut(Shortcut.builder()
+                                                                            .inputAlias("<value>")
+                                                                            .build())
+                                                                        .build(),
+                                                                    CollectionItem.builder()
+                                                                        .collectionId(697663L)
+                                                                        .itemType(CollectionItemItemType.TEXT)
+                                                                        .shortcut(Shortcut.builder()
+                                                                            .inputAlias("<value>")
+                                                                            .build())
+                                                                        .build()))
+                                                                .build()))
+                                                        .interactions(DocumentInteractions.builder()
+                                                            .reacts(List.of(
+                                                                Reaction.builder()
+                                                                    .build(),
+                                                                Reaction.builder()
+                                                                    .build()))
+                                                            .shares(List.of(
+                                                                Share.builder()
+                                                                    .numDaysAgo(365776L)
+                                                                    .build(),
+                                                                Share.builder()
+                                                                    .numDaysAgo(365776L)
+                                                                    .build(),
+                                                                Share.builder()
+                                                                    .numDaysAgo(365776L)
+                                                                    .build()))
+                                                            .build())
+                                                        .verification(Verification.builder()
+                                                            .state(State.DEPRECATED)
+                                                            .metadata(VerificationMetadata.builder()
+                                                                .reminders(List.of(
+                                                                    Reminder.builder()
+                                                                        .assignee(Person.builder()
+                                                                            .name("George Clooney")
+                                                                            .obfuscatedId("abc123")
+                                                                            .build())
+                                                                        .remindAt(268615L)
+                                                                        .build()))
+                                                                .lastReminder(Reminder.builder()
+                                                                    .assignee(Person.builder()
+                                                                        .name("George Clooney")
+                                                                        .obfuscatedId("abc123")
+                                                                        .build())
+                                                                    .remindAt(423482L)
+                                                                    .build())
+                                                                .build())
+                                                            .build())
+                                                        .shortcuts(List.of(
+                                                            Shortcut.builder()
+                                                                .inputAlias("<value>")
+                                                                .build(),
+                                                            Shortcut.builder()
+                                                                .inputAlias("<value>")
+                                                                .build(),
+                                                            Shortcut.builder()
+                                                                .inputAlias("<value>")
+                                                                .build()))
+                                                        .customData(Map.ofEntries(
+                                                            Map.entry("someCustomField", CustomDataValue.builder()
+                                                                .build())))
+                                                        .build())
+                                                    .build())
+                                                .build()))
                                         .inputDetails(SearchRequestInputDetails.builder()
                                             .hasCopyPaste(true)
                                             .build())
                                         .build())
+                                    .results(List.of(
+                                        SearchResult.builder()
+                                            .url("https://example.com/foo/bar")
+                                            .title("title")
+                                            .nativeAppUrl("slack://foo/bar")
+                                            .snippets(List.of(
+                                                SearchResultSnippet.builder()
+                                                    .snippet("snippet")
+                                                    .mimeType("mimeType")
+                                                    .build()))
+                                            .build()))
                                     .build()))
                             .metadata(PersonMetadata.builder()
                                 .type(PersonMetadataType.FULL_TIME)
@@ -427,6 +572,10 @@ public class Application {
                                 .photoUrl("https://example.com/george.jpg")
                                 .startDate(LocalDate.parse("2000-01-23"))
                                 .datasourceProfile(List.of(
+                                    DatasourceProfile.builder()
+                                        .datasource("github")
+                                        .handle("<value>")
+                                        .build(),
                                     DatasourceProfile.builder()
                                         .datasource("github")
                                         .handle("<value>")
@@ -442,6 +591,8 @@ public class Application {
                                 .inviteInfo(InviteInfo.builder()
                                     .invites(List.of(
                                         ChannelInviteInfo.builder()
+                                            .build(),
+                                        ChannelInviteInfo.builder()
                                             .build()))
                                     .build())
                                 .customFields(List.of(
@@ -451,49 +602,20 @@ public class Application {
                                             CustomFieldValue.of(CustomFieldValueStr.builder()
                                                 .build()),
                                             CustomFieldValue.of(CustomFieldValueStr.builder()
+                                                .build()),
+                                            CustomFieldValue.of(CustomFieldValueStr.builder()
                                                 .build())))
                                         .build(),
                                     CustomFieldData.builder()
                                         .label("<value>")
-                                        .values(List.of())
+                                        .values(List.of(
+                                            CustomFieldValue.of(CustomFieldValueStr.builder()
+                                                .build()),
+                                            CustomFieldValue.of(CustomFieldValueStr.builder()
+                                                .build()),
+                                            CustomFieldValue.of(CustomFieldValueStr.builder()
+                                                .build())))
                                         .build()))
-                                .badges(List.of(
-                                    Badge.builder()
-                                        .key("deployment_name_new_hire")
-                                        .displayName("New hire")
-                                        .iconConfig(IconConfig.builder()
-                                            .color("#343CED")
-                                            .key("person_icon")
-                                            .iconType(IconType.GLYPH)
-                                            .name("user")
-                                            .build())
-                                        .build()))
-                                .build())
-                            .build())
-                        .build(),
-                    UserRoleSpecification.builder()
-                        .role(UserRole.VERIFIER)
-                        .person(Person.builder()
-                            .name("George Clooney")
-                            .obfuscatedId("abc123")
-                            .metadata(PersonMetadata.builder()
-                                .type(PersonMetadataType.FULL_TIME)
-                                .title("Actor")
-                                .department("Movies")
-                                .email("george@example.com")
-                                .location("Hollywood, CA")
-                                .phone("6505551234")
-                                .photoUrl("https://example.com/george.jpg")
-                                .startDate(LocalDate.parse("2000-01-23"))
-                                .datasourceProfile(List.of(
-                                    DatasourceProfile.builder()
-                                        .datasource("github")
-                                        .handle("<value>")
-                                        .build()))
-                                .querySuggestions(QuerySuggestionList.builder()
-                                    .build())
-                                .inviteInfo(InviteInfo.builder()
-                                    .build())
                                 .badges(List.of(
                                     Badge.builder()
                                         .key("deployment_name_new_hire")
@@ -510,44 +632,7 @@ public class Application {
                         .build()))
                 .removedRoles(List.of(
                     UserRoleSpecification.builder()
-                        .role(UserRole.VERIFIER)
-                        .person(Person.builder()
-                            .name("George Clooney")
-                            .obfuscatedId("abc123")
-                            .metadata(PersonMetadata.builder()
-                                .type(PersonMetadataType.FULL_TIME)
-                                .title("Actor")
-                                .department("Movies")
-                                .email("george@example.com")
-                                .location("Hollywood, CA")
-                                .phone("6505551234")
-                                .photoUrl("https://example.com/george.jpg")
-                                .startDate(LocalDate.parse("2000-01-23"))
-                                .datasourceProfile(List.of(
-                                    DatasourceProfile.builder()
-                                        .datasource("github")
-                                        .handle("<value>")
-                                        .build()))
-                                .querySuggestions(QuerySuggestionList.builder()
-                                    .build())
-                                .inviteInfo(InviteInfo.builder()
-                                    .build())
-                                .badges(List.of(
-                                    Badge.builder()
-                                        .key("deployment_name_new_hire")
-                                        .displayName("New hire")
-                                        .iconConfig(IconConfig.builder()
-                                            .color("#343CED")
-                                            .key("person_icon")
-                                            .iconType(IconType.GLYPH)
-                                            .name("user")
-                                            .build())
-                                        .build()))
-                                .build())
-                            .build())
-                        .build(),
-                    UserRoleSpecification.builder()
-                        .role(UserRole.ANSWER_MODERATOR)
+                        .role(UserRole.VIEWER)
                         .person(Person.builder()
                             .name("George Clooney")
                             .obfuscatedId("abc123")
@@ -568,51 +653,21 @@ public class Application {
                                     DatasourceProfile.builder()
                                         .datasource("github")
                                         .handle("<value>")
-                                        .build(),
-                                    DatasourceProfile.builder()
-                                        .datasource("github")
-                                        .handle("<value>")
                                         .build()))
                                 .querySuggestions(QuerySuggestionList.builder()
+                                    .suggestions(List.of(
+                                        QuerySuggestion.builder()
+                                            .query("app:github type:pull author:mortimer")
+                                            .label("Mortimer's PRs")
+                                            .datasource("github")
+                                            .build()))
                                     .build())
                                 .inviteInfo(InviteInfo.builder()
-                                    .build())
-                                .badges(List.of(
-                                    Badge.builder()
-                                        .key("deployment_name_new_hire")
-                                        .displayName("New hire")
-                                        .iconConfig(IconConfig.builder()
-                                            .color("#343CED")
-                                            .key("person_icon")
-                                            .iconType(IconType.GLYPH)
-                                            .name("user")
-                                            .build())
-                                        .build()))
-                                .build())
-                            .build())
-                        .build(),
-                    UserRoleSpecification.builder()
-                        .role(UserRole.OWNER)
-                        .person(Person.builder()
-                            .name("George Clooney")
-                            .obfuscatedId("abc123")
-                            .metadata(PersonMetadata.builder()
-                                .type(PersonMetadataType.FULL_TIME)
-                                .title("Actor")
-                                .department("Movies")
-                                .email("george@example.com")
-                                .location("Hollywood, CA")
-                                .phone("6505551234")
-                                .photoUrl("https://example.com/george.jpg")
-                                .startDate(LocalDate.parse("2000-01-23"))
-                                .datasourceProfile(List.of(
-                                    DatasourceProfile.builder()
-                                        .datasource("github")
-                                        .handle("<value>")
-                                        .build()))
-                                .querySuggestions(QuerySuggestionList.builder()
-                                    .build())
-                                .inviteInfo(InviteInfo.builder()
+                                    .invites(List.of(
+                                        ChannelInviteInfo.builder()
+                                            .build(),
+                                        ChannelInviteInfo.builder()
+                                            .build()))
                                     .build())
                                 .badges(List.of(
                                     Badge.builder()
@@ -682,6 +737,7 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.DeleteCollectionRequest;
+import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.errors.CollectionError;
 import com.glean.api_client.glean_api_client.models.operations.DeletecollectionResponse;
 import java.lang.Exception;
@@ -692,13 +748,16 @@ public class Application {
     public static void main(String[] args) throws CollectionError, Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         DeleteCollectionRequest req = DeleteCollectionRequest.builder()
                 .ids(List.of(
-                    698486L,
-                    386564L))
+                    930352L,
+                    156719L,
+                    25102L))
                 .build();
 
         DeletecollectionResponse res = sdk.client().collections().delete()
@@ -738,6 +797,7 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.DeleteCollectionItemRequest;
+import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.DeletecollectionitemResponse;
 import java.lang.Exception;
 
@@ -746,11 +806,13 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         DeleteCollectionItemRequest req = DeleteCollectionItemRequest.builder()
-                .collectionId(1357.59)
+                .collectionId(6980.49)
                 .itemId("<id>")
                 .build();
 
@@ -805,15 +867,17 @@ public class Application {
     public static void main(String[] args) throws CollectionError, Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         EditCollectionRequest req = EditCollectionRequest.builder()
                 .name("<value>")
-                .id(720396L)
+                .id(671264L)
                 .addedRoles(List.of(
                     UserRoleSpecification.builder()
-                        .role(UserRole.ANSWER_MODERATOR)
+                        .role(UserRole.OWNER)
                         .person(Person.builder()
                             .name("George Clooney")
                             .obfuscatedId("abc123")
@@ -828,7 +892,7 @@ public class Application {
                                         .label("Mortimer's PRs")
                                         .datasource("github")
                                         .requestOptions(SearchRequestOptions.builder()
-                                            .facetBucketSize(991464L)
+                                            .facetBucketSize(797260L)
                                             .datasourceFilter("JIRA")
                                             .datasourcesFilter(List.of(
                                                 "JIRA"))
@@ -888,7 +952,7 @@ public class Application {
                                             .build())
                                         .ranges(List.of(
                                             TextRange.builder()
-                                                .startIndex(488852L)
+                                                .startIndex(932928L)
                                                 .document(Document.builder()
                                                     .metadata(DocumentMetadata.builder()
                                                         .datasource("datasource")
@@ -935,28 +999,12 @@ public class Application {
                                                                                 .relationType(RelationType.EQUALS)
                                                                                 .build()))
                                                                         .build()))
-                                                                .build(),
-                                                            PinDocument.builder()
-                                                                .documentId("<id>")
-                                                                .audienceFilters(List.of(
-                                                                    FacetFilter.builder()
-                                                                        .fieldName("type")
-                                                                        .values(List.of(
-                                                                            FacetFilterValue.builder()
-                                                                                .value("Spreadsheet")
-                                                                                .relationType(RelationType.EQUALS)
-                                                                                .build(),
-                                                                            FacetFilterValue.builder()
-                                                                                .value("Presentation")
-                                                                                .relationType(RelationType.EQUALS)
-                                                                                .build()))
-                                                                        .build()))
                                                                 .build()))
                                                         .collections(List.of(
                                                             Collection.builder()
                                                                 .name("<value>")
-                                                                .description("eulogise whereas till mild than during meanwhile disapprove finer ha")
-                                                                .id(2984L)
+                                                                .description("how by extroverted excess kissingly scruple yearningly")
+                                                                .id(416110L)
                                                                 .audienceFilters(List.of(
                                                                     FacetFilter.builder()
                                                                         .fieldName("type")
@@ -972,14 +1020,61 @@ public class Application {
                                                                         .build()))
                                                                 .items(List.of(
                                                                     CollectionItem.builder()
-                                                                        .collectionId(477967L)
-                                                                        .itemType(CollectionItemItemType.URL)
+                                                                        .collectionId(959645L)
+                                                                        .itemType(CollectionItemItemType.TEXT)
                                                                         .shortcut(Shortcut.builder()
                                                                             .inputAlias("<value>")
                                                                             .build())
                                                                         .build(),
                                                                     CollectionItem.builder()
-                                                                        .collectionId(813577L)
+                                                                        .collectionId(959645L)
+                                                                        .itemType(CollectionItemItemType.TEXT)
+                                                                        .shortcut(Shortcut.builder()
+                                                                            .inputAlias("<value>")
+                                                                            .build())
+                                                                        .build(),
+                                                                    CollectionItem.builder()
+                                                                        .collectionId(959645L)
+                                                                        .itemType(CollectionItemItemType.TEXT)
+                                                                        .shortcut(Shortcut.builder()
+                                                                            .inputAlias("<value>")
+                                                                            .build())
+                                                                        .build()))
+                                                                .build(),
+                                                            Collection.builder()
+                                                                .name("<value>")
+                                                                .description("how by extroverted excess kissingly scruple yearningly")
+                                                                .id(416110L)
+                                                                .audienceFilters(List.of(
+                                                                    FacetFilter.builder()
+                                                                        .fieldName("type")
+                                                                        .values(List.of(
+                                                                            FacetFilterValue.builder()
+                                                                                .value("Spreadsheet")
+                                                                                .relationType(RelationType.EQUALS)
+                                                                                .build(),
+                                                                            FacetFilterValue.builder()
+                                                                                .value("Presentation")
+                                                                                .relationType(RelationType.EQUALS)
+                                                                                .build()))
+                                                                        .build()))
+                                                                .items(List.of(
+                                                                    CollectionItem.builder()
+                                                                        .collectionId(959645L)
+                                                                        .itemType(CollectionItemItemType.TEXT)
+                                                                        .shortcut(Shortcut.builder()
+                                                                            .inputAlias("<value>")
+                                                                            .build())
+                                                                        .build(),
+                                                                    CollectionItem.builder()
+                                                                        .collectionId(959645L)
+                                                                        .itemType(CollectionItemItemType.TEXT)
+                                                                        .shortcut(Shortcut.builder()
+                                                                            .inputAlias("<value>")
+                                                                            .build())
+                                                                        .build(),
+                                                                    CollectionItem.builder()
+                                                                        .collectionId(959645L)
                                                                         .itemType(CollectionItemItemType.TEXT)
                                                                         .shortcut(Shortcut.builder()
                                                                             .inputAlias("<value>")
@@ -989,13 +1084,20 @@ public class Application {
                                                         .interactions(DocumentInteractions.builder()
                                                             .reacts(List.of(
                                                                 Reaction.builder()
+                                                                    .build(),
+                                                                Reaction.builder()
+                                                                    .build(),
+                                                                Reaction.builder()
                                                                     .build()))
                                                             .shares(List.of(
                                                                 Share.builder()
-                                                                    .numDaysAgo(301848L)
+                                                                    .numDaysAgo(927933L)
                                                                     .build(),
                                                                 Share.builder()
-                                                                    .numDaysAgo(657278L)
+                                                                    .numDaysAgo(927933L)
+                                                                    .build(),
+                                                                Share.builder()
+                                                                    .numDaysAgo(927933L)
                                                                     .build()))
                                                             .build())
                                                         .verification(Verification.builder()
@@ -1007,14 +1109,21 @@ public class Application {
                                                                             .name("George Clooney")
                                                                             .obfuscatedId("abc123")
                                                                             .build())
-                                                                        .remindAt(335191L)
+                                                                        .remindAt(353914L)
+                                                                        .build(),
+                                                                    Reminder.builder()
+                                                                        .assignee(Person.builder()
+                                                                            .name("George Clooney")
+                                                                            .obfuscatedId("abc123")
+                                                                            .build())
+                                                                        .remindAt(353914L)
                                                                         .build()))
                                                                 .lastReminder(Reminder.builder()
                                                                     .assignee(Person.builder()
                                                                         .name("George Clooney")
                                                                         .obfuscatedId("abc123")
                                                                         .build())
-                                                                    .remindAt(532806L)
+                                                                    .remindAt(314497L)
                                                                     .build())
                                                                 .build())
                                                             .build())
@@ -1024,46 +1133,7 @@ public class Application {
                                                                 .build(),
                                                             Shortcut.builder()
                                                                 .inputAlias("<value>")
-                                                                .build(),
-                                                            Shortcut.builder()
-                                                                .inputAlias("<value>")
                                                                 .build()))
-                                                        .customData(Map.ofEntries(
-                                                            Map.entry("someCustomField", CustomDataValue.builder()
-                                                                .build())))
-                                                        .build())
-                                                    .build())
-                                                .build(),
-                                            TextRange.builder()
-                                                .startIndex(556706L)
-                                                .document(Document.builder()
-                                                    .metadata(DocumentMetadata.builder()
-                                                        .datasource("datasource")
-                                                        .objectType("Feature Request")
-                                                        .container("container")
-                                                        .parentId("JIRA_EN-1337")
-                                                        .mimeType("mimeType")
-                                                        .documentId("documentId")
-                                                        .createTime(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
-                                                        .updateTime(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
-                                                        .components(List.of(
-                                                            "Backend",
-                                                            "Networking"))
-                                                        .status("[\"Done\"]")
-                                                        .interactions(DocumentInteractions.builder()
-                                                            .build())
-                                                        .verification(Verification.builder()
-                                                            .state(State.VERIFIED)
-                                                            .metadata(VerificationMetadata.builder()
-                                                                .lastReminder(Reminder.builder()
-                                                                    .assignee(Person.builder()
-                                                                        .name("George Clooney")
-                                                                        .obfuscatedId("abc123")
-                                                                        .build())
-                                                                    .remindAt(416023L)
-                                                                    .build())
-                                                                .build())
-                                                            .build())
                                                         .customData(Map.ofEntries(
                                                             Map.entry("someCustomField", CustomDataValue.builder()
                                                                 .build())))
@@ -1096,7 +1166,7 @@ public class Application {
                                         .label("Mortimer's PRs")
                                         .datasource("github")
                                         .requestOptions(SearchRequestOptions.builder()
-                                            .facetBucketSize(967252L)
+                                            .facetBucketSize(797260L)
                                             .datasourceFilter("JIRA")
                                             .datasourcesFilter(List.of(
                                                 "JIRA"))
@@ -1129,6 +1199,21 @@ public class Application {
                                                                     .relationType(RelationType.EQUALS)
                                                                     .build()))
                                                             .build()))
+                                                    .build(),
+                                                FacetFilterSet.builder()
+                                                    .filters(List.of(
+                                                        FacetFilter.builder()
+                                                            .fieldName("type")
+                                                            .values(List.of(
+                                                                FacetFilterValue.builder()
+                                                                    .value("Spreadsheet")
+                                                                    .relationType(RelationType.EQUALS)
+                                                                    .build(),
+                                                                FacetFilterValue.builder()
+                                                                    .value("Presentation")
+                                                                    .relationType(RelationType.EQUALS)
+                                                                    .build()))
+                                                            .build()))
                                                     .build()))
                                             .authTokens(List.of(
                                                 AuthToken.builder()
@@ -1139,10 +1224,485 @@ public class Application {
                                                     .authUser("1")
                                                     .build()))
                                             .build())
+                                        .ranges(List.of(
+                                            TextRange.builder()
+                                                .startIndex(932928L)
+                                                .document(Document.builder()
+                                                    .metadata(DocumentMetadata.builder()
+                                                        .datasource("datasource")
+                                                        .objectType("Feature Request")
+                                                        .container("container")
+                                                        .parentId("JIRA_EN-1337")
+                                                        .mimeType("mimeType")
+                                                        .documentId("documentId")
+                                                        .createTime(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
+                                                        .updateTime(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
+                                                        .components(List.of(
+                                                            "Backend",
+                                                            "Networking"))
+                                                        .status("[\"Done\"]")
+                                                        .pins(List.of(
+                                                            PinDocument.builder()
+                                                                .documentId("<id>")
+                                                                .audienceFilters(List.of(
+                                                                    FacetFilter.builder()
+                                                                        .fieldName("type")
+                                                                        .values(List.of(
+                                                                            FacetFilterValue.builder()
+                                                                                .value("Spreadsheet")
+                                                                                .relationType(RelationType.EQUALS)
+                                                                                .build(),
+                                                                            FacetFilterValue.builder()
+                                                                                .value("Presentation")
+                                                                                .relationType(RelationType.EQUALS)
+                                                                                .build()))
+                                                                        .build()))
+                                                                .build(),
+                                                            PinDocument.builder()
+                                                                .documentId("<id>")
+                                                                .audienceFilters(List.of(
+                                                                    FacetFilter.builder()
+                                                                        .fieldName("type")
+                                                                        .values(List.of(
+                                                                            FacetFilterValue.builder()
+                                                                                .value("Spreadsheet")
+                                                                                .relationType(RelationType.EQUALS)
+                                                                                .build(),
+                                                                            FacetFilterValue.builder()
+                                                                                .value("Presentation")
+                                                                                .relationType(RelationType.EQUALS)
+                                                                                .build()))
+                                                                        .build()))
+                                                                .build()))
+                                                        .collections(List.of(
+                                                            Collection.builder()
+                                                                .name("<value>")
+                                                                .description("how by extroverted excess kissingly scruple yearningly")
+                                                                .id(416110L)
+                                                                .audienceFilters(List.of(
+                                                                    FacetFilter.builder()
+                                                                        .fieldName("type")
+                                                                        .values(List.of(
+                                                                            FacetFilterValue.builder()
+                                                                                .value("Spreadsheet")
+                                                                                .relationType(RelationType.EQUALS)
+                                                                                .build(),
+                                                                            FacetFilterValue.builder()
+                                                                                .value("Presentation")
+                                                                                .relationType(RelationType.EQUALS)
+                                                                                .build()))
+                                                                        .build()))
+                                                                .items(List.of(
+                                                                    CollectionItem.builder()
+                                                                        .collectionId(959645L)
+                                                                        .itemType(CollectionItemItemType.TEXT)
+                                                                        .shortcut(Shortcut.builder()
+                                                                            .inputAlias("<value>")
+                                                                            .build())
+                                                                        .build(),
+                                                                    CollectionItem.builder()
+                                                                        .collectionId(959645L)
+                                                                        .itemType(CollectionItemItemType.TEXT)
+                                                                        .shortcut(Shortcut.builder()
+                                                                            .inputAlias("<value>")
+                                                                            .build())
+                                                                        .build(),
+                                                                    CollectionItem.builder()
+                                                                        .collectionId(959645L)
+                                                                        .itemType(CollectionItemItemType.TEXT)
+                                                                        .shortcut(Shortcut.builder()
+                                                                            .inputAlias("<value>")
+                                                                            .build())
+                                                                        .build()))
+                                                                .build(),
+                                                            Collection.builder()
+                                                                .name("<value>")
+                                                                .description("how by extroverted excess kissingly scruple yearningly")
+                                                                .id(416110L)
+                                                                .audienceFilters(List.of(
+                                                                    FacetFilter.builder()
+                                                                        .fieldName("type")
+                                                                        .values(List.of(
+                                                                            FacetFilterValue.builder()
+                                                                                .value("Spreadsheet")
+                                                                                .relationType(RelationType.EQUALS)
+                                                                                .build(),
+                                                                            FacetFilterValue.builder()
+                                                                                .value("Presentation")
+                                                                                .relationType(RelationType.EQUALS)
+                                                                                .build()))
+                                                                        .build()))
+                                                                .items(List.of(
+                                                                    CollectionItem.builder()
+                                                                        .collectionId(959645L)
+                                                                        .itemType(CollectionItemItemType.TEXT)
+                                                                        .shortcut(Shortcut.builder()
+                                                                            .inputAlias("<value>")
+                                                                            .build())
+                                                                        .build(),
+                                                                    CollectionItem.builder()
+                                                                        .collectionId(959645L)
+                                                                        .itemType(CollectionItemItemType.TEXT)
+                                                                        .shortcut(Shortcut.builder()
+                                                                            .inputAlias("<value>")
+                                                                            .build())
+                                                                        .build(),
+                                                                    CollectionItem.builder()
+                                                                        .collectionId(959645L)
+                                                                        .itemType(CollectionItemItemType.TEXT)
+                                                                        .shortcut(Shortcut.builder()
+                                                                            .inputAlias("<value>")
+                                                                            .build())
+                                                                        .build()))
+                                                                .build()))
+                                                        .interactions(DocumentInteractions.builder()
+                                                            .reacts(List.of(
+                                                                Reaction.builder()
+                                                                    .build(),
+                                                                Reaction.builder()
+                                                                    .build(),
+                                                                Reaction.builder()
+                                                                    .build()))
+                                                            .shares(List.of(
+                                                                Share.builder()
+                                                                    .numDaysAgo(927933L)
+                                                                    .build(),
+                                                                Share.builder()
+                                                                    .numDaysAgo(927933L)
+                                                                    .build(),
+                                                                Share.builder()
+                                                                    .numDaysAgo(927933L)
+                                                                    .build()))
+                                                            .build())
+                                                        .verification(Verification.builder()
+                                                            .state(State.UNVERIFIED)
+                                                            .metadata(VerificationMetadata.builder()
+                                                                .reminders(List.of(
+                                                                    Reminder.builder()
+                                                                        .assignee(Person.builder()
+                                                                            .name("George Clooney")
+                                                                            .obfuscatedId("abc123")
+                                                                            .build())
+                                                                        .remindAt(353914L)
+                                                                        .build(),
+                                                                    Reminder.builder()
+                                                                        .assignee(Person.builder()
+                                                                            .name("George Clooney")
+                                                                            .obfuscatedId("abc123")
+                                                                            .build())
+                                                                        .remindAt(353914L)
+                                                                        .build()))
+                                                                .lastReminder(Reminder.builder()
+                                                                    .assignee(Person.builder()
+                                                                        .name("George Clooney")
+                                                                        .obfuscatedId("abc123")
+                                                                        .build())
+                                                                    .remindAt(314497L)
+                                                                    .build())
+                                                                .build())
+                                                            .build())
+                                                        .shortcuts(List.of(
+                                                            Shortcut.builder()
+                                                                .inputAlias("<value>")
+                                                                .build(),
+                                                            Shortcut.builder()
+                                                                .inputAlias("<value>")
+                                                                .build()))
+                                                        .customData(Map.ofEntries(
+                                                            Map.entry("someCustomField", CustomDataValue.builder()
+                                                                .build())))
+                                                        .build())
+                                                    .build())
+                                                .build()))
                                         .inputDetails(SearchRequestInputDetails.builder()
                                             .hasCopyPaste(true)
                                             .build())
                                         .build())
+                                    .results(List.of(
+                                        SearchResult.builder()
+                                            .url("https://example.com/foo/bar")
+                                            .title("title")
+                                            .nativeAppUrl("slack://foo/bar")
+                                            .snippets(List.of(
+                                                SearchResultSnippet.builder()
+                                                    .snippet("snippet")
+                                                    .mimeType("mimeType")
+                                                    .build()))
+                                            .build()))
+                                    .build(),
+                                RelatedDocuments.builder()
+                                    .querySuggestion(QuerySuggestion.builder()
+                                        .query("app:github type:pull author:mortimer")
+                                        .searchProviderInfo(SearchProviderInfo.builder()
+                                            .name("Google")
+                                            .searchLinkUrlTemplate("https://www.google.com/search?q={query}&hl=en")
+                                            .build())
+                                        .label("Mortimer's PRs")
+                                        .datasource("github")
+                                        .requestOptions(SearchRequestOptions.builder()
+                                            .facetBucketSize(797260L)
+                                            .datasourceFilter("JIRA")
+                                            .datasourcesFilter(List.of(
+                                                "JIRA"))
+                                            .queryOverridesFacetFilters(true)
+                                            .facetFilters(List.of(
+                                                FacetFilter.builder()
+                                                    .fieldName("type")
+                                                    .values(List.of(
+                                                        FacetFilterValue.builder()
+                                                            .value("Spreadsheet")
+                                                            .relationType(RelationType.EQUALS)
+                                                            .build(),
+                                                        FacetFilterValue.builder()
+                                                            .value("Presentation")
+                                                            .relationType(RelationType.EQUALS)
+                                                            .build()))
+                                                    .build()))
+                                            .facetFilterSets(List.of(
+                                                FacetFilterSet.builder()
+                                                    .filters(List.of(
+                                                        FacetFilter.builder()
+                                                            .fieldName("type")
+                                                            .values(List.of(
+                                                                FacetFilterValue.builder()
+                                                                    .value("Spreadsheet")
+                                                                    .relationType(RelationType.EQUALS)
+                                                                    .build(),
+                                                                FacetFilterValue.builder()
+                                                                    .value("Presentation")
+                                                                    .relationType(RelationType.EQUALS)
+                                                                    .build()))
+                                                            .build()))
+                                                    .build(),
+                                                FacetFilterSet.builder()
+                                                    .filters(List.of(
+                                                        FacetFilter.builder()
+                                                            .fieldName("type")
+                                                            .values(List.of(
+                                                                FacetFilterValue.builder()
+                                                                    .value("Spreadsheet")
+                                                                    .relationType(RelationType.EQUALS)
+                                                                    .build(),
+                                                                FacetFilterValue.builder()
+                                                                    .value("Presentation")
+                                                                    .relationType(RelationType.EQUALS)
+                                                                    .build()))
+                                                            .build()))
+                                                    .build()))
+                                            .authTokens(List.of(
+                                                AuthToken.builder()
+                                                    .accessToken("123abc")
+                                                    .datasource("gmail")
+                                                    .scope("email profile https://www.googleapis.com/auth/gmail.readonly")
+                                                    .tokenType("Bearer")
+                                                    .authUser("1")
+                                                    .build()))
+                                            .build())
+                                        .ranges(List.of(
+                                            TextRange.builder()
+                                                .startIndex(932928L)
+                                                .document(Document.builder()
+                                                    .metadata(DocumentMetadata.builder()
+                                                        .datasource("datasource")
+                                                        .objectType("Feature Request")
+                                                        .container("container")
+                                                        .parentId("JIRA_EN-1337")
+                                                        .mimeType("mimeType")
+                                                        .documentId("documentId")
+                                                        .createTime(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
+                                                        .updateTime(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
+                                                        .components(List.of(
+                                                            "Backend",
+                                                            "Networking"))
+                                                        .status("[\"Done\"]")
+                                                        .pins(List.of(
+                                                            PinDocument.builder()
+                                                                .documentId("<id>")
+                                                                .audienceFilters(List.of(
+                                                                    FacetFilter.builder()
+                                                                        .fieldName("type")
+                                                                        .values(List.of(
+                                                                            FacetFilterValue.builder()
+                                                                                .value("Spreadsheet")
+                                                                                .relationType(RelationType.EQUALS)
+                                                                                .build(),
+                                                                            FacetFilterValue.builder()
+                                                                                .value("Presentation")
+                                                                                .relationType(RelationType.EQUALS)
+                                                                                .build()))
+                                                                        .build()))
+                                                                .build(),
+                                                            PinDocument.builder()
+                                                                .documentId("<id>")
+                                                                .audienceFilters(List.of(
+                                                                    FacetFilter.builder()
+                                                                        .fieldName("type")
+                                                                        .values(List.of(
+                                                                            FacetFilterValue.builder()
+                                                                                .value("Spreadsheet")
+                                                                                .relationType(RelationType.EQUALS)
+                                                                                .build(),
+                                                                            FacetFilterValue.builder()
+                                                                                .value("Presentation")
+                                                                                .relationType(RelationType.EQUALS)
+                                                                                .build()))
+                                                                        .build()))
+                                                                .build()))
+                                                        .collections(List.of(
+                                                            Collection.builder()
+                                                                .name("<value>")
+                                                                .description("how by extroverted excess kissingly scruple yearningly")
+                                                                .id(416110L)
+                                                                .audienceFilters(List.of(
+                                                                    FacetFilter.builder()
+                                                                        .fieldName("type")
+                                                                        .values(List.of(
+                                                                            FacetFilterValue.builder()
+                                                                                .value("Spreadsheet")
+                                                                                .relationType(RelationType.EQUALS)
+                                                                                .build(),
+                                                                            FacetFilterValue.builder()
+                                                                                .value("Presentation")
+                                                                                .relationType(RelationType.EQUALS)
+                                                                                .build()))
+                                                                        .build()))
+                                                                .items(List.of(
+                                                                    CollectionItem.builder()
+                                                                        .collectionId(959645L)
+                                                                        .itemType(CollectionItemItemType.TEXT)
+                                                                        .shortcut(Shortcut.builder()
+                                                                            .inputAlias("<value>")
+                                                                            .build())
+                                                                        .build(),
+                                                                    CollectionItem.builder()
+                                                                        .collectionId(959645L)
+                                                                        .itemType(CollectionItemItemType.TEXT)
+                                                                        .shortcut(Shortcut.builder()
+                                                                            .inputAlias("<value>")
+                                                                            .build())
+                                                                        .build(),
+                                                                    CollectionItem.builder()
+                                                                        .collectionId(959645L)
+                                                                        .itemType(CollectionItemItemType.TEXT)
+                                                                        .shortcut(Shortcut.builder()
+                                                                            .inputAlias("<value>")
+                                                                            .build())
+                                                                        .build()))
+                                                                .build(),
+                                                            Collection.builder()
+                                                                .name("<value>")
+                                                                .description("how by extroverted excess kissingly scruple yearningly")
+                                                                .id(416110L)
+                                                                .audienceFilters(List.of(
+                                                                    FacetFilter.builder()
+                                                                        .fieldName("type")
+                                                                        .values(List.of(
+                                                                            FacetFilterValue.builder()
+                                                                                .value("Spreadsheet")
+                                                                                .relationType(RelationType.EQUALS)
+                                                                                .build(),
+                                                                            FacetFilterValue.builder()
+                                                                                .value("Presentation")
+                                                                                .relationType(RelationType.EQUALS)
+                                                                                .build()))
+                                                                        .build()))
+                                                                .items(List.of(
+                                                                    CollectionItem.builder()
+                                                                        .collectionId(959645L)
+                                                                        .itemType(CollectionItemItemType.TEXT)
+                                                                        .shortcut(Shortcut.builder()
+                                                                            .inputAlias("<value>")
+                                                                            .build())
+                                                                        .build(),
+                                                                    CollectionItem.builder()
+                                                                        .collectionId(959645L)
+                                                                        .itemType(CollectionItemItemType.TEXT)
+                                                                        .shortcut(Shortcut.builder()
+                                                                            .inputAlias("<value>")
+                                                                            .build())
+                                                                        .build(),
+                                                                    CollectionItem.builder()
+                                                                        .collectionId(959645L)
+                                                                        .itemType(CollectionItemItemType.TEXT)
+                                                                        .shortcut(Shortcut.builder()
+                                                                            .inputAlias("<value>")
+                                                                            .build())
+                                                                        .build()))
+                                                                .build()))
+                                                        .interactions(DocumentInteractions.builder()
+                                                            .reacts(List.of(
+                                                                Reaction.builder()
+                                                                    .build(),
+                                                                Reaction.builder()
+                                                                    .build(),
+                                                                Reaction.builder()
+                                                                    .build()))
+                                                            .shares(List.of(
+                                                                Share.builder()
+                                                                    .numDaysAgo(927933L)
+                                                                    .build(),
+                                                                Share.builder()
+                                                                    .numDaysAgo(927933L)
+                                                                    .build(),
+                                                                Share.builder()
+                                                                    .numDaysAgo(927933L)
+                                                                    .build()))
+                                                            .build())
+                                                        .verification(Verification.builder()
+                                                            .state(State.UNVERIFIED)
+                                                            .metadata(VerificationMetadata.builder()
+                                                                .reminders(List.of(
+                                                                    Reminder.builder()
+                                                                        .assignee(Person.builder()
+                                                                            .name("George Clooney")
+                                                                            .obfuscatedId("abc123")
+                                                                            .build())
+                                                                        .remindAt(353914L)
+                                                                        .build(),
+                                                                    Reminder.builder()
+                                                                        .assignee(Person.builder()
+                                                                            .name("George Clooney")
+                                                                            .obfuscatedId("abc123")
+                                                                            .build())
+                                                                        .remindAt(353914L)
+                                                                        .build()))
+                                                                .lastReminder(Reminder.builder()
+                                                                    .assignee(Person.builder()
+                                                                        .name("George Clooney")
+                                                                        .obfuscatedId("abc123")
+                                                                        .build())
+                                                                    .remindAt(314497L)
+                                                                    .build())
+                                                                .build())
+                                                            .build())
+                                                        .shortcuts(List.of(
+                                                            Shortcut.builder()
+                                                                .inputAlias("<value>")
+                                                                .build(),
+                                                            Shortcut.builder()
+                                                                .inputAlias("<value>")
+                                                                .build()))
+                                                        .customData(Map.ofEntries(
+                                                            Map.entry("someCustomField", CustomDataValue.builder()
+                                                                .build())))
+                                                        .build())
+                                                    .build())
+                                                .build()))
+                                        .inputDetails(SearchRequestInputDetails.builder()
+                                            .hasCopyPaste(true)
+                                            .build())
+                                        .build())
+                                    .results(List.of(
+                                        SearchResult.builder()
+                                            .url("https://example.com/foo/bar")
+                                            .title("title")
+                                            .nativeAppUrl("slack://foo/bar")
+                                            .snippets(List.of(
+                                                SearchResultSnippet.builder()
+                                                    .snippet("snippet")
+                                                    .mimeType("mimeType")
+                                                    .build()))
+                                            .build()))
                                     .build()))
                             .metadata(PersonMetadata.builder()
                                 .type(PersonMetadataType.FULL_TIME)
@@ -1154,6 +1714,14 @@ public class Application {
                                 .photoUrl("https://example.com/george.jpg")
                                 .startDate(LocalDate.parse("2000-01-23"))
                                 .datasourceProfile(List.of(
+                                    DatasourceProfile.builder()
+                                        .datasource("github")
+                                        .handle("<value>")
+                                        .build(),
+                                    DatasourceProfile.builder()
+                                        .datasource("github")
+                                        .handle("<value>")
+                                        .build(),
                                     DatasourceProfile.builder()
                                         .datasource("github")
                                         .handle("<value>")
@@ -1169,103 +1737,23 @@ public class Application {
                                 .inviteInfo(InviteInfo.builder()
                                     .invites(List.of(
                                         ChannelInviteInfo.builder()
+                                            .build(),
+                                        ChannelInviteInfo.builder()
+                                            .build(),
+                                        ChannelInviteInfo.builder()
                                             .build()))
                                     .build())
                                 .customFields(List.of(
                                     CustomFieldData.builder()
                                         .label("<value>")
-                                        .values(List.of())
-                                        .build(),
-                                    CustomFieldData.builder()
-                                        .label("<value>")
-                                        .values(List.of())
-                                        .build(),
-                                    CustomFieldData.builder()
-                                        .label("<value>")
-                                        .values(List.of())
+                                        .values(List.of(
+                                            CustomFieldValue.of(CustomFieldValueStr.builder()
+                                                .build()),
+                                            CustomFieldValue.of(CustomFieldValueStr.builder()
+                                                .build()),
+                                            CustomFieldValue.of(CustomFieldValueStr.builder()
+                                                .build())))
                                         .build()))
-                                .badges(List.of(
-                                    Badge.builder()
-                                        .key("deployment_name_new_hire")
-                                        .displayName("New hire")
-                                        .iconConfig(IconConfig.builder()
-                                            .color("#343CED")
-                                            .key("person_icon")
-                                            .iconType(IconType.GLYPH)
-                                            .name("user")
-                                            .build())
-                                        .build()))
-                                .build())
-                            .build())
-                        .build(),
-                    UserRoleSpecification.builder()
-                        .role(UserRole.EDITOR)
-                        .person(Person.builder()
-                            .name("George Clooney")
-                            .obfuscatedId("abc123")
-                            .metadata(PersonMetadata.builder()
-                                .type(PersonMetadataType.FULL_TIME)
-                                .title("Actor")
-                                .department("Movies")
-                                .email("george@example.com")
-                                .location("Hollywood, CA")
-                                .phone("6505551234")
-                                .photoUrl("https://example.com/george.jpg")
-                                .startDate(LocalDate.parse("2000-01-23"))
-                                .datasourceProfile(List.of(
-                                    DatasourceProfile.builder()
-                                        .datasource("github")
-                                        .handle("<value>")
-                                        .build(),
-                                    DatasourceProfile.builder()
-                                        .datasource("github")
-                                        .handle("<value>")
-                                        .build()))
-                                .querySuggestions(QuerySuggestionList.builder()
-                                    .build())
-                                .inviteInfo(InviteInfo.builder()
-                                    .build())
-                                .badges(List.of(
-                                    Badge.builder()
-                                        .key("deployment_name_new_hire")
-                                        .displayName("New hire")
-                                        .iconConfig(IconConfig.builder()
-                                            .color("#343CED")
-                                            .key("person_icon")
-                                            .iconType(IconType.GLYPH)
-                                            .name("user")
-                                            .build())
-                                        .build()))
-                                .build())
-                            .build())
-                        .build(),
-                    UserRoleSpecification.builder()
-                        .role(UserRole.ANSWER_MODERATOR)
-                        .person(Person.builder()
-                            .name("George Clooney")
-                            .obfuscatedId("abc123")
-                            .metadata(PersonMetadata.builder()
-                                .type(PersonMetadataType.FULL_TIME)
-                                .title("Actor")
-                                .department("Movies")
-                                .email("george@example.com")
-                                .location("Hollywood, CA")
-                                .phone("6505551234")
-                                .photoUrl("https://example.com/george.jpg")
-                                .startDate(LocalDate.parse("2000-01-23"))
-                                .datasourceProfile(List.of(
-                                    DatasourceProfile.builder()
-                                        .datasource("github")
-                                        .handle("<value>")
-                                        .build(),
-                                    DatasourceProfile.builder()
-                                        .datasource("github")
-                                        .handle("<value>")
-                                        .build()))
-                                .querySuggestions(QuerySuggestionList.builder()
-                                    .build())
-                                .inviteInfo(InviteInfo.builder()
-                                    .build())
                                 .badges(List.of(
                                     Badge.builder()
                                         .key("deployment_name_new_hire")
@@ -1299,10 +1787,31 @@ public class Application {
                                     DatasourceProfile.builder()
                                         .datasource("github")
                                         .handle("<value>")
+                                        .build(),
+                                    DatasourceProfile.builder()
+                                        .datasource("github")
+                                        .handle("<value>")
+                                        .build(),
+                                    DatasourceProfile.builder()
+                                        .datasource("github")
+                                        .handle("<value>")
                                         .build()))
                                 .querySuggestions(QuerySuggestionList.builder()
+                                    .suggestions(List.of(
+                                        QuerySuggestion.builder()
+                                            .query("app:github type:pull author:mortimer")
+                                            .label("Mortimer's PRs")
+                                            .datasource("github")
+                                            .build()))
                                     .build())
                                 .inviteInfo(InviteInfo.builder()
+                                    .invites(List.of(
+                                        ChannelInviteInfo.builder()
+                                            .build(),
+                                        ChannelInviteInfo.builder()
+                                            .build(),
+                                        ChannelInviteInfo.builder()
+                                            .build()))
                                     .build())
                                 .badges(List.of(
                                     Badge.builder()
@@ -1372,6 +1881,7 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.EditCollectionItemRequest;
+import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.EditcollectionitemResponse;
 import java.lang.Exception;
 
@@ -1380,11 +1890,13 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         EditCollectionItemRequest req = EditCollectionItemRequest.builder()
-                .collectionId(795203L)
+                .collectionId(142375L)
                 .itemId("<id>")
                 .build();
 
@@ -1426,6 +1938,7 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.GetCollectionRequest;
+import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.GetcollectionResponse;
 import java.lang.Exception;
 
@@ -1434,11 +1947,13 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         GetCollectionRequest req = GetCollectionRequest.builder()
-                .id(700347L)
+                .id(425335L)
                 .build();
 
         GetcollectionResponse res = sdk.client().collections().retrieve()
@@ -1479,6 +1994,7 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.ListCollectionsRequest;
+import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.ListcollectionsResponse;
 import java.lang.Exception;
 
@@ -1487,7 +2003,9 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         ListCollectionsRequest req = ListCollectionsRequest.builder()
