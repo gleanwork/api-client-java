@@ -40,8 +40,8 @@ class SDKConfiguration {
     } };
     private static final String LANGUAGE = "java";
     public static final String OPENAPI_DOC_VERSION = "0.9.0";
-    public static final String SDK_VERSION = "0.3.0";
-    public static final String GEN_VERSION = "2.598.22";
+    public static final String SDK_VERSION = "0.4.0";
+    public static final String GEN_VERSION = "2.604.2";
     private static final String BASE_PACKAGE = "com.glean.api_client.glean_api_client";
     public static final String USER_AGENT = 
             String.format("speakeasy-sdk/%s %s %s %s %s",

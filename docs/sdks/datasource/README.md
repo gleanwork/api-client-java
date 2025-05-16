@@ -21,6 +21,7 @@ Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/docs/i
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DebugDatasourceStatusResponse;
 import java.lang.Exception;
 
@@ -29,7 +30,9 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         PostApiIndexV1DebugDatasourceStatusResponse res = sdk.indexing().datasource().status()

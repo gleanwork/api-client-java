@@ -28,21 +28,15 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         CustomDatasourceConfig req = CustomDatasourceConfig.builder()
                 .name("<value>")
                 .urlRegex("https://example-company.datasource.com/.*")
                 .quicklinks(List.of(
-                    Quicklink.builder()
-                        .iconConfig(IconConfig.builder()
-                            .color("#343CED")
-                            .key("person_icon")
-                            .iconType(IconType.GLYPH)
-                            .name("user")
-                            .build())
-                        .build(),
                     Quicklink.builder()
                         .iconConfig(IconConfig.builder()
                             .color("#343CED")
@@ -89,6 +83,7 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.GetDatasourceConfigRequest;
+import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1GetdatasourceconfigResponse;
 import java.lang.Exception;
 
@@ -97,7 +92,9 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         GetDatasourceConfigRequest req = GetDatasourceConfigRequest.builder()

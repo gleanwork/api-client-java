@@ -11,31 +11,65 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
 
 public class Security implements HasSecurity {
 
-    @SpeakeasyMetadata("security:scheme=true,type=http,subtype=bearer,name=Authorization")
-    private String apiToken;
+    @SpeakeasyMetadata("security:scheme=true,type=apiKey,subtype=header,name=Authorization")
+    private Optional<String> actAsBearerToken;
+
+    @SpeakeasyMetadata("security:scheme=true,type=apiKey,subtype=header,name=Authorization")
+    private Optional<String> cookieAuth;
 
     @JsonCreator
     public Security(
-            String apiToken) {
-        Utils.checkNotNull(apiToken, "apiToken");
-        this.apiToken = apiToken;
+            Optional<String> actAsBearerToken,
+            Optional<String> cookieAuth) {
+        Utils.checkNotNull(actAsBearerToken, "actAsBearerToken");
+        Utils.checkNotNull(cookieAuth, "cookieAuth");
+        this.actAsBearerToken = actAsBearerToken;
+        this.cookieAuth = cookieAuth;
+    }
+    
+    public Security() {
+        this(Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
-    public String apiToken() {
-        return apiToken;
+    public Optional<String> actAsBearerToken() {
+        return actAsBearerToken;
+    }
+
+    @JsonIgnore
+    public Optional<String> cookieAuth() {
+        return cookieAuth;
     }
 
     public final static Builder builder() {
         return new Builder();
     }    
 
-    public Security withAPIToken(String apiToken) {
-        Utils.checkNotNull(apiToken, "apiToken");
-        this.apiToken = apiToken;
+    public Security withActAsBearerToken(String actAsBearerToken) {
+        Utils.checkNotNull(actAsBearerToken, "actAsBearerToken");
+        this.actAsBearerToken = Optional.ofNullable(actAsBearerToken);
+        return this;
+    }
+
+    public Security withActAsBearerToken(Optional<String> actAsBearerToken) {
+        Utils.checkNotNull(actAsBearerToken, "actAsBearerToken");
+        this.actAsBearerToken = actAsBearerToken;
+        return this;
+    }
+
+    public Security withCookieAuth(String cookieAuth) {
+        Utils.checkNotNull(cookieAuth, "cookieAuth");
+        this.cookieAuth = Optional.ofNullable(cookieAuth);
+        return this;
+    }
+
+    public Security withCookieAuth(Optional<String> cookieAuth) {
+        Utils.checkNotNull(cookieAuth, "cookieAuth");
+        this.cookieAuth = cookieAuth;
         return this;
     }
 
@@ -50,38 +84,62 @@ public class Security implements HasSecurity {
         }
         Security other = (Security) o;
         return 
-            Objects.deepEquals(this.apiToken, other.apiToken);
+            Objects.deepEquals(this.actAsBearerToken, other.actAsBearerToken) &&
+            Objects.deepEquals(this.cookieAuth, other.cookieAuth);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
-            apiToken);
+            actAsBearerToken,
+            cookieAuth);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Security.class,
-                "apiToken", apiToken);
+                "actAsBearerToken", actAsBearerToken,
+                "cookieAuth", cookieAuth);
     }
     
     public final static class Builder {
  
-        private String apiToken;
+        private Optional<String> actAsBearerToken = Optional.empty();
+ 
+        private Optional<String> cookieAuth = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder apiToken(String apiToken) {
-            Utils.checkNotNull(apiToken, "apiToken");
-            this.apiToken = apiToken;
+        public Builder actAsBearerToken(String actAsBearerToken) {
+            Utils.checkNotNull(actAsBearerToken, "actAsBearerToken");
+            this.actAsBearerToken = Optional.ofNullable(actAsBearerToken);
+            return this;
+        }
+
+        public Builder actAsBearerToken(Optional<String> actAsBearerToken) {
+            Utils.checkNotNull(actAsBearerToken, "actAsBearerToken");
+            this.actAsBearerToken = actAsBearerToken;
+            return this;
+        }
+
+        public Builder cookieAuth(String cookieAuth) {
+            Utils.checkNotNull(cookieAuth, "cookieAuth");
+            this.cookieAuth = Optional.ofNullable(cookieAuth);
+            return this;
+        }
+
+        public Builder cookieAuth(Optional<String> cookieAuth) {
+            Utils.checkNotNull(cookieAuth, "cookieAuth");
+            this.cookieAuth = cookieAuth;
             return this;
         }
         
         public Security build() {
             return new Security(
-                apiToken);
+                actAsBearerToken,
+                cookieAuth);
         }
     }
 }

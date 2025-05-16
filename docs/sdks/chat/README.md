@@ -36,7 +36,9 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         ChatResponse res = sdk.client().chat().create()
@@ -85,6 +87,7 @@ Deletes all saved Chats a user has had and all their contained conversational co
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.DeleteallchatsResponse;
 import java.lang.Exception;
 
@@ -93,7 +96,9 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         DeleteallchatsResponse res = sdk.client().chat().deleteAll()
@@ -131,6 +136,7 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.DeleteChatsRequest;
+import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.DeletechatsResponse;
 import java.lang.Exception;
 import java.util.List;
@@ -140,14 +146,14 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         DeletechatsResponse res = sdk.client().chat().delete()
                 .deleteChatsRequest(DeleteChatsRequest.builder()
-                    .ids(List.of(
-                        "<value>",
-                        "<value>"))
+                    .ids(List.of())
                     .build())
                 .call();
 
@@ -184,6 +190,7 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.GetChatRequest;
+import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.GetchatResponse;
 import java.lang.Exception;
 
@@ -192,7 +199,9 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         GetchatResponse res = sdk.client().chat().retrieve()
@@ -235,6 +244,7 @@ Retrieves all the saved Chats between Glean Assistant and the user. The returned
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.ListchatsResponse;
 import java.lang.Exception;
 
@@ -243,7 +253,9 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         ListchatsResponse res = sdk.client().chat().list()
@@ -283,6 +295,7 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.GetChatApplicationRequest;
+import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.GetchatapplicationResponse;
 import java.lang.Exception;
 
@@ -291,7 +304,9 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         GetchatapplicationResponse res = sdk.client().chat().retrieveApplication()
@@ -334,9 +349,10 @@ Upload files for Chat.
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.UploadChatFilesRequest;
+import com.glean.api_client.glean_api_client.models.components.*;
 import com.glean.api_client.glean_api_client.models.operations.UploadchatfilesResponse;
 import java.lang.Exception;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class Application {
@@ -344,12 +360,18 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         UploadchatfilesResponse res = sdk.client().chat().uploadFiles()
                 .uploadChatFilesRequest(UploadChatFilesRequest.builder()
-                    .files(List.of())
+                    .files(List.of(
+                        File.builder()
+                            .fileName("example.file")
+                            .content("0x8b739cFCeF".getBytes(StandardCharsets.UTF_8))
+                            .build()))
                     .build())
                 .call();
 
@@ -388,6 +410,7 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.GetChatFilesRequest;
+import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.GetchatfilesResponse;
 import java.lang.Exception;
 import java.util.List;
@@ -397,14 +420,15 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         GetchatfilesResponse res = sdk.client().chat().retrieveFiles()
                 .getChatFilesRequest(GetChatFilesRequest.builder()
                     .fileIds(List.of(
-                        "<value>",
-                        "<value>"))
+                        "<value 1>"))
                     .build())
                 .call();
 
@@ -443,6 +467,7 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.DeleteChatFilesRequest;
+import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.DeletechatfilesResponse;
 import java.lang.Exception;
 import java.util.List;
@@ -452,13 +477,17 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         DeletechatfilesResponse res = sdk.client().chat().deleteFiles()
                 .deleteChatFilesRequest(DeleteChatFilesRequest.builder()
                     .fileIds(List.of(
-                        "<value>"))
+                        "<value 1>",
+                        "<value 2>",
+                        "<value 3>"))
                     .build())
                 .call();
 
@@ -504,7 +533,9 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         ChatStreamResponse res = sdk.client().chat().createStream()

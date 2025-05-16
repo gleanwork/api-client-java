@@ -17,8 +17,7 @@ Reads the aggregate information for each user, query, and content.
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.InsightsRequest;
-import com.glean.api_client.glean_api_client.models.components.InsightsRequestCategory;
+import com.glean.api_client.glean_api_client.models.components.*;
 import com.glean.api_client.glean_api_client.models.operations.InsightsResponse;
 import java.lang.Exception;
 import java.util.List;
@@ -28,13 +27,16 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .security(Security.builder()
+                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
         InsightsRequest req = InsightsRequest.builder()
                 .categories(List.of(
-                    InsightsRequestCategory.CONTENT,
-                    InsightsRequestCategory.CONTENT))
+                    InsightsRequestCategory.COLLECTIONS,
+                    InsightsRequestCategory.SHORTCUTS,
+                    InsightsRequestCategory.ANNOUNCEMENTS))
                 .build();
 
         InsightsResponse res = sdk.client().insights().retrieve()

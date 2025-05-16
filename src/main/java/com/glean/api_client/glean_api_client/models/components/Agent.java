@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -18,234 +17,169 @@ import java.util.Optional;
 
 public class Agent {
 
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("author")
-    private Optional<? extends Person> author;
-
-    /**
-     * Server Unix timestamp of the creation time.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("createTimestamp")
-    private Optional<Long> createTimestamp;
-
-    /**
-     * Server Unix timestamp of the last update time.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("lastUpdateTimestamp")
-    private Optional<Long> lastUpdateTimestamp;
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("lastUpdatedBy")
-    private Optional<? extends Person> lastUpdatedBy;
-
     /**
      * The ID of the agent.
      */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("id")
-    private Optional<String> id;
+    @JsonProperty("agent_id")
+    private String agentId;
 
     /**
-     * The name of the agent.
+     * The name of the agent
+     */
+    @JsonProperty("name")
+    private String name;
+
+    /**
+     * The description of the agent.
      */
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("name")
-    private Optional<String> name;
+    @JsonProperty("description")
+    private Optional<String> description;
 
+    /**
+     * The agent metadata.
+     */
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("permissions")
-    private Optional<? extends ObjectPermissions> permissions;
+    @JsonProperty("metadata")
+    private Optional<? extends AgentMetadata> metadata;
+
+    /**
+     * Describes which protocol features the agent supports. In addition to the standard capabilities (prefixed with ap.), implementations can declare custom capabilities, named in reverse domain notation (eg. com.example.some.capability).
+     */
+    @JsonProperty("capabilities")
+    private AgentCapabilities capabilities;
 
     @JsonCreator
     public Agent(
-            @JsonProperty("author") Optional<? extends Person> author,
-            @JsonProperty("createTimestamp") Optional<Long> createTimestamp,
-            @JsonProperty("lastUpdateTimestamp") Optional<Long> lastUpdateTimestamp,
-            @JsonProperty("lastUpdatedBy") Optional<? extends Person> lastUpdatedBy,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("permissions") Optional<? extends ObjectPermissions> permissions) {
-        Utils.checkNotNull(author, "author");
-        Utils.checkNotNull(createTimestamp, "createTimestamp");
-        Utils.checkNotNull(lastUpdateTimestamp, "lastUpdateTimestamp");
-        Utils.checkNotNull(lastUpdatedBy, "lastUpdatedBy");
-        Utils.checkNotNull(id, "id");
+            @JsonProperty("agent_id") String agentId,
+            @JsonProperty("name") String name,
+            @JsonProperty("description") Optional<String> description,
+            @JsonProperty("metadata") Optional<? extends AgentMetadata> metadata,
+            @JsonProperty("capabilities") AgentCapabilities capabilities) {
+        Utils.checkNotNull(agentId, "agentId");
         Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(permissions, "permissions");
-        this.author = author;
-        this.createTimestamp = createTimestamp;
-        this.lastUpdateTimestamp = lastUpdateTimestamp;
-        this.lastUpdatedBy = lastUpdatedBy;
-        this.id = id;
+        Utils.checkNotNull(description, "description");
+        Utils.checkNotNull(metadata, "metadata");
+        Utils.checkNotNull(capabilities, "capabilities");
+        this.agentId = agentId;
         this.name = name;
-        this.permissions = permissions;
+        this.description = description;
+        this.metadata = metadata;
+        this.capabilities = capabilities;
     }
     
-    public Agent() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Person> author() {
-        return (Optional<Person>) author;
-    }
-
-    /**
-     * Server Unix timestamp of the creation time.
-     */
-    @JsonIgnore
-    public Optional<Long> createTimestamp() {
-        return createTimestamp;
-    }
-
-    /**
-     * Server Unix timestamp of the last update time.
-     */
-    @JsonIgnore
-    public Optional<Long> lastUpdateTimestamp() {
-        return lastUpdateTimestamp;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Person> lastUpdatedBy() {
-        return (Optional<Person>) lastUpdatedBy;
+    public Agent(
+            String agentId,
+            String name,
+            AgentCapabilities capabilities) {
+        this(agentId, name, Optional.empty(), Optional.empty(), capabilities);
     }
 
     /**
      * The ID of the agent.
      */
     @JsonIgnore
-    public Optional<String> id() {
-        return id;
+    public String agentId() {
+        return agentId;
     }
 
     /**
-     * The name of the agent.
+     * The name of the agent
      */
     @JsonIgnore
-    public Optional<String> name() {
+    public String name() {
         return name;
     }
 
+    /**
+     * The description of the agent.
+     */
+    @JsonIgnore
+    public Optional<String> description() {
+        return description;
+    }
+
+    /**
+     * The agent metadata.
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ObjectPermissions> permissions() {
-        return (Optional<ObjectPermissions>) permissions;
+    public Optional<AgentMetadata> metadata() {
+        return (Optional<AgentMetadata>) metadata;
+    }
+
+    /**
+     * Describes which protocol features the agent supports. In addition to the standard capabilities (prefixed with ap.), implementations can declare custom capabilities, named in reverse domain notation (eg. com.example.some.capability).
+     */
+    @JsonIgnore
+    public AgentCapabilities capabilities() {
+        return capabilities;
     }
 
     public final static Builder builder() {
         return new Builder();
     }    
 
-    public Agent withAuthor(Person author) {
-        Utils.checkNotNull(author, "author");
-        this.author = Optional.ofNullable(author);
-        return this;
-    }
-
-    public Agent withAuthor(Optional<? extends Person> author) {
-        Utils.checkNotNull(author, "author");
-        this.author = author;
-        return this;
-    }
-
-    /**
-     * Server Unix timestamp of the creation time.
-     */
-    public Agent withCreateTimestamp(long createTimestamp) {
-        Utils.checkNotNull(createTimestamp, "createTimestamp");
-        this.createTimestamp = Optional.ofNullable(createTimestamp);
-        return this;
-    }
-
-    /**
-     * Server Unix timestamp of the creation time.
-     */
-    public Agent withCreateTimestamp(Optional<Long> createTimestamp) {
-        Utils.checkNotNull(createTimestamp, "createTimestamp");
-        this.createTimestamp = createTimestamp;
-        return this;
-    }
-
-    /**
-     * Server Unix timestamp of the last update time.
-     */
-    public Agent withLastUpdateTimestamp(long lastUpdateTimestamp) {
-        Utils.checkNotNull(lastUpdateTimestamp, "lastUpdateTimestamp");
-        this.lastUpdateTimestamp = Optional.ofNullable(lastUpdateTimestamp);
-        return this;
-    }
-
-    /**
-     * Server Unix timestamp of the last update time.
-     */
-    public Agent withLastUpdateTimestamp(Optional<Long> lastUpdateTimestamp) {
-        Utils.checkNotNull(lastUpdateTimestamp, "lastUpdateTimestamp");
-        this.lastUpdateTimestamp = lastUpdateTimestamp;
-        return this;
-    }
-
-    public Agent withLastUpdatedBy(Person lastUpdatedBy) {
-        Utils.checkNotNull(lastUpdatedBy, "lastUpdatedBy");
-        this.lastUpdatedBy = Optional.ofNullable(lastUpdatedBy);
-        return this;
-    }
-
-    public Agent withLastUpdatedBy(Optional<? extends Person> lastUpdatedBy) {
-        Utils.checkNotNull(lastUpdatedBy, "lastUpdatedBy");
-        this.lastUpdatedBy = lastUpdatedBy;
-        return this;
-    }
-
     /**
      * The ID of the agent.
      */
-    public Agent withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
+    public Agent withAgentId(String agentId) {
+        Utils.checkNotNull(agentId, "agentId");
+        this.agentId = agentId;
         return this;
     }
 
     /**
-     * The ID of the agent.
-     */
-    public Agent withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
-
-    /**
-     * The name of the agent.
+     * The name of the agent
      */
     public Agent withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
-    /**
-     * The name of the agent.
-     */
-    public Agent withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
-    public Agent withPermissions(ObjectPermissions permissions) {
-        Utils.checkNotNull(permissions, "permissions");
-        this.permissions = Optional.ofNullable(permissions);
+    /**
+     * The description of the agent.
+     */
+    public Agent withDescription(String description) {
+        Utils.checkNotNull(description, "description");
+        this.description = Optional.ofNullable(description);
         return this;
     }
 
-    public Agent withPermissions(Optional<? extends ObjectPermissions> permissions) {
-        Utils.checkNotNull(permissions, "permissions");
-        this.permissions = permissions;
+    /**
+     * The description of the agent.
+     */
+    public Agent withDescription(Optional<String> description) {
+        Utils.checkNotNull(description, "description");
+        this.description = description;
+        return this;
+    }
+
+    /**
+     * The agent metadata.
+     */
+    public Agent withMetadata(AgentMetadata metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = Optional.ofNullable(metadata);
+        return this;
+    }
+
+    /**
+     * The agent metadata.
+     */
+    public Agent withMetadata(Optional<? extends AgentMetadata> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
+        return this;
+    }
+
+    /**
+     * Describes which protocol features the agent supports. In addition to the standard capabilities (prefixed with ap.), implementations can declare custom capabilities, named in reverse domain notation (eg. com.example.some.capability).
+     */
+    public Agent withCapabilities(AgentCapabilities capabilities) {
+        Utils.checkNotNull(capabilities, "capabilities");
+        this.capabilities = capabilities;
         return this;
     }
 
@@ -260,176 +194,119 @@ public class Agent {
         }
         Agent other = (Agent) o;
         return 
-            Objects.deepEquals(this.author, other.author) &&
-            Objects.deepEquals(this.createTimestamp, other.createTimestamp) &&
-            Objects.deepEquals(this.lastUpdateTimestamp, other.lastUpdateTimestamp) &&
-            Objects.deepEquals(this.lastUpdatedBy, other.lastUpdatedBy) &&
-            Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.agentId, other.agentId) &&
             Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.permissions, other.permissions);
+            Objects.deepEquals(this.description, other.description) &&
+            Objects.deepEquals(this.metadata, other.metadata) &&
+            Objects.deepEquals(this.capabilities, other.capabilities);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
-            author,
-            createTimestamp,
-            lastUpdateTimestamp,
-            lastUpdatedBy,
-            id,
+            agentId,
             name,
-            permissions);
+            description,
+            metadata,
+            capabilities);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Agent.class,
-                "author", author,
-                "createTimestamp", createTimestamp,
-                "lastUpdateTimestamp", lastUpdateTimestamp,
-                "lastUpdatedBy", lastUpdatedBy,
-                "id", id,
+                "agentId", agentId,
                 "name", name,
-                "permissions", permissions);
+                "description", description,
+                "metadata", metadata,
+                "capabilities", capabilities);
     }
     
     public final static class Builder {
  
-        private Optional<? extends Person> author = Optional.empty();
+        private String agentId;
  
-        private Optional<Long> createTimestamp = Optional.empty();
+        private String name;
  
-        private Optional<Long> lastUpdateTimestamp = Optional.empty();
+        private Optional<String> description = Optional.empty();
  
-        private Optional<? extends Person> lastUpdatedBy = Optional.empty();
+        private Optional<? extends AgentMetadata> metadata = Optional.empty();
  
-        private Optional<String> id = Optional.empty();
- 
-        private Optional<String> name = Optional.empty();
- 
-        private Optional<? extends ObjectPermissions> permissions = Optional.empty();
+        private AgentCapabilities capabilities;
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder author(Person author) {
-            Utils.checkNotNull(author, "author");
-            this.author = Optional.ofNullable(author);
-            return this;
-        }
-
-        public Builder author(Optional<? extends Person> author) {
-            Utils.checkNotNull(author, "author");
-            this.author = author;
-            return this;
-        }
-
-        /**
-         * Server Unix timestamp of the creation time.
-         */
-        public Builder createTimestamp(long createTimestamp) {
-            Utils.checkNotNull(createTimestamp, "createTimestamp");
-            this.createTimestamp = Optional.ofNullable(createTimestamp);
-            return this;
-        }
-
-        /**
-         * Server Unix timestamp of the creation time.
-         */
-        public Builder createTimestamp(Optional<Long> createTimestamp) {
-            Utils.checkNotNull(createTimestamp, "createTimestamp");
-            this.createTimestamp = createTimestamp;
-            return this;
-        }
-
-        /**
-         * Server Unix timestamp of the last update time.
-         */
-        public Builder lastUpdateTimestamp(long lastUpdateTimestamp) {
-            Utils.checkNotNull(lastUpdateTimestamp, "lastUpdateTimestamp");
-            this.lastUpdateTimestamp = Optional.ofNullable(lastUpdateTimestamp);
-            return this;
-        }
-
-        /**
-         * Server Unix timestamp of the last update time.
-         */
-        public Builder lastUpdateTimestamp(Optional<Long> lastUpdateTimestamp) {
-            Utils.checkNotNull(lastUpdateTimestamp, "lastUpdateTimestamp");
-            this.lastUpdateTimestamp = lastUpdateTimestamp;
-            return this;
-        }
-
-        public Builder lastUpdatedBy(Person lastUpdatedBy) {
-            Utils.checkNotNull(lastUpdatedBy, "lastUpdatedBy");
-            this.lastUpdatedBy = Optional.ofNullable(lastUpdatedBy);
-            return this;
-        }
-
-        public Builder lastUpdatedBy(Optional<? extends Person> lastUpdatedBy) {
-            Utils.checkNotNull(lastUpdatedBy, "lastUpdatedBy");
-            this.lastUpdatedBy = lastUpdatedBy;
-            return this;
-        }
-
         /**
          * The ID of the agent.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
+        public Builder agentId(String agentId) {
+            Utils.checkNotNull(agentId, "agentId");
+            this.agentId = agentId;
             return this;
         }
 
         /**
-         * The ID of the agent.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-        /**
-         * The name of the agent.
+         * The name of the agent
          */
         public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * The name of the agent.
-         */
-        public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
 
-        public Builder permissions(ObjectPermissions permissions) {
-            Utils.checkNotNull(permissions, "permissions");
-            this.permissions = Optional.ofNullable(permissions);
+        /**
+         * The description of the agent.
+         */
+        public Builder description(String description) {
+            Utils.checkNotNull(description, "description");
+            this.description = Optional.ofNullable(description);
             return this;
         }
 
-        public Builder permissions(Optional<? extends ObjectPermissions> permissions) {
-            Utils.checkNotNull(permissions, "permissions");
-            this.permissions = permissions;
+        /**
+         * The description of the agent.
+         */
+        public Builder description(Optional<String> description) {
+            Utils.checkNotNull(description, "description");
+            this.description = description;
+            return this;
+        }
+
+        /**
+         * The agent metadata.
+         */
+        public Builder metadata(AgentMetadata metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = Optional.ofNullable(metadata);
+            return this;
+        }
+
+        /**
+         * The agent metadata.
+         */
+        public Builder metadata(Optional<? extends AgentMetadata> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
+            return this;
+        }
+
+        /**
+         * Describes which protocol features the agent supports. In addition to the standard capabilities (prefixed with ap.), implementations can declare custom capabilities, named in reverse domain notation (eg. com.example.some.capability).
+         */
+        public Builder capabilities(AgentCapabilities capabilities) {
+            Utils.checkNotNull(capabilities, "capabilities");
+            this.capabilities = capabilities;
             return this;
         }
         
         public Agent build() {
             return new Agent(
-                author,
-                createTimestamp,
-                lastUpdateTimestamp,
-                lastUpdatedBy,
-                id,
+                agentId,
                 name,
-                permissions);
+                description,
+                metadata,
+                capabilities);
         }
     }
 }

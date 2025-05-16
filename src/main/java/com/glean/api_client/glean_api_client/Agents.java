@@ -4,22 +4,25 @@
 package com.glean.api_client.glean_api_client;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.glean.api_client.glean_api_client.models.components.ChatResponse;
-import com.glean.api_client.glean_api_client.models.components.GetAgentInputsRequest;
-import com.glean.api_client.glean_api_client.models.components.GetAgentInputsResponse;
-import com.glean.api_client.glean_api_client.models.components.ListAgentsResponse;
-import com.glean.api_client.glean_api_client.models.components.RunAgentRequest;
+import com.glean.api_client.glean_api_client.models.components.Agent;
+import com.glean.api_client.glean_api_client.models.components.AgentRunCreate;
+import com.glean.api_client.glean_api_client.models.components.AgentRunWaitResponse;
+import com.glean.api_client.glean_api_client.models.components.AgentSchemas;
+import com.glean.api_client.glean_api_client.models.components.SearchAgentsRequest;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
-import com.glean.api_client.glean_api_client.models.operations.GetagentinputsRequest;
-import com.glean.api_client.glean_api_client.models.operations.GetagentinputsRequestBuilder;
-import com.glean.api_client.glean_api_client.models.operations.GetagentinputsResponse;
-import com.glean.api_client.glean_api_client.models.operations.ListagentsRequest;
-import com.glean.api_client.glean_api_client.models.operations.ListagentsRequestBuilder;
-import com.glean.api_client.glean_api_client.models.operations.ListagentsResponse;
-import com.glean.api_client.glean_api_client.models.operations.RunagentRequest;
-import com.glean.api_client.glean_api_client.models.operations.RunagentRequestBuilder;
-import com.glean.api_client.glean_api_client.models.operations.RunagentResponse;
+import com.glean.api_client.glean_api_client.models.operations.CreateAndStreamRunRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.CreateAndStreamRunResponse;
+import com.glean.api_client.glean_api_client.models.operations.CreateAndWaitRunRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.CreateAndWaitRunResponse;
+import com.glean.api_client.glean_api_client.models.operations.GetAgentRequest;
+import com.glean.api_client.glean_api_client.models.operations.GetAgentRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.GetAgentResponse;
+import com.glean.api_client.glean_api_client.models.operations.GetAgentSchemasRequest;
+import com.glean.api_client.glean_api_client.models.operations.GetAgentSchemasRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.GetAgentSchemasResponse;
 import com.glean.api_client.glean_api_client.models.operations.SDKMethodInterfaces.*;
+import com.glean.api_client.glean_api_client.models.operations.SearchAgentsRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.SearchAgentsResponse;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
 import com.glean.api_client.glean_api_client.utils.HTTPRequest;
 import com.glean.api_client.glean_api_client.utils.Hook.AfterErrorContextImpl;
@@ -39,9 +42,11 @@ import java.util.List;
 import java.util.Optional;
 
 public class Agents implements
-            MethodCallRunagent,
-            MethodCallListagents,
-            MethodCallGetagentinputs {
+            MethodCallGetAgent,
+            MethodCallGetAgentSchemas,
+            MethodCallSearchAgents,
+            MethodCallCreateAndStreamRun,
+            MethodCallCreateAndWaitRun {
 
     private final SDKConfiguration sdkConfiguration;
 
@@ -51,76 +56,65 @@ public class Agents implements
 
 
     /**
-     * Runs an Agent.
+     * Get Agent
      * 
-     * <p>Trigger an Agent with a given id.
+     * <p>Get an agent by ID. This endpoint implements the LangChain Agent Protocol, specifically part of the Agents stage (https://langchain-ai.github.io/agent-protocol/api.html#tag/agents/GET/agents/{agent_id}). It adheres to the standard contract defined for agent interoperability and can be used by agent runtimes that support the Agent Protocol.
      * 
      * @return The call builder
      */
-    public RunagentRequestBuilder run() {
-        return new RunagentRequestBuilder(this);
+    public GetAgentRequestBuilder retrieve() {
+        return new GetAgentRequestBuilder(this);
     }
 
     /**
-     * Runs an Agent.
+     * Get Agent
      * 
-     * <p>Trigger an Agent with a given id.
+     * <p>Get an agent by ID. This endpoint implements the LangChain Agent Protocol, specifically part of the Agents stage (https://langchain-ai.github.io/agent-protocol/api.html#tag/agents/GET/agents/{agent_id}). It adheres to the standard contract defined for agent interoperability and can be used by agent runtimes that support the Agent Protocol.
      * 
-     * @param runAgentRequest 
+     * @param agentId The ID of the agent.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public RunagentResponse run(
-            RunAgentRequest runAgentRequest) throws Exception {
-        return run(Optional.empty(), runAgentRequest);
+    public GetAgentResponse retrieve(
+            String agentId) throws Exception {
+        return retrieve(Optional.empty(), agentId);
     }
     
     /**
-     * Runs an Agent.
+     * Get Agent
      * 
-     * <p>Trigger an Agent with a given id.
+     * <p>Get an agent by ID. This endpoint implements the LangChain Agent Protocol, specifically part of the Agents stage (https://langchain-ai.github.io/agent-protocol/api.html#tag/agents/GET/agents/{agent_id}). It adheres to the standard contract defined for agent interoperability and can be used by agent runtimes that support the Agent Protocol.
      * 
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
-     * @param runAgentRequest 
+     * @param agentId The ID of the agent.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public RunagentResponse run(
+    public GetAgentResponse retrieve(
             Optional<Long> timezoneOffset,
-            RunAgentRequest runAgentRequest) throws Exception {
-        RunagentRequest request =
-            RunagentRequest
+            String agentId) throws Exception {
+        GetAgentRequest request =
+            GetAgentRequest
                 .builder()
                 .timezoneOffset(timezoneOffset)
-                .runAgentRequest(runAgentRequest)
+                .agentId(agentId)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
+                GetAgentRequest.class,
                 _baseUrl,
-                "/rest/api/v1/runagent");
+                "/rest/api/v1/agents/{agent_id}",
+                request, null);
         
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "runAgentRequest",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
+        HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
-                RunagentRequest.class,
+                GetAgentRequest.class,
                 request, 
                 null));
         
@@ -133,19 +127,19 @@ public class Agents implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       _baseUrl,
-                      "runagent", 
+                      "getAgent", 
                       Optional.of(List.of()), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
             _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "408", "429", "4XX", "5XX")) {
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "403", "404", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
                             _baseUrl,
-                            "runagent",
+                            "getAgent",
                             Optional.of(List.of()),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
@@ -155,7 +149,7 @@ public class Agents implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             _baseUrl,
-                            "runagent",
+                            "getAgent",
                             Optional.of(List.of()), 
                             _hookSecuritySource),
                          _httpRes);
@@ -165,7 +159,7 @@ public class Agents implements
                     .afterError(
                         new AfterErrorContextImpl(
                             _baseUrl,
-                            "runagent",
+                            "getAgent",
                             Optional.of(List.of()),
                             _hookSecuritySource), 
                         Optional.empty(),
@@ -175,21 +169,21 @@ public class Agents implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        RunagentResponse.Builder _resBuilder = 
-            RunagentResponse
+        GetAgentResponse.Builder _resBuilder = 
+            GetAgentResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        RunagentResponse _res = _resBuilder.build();
+        GetAgentResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ChatResponse _out = Utils.mapper().readValue(
+                Agent _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ChatResponse>() {});
-                _res.withChatResponse(Optional.ofNullable(_out));
+                    new TypeReference<Agent>() {});
+                _res.withAgent(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(
@@ -199,7 +193,7 @@ public class Agents implements
                     Utils.extractByteArrayFromBody(_httpRes));
             }
         }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "408", "429", "4XX")) {
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "403", "404", "4XX")) {
             // no content 
             throw new APIException(
                     _httpRes, 
@@ -207,7 +201,7 @@ public class Agents implements
                     "API error occurred", 
                     Utils.extractByteArrayFromBody(_httpRes));
         }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "500", "5XX")) {
             // no content 
             throw new APIException(
                     _httpRes, 
@@ -225,71 +219,65 @@ public class Agents implements
 
 
     /**
-     * Lists all agents.
+     * Get Agent Schemas
      * 
-     * <p>Lists all agents that are available.
+     * <p>Get an agent's schemas by ID. This endpoint implements the LangChain Agent Protocol, specifically part of the Agents stage (https://langchain-ai.github.io/agent-protocol/api.html#tag/agents/GET/agents/{agent_id}/schemas). It adheres to the standard contract defined for agent interoperability and can be used by agent runtimes that support the Agent Protocol.
      * 
      * @return The call builder
      */
-    public ListagentsRequestBuilder list() {
-        return new ListagentsRequestBuilder(this);
+    public GetAgentSchemasRequestBuilder retrieveSchemas() {
+        return new GetAgentSchemasRequestBuilder(this);
     }
 
     /**
-     * Lists all agents.
+     * Get Agent Schemas
      * 
-     * <p>Lists all agents that are available.
+     * <p>Get an agent's schemas by ID. This endpoint implements the LangChain Agent Protocol, specifically part of the Agents stage (https://langchain-ai.github.io/agent-protocol/api.html#tag/agents/GET/agents/{agent_id}/schemas). It adheres to the standard contract defined for agent interoperability and can be used by agent runtimes that support the Agent Protocol.
      * 
+     * @param agentId The ID of the agent.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListagentsResponse listDirect() throws Exception {
-        return list(Optional.empty(), Optional.empty());
+    public GetAgentSchemasResponse retrieveSchemas(
+            String agentId) throws Exception {
+        return retrieveSchemas(Optional.empty(), agentId);
     }
     
     /**
-     * Lists all agents.
+     * Get Agent Schemas
      * 
-     * <p>Lists all agents that are available.
+     * <p>Get an agent's schemas by ID. This endpoint implements the LangChain Agent Protocol, specifically part of the Agents stage (https://langchain-ai.github.io/agent-protocol/api.html#tag/agents/GET/agents/{agent_id}/schemas). It adheres to the standard contract defined for agent interoperability and can be used by agent runtimes that support the Agent Protocol.
      * 
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
-     * @param requestBody 
+     * @param agentId The ID of the agent.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListagentsResponse list(
+    public GetAgentSchemasResponse retrieveSchemas(
             Optional<Long> timezoneOffset,
-            Optional<? extends Object> requestBody) throws Exception {
-        ListagentsRequest request =
-            ListagentsRequest
+            String agentId) throws Exception {
+        GetAgentSchemasRequest request =
+            GetAgentSchemasRequest
                 .builder()
                 .timezoneOffset(timezoneOffset)
-                .requestBody(requestBody)
+                .agentId(agentId)
                 .build();
         
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
+                GetAgentSchemasRequest.class,
                 _baseUrl,
-                "/rest/api/v1/listagents");
+                "/rest/api/v1/agents/{agent_id}/schemas",
+                request, null);
         
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "requestBody",
-                "json",
-                false);
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
+        HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
-                ListagentsRequest.class,
+                GetAgentSchemasRequest.class,
                 request, 
                 null));
         
@@ -302,19 +290,19 @@ public class Agents implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       _baseUrl,
-                      "listagents", 
+                      "getAgentSchemas", 
                       Optional.of(List.of()), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
             _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "408", "429", "4XX", "5XX")) {
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "403", "404", "422", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
                             _baseUrl,
-                            "listagents",
+                            "getAgentSchemas",
                             Optional.of(List.of()),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
@@ -324,7 +312,7 @@ public class Agents implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             _baseUrl,
-                            "listagents",
+                            "getAgentSchemas",
                             Optional.of(List.of()), 
                             _hookSecuritySource),
                          _httpRes);
@@ -334,7 +322,7 @@ public class Agents implements
                     .afterError(
                         new AfterErrorContextImpl(
                             _baseUrl,
-                            "listagents",
+                            "getAgentSchemas",
                             Optional.of(List.of()),
                             _hookSecuritySource), 
                         Optional.empty(),
@@ -344,21 +332,21 @@ public class Agents implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        ListagentsResponse.Builder _resBuilder = 
-            ListagentsResponse
+        GetAgentSchemasResponse.Builder _resBuilder = 
+            GetAgentSchemasResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        ListagentsResponse _res = _resBuilder.build();
+        GetAgentSchemasResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ListAgentsResponse _out = Utils.mapper().readValue(
+                AgentSchemas _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ListAgentsResponse>() {});
-                _res.withListAgentsResponse(Optional.ofNullable(_out));
+                    new TypeReference<AgentSchemas>() {});
+                _res.withAgentSchemas(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(
@@ -368,7 +356,7 @@ public class Agents implements
                     Utils.extractByteArrayFromBody(_httpRes));
             }
         }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "408", "429", "4XX")) {
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "403", "404", "422", "4XX")) {
             // no content 
             throw new APIException(
                     _httpRes, 
@@ -376,7 +364,7 @@ public class Agents implements
                     "API error occurred", 
                     Utils.extractByteArrayFromBody(_httpRes));
         }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "500", "5XX")) {
             // no content 
             throw new APIException(
                     _httpRes, 
@@ -394,64 +382,41 @@ public class Agents implements
 
 
     /**
-     * Gets the inputs to an agent.
+     * Search Agents
      * 
-     * <p>Get the inputs to an agent with a given id.
+     * <p>List Agents available in this service. This endpoint implements the LangChain Agent Protocol, specifically part of the Agents stage (https://langchain-ai.github.io/agent-protocol/api.html#tag/agents/POST/agents/search). It adheres to the standard contract defined for agent interoperability and can be used by agent runtimes that support the Agent Protocol.
      * 
      * @return The call builder
      */
-    public GetagentinputsRequestBuilder retrieveInputs() {
-        return new GetagentinputsRequestBuilder(this);
+    public SearchAgentsRequestBuilder list() {
+        return new SearchAgentsRequestBuilder(this);
     }
 
     /**
-     * Gets the inputs to an agent.
+     * Search Agents
      * 
-     * <p>Get the inputs to an agent with a given id.
+     * <p>List Agents available in this service. This endpoint implements the LangChain Agent Protocol, specifically part of the Agents stage (https://langchain-ai.github.io/agent-protocol/api.html#tag/agents/POST/agents/search). It adheres to the standard contract defined for agent interoperability and can be used by agent runtimes that support the Agent Protocol.
      * 
-     * @param getAgentInputsRequest 
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetagentinputsResponse retrieveInputs(
-            GetAgentInputsRequest getAgentInputsRequest) throws Exception {
-        return retrieveInputs(Optional.empty(), getAgentInputsRequest);
-    }
-    
-    /**
-     * Gets the inputs to an agent.
-     * 
-     * <p>Get the inputs to an agent with a given id.
-     * 
-     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
-     * @param getAgentInputsRequest 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public GetagentinputsResponse retrieveInputs(
-            Optional<Long> timezoneOffset,
-            GetAgentInputsRequest getAgentInputsRequest) throws Exception {
-        GetagentinputsRequest request =
-            GetagentinputsRequest
-                .builder()
-                .timezoneOffset(timezoneOffset)
-                .getAgentInputsRequest(getAgentInputsRequest)
-                .build();
-        
+    public SearchAgentsResponse list(
+            SearchAgentsRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
-                "/rest/api/v1/getagentinputs");
+                "/rest/api/v1/agents/search");
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
+                new TypeReference<SearchAgentsRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "getAgentInputsRequest",
+                "request",
                 "json",
                 false);
         if (_serializedRequestBody == null) {
@@ -461,11 +426,6 @@ public class Agents implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                GetagentinputsRequest.class,
-                request, 
-                null));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -476,19 +436,19 @@ public class Agents implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       _baseUrl,
-                      "getagentinputs", 
+                      "searchAgents", 
                       Optional.of(List.of()), 
                       _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
             _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "408", "429", "4XX", "5XX")) {
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "403", "404", "422", "4XX", "500", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
                             _baseUrl,
-                            "getagentinputs",
+                            "searchAgents",
                             Optional.of(List.of()),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
@@ -498,7 +458,7 @@ public class Agents implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             _baseUrl,
-                            "getagentinputs",
+                            "searchAgents",
                             Optional.of(List.of()), 
                             _hookSecuritySource),
                          _httpRes);
@@ -508,7 +468,7 @@ public class Agents implements
                     .afterError(
                         new AfterErrorContextImpl(
                             _baseUrl,
-                            "getagentinputs",
+                            "searchAgents",
                             Optional.of(List.of()),
                             _hookSecuritySource), 
                         Optional.empty(),
@@ -518,21 +478,21 @@ public class Agents implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        GetagentinputsResponse.Builder _resBuilder = 
-            GetagentinputsResponse
+        SearchAgentsResponse.Builder _resBuilder = 
+            SearchAgentsResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        GetagentinputsResponse _res = _resBuilder.build();
+        SearchAgentsResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                GetAgentInputsResponse _out = Utils.mapper().readValue(
+                com.glean.api_client.glean_api_client.models.components.SearchAgentsResponse _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<GetAgentInputsResponse>() {});
-                _res.withGetAgentInputsResponse(Optional.ofNullable(_out));
+                    new TypeReference<com.glean.api_client.glean_api_client.models.components.SearchAgentsResponse>() {});
+                _res.withSearchAgentsResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new APIException(
@@ -542,7 +502,7 @@ public class Agents implements
                     Utils.extractByteArrayFromBody(_httpRes));
             }
         }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "408", "429", "4XX")) {
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "403", "404", "422", "4XX")) {
             // no content 
             throw new APIException(
                     _httpRes, 
@@ -550,7 +510,297 @@ public class Agents implements
                     "API error occurred", 
                     Utils.extractByteArrayFromBody(_httpRes));
         }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "500", "5XX")) {
+            // no content 
+            throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        throw new APIException(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
+
+
+    /**
+     * Create Run, Stream Output
+     * 
+     * <p>Creates and triggers a run of an agent. Streams the output in SSE format. This endpoint implements the LangChain Agent Protocol, specifically part of the Runs stage (https://langchain-ai.github.io/agent-protocol/api.html#tag/runs/POST/runs/stream). It adheres to the standard contract defined for agent interoperability and can be used by agent runtimes that support the Agent Protocol. Note that running agents that reference third party platform write actions is unsupported as it requires user confirmation.
+     * 
+     * @return The call builder
+     */
+    public CreateAndStreamRunRequestBuilder runStream() {
+        return new CreateAndStreamRunRequestBuilder(this);
+    }
+
+    /**
+     * Create Run, Stream Output
+     * 
+     * <p>Creates and triggers a run of an agent. Streams the output in SSE format. This endpoint implements the LangChain Agent Protocol, specifically part of the Runs stage (https://langchain-ai.github.io/agent-protocol/api.html#tag/runs/POST/runs/stream). It adheres to the standard contract defined for agent interoperability and can be used by agent runtimes that support the Agent Protocol. Note that running agents that reference third party platform write actions is unsupported as it requires user confirmation.
+     * 
+     * @param request The request object containing all of the parameters for the API call.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public CreateAndStreamRunResponse runStream(
+            AgentRunCreate request) throws Exception {
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+        String _url = Utils.generateURL(
+                _baseUrl,
+                "/rest/api/v1/agents/runs/stream");
+        
+        HTTPRequest _req = new HTTPRequest(_url, "POST");
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<AgentRunCreate>() {});
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
+                _convertedRequest, 
+                "request",
+                "json",
+                false);
+        if (_serializedRequestBody == null) {
+            throw new Exception("Request body is required");
+        }
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
+        _req.addHeader("Accept", "text/event-stream")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      _baseUrl,
+                      "createAndStreamRun", 
+                      Optional.of(List.of()), 
+                      _hookSecuritySource),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "403", "404", "409", "422", "4XX", "500", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            _baseUrl,
+                            "createAndStreamRun",
+                            Optional.of(List.of()),
+                            _hookSecuritySource),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            _baseUrl,
+                            "createAndStreamRun",
+                            Optional.of(List.of()), 
+                            _hookSecuritySource),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            _baseUrl,
+                            "createAndStreamRun",
+                            Optional.of(List.of()),
+                            _hookSecuritySource), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        CreateAndStreamRunResponse.Builder _resBuilder = 
+            CreateAndStreamRunResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        CreateAndStreamRunResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "text/event-stream")) {
+                String _out = Utils.toUtf8AndClose(_httpRes.body());
+                _res.withRes(Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "403", "404", "409", "422", "4XX")) {
+            // no content 
+            throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "500", "5XX")) {
+            // no content 
+            throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        throw new APIException(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
+
+
+    /**
+     * Create Run, Wait for Output
+     * 
+     * <p>Creates and triggers a run of an agent. Waits for final output and then returns it. This endpoint implements the LangChain Agent Protocol, specifically part of the Runs stage (https://langchain-ai.github.io/agent-protocol/api.html#tag/runs/POST/runs/wait). It adheres to the standard contract defined for agent interoperability and can be used by agent runtimes that support the Agent Protocol. Note that running agents that reference third party platform write actions is unsupported as it requires user confirmation.
+     * 
+     * @return The call builder
+     */
+    public CreateAndWaitRunRequestBuilder run() {
+        return new CreateAndWaitRunRequestBuilder(this);
+    }
+
+    /**
+     * Create Run, Wait for Output
+     * 
+     * <p>Creates and triggers a run of an agent. Waits for final output and then returns it. This endpoint implements the LangChain Agent Protocol, specifically part of the Runs stage (https://langchain-ai.github.io/agent-protocol/api.html#tag/runs/POST/runs/wait). It adheres to the standard contract defined for agent interoperability and can be used by agent runtimes that support the Agent Protocol. Note that running agents that reference third party platform write actions is unsupported as it requires user confirmation.
+     * 
+     * @param request The request object containing all of the parameters for the API call.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public CreateAndWaitRunResponse run(
+            AgentRunCreate request) throws Exception {
+        String _baseUrl = Utils.templateUrl(
+                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+        String _url = Utils.generateURL(
+                _baseUrl,
+                "/rest/api/v1/agents/runs/wait");
+        
+        HTTPRequest _req = new HTTPRequest(_url, "POST");
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<AgentRunCreate>() {});
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
+                _convertedRequest, 
+                "request",
+                "json",
+                false);
+        if (_serializedRequestBody == null) {
+            throw new Exception("Request body is required");
+        }
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      _baseUrl,
+                      "createAndWaitRun", 
+                      Optional.of(List.of()), 
+                      _hookSecuritySource),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "403", "404", "409", "422", "4XX", "500", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            _baseUrl,
+                            "createAndWaitRun",
+                            Optional.of(List.of()),
+                            _hookSecuritySource),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            _baseUrl,
+                            "createAndWaitRun",
+                            Optional.of(List.of()), 
+                            _hookSecuritySource),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            _baseUrl,
+                            "createAndWaitRun",
+                            Optional.of(List.of()),
+                            _hookSecuritySource), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        CreateAndWaitRunResponse.Builder _resBuilder = 
+            CreateAndWaitRunResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        CreateAndWaitRunResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                AgentRunWaitResponse _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<AgentRunWaitResponse>() {});
+                _res.withAgentRunWaitResponse(Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "403", "404", "409", "422", "4XX")) {
+            // no content 
+            throw new APIException(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "500", "5XX")) {
             // no content 
             throw new APIException(
                     _httpRes, 

@@ -1,0 +1,9 @@
+# SensitiveExpression
+
+
+## Fields
+
+| Field                                                                                                 | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
+| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `expression`                                                                                          | *Optional\<String>*                                                                                   | :heavy_minus_sign:                                                                                    | Sensitive word, phrase, or regular expression.                                                        |
+| `hotwords`                                                                                            | List\<[Hotword](../../models/components/Hotword.md)>                                                  | :heavy_minus_sign:                                                                                    | Zero to three proximate regular expressions necessary to consider an expression as sensitive content. |

@@ -28,12 +28,12 @@ public class RelatedObject {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private Optional<? extends Metadata> metadata;
+    private Optional<? extends RelatedObjectMetadata> metadata;
 
     @JsonCreator
     public RelatedObject(
             @JsonProperty("id") String id,
-            @JsonProperty("metadata") Optional<? extends Metadata> metadata) {
+            @JsonProperty("metadata") Optional<? extends RelatedObjectMetadata> metadata) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(metadata, "metadata");
         this.id = id;
@@ -58,8 +58,8 @@ public class RelatedObject {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Metadata> metadata() {
-        return (Optional<Metadata>) metadata;
+    public Optional<RelatedObjectMetadata> metadata() {
+        return (Optional<RelatedObjectMetadata>) metadata;
     }
 
     public final static Builder builder() {
@@ -78,7 +78,7 @@ public class RelatedObject {
     /**
      * Some metadata of the object which can be displayed, while not having the actual object.
      */
-    public RelatedObject withMetadata(Metadata metadata) {
+    public RelatedObject withMetadata(RelatedObjectMetadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = Optional.ofNullable(metadata);
         return this;
@@ -87,7 +87,7 @@ public class RelatedObject {
     /**
      * Some metadata of the object which can be displayed, while not having the actual object.
      */
-    public RelatedObject withMetadata(Optional<? extends Metadata> metadata) {
+    public RelatedObject withMetadata(Optional<? extends RelatedObjectMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -126,7 +126,7 @@ public class RelatedObject {
  
         private String id;
  
-        private Optional<? extends Metadata> metadata = Optional.empty();
+        private Optional<? extends RelatedObjectMetadata> metadata = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -144,7 +144,7 @@ public class RelatedObject {
         /**
          * Some metadata of the object which can be displayed, while not having the actual object.
          */
-        public Builder metadata(Metadata metadata) {
+        public Builder metadata(RelatedObjectMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
             return this;
@@ -153,7 +153,7 @@ public class RelatedObject {
         /**
          * Some metadata of the object which can be displayed, while not having the actual object.
          */
-        public Builder metadata(Optional<? extends Metadata> metadata) {
+        public Builder metadata(Optional<? extends RelatedObjectMetadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
