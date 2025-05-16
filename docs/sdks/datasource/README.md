@@ -31,7 +31,7 @@ public class Application {
 
         Glean sdk = Glean.builder()
                 .security(Security.builder()
-                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
             .build();
 
