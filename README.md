@@ -62,7 +62,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.glean.api-client:glean-api-client:0.4.0'
+implementation 'com.glean.api-client:glean-api-client:0.4.1'
 ```
 
 Maven:
@@ -70,7 +70,7 @@ Maven:
 <dependency>
     <groupId>com.glean.api-client</groupId>
     <artifactId>glean-api-client</artifactId>
-    <version>0.4.0</version>
+    <version>0.4.1</version>
 </dependency>
 ```
 
@@ -132,7 +132,7 @@ public class Application {
 
         Glean sdk = Glean.builder()
                 .security(Security.builder()
-                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
             .build();
 
@@ -172,7 +172,7 @@ public class Application {
 
         Glean sdk = Glean.builder()
                 .security(Security.builder()
-                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
             .build();
 
@@ -203,10 +203,10 @@ public class Application {
 
 This SDK supports the following security schemes globally:
 
-| Name               | Type   | Scheme  |
-| ------------------ | ------ | ------- |
-| `actAsBearerToken` | apiKey | API key |
-| `cookieAuth`       | apiKey | API key |
+| Name         | Type   | Scheme      |
+| ------------ | ------ | ----------- |
+| `apiToken`   | http   | HTTP Bearer |
+| `cookieAuth` | apiKey | API key     |
 
 You can set the security parameters through the `security` builder method when initializing the SDK client instance. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
 ```java
@@ -225,7 +225,7 @@ public class Application {
 
         Glean sdk = Glean.builder()
                 .security(Security.builder()
-                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
             .build();
 
@@ -536,7 +536,7 @@ public class Application {
 
         Glean sdk = Glean.builder()
                 .security(Security.builder()
-                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
             .build();
 
@@ -1181,7 +1181,7 @@ public class Application {
         Glean sdk = Glean.builder()
                 .instance("<value>")
                 .security(Security.builder()
-                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
             .build();
 
@@ -1240,7 +1240,7 @@ public class Application {
         Glean sdk = Glean.builder()
                 .serverURL("https://instance-name-be.glean.com")
                 .security(Security.builder()
-                    .actAsBearerToken("<YOUR_API_KEY_HERE>")
+                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
                     .build())
             .build();
 

@@ -15,19 +15,19 @@ import java.util.Optional;
 
 public class Security implements HasSecurity {
 
-    @SpeakeasyMetadata("security:scheme=true,type=apiKey,subtype=header,name=Authorization")
-    private Optional<String> actAsBearerToken;
+    @SpeakeasyMetadata("security:scheme=true,type=http,subtype=bearer,name=Authorization")
+    private Optional<String> apiToken;
 
     @SpeakeasyMetadata("security:scheme=true,type=apiKey,subtype=header,name=Authorization")
     private Optional<String> cookieAuth;
 
     @JsonCreator
     public Security(
-            Optional<String> actAsBearerToken,
+            Optional<String> apiToken,
             Optional<String> cookieAuth) {
-        Utils.checkNotNull(actAsBearerToken, "actAsBearerToken");
+        Utils.checkNotNull(apiToken, "apiToken");
         Utils.checkNotNull(cookieAuth, "cookieAuth");
-        this.actAsBearerToken = actAsBearerToken;
+        this.apiToken = apiToken;
         this.cookieAuth = cookieAuth;
     }
     
@@ -36,8 +36,8 @@ public class Security implements HasSecurity {
     }
 
     @JsonIgnore
-    public Optional<String> actAsBearerToken() {
-        return actAsBearerToken;
+    public Optional<String> apiToken() {
+        return apiToken;
     }
 
     @JsonIgnore
@@ -49,15 +49,15 @@ public class Security implements HasSecurity {
         return new Builder();
     }    
 
-    public Security withActAsBearerToken(String actAsBearerToken) {
-        Utils.checkNotNull(actAsBearerToken, "actAsBearerToken");
-        this.actAsBearerToken = Optional.ofNullable(actAsBearerToken);
+    public Security withAPIToken(String apiToken) {
+        Utils.checkNotNull(apiToken, "apiToken");
+        this.apiToken = Optional.ofNullable(apiToken);
         return this;
     }
 
-    public Security withActAsBearerToken(Optional<String> actAsBearerToken) {
-        Utils.checkNotNull(actAsBearerToken, "actAsBearerToken");
-        this.actAsBearerToken = actAsBearerToken;
+    public Security withAPIToken(Optional<String> apiToken) {
+        Utils.checkNotNull(apiToken, "apiToken");
+        this.apiToken = apiToken;
         return this;
     }
 
@@ -84,27 +84,27 @@ public class Security implements HasSecurity {
         }
         Security other = (Security) o;
         return 
-            Objects.deepEquals(this.actAsBearerToken, other.actAsBearerToken) &&
+            Objects.deepEquals(this.apiToken, other.apiToken) &&
             Objects.deepEquals(this.cookieAuth, other.cookieAuth);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
-            actAsBearerToken,
+            apiToken,
             cookieAuth);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Security.class,
-                "actAsBearerToken", actAsBearerToken,
+                "apiToken", apiToken,
                 "cookieAuth", cookieAuth);
     }
     
     public final static class Builder {
  
-        private Optional<String> actAsBearerToken = Optional.empty();
+        private Optional<String> apiToken = Optional.empty();
  
         private Optional<String> cookieAuth = Optional.empty();
         
@@ -112,15 +112,15 @@ public class Security implements HasSecurity {
           // force use of static builder() method
         }
 
-        public Builder actAsBearerToken(String actAsBearerToken) {
-            Utils.checkNotNull(actAsBearerToken, "actAsBearerToken");
-            this.actAsBearerToken = Optional.ofNullable(actAsBearerToken);
+        public Builder apiToken(String apiToken) {
+            Utils.checkNotNull(apiToken, "apiToken");
+            this.apiToken = Optional.ofNullable(apiToken);
             return this;
         }
 
-        public Builder actAsBearerToken(Optional<String> actAsBearerToken) {
-            Utils.checkNotNull(actAsBearerToken, "actAsBearerToken");
-            this.actAsBearerToken = actAsBearerToken;
+        public Builder apiToken(Optional<String> apiToken) {
+            Utils.checkNotNull(apiToken, "apiToken");
+            this.apiToken = apiToken;
             return this;
         }
 
@@ -138,7 +138,7 @@ public class Security implements HasSecurity {
         
         public Security build() {
             return new Security(
-                actAsBearerToken,
+                apiToken,
                 cookieAuth);
         }
     }
