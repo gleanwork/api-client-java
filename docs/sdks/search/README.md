@@ -35,9 +35,7 @@ public class Application {
     public static void main(String[] args) throws GleanDataError, Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         SearchRequest req = SearchRequest.builder()
@@ -2541,7 +2539,8 @@ Retrieve query suggestions, operators and documents for the given partially type
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.components.AuthToken;
+import com.glean.api_client.glean_api_client.models.components.AutocompleteRequest;
 import com.glean.api_client.glean_api_client.models.operations.AutocompleteResponse;
 import java.lang.Exception;
 import java.util.List;
@@ -2551,9 +2550,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         AutocompleteRequest req = AutocompleteRequest.builder()
@@ -2609,7 +2606,6 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.FeedRequest;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.FeedResponse;
 import java.lang.Exception;
 
@@ -2618,9 +2614,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         FeedRequest req = FeedRequest.builder()
@@ -2677,9 +2671,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         RecommendationsRequest req = RecommendationsRequest.builder()
@@ -5474,9 +5466,7 @@ public class Application {
     public static void main(String[] args) throws GleanDataError, Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         SearchRequest req = SearchRequest.builder()

@@ -34,9 +34,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CreateShortcutRequest req = CreateShortcutRequest.builder()
@@ -1548,7 +1546,6 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.DeleteShortcutRequest;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.DeleteshortcutResponse;
 import java.lang.Exception;
 
@@ -1557,9 +1554,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         DeleteShortcutRequest req = DeleteShortcutRequest.builder()
@@ -1601,7 +1596,8 @@ Read a particular shortcut's details given its ID.
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.components.GetShortcutRequest;
+import com.glean.api_client.glean_api_client.models.components.GetShortcutRequestUnion;
 import com.glean.api_client.glean_api_client.models.operations.GetshortcutResponse;
 import java.lang.Exception;
 
@@ -1610,9 +1606,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         GetShortcutRequestUnion req = GetShortcutRequestUnion.of(GetShortcutRequest.builder()
@@ -1666,9 +1660,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         ListShortcutsPaginatedRequest req = ListShortcutsPaginatedRequest.builder()
@@ -1738,9 +1730,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         UpdateShortcutRequest req = UpdateShortcutRequest.builder()

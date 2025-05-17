@@ -17,7 +17,8 @@ Retrieves list of messages from messaging/chat datasources (e.g. Slack, Teams).
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.components.IdType;
+import com.glean.api_client.glean_api_client.models.components.MessagesRequest;
 import com.glean.api_client.glean_api_client.models.operations.MessagesResponse;
 import java.lang.Exception;
 
@@ -26,9 +27,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         MessagesRequest req = MessagesRequest.builder()
