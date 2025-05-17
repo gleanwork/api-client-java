@@ -17,7 +17,6 @@ Creates an authentication token for the authenticated user.
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.CreateauthtokenResponse;
 import java.lang.Exception;
 
@@ -26,9 +25,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CreateauthtokenResponse res = sdk.client().authentication().createToken()

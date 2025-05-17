@@ -11,38 +11,22 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 
 public class Security implements HasSecurity {
 
     @SpeakeasyMetadata("security:scheme=true,type=http,subtype=bearer,name=Authorization")
-    private Optional<String> apiToken;
-
-    @SpeakeasyMetadata("security:scheme=true,type=apiKey,subtype=header,name=Authorization")
-    private Optional<String> cookieAuth;
+    private String apiToken;
 
     @JsonCreator
     public Security(
-            Optional<String> apiToken,
-            Optional<String> cookieAuth) {
+            String apiToken) {
         Utils.checkNotNull(apiToken, "apiToken");
-        Utils.checkNotNull(cookieAuth, "cookieAuth");
         this.apiToken = apiToken;
-        this.cookieAuth = cookieAuth;
-    }
-    
-    public Security() {
-        this(Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
-    public Optional<String> apiToken() {
+    public String apiToken() {
         return apiToken;
-    }
-
-    @JsonIgnore
-    public Optional<String> cookieAuth() {
-        return cookieAuth;
     }
 
     public final static Builder builder() {
@@ -51,25 +35,7 @@ public class Security implements HasSecurity {
 
     public Security withAPIToken(String apiToken) {
         Utils.checkNotNull(apiToken, "apiToken");
-        this.apiToken = Optional.ofNullable(apiToken);
-        return this;
-    }
-
-    public Security withAPIToken(Optional<String> apiToken) {
-        Utils.checkNotNull(apiToken, "apiToken");
         this.apiToken = apiToken;
-        return this;
-    }
-
-    public Security withCookieAuth(String cookieAuth) {
-        Utils.checkNotNull(cookieAuth, "cookieAuth");
-        this.cookieAuth = Optional.ofNullable(cookieAuth);
-        return this;
-    }
-
-    public Security withCookieAuth(Optional<String> cookieAuth) {
-        Utils.checkNotNull(cookieAuth, "cookieAuth");
-        this.cookieAuth = cookieAuth;
         return this;
     }
 
@@ -84,29 +50,24 @@ public class Security implements HasSecurity {
         }
         Security other = (Security) o;
         return 
-            Objects.deepEquals(this.apiToken, other.apiToken) &&
-            Objects.deepEquals(this.cookieAuth, other.cookieAuth);
+            Objects.deepEquals(this.apiToken, other.apiToken);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
-            apiToken,
-            cookieAuth);
+            apiToken);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Security.class,
-                "apiToken", apiToken,
-                "cookieAuth", cookieAuth);
+                "apiToken", apiToken);
     }
     
     public final static class Builder {
  
-        private Optional<String> apiToken = Optional.empty();
- 
-        private Optional<String> cookieAuth = Optional.empty();
+        private String apiToken;
         
         private Builder() {
           // force use of static builder() method
@@ -114,32 +75,13 @@ public class Security implements HasSecurity {
 
         public Builder apiToken(String apiToken) {
             Utils.checkNotNull(apiToken, "apiToken");
-            this.apiToken = Optional.ofNullable(apiToken);
-            return this;
-        }
-
-        public Builder apiToken(Optional<String> apiToken) {
-            Utils.checkNotNull(apiToken, "apiToken");
             this.apiToken = apiToken;
-            return this;
-        }
-
-        public Builder cookieAuth(String cookieAuth) {
-            Utils.checkNotNull(cookieAuth, "cookieAuth");
-            this.cookieAuth = Optional.ofNullable(cookieAuth);
-            return this;
-        }
-
-        public Builder cookieAuth(Optional<String> cookieAuth) {
-            Utils.checkNotNull(cookieAuth, "cookieAuth");
-            this.cookieAuth = cookieAuth;
             return this;
         }
         
         public Security build() {
             return new Security(
-                apiToken,
-                cookieAuth);
+                apiToken);
         }
     }
 }

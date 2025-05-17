@@ -34,9 +34,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CreateAnswerRequest req = CreateAnswerRequest.builder()
@@ -1323,7 +1321,6 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.DeleteAnswerRequest;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.DeleteanswerResponse;
 import java.lang.Exception;
 
@@ -1332,9 +1329,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         DeleteAnswerRequest req = DeleteAnswerRequest.builder()
@@ -1390,9 +1385,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         EditAnswerRequest req = EditAnswerRequest.builder()
@@ -2271,7 +2264,6 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.GetAnswerRequest;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.GetanswerResponse;
 import java.lang.Exception;
 
@@ -2280,9 +2272,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         GetAnswerRequest req = GetAnswerRequest.builder()
@@ -2328,7 +2318,6 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.ListAnswersRequest;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.ListanswersResponse;
 import java.lang.Exception;
 
@@ -2337,9 +2326,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         ListAnswersRequest req = ListAnswersRequest.builder()

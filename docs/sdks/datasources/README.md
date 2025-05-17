@@ -28,9 +28,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CustomDatasourceConfig req = CustomDatasourceConfig.builder()
@@ -83,7 +81,6 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.GetDatasourceConfigRequest;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1GetdatasourceconfigResponse;
 import java.lang.Exception;
 
@@ -92,9 +89,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         GetDatasourceConfigRequest req = GetDatasourceConfigRequest.builder()

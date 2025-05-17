@@ -28,7 +28,8 @@ Adds a document to the index or updates an existing document.
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.components.DocumentDefinition;
+import com.glean.api_client.glean_api_client.models.components.IndexDocumentRequest;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1IndexdocumentResponse;
 import java.lang.Exception;
 
@@ -37,9 +38,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         IndexDocumentRequest req = IndexDocumentRequest.builder()
@@ -84,7 +83,6 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.IndexDocumentsRequest;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1IndexdocumentsResponse;
 import java.lang.Exception;
 import java.util.List;
@@ -94,9 +92,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         IndexDocumentsRequest req = IndexDocumentsRequest.builder()
@@ -140,7 +136,6 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.BulkIndexDocumentsRequest;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1BulkindexdocumentsResponse;
 import java.lang.Exception;
 import java.util.List;
@@ -150,9 +145,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         BulkIndexDocumentsRequest req = BulkIndexDocumentsRequest.builder()
@@ -208,7 +201,6 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.ProcessAllDocumentsRequest;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1ProcessalldocumentsResponse;
 import java.lang.Exception;
 
@@ -217,9 +209,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         ProcessAllDocumentsRequest req = ProcessAllDocumentsRequest.builder()
@@ -261,7 +251,6 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.DeleteDocumentRequest;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DeletedocumentResponse;
 import java.lang.Exception;
 
@@ -270,9 +259,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         DeleteDocumentRequest req = DeleteDocumentRequest.builder()
@@ -320,7 +307,6 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.DebugDocumentRequest;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DebugDatasourceDocumentResponse;
 import java.lang.Exception;
 
@@ -329,9 +315,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         PostApiIndexV1DebugDatasourceDocumentResponse res = sdk.indexing().documents().debug()
@@ -379,7 +363,8 @@ Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/docs/i
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.components.DebugDocumentRequest;
+import com.glean.api_client.glean_api_client.models.components.DebugDocumentsRequest;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DebugDatasourceDocumentsResponse;
 import java.lang.Exception;
 import java.util.List;
@@ -389,9 +374,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         PostApiIndexV1DebugDatasourceDocumentsResponse res = sdk.indexing().documents().debugMany()
@@ -443,7 +426,6 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.CheckDocumentAccessRequest;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1CheckdocumentaccessResponse;
 import java.lang.Exception;
 
@@ -452,9 +434,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CheckDocumentAccessRequest req = CheckDocumentAccessRequest.builder()
@@ -507,7 +487,6 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.GetDocumentStatusRequest;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1GetdocumentstatusResponse;
 import java.lang.Exception;
 
@@ -516,9 +495,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         GetDocumentStatusRequest req = GetDocumentStatusRequest.builder()
@@ -570,7 +547,6 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.GetDocumentCountRequest;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1GetdocumentcountResponse;
 import java.lang.Exception;
 
@@ -579,9 +555,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         GetDocumentCountRequest req = GetDocumentCountRequest.builder()

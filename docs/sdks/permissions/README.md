@@ -28,7 +28,8 @@ Updates the permissions for a given document without modifying document content.
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.components.DocumentPermissionsDefinition;
+import com.glean.api_client.glean_api_client.models.components.UpdatePermissionsRequest;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1UpdatepermissionsResponse;
 import java.lang.Exception;
 
@@ -37,9 +38,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         UpdatePermissionsRequest req = UpdatePermissionsRequest.builder()
@@ -83,7 +82,8 @@ Adds a datasource user or updates an existing user.
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.components.DatasourceUserDefinition;
+import com.glean.api_client.glean_api_client.models.components.IndexUserRequest;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1IndexuserResponse;
 import java.lang.Exception;
 
@@ -92,9 +92,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         IndexUserRequest req = IndexUserRequest.builder()
@@ -140,7 +138,8 @@ Replaces the users in a datasource using paginated batch API calls. Please refer
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.components.BulkIndexUsersRequest;
+import com.glean.api_client.glean_api_client.models.components.DatasourceUserDefinition;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1BulkindexusersResponse;
 import java.lang.Exception;
 import java.util.List;
@@ -150,9 +149,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         BulkIndexUsersRequest req = BulkIndexUsersRequest.builder()
@@ -208,7 +205,8 @@ Add or update a group in the datasource.
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.components.DatasourceGroupDefinition;
+import com.glean.api_client.glean_api_client.models.components.IndexGroupRequest;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1IndexgroupResponse;
 import java.lang.Exception;
 
@@ -217,9 +215,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         IndexGroupRequest req = IndexGroupRequest.builder()
@@ -264,7 +260,8 @@ Replaces the groups in a datasource using paginated batch API calls. Please refe
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.components.BulkIndexGroupsRequest;
+import com.glean.api_client.glean_api_client.models.components.DatasourceGroupDefinition;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1BulkindexgroupsResponse;
 import java.lang.Exception;
 import java.util.List;
@@ -274,9 +271,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         BulkIndexGroupsRequest req = BulkIndexGroupsRequest.builder()
@@ -326,7 +321,8 @@ Add the memberships of a group in the datasource.
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.components.DatasourceMembershipDefinition;
+import com.glean.api_client.glean_api_client.models.components.IndexMembershipRequest;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1IndexmembershipResponse;
 import java.lang.Exception;
 
@@ -335,9 +331,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         IndexMembershipRequest req = IndexMembershipRequest.builder()
@@ -382,7 +376,8 @@ Replaces the memberships for a group in a datasource using paginated batch API c
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.components.BulkIndexMembershipsRequest;
+import com.glean.api_client.glean_api_client.models.components.DatasourceBulkMembershipDefinition;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1BulkindexmembershipsResponse;
 import java.lang.Exception;
 import java.util.List;
@@ -392,9 +387,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         BulkIndexMembershipsRequest req = BulkIndexMembershipsRequest.builder()
@@ -446,7 +439,6 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.ProcessAllMembershipsRequest;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1ProcessallmembershipsResponse;
 import java.lang.Exception;
 
@@ -455,9 +447,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         ProcessAllMembershipsRequest req = ProcessAllMembershipsRequest.builder()
@@ -499,7 +489,6 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.DeleteUserRequest;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DeleteuserResponse;
 import java.lang.Exception;
 
@@ -508,9 +497,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         DeleteUserRequest req = DeleteUserRequest.builder()
@@ -554,7 +541,6 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.DeleteGroupRequest;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DeletegroupResponse;
 import java.lang.Exception;
 
@@ -563,9 +549,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         DeleteGroupRequest req = DeleteGroupRequest.builder()
@@ -608,7 +592,8 @@ Delete membership to a group in the specified datasource. Silently succeeds if m
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.components.DatasourceMembershipDefinition;
+import com.glean.api_client.glean_api_client.models.components.DeleteMembershipRequest;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DeletemembershipResponse;
 import java.lang.Exception;
 
@@ -617,9 +602,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         DeleteMembershipRequest req = DeleteMembershipRequest.builder()
@@ -665,7 +648,6 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.GreenlistUsersRequest;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1BetausersResponse;
 import java.lang.Exception;
 import java.util.List;
@@ -675,9 +657,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         GreenlistUsersRequest req = GreenlistUsersRequest.builder()

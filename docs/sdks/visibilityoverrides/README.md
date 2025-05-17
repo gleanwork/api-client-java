@@ -18,7 +18,6 @@ Fetches the visibility override status of the documents passed.
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.GetdocvisibilityResponse;
 import java.lang.Exception;
 
@@ -27,9 +26,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         GetdocvisibilityResponse res = sdk.client().governance().documents().visibilityoverrides().list()
@@ -68,7 +65,6 @@ Sets the visibility-override state of the documents specified, effectively hidin
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.components.UpdateDocumentVisibilityOverridesRequest;
 import com.glean.api_client.glean_api_client.models.operations.SetdocvisibilityResponse;
 import java.lang.Exception;
@@ -78,9 +74,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         UpdateDocumentVisibilityOverridesRequest req = UpdateDocumentVisibilityOverridesRequest.builder()

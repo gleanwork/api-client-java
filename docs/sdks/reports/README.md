@@ -19,7 +19,6 @@ Creates a new one-time report and executes its batch job.
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.components.UpdateDlpConfigRequest;
 import com.glean.api_client.glean_api_client.models.operations.CreatereportResponse;
 import java.lang.Exception;
@@ -29,9 +28,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         UpdateDlpConfigRequest req = UpdateDlpConfigRequest.builder()
@@ -74,7 +71,6 @@ Downloads CSV violations report for a specific report id.
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.DownloadreportcsvResponse;
 import java.lang.Exception;
 
@@ -83,9 +79,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         DownloadreportcsvResponse res = sdk.client().governance().data().reports().download()
@@ -125,7 +119,6 @@ Fetches the status of the run corresponding to the report-id.
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.GetreportstatusResponse;
 import java.lang.Exception;
 
@@ -134,9 +127,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         GetreportstatusResponse res = sdk.client().governance().data().reports().status()

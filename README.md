@@ -62,7 +62,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.glean.api-client:glean-api-client:0.4.1'
+implementation 'com.glean.api-client:glean-api-client:0.4.2'
 ```
 
 Maven:
@@ -70,7 +70,7 @@ Maven:
 <dependency>
     <groupId>com.glean.api-client</groupId>
     <artifactId>glean-api-client</artifactId>
-    <version>0.4.1</version>
+    <version>0.4.2</version>
 </dependency>
 ```
 
@@ -131,9 +131,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         ChatResponse res = sdk.client().chat().create()
@@ -171,9 +169,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         ChatStreamResponse res = sdk.client().chat().createStream()
@@ -201,14 +197,13 @@ public class Application {
 
 ### Per-Client Security Schemes
 
-This SDK supports the following security schemes globally:
+This SDK supports the following security scheme globally:
 
-| Name         | Type   | Scheme      |
-| ------------ | ------ | ----------- |
-| `apiToken`   | http   | HTTP Bearer |
-| `cookieAuth` | apiKey | API key     |
+| Name       | Type | Scheme      |
+| ---------- | ---- | ----------- |
+| `apiToken` | http | HTTP Bearer |
 
-You can set the security parameters through the `security` builder method when initializing the SDK client instance. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
+To authenticate with the API the `apiToken` parameter must be set when initializing the SDK client instance. For example:
 ```java
 package hello.world;
 
@@ -224,9 +219,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         Activity req = Activity.builder()
@@ -535,9 +528,7 @@ public class Application {
     public static void main(String[] args) throws CollectionError, Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CreateCollectionRequest req = CreateCollectionRequest.builder()
@@ -1180,9 +1171,7 @@ public class Application {
 
         Glean sdk = Glean.builder()
                 .instance("<value>")
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         Activity req = Activity.builder()
@@ -1239,9 +1228,7 @@ public class Application {
 
         Glean sdk = Glean.builder()
                 .serverURL("https://instance-name-be.glean.com")
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         Activity req = Activity.builder()

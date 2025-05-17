@@ -25,7 +25,6 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.AddCollectionItemsRequest;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.AddcollectionitemsResponse;
 import java.lang.Exception;
 
@@ -34,9 +33,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         AddCollectionItemsRequest req = AddCollectionItemsRequest.builder()
@@ -94,9 +91,7 @@ public class Application {
     public static void main(String[] args) throws CollectionError, Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CreateCollectionRequest req = CreateCollectionRequest.builder()
@@ -737,7 +732,6 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.DeleteCollectionRequest;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.errors.CollectionError;
 import com.glean.api_client.glean_api_client.models.operations.DeletecollectionResponse;
 import java.lang.Exception;
@@ -748,9 +742,7 @@ public class Application {
     public static void main(String[] args) throws CollectionError, Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         DeleteCollectionRequest req = DeleteCollectionRequest.builder()
@@ -797,7 +789,6 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.DeleteCollectionItemRequest;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.DeletecollectionitemResponse;
 import java.lang.Exception;
 
@@ -806,9 +797,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         DeleteCollectionItemRequest req = DeleteCollectionItemRequest.builder()
@@ -867,9 +856,7 @@ public class Application {
     public static void main(String[] args) throws CollectionError, Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         EditCollectionRequest req = EditCollectionRequest.builder()
@@ -1881,7 +1868,6 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.EditCollectionItemRequest;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.EditcollectionitemResponse;
 import java.lang.Exception;
 
@@ -1890,9 +1876,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         EditCollectionItemRequest req = EditCollectionItemRequest.builder()
@@ -1938,7 +1922,6 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.GetCollectionRequest;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.GetcollectionResponse;
 import java.lang.Exception;
 
@@ -1947,9 +1930,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         GetCollectionRequest req = GetCollectionRequest.builder()
@@ -1994,7 +1975,6 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.ListCollectionsRequest;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.ListcollectionsResponse;
 import java.lang.Exception;
 
@@ -2003,9 +1983,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         ListCollectionsRequest req = ListCollectionsRequest.builder()

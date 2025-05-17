@@ -21,7 +21,6 @@ Fetches the specified policy version, or the latest if no version is provided.
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.GetpolicyResponse;
 import java.lang.Exception;
 
@@ -30,9 +29,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         GetpolicyResponse res = sdk.client().governance().data().policies().retrieve()
@@ -73,7 +70,6 @@ Updates an existing policy.
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.components.UpdateDlpReportRequest;
 import com.glean.api_client.glean_api_client.models.operations.UpdatepolicyResponse;
 import java.lang.Exception;
@@ -83,9 +79,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         UpdatepolicyResponse res = sdk.client().governance().data().policies().update()
@@ -128,7 +122,6 @@ Lists policies with filtering.
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.GetpoliciesResponse;
 import java.lang.Exception;
 
@@ -137,9 +130,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         GetpoliciesResponse res = sdk.client().governance().data().policies().list()
@@ -180,7 +171,6 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.CreateDlpReportRequest;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.CreatepolicyResponse;
 import java.lang.Exception;
 
@@ -189,9 +179,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CreateDlpReportRequest req = CreateDlpReportRequest.builder()
@@ -234,7 +222,6 @@ Downloads CSV violations report for a specific policy id. This does not support 
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.Security;
 import com.glean.api_client.glean_api_client.models.operations.DownloadpolicycsvResponse;
 import java.lang.Exception;
 
@@ -243,9 +230,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .security(Security.builder()
-                    .apiToken("<YOUR_BEARER_TOKEN_HERE>")
-                    .build())
+                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         DownloadpolicycsvResponse res = sdk.client().governance().data().policies().download()

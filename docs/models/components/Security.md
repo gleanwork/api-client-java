@@ -3,7 +3,6 @@
 
 ## Fields
 
-| Field               | Type                | Required            | Description         |
-| ------------------- | ------------------- | ------------------- | ------------------- |
-| `apiToken`          | *Optional\<String>* | :heavy_minus_sign:  | N/A                 |
-| `cookieAuth`        | *Optional\<String>* | :heavy_minus_sign:  | N/A                 |
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `apiToken`         | *String*           | :heavy_check_mark: | N/A                |
