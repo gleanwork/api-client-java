@@ -62,7 +62,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.glean.api-client:glean-api-client:0.4.2'
+implementation 'com.glean.api-client:glean-api-client:0.4.3'
 ```
 
 Maven:
@@ -70,7 +70,7 @@ Maven:
 <dependency>
     <groupId>com.glean.api-client</groupId>
     <artifactId>glean-api-client</artifactId>
-    <version>0.4.2</version>
+    <version>0.4.3</version>
 </dependency>
 ```
 
@@ -420,6 +420,11 @@ For more information on obtaining the appropriate token type, please contact you
 * [retrieve](docs/sdks/clientshortcuts/README.md#retrieve) - Read shortcut
 * [list](docs/sdks/clientshortcuts/README.md#list) - List shortcuts
 * [update](docs/sdks/clientshortcuts/README.md#update) - Update shortcut
+
+#### [client().tools()](docs/sdks/tools/README.md)
+
+* [list](docs/sdks/tools/README.md#list) - List available tools
+* [run](docs/sdks/tools/README.md#run) - Execute the specified tool
 
 #### [client().verification()](docs/sdks/verification/README.md)
 

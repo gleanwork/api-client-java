@@ -81,6 +81,7 @@ import com.glean.api_client.glean_api_client.models.components.ReminderRequest;
 import com.glean.api_client.glean_api_client.models.components.SearchAgentsRequest;
 import com.glean.api_client.glean_api_client.models.components.SearchRequest;
 import com.glean.api_client.glean_api_client.models.components.SummarizeRequest;
+import com.glean.api_client.glean_api_client.models.components.ToolsCallRequest;
 import com.glean.api_client.glean_api_client.models.components.Unpin;
 import com.glean.api_client.glean_api_client.models.components.UpdateAnnouncementRequest;
 import com.glean.api_client.glean_api_client.models.components.UpdateDlpConfigRequest;
@@ -337,7 +338,7 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallAdminsearch {
         AdminsearchResponse queryAsAdmin(
-            Optional<? extends SearchRequest> request) throws Exception;
+            SearchRequest request) throws Exception;
     }
 
     public interface MethodCallAutocomplete {
@@ -352,12 +353,12 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallRecommendations {
         RecommendationsResponse recommendations(
-            Optional<? extends RecommendationsRequest> request) throws Exception;
+            RecommendationsRequest request) throws Exception;
     }
 
     public interface MethodCallSearch {
         SearchResponse query(
-            Optional<? extends SearchRequest> request) throws Exception;
+            SearchRequest request) throws Exception;
     }
 
     public interface MethodCallListentities {
@@ -410,6 +411,16 @@ public class SDKMethodInterfaces {
             VerifyRequest request) throws Exception;
     }
 
+    public interface MethodCallGetRestApiV1ToolsList {
+        GetRestApiV1ToolsListResponse list(
+            Optional<? extends List<String>> toolNames) throws Exception;
+    }
+
+    public interface MethodCallPostRestApiV1ToolsCall {
+        PostRestApiV1ToolsCallResponse run(
+            ToolsCallRequest request) throws Exception;
+    }
+
     public interface MethodCallGetpolicy {
         GetpolicyResponse retrieve(
             String id,
@@ -422,8 +433,8 @@ public class SDKMethodInterfaces {
             UpdateDlpReportRequest updateDlpReportRequest) throws Exception;
     }
 
-    public interface MethodCallGetpolicies {
-        GetpoliciesResponse list(
+    public interface MethodCallListpolicies {
+        ListpoliciesResponse list(
             Optional<Boolean> autoHide,
             Optional<String> frequency) throws Exception;
     }

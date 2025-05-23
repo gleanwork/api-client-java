@@ -16,12 +16,12 @@ import com.glean.api_client.glean_api_client.models.operations.CreatepolicyRespo
 import com.glean.api_client.glean_api_client.models.operations.DownloadpolicycsvRequest;
 import com.glean.api_client.glean_api_client.models.operations.DownloadpolicycsvRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.DownloadpolicycsvResponse;
-import com.glean.api_client.glean_api_client.models.operations.GetpoliciesRequest;
-import com.glean.api_client.glean_api_client.models.operations.GetpoliciesRequestBuilder;
-import com.glean.api_client.glean_api_client.models.operations.GetpoliciesResponse;
 import com.glean.api_client.glean_api_client.models.operations.GetpolicyRequest;
 import com.glean.api_client.glean_api_client.models.operations.GetpolicyRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.GetpolicyResponse;
+import com.glean.api_client.glean_api_client.models.operations.ListpoliciesRequest;
+import com.glean.api_client.glean_api_client.models.operations.ListpoliciesRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.ListpoliciesResponse;
 import com.glean.api_client.glean_api_client.models.operations.SDKMethodInterfaces.*;
 import com.glean.api_client.glean_api_client.models.operations.UpdatepolicyRequest;
 import com.glean.api_client.glean_api_client.models.operations.UpdatepolicyRequestBuilder;
@@ -48,7 +48,7 @@ import java.util.Optional;
 public class Policies implements
             MethodCallGetpolicy,
             MethodCallUpdatepolicy,
-            MethodCallGetpolicies,
+            MethodCallListpolicies,
             MethodCallCreatepolicy,
             MethodCallDownloadpolicycsv {
 
@@ -386,8 +386,8 @@ public class Policies implements
      * 
      * @return The call builder
      */
-    public GetpoliciesRequestBuilder list() {
-        return new GetpoliciesRequestBuilder(this);
+    public ListpoliciesRequestBuilder list() {
+        return new ListpoliciesRequestBuilder(this);
     }
 
     /**
@@ -398,7 +398,7 @@ public class Policies implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetpoliciesResponse listDirect() throws Exception {
+    public ListpoliciesResponse listDirect() throws Exception {
         return list(Optional.empty(), Optional.empty());
     }
     
@@ -412,11 +412,11 @@ public class Policies implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetpoliciesResponse list(
+    public ListpoliciesResponse list(
             Optional<Boolean> autoHide,
             Optional<String> frequency) throws Exception {
-        GetpoliciesRequest request =
-            GetpoliciesRequest
+        ListpoliciesRequest request =
+            ListpoliciesRequest
                 .builder()
                 .autoHide(autoHide)
                 .frequency(frequency)
@@ -434,7 +434,7 @@ public class Policies implements
                 SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
-                GetpoliciesRequest.class,
+                ListpoliciesRequest.class,
                 request, 
                 null));
         
@@ -447,7 +447,7 @@ public class Policies implements
                .beforeRequest(
                   new BeforeRequestContextImpl(
                       _baseUrl,
-                      "getpolicies", 
+                      "listpolicies", 
                       Optional.of(List.of()), 
                       _hookSecuritySource),
                   _req.build());
@@ -459,7 +459,7 @@ public class Policies implements
                     .afterError(
                         new AfterErrorContextImpl(
                             _baseUrl,
-                            "getpolicies",
+                            "listpolicies",
                             Optional.of(List.of()),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
@@ -469,7 +469,7 @@ public class Policies implements
                     .afterSuccess(
                         new AfterSuccessContextImpl(
                             _baseUrl,
-                            "getpolicies",
+                            "listpolicies",
                             Optional.of(List.of()), 
                             _hookSecuritySource),
                          _httpRes);
@@ -479,7 +479,7 @@ public class Policies implements
                     .afterError(
                         new AfterErrorContextImpl(
                             _baseUrl,
-                            "getpolicies",
+                            "listpolicies",
                             Optional.of(List.of()),
                             _hookSecuritySource), 
                         Optional.empty(),
@@ -489,14 +489,14 @@ public class Policies implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        GetpoliciesResponse.Builder _resBuilder = 
-            GetpoliciesResponse
+        ListpoliciesResponse.Builder _resBuilder = 
+            ListpoliciesResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        GetpoliciesResponse _res = _resBuilder.build();
+        ListpoliciesResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {

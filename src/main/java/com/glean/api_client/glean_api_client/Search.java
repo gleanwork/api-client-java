@@ -69,24 +69,12 @@ public class Search implements
      * 
      * <p>Retrieves results for search query without respect for permissions. This is available only to privileged users.
      * 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public AdminsearchResponse queryAsAdminDirect() throws Exception {
-        return queryAsAdmin(Optional.empty());
-    }
-    
-    /**
-     * Search the index (admin)
-     * 
-     * <p>Retrieves results for search query without respect for permissions. This is available only to privileged users.
-     * 
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public AdminsearchResponse queryAsAdmin(
-            Optional<? extends SearchRequest> request) throws Exception {
+            SearchRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -97,12 +85,15 @@ public class Search implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Optional<? extends SearchRequest>>() {});
+                new TypeReference<SearchRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
                 "request",
                 "json",
                 false);
+        if (_serializedRequestBody == null) {
+            throw new Exception("Request body is required");
+        }
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
@@ -530,24 +521,12 @@ public class Search implements
      * 
      * <p>Retrieve recommended documents for the given URL or Glean Document ID.
      * 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public RecommendationsResponse recommendationsDirect() throws Exception {
-        return recommendations(Optional.empty());
-    }
-    
-    /**
-     * Recommend documents
-     * 
-     * <p>Retrieve recommended documents for the given URL or Glean Document ID.
-     * 
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public RecommendationsResponse recommendations(
-            Optional<? extends RecommendationsRequest> request) throws Exception {
+            RecommendationsRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -558,12 +537,15 @@ public class Search implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Optional<? extends RecommendationsRequest>>() {});
+                new TypeReference<RecommendationsRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
                 "request",
                 "json",
                 false);
+        if (_serializedRequestBody == null) {
+            throw new Exception("Request body is required");
+        }
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
@@ -689,24 +671,12 @@ public class Search implements
      * 
      * <p>Retrieve results from the index for the given query and filters.
      * 
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public com.glean.api_client.glean_api_client.models.operations.SearchResponse queryDirect() throws Exception {
-        return query(Optional.empty());
-    }
-    
-    /**
-     * Search
-     * 
-     * <p>Retrieve results from the index for the given query and filters.
-     * 
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public com.glean.api_client.glean_api_client.models.operations.SearchResponse query(
-            Optional<? extends SearchRequest> request) throws Exception {
+            SearchRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
                 this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
@@ -717,12 +687,15 @@ public class Search implements
         Object _convertedRequest = Utils.convertToShape(
                 request, 
                 JsonShape.DEFAULT,
-                new TypeReference<Optional<? extends SearchRequest>>() {});
+                new TypeReference<SearchRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
                 "request",
                 "json",
                 false);
+        if (_serializedRequestBody == null) {
+            throw new Exception("Request body is required");
+        }
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
