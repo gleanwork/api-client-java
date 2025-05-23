@@ -20,6 +20,7 @@ public class Client {
     private final Entities entities;
     private final ClientShortcuts shortcuts;
     private final Verification verification;
+    private final Tools tools;
     private final Governance governance;
 
     Client(SDKConfiguration sdkConfiguration) {
@@ -39,6 +40,7 @@ public class Client {
         this.entities = new Entities(this.sdkConfiguration);
         this.shortcuts = new ClientShortcuts(this.sdkConfiguration);
         this.verification = new Verification(this.sdkConfiguration);
+        this.tools = new Tools(this.sdkConfiguration);
         this.governance = new Governance(this.sdkConfiguration);
     }
 
@@ -100,6 +102,10 @@ public class Client {
 
     public final Verification verification() {
         return verification;
+    }
+
+    public final Tools tools() {
+        return tools;
     }
 
     public final Governance governance() {

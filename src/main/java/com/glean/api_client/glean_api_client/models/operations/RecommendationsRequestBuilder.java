@@ -6,24 +6,17 @@ package com.glean.api_client.glean_api_client.models.operations;
 import com.glean.api_client.glean_api_client.models.components.RecommendationsRequest;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
-import java.util.Optional;
 
 public class RecommendationsRequestBuilder {
 
-    private Optional<? extends RecommendationsRequest> request = Optional.empty();
+    private RecommendationsRequest request;
     private final SDKMethodInterfaces.MethodCallRecommendations sdk;
 
     public RecommendationsRequestBuilder(SDKMethodInterfaces.MethodCallRecommendations sdk) {
         this.sdk = sdk;
     }
-                
-    public RecommendationsRequestBuilder request(RecommendationsRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = Optional.of(request);
-        return this;
-    }
 
-    public RecommendationsRequestBuilder request(Optional<? extends RecommendationsRequest> request) {
+    public RecommendationsRequestBuilder request(RecommendationsRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

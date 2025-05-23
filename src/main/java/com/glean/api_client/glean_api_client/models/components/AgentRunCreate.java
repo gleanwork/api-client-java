@@ -9,10 +9,12 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -35,7 +37,7 @@ public class AgentRunCreate {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("input")
-    private Optional<? extends AgentRunCreateInput> input;
+    private Optional<? extends Map<String, Object>> input;
 
     /**
      * The messages to pass an input to the agent.
@@ -47,7 +49,7 @@ public class AgentRunCreate {
     @JsonCreator
     public AgentRunCreate(
             @JsonProperty("agent_id") Optional<String> agentId,
-            @JsonProperty("input") Optional<? extends AgentRunCreateInput> input,
+            @JsonProperty("input") Optional<? extends Map<String, Object>> input,
             @JsonProperty("messages") Optional<? extends List<Message>> messages) {
         Utils.checkNotNull(agentId, "agentId");
         Utils.checkNotNull(input, "input");
@@ -74,8 +76,8 @@ public class AgentRunCreate {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<AgentRunCreateInput> input() {
-        return (Optional<AgentRunCreateInput>) input;
+    public Optional<Map<String, Object>> input() {
+        return (Optional<Map<String, Object>>) input;
     }
 
     /**
@@ -112,7 +114,7 @@ public class AgentRunCreate {
     /**
      * The input to the agent.
      */
-    public AgentRunCreate withInput(AgentRunCreateInput input) {
+    public AgentRunCreate withInput(Map<String, Object> input) {
         Utils.checkNotNull(input, "input");
         this.input = Optional.ofNullable(input);
         return this;
@@ -121,7 +123,7 @@ public class AgentRunCreate {
     /**
      * The input to the agent.
      */
-    public AgentRunCreate withInput(Optional<? extends AgentRunCreateInput> input) {
+    public AgentRunCreate withInput(Optional<? extends Map<String, Object>> input) {
         Utils.checkNotNull(input, "input");
         this.input = input;
         return this;
@@ -181,7 +183,7 @@ public class AgentRunCreate {
  
         private Optional<String> agentId = Optional.empty();
  
-        private Optional<? extends AgentRunCreateInput> input = Optional.empty();
+        private Optional<? extends Map<String, Object>> input = Optional.empty();
  
         private Optional<? extends List<Message>> messages = Optional.empty();
         
@@ -210,7 +212,7 @@ public class AgentRunCreate {
         /**
          * The input to the agent.
          */
-        public Builder input(AgentRunCreateInput input) {
+        public Builder input(Map<String, Object> input) {
             Utils.checkNotNull(input, "input");
             this.input = Optional.ofNullable(input);
             return this;
@@ -219,7 +221,7 @@ public class AgentRunCreate {
         /**
          * The input to the agent.
          */
-        public Builder input(Optional<? extends AgentRunCreateInput> input) {
+        public Builder input(Optional<? extends Map<String, Object>> input) {
             Utils.checkNotNull(input, "input");
             this.input = input;
             return this;

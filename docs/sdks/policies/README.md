@@ -122,7 +122,7 @@ Lists policies with filtering.
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.operations.GetpoliciesResponse;
+import com.glean.api_client.glean_api_client.models.operations.ListpoliciesResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -133,7 +133,7 @@ public class Application {
                 .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        GetpoliciesResponse res = sdk.client().governance().data().policies().list()
+        ListpoliciesResponse res = sdk.client().governance().data().policies().list()
                 .call();
 
         if (res.listDlpReportsResponse().isPresent()) {
@@ -152,7 +152,7 @@ public class Application {
 
 ### Response
 
-**[GetpoliciesResponse](../../models/operations/GetpoliciesResponse.md)**
+**[ListpoliciesResponse](../../models/operations/ListpoliciesResponse.md)**
 
 ### Errors
 

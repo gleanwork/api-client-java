@@ -1,0 +1,11 @@
+# ToolsCallParameter
+
+
+## Fields
+
+| Field                                                                             | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `name`                                                                            | *String*                                                                          | :heavy_check_mark:                                                                | The name of the parameter                                                         |
+| `value`                                                                           | *String*                                                                          | :heavy_check_mark:                                                                | The value of the parameter (for primitive types)                                  |
+| `items`                                                                           | List\<[ToolsCallParameter](../../models/components/ToolsCallParameter.md)>        | :heavy_minus_sign:                                                                | The value of the parameter (for array types)                                      |
+| `properties`                                                                      | Map\<String, [ToolsCallParameter](../../models/components/ToolsCallParameter.md)> | :heavy_minus_sign:                                                                | The value of the parameter (for object types)                                     |

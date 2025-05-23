@@ -6,24 +6,17 @@ package com.glean.api_client.glean_api_client.models.operations;
 import com.glean.api_client.glean_api_client.models.components.SearchRequest;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
-import java.util.Optional;
 
 public class SearchRequestBuilder {
 
-    private Optional<? extends SearchRequest> request = Optional.empty();
+    private SearchRequest request;
     private final SDKMethodInterfaces.MethodCallSearch sdk;
 
     public SearchRequestBuilder(SDKMethodInterfaces.MethodCallSearch sdk) {
         this.sdk = sdk;
     }
-                
-    public SearchRequestBuilder request(SearchRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = Optional.of(request);
-        return this;
-    }
 
-    public SearchRequestBuilder request(Optional<? extends SearchRequest> request) {
+    public SearchRequestBuilder request(SearchRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;
