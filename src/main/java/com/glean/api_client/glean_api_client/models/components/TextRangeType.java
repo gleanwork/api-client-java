@@ -11,6 +11,7 @@ import java.util.Optional;
 public enum TextRangeType {
     BOLD("BOLD"),
     CITATION("CITATION"),
+    HIGHLIGHT("HIGHLIGHT"),
     LINK("LINK");
 
     @JsonValue
