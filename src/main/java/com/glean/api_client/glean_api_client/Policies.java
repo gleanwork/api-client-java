@@ -60,7 +60,7 @@ public class Policies implements
 
 
     /**
-     * Gets specified Policy.
+     * Gets specified policy
      * 
      * <p>Fetches the specified policy version, or the latest if no version is provided.
      * 
@@ -71,7 +71,7 @@ public class Policies implements
     }
 
     /**
-     * Gets specified Policy.
+     * Gets specified policy
      * 
      * <p>Fetches the specified policy version, or the latest if no version is provided.
      * 
@@ -85,7 +85,7 @@ public class Policies implements
     }
     
     /**
-     * Gets specified Policy.
+     * Gets specified policy
      * 
      * <p>Fetches the specified policy version, or the latest if no version is provided.
      * 
@@ -105,7 +105,7 @@ public class Policies implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetpolicyRequest.class,
                 _baseUrl,
@@ -122,14 +122,15 @@ public class Policies implements
                 request, 
                 null));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "getpolicy", 
                       Optional.of(List.of()), 
@@ -142,6 +143,7 @@ public class Policies implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "getpolicy",
                             Optional.of(List.of()),
@@ -152,6 +154,7 @@ public class Policies implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "getpolicy",
                             Optional.of(List.of()), 
@@ -162,6 +165,7 @@ public class Policies implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "getpolicy",
                             Optional.of(List.of()),
@@ -223,7 +227,7 @@ public class Policies implements
 
 
     /**
-     * Updates an existing policy.
+     * Updates an existing policy
      * 
      * <p>Updates an existing policy.
      * 
@@ -234,7 +238,7 @@ public class Policies implements
     }
 
     /**
-     * Updates an existing policy.
+     * Updates an existing policy
      * 
      * <p>Updates an existing policy.
      * 
@@ -254,7 +258,7 @@ public class Policies implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 UpdatepolicyRequest.class,
                 _baseUrl,
@@ -279,14 +283,15 @@ public class Policies implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "updatepolicy", 
                       Optional.of(List.of()), 
@@ -299,6 +304,7 @@ public class Policies implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "updatepolicy",
                             Optional.of(List.of()),
@@ -309,6 +315,7 @@ public class Policies implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "updatepolicy",
                             Optional.of(List.of()), 
@@ -319,6 +326,7 @@ public class Policies implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "updatepolicy",
                             Optional.of(List.of()),
@@ -380,7 +388,7 @@ public class Policies implements
 
 
     /**
-     * Lists policies.
+     * Lists policies
      * 
      * <p>Lists policies with filtering.
      * 
@@ -391,7 +399,7 @@ public class Policies implements
     }
 
     /**
-     * Lists policies.
+     * Lists policies
      * 
      * <p>Lists policies with filtering.
      * 
@@ -403,7 +411,7 @@ public class Policies implements
     }
     
     /**
-     * Lists policies.
+     * Lists policies
      * 
      * <p>Lists policies with filtering.
      * 
@@ -423,7 +431,7 @@ public class Policies implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/rest/api/v1/governance/data/policies");
@@ -438,14 +446,15 @@ public class Policies implements
                 request, 
                 null));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "listpolicies", 
                       Optional.of(List.of()), 
@@ -458,6 +467,7 @@ public class Policies implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "listpolicies",
                             Optional.of(List.of()),
@@ -468,6 +478,7 @@ public class Policies implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "listpolicies",
                             Optional.of(List.of()), 
@@ -478,6 +489,7 @@ public class Policies implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "listpolicies",
                             Optional.of(List.of()),
@@ -539,7 +551,7 @@ public class Policies implements
 
 
     /**
-     * Creates new policy.
+     * Creates new policy
      * 
      * <p>Creates a new policy with specified specifications and returns its id.
      * 
@@ -550,7 +562,7 @@ public class Policies implements
     }
 
     /**
-     * Creates new policy.
+     * Creates new policy
      * 
      * <p>Creates a new policy with specified specifications and returns its id.
      * 
@@ -561,7 +573,7 @@ public class Policies implements
     public CreatepolicyResponse create(
             CreateDlpReportRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/rest/api/v1/governance/data/policies");
@@ -584,14 +596,15 @@ public class Policies implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "createpolicy", 
                       Optional.of(List.of()), 
@@ -604,6 +617,7 @@ public class Policies implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "createpolicy",
                             Optional.of(List.of()),
@@ -614,6 +628,7 @@ public class Policies implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "createpolicy",
                             Optional.of(List.of()), 
@@ -624,6 +639,7 @@ public class Policies implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "createpolicy",
                             Optional.of(List.of()),
@@ -685,7 +701,7 @@ public class Policies implements
 
 
     /**
-     * Downloads violations CSV for policy.
+     * Downloads violations CSV for policy
      * 
      * <p>Downloads CSV violations report for a specific policy id. This does not support continuous policies.
      * 
@@ -696,7 +712,7 @@ public class Policies implements
     }
 
     /**
-     * Downloads violations CSV for policy.
+     * Downloads violations CSV for policy
      * 
      * <p>Downloads CSV violations report for a specific policy id. This does not support continuous policies.
      * 
@@ -713,7 +729,7 @@ public class Policies implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 DownloadpolicycsvRequest.class,
                 _baseUrl,
@@ -725,14 +741,15 @@ public class Policies implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "downloadpolicycsv", 
                       Optional.of(List.of()), 
@@ -745,6 +762,7 @@ public class Policies implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "downloadpolicycsv",
                             Optional.of(List.of()),
@@ -755,6 +773,7 @@ public class Policies implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "downloadpolicycsv",
                             Optional.of(List.of()), 
@@ -765,6 +784,7 @@ public class Policies implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "downloadpolicycsv",
                             Optional.of(List.of()),
