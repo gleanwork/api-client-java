@@ -43,7 +43,7 @@ public class Visibilityoverrides implements
 
 
     /**
-     * Fetches documents visibility.
+     * Fetches documents visibility
      * 
      * <p>Fetches the visibility override status of the documents passed.
      * 
@@ -54,7 +54,7 @@ public class Visibilityoverrides implements
     }
 
     /**
-     * Fetches documents visibility.
+     * Fetches documents visibility
      * 
      * <p>Fetches the visibility override status of the documents passed.
      * 
@@ -66,7 +66,7 @@ public class Visibilityoverrides implements
     }
     
     /**
-     * Fetches documents visibility.
+     * Fetches documents visibility
      * 
      * <p>Fetches the visibility override status of the documents passed.
      * 
@@ -83,7 +83,7 @@ public class Visibilityoverrides implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/rest/api/v1/governance/documents/visibilityoverrides");
@@ -98,14 +98,15 @@ public class Visibilityoverrides implements
                 request, 
                 null));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "getdocvisibility", 
                       Optional.of(List.of()), 
@@ -118,6 +119,7 @@ public class Visibilityoverrides implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "getdocvisibility",
                             Optional.of(List.of()),
@@ -128,6 +130,7 @@ public class Visibilityoverrides implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "getdocvisibility",
                             Optional.of(List.of()), 
@@ -138,6 +141,7 @@ public class Visibilityoverrides implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "getdocvisibility",
                             Optional.of(List.of()),
@@ -199,7 +203,7 @@ public class Visibilityoverrides implements
 
 
     /**
-     * Hide/Un-hide docs.
+     * Hide or unhide docs
      * 
      * <p>Sets the visibility-override state of the documents specified, effectively hiding or un-hiding documents.
      * 
@@ -210,7 +214,7 @@ public class Visibilityoverrides implements
     }
 
     /**
-     * Hide/Un-hide docs.
+     * Hide or unhide docs
      * 
      * <p>Sets the visibility-override state of the documents specified, effectively hiding or un-hiding documents.
      * 
@@ -221,7 +225,7 @@ public class Visibilityoverrides implements
     public SetdocvisibilityResponse create(
             UpdateDocumentVisibilityOverridesRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/rest/api/v1/governance/documents/visibilityoverrides");
@@ -244,14 +248,15 @@ public class Visibilityoverrides implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "setdocvisibility", 
                       Optional.of(List.of()), 
@@ -264,6 +269,7 @@ public class Visibilityoverrides implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "setdocvisibility",
                             Optional.of(List.of()),
@@ -274,6 +280,7 @@ public class Visibilityoverrides implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "setdocvisibility",
                             Optional.of(List.of()), 
@@ -284,6 +291,7 @@ public class Visibilityoverrides implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "setdocvisibility",
                             Optional.of(List.of()),

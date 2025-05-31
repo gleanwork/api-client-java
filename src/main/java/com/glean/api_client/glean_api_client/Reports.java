@@ -47,7 +47,7 @@ public class Reports implements
 
 
     /**
-     * Creates new one-time report.
+     * Creates new one-time report
      * 
      * <p>Creates a new one-time report and executes its batch job.
      * 
@@ -58,7 +58,7 @@ public class Reports implements
     }
 
     /**
-     * Creates new one-time report.
+     * Creates new one-time report
      * 
      * <p>Creates a new one-time report and executes its batch job.
      * 
@@ -69,7 +69,7 @@ public class Reports implements
     public CreatereportResponse create(
             UpdateDlpConfigRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/rest/api/v1/governance/data/reports");
@@ -92,14 +92,15 @@ public class Reports implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "createreport", 
                       Optional.of(List.of()), 
@@ -112,6 +113,7 @@ public class Reports implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "createreport",
                             Optional.of(List.of()),
@@ -122,6 +124,7 @@ public class Reports implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "createreport",
                             Optional.of(List.of()), 
@@ -132,6 +135,7 @@ public class Reports implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "createreport",
                             Optional.of(List.of()),
@@ -193,7 +197,7 @@ public class Reports implements
 
 
     /**
-     * Downloads violations CSV for report.
+     * Downloads violations CSV for report
      * 
      * <p>Downloads CSV violations report for a specific report id.
      * 
@@ -204,7 +208,7 @@ public class Reports implements
     }
 
     /**
-     * Downloads violations CSV for report.
+     * Downloads violations CSV for report
      * 
      * <p>Downloads CSV violations report for a specific report id.
      * 
@@ -221,7 +225,7 @@ public class Reports implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 DownloadreportcsvRequest.class,
                 _baseUrl,
@@ -233,14 +237,15 @@ public class Reports implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "downloadreportcsv", 
                       Optional.of(List.of()), 
@@ -253,6 +258,7 @@ public class Reports implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "downloadreportcsv",
                             Optional.of(List.of()),
@@ -263,6 +269,7 @@ public class Reports implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "downloadreportcsv",
                             Optional.of(List.of()), 
@@ -273,6 +280,7 @@ public class Reports implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "downloadreportcsv",
                             Optional.of(List.of()),
@@ -332,7 +340,7 @@ public class Reports implements
 
 
     /**
-     * Fetches report run status.
+     * Fetches report run status
      * 
      * <p>Fetches the status of the run corresponding to the report-id.
      * 
@@ -343,7 +351,7 @@ public class Reports implements
     }
 
     /**
-     * Fetches report run status.
+     * Fetches report run status
      * 
      * <p>Fetches the status of the run corresponding to the report-id.
      * 
@@ -360,7 +368,7 @@ public class Reports implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 GetreportstatusRequest.class,
                 _baseUrl,
@@ -372,14 +380,15 @@ public class Reports implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "getreportstatus", 
                       Optional.of(List.of()), 
@@ -392,6 +401,7 @@ public class Reports implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "getreportstatus",
                             Optional.of(List.of()),
@@ -402,6 +412,7 @@ public class Reports implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "getreportstatus",
                             Optional.of(List.of()), 
@@ -412,6 +423,7 @@ public class Reports implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "getreportstatus",
                             Optional.of(List.of()),
