@@ -25,6 +25,7 @@ java:
   companyName: Glean
   companyURL: https://www.glean.com
   defaultErrorName: APIException
+  envVarPrefix: GLEAN
   flattenGlobalSecurity: true
   githubURL: github.com/gleanwork/api-client-java
   groupID: com.glean.api-client
