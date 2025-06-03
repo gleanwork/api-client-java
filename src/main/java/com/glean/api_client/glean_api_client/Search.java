@@ -76,7 +76,7 @@ public class Search implements
     public AdminsearchResponse queryAsAdmin(
             SearchRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/rest/api/v1/adminsearch");
@@ -99,14 +99,15 @@ public class Search implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "adminsearch", 
                       Optional.of(List.of()), 
@@ -119,6 +120,7 @@ public class Search implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "adminsearch",
                             Optional.of(List.of()),
@@ -129,6 +131,7 @@ public class Search implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "adminsearch",
                             Optional.of(List.of()), 
@@ -139,6 +142,7 @@ public class Search implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "adminsearch",
                             Optional.of(List.of()),
@@ -236,7 +240,7 @@ public class Search implements
     public AutocompleteResponse autocomplete(
             AutocompleteRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/rest/api/v1/autocomplete");
@@ -259,14 +263,15 @@ public class Search implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "autocomplete", 
                       Optional.of(List.of()), 
@@ -279,6 +284,7 @@ public class Search implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "autocomplete",
                             Optional.of(List.of()),
@@ -289,6 +295,7 @@ public class Search implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "autocomplete",
                             Optional.of(List.of()), 
@@ -299,6 +306,7 @@ public class Search implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "autocomplete",
                             Optional.of(List.of()),
@@ -382,7 +390,7 @@ public class Search implements
     public FeedResponse retrieveFeed(
             FeedRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/rest/api/v1/feed");
@@ -405,14 +413,15 @@ public class Search implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "feed", 
                       Optional.of(List.of()), 
@@ -425,6 +434,7 @@ public class Search implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "feed",
                             Optional.of(List.of()),
@@ -435,6 +445,7 @@ public class Search implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "feed",
                             Optional.of(List.of()), 
@@ -445,6 +456,7 @@ public class Search implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "feed",
                             Optional.of(List.of()),
@@ -528,7 +540,7 @@ public class Search implements
     public RecommendationsResponse recommendations(
             RecommendationsRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/rest/api/v1/recommendations");
@@ -551,14 +563,15 @@ public class Search implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "recommendations", 
                       Optional.of(List.of()), 
@@ -571,6 +584,7 @@ public class Search implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "recommendations",
                             Optional.of(List.of()),
@@ -581,6 +595,7 @@ public class Search implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "recommendations",
                             Optional.of(List.of()), 
@@ -591,6 +606,7 @@ public class Search implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "recommendations",
                             Optional.of(List.of()),
@@ -678,7 +694,7 @@ public class Search implements
     public com.glean.api_client.glean_api_client.models.operations.SearchResponse query(
             SearchRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/rest/api/v1/search");
@@ -701,14 +717,15 @@ public class Search implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "search", 
                       Optional.of(List.of()), 
@@ -721,6 +738,7 @@ public class Search implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "search",
                             Optional.of(List.of()),
@@ -731,6 +749,7 @@ public class Search implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "search",
                             Optional.of(List.of()), 
@@ -741,6 +760,7 @@ public class Search implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "search",
                             Optional.of(List.of()),

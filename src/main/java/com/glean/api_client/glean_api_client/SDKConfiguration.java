@@ -5,9 +5,9 @@ package com.glean.api_client.glean_api_client;
 
 import com.glean.api_client.glean_api_client.hooks.SDKHooks;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
-import com.glean.api_client.glean_api_client.utils.Hook.SdkInitData;
 import com.glean.api_client.glean_api_client.utils.Hooks;
 import com.glean.api_client.glean_api_client.utils.RetryConfig;
+import com.glean.api_client.glean_api_client.utils.SpeakeasyHTTPClient;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -17,36 +17,85 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-class SDKConfiguration {
-    public SecuritySource securitySource;
-    
-    public Optional<SecuritySource> securitySource() {
-        return Optional.ofNullable(securitySource);
-    }
-    
-    public HTTPClient defaultClient;
-    
-    public String serverUrl;
-    
-    public String resolvedServerUrl() {
-        return Utils.templateUrl(serverUrl, getServerVariableDefaults());
-    }
-    public int serverIdx = 0;
-    @SuppressWarnings("serial")
-    List<Map<String, String>> serverDefaults = new ArrayList<>(){ {
-        add(new HashMap<>(){ {
-            put("instance", "instance-name");
-        } });
-    } };
+public class SDKConfiguration {
+
     private static final String LANGUAGE = "java";
     public static final String OPENAPI_DOC_VERSION = "0.9.0";
-    public static final String SDK_VERSION = "0.4.4";
-    public static final String GEN_VERSION = "2.610.0";
+    public static final String SDK_VERSION = "0.5.0";
+    public static final String GEN_VERSION = "2.620.2";
     private static final String BASE_PACKAGE = "com.glean.api_client.glean_api_client";
     public static final String USER_AGENT = 
             String.format("speakeasy-sdk/%s %s %s %s %s",
                 LANGUAGE, SDK_VERSION, GEN_VERSION, OPENAPI_DOC_VERSION, BASE_PACKAGE);
 
+    private SecuritySource securitySource = SecuritySource.of(null);
+    
+    public SecuritySource securitySource() {
+        return securitySource;
+    }
+    
+    public void setSecuritySource(SecuritySource securitySource) {
+        Utils.checkNotNull(securitySource, "securitySource");
+        this.securitySource = securitySource;
+    }
+    
+    private HTTPClient client = new SpeakeasyHTTPClient();
+    
+    public HTTPClient client() {
+        return client;
+    }
+    
+    public void setClient(HTTPClient client) {
+        Utils.checkNotNull(client, "client");
+        this.client = client;
+    }
+    
+    private String serverUrl;
+    
+    public String serverUrl() {
+        return serverUrl;
+    }
+    
+    public void setServerUrl(String serverUrl) {
+        Utils.checkNotNull(serverUrl, "serverUrl");
+        this.serverUrl = trimFinalSlash(serverUrl);
+    }
+    
+    private static String trimFinalSlash(String url) {
+        if (url == null) {
+            return null;
+        } else if (url.endsWith("/")) {
+            return url.substring(0, url.length() - 1);
+        } else  {
+            return url;
+        }
+    }
+    
+    public String resolvedServerUrl() {
+        return Utils.templateUrl(serverUrl, getServerVariableDefaults());
+    }
+    
+    private int serverIdx = 0;
+    
+    public void setServerIdx(int serverIdx) {
+        this.serverIdx = serverIdx;
+    }
+    
+    public int serverIdx() {
+        return serverIdx;
+    }
+    
+    @SuppressWarnings("serial")
+    private List<Map<String, String>> serverVariables = new ArrayList<>(){ {
+        add(new HashMap<>(){ {
+            put("instance", "instance-name");
+        } });
+    } };
+    
+    public List<Map<String, String>> serverVariables() {
+        return serverVariables;
+    }
+    
     private Hooks _hooks = createHooks();
 
     private static Hooks createHooks() {
@@ -67,16 +116,21 @@ class SDKConfiguration {
      **/
     public void initialize() {
         SDKHooks.initialize(_hooks);
-        // apply the sdk init hook immediately
-        SdkInitData data = _hooks.sdkInit(new SdkInitData(resolvedServerUrl(), defaultClient));
-        this.serverUrl = data.baseUrl();
-        this.defaultClient = data.client();
     }
 
     
     
      public Map<String, String> getServerVariableDefaults() {
-         return serverDefaults.get(this.serverIdx);
+         return serverVariables.get(this.serverIdx);
      }
-    public Optional<RetryConfig> retryConfig = Optional.empty();
+    private Optional<RetryConfig> retryConfig = Optional.empty();
+    
+    public Optional<RetryConfig> retryConfig() {
+        return retryConfig;
+    }
+    
+    public void setRetryConfig(Optional<RetryConfig> retryConfig) {
+        Utils.checkNotNull(retryConfig, "retryConfig");
+        this.retryConfig = retryConfig;
+    }
 }

@@ -130,7 +130,7 @@ public class Chat implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/rest/api/v1/chat");
@@ -158,14 +158,15 @@ public class Chat implements
                 request, 
                 null));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "chat", 
                       Optional.of(List.of()), 
@@ -178,6 +179,7 @@ public class Chat implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "chat",
                             Optional.of(List.of()),
@@ -188,6 +190,7 @@ public class Chat implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "chat",
                             Optional.of(List.of()), 
@@ -198,6 +201,7 @@ public class Chat implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "chat",
                             Optional.of(List.of()),
@@ -299,7 +303,7 @@ public class Chat implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/rest/api/v1/deleteallchats");
@@ -314,14 +318,15 @@ public class Chat implements
                 request, 
                 null));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "deleteallchats", 
                       Optional.of(List.of()), 
@@ -334,6 +339,7 @@ public class Chat implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "deleteallchats",
                             Optional.of(List.of()),
@@ -344,6 +350,7 @@ public class Chat implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "deleteallchats",
                             Optional.of(List.of()), 
@@ -354,6 +361,7 @@ public class Chat implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "deleteallchats",
                             Optional.of(List.of()),
@@ -449,7 +457,7 @@ public class Chat implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/rest/api/v1/deletechats");
@@ -477,14 +485,15 @@ public class Chat implements
                 request, 
                 null));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "deletechats", 
                       Optional.of(List.of()), 
@@ -497,6 +506,7 @@ public class Chat implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "deletechats",
                             Optional.of(List.of()),
@@ -507,6 +517,7 @@ public class Chat implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "deletechats",
                             Optional.of(List.of()), 
@@ -517,6 +528,7 @@ public class Chat implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "deletechats",
                             Optional.of(List.of()),
@@ -612,7 +624,7 @@ public class Chat implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/rest/api/v1/getchat");
@@ -640,14 +652,15 @@ public class Chat implements
                 request, 
                 null));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "getchat", 
                       Optional.of(List.of()), 
@@ -660,6 +673,7 @@ public class Chat implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "getchat",
                             Optional.of(List.of()),
@@ -670,6 +684,7 @@ public class Chat implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "getchat",
                             Optional.of(List.of()), 
@@ -680,6 +695,7 @@ public class Chat implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "getchat",
                             Optional.of(List.of()),
@@ -781,7 +797,7 @@ public class Chat implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/rest/api/v1/listchats");
@@ -796,14 +812,15 @@ public class Chat implements
                 request, 
                 null));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "listchats", 
                       Optional.of(List.of()), 
@@ -816,6 +833,7 @@ public class Chat implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "listchats",
                             Optional.of(List.of()),
@@ -826,6 +844,7 @@ public class Chat implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "listchats",
                             Optional.of(List.of()), 
@@ -836,6 +855,7 @@ public class Chat implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "listchats",
                             Optional.of(List.of()),
@@ -942,7 +962,7 @@ public class Chat implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/rest/api/v1/getchatapplication");
@@ -970,14 +990,15 @@ public class Chat implements
                 request, 
                 null));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "getchatapplication", 
                       Optional.of(List.of()), 
@@ -990,6 +1011,7 @@ public class Chat implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "getchatapplication",
                             Optional.of(List.of()),
@@ -1000,6 +1022,7 @@ public class Chat implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "getchatapplication",
                             Optional.of(List.of()), 
@@ -1010,6 +1033,7 @@ public class Chat implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "getchatapplication",
                             Optional.of(List.of()),
@@ -1116,7 +1140,7 @@ public class Chat implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/rest/api/v1/uploadchatfiles");
@@ -1144,14 +1168,15 @@ public class Chat implements
                 request, 
                 null));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "uploadchatfiles", 
                       Optional.of(List.of()), 
@@ -1164,6 +1189,7 @@ public class Chat implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "uploadchatfiles",
                             Optional.of(List.of()),
@@ -1174,6 +1200,7 @@ public class Chat implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "uploadchatfiles",
                             Optional.of(List.of()), 
@@ -1184,6 +1211,7 @@ public class Chat implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "uploadchatfiles",
                             Optional.of(List.of()),
@@ -1290,7 +1318,7 @@ public class Chat implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/rest/api/v1/getchatfiles");
@@ -1318,14 +1346,15 @@ public class Chat implements
                 request, 
                 null));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "getchatfiles", 
                       Optional.of(List.of()), 
@@ -1338,6 +1367,7 @@ public class Chat implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "getchatfiles",
                             Optional.of(List.of()),
@@ -1348,6 +1378,7 @@ public class Chat implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "getchatfiles",
                             Optional.of(List.of()), 
@@ -1358,6 +1389,7 @@ public class Chat implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "getchatfiles",
                             Optional.of(List.of()),
@@ -1464,7 +1496,7 @@ public class Chat implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/rest/api/v1/deletechatfiles");
@@ -1492,14 +1524,15 @@ public class Chat implements
                 request, 
                 null));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "deletechatfiles", 
                       Optional.of(List.of()), 
@@ -1512,6 +1545,7 @@ public class Chat implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "deletechatfiles",
                             Optional.of(List.of()),
@@ -1522,6 +1556,7 @@ public class Chat implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "deletechatfiles",
                             Optional.of(List.of()), 
@@ -1532,6 +1567,7 @@ public class Chat implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "deletechatfiles",
                             Optional.of(List.of()),
@@ -1627,7 +1663,7 @@ public class Chat implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/rest/api/v1/chat#stream");
@@ -1655,14 +1691,15 @@ public class Chat implements
                 request, 
                 null));
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "chatStream", 
                       Optional.of(List.of()), 
@@ -1675,6 +1712,7 @@ public class Chat implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "chatStream",
                             Optional.of(List.of()),
@@ -1685,6 +1723,7 @@ public class Chat implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "chatStream",
                             Optional.of(List.of()), 
@@ -1695,6 +1734,7 @@ public class Chat implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "chatStream",
                             Optional.of(List.of()),

@@ -63,7 +63,7 @@ public class IndexingShortcuts implements
     public PostApiIndexV1BulkindexshortcutsResponse bulkIndex(
             BulkIndexShortcutsRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/index/v1/bulkindexshortcuts");
@@ -86,14 +86,15 @@ public class IndexingShortcuts implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "post_/api/index/v1/bulkindexshortcuts", 
                       Optional.of(List.of()), 
@@ -106,6 +107,7 @@ public class IndexingShortcuts implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/bulkindexshortcuts",
                             Optional.of(List.of()),
@@ -116,6 +118,7 @@ public class IndexingShortcuts implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/bulkindexshortcuts",
                             Optional.of(List.of()), 
@@ -126,6 +129,7 @@ public class IndexingShortcuts implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/bulkindexshortcuts",
                             Optional.of(List.of()),
@@ -198,7 +202,7 @@ public class IndexingShortcuts implements
     public PostApiIndexV1UploadshortcutsResponse upload(
             UploadShortcutsRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/index/v1/uploadshortcuts");
@@ -221,14 +225,15 @@ public class IndexingShortcuts implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "post_/api/index/v1/uploadshortcuts", 
                       Optional.of(List.of()), 
@@ -241,6 +246,7 @@ public class IndexingShortcuts implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/uploadshortcuts",
                             Optional.of(List.of()),
@@ -251,6 +257,7 @@ public class IndexingShortcuts implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/uploadshortcuts",
                             Optional.of(List.of()), 
@@ -261,6 +268,7 @@ public class IndexingShortcuts implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/uploadshortcuts",
                             Optional.of(List.of()),

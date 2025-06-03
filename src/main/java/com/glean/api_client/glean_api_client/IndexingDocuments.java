@@ -103,7 +103,7 @@ public class IndexingDocuments implements
     public PostApiIndexV1IndexdocumentResponse addOrUpdate(
             IndexDocumentRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/index/v1/indexdocument");
@@ -126,14 +126,15 @@ public class IndexingDocuments implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "post_/api/index/v1/indexdocument", 
                       Optional.of(List.of()), 
@@ -146,6 +147,7 @@ public class IndexingDocuments implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/indexdocument",
                             Optional.of(List.of()),
@@ -156,6 +158,7 @@ public class IndexingDocuments implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/indexdocument",
                             Optional.of(List.of()), 
@@ -166,6 +169,7 @@ public class IndexingDocuments implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/indexdocument",
                             Optional.of(List.of()),
@@ -238,7 +242,7 @@ public class IndexingDocuments implements
     public PostApiIndexV1IndexdocumentsResponse index(
             IndexDocumentsRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/index/v1/indexdocuments");
@@ -261,14 +265,15 @@ public class IndexingDocuments implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "post_/api/index/v1/indexdocuments", 
                       Optional.of(List.of()), 
@@ -281,6 +286,7 @@ public class IndexingDocuments implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/indexdocuments",
                             Optional.of(List.of()),
@@ -291,6 +297,7 @@ public class IndexingDocuments implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/indexdocuments",
                             Optional.of(List.of()), 
@@ -301,6 +308,7 @@ public class IndexingDocuments implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/indexdocuments",
                             Optional.of(List.of()),
@@ -373,7 +381,7 @@ public class IndexingDocuments implements
     public PostApiIndexV1BulkindexdocumentsResponse bulkIndex(
             BulkIndexDocumentsRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/index/v1/bulkindexdocuments");
@@ -396,14 +404,15 @@ public class IndexingDocuments implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "post_/api/index/v1/bulkindexdocuments", 
                       Optional.of(List.of()), 
@@ -416,6 +425,7 @@ public class IndexingDocuments implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/bulkindexdocuments",
                             Optional.of(List.of()),
@@ -426,6 +436,7 @@ public class IndexingDocuments implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/bulkindexdocuments",
                             Optional.of(List.of()), 
@@ -436,6 +447,7 @@ public class IndexingDocuments implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/bulkindexdocuments",
                             Optional.of(List.of()),
@@ -550,7 +562,7 @@ public class IndexingDocuments implements
     public PostApiIndexV1ProcessalldocumentsResponse processAll(
             Optional<? extends ProcessAllDocumentsRequest> request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/index/v1/processalldocuments");
@@ -570,14 +582,15 @@ public class IndexingDocuments implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "post_/api/index/v1/processalldocuments", 
                       Optional.of(List.of()), 
@@ -590,6 +603,7 @@ public class IndexingDocuments implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/processalldocuments",
                             Optional.of(List.of()),
@@ -600,6 +614,7 @@ public class IndexingDocuments implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/processalldocuments",
                             Optional.of(List.of()), 
@@ -610,6 +625,7 @@ public class IndexingDocuments implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/processalldocuments",
                             Optional.of(List.of()),
@@ -682,7 +698,7 @@ public class IndexingDocuments implements
     public PostApiIndexV1DeletedocumentResponse delete(
             DeleteDocumentRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/index/v1/deletedocument");
@@ -705,14 +721,15 @@ public class IndexingDocuments implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "post_/api/index/v1/deletedocument", 
                       Optional.of(List.of()), 
@@ -725,6 +742,7 @@ public class IndexingDocuments implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/deletedocument",
                             Optional.of(List.of()),
@@ -735,6 +753,7 @@ public class IndexingDocuments implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/deletedocument",
                             Optional.of(List.of()), 
@@ -745,6 +764,7 @@ public class IndexingDocuments implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/deletedocument",
                             Optional.of(List.of()),
@@ -830,7 +850,7 @@ public class IndexingDocuments implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 PostApiIndexV1DebugDatasourceDocumentRequest.class,
                 _baseUrl,
@@ -855,14 +875,15 @@ public class IndexingDocuments implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "post_/api/index/v1/debug/{datasource}/document", 
                       Optional.of(List.of()), 
@@ -875,6 +896,7 @@ public class IndexingDocuments implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/debug/{datasource}/document",
                             Optional.of(List.of()),
@@ -885,6 +907,7 @@ public class IndexingDocuments implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/debug/{datasource}/document",
                             Optional.of(List.of()), 
@@ -895,6 +918,7 @@ public class IndexingDocuments implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/debug/{datasource}/document",
                             Optional.of(List.of()),
@@ -991,7 +1015,7 @@ public class IndexingDocuments implements
                 .build();
         
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 PostApiIndexV1DebugDatasourceDocumentsRequest.class,
                 _baseUrl,
@@ -1016,14 +1040,15 @@ public class IndexingDocuments implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "post_/api/index/v1/debug/{datasource}/documents", 
                       Optional.of(List.of()), 
@@ -1036,6 +1061,7 @@ public class IndexingDocuments implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/debug/{datasource}/documents",
                             Optional.of(List.of()),
@@ -1046,6 +1072,7 @@ public class IndexingDocuments implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/debug/{datasource}/documents",
                             Optional.of(List.of()), 
@@ -1056,6 +1083,7 @@ public class IndexingDocuments implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/debug/{datasource}/documents",
                             Optional.of(List.of()),
@@ -1143,7 +1171,7 @@ public class IndexingDocuments implements
     public PostApiIndexV1CheckdocumentaccessResponse checkAccess(
             CheckDocumentAccessRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/index/v1/checkdocumentaccess");
@@ -1166,14 +1194,15 @@ public class IndexingDocuments implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "post_/api/index/v1/checkdocumentaccess", 
                       Optional.of(List.of()), 
@@ -1186,6 +1215,7 @@ public class IndexingDocuments implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/checkdocumentaccess",
                             Optional.of(List.of()),
@@ -1196,6 +1226,7 @@ public class IndexingDocuments implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/checkdocumentaccess",
                             Optional.of(List.of()), 
@@ -1206,6 +1237,7 @@ public class IndexingDocuments implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/checkdocumentaccess",
                             Optional.of(List.of()),
@@ -1297,7 +1329,7 @@ public class IndexingDocuments implements
     public PostApiIndexV1GetdocumentstatusResponse status(
             GetDocumentStatusRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/index/v1/getdocumentstatus");
@@ -1320,14 +1352,15 @@ public class IndexingDocuments implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "post_/api/index/v1/getdocumentstatus", 
                       Optional.of(List.of()), 
@@ -1340,6 +1373,7 @@ public class IndexingDocuments implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/getdocumentstatus",
                             Optional.of(List.of()),
@@ -1350,6 +1384,7 @@ public class IndexingDocuments implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/getdocumentstatus",
                             Optional.of(List.of()), 
@@ -1360,6 +1395,7 @@ public class IndexingDocuments implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/getdocumentstatus",
                             Optional.of(List.of()),
@@ -1451,7 +1487,7 @@ public class IndexingDocuments implements
     public PostApiIndexV1GetdocumentcountResponse count(
             GetDocumentCountRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/index/v1/getdocumentcount");
@@ -1474,14 +1510,15 @@ public class IndexingDocuments implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "post_/api/index/v1/getdocumentcount", 
                       Optional.of(List.of()), 
@@ -1494,6 +1531,7 @@ public class IndexingDocuments implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/getdocumentcount",
                             Optional.of(List.of()),
@@ -1504,6 +1542,7 @@ public class IndexingDocuments implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/getdocumentcount",
                             Optional.of(List.of()), 
@@ -1514,6 +1553,7 @@ public class IndexingDocuments implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/getdocumentcount",
                             Optional.of(List.of()),

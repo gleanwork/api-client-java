@@ -103,7 +103,7 @@ public class Permissions implements
     public PostApiIndexV1UpdatepermissionsResponse updatePermissions(
             UpdatePermissionsRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/index/v1/updatepermissions");
@@ -126,14 +126,15 @@ public class Permissions implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "post_/api/index/v1/updatepermissions", 
                       Optional.of(List.of()), 
@@ -146,6 +147,7 @@ public class Permissions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/updatepermissions",
                             Optional.of(List.of()),
@@ -156,6 +158,7 @@ public class Permissions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/updatepermissions",
                             Optional.of(List.of()), 
@@ -166,6 +169,7 @@ public class Permissions implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/updatepermissions",
                             Optional.of(List.of()),
@@ -238,7 +242,7 @@ public class Permissions implements
     public PostApiIndexV1IndexuserResponse indexUser(
             IndexUserRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/index/v1/indexuser");
@@ -261,14 +265,15 @@ public class Permissions implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "post_/api/index/v1/indexuser", 
                       Optional.of(List.of()), 
@@ -281,6 +286,7 @@ public class Permissions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/indexuser",
                             Optional.of(List.of()),
@@ -291,6 +297,7 @@ public class Permissions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/indexuser",
                             Optional.of(List.of()), 
@@ -301,6 +308,7 @@ public class Permissions implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/indexuser",
                             Optional.of(List.of()),
@@ -373,7 +381,7 @@ public class Permissions implements
     public PostApiIndexV1BulkindexusersResponse bulkIndexUsers(
             BulkIndexUsersRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/index/v1/bulkindexusers");
@@ -396,14 +404,15 @@ public class Permissions implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "post_/api/index/v1/bulkindexusers", 
                       Optional.of(List.of()), 
@@ -416,6 +425,7 @@ public class Permissions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/bulkindexusers",
                             Optional.of(List.of()),
@@ -426,6 +436,7 @@ public class Permissions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/bulkindexusers",
                             Optional.of(List.of()), 
@@ -436,6 +447,7 @@ public class Permissions implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/bulkindexusers",
                             Optional.of(List.of()),
@@ -508,7 +520,7 @@ public class Permissions implements
     public PostApiIndexV1IndexgroupResponse indexGroup(
             IndexGroupRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/index/v1/indexgroup");
@@ -531,14 +543,15 @@ public class Permissions implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "post_/api/index/v1/indexgroup", 
                       Optional.of(List.of()), 
@@ -551,6 +564,7 @@ public class Permissions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/indexgroup",
                             Optional.of(List.of()),
@@ -561,6 +575,7 @@ public class Permissions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/indexgroup",
                             Optional.of(List.of()), 
@@ -571,6 +586,7 @@ public class Permissions implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/indexgroup",
                             Optional.of(List.of()),
@@ -643,7 +659,7 @@ public class Permissions implements
     public PostApiIndexV1BulkindexgroupsResponse bulkIndexGroups(
             BulkIndexGroupsRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/index/v1/bulkindexgroups");
@@ -666,14 +682,15 @@ public class Permissions implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "post_/api/index/v1/bulkindexgroups", 
                       Optional.of(List.of()), 
@@ -686,6 +703,7 @@ public class Permissions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/bulkindexgroups",
                             Optional.of(List.of()),
@@ -696,6 +714,7 @@ public class Permissions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/bulkindexgroups",
                             Optional.of(List.of()), 
@@ -706,6 +725,7 @@ public class Permissions implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/bulkindexgroups",
                             Optional.of(List.of()),
@@ -778,7 +798,7 @@ public class Permissions implements
     public PostApiIndexV1IndexmembershipResponse indexMembership(
             IndexMembershipRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/index/v1/indexmembership");
@@ -801,14 +821,15 @@ public class Permissions implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "post_/api/index/v1/indexmembership", 
                       Optional.of(List.of()), 
@@ -821,6 +842,7 @@ public class Permissions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/indexmembership",
                             Optional.of(List.of()),
@@ -831,6 +853,7 @@ public class Permissions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/indexmembership",
                             Optional.of(List.of()), 
@@ -841,6 +864,7 @@ public class Permissions implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/indexmembership",
                             Optional.of(List.of()),
@@ -913,7 +937,7 @@ public class Permissions implements
     public PostApiIndexV1BulkindexmembershipsResponse bulkIndexMemberships(
             BulkIndexMembershipsRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/index/v1/bulkindexmemberships");
@@ -936,14 +960,15 @@ public class Permissions implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "post_/api/index/v1/bulkindexmemberships", 
                       Optional.of(List.of()), 
@@ -956,6 +981,7 @@ public class Permissions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/bulkindexmemberships",
                             Optional.of(List.of()),
@@ -966,6 +992,7 @@ public class Permissions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/bulkindexmemberships",
                             Optional.of(List.of()), 
@@ -976,6 +1003,7 @@ public class Permissions implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/bulkindexmemberships",
                             Optional.of(List.of()),
@@ -1060,7 +1088,7 @@ public class Permissions implements
     public PostApiIndexV1ProcessallmembershipsResponse processMemberships(
             Optional<? extends ProcessAllMembershipsRequest> request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/index/v1/processallmemberships");
@@ -1080,14 +1108,15 @@ public class Permissions implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "post_/api/index/v1/processallmemberships", 
                       Optional.of(List.of()), 
@@ -1100,6 +1129,7 @@ public class Permissions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/processallmemberships",
                             Optional.of(List.of()),
@@ -1110,6 +1140,7 @@ public class Permissions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/processallmemberships",
                             Optional.of(List.of()), 
@@ -1120,6 +1151,7 @@ public class Permissions implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/processallmemberships",
                             Optional.of(List.of()),
@@ -1192,7 +1224,7 @@ public class Permissions implements
     public PostApiIndexV1DeleteuserResponse deleteUser(
             DeleteUserRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/index/v1/deleteuser");
@@ -1215,14 +1247,15 @@ public class Permissions implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "post_/api/index/v1/deleteuser", 
                       Optional.of(List.of()), 
@@ -1235,6 +1268,7 @@ public class Permissions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/deleteuser",
                             Optional.of(List.of()),
@@ -1245,6 +1279,7 @@ public class Permissions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/deleteuser",
                             Optional.of(List.of()), 
@@ -1255,6 +1290,7 @@ public class Permissions implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/deleteuser",
                             Optional.of(List.of()),
@@ -1327,7 +1363,7 @@ public class Permissions implements
     public PostApiIndexV1DeletegroupResponse deleteGroup(
             DeleteGroupRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/index/v1/deletegroup");
@@ -1350,14 +1386,15 @@ public class Permissions implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "post_/api/index/v1/deletegroup", 
                       Optional.of(List.of()), 
@@ -1370,6 +1407,7 @@ public class Permissions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/deletegroup",
                             Optional.of(List.of()),
@@ -1380,6 +1418,7 @@ public class Permissions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/deletegroup",
                             Optional.of(List.of()), 
@@ -1390,6 +1429,7 @@ public class Permissions implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/deletegroup",
                             Optional.of(List.of()),
@@ -1462,7 +1502,7 @@ public class Permissions implements
     public PostApiIndexV1DeletemembershipResponse deleteMembership(
             DeleteMembershipRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/index/v1/deletemembership");
@@ -1485,14 +1525,15 @@ public class Permissions implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "post_/api/index/v1/deletemembership", 
                       Optional.of(List.of()), 
@@ -1505,6 +1546,7 @@ public class Permissions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/deletemembership",
                             Optional.of(List.of()),
@@ -1515,6 +1557,7 @@ public class Permissions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/deletemembership",
                             Optional.of(List.of()), 
@@ -1525,6 +1568,7 @@ public class Permissions implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/deletemembership",
                             Optional.of(List.of()),
@@ -1597,7 +1641,7 @@ public class Permissions implements
     public PostApiIndexV1BetausersResponse authorizeBetaUsers(
             GreenlistUsersRequest request) throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/index/v1/betausers");
@@ -1620,14 +1664,15 @@ public class Permissions implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "post_/api/index/v1/betausers", 
                       Optional.of(List.of()), 
@@ -1640,6 +1685,7 @@ public class Permissions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/betausers",
                             Optional.of(List.of()),
@@ -1650,6 +1696,7 @@ public class Permissions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/betausers",
                             Optional.of(List.of()), 
@@ -1660,6 +1707,7 @@ public class Permissions implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/betausers",
                             Optional.of(List.of()),

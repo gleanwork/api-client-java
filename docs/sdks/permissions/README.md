@@ -438,7 +438,6 @@ Schedules the immediate processing of all group memberships uploaded through the
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.ProcessAllMembershipsRequest;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1ProcessallmembershipsResponse;
 import java.lang.Exception;
 
@@ -450,11 +449,7 @@ public class Application {
                 .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        ProcessAllMembershipsRequest req = ProcessAllMembershipsRequest.builder()
-                .build();
-
         PostApiIndexV1ProcessallmembershipsResponse res = sdk.indexing().permissions().processMemberships()
-                .request(req)
                 .call();
 
         // handle response

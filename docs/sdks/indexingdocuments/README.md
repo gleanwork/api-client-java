@@ -200,7 +200,6 @@ For more frequent document processing, contact Glean support.
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.ProcessAllDocumentsRequest;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1ProcessalldocumentsResponse;
 import java.lang.Exception;
 
@@ -212,11 +211,7 @@ public class Application {
                 .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        ProcessAllDocumentsRequest req = ProcessAllDocumentsRequest.builder()
-                .build();
-
         PostApiIndexV1ProcessalldocumentsResponse res = sdk.indexing().documents().processAll()
-                .request(req)
                 .call();
 
         // handle response
