@@ -28,9 +28,8 @@ public class AgentRun {
     /**
      * The ID of the agent to run.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("agent_id")
-    private Optional<String> agentId;
+    private String agentId;
 
     /**
      * The input to the agent.
@@ -55,7 +54,7 @@ public class AgentRun {
 
     @JsonCreator
     public AgentRun(
-            @JsonProperty("agent_id") Optional<String> agentId,
+            @JsonProperty("agent_id") String agentId,
             @JsonProperty("input") Optional<? extends Map<String, Object>> input,
             @JsonProperty("messages") Optional<? extends List<Message>> messages,
             @JsonProperty("status") Optional<? extends AgentExecutionStatus> status) {
@@ -69,15 +68,16 @@ public class AgentRun {
         this.status = status;
     }
     
-    public AgentRun() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    public AgentRun(
+            String agentId) {
+        this(agentId, Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
      * The ID of the agent to run.
      */
     @JsonIgnore
-    public Optional<String> agentId() {
+    public String agentId() {
         return agentId;
     }
 
@@ -116,15 +116,6 @@ public class AgentRun {
      * The ID of the agent to run.
      */
     public AgentRun withAgentId(String agentId) {
-        Utils.checkNotNull(agentId, "agentId");
-        this.agentId = Optional.ofNullable(agentId);
-        return this;
-    }
-
-    /**
-     * The ID of the agent to run.
-     */
-    public AgentRun withAgentId(Optional<String> agentId) {
         Utils.checkNotNull(agentId, "agentId");
         this.agentId = agentId;
         return this;
@@ -221,7 +212,7 @@ public class AgentRun {
     
     public final static class Builder {
  
-        private Optional<String> agentId = Optional.empty();
+        private String agentId;
  
         private Optional<? extends Map<String, Object>> input = Optional.empty();
  
@@ -237,15 +228,6 @@ public class AgentRun {
          * The ID of the agent to run.
          */
         public Builder agentId(String agentId) {
-            Utils.checkNotNull(agentId, "agentId");
-            this.agentId = Optional.ofNullable(agentId);
-            return this;
-        }
-
-        /**
-         * The ID of the agent to run.
-         */
-        public Builder agentId(Optional<String> agentId) {
             Utils.checkNotNull(agentId, "agentId");
             this.agentId = agentId;
             return this;

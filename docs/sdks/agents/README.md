@@ -184,6 +184,7 @@ public class Application {
             .build();
 
         AgentRunCreate req = AgentRunCreate.builder()
+                .agentId("<id>")
                 .build();
 
         CreateAndStreamRunResponse res = sdk.client().agents().runStream()
@@ -236,6 +237,7 @@ public class Application {
             .build();
 
         AgentRunCreate req = AgentRunCreate.builder()
+                .agentId("<id>")
                 .build();
 
         CreateAndWaitRunResponse res = sdk.client().agents().run()

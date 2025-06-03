@@ -54,7 +54,7 @@ public class IndexingAuthentication implements
      */
     public PostApiIndexV1RotatetokenResponse rotateTokenDirect() throws Exception {
         String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl, this.sdkConfiguration.getServerVariableDefaults());
+                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
         String _url = Utils.generateURL(
                 _baseUrl,
                 "/api/index/v1/rotatetoken");
@@ -64,14 +64,15 @@ public class IndexingAuthentication implements
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
         
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
         Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
+                this.sdkConfiguration.securitySource().getSecurity());
+        HTTPClient _client = this.sdkConfiguration.client();
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
+                      this.sdkConfiguration,
                       _baseUrl,
                       "post_/api/index/v1/rotatetoken", 
                       Optional.of(List.of()), 
@@ -84,6 +85,7 @@ public class IndexingAuthentication implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/rotatetoken",
                             Optional.of(List.of()),
@@ -94,6 +96,7 @@ public class IndexingAuthentication implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/rotatetoken",
                             Optional.of(List.of()), 
@@ -104,6 +107,7 @@ public class IndexingAuthentication implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
+                            this.sdkConfiguration,
                             _baseUrl,
                             "post_/api/index/v1/rotatetoken",
                             Optional.of(List.of()),

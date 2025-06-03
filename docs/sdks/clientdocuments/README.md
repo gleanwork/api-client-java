@@ -72,10 +72,8 @@ Read the documents including metadata (does not include enhanced metadata via `/
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.*;
 import com.glean.api_client.glean_api_client.models.operations.GetdocumentsResponse;
 import java.lang.Exception;
-import java.util.List;
 
 public class Application {
 
@@ -85,14 +83,7 @@ public class Application {
                 .apiToken("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
-        GetDocumentsRequest req = GetDocumentsRequest.builder()
-                .documentSpecs(List.of(
-                    DocumentSpecUnion.of(DocumentSpec1.builder()
-                        .build())))
-                .build();
-
         GetdocumentsResponse res = sdk.client().documents().retrieve()
-                .request(req)
                 .call();
 
         if (res.getDocumentsResponse().isPresent()) {

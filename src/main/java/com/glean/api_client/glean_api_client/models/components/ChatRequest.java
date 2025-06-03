@@ -62,6 +62,10 @@ public class ChatRequest {
     @JsonProperty("timeoutMillis")
     private Optional<Long> timeoutMillis;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("sessionInfo")
+    private Optional<? extends SessionInfo> sessionInfo;
+
     /**
      * The ID of the application this request originates from, used to determine the configuration of underlying chat processes. This should correspond to the ID set during admin setup. If not specified, the default chat experience will be used.
      */
@@ -85,6 +89,7 @@ public class ChatRequest {
             @JsonProperty("inclusions") Optional<? extends ChatRestrictionFilters> inclusions,
             @JsonProperty("exclusions") Optional<? extends ChatRestrictionFilters> exclusions,
             @JsonProperty("timeoutMillis") Optional<Long> timeoutMillis,
+            @JsonProperty("sessionInfo") Optional<? extends SessionInfo> sessionInfo,
             @JsonProperty("applicationId") Optional<String> applicationId,
             @JsonProperty("stream") Optional<Boolean> stream) {
         Utils.checkNotNull(saveChat, "saveChat");
@@ -94,6 +99,7 @@ public class ChatRequest {
         Utils.checkNotNull(inclusions, "inclusions");
         Utils.checkNotNull(exclusions, "exclusions");
         Utils.checkNotNull(timeoutMillis, "timeoutMillis");
+        Utils.checkNotNull(sessionInfo, "sessionInfo");
         Utils.checkNotNull(applicationId, "applicationId");
         Utils.checkNotNull(stream, "stream");
         this.saveChat = saveChat;
@@ -103,13 +109,14 @@ public class ChatRequest {
         this.inclusions = inclusions;
         this.exclusions = exclusions;
         this.timeoutMillis = timeoutMillis;
+        this.sessionInfo = sessionInfo;
         this.applicationId = applicationId;
         this.stream = stream;
     }
     
     public ChatRequest(
             List<ChatMessage> messages) {
-        this(Optional.empty(), Optional.empty(), messages, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), messages, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -163,6 +170,12 @@ public class ChatRequest {
     @JsonIgnore
     public Optional<Long> timeoutMillis() {
         return timeoutMillis;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<SessionInfo> sessionInfo() {
+        return (Optional<SessionInfo>) sessionInfo;
     }
 
     /**
@@ -290,6 +303,18 @@ public class ChatRequest {
         return this;
     }
 
+    public ChatRequest withSessionInfo(SessionInfo sessionInfo) {
+        Utils.checkNotNull(sessionInfo, "sessionInfo");
+        this.sessionInfo = Optional.ofNullable(sessionInfo);
+        return this;
+    }
+
+    public ChatRequest withSessionInfo(Optional<? extends SessionInfo> sessionInfo) {
+        Utils.checkNotNull(sessionInfo, "sessionInfo");
+        this.sessionInfo = sessionInfo;
+        return this;
+    }
+
     /**
      * The ID of the application this request originates from, used to determine the configuration of underlying chat processes. This should correspond to the ID set during admin setup. If not specified, the default chat experience will be used.
      */
@@ -344,6 +369,7 @@ public class ChatRequest {
             Objects.deepEquals(this.inclusions, other.inclusions) &&
             Objects.deepEquals(this.exclusions, other.exclusions) &&
             Objects.deepEquals(this.timeoutMillis, other.timeoutMillis) &&
+            Objects.deepEquals(this.sessionInfo, other.sessionInfo) &&
             Objects.deepEquals(this.applicationId, other.applicationId) &&
             Objects.deepEquals(this.stream, other.stream);
     }
@@ -358,6 +384,7 @@ public class ChatRequest {
             inclusions,
             exclusions,
             timeoutMillis,
+            sessionInfo,
             applicationId,
             stream);
     }
@@ -372,6 +399,7 @@ public class ChatRequest {
                 "inclusions", inclusions,
                 "exclusions", exclusions,
                 "timeoutMillis", timeoutMillis,
+                "sessionInfo", sessionInfo,
                 "applicationId", applicationId,
                 "stream", stream);
     }
@@ -391,6 +419,8 @@ public class ChatRequest {
         private Optional<? extends ChatRestrictionFilters> exclusions = Optional.empty();
  
         private Optional<Long> timeoutMillis = Optional.empty();
+ 
+        private Optional<? extends SessionInfo> sessionInfo = Optional.empty();
  
         private Optional<String> applicationId = Optional.empty();
  
@@ -505,6 +535,18 @@ public class ChatRequest {
             return this;
         }
 
+        public Builder sessionInfo(SessionInfo sessionInfo) {
+            Utils.checkNotNull(sessionInfo, "sessionInfo");
+            this.sessionInfo = Optional.ofNullable(sessionInfo);
+            return this;
+        }
+
+        public Builder sessionInfo(Optional<? extends SessionInfo> sessionInfo) {
+            Utils.checkNotNull(sessionInfo, "sessionInfo");
+            this.sessionInfo = sessionInfo;
+            return this;
+        }
+
         /**
          * The ID of the application this request originates from, used to determine the configuration of underlying chat processes. This should correspond to the ID set during admin setup. If not specified, the default chat experience will be used.
          */
@@ -550,6 +592,7 @@ public class ChatRequest {
                 inclusions,
                 exclusions,
                 timeoutMillis,
+                sessionInfo,
                 applicationId,
                 stream);
         }
