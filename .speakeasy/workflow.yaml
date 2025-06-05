@@ -21,3 +21,5 @@ targets:
             labelOverride:
                 fixedValue: Java (API Client)
             blocking: false
+        testing:
+            enabled: true
