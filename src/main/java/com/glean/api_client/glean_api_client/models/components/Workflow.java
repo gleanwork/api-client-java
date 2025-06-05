@@ -18,6 +18,13 @@ import java.util.Optional;
 
 public class Workflow {
 
+    /**
+     * The name of the workflow.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("name")
+    private Optional<String> name;
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("author")
     private Optional<? extends Person> author;
@@ -45,13 +52,6 @@ public class Workflow {
     private Optional<? extends ObjectPermissions> permissions;
 
     /**
-     * The name of the workflow.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("name")
-    private Optional<String> name;
-
-    /**
      * The ID of the workflow.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -60,31 +60,39 @@ public class Workflow {
 
     @JsonCreator
     public Workflow(
+            @JsonProperty("name") Optional<String> name,
             @JsonProperty("author") Optional<? extends Person> author,
             @JsonProperty("createTimestamp") Optional<Long> createTimestamp,
             @JsonProperty("lastUpdateTimestamp") Optional<Long> lastUpdateTimestamp,
             @JsonProperty("lastUpdatedBy") Optional<? extends Person> lastUpdatedBy,
             @JsonProperty("permissions") Optional<? extends ObjectPermissions> permissions,
-            @JsonProperty("name") Optional<String> name,
             @JsonProperty("id") Optional<String> id) {
+        Utils.checkNotNull(name, "name");
         Utils.checkNotNull(author, "author");
         Utils.checkNotNull(createTimestamp, "createTimestamp");
         Utils.checkNotNull(lastUpdateTimestamp, "lastUpdateTimestamp");
         Utils.checkNotNull(lastUpdatedBy, "lastUpdatedBy");
         Utils.checkNotNull(permissions, "permissions");
-        Utils.checkNotNull(name, "name");
         Utils.checkNotNull(id, "id");
+        this.name = name;
         this.author = author;
         this.createTimestamp = createTimestamp;
         this.lastUpdateTimestamp = lastUpdateTimestamp;
         this.lastUpdatedBy = lastUpdatedBy;
         this.permissions = permissions;
-        this.name = name;
         this.id = id;
     }
     
     public Workflow() {
         this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * The name of the workflow.
+     */
+    @JsonIgnore
+    public Optional<String> name() {
+        return name;
     }
 
     @SuppressWarnings("unchecked")
@@ -122,14 +130,6 @@ public class Workflow {
     }
 
     /**
-     * The name of the workflow.
-     */
-    @JsonIgnore
-    public Optional<String> name() {
-        return name;
-    }
-
-    /**
      * The ID of the workflow.
      */
     @JsonIgnore
@@ -140,6 +140,24 @@ public class Workflow {
     public final static Builder builder() {
         return new Builder();
     }    
+
+    /**
+     * The name of the workflow.
+     */
+    public Workflow withName(String name) {
+        Utils.checkNotNull(name, "name");
+        this.name = Optional.ofNullable(name);
+        return this;
+    }
+
+    /**
+     * The name of the workflow.
+     */
+    public Workflow withName(Optional<String> name) {
+        Utils.checkNotNull(name, "name");
+        this.name = name;
+        return this;
+    }
 
     public Workflow withAuthor(Person author) {
         Utils.checkNotNull(author, "author");
@@ -214,24 +232,6 @@ public class Workflow {
     }
 
     /**
-     * The name of the workflow.
-     */
-    public Workflow withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
-    /**
-     * The name of the workflow.
-     */
-    public Workflow withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
-
-    /**
      * The ID of the workflow.
      */
     public Workflow withId(String id) {
@@ -260,40 +260,42 @@ public class Workflow {
         }
         Workflow other = (Workflow) o;
         return 
+            Objects.deepEquals(this.name, other.name) &&
             Objects.deepEquals(this.author, other.author) &&
             Objects.deepEquals(this.createTimestamp, other.createTimestamp) &&
             Objects.deepEquals(this.lastUpdateTimestamp, other.lastUpdateTimestamp) &&
             Objects.deepEquals(this.lastUpdatedBy, other.lastUpdatedBy) &&
             Objects.deepEquals(this.permissions, other.permissions) &&
-            Objects.deepEquals(this.name, other.name) &&
             Objects.deepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
+            name,
             author,
             createTimestamp,
             lastUpdateTimestamp,
             lastUpdatedBy,
             permissions,
-            name,
             id);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Workflow.class,
+                "name", name,
                 "author", author,
                 "createTimestamp", createTimestamp,
                 "lastUpdateTimestamp", lastUpdateTimestamp,
                 "lastUpdatedBy", lastUpdatedBy,
                 "permissions", permissions,
-                "name", name,
                 "id", id);
     }
     
     public final static class Builder {
+ 
+        private Optional<String> name = Optional.empty();
  
         private Optional<? extends Person> author = Optional.empty();
  
@@ -305,12 +307,28 @@ public class Workflow {
  
         private Optional<? extends ObjectPermissions> permissions = Optional.empty();
  
-        private Optional<String> name = Optional.empty();
- 
         private Optional<String> id = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
+        }
+
+        /**
+         * The name of the workflow.
+         */
+        public Builder name(String name) {
+            Utils.checkNotNull(name, "name");
+            this.name = Optional.ofNullable(name);
+            return this;
+        }
+
+        /**
+         * The name of the workflow.
+         */
+        public Builder name(Optional<String> name) {
+            Utils.checkNotNull(name, "name");
+            this.name = name;
+            return this;
         }
 
         public Builder author(Person author) {
@@ -386,24 +404,6 @@ public class Workflow {
         }
 
         /**
-         * The name of the workflow.
-         */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * The name of the workflow.
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
-        /**
          * The ID of the workflow.
          */
         public Builder id(String id) {
@@ -423,12 +423,12 @@ public class Workflow {
         
         public Workflow build() {
             return new Workflow(
+                name,
                 author,
                 createTimestamp,
                 lastUpdateTimestamp,
                 lastUpdatedBy,
                 permissions,
-                name,
                 id);
         }
     }
