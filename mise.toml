@@ -1,0 +1,8 @@
+[tools]
+# matches build.gradle
+java = "openjdk-17"
+gradle = "8"
+maven = "latest"
+# used by tests/mockserver
+ go = "1.22"
+ "aqua:speakeasy-api/speakeasy" = "latest"
