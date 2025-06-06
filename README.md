@@ -62,7 +62,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.glean.api-client:glean-api-client:0.5.2'
+implementation 'com.glean.api-client:glean-api-client:0.5.3'
 ```
 
 Maven:
@@ -70,7 +70,7 @@ Maven:
 <dependency>
     <groupId>com.glean.api-client</groupId>
     <artifactId>glean-api-client</artifactId>
-    <version>0.5.2</version>
+    <version>0.5.3</version>
 </dependency>
 ```
 
@@ -307,7 +307,7 @@ For more information on obtaining the appropriate token type, please contact you
 * [retrieveSchemas](docs/sdks/agents/README.md#retrieveschemas) - List an agent's schemas
 * [list](docs/sdks/agents/README.md#list) - Search agents
 * [runStream](docs/sdks/agents/README.md#runstream) - Create an agent run and stream the response
-* [run](docs/sdks/agents/README.md#run) - Create an [agent](https://developers.glean.com/agents/agents-api) run and wait for the response
+* [run](docs/sdks/agents/README.md#run) - Create an agent run and wait for the response
 
 #### [client().announcements()](docs/sdks/announcements/README.md)
 

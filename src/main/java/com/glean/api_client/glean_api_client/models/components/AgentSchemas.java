@@ -25,13 +25,13 @@ public class AgentSchemas {
     private String agentId;
 
     /**
-     * The schema for the agent input. In JSON schema format.
+     * The schema for the agent input. In JSON Schema format.
      */
     @JsonProperty("input_schema")
     private InputSchema inputSchema;
 
     /**
-     * The schema for the agent output. In JSON schema format.
+     * The schema for the agent output. In JSON Schema format.
      */
     @JsonProperty("output_schema")
     private OutputSchema outputSchema;
@@ -58,7 +58,7 @@ public class AgentSchemas {
     }
 
     /**
-     * The schema for the agent input. In JSON schema format.
+     * The schema for the agent input. In JSON Schema format.
      */
     @JsonIgnore
     public InputSchema inputSchema() {
@@ -66,7 +66,7 @@ public class AgentSchemas {
     }
 
     /**
-     * The schema for the agent output. In JSON schema format.
+     * The schema for the agent output. In JSON Schema format.
      */
     @JsonIgnore
     public OutputSchema outputSchema() {
@@ -87,7 +87,7 @@ public class AgentSchemas {
     }
 
     /**
-     * The schema for the agent input. In JSON schema format.
+     * The schema for the agent input. In JSON Schema format.
      */
     public AgentSchemas withInputSchema(InputSchema inputSchema) {
         Utils.checkNotNull(inputSchema, "inputSchema");
@@ -96,7 +96,7 @@ public class AgentSchemas {
     }
 
     /**
-     * The schema for the agent output. In JSON schema format.
+     * The schema for the agent output. In JSON Schema format.
      */
     public AgentSchemas withOutputSchema(OutputSchema outputSchema) {
         Utils.checkNotNull(outputSchema, "outputSchema");
@@ -158,7 +158,7 @@ public class AgentSchemas {
         }
 
         /**
-         * The schema for the agent input. In JSON schema format.
+         * The schema for the agent input. In JSON Schema format.
          */
         public Builder inputSchema(InputSchema inputSchema) {
             Utils.checkNotNull(inputSchema, "inputSchema");
@@ -167,7 +167,7 @@ public class AgentSchemas {
         }
 
         /**
-         * The schema for the agent output. In JSON schema format.
+         * The schema for the agent output. In JSON Schema format.
          */
         public Builder outputSchema(OutputSchema outputSchema) {
             Utils.checkNotNull(outputSchema, "outputSchema");
