@@ -688,9 +688,9 @@ public class Agents implements
 
 
     /**
-     * Create an [agent](https://developers.glean.com/agents/agents-api) run and wait for the response
+     * Create an agent run and wait for the response
      * 
-     * <p>Executes an agent run and returns the final response.
+     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the final response.
      * 
      * @return The call builder
      */
@@ -699,9 +699,9 @@ public class Agents implements
     }
 
     /**
-     * Create an [agent](https://developers.glean.com/agents/agents-api) run and wait for the response
+     * Create an agent run and wait for the response
      * 
-     * <p>Executes an agent run and returns the final response.
+     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the final response.
      * 
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call

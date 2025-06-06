@@ -12,7 +12,7 @@ import java.util.Objects;
 /**
  * OutputSchema
  * 
- * <p>The schema for the agent output. In JSON schema format.
+ * <p>The schema for the agent output. In JSON Schema format.
  */
 public class OutputSchema {
 
