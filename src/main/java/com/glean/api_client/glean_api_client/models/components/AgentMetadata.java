@@ -12,7 +12,7 @@ import java.util.Objects;
 /**
  * AgentMetadata
  * 
- * <p>The agent metadata.
+ * <p>The agent metadata. Currently not implemented.
  */
 public class AgentMetadata {
 

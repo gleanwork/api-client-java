@@ -62,7 +62,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.glean.api-client:glean-api-client:0.5.1'
+implementation 'com.glean.api-client:glean-api-client:0.5.2'
 ```
 
 Maven:
@@ -70,7 +70,7 @@ Maven:
 <dependency>
     <groupId>com.glean.api-client</groupId>
     <artifactId>glean-api-client</artifactId>
-    <version>0.5.1</version>
+    <version>0.5.2</version>
 </dependency>
 ```
 
@@ -303,11 +303,11 @@ For more information on obtaining the appropriate token type, please contact you
 
 #### [client().agents()](docs/sdks/agents/README.md)
 
-* [retrieve](docs/sdks/agents/README.md#retrieve) - Get Agent
-* [retrieveSchemas](docs/sdks/agents/README.md#retrieveschemas) - Get Agent Schemas
-* [list](docs/sdks/agents/README.md#list) - Search Agents
-* [runStream](docs/sdks/agents/README.md#runstream) - Create Run, Stream Output
-* [run](docs/sdks/agents/README.md#run) - Create Run, Wait for Output
+* [retrieve](docs/sdks/agents/README.md#retrieve) - Retrieve an agent
+* [retrieveSchemas](docs/sdks/agents/README.md#retrieveschemas) - List an agent's schemas
+* [list](docs/sdks/agents/README.md#list) - Search agents
+* [runStream](docs/sdks/agents/README.md#runstream) - Create an agent run and stream the response
+* [run](docs/sdks/agents/README.md#run) - Create an [agent](https://developers.glean.com/agents/agents-api) run and wait for the response
 
 #### [client().announcements()](docs/sdks/announcements/README.md)
 

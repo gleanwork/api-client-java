@@ -56,9 +56,9 @@ public class Agents implements
 
 
     /**
-     * Get Agent
+     * Retrieve an agent
      * 
-     * <p>Get an agent by ID. This endpoint implements the LangChain Agent Protocol, specifically part of the Agents stage (https://langchain-ai.github.io/agent-protocol/api.html#tag/agents/GET/agents/{agent_id}). It adheres to the standard contract defined for agent interoperability and can be used by agent runtimes that support the Agent Protocol.
+     * <p>Returns details of an [agent](https://developers.glean.com/agents/agents-api) created in the Agent Builder.
      * 
      * @return The call builder
      */
@@ -67,9 +67,9 @@ public class Agents implements
     }
 
     /**
-     * Get Agent
+     * Retrieve an agent
      * 
-     * <p>Get an agent by ID. This endpoint implements the LangChain Agent Protocol, specifically part of the Agents stage (https://langchain-ai.github.io/agent-protocol/api.html#tag/agents/GET/agents/{agent_id}). It adheres to the standard contract defined for agent interoperability and can be used by agent runtimes that support the Agent Protocol.
+     * <p>Returns details of an [agent](https://developers.glean.com/agents/agents-api) created in the Agent Builder.
      * 
      * @param agentId The ID of the agent.
      * @return The response from the API call
@@ -81,9 +81,9 @@ public class Agents implements
     }
     
     /**
-     * Get Agent
+     * Retrieve an agent
      * 
-     * <p>Get an agent by ID. This endpoint implements the LangChain Agent Protocol, specifically part of the Agents stage (https://langchain-ai.github.io/agent-protocol/api.html#tag/agents/GET/agents/{agent_id}). It adheres to the standard contract defined for agent interoperability and can be used by agent runtimes that support the Agent Protocol.
+     * <p>Returns details of an [agent](https://developers.glean.com/agents/agents-api) created in the Agent Builder.
      * 
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param agentId The ID of the agent.
@@ -223,9 +223,9 @@ public class Agents implements
 
 
     /**
-     * Get Agent Schemas
+     * List an agent's schemas
      * 
-     * <p>Get an agent's schemas by ID. This endpoint implements the LangChain Agent Protocol, specifically part of the Agents stage (https://langchain-ai.github.io/agent-protocol/api.html#tag/agents/GET/agents/{agent_id}/schemas). It adheres to the standard contract defined for agent interoperability and can be used by agent runtimes that support the Agent Protocol.
+     * <p>Return [agent](https://developers.glean.com/agents/agents-api)'s input and output schemas. You can use these schemas to detect changes to an agent's input or output structure.
      * 
      * @return The call builder
      */
@@ -234,9 +234,9 @@ public class Agents implements
     }
 
     /**
-     * Get Agent Schemas
+     * List an agent's schemas
      * 
-     * <p>Get an agent's schemas by ID. This endpoint implements the LangChain Agent Protocol, specifically part of the Agents stage (https://langchain-ai.github.io/agent-protocol/api.html#tag/agents/GET/agents/{agent_id}/schemas). It adheres to the standard contract defined for agent interoperability and can be used by agent runtimes that support the Agent Protocol.
+     * <p>Return [agent](https://developers.glean.com/agents/agents-api)'s input and output schemas. You can use these schemas to detect changes to an agent's input or output structure.
      * 
      * @param agentId The ID of the agent.
      * @return The response from the API call
@@ -248,9 +248,9 @@ public class Agents implements
     }
     
     /**
-     * Get Agent Schemas
+     * List an agent's schemas
      * 
-     * <p>Get an agent's schemas by ID. This endpoint implements the LangChain Agent Protocol, specifically part of the Agents stage (https://langchain-ai.github.io/agent-protocol/api.html#tag/agents/GET/agents/{agent_id}/schemas). It adheres to the standard contract defined for agent interoperability and can be used by agent runtimes that support the Agent Protocol.
+     * <p>Return [agent](https://developers.glean.com/agents/agents-api)'s input and output schemas. You can use these schemas to detect changes to an agent's input or output structure.
      * 
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param agentId The ID of the agent.
@@ -390,9 +390,9 @@ public class Agents implements
 
 
     /**
-     * Search Agents
+     * Search agents
      * 
-     * <p>List Agents available in this service. This endpoint implements the LangChain Agent Protocol, specifically part of the Agents stage (https://langchain-ai.github.io/agent-protocol/api.html#tag/agents/POST/agents/search). It adheres to the standard contract defined for agent interoperability and can be used by agent runtimes that support the Agent Protocol.
+     * <p>Search for [agents](https://developers.glean.com/agents/agents-api) by agent name.
      * 
      * @return The call builder
      */
@@ -401,9 +401,9 @@ public class Agents implements
     }
 
     /**
-     * Search Agents
+     * Search agents
      * 
-     * <p>List Agents available in this service. This endpoint implements the LangChain Agent Protocol, specifically part of the Agents stage (https://langchain-ai.github.io/agent-protocol/api.html#tag/agents/POST/agents/search). It adheres to the standard contract defined for agent interoperability and can be used by agent runtimes that support the Agent Protocol.
+     * <p>Search for [agents](https://developers.glean.com/agents/agents-api) by agent name.
      * 
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
@@ -540,9 +540,9 @@ public class Agents implements
 
 
     /**
-     * Create Run, Stream Output
+     * Create an agent run and stream the response
      * 
-     * <p>Creates and triggers a run of an agent. Streams the output in SSE format. This endpoint implements the LangChain Agent Protocol, specifically part of the Runs stage (https://langchain-ai.github.io/agent-protocol/api.html#tag/runs/POST/runs/stream). It adheres to the standard contract defined for agent interoperability and can be used by agent runtimes that support the Agent Protocol. Note that running agents that reference third party platform write actions is unsupported as it requires user confirmation.
+     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the result as a stream of server-sent events (SSE).
      * 
      * @return The call builder
      */
@@ -551,9 +551,9 @@ public class Agents implements
     }
 
     /**
-     * Create Run, Stream Output
+     * Create an agent run and stream the response
      * 
-     * <p>Creates and triggers a run of an agent. Streams the output in SSE format. This endpoint implements the LangChain Agent Protocol, specifically part of the Runs stage (https://langchain-ai.github.io/agent-protocol/api.html#tag/runs/POST/runs/stream). It adheres to the standard contract defined for agent interoperability and can be used by agent runtimes that support the Agent Protocol. Note that running agents that reference third party platform write actions is unsupported as it requires user confirmation.
+     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the result as a stream of server-sent events (SSE).
      * 
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
@@ -688,9 +688,9 @@ public class Agents implements
 
 
     /**
-     * Create Run, Wait for Output
+     * Create an [agent](https://developers.glean.com/agents/agents-api) run and wait for the response
      * 
-     * <p>Creates and triggers a run of an agent. Waits for final output and then returns it. This endpoint implements the LangChain Agent Protocol, specifically part of the Runs stage (https://langchain-ai.github.io/agent-protocol/api.html#tag/runs/POST/runs/wait). It adheres to the standard contract defined for agent interoperability and can be used by agent runtimes that support the Agent Protocol. Note that running agents that reference third party platform write actions is unsupported as it requires user confirmation.
+     * <p>Executes an agent run and returns the final response.
      * 
      * @return The call builder
      */
@@ -699,9 +699,9 @@ public class Agents implements
     }
 
     /**
-     * Create Run, Wait for Output
+     * Create an [agent](https://developers.glean.com/agents/agents-api) run and wait for the response
      * 
-     * <p>Creates and triggers a run of an agent. Waits for final output and then returns it. This endpoint implements the LangChain Agent Protocol, specifically part of the Runs stage (https://langchain-ai.github.io/agent-protocol/api.html#tag/runs/POST/runs/wait). It adheres to the standard contract defined for agent interoperability and can be used by agent runtimes that support the Agent Protocol. Note that running agents that reference third party platform write actions is unsupported as it requires user confirmation.
+     * <p>Executes an agent run and returns the final response.
      * 
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call

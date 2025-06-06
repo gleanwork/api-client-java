@@ -37,14 +37,17 @@ public class Agent {
     private Optional<String> description;
 
     /**
-     * The agent metadata.
+     * The agent metadata. Currently not implemented.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private Optional<? extends AgentMetadata> metadata;
 
     /**
-     * Describes which protocol features the agent supports. In addition to the standard capabilities (prefixed with ap.), implementations can declare custom capabilities, named in reverse domain notation (eg. com.example.some.capability).
+     * Describes features that the agent supports. example: {
+     *   "ap.io.messages": true,
+     *   "ap.io.streaming": true
+     * }
      */
     @JsonProperty("capabilities")
     private AgentCapabilities capabilities;
@@ -100,7 +103,7 @@ public class Agent {
     }
 
     /**
-     * The agent metadata.
+     * The agent metadata. Currently not implemented.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -109,7 +112,10 @@ public class Agent {
     }
 
     /**
-     * Describes which protocol features the agent supports. In addition to the standard capabilities (prefixed with ap.), implementations can declare custom capabilities, named in reverse domain notation (eg. com.example.some.capability).
+     * Describes features that the agent supports. example: {
+     *   "ap.io.messages": true,
+     *   "ap.io.streaming": true
+     * }
      */
     @JsonIgnore
     public AgentCapabilities capabilities() {
@@ -157,7 +163,7 @@ public class Agent {
     }
 
     /**
-     * The agent metadata.
+     * The agent metadata. Currently not implemented.
      */
     public Agent withMetadata(AgentMetadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -166,7 +172,7 @@ public class Agent {
     }
 
     /**
-     * The agent metadata.
+     * The agent metadata. Currently not implemented.
      */
     public Agent withMetadata(Optional<? extends AgentMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -175,7 +181,10 @@ public class Agent {
     }
 
     /**
-     * Describes which protocol features the agent supports. In addition to the standard capabilities (prefixed with ap.), implementations can declare custom capabilities, named in reverse domain notation (eg. com.example.some.capability).
+     * Describes features that the agent supports. example: {
+     *   "ap.io.messages": true,
+     *   "ap.io.streaming": true
+     * }
      */
     public Agent withCapabilities(AgentCapabilities capabilities) {
         Utils.checkNotNull(capabilities, "capabilities");
@@ -274,7 +283,7 @@ public class Agent {
         }
 
         /**
-         * The agent metadata.
+         * The agent metadata. Currently not implemented.
          */
         public Builder metadata(AgentMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -283,7 +292,7 @@ public class Agent {
         }
 
         /**
-         * The agent metadata.
+         * The agent metadata. Currently not implemented.
          */
         public Builder metadata(Optional<? extends AgentMetadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -292,7 +301,10 @@ public class Agent {
         }
 
         /**
-         * Describes which protocol features the agent supports. In addition to the standard capabilities (prefixed with ap.), implementations can declare custom capabilities, named in reverse domain notation (eg. com.example.some.capability).
+         * Describes features that the agent supports. example: {
+         *   "ap.io.messages": true,
+         *   "ap.io.streaming": true
+         * }
          */
         public Builder capabilities(AgentCapabilities capabilities) {
             Utils.checkNotNull(capabilities, "capabilities");

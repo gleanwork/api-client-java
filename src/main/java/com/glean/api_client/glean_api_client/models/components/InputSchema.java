@@ -12,7 +12,7 @@ import java.util.Objects;
 /**
  * InputSchema
  * 
- * <p>The schema for the agent input. In JSON Schema format.
+ * <p>The schema for the agent input. In JSON schema format.
  */
 public class InputSchema {
 
