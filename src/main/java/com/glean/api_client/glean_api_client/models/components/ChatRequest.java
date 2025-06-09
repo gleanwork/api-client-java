@@ -74,6 +74,13 @@ public class ChatRequest {
     private Optional<String> applicationId;
 
     /**
+     * The ID of the Agent that should process this chat request. Only Agents with trigger set to 'User chat message' are invokable through this API. If not specified, the default chat experience will be used.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("agentId")
+    private Optional<String> agentId;
+
+    /**
      * If set, response lines will be streamed one-by-one as they become available. Each will be a ChatResponse, formatted as JSON, and separated by a new line. If false, the entire response will be returned at once. Note that if this is set and the model being used does not support streaming, the model's response will not be streamed, but other messages from the endpoint still will be.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -91,6 +98,7 @@ public class ChatRequest {
             @JsonProperty("timeoutMillis") Optional<Long> timeoutMillis,
             @JsonProperty("sessionInfo") Optional<? extends SessionInfo> sessionInfo,
             @JsonProperty("applicationId") Optional<String> applicationId,
+            @JsonProperty("agentId") Optional<String> agentId,
             @JsonProperty("stream") Optional<Boolean> stream) {
         Utils.checkNotNull(saveChat, "saveChat");
         Utils.checkNotNull(chatId, "chatId");
@@ -101,6 +109,7 @@ public class ChatRequest {
         Utils.checkNotNull(timeoutMillis, "timeoutMillis");
         Utils.checkNotNull(sessionInfo, "sessionInfo");
         Utils.checkNotNull(applicationId, "applicationId");
+        Utils.checkNotNull(agentId, "agentId");
         Utils.checkNotNull(stream, "stream");
         this.saveChat = saveChat;
         this.chatId = chatId;
@@ -111,12 +120,13 @@ public class ChatRequest {
         this.timeoutMillis = timeoutMillis;
         this.sessionInfo = sessionInfo;
         this.applicationId = applicationId;
+        this.agentId = agentId;
         this.stream = stream;
     }
     
     public ChatRequest(
             List<ChatMessage> messages) {
-        this(Optional.empty(), Optional.empty(), messages, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), messages, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -184,6 +194,14 @@ public class ChatRequest {
     @JsonIgnore
     public Optional<String> applicationId() {
         return applicationId;
+    }
+
+    /**
+     * The ID of the Agent that should process this chat request. Only Agents with trigger set to 'User chat message' are invokable through this API. If not specified, the default chat experience will be used.
+     */
+    @JsonIgnore
+    public Optional<String> agentId() {
+        return agentId;
     }
 
     /**
@@ -334,6 +352,24 @@ public class ChatRequest {
     }
 
     /**
+     * The ID of the Agent that should process this chat request. Only Agents with trigger set to 'User chat message' are invokable through this API. If not specified, the default chat experience will be used.
+     */
+    public ChatRequest withAgentId(String agentId) {
+        Utils.checkNotNull(agentId, "agentId");
+        this.agentId = Optional.ofNullable(agentId);
+        return this;
+    }
+
+    /**
+     * The ID of the Agent that should process this chat request. Only Agents with trigger set to 'User chat message' are invokable through this API. If not specified, the default chat experience will be used.
+     */
+    public ChatRequest withAgentId(Optional<String> agentId) {
+        Utils.checkNotNull(agentId, "agentId");
+        this.agentId = agentId;
+        return this;
+    }
+
+    /**
      * If set, response lines will be streamed one-by-one as they become available. Each will be a ChatResponse, formatted as JSON, and separated by a new line. If false, the entire response will be returned at once. Note that if this is set and the model being used does not support streaming, the model's response will not be streamed, but other messages from the endpoint still will be.
      */
     public ChatRequest withStream(boolean stream) {
@@ -371,6 +407,7 @@ public class ChatRequest {
             Objects.deepEquals(this.timeoutMillis, other.timeoutMillis) &&
             Objects.deepEquals(this.sessionInfo, other.sessionInfo) &&
             Objects.deepEquals(this.applicationId, other.applicationId) &&
+            Objects.deepEquals(this.agentId, other.agentId) &&
             Objects.deepEquals(this.stream, other.stream);
     }
     
@@ -386,6 +423,7 @@ public class ChatRequest {
             timeoutMillis,
             sessionInfo,
             applicationId,
+            agentId,
             stream);
     }
     
@@ -401,6 +439,7 @@ public class ChatRequest {
                 "timeoutMillis", timeoutMillis,
                 "sessionInfo", sessionInfo,
                 "applicationId", applicationId,
+                "agentId", agentId,
                 "stream", stream);
     }
     
@@ -423,6 +462,8 @@ public class ChatRequest {
         private Optional<? extends SessionInfo> sessionInfo = Optional.empty();
  
         private Optional<String> applicationId = Optional.empty();
+ 
+        private Optional<String> agentId = Optional.empty();
  
         private Optional<Boolean> stream = Optional.empty();
         
@@ -566,6 +607,24 @@ public class ChatRequest {
         }
 
         /**
+         * The ID of the Agent that should process this chat request. Only Agents with trigger set to 'User chat message' are invokable through this API. If not specified, the default chat experience will be used.
+         */
+        public Builder agentId(String agentId) {
+            Utils.checkNotNull(agentId, "agentId");
+            this.agentId = Optional.ofNullable(agentId);
+            return this;
+        }
+
+        /**
+         * The ID of the Agent that should process this chat request. Only Agents with trigger set to 'User chat message' are invokable through this API. If not specified, the default chat experience will be used.
+         */
+        public Builder agentId(Optional<String> agentId) {
+            Utils.checkNotNull(agentId, "agentId");
+            this.agentId = agentId;
+            return this;
+        }
+
+        /**
          * If set, response lines will be streamed one-by-one as they become available. Each will be a ChatResponse, formatted as JSON, and separated by a new line. If false, the entire response will be returned at once. Note that if this is set and the model being used does not support streaming, the model's response will not be streamed, but other messages from the endpoint still will be.
          */
         public Builder stream(boolean stream) {
@@ -594,6 +653,7 @@ public class ChatRequest {
                 timeoutMillis,
                 sessionInfo,
                 applicationId,
+                agentId,
                 stream);
         }
     }
