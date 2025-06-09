@@ -6,7 +6,6 @@ sources:
         sourceBlobDigest: sha256:f2a59d8beefedbda0e59b25d09a930e1b907145f784bf8961fc31b862163d964
         tags:
             - latest
-            - speakeasy-sdk-regen-1749454026
     Glean-OAS:
         sourceNamespace: glean-oas
         sourceRevisionDigest: sha256:8841834dd58ddd4e2dcf98fc90fbd06fbf3626a29df941503cce55b9548a5317
@@ -21,7 +20,7 @@ targets:
         sourceRevisionDigest: sha256:254ed74184de2e725a0dc2cf521b132b29ece9d3ba6b12fd7e7b1ceaa2e6d043
         sourceBlobDigest: sha256:f2a59d8beefedbda0e59b25d09a930e1b907145f784bf8961fc31b862163d964
         codeSamplesNamespace: glean-api-specs-java-code-samples
-        codeSamplesRevisionDigest: sha256:e6b8f88064c039aa8020b1618efbbbcd8ffb72cbc6122b8a74e3879b4545606e
+        codeSamplesRevisionDigest: sha256:e5b2ea5208c1dc6e24e3a32186332fee5e6235cc612e785611add744c44901fa
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -46,3 +45,5 @@ workflow:
                 labelOverride:
                     fixedValue: Java (API Client)
                 blocking: false
+            testing:
+                enabled: true
