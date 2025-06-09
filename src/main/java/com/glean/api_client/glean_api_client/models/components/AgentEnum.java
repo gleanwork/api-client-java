@@ -15,7 +15,8 @@ import java.util.Optional;
  */
 public enum AgentEnum {
     DEFAULT("DEFAULT"),
-    GPT("GPT");
+    GPT("GPT"),
+    UNIVERSAL("UNIVERSAL");
 
     @JsonValue
     private final String value;
