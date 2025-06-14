@@ -40,7 +40,6 @@ public class Entities implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List entities
      * 
@@ -188,7 +187,6 @@ public class Entities implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

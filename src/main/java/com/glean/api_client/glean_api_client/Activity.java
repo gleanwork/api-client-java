@@ -39,7 +39,6 @@ public class Activity implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Report document activity
      * 
@@ -176,7 +175,6 @@ public class Activity implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

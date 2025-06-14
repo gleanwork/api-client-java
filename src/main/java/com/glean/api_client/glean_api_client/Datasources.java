@@ -39,7 +39,6 @@ public class Datasources implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Add or update datasource
      * 
@@ -176,7 +175,6 @@ public class Datasources implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
