@@ -54,7 +54,6 @@ public class Pins implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Update pin
      * 
@@ -202,7 +201,6 @@ public class Pins implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -354,7 +352,6 @@ public class Pins implements
     }
 
 
-
     /**
      * List pins
      * 
@@ -504,7 +501,6 @@ public class Pins implements
     }
 
 
-
     /**
      * Create pin
      * 
@@ -652,7 +648,6 @@ public class Pins implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

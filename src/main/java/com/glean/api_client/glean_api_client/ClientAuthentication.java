@@ -32,11 +32,14 @@ public class ClientAuthentication implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Create authentication token
      * 
-     * <p>Creates an authentication token for the authenticated user.
+     * <p>Creates an authentication token for the authenticated user. These are
+     * specifically intended to be used with the [Web SDK](https://developers.glean.com/web).
+     * 
+     * <p>Note: The tokens generated from this endpoint are **not** valid tokens
+     * for use with the Client API (e.g. `/rest/api/v1/*`).
      * 
      * @return The call builder
      */
@@ -47,7 +50,11 @@ public class ClientAuthentication implements
     /**
      * Create authentication token
      * 
-     * <p>Creates an authentication token for the authenticated user.
+     * <p>Creates an authentication token for the authenticated user. These are
+     * specifically intended to be used with the [Web SDK](https://developers.glean.com/web).
+     * 
+     * <p>Note: The tokens generated from this endpoint are **not** valid tokens
+     * for use with the Client API (e.g. `/rest/api/v1/*`).
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails

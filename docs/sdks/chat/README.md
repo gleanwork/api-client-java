@@ -335,8 +335,8 @@ import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.File;
 import com.glean.api_client.glean_api_client.models.components.UploadChatFilesRequest;
 import com.glean.api_client.glean_api_client.models.operations.UploadchatfilesResponse;
+import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class Application {
@@ -352,7 +352,7 @@ public class Application {
                     .files(List.of(
                         File.builder()
                             .fileName("example.file")
-                            .content("0x8b739cFCeF".getBytes(StandardCharsets.UTF_8))
+                            .content(Utils.readBytes("example.file"))
                             .build()))
                     .build())
                 .call();
