@@ -111,7 +111,7 @@ public class Application {
 
 ## list
 
-Search for [agents](https://developers.glean.com/agents/agents-api) by agent name. 
+Search for [agents](https://developers.glean.com/agents/agents-api) by agent name.
 
 ### Example Usage
 

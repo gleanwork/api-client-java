@@ -58,7 +58,6 @@ public class Policies implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Gets specified policy
      * 
@@ -225,7 +224,6 @@ public class Policies implements
     }
 
 
-
     /**
      * Updates an existing policy
      * 
@@ -384,7 +382,6 @@ public class Policies implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -549,7 +546,6 @@ public class Policies implements
     }
 
 
-
     /**
      * Creates new policy
      * 
@@ -697,7 +693,6 @@ public class Policies implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

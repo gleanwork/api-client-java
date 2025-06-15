@@ -41,7 +41,6 @@ public class Tools implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List available tools
      * 
@@ -199,7 +198,6 @@ public class Tools implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

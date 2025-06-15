@@ -17,7 +17,7 @@ public class UploadChatFilesRequest {
     /**
      * Raw files to be uploaded for chat in binary format.
      */
-    @SpeakeasyMetadata("multipartForm:name=files")
+    @SpeakeasyMetadata("multipartForm:file,name=files")
     private List<File> files;
 
     @JsonCreator

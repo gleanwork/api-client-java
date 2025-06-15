@@ -55,7 +55,6 @@ public class ClientShortcuts implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Create shortcut
      * 
@@ -205,7 +204,6 @@ public class ClientShortcuts implements
     }
 
 
-
     /**
      * Delete shortcut
      * 
@@ -342,7 +340,6 @@ public class ClientShortcuts implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -494,7 +491,6 @@ public class ClientShortcuts implements
     }
 
 
-
     /**
      * List shortcuts
      * 
@@ -642,7 +638,6 @@ public class ClientShortcuts implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

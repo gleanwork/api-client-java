@@ -54,7 +54,6 @@ public class Agents implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Retrieve an agent
      * 
@@ -219,7 +218,6 @@ public class Agents implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -388,7 +386,6 @@ public class Agents implements
     }
 
 
-
     /**
      * Search agents
      * 
@@ -538,7 +535,6 @@ public class Agents implements
     }
 
 
-
     /**
      * Create an agent run and stream the response
      * 
@@ -684,7 +680,6 @@ public class Agents implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
