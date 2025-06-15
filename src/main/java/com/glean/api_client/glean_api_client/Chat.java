@@ -83,7 +83,6 @@ public class Chat implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Chat
      * 
@@ -261,7 +260,6 @@ public class Chat implements
     }
 
 
-
     /**
      * Deletes all saved Chats owned by a user
      * 
@@ -408,7 +406,6 @@ public class Chat implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -575,7 +572,6 @@ public class Chat implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -755,7 +751,6 @@ public class Chat implements
     }
 
 
-
     /**
      * Retrieves all saved Chats
      * 
@@ -913,7 +908,6 @@ public class Chat implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1093,7 +1087,6 @@ public class Chat implements
     }
 
 
-
     /**
      * Upload files for Chat.
      * 
@@ -1269,7 +1262,6 @@ public class Chat implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1449,7 +1441,6 @@ public class Chat implements
     }
 
 
-
     /**
      * Delete files uploaded by a user for chat.
      * 
@@ -1614,7 +1605,6 @@ public class Chat implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
