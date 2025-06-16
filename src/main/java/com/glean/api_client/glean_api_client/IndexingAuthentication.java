@@ -32,7 +32,6 @@ public class IndexingAuthentication implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Rotate token
      * 

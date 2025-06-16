@@ -70,7 +70,6 @@ public class People implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Beta: Get user information
      * 
@@ -235,7 +234,6 @@ public class People implements
     }
 
 
-
     /**
      * Get user count
      * 
@@ -393,7 +391,6 @@ public class People implements
     }
 
 
-
     /**
      * Index employee
      * 
@@ -530,7 +527,6 @@ public class People implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -671,7 +667,6 @@ public class People implements
     }
 
 
-
     /**
      * Schedules the processing of uploaded employees and teams
      * 
@@ -793,7 +788,6 @@ public class People implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -934,7 +928,6 @@ public class People implements
     }
 
 
-
     /**
      * Index team
      * 
@@ -1073,7 +1066,6 @@ public class People implements
     }
 
 
-
     /**
      * Delete team
      * 
@@ -1210,7 +1202,6 @@ public class People implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

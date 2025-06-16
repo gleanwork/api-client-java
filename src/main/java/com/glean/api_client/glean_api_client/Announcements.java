@@ -44,7 +44,6 @@ public class Announcements implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Create Announcement
      * 
@@ -194,7 +193,6 @@ public class Announcements implements
     }
 
 
-
     /**
      * Delete Announcement
      * 
@@ -331,7 +329,6 @@ public class Announcements implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

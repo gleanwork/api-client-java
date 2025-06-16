@@ -46,6 +46,13 @@ public class AgentRun {
     private Optional<? extends List<Message>> messages;
 
     /**
+     * The metadata to pass to the agent.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("metadata")
+    private Optional<? extends Map<String, Object>> metadata;
+
+    /**
      * The status of the run. One of 'error', 'success'.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -57,20 +64,23 @@ public class AgentRun {
             @JsonProperty("agent_id") String agentId,
             @JsonProperty("input") Optional<? extends Map<String, Object>> input,
             @JsonProperty("messages") Optional<? extends List<Message>> messages,
+            @JsonProperty("metadata") Optional<? extends Map<String, Object>> metadata,
             @JsonProperty("status") Optional<? extends AgentExecutionStatus> status) {
         Utils.checkNotNull(agentId, "agentId");
         Utils.checkNotNull(input, "input");
         Utils.checkNotNull(messages, "messages");
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(status, "status");
         this.agentId = agentId;
         this.input = input;
         this.messages = messages;
+        this.metadata = metadata;
         this.status = status;
     }
     
     public AgentRun(
             String agentId) {
-        this(agentId, Optional.empty(), Optional.empty(), Optional.empty());
+        this(agentId, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -97,6 +107,15 @@ public class AgentRun {
     @JsonIgnore
     public Optional<List<Message>> messages() {
         return (Optional<List<Message>>) messages;
+    }
+
+    /**
+     * The metadata to pass to the agent.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, Object>> metadata() {
+        return (Optional<Map<String, Object>>) metadata;
     }
 
     /**
@@ -158,6 +177,24 @@ public class AgentRun {
     }
 
     /**
+     * The metadata to pass to the agent.
+     */
+    public AgentRun withMetadata(Map<String, Object> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = Optional.ofNullable(metadata);
+        return this;
+    }
+
+    /**
+     * The metadata to pass to the agent.
+     */
+    public AgentRun withMetadata(Optional<? extends Map<String, Object>> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
+        return this;
+    }
+
+    /**
      * The status of the run. One of 'error', 'success'.
      */
     public AgentRun withStatus(AgentExecutionStatus status) {
@@ -189,6 +226,7 @@ public class AgentRun {
             Objects.deepEquals(this.agentId, other.agentId) &&
             Objects.deepEquals(this.input, other.input) &&
             Objects.deepEquals(this.messages, other.messages) &&
+            Objects.deepEquals(this.metadata, other.metadata) &&
             Objects.deepEquals(this.status, other.status);
     }
     
@@ -198,6 +236,7 @@ public class AgentRun {
             agentId,
             input,
             messages,
+            metadata,
             status);
     }
     
@@ -207,6 +246,7 @@ public class AgentRun {
                 "agentId", agentId,
                 "input", input,
                 "messages", messages,
+                "metadata", metadata,
                 "status", status);
     }
     
@@ -217,6 +257,8 @@ public class AgentRun {
         private Optional<? extends Map<String, Object>> input = Optional.empty();
  
         private Optional<? extends List<Message>> messages = Optional.empty();
+ 
+        private Optional<? extends Map<String, Object>> metadata = Optional.empty();
  
         private Optional<? extends AgentExecutionStatus> status = Optional.empty();
         
@@ -270,6 +312,24 @@ public class AgentRun {
         }
 
         /**
+         * The metadata to pass to the agent.
+         */
+        public Builder metadata(Map<String, Object> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = Optional.ofNullable(metadata);
+            return this;
+        }
+
+        /**
+         * The metadata to pass to the agent.
+         */
+        public Builder metadata(Optional<? extends Map<String, Object>> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
+            return this;
+        }
+
+        /**
          * The status of the run. One of 'error', 'success'.
          */
         public Builder status(AgentExecutionStatus status) {
@@ -292,6 +352,7 @@ public class AgentRun {
                 agentId,
                 input,
                 messages,
+                metadata,
                 status);
         }
     }

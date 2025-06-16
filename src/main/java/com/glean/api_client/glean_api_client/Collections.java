@@ -71,7 +71,6 @@ public class Collections implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Add Collection item
      * 
@@ -219,7 +218,6 @@ public class Collections implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -385,7 +383,6 @@ public class Collections implements
     }
 
 
-
     /**
      * Delete Collection
      * 
@@ -538,7 +535,6 @@ public class Collections implements
     }
 
 
-
     /**
      * Delete Collection item
      * 
@@ -686,7 +682,6 @@ public class Collections implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -852,7 +847,6 @@ public class Collections implements
     }
 
 
-
     /**
      * Update Collection item
      * 
@@ -1002,7 +996,6 @@ public class Collections implements
     }
 
 
-
     /**
      * Read Collection
      * 
@@ -1150,7 +1143,6 @@ public class Collections implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

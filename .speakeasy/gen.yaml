@@ -17,7 +17,7 @@ generation:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: true
 java:
-  version: 0.5.5
+  version: 0.5.6
   additionalDependencies: []
   additionalPlugins: []
   artifactID: glean-api-client
@@ -27,6 +27,7 @@ java:
   companyName: Glean
   companyURL: https://www.glean.com
   defaultErrorName: APIException
+  enableCustomCodeRegions: false
   envVarPrefix: GLEAN
   flattenGlobalSecurity: true
   githubURL: github.com/gleanwork/api-client-java

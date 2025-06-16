@@ -45,7 +45,6 @@ public class Verification implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Create verification
      * 
@@ -193,7 +192,6 @@ public class Verification implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -353,7 +351,6 @@ public class Verification implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

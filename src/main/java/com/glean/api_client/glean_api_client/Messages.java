@@ -35,7 +35,6 @@ public class Messages implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Read messages
      * 
