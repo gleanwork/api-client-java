@@ -45,22 +45,32 @@ public class AgentRunCreate {
     @JsonProperty("messages")
     private Optional<? extends List<Message>> messages;
 
+    /**
+     * The metadata to pass to the agent.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("metadata")
+    private Optional<? extends Map<String, Object>> metadata;
+
     @JsonCreator
     public AgentRunCreate(
             @JsonProperty("agent_id") String agentId,
             @JsonProperty("input") Optional<? extends Map<String, Object>> input,
-            @JsonProperty("messages") Optional<? extends List<Message>> messages) {
+            @JsonProperty("messages") Optional<? extends List<Message>> messages,
+            @JsonProperty("metadata") Optional<? extends Map<String, Object>> metadata) {
         Utils.checkNotNull(agentId, "agentId");
         Utils.checkNotNull(input, "input");
         Utils.checkNotNull(messages, "messages");
+        Utils.checkNotNull(metadata, "metadata");
         this.agentId = agentId;
         this.input = input;
         this.messages = messages;
+        this.metadata = metadata;
     }
     
     public AgentRunCreate(
             String agentId) {
-        this(agentId, Optional.empty(), Optional.empty());
+        this(agentId, Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -87,6 +97,15 @@ public class AgentRunCreate {
     @JsonIgnore
     public Optional<List<Message>> messages() {
         return (Optional<List<Message>>) messages;
+    }
+
+    /**
+     * The metadata to pass to the agent.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, Object>> metadata() {
+        return (Optional<Map<String, Object>>) metadata;
     }
 
     public final static Builder builder() {
@@ -138,6 +157,24 @@ public class AgentRunCreate {
         return this;
     }
 
+    /**
+     * The metadata to pass to the agent.
+     */
+    public AgentRunCreate withMetadata(Map<String, Object> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = Optional.ofNullable(metadata);
+        return this;
+    }
+
+    /**
+     * The metadata to pass to the agent.
+     */
+    public AgentRunCreate withMetadata(Optional<? extends Map<String, Object>> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
+        return this;
+    }
+
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -151,7 +188,8 @@ public class AgentRunCreate {
         return 
             Objects.deepEquals(this.agentId, other.agentId) &&
             Objects.deepEquals(this.input, other.input) &&
-            Objects.deepEquals(this.messages, other.messages);
+            Objects.deepEquals(this.messages, other.messages) &&
+            Objects.deepEquals(this.metadata, other.metadata);
     }
     
     @Override
@@ -159,7 +197,8 @@ public class AgentRunCreate {
         return Objects.hash(
             agentId,
             input,
-            messages);
+            messages,
+            metadata);
     }
     
     @Override
@@ -167,7 +206,8 @@ public class AgentRunCreate {
         return Utils.toString(AgentRunCreate.class,
                 "agentId", agentId,
                 "input", input,
-                "messages", messages);
+                "messages", messages,
+                "metadata", metadata);
     }
     
     public final static class Builder {
@@ -177,6 +217,8 @@ public class AgentRunCreate {
         private Optional<? extends Map<String, Object>> input = Optional.empty();
  
         private Optional<? extends List<Message>> messages = Optional.empty();
+ 
+        private Optional<? extends Map<String, Object>> metadata = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -226,12 +268,31 @@ public class AgentRunCreate {
             this.messages = messages;
             return this;
         }
+
+        /**
+         * The metadata to pass to the agent.
+         */
+        public Builder metadata(Map<String, Object> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = Optional.ofNullable(metadata);
+            return this;
+        }
+
+        /**
+         * The metadata to pass to the agent.
+         */
+        public Builder metadata(Optional<? extends Map<String, Object>> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
+            return this;
+        }
         
         public AgentRunCreate build() {
             return new AgentRunCreate(
                 agentId,
                 input,
-                messages);
+                messages,
+                metadata);
         }
     }
 }

@@ -79,7 +79,6 @@ public class Permissions implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Update document permissions
      * 
@@ -216,7 +215,6 @@ public class Permissions implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -357,7 +355,6 @@ public class Permissions implements
     }
 
 
-
     /**
      * Bulk index users
      * 
@@ -494,7 +491,6 @@ public class Permissions implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -635,7 +631,6 @@ public class Permissions implements
     }
 
 
-
     /**
      * Bulk index groups
      * 
@@ -772,7 +767,6 @@ public class Permissions implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -913,7 +907,6 @@ public class Permissions implements
     }
 
 
-
     /**
      * Bulk index memberships for a group
      * 
@@ -1050,7 +1043,6 @@ public class Permissions implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1200,7 +1192,6 @@ public class Permissions implements
     }
 
 
-
     /**
      * Delete user
      * 
@@ -1337,7 +1328,6 @@ public class Permissions implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1478,7 +1468,6 @@ public class Permissions implements
     }
 
 
-
     /**
      * Delete membership
      * 
@@ -1615,7 +1604,6 @@ public class Permissions implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

@@ -52,7 +52,6 @@ public class Search implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Search the index (admin)
      * 
@@ -216,7 +215,6 @@ public class Search implements
     }
 
 
-
     /**
      * Autocomplete
      * 
@@ -366,7 +364,6 @@ public class Search implements
     }
 
 
-
     /**
      * Feed of documents and events
      * 
@@ -514,7 +511,6 @@ public class Search implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -668,7 +664,6 @@ public class Search implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

@@ -45,7 +45,6 @@ public class Reports implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Creates new one-time report
      * 
@@ -195,7 +194,6 @@ public class Reports implements
     }
 
 
-
     /**
      * Downloads violations CSV for report
      * 
@@ -336,7 +334,6 @@ public class Reports implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

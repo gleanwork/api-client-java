@@ -35,7 +35,6 @@ public class Insights implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Read insights
      * 

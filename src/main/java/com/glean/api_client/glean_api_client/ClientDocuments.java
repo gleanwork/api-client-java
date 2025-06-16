@@ -50,7 +50,6 @@ public class ClientDocuments implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Read document permissions
      * 
@@ -198,7 +197,6 @@ public class ClientDocuments implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -359,7 +357,6 @@ public class ClientDocuments implements
     }
 
 
-
     /**
      * Read documents by facets
      * 
@@ -516,7 +513,6 @@ public class ClientDocuments implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

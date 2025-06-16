@@ -33,7 +33,6 @@ public class Datasource implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Beta: Get datasource status
      * 

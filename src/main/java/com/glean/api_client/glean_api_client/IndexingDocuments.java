@@ -79,7 +79,6 @@ public class IndexingDocuments implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Index document
      * 
@@ -216,7 +215,6 @@ public class IndexingDocuments implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -357,7 +355,6 @@ public class IndexingDocuments implements
     }
 
 
-
     /**
      * Bulk index documents
      * 
@@ -494,7 +491,6 @@ public class IndexingDocuments implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -674,7 +670,6 @@ public class IndexingDocuments implements
     }
 
 
-
     /**
      * Delete document
      * 
@@ -811,7 +806,6 @@ public class IndexingDocuments implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -978,7 +972,6 @@ public class IndexingDocuments implements
     }
 
 
-
     /**
      * Beta: Get information of a batch of documents
      * 
@@ -1143,7 +1136,6 @@ public class IndexingDocuments implements
     }
 
 
-
     /**
      * Check document access
      * 
@@ -1295,7 +1287,6 @@ public class IndexingDocuments implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1453,7 +1444,6 @@ public class IndexingDocuments implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

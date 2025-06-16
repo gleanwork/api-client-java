@@ -54,7 +54,6 @@ public class Answers implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Create Answer
      * 
@@ -204,7 +203,6 @@ public class Answers implements
     }
 
 
-
     /**
      * Delete Answer
      * 
@@ -341,7 +339,6 @@ public class Answers implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -493,7 +490,6 @@ public class Answers implements
     }
 
 
-
     /**
      * Read Answer
      * 
@@ -641,7 +637,6 @@ public class Answers implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

@@ -39,7 +39,6 @@ public class IndexingShortcuts implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Bulk index external shortcuts
      * 
@@ -176,7 +175,6 @@ public class IndexingShortcuts implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

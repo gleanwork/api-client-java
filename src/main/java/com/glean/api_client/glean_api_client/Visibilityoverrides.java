@@ -41,7 +41,6 @@ public class Visibilityoverrides implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Fetches documents visibility
      * 
@@ -199,7 +198,6 @@ public class Visibilityoverrides implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
