@@ -8415,6 +8415,7 @@ components:
                         - COPYPASTED_QUOTES
                         - INVALID_OPERATOR
                         - MAYBE_INVALID_FACET_QUERY
+                        - TOO_MANY_DATASOURCE_GROUPS
                     description: The type of the warning.
                 lastUsedTerm:
                     type: string
