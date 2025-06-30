@@ -26,7 +26,7 @@ public enum GeneratedQnaStatus {
     @JsonValue
     private final String value;
 
-    private GeneratedQnaStatus(String value) {
+    GeneratedQnaStatus(String value) {
         this.value = value;
     }
     

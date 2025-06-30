@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.ListEntitiesRequest;
+import com.glean.api_client.glean_api_client.operations.ListentitiesOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class ListentitiesRequestBuilder {
 
     private ListEntitiesRequest request;
-    private final SDKMethodInterfaces.MethodCallListentities sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListentitiesRequestBuilder(SDKMethodInterfaces.MethodCallListentities sdk) {
-        this.sdk = sdk;
+    public ListentitiesRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ListentitiesRequestBuilder request(ListEntitiesRequest request) {
@@ -23,8 +27,10 @@ public class ListentitiesRequestBuilder {
     }
 
     public ListentitiesResponse call() throws Exception {
+        
+        RequestOperation<ListEntitiesRequest, ListentitiesResponse> operation
+              = new ListentitiesOperation( sdkConfiguration);
 
-        return sdk.list(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.IndexGroupRequest;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1IndexgroupOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class PostApiIndexV1IndexgroupRequestBuilder {
 
     private IndexGroupRequest request;
-    private final SDKMethodInterfaces.MethodCallPostApiIndexV1Indexgroup sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PostApiIndexV1IndexgroupRequestBuilder(SDKMethodInterfaces.MethodCallPostApiIndexV1Indexgroup sdk) {
-        this.sdk = sdk;
+    public PostApiIndexV1IndexgroupRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PostApiIndexV1IndexgroupRequestBuilder request(IndexGroupRequest request) {
@@ -23,8 +27,10 @@ public class PostApiIndexV1IndexgroupRequestBuilder {
     }
 
     public PostApiIndexV1IndexgroupResponse call() throws Exception {
+        
+        RequestOperation<IndexGroupRequest, PostApiIndexV1IndexgroupResponse> operation
+              = new PostApiIndexV1IndexgroupOperation( sdkConfiguration);
 
-        return sdk.indexGroup(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

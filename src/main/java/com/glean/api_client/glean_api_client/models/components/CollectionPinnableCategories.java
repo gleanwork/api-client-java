@@ -21,7 +21,7 @@ public enum CollectionPinnableCategories {
     @JsonValue
     private final String value;
 
-    private CollectionPinnableCategories(String value) {
+    CollectionPinnableCategories(String value) {
         this.value = value;
     }
     

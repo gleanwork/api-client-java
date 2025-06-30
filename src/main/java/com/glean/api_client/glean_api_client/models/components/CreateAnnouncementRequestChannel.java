@@ -20,7 +20,7 @@ public enum CreateAnnouncementRequestChannel {
     @JsonValue
     private final String value;
 
-    private CreateAnnouncementRequestChannel(String value) {
+    CreateAnnouncementRequestChannel(String value) {
         this.value = value;
     }
     

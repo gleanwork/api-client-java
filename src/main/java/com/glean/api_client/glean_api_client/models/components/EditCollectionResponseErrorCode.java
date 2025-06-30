@@ -20,7 +20,7 @@ public enum EditCollectionResponseErrorCode {
     @JsonValue
     private final String value;
 
-    private EditCollectionResponseErrorCode(String value) {
+    EditCollectionResponseErrorCode(String value) {
         this.value = value;
     }
     

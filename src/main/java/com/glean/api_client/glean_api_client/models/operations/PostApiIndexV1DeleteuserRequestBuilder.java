@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.DeleteUserRequest;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DeleteuserOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class PostApiIndexV1DeleteuserRequestBuilder {
 
     private DeleteUserRequest request;
-    private final SDKMethodInterfaces.MethodCallPostApiIndexV1Deleteuser sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PostApiIndexV1DeleteuserRequestBuilder(SDKMethodInterfaces.MethodCallPostApiIndexV1Deleteuser sdk) {
-        this.sdk = sdk;
+    public PostApiIndexV1DeleteuserRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PostApiIndexV1DeleteuserRequestBuilder request(DeleteUserRequest request) {
@@ -23,8 +27,10 @@ public class PostApiIndexV1DeleteuserRequestBuilder {
     }
 
     public PostApiIndexV1DeleteuserResponse call() throws Exception {
+        
+        RequestOperation<DeleteUserRequest, PostApiIndexV1DeleteuserResponse> operation
+              = new PostApiIndexV1DeleteuserOperation( sdkConfiguration);
 
-        return sdk.deleteUser(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

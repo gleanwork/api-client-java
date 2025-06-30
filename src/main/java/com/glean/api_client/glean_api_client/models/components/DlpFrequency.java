@@ -23,7 +23,7 @@ public enum DlpFrequency {
     @JsonValue
     private final String value;
 
-    private DlpFrequency(String value) {
+    DlpFrequency(String value) {
         this.value = value;
     }
     

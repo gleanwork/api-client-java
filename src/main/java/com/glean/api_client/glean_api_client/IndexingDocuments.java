@@ -3,23 +3,18 @@
  */
 package com.glean.api_client.glean_api_client;
 
-import com.fasterxml.jackson.core.type.TypeReference;
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
 import com.glean.api_client.glean_api_client.models.components.BulkIndexDocumentsRequest;
 import com.glean.api_client.glean_api_client.models.components.CheckDocumentAccessRequest;
-import com.glean.api_client.glean_api_client.models.components.CheckDocumentAccessResponse;
 import com.glean.api_client.glean_api_client.models.components.DebugDocumentRequest;
-import com.glean.api_client.glean_api_client.models.components.DebugDocumentResponse;
 import com.glean.api_client.glean_api_client.models.components.DebugDocumentsRequest;
-import com.glean.api_client.glean_api_client.models.components.DebugDocumentsResponse;
 import com.glean.api_client.glean_api_client.models.components.DeleteDocumentRequest;
 import com.glean.api_client.glean_api_client.models.components.GetDocumentCountRequest;
-import com.glean.api_client.glean_api_client.models.components.GetDocumentCountResponse;
 import com.glean.api_client.glean_api_client.models.components.GetDocumentStatusRequest;
-import com.glean.api_client.glean_api_client.models.components.GetDocumentStatusResponse;
 import com.glean.api_client.glean_api_client.models.components.IndexDocumentRequest;
 import com.glean.api_client.glean_api_client.models.components.IndexDocumentsRequest;
 import com.glean.api_client.glean_api_client.models.components.ProcessAllDocumentsRequest;
-import com.glean.api_client.glean_api_client.models.errors.APIException;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1BulkindexdocumentsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1BulkindexdocumentsResponse;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1CheckdocumentaccessRequestBuilder;
@@ -42,37 +37,24 @@ import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1Ind
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1IndexdocumentsResponse;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1ProcessalldocumentsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1ProcessalldocumentsResponse;
-import com.glean.api_client.glean_api_client.models.operations.SDKMethodInterfaces.*;
-import com.glean.api_client.glean_api_client.utils.HTTPClient;
-import com.glean.api_client.glean_api_client.utils.HTTPRequest;
-import com.glean.api_client.glean_api_client.utils.Hook.AfterErrorContextImpl;
-import com.glean.api_client.glean_api_client.utils.Hook.AfterSuccessContextImpl;
-import com.glean.api_client.glean_api_client.utils.Hook.BeforeRequestContextImpl;
-import com.glean.api_client.glean_api_client.utils.SerializedBody;
-import com.glean.api_client.glean_api_client.utils.Utils.JsonShape;
-import com.glean.api_client.glean_api_client.utils.Utils;
-import java.io.InputStream;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1BulkindexdocumentsOperation;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1CheckdocumentaccessOperation;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DebugDatasourceDocumentOperation;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DebugDatasourceDocumentsOperation;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DeletedocumentOperation;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1GetdocumentcountOperation;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1GetdocumentstatusOperation;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1IndexdocumentOperation;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1IndexdocumentsOperation;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1ProcessalldocumentsOperation;
 import java.lang.Deprecated;
 import java.lang.Exception;
-import java.lang.Object;
 import java.lang.String;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 
-public class IndexingDocuments implements
-            MethodCallPostApiIndexV1Indexdocument,
-            MethodCallPostApiIndexV1Indexdocuments,
-            MethodCallPostApiIndexV1Bulkindexdocuments,
-            MethodCallPostApiIndexV1Processalldocuments,
-            MethodCallPostApiIndexV1Deletedocument,
-            MethodCallPostApiIndexV1DebugDatasourceDocument,
-            MethodCallPostApiIndexV1DebugDatasourceDocuments,
-            MethodCallPostApiIndexV1Checkdocumentaccess,
-            MethodCallPostApiIndexV1Getdocumentstatus,
-            MethodCallPostApiIndexV1Getdocumentcount {
 
+public class IndexingDocuments {
     private final SDKConfiguration sdkConfiguration;
 
     IndexingDocuments(SDKConfiguration sdkConfiguration) {
@@ -87,7 +69,7 @@ public class IndexingDocuments implements
      * @return The call builder
      */
     public PostApiIndexV1IndexdocumentRequestBuilder addOrUpdate() {
-        return new PostApiIndexV1IndexdocumentRequestBuilder(this);
+        return new PostApiIndexV1IndexdocumentRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -95,125 +77,15 @@ public class IndexingDocuments implements
      * 
      * <p>Adds a document to the index or updates an existing document.
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public PostApiIndexV1IndexdocumentResponse addOrUpdate(
             IndexDocumentRequest request) throws Exception {
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/api/index/v1/indexdocument");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<IndexDocumentRequest>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "request",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "*/*")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      this.sdkConfiguration,
-                      _baseUrl,
-                      "post_/api/index/v1/indexdocument", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "409", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/indexdocument",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/indexdocument",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/indexdocument",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        PostApiIndexV1IndexdocumentResponse.Builder _resBuilder = 
-            PostApiIndexV1IndexdocumentResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        PostApiIndexV1IndexdocumentResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            // no content 
-            return _res;
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "409", "429", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<IndexDocumentRequest, PostApiIndexV1IndexdocumentResponse> operation
+              = new PostApiIndexV1IndexdocumentOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -225,7 +97,7 @@ public class IndexingDocuments implements
      * @return The call builder
      */
     public PostApiIndexV1IndexdocumentsRequestBuilder index() {
-        return new PostApiIndexV1IndexdocumentsRequestBuilder(this);
+        return new PostApiIndexV1IndexdocumentsRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -233,125 +105,15 @@ public class IndexingDocuments implements
      * 
      * <p>Adds or updates multiple documents in the index. Please refer to the [bulk indexing](https://developers.glean.com/docs/indexing_api_bulk_indexing/#choosing-indexdocuments-vs-bulkindexdocuments) documentation for an explanation of when to use this endpoint.
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public PostApiIndexV1IndexdocumentsResponse index(
             IndexDocumentsRequest request) throws Exception {
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/api/index/v1/indexdocuments");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<IndexDocumentsRequest>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "request",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "*/*")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      this.sdkConfiguration,
-                      _baseUrl,
-                      "post_/api/index/v1/indexdocuments", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "409", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/indexdocuments",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/indexdocuments",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/indexdocuments",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        PostApiIndexV1IndexdocumentsResponse.Builder _resBuilder = 
-            PostApiIndexV1IndexdocumentsResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        PostApiIndexV1IndexdocumentsResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            // no content 
-            return _res;
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "409", "429", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<IndexDocumentsRequest, PostApiIndexV1IndexdocumentsResponse> operation
+              = new PostApiIndexV1IndexdocumentsOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -363,7 +125,7 @@ public class IndexingDocuments implements
      * @return The call builder
      */
     public PostApiIndexV1BulkindexdocumentsRequestBuilder bulkIndex() {
-        return new PostApiIndexV1BulkindexdocumentsRequestBuilder(this);
+        return new PostApiIndexV1BulkindexdocumentsRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -371,125 +133,15 @@ public class IndexingDocuments implements
      * 
      * <p>Replaces the documents in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/docs/indexing_api_bulk_indexing/#bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public PostApiIndexV1BulkindexdocumentsResponse bulkIndex(
             BulkIndexDocumentsRequest request) throws Exception {
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/api/index/v1/bulkindexdocuments");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<BulkIndexDocumentsRequest>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "request",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "*/*")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      this.sdkConfiguration,
-                      _baseUrl,
-                      "post_/api/index/v1/bulkindexdocuments", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "409", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/bulkindexdocuments",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/bulkindexdocuments",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/bulkindexdocuments",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        PostApiIndexV1BulkindexdocumentsResponse.Builder _resBuilder = 
-            PostApiIndexV1BulkindexdocumentsResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        PostApiIndexV1BulkindexdocumentsResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            // no content 
-            return _res;
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "409", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<BulkIndexDocumentsRequest, PostApiIndexV1BulkindexdocumentsResponse> operation
+              = new PostApiIndexV1BulkindexdocumentsOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -511,7 +163,7 @@ public class IndexingDocuments implements
      * @return The call builder
      */
     public PostApiIndexV1ProcessalldocumentsRequestBuilder processAll() {
-        return new PostApiIndexV1ProcessalldocumentsRequestBuilder(this);
+        return new PostApiIndexV1ProcessalldocumentsRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -535,7 +187,7 @@ public class IndexingDocuments implements
     public PostApiIndexV1ProcessalldocumentsResponse processAllDirect() throws Exception {
         return processAll(Optional.empty());
     }
-    
+
     /**
      * Schedules the processing of uploaded documents
      * 
@@ -551,122 +203,15 @@ public class IndexingDocuments implements
      * 
      * <p>For more frequent document processing, contact Glean support.
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public PostApiIndexV1ProcessalldocumentsResponse processAll(
             Optional<? extends ProcessAllDocumentsRequest> request) throws Exception {
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/api/index/v1/processalldocuments");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Optional<? extends ProcessAllDocumentsRequest>>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "request",
-                "json",
-                false);
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "*/*")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      this.sdkConfiguration,
-                      _baseUrl,
-                      "post_/api/index/v1/processalldocuments", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/processalldocuments",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/processalldocuments",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/processalldocuments",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        PostApiIndexV1ProcessalldocumentsResponse.Builder _resBuilder = 
-            PostApiIndexV1ProcessalldocumentsResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        PostApiIndexV1ProcessalldocumentsResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            // no content 
-            return _res;
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<Optional<? extends ProcessAllDocumentsRequest>, PostApiIndexV1ProcessalldocumentsResponse> operation
+              = new PostApiIndexV1ProcessalldocumentsOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -678,7 +223,7 @@ public class IndexingDocuments implements
      * @return The call builder
      */
     public PostApiIndexV1DeletedocumentRequestBuilder delete() {
-        return new PostApiIndexV1DeletedocumentRequestBuilder(this);
+        return new PostApiIndexV1DeletedocumentRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -686,125 +231,15 @@ public class IndexingDocuments implements
      * 
      * <p>Deletes the specified document from the index. Succeeds if document is not present.
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public PostApiIndexV1DeletedocumentResponse delete(
             DeleteDocumentRequest request) throws Exception {
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/api/index/v1/deletedocument");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<DeleteDocumentRequest>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "request",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "*/*")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      this.sdkConfiguration,
-                      _baseUrl,
-                      "post_/api/index/v1/deletedocument", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "409", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/deletedocument",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/deletedocument",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/deletedocument",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        PostApiIndexV1DeletedocumentResponse.Builder _resBuilder = 
-            PostApiIndexV1DeletedocumentResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        PostApiIndexV1DeletedocumentResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            // no content 
-            return _res;
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "409", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<DeleteDocumentRequest, PostApiIndexV1DeletedocumentResponse> operation
+              = new PostApiIndexV1DeletedocumentOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -818,7 +253,7 @@ public class IndexingDocuments implements
      * @return The call builder
      */
     public PostApiIndexV1DebugDatasourceDocumentRequestBuilder debug() {
-        return new PostApiIndexV1DebugDatasourceDocumentRequestBuilder(this);
+        return new PostApiIndexV1DebugDatasourceDocumentRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -842,133 +277,9 @@ public class IndexingDocuments implements
                 .datasource(datasource)
                 .debugDocumentRequest(debugDocumentRequest)
                 .build();
-        
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                PostApiIndexV1DebugDatasourceDocumentRequest.class,
-                _baseUrl,
-                "/api/index/v1/debug/{datasource}/document",
-                request, null);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "debugDocumentRequest",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json; charset=UTF-8")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      this.sdkConfiguration,
-                      _baseUrl,
-                      "post_/api/index/v1/debug/{datasource}/document", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/debug/{datasource}/document",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/debug/{datasource}/document",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/debug/{datasource}/document",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        PostApiIndexV1DebugDatasourceDocumentResponse.Builder _resBuilder = 
-            PostApiIndexV1DebugDatasourceDocumentResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        PostApiIndexV1DebugDatasourceDocumentResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json; charset=UTF-8")) {
-                DebugDocumentResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<DebugDocumentResponse>() {});
-                _res.withDebugDocumentResponse(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<PostApiIndexV1DebugDatasourceDocumentRequest, PostApiIndexV1DebugDatasourceDocumentResponse> operation
+              = new PostApiIndexV1DebugDatasourceDocumentOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -982,7 +293,7 @@ public class IndexingDocuments implements
      * @return The call builder
      */
     public PostApiIndexV1DebugDatasourceDocumentsRequestBuilder debugMany() {
-        return new PostApiIndexV1DebugDatasourceDocumentsRequestBuilder(this);
+        return new PostApiIndexV1DebugDatasourceDocumentsRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -1006,133 +317,9 @@ public class IndexingDocuments implements
                 .datasource(datasource)
                 .debugDocumentsRequest(debugDocumentsRequest)
                 .build();
-        
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                PostApiIndexV1DebugDatasourceDocumentsRequest.class,
-                _baseUrl,
-                "/api/index/v1/debug/{datasource}/documents",
-                request, null);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Object>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "debugDocumentsRequest",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json; charset=UTF-8")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      this.sdkConfiguration,
-                      _baseUrl,
-                      "post_/api/index/v1/debug/{datasource}/documents", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/debug/{datasource}/documents",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/debug/{datasource}/documents",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/debug/{datasource}/documents",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        PostApiIndexV1DebugDatasourceDocumentsResponse.Builder _resBuilder = 
-            PostApiIndexV1DebugDatasourceDocumentsResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        PostApiIndexV1DebugDatasourceDocumentsResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json; charset=UTF-8")) {
-                DebugDocumentsResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<DebugDocumentsResponse>() {});
-                _res.withDebugDocumentsResponse(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<PostApiIndexV1DebugDatasourceDocumentsRequest, PostApiIndexV1DebugDatasourceDocumentsResponse> operation
+              = new PostApiIndexV1DebugDatasourceDocumentsOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -1146,7 +333,7 @@ public class IndexingDocuments implements
      * @return The call builder
      */
     public PostApiIndexV1CheckdocumentaccessRequestBuilder checkAccess() {
-        return new PostApiIndexV1CheckdocumentaccessRequestBuilder(this);
+        return new PostApiIndexV1CheckdocumentaccessRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -1156,136 +343,15 @@ public class IndexingDocuments implements
      * 
      * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/docs/indexing_api/indexing_api_troubleshooting/) for more information.
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public PostApiIndexV1CheckdocumentaccessResponse checkAccess(
             CheckDocumentAccessRequest request) throws Exception {
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/api/index/v1/checkdocumentaccess");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<CheckDocumentAccessRequest>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "request",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      this.sdkConfiguration,
-                      _baseUrl,
-                      "post_/api/index/v1/checkdocumentaccess", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/checkdocumentaccess",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/checkdocumentaccess",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/checkdocumentaccess",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        PostApiIndexV1CheckdocumentaccessResponse.Builder _resBuilder = 
-            PostApiIndexV1CheckdocumentaccessResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        PostApiIndexV1CheckdocumentaccessResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                CheckDocumentAccessResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<CheckDocumentAccessResponse>() {});
-                _res.withCheckDocumentAccessResponse(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<CheckDocumentAccessRequest, PostApiIndexV1CheckdocumentaccessResponse> operation
+              = new PostApiIndexV1CheckdocumentaccessOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -1301,7 +367,7 @@ public class IndexingDocuments implements
      */
     @Deprecated
     public PostApiIndexV1GetdocumentstatusRequestBuilder status() {
-        return new PostApiIndexV1GetdocumentstatusRequestBuilder(this);
+        return new PostApiIndexV1GetdocumentstatusRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -1311,7 +377,7 @@ public class IndexingDocuments implements
      * 
      * <p>Tip: Use [/debug/{datasource}/document](https://developers.glean.com/docs/indexing_api/indexing_api_troubleshooting/#debug-datasource-document) for richer information.
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -1319,130 +385,9 @@ public class IndexingDocuments implements
     @Deprecated
     public PostApiIndexV1GetdocumentstatusResponse status(
             GetDocumentStatusRequest request) throws Exception {
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/api/index/v1/getdocumentstatus");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<GetDocumentStatusRequest>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "request",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      this.sdkConfiguration,
-                      _baseUrl,
-                      "post_/api/index/v1/getdocumentstatus", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/getdocumentstatus",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/getdocumentstatus",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/getdocumentstatus",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        PostApiIndexV1GetdocumentstatusResponse.Builder _resBuilder = 
-            PostApiIndexV1GetdocumentstatusResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        PostApiIndexV1GetdocumentstatusResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                GetDocumentStatusResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<GetDocumentStatusResponse>() {});
-                _res.withGetDocumentStatusResponse(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<GetDocumentStatusRequest, PostApiIndexV1GetdocumentstatusResponse> operation
+              = new PostApiIndexV1GetdocumentstatusOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -1458,7 +403,7 @@ public class IndexingDocuments implements
      */
     @Deprecated
     public PostApiIndexV1GetdocumentcountRequestBuilder count() {
-        return new PostApiIndexV1GetdocumentcountRequestBuilder(this);
+        return new PostApiIndexV1GetdocumentcountRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -1468,7 +413,7 @@ public class IndexingDocuments implements
      * 
      * <p>Tip: Use [/debug/{datasource}/status](https://developers.glean.com/docs/indexing_api/indexing_api_troubleshooting/#debug-datasource-status) for richer information.
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -1476,130 +421,9 @@ public class IndexingDocuments implements
     @Deprecated
     public PostApiIndexV1GetdocumentcountResponse count(
             GetDocumentCountRequest request) throws Exception {
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/api/index/v1/getdocumentcount");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<GetDocumentCountRequest>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "request",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      this.sdkConfiguration,
-                      _baseUrl,
-                      "post_/api/index/v1/getdocumentcount", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "409", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/getdocumentcount",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/getdocumentcount",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/getdocumentcount",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        PostApiIndexV1GetdocumentcountResponse.Builder _resBuilder = 
-            PostApiIndexV1GetdocumentcountResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        PostApiIndexV1GetdocumentcountResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                GetDocumentCountResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<GetDocumentCountResponse>() {});
-                _res.withGetDocumentCountResponse(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "409", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<GetDocumentCountRequest, PostApiIndexV1GetdocumentcountResponse> operation
+              = new PostApiIndexV1GetdocumentcountOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 }

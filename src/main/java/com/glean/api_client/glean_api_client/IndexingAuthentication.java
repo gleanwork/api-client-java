@@ -3,29 +3,17 @@
  */
 package com.glean.api_client.glean_api_client;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.glean.api_client.glean_api_client.models.components.RotateTokenResponse;
-import com.glean.api_client.glean_api_client.models.errors.APIException;
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestlessOperation;
+
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1RotatetokenRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1RotatetokenResponse;
-import com.glean.api_client.glean_api_client.models.operations.SDKMethodInterfaces.*;
-import com.glean.api_client.glean_api_client.utils.HTTPClient;
-import com.glean.api_client.glean_api_client.utils.HTTPRequest;
-import com.glean.api_client.glean_api_client.utils.Hook.AfterErrorContextImpl;
-import com.glean.api_client.glean_api_client.utils.Hook.AfterSuccessContextImpl;
-import com.glean.api_client.glean_api_client.utils.Hook.BeforeRequestContextImpl;
-import com.glean.api_client.glean_api_client.utils.Utils;
-import java.io.InputStream;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1RotatetokenOperation;
 import java.lang.Exception;
-import java.lang.String;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 
-public class IndexingAuthentication implements
-            MethodCallPostApiIndexV1Rotatetoken {
 
+public class IndexingAuthentication {
     private final SDKConfiguration sdkConfiguration;
 
     IndexingAuthentication(SDKConfiguration sdkConfiguration) {
@@ -40,7 +28,7 @@ public class IndexingAuthentication implements
      * @return The call builder
      */
     public PostApiIndexV1RotatetokenRequestBuilder rotateToken() {
-        return new PostApiIndexV1RotatetokenRequestBuilder(this);
+        return new PostApiIndexV1RotatetokenRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -52,117 +40,9 @@ public class IndexingAuthentication implements
      * @throws Exception if the API call fails
      */
     public PostApiIndexV1RotatetokenResponse rotateTokenDirect() throws Exception {
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/api/index/v1/rotatetoken");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      this.sdkConfiguration,
-                      _baseUrl,
-                      "post_/api/index/v1/rotatetoken", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/rotatetoken",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/rotatetoken",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "post_/api/index/v1/rotatetoken",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        PostApiIndexV1RotatetokenResponse.Builder _resBuilder = 
-            PostApiIndexV1RotatetokenResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        PostApiIndexV1RotatetokenResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                RotateTokenResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<RotateTokenResponse>() {});
-                _res.withRotateTokenResponse(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestlessOperation<PostApiIndexV1RotatetokenResponse> operation
+            = new PostApiIndexV1RotatetokenOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest());
     }
 
 }

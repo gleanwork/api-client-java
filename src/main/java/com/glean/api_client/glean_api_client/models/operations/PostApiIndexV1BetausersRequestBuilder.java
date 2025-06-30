@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.GreenlistUsersRequest;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1BetausersOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class PostApiIndexV1BetausersRequestBuilder {
 
     private GreenlistUsersRequest request;
-    private final SDKMethodInterfaces.MethodCallPostApiIndexV1Betausers sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PostApiIndexV1BetausersRequestBuilder(SDKMethodInterfaces.MethodCallPostApiIndexV1Betausers sdk) {
-        this.sdk = sdk;
+    public PostApiIndexV1BetausersRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PostApiIndexV1BetausersRequestBuilder request(GreenlistUsersRequest request) {
@@ -23,8 +27,10 @@ public class PostApiIndexV1BetausersRequestBuilder {
     }
 
     public PostApiIndexV1BetausersResponse call() throws Exception {
+        
+        RequestOperation<GreenlistUsersRequest, PostApiIndexV1BetausersResponse> operation
+              = new PostApiIndexV1BetausersOperation( sdkConfiguration);
 
-        return sdk.authorizeBetaUsers(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

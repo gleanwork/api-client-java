@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.SummarizeRequest;
+import com.glean.api_client.glean_api_client.operations.SummarizeOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class SummarizeRequestBuilder {
 
     private SummarizeRequest request;
-    private final SDKMethodInterfaces.MethodCallSummarize sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public SummarizeRequestBuilder(SDKMethodInterfaces.MethodCallSummarize sdk) {
-        this.sdk = sdk;
+    public SummarizeRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public SummarizeRequestBuilder request(SummarizeRequest request) {
@@ -23,8 +27,10 @@ public class SummarizeRequestBuilder {
     }
 
     public SummarizeResponse call() throws Exception {
+        
+        RequestOperation<SummarizeRequest, SummarizeResponse> operation
+              = new SummarizeOperation( sdkConfiguration);
 
-        return sdk.summarize(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

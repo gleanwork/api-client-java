@@ -23,7 +23,7 @@ public enum ToolParameterType {
     @JsonValue
     private final String value;
 
-    private ToolParameterType(String value) {
+    ToolParameterType(String value) {
         this.value = value;
     }
     

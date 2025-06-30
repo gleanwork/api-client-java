@@ -32,7 +32,7 @@ public enum Relation {
     @JsonValue
     private final String value;
 
-    private Relation(String value) {
+    Relation(String value) {
         this.value = value;
     }
     

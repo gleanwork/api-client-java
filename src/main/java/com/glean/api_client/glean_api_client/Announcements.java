@@ -3,41 +3,26 @@
  */
 package com.glean.api_client.glean_api_client;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.glean.api_client.glean_api_client.models.components.Announcement;
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
 import com.glean.api_client.glean_api_client.models.components.CreateAnnouncementRequest;
 import com.glean.api_client.glean_api_client.models.components.DeleteAnnouncementRequest;
 import com.glean.api_client.glean_api_client.models.components.UpdateAnnouncementRequest;
-import com.glean.api_client.glean_api_client.models.errors.APIException;
 import com.glean.api_client.glean_api_client.models.operations.CreateannouncementRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.CreateannouncementResponse;
 import com.glean.api_client.glean_api_client.models.operations.DeleteannouncementRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.DeleteannouncementResponse;
-import com.glean.api_client.glean_api_client.models.operations.SDKMethodInterfaces.*;
 import com.glean.api_client.glean_api_client.models.operations.UpdateannouncementRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.UpdateannouncementResponse;
-import com.glean.api_client.glean_api_client.utils.HTTPClient;
-import com.glean.api_client.glean_api_client.utils.HTTPRequest;
-import com.glean.api_client.glean_api_client.utils.Hook.AfterErrorContextImpl;
-import com.glean.api_client.glean_api_client.utils.Hook.AfterSuccessContextImpl;
-import com.glean.api_client.glean_api_client.utils.Hook.BeforeRequestContextImpl;
-import com.glean.api_client.glean_api_client.utils.SerializedBody;
-import com.glean.api_client.glean_api_client.utils.Utils.JsonShape;
-import com.glean.api_client.glean_api_client.utils.Utils;
-import java.io.InputStream;
+import com.glean.api_client.glean_api_client.operations.CreateannouncementOperation;
+import com.glean.api_client.glean_api_client.operations.DeleteannouncementOperation;
+import com.glean.api_client.glean_api_client.operations.UpdateannouncementOperation;
 import java.lang.Exception;
-import java.lang.Object;
-import java.lang.String;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 
-public class Announcements implements
-            MethodCallCreateannouncement,
-            MethodCallDeleteannouncement,
-            MethodCallUpdateannouncement {
 
+public class Announcements {
     private final SDKConfiguration sdkConfiguration;
 
     Announcements(SDKConfiguration sdkConfiguration) {
@@ -52,7 +37,7 @@ public class Announcements implements
      * @return The call builder
      */
     public CreateannouncementRequestBuilder create() {
-        return new CreateannouncementRequestBuilder(this);
+        return new CreateannouncementRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -60,136 +45,15 @@ public class Announcements implements
      * 
      * <p>Create a textual announcement visible to some set of users based on department and location.
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateannouncementResponse create(
             CreateAnnouncementRequest request) throws Exception {
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/rest/api/v1/createannouncement");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<CreateAnnouncementRequest>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "request",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      this.sdkConfiguration,
-                      _baseUrl,
-                      "createannouncement", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "createannouncement",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "createannouncement",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "createannouncement",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        CreateannouncementResponse.Builder _resBuilder = 
-            CreateannouncementResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        CreateannouncementResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                Announcement _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Announcement>() {});
-                _res.withAnnouncement(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<CreateAnnouncementRequest, CreateannouncementResponse> operation
+              = new CreateannouncementOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -201,7 +65,7 @@ public class Announcements implements
      * @return The call builder
      */
     public DeleteannouncementRequestBuilder delete() {
-        return new DeleteannouncementRequestBuilder(this);
+        return new DeleteannouncementRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -209,125 +73,15 @@ public class Announcements implements
      * 
      * <p>Delete an existing user-generated announcement.
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeleteannouncementResponse delete(
             DeleteAnnouncementRequest request) throws Exception {
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/rest/api/v1/deleteannouncement");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<DeleteAnnouncementRequest>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "request",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "*/*")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      this.sdkConfiguration,
-                      _baseUrl,
-                      "deleteannouncement", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "deleteannouncement",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "deleteannouncement",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "deleteannouncement",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        DeleteannouncementResponse.Builder _resBuilder = 
-            DeleteannouncementResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        DeleteannouncementResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            // no content 
-            return _res;
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<DeleteAnnouncementRequest, DeleteannouncementResponse> operation
+              = new DeleteannouncementOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -339,7 +93,7 @@ public class Announcements implements
      * @return The call builder
      */
     public UpdateannouncementRequestBuilder update() {
-        return new UpdateannouncementRequestBuilder(this);
+        return new UpdateannouncementRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -347,136 +101,15 @@ public class Announcements implements
      * 
      * <p>Update a textual announcement visible to some set of users based on department and location.
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public UpdateannouncementResponse update(
             UpdateAnnouncementRequest request) throws Exception {
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/rest/api/v1/updateannouncement");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<UpdateAnnouncementRequest>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "request",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      this.sdkConfiguration,
-                      _baseUrl,
-                      "updateannouncement", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "updateannouncement",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "updateannouncement",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "updateannouncement",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        UpdateannouncementResponse.Builder _resBuilder = 
-            UpdateannouncementResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        UpdateannouncementResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                Announcement _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Announcement>() {});
-                _res.withAnnouncement(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<UpdateAnnouncementRequest, UpdateannouncementResponse> operation
+              = new UpdateannouncementOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 }

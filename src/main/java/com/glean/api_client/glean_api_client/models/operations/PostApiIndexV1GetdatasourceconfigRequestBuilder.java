@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.GetDatasourceConfigRequest;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1GetdatasourceconfigOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class PostApiIndexV1GetdatasourceconfigRequestBuilder {
 
     private GetDatasourceConfigRequest request;
-    private final SDKMethodInterfaces.MethodCallPostApiIndexV1Getdatasourceconfig sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PostApiIndexV1GetdatasourceconfigRequestBuilder(SDKMethodInterfaces.MethodCallPostApiIndexV1Getdatasourceconfig sdk) {
-        this.sdk = sdk;
+    public PostApiIndexV1GetdatasourceconfigRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PostApiIndexV1GetdatasourceconfigRequestBuilder request(GetDatasourceConfigRequest request) {
@@ -23,8 +27,10 @@ public class PostApiIndexV1GetdatasourceconfigRequestBuilder {
     }
 
     public PostApiIndexV1GetdatasourceconfigResponse call() throws Exception {
+        
+        RequestOperation<GetDatasourceConfigRequest, PostApiIndexV1GetdatasourceconfigResponse> operation
+              = new PostApiIndexV1GetdatasourceconfigOperation( sdkConfiguration);
 
-        return sdk.retrieveConfig(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

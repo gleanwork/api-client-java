@@ -3,17 +3,13 @@
  */
 package com.glean.api_client.glean_api_client;
 
-import com.fasterxml.jackson.core.type.TypeReference;
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
 import com.glean.api_client.glean_api_client.models.components.CreateShortcutRequest;
-import com.glean.api_client.glean_api_client.models.components.CreateShortcutResponse;
 import com.glean.api_client.glean_api_client.models.components.DeleteShortcutRequest;
 import com.glean.api_client.glean_api_client.models.components.GetShortcutRequestUnion;
-import com.glean.api_client.glean_api_client.models.components.GetShortcutResponse;
 import com.glean.api_client.glean_api_client.models.components.ListShortcutsPaginatedRequest;
-import com.glean.api_client.glean_api_client.models.components.ListShortcutsPaginatedResponse;
 import com.glean.api_client.glean_api_client.models.components.UpdateShortcutRequest;
-import com.glean.api_client.glean_api_client.models.components.UpdateShortcutResponse;
-import com.glean.api_client.glean_api_client.models.errors.APIException;
 import com.glean.api_client.glean_api_client.models.operations.CreateshortcutRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.CreateshortcutResponse;
 import com.glean.api_client.glean_api_client.models.operations.DeleteshortcutRequestBuilder;
@@ -22,33 +18,19 @@ import com.glean.api_client.glean_api_client.models.operations.GetshortcutReques
 import com.glean.api_client.glean_api_client.models.operations.GetshortcutResponse;
 import com.glean.api_client.glean_api_client.models.operations.ListshortcutsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.ListshortcutsResponse;
-import com.glean.api_client.glean_api_client.models.operations.SDKMethodInterfaces.*;
 import com.glean.api_client.glean_api_client.models.operations.UpdateshortcutRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.UpdateshortcutResponse;
-import com.glean.api_client.glean_api_client.utils.HTTPClient;
-import com.glean.api_client.glean_api_client.utils.HTTPRequest;
-import com.glean.api_client.glean_api_client.utils.Hook.AfterErrorContextImpl;
-import com.glean.api_client.glean_api_client.utils.Hook.AfterSuccessContextImpl;
-import com.glean.api_client.glean_api_client.utils.Hook.BeforeRequestContextImpl;
-import com.glean.api_client.glean_api_client.utils.SerializedBody;
-import com.glean.api_client.glean_api_client.utils.Utils.JsonShape;
-import com.glean.api_client.glean_api_client.utils.Utils;
-import java.io.InputStream;
+import com.glean.api_client.glean_api_client.operations.CreateshortcutOperation;
+import com.glean.api_client.glean_api_client.operations.DeleteshortcutOperation;
+import com.glean.api_client.glean_api_client.operations.GetshortcutOperation;
+import com.glean.api_client.glean_api_client.operations.ListshortcutsOperation;
+import com.glean.api_client.glean_api_client.operations.UpdateshortcutOperation;
 import java.lang.Exception;
-import java.lang.Object;
-import java.lang.String;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 
-public class ClientShortcuts implements
-            MethodCallCreateshortcut,
-            MethodCallDeleteshortcut,
-            MethodCallGetshortcut,
-            MethodCallListshortcuts,
-            MethodCallUpdateshortcut {
 
+public class ClientShortcuts {
     private final SDKConfiguration sdkConfiguration;
 
     ClientShortcuts(SDKConfiguration sdkConfiguration) {
@@ -63,7 +45,7 @@ public class ClientShortcuts implements
      * @return The call builder
      */
     public CreateshortcutRequestBuilder create() {
-        return new CreateshortcutRequestBuilder(this);
+        return new CreateshortcutRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -71,136 +53,15 @@ public class ClientShortcuts implements
      * 
      * <p>Create a user-generated shortcut that contains an alias and destination URL.
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateshortcutResponse create(
             CreateShortcutRequest request) throws Exception {
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/rest/api/v1/createshortcut");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<CreateShortcutRequest>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "request",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      this.sdkConfiguration,
-                      _baseUrl,
-                      "createshortcut", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "createshortcut",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "createshortcut",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "createshortcut",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        CreateshortcutResponse.Builder _resBuilder = 
-            CreateshortcutResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        CreateshortcutResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                CreateShortcutResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<CreateShortcutResponse>() {});
-                _res.withCreateShortcutResponse(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<CreateShortcutRequest, CreateshortcutResponse> operation
+              = new CreateshortcutOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -212,7 +73,7 @@ public class ClientShortcuts implements
      * @return The call builder
      */
     public DeleteshortcutRequestBuilder delete() {
-        return new DeleteshortcutRequestBuilder(this);
+        return new DeleteshortcutRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -220,125 +81,15 @@ public class ClientShortcuts implements
      * 
      * <p>Delete an existing user-generated shortcut.
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeleteshortcutResponse delete(
             DeleteShortcutRequest request) throws Exception {
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/rest/api/v1/deleteshortcut");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<DeleteShortcutRequest>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "request",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "*/*")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      this.sdkConfiguration,
-                      _baseUrl,
-                      "deleteshortcut", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "deleteshortcut",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "deleteshortcut",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "deleteshortcut",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        DeleteshortcutResponse.Builder _resBuilder = 
-            DeleteshortcutResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        DeleteshortcutResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            // no content 
-            return _res;
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<DeleteShortcutRequest, DeleteshortcutResponse> operation
+              = new DeleteshortcutOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -350,7 +101,7 @@ public class ClientShortcuts implements
      * @return The call builder
      */
     public GetshortcutRequestBuilder retrieve() {
-        return new GetshortcutRequestBuilder(this);
+        return new GetshortcutRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -358,136 +109,15 @@ public class ClientShortcuts implements
      * 
      * <p>Read a particular shortcut's details given its ID.
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetshortcutResponse retrieve(
             GetShortcutRequestUnion request) throws Exception {
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/rest/api/v1/getshortcut");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<GetShortcutRequestUnion>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "request",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      this.sdkConfiguration,
-                      _baseUrl,
-                      "getshortcut", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "getshortcut",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "getshortcut",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "getshortcut",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        GetshortcutResponse.Builder _resBuilder = 
-            GetshortcutResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        GetshortcutResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                GetShortcutResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<GetShortcutResponse>() {});
-                _res.withGetShortcutResponse(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<GetShortcutRequestUnion, GetshortcutResponse> operation
+              = new GetshortcutOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -499,7 +129,7 @@ public class ClientShortcuts implements
      * @return The call builder
      */
     public ListshortcutsRequestBuilder list() {
-        return new ListshortcutsRequestBuilder(this);
+        return new ListshortcutsRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -507,136 +137,15 @@ public class ClientShortcuts implements
      * 
      * <p>List shortcuts editable/owned by the currently authenticated user.
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListshortcutsResponse list(
             ListShortcutsPaginatedRequest request) throws Exception {
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/rest/api/v1/listshortcuts");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<ListShortcutsPaginatedRequest>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "request",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      this.sdkConfiguration,
-                      _baseUrl,
-                      "listshortcuts", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "listshortcuts",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "listshortcuts",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "listshortcuts",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        ListshortcutsResponse.Builder _resBuilder = 
-            ListshortcutsResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        ListshortcutsResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ListShortcutsPaginatedResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ListShortcutsPaginatedResponse>() {});
-                _res.withListShortcutsPaginatedResponse(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<ListShortcutsPaginatedRequest, ListshortcutsResponse> operation
+              = new ListshortcutsOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -648,7 +157,7 @@ public class ClientShortcuts implements
      * @return The call builder
      */
     public UpdateshortcutRequestBuilder update() {
-        return new UpdateshortcutRequestBuilder(this);
+        return new UpdateshortcutRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -656,136 +165,15 @@ public class ClientShortcuts implements
      * 
      * <p>Updates the shortcut with the given ID.
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public UpdateshortcutResponse update(
             UpdateShortcutRequest request) throws Exception {
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/rest/api/v1/updateshortcut");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<UpdateShortcutRequest>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "request",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      this.sdkConfiguration,
-                      _baseUrl,
-                      "updateshortcut", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "updateshortcut",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "updateshortcut",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "updateshortcut",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        UpdateshortcutResponse.Builder _resBuilder = 
-            UpdateshortcutResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        UpdateshortcutResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                UpdateShortcutResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<UpdateShortcutResponse>() {});
-                _res.withUpdateShortcutResponse(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<UpdateShortcutRequest, UpdateshortcutResponse> operation
+              = new UpdateshortcutOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 }

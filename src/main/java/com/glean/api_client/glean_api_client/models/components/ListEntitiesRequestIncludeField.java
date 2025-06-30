@@ -22,7 +22,7 @@ public enum ListEntitiesRequestIncludeField {
     @JsonValue
     private final String value;
 
-    private ListEntitiesRequestIncludeField(String value) {
+    ListEntitiesRequestIncludeField(String value) {
         this.value = value;
     }
     

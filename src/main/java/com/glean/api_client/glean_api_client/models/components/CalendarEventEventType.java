@@ -20,7 +20,7 @@ public enum CalendarEventEventType {
     @JsonValue
     private final String value;
 
-    private CalendarEventEventType(String value) {
+    CalendarEventEventType(String value) {
         this.value = value;
     }
     

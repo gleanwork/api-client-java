@@ -20,7 +20,7 @@ public enum AnonymousEventEventType {
     @JsonValue
     private final String value;
 
-    private AnonymousEventEventType(String value) {
+    AnonymousEventEventType(String value) {
         this.value = value;
     }
     

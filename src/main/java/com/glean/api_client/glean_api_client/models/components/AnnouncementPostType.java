@@ -20,7 +20,7 @@ public enum AnnouncementPostType {
     @JsonValue
     private final String value;
 
-    private AnnouncementPostType(String value) {
+    AnnouncementPostType(String value) {
         this.value = value;
     }
     

@@ -17,7 +17,7 @@ public enum TextRangeType {
     @JsonValue
     private final String value;
 
-    private TextRangeType(String value) {
+    TextRangeType(String value) {
         this.value = value;
     }
     

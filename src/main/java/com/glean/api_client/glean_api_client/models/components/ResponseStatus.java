@@ -17,7 +17,7 @@ public enum ResponseStatus {
     @JsonValue
     private final String value;
 
-    private ResponseStatus(String value) {
+    ResponseStatus(String value) {
         this.value = value;
     }
     

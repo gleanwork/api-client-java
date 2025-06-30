@@ -3,6 +3,10 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
+import com.glean.api_client.glean_api_client.operations.ListchatsOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class ListchatsRequestBuilder {
 
     private Optional<Long> timezoneOffset = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallListchats sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListchatsRequestBuilder(SDKMethodInterfaces.MethodCallListchats sdk) {
-        this.sdk = sdk;
+    public ListchatsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public ListchatsRequestBuilder timezoneOffset(long timezoneOffset) {
@@ -29,9 +33,20 @@ public class ListchatsRequestBuilder {
         return this;
     }
 
-    public ListchatsResponse call() throws Exception {
 
-        return sdk.list(
-            timezoneOffset);
+    private ListchatsRequest buildRequest() {
+
+        ListchatsRequest request = new ListchatsRequest(timezoneOffset);
+
+        return request;
+    }
+
+    public ListchatsResponse call() throws Exception {
+        
+        RequestOperation<ListchatsRequest, ListchatsResponse> operation
+              = new ListchatsOperation( sdkConfiguration);
+        ListchatsRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.AddCollectionItemsRequest;
+import com.glean.api_client.glean_api_client.operations.AddcollectionitemsOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class AddcollectionitemsRequestBuilder {
 
     private AddCollectionItemsRequest request;
-    private final SDKMethodInterfaces.MethodCallAddcollectionitems sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AddcollectionitemsRequestBuilder(SDKMethodInterfaces.MethodCallAddcollectionitems sdk) {
-        this.sdk = sdk;
+    public AddcollectionitemsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AddcollectionitemsRequestBuilder request(AddCollectionItemsRequest request) {
@@ -23,8 +27,10 @@ public class AddcollectionitemsRequestBuilder {
     }
 
     public AddcollectionitemsResponse call() throws Exception {
+        
+        RequestOperation<AddCollectionItemsRequest, AddcollectionitemsResponse> operation
+              = new AddcollectionitemsOperation( sdkConfiguration);
 
-        return sdk.addItems(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

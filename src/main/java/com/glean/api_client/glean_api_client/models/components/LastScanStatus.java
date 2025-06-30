@@ -19,7 +19,7 @@ public enum LastScanStatus {
     @JsonValue
     private final String value;
 
-    private LastScanStatus(String value) {
+    LastScanStatus(String value) {
         this.value = value;
     }
     

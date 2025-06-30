@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.Activity;
+import com.glean.api_client.glean_api_client.operations.ActivityOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class ActivityRequestBuilder {
 
     private Activity request;
-    private final SDKMethodInterfaces.MethodCallActivity sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ActivityRequestBuilder(SDKMethodInterfaces.MethodCallActivity sdk) {
-        this.sdk = sdk;
+    public ActivityRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ActivityRequestBuilder request(Activity request) {
@@ -23,8 +27,10 @@ public class ActivityRequestBuilder {
     }
 
     public ActivityResponse call() throws Exception {
+        
+        RequestOperation<Activity, ActivityResponse> operation
+              = new ActivityOperation( sdkConfiguration);
 
-        return sdk.report(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

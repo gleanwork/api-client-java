@@ -25,7 +25,7 @@ public enum PropertyType {
     @JsonValue
     private final String value;
 
-    private PropertyType(String value) {
+    PropertyType(String value) {
         this.value = value;
     }
     

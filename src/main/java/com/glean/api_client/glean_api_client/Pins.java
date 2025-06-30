@@ -3,15 +3,12 @@
  */
 package com.glean.api_client.glean_api_client;
 
-import com.fasterxml.jackson.core.type.TypeReference;
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
 import com.glean.api_client.glean_api_client.models.components.EditPinRequest;
 import com.glean.api_client.glean_api_client.models.components.GetPinRequest;
-import com.glean.api_client.glean_api_client.models.components.GetPinResponse;
-import com.glean.api_client.glean_api_client.models.components.ListPinsResponse;
-import com.glean.api_client.glean_api_client.models.components.PinDocument;
 import com.glean.api_client.glean_api_client.models.components.PinRequest;
 import com.glean.api_client.glean_api_client.models.components.Unpin;
-import com.glean.api_client.glean_api_client.models.errors.APIException;
 import com.glean.api_client.glean_api_client.models.operations.EditpinRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.EditpinResponse;
 import com.glean.api_client.glean_api_client.models.operations.GetpinRequestBuilder;
@@ -21,33 +18,19 @@ import com.glean.api_client.glean_api_client.models.operations.ListpinsRequestBu
 import com.glean.api_client.glean_api_client.models.operations.ListpinsResponse;
 import com.glean.api_client.glean_api_client.models.operations.PinRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PinResponse;
-import com.glean.api_client.glean_api_client.models.operations.SDKMethodInterfaces.*;
 import com.glean.api_client.glean_api_client.models.operations.UnpinRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.UnpinResponse;
-import com.glean.api_client.glean_api_client.utils.HTTPClient;
-import com.glean.api_client.glean_api_client.utils.HTTPRequest;
-import com.glean.api_client.glean_api_client.utils.Hook.AfterErrorContextImpl;
-import com.glean.api_client.glean_api_client.utils.Hook.AfterSuccessContextImpl;
-import com.glean.api_client.glean_api_client.utils.Hook.BeforeRequestContextImpl;
-import com.glean.api_client.glean_api_client.utils.SerializedBody;
-import com.glean.api_client.glean_api_client.utils.Utils.JsonShape;
-import com.glean.api_client.glean_api_client.utils.Utils;
-import java.io.InputStream;
+import com.glean.api_client.glean_api_client.operations.EditpinOperation;
+import com.glean.api_client.glean_api_client.operations.GetpinOperation;
+import com.glean.api_client.glean_api_client.operations.ListpinsOperation;
+import com.glean.api_client.glean_api_client.operations.PinOperation;
+import com.glean.api_client.glean_api_client.operations.UnpinOperation;
 import java.lang.Exception;
-import java.lang.Object;
-import java.lang.String;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 
-public class Pins implements
-            MethodCallEditpin,
-            MethodCallGetpin,
-            MethodCallListpins,
-            MethodCallPin,
-            MethodCallUnpin {
 
+public class Pins {
     private final SDKConfiguration sdkConfiguration;
 
     Pins(SDKConfiguration sdkConfiguration) {
@@ -62,7 +45,7 @@ public class Pins implements
      * @return The call builder
      */
     public EditpinRequestBuilder update() {
-        return new EditpinRequestBuilder(this);
+        return new EditpinRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -70,136 +53,15 @@ public class Pins implements
      * 
      * <p>Update an existing user-generated pin.
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public EditpinResponse update(
             EditPinRequest request) throws Exception {
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/rest/api/v1/editpin");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<EditPinRequest>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "request",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      this.sdkConfiguration,
-                      _baseUrl,
-                      "editpin", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "editpin",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "editpin",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "editpin",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        EditpinResponse.Builder _resBuilder = 
-            EditpinResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        EditpinResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                PinDocument _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<PinDocument>() {});
-                _res.withPinDocument(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<EditPinRequest, EditpinResponse> operation
+              = new EditpinOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -211,7 +73,7 @@ public class Pins implements
      * @return The call builder
      */
     public GetpinRequestBuilder retrieve() {
-        return new GetpinRequestBuilder(this);
+        return new GetpinRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -219,136 +81,15 @@ public class Pins implements
      * 
      * <p>Read pin details given its ID.
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetpinResponse retrieve(
             GetPinRequest request) throws Exception {
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/rest/api/v1/getpin");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<GetPinRequest>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "request",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      this.sdkConfiguration,
-                      _baseUrl,
-                      "getpin", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "getpin",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "getpin",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "getpin",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        GetpinResponse.Builder _resBuilder = 
-            GetpinResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        GetpinResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                GetPinResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<GetPinResponse>() {});
-                _res.withGetPinResponse(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<GetPinRequest, GetpinResponse> operation
+              = new GetpinOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -360,7 +101,7 @@ public class Pins implements
      * @return The call builder
      */
     public ListpinsRequestBuilder list() {
-        return new ListpinsRequestBuilder(this);
+        return new ListpinsRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -368,136 +109,15 @@ public class Pins implements
      * 
      * <p>Lists all pins.
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListpinsResponse list(
             ListpinsRequest request) throws Exception {
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/rest/api/v1/listpins");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<ListpinsRequest>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "request",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      this.sdkConfiguration,
-                      _baseUrl,
-                      "listpins", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "listpins",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "listpins",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "listpins",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        ListpinsResponse.Builder _resBuilder = 
-            ListpinsResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        ListpinsResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ListPinsResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<ListPinsResponse>() {});
-                _res.withListPinsResponse(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<ListpinsRequest, ListpinsResponse> operation
+              = new ListpinsOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -509,7 +129,7 @@ public class Pins implements
      * @return The call builder
      */
     public PinRequestBuilder create() {
-        return new PinRequestBuilder(this);
+        return new PinRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -517,136 +137,15 @@ public class Pins implements
      * 
      * <p>Pin a document as a result for a given search query.Pin results that are known to be a good match.
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public PinResponse create(
             PinRequest request) throws Exception {
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/rest/api/v1/pin");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<PinRequest>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "request",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      this.sdkConfiguration,
-                      _baseUrl,
-                      "pin", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "pin",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "pin",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "pin",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        PinResponse.Builder _resBuilder = 
-            PinResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        PinResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                PinDocument _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<PinDocument>() {});
-                _res.withPinDocument(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "429", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<PinRequest, PinResponse> operation
+              = new PinOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 
@@ -658,7 +157,7 @@ public class Pins implements
      * @return The call builder
      */
     public UnpinRequestBuilder remove() {
-        return new UnpinRequestBuilder(this);
+        return new UnpinRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -666,125 +165,15 @@ public class Pins implements
      * 
      * <p>Unpin a previously pinned result.
      * 
-     * @param request The request object containing all of the parameters for the API call.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public UnpinResponse remove(
             Unpin request) throws Exception {
-        String _baseUrl = Utils.templateUrl(
-                this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/rest/api/v1/unpin");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<Unpin>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "request",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
-        _req.addHeader("Accept", "*/*")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-        
-        Optional<SecuritySource> _hookSecuritySource = Optional.of(this.sdkConfiguration.securitySource());
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource().getSecurity());
-        HTTPClient _client = this.sdkConfiguration.client();
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      this.sdkConfiguration,
-                      _baseUrl,
-                      "unpin", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "403", "429", "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "unpin",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "unpin",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            this.sdkConfiguration,
-                            _baseUrl,
-                            "unpin",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        UnpinResponse.Builder _resBuilder = 
-            UnpinResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        UnpinResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            // no content 
-            return _res;
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "400", "401", "403", "429", "4XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new APIException(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
-        }
-        throw new APIException(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+        RequestOperation<Unpin, UnpinResponse> operation
+              = new UnpinOperation( sdkConfiguration);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 }

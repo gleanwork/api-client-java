@@ -26,7 +26,7 @@ public enum AutocompleteResultResultType {
     @JsonValue
     private final String value;
 
-    private AutocompleteResultResultType(String value) {
+    AutocompleteResultResultType(String value) {
         this.value = value;
     }
     

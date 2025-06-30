@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.InsightsRequest;
+import com.glean.api_client.glean_api_client.operations.InsightsOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class InsightsRequestBuilder {
 
     private InsightsRequest request;
-    private final SDKMethodInterfaces.MethodCallInsights sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public InsightsRequestBuilder(SDKMethodInterfaces.MethodCallInsights sdk) {
-        this.sdk = sdk;
+    public InsightsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public InsightsRequestBuilder request(InsightsRequest request) {
@@ -23,8 +27,10 @@ public class InsightsRequestBuilder {
     }
 
     public InsightsResponse call() throws Exception {
+        
+        RequestOperation<InsightsRequest, InsightsResponse> operation
+              = new InsightsOperation( sdkConfiguration);
 
-        return sdk.retrieve(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

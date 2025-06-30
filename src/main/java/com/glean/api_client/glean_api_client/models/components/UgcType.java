@@ -19,7 +19,7 @@ public enum UgcType {
     @JsonValue
     private final String value;
 
-    private UgcType(String value) {
+    UgcType(String value) {
         this.value = value;
     }
     

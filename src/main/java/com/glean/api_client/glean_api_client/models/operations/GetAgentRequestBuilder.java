@@ -3,6 +3,10 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
+import com.glean.api_client.glean_api_client.operations.GetAgentOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
@@ -13,10 +17,10 @@ public class GetAgentRequestBuilder {
 
     private Optional<Long> timezoneOffset = Optional.empty();
     private String agentId;
-    private final SDKMethodInterfaces.MethodCallGetAgent sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetAgentRequestBuilder(SDKMethodInterfaces.MethodCallGetAgent sdk) {
-        this.sdk = sdk;
+    public GetAgentRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetAgentRequestBuilder timezoneOffset(long timezoneOffset) {
@@ -37,10 +41,21 @@ public class GetAgentRequestBuilder {
         return this;
     }
 
-    public GetAgentResponse call() throws Exception {
 
-        return sdk.retrieve(
-            timezoneOffset,
+    private GetAgentRequest buildRequest() {
+
+        GetAgentRequest request = new GetAgentRequest(timezoneOffset,
             agentId);
+
+        return request;
+    }
+
+    public GetAgentResponse call() throws Exception {
+        
+        RequestOperation<GetAgentRequest, GetAgentResponse> operation
+              = new GetAgentOperation( sdkConfiguration);
+        GetAgentRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

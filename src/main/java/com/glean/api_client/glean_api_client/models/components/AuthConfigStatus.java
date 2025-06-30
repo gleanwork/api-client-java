@@ -20,7 +20,7 @@ public enum AuthConfigStatus {
     @JsonValue
     private final String value;
 
-    private AuthConfigStatus(String value) {
+    AuthConfigStatus(String value) {
         this.value = value;
     }
     

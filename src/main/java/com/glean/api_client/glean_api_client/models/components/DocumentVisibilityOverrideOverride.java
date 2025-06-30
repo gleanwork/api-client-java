@@ -22,7 +22,7 @@ public enum DocumentVisibilityOverrideOverride {
     @JsonValue
     private final String value;
 
-    private DocumentVisibilityOverrideOverride(String value) {
+    DocumentVisibilityOverrideOverride(String value) {
         this.value = value;
     }
     

@@ -3,7 +3,11 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.DebugUserRequest;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DebugDatasourceUserOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class PostApiIndexV1DebugDatasourceUserRequestBuilder {
 
     private String datasource;
     private DebugUserRequest debugUserRequest;
-    private final SDKMethodInterfaces.MethodCallPostApiIndexV1DebugDatasourceUser sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PostApiIndexV1DebugDatasourceUserRequestBuilder(SDKMethodInterfaces.MethodCallPostApiIndexV1DebugDatasourceUser sdk) {
-        this.sdk = sdk;
+    public PostApiIndexV1DebugDatasourceUserRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PostApiIndexV1DebugDatasourceUserRequestBuilder datasource(String datasource) {
@@ -30,10 +34,21 @@ public class PostApiIndexV1DebugDatasourceUserRequestBuilder {
         return this;
     }
 
-    public PostApiIndexV1DebugDatasourceUserResponse call() throws Exception {
 
-        return sdk.debug(
-            datasource,
+    private PostApiIndexV1DebugDatasourceUserRequest buildRequest() {
+
+        PostApiIndexV1DebugDatasourceUserRequest request = new PostApiIndexV1DebugDatasourceUserRequest(datasource,
             debugUserRequest);
+
+        return request;
+    }
+
+    public PostApiIndexV1DebugDatasourceUserResponse call() throws Exception {
+        
+        RequestOperation<PostApiIndexV1DebugDatasourceUserRequest, PostApiIndexV1DebugDatasourceUserResponse> operation
+              = new PostApiIndexV1DebugDatasourceUserOperation( sdkConfiguration);
+        PostApiIndexV1DebugDatasourceUserRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

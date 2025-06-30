@@ -21,7 +21,7 @@ public enum TeamStatus {
     @JsonValue
     private final String value;
 
-    private TeamStatus(String value) {
+    TeamStatus(String value) {
         this.value = value;
     }
     

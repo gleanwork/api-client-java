@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.Deprecated;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
@@ -38,10 +39,13 @@ public class AnswerCreationData {
     private Optional<String> bodyText;
 
     /**
-     * The parent board ID of this Answer, or 0 if it's a floating Answer.
+     * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("boardId")
+    @Deprecated
     private Optional<Long> boardId;
 
     /**
@@ -158,8 +162,11 @@ public class AnswerCreationData {
     }
 
     /**
-     * The parent board ID of this Answer, or 0 if it's a floating Answer.
+     * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     @JsonIgnore
     public Optional<Long> boardId() {
         return boardId;
@@ -281,8 +288,11 @@ public class AnswerCreationData {
     }
 
     /**
-     * The parent board ID of this Answer, or 0 if it's a floating Answer.
+     * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public AnswerCreationData withBoardId(long boardId) {
         Utils.checkNotNull(boardId, "boardId");
         this.boardId = Optional.ofNullable(boardId);
@@ -290,8 +300,11 @@ public class AnswerCreationData {
     }
 
     /**
-     * The parent board ID of this Answer, or 0 if it's a floating Answer.
+     * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public AnswerCreationData withBoardId(Optional<Long> boardId) {
         Utils.checkNotNull(boardId, "boardId");
         this.boardId = boardId;
@@ -491,6 +504,7 @@ public class AnswerCreationData {
  
         private Optional<String> bodyText = Optional.empty();
  
+        @Deprecated
         private Optional<Long> boardId = Optional.empty();
  
         private Optional<? extends List<FacetFilter>> audienceFilters = Optional.empty();
@@ -562,8 +576,11 @@ public class AnswerCreationData {
         }
 
         /**
-         * The parent board ID of this Answer, or 0 if it's a floating Answer.
+         * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder boardId(long boardId) {
             Utils.checkNotNull(boardId, "boardId");
             this.boardId = Optional.ofNullable(boardId);
@@ -571,8 +588,11 @@ public class AnswerCreationData {
         }
 
         /**
-         * The parent board ID of this Answer, or 0 if it's a floating Answer.
+         * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder boardId(Optional<Long> boardId) {
             Utils.checkNotNull(boardId, "boardId");
             this.boardId = boardId;

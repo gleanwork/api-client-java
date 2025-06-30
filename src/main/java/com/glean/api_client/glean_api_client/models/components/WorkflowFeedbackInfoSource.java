@@ -21,7 +21,7 @@ public enum WorkflowFeedbackInfoSource {
     @JsonValue
     private final String value;
 
-    private WorkflowFeedbackInfoSource(String value) {
+    WorkflowFeedbackInfoSource(String value) {
         this.value = value;
     }
     

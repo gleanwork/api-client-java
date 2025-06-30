@@ -3,6 +3,10 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
+import com.glean.api_client.glean_api_client.operations.GetreportstatusOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -10,10 +14,10 @@ import java.lang.String;
 public class GetreportstatusRequestBuilder {
 
     private String id;
-    private final SDKMethodInterfaces.MethodCallGetreportstatus sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetreportstatusRequestBuilder(SDKMethodInterfaces.MethodCallGetreportstatus sdk) {
-        this.sdk = sdk;
+    public GetreportstatusRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetreportstatusRequestBuilder id(String id) {
@@ -22,9 +26,20 @@ public class GetreportstatusRequestBuilder {
         return this;
     }
 
-    public GetreportstatusResponse call() throws Exception {
 
-        return sdk.status(
-            id);
+    private GetreportstatusRequest buildRequest() {
+
+        GetreportstatusRequest request = new GetreportstatusRequest(id);
+
+        return request;
+    }
+
+    public GetreportstatusResponse call() throws Exception {
+        
+        RequestOperation<GetreportstatusRequest, GetreportstatusResponse> operation
+              = new GetreportstatusOperation( sdkConfiguration);
+        GetreportstatusRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -3,7 +3,11 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.GetDocumentsByFacetsRequest;
+import com.glean.api_client.glean_api_client.operations.GetdocumentsbyfacetsOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class GetdocumentsbyfacetsRequestBuilder {
 
     private Optional<? extends GetDocumentsByFacetsRequest> request = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetdocumentsbyfacets sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetdocumentsbyfacetsRequestBuilder(SDKMethodInterfaces.MethodCallGetdocumentsbyfacets sdk) {
-        this.sdk = sdk;
+    public GetdocumentsbyfacetsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetdocumentsbyfacetsRequestBuilder request(GetDocumentsByFacetsRequest request) {
@@ -30,8 +34,10 @@ public class GetdocumentsbyfacetsRequestBuilder {
     }
 
     public GetdocumentsbyfacetsResponse call() throws Exception {
+        
+        RequestOperation<Optional<? extends GetDocumentsByFacetsRequest>, GetdocumentsbyfacetsResponse> operation
+              = new GetdocumentsbyfacetsOperation( sdkConfiguration);
 
-        return sdk.retrieveByFacets(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

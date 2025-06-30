@@ -35,7 +35,7 @@ public enum DocCategory {
     @JsonValue
     private final String value;
 
-    private DocCategory(String value) {
+    DocCategory(String value) {
         this.value = value;
     }
     
