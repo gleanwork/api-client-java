@@ -3,7 +3,11 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.Feedback;
+import com.glean.api_client.glean_api_client.operations.FeedbackOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -13,10 +17,10 @@ public class FeedbackRequestBuilder {
 
     private Optional<String> feedbackQueryParameter = Optional.empty();
     private Optional<? extends Feedback> feedback1 = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallFeedback sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public FeedbackRequestBuilder(SDKMethodInterfaces.MethodCallFeedback sdk) {
-        this.sdk = sdk;
+    public FeedbackRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public FeedbackRequestBuilder feedbackQueryParameter(String feedbackQueryParameter) {
@@ -43,10 +47,21 @@ public class FeedbackRequestBuilder {
         return this;
     }
 
-    public FeedbackResponse call() throws Exception {
 
-        return sdk.feedback(
-            feedbackQueryParameter,
+    private FeedbackRequest buildRequest() {
+
+        FeedbackRequest request = new FeedbackRequest(feedbackQueryParameter,
             feedback1);
+
+        return request;
+    }
+
+    public FeedbackResponse call() throws Exception {
+        
+        RequestOperation<FeedbackRequest, FeedbackResponse> operation
+              = new FeedbackOperation( sdkConfiguration);
+        FeedbackRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

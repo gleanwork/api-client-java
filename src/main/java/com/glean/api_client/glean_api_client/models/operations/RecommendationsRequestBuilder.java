@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.RecommendationsRequest;
+import com.glean.api_client.glean_api_client.operations.RecommendationsOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class RecommendationsRequestBuilder {
 
     private RecommendationsRequest request;
-    private final SDKMethodInterfaces.MethodCallRecommendations sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public RecommendationsRequestBuilder(SDKMethodInterfaces.MethodCallRecommendations sdk) {
-        this.sdk = sdk;
+    public RecommendationsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public RecommendationsRequestBuilder request(RecommendationsRequest request) {
@@ -23,8 +27,10 @@ public class RecommendationsRequestBuilder {
     }
 
     public RecommendationsResponse call() throws Exception {
+        
+        RequestOperation<RecommendationsRequest, RecommendationsResponse> operation
+              = new RecommendationsOperation( sdkConfiguration);
 
-        return sdk.recommendations(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

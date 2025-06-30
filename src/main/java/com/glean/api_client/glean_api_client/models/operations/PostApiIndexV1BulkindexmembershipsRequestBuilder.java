@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.BulkIndexMembershipsRequest;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1BulkindexmembershipsOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class PostApiIndexV1BulkindexmembershipsRequestBuilder {
 
     private BulkIndexMembershipsRequest request;
-    private final SDKMethodInterfaces.MethodCallPostApiIndexV1Bulkindexmemberships sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PostApiIndexV1BulkindexmembershipsRequestBuilder(SDKMethodInterfaces.MethodCallPostApiIndexV1Bulkindexmemberships sdk) {
-        this.sdk = sdk;
+    public PostApiIndexV1BulkindexmembershipsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PostApiIndexV1BulkindexmembershipsRequestBuilder request(BulkIndexMembershipsRequest request) {
@@ -23,8 +27,10 @@ public class PostApiIndexV1BulkindexmembershipsRequestBuilder {
     }
 
     public PostApiIndexV1BulkindexmembershipsResponse call() throws Exception {
+        
+        RequestOperation<BulkIndexMembershipsRequest, PostApiIndexV1BulkindexmembershipsResponse> operation
+              = new PostApiIndexV1BulkindexmembershipsOperation( sdkConfiguration);
 
-        return sdk.bulkIndexMemberships(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

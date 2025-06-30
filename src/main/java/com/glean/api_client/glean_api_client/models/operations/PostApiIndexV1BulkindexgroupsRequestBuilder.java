@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.BulkIndexGroupsRequest;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1BulkindexgroupsOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class PostApiIndexV1BulkindexgroupsRequestBuilder {
 
     private BulkIndexGroupsRequest request;
-    private final SDKMethodInterfaces.MethodCallPostApiIndexV1Bulkindexgroups sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PostApiIndexV1BulkindexgroupsRequestBuilder(SDKMethodInterfaces.MethodCallPostApiIndexV1Bulkindexgroups sdk) {
-        this.sdk = sdk;
+    public PostApiIndexV1BulkindexgroupsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PostApiIndexV1BulkindexgroupsRequestBuilder request(BulkIndexGroupsRequest request) {
@@ -23,8 +27,10 @@ public class PostApiIndexV1BulkindexgroupsRequestBuilder {
     }
 
     public PostApiIndexV1BulkindexgroupsResponse call() throws Exception {
+        
+        RequestOperation<BulkIndexGroupsRequest, PostApiIndexV1BulkindexgroupsResponse> operation
+              = new PostApiIndexV1BulkindexgroupsOperation( sdkConfiguration);
 
-        return sdk.bulkIndexGroups(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

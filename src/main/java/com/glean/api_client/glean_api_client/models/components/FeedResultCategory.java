@@ -40,7 +40,7 @@ public enum FeedResultCategory {
     @JsonValue
     private final String value;
 
-    private FeedResultCategory(String value) {
+    FeedResultCategory(String value) {
         this.value = value;
     }
     

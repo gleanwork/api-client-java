@@ -3,6 +3,10 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
+import com.glean.api_client.glean_api_client.operations.GetpolicyOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
@@ -13,10 +17,10 @@ public class GetpolicyRequestBuilder {
 
     private String id;
     private Optional<Long> version = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetpolicy sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetpolicyRequestBuilder(SDKMethodInterfaces.MethodCallGetpolicy sdk) {
-        this.sdk = sdk;
+    public GetpolicyRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetpolicyRequestBuilder id(String id) {
@@ -37,10 +41,21 @@ public class GetpolicyRequestBuilder {
         return this;
     }
 
-    public GetpolicyResponse call() throws Exception {
 
-        return sdk.retrieve(
-            id,
+    private GetpolicyRequest buildRequest() {
+
+        GetpolicyRequest request = new GetpolicyRequest(id,
             version);
+
+        return request;
+    }
+
+    public GetpolicyResponse call() throws Exception {
+        
+        RequestOperation<GetpolicyRequest, GetpolicyResponse> operation
+              = new GetpolicyOperation( sdkConfiguration);
+        GetpolicyRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

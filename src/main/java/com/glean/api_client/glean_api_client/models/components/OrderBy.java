@@ -15,7 +15,7 @@ public enum OrderBy {
     @JsonValue
     private final String value;
 
-    private OrderBy(String value) {
+    OrderBy(String value) {
         this.value = value;
     }
     

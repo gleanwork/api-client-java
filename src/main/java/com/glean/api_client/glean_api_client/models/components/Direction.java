@@ -20,7 +20,7 @@ public enum Direction {
     @JsonValue
     private final String value;
 
-    private Direction(String value) {
+    Direction(String value) {
         this.value = value;
     }
     

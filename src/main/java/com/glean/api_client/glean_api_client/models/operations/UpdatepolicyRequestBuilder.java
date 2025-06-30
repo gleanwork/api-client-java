@@ -3,7 +3,11 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.UpdateDlpReportRequest;
+import com.glean.api_client.glean_api_client.operations.UpdatepolicyOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class UpdatepolicyRequestBuilder {
 
     private String id;
     private UpdateDlpReportRequest updateDlpReportRequest;
-    private final SDKMethodInterfaces.MethodCallUpdatepolicy sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public UpdatepolicyRequestBuilder(SDKMethodInterfaces.MethodCallUpdatepolicy sdk) {
-        this.sdk = sdk;
+    public UpdatepolicyRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public UpdatepolicyRequestBuilder id(String id) {
@@ -30,10 +34,21 @@ public class UpdatepolicyRequestBuilder {
         return this;
     }
 
-    public UpdatepolicyResponse call() throws Exception {
 
-        return sdk.update(
-            id,
+    private UpdatepolicyRequest buildRequest() {
+
+        UpdatepolicyRequest request = new UpdatepolicyRequest(id,
             updateDlpReportRequest);
+
+        return request;
+    }
+
+    public UpdatepolicyResponse call() throws Exception {
+        
+        RequestOperation<UpdatepolicyRequest, UpdatepolicyResponse> operation
+              = new UpdatepolicyOperation( sdkConfiguration);
+        UpdatepolicyRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

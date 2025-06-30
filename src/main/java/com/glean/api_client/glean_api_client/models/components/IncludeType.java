@@ -15,7 +15,7 @@ public enum IncludeType {
     @JsonValue
     private final String value;
 
-    private IncludeType(String value) {
+    IncludeType(String value) {
         this.value = value;
     }
     

@@ -20,7 +20,7 @@ public enum Vote {
     @JsonValue
     private final String value;
 
-    private Vote(String value) {
+    Vote(String value) {
         this.value = value;
     }
     

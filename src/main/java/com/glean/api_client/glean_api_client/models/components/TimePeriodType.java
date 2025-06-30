@@ -17,12 +17,13 @@ public enum TimePeriodType {
     ALL_TIME("ALL_TIME"),
     PAST_YEAR("PAST_YEAR"),
     PAST_DAY("PAST_DAY"),
-    CUSTOM("CUSTOM");
+    CUSTOM("CUSTOM"),
+    LAST_N_DAYS("LAST_N_DAYS");
 
     @JsonValue
     private final String value;
 
-    private TimePeriodType(String value) {
+    TimePeriodType(String value) {
         this.value = value;
     }
     

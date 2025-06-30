@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.AgentRunCreate;
+import com.glean.api_client.glean_api_client.operations.CreateAndStreamRunOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class CreateAndStreamRunRequestBuilder {
 
     private AgentRunCreate request;
-    private final SDKMethodInterfaces.MethodCallCreateAndStreamRun sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateAndStreamRunRequestBuilder(SDKMethodInterfaces.MethodCallCreateAndStreamRun sdk) {
-        this.sdk = sdk;
+    public CreateAndStreamRunRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreateAndStreamRunRequestBuilder request(AgentRunCreate request) {
@@ -23,8 +27,10 @@ public class CreateAndStreamRunRequestBuilder {
     }
 
     public CreateAndStreamRunResponse call() throws Exception {
+        
+        RequestOperation<AgentRunCreate, CreateAndStreamRunResponse> operation
+              = new CreateAndStreamRunOperation( sdkConfiguration);
 
-        return sdk.runStream(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

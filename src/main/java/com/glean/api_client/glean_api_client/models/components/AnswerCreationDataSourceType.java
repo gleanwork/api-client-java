@@ -15,7 +15,7 @@ public enum AnswerCreationDataSourceType {
     @JsonValue
     private final String value;
 
-    private AnswerCreationDataSourceType(String value) {
+    AnswerCreationDataSourceType(String value) {
         this.value = value;
     }
     

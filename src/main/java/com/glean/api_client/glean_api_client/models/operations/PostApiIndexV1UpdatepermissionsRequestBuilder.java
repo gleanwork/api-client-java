@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.UpdatePermissionsRequest;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1UpdatepermissionsOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class PostApiIndexV1UpdatepermissionsRequestBuilder {
 
     private UpdatePermissionsRequest request;
-    private final SDKMethodInterfaces.MethodCallPostApiIndexV1Updatepermissions sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PostApiIndexV1UpdatepermissionsRequestBuilder(SDKMethodInterfaces.MethodCallPostApiIndexV1Updatepermissions sdk) {
-        this.sdk = sdk;
+    public PostApiIndexV1UpdatepermissionsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PostApiIndexV1UpdatepermissionsRequestBuilder request(UpdatePermissionsRequest request) {
@@ -23,8 +27,10 @@ public class PostApiIndexV1UpdatepermissionsRequestBuilder {
     }
 
     public PostApiIndexV1UpdatepermissionsResponse call() throws Exception {
+        
+        RequestOperation<UpdatePermissionsRequest, PostApiIndexV1UpdatepermissionsResponse> operation
+              = new PostApiIndexV1UpdatepermissionsOperation( sdkConfiguration);
 
-        return sdk.updatePermissions(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

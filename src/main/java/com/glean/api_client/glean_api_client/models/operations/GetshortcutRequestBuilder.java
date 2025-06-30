@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.GetShortcutRequestUnion;
+import com.glean.api_client.glean_api_client.operations.GetshortcutOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class GetshortcutRequestBuilder {
 
     private GetShortcutRequestUnion request;
-    private final SDKMethodInterfaces.MethodCallGetshortcut sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetshortcutRequestBuilder(SDKMethodInterfaces.MethodCallGetshortcut sdk) {
-        this.sdk = sdk;
+    public GetshortcutRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetshortcutRequestBuilder request(GetShortcutRequestUnion request) {
@@ -23,8 +27,10 @@ public class GetshortcutRequestBuilder {
     }
 
     public GetshortcutResponse call() throws Exception {
+        
+        RequestOperation<GetShortcutRequestUnion, GetshortcutResponse> operation
+              = new GetshortcutOperation( sdkConfiguration);
 
-        return sdk.retrieve(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

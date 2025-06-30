@@ -3,7 +3,11 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.DebugDocumentsRequest;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DebugDatasourceDocumentsOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ public class PostApiIndexV1DebugDatasourceDocumentsRequestBuilder {
 
     private String datasource;
     private DebugDocumentsRequest debugDocumentsRequest;
-    private final SDKMethodInterfaces.MethodCallPostApiIndexV1DebugDatasourceDocuments sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PostApiIndexV1DebugDatasourceDocumentsRequestBuilder(SDKMethodInterfaces.MethodCallPostApiIndexV1DebugDatasourceDocuments sdk) {
-        this.sdk = sdk;
+    public PostApiIndexV1DebugDatasourceDocumentsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PostApiIndexV1DebugDatasourceDocumentsRequestBuilder datasource(String datasource) {
@@ -30,10 +34,21 @@ public class PostApiIndexV1DebugDatasourceDocumentsRequestBuilder {
         return this;
     }
 
-    public PostApiIndexV1DebugDatasourceDocumentsResponse call() throws Exception {
 
-        return sdk.debugMany(
-            datasource,
+    private PostApiIndexV1DebugDatasourceDocumentsRequest buildRequest() {
+
+        PostApiIndexV1DebugDatasourceDocumentsRequest request = new PostApiIndexV1DebugDatasourceDocumentsRequest(datasource,
             debugDocumentsRequest);
+
+        return request;
+    }
+
+    public PostApiIndexV1DebugDatasourceDocumentsResponse call() throws Exception {
+        
+        RequestOperation<PostApiIndexV1DebugDatasourceDocumentsRequest, PostApiIndexV1DebugDatasourceDocumentsResponse> operation
+              = new PostApiIndexV1DebugDatasourceDocumentsOperation( sdkConfiguration);
+        PostApiIndexV1DebugDatasourceDocumentsRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -35,7 +35,7 @@ public enum DatasourceCategory {
     @JsonValue
     private final String value;
 
-    private DatasourceCategory(String value) {
+    DatasourceCategory(String value) {
         this.value = value;
     }
     

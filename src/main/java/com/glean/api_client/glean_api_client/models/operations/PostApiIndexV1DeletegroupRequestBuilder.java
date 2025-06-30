@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.DeleteGroupRequest;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DeletegroupOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class PostApiIndexV1DeletegroupRequestBuilder {
 
     private DeleteGroupRequest request;
-    private final SDKMethodInterfaces.MethodCallPostApiIndexV1Deletegroup sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PostApiIndexV1DeletegroupRequestBuilder(SDKMethodInterfaces.MethodCallPostApiIndexV1Deletegroup sdk) {
-        this.sdk = sdk;
+    public PostApiIndexV1DeletegroupRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PostApiIndexV1DeletegroupRequestBuilder request(DeleteGroupRequest request) {
@@ -23,8 +27,10 @@ public class PostApiIndexV1DeletegroupRequestBuilder {
     }
 
     public PostApiIndexV1DeletegroupResponse call() throws Exception {
+        
+        RequestOperation<DeleteGroupRequest, PostApiIndexV1DeletegroupResponse> operation
+              = new PostApiIndexV1DeletegroupOperation( sdkConfiguration);
 
-        return sdk.deleteGroup(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

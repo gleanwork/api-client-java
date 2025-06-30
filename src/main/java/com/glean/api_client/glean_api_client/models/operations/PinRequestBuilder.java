@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.PinRequest;
+import com.glean.api_client.glean_api_client.operations.PinOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class PinRequestBuilder {
 
     private PinRequest request;
-    private final SDKMethodInterfaces.MethodCallPin sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PinRequestBuilder(SDKMethodInterfaces.MethodCallPin sdk) {
-        this.sdk = sdk;
+    public PinRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PinRequestBuilder request(PinRequest request) {
@@ -23,8 +27,10 @@ public class PinRequestBuilder {
     }
 
     public PinResponse call() throws Exception {
+        
+        RequestOperation<PinRequest, PinResponse> operation
+              = new PinOperation( sdkConfiguration);
 
-        return sdk.create(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

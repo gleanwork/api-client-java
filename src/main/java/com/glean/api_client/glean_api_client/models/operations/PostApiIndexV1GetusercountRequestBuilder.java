@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.GetUserCountRequest;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1GetusercountOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class PostApiIndexV1GetusercountRequestBuilder {
 
     private GetUserCountRequest request;
-    private final SDKMethodInterfaces.MethodCallPostApiIndexV1Getusercount sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PostApiIndexV1GetusercountRequestBuilder(SDKMethodInterfaces.MethodCallPostApiIndexV1Getusercount sdk) {
-        this.sdk = sdk;
+    public PostApiIndexV1GetusercountRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PostApiIndexV1GetusercountRequestBuilder request(GetUserCountRequest request) {
@@ -23,8 +27,10 @@ public class PostApiIndexV1GetusercountRequestBuilder {
     }
 
     public PostApiIndexV1GetusercountResponse call() throws Exception {
+        
+        RequestOperation<GetUserCountRequest, PostApiIndexV1GetusercountResponse> operation
+              = new PostApiIndexV1GetusercountOperation( sdkConfiguration);
 
-        return sdk.count(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -21,7 +21,7 @@ public enum KnowledgeType {
     @JsonValue
     private final String value;
 
-    private KnowledgeType(String value) {
+    KnowledgeType(String value) {
         this.value = value;
     }
     

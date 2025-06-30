@@ -15,7 +15,7 @@ public enum GetAnswerErrorErrorType {
     @JsonValue
     private final String value;
 
-    private GetAnswerErrorErrorType(String value) {
+    GetAnswerErrorErrorType(String value) {
         this.value = value;
     }
     

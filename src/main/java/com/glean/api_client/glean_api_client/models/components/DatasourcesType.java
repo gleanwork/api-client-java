@@ -20,7 +20,7 @@ public enum DatasourcesType {
     @JsonValue
     private final String value;
 
-    private DatasourcesType(String value) {
+    DatasourcesType(String value) {
         this.value = value;
     }
     

@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.CustomDatasourceConfig;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1AdddatasourceOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class PostApiIndexV1AdddatasourceRequestBuilder {
 
     private CustomDatasourceConfig request;
-    private final SDKMethodInterfaces.MethodCallPostApiIndexV1Adddatasource sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PostApiIndexV1AdddatasourceRequestBuilder(SDKMethodInterfaces.MethodCallPostApiIndexV1Adddatasource sdk) {
-        this.sdk = sdk;
+    public PostApiIndexV1AdddatasourceRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PostApiIndexV1AdddatasourceRequestBuilder request(CustomDatasourceConfig request) {
@@ -23,8 +27,10 @@ public class PostApiIndexV1AdddatasourceRequestBuilder {
     }
 
     public PostApiIndexV1AdddatasourceResponse call() throws Exception {
+        
+        RequestOperation<CustomDatasourceConfig, PostApiIndexV1AdddatasourceResponse> operation
+              = new PostApiIndexV1AdddatasourceOperation( sdkConfiguration);
 
-        return sdk.add(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

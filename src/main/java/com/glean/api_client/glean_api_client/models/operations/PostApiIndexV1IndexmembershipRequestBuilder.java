@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.IndexMembershipRequest;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1IndexmembershipOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class PostApiIndexV1IndexmembershipRequestBuilder {
 
     private IndexMembershipRequest request;
-    private final SDKMethodInterfaces.MethodCallPostApiIndexV1Indexmembership sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PostApiIndexV1IndexmembershipRequestBuilder(SDKMethodInterfaces.MethodCallPostApiIndexV1Indexmembership sdk) {
-        this.sdk = sdk;
+    public PostApiIndexV1IndexmembershipRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PostApiIndexV1IndexmembershipRequestBuilder request(IndexMembershipRequest request) {
@@ -23,8 +27,10 @@ public class PostApiIndexV1IndexmembershipRequestBuilder {
     }
 
     public PostApiIndexV1IndexmembershipResponse call() throws Exception {
+        
+        RequestOperation<IndexMembershipRequest, PostApiIndexV1IndexmembershipResponse> operation
+              = new PostApiIndexV1IndexmembershipOperation( sdkConfiguration);
 
-        return sdk.indexMembership(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

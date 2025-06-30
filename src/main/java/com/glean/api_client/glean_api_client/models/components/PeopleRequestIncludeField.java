@@ -23,7 +23,7 @@ public enum PeopleRequestIncludeField {
     @JsonValue
     private final String value;
 
-    private PeopleRequestIncludeField(String value) {
+    PeopleRequestIncludeField(String value) {
         this.value = value;
     }
     

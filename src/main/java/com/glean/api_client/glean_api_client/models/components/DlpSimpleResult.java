@@ -15,7 +15,7 @@ public enum DlpSimpleResult {
     @JsonValue
     private final String value;
 
-    private DlpSimpleResult(String value) {
+    DlpSimpleResult(String value) {
         this.value = value;
     }
     
