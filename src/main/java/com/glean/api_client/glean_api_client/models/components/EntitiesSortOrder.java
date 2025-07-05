@@ -25,7 +25,7 @@ public enum EntitiesSortOrder {
     @JsonValue
     private final String value;
 
-    private EntitiesSortOrder(String value) {
+    EntitiesSortOrder(String value) {
         this.value = value;
     }
     

@@ -22,7 +22,7 @@ public enum DlpReportStatus {
     @JsonValue
     private final String value;
 
-    private DlpReportStatus(String value) {
+    DlpReportStatus(String value) {
         this.value = value;
     }
     

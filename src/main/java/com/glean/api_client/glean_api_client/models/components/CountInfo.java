@@ -13,7 +13,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CountInfo {
@@ -129,14 +128,14 @@ public class CountInfo {
         }
         CountInfo other = (CountInfo) o;
         return 
-            Objects.deepEquals(this.count, other.count) &&
-            Objects.deepEquals(this.period, other.period) &&
-            Objects.deepEquals(this.org, other.org);
+            Utils.enhancedDeepEquals(this.count, other.count) &&
+            Utils.enhancedDeepEquals(this.period, other.period) &&
+            Utils.enhancedDeepEquals(this.org, other.org);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             count,
             period,
             org);

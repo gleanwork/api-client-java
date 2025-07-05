@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class FeedEntry {
@@ -611,31 +610,31 @@ public class FeedEntry {
         }
         FeedEntry other = (FeedEntry) o;
         return 
-            Objects.deepEquals(this.entryId, other.entryId) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.thumbnail, other.thumbnail) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.uiConfig, other.uiConfig) &&
-            Objects.deepEquals(this.justificationType, other.justificationType) &&
-            Objects.deepEquals(this.justification, other.justification) &&
-            Objects.deepEquals(this.trackingToken, other.trackingToken) &&
-            Objects.deepEquals(this.viewUrl, other.viewUrl) &&
-            Objects.deepEquals(this.document, other.document) &&
-            Objects.deepEquals(this.event, other.event) &&
-            Objects.deepEquals(this.announcement, other.announcement) &&
-            Objects.deepEquals(this.collection, other.collection) &&
-            Objects.deepEquals(this.collectionItem, other.collectionItem) &&
-            Objects.deepEquals(this.person, other.person) &&
-            Objects.deepEquals(this.app, other.app) &&
-            Objects.deepEquals(this.promptTemplate, other.promptTemplate) &&
-            Objects.deepEquals(this.workflow, other.workflow) &&
-            Objects.deepEquals(this.activities, other.activities) &&
-            Objects.deepEquals(this.documentVisitorCount, other.documentVisitorCount);
+            Utils.enhancedDeepEquals(this.entryId, other.entryId) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.thumbnail, other.thumbnail) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.uiConfig, other.uiConfig) &&
+            Utils.enhancedDeepEquals(this.justificationType, other.justificationType) &&
+            Utils.enhancedDeepEquals(this.justification, other.justification) &&
+            Utils.enhancedDeepEquals(this.trackingToken, other.trackingToken) &&
+            Utils.enhancedDeepEquals(this.viewUrl, other.viewUrl) &&
+            Utils.enhancedDeepEquals(this.document, other.document) &&
+            Utils.enhancedDeepEquals(this.event, other.event) &&
+            Utils.enhancedDeepEquals(this.announcement, other.announcement) &&
+            Utils.enhancedDeepEquals(this.collection, other.collection) &&
+            Utils.enhancedDeepEquals(this.collectionItem, other.collectionItem) &&
+            Utils.enhancedDeepEquals(this.person, other.person) &&
+            Utils.enhancedDeepEquals(this.app, other.app) &&
+            Utils.enhancedDeepEquals(this.promptTemplate, other.promptTemplate) &&
+            Utils.enhancedDeepEquals(this.workflow, other.workflow) &&
+            Utils.enhancedDeepEquals(this.activities, other.activities) &&
+            Utils.enhancedDeepEquals(this.documentVisitorCount, other.documentVisitorCount);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             entryId,
             title,
             thumbnail,

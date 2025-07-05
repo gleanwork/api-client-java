@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.UploadShortcutsRequest;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1UploadshortcutsOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class PostApiIndexV1UploadshortcutsRequestBuilder {
 
     private UploadShortcutsRequest request;
-    private final SDKMethodInterfaces.MethodCallPostApiIndexV1Uploadshortcuts sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PostApiIndexV1UploadshortcutsRequestBuilder(SDKMethodInterfaces.MethodCallPostApiIndexV1Uploadshortcuts sdk) {
-        this.sdk = sdk;
+    public PostApiIndexV1UploadshortcutsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PostApiIndexV1UploadshortcutsRequestBuilder request(UploadShortcutsRequest request) {
@@ -23,8 +27,10 @@ public class PostApiIndexV1UploadshortcutsRequestBuilder {
     }
 
     public PostApiIndexV1UploadshortcutsResponse call() throws Exception {
+        
+        RequestOperation<UploadShortcutsRequest, PostApiIndexV1UploadshortcutsResponse> operation
+              = new PostApiIndexV1UploadshortcutsOperation( sdkConfiguration);
 
-        return sdk.upload(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

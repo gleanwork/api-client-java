@@ -13,7 +13,6 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -448,23 +447,23 @@ public class DlpReport {
         }
         DlpReport other = (DlpReport) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.config, other.config) &&
-            Objects.deepEquals(this.frequency, other.frequency) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.lastUpdatedAt, other.lastUpdatedAt) &&
-            Objects.deepEquals(this.autoHideDocs, other.autoHideDocs) &&
-            Objects.deepEquals(this.lastScanStatus, other.lastScanStatus) &&
-            Objects.deepEquals(this.lastScanStartTime, other.lastScanStartTime) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.config, other.config) &&
+            Utils.enhancedDeepEquals(this.frequency, other.frequency) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.lastUpdatedAt, other.lastUpdatedAt) &&
+            Utils.enhancedDeepEquals(this.autoHideDocs, other.autoHideDocs) &&
+            Utils.enhancedDeepEquals(this.lastScanStatus, other.lastScanStatus) &&
+            Utils.enhancedDeepEquals(this.lastScanStartTime, other.lastScanStartTime) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             name,
             config,

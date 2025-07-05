@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * AgentSchemas
@@ -115,14 +114,14 @@ public class AgentSchemas {
         }
         AgentSchemas other = (AgentSchemas) o;
         return 
-            Objects.deepEquals(this.agentId, other.agentId) &&
-            Objects.deepEquals(this.inputSchema, other.inputSchema) &&
-            Objects.deepEquals(this.outputSchema, other.outputSchema);
+            Utils.enhancedDeepEquals(this.agentId, other.agentId) &&
+            Utils.enhancedDeepEquals(this.inputSchema, other.inputSchema) &&
+            Utils.enhancedDeepEquals(this.outputSchema, other.outputSchema);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             agentId,
             inputSchema,
             outputSchema);

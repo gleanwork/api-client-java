@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -80,12 +79,12 @@ public class ProcessAllDocumentsRequest {
         }
         ProcessAllDocumentsRequest other = (ProcessAllDocumentsRequest) o;
         return 
-            Objects.deepEquals(this.datasource, other.datasource);
+            Utils.enhancedDeepEquals(this.datasource, other.datasource);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             datasource);
     }
     

@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ExtractedQnA {
@@ -137,14 +136,14 @@ public class ExtractedQnA {
         }
         ExtractedQnA other = (ExtractedQnA) o;
         return 
-            Objects.deepEquals(this.heading, other.heading) &&
-            Objects.deepEquals(this.question, other.question) &&
-            Objects.deepEquals(this.questionResult, other.questionResult);
+            Utils.enhancedDeepEquals(this.heading, other.heading) &&
+            Utils.enhancedDeepEquals(this.question, other.question) &&
+            Utils.enhancedDeepEquals(this.questionResult, other.questionResult);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             heading,
             question,
             questionResult);

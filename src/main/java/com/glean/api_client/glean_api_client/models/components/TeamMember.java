@@ -14,7 +14,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.time.LocalDate;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -146,14 +145,14 @@ public class TeamMember {
         }
         TeamMember other = (TeamMember) o;
         return 
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.relationship, other.relationship) &&
-            Objects.deepEquals(this.joinDate, other.joinDate);
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.relationship, other.relationship) &&
+            Utils.enhancedDeepEquals(this.joinDate, other.joinDate);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             email,
             relationship,
             joinDate);

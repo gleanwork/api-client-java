@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CustomDataValue {
@@ -176,16 +175,16 @@ public class CustomDataValue {
         }
         CustomDataValue other = (CustomDataValue) o;
         return 
-            Objects.deepEquals(this.displayLabel, other.displayLabel) &&
-            Objects.deepEquals(this.stringValue, other.stringValue) &&
-            Objects.deepEquals(this.stringListValue, other.stringListValue) &&
-            Objects.deepEquals(this.numberValue, other.numberValue) &&
-            Objects.deepEquals(this.booleanValue, other.booleanValue);
+            Utils.enhancedDeepEquals(this.displayLabel, other.displayLabel) &&
+            Utils.enhancedDeepEquals(this.stringValue, other.stringValue) &&
+            Utils.enhancedDeepEquals(this.stringListValue, other.stringListValue) &&
+            Utils.enhancedDeepEquals(this.numberValue, other.numberValue) &&
+            Utils.enhancedDeepEquals(this.booleanValue, other.booleanValue);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             displayLabel,
             stringValue,
             stringListValue,

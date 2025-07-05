@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class SearchAgentsResponse {
@@ -66,12 +65,12 @@ public class SearchAgentsResponse {
         }
         SearchAgentsResponse other = (SearchAgentsResponse) o;
         return 
-            Objects.deepEquals(this.agents, other.agents);
+            Utils.enhancedDeepEquals(this.agents, other.agents);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             agents);
     }
     

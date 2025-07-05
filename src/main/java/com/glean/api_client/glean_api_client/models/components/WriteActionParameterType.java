@@ -22,7 +22,7 @@ public enum WriteActionParameterType {
     @JsonValue
     private final String value;
 
-    private WriteActionParameterType(String value) {
+    WriteActionParameterType(String value) {
         this.value = value;
     }
     

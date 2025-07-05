@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class SearchResult {
@@ -746,32 +745,32 @@ public class SearchResult {
         }
         SearchResult other = (SearchResult) o;
         return 
-            Objects.deepEquals(this.structuredResults, other.structuredResults) &&
-            Objects.deepEquals(this.trackingToken, other.trackingToken) &&
-            Objects.deepEquals(this.document, other.document) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.url, other.url) &&
-            Objects.deepEquals(this.nativeAppUrl, other.nativeAppUrl) &&
-            Objects.deepEquals(this.snippets, other.snippets) &&
-            Objects.deepEquals(this.fullText, other.fullText) &&
-            Objects.deepEquals(this.fullTextList, other.fullTextList) &&
-            Objects.deepEquals(this.relatedResults, other.relatedResults) &&
-            Objects.deepEquals(this.clusteredResults, other.clusteredResults) &&
-            Objects.deepEquals(this.allClusteredResults, other.allClusteredResults) &&
-            Objects.deepEquals(this.attachmentCount, other.attachmentCount) &&
-            Objects.deepEquals(this.attachments, other.attachments) &&
-            Objects.deepEquals(this.backlinkResults, other.backlinkResults) &&
-            Objects.deepEquals(this.clusterType, other.clusterType) &&
-            Objects.deepEquals(this.mustIncludeSuggestions, other.mustIncludeSuggestions) &&
-            Objects.deepEquals(this.querySuggestion, other.querySuggestion) &&
-            Objects.deepEquals(this.prominence, other.prominence) &&
-            Objects.deepEquals(this.attachmentContext, other.attachmentContext) &&
-            Objects.deepEquals(this.pins, other.pins);
+            Utils.enhancedDeepEquals(this.structuredResults, other.structuredResults) &&
+            Utils.enhancedDeepEquals(this.trackingToken, other.trackingToken) &&
+            Utils.enhancedDeepEquals(this.document, other.document) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.url, other.url) &&
+            Utils.enhancedDeepEquals(this.nativeAppUrl, other.nativeAppUrl) &&
+            Utils.enhancedDeepEquals(this.snippets, other.snippets) &&
+            Utils.enhancedDeepEquals(this.fullText, other.fullText) &&
+            Utils.enhancedDeepEquals(this.fullTextList, other.fullTextList) &&
+            Utils.enhancedDeepEquals(this.relatedResults, other.relatedResults) &&
+            Utils.enhancedDeepEquals(this.clusteredResults, other.clusteredResults) &&
+            Utils.enhancedDeepEquals(this.allClusteredResults, other.allClusteredResults) &&
+            Utils.enhancedDeepEquals(this.attachmentCount, other.attachmentCount) &&
+            Utils.enhancedDeepEquals(this.attachments, other.attachments) &&
+            Utils.enhancedDeepEquals(this.backlinkResults, other.backlinkResults) &&
+            Utils.enhancedDeepEquals(this.clusterType, other.clusterType) &&
+            Utils.enhancedDeepEquals(this.mustIncludeSuggestions, other.mustIncludeSuggestions) &&
+            Utils.enhancedDeepEquals(this.querySuggestion, other.querySuggestion) &&
+            Utils.enhancedDeepEquals(this.prominence, other.prominence) &&
+            Utils.enhancedDeepEquals(this.attachmentContext, other.attachmentContext) &&
+            Utils.enhancedDeepEquals(this.pins, other.pins);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             structuredResults,
             trackingToken,
             document,

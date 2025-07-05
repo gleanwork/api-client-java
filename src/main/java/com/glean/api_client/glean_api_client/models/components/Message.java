@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class Message {
@@ -114,13 +113,13 @@ public class Message {
         }
         Message other = (Message) o;
         return 
-            Objects.deepEquals(this.role, other.role) &&
-            Objects.deepEquals(this.content, other.content);
+            Utils.enhancedDeepEquals(this.role, other.role) &&
+            Utils.enhancedDeepEquals(this.content, other.content);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             role,
             content);
     }

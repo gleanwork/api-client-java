@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class GetDocumentsByFacetsResponse {
@@ -151,14 +150,14 @@ public class GetDocumentsByFacetsResponse {
         }
         GetDocumentsByFacetsResponse other = (GetDocumentsByFacetsResponse) o;
         return 
-            Objects.deepEquals(this.documents, other.documents) &&
-            Objects.deepEquals(this.hasMoreResults, other.hasMoreResults) &&
-            Objects.deepEquals(this.cursor, other.cursor);
+            Utils.enhancedDeepEquals(this.documents, other.documents) &&
+            Utils.enhancedDeepEquals(this.hasMoreResults, other.hasMoreResults) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             documents,
             hasMoreResults,
             cursor);

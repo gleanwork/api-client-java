@@ -25,7 +25,7 @@ public enum ActivityEventAction {
     @JsonValue
     private final String value;
 
-    private ActivityEventAction(String value) {
+    ActivityEventAction(String value) {
         this.value = value;
     }
     

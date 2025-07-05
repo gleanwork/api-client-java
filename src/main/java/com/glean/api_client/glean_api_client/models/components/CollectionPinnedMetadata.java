@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CollectionPinnedMetadata {
@@ -115,13 +114,13 @@ public class CollectionPinnedMetadata {
         }
         CollectionPinnedMetadata other = (CollectionPinnedMetadata) o;
         return 
-            Objects.deepEquals(this.existingPins, other.existingPins) &&
-            Objects.deepEquals(this.eligiblePins, other.eligiblePins);
+            Utils.enhancedDeepEquals(this.existingPins, other.existingPins) &&
+            Utils.enhancedDeepEquals(this.eligiblePins, other.eligiblePins);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             existingPins,
             eligiblePins);
     }

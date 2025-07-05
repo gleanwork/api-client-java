@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class GleanAssistInsightsResponse {
@@ -225,16 +224,16 @@ public class GleanAssistInsightsResponse {
         }
         GleanAssistInsightsResponse other = (GleanAssistInsightsResponse) o;
         return 
-            Objects.deepEquals(this.lastLogTimestamp, other.lastLogTimestamp) &&
-            Objects.deepEquals(this.activityInsights, other.activityInsights) &&
-            Objects.deepEquals(this.totalActiveUsers, other.totalActiveUsers) &&
-            Objects.deepEquals(this.datasourceInstances, other.datasourceInstances) &&
-            Objects.deepEquals(this.departments, other.departments);
+            Utils.enhancedDeepEquals(this.lastLogTimestamp, other.lastLogTimestamp) &&
+            Utils.enhancedDeepEquals(this.activityInsights, other.activityInsights) &&
+            Utils.enhancedDeepEquals(this.totalActiveUsers, other.totalActiveUsers) &&
+            Utils.enhancedDeepEquals(this.datasourceInstances, other.datasourceInstances) &&
+            Utils.enhancedDeepEquals(this.departments, other.departments);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             lastLogTimestamp,
             activityInsights,
             totalActiveUsers,

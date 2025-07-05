@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class WriteActionParameter {
@@ -260,17 +259,17 @@ public class WriteActionParameter {
         }
         WriteActionParameter other = (WriteActionParameter) o;
         return 
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.displayName, other.displayName) &&
-            Objects.deepEquals(this.value, other.value) &&
-            Objects.deepEquals(this.isRequired, other.isRequired) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.possibleValues, other.possibleValues);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
+            Utils.enhancedDeepEquals(this.value, other.value) &&
+            Utils.enhancedDeepEquals(this.isRequired, other.isRequired) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.possibleValues, other.possibleValues);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             type,
             displayName,
             value,

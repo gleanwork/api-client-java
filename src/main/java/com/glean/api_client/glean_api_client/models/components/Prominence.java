@@ -21,7 +21,7 @@ public enum Prominence {
     @JsonValue
     private final String value;
 
-    private Prominence(String value) {
+    Prominence(String value) {
         this.value = value;
     }
     

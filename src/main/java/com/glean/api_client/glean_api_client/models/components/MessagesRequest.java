@@ -14,7 +14,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class MessagesRequest {
@@ -314,19 +313,19 @@ public class MessagesRequest {
         }
         MessagesRequest other = (MessagesRequest) o;
         return 
-            Objects.deepEquals(this.idType, other.idType) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.workspaceId, other.workspaceId) &&
-            Objects.deepEquals(this.direction, other.direction) &&
-            Objects.deepEquals(this.timestampMillis, other.timestampMillis) &&
-            Objects.deepEquals(this.includeRootMessage, other.includeRootMessage) &&
-            Objects.deepEquals(this.datasource, other.datasource) &&
-            Objects.deepEquals(this.datasourceInstanceDisplayName, other.datasourceInstanceDisplayName);
+            Utils.enhancedDeepEquals(this.idType, other.idType) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.workspaceId, other.workspaceId) &&
+            Utils.enhancedDeepEquals(this.direction, other.direction) &&
+            Utils.enhancedDeepEquals(this.timestampMillis, other.timestampMillis) &&
+            Utils.enhancedDeepEquals(this.includeRootMessage, other.includeRootMessage) &&
+            Utils.enhancedDeepEquals(this.datasource, other.datasource) &&
+            Utils.enhancedDeepEquals(this.datasourceInstanceDisplayName, other.datasourceInstanceDisplayName);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             idType,
             id,
             workspaceId,

@@ -16,7 +16,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class Shortcut {
@@ -786,33 +785,33 @@ public class Shortcut {
         }
         Shortcut other = (Shortcut) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.inputAlias, other.inputAlias) &&
-            Objects.deepEquals(this.destinationUrl, other.destinationUrl) &&
-            Objects.deepEquals(this.destinationDocumentId, other.destinationDocumentId) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.unlisted, other.unlisted) &&
-            Objects.deepEquals(this.urlTemplate, other.urlTemplate) &&
-            Objects.deepEquals(this.addedRoles, other.addedRoles) &&
-            Objects.deepEquals(this.removedRoles, other.removedRoles) &&
-            Objects.deepEquals(this.permissions, other.permissions) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.createTime, other.createTime) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.updateTime, other.updateTime) &&
-            Objects.deepEquals(this.destinationDocument, other.destinationDocument) &&
-            Objects.deepEquals(this.intermediateUrl, other.intermediateUrl) &&
-            Objects.deepEquals(this.viewPrefix, other.viewPrefix) &&
-            Objects.deepEquals(this.isExternal, other.isExternal) &&
-            Objects.deepEquals(this.editUrl, other.editUrl) &&
-            Objects.deepEquals(this.alias, other.alias) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.roles, other.roles);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.inputAlias, other.inputAlias) &&
+            Utils.enhancedDeepEquals(this.destinationUrl, other.destinationUrl) &&
+            Utils.enhancedDeepEquals(this.destinationDocumentId, other.destinationDocumentId) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.unlisted, other.unlisted) &&
+            Utils.enhancedDeepEquals(this.urlTemplate, other.urlTemplate) &&
+            Utils.enhancedDeepEquals(this.addedRoles, other.addedRoles) &&
+            Utils.enhancedDeepEquals(this.removedRoles, other.removedRoles) &&
+            Utils.enhancedDeepEquals(this.permissions, other.permissions) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.createTime, other.createTime) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.updateTime, other.updateTime) &&
+            Utils.enhancedDeepEquals(this.destinationDocument, other.destinationDocument) &&
+            Utils.enhancedDeepEquals(this.intermediateUrl, other.intermediateUrl) &&
+            Utils.enhancedDeepEquals(this.viewPrefix, other.viewPrefix) &&
+            Utils.enhancedDeepEquals(this.isExternal, other.isExternal) &&
+            Utils.enhancedDeepEquals(this.editUrl, other.editUrl) &&
+            Utils.enhancedDeepEquals(this.alias, other.alias) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.roles, other.roles);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             inputAlias,
             destinationUrl,

@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class DebugDatasourceStatusResponseCounts {
@@ -115,13 +114,13 @@ public class DebugDatasourceStatusResponseCounts {
         }
         DebugDatasourceStatusResponseCounts other = (DebugDatasourceStatusResponseCounts) o;
         return 
-            Objects.deepEquals(this.uploaded, other.uploaded) &&
-            Objects.deepEquals(this.indexed, other.indexed);
+            Utils.enhancedDeepEquals(this.uploaded, other.uploaded) &&
+            Utils.enhancedDeepEquals(this.indexed, other.indexed);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             uploaded,
             indexed);
     }

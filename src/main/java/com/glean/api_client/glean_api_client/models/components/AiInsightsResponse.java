@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class AiInsightsResponse {
@@ -464,23 +463,23 @@ public class AiInsightsResponse {
         }
         AiInsightsResponse other = (AiInsightsResponse) o;
         return 
-            Objects.deepEquals(this.lastLogTimestamp, other.lastLogTimestamp) &&
-            Objects.deepEquals(this.assistantInsights, other.assistantInsights) &&
-            Objects.deepEquals(this.totalActiveAssistantUsers, other.totalActiveAssistantUsers) &&
-            Objects.deepEquals(this.totalChatMessages, other.totalChatMessages) &&
-            Objects.deepEquals(this.totalAiSummarizations, other.totalAiSummarizations) &&
-            Objects.deepEquals(this.totalAiAnswers, other.totalAiAnswers) &&
-            Objects.deepEquals(this.totalUpvotes, other.totalUpvotes) &&
-            Objects.deepEquals(this.totalDownvotes, other.totalDownvotes) &&
-            Objects.deepEquals(this.totalGleanbotResponses, other.totalGleanbotResponses) &&
-            Objects.deepEquals(this.totalGleanbotResponsesShared, other.totalGleanbotResponsesShared) &&
-            Objects.deepEquals(this.totalGleanbotResponsesNotHelpful, other.totalGleanbotResponsesNotHelpful) &&
-            Objects.deepEquals(this.departments, other.departments);
+            Utils.enhancedDeepEquals(this.lastLogTimestamp, other.lastLogTimestamp) &&
+            Utils.enhancedDeepEquals(this.assistantInsights, other.assistantInsights) &&
+            Utils.enhancedDeepEquals(this.totalActiveAssistantUsers, other.totalActiveAssistantUsers) &&
+            Utils.enhancedDeepEquals(this.totalChatMessages, other.totalChatMessages) &&
+            Utils.enhancedDeepEquals(this.totalAiSummarizations, other.totalAiSummarizations) &&
+            Utils.enhancedDeepEquals(this.totalAiAnswers, other.totalAiAnswers) &&
+            Utils.enhancedDeepEquals(this.totalUpvotes, other.totalUpvotes) &&
+            Utils.enhancedDeepEquals(this.totalDownvotes, other.totalDownvotes) &&
+            Utils.enhancedDeepEquals(this.totalGleanbotResponses, other.totalGleanbotResponses) &&
+            Utils.enhancedDeepEquals(this.totalGleanbotResponsesShared, other.totalGleanbotResponsesShared) &&
+            Utils.enhancedDeepEquals(this.totalGleanbotResponsesNotHelpful, other.totalGleanbotResponsesNotHelpful) &&
+            Utils.enhancedDeepEquals(this.departments, other.departments);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             lastLogTimestamp,
             assistantInsights,
             totalActiveAssistantUsers,

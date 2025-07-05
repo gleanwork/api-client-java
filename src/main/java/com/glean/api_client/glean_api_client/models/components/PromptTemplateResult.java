@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class PromptTemplateResult {
@@ -151,15 +150,15 @@ public class PromptTemplateResult {
         }
         PromptTemplateResult other = (PromptTemplateResult) o;
         return 
-            Objects.deepEquals(this.promptTemplate, other.promptTemplate) &&
-            Objects.deepEquals(this.trackingToken, other.trackingToken) &&
-            Objects.deepEquals(this.favoriteInfo, other.favoriteInfo) &&
-            Objects.deepEquals(this.runCount, other.runCount);
+            Utils.enhancedDeepEquals(this.promptTemplate, other.promptTemplate) &&
+            Utils.enhancedDeepEquals(this.trackingToken, other.trackingToken) &&
+            Utils.enhancedDeepEquals(this.favoriteInfo, other.favoriteInfo) &&
+            Utils.enhancedDeepEquals(this.runCount, other.runCount);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             promptTemplate,
             trackingToken,
             favoriteInfo,

@@ -15,7 +15,7 @@ public enum ListShortcutsPaginatedRequestIncludeField {
     @JsonValue
     private final String value;
 
-    private ListShortcutsPaginatedRequestIncludeField(String value) {
+    ListShortcutsPaginatedRequestIncludeField(String value) {
         this.value = value;
     }
     

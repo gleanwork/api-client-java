@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class TimePoint {
@@ -112,13 +111,13 @@ public class TimePoint {
         }
         TimePoint other = (TimePoint) o;
         return 
-            Objects.deepEquals(this.epochSeconds, other.epochSeconds) &&
-            Objects.deepEquals(this.daysFromNow, other.daysFromNow);
+            Utils.enhancedDeepEquals(this.epochSeconds, other.epochSeconds) &&
+            Utils.enhancedDeepEquals(this.daysFromNow, other.daysFromNow);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             epochSeconds,
             daysFromNow);
     }

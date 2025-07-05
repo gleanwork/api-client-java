@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -224,16 +223,16 @@ public class DocumentStatusResponse {
         }
         DocumentStatusResponse other = (DocumentStatusResponse) o;
         return 
-            Objects.deepEquals(this.uploadStatus, other.uploadStatus) &&
-            Objects.deepEquals(this.lastUploadedAt, other.lastUploadedAt) &&
-            Objects.deepEquals(this.indexingStatus, other.indexingStatus) &&
-            Objects.deepEquals(this.lastIndexedAt, other.lastIndexedAt) &&
-            Objects.deepEquals(this.permissionIdentityStatus, other.permissionIdentityStatus);
+            Utils.enhancedDeepEquals(this.uploadStatus, other.uploadStatus) &&
+            Utils.enhancedDeepEquals(this.lastUploadedAt, other.lastUploadedAt) &&
+            Utils.enhancedDeepEquals(this.indexingStatus, other.indexingStatus) &&
+            Utils.enhancedDeepEquals(this.lastIndexedAt, other.lastIndexedAt) &&
+            Utils.enhancedDeepEquals(this.permissionIdentityStatus, other.permissionIdentityStatus);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             uploadStatus,
             lastUploadedAt,
             indexingStatus,

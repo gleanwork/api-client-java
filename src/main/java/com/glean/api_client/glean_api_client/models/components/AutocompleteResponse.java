@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class AutocompleteResponse {
@@ -263,18 +262,18 @@ public class AutocompleteResponse {
         }
         AutocompleteResponse other = (AutocompleteResponse) o;
         return 
-            Objects.deepEquals(this.experimentIds, other.experimentIds) &&
-            Objects.deepEquals(this.trackingToken, other.trackingToken) &&
-            Objects.deepEquals(this.sessionInfo, other.sessionInfo) &&
-            Objects.deepEquals(this.results, other.results) &&
-            Objects.deepEquals(this.groups, other.groups) &&
-            Objects.deepEquals(this.gleanDataError, other.gleanDataError) &&
-            Objects.deepEquals(this.backendTimeMillis, other.backendTimeMillis);
+            Utils.enhancedDeepEquals(this.experimentIds, other.experimentIds) &&
+            Utils.enhancedDeepEquals(this.trackingToken, other.trackingToken) &&
+            Utils.enhancedDeepEquals(this.sessionInfo, other.sessionInfo) &&
+            Utils.enhancedDeepEquals(this.results, other.results) &&
+            Utils.enhancedDeepEquals(this.groups, other.groups) &&
+            Utils.enhancedDeepEquals(this.gleanDataError, other.gleanDataError) &&
+            Utils.enhancedDeepEquals(this.backendTimeMillis, other.backendTimeMillis);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             experimentIds,
             trackingToken,
             sessionInfo,

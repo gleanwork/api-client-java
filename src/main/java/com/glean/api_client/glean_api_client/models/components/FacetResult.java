@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class FacetResult {
@@ -223,16 +222,16 @@ public class FacetResult {
         }
         FacetResult other = (FacetResult) o;
         return 
-            Objects.deepEquals(this.sourceName, other.sourceName) &&
-            Objects.deepEquals(this.operatorName, other.operatorName) &&
-            Objects.deepEquals(this.buckets, other.buckets) &&
-            Objects.deepEquals(this.hasMoreBuckets, other.hasMoreBuckets) &&
-            Objects.deepEquals(this.groupName, other.groupName);
+            Utils.enhancedDeepEquals(this.sourceName, other.sourceName) &&
+            Utils.enhancedDeepEquals(this.operatorName, other.operatorName) &&
+            Utils.enhancedDeepEquals(this.buckets, other.buckets) &&
+            Utils.enhancedDeepEquals(this.hasMoreBuckets, other.hasMoreBuckets) &&
+            Utils.enhancedDeepEquals(this.groupName, other.groupName);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             sourceName,
             operatorName,
             buckets,

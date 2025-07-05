@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class QueryInsightsResponse {
@@ -225,16 +224,16 @@ public class QueryInsightsResponse {
         }
         QueryInsightsResponse other = (QueryInsightsResponse) o;
         return 
-            Objects.deepEquals(this.lastLogTimestamp, other.lastLogTimestamp) &&
-            Objects.deepEquals(this.queryInsights, other.queryInsights) &&
-            Objects.deepEquals(this.lowPerformingQueryInsights, other.lowPerformingQueryInsights) &&
-            Objects.deepEquals(this.departments, other.departments) &&
-            Objects.deepEquals(this.minVisitorThreshold, other.minVisitorThreshold);
+            Utils.enhancedDeepEquals(this.lastLogTimestamp, other.lastLogTimestamp) &&
+            Utils.enhancedDeepEquals(this.queryInsights, other.queryInsights) &&
+            Utils.enhancedDeepEquals(this.lowPerformingQueryInsights, other.lowPerformingQueryInsights) &&
+            Utils.enhancedDeepEquals(this.departments, other.departments) &&
+            Utils.enhancedDeepEquals(this.minVisitorThreshold, other.minVisitorThreshold);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             lastLogTimestamp,
             queryInsights,
             lowPerformingQueryInsights,

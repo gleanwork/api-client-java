@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class SearchWarning {
@@ -177,15 +176,15 @@ public class SearchWarning {
         }
         SearchWarning other = (SearchWarning) o;
         return 
-            Objects.deepEquals(this.warningType, other.warningType) &&
-            Objects.deepEquals(this.lastUsedTerm, other.lastUsedTerm) &&
-            Objects.deepEquals(this.quotesIgnoredQuery, other.quotesIgnoredQuery) &&
-            Objects.deepEquals(this.ignoredTerms, other.ignoredTerms);
+            Utils.enhancedDeepEquals(this.warningType, other.warningType) &&
+            Utils.enhancedDeepEquals(this.lastUsedTerm, other.lastUsedTerm) &&
+            Utils.enhancedDeepEquals(this.quotesIgnoredQuery, other.quotesIgnoredQuery) &&
+            Utils.enhancedDeepEquals(this.ignoredTerms, other.ignoredTerms);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             warningType,
             lastUsedTerm,
             quotesIgnoredQuery,

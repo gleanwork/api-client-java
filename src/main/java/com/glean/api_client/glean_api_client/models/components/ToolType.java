@@ -20,7 +20,7 @@ public enum ToolType {
     @JsonValue
     private final String value;
 
-    private ToolType(String value) {
+    ToolType(String value) {
         this.value = value;
     }
     

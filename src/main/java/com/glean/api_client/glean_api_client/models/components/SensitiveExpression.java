@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class SensitiveExpression {
@@ -114,13 +113,13 @@ public class SensitiveExpression {
         }
         SensitiveExpression other = (SensitiveExpression) o;
         return 
-            Objects.deepEquals(this.expression, other.expression) &&
-            Objects.deepEquals(this.hotwords, other.hotwords);
+            Utils.enhancedDeepEquals(this.expression, other.expression) &&
+            Utils.enhancedDeepEquals(this.hotwords, other.hotwords);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             expression,
             hotwords);
     }

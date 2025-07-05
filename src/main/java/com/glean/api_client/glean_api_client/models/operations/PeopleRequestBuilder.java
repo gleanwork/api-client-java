@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.PeopleRequest;
+import com.glean.api_client.glean_api_client.operations.PeopleOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class PeopleRequestBuilder {
 
     private PeopleRequest request;
-    private final SDKMethodInterfaces.MethodCallPeople sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PeopleRequestBuilder(SDKMethodInterfaces.MethodCallPeople sdk) {
-        this.sdk = sdk;
+    public PeopleRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PeopleRequestBuilder request(PeopleRequest request) {
@@ -23,8 +27,10 @@ public class PeopleRequestBuilder {
     }
 
     public PeopleResponse call() throws Exception {
+        
+        RequestOperation<PeopleRequest, PeopleResponse> operation
+              = new PeopleOperation( sdkConfiguration);
 
-        return sdk.readPeople(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

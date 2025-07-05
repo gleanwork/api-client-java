@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class UserRoleSpecification {
@@ -142,15 +141,15 @@ public class UserRoleSpecification {
         }
         UserRoleSpecification other = (UserRoleSpecification) o;
         return 
-            Objects.deepEquals(this.sourceDocumentSpec, other.sourceDocumentSpec) &&
-            Objects.deepEquals(this.person, other.person) &&
-            Objects.deepEquals(this.group, other.group) &&
-            Objects.deepEquals(this.role, other.role);
+            Utils.enhancedDeepEquals(this.sourceDocumentSpec, other.sourceDocumentSpec) &&
+            Utils.enhancedDeepEquals(this.person, other.person) &&
+            Utils.enhancedDeepEquals(this.group, other.group) &&
+            Utils.enhancedDeepEquals(this.role, other.role);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             sourceDocumentSpec,
             person,
             group,

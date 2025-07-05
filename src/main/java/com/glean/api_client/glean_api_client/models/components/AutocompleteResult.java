@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class AutocompleteResult {
@@ -379,22 +378,22 @@ public class AutocompleteResult {
         }
         AutocompleteResult other = (AutocompleteResult) o;
         return 
-            Objects.deepEquals(this.result, other.result) &&
-            Objects.deepEquals(this.keywords, other.keywords) &&
-            Objects.deepEquals(this.resultType, other.resultType) &&
-            Objects.deepEquals(this.score, other.score) &&
-            Objects.deepEquals(this.operatorMetadata, other.operatorMetadata) &&
-            Objects.deepEquals(this.quicklink, other.quicklink) &&
-            Objects.deepEquals(this.document, other.document) &&
-            Objects.deepEquals(this.url, other.url) &&
-            Objects.deepEquals(this.structuredResult, other.structuredResult) &&
-            Objects.deepEquals(this.trackingToken, other.trackingToken) &&
-            Objects.deepEquals(this.ranges, other.ranges);
+            Utils.enhancedDeepEquals(this.result, other.result) &&
+            Utils.enhancedDeepEquals(this.keywords, other.keywords) &&
+            Utils.enhancedDeepEquals(this.resultType, other.resultType) &&
+            Utils.enhancedDeepEquals(this.score, other.score) &&
+            Utils.enhancedDeepEquals(this.operatorMetadata, other.operatorMetadata) &&
+            Utils.enhancedDeepEquals(this.quicklink, other.quicklink) &&
+            Utils.enhancedDeepEquals(this.document, other.document) &&
+            Utils.enhancedDeepEquals(this.url, other.url) &&
+            Utils.enhancedDeepEquals(this.structuredResult, other.structuredResult) &&
+            Utils.enhancedDeepEquals(this.trackingToken, other.trackingToken) &&
+            Utils.enhancedDeepEquals(this.ranges, other.ranges);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             result,
             keywords,
             resultType,

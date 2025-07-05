@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -153,14 +152,14 @@ public class AutocompleteResultGroup {
         }
         AutocompleteResultGroup other = (AutocompleteResultGroup) o;
         return 
-            Objects.deepEquals(this.startIndex, other.startIndex) &&
-            Objects.deepEquals(this.endIndex, other.endIndex) &&
-            Objects.deepEquals(this.title, other.title);
+            Utils.enhancedDeepEquals(this.startIndex, other.startIndex) &&
+            Utils.enhancedDeepEquals(this.endIndex, other.endIndex) &&
+            Utils.enhancedDeepEquals(this.title, other.title);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             startIndex,
             endIndex,
             title);

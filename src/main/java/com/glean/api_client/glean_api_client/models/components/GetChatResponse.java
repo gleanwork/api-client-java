@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class GetChatResponse {
@@ -65,12 +64,12 @@ public class GetChatResponse {
         }
         GetChatResponse other = (GetChatResponse) o;
         return 
-            Objects.deepEquals(this.chatResult, other.chatResult);
+            Utils.enhancedDeepEquals(this.chatResult, other.chatResult);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             chatResult);
     }
     

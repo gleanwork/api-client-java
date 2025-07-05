@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class FacetBucketFilter {
@@ -111,13 +110,13 @@ public class FacetBucketFilter {
         }
         FacetBucketFilter other = (FacetBucketFilter) o;
         return 
-            Objects.deepEquals(this.facet, other.facet) &&
-            Objects.deepEquals(this.prefix, other.prefix);
+            Utils.enhancedDeepEquals(this.facet, other.facet) &&
+            Utils.enhancedDeepEquals(this.prefix, other.prefix);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             facet,
             prefix);
     }

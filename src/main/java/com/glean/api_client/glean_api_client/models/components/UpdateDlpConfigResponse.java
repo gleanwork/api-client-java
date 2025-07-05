@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class UpdateDlpConfigResponse {
@@ -101,13 +100,13 @@ public class UpdateDlpConfigResponse {
         }
         UpdateDlpConfigResponse other = (UpdateDlpConfigResponse) o;
         return 
-            Objects.deepEquals(this.result, other.result) &&
-            Objects.deepEquals(this.reportId, other.reportId);
+            Utils.enhancedDeepEquals(this.result, other.result) &&
+            Utils.enhancedDeepEquals(this.reportId, other.reportId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             result,
             reportId);
     }

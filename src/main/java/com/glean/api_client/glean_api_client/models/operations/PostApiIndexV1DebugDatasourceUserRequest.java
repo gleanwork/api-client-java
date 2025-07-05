@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.utils.SpeakeasyMetadata;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class PostApiIndexV1DebugDatasourceUserRequest {
 
@@ -76,13 +75,13 @@ public class PostApiIndexV1DebugDatasourceUserRequest {
         }
         PostApiIndexV1DebugDatasourceUserRequest other = (PostApiIndexV1DebugDatasourceUserRequest) o;
         return 
-            Objects.deepEquals(this.datasource, other.datasource) &&
-            Objects.deepEquals(this.debugUserRequest, other.debugUserRequest);
+            Utils.enhancedDeepEquals(this.datasource, other.datasource) &&
+            Utils.enhancedDeepEquals(this.debugUserRequest, other.debugUserRequest);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             datasource,
             debugUserRequest);
     }

@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.GetDocumentCountRequest;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1GetdocumentcountOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class PostApiIndexV1GetdocumentcountRequestBuilder {
 
     private GetDocumentCountRequest request;
-    private final SDKMethodInterfaces.MethodCallPostApiIndexV1Getdocumentcount sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PostApiIndexV1GetdocumentcountRequestBuilder(SDKMethodInterfaces.MethodCallPostApiIndexV1Getdocumentcount sdk) {
-        this.sdk = sdk;
+    public PostApiIndexV1GetdocumentcountRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PostApiIndexV1GetdocumentcountRequestBuilder request(GetDocumentCountRequest request) {
@@ -23,8 +27,10 @@ public class PostApiIndexV1GetdocumentcountRequestBuilder {
     }
 
     public PostApiIndexV1GetdocumentcountResponse call() throws Exception {
+        
+        RequestOperation<GetDocumentCountRequest, PostApiIndexV1GetdocumentcountResponse> operation
+              = new PostApiIndexV1GetdocumentcountOperation( sdkConfiguration);
 
-        return sdk.count(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -13,7 +13,6 @@ import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class SensitiveInfoType {
@@ -122,13 +121,13 @@ public class SensitiveInfoType {
         }
         SensitiveInfoType other = (SensitiveInfoType) o;
         return 
-            Objects.deepEquals(this.likelihoodThreshold, other.likelihoodThreshold) &&
-            Objects.deepEquals(this.infoType, other.infoType);
+            Utils.enhancedDeepEquals(this.likelihoodThreshold, other.likelihoodThreshold) &&
+            Utils.enhancedDeepEquals(this.infoType, other.infoType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             likelihoodThreshold,
             infoType);
     }

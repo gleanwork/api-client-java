@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ChatRequest {
@@ -398,22 +397,22 @@ public class ChatRequest {
         }
         ChatRequest other = (ChatRequest) o;
         return 
-            Objects.deepEquals(this.saveChat, other.saveChat) &&
-            Objects.deepEquals(this.chatId, other.chatId) &&
-            Objects.deepEquals(this.messages, other.messages) &&
-            Objects.deepEquals(this.agentConfig, other.agentConfig) &&
-            Objects.deepEquals(this.inclusions, other.inclusions) &&
-            Objects.deepEquals(this.exclusions, other.exclusions) &&
-            Objects.deepEquals(this.timeoutMillis, other.timeoutMillis) &&
-            Objects.deepEquals(this.sessionInfo, other.sessionInfo) &&
-            Objects.deepEquals(this.applicationId, other.applicationId) &&
-            Objects.deepEquals(this.agentId, other.agentId) &&
-            Objects.deepEquals(this.stream, other.stream);
+            Utils.enhancedDeepEquals(this.saveChat, other.saveChat) &&
+            Utils.enhancedDeepEquals(this.chatId, other.chatId) &&
+            Utils.enhancedDeepEquals(this.messages, other.messages) &&
+            Utils.enhancedDeepEquals(this.agentConfig, other.agentConfig) &&
+            Utils.enhancedDeepEquals(this.inclusions, other.inclusions) &&
+            Utils.enhancedDeepEquals(this.exclusions, other.exclusions) &&
+            Utils.enhancedDeepEquals(this.timeoutMillis, other.timeoutMillis) &&
+            Utils.enhancedDeepEquals(this.sessionInfo, other.sessionInfo) &&
+            Utils.enhancedDeepEquals(this.applicationId, other.applicationId) &&
+            Utils.enhancedDeepEquals(this.agentId, other.agentId) &&
+            Utils.enhancedDeepEquals(this.stream, other.stream);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             saveChat,
             chatId,
             messages,

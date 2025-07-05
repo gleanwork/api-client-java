@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -81,12 +80,12 @@ public class GetUserCountResponse {
         }
         GetUserCountResponse other = (GetUserCountResponse) o;
         return 
-            Objects.deepEquals(this.userCount, other.userCount);
+            Utils.enhancedDeepEquals(this.userCount, other.userCount);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             userCount);
     }
     

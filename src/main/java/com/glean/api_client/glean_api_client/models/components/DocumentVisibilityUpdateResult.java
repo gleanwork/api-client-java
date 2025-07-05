@@ -13,7 +13,6 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class DocumentVisibilityUpdateResult {
@@ -138,14 +137,14 @@ public class DocumentVisibilityUpdateResult {
         }
         DocumentVisibilityUpdateResult other = (DocumentVisibilityUpdateResult) o;
         return 
-            Objects.deepEquals(this.docId, other.docId) &&
-            Objects.deepEquals(this.override, other.override) &&
-            Objects.deepEquals(this.success, other.success);
+            Utils.enhancedDeepEquals(this.docId, other.docId) &&
+            Utils.enhancedDeepEquals(this.override, other.override) &&
+            Utils.enhancedDeepEquals(this.success, other.success);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             docId,
             override,
             success);

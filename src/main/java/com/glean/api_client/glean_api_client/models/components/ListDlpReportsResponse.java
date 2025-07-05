@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ListDlpReportsResponse {
@@ -66,12 +65,12 @@ public class ListDlpReportsResponse {
         }
         ListDlpReportsResponse other = (ListDlpReportsResponse) o;
         return 
-            Objects.deepEquals(this.reports, other.reports);
+            Utils.enhancedDeepEquals(this.reports, other.reports);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             reports);
     }
     

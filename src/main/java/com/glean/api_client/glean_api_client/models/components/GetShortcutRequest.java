@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class GetShortcutRequest {
 
@@ -58,12 +57,12 @@ public class GetShortcutRequest {
         }
         GetShortcutRequest other = (GetShortcutRequest) o;
         return 
-            Objects.deepEquals(this.alias, other.alias);
+            Utils.enhancedDeepEquals(this.alias, other.alias);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             alias);
     }
     

@@ -24,6 +24,7 @@ public enum FeedRequestCategory {
     DISPLAYABLE_LIST("DISPLAYABLE_LIST"),
     SOCIAL_LINK("SOCIAL_LINK"),
     EXTERNAL_TASKS("EXTERNAL_TASKS"),
+    WORKFLOW_COLLECTIONS("WORKFLOW_COLLECTIONS"),
     ZERO_STATE_CHAT_SUGGESTION("ZERO_STATE_CHAT_SUGGESTION"),
     ZERO_STATE_CHAT_TOOL_SUGGESTION("ZERO_STATE_CHAT_TOOL_SUGGESTION"),
     ZERO_STATE_WORKFLOW_CREATED_BY_ME("ZERO_STATE_WORKFLOW_CREATED_BY_ME"),
@@ -34,7 +35,7 @@ public enum FeedRequestCategory {
     @JsonValue
     private final String value;
 
-    private FeedRequestCategory(String value) {
+    FeedRequestCategory(String value) {
         this.value = value;
     }
     

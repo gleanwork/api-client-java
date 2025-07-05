@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class VerificationFeed {
@@ -78,12 +77,12 @@ public class VerificationFeed {
         }
         VerificationFeed other = (VerificationFeed) o;
         return 
-            Objects.deepEquals(this.documents, other.documents);
+            Utils.enhancedDeepEquals(this.documents, other.documents);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             documents);
     }
     

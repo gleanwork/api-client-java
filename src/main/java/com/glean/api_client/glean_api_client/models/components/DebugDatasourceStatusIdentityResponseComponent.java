@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class DebugDatasourceStatusIdentityResponseComponent {
@@ -103,13 +102,13 @@ public class DebugDatasourceStatusIdentityResponseComponent {
         }
         DebugDatasourceStatusIdentityResponseComponent other = (DebugDatasourceStatusIdentityResponseComponent) o;
         return 
-            Objects.deepEquals(this.bulkUploadHistory, other.bulkUploadHistory) &&
-            Objects.deepEquals(this.counts, other.counts);
+            Utils.enhancedDeepEquals(this.bulkUploadHistory, other.bulkUploadHistory) &&
+            Utils.enhancedDeepEquals(this.counts, other.counts);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             bulkUploadHistory,
             counts);
     }

@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class RelatedObjectEdge {
@@ -66,12 +65,12 @@ public class RelatedObjectEdge {
         }
         RelatedObjectEdge other = (RelatedObjectEdge) o;
         return 
-            Objects.deepEquals(this.objects, other.objects);
+            Utils.enhancedDeepEquals(this.objects, other.objects);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             objects);
     }
     

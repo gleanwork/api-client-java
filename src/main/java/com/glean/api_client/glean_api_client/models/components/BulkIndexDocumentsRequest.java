@@ -13,7 +13,6 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -271,18 +270,18 @@ public class BulkIndexDocumentsRequest {
         }
         BulkIndexDocumentsRequest other = (BulkIndexDocumentsRequest) o;
         return 
-            Objects.deepEquals(this.uploadId, other.uploadId) &&
-            Objects.deepEquals(this.isFirstPage, other.isFirstPage) &&
-            Objects.deepEquals(this.isLastPage, other.isLastPage) &&
-            Objects.deepEquals(this.forceRestartUpload, other.forceRestartUpload) &&
-            Objects.deepEquals(this.datasource, other.datasource) &&
-            Objects.deepEquals(this.documents, other.documents) &&
-            Objects.deepEquals(this.disableStaleDocumentDeletionCheck, other.disableStaleDocumentDeletionCheck);
+            Utils.enhancedDeepEquals(this.uploadId, other.uploadId) &&
+            Utils.enhancedDeepEquals(this.isFirstPage, other.isFirstPage) &&
+            Utils.enhancedDeepEquals(this.isLastPage, other.isLastPage) &&
+            Utils.enhancedDeepEquals(this.forceRestartUpload, other.forceRestartUpload) &&
+            Utils.enhancedDeepEquals(this.datasource, other.datasource) &&
+            Utils.enhancedDeepEquals(this.documents, other.documents) &&
+            Utils.enhancedDeepEquals(this.disableStaleDocumentDeletionCheck, other.disableStaleDocumentDeletionCheck);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             uploadId,
             isFirstPage,
             isLastPage,

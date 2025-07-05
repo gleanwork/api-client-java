@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class DebugDatasourceStatusIdentityResponseComponentCounts {
@@ -76,12 +75,12 @@ public class DebugDatasourceStatusIdentityResponseComponentCounts {
         }
         DebugDatasourceStatusIdentityResponseComponentCounts other = (DebugDatasourceStatusIdentityResponseComponentCounts) o;
         return 
-            Objects.deepEquals(this.uploaded, other.uploaded);
+            Utils.enhancedDeepEquals(this.uploaded, other.uploaded);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             uploaded);
     }
     

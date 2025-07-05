@@ -15,7 +15,6 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CustomFieldData {
@@ -124,14 +123,14 @@ public class CustomFieldData {
         }
         CustomFieldData other = (CustomFieldData) o;
         return 
-            Objects.deepEquals(this.label, other.label) &&
-            Objects.deepEquals(this.values, other.values) &&
-            Objects.deepEquals(this.displayable, other.displayable);
+            Utils.enhancedDeepEquals(this.label, other.label) &&
+            Utils.enhancedDeepEquals(this.values, other.values) &&
+            Utils.enhancedDeepEquals(this.displayable, other.displayable);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             label,
             values,
             displayable);

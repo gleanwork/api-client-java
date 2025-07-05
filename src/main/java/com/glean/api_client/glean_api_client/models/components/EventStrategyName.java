@@ -27,7 +27,7 @@ public enum EventStrategyName {
     @JsonValue
     private final String value;
 
-    private EventStrategyName(String value) {
+    EventStrategyName(String value) {
         this.value = value;
     }
     

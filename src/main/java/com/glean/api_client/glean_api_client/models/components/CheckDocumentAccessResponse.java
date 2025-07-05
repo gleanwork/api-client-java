@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -81,12 +80,12 @@ public class CheckDocumentAccessResponse {
         }
         CheckDocumentAccessResponse other = (CheckDocumentAccessResponse) o;
         return 
-            Objects.deepEquals(this.hasAccess, other.hasAccess);
+            Utils.enhancedDeepEquals(this.hasAccess, other.hasAccess);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             hasAccess);
     }
     

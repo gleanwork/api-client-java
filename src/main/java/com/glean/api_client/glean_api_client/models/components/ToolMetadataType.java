@@ -20,7 +20,7 @@ public enum ToolMetadataType {
     @JsonValue
     private final String value;
 
-    private ToolMetadataType(String value) {
+    ToolMetadataType(String value) {
         this.value = value;
     }
     

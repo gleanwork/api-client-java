@@ -17,7 +17,6 @@ import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 public class Customer {
@@ -371,21 +370,21 @@ public class Customer {
         }
         Customer other = (Customer) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.domains, other.domains) &&
-            Objects.deepEquals(this.company, other.company) &&
-            Objects.deepEquals(this.documentCounts, other.documentCounts) &&
-            Objects.deepEquals(this.poc, other.poc) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.mergedCustomers, other.mergedCustomers) &&
-            Objects.deepEquals(this.startDate, other.startDate) &&
-            Objects.deepEquals(this.contractAnnualRevenue, other.contractAnnualRevenue) &&
-            Objects.deepEquals(this.notes, other.notes);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.domains, other.domains) &&
+            Utils.enhancedDeepEquals(this.company, other.company) &&
+            Utils.enhancedDeepEquals(this.documentCounts, other.documentCounts) &&
+            Utils.enhancedDeepEquals(this.poc, other.poc) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.mergedCustomers, other.mergedCustomers) &&
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.contractAnnualRevenue, other.contractAnnualRevenue) &&
+            Utils.enhancedDeepEquals(this.notes, other.notes);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             domains,
             company,

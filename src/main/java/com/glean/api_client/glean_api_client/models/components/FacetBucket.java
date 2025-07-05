@@ -13,7 +13,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class FacetBucket {
@@ -174,15 +173,15 @@ public class FacetBucket {
         }
         FacetBucket other = (FacetBucket) o;
         return 
-            Objects.deepEquals(this.count, other.count) &&
-            Objects.deepEquals(this.datasource, other.datasource) &&
-            Objects.deepEquals(this.percentage, other.percentage) &&
-            Objects.deepEquals(this.value, other.value);
+            Utils.enhancedDeepEquals(this.count, other.count) &&
+            Utils.enhancedDeepEquals(this.datasource, other.datasource) &&
+            Utils.enhancedDeepEquals(this.percentage, other.percentage) &&
+            Utils.enhancedDeepEquals(this.value, other.value);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             count,
             datasource,
             percentage,

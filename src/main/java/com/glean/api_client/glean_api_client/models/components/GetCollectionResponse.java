@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class GetCollectionResponse {
@@ -151,15 +150,15 @@ public class GetCollectionResponse {
         }
         GetCollectionResponse other = (GetCollectionResponse) o;
         return 
-            Objects.deepEquals(this.collection, other.collection) &&
-            Objects.deepEquals(this.rootCollection, other.rootCollection) &&
-            Objects.deepEquals(this.trackingToken, other.trackingToken) &&
-            Objects.deepEquals(this.error, other.error);
+            Utils.enhancedDeepEquals(this.collection, other.collection) &&
+            Utils.enhancedDeepEquals(this.rootCollection, other.rootCollection) &&
+            Utils.enhancedDeepEquals(this.trackingToken, other.trackingToken) &&
+            Utils.enhancedDeepEquals(this.error, other.error);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             collection,
             rootCollection,
             trackingToken,

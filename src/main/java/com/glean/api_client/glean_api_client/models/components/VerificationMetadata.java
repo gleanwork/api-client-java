@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class VerificationMetadata {
@@ -300,19 +299,19 @@ public class VerificationMetadata {
         }
         VerificationMetadata other = (VerificationMetadata) o;
         return 
-            Objects.deepEquals(this.lastVerifier, other.lastVerifier) &&
-            Objects.deepEquals(this.lastVerificationTs, other.lastVerificationTs) &&
-            Objects.deepEquals(this.expirationTs, other.expirationTs) &&
-            Objects.deepEquals(this.document, other.document) &&
-            Objects.deepEquals(this.reminders, other.reminders) &&
-            Objects.deepEquals(this.lastReminder, other.lastReminder) &&
-            Objects.deepEquals(this.visitorCount, other.visitorCount) &&
-            Objects.deepEquals(this.candidateVerifiers, other.candidateVerifiers);
+            Utils.enhancedDeepEquals(this.lastVerifier, other.lastVerifier) &&
+            Utils.enhancedDeepEquals(this.lastVerificationTs, other.lastVerificationTs) &&
+            Utils.enhancedDeepEquals(this.expirationTs, other.expirationTs) &&
+            Utils.enhancedDeepEquals(this.document, other.document) &&
+            Utils.enhancedDeepEquals(this.reminders, other.reminders) &&
+            Utils.enhancedDeepEquals(this.lastReminder, other.lastReminder) &&
+            Utils.enhancedDeepEquals(this.visitorCount, other.visitorCount) &&
+            Utils.enhancedDeepEquals(this.candidateVerifiers, other.candidateVerifiers);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             lastVerifier,
             lastVerificationTs,
             expirationTs,

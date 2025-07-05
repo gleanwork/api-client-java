@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.UpdateDocumentVisibilityOverridesRequest;
+import com.glean.api_client.glean_api_client.operations.SetdocvisibilityOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class SetdocvisibilityRequestBuilder {
 
     private UpdateDocumentVisibilityOverridesRequest request;
-    private final SDKMethodInterfaces.MethodCallSetdocvisibility sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public SetdocvisibilityRequestBuilder(SDKMethodInterfaces.MethodCallSetdocvisibility sdk) {
-        this.sdk = sdk;
+    public SetdocvisibilityRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public SetdocvisibilityRequestBuilder request(UpdateDocumentVisibilityOverridesRequest request) {
@@ -23,8 +27,10 @@ public class SetdocvisibilityRequestBuilder {
     }
 
     public SetdocvisibilityResponse call() throws Exception {
+        
+        RequestOperation<UpdateDocumentVisibilityOverridesRequest, SetdocvisibilityResponse> operation
+              = new SetdocvisibilityOperation( sdkConfiguration);
 
-        return sdk.create(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

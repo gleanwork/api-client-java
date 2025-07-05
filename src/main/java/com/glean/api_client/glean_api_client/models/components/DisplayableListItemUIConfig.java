@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -81,12 +80,12 @@ public class DisplayableListItemUIConfig {
         }
         DisplayableListItemUIConfig other = (DisplayableListItemUIConfig) o;
         return 
-            Objects.deepEquals(this.showNewIndicator, other.showNewIndicator);
+            Utils.enhancedDeepEquals(this.showNewIndicator, other.showNewIndicator);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             showNewIndicator);
     }
     

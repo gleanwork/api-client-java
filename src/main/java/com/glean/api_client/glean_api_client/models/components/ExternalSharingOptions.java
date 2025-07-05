@@ -16,7 +16,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -381,20 +380,20 @@ public class ExternalSharingOptions {
         }
         ExternalSharingOptions other = (ExternalSharingOptions) o;
         return 
-            Objects.deepEquals(this.enabled, other.enabled) &&
-            Objects.deepEquals(this.threshold, other.threshold) &&
-            Objects.deepEquals(this.thresholdEnabled, other.thresholdEnabled) &&
-            Objects.deepEquals(this.anyoneWithLinkEnabled, other.anyoneWithLinkEnabled) &&
-            Objects.deepEquals(this.anyoneInternalEnabled, other.anyoneInternalEnabled) &&
-            Objects.deepEquals(this.anonymousAccessEnabled, other.anonymousAccessEnabled) &&
-            Objects.deepEquals(this.userAccessEnabled, other.userAccessEnabled) &&
-            Objects.deepEquals(this.userIds, other.userIds) &&
-            Objects.deepEquals(this.domainAccessEnabled, other.domainAccessEnabled);
+            Utils.enhancedDeepEquals(this.enabled, other.enabled) &&
+            Utils.enhancedDeepEquals(this.threshold, other.threshold) &&
+            Utils.enhancedDeepEquals(this.thresholdEnabled, other.thresholdEnabled) &&
+            Utils.enhancedDeepEquals(this.anyoneWithLinkEnabled, other.anyoneWithLinkEnabled) &&
+            Utils.enhancedDeepEquals(this.anyoneInternalEnabled, other.anyoneInternalEnabled) &&
+            Utils.enhancedDeepEquals(this.anonymousAccessEnabled, other.anonymousAccessEnabled) &&
+            Utils.enhancedDeepEquals(this.userAccessEnabled, other.userAccessEnabled) &&
+            Utils.enhancedDeepEquals(this.userIds, other.userIds) &&
+            Utils.enhancedDeepEquals(this.domainAccessEnabled, other.domainAccessEnabled);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             enabled,
             threshold,
             thresholdEnabled,

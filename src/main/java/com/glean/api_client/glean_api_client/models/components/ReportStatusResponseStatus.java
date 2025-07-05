@@ -19,7 +19,7 @@ public enum ReportStatusResponseStatus {
     @JsonValue
     private final String value;
 
-    private ReportStatusResponseStatus(String value) {
+    ReportStatusResponseStatus(String value) {
         this.value = value;
     }
     

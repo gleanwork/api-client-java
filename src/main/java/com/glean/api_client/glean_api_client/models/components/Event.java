@@ -47,7 +47,7 @@ public enum Event {
     @JsonValue
     private final String value;
 
-    private Event(String value) {
+    Event(String value) {
         this.value = value;
     }
     

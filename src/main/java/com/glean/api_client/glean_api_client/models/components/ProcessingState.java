@@ -24,7 +24,7 @@ public enum ProcessingState {
     @JsonValue
     private final String value;
 
-    private ProcessingState(String value) {
+    ProcessingState(String value) {
         this.value = value;
     }
     

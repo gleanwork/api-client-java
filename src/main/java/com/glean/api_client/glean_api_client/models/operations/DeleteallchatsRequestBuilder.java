@@ -3,6 +3,10 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
+import com.glean.api_client.glean_api_client.operations.DeleteallchatsOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class DeleteallchatsRequestBuilder {
 
     private Optional<Long> timezoneOffset = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallDeleteallchats sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DeleteallchatsRequestBuilder(SDKMethodInterfaces.MethodCallDeleteallchats sdk) {
-        this.sdk = sdk;
+    public DeleteallchatsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public DeleteallchatsRequestBuilder timezoneOffset(long timezoneOffset) {
@@ -29,9 +33,20 @@ public class DeleteallchatsRequestBuilder {
         return this;
     }
 
-    public DeleteallchatsResponse call() throws Exception {
 
-        return sdk.deleteAll(
-            timezoneOffset);
+    private DeleteallchatsRequest buildRequest() {
+
+        DeleteallchatsRequest request = new DeleteallchatsRequest(timezoneOffset);
+
+        return request;
+    }
+
+    public DeleteallchatsResponse call() throws Exception {
+        
+        RequestOperation<DeleteallchatsRequest, DeleteallchatsResponse> operation
+              = new DeleteallchatsOperation( sdkConfiguration);
+        DeleteallchatsRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

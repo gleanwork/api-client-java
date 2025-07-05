@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * DebugUserRequest
@@ -63,12 +62,12 @@ public class DebugUserRequest {
         }
         DebugUserRequest other = (DebugUserRequest) o;
         return 
-            Objects.deepEquals(this.email, other.email);
+            Utils.enhancedDeepEquals(this.email, other.email);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             email);
     }
     

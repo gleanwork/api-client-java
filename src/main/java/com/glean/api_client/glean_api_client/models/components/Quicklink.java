@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -264,17 +263,17 @@ public class Quicklink {
         }
         Quicklink other = (Quicklink) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.shortName, other.shortName) &&
-            Objects.deepEquals(this.url, other.url) &&
-            Objects.deepEquals(this.iconConfig, other.iconConfig) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.scopes, other.scopes);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.shortName, other.shortName) &&
+            Utils.enhancedDeepEquals(this.url, other.url) &&
+            Utils.enhancedDeepEquals(this.iconConfig, other.iconConfig) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.scopes, other.scopes);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name,
             shortName,
             url,

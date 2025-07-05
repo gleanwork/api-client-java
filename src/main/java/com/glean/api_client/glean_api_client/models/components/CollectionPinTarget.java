@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CollectionPinTarget {
@@ -140,14 +139,14 @@ public class CollectionPinTarget {
         }
         CollectionPinTarget other = (CollectionPinTarget) o;
         return 
-            Objects.deepEquals(this.category, other.category) &&
-            Objects.deepEquals(this.value, other.value) &&
-            Objects.deepEquals(this.target, other.target);
+            Utils.enhancedDeepEquals(this.category, other.category) &&
+            Utils.enhancedDeepEquals(this.value, other.value) &&
+            Utils.enhancedDeepEquals(this.target, other.target);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             category,
             value,
             target);

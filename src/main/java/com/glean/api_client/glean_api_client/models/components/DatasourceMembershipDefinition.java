@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -143,14 +142,14 @@ public class DatasourceMembershipDefinition {
         }
         DatasourceMembershipDefinition other = (DatasourceMembershipDefinition) o;
         return 
-            Objects.deepEquals(this.groupName, other.groupName) &&
-            Objects.deepEquals(this.memberUserId, other.memberUserId) &&
-            Objects.deepEquals(this.memberGroupName, other.memberGroupName);
+            Utils.enhancedDeepEquals(this.groupName, other.groupName) &&
+            Utils.enhancedDeepEquals(this.memberUserId, other.memberUserId) &&
+            Utils.enhancedDeepEquals(this.memberGroupName, other.memberGroupName);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             groupName,
             memberUserId,
             memberGroupName);

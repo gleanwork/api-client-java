@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 
 public class Activity {
 
@@ -50,12 +49,12 @@ public class Activity {
         }
         Activity other = (Activity) o;
         return 
-            Objects.deepEquals(this.events, other.events);
+            Utils.enhancedDeepEquals(this.events, other.events);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             events);
     }
     

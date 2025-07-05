@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class OperatorScope {
@@ -87,13 +86,13 @@ public class OperatorScope {
         }
         OperatorScope other = (OperatorScope) o;
         return 
-            Objects.deepEquals(this.datasource, other.datasource) &&
-            Objects.deepEquals(this.docType, other.docType);
+            Utils.enhancedDeepEquals(this.datasource, other.datasource) &&
+            Utils.enhancedDeepEquals(this.docType, other.docType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             datasource,
             docType);
     }

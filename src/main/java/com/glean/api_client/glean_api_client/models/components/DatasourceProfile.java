@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class DatasourceProfile {
@@ -202,16 +201,16 @@ public class DatasourceProfile {
         }
         DatasourceProfile other = (DatasourceProfile) o;
         return 
-            Objects.deepEquals(this.datasource, other.datasource) &&
-            Objects.deepEquals(this.handle, other.handle) &&
-            Objects.deepEquals(this.url, other.url) &&
-            Objects.deepEquals(this.nativeAppUrl, other.nativeAppUrl) &&
-            Objects.deepEquals(this.isUserGenerated, other.isUserGenerated);
+            Utils.enhancedDeepEquals(this.datasource, other.datasource) &&
+            Utils.enhancedDeepEquals(this.handle, other.handle) &&
+            Utils.enhancedDeepEquals(this.url, other.url) &&
+            Utils.enhancedDeepEquals(this.nativeAppUrl, other.nativeAppUrl) &&
+            Utils.enhancedDeepEquals(this.isUserGenerated, other.isUserGenerated);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             datasource,
             handle,
             url,

@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class Code {
@@ -175,16 +174,16 @@ public class Code {
         }
         Code other = (Code) o;
         return 
-            Objects.deepEquals(this.repoName, other.repoName) &&
-            Objects.deepEquals(this.fileName, other.fileName) &&
-            Objects.deepEquals(this.fileUrl, other.fileUrl) &&
-            Objects.deepEquals(this.lines, other.lines) &&
-            Objects.deepEquals(this.isLastMatch, other.isLastMatch);
+            Utils.enhancedDeepEquals(this.repoName, other.repoName) &&
+            Utils.enhancedDeepEquals(this.fileName, other.fileName) &&
+            Utils.enhancedDeepEquals(this.fileUrl, other.fileUrl) &&
+            Utils.enhancedDeepEquals(this.lines, other.lines) &&
+            Utils.enhancedDeepEquals(this.isLastMatch, other.isLastMatch);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             repoName,
             fileName,
             fileUrl,

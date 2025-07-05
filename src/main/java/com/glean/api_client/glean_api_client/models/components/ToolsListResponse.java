@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ToolsListResponse {
@@ -66,12 +65,12 @@ public class ToolsListResponse {
         }
         ToolsListResponse other = (ToolsListResponse) o;
         return 
-            Objects.deepEquals(this.tools, other.tools);
+            Utils.enhancedDeepEquals(this.tools, other.tools);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             tools);
     }
     

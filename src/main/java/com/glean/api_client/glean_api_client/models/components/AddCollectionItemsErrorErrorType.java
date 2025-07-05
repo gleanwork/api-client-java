@@ -14,7 +14,7 @@ public enum AddCollectionItemsErrorErrorType {
     @JsonValue
     private final String value;
 
-    private AddCollectionItemsErrorErrorType(String value) {
+    AddCollectionItemsErrorErrorType(String value) {
         this.value = value;
     }
     

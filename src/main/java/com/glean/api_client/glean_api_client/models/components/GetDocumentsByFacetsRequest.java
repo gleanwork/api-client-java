@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class GetDocumentsByFacetsRequest {
@@ -141,14 +140,14 @@ public class GetDocumentsByFacetsRequest {
         }
         GetDocumentsByFacetsRequest other = (GetDocumentsByFacetsRequest) o;
         return 
-            Objects.deepEquals(this.datasourcesFilter, other.datasourcesFilter) &&
-            Objects.deepEquals(this.filterSets, other.filterSets) &&
-            Objects.deepEquals(this.cursor, other.cursor);
+            Utils.enhancedDeepEquals(this.datasourcesFilter, other.datasourcesFilter) &&
+            Utils.enhancedDeepEquals(this.filterSets, other.filterSets) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             datasourcesFilter,
             filterSets,
             cursor);

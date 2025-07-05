@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CalendarAttendees {
@@ -296,18 +295,18 @@ public class CalendarAttendees {
         }
         CalendarAttendees other = (CalendarAttendees) o;
         return 
-            Objects.deepEquals(this.people, other.people) &&
-            Objects.deepEquals(this.isLimit, other.isLimit) &&
-            Objects.deepEquals(this.total, other.total) &&
-            Objects.deepEquals(this.numAccepted, other.numAccepted) &&
-            Objects.deepEquals(this.numDeclined, other.numDeclined) &&
-            Objects.deepEquals(this.numNoResponse, other.numNoResponse) &&
-            Objects.deepEquals(this.numTentative, other.numTentative);
+            Utils.enhancedDeepEquals(this.people, other.people) &&
+            Utils.enhancedDeepEquals(this.isLimit, other.isLimit) &&
+            Utils.enhancedDeepEquals(this.total, other.total) &&
+            Utils.enhancedDeepEquals(this.numAccepted, other.numAccepted) &&
+            Utils.enhancedDeepEquals(this.numDeclined, other.numDeclined) &&
+            Utils.enhancedDeepEquals(this.numNoResponse, other.numNoResponse) &&
+            Utils.enhancedDeepEquals(this.numTentative, other.numTentative);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             people,
             isLimit,
             total,

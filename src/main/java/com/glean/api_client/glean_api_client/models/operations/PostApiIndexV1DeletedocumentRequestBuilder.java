@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.DeleteDocumentRequest;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DeletedocumentOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class PostApiIndexV1DeletedocumentRequestBuilder {
 
     private DeleteDocumentRequest request;
-    private final SDKMethodInterfaces.MethodCallPostApiIndexV1Deletedocument sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PostApiIndexV1DeletedocumentRequestBuilder(SDKMethodInterfaces.MethodCallPostApiIndexV1Deletedocument sdk) {
-        this.sdk = sdk;
+    public PostApiIndexV1DeletedocumentRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PostApiIndexV1DeletedocumentRequestBuilder request(DeleteDocumentRequest request) {
@@ -23,8 +27,10 @@ public class PostApiIndexV1DeletedocumentRequestBuilder {
     }
 
     public PostApiIndexV1DeletedocumentResponse call() throws Exception {
+        
+        RequestOperation<DeleteDocumentRequest, PostApiIndexV1DeletedocumentResponse> operation
+              = new PostApiIndexV1DeletedocumentOperation( sdkConfiguration);
 
-        return sdk.delete(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

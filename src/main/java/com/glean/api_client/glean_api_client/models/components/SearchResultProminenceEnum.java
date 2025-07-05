@@ -21,7 +21,7 @@ public enum SearchResultProminenceEnum {
     @JsonValue
     private final String value;
 
-    private SearchResultProminenceEnum(String value) {
+    SearchResultProminenceEnum(String value) {
         this.value = value;
     }
     

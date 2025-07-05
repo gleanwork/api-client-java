@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class QueryInsight {
@@ -205,17 +204,17 @@ public class QueryInsight {
         }
         QueryInsight other = (QueryInsight) o;
         return 
-            Objects.deepEquals(this.query, other.query) &&
-            Objects.deepEquals(this.searchCount, other.searchCount) &&
-            Objects.deepEquals(this.searchorCount, other.searchorCount) &&
-            Objects.deepEquals(this.searchWithClickCount, other.searchWithClickCount) &&
-            Objects.deepEquals(this.clickCount, other.clickCount) &&
-            Objects.deepEquals(this.similarQueries, other.similarQueries);
+            Utils.enhancedDeepEquals(this.query, other.query) &&
+            Utils.enhancedDeepEquals(this.searchCount, other.searchCount) &&
+            Utils.enhancedDeepEquals(this.searchorCount, other.searchorCount) &&
+            Utils.enhancedDeepEquals(this.searchWithClickCount, other.searchWithClickCount) &&
+            Utils.enhancedDeepEquals(this.clickCount, other.clickCount) &&
+            Utils.enhancedDeepEquals(this.similarQueries, other.similarQueries);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             query,
             searchCount,
             searchorCount,

@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ChatZeroStateSuggestionOptions {
@@ -75,12 +74,12 @@ public class ChatZeroStateSuggestionOptions {
         }
         ChatZeroStateSuggestionOptions other = (ChatZeroStateSuggestionOptions) o;
         return 
-            Objects.deepEquals(this.applicationId, other.applicationId);
+            Utils.enhancedDeepEquals(this.applicationId, other.applicationId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             applicationId);
     }
     

@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class Documents {
@@ -140,14 +139,14 @@ public class Documents {
         }
         Documents other = (Documents) o;
         return 
-            Objects.deepEquals(this.bulkUploadHistory, other.bulkUploadHistory) &&
-            Objects.deepEquals(this.counts, other.counts) &&
-            Objects.deepEquals(this.processingHistory, other.processingHistory);
+            Utils.enhancedDeepEquals(this.bulkUploadHistory, other.bulkUploadHistory) &&
+            Utils.enhancedDeepEquals(this.counts, other.counts) &&
+            Utils.enhancedDeepEquals(this.processingHistory, other.processingHistory);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             bulkUploadHistory,
             counts,
             processingHistory);

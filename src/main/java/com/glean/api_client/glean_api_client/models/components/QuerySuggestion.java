@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class QuerySuggestion {
@@ -288,19 +287,19 @@ public class QuerySuggestion {
         }
         QuerySuggestion other = (QuerySuggestion) o;
         return 
-            Objects.deepEquals(this.missingTerm, other.missingTerm) &&
-            Objects.deepEquals(this.query, other.query) &&
-            Objects.deepEquals(this.searchProviderInfo, other.searchProviderInfo) &&
-            Objects.deepEquals(this.label, other.label) &&
-            Objects.deepEquals(this.datasource, other.datasource) &&
-            Objects.deepEquals(this.requestOptions, other.requestOptions) &&
-            Objects.deepEquals(this.ranges, other.ranges) &&
-            Objects.deepEquals(this.inputDetails, other.inputDetails);
+            Utils.enhancedDeepEquals(this.missingTerm, other.missingTerm) &&
+            Utils.enhancedDeepEquals(this.query, other.query) &&
+            Utils.enhancedDeepEquals(this.searchProviderInfo, other.searchProviderInfo) &&
+            Utils.enhancedDeepEquals(this.label, other.label) &&
+            Utils.enhancedDeepEquals(this.datasource, other.datasource) &&
+            Utils.enhancedDeepEquals(this.requestOptions, other.requestOptions) &&
+            Utils.enhancedDeepEquals(this.ranges, other.ranges) &&
+            Utils.enhancedDeepEquals(this.inputDetails, other.inputDetails);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             missingTerm,
             query,
             searchProviderInfo,

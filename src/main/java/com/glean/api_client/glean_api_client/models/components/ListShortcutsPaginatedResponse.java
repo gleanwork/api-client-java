@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ListShortcutsPaginatedResponse {
@@ -111,14 +110,14 @@ public class ListShortcutsPaginatedResponse {
         }
         ListShortcutsPaginatedResponse other = (ListShortcutsPaginatedResponse) o;
         return 
-            Objects.deepEquals(this.shortcuts, other.shortcuts) &&
-            Objects.deepEquals(this.facetResults, other.facetResults) &&
-            Objects.deepEquals(this.meta, other.meta);
+            Utils.enhancedDeepEquals(this.shortcuts, other.shortcuts) &&
+            Utils.enhancedDeepEquals(this.facetResults, other.facetResults) &&
+            Utils.enhancedDeepEquals(this.meta, other.meta);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             shortcuts,
             facetResults,
             meta);

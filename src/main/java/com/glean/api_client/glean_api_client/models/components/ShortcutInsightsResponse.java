@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ShortcutInsightsResponse {
@@ -188,15 +187,15 @@ public class ShortcutInsightsResponse {
         }
         ShortcutInsightsResponse other = (ShortcutInsightsResponse) o;
         return 
-            Objects.deepEquals(this.lastLogTimestamp, other.lastLogTimestamp) &&
-            Objects.deepEquals(this.shortcutInsights, other.shortcutInsights) &&
-            Objects.deepEquals(this.departments, other.departments) &&
-            Objects.deepEquals(this.minVisitorThreshold, other.minVisitorThreshold);
+            Utils.enhancedDeepEquals(this.lastLogTimestamp, other.lastLogTimestamp) &&
+            Utils.enhancedDeepEquals(this.shortcutInsights, other.shortcutInsights) &&
+            Utils.enhancedDeepEquals(this.departments, other.departments) &&
+            Utils.enhancedDeepEquals(this.minVisitorThreshold, other.minVisitorThreshold);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             lastLogTimestamp,
             shortcutInsights,
             departments,

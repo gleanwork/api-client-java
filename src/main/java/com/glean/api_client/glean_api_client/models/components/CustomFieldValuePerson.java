@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CustomFieldValuePerson {
@@ -65,12 +64,12 @@ public class CustomFieldValuePerson {
         }
         CustomFieldValuePerson other = (CustomFieldValuePerson) o;
         return 
-            Objects.deepEquals(this.person, other.person);
+            Utils.enhancedDeepEquals(this.person, other.person);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             person);
     }
     

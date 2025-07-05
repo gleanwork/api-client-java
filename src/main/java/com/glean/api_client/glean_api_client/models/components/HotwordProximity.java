@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class HotwordProximity {
@@ -88,13 +87,13 @@ public class HotwordProximity {
         }
         HotwordProximity other = (HotwordProximity) o;
         return 
-            Objects.deepEquals(this.windowBefore, other.windowBefore) &&
-            Objects.deepEquals(this.windowAfter, other.windowAfter);
+            Utils.enhancedDeepEquals(this.windowBefore, other.windowBefore) &&
+            Utils.enhancedDeepEquals(this.windowAfter, other.windowAfter);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             windowBefore,
             windowAfter);
     }

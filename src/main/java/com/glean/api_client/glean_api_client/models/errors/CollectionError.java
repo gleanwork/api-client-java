@@ -11,7 +11,6 @@ import java.lang.Override;
 import java.lang.RuntimeException;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 
 @SuppressWarnings("serial")
 public class CollectionError extends RuntimeException {
@@ -22,6 +21,7 @@ public class CollectionError extends RuntimeException {
     @JsonCreator
     public CollectionError(
             @JsonProperty("errorCode") ErrorCode errorCode) {
+        super("API error occurred");
         Utils.checkNotNull(errorCode, "errorCode");
         this.errorCode = errorCode;
     }
@@ -52,12 +52,12 @@ public class CollectionError extends RuntimeException {
         }
         CollectionError other = (CollectionError) o;
         return 
-            Objects.deepEquals(this.errorCode, other.errorCode);
+            Utils.enhancedDeepEquals(this.errorCode, other.errorCode);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             errorCode);
     }
     

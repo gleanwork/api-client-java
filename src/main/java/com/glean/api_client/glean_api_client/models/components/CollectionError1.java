@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.errors.ErrorCode;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class CollectionError1 {
 
@@ -50,12 +49,12 @@ public class CollectionError1 {
         }
         CollectionError1 other = (CollectionError1) o;
         return 
-            Objects.deepEquals(this.errorCode, other.errorCode);
+            Utils.enhancedDeepEquals(this.errorCode, other.errorCode);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             errorCode);
     }
     

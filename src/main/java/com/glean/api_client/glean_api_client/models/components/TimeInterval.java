@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class TimeInterval {
 
@@ -84,13 +83,13 @@ public class TimeInterval {
         }
         TimeInterval other = (TimeInterval) o;
         return 
-            Objects.deepEquals(this.start, other.start) &&
-            Objects.deepEquals(this.end, other.end);
+            Utils.enhancedDeepEquals(this.start, other.start) &&
+            Utils.enhancedDeepEquals(this.end, other.end);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             start,
             end);
     }

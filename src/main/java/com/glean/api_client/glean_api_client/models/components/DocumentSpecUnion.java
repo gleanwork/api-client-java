@@ -14,7 +14,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 
 @JsonDeserialize(using = DocumentSpecUnion._Deserializer.class)
 public class DocumentSpecUnion {
@@ -73,12 +72,12 @@ public class DocumentSpecUnion {
             return false;
         }
         DocumentSpecUnion other = (DocumentSpecUnion) o;
-        return Objects.deepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(value.value());
+        return Utils.enhancedHash(value.value());
     }
     
     @SuppressWarnings("serial")

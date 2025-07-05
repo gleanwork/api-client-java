@@ -13,7 +13,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class FacetValue {
@@ -174,15 +173,15 @@ public class FacetValue {
         }
         FacetValue other = (FacetValue) o;
         return 
-            Objects.deepEquals(this.stringValue, other.stringValue) &&
-            Objects.deepEquals(this.integerValue, other.integerValue) &&
-            Objects.deepEquals(this.displayLabel, other.displayLabel) &&
-            Objects.deepEquals(this.iconConfig, other.iconConfig);
+            Utils.enhancedDeepEquals(this.stringValue, other.stringValue) &&
+            Utils.enhancedDeepEquals(this.integerValue, other.integerValue) &&
+            Utils.enhancedDeepEquals(this.displayLabel, other.displayLabel) &&
+            Utils.enhancedDeepEquals(this.iconConfig, other.iconConfig);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             stringValue,
             integerValue,
             displayLabel,

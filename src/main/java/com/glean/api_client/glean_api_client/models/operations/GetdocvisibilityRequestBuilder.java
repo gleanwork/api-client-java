@@ -3,6 +3,10 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
+import com.glean.api_client.glean_api_client.operations.GetdocvisibilityOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ import java.util.Optional;
 public class GetdocvisibilityRequestBuilder {
 
     private Optional<? extends List<String>> docIds = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetdocvisibility sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetdocvisibilityRequestBuilder(SDKMethodInterfaces.MethodCallGetdocvisibility sdk) {
-        this.sdk = sdk;
+    public GetdocvisibilityRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetdocvisibilityRequestBuilder docIds(List<String> docIds) {
@@ -30,9 +34,20 @@ public class GetdocvisibilityRequestBuilder {
         return this;
     }
 
-    public GetdocvisibilityResponse call() throws Exception {
 
-        return sdk.list(
-            docIds);
+    private GetdocvisibilityRequest buildRequest() {
+
+        GetdocvisibilityRequest request = new GetdocvisibilityRequest(docIds);
+
+        return request;
+    }
+
+    public GetdocvisibilityResponse call() throws Exception {
+        
+        RequestOperation<GetdocvisibilityRequest, GetdocvisibilityResponse> operation
+              = new GetdocvisibilityOperation( sdkConfiguration);
+        GetdocvisibilityRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

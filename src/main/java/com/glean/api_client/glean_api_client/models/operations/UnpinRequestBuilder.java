@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.Unpin;
+import com.glean.api_client.glean_api_client.operations.UnpinOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class UnpinRequestBuilder {
 
     private Unpin request;
-    private final SDKMethodInterfaces.MethodCallUnpin sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public UnpinRequestBuilder(SDKMethodInterfaces.MethodCallUnpin sdk) {
-        this.sdk = sdk;
+    public UnpinRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public UnpinRequestBuilder request(Unpin request) {
@@ -23,8 +27,10 @@ public class UnpinRequestBuilder {
     }
 
     public UnpinResponse call() throws Exception {
+        
+        RequestOperation<Unpin, UnpinResponse> operation
+              = new UnpinOperation( sdkConfiguration);
 
-        return sdk.remove(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

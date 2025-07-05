@@ -21,7 +21,7 @@ public enum IdType {
     @JsonValue
     private final String value;
 
-    private IdType(String value) {
+    IdType(String value) {
         this.value = value;
     }
     

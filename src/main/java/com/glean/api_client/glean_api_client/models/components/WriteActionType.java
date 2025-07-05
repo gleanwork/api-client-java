@@ -20,7 +20,7 @@ public enum WriteActionType {
     @JsonValue
     private final String value;
 
-    private WriteActionType(String value) {
+    WriteActionType(String value) {
         this.value = value;
     }
     

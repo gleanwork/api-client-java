@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class GetDocumentVisibilityOverridesResponse {
@@ -66,12 +65,12 @@ public class GetDocumentVisibilityOverridesResponse {
         }
         GetDocumentVisibilityOverridesResponse other = (GetDocumentVisibilityOverridesResponse) o;
         return 
-            Objects.deepEquals(this.visibilityOverrides, other.visibilityOverrides);
+            Utils.enhancedDeepEquals(this.visibilityOverrides, other.visibilityOverrides);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             visibilityOverrides);
     }
     

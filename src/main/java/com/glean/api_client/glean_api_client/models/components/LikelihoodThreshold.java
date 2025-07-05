@@ -22,7 +22,7 @@ public enum LikelihoodThreshold {
     @JsonValue
     private final String value;
 
-    private LikelihoodThreshold(String value) {
+    LikelihoodThreshold(String value) {
         this.value = value;
     }
     

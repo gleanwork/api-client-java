@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class CollectionError3 {
 
@@ -49,12 +48,12 @@ public class CollectionError3 {
         }
         CollectionError3 other = (CollectionError3) o;
         return 
-            Objects.deepEquals(this.errorCode, other.errorCode);
+            Utils.enhancedDeepEquals(this.errorCode, other.errorCode);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             errorCode);
     }
     

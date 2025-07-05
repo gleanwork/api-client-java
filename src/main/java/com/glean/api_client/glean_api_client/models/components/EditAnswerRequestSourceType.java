@@ -15,7 +15,7 @@ public enum EditAnswerRequestSourceType {
     @JsonValue
     private final String value;
 
-    private EditAnswerRequestSourceType(String value) {
+    EditAnswerRequestSourceType(String value) {
         this.value = value;
     }
     
