@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class PromptTemplate {
@@ -460,24 +459,24 @@ public class PromptTemplate {
         }
         PromptTemplate other = (PromptTemplate) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.template, other.template) &&
-            Objects.deepEquals(this.applicationId, other.applicationId) &&
-            Objects.deepEquals(this.inclusions, other.inclusions) &&
-            Objects.deepEquals(this.addedRoles, other.addedRoles) &&
-            Objects.deepEquals(this.removedRoles, other.removedRoles) &&
-            Objects.deepEquals(this.permissions, other.permissions) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.author, other.author) &&
-            Objects.deepEquals(this.createTimestamp, other.createTimestamp) &&
-            Objects.deepEquals(this.lastUpdateTimestamp, other.lastUpdateTimestamp) &&
-            Objects.deepEquals(this.lastUpdatedBy, other.lastUpdatedBy) &&
-            Objects.deepEquals(this.roles, other.roles);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.template, other.template) &&
+            Utils.enhancedDeepEquals(this.applicationId, other.applicationId) &&
+            Utils.enhancedDeepEquals(this.inclusions, other.inclusions) &&
+            Utils.enhancedDeepEquals(this.addedRoles, other.addedRoles) &&
+            Utils.enhancedDeepEquals(this.removedRoles, other.removedRoles) &&
+            Utils.enhancedDeepEquals(this.permissions, other.permissions) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.author, other.author) &&
+            Utils.enhancedDeepEquals(this.createTimestamp, other.createTimestamp) &&
+            Utils.enhancedDeepEquals(this.lastUpdateTimestamp, other.lastUpdateTimestamp) &&
+            Utils.enhancedDeepEquals(this.lastUpdatedBy, other.lastUpdatedBy) &&
+            Utils.enhancedDeepEquals(this.roles, other.roles);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name,
             template,
             applicationId,

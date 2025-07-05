@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.ReminderRequest;
+import com.glean.api_client.glean_api_client.operations.AddverificationreminderOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class AddverificationreminderRequestBuilder {
 
     private ReminderRequest request;
-    private final SDKMethodInterfaces.MethodCallAddverificationreminder sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AddverificationreminderRequestBuilder(SDKMethodInterfaces.MethodCallAddverificationreminder sdk) {
-        this.sdk = sdk;
+    public AddverificationreminderRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AddverificationreminderRequestBuilder request(ReminderRequest request) {
@@ -23,8 +27,10 @@ public class AddverificationreminderRequestBuilder {
     }
 
     public AddverificationreminderResponse call() throws Exception {
+        
+        RequestOperation<ReminderRequest, AddverificationreminderResponse> operation
+              = new AddverificationreminderOperation( sdkConfiguration);
 
-        return sdk.addReminder(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -135,14 +134,14 @@ public class IndexDocumentsRequest {
         }
         IndexDocumentsRequest other = (IndexDocumentsRequest) o;
         return 
-            Objects.deepEquals(this.uploadId, other.uploadId) &&
-            Objects.deepEquals(this.datasource, other.datasource) &&
-            Objects.deepEquals(this.documents, other.documents);
+            Utils.enhancedDeepEquals(this.uploadId, other.uploadId) &&
+            Utils.enhancedDeepEquals(this.datasource, other.datasource) &&
+            Utils.enhancedDeepEquals(this.documents, other.documents);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             uploadId,
             datasource,
             documents);

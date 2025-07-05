@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -154,14 +153,14 @@ public class DebugDocumentsResponseItem {
         }
         DebugDocumentsResponseItem other = (DebugDocumentsResponseItem) o;
         return 
-            Objects.deepEquals(this.docId, other.docId) &&
-            Objects.deepEquals(this.objectType, other.objectType) &&
-            Objects.deepEquals(this.debugInfo, other.debugInfo);
+            Utils.enhancedDeepEquals(this.docId, other.docId) &&
+            Utils.enhancedDeepEquals(this.objectType, other.objectType) &&
+            Utils.enhancedDeepEquals(this.debugInfo, other.debugInfo);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             docId,
             objectType,
             debugInfo);

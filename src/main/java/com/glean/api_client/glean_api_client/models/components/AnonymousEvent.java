@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -107,13 +106,13 @@ public class AnonymousEvent {
         }
         AnonymousEvent other = (AnonymousEvent) o;
         return 
-            Objects.deepEquals(this.time, other.time) &&
-            Objects.deepEquals(this.eventType, other.eventType);
+            Utils.enhancedDeepEquals(this.time, other.time) &&
+            Utils.enhancedDeepEquals(this.eventType, other.eventType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             time,
             eventType);
     }

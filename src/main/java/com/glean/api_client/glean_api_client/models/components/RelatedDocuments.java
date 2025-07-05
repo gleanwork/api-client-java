@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class RelatedDocuments {
@@ -226,16 +225,16 @@ public class RelatedDocuments {
         }
         RelatedDocuments other = (RelatedDocuments) o;
         return 
-            Objects.deepEquals(this.relation, other.relation) &&
-            Objects.deepEquals(this.associatedEntityId, other.associatedEntityId) &&
-            Objects.deepEquals(this.querySuggestion, other.querySuggestion) &&
-            Objects.deepEquals(this.documents, other.documents) &&
-            Objects.deepEquals(this.results, other.results);
+            Utils.enhancedDeepEquals(this.relation, other.relation) &&
+            Utils.enhancedDeepEquals(this.associatedEntityId, other.associatedEntityId) &&
+            Utils.enhancedDeepEquals(this.querySuggestion, other.querySuggestion) &&
+            Utils.enhancedDeepEquals(this.documents, other.documents) &&
+            Utils.enhancedDeepEquals(this.results, other.results);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             relation,
             associatedEntityId,
             querySuggestion,

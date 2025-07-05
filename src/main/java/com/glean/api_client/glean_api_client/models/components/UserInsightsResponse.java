@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class UserInsightsResponse {
@@ -261,17 +260,17 @@ public class UserInsightsResponse {
         }
         UserInsightsResponse other = (UserInsightsResponse) o;
         return 
-            Objects.deepEquals(this.lastLogTimestamp, other.lastLogTimestamp) &&
-            Objects.deepEquals(this.activityInsights, other.activityInsights) &&
-            Objects.deepEquals(this.inactiveInsights, other.inactiveInsights) &&
-            Objects.deepEquals(this.totalTeammates, other.totalTeammates) &&
-            Objects.deepEquals(this.totalActiveUsers, other.totalActiveUsers) &&
-            Objects.deepEquals(this.departments, other.departments);
+            Utils.enhancedDeepEquals(this.lastLogTimestamp, other.lastLogTimestamp) &&
+            Utils.enhancedDeepEquals(this.activityInsights, other.activityInsights) &&
+            Utils.enhancedDeepEquals(this.inactiveInsights, other.inactiveInsights) &&
+            Utils.enhancedDeepEquals(this.totalTeammates, other.totalTeammates) &&
+            Utils.enhancedDeepEquals(this.totalActiveUsers, other.totalActiveUsers) &&
+            Utils.enhancedDeepEquals(this.departments, other.departments);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             lastLogTimestamp,
             activityInsights,
             inactiveInsights,

@@ -3,18 +3,25 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestlessOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1RotatetokenOperation;
 import java.lang.Exception;
 
 public class PostApiIndexV1RotatetokenRequestBuilder {
 
-    private final SDKMethodInterfaces.MethodCallPostApiIndexV1Rotatetoken sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PostApiIndexV1RotatetokenRequestBuilder(SDKMethodInterfaces.MethodCallPostApiIndexV1Rotatetoken sdk) {
-        this.sdk = sdk;
+    public PostApiIndexV1RotatetokenRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PostApiIndexV1RotatetokenResponse call() throws Exception {
+        
+        RequestlessOperation<PostApiIndexV1RotatetokenResponse> operation
+            = new PostApiIndexV1RotatetokenOperation( sdkConfiguration);
 
-        return sdk.rotateTokenDirect();
+        return operation.handleResponse(operation.doRequest());
     }
 }

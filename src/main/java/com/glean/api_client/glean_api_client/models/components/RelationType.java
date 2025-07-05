@@ -17,7 +17,7 @@ public enum RelationType {
     @JsonValue
     private final String value;
 
-    private RelationType(String value) {
+    RelationType(String value) {
         this.value = value;
     }
     

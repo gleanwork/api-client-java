@@ -3,7 +3,11 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.UploadChatFilesRequest;
+import com.glean.api_client.glean_api_client.operations.UploadchatfilesOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
@@ -13,10 +17,10 @@ public class UploadchatfilesRequestBuilder {
 
     private Optional<Long> timezoneOffset = Optional.empty();
     private UploadChatFilesRequest uploadChatFilesRequest;
-    private final SDKMethodInterfaces.MethodCallUploadchatfiles sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public UploadchatfilesRequestBuilder(SDKMethodInterfaces.MethodCallUploadchatfiles sdk) {
-        this.sdk = sdk;
+    public UploadchatfilesRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public UploadchatfilesRequestBuilder timezoneOffset(long timezoneOffset) {
@@ -37,10 +41,21 @@ public class UploadchatfilesRequestBuilder {
         return this;
     }
 
-    public UploadchatfilesResponse call() throws Exception {
 
-        return sdk.uploadFiles(
-            timezoneOffset,
+    private UploadchatfilesRequest buildRequest() {
+
+        UploadchatfilesRequest request = new UploadchatfilesRequest(timezoneOffset,
             uploadChatFilesRequest);
+
+        return request;
+    }
+
+    public UploadchatfilesResponse call() throws Exception {
+        
+        RequestOperation<UploadchatfilesRequest, UploadchatfilesResponse> operation
+              = new UploadchatfilesOperation( sdkConfiguration);
+        UploadchatfilesRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

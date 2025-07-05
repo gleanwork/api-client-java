@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -217,16 +216,16 @@ public class ChatResponse {
         }
         ChatResponse other = (ChatResponse) o;
         return 
-            Objects.deepEquals(this.messages, other.messages) &&
-            Objects.deepEquals(this.chatId, other.chatId) &&
-            Objects.deepEquals(this.followUpPrompts, other.followUpPrompts) &&
-            Objects.deepEquals(this.backendTimeMillis, other.backendTimeMillis) &&
-            Objects.deepEquals(this.chatSessionTrackingToken, other.chatSessionTrackingToken);
+            Utils.enhancedDeepEquals(this.messages, other.messages) &&
+            Utils.enhancedDeepEquals(this.chatId, other.chatId) &&
+            Utils.enhancedDeepEquals(this.followUpPrompts, other.followUpPrompts) &&
+            Utils.enhancedDeepEquals(this.backendTimeMillis, other.backendTimeMillis) &&
+            Utils.enhancedDeepEquals(this.chatSessionTrackingToken, other.chatSessionTrackingToken);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             messages,
             chatId,
             followUpPrompts,

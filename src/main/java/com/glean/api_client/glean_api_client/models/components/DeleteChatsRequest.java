@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 
 public class DeleteChatsRequest {
 
@@ -59,12 +58,12 @@ public class DeleteChatsRequest {
         }
         DeleteChatsRequest other = (DeleteChatsRequest) o;
         return 
-            Objects.deepEquals(this.ids, other.ids);
+            Utils.enhancedDeepEquals(this.ids, other.ids);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             ids);
     }
     

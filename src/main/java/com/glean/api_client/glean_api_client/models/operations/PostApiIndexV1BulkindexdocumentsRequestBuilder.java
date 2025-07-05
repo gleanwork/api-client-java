@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.BulkIndexDocumentsRequest;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1BulkindexdocumentsOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class PostApiIndexV1BulkindexdocumentsRequestBuilder {
 
     private BulkIndexDocumentsRequest request;
-    private final SDKMethodInterfaces.MethodCallPostApiIndexV1Bulkindexdocuments sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PostApiIndexV1BulkindexdocumentsRequestBuilder(SDKMethodInterfaces.MethodCallPostApiIndexV1Bulkindexdocuments sdk) {
-        this.sdk = sdk;
+    public PostApiIndexV1BulkindexdocumentsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PostApiIndexV1BulkindexdocumentsRequestBuilder request(BulkIndexDocumentsRequest request) {
@@ -23,8 +27,10 @@ public class PostApiIndexV1BulkindexdocumentsRequestBuilder {
     }
 
     public PostApiIndexV1BulkindexdocumentsResponse call() throws Exception {
+        
+        RequestOperation<BulkIndexDocumentsRequest, PostApiIndexV1BulkindexdocumentsResponse> operation
+              = new PostApiIndexV1BulkindexdocumentsOperation( sdkConfiguration);
 
-        return sdk.bulkIndex(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

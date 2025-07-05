@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class GeneratedQna {
@@ -333,19 +332,19 @@ public class GeneratedQna {
         }
         GeneratedQna other = (GeneratedQna) o;
         return 
-            Objects.deepEquals(this.question, other.question) &&
-            Objects.deepEquals(this.answer, other.answer) &&
-            Objects.deepEquals(this.followUpPrompts, other.followUpPrompts) &&
-            Objects.deepEquals(this.followupActions, other.followupActions) &&
-            Objects.deepEquals(this.ranges, other.ranges) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.trackingToken, other.trackingToken);
+            Utils.enhancedDeepEquals(this.question, other.question) &&
+            Utils.enhancedDeepEquals(this.answer, other.answer) &&
+            Utils.enhancedDeepEquals(this.followUpPrompts, other.followUpPrompts) &&
+            Utils.enhancedDeepEquals(this.followupActions, other.followupActions) &&
+            Utils.enhancedDeepEquals(this.ranges, other.ranges) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.trackingToken, other.trackingToken);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             question,
             answer,
             followUpPrompts,

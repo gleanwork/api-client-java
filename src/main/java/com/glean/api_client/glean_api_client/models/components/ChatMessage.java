@@ -17,7 +17,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -416,21 +415,21 @@ public class ChatMessage {
         }
         ChatMessage other = (ChatMessage) o;
         return 
-            Objects.deepEquals(this.agentConfig, other.agentConfig) &&
-            Objects.deepEquals(this.author, other.author) &&
-            Objects.deepEquals(this.citations, other.citations) &&
-            Objects.deepEquals(this.uploadedFileIds, other.uploadedFileIds) &&
-            Objects.deepEquals(this.fragments, other.fragments) &&
-            Objects.deepEquals(this.ts, other.ts) &&
-            Objects.deepEquals(this.messageId, other.messageId) &&
-            Objects.deepEquals(this.messageTrackingToken, other.messageTrackingToken) &&
-            Objects.deepEquals(this.messageType, other.messageType) &&
-            Objects.deepEquals(this.hasMoreFragments, other.hasMoreFragments);
+            Utils.enhancedDeepEquals(this.agentConfig, other.agentConfig) &&
+            Utils.enhancedDeepEquals(this.author, other.author) &&
+            Utils.enhancedDeepEquals(this.citations, other.citations) &&
+            Utils.enhancedDeepEquals(this.uploadedFileIds, other.uploadedFileIds) &&
+            Utils.enhancedDeepEquals(this.fragments, other.fragments) &&
+            Utils.enhancedDeepEquals(this.ts, other.ts) &&
+            Utils.enhancedDeepEquals(this.messageId, other.messageId) &&
+            Utils.enhancedDeepEquals(this.messageTrackingToken, other.messageTrackingToken) &&
+            Utils.enhancedDeepEquals(this.messageType, other.messageType) &&
+            Utils.enhancedDeepEquals(this.hasMoreFragments, other.hasMoreFragments);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             agentConfig,
             author,
             citations,

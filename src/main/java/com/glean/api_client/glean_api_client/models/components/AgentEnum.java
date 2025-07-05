@@ -21,7 +21,7 @@ public enum AgentEnum {
     @JsonValue
     private final String value;
 
-    private AgentEnum(String value) {
+    AgentEnum(String value) {
         this.value = value;
     }
     

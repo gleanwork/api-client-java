@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -642,32 +641,32 @@ public class StructuredResult {
         }
         StructuredResult other = (StructuredResult) o;
         return 
-            Objects.deepEquals(this.document, other.document) &&
-            Objects.deepEquals(this.person, other.person) &&
-            Objects.deepEquals(this.customer, other.customer) &&
-            Objects.deepEquals(this.team, other.team) &&
-            Objects.deepEquals(this.customEntity, other.customEntity) &&
-            Objects.deepEquals(this.answer, other.answer) &&
-            Objects.deepEquals(this.extractedQnA, other.extractedQnA) &&
-            Objects.deepEquals(this.meeting, other.meeting) &&
-            Objects.deepEquals(this.app, other.app) &&
-            Objects.deepEquals(this.collection, other.collection) &&
-            Objects.deepEquals(this.answerBoard, other.answerBoard) &&
-            Objects.deepEquals(this.code, other.code) &&
-            Objects.deepEquals(this.shortcut, other.shortcut) &&
-            Objects.deepEquals(this.querySuggestions, other.querySuggestions) &&
-            Objects.deepEquals(this.relatedDocuments, other.relatedDocuments) &&
-            Objects.deepEquals(this.relatedQuestion, other.relatedQuestion) &&
-            Objects.deepEquals(this.disambiguation, other.disambiguation) &&
-            Objects.deepEquals(this.snippets, other.snippets) &&
-            Objects.deepEquals(this.trackingToken, other.trackingToken) &&
-            Objects.deepEquals(this.prominence, other.prominence) &&
-            Objects.deepEquals(this.source, other.source);
+            Utils.enhancedDeepEquals(this.document, other.document) &&
+            Utils.enhancedDeepEquals(this.person, other.person) &&
+            Utils.enhancedDeepEquals(this.customer, other.customer) &&
+            Utils.enhancedDeepEquals(this.team, other.team) &&
+            Utils.enhancedDeepEquals(this.customEntity, other.customEntity) &&
+            Utils.enhancedDeepEquals(this.answer, other.answer) &&
+            Utils.enhancedDeepEquals(this.extractedQnA, other.extractedQnA) &&
+            Utils.enhancedDeepEquals(this.meeting, other.meeting) &&
+            Utils.enhancedDeepEquals(this.app, other.app) &&
+            Utils.enhancedDeepEquals(this.collection, other.collection) &&
+            Utils.enhancedDeepEquals(this.answerBoard, other.answerBoard) &&
+            Utils.enhancedDeepEquals(this.code, other.code) &&
+            Utils.enhancedDeepEquals(this.shortcut, other.shortcut) &&
+            Utils.enhancedDeepEquals(this.querySuggestions, other.querySuggestions) &&
+            Utils.enhancedDeepEquals(this.relatedDocuments, other.relatedDocuments) &&
+            Utils.enhancedDeepEquals(this.relatedQuestion, other.relatedQuestion) &&
+            Utils.enhancedDeepEquals(this.disambiguation, other.disambiguation) &&
+            Utils.enhancedDeepEquals(this.snippets, other.snippets) &&
+            Utils.enhancedDeepEquals(this.trackingToken, other.trackingToken) &&
+            Utils.enhancedDeepEquals(this.prominence, other.prominence) &&
+            Utils.enhancedDeepEquals(this.source, other.source);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             document,
             person,
             customer,

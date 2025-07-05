@@ -37,7 +37,7 @@ public enum ManualFeedbackInfoSource {
     @JsonValue
     private final String value;
 
-    private ManualFeedbackInfoSource(String value) {
+    ManualFeedbackInfoSource(String value) {
         this.value = value;
     }
     

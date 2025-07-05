@@ -3,6 +3,10 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
+import com.glean.api_client.glean_api_client.operations.GetAgentSchemasOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
@@ -13,10 +17,10 @@ public class GetAgentSchemasRequestBuilder {
 
     private Optional<Long> timezoneOffset = Optional.empty();
     private String agentId;
-    private final SDKMethodInterfaces.MethodCallGetAgentSchemas sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetAgentSchemasRequestBuilder(SDKMethodInterfaces.MethodCallGetAgentSchemas sdk) {
-        this.sdk = sdk;
+    public GetAgentSchemasRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetAgentSchemasRequestBuilder timezoneOffset(long timezoneOffset) {
@@ -37,10 +41,21 @@ public class GetAgentSchemasRequestBuilder {
         return this;
     }
 
-    public GetAgentSchemasResponse call() throws Exception {
 
-        return sdk.retrieveSchemas(
-            timezoneOffset,
+    private GetAgentSchemasRequest buildRequest() {
+
+        GetAgentSchemasRequest request = new GetAgentSchemasRequest(timezoneOffset,
             agentId);
+
+        return request;
+    }
+
+    public GetAgentSchemasResponse call() throws Exception {
+        
+        RequestOperation<GetAgentSchemasRequest, GetAgentSchemasResponse> operation
+              = new GetAgentSchemasOperation( sdkConfiguration);
+        GetAgentSchemasRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

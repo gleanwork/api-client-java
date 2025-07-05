@@ -50,7 +50,7 @@ public enum JustificationType {
     @JsonValue
     private final String value;
 
-    private JustificationType(String value) {
+    JustificationType(String value) {
         this.value = value;
     }
     

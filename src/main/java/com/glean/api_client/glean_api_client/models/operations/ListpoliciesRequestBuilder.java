@@ -3,6 +3,10 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
+import com.glean.api_client.glean_api_client.operations.ListpoliciesOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -13,10 +17,10 @@ public class ListpoliciesRequestBuilder {
 
     private Optional<Boolean> autoHide = Optional.empty();
     private Optional<String> frequency = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallListpolicies sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListpoliciesRequestBuilder(SDKMethodInterfaces.MethodCallListpolicies sdk) {
-        this.sdk = sdk;
+    public ListpoliciesRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public ListpoliciesRequestBuilder autoHide(boolean autoHide) {
@@ -43,10 +47,21 @@ public class ListpoliciesRequestBuilder {
         return this;
     }
 
-    public ListpoliciesResponse call() throws Exception {
 
-        return sdk.list(
-            autoHide,
+    private ListpoliciesRequest buildRequest() {
+
+        ListpoliciesRequest request = new ListpoliciesRequest(autoHide,
             frequency);
+
+        return request;
+    }
+
+    public ListpoliciesResponse call() throws Exception {
+        
+        RequestOperation<ListpoliciesRequest, ListpoliciesResponse> operation
+              = new ListpoliciesOperation( sdkConfiguration);
+        ListpoliciesRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -3,18 +3,25 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestlessOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
+import com.glean.api_client.glean_api_client.operations.CreateauthtokenOperation;
 import java.lang.Exception;
 
 public class CreateauthtokenRequestBuilder {
 
-    private final SDKMethodInterfaces.MethodCallCreateauthtoken sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CreateauthtokenRequestBuilder(SDKMethodInterfaces.MethodCallCreateauthtoken sdk) {
-        this.sdk = sdk;
+    public CreateauthtokenRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CreateauthtokenResponse call() throws Exception {
+        
+        RequestlessOperation<CreateauthtokenResponse> operation
+            = new CreateauthtokenOperation( sdkConfiguration);
 
-        return sdk.createTokenDirect();
+        return operation.handleResponse(operation.doRequest());
     }
 }

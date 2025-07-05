@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -108,13 +107,13 @@ public class IndexEmployeeRequest {
         }
         IndexEmployeeRequest other = (IndexEmployeeRequest) o;
         return 
-            Objects.deepEquals(this.employee, other.employee) &&
-            Objects.deepEquals(this.version, other.version);
+            Utils.enhancedDeepEquals(this.employee, other.employee) &&
+            Utils.enhancedDeepEquals(this.version, other.version);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             employee,
             version);
     }

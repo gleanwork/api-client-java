@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -82,12 +81,12 @@ public class ReadPermission {
         }
         ReadPermission other = (ReadPermission) o;
         return 
-            Objects.deepEquals(this.scopeType, other.scopeType);
+            Utils.enhancedDeepEquals(this.scopeType, other.scopeType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             scopeType);
     }
     

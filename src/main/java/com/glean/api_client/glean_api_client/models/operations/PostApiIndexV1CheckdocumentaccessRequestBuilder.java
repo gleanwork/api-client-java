@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.CheckDocumentAccessRequest;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1CheckdocumentaccessOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class PostApiIndexV1CheckdocumentaccessRequestBuilder {
 
     private CheckDocumentAccessRequest request;
-    private final SDKMethodInterfaces.MethodCallPostApiIndexV1Checkdocumentaccess sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PostApiIndexV1CheckdocumentaccessRequestBuilder(SDKMethodInterfaces.MethodCallPostApiIndexV1Checkdocumentaccess sdk) {
-        this.sdk = sdk;
+    public PostApiIndexV1CheckdocumentaccessRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PostApiIndexV1CheckdocumentaccessRequestBuilder request(CheckDocumentAccessRequest request) {
@@ -23,8 +27,10 @@ public class PostApiIndexV1CheckdocumentaccessRequestBuilder {
     }
 
     public PostApiIndexV1CheckdocumentaccessResponse call() throws Exception {
+        
+        RequestOperation<CheckDocumentAccessRequest, PostApiIndexV1CheckdocumentaccessResponse> operation
+              = new PostApiIndexV1CheckdocumentaccessOperation( sdkConfiguration);
 
-        return sdk.checkAccess(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

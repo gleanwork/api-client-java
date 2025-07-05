@@ -13,7 +13,6 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -155,14 +154,14 @@ public class UserStatusResponse {
         }
         UserStatusResponse other = (UserStatusResponse) o;
         return 
-            Objects.deepEquals(this.isActiveUser, other.isActiveUser) &&
-            Objects.deepEquals(this.uploadStatus, other.uploadStatus) &&
-            Objects.deepEquals(this.lastUploadedAt, other.lastUploadedAt);
+            Utils.enhancedDeepEquals(this.isActiveUser, other.isActiveUser) &&
+            Utils.enhancedDeepEquals(this.uploadStatus, other.uploadStatus) &&
+            Utils.enhancedDeepEquals(this.lastUploadedAt, other.lastUploadedAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             isActiveUser,
             uploadStatus,
             lastUploadedAt);

@@ -14,7 +14,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class PropertyDefinition {
@@ -356,20 +355,20 @@ public class PropertyDefinition {
         }
         PropertyDefinition other = (PropertyDefinition) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.displayLabel, other.displayLabel) &&
-            Objects.deepEquals(this.displayLabelPlural, other.displayLabelPlural) &&
-            Objects.deepEquals(this.propertyType, other.propertyType) &&
-            Objects.deepEquals(this.uiOptions, other.uiOptions) &&
-            Objects.deepEquals(this.hideUiFacet, other.hideUiFacet) &&
-            Objects.deepEquals(this.uiFacetOrder, other.uiFacetOrder) &&
-            Objects.deepEquals(this.skipIndexing, other.skipIndexing) &&
-            Objects.deepEquals(this.group, other.group);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.displayLabel, other.displayLabel) &&
+            Utils.enhancedDeepEquals(this.displayLabelPlural, other.displayLabelPlural) &&
+            Utils.enhancedDeepEquals(this.propertyType, other.propertyType) &&
+            Utils.enhancedDeepEquals(this.uiOptions, other.uiOptions) &&
+            Utils.enhancedDeepEquals(this.hideUiFacet, other.hideUiFacet) &&
+            Utils.enhancedDeepEquals(this.uiFacetOrder, other.uiFacetOrder) &&
+            Utils.enhancedDeepEquals(this.skipIndexing, other.skipIndexing) &&
+            Utils.enhancedDeepEquals(this.group, other.group);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name,
             displayLabel,
             displayLabelPlural,

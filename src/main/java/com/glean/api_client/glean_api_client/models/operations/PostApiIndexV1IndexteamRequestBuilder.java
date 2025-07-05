@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.IndexTeamRequest;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1IndexteamOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class PostApiIndexV1IndexteamRequestBuilder {
 
     private IndexTeamRequest request;
-    private final SDKMethodInterfaces.MethodCallPostApiIndexV1Indexteam sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PostApiIndexV1IndexteamRequestBuilder(SDKMethodInterfaces.MethodCallPostApiIndexV1Indexteam sdk) {
-        this.sdk = sdk;
+    public PostApiIndexV1IndexteamRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PostApiIndexV1IndexteamRequestBuilder request(IndexTeamRequest request) {
@@ -23,8 +27,10 @@ public class PostApiIndexV1IndexteamRequestBuilder {
     }
 
     public PostApiIndexV1IndexteamResponse call() throws Exception {
+        
+        RequestOperation<IndexTeamRequest, PostApiIndexV1IndexteamResponse> operation
+              = new PostApiIndexV1IndexteamOperation( sdkConfiguration);
 
-        return sdk.indexTeam(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

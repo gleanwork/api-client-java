@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class SearchRequestInputDetails {
@@ -76,12 +75,12 @@ public class SearchRequestInputDetails {
         }
         SearchRequestInputDetails other = (SearchRequestInputDetails) o;
         return 
-            Objects.deepEquals(this.hasCopyPaste, other.hasCopyPaste);
+            Utils.enhancedDeepEquals(this.hasCopyPaste, other.hasCopyPaste);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             hasCopyPaste);
     }
     

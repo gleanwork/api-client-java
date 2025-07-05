@@ -13,7 +13,6 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -275,19 +274,19 @@ public class IconConfig {
         }
         IconConfig other = (IconConfig) o;
         return 
-            Objects.deepEquals(this.generatedBackgroundColorKey, other.generatedBackgroundColorKey) &&
-            Objects.deepEquals(this.backgroundColor, other.backgroundColor) &&
-            Objects.deepEquals(this.color, other.color) &&
-            Objects.deepEquals(this.key, other.key) &&
-            Objects.deepEquals(this.iconType, other.iconType) &&
-            Objects.deepEquals(this.masked, other.masked) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.url, other.url);
+            Utils.enhancedDeepEquals(this.generatedBackgroundColorKey, other.generatedBackgroundColorKey) &&
+            Utils.enhancedDeepEquals(this.backgroundColor, other.backgroundColor) &&
+            Utils.enhancedDeepEquals(this.color, other.color) &&
+            Utils.enhancedDeepEquals(this.key, other.key) &&
+            Utils.enhancedDeepEquals(this.iconType, other.iconType) &&
+            Utils.enhancedDeepEquals(this.masked, other.masked) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.url, other.url);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             generatedBackgroundColorKey,
             backgroundColor,
             color,

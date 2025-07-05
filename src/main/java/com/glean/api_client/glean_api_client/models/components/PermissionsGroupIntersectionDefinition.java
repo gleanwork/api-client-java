@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -71,12 +70,12 @@ public class PermissionsGroupIntersectionDefinition {
         }
         PermissionsGroupIntersectionDefinition other = (PermissionsGroupIntersectionDefinition) o;
         return 
-            Objects.deepEquals(this.requiredGroups, other.requiredGroups);
+            Utils.enhancedDeepEquals(this.requiredGroups, other.requiredGroups);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             requiredGroups);
     }
     

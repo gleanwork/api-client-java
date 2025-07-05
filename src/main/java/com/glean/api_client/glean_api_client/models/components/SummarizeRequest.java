@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -218,16 +217,16 @@ public class SummarizeRequest {
         }
         SummarizeRequest other = (SummarizeRequest) o;
         return 
-            Objects.deepEquals(this.timestamp, other.timestamp) &&
-            Objects.deepEquals(this.query, other.query) &&
-            Objects.deepEquals(this.preferredSummaryLength, other.preferredSummaryLength) &&
-            Objects.deepEquals(this.documentSpecs, other.documentSpecs) &&
-            Objects.deepEquals(this.trackingToken, other.trackingToken);
+            Utils.enhancedDeepEquals(this.timestamp, other.timestamp) &&
+            Utils.enhancedDeepEquals(this.query, other.query) &&
+            Utils.enhancedDeepEquals(this.preferredSummaryLength, other.preferredSummaryLength) &&
+            Utils.enhancedDeepEquals(this.documentSpecs, other.documentSpecs) &&
+            Utils.enhancedDeepEquals(this.trackingToken, other.trackingToken);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             timestamp,
             query,
             preferredSummaryLength,

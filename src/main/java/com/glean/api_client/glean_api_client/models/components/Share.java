@@ -13,7 +13,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -123,14 +122,14 @@ public class Share {
         }
         Share other = (Share) o;
         return 
-            Objects.deepEquals(this.numDaysAgo, other.numDaysAgo) &&
-            Objects.deepEquals(this.sharer, other.sharer) &&
-            Objects.deepEquals(this.sharingDocument, other.sharingDocument);
+            Utils.enhancedDeepEquals(this.numDaysAgo, other.numDaysAgo) &&
+            Utils.enhancedDeepEquals(this.sharer, other.sharer) &&
+            Utils.enhancedDeepEquals(this.sharingDocument, other.sharingDocument);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             numDaysAgo,
             sharer,
             sharingDocument);

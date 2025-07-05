@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class DocumentInsight {
@@ -108,14 +107,14 @@ public class DocumentInsight {
         }
         DocumentInsight other = (DocumentInsight) o;
         return 
-            Objects.deepEquals(this.document, other.document) &&
-            Objects.deepEquals(this.viewCount, other.viewCount) &&
-            Objects.deepEquals(this.visitorCount, other.visitorCount);
+            Utils.enhancedDeepEquals(this.document, other.document) &&
+            Utils.enhancedDeepEquals(this.viewCount, other.viewCount) &&
+            Utils.enhancedDeepEquals(this.visitorCount, other.visitorCount);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             document,
             viewCount,
             visitorCount);

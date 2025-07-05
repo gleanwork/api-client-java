@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class AnnouncementViewerInfo {
@@ -112,13 +111,13 @@ public class AnnouncementViewerInfo {
         }
         AnnouncementViewerInfo other = (AnnouncementViewerInfo) o;
         return 
-            Objects.deepEquals(this.isDismissed, other.isDismissed) &&
-            Objects.deepEquals(this.isRead, other.isRead);
+            Utils.enhancedDeepEquals(this.isDismissed, other.isDismissed) &&
+            Utils.enhancedDeepEquals(this.isRead, other.isRead);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             isDismissed,
             isRead);
     }

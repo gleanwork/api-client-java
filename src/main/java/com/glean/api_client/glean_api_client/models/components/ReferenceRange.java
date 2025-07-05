@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -108,13 +107,13 @@ public class ReferenceRange {
         }
         ReferenceRange other = (ReferenceRange) o;
         return 
-            Objects.deepEquals(this.textRange, other.textRange) &&
-            Objects.deepEquals(this.snippets, other.snippets);
+            Utils.enhancedDeepEquals(this.textRange, other.textRange) &&
+            Utils.enhancedDeepEquals(this.snippets, other.snippets);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             textRange,
             snippets);
     }

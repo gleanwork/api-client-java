@@ -3,7 +3,11 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.ChatRequest;
+import com.glean.api_client.glean_api_client.operations.ChatOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
@@ -13,10 +17,10 @@ public class ChatRequestBuilder {
 
     private Optional<Long> timezoneOffset = Optional.empty();
     private ChatRequest chatRequest;
-    private final SDKMethodInterfaces.MethodCallChat sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ChatRequestBuilder(SDKMethodInterfaces.MethodCallChat sdk) {
-        this.sdk = sdk;
+    public ChatRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public ChatRequestBuilder timezoneOffset(long timezoneOffset) {
@@ -37,10 +41,21 @@ public class ChatRequestBuilder {
         return this;
     }
 
-    public ChatResponse call() throws Exception {
 
-        return sdk.create(
-            timezoneOffset,
+    private com.glean.api_client.glean_api_client.models.operations.ChatRequest buildRequest() {
+
+        com.glean.api_client.glean_api_client.models.operations.ChatRequest request = new com.glean.api_client.glean_api_client.models.operations.ChatRequest(timezoneOffset,
             chatRequest);
+
+        return request;
+    }
+
+    public ChatResponse call() throws Exception {
+        
+        RequestOperation<com.glean.api_client.glean_api_client.models.operations.ChatRequest, ChatResponse> operation
+              = new ChatOperation( sdkConfiguration);
+        com.glean.api_client.glean_api_client.models.operations.ChatRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

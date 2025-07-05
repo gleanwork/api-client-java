@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class RecommendationsRequestOptions {
@@ -213,16 +212,16 @@ public class RecommendationsRequestOptions {
         }
         RecommendationsRequestOptions other = (RecommendationsRequestOptions) o;
         return 
-            Objects.deepEquals(this.datasourceFilter, other.datasourceFilter) &&
-            Objects.deepEquals(this.datasourcesFilter, other.datasourcesFilter) &&
-            Objects.deepEquals(this.facetFilterSets, other.facetFilterSets) &&
-            Objects.deepEquals(this.context, other.context) &&
-            Objects.deepEquals(this.resultProminence, other.resultProminence);
+            Utils.enhancedDeepEquals(this.datasourceFilter, other.datasourceFilter) &&
+            Utils.enhancedDeepEquals(this.datasourcesFilter, other.datasourcesFilter) &&
+            Utils.enhancedDeepEquals(this.facetFilterSets, other.facetFilterSets) &&
+            Utils.enhancedDeepEquals(this.context, other.context) &&
+            Utils.enhancedDeepEquals(this.resultProminence, other.resultProminence);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             datasourceFilter,
             datasourcesFilter,
             facetFilterSets,

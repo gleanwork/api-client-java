@@ -16,8 +16,12 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: true
+  tests:
+    generateTests: true
+    generateNewTests: false
+    skipResponseBodyAssertions: false
 java:
-  version: 0.5.6
+  version: 0.6.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: glean-api-client
@@ -41,6 +45,7 @@ java:
       shared: models/components
       webhooks: models/webhooks
   inputModelSuffix: input
+  languageVersion: 11
   license:
     name: The MIT License (MIT)
     shortName: MIT

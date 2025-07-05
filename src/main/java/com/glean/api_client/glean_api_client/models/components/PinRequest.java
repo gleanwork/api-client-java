@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class PinRequest {
@@ -151,14 +150,14 @@ public class PinRequest {
         }
         PinRequest other = (PinRequest) o;
         return 
-            Objects.deepEquals(this.queries, other.queries) &&
-            Objects.deepEquals(this.audienceFilters, other.audienceFilters) &&
-            Objects.deepEquals(this.documentId, other.documentId);
+            Utils.enhancedDeepEquals(this.queries, other.queries) &&
+            Utils.enhancedDeepEquals(this.audienceFilters, other.audienceFilters) &&
+            Utils.enhancedDeepEquals(this.documentId, other.documentId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             queries,
             audienceFilters,
             documentId);

@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.GetAnswerRequest;
+import com.glean.api_client.glean_api_client.operations.GetanswerOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class GetanswerRequestBuilder {
 
     private GetAnswerRequest request;
-    private final SDKMethodInterfaces.MethodCallGetanswer sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetanswerRequestBuilder(SDKMethodInterfaces.MethodCallGetanswer sdk) {
-        this.sdk = sdk;
+    public GetanswerRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetanswerRequestBuilder request(GetAnswerRequest request) {
@@ -23,8 +27,10 @@ public class GetanswerRequestBuilder {
     }
 
     public GetanswerResponse call() throws Exception {
+        
+        RequestOperation<GetAnswerRequest, GetanswerResponse> operation
+              = new GetanswerOperation( sdkConfiguration);
 
-        return sdk.retrieve(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

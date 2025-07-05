@@ -17,7 +17,7 @@ public enum PersonMetadataType {
     @JsonValue
     private final String value;
 
-    private PersonMetadataType(String value) {
+    PersonMetadataType(String value) {
         this.value = value;
     }
     

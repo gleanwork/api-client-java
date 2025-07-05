@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ViewerInfo {
@@ -115,13 +114,13 @@ public class ViewerInfo {
         }
         ViewerInfo other = (ViewerInfo) o;
         return 
-            Objects.deepEquals(this.role, other.role) &&
-            Objects.deepEquals(this.lastViewedTime, other.lastViewedTime);
+            Utils.enhancedDeepEquals(this.role, other.role) &&
+            Utils.enhancedDeepEquals(this.lastViewedTime, other.lastViewedTime);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             role,
             lastViewedTime);
     }

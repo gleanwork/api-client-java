@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -418,22 +417,22 @@ public class TeamInfoDefinition {
         }
         TeamInfoDefinition other = (TeamInfoDefinition) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.businessUnit, other.businessUnit) &&
-            Objects.deepEquals(this.department, other.department) &&
-            Objects.deepEquals(this.photoUrl, other.photoUrl) &&
-            Objects.deepEquals(this.externalLink, other.externalLink) &&
-            Objects.deepEquals(this.emails, other.emails) &&
-            Objects.deepEquals(this.datasourceProfiles, other.datasourceProfiles) &&
-            Objects.deepEquals(this.members, other.members) &&
-            Objects.deepEquals(this.additionalFields, other.additionalFields);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.businessUnit, other.businessUnit) &&
+            Utils.enhancedDeepEquals(this.department, other.department) &&
+            Utils.enhancedDeepEquals(this.photoUrl, other.photoUrl) &&
+            Utils.enhancedDeepEquals(this.externalLink, other.externalLink) &&
+            Utils.enhancedDeepEquals(this.emails, other.emails) &&
+            Utils.enhancedDeepEquals(this.datasourceProfiles, other.datasourceProfiles) &&
+            Utils.enhancedDeepEquals(this.members, other.members) &&
+            Utils.enhancedDeepEquals(this.additionalFields, other.additionalFields);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             name,
             description,

@@ -15,7 +15,7 @@ public enum CommunicationChannel {
     @JsonValue
     private final String value;
 
-    private CommunicationChannel(String value) {
+    CommunicationChannel(String value) {
         this.value = value;
     }
     

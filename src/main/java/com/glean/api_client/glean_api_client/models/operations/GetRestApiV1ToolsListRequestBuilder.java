@@ -3,6 +3,10 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
+import com.glean.api_client.glean_api_client.operations.GetRestApiV1ToolsListOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -12,10 +16,10 @@ import java.util.Optional;
 public class GetRestApiV1ToolsListRequestBuilder {
 
     private Optional<? extends List<String>> toolNames = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetRestApiV1ToolsList sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetRestApiV1ToolsListRequestBuilder(SDKMethodInterfaces.MethodCallGetRestApiV1ToolsList sdk) {
-        this.sdk = sdk;
+    public GetRestApiV1ToolsListRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetRestApiV1ToolsListRequestBuilder toolNames(List<String> toolNames) {
@@ -30,9 +34,20 @@ public class GetRestApiV1ToolsListRequestBuilder {
         return this;
     }
 
-    public GetRestApiV1ToolsListResponse call() throws Exception {
 
-        return sdk.list(
-            toolNames);
+    private GetRestApiV1ToolsListRequest buildRequest() {
+
+        GetRestApiV1ToolsListRequest request = new GetRestApiV1ToolsListRequest(toolNames);
+
+        return request;
+    }
+
+    public GetRestApiV1ToolsListResponse call() throws Exception {
+        
+        RequestOperation<GetRestApiV1ToolsListRequest, GetRestApiV1ToolsListResponse> operation
+              = new GetRestApiV1ToolsListOperation( sdkConfiguration);
+        GetRestApiV1ToolsListRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

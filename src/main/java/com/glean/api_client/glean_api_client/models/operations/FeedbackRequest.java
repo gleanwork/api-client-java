@@ -11,7 +11,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class FeedbackRequest {
@@ -98,13 +97,13 @@ public class FeedbackRequest {
         }
         FeedbackRequest other = (FeedbackRequest) o;
         return 
-            Objects.deepEquals(this.feedbackQueryParameter, other.feedbackQueryParameter) &&
-            Objects.deepEquals(this.feedback1, other.feedback1);
+            Utils.enhancedDeepEquals(this.feedbackQueryParameter, other.feedbackQueryParameter) &&
+            Utils.enhancedDeepEquals(this.feedback1, other.feedback1);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             feedbackQueryParameter,
             feedback1);
     }

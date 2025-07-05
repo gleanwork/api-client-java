@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.VerifyRequest;
+import com.glean.api_client.glean_api_client.operations.VerifyOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class VerifyRequestBuilder {
 
     private VerifyRequest request;
-    private final SDKMethodInterfaces.MethodCallVerify sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public VerifyRequestBuilder(SDKMethodInterfaces.MethodCallVerify sdk) {
-        this.sdk = sdk;
+    public VerifyRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public VerifyRequestBuilder request(VerifyRequest request) {
@@ -23,8 +27,10 @@ public class VerifyRequestBuilder {
     }
 
     public VerifyResponse call() throws Exception {
+        
+        RequestOperation<VerifyRequest, VerifyResponse> operation
+              = new VerifyOperation( sdkConfiguration);
 
-        return sdk.verify(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.FeedRequest;
+import com.glean.api_client.glean_api_client.operations.FeedOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class FeedRequestBuilder {
 
     private FeedRequest request;
-    private final SDKMethodInterfaces.MethodCallFeed sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public FeedRequestBuilder(SDKMethodInterfaces.MethodCallFeed sdk) {
-        this.sdk = sdk;
+    public FeedRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public FeedRequestBuilder request(FeedRequest request) {
@@ -23,8 +27,10 @@ public class FeedRequestBuilder {
     }
 
     public FeedResponse call() throws Exception {
+        
+        RequestOperation<FeedRequest, FeedResponse> operation
+              = new FeedOperation( sdkConfiguration);
 
-        return sdk.retrieveFeed(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

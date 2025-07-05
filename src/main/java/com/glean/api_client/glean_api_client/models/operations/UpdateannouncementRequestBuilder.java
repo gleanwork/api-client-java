@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.UpdateAnnouncementRequest;
+import com.glean.api_client.glean_api_client.operations.UpdateannouncementOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class UpdateannouncementRequestBuilder {
 
     private UpdateAnnouncementRequest request;
-    private final SDKMethodInterfaces.MethodCallUpdateannouncement sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public UpdateannouncementRequestBuilder(SDKMethodInterfaces.MethodCallUpdateannouncement sdk) {
-        this.sdk = sdk;
+    public UpdateannouncementRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public UpdateannouncementRequestBuilder request(UpdateAnnouncementRequest request) {
@@ -23,8 +27,10 @@ public class UpdateannouncementRequestBuilder {
     }
 
     public UpdateannouncementResponse call() throws Exception {
+        
+        RequestOperation<UpdateAnnouncementRequest, UpdateannouncementResponse> operation
+              = new UpdateannouncementOperation( sdkConfiguration);
 
-        return sdk.update(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

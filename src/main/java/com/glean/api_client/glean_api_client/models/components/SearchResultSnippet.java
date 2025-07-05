@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class SearchResultSnippet {
@@ -250,17 +249,17 @@ public class SearchResultSnippet {
         }
         SearchResultSnippet other = (SearchResultSnippet) o;
         return 
-            Objects.deepEquals(this.snippet, other.snippet) &&
-            Objects.deepEquals(this.mimeType, other.mimeType) &&
-            Objects.deepEquals(this.text, other.text) &&
-            Objects.deepEquals(this.snippetTextOrdering, other.snippetTextOrdering) &&
-            Objects.deepEquals(this.ranges, other.ranges) &&
-            Objects.deepEquals(this.url, other.url);
+            Utils.enhancedDeepEquals(this.snippet, other.snippet) &&
+            Utils.enhancedDeepEquals(this.mimeType, other.mimeType) &&
+            Utils.enhancedDeepEquals(this.text, other.text) &&
+            Utils.enhancedDeepEquals(this.snippetTextOrdering, other.snippetTextOrdering) &&
+            Utils.enhancedDeepEquals(this.ranges, other.ranges) &&
+            Utils.enhancedDeepEquals(this.url, other.url);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             snippet,
             mimeType,
             text,

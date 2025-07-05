@@ -16,7 +16,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -532,24 +531,24 @@ public class DlpConfig {
         }
         DlpConfig other = (DlpConfig) o;
         return 
-            Objects.deepEquals(this.version, other.version) &&
-            Objects.deepEquals(this.sensitiveInfoTypes, other.sensitiveInfoTypes) &&
-            Objects.deepEquals(this.inputOptions, other.inputOptions) &&
-            Objects.deepEquals(this.externalSharingOptions, other.externalSharingOptions) &&
-            Objects.deepEquals(this.broadSharingOptions, other.broadSharingOptions) &&
-            Objects.deepEquals(this.sensitiveContentOptions, other.sensitiveContentOptions) &&
-            Objects.deepEquals(this.reportName, other.reportName) &&
-            Objects.deepEquals(this.frequency, other.frequency) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.redactQuote, other.redactQuote) &&
-            Objects.deepEquals(this.autoHideDocs, other.autoHideDocs) &&
-            Objects.deepEquals(this.allowlistOptions, other.allowlistOptions);
+            Utils.enhancedDeepEquals(this.version, other.version) &&
+            Utils.enhancedDeepEquals(this.sensitiveInfoTypes, other.sensitiveInfoTypes) &&
+            Utils.enhancedDeepEquals(this.inputOptions, other.inputOptions) &&
+            Utils.enhancedDeepEquals(this.externalSharingOptions, other.externalSharingOptions) &&
+            Utils.enhancedDeepEquals(this.broadSharingOptions, other.broadSharingOptions) &&
+            Utils.enhancedDeepEquals(this.sensitiveContentOptions, other.sensitiveContentOptions) &&
+            Utils.enhancedDeepEquals(this.reportName, other.reportName) &&
+            Utils.enhancedDeepEquals(this.frequency, other.frequency) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.redactQuote, other.redactQuote) &&
+            Utils.enhancedDeepEquals(this.autoHideDocs, other.autoHideDocs) &&
+            Utils.enhancedDeepEquals(this.allowlistOptions, other.allowlistOptions);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             version,
             sensitiveInfoTypes,
             inputOptions,

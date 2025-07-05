@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class StructuredTextItem {
@@ -150,15 +149,15 @@ public class StructuredTextItem {
         }
         StructuredTextItem other = (StructuredTextItem) o;
         return 
-            Objects.deepEquals(this.link, other.link) &&
-            Objects.deepEquals(this.document, other.document) &&
-            Objects.deepEquals(this.text, other.text) &&
-            Objects.deepEquals(this.structuredResult, other.structuredResult);
+            Utils.enhancedDeepEquals(this.link, other.link) &&
+            Utils.enhancedDeepEquals(this.document, other.document) &&
+            Utils.enhancedDeepEquals(this.text, other.text) &&
+            Utils.enhancedDeepEquals(this.structuredResult, other.structuredResult);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             link,
             document,
             text,

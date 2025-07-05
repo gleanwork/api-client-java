@@ -13,7 +13,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class DeleteCollectionRequest {
@@ -104,13 +103,13 @@ public class DeleteCollectionRequest {
         }
         DeleteCollectionRequest other = (DeleteCollectionRequest) o;
         return 
-            Objects.deepEquals(this.ids, other.ids) &&
-            Objects.deepEquals(this.allowedDatasource, other.allowedDatasource);
+            Utils.enhancedDeepEquals(this.ids, other.ids) &&
+            Utils.enhancedDeepEquals(this.allowedDatasource, other.allowedDatasource);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             ids,
             allowedDatasource);
     }

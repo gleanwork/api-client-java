@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -206,16 +205,16 @@ public class ChatMessageCitation {
         }
         ChatMessageCitation other = (ChatMessageCitation) o;
         return 
-            Objects.deepEquals(this.trackingToken, other.trackingToken) &&
-            Objects.deepEquals(this.sourceDocument, other.sourceDocument) &&
-            Objects.deepEquals(this.sourceFile, other.sourceFile) &&
-            Objects.deepEquals(this.sourcePerson, other.sourcePerson) &&
-            Objects.deepEquals(this.referenceRanges, other.referenceRanges);
+            Utils.enhancedDeepEquals(this.trackingToken, other.trackingToken) &&
+            Utils.enhancedDeepEquals(this.sourceDocument, other.sourceDocument) &&
+            Utils.enhancedDeepEquals(this.sourceFile, other.sourceFile) &&
+            Utils.enhancedDeepEquals(this.sourcePerson, other.sourcePerson) &&
+            Utils.enhancedDeepEquals(this.referenceRanges, other.referenceRanges);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             trackingToken,
             sourceDocument,
             sourceFile,

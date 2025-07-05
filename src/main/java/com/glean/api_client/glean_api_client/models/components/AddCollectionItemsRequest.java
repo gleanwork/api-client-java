@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class AddCollectionItemsRequest {
@@ -106,13 +105,13 @@ public class AddCollectionItemsRequest {
         }
         AddCollectionItemsRequest other = (AddCollectionItemsRequest) o;
         return 
-            Objects.deepEquals(this.collectionId, other.collectionId) &&
-            Objects.deepEquals(this.addedCollectionItemDescriptors, other.addedCollectionItemDescriptors);
+            Utils.enhancedDeepEquals(this.collectionId, other.collectionId) &&
+            Utils.enhancedDeepEquals(this.addedCollectionItemDescriptors, other.addedCollectionItemDescriptors);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             collectionId,
             addedCollectionItemDescriptors);
     }

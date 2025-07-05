@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class DeleteCollectionItemRequest {
@@ -130,14 +129,14 @@ public class DeleteCollectionItemRequest {
         }
         DeleteCollectionItemRequest other = (DeleteCollectionItemRequest) o;
         return 
-            Objects.deepEquals(this.collectionId, other.collectionId) &&
-            Objects.deepEquals(this.itemId, other.itemId) &&
-            Objects.deepEquals(this.documentId, other.documentId);
+            Utils.enhancedDeepEquals(this.collectionId, other.collectionId) &&
+            Utils.enhancedDeepEquals(this.itemId, other.itemId) &&
+            Utils.enhancedDeepEquals(this.documentId, other.documentId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             collectionId,
             itemId,
             documentId);

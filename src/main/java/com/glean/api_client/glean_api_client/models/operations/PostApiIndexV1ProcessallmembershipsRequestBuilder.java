@@ -3,7 +3,11 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.ProcessAllMembershipsRequest;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1ProcessallmembershipsOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class PostApiIndexV1ProcessallmembershipsRequestBuilder {
 
     private Optional<? extends ProcessAllMembershipsRequest> request = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallPostApiIndexV1Processallmemberships sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PostApiIndexV1ProcessallmembershipsRequestBuilder(SDKMethodInterfaces.MethodCallPostApiIndexV1Processallmemberships sdk) {
-        this.sdk = sdk;
+    public PostApiIndexV1ProcessallmembershipsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public PostApiIndexV1ProcessallmembershipsRequestBuilder request(ProcessAllMembershipsRequest request) {
@@ -30,8 +34,10 @@ public class PostApiIndexV1ProcessallmembershipsRequestBuilder {
     }
 
     public PostApiIndexV1ProcessallmembershipsResponse call() throws Exception {
+        
+        RequestOperation<Optional<? extends ProcessAllMembershipsRequest>, PostApiIndexV1ProcessallmembershipsResponse> operation
+              = new PostApiIndexV1ProcessallmembershipsOperation( sdkConfiguration);
 
-        return sdk.processMemberships(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

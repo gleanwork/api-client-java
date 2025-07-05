@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class GetAnswerError {
@@ -90,13 +89,13 @@ public class GetAnswerError {
         }
         GetAnswerError other = (GetAnswerError) o;
         return 
-            Objects.deepEquals(this.errorType, other.errorType) &&
-            Objects.deepEquals(this.answerAuthor, other.answerAuthor);
+            Utils.enhancedDeepEquals(this.errorType, other.errorType) &&
+            Utils.enhancedDeepEquals(this.answerAuthor, other.answerAuthor);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             errorType,
             answerAuthor);
     }

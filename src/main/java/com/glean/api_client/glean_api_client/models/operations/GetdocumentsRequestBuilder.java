@@ -3,7 +3,11 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.GetDocumentsRequest;
+import com.glean.api_client.glean_api_client.operations.GetdocumentsOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class GetdocumentsRequestBuilder {
 
     private Optional<? extends GetDocumentsRequest> request = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallGetdocuments sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetdocumentsRequestBuilder(SDKMethodInterfaces.MethodCallGetdocuments sdk) {
-        this.sdk = sdk;
+    public GetdocumentsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetdocumentsRequestBuilder request(GetDocumentsRequest request) {
@@ -30,8 +34,10 @@ public class GetdocumentsRequestBuilder {
     }
 
     public GetdocumentsResponse call() throws Exception {
+        
+        RequestOperation<Optional<? extends GetDocumentsRequest>, GetdocumentsResponse> operation
+              = new GetdocumentsOperation( sdkConfiguration);
 
-        return sdk.retrieve(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

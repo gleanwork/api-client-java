@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ListCollectionsRequest {
@@ -152,14 +151,14 @@ public class ListCollectionsRequest {
         }
         ListCollectionsRequest other = (ListCollectionsRequest) o;
         return 
-            Objects.deepEquals(this.includeAudience, other.includeAudience) &&
-            Objects.deepEquals(this.includeRoles, other.includeRoles) &&
-            Objects.deepEquals(this.allowedDatasource, other.allowedDatasource);
+            Utils.enhancedDeepEquals(this.includeAudience, other.includeAudience) &&
+            Utils.enhancedDeepEquals(this.includeRoles, other.includeRoles) &&
+            Utils.enhancedDeepEquals(this.allowedDatasource, other.allowedDatasource);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             includeAudience,
             includeRoles,
             allowedDatasource);

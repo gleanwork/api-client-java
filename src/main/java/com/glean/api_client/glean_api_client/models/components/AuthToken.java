@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class AuthToken {
@@ -196,17 +195,17 @@ public class AuthToken {
         }
         AuthToken other = (AuthToken) o;
         return 
-            Objects.deepEquals(this.accessToken, other.accessToken) &&
-            Objects.deepEquals(this.datasource, other.datasource) &&
-            Objects.deepEquals(this.scope, other.scope) &&
-            Objects.deepEquals(this.tokenType, other.tokenType) &&
-            Objects.deepEquals(this.authUser, other.authUser) &&
-            Objects.deepEquals(this.expiration, other.expiration);
+            Utils.enhancedDeepEquals(this.accessToken, other.accessToken) &&
+            Utils.enhancedDeepEquals(this.datasource, other.datasource) &&
+            Utils.enhancedDeepEquals(this.scope, other.scope) &&
+            Utils.enhancedDeepEquals(this.tokenType, other.tokenType) &&
+            Utils.enhancedDeepEquals(this.authUser, other.authUser) &&
+            Utils.enhancedDeepEquals(this.expiration, other.expiration);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             accessToken,
             datasource,
             scope,

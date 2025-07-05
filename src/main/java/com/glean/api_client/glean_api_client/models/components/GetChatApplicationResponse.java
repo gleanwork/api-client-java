@@ -13,7 +13,6 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class GetChatApplicationResponse {
@@ -66,12 +65,12 @@ public class GetChatApplicationResponse {
         }
         GetChatApplicationResponse other = (GetChatApplicationResponse) o;
         return 
-            Objects.deepEquals(this.application, other.application);
+            Utils.enhancedDeepEquals(this.application, other.application);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             application);
     }
     

@@ -20,7 +20,7 @@ public enum StructuredResultSource {
     @JsonValue
     private final String value;
 
-    private StructuredResultSource(String value) {
+    StructuredResultSource(String value) {
         this.value = value;
     }
     

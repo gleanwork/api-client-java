@@ -11,7 +11,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class GetdocvisibilityRequest {
@@ -75,12 +74,12 @@ public class GetdocvisibilityRequest {
         }
         GetdocvisibilityRequest other = (GetdocvisibilityRequest) o;
         return 
-            Objects.deepEquals(this.docIds, other.docIds);
+            Utils.enhancedDeepEquals(this.docIds, other.docIds);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             docIds);
     }
     

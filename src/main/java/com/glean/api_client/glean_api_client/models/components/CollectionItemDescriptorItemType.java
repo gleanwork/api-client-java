@@ -16,7 +16,7 @@ public enum CollectionItemDescriptorItemType {
     @JsonValue
     private final String value;
 
-    private CollectionItemDescriptorItemType(String value) {
+    CollectionItemDescriptorItemType(String value) {
         this.value = value;
     }
     

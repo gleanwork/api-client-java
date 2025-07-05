@@ -15,7 +15,7 @@ public enum AnswerSourceType {
     @JsonValue
     private final String value;
 
-    private AnswerSourceType(String value) {
+    AnswerSourceType(String value) {
         this.value = value;
     }
     

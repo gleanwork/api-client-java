@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class SocialNetwork {
@@ -129,14 +128,14 @@ public class SocialNetwork {
         }
         SocialNetwork other = (SocialNetwork) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.profileName, other.profileName) &&
-            Objects.deepEquals(this.profileUrl, other.profileUrl);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.profileName, other.profileName) &&
+            Utils.enhancedDeepEquals(this.profileUrl, other.profileUrl);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name,
             profileName,
             profileUrl);

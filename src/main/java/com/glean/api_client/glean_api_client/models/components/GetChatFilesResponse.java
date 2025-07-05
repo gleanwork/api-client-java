@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 public class GetChatFilesResponse {
@@ -78,12 +77,12 @@ public class GetChatFilesResponse {
         }
         GetChatFilesResponse other = (GetChatFilesResponse) o;
         return 
-            Objects.deepEquals(this.files, other.files);
+            Utils.enhancedDeepEquals(this.files, other.files);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             files);
     }
     

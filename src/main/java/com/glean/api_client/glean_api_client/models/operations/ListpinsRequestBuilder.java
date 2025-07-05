@@ -3,16 +3,20 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
+import com.glean.api_client.glean_api_client.operations.ListpinsOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class ListpinsRequestBuilder {
 
     private ListpinsRequest request;
-    private final SDKMethodInterfaces.MethodCallListpins sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListpinsRequestBuilder(SDKMethodInterfaces.MethodCallListpins sdk) {
-        this.sdk = sdk;
+    public ListpinsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ListpinsRequestBuilder request(ListpinsRequest request) {
@@ -22,8 +26,10 @@ public class ListpinsRequestBuilder {
     }
 
     public ListpinsResponse call() throws Exception {
+        
+        RequestOperation<ListpinsRequest, ListpinsResponse> operation
+              = new ListpinsOperation( sdkConfiguration);
 
-        return sdk.list(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

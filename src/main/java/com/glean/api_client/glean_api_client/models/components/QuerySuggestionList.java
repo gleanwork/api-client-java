@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class QuerySuggestionList {
@@ -91,13 +90,13 @@ public class QuerySuggestionList {
         }
         QuerySuggestionList other = (QuerySuggestionList) o;
         return 
-            Objects.deepEquals(this.suggestions, other.suggestions) &&
-            Objects.deepEquals(this.person, other.person);
+            Utils.enhancedDeepEquals(this.suggestions, other.suggestions) &&
+            Utils.enhancedDeepEquals(this.person, other.person);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             suggestions,
             person);
     }

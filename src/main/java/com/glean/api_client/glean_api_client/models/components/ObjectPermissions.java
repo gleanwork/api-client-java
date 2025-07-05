@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ObjectPermissions {
@@ -77,12 +76,12 @@ public class ObjectPermissions {
         }
         ObjectPermissions other = (ObjectPermissions) o;
         return 
-            Objects.deepEquals(this.write, other.write);
+            Utils.enhancedDeepEquals(this.write, other.write);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             write);
     }
     

@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
 public class AnswerLike {
@@ -102,13 +101,13 @@ public class AnswerLike {
         }
         AnswerLike other = (AnswerLike) o;
         return 
-            Objects.deepEquals(this.user, other.user) &&
-            Objects.deepEquals(this.createTime, other.createTime);
+            Utils.enhancedDeepEquals(this.user, other.user) &&
+            Utils.enhancedDeepEquals(this.createTime, other.createTime);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             user,
             createTime);
     }

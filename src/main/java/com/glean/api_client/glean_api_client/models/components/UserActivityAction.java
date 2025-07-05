@@ -32,7 +32,7 @@ public enum UserActivityAction {
     @JsonValue
     private final String value;
 
-    private UserActivityAction(String value) {
+    UserActivityAction(String value) {
         this.value = value;
     }
     

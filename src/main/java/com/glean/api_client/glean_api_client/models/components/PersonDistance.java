@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Float;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class PersonDistance {
 
@@ -111,14 +110,14 @@ public class PersonDistance {
         }
         PersonDistance other = (PersonDistance) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.obfuscatedId, other.obfuscatedId) &&
-            Objects.deepEquals(this.distance, other.distance);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.obfuscatedId, other.obfuscatedId) &&
+            Utils.enhancedDeepEquals(this.distance, other.distance);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name,
             obfuscatedId,
             distance);

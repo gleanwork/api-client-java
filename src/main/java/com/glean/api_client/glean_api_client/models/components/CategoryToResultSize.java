@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CategoryToResultSize {
@@ -64,12 +63,12 @@ public class CategoryToResultSize {
         }
         CategoryToResultSize other = (CategoryToResultSize) o;
         return 
-            Objects.deepEquals(this.resultSize, other.resultSize);
+            Utils.enhancedDeepEquals(this.resultSize, other.resultSize);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             resultSize);
     }
     

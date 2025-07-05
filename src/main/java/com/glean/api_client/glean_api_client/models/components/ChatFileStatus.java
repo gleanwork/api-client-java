@@ -22,7 +22,7 @@ public enum ChatFileStatus {
     @JsonValue
     private final String value;
 
-    private ChatFileStatus(String value) {
+    ChatFileStatus(String value) {
         this.value = value;
     }
     

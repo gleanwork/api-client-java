@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -281,17 +280,17 @@ public class InputOptions {
         }
         InputOptions other = (InputOptions) o;
         return 
-            Objects.deepEquals(this.urlGreenlist, other.urlGreenlist) &&
-            Objects.deepEquals(this.datasourcesType, other.datasourcesType) &&
-            Objects.deepEquals(this.datasources, other.datasources) &&
-            Objects.deepEquals(this.datasourceInstances, other.datasourceInstances) &&
-            Objects.deepEquals(this.timePeriodType, other.timePeriodType) &&
-            Objects.deepEquals(this.customTimeRange, other.customTimeRange);
+            Utils.enhancedDeepEquals(this.urlGreenlist, other.urlGreenlist) &&
+            Utils.enhancedDeepEquals(this.datasourcesType, other.datasourcesType) &&
+            Utils.enhancedDeepEquals(this.datasources, other.datasources) &&
+            Utils.enhancedDeepEquals(this.datasourceInstances, other.datasourceInstances) &&
+            Utils.enhancedDeepEquals(this.timePeriodType, other.timePeriodType) &&
+            Utils.enhancedDeepEquals(this.customTimeRange, other.customTimeRange);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             urlGreenlist,
             datasourcesType,
             datasources,

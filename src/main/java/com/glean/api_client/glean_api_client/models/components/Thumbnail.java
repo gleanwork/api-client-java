@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class Thumbnail {
@@ -111,13 +110,13 @@ public class Thumbnail {
         }
         Thumbnail other = (Thumbnail) o;
         return 
-            Objects.deepEquals(this.photoId, other.photoId) &&
-            Objects.deepEquals(this.url, other.url);
+            Utils.enhancedDeepEquals(this.photoId, other.photoId) &&
+            Utils.enhancedDeepEquals(this.url, other.url);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             photoId,
             url);
     }

@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ListverificationsRequest {
@@ -73,12 +72,12 @@ public class ListverificationsRequest {
         }
         ListverificationsRequest other = (ListverificationsRequest) o;
         return 
-            Objects.deepEquals(this.count, other.count);
+            Utils.enhancedDeepEquals(this.count, other.count);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             count);
     }
     

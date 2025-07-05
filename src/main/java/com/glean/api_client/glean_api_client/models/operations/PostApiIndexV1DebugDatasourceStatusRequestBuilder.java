@@ -3,6 +3,10 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DebugDatasourceStatusOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -10,10 +14,10 @@ import java.lang.String;
 public class PostApiIndexV1DebugDatasourceStatusRequestBuilder {
 
     private String datasource;
-    private final SDKMethodInterfaces.MethodCallPostApiIndexV1DebugDatasourceStatus sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PostApiIndexV1DebugDatasourceStatusRequestBuilder(SDKMethodInterfaces.MethodCallPostApiIndexV1DebugDatasourceStatus sdk) {
-        this.sdk = sdk;
+    public PostApiIndexV1DebugDatasourceStatusRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PostApiIndexV1DebugDatasourceStatusRequestBuilder datasource(String datasource) {
@@ -22,9 +26,20 @@ public class PostApiIndexV1DebugDatasourceStatusRequestBuilder {
         return this;
     }
 
-    public PostApiIndexV1DebugDatasourceStatusResponse call() throws Exception {
 
-        return sdk.status(
-            datasource);
+    private PostApiIndexV1DebugDatasourceStatusRequest buildRequest() {
+
+        PostApiIndexV1DebugDatasourceStatusRequest request = new PostApiIndexV1DebugDatasourceStatusRequest(datasource);
+
+        return request;
+    }
+
+    public PostApiIndexV1DebugDatasourceStatusResponse call() throws Exception {
+        
+        RequestOperation<PostApiIndexV1DebugDatasourceStatusRequest, PostApiIndexV1DebugDatasourceStatusResponse> operation
+              = new PostApiIndexV1DebugDatasourceStatusOperation( sdkConfiguration);
+        PostApiIndexV1DebugDatasourceStatusRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class UiConfig {
@@ -114,13 +113,13 @@ public class UiConfig {
         }
         UiConfig other = (UiConfig) o;
         return 
-            Objects.deepEquals(this.format, other.format) &&
-            Objects.deepEquals(this.additionalFlags, other.additionalFlags);
+            Utils.enhancedDeepEquals(this.format, other.format) &&
+            Utils.enhancedDeepEquals(this.additionalFlags, other.additionalFlags);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             format,
             additionalFlags);
     }

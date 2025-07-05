@@ -14,7 +14,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class FavoriteInfo {
@@ -175,15 +174,15 @@ public class FavoriteInfo {
         }
         FavoriteInfo other = (FavoriteInfo) o;
         return 
-            Objects.deepEquals(this.ugcType, other.ugcType) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.count, other.count) &&
-            Objects.deepEquals(this.favoritedByUser, other.favoritedByUser);
+            Utils.enhancedDeepEquals(this.ugcType, other.ugcType) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.count, other.count) &&
+            Utils.enhancedDeepEquals(this.favoritedByUser, other.favoritedByUser);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             ugcType,
             id,
             count,

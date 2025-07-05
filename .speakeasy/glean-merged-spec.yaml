@@ -4868,7 +4868,8 @@ components:
                     example: From https://en.wikipedia.org/wiki/Diffuse_sky_radiation, the sky is blue because blue light is more strongly scattered than longer-wavelength light.
                 boardId:
                     type: integer
-                    description: The parent board ID of this Answer, or 0 if it's a floating Answer.
+                    description: The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+                    deprecated: true
                 audienceFilters:
                     type: array
                     description: Filters which restrict who should see the answer. Values are taken from the corresponding filters in people search.
@@ -7523,6 +7524,7 @@ components:
                     type: string
                     title: Role
                     description: The role of the message.
+                    example: USER
                 content:
                     title: Content
                     description: The content of the message.
@@ -8415,6 +8417,7 @@ components:
                         - COPYPASTED_QUOTES
                         - INVALID_OPERATOR
                         - MAYBE_INVALID_FACET_QUERY
+                        - TOO_MANY_DATASOURCE_GROUPS
                     description: The type of the warning.
                 lastUsedTerm:
                     type: string
@@ -9058,6 +9061,7 @@ components:
                             - DISPLAYABLE_LIST
                             - SOCIAL_LINK
                             - EXTERNAL_TASKS
+                            - WORKFLOW_COLLECTIONS
                             - ZERO_STATE_CHAT_SUGGESTION
                             - ZERO_STATE_CHAT_TOOL_SUGGESTION
                             - ZERO_STATE_WORKFLOW_CREATED_BY_ME
@@ -11745,6 +11749,10 @@ components:
                     type: string
                     description: end time of the time range, applicable for the CUSTOM type.
                     format: date-time
+                lastNDaysValue:
+                    type: integer
+                    description: The number of days to look back from the current time, applicable for the LAST_N_DAYS type.
+                    format: int64
         InputOptions:
             description: Controls which data-sources and what time-range to include in scans.
             properties:
@@ -11779,6 +11787,7 @@ components:
                         - PAST_YEAR
                         - PAST_DAY
                         - CUSTOM
+                        - LAST_N_DAYS
                 customTimeRange:
                     $ref: "#/components/schemas/TimeRange"
         SharingOptions:

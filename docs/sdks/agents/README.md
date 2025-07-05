@@ -173,8 +173,10 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.AgentRunCreate;
+import com.glean.api_client.glean_api_client.models.components.Message;
 import com.glean.api_client.glean_api_client.models.operations.CreateAndStreamRunResponse;
 import java.lang.Exception;
+import java.util.List;
 
 public class Application {
 
@@ -186,6 +188,10 @@ public class Application {
 
         AgentRunCreate req = AgentRunCreate.builder()
                 .agentId("<id>")
+                .messages(List.of(
+                    Message.builder()
+                        .role("USER")
+                        .build()))
                 .build();
 
         CreateAndStreamRunResponse res = sdk.client().agents().runStream()
@@ -226,8 +232,10 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.AgentRunCreate;
+import com.glean.api_client.glean_api_client.models.components.Message;
 import com.glean.api_client.glean_api_client.models.operations.CreateAndWaitRunResponse;
 import java.lang.Exception;
+import java.util.List;
 
 public class Application {
 
@@ -239,6 +247,10 @@ public class Application {
 
         AgentRunCreate req = AgentRunCreate.builder()
                 .agentId("<id>")
+                .messages(List.of(
+                    Message.builder()
+                        .role("USER")
+                        .build()))
                 .build();
 
         CreateAndWaitRunResponse res = sdk.client().agents().run()

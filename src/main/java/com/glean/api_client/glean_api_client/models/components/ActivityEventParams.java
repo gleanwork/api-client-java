@@ -13,7 +13,6 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ActivityEventParams {
@@ -365,20 +364,20 @@ public class ActivityEventParams {
         }
         ActivityEventParams other = (ActivityEventParams) o;
         return 
-            Objects.deepEquals(this.bodyContent, other.bodyContent) &&
-            Objects.deepEquals(this.datasourceInstance, other.datasourceInstance) &&
-            Objects.deepEquals(this.datasource, other.datasource) &&
-            Objects.deepEquals(this.instanceOnlyName, other.instanceOnlyName) &&
-            Objects.deepEquals(this.duration, other.duration) &&
-            Objects.deepEquals(this.query, other.query) &&
-            Objects.deepEquals(this.referrer, other.referrer) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.truncated, other.truncated);
+            Utils.enhancedDeepEquals(this.bodyContent, other.bodyContent) &&
+            Utils.enhancedDeepEquals(this.datasourceInstance, other.datasourceInstance) &&
+            Utils.enhancedDeepEquals(this.datasource, other.datasource) &&
+            Utils.enhancedDeepEquals(this.instanceOnlyName, other.instanceOnlyName) &&
+            Utils.enhancedDeepEquals(this.duration, other.duration) &&
+            Utils.enhancedDeepEquals(this.query, other.query) &&
+            Utils.enhancedDeepEquals(this.referrer, other.referrer) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.truncated, other.truncated);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             bodyContent,
             datasourceInstance,
             datasource,

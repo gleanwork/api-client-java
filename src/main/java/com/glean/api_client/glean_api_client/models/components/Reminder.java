@@ -13,7 +13,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class Reminder {
@@ -183,16 +182,16 @@ public class Reminder {
         }
         Reminder other = (Reminder) o;
         return 
-            Objects.deepEquals(this.assignee, other.assignee) &&
-            Objects.deepEquals(this.requestor, other.requestor) &&
-            Objects.deepEquals(this.remindAt, other.remindAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.reason, other.reason);
+            Utils.enhancedDeepEquals(this.assignee, other.assignee) &&
+            Utils.enhancedDeepEquals(this.requestor, other.requestor) &&
+            Utils.enhancedDeepEquals(this.remindAt, other.remindAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.reason, other.reason);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             assignee,
             requestor,
             remindAt,

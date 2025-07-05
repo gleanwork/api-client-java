@@ -23,7 +23,7 @@ public enum PersonToTeamRelationshipRelationship {
     @JsonValue
     private final String value;
 
-    private PersonToTeamRelationshipRelationship(String value) {
+    PersonToTeamRelationshipRelationship(String value) {
         this.value = value;
     }
     

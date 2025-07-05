@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class FeedResult {
@@ -160,15 +159,15 @@ public class FeedResult {
         }
         FeedResult other = (FeedResult) o;
         return 
-            Objects.deepEquals(this.category, other.category) &&
-            Objects.deepEquals(this.primaryEntry, other.primaryEntry) &&
-            Objects.deepEquals(this.secondaryEntries, other.secondaryEntries) &&
-            Objects.deepEquals(this.rank, other.rank);
+            Utils.enhancedDeepEquals(this.category, other.category) &&
+            Utils.enhancedDeepEquals(this.primaryEntry, other.primaryEntry) &&
+            Utils.enhancedDeepEquals(this.secondaryEntries, other.secondaryEntries) &&
+            Utils.enhancedDeepEquals(this.rank, other.rank);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             category,
             primaryEntry,
             secondaryEntries,

@@ -13,7 +13,6 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -191,15 +190,15 @@ public class Badge {
         }
         Badge other = (Badge) o;
         return 
-            Objects.deepEquals(this.key, other.key) &&
-            Objects.deepEquals(this.displayName, other.displayName) &&
-            Objects.deepEquals(this.iconConfig, other.iconConfig) &&
-            Objects.deepEquals(this.pinned, other.pinned);
+            Utils.enhancedDeepEquals(this.key, other.key) &&
+            Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
+            Utils.enhancedDeepEquals(this.iconConfig, other.iconConfig) &&
+            Utils.enhancedDeepEquals(this.pinned, other.pinned);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             key,
             displayName,
             iconConfig,

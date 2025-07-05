@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class GleanDataError {
@@ -176,15 +175,15 @@ public class GleanDataError {
         }
         GleanDataError other = (GleanDataError) o;
         return 
-            Objects.deepEquals(this.badGmailToken, other.badGmailToken) &&
-            Objects.deepEquals(this.badOutlookToken, other.badOutlookToken) &&
-            Objects.deepEquals(this.invalidOperators, other.invalidOperators) &&
-            Objects.deepEquals(this.errorMessages, other.errorMessages);
+            Utils.enhancedDeepEquals(this.badGmailToken, other.badGmailToken) &&
+            Utils.enhancedDeepEquals(this.badOutlookToken, other.badOutlookToken) &&
+            Utils.enhancedDeepEquals(this.invalidOperators, other.invalidOperators) &&
+            Utils.enhancedDeepEquals(this.errorMessages, other.errorMessages);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             badGmailToken,
             badOutlookToken,
             invalidOperators,

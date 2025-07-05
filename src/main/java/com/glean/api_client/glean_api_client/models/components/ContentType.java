@@ -14,7 +14,7 @@ public enum ContentType {
     @JsonValue
     private final String value;
 
-    private ContentType(String value) {
+    ContentType(String value) {
         this.value = value;
     }
     

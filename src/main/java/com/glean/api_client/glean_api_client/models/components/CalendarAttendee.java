@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CalendarAttendee {
@@ -194,16 +193,16 @@ public class CalendarAttendee {
         }
         CalendarAttendee other = (CalendarAttendee) o;
         return 
-            Objects.deepEquals(this.isOrganizer, other.isOrganizer) &&
-            Objects.deepEquals(this.isInGroup, other.isInGroup) &&
-            Objects.deepEquals(this.person, other.person) &&
-            Objects.deepEquals(this.groupAttendees, other.groupAttendees) &&
-            Objects.deepEquals(this.responseStatus, other.responseStatus);
+            Utils.enhancedDeepEquals(this.isOrganizer, other.isOrganizer) &&
+            Utils.enhancedDeepEquals(this.isInGroup, other.isInGroup) &&
+            Utils.enhancedDeepEquals(this.person, other.person) &&
+            Utils.enhancedDeepEquals(this.groupAttendees, other.groupAttendees) &&
+            Utils.enhancedDeepEquals(this.responseStatus, other.responseStatus);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             isOrganizer,
             isInGroup,
             person,

@@ -13,7 +13,6 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -191,15 +190,15 @@ public class WritePermission {
         }
         WritePermission other = (WritePermission) o;
         return 
-            Objects.deepEquals(this.scopeType, other.scopeType) &&
-            Objects.deepEquals(this.create, other.create) &&
-            Objects.deepEquals(this.update, other.update) &&
-            Objects.deepEquals(this.delete, other.delete);
+            Utils.enhancedDeepEquals(this.scopeType, other.scopeType) &&
+            Utils.enhancedDeepEquals(this.create, other.create) &&
+            Utils.enhancedDeepEquals(this.update, other.update) &&
+            Utils.enhancedDeepEquals(this.delete, other.delete);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             scopeType,
             create,
             update,

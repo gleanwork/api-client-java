@@ -24,7 +24,7 @@ public enum InsightsRequestCategory {
     @JsonValue
     private final String value;
 
-    private InsightsRequestCategory(String value) {
+    InsightsRequestCategory(String value) {
         this.value = value;
     }
     

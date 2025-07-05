@@ -9,12 +9,12 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.Deprecated;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class EditAnswerRequest {
@@ -51,10 +51,13 @@ public class EditAnswerRequest {
     private Optional<String> bodyText;
 
     /**
-     * The parent board ID of this Answer, or 0 if it's a floating Answer.
+     * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("boardId")
+    @Deprecated
     private Optional<Long> boardId;
 
     /**
@@ -204,8 +207,11 @@ public class EditAnswerRequest {
     }
 
     /**
-     * The parent board ID of this Answer, or 0 if it's a floating Answer.
+     * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     @JsonIgnore
     public Optional<Long> boardId() {
         return boardId;
@@ -363,8 +369,11 @@ public class EditAnswerRequest {
     }
 
     /**
-     * The parent board ID of this Answer, or 0 if it's a floating Answer.
+     * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public EditAnswerRequest withBoardId(long boardId) {
         Utils.checkNotNull(boardId, "boardId");
         this.boardId = Optional.ofNullable(boardId);
@@ -372,8 +381,11 @@ public class EditAnswerRequest {
     }
 
     /**
-     * The parent board ID of this Answer, or 0 if it's a floating Answer.
+     * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public EditAnswerRequest withBoardId(Optional<Long> boardId) {
         Utils.checkNotNull(boardId, "boardId");
         this.boardId = boardId;
@@ -535,26 +547,26 @@ public class EditAnswerRequest {
         }
         EditAnswerRequest other = (EditAnswerRequest) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.docId, other.docId) &&
-            Objects.deepEquals(this.question, other.question) &&
-            Objects.deepEquals(this.questionVariations, other.questionVariations) &&
-            Objects.deepEquals(this.bodyText, other.bodyText) &&
-            Objects.deepEquals(this.boardId, other.boardId) &&
-            Objects.deepEquals(this.audienceFilters, other.audienceFilters) &&
-            Objects.deepEquals(this.addedRoles, other.addedRoles) &&
-            Objects.deepEquals(this.removedRoles, other.removedRoles) &&
-            Objects.deepEquals(this.roles, other.roles) &&
-            Objects.deepEquals(this.sourceDocumentSpec, other.sourceDocumentSpec) &&
-            Objects.deepEquals(this.sourceType, other.sourceType) &&
-            Objects.deepEquals(this.addedCollections, other.addedCollections) &&
-            Objects.deepEquals(this.removedCollections, other.removedCollections) &&
-            Objects.deepEquals(this.combinedAnswerText, other.combinedAnswerText);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.docId, other.docId) &&
+            Utils.enhancedDeepEquals(this.question, other.question) &&
+            Utils.enhancedDeepEquals(this.questionVariations, other.questionVariations) &&
+            Utils.enhancedDeepEquals(this.bodyText, other.bodyText) &&
+            Utils.enhancedDeepEquals(this.boardId, other.boardId) &&
+            Utils.enhancedDeepEquals(this.audienceFilters, other.audienceFilters) &&
+            Utils.enhancedDeepEquals(this.addedRoles, other.addedRoles) &&
+            Utils.enhancedDeepEquals(this.removedRoles, other.removedRoles) &&
+            Utils.enhancedDeepEquals(this.roles, other.roles) &&
+            Utils.enhancedDeepEquals(this.sourceDocumentSpec, other.sourceDocumentSpec) &&
+            Utils.enhancedDeepEquals(this.sourceType, other.sourceType) &&
+            Utils.enhancedDeepEquals(this.addedCollections, other.addedCollections) &&
+            Utils.enhancedDeepEquals(this.removedCollections, other.removedCollections) &&
+            Utils.enhancedDeepEquals(this.combinedAnswerText, other.combinedAnswerText);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             docId,
             question,
@@ -604,6 +616,7 @@ public class EditAnswerRequest {
  
         private Optional<String> bodyText = Optional.empty();
  
+        @Deprecated
         private Optional<Long> boardId = Optional.empty();
  
         private Optional<? extends List<FacetFilter>> audienceFilters = Optional.empty();
@@ -704,8 +717,11 @@ public class EditAnswerRequest {
         }
 
         /**
-         * The parent board ID of this Answer, or 0 if it's a floating Answer.
+         * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder boardId(long boardId) {
             Utils.checkNotNull(boardId, "boardId");
             this.boardId = Optional.ofNullable(boardId);
@@ -713,8 +729,11 @@ public class EditAnswerRequest {
         }
 
         /**
-         * The parent board ID of this Answer, or 0 if it's a floating Answer.
+         * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder boardId(Optional<Long> boardId) {
             Utils.checkNotNull(boardId, "boardId");
             this.boardId = boardId;

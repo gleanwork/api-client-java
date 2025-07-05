@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class AnswerResult {
@@ -93,13 +92,13 @@ public class AnswerResult {
         }
         AnswerResult other = (AnswerResult) o;
         return 
-            Objects.deepEquals(this.answer, other.answer) &&
-            Objects.deepEquals(this.trackingToken, other.trackingToken);
+            Utils.enhancedDeepEquals(this.answer, other.answer) &&
+            Utils.enhancedDeepEquals(this.trackingToken, other.trackingToken);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             answer,
             trackingToken);
     }

@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class InsightsAgentsRequestOptions {
@@ -78,12 +77,12 @@ public class InsightsAgentsRequestOptions {
         }
         InsightsAgentsRequestOptions other = (InsightsAgentsRequestOptions) o;
         return 
-            Objects.deepEquals(this.agentIds, other.agentIds);
+            Utils.enhancedDeepEquals(this.agentIds, other.agentIds);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             agentIds);
     }
     

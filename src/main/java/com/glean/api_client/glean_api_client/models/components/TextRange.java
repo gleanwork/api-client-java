@@ -13,7 +13,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -195,16 +194,16 @@ public class TextRange {
         }
         TextRange other = (TextRange) o;
         return 
-            Objects.deepEquals(this.startIndex, other.startIndex) &&
-            Objects.deepEquals(this.endIndex, other.endIndex) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.url, other.url) &&
-            Objects.deepEquals(this.document, other.document);
+            Utils.enhancedDeepEquals(this.startIndex, other.startIndex) &&
+            Utils.enhancedDeepEquals(this.endIndex, other.endIndex) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.url, other.url) &&
+            Utils.enhancedDeepEquals(this.document, other.document);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             startIndex,
             endIndex,
             type,

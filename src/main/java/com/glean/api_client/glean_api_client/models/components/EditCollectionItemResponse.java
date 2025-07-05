@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class EditCollectionItemResponse {
@@ -65,12 +64,12 @@ public class EditCollectionItemResponse {
         }
         EditCollectionItemResponse other = (EditCollectionItemResponse) o;
         return 
-            Objects.deepEquals(this.collection, other.collection);
+            Utils.enhancedDeepEquals(this.collection, other.collection);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             collection);
     }
     
