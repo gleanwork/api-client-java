@@ -15,7 +15,7 @@ public enum FeedbackChannel {
     @JsonValue
     private final String value;
 
-    private FeedbackChannel(String value) {
+    FeedbackChannel(String value) {
         this.value = value;
     }
     

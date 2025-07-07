@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class CreateAuthTokenResponse {
 
@@ -85,13 +84,13 @@ public class CreateAuthTokenResponse {
         }
         CreateAuthTokenResponse other = (CreateAuthTokenResponse) o;
         return 
-            Objects.deepEquals(this.token, other.token) &&
-            Objects.deepEquals(this.expirationTime, other.expirationTime);
+            Utils.enhancedDeepEquals(this.token, other.token) &&
+            Utils.enhancedDeepEquals(this.expirationTime, other.expirationTime);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             token,
             expirationTime);
     }

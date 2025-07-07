@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -153,15 +152,15 @@ public class DatasourceUserDefinition {
         }
         DatasourceUserDefinition other = (DatasourceUserDefinition) o;
         return 
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.userId, other.userId) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.isActive, other.isActive);
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.userId, other.userId) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.isActive, other.isActive);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             email,
             userId,
             name,

@@ -86,7 +86,7 @@ public class ClientShortcutsTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         CreateShortcutRequest req = CreateShortcutRequest.builder()
@@ -636,7 +636,7 @@ public class ClientShortcutsTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         DeleteShortcutRequest req = DeleteShortcutRequest.builder()
@@ -656,7 +656,7 @@ public class ClientShortcutsTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         GetShortcutRequestUnion req = GetShortcutRequestUnion.of(GetShortcutRequest.builder()
@@ -685,7 +685,7 @@ public class ClientShortcutsTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         ListShortcutsPaginatedRequest req = ListShortcutsPaginatedRequest.builder()
@@ -817,7 +817,7 @@ public class ClientShortcutsTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         UpdateShortcutRequest req = UpdateShortcutRequest.builder()

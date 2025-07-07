@@ -38,7 +38,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
         UpdatePermissionsRequest req = UpdatePermissionsRequest.builder()
@@ -92,7 +92,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
         IndexUserRequest req = IndexUserRequest.builder()
@@ -149,7 +149,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
         BulkIndexUsersRequest req = BulkIndexUsersRequest.builder()
@@ -215,7 +215,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
         IndexGroupRequest req = IndexGroupRequest.builder()
@@ -271,7 +271,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
         BulkIndexGroupsRequest req = BulkIndexGroupsRequest.builder()
@@ -331,7 +331,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
         IndexMembershipRequest req = IndexMembershipRequest.builder()
@@ -387,7 +387,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
         BulkIndexMembershipsRequest req = BulkIndexMembershipsRequest.builder()
@@ -446,7 +446,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
         PostApiIndexV1ProcessallmembershipsResponse res = sdk.indexing().permissions().processMemberships()
@@ -492,7 +492,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
         DeleteUserRequest req = DeleteUserRequest.builder()
@@ -544,7 +544,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
         DeleteGroupRequest req = DeleteGroupRequest.builder()
@@ -597,7 +597,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
         DeleteMembershipRequest req = DeleteMembershipRequest.builder()
@@ -652,7 +652,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
         GreenlistUsersRequest req = GreenlistUsersRequest.builder()

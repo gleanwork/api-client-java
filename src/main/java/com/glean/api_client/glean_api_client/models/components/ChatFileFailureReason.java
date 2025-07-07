@@ -25,7 +25,7 @@ public enum ChatFileFailureReason {
     @JsonValue
     private final String value;
 
-    private ChatFileFailureReason(String value) {
+    ChatFileFailureReason(String value) {
         this.value = value;
     }
     

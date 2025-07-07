@@ -6,6 +6,7 @@ package com.glean.api_client.glean_api_client;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
 import com.glean.api_client.glean_api_client.utils.Hook.SdkInitData;
 import com.glean.api_client.glean_api_client.utils.RetryConfig;
+import com.glean.api_client.glean_api_client.utils.SpeakeasyHTTPClient;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
 import java.util.Map;
@@ -40,6 +41,8 @@ public class Glean {
         "https://{instance}-be.glean.com",
     };
 
+    
+
     private final Client client;
 
     private final Indexing indexing;
@@ -51,7 +54,6 @@ public class Glean {
     public Indexing indexing() {
         return indexing;
     }
-
     private SDKConfiguration sdkConfiguration;
 
     /**
@@ -147,6 +149,21 @@ public class Glean {
             this.sdkConfiguration.setRetryConfig(Optional.of(retryConfig));
             return this;
         }
+
+        /**
+         * Enables debug logging for HTTP requests and responses, including JSON body content.
+         *
+         * Convenience method that calls {@link HTTPClient#enableDebugLogging(boolean)}.
+         * {@link SpeakeasyHTTPClient} honors this setting. If you are using a custom HTTP client,
+         * it is up to the custom client to honor this setting.
+         *
+         * @return The builder instance.
+         */
+        public Builder enableHTTPDebugLogging(boolean enabled) {
+            this.sdkConfiguration.client().enableDebugLogging(enabled);
+            return this;
+        }
+
         /**
          * Sets the instance variable for url substitution.
          *

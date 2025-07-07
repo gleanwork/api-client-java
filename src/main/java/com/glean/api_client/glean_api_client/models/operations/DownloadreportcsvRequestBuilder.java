@@ -3,6 +3,10 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
+import com.glean.api_client.glean_api_client.operations.DownloadreportcsvOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -10,10 +14,10 @@ import java.lang.String;
 public class DownloadreportcsvRequestBuilder {
 
     private String id;
-    private final SDKMethodInterfaces.MethodCallDownloadreportcsv sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DownloadreportcsvRequestBuilder(SDKMethodInterfaces.MethodCallDownloadreportcsv sdk) {
-        this.sdk = sdk;
+    public DownloadreportcsvRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public DownloadreportcsvRequestBuilder id(String id) {
@@ -22,9 +26,20 @@ public class DownloadreportcsvRequestBuilder {
         return this;
     }
 
-    public DownloadreportcsvResponse call() throws Exception {
 
-        return sdk.download(
-            id);
+    private DownloadreportcsvRequest buildRequest() {
+
+        DownloadreportcsvRequest request = new DownloadreportcsvRequest(id);
+
+        return request;
+    }
+
+    public DownloadreportcsvResponse call() throws Exception {
+        
+        RequestOperation<DownloadreportcsvRequest, DownloadreportcsvResponse> operation
+              = new DownloadreportcsvOperation( sdkConfiguration);
+        DownloadreportcsvRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

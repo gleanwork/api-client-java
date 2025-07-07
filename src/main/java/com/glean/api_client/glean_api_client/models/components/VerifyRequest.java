@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class VerifyRequest {
@@ -104,13 +103,13 @@ public class VerifyRequest {
         }
         VerifyRequest other = (VerifyRequest) o;
         return 
-            Objects.deepEquals(this.documentId, other.documentId) &&
-            Objects.deepEquals(this.action, other.action);
+            Utils.enhancedDeepEquals(this.documentId, other.documentId) &&
+            Utils.enhancedDeepEquals(this.action, other.action);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             documentId,
             action);
     }

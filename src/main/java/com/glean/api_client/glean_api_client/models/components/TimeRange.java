@@ -9,10 +9,10 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
 public class TimeRange {
@@ -31,18 +31,28 @@ public class TimeRange {
     @JsonProperty("endTime")
     private Optional<OffsetDateTime> endTime;
 
+    /**
+     * The number of days to look back from the current time, applicable for the LAST_N_DAYS type.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("lastNDaysValue")
+    private Optional<Long> lastNDaysValue;
+
     @JsonCreator
     public TimeRange(
             @JsonProperty("startTime") Optional<OffsetDateTime> startTime,
-            @JsonProperty("endTime") Optional<OffsetDateTime> endTime) {
+            @JsonProperty("endTime") Optional<OffsetDateTime> endTime,
+            @JsonProperty("lastNDaysValue") Optional<Long> lastNDaysValue) {
         Utils.checkNotNull(startTime, "startTime");
         Utils.checkNotNull(endTime, "endTime");
+        Utils.checkNotNull(lastNDaysValue, "lastNDaysValue");
         this.startTime = startTime;
         this.endTime = endTime;
+        this.lastNDaysValue = lastNDaysValue;
     }
     
     public TimeRange() {
-        this(Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -59,6 +69,14 @@ public class TimeRange {
     @JsonIgnore
     public Optional<OffsetDateTime> endTime() {
         return endTime;
+    }
+
+    /**
+     * The number of days to look back from the current time, applicable for the LAST_N_DAYS type.
+     */
+    @JsonIgnore
+    public Optional<Long> lastNDaysValue() {
+        return lastNDaysValue;
     }
 
     public final static Builder builder() {
@@ -101,6 +119,24 @@ public class TimeRange {
         return this;
     }
 
+    /**
+     * The number of days to look back from the current time, applicable for the LAST_N_DAYS type.
+     */
+    public TimeRange withLastNDaysValue(long lastNDaysValue) {
+        Utils.checkNotNull(lastNDaysValue, "lastNDaysValue");
+        this.lastNDaysValue = Optional.ofNullable(lastNDaysValue);
+        return this;
+    }
+
+    /**
+     * The number of days to look back from the current time, applicable for the LAST_N_DAYS type.
+     */
+    public TimeRange withLastNDaysValue(Optional<Long> lastNDaysValue) {
+        Utils.checkNotNull(lastNDaysValue, "lastNDaysValue");
+        this.lastNDaysValue = lastNDaysValue;
+        return this;
+    }
+
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -112,22 +148,25 @@ public class TimeRange {
         }
         TimeRange other = (TimeRange) o;
         return 
-            Objects.deepEquals(this.startTime, other.startTime) &&
-            Objects.deepEquals(this.endTime, other.endTime);
+            Utils.enhancedDeepEquals(this.startTime, other.startTime) &&
+            Utils.enhancedDeepEquals(this.endTime, other.endTime) &&
+            Utils.enhancedDeepEquals(this.lastNDaysValue, other.lastNDaysValue);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             startTime,
-            endTime);
+            endTime,
+            lastNDaysValue);
     }
     
     @Override
     public String toString() {
         return Utils.toString(TimeRange.class,
                 "startTime", startTime,
-                "endTime", endTime);
+                "endTime", endTime,
+                "lastNDaysValue", lastNDaysValue);
     }
     
     public final static class Builder {
@@ -135,6 +174,8 @@ public class TimeRange {
         private Optional<OffsetDateTime> startTime = Optional.empty();
  
         private Optional<OffsetDateTime> endTime = Optional.empty();
+ 
+        private Optional<Long> lastNDaysValue = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -175,11 +216,30 @@ public class TimeRange {
             this.endTime = endTime;
             return this;
         }
+
+        /**
+         * The number of days to look back from the current time, applicable for the LAST_N_DAYS type.
+         */
+        public Builder lastNDaysValue(long lastNDaysValue) {
+            Utils.checkNotNull(lastNDaysValue, "lastNDaysValue");
+            this.lastNDaysValue = Optional.ofNullable(lastNDaysValue);
+            return this;
+        }
+
+        /**
+         * The number of days to look back from the current time, applicable for the LAST_N_DAYS type.
+         */
+        public Builder lastNDaysValue(Optional<Long> lastNDaysValue) {
+            Utils.checkNotNull(lastNDaysValue, "lastNDaysValue");
+            this.lastNDaysValue = lastNDaysValue;
+            return this;
+        }
         
         public TimeRange build() {
             return new TimeRange(
                 startTime,
-                endTime);
+                endTime,
+                lastNDaysValue);
         }
     }
 }

@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class UserViewInfo {
@@ -147,14 +146,14 @@ public class UserViewInfo {
         }
         UserViewInfo other = (UserViewInfo) o;
         return 
-            Objects.deepEquals(this.docId, other.docId) &&
-            Objects.deepEquals(this.docTitle, other.docTitle) &&
-            Objects.deepEquals(this.docUrl, other.docUrl);
+            Utils.enhancedDeepEquals(this.docId, other.docId) &&
+            Utils.enhancedDeepEquals(this.docTitle, other.docTitle) &&
+            Utils.enhancedDeepEquals(this.docUrl, other.docUrl);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             docId,
             docTitle,
             docUrl);

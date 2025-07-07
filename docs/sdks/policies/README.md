@@ -29,7 +29,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
         GetpolicyResponse res = sdk.client().governance().data().policies().retrieve()
@@ -79,7 +79,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
         UpdatepolicyResponse res = sdk.client().governance().data().policies().update()
@@ -130,7 +130,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
         ListpoliciesResponse res = sdk.client().governance().data().policies().list()
@@ -179,7 +179,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
         CreateDlpReportRequest req = CreateDlpReportRequest.builder()
@@ -230,7 +230,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
         DownloadpolicycsvResponse res = sdk.client().governance().data().policies().download()

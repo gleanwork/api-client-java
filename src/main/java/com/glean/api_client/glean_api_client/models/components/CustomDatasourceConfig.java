@@ -16,7 +16,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -1009,38 +1008,38 @@ public class CustomDatasourceConfig {
         }
         CustomDatasourceConfig other = (CustomDatasourceConfig) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.displayName, other.displayName) &&
-            Objects.deepEquals(this.datasourceCategory, other.datasourceCategory) &&
-            Objects.deepEquals(this.urlRegex, other.urlRegex) &&
-            Objects.deepEquals(this.iconUrl, other.iconUrl) &&
-            Objects.deepEquals(this.objectDefinitions, other.objectDefinitions) &&
-            Objects.deepEquals(this.suggestionText, other.suggestionText) &&
-            Objects.deepEquals(this.homeUrl, other.homeUrl) &&
-            Objects.deepEquals(this.crawlerSeedUrls, other.crawlerSeedUrls) &&
-            Objects.deepEquals(this.iconDarkUrl, other.iconDarkUrl) &&
-            Objects.deepEquals(this.hideBuiltInFacets, other.hideBuiltInFacets) &&
-            Objects.deepEquals(this.canonicalizingURLRegex, other.canonicalizingURLRegex) &&
-            Objects.deepEquals(this.canonicalizingTitleRegex, other.canonicalizingTitleRegex) &&
-            Objects.deepEquals(this.redlistTitleRegex, other.redlistTitleRegex) &&
-            Objects.deepEquals(this.connectorType, other.connectorType) &&
-            Objects.deepEquals(this.quicklinks, other.quicklinks) &&
-            Objects.deepEquals(this.renderConfigPreset, other.renderConfigPreset) &&
-            Objects.deepEquals(this.aliases, other.aliases) &&
-            Objects.deepEquals(this.isOnPrem, other.isOnPrem) &&
-            Objects.deepEquals(this.trustUrlRegexForViewActivity, other.trustUrlRegexForViewActivity) &&
-            Objects.deepEquals(this.includeUtmSource, other.includeUtmSource) &&
-            Objects.deepEquals(this.stripFragmentInCanonicalUrl, other.stripFragmentInCanonicalUrl) &&
-            Objects.deepEquals(this.identityDatasourceName, other.identityDatasourceName) &&
-            Objects.deepEquals(this.productAccessGroup, other.productAccessGroup) &&
-            Objects.deepEquals(this.isUserReferencedByEmail, other.isUserReferencedByEmail) &&
-            Objects.deepEquals(this.isEntityDatasource, other.isEntityDatasource) &&
-            Objects.deepEquals(this.isTestDatasource, other.isTestDatasource);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
+            Utils.enhancedDeepEquals(this.datasourceCategory, other.datasourceCategory) &&
+            Utils.enhancedDeepEquals(this.urlRegex, other.urlRegex) &&
+            Utils.enhancedDeepEquals(this.iconUrl, other.iconUrl) &&
+            Utils.enhancedDeepEquals(this.objectDefinitions, other.objectDefinitions) &&
+            Utils.enhancedDeepEquals(this.suggestionText, other.suggestionText) &&
+            Utils.enhancedDeepEquals(this.homeUrl, other.homeUrl) &&
+            Utils.enhancedDeepEquals(this.crawlerSeedUrls, other.crawlerSeedUrls) &&
+            Utils.enhancedDeepEquals(this.iconDarkUrl, other.iconDarkUrl) &&
+            Utils.enhancedDeepEquals(this.hideBuiltInFacets, other.hideBuiltInFacets) &&
+            Utils.enhancedDeepEquals(this.canonicalizingURLRegex, other.canonicalizingURLRegex) &&
+            Utils.enhancedDeepEquals(this.canonicalizingTitleRegex, other.canonicalizingTitleRegex) &&
+            Utils.enhancedDeepEquals(this.redlistTitleRegex, other.redlistTitleRegex) &&
+            Utils.enhancedDeepEquals(this.connectorType, other.connectorType) &&
+            Utils.enhancedDeepEquals(this.quicklinks, other.quicklinks) &&
+            Utils.enhancedDeepEquals(this.renderConfigPreset, other.renderConfigPreset) &&
+            Utils.enhancedDeepEquals(this.aliases, other.aliases) &&
+            Utils.enhancedDeepEquals(this.isOnPrem, other.isOnPrem) &&
+            Utils.enhancedDeepEquals(this.trustUrlRegexForViewActivity, other.trustUrlRegexForViewActivity) &&
+            Utils.enhancedDeepEquals(this.includeUtmSource, other.includeUtmSource) &&
+            Utils.enhancedDeepEquals(this.stripFragmentInCanonicalUrl, other.stripFragmentInCanonicalUrl) &&
+            Utils.enhancedDeepEquals(this.identityDatasourceName, other.identityDatasourceName) &&
+            Utils.enhancedDeepEquals(this.productAccessGroup, other.productAccessGroup) &&
+            Utils.enhancedDeepEquals(this.isUserReferencedByEmail, other.isUserReferencedByEmail) &&
+            Utils.enhancedDeepEquals(this.isEntityDatasource, other.isEntityDatasource) &&
+            Utils.enhancedDeepEquals(this.isTestDatasource, other.isTestDatasource);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name,
             displayName,
             datasourceCategory,

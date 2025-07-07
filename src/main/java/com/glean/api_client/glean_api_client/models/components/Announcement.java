@@ -16,7 +16,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class Announcement {
@@ -823,35 +822,35 @@ public class Announcement {
         }
         Announcement other = (Announcement) o;
         return 
-            Objects.deepEquals(this.startTime, other.startTime) &&
-            Objects.deepEquals(this.endTime, other.endTime) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.body, other.body) &&
-            Objects.deepEquals(this.emoji, other.emoji) &&
-            Objects.deepEquals(this.thumbnail, other.thumbnail) &&
-            Objects.deepEquals(this.banner, other.banner) &&
-            Objects.deepEquals(this.audienceFilters, other.audienceFilters) &&
-            Objects.deepEquals(this.sourceDocumentId, other.sourceDocumentId) &&
-            Objects.deepEquals(this.hideAttribution, other.hideAttribution) &&
-            Objects.deepEquals(this.channel, other.channel) &&
-            Objects.deepEquals(this.postType, other.postType) &&
-            Objects.deepEquals(this.isPrioritized, other.isPrioritized) &&
-            Objects.deepEquals(this.viewUrl, other.viewUrl) &&
-            Objects.deepEquals(this.draftId, other.draftId) &&
-            Objects.deepEquals(this.permissions, other.permissions) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.author, other.author) &&
-            Objects.deepEquals(this.createTimestamp, other.createTimestamp) &&
-            Objects.deepEquals(this.lastUpdateTimestamp, other.lastUpdateTimestamp) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.viewerInfo, other.viewerInfo) &&
-            Objects.deepEquals(this.sourceDocument, other.sourceDocument) &&
-            Objects.deepEquals(this.isPublished, other.isPublished);
+            Utils.enhancedDeepEquals(this.startTime, other.startTime) &&
+            Utils.enhancedDeepEquals(this.endTime, other.endTime) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.body, other.body) &&
+            Utils.enhancedDeepEquals(this.emoji, other.emoji) &&
+            Utils.enhancedDeepEquals(this.thumbnail, other.thumbnail) &&
+            Utils.enhancedDeepEquals(this.banner, other.banner) &&
+            Utils.enhancedDeepEquals(this.audienceFilters, other.audienceFilters) &&
+            Utils.enhancedDeepEquals(this.sourceDocumentId, other.sourceDocumentId) &&
+            Utils.enhancedDeepEquals(this.hideAttribution, other.hideAttribution) &&
+            Utils.enhancedDeepEquals(this.channel, other.channel) &&
+            Utils.enhancedDeepEquals(this.postType, other.postType) &&
+            Utils.enhancedDeepEquals(this.isPrioritized, other.isPrioritized) &&
+            Utils.enhancedDeepEquals(this.viewUrl, other.viewUrl) &&
+            Utils.enhancedDeepEquals(this.draftId, other.draftId) &&
+            Utils.enhancedDeepEquals(this.permissions, other.permissions) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.author, other.author) &&
+            Utils.enhancedDeepEquals(this.createTimestamp, other.createTimestamp) &&
+            Utils.enhancedDeepEquals(this.lastUpdateTimestamp, other.lastUpdateTimestamp) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.viewerInfo, other.viewerInfo) &&
+            Utils.enhancedDeepEquals(this.sourceDocument, other.sourceDocument) &&
+            Utils.enhancedDeepEquals(this.isPublished, other.isPublished);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             startTime,
             endTime,
             title,

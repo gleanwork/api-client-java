@@ -3,7 +3,11 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.DeleteChatFilesRequest;
+import com.glean.api_client.glean_api_client.operations.DeletechatfilesOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
@@ -13,10 +17,10 @@ public class DeletechatfilesRequestBuilder {
 
     private Optional<Long> timezoneOffset = Optional.empty();
     private DeleteChatFilesRequest deleteChatFilesRequest;
-    private final SDKMethodInterfaces.MethodCallDeletechatfiles sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DeletechatfilesRequestBuilder(SDKMethodInterfaces.MethodCallDeletechatfiles sdk) {
-        this.sdk = sdk;
+    public DeletechatfilesRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public DeletechatfilesRequestBuilder timezoneOffset(long timezoneOffset) {
@@ -37,10 +41,21 @@ public class DeletechatfilesRequestBuilder {
         return this;
     }
 
-    public DeletechatfilesResponse call() throws Exception {
 
-        return sdk.deleteFiles(
-            timezoneOffset,
+    private DeletechatfilesRequest buildRequest() {
+
+        DeletechatfilesRequest request = new DeletechatfilesRequest(timezoneOffset,
             deleteChatFilesRequest);
+
+        return request;
+    }
+
+    public DeletechatfilesResponse call() throws Exception {
+        
+        RequestOperation<DeletechatfilesRequest, DeletechatfilesResponse> operation
+              = new DeletechatfilesOperation( sdkConfiguration);
+        DeletechatfilesRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

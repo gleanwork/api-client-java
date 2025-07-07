@@ -34,7 +34,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
         CreateShortcutRequest req = CreateShortcutRequest.builder()
@@ -1554,7 +1554,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
         DeleteShortcutRequest req = DeleteShortcutRequest.builder()
@@ -1606,7 +1606,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
         GetShortcutRequestUnion req = GetShortcutRequestUnion.of(GetShortcutRequest.builder()
@@ -1660,7 +1660,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
         ListShortcutsPaginatedRequest req = ListShortcutsPaginatedRequest.builder()
@@ -1730,7 +1730,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
         UpdateShortcutRequest req = UpdateShortcutRequest.builder()

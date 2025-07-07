@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -117,14 +116,14 @@ public class DocumentInteractionsDefinition {
         }
         DocumentInteractionsDefinition other = (DocumentInteractionsDefinition) o;
         return 
-            Objects.deepEquals(this.numViews, other.numViews) &&
-            Objects.deepEquals(this.numLikes, other.numLikes) &&
-            Objects.deepEquals(this.numComments, other.numComments);
+            Utils.enhancedDeepEquals(this.numViews, other.numViews) &&
+            Utils.enhancedDeepEquals(this.numLikes, other.numLikes) &&
+            Utils.enhancedDeepEquals(this.numComments, other.numComments);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             numViews,
             numLikes,
             numComments);

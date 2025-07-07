@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -261,17 +260,17 @@ public class FollowupAction {
         }
         FollowupAction other = (FollowupAction) o;
         return 
-            Objects.deepEquals(this.actionRunId, other.actionRunId) &&
-            Objects.deepEquals(this.actionInstanceId, other.actionInstanceId) &&
-            Objects.deepEquals(this.actionId, other.actionId) &&
-            Objects.deepEquals(this.recommendationText, other.recommendationText) &&
-            Objects.deepEquals(this.actionLabel, other.actionLabel) &&
-            Objects.deepEquals(this.userConfirmationRequired, other.userConfirmationRequired);
+            Utils.enhancedDeepEquals(this.actionRunId, other.actionRunId) &&
+            Utils.enhancedDeepEquals(this.actionInstanceId, other.actionInstanceId) &&
+            Utils.enhancedDeepEquals(this.actionId, other.actionId) &&
+            Utils.enhancedDeepEquals(this.recommendationText, other.recommendationText) &&
+            Utils.enhancedDeepEquals(this.actionLabel, other.actionLabel) &&
+            Utils.enhancedDeepEquals(this.userConfirmationRequired, other.userConfirmationRequired);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             actionRunId,
             actionInstanceId,
             actionId,

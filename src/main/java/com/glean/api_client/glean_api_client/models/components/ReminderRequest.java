@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ReminderRequest {
@@ -175,15 +174,15 @@ public class ReminderRequest {
         }
         ReminderRequest other = (ReminderRequest) o;
         return 
-            Objects.deepEquals(this.documentId, other.documentId) &&
-            Objects.deepEquals(this.assignee, other.assignee) &&
-            Objects.deepEquals(this.remindInDays, other.remindInDays) &&
-            Objects.deepEquals(this.reason, other.reason);
+            Utils.enhancedDeepEquals(this.documentId, other.documentId) &&
+            Utils.enhancedDeepEquals(this.assignee, other.assignee) &&
+            Utils.enhancedDeepEquals(this.remindInDays, other.remindInDays) &&
+            Utils.enhancedDeepEquals(this.reason, other.reason);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             documentId,
             assignee,
             remindInDays,

@@ -29,7 +29,7 @@ public enum FeedbackCategory {
     @JsonValue
     private final String value;
 
-    private FeedbackCategory(String value) {
+    FeedbackCategory(String value) {
         this.value = value;
     }
     

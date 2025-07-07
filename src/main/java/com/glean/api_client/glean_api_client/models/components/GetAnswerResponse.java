@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class GetAnswerResponse {
@@ -90,13 +89,13 @@ public class GetAnswerResponse {
         }
         GetAnswerResponse other = (GetAnswerResponse) o;
         return 
-            Objects.deepEquals(this.answerResult, other.answerResult) &&
-            Objects.deepEquals(this.error, other.error);
+            Utils.enhancedDeepEquals(this.answerResult, other.answerResult) &&
+            Utils.enhancedDeepEquals(this.error, other.error);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             answerResult,
             error);
     }

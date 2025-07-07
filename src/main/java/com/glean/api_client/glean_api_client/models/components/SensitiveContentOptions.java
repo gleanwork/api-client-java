@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -157,14 +156,14 @@ public class SensitiveContentOptions {
         }
         SensitiveContentOptions other = (SensitiveContentOptions) o;
         return 
-            Objects.deepEquals(this.sensitiveInfoTypes, other.sensitiveInfoTypes) &&
-            Objects.deepEquals(this.sensitiveTerms, other.sensitiveTerms) &&
-            Objects.deepEquals(this.sensitiveRegexes, other.sensitiveRegexes);
+            Utils.enhancedDeepEquals(this.sensitiveInfoTypes, other.sensitiveInfoTypes) &&
+            Utils.enhancedDeepEquals(this.sensitiveTerms, other.sensitiveTerms) &&
+            Utils.enhancedDeepEquals(this.sensitiveRegexes, other.sensitiveRegexes);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             sensitiveInfoTypes,
             sensitiveTerms,
             sensitiveRegexes);

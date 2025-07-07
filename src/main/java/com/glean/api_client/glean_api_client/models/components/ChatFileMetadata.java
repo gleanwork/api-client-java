@@ -13,7 +13,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -228,16 +227,16 @@ public class ChatFileMetadata {
         }
         ChatFileMetadata other = (ChatFileMetadata) o;
         return 
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.uploadTime, other.uploadTime) &&
-            Objects.deepEquals(this.processedSize, other.processedSize) &&
-            Objects.deepEquals(this.failureReason, other.failureReason) &&
-            Objects.deepEquals(this.mimeType, other.mimeType);
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.uploadTime, other.uploadTime) &&
+            Utils.enhancedDeepEquals(this.processedSize, other.processedSize) &&
+            Utils.enhancedDeepEquals(this.failureReason, other.failureReason) &&
+            Utils.enhancedDeepEquals(this.mimeType, other.mimeType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             status,
             uploadTime,
             processedSize,

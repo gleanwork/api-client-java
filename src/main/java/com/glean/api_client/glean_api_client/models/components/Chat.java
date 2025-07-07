@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -362,20 +361,20 @@ public class Chat {
         }
         Chat other = (Chat) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.createTime, other.createTime) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updateTime, other.updateTime) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.applicationId, other.applicationId) &&
-            Objects.deepEquals(this.applicationName, other.applicationName) &&
-            Objects.deepEquals(this.icon, other.icon) &&
-            Objects.deepEquals(this.messages, other.messages);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.createTime, other.createTime) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updateTime, other.updateTime) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.applicationId, other.applicationId) &&
+            Utils.enhancedDeepEquals(this.applicationName, other.applicationName) &&
+            Utils.enhancedDeepEquals(this.icon, other.icon) &&
+            Utils.enhancedDeepEquals(this.messages, other.messages);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             createTime,
             createdBy,

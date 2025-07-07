@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class GetPinResponse {
@@ -65,12 +64,12 @@ public class GetPinResponse {
         }
         GetPinResponse other = (GetPinResponse) o;
         return 
-            Objects.deepEquals(this.pin, other.pin);
+            Utils.enhancedDeepEquals(this.pin, other.pin);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             pin);
     }
     

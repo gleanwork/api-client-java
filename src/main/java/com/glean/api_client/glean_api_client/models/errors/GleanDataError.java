@@ -17,7 +17,6 @@ import java.lang.RuntimeException;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @SuppressWarnings("serial")
@@ -54,6 +53,7 @@ public class GleanDataError extends RuntimeException {
             @JsonProperty("badOutlookToken") Optional<Boolean> badOutlookToken,
             @JsonProperty("invalidOperators") Optional<? extends List<InvalidOperatorValueError>> invalidOperators,
             @JsonProperty("errorMessages") Optional<? extends List<ErrorMessage>> errorMessages) {
+        super("API error occurred");
         Utils.checkNotNull(badGmailToken, "badGmailToken");
         Utils.checkNotNull(badOutlookToken, "badOutlookToken");
         Utils.checkNotNull(invalidOperators, "invalidOperators");
@@ -180,15 +180,15 @@ public class GleanDataError extends RuntimeException {
         }
         GleanDataError other = (GleanDataError) o;
         return 
-            Objects.deepEquals(this.badGmailToken, other.badGmailToken) &&
-            Objects.deepEquals(this.badOutlookToken, other.badOutlookToken) &&
-            Objects.deepEquals(this.invalidOperators, other.invalidOperators) &&
-            Objects.deepEquals(this.errorMessages, other.errorMessages);
+            Utils.enhancedDeepEquals(this.badGmailToken, other.badGmailToken) &&
+            Utils.enhancedDeepEquals(this.badOutlookToken, other.badOutlookToken) &&
+            Utils.enhancedDeepEquals(this.invalidOperators, other.invalidOperators) &&
+            Utils.enhancedDeepEquals(this.errorMessages, other.errorMessages);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             badGmailToken,
             badOutlookToken,
             invalidOperators,

@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.utils.SpeakeasyMetadata;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class Security implements HasSecurity {
 
@@ -50,12 +49,12 @@ public class Security implements HasSecurity {
         }
         Security other = (Security) o;
         return 
-            Objects.deepEquals(this.apiToken, other.apiToken);
+            Utils.enhancedDeepEquals(this.apiToken, other.apiToken);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             apiToken);
     }
     

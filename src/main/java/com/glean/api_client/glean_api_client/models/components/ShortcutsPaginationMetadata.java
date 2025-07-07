@@ -13,7 +13,6 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ShortcutsPaginationMetadata {
@@ -125,14 +124,14 @@ public class ShortcutsPaginationMetadata {
         }
         ShortcutsPaginationMetadata other = (ShortcutsPaginationMetadata) o;
         return 
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.hasNextPage, other.hasNextPage) &&
-            Objects.deepEquals(this.totalItemCount, other.totalItemCount);
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.hasNextPage, other.hasNextPage) &&
+            Utils.enhancedDeepEquals(this.totalItemCount, other.totalItemCount);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             cursor,
             hasNextPage,
             totalItemCount);

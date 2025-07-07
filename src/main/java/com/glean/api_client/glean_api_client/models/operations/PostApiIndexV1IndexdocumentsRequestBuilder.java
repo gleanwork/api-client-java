@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.IndexDocumentsRequest;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1IndexdocumentsOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class PostApiIndexV1IndexdocumentsRequestBuilder {
 
     private IndexDocumentsRequest request;
-    private final SDKMethodInterfaces.MethodCallPostApiIndexV1Indexdocuments sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PostApiIndexV1IndexdocumentsRequestBuilder(SDKMethodInterfaces.MethodCallPostApiIndexV1Indexdocuments sdk) {
-        this.sdk = sdk;
+    public PostApiIndexV1IndexdocumentsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PostApiIndexV1IndexdocumentsRequestBuilder request(IndexDocumentsRequest request) {
@@ -23,8 +27,10 @@ public class PostApiIndexV1IndexdocumentsRequestBuilder {
     }
 
     public PostApiIndexV1IndexdocumentsResponse call() throws Exception {
+        
+        RequestOperation<IndexDocumentsRequest, PostApiIndexV1IndexdocumentsResponse> operation
+              = new PostApiIndexV1IndexdocumentsOperation( sdkConfiguration);
 
-        return sdk.index(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

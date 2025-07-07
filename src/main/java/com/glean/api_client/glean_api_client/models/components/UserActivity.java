@@ -13,7 +13,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class UserActivity {
@@ -164,15 +163,15 @@ public class UserActivity {
         }
         UserActivity other = (UserActivity) o;
         return 
-            Objects.deepEquals(this.actor, other.actor) &&
-            Objects.deepEquals(this.timestamp, other.timestamp) &&
-            Objects.deepEquals(this.action, other.action) &&
-            Objects.deepEquals(this.aggregateVisitCount, other.aggregateVisitCount);
+            Utils.enhancedDeepEquals(this.actor, other.actor) &&
+            Utils.enhancedDeepEquals(this.timestamp, other.timestamp) &&
+            Utils.enhancedDeepEquals(this.action, other.action) &&
+            Utils.enhancedDeepEquals(this.aggregateVisitCount, other.aggregateVisitCount);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             actor,
             timestamp,
             action,

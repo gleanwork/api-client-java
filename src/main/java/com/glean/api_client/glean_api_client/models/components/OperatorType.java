@@ -17,7 +17,7 @@ public enum OperatorType {
     @JsonValue
     private final String value;
 
-    private OperatorType(String value) {
+    OperatorType(String value) {
         this.value = value;
     }
     

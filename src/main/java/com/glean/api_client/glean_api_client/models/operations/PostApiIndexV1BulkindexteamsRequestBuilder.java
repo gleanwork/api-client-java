@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.BulkIndexTeamsRequest;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1BulkindexteamsOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class PostApiIndexV1BulkindexteamsRequestBuilder {
 
     private BulkIndexTeamsRequest request;
-    private final SDKMethodInterfaces.MethodCallPostApiIndexV1Bulkindexteams sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PostApiIndexV1BulkindexteamsRequestBuilder(SDKMethodInterfaces.MethodCallPostApiIndexV1Bulkindexteams sdk) {
-        this.sdk = sdk;
+    public PostApiIndexV1BulkindexteamsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PostApiIndexV1BulkindexteamsRequestBuilder request(BulkIndexTeamsRequest request) {
@@ -23,8 +27,10 @@ public class PostApiIndexV1BulkindexteamsRequestBuilder {
     }
 
     public PostApiIndexV1BulkindexteamsResponse call() throws Exception {
+        
+        RequestOperation<BulkIndexTeamsRequest, PostApiIndexV1BulkindexteamsResponse> operation
+              = new PostApiIndexV1BulkindexteamsOperation( sdkConfiguration);
 
-        return sdk.bulkIndexTeams(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

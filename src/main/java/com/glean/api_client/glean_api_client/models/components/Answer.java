@@ -9,13 +9,13 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.Deprecated;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class Answer {
@@ -52,10 +52,13 @@ public class Answer {
     private Optional<String> bodyText;
 
     /**
-     * The parent board ID of this Answer, or 0 if it's a floating Answer.
+     * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("boardId")
+    @Deprecated
     private Optional<Long> boardId;
 
     /**
@@ -274,8 +277,11 @@ public class Answer {
     }
 
     /**
-     * The parent board ID of this Answer, or 0 if it's a floating Answer.
+     * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     @JsonIgnore
     public Optional<Long> boardId() {
         return boardId;
@@ -490,8 +496,11 @@ public class Answer {
     }
 
     /**
-     * The parent board ID of this Answer, or 0 if it's a floating Answer.
+     * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public Answer withBoardId(long boardId) {
         Utils.checkNotNull(boardId, "boardId");
         this.boardId = Optional.ofNullable(boardId);
@@ -499,8 +508,11 @@ public class Answer {
     }
 
     /**
-     * The parent board ID of this Answer, or 0 if it's a floating Answer.
+     * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public Answer withBoardId(Optional<Long> boardId) {
         Utils.checkNotNull(boardId, "boardId");
         this.boardId = boardId;
@@ -782,35 +794,35 @@ public class Answer {
         }
         Answer other = (Answer) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.docId, other.docId) &&
-            Objects.deepEquals(this.question, other.question) &&
-            Objects.deepEquals(this.questionVariations, other.questionVariations) &&
-            Objects.deepEquals(this.bodyText, other.bodyText) &&
-            Objects.deepEquals(this.boardId, other.boardId) &&
-            Objects.deepEquals(this.audienceFilters, other.audienceFilters) &&
-            Objects.deepEquals(this.addedRoles, other.addedRoles) &&
-            Objects.deepEquals(this.removedRoles, other.removedRoles) &&
-            Objects.deepEquals(this.roles, other.roles) &&
-            Objects.deepEquals(this.sourceDocumentSpec, other.sourceDocumentSpec) &&
-            Objects.deepEquals(this.sourceType, other.sourceType) &&
-            Objects.deepEquals(this.permissions, other.permissions) &&
-            Objects.deepEquals(this.combinedAnswerText, other.combinedAnswerText) &&
-            Objects.deepEquals(this.likes, other.likes) &&
-            Objects.deepEquals(this.author, other.author) &&
-            Objects.deepEquals(this.createTime, other.createTime) &&
-            Objects.deepEquals(this.updateTime, other.updateTime) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.verification, other.verification) &&
-            Objects.deepEquals(this.board, other.board) &&
-            Objects.deepEquals(this.collections, other.collections) &&
-            Objects.deepEquals(this.documentCategory, other.documentCategory) &&
-            Objects.deepEquals(this.sourceDocument, other.sourceDocument);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.docId, other.docId) &&
+            Utils.enhancedDeepEquals(this.question, other.question) &&
+            Utils.enhancedDeepEquals(this.questionVariations, other.questionVariations) &&
+            Utils.enhancedDeepEquals(this.bodyText, other.bodyText) &&
+            Utils.enhancedDeepEquals(this.boardId, other.boardId) &&
+            Utils.enhancedDeepEquals(this.audienceFilters, other.audienceFilters) &&
+            Utils.enhancedDeepEquals(this.addedRoles, other.addedRoles) &&
+            Utils.enhancedDeepEquals(this.removedRoles, other.removedRoles) &&
+            Utils.enhancedDeepEquals(this.roles, other.roles) &&
+            Utils.enhancedDeepEquals(this.sourceDocumentSpec, other.sourceDocumentSpec) &&
+            Utils.enhancedDeepEquals(this.sourceType, other.sourceType) &&
+            Utils.enhancedDeepEquals(this.permissions, other.permissions) &&
+            Utils.enhancedDeepEquals(this.combinedAnswerText, other.combinedAnswerText) &&
+            Utils.enhancedDeepEquals(this.likes, other.likes) &&
+            Utils.enhancedDeepEquals(this.author, other.author) &&
+            Utils.enhancedDeepEquals(this.createTime, other.createTime) &&
+            Utils.enhancedDeepEquals(this.updateTime, other.updateTime) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.verification, other.verification) &&
+            Utils.enhancedDeepEquals(this.board, other.board) &&
+            Utils.enhancedDeepEquals(this.collections, other.collections) &&
+            Utils.enhancedDeepEquals(this.documentCategory, other.documentCategory) &&
+            Utils.enhancedDeepEquals(this.sourceDocument, other.sourceDocument);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             docId,
             question,
@@ -878,6 +890,7 @@ public class Answer {
  
         private Optional<String> bodyText = Optional.empty();
  
+        @Deprecated
         private Optional<Long> boardId = Optional.empty();
  
         private Optional<? extends List<FacetFilter>> audienceFilters = Optional.empty();
@@ -996,8 +1009,11 @@ public class Answer {
         }
 
         /**
-         * The parent board ID of this Answer, or 0 if it's a floating Answer.
+         * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder boardId(long boardId) {
             Utils.checkNotNull(boardId, "boardId");
             this.boardId = Optional.ofNullable(boardId);
@@ -1005,8 +1021,11 @@ public class Answer {
         }
 
         /**
-         * The parent board ID of this Answer, or 0 if it's a floating Answer.
+         * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder boardId(Optional<Long> boardId) {
             Utils.checkNotNull(boardId, "boardId");
             this.boardId = boardId;

@@ -17,7 +17,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -148,14 +147,14 @@ public class AgentCapabilities {
         }
         AgentCapabilities other = (AgentCapabilities) o;
         return 
-            Objects.deepEquals(this.apIoMessages, other.apIoMessages) &&
-            Objects.deepEquals(this.apIoStreaming, other.apIoStreaming) &&
-            Objects.deepEquals(this.additionalProperties, other.additionalProperties);
+            Utils.enhancedDeepEquals(this.apIoMessages, other.apIoMessages) &&
+            Utils.enhancedDeepEquals(this.apIoStreaming, other.apIoStreaming) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             apIoMessages,
             apIoStreaming,
             additionalProperties);

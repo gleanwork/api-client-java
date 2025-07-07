@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 
 public class ListAnswersResponse {
 
@@ -59,12 +58,12 @@ public class ListAnswersResponse {
         }
         ListAnswersResponse other = (ListAnswersResponse) o;
         return 
-            Objects.deepEquals(this.answerResults, other.answerResults);
+            Utils.enhancedDeepEquals(this.answerResults, other.answerResults);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             answerResults);
     }
     

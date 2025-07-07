@@ -29,7 +29,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
         GetAgentResponse res = sdk.client().agents().retrieve()
@@ -78,7 +78,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
         GetAgentSchemasResponse res = sdk.client().agents().retrieveSchemas()
@@ -128,7 +128,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
         SearchAgentsRequest req = SearchAgentsRequest.builder()
@@ -173,19 +173,25 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.AgentRunCreate;
+import com.glean.api_client.glean_api_client.models.components.Message;
 import com.glean.api_client.glean_api_client.models.operations.CreateAndStreamRunResponse;
 import java.lang.Exception;
+import java.util.List;
 
 public class Application {
 
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
         AgentRunCreate req = AgentRunCreate.builder()
                 .agentId("<id>")
+                .messages(List.of(
+                    Message.builder()
+                        .role("USER")
+                        .build()))
                 .build();
 
         CreateAndStreamRunResponse res = sdk.client().agents().runStream()
@@ -226,19 +232,25 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.AgentRunCreate;
+import com.glean.api_client.glean_api_client.models.components.Message;
 import com.glean.api_client.glean_api_client.models.operations.CreateAndWaitRunResponse;
 import java.lang.Exception;
+import java.util.List;
 
 public class Application {
 
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
         AgentRunCreate req = AgentRunCreate.builder()
                 .agentId("<id>")
+                .messages(List.of(
+                    Message.builder()
+                        .role("USER")
+                        .build()))
                 .build();
 
         CreateAndWaitRunResponse res = sdk.client().agents().run()

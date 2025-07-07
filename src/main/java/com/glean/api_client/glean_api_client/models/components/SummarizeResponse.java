@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class SummarizeResponse {
@@ -126,14 +125,14 @@ public class SummarizeResponse {
         }
         SummarizeResponse other = (SummarizeResponse) o;
         return 
-            Objects.deepEquals(this.error, other.error) &&
-            Objects.deepEquals(this.summary, other.summary) &&
-            Objects.deepEquals(this.trackingToken, other.trackingToken);
+            Utils.enhancedDeepEquals(this.error, other.error) &&
+            Utils.enhancedDeepEquals(this.summary, other.summary) &&
+            Utils.enhancedDeepEquals(this.trackingToken, other.trackingToken);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             error,
             summary,
             trackingToken);

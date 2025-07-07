@@ -13,7 +13,6 @@ import java.lang.Double;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ExternalShortcut {
@@ -401,22 +400,22 @@ public class ExternalShortcut {
         }
         ExternalShortcut other = (ExternalShortcut) o;
         return 
-            Objects.deepEquals(this.inputAlias, other.inputAlias) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.destinationUrl, other.destinationUrl) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.createTime, other.createTime) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.updateTime, other.updateTime) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.intermediateUrl, other.intermediateUrl) &&
-            Objects.deepEquals(this.decayedVisitScore, other.decayedVisitScore) &&
-            Objects.deepEquals(this.editUrl, other.editUrl);
+            Utils.enhancedDeepEquals(this.inputAlias, other.inputAlias) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.destinationUrl, other.destinationUrl) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.createTime, other.createTime) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.updateTime, other.updateTime) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.intermediateUrl, other.intermediateUrl) &&
+            Utils.enhancedDeepEquals(this.decayedVisitScore, other.decayedVisitScore) &&
+            Utils.enhancedDeepEquals(this.editUrl, other.editUrl);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             inputAlias,
             description,
             destinationUrl,

@@ -3,18 +3,25 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestlessOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1ProcessallemployeesandteamsOperation;
 import java.lang.Exception;
 
 public class PostApiIndexV1ProcessallemployeesandteamsRequestBuilder {
 
-    private final SDKMethodInterfaces.MethodCallPostApiIndexV1Processallemployeesandteams sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PostApiIndexV1ProcessallemployeesandteamsRequestBuilder(SDKMethodInterfaces.MethodCallPostApiIndexV1Processallemployeesandteams sdk) {
-        this.sdk = sdk;
+    public PostApiIndexV1ProcessallemployeesandteamsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PostApiIndexV1ProcessallemployeesandteamsResponse call() throws Exception {
+        
+        RequestlessOperation<PostApiIndexV1ProcessallemployeesandteamsResponse> operation
+            = new PostApiIndexV1ProcessallemployeesandteamsOperation( sdkConfiguration);
 
-        return sdk.processAllEmployeesAndTeamsDirect();
+        return operation.handleResponse(operation.doRequest());
     }
 }

@@ -3,6 +3,10 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
+import com.glean.api_client.glean_api_client.operations.ListverificationsOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class ListverificationsRequestBuilder {
 
     private Optional<Long> count = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallListverifications sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListverificationsRequestBuilder(SDKMethodInterfaces.MethodCallListverifications sdk) {
-        this.sdk = sdk;
+    public ListverificationsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public ListverificationsRequestBuilder count(long count) {
@@ -29,9 +33,20 @@ public class ListverificationsRequestBuilder {
         return this;
     }
 
-    public ListverificationsResponse call() throws Exception {
 
-        return sdk.list(
-            count);
+    private ListverificationsRequest buildRequest() {
+
+        ListverificationsRequest request = new ListverificationsRequest(count);
+
+        return request;
+    }
+
+    public ListverificationsResponse call() throws Exception {
+        
+        RequestOperation<ListverificationsRequest, ListverificationsResponse> operation
+              = new ListverificationsOperation( sdkConfiguration);
+        ListverificationsRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

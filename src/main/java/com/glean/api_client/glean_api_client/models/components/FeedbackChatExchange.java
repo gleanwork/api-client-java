@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class FeedbackChatExchange {
@@ -247,17 +246,17 @@ public class FeedbackChatExchange {
         }
         FeedbackChatExchange other = (FeedbackChatExchange) o;
         return 
-            Objects.deepEquals(this.timestamp, other.timestamp) &&
-            Objects.deepEquals(this.agent, other.agent) &&
-            Objects.deepEquals(this.userQuery, other.userQuery) &&
-            Objects.deepEquals(this.searchQuery, other.searchQuery) &&
-            Objects.deepEquals(this.resultDocuments, other.resultDocuments) &&
-            Objects.deepEquals(this.response, other.response);
+            Utils.enhancedDeepEquals(this.timestamp, other.timestamp) &&
+            Utils.enhancedDeepEquals(this.agent, other.agent) &&
+            Utils.enhancedDeepEquals(this.userQuery, other.userQuery) &&
+            Utils.enhancedDeepEquals(this.searchQuery, other.searchQuery) &&
+            Utils.enhancedDeepEquals(this.resultDocuments, other.resultDocuments) &&
+            Utils.enhancedDeepEquals(this.response, other.response);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             timestamp,
             agent,
             userQuery,

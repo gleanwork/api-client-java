@@ -21,7 +21,7 @@ public enum DatasourceVisibility {
     @JsonValue
     private final String value;
 
-    private DatasourceVisibility(String value) {
+    DatasourceVisibility(String value) {
         this.value = value;
     }
     

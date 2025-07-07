@@ -24,7 +24,7 @@ public enum DocumentVisibility {
     @JsonValue
     private final String value;
 
-    private DocumentVisibility(String value) {
+    DocumentVisibility(String value) {
         this.value = value;
     }
     

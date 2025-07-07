@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class LabeledCountInfo {
@@ -105,13 +104,13 @@ public class LabeledCountInfo {
         }
         LabeledCountInfo other = (LabeledCountInfo) o;
         return 
-            Objects.deepEquals(this.label, other.label) &&
-            Objects.deepEquals(this.countInfo, other.countInfo);
+            Utils.enhancedDeepEquals(this.label, other.label) &&
+            Utils.enhancedDeepEquals(this.countInfo, other.countInfo);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             label,
             countInfo);
     }

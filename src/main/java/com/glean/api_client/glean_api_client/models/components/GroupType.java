@@ -26,7 +26,7 @@ public enum GroupType {
     @JsonValue
     private final String value;
 
-    private GroupType(String value) {
+    GroupType(String value) {
         this.value = value;
     }
     

@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.AutocompleteRequest;
+import com.glean.api_client.glean_api_client.operations.AutocompleteOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class AutocompleteRequestBuilder {
 
     private AutocompleteRequest request;
-    private final SDKMethodInterfaces.MethodCallAutocomplete sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AutocompleteRequestBuilder(SDKMethodInterfaces.MethodCallAutocomplete sdk) {
-        this.sdk = sdk;
+    public AutocompleteRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AutocompleteRequestBuilder request(AutocompleteRequest request) {
@@ -23,8 +27,10 @@ public class AutocompleteRequestBuilder {
     }
 
     public AutocompleteResponse call() throws Exception {
+        
+        RequestOperation<AutocompleteRequest, AutocompleteResponse> operation
+              = new AutocompleteOperation( sdkConfiguration);
 
-        return sdk.autocomplete(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

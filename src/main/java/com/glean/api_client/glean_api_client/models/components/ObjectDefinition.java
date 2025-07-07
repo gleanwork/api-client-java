@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -254,17 +253,17 @@ public class ObjectDefinition {
         }
         ObjectDefinition other = (ObjectDefinition) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.displayLabel, other.displayLabel) &&
-            Objects.deepEquals(this.docCategory, other.docCategory) &&
-            Objects.deepEquals(this.propertyDefinitions, other.propertyDefinitions) &&
-            Objects.deepEquals(this.propertyGroups, other.propertyGroups) &&
-            Objects.deepEquals(this.summarizable, other.summarizable);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.displayLabel, other.displayLabel) &&
+            Utils.enhancedDeepEquals(this.docCategory, other.docCategory) &&
+            Utils.enhancedDeepEquals(this.propertyDefinitions, other.propertyDefinitions) &&
+            Utils.enhancedDeepEquals(this.propertyGroups, other.propertyGroups) &&
+            Utils.enhancedDeepEquals(this.summarizable, other.summarizable);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name,
             displayLabel,
             docCategory,

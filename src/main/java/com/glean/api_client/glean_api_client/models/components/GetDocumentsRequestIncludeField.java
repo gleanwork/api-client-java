@@ -17,7 +17,7 @@ public enum GetDocumentsRequestIncludeField {
     @JsonValue
     private final String value;
 
-    private GetDocumentsRequestIncludeField(String value) {
+    GetDocumentsRequestIncludeField(String value) {
         this.value = value;
     }
     

@@ -27,7 +27,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
         MessagesRequest req = MessagesRequest.builder()

@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ShortcutError {
@@ -65,12 +64,12 @@ public class ShortcutError {
         }
         ShortcutError other = (ShortcutError) o;
         return 
-            Objects.deepEquals(this.errorType, other.errorType);
+            Utils.enhancedDeepEquals(this.errorType, other.errorType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             errorType);
     }
     

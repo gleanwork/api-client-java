@@ -11,7 +11,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class DeletechatsRequest {
@@ -92,13 +91,13 @@ public class DeletechatsRequest {
         }
         DeletechatsRequest other = (DeletechatsRequest) o;
         return 
-            Objects.deepEquals(this.timezoneOffset, other.timezoneOffset) &&
-            Objects.deepEquals(this.deleteChatsRequest, other.deleteChatsRequest);
+            Utils.enhancedDeepEquals(this.timezoneOffset, other.timezoneOffset) &&
+            Utils.enhancedDeepEquals(this.deleteChatsRequest, other.deleteChatsRequest);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             timezoneOffset,
             deleteChatsRequest);
     }

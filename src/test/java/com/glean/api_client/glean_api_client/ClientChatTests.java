@@ -178,7 +178,7 @@ public class ClientChatTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         DeleteallchatsResponse res = sdk.client().chat().deleteAll()
@@ -193,7 +193,7 @@ public class ClientChatTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         DeletechatsResponse res = sdk.client().chat().delete()
@@ -213,7 +213,7 @@ public class ClientChatTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         GetchatResponse res = sdk.client().chat().retrieve()
@@ -1263,7 +1263,7 @@ public class ClientChatTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         ListchatsResponse res = sdk.client().chat().list()
@@ -1812,7 +1812,7 @@ public class ClientChatTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         GetchatapplicationResponse res = sdk.client().chat().retrieveApplication()
@@ -1834,7 +1834,7 @@ public class ClientChatTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         GetchatfilesResponse res = sdk.client().chat().retrieveFiles()
@@ -1874,7 +1874,7 @@ public class ClientChatTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         DeletechatfilesResponse res = sdk.client().chat().deleteFiles()
@@ -1893,7 +1893,7 @@ public class ClientChatTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         ChatStreamResponse res = sdk.client().chat().createStream()
@@ -1920,7 +1920,7 @@ public class ClientChatTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         ChatStreamResponse res = sdk.client().chat().createStream()
@@ -1950,7 +1950,7 @@ public class ClientChatTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         ChatStreamResponse res = sdk.client().chat().createStream()
@@ -1972,7 +1972,7 @@ public class ClientChatTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         ChatStreamResponse res = sdk.client().chat().createStream()
@@ -6162,7 +6162,7 @@ public class ClientChatTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         ChatStreamResponse res = sdk.client().chat().createStream()

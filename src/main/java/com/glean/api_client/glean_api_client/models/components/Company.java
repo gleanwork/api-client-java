@@ -16,7 +16,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class Company {
@@ -504,24 +503,24 @@ public class Company {
         }
         Company other = (Company) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.profileUrl, other.profileUrl) &&
-            Objects.deepEquals(this.websiteUrls, other.websiteUrls) &&
-            Objects.deepEquals(this.logoUrl, other.logoUrl) &&
-            Objects.deepEquals(this.location, other.location) &&
-            Objects.deepEquals(this.phone, other.phone) &&
-            Objects.deepEquals(this.fax, other.fax) &&
-            Objects.deepEquals(this.industry, other.industry) &&
-            Objects.deepEquals(this.annualRevenue, other.annualRevenue) &&
-            Objects.deepEquals(this.numberOfEmployees, other.numberOfEmployees) &&
-            Objects.deepEquals(this.stockSymbol, other.stockSymbol) &&
-            Objects.deepEquals(this.foundedDate, other.foundedDate) &&
-            Objects.deepEquals(this.about, other.about);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.profileUrl, other.profileUrl) &&
+            Utils.enhancedDeepEquals(this.websiteUrls, other.websiteUrls) &&
+            Utils.enhancedDeepEquals(this.logoUrl, other.logoUrl) &&
+            Utils.enhancedDeepEquals(this.location, other.location) &&
+            Utils.enhancedDeepEquals(this.phone, other.phone) &&
+            Utils.enhancedDeepEquals(this.fax, other.fax) &&
+            Utils.enhancedDeepEquals(this.industry, other.industry) &&
+            Utils.enhancedDeepEquals(this.annualRevenue, other.annualRevenue) &&
+            Utils.enhancedDeepEquals(this.numberOfEmployees, other.numberOfEmployees) &&
+            Utils.enhancedDeepEquals(this.stockSymbol, other.stockSymbol) &&
+            Utils.enhancedDeepEquals(this.foundedDate, other.foundedDate) &&
+            Utils.enhancedDeepEquals(this.about, other.about);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name,
             profileUrl,
             websiteUrls,

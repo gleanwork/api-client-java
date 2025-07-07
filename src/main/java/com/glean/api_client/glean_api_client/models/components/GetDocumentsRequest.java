@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class GetDocumentsRequest {
@@ -105,13 +104,13 @@ public class GetDocumentsRequest {
         }
         GetDocumentsRequest other = (GetDocumentsRequest) o;
         return 
-            Objects.deepEquals(this.documentSpecs, other.documentSpecs) &&
-            Objects.deepEquals(this.includeFields, other.includeFields);
+            Utils.enhancedDeepEquals(this.documentSpecs, other.documentSpecs) &&
+            Utils.enhancedDeepEquals(this.includeFields, other.includeFields);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             documentSpecs,
             includeFields);
     }

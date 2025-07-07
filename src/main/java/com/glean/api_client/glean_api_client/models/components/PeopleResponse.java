@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class PeopleResponse {
@@ -152,14 +151,14 @@ public class PeopleResponse {
         }
         PeopleResponse other = (PeopleResponse) o;
         return 
-            Objects.deepEquals(this.results, other.results) &&
-            Objects.deepEquals(this.relatedDocuments, other.relatedDocuments) &&
-            Objects.deepEquals(this.errors, other.errors);
+            Utils.enhancedDeepEquals(this.results, other.results) &&
+            Utils.enhancedDeepEquals(this.relatedDocuments, other.relatedDocuments) &&
+            Utils.enhancedDeepEquals(this.errors, other.errors);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             results,
             relatedDocuments,
             errors);

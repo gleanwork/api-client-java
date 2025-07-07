@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class InsightsAiAppRequestOptions {
@@ -78,12 +77,12 @@ public class InsightsAiAppRequestOptions {
         }
         InsightsAiAppRequestOptions other = (InsightsAiAppRequestOptions) o;
         return 
-            Objects.deepEquals(this.aiAppIds, other.aiAppIds);
+            Utils.enhancedDeepEquals(this.aiAppIds, other.aiAppIds);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             aiAppIds);
     }
     

@@ -13,7 +13,6 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class UpdateDlpReportRequest {
@@ -224,16 +223,16 @@ public class UpdateDlpReportRequest {
         }
         UpdateDlpReportRequest other = (UpdateDlpReportRequest) o;
         return 
-            Objects.deepEquals(this.config, other.config) &&
-            Objects.deepEquals(this.frequency, other.frequency) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.autoHideDocs, other.autoHideDocs) &&
-            Objects.deepEquals(this.reportName, other.reportName);
+            Utils.enhancedDeepEquals(this.config, other.config) &&
+            Utils.enhancedDeepEquals(this.frequency, other.frequency) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.autoHideDocs, other.autoHideDocs) &&
+            Utils.enhancedDeepEquals(this.reportName, other.reportName);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             config,
             frequency,
             status,

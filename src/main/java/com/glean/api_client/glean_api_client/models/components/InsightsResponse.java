@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class InsightsResponse {
@@ -390,24 +389,24 @@ public class InsightsResponse {
         }
         InsightsResponse other = (InsightsResponse) o;
         return 
-            Objects.deepEquals(this.timeseries, other.timeseries) &&
-            Objects.deepEquals(this.users, other.users) &&
-            Objects.deepEquals(this.content, other.content) &&
-            Objects.deepEquals(this.queries, other.queries) &&
-            Objects.deepEquals(this.collections, other.collections) &&
-            Objects.deepEquals(this.collectionsV2, other.collectionsV2) &&
-            Objects.deepEquals(this.shortcuts, other.shortcuts) &&
-            Objects.deepEquals(this.announcements, other.announcements) &&
-            Objects.deepEquals(this.answers, other.answers) &&
-            Objects.deepEquals(this.ai, other.ai) &&
-            Objects.deepEquals(this.aiApps, other.aiApps) &&
-            Objects.deepEquals(this.gleanAssist, other.gleanAssist) &&
-            Objects.deepEquals(this.departments, other.departments);
+            Utils.enhancedDeepEquals(this.timeseries, other.timeseries) &&
+            Utils.enhancedDeepEquals(this.users, other.users) &&
+            Utils.enhancedDeepEquals(this.content, other.content) &&
+            Utils.enhancedDeepEquals(this.queries, other.queries) &&
+            Utils.enhancedDeepEquals(this.collections, other.collections) &&
+            Utils.enhancedDeepEquals(this.collectionsV2, other.collectionsV2) &&
+            Utils.enhancedDeepEquals(this.shortcuts, other.shortcuts) &&
+            Utils.enhancedDeepEquals(this.announcements, other.announcements) &&
+            Utils.enhancedDeepEquals(this.answers, other.answers) &&
+            Utils.enhancedDeepEquals(this.ai, other.ai) &&
+            Utils.enhancedDeepEquals(this.aiApps, other.aiApps) &&
+            Utils.enhancedDeepEquals(this.gleanAssist, other.gleanAssist) &&
+            Utils.enhancedDeepEquals(this.departments, other.departments);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             timeseries,
             users,
             content,

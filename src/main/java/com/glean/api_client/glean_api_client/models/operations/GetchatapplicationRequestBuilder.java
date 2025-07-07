@@ -3,7 +3,11 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.GetChatApplicationRequest;
+import com.glean.api_client.glean_api_client.operations.GetchatapplicationOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
@@ -13,10 +17,10 @@ public class GetchatapplicationRequestBuilder {
 
     private Optional<Long> timezoneOffset = Optional.empty();
     private GetChatApplicationRequest getChatApplicationRequest;
-    private final SDKMethodInterfaces.MethodCallGetchatapplication sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetchatapplicationRequestBuilder(SDKMethodInterfaces.MethodCallGetchatapplication sdk) {
-        this.sdk = sdk;
+    public GetchatapplicationRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public GetchatapplicationRequestBuilder timezoneOffset(long timezoneOffset) {
@@ -37,10 +41,21 @@ public class GetchatapplicationRequestBuilder {
         return this;
     }
 
-    public GetchatapplicationResponse call() throws Exception {
 
-        return sdk.retrieveApplication(
-            timezoneOffset,
+    private GetchatapplicationRequest buildRequest() {
+
+        GetchatapplicationRequest request = new GetchatapplicationRequest(timezoneOffset,
             getChatApplicationRequest);
+
+        return request;
+    }
+
+    public GetchatapplicationResponse call() throws Exception {
+        
+        RequestOperation<GetchatapplicationRequest, GetchatapplicationResponse> operation
+              = new GetchatapplicationOperation( sdkConfiguration);
+        GetchatapplicationRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

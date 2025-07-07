@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.ListAnswersRequest;
+import com.glean.api_client.glean_api_client.operations.ListanswersOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class ListanswersRequestBuilder {
 
     private ListAnswersRequest request;
-    private final SDKMethodInterfaces.MethodCallListanswers sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ListanswersRequestBuilder(SDKMethodInterfaces.MethodCallListanswers sdk) {
-        this.sdk = sdk;
+    public ListanswersRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public ListanswersRequestBuilder request(ListAnswersRequest request) {
@@ -23,8 +27,10 @@ public class ListanswersRequestBuilder {
     }
 
     public ListanswersResponse call() throws Exception {
+        
+        RequestOperation<ListAnswersRequest, ListanswersResponse> operation
+              = new ListanswersOperation( sdkConfiguration);
 
-        return sdk.list(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class SearchResponse {
@@ -571,28 +570,28 @@ public class SearchResponse {
         }
         SearchResponse other = (SearchResponse) o;
         return 
-            Objects.deepEquals(this.trackingToken, other.trackingToken) &&
-            Objects.deepEquals(this.sessionInfo, other.sessionInfo) &&
-            Objects.deepEquals(this.results, other.results) &&
-            Objects.deepEquals(this.structuredResults, other.structuredResults) &&
-            Objects.deepEquals(this.generatedQnaResult, other.generatedQnaResult) &&
-            Objects.deepEquals(this.gleanDataError, other.gleanDataError) &&
-            Objects.deepEquals(this.requestID, other.requestID) &&
-            Objects.deepEquals(this.backendTimeMillis, other.backendTimeMillis) &&
-            Objects.deepEquals(this.experimentIds, other.experimentIds) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.facetResults, other.facetResults) &&
-            Objects.deepEquals(this.resultTabs, other.resultTabs) &&
-            Objects.deepEquals(this.resultTabIds, other.resultTabIds) &&
-            Objects.deepEquals(this.resultsDescription, other.resultsDescription) &&
-            Objects.deepEquals(this.rewrittenFacetFilters, other.rewrittenFacetFilters) &&
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.hasMoreResults, other.hasMoreResults);
+            Utils.enhancedDeepEquals(this.trackingToken, other.trackingToken) &&
+            Utils.enhancedDeepEquals(this.sessionInfo, other.sessionInfo) &&
+            Utils.enhancedDeepEquals(this.results, other.results) &&
+            Utils.enhancedDeepEquals(this.structuredResults, other.structuredResults) &&
+            Utils.enhancedDeepEquals(this.generatedQnaResult, other.generatedQnaResult) &&
+            Utils.enhancedDeepEquals(this.gleanDataError, other.gleanDataError) &&
+            Utils.enhancedDeepEquals(this.requestID, other.requestID) &&
+            Utils.enhancedDeepEquals(this.backendTimeMillis, other.backendTimeMillis) &&
+            Utils.enhancedDeepEquals(this.experimentIds, other.experimentIds) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.facetResults, other.facetResults) &&
+            Utils.enhancedDeepEquals(this.resultTabs, other.resultTabs) &&
+            Utils.enhancedDeepEquals(this.resultTabIds, other.resultTabIds) &&
+            Utils.enhancedDeepEquals(this.resultsDescription, other.resultsDescription) &&
+            Utils.enhancedDeepEquals(this.rewrittenFacetFilters, other.rewrittenFacetFilters) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.hasMoreResults, other.hasMoreResults);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             trackingToken,
             sessionInfo,
             results,

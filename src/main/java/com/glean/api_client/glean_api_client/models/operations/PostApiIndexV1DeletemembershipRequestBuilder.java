@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.DeleteMembershipRequest;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DeletemembershipOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class PostApiIndexV1DeletemembershipRequestBuilder {
 
     private DeleteMembershipRequest request;
-    private final SDKMethodInterfaces.MethodCallPostApiIndexV1Deletemembership sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PostApiIndexV1DeletemembershipRequestBuilder(SDKMethodInterfaces.MethodCallPostApiIndexV1Deletemembership sdk) {
-        this.sdk = sdk;
+    public PostApiIndexV1DeletemembershipRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PostApiIndexV1DeletemembershipRequestBuilder request(DeleteMembershipRequest request) {
@@ -23,8 +27,10 @@ public class PostApiIndexV1DeletemembershipRequestBuilder {
     }
 
     public PostApiIndexV1DeletemembershipResponse call() throws Exception {
+        
+        RequestOperation<DeleteMembershipRequest, PostApiIndexV1DeletemembershipResponse> operation
+              = new PostApiIndexV1DeletemembershipOperation( sdkConfiguration);
 
-        return sdk.deleteMembership(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

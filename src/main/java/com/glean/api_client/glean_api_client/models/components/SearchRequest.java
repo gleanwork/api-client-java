@@ -16,7 +16,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class SearchRequest {
@@ -497,25 +496,25 @@ public class SearchRequest {
         }
         SearchRequest other = (SearchRequest) o;
         return 
-            Objects.deepEquals(this.timestamp, other.timestamp) &&
-            Objects.deepEquals(this.trackingToken, other.trackingToken) &&
-            Objects.deepEquals(this.sessionInfo, other.sessionInfo) &&
-            Objects.deepEquals(this.sourceDocument, other.sourceDocument) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.maxSnippetSize, other.maxSnippetSize) &&
-            Objects.deepEquals(this.query, other.query) &&
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.resultTabIds, other.resultTabIds) &&
-            Objects.deepEquals(this.inputDetails, other.inputDetails) &&
-            Objects.deepEquals(this.requestOptions, other.requestOptions) &&
-            Objects.deepEquals(this.timeoutMillis, other.timeoutMillis) &&
-            Objects.deepEquals(this.people, other.people) &&
-            Objects.deepEquals(this.disableSpellcheck, other.disableSpellcheck);
+            Utils.enhancedDeepEquals(this.timestamp, other.timestamp) &&
+            Utils.enhancedDeepEquals(this.trackingToken, other.trackingToken) &&
+            Utils.enhancedDeepEquals(this.sessionInfo, other.sessionInfo) &&
+            Utils.enhancedDeepEquals(this.sourceDocument, other.sourceDocument) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.maxSnippetSize, other.maxSnippetSize) &&
+            Utils.enhancedDeepEquals(this.query, other.query) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.resultTabIds, other.resultTabIds) &&
+            Utils.enhancedDeepEquals(this.inputDetails, other.inputDetails) &&
+            Utils.enhancedDeepEquals(this.requestOptions, other.requestOptions) &&
+            Utils.enhancedDeepEquals(this.timeoutMillis, other.timeoutMillis) &&
+            Utils.enhancedDeepEquals(this.people, other.people) &&
+            Utils.enhancedDeepEquals(this.disableSpellcheck, other.disableSpellcheck);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             timestamp,
             trackingToken,
             sessionInfo,

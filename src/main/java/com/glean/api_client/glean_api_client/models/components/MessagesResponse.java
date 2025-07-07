@@ -13,7 +13,6 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class MessagesResponse {
@@ -118,14 +117,14 @@ public class MessagesResponse {
         }
         MessagesResponse other = (MessagesResponse) o;
         return 
-            Objects.deepEquals(this.hasMore, other.hasMore) &&
-            Objects.deepEquals(this.searchResponse, other.searchResponse) &&
-            Objects.deepEquals(this.rootMessage, other.rootMessage);
+            Utils.enhancedDeepEquals(this.hasMore, other.hasMore) &&
+            Utils.enhancedDeepEquals(this.searchResponse, other.searchResponse) &&
+            Utils.enhancedDeepEquals(this.rootMessage, other.rootMessage);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             hasMore,
             searchResponse,
             rootMessage);

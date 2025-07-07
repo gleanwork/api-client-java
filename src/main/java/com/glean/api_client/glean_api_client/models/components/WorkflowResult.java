@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class WorkflowResult {
 
@@ -49,12 +48,12 @@ public class WorkflowResult {
         }
         WorkflowResult other = (WorkflowResult) o;
         return 
-            Objects.deepEquals(this.workflow, other.workflow);
+            Utils.enhancedDeepEquals(this.workflow, other.workflow);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             workflow);
     }
     

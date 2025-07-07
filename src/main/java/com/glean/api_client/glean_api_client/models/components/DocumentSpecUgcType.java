@@ -22,7 +22,7 @@ public enum DocumentSpecUgcType {
     @JsonValue
     private final String value;
 
-    private DocumentSpecUgcType(String value) {
+    DocumentSpecUgcType(String value) {
         this.value = value;
     }
     

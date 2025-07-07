@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -230,17 +229,17 @@ public class ChatMessageFragment {
         }
         ChatMessageFragment other = (ChatMessageFragment) o;
         return 
-            Objects.deepEquals(this.structuredResults, other.structuredResults) &&
-            Objects.deepEquals(this.trackingToken, other.trackingToken) &&
-            Objects.deepEquals(this.text, other.text) &&
-            Objects.deepEquals(this.querySuggestion, other.querySuggestion) &&
-            Objects.deepEquals(this.file, other.file) &&
-            Objects.deepEquals(this.action, other.action);
+            Utils.enhancedDeepEquals(this.structuredResults, other.structuredResults) &&
+            Utils.enhancedDeepEquals(this.trackingToken, other.trackingToken) &&
+            Utils.enhancedDeepEquals(this.text, other.text) &&
+            Utils.enhancedDeepEquals(this.querySuggestion, other.querySuggestion) &&
+            Utils.enhancedDeepEquals(this.file, other.file) &&
+            Utils.enhancedDeepEquals(this.action, other.action);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             structuredResults,
             trackingToken,
             text,

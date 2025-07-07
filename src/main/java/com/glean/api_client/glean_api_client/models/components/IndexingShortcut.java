@@ -13,7 +13,6 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class IndexingShortcut {
@@ -338,20 +337,20 @@ public class IndexingShortcut {
         }
         IndexingShortcut other = (IndexingShortcut) o;
         return 
-            Objects.deepEquals(this.inputAlias, other.inputAlias) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.destinationUrl, other.destinationUrl) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.createTime, other.createTime) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.updateTime, other.updateTime) &&
-            Objects.deepEquals(this.unlisted, other.unlisted) &&
-            Objects.deepEquals(this.urlTemplate, other.urlTemplate);
+            Utils.enhancedDeepEquals(this.inputAlias, other.inputAlias) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.destinationUrl, other.destinationUrl) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.createTime, other.createTime) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.updateTime, other.updateTime) &&
+            Utils.enhancedDeepEquals(this.unlisted, other.unlisted) &&
+            Utils.enhancedDeepEquals(this.urlTemplate, other.urlTemplate);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             inputAlias,
             description,
             destinationUrl,

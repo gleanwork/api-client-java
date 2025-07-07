@@ -3,7 +3,11 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.ProcessAllDocumentsRequest;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1ProcessalldocumentsOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -11,10 +15,10 @@ import java.util.Optional;
 public class PostApiIndexV1ProcessalldocumentsRequestBuilder {
 
     private Optional<? extends ProcessAllDocumentsRequest> request = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallPostApiIndexV1Processalldocuments sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PostApiIndexV1ProcessalldocumentsRequestBuilder(SDKMethodInterfaces.MethodCallPostApiIndexV1Processalldocuments sdk) {
-        this.sdk = sdk;
+    public PostApiIndexV1ProcessalldocumentsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public PostApiIndexV1ProcessalldocumentsRequestBuilder request(ProcessAllDocumentsRequest request) {
@@ -30,8 +34,10 @@ public class PostApiIndexV1ProcessalldocumentsRequestBuilder {
     }
 
     public PostApiIndexV1ProcessalldocumentsResponse call() throws Exception {
+        
+        RequestOperation<Optional<? extends ProcessAllDocumentsRequest>, PostApiIndexV1ProcessalldocumentsResponse> operation
+              = new PostApiIndexV1ProcessalldocumentsOperation( sdkConfiguration);
 
-        return sdk.processAll(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

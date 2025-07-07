@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.SearchAgentsRequest;
+import com.glean.api_client.glean_api_client.operations.SearchAgentsOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class SearchAgentsRequestBuilder {
 
     private SearchAgentsRequest request;
-    private final SDKMethodInterfaces.MethodCallSearchAgents sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public SearchAgentsRequestBuilder(SDKMethodInterfaces.MethodCallSearchAgents sdk) {
-        this.sdk = sdk;
+    public SearchAgentsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public SearchAgentsRequestBuilder request(SearchAgentsRequest request) {
@@ -23,8 +27,10 @@ public class SearchAgentsRequestBuilder {
     }
 
     public SearchAgentsResponse call() throws Exception {
+        
+        RequestOperation<SearchAgentsRequest, SearchAgentsResponse> operation
+              = new SearchAgentsOperation( sdkConfiguration);
 
-        return sdk.list(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

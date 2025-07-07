@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
-import java.util.Objects;
 import java.util.Optional;
 
 public class PostApiIndexV1DebugDatasourceStatusResponse implements Response {
@@ -155,15 +154,15 @@ public class PostApiIndexV1DebugDatasourceStatusResponse implements Response {
         }
         PostApiIndexV1DebugDatasourceStatusResponse other = (PostApiIndexV1DebugDatasourceStatusResponse) o;
         return 
-            Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.debugDatasourceStatusResponse, other.debugDatasourceStatusResponse);
+            Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
+            Utils.enhancedDeepEquals(this.debugDatasourceStatusResponse, other.debugDatasourceStatusResponse);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             contentType,
             statusCode,
             rawResponse,

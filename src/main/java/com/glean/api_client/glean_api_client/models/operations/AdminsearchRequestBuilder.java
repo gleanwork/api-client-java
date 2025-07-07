@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.SearchRequest;
+import com.glean.api_client.glean_api_client.operations.AdminsearchOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class AdminsearchRequestBuilder {
 
     private SearchRequest request;
-    private final SDKMethodInterfaces.MethodCallAdminsearch sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AdminsearchRequestBuilder(SDKMethodInterfaces.MethodCallAdminsearch sdk) {
-        this.sdk = sdk;
+    public AdminsearchRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AdminsearchRequestBuilder request(SearchRequest request) {
@@ -23,8 +27,10 @@ public class AdminsearchRequestBuilder {
     }
 
     public AdminsearchResponse call() throws Exception {
+        
+        RequestOperation<SearchRequest, AdminsearchResponse> operation
+              = new AdminsearchOperation( sdkConfiguration);
 
-        return sdk.queryAsAdmin(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

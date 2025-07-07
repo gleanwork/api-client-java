@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ErrorMessage {
@@ -99,13 +98,13 @@ public class ErrorMessage {
         }
         ErrorMessage other = (ErrorMessage) o;
         return 
-            Objects.deepEquals(this.source, other.source) &&
-            Objects.deepEquals(this.errorMessage, other.errorMessage);
+            Utils.enhancedDeepEquals(this.source, other.source) &&
+            Utils.enhancedDeepEquals(this.errorMessage, other.errorMessage);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             source,
             errorMessage);
     }

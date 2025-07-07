@@ -17,7 +17,7 @@ public enum HideBuiltInFacet {
     @JsonValue
     private final String value;
 
-    private HideBuiltInFacet(String value) {
+    HideBuiltInFacet(String value) {
         this.value = value;
     }
     

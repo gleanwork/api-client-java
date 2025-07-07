@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -83,12 +82,12 @@ public class DebugDocumentsResponse {
         }
         DebugDocumentsResponse other = (DebugDocumentsResponse) o;
         return 
-            Objects.deepEquals(this.documentStatuses, other.documentStatuses);
+            Utils.enhancedDeepEquals(this.documentStatuses, other.documentStatuses);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             documentStatuses);
     }
     

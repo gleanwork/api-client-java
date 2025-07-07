@@ -20,7 +20,7 @@ public enum BulkUploadHistoryEventStatus {
     @JsonValue
     private final String value;
 
-    private BulkUploadHistoryEventStatus(String value) {
+    BulkUploadHistoryEventStatus(String value) {
         this.value = value;
     }
     

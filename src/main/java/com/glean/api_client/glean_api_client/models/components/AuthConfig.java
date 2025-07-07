@@ -15,7 +15,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -429,21 +428,21 @@ public class AuthConfig {
         }
         AuthConfig other = (AuthConfig) o;
         return 
-            Objects.deepEquals(this.isOnPrem, other.isOnPrem) &&
-            Objects.deepEquals(this.usesCentralAuth, other.usesCentralAuth) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.grantType, other.grantType) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.clientUrl, other.clientUrl) &&
-            Objects.deepEquals(this.scopes, other.scopes) &&
-            Objects.deepEquals(this.audiences, other.audiences) &&
-            Objects.deepEquals(this.authorizationUrl, other.authorizationUrl) &&
-            Objects.deepEquals(this.lastAuthorizedAt, other.lastAuthorizedAt);
+            Utils.enhancedDeepEquals(this.isOnPrem, other.isOnPrem) &&
+            Utils.enhancedDeepEquals(this.usesCentralAuth, other.usesCentralAuth) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.grantType, other.grantType) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.clientUrl, other.clientUrl) &&
+            Utils.enhancedDeepEquals(this.scopes, other.scopes) &&
+            Utils.enhancedDeepEquals(this.audiences, other.audiences) &&
+            Utils.enhancedDeepEquals(this.authorizationUrl, other.authorizationUrl) &&
+            Utils.enhancedDeepEquals(this.lastAuthorizedAt, other.lastAuthorizedAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             isOnPrem,
             usesCentralAuth,
             type,

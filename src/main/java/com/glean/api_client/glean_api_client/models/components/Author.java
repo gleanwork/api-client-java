@@ -15,7 +15,7 @@ public enum Author {
     @JsonValue
     private final String value;
 
-    private Author(String value) {
+    Author(String value) {
         this.value = value;
     }
     

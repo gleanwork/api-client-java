@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class InsightsRequest {
@@ -254,18 +253,18 @@ public class InsightsRequest {
         }
         InsightsRequest other = (InsightsRequest) o;
         return 
-            Objects.deepEquals(this.categories, other.categories) &&
-            Objects.deepEquals(this.departments, other.departments) &&
-            Objects.deepEquals(this.dayRange, other.dayRange) &&
-            Objects.deepEquals(this.aiAppRequestOptions, other.aiAppRequestOptions) &&
-            Objects.deepEquals(this.agentsRequestOptions, other.agentsRequestOptions) &&
-            Objects.deepEquals(this.assistantActivityTypes, other.assistantActivityTypes) &&
-            Objects.deepEquals(this.disablePerUserInsights, other.disablePerUserInsights);
+            Utils.enhancedDeepEquals(this.categories, other.categories) &&
+            Utils.enhancedDeepEquals(this.departments, other.departments) &&
+            Utils.enhancedDeepEquals(this.dayRange, other.dayRange) &&
+            Utils.enhancedDeepEquals(this.aiAppRequestOptions, other.aiAppRequestOptions) &&
+            Utils.enhancedDeepEquals(this.agentsRequestOptions, other.agentsRequestOptions) &&
+            Utils.enhancedDeepEquals(this.assistantActivityTypes, other.assistantActivityTypes) &&
+            Utils.enhancedDeepEquals(this.disablePerUserInsights, other.disablePerUserInsights);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             categories,
             departments,
             dayRange,

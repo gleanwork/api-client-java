@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
 public class RecommendationsRequest {
@@ -286,19 +285,19 @@ public class RecommendationsRequest {
         }
         RecommendationsRequest other = (RecommendationsRequest) o;
         return 
-            Objects.deepEquals(this.timestamp, other.timestamp) &&
-            Objects.deepEquals(this.trackingToken, other.trackingToken) &&
-            Objects.deepEquals(this.sessionInfo, other.sessionInfo) &&
-            Objects.deepEquals(this.sourceDocument, other.sourceDocument) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.maxSnippetSize, other.maxSnippetSize) &&
-            Objects.deepEquals(this.recommendationDocumentSpec, other.recommendationDocumentSpec) &&
-            Objects.deepEquals(this.requestOptions, other.requestOptions);
+            Utils.enhancedDeepEquals(this.timestamp, other.timestamp) &&
+            Utils.enhancedDeepEquals(this.trackingToken, other.trackingToken) &&
+            Utils.enhancedDeepEquals(this.sessionInfo, other.sessionInfo) &&
+            Utils.enhancedDeepEquals(this.sourceDocument, other.sourceDocument) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.maxSnippetSize, other.maxSnippetSize) &&
+            Utils.enhancedDeepEquals(this.recommendationDocumentSpec, other.recommendationDocumentSpec) &&
+            Utils.enhancedDeepEquals(this.requestOptions, other.requestOptions);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             timestamp,
             trackingToken,
             sessionInfo,

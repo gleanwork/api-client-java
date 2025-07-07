@@ -28,7 +28,7 @@ public enum AuthConfigType {
     @JsonValue
     private final String value;
 
-    private AuthConfigType(String value) {
+    AuthConfigType(String value) {
         this.value = value;
     }
     

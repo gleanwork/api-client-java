@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class Identity {
@@ -153,15 +152,15 @@ public class Identity {
         }
         Identity other = (Identity) o;
         return 
-            Objects.deepEquals(this.processingHistory, other.processingHistory) &&
-            Objects.deepEquals(this.users, other.users) &&
-            Objects.deepEquals(this.groups, other.groups) &&
-            Objects.deepEquals(this.memberships, other.memberships);
+            Utils.enhancedDeepEquals(this.processingHistory, other.processingHistory) &&
+            Utils.enhancedDeepEquals(this.users, other.users) &&
+            Utils.enhancedDeepEquals(this.groups, other.groups) &&
+            Utils.enhancedDeepEquals(this.memberships, other.memberships);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             processingHistory,
             users,
             groups,

@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class UpdateShortcutRequest {
@@ -360,20 +359,20 @@ public class UpdateShortcutRequest {
         }
         UpdateShortcutRequest other = (UpdateShortcutRequest) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.inputAlias, other.inputAlias) &&
-            Objects.deepEquals(this.destinationUrl, other.destinationUrl) &&
-            Objects.deepEquals(this.destinationDocumentId, other.destinationDocumentId) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.unlisted, other.unlisted) &&
-            Objects.deepEquals(this.urlTemplate, other.urlTemplate) &&
-            Objects.deepEquals(this.addedRoles, other.addedRoles) &&
-            Objects.deepEquals(this.removedRoles, other.removedRoles);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.inputAlias, other.inputAlias) &&
+            Utils.enhancedDeepEquals(this.destinationUrl, other.destinationUrl) &&
+            Utils.enhancedDeepEquals(this.destinationDocumentId, other.destinationDocumentId) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.unlisted, other.unlisted) &&
+            Utils.enhancedDeepEquals(this.urlTemplate, other.urlTemplate) &&
+            Utils.enhancedDeepEquals(this.addedRoles, other.addedRoles) &&
+            Utils.enhancedDeepEquals(this.removedRoles, other.removedRoles);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             inputAlias,
             destinationUrl,

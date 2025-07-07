@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -856,34 +855,34 @@ public class DocumentDefinition {
         }
         DocumentDefinition other = (DocumentDefinition) o;
         return 
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.filename, other.filename) &&
-            Objects.deepEquals(this.container, other.container) &&
-            Objects.deepEquals(this.containerDatasourceId, other.containerDatasourceId) &&
-            Objects.deepEquals(this.containerObjectType, other.containerObjectType) &&
-            Objects.deepEquals(this.datasource, other.datasource) &&
-            Objects.deepEquals(this.objectType, other.objectType) &&
-            Objects.deepEquals(this.viewURL, other.viewURL) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.summary, other.summary) &&
-            Objects.deepEquals(this.body, other.body) &&
-            Objects.deepEquals(this.author, other.author) &&
-            Objects.deepEquals(this.owner, other.owner) &&
-            Objects.deepEquals(this.permissions, other.permissions) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.tags, other.tags) &&
-            Objects.deepEquals(this.interactions, other.interactions) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.additionalUrls, other.additionalUrls) &&
-            Objects.deepEquals(this.comments, other.comments) &&
-            Objects.deepEquals(this.customProperties, other.customProperties);
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.filename, other.filename) &&
+            Utils.enhancedDeepEquals(this.container, other.container) &&
+            Utils.enhancedDeepEquals(this.containerDatasourceId, other.containerDatasourceId) &&
+            Utils.enhancedDeepEquals(this.containerObjectType, other.containerObjectType) &&
+            Utils.enhancedDeepEquals(this.datasource, other.datasource) &&
+            Utils.enhancedDeepEquals(this.objectType, other.objectType) &&
+            Utils.enhancedDeepEquals(this.viewURL, other.viewURL) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.summary, other.summary) &&
+            Utils.enhancedDeepEquals(this.body, other.body) &&
+            Utils.enhancedDeepEquals(this.author, other.author) &&
+            Utils.enhancedDeepEquals(this.owner, other.owner) &&
+            Utils.enhancedDeepEquals(this.permissions, other.permissions) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.tags, other.tags) &&
+            Utils.enhancedDeepEquals(this.interactions, other.interactions) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.additionalUrls, other.additionalUrls) &&
+            Utils.enhancedDeepEquals(this.comments, other.comments) &&
+            Utils.enhancedDeepEquals(this.customProperties, other.customProperties);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             title,
             filename,
             container,

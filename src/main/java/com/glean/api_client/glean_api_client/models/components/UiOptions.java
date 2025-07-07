@@ -16,7 +16,7 @@ public enum UiOptions {
     @JsonValue
     private final String value;
 
-    private UiOptions(String value) {
+    UiOptions(String value) {
         this.value = value;
     }
     

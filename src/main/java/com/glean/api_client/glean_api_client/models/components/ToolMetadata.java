@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -646,29 +645,29 @@ public class ToolMetadata {
         }
         ToolMetadata other = (ToolMetadata) o;
         return 
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.displayName, other.displayName) &&
-            Objects.deepEquals(this.toolId, other.toolId) &&
-            Objects.deepEquals(this.displayDescription, other.displayDescription) &&
-            Objects.deepEquals(this.logoUrl, other.logoUrl) &&
-            Objects.deepEquals(this.objectName, other.objectName) &&
-            Objects.deepEquals(this.knowledgeType, other.knowledgeType) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.lastUpdatedBy, other.lastUpdatedBy) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.lastUpdatedAt, other.lastUpdatedAt) &&
-            Objects.deepEquals(this.writeActionType, other.writeActionType) &&
-            Objects.deepEquals(this.authType, other.authType) &&
-            Objects.deepEquals(this.auth, other.auth) &&
-            Objects.deepEquals(this.permissions, other.permissions) &&
-            Objects.deepEquals(this.usageInstructions, other.usageInstructions) &&
-            Objects.deepEquals(this.isSetupFinished, other.isSetupFinished);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
+            Utils.enhancedDeepEquals(this.toolId, other.toolId) &&
+            Utils.enhancedDeepEquals(this.displayDescription, other.displayDescription) &&
+            Utils.enhancedDeepEquals(this.logoUrl, other.logoUrl) &&
+            Utils.enhancedDeepEquals(this.objectName, other.objectName) &&
+            Utils.enhancedDeepEquals(this.knowledgeType, other.knowledgeType) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.lastUpdatedBy, other.lastUpdatedBy) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.lastUpdatedAt, other.lastUpdatedAt) &&
+            Utils.enhancedDeepEquals(this.writeActionType, other.writeActionType) &&
+            Utils.enhancedDeepEquals(this.authType, other.authType) &&
+            Utils.enhancedDeepEquals(this.auth, other.auth) &&
+            Utils.enhancedDeepEquals(this.permissions, other.permissions) &&
+            Utils.enhancedDeepEquals(this.usageInstructions, other.usageInstructions) &&
+            Utils.enhancedDeepEquals(this.isSetupFinished, other.isSetupFinished);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             type,
             name,
             displayName,

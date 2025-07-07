@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ShortcutInsight {
@@ -108,14 +107,14 @@ public class ShortcutInsight {
         }
         ShortcutInsight other = (ShortcutInsight) o;
         return 
-            Objects.deepEquals(this.shortcut, other.shortcut) &&
-            Objects.deepEquals(this.visitCount, other.visitCount) &&
-            Objects.deepEquals(this.visitorCount, other.visitorCount);
+            Utils.enhancedDeepEquals(this.shortcut, other.shortcut) &&
+            Utils.enhancedDeepEquals(this.visitCount, other.visitCount) &&
+            Utils.enhancedDeepEquals(this.visitorCount, other.visitorCount);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             shortcut,
             visitCount,
             visitorCount);

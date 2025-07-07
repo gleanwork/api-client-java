@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -116,13 +115,13 @@ public class CanonicalizingRegexType {
         }
         CanonicalizingRegexType other = (CanonicalizingRegexType) o;
         return 
-            Objects.deepEquals(this.matchRegex, other.matchRegex) &&
-            Objects.deepEquals(this.rewriteRegex, other.rewriteRegex);
+            Utils.enhancedDeepEquals(this.matchRegex, other.matchRegex) &&
+            Utils.enhancedDeepEquals(this.rewriteRegex, other.rewriteRegex);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             matchRegex,
             rewriteRegex);
     }

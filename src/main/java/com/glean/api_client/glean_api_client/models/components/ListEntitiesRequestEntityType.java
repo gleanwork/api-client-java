@@ -16,7 +16,7 @@ public enum ListEntitiesRequestEntityType {
     @JsonValue
     private final String value;
 
-    private ListEntitiesRequestEntityType(String value) {
+    ListEntitiesRequestEntityType(String value) {
         this.value = value;
     }
     

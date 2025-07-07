@@ -12,12 +12,13 @@ public enum RelationType {
     EQUALS("EQUALS"),
     ID_EQUALS("ID_EQUALS"),
     LT("LT"),
-    GT("GT");
+    GT("GT"),
+    NOT_EQUALS("NOT_EQUALS");
 
     @JsonValue
     private final String value;
 
-    private RelationType(String value) {
+    RelationType(String value) {
         this.value = value;
     }
     

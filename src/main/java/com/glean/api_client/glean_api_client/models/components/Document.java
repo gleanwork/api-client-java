@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class Document {
@@ -395,22 +394,22 @@ public class Document {
         }
         Document other = (Document) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.datasource, other.datasource) &&
-            Objects.deepEquals(this.connectorType, other.connectorType) &&
-            Objects.deepEquals(this.docType, other.docType) &&
-            Objects.deepEquals(this.content, other.content) &&
-            Objects.deepEquals(this.containerDocument, other.containerDocument) &&
-            Objects.deepEquals(this.parentDocument, other.parentDocument) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.url, other.url) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.sections, other.sections);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.datasource, other.datasource) &&
+            Utils.enhancedDeepEquals(this.connectorType, other.connectorType) &&
+            Utils.enhancedDeepEquals(this.docType, other.docType) &&
+            Utils.enhancedDeepEquals(this.content, other.content) &&
+            Utils.enhancedDeepEquals(this.containerDocument, other.containerDocument) &&
+            Utils.enhancedDeepEquals(this.parentDocument, other.parentDocument) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.url, other.url) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.sections, other.sections);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             datasource,
             connectorType,

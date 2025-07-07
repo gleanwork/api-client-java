@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -229,16 +228,16 @@ public class PersonTeam {
         }
         PersonTeam other = (PersonTeam) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.externalLink, other.externalLink) &&
-            Objects.deepEquals(this.relationship, other.relationship) &&
-            Objects.deepEquals(this.joinDate, other.joinDate);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.externalLink, other.externalLink) &&
+            Utils.enhancedDeepEquals(this.relationship, other.relationship) &&
+            Utils.enhancedDeepEquals(this.joinDate, other.joinDate);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             name,
             externalLink,

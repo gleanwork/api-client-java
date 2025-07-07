@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ListEntitiesResponse {
@@ -325,20 +324,20 @@ public class ListEntitiesResponse {
         }
         ListEntitiesResponse other = (ListEntitiesResponse) o;
         return 
-            Objects.deepEquals(this.results, other.results) &&
-            Objects.deepEquals(this.teamResults, other.teamResults) &&
-            Objects.deepEquals(this.customEntityResults, other.customEntityResults) &&
-            Objects.deepEquals(this.facetResults, other.facetResults) &&
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.totalCount, other.totalCount) &&
-            Objects.deepEquals(this.hasMoreResults, other.hasMoreResults) &&
-            Objects.deepEquals(this.sortOptions, other.sortOptions) &&
-            Objects.deepEquals(this.customFacetNames, other.customFacetNames);
+            Utils.enhancedDeepEquals(this.results, other.results) &&
+            Utils.enhancedDeepEquals(this.teamResults, other.teamResults) &&
+            Utils.enhancedDeepEquals(this.customEntityResults, other.customEntityResults) &&
+            Utils.enhancedDeepEquals(this.facetResults, other.facetResults) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.totalCount, other.totalCount) &&
+            Utils.enhancedDeepEquals(this.hasMoreResults, other.hasMoreResults) &&
+            Utils.enhancedDeepEquals(this.sortOptions, other.sortOptions) &&
+            Utils.enhancedDeepEquals(this.customFacetNames, other.customFacetNames);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             results,
             teamResults,
             customEntityResults,

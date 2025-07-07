@@ -13,7 +13,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class DocumentSpec3 {
@@ -150,14 +149,14 @@ public class DocumentSpec3 {
         }
         DocumentSpec3 other = (DocumentSpec3) o;
         return 
-            Objects.deepEquals(this.ugcType, other.ugcType) &&
-            Objects.deepEquals(this.contentId, other.contentId) &&
-            Objects.deepEquals(this.docType, other.docType);
+            Utils.enhancedDeepEquals(this.ugcType, other.ugcType) &&
+            Utils.enhancedDeepEquals(this.contentId, other.contentId) &&
+            Utils.enhancedDeepEquals(this.docType, other.docType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             ugcType,
             contentId,
             docType);

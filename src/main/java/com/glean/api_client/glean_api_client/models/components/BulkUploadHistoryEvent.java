@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -227,16 +226,16 @@ public class BulkUploadHistoryEvent {
         }
         BulkUploadHistoryEvent other = (BulkUploadHistoryEvent) o;
         return 
-            Objects.deepEquals(this.uploadId, other.uploadId) &&
-            Objects.deepEquals(this.startTime, other.startTime) &&
-            Objects.deepEquals(this.endTime, other.endTime) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.processingState, other.processingState);
+            Utils.enhancedDeepEquals(this.uploadId, other.uploadId) &&
+            Utils.enhancedDeepEquals(this.startTime, other.startTime) &&
+            Utils.enhancedDeepEquals(this.endTime, other.endTime) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.processingState, other.processingState);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             uploadId,
             startTime,
             endTime,

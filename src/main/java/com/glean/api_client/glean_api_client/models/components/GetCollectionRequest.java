@@ -13,7 +13,6 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class GetCollectionRequest {
@@ -176,15 +175,15 @@ public class GetCollectionRequest {
         }
         GetCollectionRequest other = (GetCollectionRequest) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.withItems, other.withItems) &&
-            Objects.deepEquals(this.withHierarchy, other.withHierarchy) &&
-            Objects.deepEquals(this.allowedDatasource, other.allowedDatasource);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.withItems, other.withItems) &&
+            Utils.enhancedDeepEquals(this.withHierarchy, other.withHierarchy) &&
+            Utils.enhancedDeepEquals(this.allowedDatasource, other.allowedDatasource);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             withItems,
             withHierarchy,

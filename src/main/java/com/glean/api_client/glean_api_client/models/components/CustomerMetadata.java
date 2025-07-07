@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CustomerMetadata {
@@ -114,13 +113,13 @@ public class CustomerMetadata {
         }
         CustomerMetadata other = (CustomerMetadata) o;
         return 
-            Objects.deepEquals(this.datasourceId, other.datasourceId) &&
-            Objects.deepEquals(this.customData, other.customData);
+            Utils.enhancedDeepEquals(this.datasourceId, other.datasourceId) &&
+            Utils.enhancedDeepEquals(this.customData, other.customData);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             datasourceId,
             customData);
     }

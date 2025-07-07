@@ -90,7 +90,7 @@ public class CollectionsTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         AddCollectionItemsRequest req = AddCollectionItemsRequest.builder()
@@ -1542,7 +1542,7 @@ public class CollectionsTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         CreateCollectionRequest req = CreateCollectionRequest.builder()
@@ -3962,7 +3962,7 @@ public class CollectionsTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         DeleteCollectionRequest req = DeleteCollectionRequest.builder()
@@ -3984,7 +3984,7 @@ public class CollectionsTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         DeleteCollectionItemRequest req = DeleteCollectionItemRequest.builder()
@@ -5759,7 +5759,7 @@ public class CollectionsTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         EditCollectionRequest req = EditCollectionRequest.builder()
@@ -7665,7 +7665,7 @@ public class CollectionsTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         EditCollectionItemRequest req = EditCollectionItemRequest.builder()
@@ -8737,7 +8737,7 @@ public class CollectionsTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         GetCollectionRequest req = GetCollectionRequest.builder()
@@ -9999,7 +9999,7 @@ public class CollectionsTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         ListCollectionsRequest req = ListCollectionsRequest.builder()

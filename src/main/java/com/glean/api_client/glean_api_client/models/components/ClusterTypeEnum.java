@@ -27,7 +27,7 @@ public enum ClusterTypeEnum {
     @JsonValue
     private final String value;
 
-    private ClusterTypeEnum(String value) {
+    ClusterTypeEnum(String value) {
         this.value = value;
     }
     

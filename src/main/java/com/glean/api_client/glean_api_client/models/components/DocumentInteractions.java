@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class DocumentInteractions {
@@ -251,17 +250,17 @@ public class DocumentInteractions {
         }
         DocumentInteractions other = (DocumentInteractions) o;
         return 
-            Objects.deepEquals(this.numComments, other.numComments) &&
-            Objects.deepEquals(this.numReactions, other.numReactions) &&
-            Objects.deepEquals(this.reactions, other.reactions) &&
-            Objects.deepEquals(this.reacts, other.reacts) &&
-            Objects.deepEquals(this.shares, other.shares) &&
-            Objects.deepEquals(this.visitorCount, other.visitorCount);
+            Utils.enhancedDeepEquals(this.numComments, other.numComments) &&
+            Utils.enhancedDeepEquals(this.numReactions, other.numReactions) &&
+            Utils.enhancedDeepEquals(this.reactions, other.reactions) &&
+            Utils.enhancedDeepEquals(this.reacts, other.reacts) &&
+            Utils.enhancedDeepEquals(this.shares, other.shares) &&
+            Utils.enhancedDeepEquals(this.visitorCount, other.visitorCount);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             numComments,
             numReactions,
             reactions,

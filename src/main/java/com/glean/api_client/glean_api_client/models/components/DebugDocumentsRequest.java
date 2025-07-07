@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * DebugDocumentsRequest
@@ -64,12 +63,12 @@ public class DebugDocumentsRequest {
         }
         DebugDocumentsRequest other = (DebugDocumentsRequest) o;
         return 
-            Objects.deepEquals(this.debugDocuments, other.debugDocuments);
+            Utils.enhancedDeepEquals(this.debugDocuments, other.debugDocuments);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             debugDocuments);
     }
     

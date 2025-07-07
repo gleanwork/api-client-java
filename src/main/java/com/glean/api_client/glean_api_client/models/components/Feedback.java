@@ -15,7 +15,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class Feedback {
@@ -682,31 +681,31 @@ public class Feedback {
         }
         Feedback other = (Feedback) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.category, other.category) &&
-            Objects.deepEquals(this.trackingTokens, other.trackingTokens) &&
-            Objects.deepEquals(this.event, other.event) &&
-            Objects.deepEquals(this.position, other.position) &&
-            Objects.deepEquals(this.payload, other.payload) &&
-            Objects.deepEquals(this.sessionInfo, other.sessionInfo) &&
-            Objects.deepEquals(this.timestamp, other.timestamp) &&
-            Objects.deepEquals(this.user, other.user) &&
-            Objects.deepEquals(this.pathname, other.pathname) &&
-            Objects.deepEquals(this.channels, other.channels) &&
-            Objects.deepEquals(this.url, other.url) &&
-            Objects.deepEquals(this.uiTree, other.uiTree) &&
-            Objects.deepEquals(this.uiElement, other.uiElement) &&
-            Objects.deepEquals(this.manualFeedbackInfo, other.manualFeedbackInfo) &&
-            Objects.deepEquals(this.seenFeedbackInfo, other.seenFeedbackInfo) &&
-            Objects.deepEquals(this.userViewInfo, other.userViewInfo) &&
-            Objects.deepEquals(this.workflowFeedbackInfo, other.workflowFeedbackInfo) &&
-            Objects.deepEquals(this.applicationId, other.applicationId) &&
-            Objects.deepEquals(this.agentId, other.agentId);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.category, other.category) &&
+            Utils.enhancedDeepEquals(this.trackingTokens, other.trackingTokens) &&
+            Utils.enhancedDeepEquals(this.event, other.event) &&
+            Utils.enhancedDeepEquals(this.position, other.position) &&
+            Utils.enhancedDeepEquals(this.payload, other.payload) &&
+            Utils.enhancedDeepEquals(this.sessionInfo, other.sessionInfo) &&
+            Utils.enhancedDeepEquals(this.timestamp, other.timestamp) &&
+            Utils.enhancedDeepEquals(this.user, other.user) &&
+            Utils.enhancedDeepEquals(this.pathname, other.pathname) &&
+            Utils.enhancedDeepEquals(this.channels, other.channels) &&
+            Utils.enhancedDeepEquals(this.url, other.url) &&
+            Utils.enhancedDeepEquals(this.uiTree, other.uiTree) &&
+            Utils.enhancedDeepEquals(this.uiElement, other.uiElement) &&
+            Utils.enhancedDeepEquals(this.manualFeedbackInfo, other.manualFeedbackInfo) &&
+            Utils.enhancedDeepEquals(this.seenFeedbackInfo, other.seenFeedbackInfo) &&
+            Utils.enhancedDeepEquals(this.userViewInfo, other.userViewInfo) &&
+            Utils.enhancedDeepEquals(this.workflowFeedbackInfo, other.workflowFeedbackInfo) &&
+            Utils.enhancedDeepEquals(this.applicationId, other.applicationId) &&
+            Utils.enhancedDeepEquals(this.agentId, other.agentId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             category,
             trackingTokens,

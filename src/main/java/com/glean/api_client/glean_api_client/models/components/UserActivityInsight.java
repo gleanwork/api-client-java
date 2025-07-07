@@ -13,7 +13,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class UserActivityInsight {
@@ -172,16 +171,16 @@ public class UserActivityInsight {
         }
         UserActivityInsight other = (UserActivityInsight) o;
         return 
-            Objects.deepEquals(this.user, other.user) &&
-            Objects.deepEquals(this.activity, other.activity) &&
-            Objects.deepEquals(this.lastActivityTimestamp, other.lastActivityTimestamp) &&
-            Objects.deepEquals(this.activityCount, other.activityCount) &&
-            Objects.deepEquals(this.activeDayCount, other.activeDayCount);
+            Utils.enhancedDeepEquals(this.user, other.user) &&
+            Utils.enhancedDeepEquals(this.activity, other.activity) &&
+            Utils.enhancedDeepEquals(this.lastActivityTimestamp, other.lastActivityTimestamp) &&
+            Utils.enhancedDeepEquals(this.activityCount, other.activityCount) &&
+            Utils.enhancedDeepEquals(this.activeDayCount, other.activeDayCount);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             user,
             activity,
             lastActivityTimestamp,

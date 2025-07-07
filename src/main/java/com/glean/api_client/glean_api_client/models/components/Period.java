@@ -14,7 +14,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class Period {
@@ -188,15 +187,15 @@ public class Period {
         }
         Period other = (Period) o;
         return 
-            Objects.deepEquals(this.minDaysFromNow, other.minDaysFromNow) &&
-            Objects.deepEquals(this.maxDaysFromNow, other.maxDaysFromNow) &&
-            Objects.deepEquals(this.start, other.start) &&
-            Objects.deepEquals(this.end, other.end);
+            Utils.enhancedDeepEquals(this.minDaysFromNow, other.minDaysFromNow) &&
+            Utils.enhancedDeepEquals(this.maxDaysFromNow, other.maxDaysFromNow) &&
+            Utils.enhancedDeepEquals(this.start, other.start) &&
+            Utils.enhancedDeepEquals(this.end, other.end);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             minDaysFromNow,
             maxDaysFromNow,
             start,

@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -134,14 +133,14 @@ public class ContentDefinition {
         }
         ContentDefinition other = (ContentDefinition) o;
         return 
-            Objects.deepEquals(this.mimeType, other.mimeType) &&
-            Objects.deepEquals(this.textContent, other.textContent) &&
-            Objects.deepEquals(this.binaryContent, other.binaryContent);
+            Utils.enhancedDeepEquals(this.mimeType, other.mimeType) &&
+            Utils.enhancedDeepEquals(this.textContent, other.textContent) &&
+            Utils.enhancedDeepEquals(this.binaryContent, other.binaryContent);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             mimeType,
             textContent,
             binaryContent);

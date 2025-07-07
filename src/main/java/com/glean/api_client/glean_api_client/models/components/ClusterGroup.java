@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ClusterGroup {
@@ -143,14 +142,14 @@ public class ClusterGroup {
         }
         ClusterGroup other = (ClusterGroup) o;
         return 
-            Objects.deepEquals(this.clusteredResults, other.clusteredResults) &&
-            Objects.deepEquals(this.clusterType, other.clusterType) &&
-            Objects.deepEquals(this.visibleCountHint, other.visibleCountHint);
+            Utils.enhancedDeepEquals(this.clusteredResults, other.clusteredResults) &&
+            Utils.enhancedDeepEquals(this.clusterType, other.clusterType) &&
+            Utils.enhancedDeepEquals(this.visibleCountHint, other.visibleCountHint);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             clusteredResults,
             clusterType,
             visibleCountHint);

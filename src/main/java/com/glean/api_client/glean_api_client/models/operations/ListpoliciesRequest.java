@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ListpoliciesRequest {
@@ -108,13 +107,13 @@ public class ListpoliciesRequest {
         }
         ListpoliciesRequest other = (ListpoliciesRequest) o;
         return 
-            Objects.deepEquals(this.autoHide, other.autoHide) &&
-            Objects.deepEquals(this.frequency, other.frequency);
+            Utils.enhancedDeepEquals(this.autoHide, other.autoHide) &&
+            Utils.enhancedDeepEquals(this.frequency, other.frequency);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             autoHide,
             frequency);
     }
