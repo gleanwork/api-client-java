@@ -47,7 +47,7 @@ public class IndexingPermissionsTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         UpdatePermissionsRequest req = UpdatePermissionsRequest.builder()
@@ -69,7 +69,7 @@ public class IndexingPermissionsTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         IndexUserRequest req = IndexUserRequest.builder()
@@ -93,7 +93,7 @@ public class IndexingPermissionsTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         BulkIndexUsersRequest req = BulkIndexUsersRequest.builder()
@@ -127,7 +127,7 @@ public class IndexingPermissionsTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         IndexGroupRequest req = IndexGroupRequest.builder()
@@ -150,7 +150,7 @@ public class IndexingPermissionsTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         BulkIndexGroupsRequest req = BulkIndexGroupsRequest.builder()
@@ -178,7 +178,7 @@ public class IndexingPermissionsTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         IndexMembershipRequest req = IndexMembershipRequest.builder()
@@ -201,7 +201,7 @@ public class IndexingPermissionsTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         BulkIndexMembershipsRequest req = BulkIndexMembershipsRequest.builder()
@@ -229,7 +229,7 @@ public class IndexingPermissionsTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         PostApiIndexV1ProcessallmembershipsResponse res = sdk.indexing().permissions().processMemberships()
@@ -244,7 +244,7 @@ public class IndexingPermissionsTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         DeleteUserRequest req = DeleteUserRequest.builder()
@@ -265,7 +265,7 @@ public class IndexingPermissionsTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         DeleteGroupRequest req = DeleteGroupRequest.builder()
@@ -286,7 +286,7 @@ public class IndexingPermissionsTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         DeleteMembershipRequest req = DeleteMembershipRequest.builder()
@@ -309,7 +309,7 @@ public class IndexingPermissionsTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         GreenlistUsersRequest req = GreenlistUsersRequest.builder()

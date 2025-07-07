@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
 public class SessionInfo {
@@ -184,15 +183,15 @@ public class SessionInfo {
         }
         SessionInfo other = (SessionInfo) o;
         return 
-            Objects.deepEquals(this.sessionTrackingToken, other.sessionTrackingToken) &&
-            Objects.deepEquals(this.tabId, other.tabId) &&
-            Objects.deepEquals(this.lastSeen, other.lastSeen) &&
-            Objects.deepEquals(this.lastQuery, other.lastQuery);
+            Utils.enhancedDeepEquals(this.sessionTrackingToken, other.sessionTrackingToken) &&
+            Utils.enhancedDeepEquals(this.tabId, other.tabId) &&
+            Utils.enhancedDeepEquals(this.lastSeen, other.lastSeen) &&
+            Utils.enhancedDeepEquals(this.lastQuery, other.lastQuery);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             sessionTrackingToken,
             tabId,
             lastSeen,

@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -368,20 +367,20 @@ public class StructuredLocation {
         }
         StructuredLocation other = (StructuredLocation) o;
         return 
-            Objects.deepEquals(this.deskLocation, other.deskLocation) &&
-            Objects.deepEquals(this.timezone, other.timezone) &&
-            Objects.deepEquals(this.address, other.address) &&
-            Objects.deepEquals(this.city, other.city) &&
-            Objects.deepEquals(this.state, other.state) &&
-            Objects.deepEquals(this.region, other.region) &&
-            Objects.deepEquals(this.zipCode, other.zipCode) &&
-            Objects.deepEquals(this.country, other.country) &&
-            Objects.deepEquals(this.countryCode, other.countryCode);
+            Utils.enhancedDeepEquals(this.deskLocation, other.deskLocation) &&
+            Utils.enhancedDeepEquals(this.timezone, other.timezone) &&
+            Utils.enhancedDeepEquals(this.address, other.address) &&
+            Utils.enhancedDeepEquals(this.city, other.city) &&
+            Utils.enhancedDeepEquals(this.state, other.state) &&
+            Utils.enhancedDeepEquals(this.region, other.region) &&
+            Utils.enhancedDeepEquals(this.zipCode, other.zipCode) &&
+            Utils.enhancedDeepEquals(this.country, other.country) &&
+            Utils.enhancedDeepEquals(this.countryCode, other.countryCode);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             deskLocation,
             timezone,
             address,

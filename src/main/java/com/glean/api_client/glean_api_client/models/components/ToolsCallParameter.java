@@ -14,7 +14,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ToolsCallParameter {
@@ -170,15 +169,15 @@ public class ToolsCallParameter {
         }
         ToolsCallParameter other = (ToolsCallParameter) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.value, other.value) &&
-            Objects.deepEquals(this.items, other.items) &&
-            Objects.deepEquals(this.properties, other.properties);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.value, other.value) &&
+            Utils.enhancedDeepEquals(this.items, other.items) &&
+            Utils.enhancedDeepEquals(this.properties, other.properties);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name,
             value,
             items,

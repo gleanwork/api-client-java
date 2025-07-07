@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0359d4fe-2923-46fc-aaca-cf70b48dcfa1
 management:
-  docChecksum: 6cb4c4786bf30fecfc20b38750d745eb
+  docChecksum: bb65a174a6b697994f7bde3845843d9d
   docVersion: 0.9.0
-  speakeasyVersion: 1.563.2
-  generationVersion: 2.629.2
-  releaseVersion: 0.5.6
-  configChecksum: a3fcc2f551abcd371f1891c11a1cf24a
+  speakeasyVersion: 1.576.1
+  generationVersion: 2.651.2
+  releaseVersion: 0.6.0
+  configChecksum: 36947d923e8382f9287cbfeee1bf3f84
   repoURL: https://github.com/gleanwork/api-client-java.git
   published: true
 features:
@@ -14,18 +14,19 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.0.1
     constsAndDefaults: 0.1.1
-    core: 3.39.0
+    core: 3.42.3
     deprecations: 2.81.1
     examples: 2.81.5
     flattening: 2.81.1
-    globalSecurity: 2.82.8
+    globalSecurity: 2.83.0
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.2
     groups: 2.81.2
+    mockServer: 0.1.1
     nameOverrides: 2.81.3
     sdkHooks: 1.1.0
-    tests: 0.8.4
+    tests: 0.9.1
     unions: 0.0.6
 generatedFiles:
   - .gitattributes
@@ -439,6 +440,7 @@ generatedFiles:
   - docs/models/components/ReminderRequest.md
   - docs/models/components/ReportStatusResponse.md
   - docs/models/components/ReportStatusResponseStatus.md
+  - docs/models/components/RequestType.md
   - docs/models/components/ResponseHint.md
   - docs/models/components/ResponseStatus.md
   - docs/models/components/RestrictionFilters.md
@@ -1178,6 +1180,7 @@ generatedFiles:
   - src/main/java/com/glean/api_client/glean_api_client/models/components/ReminderRequest.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/ReportStatusResponse.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/ReportStatusResponseStatus.java
+  - src/main/java/com/glean/api_client/glean_api_client/models/components/RequestType.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/ResponseHint.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/ResponseStatus.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/RestrictionFilters.java
@@ -1529,7 +1532,6 @@ generatedFiles:
   - src/main/java/com/glean/api_client/glean_api_client/models/operations/PostRestApiV1ToolsCallResponse.java
   - src/main/java/com/glean/api_client/glean_api_client/models/operations/RecommendationsRequestBuilder.java
   - src/main/java/com/glean/api_client/glean_api_client/models/operations/RecommendationsResponse.java
-  - src/main/java/com/glean/api_client/glean_api_client/models/operations/SDKMethodInterfaces.java
   - src/main/java/com/glean/api_client/glean_api_client/models/operations/SearchAgentsRequestBuilder.java
   - src/main/java/com/glean/api_client/glean_api_client/models/operations/SearchAgentsResponse.java
   - src/main/java/com/glean/api_client/glean_api_client/models/operations/SearchRequestBuilder.java
@@ -1552,16 +1554,129 @@ generatedFiles:
   - src/main/java/com/glean/api_client/glean_api_client/models/operations/UploadchatfilesResponse.java
   - src/main/java/com/glean/api_client/glean_api_client/models/operations/VerifyRequestBuilder.java
   - src/main/java/com/glean/api_client/glean_api_client/models/operations/VerifyResponse.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/ActivityOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/AddcollectionitemsOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/AddverificationreminderOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/AdminsearchOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/AutocompleteOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/ChatOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/ChatStreamOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/CreateAndStreamRunOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/CreateAndWaitRunOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/CreateannouncementOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/CreateanswerOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/CreateauthtokenOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/CreatecollectionOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/CreatepolicyOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/CreatereportOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/CreateshortcutOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/DeleteallchatsOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/DeleteannouncementOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/DeleteanswerOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/DeletechatfilesOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/DeletechatsOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/DeletecollectionOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/DeletecollectionitemOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/DeleteshortcutOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/DownloadpolicycsvOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/DownloadreportcsvOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/EditanswerOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/EditcollectionOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/EditcollectionitemOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/EditpinOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/FeedOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/FeedbackOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/GetAgentOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/GetAgentSchemasOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/GetRestApiV1ToolsListOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/GetanswerOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/GetchatOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/GetchatapplicationOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/GetchatfilesOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/GetcollectionOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/GetdocpermissionsOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/GetdocumentsOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/GetdocumentsbyfacetsOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/GetdocvisibilityOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/GetpinOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/GetpolicyOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/GetreportstatusOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/GetshortcutOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/InsightsOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/ListanswersOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/ListchatsOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/ListcollectionsOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/ListentitiesOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/ListpinsOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/ListpoliciesOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/ListshortcutsOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/ListverificationsOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/MessagesOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Operations.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PeopleOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PinOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1AdddatasourceOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1BetausersOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1BulkindexdocumentsOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1BulkindexemployeesOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1BulkindexgroupsOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1BulkindexmembershipsOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1BulkindexshortcutsOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1BulkindexteamsOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1BulkindexusersOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1CheckdocumentaccessOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1DebugDatasourceDocumentOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1DebugDatasourceDocumentsOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1DebugDatasourceStatusOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1DebugDatasourceUserOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1DeletedocumentOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1DeleteemployeeOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1DeletegroupOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1DeletemembershipOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1DeleteteamOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1DeleteuserOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1GetdatasourceconfigOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1GetdocumentcountOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1GetdocumentstatusOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1GetusercountOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1IndexdocumentOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1IndexdocumentsOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1IndexemployeeOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1IndexgroupOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1IndexmembershipOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1IndexteamOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1IndexuserOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1ProcessalldocumentsOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1ProcessallemployeesandteamsOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1ProcessallmembershipsOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1RotatetokenOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1UpdatepermissionsOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1UploadshortcutsOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostRestApiV1ToolsCallOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/RecommendationsOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/SearchAgentsOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/SearchOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/SetdocvisibilityOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/SummarizeOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/UnpinOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/UpdateannouncementOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/UpdatepolicyOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/UpdateshortcutOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/UploadchatfilesOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/VerifyOperation.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/BackoffStrategy.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/BigDecimalString.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/BigIntegerString.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/Constants.java
+  - src/main/java/com/glean/api_client/glean_api_client/utils/CopiableInputStream.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/Deserializers.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/EventStream.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/EventStreamLineReader.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/EventStreamMessage.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/EventStreamReader.java
+  - src/main/java/com/glean/api_client/glean_api_client/utils/Exceptions.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/FormMetadata.java
+  - src/main/java/com/glean/api_client/glean_api_client/utils/Globals.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/HTTPClient.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/HTTPRequest.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/HasSecurity.java
@@ -1628,6 +1743,652 @@ generatedFiles:
   - src/test/java/com/glean/api_client/glean_api_client/ToolsTests.java
   - src/test/java/com/glean/api_client/glean_api_client/TroubleshootingTests.java
   - src/test/java/com/glean/api_client/glean_api_client/VisibilityoverridesTests.java
+  - tests/mockserver/.gitignore
+  - tests/mockserver/Dockerfile
+  - tests/mockserver/Makefile
+  - tests/mockserver/README.md
+  - tests/mockserver/go.mod
+  - tests/mockserver/go.sum
+  - tests/mockserver/internal/handler/assert/contenttype.go
+  - tests/mockserver/internal/handler/assert/header.go
+  - tests/mockserver/internal/handler/assert/parameter.go
+  - tests/mockserver/internal/handler/assert/pointer.go
+  - tests/mockserver/internal/handler/assert/security.go
+  - tests/mockserver/internal/handler/doc.go
+  - tests/mockserver/internal/handler/generated_handler.go
+  - tests/mockserver/internal/handler/generated_handlers.go
+  - tests/mockserver/internal/handler/pathgetrestapiv1agentsagentid.go
+  - tests/mockserver/internal/handler/pathgetrestapiv1agentsagentidschemas.go
+  - tests/mockserver/internal/handler/pathgetrestapiv1governancedatapolicies.go
+  - tests/mockserver/internal/handler/pathgetrestapiv1governancedatapoliciesid.go
+  - tests/mockserver/internal/handler/pathgetrestapiv1toolslist.go
+  - tests/mockserver/internal/handler/pathpostapiindexv1adddatasource.go
+  - tests/mockserver/internal/handler/pathpostapiindexv1betausers.go
+  - tests/mockserver/internal/handler/pathpostapiindexv1bulkindexdocuments.go
+  - tests/mockserver/internal/handler/pathpostapiindexv1bulkindexgroups.go
+  - tests/mockserver/internal/handler/pathpostapiindexv1bulkindexmemberships.go
+  - tests/mockserver/internal/handler/pathpostapiindexv1bulkindexusers.go
+  - tests/mockserver/internal/handler/pathpostapiindexv1checkdocumentaccess.go
+  - tests/mockserver/internal/handler/pathpostapiindexv1deletedocument.go
+  - tests/mockserver/internal/handler/pathpostapiindexv1deletegroup.go
+  - tests/mockserver/internal/handler/pathpostapiindexv1deletemembership.go
+  - tests/mockserver/internal/handler/pathpostapiindexv1deleteuser.go
+  - tests/mockserver/internal/handler/pathpostapiindexv1getdatasourceconfig.go
+  - tests/mockserver/internal/handler/pathpostapiindexv1getdocumentcount.go
+  - tests/mockserver/internal/handler/pathpostapiindexv1getdocumentstatus.go
+  - tests/mockserver/internal/handler/pathpostapiindexv1getusercount.go
+  - tests/mockserver/internal/handler/pathpostapiindexv1indexdocument.go
+  - tests/mockserver/internal/handler/pathpostapiindexv1indexdocuments.go
+  - tests/mockserver/internal/handler/pathpostapiindexv1indexgroup.go
+  - tests/mockserver/internal/handler/pathpostapiindexv1indexmembership.go
+  - tests/mockserver/internal/handler/pathpostapiindexv1indexuser.go
+  - tests/mockserver/internal/handler/pathpostapiindexv1processalldocuments.go
+  - tests/mockserver/internal/handler/pathpostapiindexv1processallemployeesandteams.go
+  - tests/mockserver/internal/handler/pathpostapiindexv1processallmemberships.go
+  - tests/mockserver/internal/handler/pathpostapiindexv1rotatetoken.go
+  - tests/mockserver/internal/handler/pathpostapiindexv1updatepermissions.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1activity.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1addcollectionitems.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1addverificationreminder.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1adminsearch.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1autocomplete.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1chat.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1createannouncement.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1createanswer.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1createauthtoken.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1createcollection.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1createshortcut.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1deleteallchats.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1deleteannouncement.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1deleteanswer.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1deletechatfiles.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1deletechats.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1deletecollection.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1deletecollectionitem.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1deleteshortcut.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1editanswer.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1editcollection.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1editcollectionitem.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1editpin.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1feed.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1feedback.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1getanswer.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1getchat.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1getchatapplication.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1getchatfiles.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1getcollection.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1getdocpermissions.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1getdocuments.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1getdocumentsbyfacets.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1getpin.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1getshortcut.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1insights.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1listanswers.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1listchats.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1listcollections.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1listentities.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1listpins.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1listshortcuts.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1listverifications.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1messages.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1people.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1pin.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1recommendations.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1search.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1summarize.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1toolscall.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1unpin.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1updateannouncement.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1updateshortcut.go
+  - tests/mockserver/internal/handler/pathpostrestapiv1verify.go
+  - tests/mockserver/internal/handler/values/files.go
+  - tests/mockserver/internal/logging/doc.go
+  - tests/mockserver/internal/logging/formats.go
+  - tests/mockserver/internal/logging/http_file.go
+  - tests/mockserver/internal/logging/http_logger.go
+  - tests/mockserver/internal/logging/levels.go
+  - tests/mockserver/internal/logging/logger.go
+  - tests/mockserver/internal/logging/oas_operation.go
+  - tests/mockserver/internal/logging/oas_operation_call.go
+  - tests/mockserver/internal/sdk/models/components/activity.go
+  - tests/mockserver/internal/sdk/models/components/activityevent.go
+  - tests/mockserver/internal/sdk/models/components/activityeventparams.go
+  - tests/mockserver/internal/sdk/models/components/addcollectionitemserror.go
+  - tests/mockserver/internal/sdk/models/components/addcollectionitemsrequest.go
+  - tests/mockserver/internal/sdk/models/components/addcollectionitemsresponse.go
+  - tests/mockserver/internal/sdk/models/components/additionalfielddefinition.go
+  - tests/mockserver/internal/sdk/models/components/agent.go
+  - tests/mockserver/internal/sdk/models/components/agentconfig.go
+  - tests/mockserver/internal/sdk/models/components/agentexecutionstatus.go
+  - tests/mockserver/internal/sdk/models/components/agentrun.go
+  - tests/mockserver/internal/sdk/models/components/agentruncreate.go
+  - tests/mockserver/internal/sdk/models/components/agentrunwaitresponse.go
+  - tests/mockserver/internal/sdk/models/components/agentschemas.go
+  - tests/mockserver/internal/sdk/models/components/aiappactioncounts.go
+  - tests/mockserver/internal/sdk/models/components/aiappsinsightsresponse.go
+  - tests/mockserver/internal/sdk/models/components/aiinsightsresponse.go
+  - tests/mockserver/internal/sdk/models/components/allowlistoptions.go
+  - tests/mockserver/internal/sdk/models/components/announcement.go
+  - tests/mockserver/internal/sdk/models/components/anonymousevent.go
+  - tests/mockserver/internal/sdk/models/components/answer.go
+  - tests/mockserver/internal/sdk/models/components/answerboard.go
+  - tests/mockserver/internal/sdk/models/components/answercreationdata.go
+  - tests/mockserver/internal/sdk/models/components/answerlike.go
+  - tests/mockserver/internal/sdk/models/components/answerlikes.go
+  - tests/mockserver/internal/sdk/models/components/answerresult.go
+  - tests/mockserver/internal/sdk/models/components/appresult.go
+  - tests/mockserver/internal/sdk/models/components/authconfig.go
+  - tests/mockserver/internal/sdk/models/components/authtoken.go
+  - tests/mockserver/internal/sdk/models/components/autocompleterequest.go
+  - tests/mockserver/internal/sdk/models/components/autocompleteresponse.go
+  - tests/mockserver/internal/sdk/models/components/autocompleteresult.go
+  - tests/mockserver/internal/sdk/models/components/autocompleteresultgroup.go
+  - tests/mockserver/internal/sdk/models/components/badge.go
+  - tests/mockserver/internal/sdk/models/components/bulkindexdocumentsrequest.go
+  - tests/mockserver/internal/sdk/models/components/bulkindexemployeesrequest.go
+  - tests/mockserver/internal/sdk/models/components/bulkindexgroupsrequest.go
+  - tests/mockserver/internal/sdk/models/components/bulkindexmembershipsrequest.go
+  - tests/mockserver/internal/sdk/models/components/bulkindexshortcutsrequest.go
+  - tests/mockserver/internal/sdk/models/components/bulkindexteamsrequest.go
+  - tests/mockserver/internal/sdk/models/components/bulkindexusersrequest.go
+  - tests/mockserver/internal/sdk/models/components/bulkuploadhistoryevent.go
+  - tests/mockserver/internal/sdk/models/components/calendarattendee.go
+  - tests/mockserver/internal/sdk/models/components/calendarattendees.go
+  - tests/mockserver/internal/sdk/models/components/calendarevent.go
+  - tests/mockserver/internal/sdk/models/components/canonicalizingregextype.go
+  - tests/mockserver/internal/sdk/models/components/channelinviteinfo.go
+  - tests/mockserver/internal/sdk/models/components/chat.go
+  - tests/mockserver/internal/sdk/models/components/chatfile.go
+  - tests/mockserver/internal/sdk/models/components/chatfilefailurereason.go
+  - tests/mockserver/internal/sdk/models/components/chatfilemetadata.go
+  - tests/mockserver/internal/sdk/models/components/chatfilestatus.go
+  - tests/mockserver/internal/sdk/models/components/chatmessage.go
+  - tests/mockserver/internal/sdk/models/components/chatmessagecitation.go
+  - tests/mockserver/internal/sdk/models/components/chatmessagefragment.go
+  - tests/mockserver/internal/sdk/models/components/chatmetadata.go
+  - tests/mockserver/internal/sdk/models/components/chatmetadataresult.go
+  - tests/mockserver/internal/sdk/models/components/chatrequest.go
+  - tests/mockserver/internal/sdk/models/components/chatresponse.go
+  - tests/mockserver/internal/sdk/models/components/chatrestrictionfilters.go
+  - tests/mockserver/internal/sdk/models/components/chatresult.go
+  - tests/mockserver/internal/sdk/models/components/chatzerostatesuggestionoptions.go
+  - tests/mockserver/internal/sdk/models/components/checkdocumentaccessrequest.go
+  - tests/mockserver/internal/sdk/models/components/checkdocumentaccessresponse.go
+  - tests/mockserver/internal/sdk/models/components/clustergroup.go
+  - tests/mockserver/internal/sdk/models/components/clustertypeenum.go
+  - tests/mockserver/internal/sdk/models/components/code.go
+  - tests/mockserver/internal/sdk/models/components/codeline.go
+  - tests/mockserver/internal/sdk/models/components/collection.go
+  - tests/mockserver/internal/sdk/models/components/collectionerror.go
+  - tests/mockserver/internal/sdk/models/components/collectionitem.go
+  - tests/mockserver/internal/sdk/models/components/collectionitemdescriptor.go
+  - tests/mockserver/internal/sdk/models/components/collectionpinmetadata.go
+  - tests/mockserver/internal/sdk/models/components/collectionpinnablecategories.go
+  - tests/mockserver/internal/sdk/models/components/collectionpinnabletargets.go
+  - tests/mockserver/internal/sdk/models/components/collectionpinnedmetadata.go
+  - tests/mockserver/internal/sdk/models/components/collectionpintarget.go
+  - tests/mockserver/internal/sdk/models/components/commentdefinition.go
+  - tests/mockserver/internal/sdk/models/components/communicationchannel.go
+  - tests/mockserver/internal/sdk/models/components/company.go
+  - tests/mockserver/internal/sdk/models/components/conferencedata.go
+  - tests/mockserver/internal/sdk/models/components/connectortype.go
+  - tests/mockserver/internal/sdk/models/components/contentdefinition.go
+  - tests/mockserver/internal/sdk/models/components/contentinsightsresponse.go
+  - tests/mockserver/internal/sdk/models/components/contenttype.go
+  - tests/mockserver/internal/sdk/models/components/countinfo.go
+  - tests/mockserver/internal/sdk/models/components/createannouncementrequest.go
+  - tests/mockserver/internal/sdk/models/components/createanswerrequest.go
+  - tests/mockserver/internal/sdk/models/components/createauthtokenresponse.go
+  - tests/mockserver/internal/sdk/models/components/createcollectionrequest.go
+  - tests/mockserver/internal/sdk/models/components/createcollectionresponse.go
+  - tests/mockserver/internal/sdk/models/components/createdlpreportrequest.go
+  - tests/mockserver/internal/sdk/models/components/createdlpreportresponse.go
+  - tests/mockserver/internal/sdk/models/components/createshortcutrequest.go
+  - tests/mockserver/internal/sdk/models/components/createshortcutresponse.go
+  - tests/mockserver/internal/sdk/models/components/customdatasourceconfig.go
+  - tests/mockserver/internal/sdk/models/components/customdatavalue.go
+  - tests/mockserver/internal/sdk/models/components/customentity.go
+  - tests/mockserver/internal/sdk/models/components/customentitymetadata.go
+  - tests/mockserver/internal/sdk/models/components/customer.go
+  - tests/mockserver/internal/sdk/models/components/customermetadata.go
+  - tests/mockserver/internal/sdk/models/components/customfielddata.go
+  - tests/mockserver/internal/sdk/models/components/customfieldvalue.go
+  - tests/mockserver/internal/sdk/models/components/customfieldvaluehyperlink.go
+  - tests/mockserver/internal/sdk/models/components/customfieldvalueperson.go
+  - tests/mockserver/internal/sdk/models/components/customfieldvaluestr.go
+  - tests/mockserver/internal/sdk/models/components/customproperty.go
+  - tests/mockserver/internal/sdk/models/components/datasourcebulkmembershipdefinition.go
+  - tests/mockserver/internal/sdk/models/components/datasourcegroupdefinition.go
+  - tests/mockserver/internal/sdk/models/components/datasourcemembershipdefinition.go
+  - tests/mockserver/internal/sdk/models/components/datasourceobjecttypedocumentcountentry.go
+  - tests/mockserver/internal/sdk/models/components/datasourceprofile.go
+  - tests/mockserver/internal/sdk/models/components/datasourceuserdefinition.go
+  - tests/mockserver/internal/sdk/models/components/debugdatasourcestatusidentityresponsecomponent.go
+  - tests/mockserver/internal/sdk/models/components/debugdatasourcestatusresponse.go
+  - tests/mockserver/internal/sdk/models/components/debugdocumentrequest.go
+  - tests/mockserver/internal/sdk/models/components/debugdocumentresponse.go
+  - tests/mockserver/internal/sdk/models/components/debugdocumentsrequest.go
+  - tests/mockserver/internal/sdk/models/components/debugdocumentsresponse.go
+  - tests/mockserver/internal/sdk/models/components/debugdocumentsresponseitem.go
+  - tests/mockserver/internal/sdk/models/components/debuguserrequest.go
+  - tests/mockserver/internal/sdk/models/components/debuguserresponse.go
+  - tests/mockserver/internal/sdk/models/components/deleteannouncementrequest.go
+  - tests/mockserver/internal/sdk/models/components/deleteanswerrequest.go
+  - tests/mockserver/internal/sdk/models/components/deletechatfilesrequest.go
+  - tests/mockserver/internal/sdk/models/components/deletechatsrequest.go
+  - tests/mockserver/internal/sdk/models/components/deletecollectionitemrequest.go
+  - tests/mockserver/internal/sdk/models/components/deletecollectionitemresponse.go
+  - tests/mockserver/internal/sdk/models/components/deletecollectionrequest.go
+  - tests/mockserver/internal/sdk/models/components/deletedocumentrequest.go
+  - tests/mockserver/internal/sdk/models/components/deleteemployeerequest.go
+  - tests/mockserver/internal/sdk/models/components/deletegrouprequest.go
+  - tests/mockserver/internal/sdk/models/components/deletemembershiprequest.go
+  - tests/mockserver/internal/sdk/models/components/deleteshortcutrequest.go
+  - tests/mockserver/internal/sdk/models/components/deleteteamrequest.go
+  - tests/mockserver/internal/sdk/models/components/deleteuserrequest.go
+  - tests/mockserver/internal/sdk/models/components/disambiguation.go
+  - tests/mockserver/internal/sdk/models/components/displayablelistitemuiconfig.go
+  - tests/mockserver/internal/sdk/models/components/dlpconfig.go
+  - tests/mockserver/internal/sdk/models/components/dlpfrequency.go
+  - tests/mockserver/internal/sdk/models/components/dlpperson.go
+  - tests/mockserver/internal/sdk/models/components/dlppersonmetadata.go
+  - tests/mockserver/internal/sdk/models/components/dlpreport.go
+  - tests/mockserver/internal/sdk/models/components/dlpreportstatus.go
+  - tests/mockserver/internal/sdk/models/components/dlpsimpleresult.go
+  - tests/mockserver/internal/sdk/models/components/document.go
+  - tests/mockserver/internal/sdk/models/components/documentcontent.go
+  - tests/mockserver/internal/sdk/models/components/documentdefinition.go
+  - tests/mockserver/internal/sdk/models/components/documentinsight.go
+  - tests/mockserver/internal/sdk/models/components/documentinteractions.go
+  - tests/mockserver/internal/sdk/models/components/documentinteractionsdefinition.go
+  - tests/mockserver/internal/sdk/models/components/documentmetadata.go
+  - tests/mockserver/internal/sdk/models/components/documentorerrorunion.go
+  - tests/mockserver/internal/sdk/models/components/documentpermissionsdefinition.go
+  - tests/mockserver/internal/sdk/models/components/documentsection.go
+  - tests/mockserver/internal/sdk/models/components/documentspecunion.go
+  - tests/mockserver/internal/sdk/models/components/documentstatusresponse.go
+  - tests/mockserver/internal/sdk/models/components/documentvisibility.go
+  - tests/mockserver/internal/sdk/models/components/documentvisibilityoverride.go
+  - tests/mockserver/internal/sdk/models/components/documentvisibilityupdateresult.go
+  - tests/mockserver/internal/sdk/models/components/editanswerrequest.go
+  - tests/mockserver/internal/sdk/models/components/editcollectionitemrequest.go
+  - tests/mockserver/internal/sdk/models/components/editcollectionitemresponse.go
+  - tests/mockserver/internal/sdk/models/components/editcollectionrequest.go
+  - tests/mockserver/internal/sdk/models/components/editcollectionresponse.go
+  - tests/mockserver/internal/sdk/models/components/editpinrequest.go
+  - tests/mockserver/internal/sdk/models/components/employeeinfodefinition.go
+  - tests/mockserver/internal/sdk/models/components/employeeteaminfo.go
+  - tests/mockserver/internal/sdk/models/components/entitiessortorder.go
+  - tests/mockserver/internal/sdk/models/components/entityrelationship.go
+  - tests/mockserver/internal/sdk/models/components/entitytype.go
+  - tests/mockserver/internal/sdk/models/components/errormessage.go
+  - tests/mockserver/internal/sdk/models/components/eventclassification.go
+  - tests/mockserver/internal/sdk/models/components/eventclassificationname.go
+  - tests/mockserver/internal/sdk/models/components/eventstrategyname.go
+  - tests/mockserver/internal/sdk/models/components/externalsharingoptions.go
+  - tests/mockserver/internal/sdk/models/components/externalshortcut.go
+  - tests/mockserver/internal/sdk/models/components/extractedqna.go
+  - tests/mockserver/internal/sdk/models/components/facetbucket.go
+  - tests/mockserver/internal/sdk/models/components/facetbucketfilter.go
+  - tests/mockserver/internal/sdk/models/components/facetfilter.go
+  - tests/mockserver/internal/sdk/models/components/facetfilterset.go
+  - tests/mockserver/internal/sdk/models/components/facetfiltervalue.go
+  - tests/mockserver/internal/sdk/models/components/facetresult.go
+  - tests/mockserver/internal/sdk/models/components/facetvalue.go
+  - tests/mockserver/internal/sdk/models/components/favoriteinfo.go
+  - tests/mockserver/internal/sdk/models/components/feedback.go
+  - tests/mockserver/internal/sdk/models/components/feedbackchatexchange.go
+  - tests/mockserver/internal/sdk/models/components/feedentry.go
+  - tests/mockserver/internal/sdk/models/components/feedrequest.go
+  - tests/mockserver/internal/sdk/models/components/feedrequestoptions.go
+  - tests/mockserver/internal/sdk/models/components/feedresponse.go
+  - tests/mockserver/internal/sdk/models/components/feedresult.go
+  - tests/mockserver/internal/sdk/models/components/followupaction.go
+  - tests/mockserver/internal/sdk/models/components/generatedattachment.go
+  - tests/mockserver/internal/sdk/models/components/generatedattachmentcontent.go
+  - tests/mockserver/internal/sdk/models/components/generatedqna.go
+  - tests/mockserver/internal/sdk/models/components/getanswererror.go
+  - tests/mockserver/internal/sdk/models/components/getanswerrequest.go
+  - tests/mockserver/internal/sdk/models/components/getanswerresponse.go
+  - tests/mockserver/internal/sdk/models/components/getchatapplicationrequest.go
+  - tests/mockserver/internal/sdk/models/components/getchatapplicationresponse.go
+  - tests/mockserver/internal/sdk/models/components/getchatfilesrequest.go
+  - tests/mockserver/internal/sdk/models/components/getchatfilesresponse.go
+  - tests/mockserver/internal/sdk/models/components/getchatrequest.go
+  - tests/mockserver/internal/sdk/models/components/getchatresponse.go
+  - tests/mockserver/internal/sdk/models/components/getcollectionrequest.go
+  - tests/mockserver/internal/sdk/models/components/getcollectionresponse.go
+  - tests/mockserver/internal/sdk/models/components/getdatasourceconfigrequest.go
+  - tests/mockserver/internal/sdk/models/components/getdlpreportresponse.go
+  - tests/mockserver/internal/sdk/models/components/getdocpermissionsrequest.go
+  - tests/mockserver/internal/sdk/models/components/getdocpermissionsresponse.go
+  - tests/mockserver/internal/sdk/models/components/getdocumentcountrequest.go
+  - tests/mockserver/internal/sdk/models/components/getdocumentcountresponse.go
+  - tests/mockserver/internal/sdk/models/components/getdocumentsbyfacetsrequest.go
+  - tests/mockserver/internal/sdk/models/components/getdocumentsbyfacetsresponse.go
+  - tests/mockserver/internal/sdk/models/components/getdocumentsrequest.go
+  - tests/mockserver/internal/sdk/models/components/getdocumentsresponse.go
+  - tests/mockserver/internal/sdk/models/components/getdocumentstatusrequest.go
+  - tests/mockserver/internal/sdk/models/components/getdocumentstatusresponse.go
+  - tests/mockserver/internal/sdk/models/components/getdocumentvisibilityoverridesresponse.go
+  - tests/mockserver/internal/sdk/models/components/getpinrequest.go
+  - tests/mockserver/internal/sdk/models/components/getpinresponse.go
+  - tests/mockserver/internal/sdk/models/components/getshortcutrequestunion.go
+  - tests/mockserver/internal/sdk/models/components/getshortcutresponse.go
+  - tests/mockserver/internal/sdk/models/components/getusercountrequest.go
+  - tests/mockserver/internal/sdk/models/components/getusercountresponse.go
+  - tests/mockserver/internal/sdk/models/components/gleanassistinsightsresponse.go
+  - tests/mockserver/internal/sdk/models/components/gleandataerror.go
+  - tests/mockserver/internal/sdk/models/components/grantpermission.go
+  - tests/mockserver/internal/sdk/models/components/greenlistusersrequest.go
+  - tests/mockserver/internal/sdk/models/components/group.go
+  - tests/mockserver/internal/sdk/models/components/grouptype.go
+  - tests/mockserver/internal/sdk/models/components/hotword.go
+  - tests/mockserver/internal/sdk/models/components/hotwordproximity.go
+  - tests/mockserver/internal/sdk/models/components/httpmetadata.go
+  - tests/mockserver/internal/sdk/models/components/iconconfig.go
+  - tests/mockserver/internal/sdk/models/components/indexdocumentrequest.go
+  - tests/mockserver/internal/sdk/models/components/indexdocumentsrequest.go
+  - tests/mockserver/internal/sdk/models/components/indexemployeerequest.go
+  - tests/mockserver/internal/sdk/models/components/indexgrouprequest.go
+  - tests/mockserver/internal/sdk/models/components/indexingshortcut.go
+  - tests/mockserver/internal/sdk/models/components/indexmembershiprequest.go
+  - tests/mockserver/internal/sdk/models/components/indexstatus.go
+  - tests/mockserver/internal/sdk/models/components/indexteamrequest.go
+  - tests/mockserver/internal/sdk/models/components/indexuserrequest.go
+  - tests/mockserver/internal/sdk/models/components/inputoptions.go
+  - tests/mockserver/internal/sdk/models/components/insightsagentsrequestoptions.go
+  - tests/mockserver/internal/sdk/models/components/insightsaiapprequestoptions.go
+  - tests/mockserver/internal/sdk/models/components/insightsrequest.go
+  - tests/mockserver/internal/sdk/models/components/insightsresponse.go
+  - tests/mockserver/internal/sdk/models/components/invalidoperatorvalueerror.go
+  - tests/mockserver/internal/sdk/models/components/inviteinfo.go
+  - tests/mockserver/internal/sdk/models/components/labeledcountinfo.go
+  - tests/mockserver/internal/sdk/models/components/listanswersrequest.go
+  - tests/mockserver/internal/sdk/models/components/listanswersresponse.go
+  - tests/mockserver/internal/sdk/models/components/listchatsresponse.go
+  - tests/mockserver/internal/sdk/models/components/listcollectionsrequest.go
+  - tests/mockserver/internal/sdk/models/components/listcollectionsresponse.go
+  - tests/mockserver/internal/sdk/models/components/listdlpreportsresponse.go
+  - tests/mockserver/internal/sdk/models/components/listentitiesrequest.go
+  - tests/mockserver/internal/sdk/models/components/listentitiesresponse.go
+  - tests/mockserver/internal/sdk/models/components/listpinsresponse.go
+  - tests/mockserver/internal/sdk/models/components/listshortcutspaginatedrequest.go
+  - tests/mockserver/internal/sdk/models/components/listshortcutspaginatedresponse.go
+  - tests/mockserver/internal/sdk/models/components/manualfeedbackinfo.go
+  - tests/mockserver/internal/sdk/models/components/meeting.go
+  - tests/mockserver/internal/sdk/models/components/message.go
+  - tests/mockserver/internal/sdk/models/components/messagesrequest.go
+  - tests/mockserver/internal/sdk/models/components/messagesresponse.go
+  - tests/mockserver/internal/sdk/models/components/objectdefinition.go
+  - tests/mockserver/internal/sdk/models/components/objectpermissions.go
+  - tests/mockserver/internal/sdk/models/components/operatormetadata.go
+  - tests/mockserver/internal/sdk/models/components/operatorscope.go
+  - tests/mockserver/internal/sdk/models/components/peoplerequest.go
+  - tests/mockserver/internal/sdk/models/components/peopleresponse.go
+  - tests/mockserver/internal/sdk/models/components/period.go
+  - tests/mockserver/internal/sdk/models/components/permissions.go
+  - tests/mockserver/internal/sdk/models/components/permissionsgroupintersectiondefinition.go
+  - tests/mockserver/internal/sdk/models/components/person.go
+  - tests/mockserver/internal/sdk/models/components/persondistance.go
+  - tests/mockserver/internal/sdk/models/components/personmetadata.go
+  - tests/mockserver/internal/sdk/models/components/personobject.go
+  - tests/mockserver/internal/sdk/models/components/personteam.go
+  - tests/mockserver/internal/sdk/models/components/persontoteamrelationship.go
+  - tests/mockserver/internal/sdk/models/components/pindocument.go
+  - tests/mockserver/internal/sdk/models/components/pinrequest.go
+  - tests/mockserver/internal/sdk/models/components/possiblevalue.go
+  - tests/mockserver/internal/sdk/models/components/processalldocumentsrequest.go
+  - tests/mockserver/internal/sdk/models/components/processallmembershipsrequest.go
+  - tests/mockserver/internal/sdk/models/components/processinghistoryevent.go
+  - tests/mockserver/internal/sdk/models/components/prompttemplate.go
+  - tests/mockserver/internal/sdk/models/components/prompttemplateresult.go
+  - tests/mockserver/internal/sdk/models/components/propertydefinition.go
+  - tests/mockserver/internal/sdk/models/components/propertygroup.go
+  - tests/mockserver/internal/sdk/models/components/queryinsight.go
+  - tests/mockserver/internal/sdk/models/components/queryinsightsresponse.go
+  - tests/mockserver/internal/sdk/models/components/querysuggestion.go
+  - tests/mockserver/internal/sdk/models/components/querysuggestionlist.go
+  - tests/mockserver/internal/sdk/models/components/quicklink.go
+  - tests/mockserver/internal/sdk/models/components/reaction.go
+  - tests/mockserver/internal/sdk/models/components/readpermission.go
+  - tests/mockserver/internal/sdk/models/components/recommendationsrequest.go
+  - tests/mockserver/internal/sdk/models/components/recommendationsrequestoptions.go
+  - tests/mockserver/internal/sdk/models/components/referencerange.go
+  - tests/mockserver/internal/sdk/models/components/relateddocuments.go
+  - tests/mockserver/internal/sdk/models/components/relatedobject.go
+  - tests/mockserver/internal/sdk/models/components/relatedobjectedge.go
+  - tests/mockserver/internal/sdk/models/components/relatedquestion.go
+  - tests/mockserver/internal/sdk/models/components/reminder.go
+  - tests/mockserver/internal/sdk/models/components/reminderrequest.go
+  - tests/mockserver/internal/sdk/models/components/reportstatusresponse.go
+  - tests/mockserver/internal/sdk/models/components/restrictionfilters.go
+  - tests/mockserver/internal/sdk/models/components/resultsdescription.go
+  - tests/mockserver/internal/sdk/models/components/resultsresponse.go
+  - tests/mockserver/internal/sdk/models/components/resulttab.go
+  - tests/mockserver/internal/sdk/models/components/rotatetokenresponse.go
+  - tests/mockserver/internal/sdk/models/components/scopetype.go
+  - tests/mockserver/internal/sdk/models/components/searchagentsrequest.go
+  - tests/mockserver/internal/sdk/models/components/searchagentsresponse.go
+  - tests/mockserver/internal/sdk/models/components/searchproviderinfo.go
+  - tests/mockserver/internal/sdk/models/components/searchrequest.go
+  - tests/mockserver/internal/sdk/models/components/searchrequestinputdetails.go
+  - tests/mockserver/internal/sdk/models/components/searchrequestoptions.go
+  - tests/mockserver/internal/sdk/models/components/searchresponse.go
+  - tests/mockserver/internal/sdk/models/components/searchresponsemetadata.go
+  - tests/mockserver/internal/sdk/models/components/searchresult.go
+  - tests/mockserver/internal/sdk/models/components/searchresultprominenceenum.go
+  - tests/mockserver/internal/sdk/models/components/searchresultsnippet.go
+  - tests/mockserver/internal/sdk/models/components/searchwarning.go
+  - tests/mockserver/internal/sdk/models/components/security.go
+  - tests/mockserver/internal/sdk/models/components/seenfeedbackinfo.go
+  - tests/mockserver/internal/sdk/models/components/sensitivecontentoptions.go
+  - tests/mockserver/internal/sdk/models/components/sensitiveexpression.go
+  - tests/mockserver/internal/sdk/models/components/sensitiveinfotype.go
+  - tests/mockserver/internal/sdk/models/components/sessioninfo.go
+  - tests/mockserver/internal/sdk/models/components/share.go
+  - tests/mockserver/internal/sdk/models/components/sharingoptions.go
+  - tests/mockserver/internal/sdk/models/components/shortcut.go
+  - tests/mockserver/internal/sdk/models/components/shortcuterror.go
+  - tests/mockserver/internal/sdk/models/components/shortcutinsight.go
+  - tests/mockserver/internal/sdk/models/components/shortcutinsightsresponse.go
+  - tests/mockserver/internal/sdk/models/components/shortcutmutableproperties.go
+  - tests/mockserver/internal/sdk/models/components/shortcutspaginationmetadata.go
+  - tests/mockserver/internal/sdk/models/components/socialnetwork.go
+  - tests/mockserver/internal/sdk/models/components/socialnetworkdefinition.go
+  - tests/mockserver/internal/sdk/models/components/sortoptions.go
+  - tests/mockserver/internal/sdk/models/components/structuredlink.go
+  - tests/mockserver/internal/sdk/models/components/structuredlocation.go
+  - tests/mockserver/internal/sdk/models/components/structuredresult.go
+  - tests/mockserver/internal/sdk/models/components/structuredtext.go
+  - tests/mockserver/internal/sdk/models/components/structuredtextitem.go
+  - tests/mockserver/internal/sdk/models/components/structuredtextmutableproperties.go
+  - tests/mockserver/internal/sdk/models/components/summarizerequest.go
+  - tests/mockserver/internal/sdk/models/components/summarizeresponse.go
+  - tests/mockserver/internal/sdk/models/components/summary.go
+  - tests/mockserver/internal/sdk/models/components/team.go
+  - tests/mockserver/internal/sdk/models/components/teamemail.go
+  - tests/mockserver/internal/sdk/models/components/teaminfodefinition.go
+  - tests/mockserver/internal/sdk/models/components/teammember.go
+  - tests/mockserver/internal/sdk/models/components/textrange.go
+  - tests/mockserver/internal/sdk/models/components/thumbnail.go
+  - tests/mockserver/internal/sdk/models/components/timeinterval.go
+  - tests/mockserver/internal/sdk/models/components/timepoint.go
+  - tests/mockserver/internal/sdk/models/components/timerange.go
+  - tests/mockserver/internal/sdk/models/components/tool.go
+  - tests/mockserver/internal/sdk/models/components/toolinfo.go
+  - tests/mockserver/internal/sdk/models/components/toolmetadata.go
+  - tests/mockserver/internal/sdk/models/components/toolparameter.go
+  - tests/mockserver/internal/sdk/models/components/toolscallparameter.go
+  - tests/mockserver/internal/sdk/models/components/toolscallrequest.go
+  - tests/mockserver/internal/sdk/models/components/toolscallresponse.go
+  - tests/mockserver/internal/sdk/models/components/toolslistresponse.go
+  - tests/mockserver/internal/sdk/models/components/ugctype.go
+  - tests/mockserver/internal/sdk/models/components/unpin.go
+  - tests/mockserver/internal/sdk/models/components/updateannouncementrequest.go
+  - tests/mockserver/internal/sdk/models/components/updatedlpconfigrequest.go
+  - tests/mockserver/internal/sdk/models/components/updatedlpconfigresponse.go
+  - tests/mockserver/internal/sdk/models/components/updatedlpreportrequest.go
+  - tests/mockserver/internal/sdk/models/components/updatedlpreportresponse.go
+  - tests/mockserver/internal/sdk/models/components/updatedocumentvisibilityoverridesrequest.go
+  - tests/mockserver/internal/sdk/models/components/updatedocumentvisibilityoverridesresponse.go
+  - tests/mockserver/internal/sdk/models/components/updatepermissionsrequest.go
+  - tests/mockserver/internal/sdk/models/components/updateshortcutrequest.go
+  - tests/mockserver/internal/sdk/models/components/updateshortcutresponse.go
+  - tests/mockserver/internal/sdk/models/components/uploadchatfilesrequest.go
+  - tests/mockserver/internal/sdk/models/components/uploadchatfilesresponse.go
+  - tests/mockserver/internal/sdk/models/components/uploadshortcutsrequest.go
+  - tests/mockserver/internal/sdk/models/components/uploadstatusenum.go
+  - tests/mockserver/internal/sdk/models/components/user.go
+  - tests/mockserver/internal/sdk/models/components/useractivity.go
+  - tests/mockserver/internal/sdk/models/components/useractivityinsight.go
+  - tests/mockserver/internal/sdk/models/components/usergeneratedcontentid.go
+  - tests/mockserver/internal/sdk/models/components/userinsightsresponse.go
+  - tests/mockserver/internal/sdk/models/components/userreferencedefinition.go
+  - tests/mockserver/internal/sdk/models/components/userrole.go
+  - tests/mockserver/internal/sdk/models/components/userrolespecification.go
+  - tests/mockserver/internal/sdk/models/components/userstatusresponse.go
+  - tests/mockserver/internal/sdk/models/components/userviewinfo.go
+  - tests/mockserver/internal/sdk/models/components/verification.go
+  - tests/mockserver/internal/sdk/models/components/verificationfeed.go
+  - tests/mockserver/internal/sdk/models/components/verificationmetadata.go
+  - tests/mockserver/internal/sdk/models/components/verifyrequest.go
+  - tests/mockserver/internal/sdk/models/components/viewerinfo.go
+  - tests/mockserver/internal/sdk/models/components/workflow.go
+  - tests/mockserver/internal/sdk/models/components/workflowfeedbackinfo.go
+  - tests/mockserver/internal/sdk/models/components/workflowresult.go
+  - tests/mockserver/internal/sdk/models/components/writeactionparameter.go
+  - tests/mockserver/internal/sdk/models/components/writepermission.go
+  - tests/mockserver/internal/sdk/models/operations/activity.go
+  - tests/mockserver/internal/sdk/models/operations/addcollectionitems.go
+  - tests/mockserver/internal/sdk/models/operations/addverificationreminder.go
+  - tests/mockserver/internal/sdk/models/operations/adminsearch.go
+  - tests/mockserver/internal/sdk/models/operations/autocomplete.go
+  - tests/mockserver/internal/sdk/models/operations/chat.go
+  - tests/mockserver/internal/sdk/models/operations/chatstream.go
+  - tests/mockserver/internal/sdk/models/operations/createandstreamrun.go
+  - tests/mockserver/internal/sdk/models/operations/createandwaitrun.go
+  - tests/mockserver/internal/sdk/models/operations/createannouncement.go
+  - tests/mockserver/internal/sdk/models/operations/createanswer.go
+  - tests/mockserver/internal/sdk/models/operations/createauthtoken.go
+  - tests/mockserver/internal/sdk/models/operations/createcollection.go
+  - tests/mockserver/internal/sdk/models/operations/createpolicy.go
+  - tests/mockserver/internal/sdk/models/operations/createreport.go
+  - tests/mockserver/internal/sdk/models/operations/createshortcut.go
+  - tests/mockserver/internal/sdk/models/operations/deleteallchats.go
+  - tests/mockserver/internal/sdk/models/operations/deleteannouncement.go
+  - tests/mockserver/internal/sdk/models/operations/deleteanswer.go
+  - tests/mockserver/internal/sdk/models/operations/deletechatfiles.go
+  - tests/mockserver/internal/sdk/models/operations/deletechats.go
+  - tests/mockserver/internal/sdk/models/operations/deletecollection.go
+  - tests/mockserver/internal/sdk/models/operations/deletecollectionitem.go
+  - tests/mockserver/internal/sdk/models/operations/deleteshortcut.go
+  - tests/mockserver/internal/sdk/models/operations/downloadpolicycsv.go
+  - tests/mockserver/internal/sdk/models/operations/downloadreportcsv.go
+  - tests/mockserver/internal/sdk/models/operations/editanswer.go
+  - tests/mockserver/internal/sdk/models/operations/editcollection.go
+  - tests/mockserver/internal/sdk/models/operations/editcollectionitem.go
+  - tests/mockserver/internal/sdk/models/operations/editpin.go
+  - tests/mockserver/internal/sdk/models/operations/feed.go
+  - tests/mockserver/internal/sdk/models/operations/feedback.go
+  - tests/mockserver/internal/sdk/models/operations/getagent.go
+  - tests/mockserver/internal/sdk/models/operations/getagentschemas.go
+  - tests/mockserver/internal/sdk/models/operations/getanswer.go
+  - tests/mockserver/internal/sdk/models/operations/getchat.go
+  - tests/mockserver/internal/sdk/models/operations/getchatapplication.go
+  - tests/mockserver/internal/sdk/models/operations/getchatfiles.go
+  - tests/mockserver/internal/sdk/models/operations/getcollection.go
+  - tests/mockserver/internal/sdk/models/operations/getdocpermissions.go
+  - tests/mockserver/internal/sdk/models/operations/getdocuments.go
+  - tests/mockserver/internal/sdk/models/operations/getdocumentsbyfacets.go
+  - tests/mockserver/internal/sdk/models/operations/getdocvisibility.go
+  - tests/mockserver/internal/sdk/models/operations/getpin.go
+  - tests/mockserver/internal/sdk/models/operations/getpolicy.go
+  - tests/mockserver/internal/sdk/models/operations/getreportstatus.go
+  - tests/mockserver/internal/sdk/models/operations/getrestapiv1toolslist.go
+  - tests/mockserver/internal/sdk/models/operations/getshortcut.go
+  - tests/mockserver/internal/sdk/models/operations/insights.go
+  - tests/mockserver/internal/sdk/models/operations/listanswers.go
+  - tests/mockserver/internal/sdk/models/operations/listchats.go
+  - tests/mockserver/internal/sdk/models/operations/listcollections.go
+  - tests/mockserver/internal/sdk/models/operations/listentities.go
+  - tests/mockserver/internal/sdk/models/operations/listpins.go
+  - tests/mockserver/internal/sdk/models/operations/listpolicies.go
+  - tests/mockserver/internal/sdk/models/operations/listshortcuts.go
+  - tests/mockserver/internal/sdk/models/operations/listverifications.go
+  - tests/mockserver/internal/sdk/models/operations/messages.go
+  - tests/mockserver/internal/sdk/models/operations/people.go
+  - tests/mockserver/internal/sdk/models/operations/pin.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1adddatasource.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1betausers.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1bulkindexdocuments.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1bulkindexemployees.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1bulkindexgroups.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1bulkindexmemberships.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1bulkindexshortcuts.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1bulkindexteams.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1bulkindexusers.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1checkdocumentaccess.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1debugdatasourcedocument.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1debugdatasourcedocuments.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1debugdatasourcestatus.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1debugdatasourceuser.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1deletedocument.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1deleteemployee.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1deletegroup.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1deletemembership.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1deleteteam.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1deleteuser.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1getdatasourceconfig.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1getdocumentcount.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1getdocumentstatus.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1getusercount.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1indexdocument.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1indexdocuments.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1indexemployee.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1indexgroup.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1indexmembership.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1indexteam.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1indexuser.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1processalldocuments.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1processallemployeesandteams.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1processallmemberships.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1rotatetoken.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1updatepermissions.go
+  - tests/mockserver/internal/sdk/models/operations/postapiindexv1uploadshortcuts.go
+  - tests/mockserver/internal/sdk/models/operations/postrestapiv1toolscall.go
+  - tests/mockserver/internal/sdk/models/operations/recommendations.go
+  - tests/mockserver/internal/sdk/models/operations/search.go
+  - tests/mockserver/internal/sdk/models/operations/searchagents.go
+  - tests/mockserver/internal/sdk/models/operations/setdocvisibility.go
+  - tests/mockserver/internal/sdk/models/operations/summarize.go
+  - tests/mockserver/internal/sdk/models/operations/unpin.go
+  - tests/mockserver/internal/sdk/models/operations/updateannouncement.go
+  - tests/mockserver/internal/sdk/models/operations/updatepolicy.go
+  - tests/mockserver/internal/sdk/models/operations/updateshortcut.go
+  - tests/mockserver/internal/sdk/models/operations/uploadchatfiles.go
+  - tests/mockserver/internal/sdk/models/operations/verify.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/collectionerror.go
+  - tests/mockserver/internal/sdk/models/sdkerrors/gleandataerror.go
+  - tests/mockserver/internal/sdk/types/bigint.go
+  - tests/mockserver/internal/sdk/types/date.go
+  - tests/mockserver/internal/sdk/types/datetime.go
+  - tests/mockserver/internal/sdk/types/decimal.go
+  - tests/mockserver/internal/sdk/types/jsonl/jsonl.go
+  - tests/mockserver/internal/sdk/types/pointers.go
+  - tests/mockserver/internal/sdk/utils/json.go
+  - tests/mockserver/internal/sdk/utils/reflect.go
+  - tests/mockserver/internal/sdk/utils/sort.go
+  - tests/mockserver/internal/server/doc.go
+  - tests/mockserver/internal/server/generated_handlers.go
+  - tests/mockserver/internal/server/internal_handlers.go
+  - tests/mockserver/internal/server/server.go
+  - tests/mockserver/internal/server/server_option.go
+  - tests/mockserver/internal/server/templates/log/index.html.tmpl
+  - tests/mockserver/internal/server/templates/log/operation.html.tmpl
+  - tests/mockserver/internal/server/templates/log/style.css.tmpl
+  - tests/mockserver/internal/tracking/requesttracker.go
+  - tests/mockserver/main.go
 examples:
   activity:
     speakeasy-default-activity:
@@ -1824,17 +2585,17 @@ examples:
   createAndStreamRun:
     speakeasy-default-create-and-stream-run:
       requestBody:
-        application/json: {"agent_id": "<id>"}
+        application/json: {"agent_id": "<id>", "messages": [{"role": "USER"}]}
       responses:
         "200":
           text/event-stream: "<value>"
   createAndWaitRun:
     speakeasy-default-create-and-wait-run:
       requestBody:
-        application/json: {"agent_id": "<id>"}
+        application/json: {"agent_id": "<id>", "messages": [{"role": "USER"}]}
       responses:
         "200":
-          application/json: {}
+          application/json: {"run": {"agent_id": "<id>", "messages": [{"role": "USER"}]}, "messages": [{"role": "USER"}]}
   addcollectionitems:
     speakeasy-default-addcollectionitems:
       requestBody:
@@ -2009,7 +2770,7 @@ examples:
   listentities:
     speakeasy-default-listentities:
       requestBody:
-        application/json: {"filter": [{"fieldName": "type", "values": [{"value": "Spreadsheet", "relationType": "EQUALS"}, {"value": "Presentation", "relationType": "EQUALS"}]}], "entityType": "PEOPLE", "pageSize": 100}
+        application/json: {"filter": [{"fieldName": "type", "values": [{"value": "Spreadsheet", "relationType": "EQUALS"}, {"value": "Presentation", "relationType": "EQUALS"}]}], "entityType": "PEOPLE", "pageSize": 100, "requestType": "STANDARD"}
       responses:
         "200":
           application/json: {"results": [{"name": "George Clooney", "obfuscatedId": "abc123"}], "teamResults": [{"id": "<id>", "name": "<value>", "members": [{"person": {"name": "George Clooney", "obfuscatedId": "abc123", "relatedDocuments": [{"querySuggestion": {"query": "app:github type:pull author:mortimer", "searchProviderInfo": {"name": "Google", "searchLinkUrlTemplate": "https://www.google.com/search?q={query}&hl=en"}, "label": "Mortimer's PRs", "datasource": "github", "requestOptions": {"datasourceFilter": "JIRA", "datasourcesFilter": ["JIRA"], "queryOverridesFacetFilters": true, "facetFilters": [{"fieldName": "type", "values": [{"value": "Spreadsheet", "relationType": "EQUALS"}, {"value": "Presentation", "relationType": "EQUALS"}]}], "facetFilterSets": [{"filters": [{"fieldName": "type", "values": [{"value": "Spreadsheet", "relationType": "EQUALS"}, {"value": "Presentation", "relationType": "EQUALS"}]}]}], "facetBucketSize": 444698, "authTokens": [{"accessToken": "123abc", "datasource": "gmail", "scope": "email profile https://www.googleapis.com/auth/gmail.readonly", "tokenType": "Bearer", "authUser": "1"}]}, "ranges": [{"startIndex": 287671, "document": {"metadata": {"datasource": "datasource", "objectType": "Feature Request", "container": "container", "parentId": "JIRA_EN-1337", "mimeType": "mimeType", "documentId": "documentId", "createTime": "2000-01-23T04:56:07.000Z", "updateTime": "2000-01-23T04:56:07.000Z", "components": ["Backend", "Networking"], "status": "[\"Done\"]", "pins": [{"audienceFilters": [{"fieldName": "type", "values": [{"value": "Spreadsheet", "relationType": "EQUALS"}, {"value": "Presentation", "relationType": "EQUALS"}]}], "documentId": "<id>"}], "collections": [{"name": "<value>", "description": "recount underneath and but by oof trivial pfft finally", "addedRoles": [{"role": "ANSWER_MODERATOR"}], "removedRoles": [{"role": "VERIFIER"}, {"role": "VERIFIER"}], "audienceFilters": [{"fieldName": "type", "values": [{"value": "Spreadsheet", "relationType": "EQUALS"}, {"value": "Presentation", "relationType": "EQUALS"}]}], "id": 515069, "items": [{"collectionId": 765291, "shortcut": {"inputAlias": "<value>", "roles": [{"role": "EDITOR"}]}, "itemType": "TEXT"}, {"collectionId": 765291, "shortcut": {"inputAlias": "<value>", "roles": [{"role": "EDITOR"}]}, "itemType": "TEXT"}]}], "interactions": {"reacts": [{}, {}, {}], "shares": [{"numDaysAgo": 881619}, {"numDaysAgo": 881619}, {"numDaysAgo": 881619}]}, "verification": {"state": "DEPRECATED", "metadata": {"reminders": [{"assignee": {"name": "George Clooney", "obfuscatedId": "abc123"}, "remindAt": 106868}], "lastReminder": {"assignee": {"name": "George Clooney", "obfuscatedId": "abc123"}, "remindAt": 520851}}}, "shortcuts": [{"inputAlias": "<value>"}, {"inputAlias": "<value>"}, {"inputAlias": "<value>"}], "customData": {"someCustomField": {}}}}}, {"startIndex": 287671, "document": {"metadata": {"datasource": "datasource", "objectType": "Feature Request", "container": "container", "parentId": "JIRA_EN-1337", "mimeType": "mimeType", "documentId": "documentId", "createTime": "2000-01-23T04:56:07.000Z", "updateTime": "2000-01-23T04:56:07.000Z", "components": ["Backend", "Networking"], "status": "[\"Done\"]", "pins": [{"audienceFilters": [{"fieldName": "type", "values": [{"value": "Spreadsheet", "relationType": "EQUALS"}, {"value": "Presentation", "relationType": "EQUALS"}]}], "documentId": "<id>"}], "collections": [{"name": "<value>", "description": "recount underneath and but by oof trivial pfft finally", "addedRoles": [{"role": "ANSWER_MODERATOR"}], "removedRoles": [{"role": "VERIFIER"}, {"role": "VERIFIER"}], "audienceFilters": [{"fieldName": "type", "values": [{"value": "Spreadsheet", "relationType": "EQUALS"}, {"value": "Presentation", "relationType": "EQUALS"}]}], "id": 515069, "items": [{"collectionId": 765291, "shortcut": {"inputAlias": "<value>", "roles": [{"role": "EDITOR"}]}, "itemType": "TEXT"}, {"collectionId": 765291, "shortcut": {"inputAlias": "<value>", "roles": [{"role": "EDITOR"}]}, "itemType": "TEXT"}]}], "interactions": {"reacts": [{}, {}, {}], "shares": [{"numDaysAgo": 881619}, {"numDaysAgo": 881619}, {"numDaysAgo": 881619}]}, "verification": {"state": "DEPRECATED", "metadata": {"reminders": [{"assignee": {"name": "George Clooney", "obfuscatedId": "abc123"}, "remindAt": 106868}], "lastReminder": {"assignee": {"name": "George Clooney", "obfuscatedId": "abc123"}, "remindAt": 520851}}}, "shortcuts": [{"inputAlias": "<value>"}, {"inputAlias": "<value>"}, {"inputAlias": "<value>"}], "customData": {"someCustomField": {}}}}}], "inputDetails": {"hasCopyPaste": true}}, "results": [{"title": "title", "url": "https://example.com/foo/bar", "nativeAppUrl": "slack://foo/bar", "snippets": [{"snippet": "snippet", "mimeType": "mimeType"}]}]}, {"querySuggestion": {"query": "app:github type:pull author:mortimer", "searchProviderInfo": {"name": "Google", "searchLinkUrlTemplate": "https://www.google.com/search?q={query}&hl=en"}, "label": "Mortimer's PRs", "datasource": "github", "requestOptions": {"datasourceFilter": "JIRA", "datasourcesFilter": ["JIRA"], "queryOverridesFacetFilters": true, "facetFilters": [{"fieldName": "type", "values": [{"value": "Spreadsheet", "relationType": "EQUALS"}, {"value": "Presentation", "relationType": "EQUALS"}]}], "facetFilterSets": [{"filters": [{"fieldName": "type", "values": [{"value": "Spreadsheet", "relationType": "EQUALS"}, {"value": "Presentation", "relationType": "EQUALS"}]}]}], "facetBucketSize": 444698, "authTokens": [{"accessToken": "123abc", "datasource": "gmail", "scope": "email profile https://www.googleapis.com/auth/gmail.readonly", "tokenType": "Bearer", "authUser": "1"}]}, "ranges": [{"startIndex": 287671, "document": {"metadata": {"datasource": "datasource", "objectType": "Feature Request", "container": "container", "parentId": "JIRA_EN-1337", "mimeType": "mimeType", "documentId": "documentId", "createTime": "2000-01-23T04:56:07.000Z", "updateTime": "2000-01-23T04:56:07.000Z", "components": ["Backend", "Networking"], "status": "[\"Done\"]", "pins": [{"audienceFilters": [{"fieldName": "type", "values": [{"value": "Spreadsheet", "relationType": "EQUALS"}, {"value": "Presentation", "relationType": "EQUALS"}]}], "documentId": "<id>"}], "collections": [{"name": "<value>", "description": "recount underneath and but by oof trivial pfft finally", "addedRoles": [{"role": "ANSWER_MODERATOR"}], "removedRoles": [{"role": "VERIFIER"}, {"role": "VERIFIER"}], "audienceFilters": [{"fieldName": "type", "values": [{"value": "Spreadsheet", "relationType": "EQUALS"}, {"value": "Presentation", "relationType": "EQUALS"}]}], "id": 515069, "items": [{"collectionId": 765291, "shortcut": {"inputAlias": "<value>", "roles": [{"role": "EDITOR"}]}, "itemType": "TEXT"}, {"collectionId": 765291, "shortcut": {"inputAlias": "<value>", "roles": [{"role": "EDITOR"}]}, "itemType": "TEXT"}]}], "interactions": {"reacts": [{}, {}, {}], "shares": [{"numDaysAgo": 881619}, {"numDaysAgo": 881619}, {"numDaysAgo": 881619}]}, "verification": {"state": "DEPRECATED", "metadata": {"reminders": [{"assignee": {"name": "George Clooney", "obfuscatedId": "abc123"}, "remindAt": 106868}], "lastReminder": {"assignee": {"name": "George Clooney", "obfuscatedId": "abc123"}, "remindAt": 520851}}}, "shortcuts": [{"inputAlias": "<value>"}, {"inputAlias": "<value>"}, {"inputAlias": "<value>"}], "customData": {"someCustomField": {}}}}}, {"startIndex": 287671, "document": {"metadata": {"datasource": "datasource", "objectType": "Feature Request", "container": "container", "parentId": "JIRA_EN-1337", "mimeType": "mimeType", "documentId": "documentId", "createTime": "2000-01-23T04:56:07.000Z", "updateTime": "2000-01-23T04:56:07.000Z", "components": ["Backend", "Networking"], "status": "[\"Done\"]", "pins": [{"audienceFilters": [{"fieldName": "type", "values": [{"value": "Spreadsheet", "relationType": "EQUALS"}, {"value": "Presentation", "relationType": "EQUALS"}]}], "documentId": "<id>"}], "collections": [{"name": "<value>", "description": "recount underneath and but by oof trivial pfft finally", "addedRoles": [{"role": "ANSWER_MODERATOR"}], "removedRoles": [{"role": "VERIFIER"}, {"role": "VERIFIER"}], "audienceFilters": [{"fieldName": "type", "values": [{"value": "Spreadsheet", "relationType": "EQUALS"}, {"value": "Presentation", "relationType": "EQUALS"}]}], "id": 515069, "items": [{"collectionId": 765291, "shortcut": {"inputAlias": "<value>", "roles": [{"role": "EDITOR"}]}, "itemType": "TEXT"}, {"collectionId": 765291, "shortcut": {"inputAlias": "<value>", "roles": [{"role": "EDITOR"}]}, "itemType": "TEXT"}]}], "interactions": {"reacts": [{}, {}, {}], "shares": [{"numDaysAgo": 881619}, {"numDaysAgo": 881619}, {"numDaysAgo": 881619}]}, "verification": {"state": "DEPRECATED", "metadata": {"reminders": [{"assignee": {"name": "George Clooney", "obfuscatedId": "abc123"}, "remindAt": 106868}], "lastReminder": {"assignee": {"name": "George Clooney", "obfuscatedId": "abc123"}, "remindAt": 520851}}}, "shortcuts": [{"inputAlias": "<value>"}, {"inputAlias": "<value>"}, {"inputAlias": "<value>"}], "customData": {"someCustomField": {}}}}}], "inputDetails": {"hasCopyPaste": true}}, "results": [{"title": "title", "url": "https://example.com/foo/bar", "nativeAppUrl": "slack://foo/bar", "snippets": [{"snippet": "snippet", "mimeType": "mimeType"}]}]}], "metadata": {"type": "FULL_TIME", "title": "Actor", "department": "Movies", "email": "george@example.com", "location": "Hollywood, CA", "phone": "6505551234", "photoUrl": "https://example.com/george.jpg", "startDate": "2000-01-23", "datasourceProfile": [{"datasource": "github", "handle": "<value>"}, {"datasource": "github", "handle": "<value>"}], "querySuggestions": {"suggestions": [{"query": "app:github type:pull author:mortimer", "label": "Mortimer's PRs", "datasource": "github"}]}, "inviteInfo": {"invites": [{}, {}]}, "customFields": [{"label": "<value>", "values": [{}], "displayable": true}, {"label": "<value>", "values": [{}], "displayable": true}], "badges": [{"key": "deployment_name_new_hire", "displayName": "New hire", "iconConfig": {"color": "#343CED", "key": "person_icon", "iconType": "GLYPH", "name": "user"}}]}}, "relationship": "MEMBER"}], "datasourceProfiles": [{"datasource": "github", "handle": "<value>"}, {"datasource": "github", "handle": "<value>"}, {"datasource": "github", "handle": "<value>"}], "status": "PROCESSED", "canBeDeleted": true}], "customEntityResults": [{}, {}], "facetResults": [{"sourceName": "container_name", "operatorName": "SelectMultiple", "buckets": [{"count": 1, "datasource": "jira", "percentage": 5, "value": {"stringValue": "engineering", "integerValue": 5, "displayLabel": "engineering", "iconConfig": {"color": "#343CED", "key": "person_icon", "iconType": "GLYPH", "name": "user"}}}], "hasMoreBuckets": false, "groupName": "Service Cloud"}]}

@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ChatRequest {
@@ -100,13 +99,13 @@ public class ChatRequest {
         }
         ChatRequest other = (ChatRequest) o;
         return 
-            Objects.deepEquals(this.timezoneOffset, other.timezoneOffset) &&
-            Objects.deepEquals(this.chatRequest, other.chatRequest);
+            Utils.enhancedDeepEquals(this.timezoneOffset, other.timezoneOffset) &&
+            Utils.enhancedDeepEquals(this.chatRequest, other.chatRequest);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             timezoneOffset,
             chatRequest);
     }

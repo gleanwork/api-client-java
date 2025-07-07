@@ -20,7 +20,7 @@ public enum ActivityEnum {
     @JsonValue
     private final String value;
 
-    private ActivityEnum(String value) {
+    ActivityEnum(String value) {
         this.value = value;
     }
     

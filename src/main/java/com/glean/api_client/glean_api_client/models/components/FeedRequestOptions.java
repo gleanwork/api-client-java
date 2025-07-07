@@ -15,7 +15,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 public class FeedRequestOptions {
@@ -205,16 +204,16 @@ public class FeedRequestOptions {
         }
         FeedRequestOptions other = (FeedRequestOptions) o;
         return 
-            Objects.deepEquals(this.resultSize, other.resultSize) &&
-            Objects.deepEquals(this.timezoneOffset, other.timezoneOffset) &&
-            Objects.deepEquals(this.categoryToResultSize, other.categoryToResultSize) &&
-            Objects.deepEquals(this.datasourceFilter, other.datasourceFilter) &&
-            Objects.deepEquals(this.chatZeroStateSuggestionOptions, other.chatZeroStateSuggestionOptions);
+            Utils.enhancedDeepEquals(this.resultSize, other.resultSize) &&
+            Utils.enhancedDeepEquals(this.timezoneOffset, other.timezoneOffset) &&
+            Utils.enhancedDeepEquals(this.categoryToResultSize, other.categoryToResultSize) &&
+            Utils.enhancedDeepEquals(this.datasourceFilter, other.datasourceFilter) &&
+            Utils.enhancedDeepEquals(this.chatZeroStateSuggestionOptions, other.chatZeroStateSuggestionOptions);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             resultSize,
             timezoneOffset,
             categoryToResultSize,

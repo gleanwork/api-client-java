@@ -20,7 +20,7 @@ public enum CollectionPinnableTargets {
     @JsonValue
     private final String value;
 
-    private CollectionPinnableTargets(String value) {
+    CollectionPinnableTargets(String value) {
         this.value = value;
     }
     

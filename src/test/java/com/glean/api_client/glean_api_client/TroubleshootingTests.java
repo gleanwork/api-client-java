@@ -36,7 +36,7 @@ public class TroubleshootingTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         CheckDocumentAccessRequest req = CheckDocumentAccessRequest.builder()
@@ -63,7 +63,7 @@ public class TroubleshootingTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         GetDocumentStatusRequest req = GetDocumentStatusRequest.builder()
@@ -89,7 +89,7 @@ public class TroubleshootingTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         GetDocumentCountRequest req = GetDocumentCountRequest.builder()
@@ -113,7 +113,7 @@ public class TroubleshootingTests {
         Glean sdk = Glean.builder()
                 .serverURL(Utils.environmentVariable("TEST_SERVER_URL", "http://localhost:18080"))
                 .client(testHttpClient)
-                .apiToken("<YOUR_BEARER_TOKEN_HERE>")
+                .apiToken("x-env: GLEAN_API_TOKEN")
             .build();
 
         GetUserCountRequest req = GetUserCountRequest.builder()

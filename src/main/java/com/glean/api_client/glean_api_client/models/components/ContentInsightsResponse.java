@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ContentInsightsResponse {
@@ -224,16 +223,16 @@ public class ContentInsightsResponse {
         }
         ContentInsightsResponse other = (ContentInsightsResponse) o;
         return 
-            Objects.deepEquals(this.lastLogTimestamp, other.lastLogTimestamp) &&
-            Objects.deepEquals(this.documentInsights, other.documentInsights) &&
-            Objects.deepEquals(this.departments, other.departments) &&
-            Objects.deepEquals(this.minDepartmentSizeThreshold, other.minDepartmentSizeThreshold) &&
-            Objects.deepEquals(this.minVisitorThreshold, other.minVisitorThreshold);
+            Utils.enhancedDeepEquals(this.lastLogTimestamp, other.lastLogTimestamp) &&
+            Utils.enhancedDeepEquals(this.documentInsights, other.documentInsights) &&
+            Utils.enhancedDeepEquals(this.departments, other.departments) &&
+            Utils.enhancedDeepEquals(this.minDepartmentSizeThreshold, other.minDepartmentSizeThreshold) &&
+            Utils.enhancedDeepEquals(this.minVisitorThreshold, other.minVisitorThreshold);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             lastLogTimestamp,
             documentInsights,
             departments,

@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class AutocompleteRequest {
@@ -310,19 +309,19 @@ public class AutocompleteRequest {
         }
         AutocompleteRequest other = (AutocompleteRequest) o;
         return 
-            Objects.deepEquals(this.trackingToken, other.trackingToken) &&
-            Objects.deepEquals(this.sessionInfo, other.sessionInfo) &&
-            Objects.deepEquals(this.query, other.query) &&
-            Objects.deepEquals(this.datasourcesFilter, other.datasourcesFilter) &&
-            Objects.deepEquals(this.datasource, other.datasource) &&
-            Objects.deepEquals(this.resultTypes, other.resultTypes) &&
-            Objects.deepEquals(this.resultSize, other.resultSize) &&
-            Objects.deepEquals(this.authTokens, other.authTokens);
+            Utils.enhancedDeepEquals(this.trackingToken, other.trackingToken) &&
+            Utils.enhancedDeepEquals(this.sessionInfo, other.sessionInfo) &&
+            Utils.enhancedDeepEquals(this.query, other.query) &&
+            Utils.enhancedDeepEquals(this.datasourcesFilter, other.datasourcesFilter) &&
+            Utils.enhancedDeepEquals(this.datasource, other.datasource) &&
+            Utils.enhancedDeepEquals(this.resultTypes, other.resultTypes) &&
+            Utils.enhancedDeepEquals(this.resultSize, other.resultSize) &&
+            Utils.enhancedDeepEquals(this.authTokens, other.authTokens);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             trackingToken,
             sessionInfo,
             query,

@@ -16,7 +16,7 @@ public enum ConferenceDataSource {
     @JsonValue
     private final String value;
 
-    private ConferenceDataSource(String value) {
+    ConferenceDataSource(String value) {
         this.value = value;
     }
     

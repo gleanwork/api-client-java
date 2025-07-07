@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class SearchRequestOptions {
@@ -619,28 +618,28 @@ public class SearchRequestOptions {
         }
         SearchRequestOptions other = (SearchRequestOptions) o;
         return 
-            Objects.deepEquals(this.datasourceFilter, other.datasourceFilter) &&
-            Objects.deepEquals(this.datasourcesFilter, other.datasourcesFilter) &&
-            Objects.deepEquals(this.queryOverridesFacetFilters, other.queryOverridesFacetFilters) &&
-            Objects.deepEquals(this.facetFilters, other.facetFilters) &&
-            Objects.deepEquals(this.facetFilterSets, other.facetFilterSets) &&
-            Objects.deepEquals(this.facetBucketFilter, other.facetBucketFilter) &&
-            Objects.deepEquals(this.facetBucketSize, other.facetBucketSize) &&
-            Objects.deepEquals(this.defaultFacets, other.defaultFacets) &&
-            Objects.deepEquals(this.authTokens, other.authTokens) &&
-            Objects.deepEquals(this.fetchAllDatasourceCounts, other.fetchAllDatasourceCounts) &&
-            Objects.deepEquals(this.responseHints, other.responseHints) &&
-            Objects.deepEquals(this.timezoneOffset, other.timezoneOffset) &&
-            Objects.deepEquals(this.disableSpellcheck, other.disableSpellcheck) &&
-            Objects.deepEquals(this.disableQueryAutocorrect, other.disableQueryAutocorrect) &&
-            Objects.deepEquals(this.returnLlmContentOverSnippets, other.returnLlmContentOverSnippets) &&
-            Objects.deepEquals(this.inclusions, other.inclusions) &&
-            Objects.deepEquals(this.exclusions, other.exclusions);
+            Utils.enhancedDeepEquals(this.datasourceFilter, other.datasourceFilter) &&
+            Utils.enhancedDeepEquals(this.datasourcesFilter, other.datasourcesFilter) &&
+            Utils.enhancedDeepEquals(this.queryOverridesFacetFilters, other.queryOverridesFacetFilters) &&
+            Utils.enhancedDeepEquals(this.facetFilters, other.facetFilters) &&
+            Utils.enhancedDeepEquals(this.facetFilterSets, other.facetFilterSets) &&
+            Utils.enhancedDeepEquals(this.facetBucketFilter, other.facetBucketFilter) &&
+            Utils.enhancedDeepEquals(this.facetBucketSize, other.facetBucketSize) &&
+            Utils.enhancedDeepEquals(this.defaultFacets, other.defaultFacets) &&
+            Utils.enhancedDeepEquals(this.authTokens, other.authTokens) &&
+            Utils.enhancedDeepEquals(this.fetchAllDatasourceCounts, other.fetchAllDatasourceCounts) &&
+            Utils.enhancedDeepEquals(this.responseHints, other.responseHints) &&
+            Utils.enhancedDeepEquals(this.timezoneOffset, other.timezoneOffset) &&
+            Utils.enhancedDeepEquals(this.disableSpellcheck, other.disableSpellcheck) &&
+            Utils.enhancedDeepEquals(this.disableQueryAutocorrect, other.disableQueryAutocorrect) &&
+            Utils.enhancedDeepEquals(this.returnLlmContentOverSnippets, other.returnLlmContentOverSnippets) &&
+            Utils.enhancedDeepEquals(this.inclusions, other.inclusions) &&
+            Utils.enhancedDeepEquals(this.exclusions, other.exclusions);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             datasourceFilter,
             datasourcesFilter,
             queryOverridesFacetFilters,

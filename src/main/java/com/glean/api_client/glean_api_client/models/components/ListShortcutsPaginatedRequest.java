@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ListShortcutsPaginatedRequest {
@@ -231,17 +230,17 @@ public class ListShortcutsPaginatedRequest {
         }
         ListShortcutsPaginatedRequest other = (ListShortcutsPaginatedRequest) o;
         return 
-            Objects.deepEquals(this.includeFields, other.includeFields) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.filters, other.filters) &&
-            Objects.deepEquals(this.sort, other.sort) &&
-            Objects.deepEquals(this.query, other.query);
+            Utils.enhancedDeepEquals(this.includeFields, other.includeFields) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.filters, other.filters) &&
+            Utils.enhancedDeepEquals(this.sort, other.sort) &&
+            Utils.enhancedDeepEquals(this.query, other.query);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             includeFields,
             pageSize,
             cursor,

@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.GetDocPermissionsRequest;
+import com.glean.api_client.glean_api_client.operations.GetdocpermissionsOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class GetdocpermissionsRequestBuilder {
 
     private GetDocPermissionsRequest request;
-    private final SDKMethodInterfaces.MethodCallGetdocpermissions sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public GetdocpermissionsRequestBuilder(SDKMethodInterfaces.MethodCallGetdocpermissions sdk) {
-        this.sdk = sdk;
+    public GetdocpermissionsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public GetdocpermissionsRequestBuilder request(GetDocPermissionsRequest request) {
@@ -23,8 +27,10 @@ public class GetdocpermissionsRequestBuilder {
     }
 
     public GetdocpermissionsResponse call() throws Exception {
+        
+        RequestOperation<GetDocPermissionsRequest, GetdocpermissionsResponse> operation
+              = new GetdocpermissionsOperation( sdkConfiguration);
 
-        return sdk.retrievePermissions(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

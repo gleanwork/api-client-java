@@ -13,7 +13,6 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CreateDlpReportRequest {
@@ -187,15 +186,15 @@ public class CreateDlpReportRequest {
         }
         CreateDlpReportRequest other = (CreateDlpReportRequest) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.config, other.config) &&
-            Objects.deepEquals(this.frequency, other.frequency) &&
-            Objects.deepEquals(this.autoHideDocs, other.autoHideDocs);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.config, other.config) &&
+            Utils.enhancedDeepEquals(this.frequency, other.frequency) &&
+            Utils.enhancedDeepEquals(this.autoHideDocs, other.autoHideDocs);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name,
             config,
             frequency,

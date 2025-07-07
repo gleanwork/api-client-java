@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class Reaction {
@@ -164,15 +163,15 @@ public class Reaction {
         }
         Reaction other = (Reaction) o;
         return 
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.count, other.count) &&
-            Objects.deepEquals(this.reactors, other.reactors) &&
-            Objects.deepEquals(this.reactedByViewer, other.reactedByViewer);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.count, other.count) &&
+            Utils.enhancedDeepEquals(this.reactors, other.reactors) &&
+            Utils.enhancedDeepEquals(this.reactedByViewer, other.reactedByViewer);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             type,
             count,
             reactors,

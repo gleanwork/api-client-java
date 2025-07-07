@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CollectionItemDescriptor {
@@ -281,18 +280,18 @@ public class CollectionItemDescriptor {
         }
         CollectionItemDescriptor other = (CollectionItemDescriptor) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.icon, other.icon) &&
-            Objects.deepEquals(this.url, other.url) &&
-            Objects.deepEquals(this.documentId, other.documentId) &&
-            Objects.deepEquals(this.newNextItemId, other.newNextItemId) &&
-            Objects.deepEquals(this.itemType, other.itemType);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.icon, other.icon) &&
+            Utils.enhancedDeepEquals(this.url, other.url) &&
+            Utils.enhancedDeepEquals(this.documentId, other.documentId) &&
+            Utils.enhancedDeepEquals(this.newNextItemId, other.newNextItemId) &&
+            Utils.enhancedDeepEquals(this.itemType, other.itemType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name,
             description,
             icon,

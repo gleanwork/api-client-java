@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class SearchResponseMetadata {
@@ -443,23 +442,23 @@ public class SearchResponseMetadata {
         }
         SearchResponseMetadata other = (SearchResponseMetadata) o;
         return 
-            Objects.deepEquals(this.rewrittenQuery, other.rewrittenQuery) &&
-            Objects.deepEquals(this.searchedQuery, other.searchedQuery) &&
-            Objects.deepEquals(this.searchedQueryRanges, other.searchedQueryRanges) &&
-            Objects.deepEquals(this.originalQuery, other.originalQuery) &&
-            Objects.deepEquals(this.querySuggestion, other.querySuggestion) &&
-            Objects.deepEquals(this.additionalQuerySuggestions, other.additionalQuerySuggestions) &&
-            Objects.deepEquals(this.negatedTerms, other.negatedTerms) &&
-            Objects.deepEquals(this.modifiedQueryWasUsed, other.modifiedQueryWasUsed) &&
-            Objects.deepEquals(this.originalQueryHadNoResults, other.originalQueryHadNoResults) &&
-            Objects.deepEquals(this.searchWarning, other.searchWarning) &&
-            Objects.deepEquals(this.triggeredExpertDetection, other.triggeredExpertDetection) &&
-            Objects.deepEquals(this.isNoQuotesSuggestion, other.isNoQuotesSuggestion);
+            Utils.enhancedDeepEquals(this.rewrittenQuery, other.rewrittenQuery) &&
+            Utils.enhancedDeepEquals(this.searchedQuery, other.searchedQuery) &&
+            Utils.enhancedDeepEquals(this.searchedQueryRanges, other.searchedQueryRanges) &&
+            Utils.enhancedDeepEquals(this.originalQuery, other.originalQuery) &&
+            Utils.enhancedDeepEquals(this.querySuggestion, other.querySuggestion) &&
+            Utils.enhancedDeepEquals(this.additionalQuerySuggestions, other.additionalQuerySuggestions) &&
+            Utils.enhancedDeepEquals(this.negatedTerms, other.negatedTerms) &&
+            Utils.enhancedDeepEquals(this.modifiedQueryWasUsed, other.modifiedQueryWasUsed) &&
+            Utils.enhancedDeepEquals(this.originalQueryHadNoResults, other.originalQueryHadNoResults) &&
+            Utils.enhancedDeepEquals(this.searchWarning, other.searchWarning) &&
+            Utils.enhancedDeepEquals(this.triggeredExpertDetection, other.triggeredExpertDetection) &&
+            Utils.enhancedDeepEquals(this.isNoQuotesSuggestion, other.isNoQuotesSuggestion);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             rewrittenQuery,
             searchedQuery,
             searchedQueryRanges,

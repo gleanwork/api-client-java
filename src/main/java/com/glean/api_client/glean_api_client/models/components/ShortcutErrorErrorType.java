@@ -17,7 +17,7 @@ public enum ShortcutErrorErrorType {
     @JsonValue
     private final String value;
 
-    private ShortcutErrorErrorType(String value) {
+    ShortcutErrorErrorType(String value) {
         this.value = value;
     }
     

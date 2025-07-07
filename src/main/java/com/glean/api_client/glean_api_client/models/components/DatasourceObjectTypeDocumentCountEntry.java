@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class DatasourceObjectTypeDocumentCountEntry {
@@ -112,13 +111,13 @@ public class DatasourceObjectTypeDocumentCountEntry {
         }
         DatasourceObjectTypeDocumentCountEntry other = (DatasourceObjectTypeDocumentCountEntry) o;
         return 
-            Objects.deepEquals(this.objectType, other.objectType) &&
-            Objects.deepEquals(this.count, other.count);
+            Utils.enhancedDeepEquals(this.objectType, other.objectType) &&
+            Utils.enhancedDeepEquals(this.count, other.count);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             objectType,
             count);
     }

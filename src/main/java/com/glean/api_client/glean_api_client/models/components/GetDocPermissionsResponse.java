@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class GetDocPermissionsResponse {
@@ -78,12 +77,12 @@ public class GetDocPermissionsResponse {
         }
         GetDocPermissionsResponse other = (GetDocPermissionsResponse) o;
         return 
-            Objects.deepEquals(this.allowedUserEmails, other.allowedUserEmails);
+            Utils.enhancedDeepEquals(this.allowedUserEmails, other.allowedUserEmails);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             allowedUserEmails);
     }
     

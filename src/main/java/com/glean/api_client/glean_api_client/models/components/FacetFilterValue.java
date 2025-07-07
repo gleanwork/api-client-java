@@ -14,7 +14,6 @@ import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class FacetFilterValue {
@@ -139,14 +138,14 @@ public class FacetFilterValue {
         }
         FacetFilterValue other = (FacetFilterValue) o;
         return 
-            Objects.deepEquals(this.value, other.value) &&
-            Objects.deepEquals(this.relationType, other.relationType) &&
-            Objects.deepEquals(this.isNegated, other.isNegated);
+            Utils.enhancedDeepEquals(this.value, other.value) &&
+            Utils.enhancedDeepEquals(this.relationType, other.relationType) &&
+            Utils.enhancedDeepEquals(this.isNegated, other.isNegated);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             value,
             relationType,
             isNegated);

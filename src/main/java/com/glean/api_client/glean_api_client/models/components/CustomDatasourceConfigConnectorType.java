@@ -26,7 +26,7 @@ public enum CustomDatasourceConfigConnectorType {
     @JsonValue
     private final String value;
 
-    private CustomDatasourceConfigConnectorType(String value) {
+    CustomDatasourceConfigConnectorType(String value) {
         this.value = value;
     }
     

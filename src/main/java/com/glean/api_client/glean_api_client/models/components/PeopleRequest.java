@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class PeopleRequest {
@@ -262,17 +261,17 @@ public class PeopleRequest {
         }
         PeopleRequest other = (PeopleRequest) o;
         return 
-            Objects.deepEquals(this.timezoneOffset, other.timezoneOffset) &&
-            Objects.deepEquals(this.obfuscatedIds, other.obfuscatedIds) &&
-            Objects.deepEquals(this.emailIds, other.emailIds) &&
-            Objects.deepEquals(this.includeFields, other.includeFields) &&
-            Objects.deepEquals(this.includeTypes, other.includeTypes) &&
-            Objects.deepEquals(this.source, other.source);
+            Utils.enhancedDeepEquals(this.timezoneOffset, other.timezoneOffset) &&
+            Utils.enhancedDeepEquals(this.obfuscatedIds, other.obfuscatedIds) &&
+            Utils.enhancedDeepEquals(this.emailIds, other.emailIds) &&
+            Utils.enhancedDeepEquals(this.includeFields, other.includeFields) &&
+            Utils.enhancedDeepEquals(this.includeTypes, other.includeTypes) &&
+            Utils.enhancedDeepEquals(this.source, other.source);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             timezoneOffset,
             obfuscatedIds,
             emailIds,

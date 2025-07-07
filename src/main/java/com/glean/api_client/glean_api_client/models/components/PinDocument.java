@@ -14,7 +14,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class PinDocument {
@@ -277,19 +276,19 @@ public class PinDocument {
         }
         PinDocument other = (PinDocument) o;
         return 
-            Objects.deepEquals(this.queries, other.queries) &&
-            Objects.deepEquals(this.audienceFilters, other.audienceFilters) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.documentId, other.documentId) &&
-            Objects.deepEquals(this.attribution, other.attribution) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createTime, other.createTime) &&
-            Objects.deepEquals(this.updateTime, other.updateTime);
+            Utils.enhancedDeepEquals(this.queries, other.queries) &&
+            Utils.enhancedDeepEquals(this.audienceFilters, other.audienceFilters) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.documentId, other.documentId) &&
+            Utils.enhancedDeepEquals(this.attribution, other.attribution) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createTime, other.createTime) &&
+            Utils.enhancedDeepEquals(this.updateTime, other.updateTime);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             queries,
             audienceFilters,
             id,

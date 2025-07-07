@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.DeleteCollectionRequest;
+import com.glean.api_client.glean_api_client.operations.DeletecollectionOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class DeletecollectionRequestBuilder {
 
     private DeleteCollectionRequest request;
-    private final SDKMethodInterfaces.MethodCallDeletecollection sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DeletecollectionRequestBuilder(SDKMethodInterfaces.MethodCallDeletecollection sdk) {
-        this.sdk = sdk;
+    public DeletecollectionRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public DeletecollectionRequestBuilder request(DeleteCollectionRequest request) {
@@ -23,8 +27,10 @@ public class DeletecollectionRequestBuilder {
     }
 
     public DeletecollectionResponse call() throws Exception {
+        
+        RequestOperation<DeleteCollectionRequest, DeletecollectionResponse> operation
+              = new DeletecollectionOperation( sdkConfiguration);
 
-        return sdk.delete(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

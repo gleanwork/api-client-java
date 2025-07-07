@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -205,16 +204,16 @@ public class ChannelInviteInfo {
         }
         ChannelInviteInfo other = (ChannelInviteInfo) o;
         return 
-            Objects.deepEquals(this.channel, other.channel) &&
-            Objects.deepEquals(this.isAutoInvite, other.isAutoInvite) &&
-            Objects.deepEquals(this.inviter, other.inviter) &&
-            Objects.deepEquals(this.inviteTime, other.inviteTime) &&
-            Objects.deepEquals(this.reminderTime, other.reminderTime);
+            Utils.enhancedDeepEquals(this.channel, other.channel) &&
+            Utils.enhancedDeepEquals(this.isAutoInvite, other.isAutoInvite) &&
+            Utils.enhancedDeepEquals(this.inviter, other.inviter) &&
+            Utils.enhancedDeepEquals(this.inviteTime, other.inviteTime) &&
+            Utils.enhancedDeepEquals(this.reminderTime, other.reminderTime);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             channel,
             isAutoInvite,
             inviter,

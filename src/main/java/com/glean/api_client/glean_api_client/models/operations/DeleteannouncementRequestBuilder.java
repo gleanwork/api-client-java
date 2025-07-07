@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.DeleteAnnouncementRequest;
+import com.glean.api_client.glean_api_client.operations.DeleteannouncementOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class DeleteannouncementRequestBuilder {
 
     private DeleteAnnouncementRequest request;
-    private final SDKMethodInterfaces.MethodCallDeleteannouncement sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public DeleteannouncementRequestBuilder(SDKMethodInterfaces.MethodCallDeleteannouncement sdk) {
-        this.sdk = sdk;
+    public DeleteannouncementRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public DeleteannouncementRequestBuilder request(DeleteAnnouncementRequest request) {
@@ -23,8 +27,10 @@ public class DeleteannouncementRequestBuilder {
     }
 
     public DeleteannouncementResponse call() throws Exception {
+        
+        RequestOperation<DeleteAnnouncementRequest, DeleteannouncementResponse> operation
+              = new DeleteannouncementOperation( sdkConfiguration);
 
-        return sdk.delete(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

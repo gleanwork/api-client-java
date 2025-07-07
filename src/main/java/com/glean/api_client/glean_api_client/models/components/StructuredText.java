@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class StructuredText {
@@ -96,13 +95,13 @@ public class StructuredText {
         }
         StructuredText other = (StructuredText) o;
         return 
-            Objects.deepEquals(this.text, other.text) &&
-            Objects.deepEquals(this.structuredList, other.structuredList);
+            Utils.enhancedDeepEquals(this.text, other.text) &&
+            Utils.enhancedDeepEquals(this.structuredList, other.structuredList);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             text,
             structuredList);
     }

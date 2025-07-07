@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class AgentRunWaitResponse {
@@ -103,13 +102,13 @@ public class AgentRunWaitResponse {
         }
         AgentRunWaitResponse other = (AgentRunWaitResponse) o;
         return 
-            Objects.deepEquals(this.run, other.run) &&
-            Objects.deepEquals(this.messages, other.messages);
+            Utils.enhancedDeepEquals(this.run, other.run) &&
+            Utils.enhancedDeepEquals(this.messages, other.messages);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             run,
             messages);
     }

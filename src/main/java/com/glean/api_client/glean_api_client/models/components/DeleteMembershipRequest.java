@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -135,14 +134,14 @@ public class DeleteMembershipRequest {
         }
         DeleteMembershipRequest other = (DeleteMembershipRequest) o;
         return 
-            Objects.deepEquals(this.version, other.version) &&
-            Objects.deepEquals(this.datasource, other.datasource) &&
-            Objects.deepEquals(this.membership, other.membership);
+            Utils.enhancedDeepEquals(this.version, other.version) &&
+            Utils.enhancedDeepEquals(this.datasource, other.datasource) &&
+            Utils.enhancedDeepEquals(this.membership, other.membership);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             version,
             datasource,
             membership);

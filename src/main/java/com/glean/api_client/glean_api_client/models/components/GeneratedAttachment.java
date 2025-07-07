@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -220,17 +219,17 @@ public class GeneratedAttachment {
         }
         GeneratedAttachment other = (GeneratedAttachment) o;
         return 
-            Objects.deepEquals(this.strategyName, other.strategyName) &&
-            Objects.deepEquals(this.documents, other.documents) &&
-            Objects.deepEquals(this.person, other.person) &&
-            Objects.deepEquals(this.customer, other.customer) &&
-            Objects.deepEquals(this.externalLinks, other.externalLinks) &&
-            Objects.deepEquals(this.content, other.content);
+            Utils.enhancedDeepEquals(this.strategyName, other.strategyName) &&
+            Utils.enhancedDeepEquals(this.documents, other.documents) &&
+            Utils.enhancedDeepEquals(this.person, other.person) &&
+            Utils.enhancedDeepEquals(this.customer, other.customer) &&
+            Utils.enhancedDeepEquals(this.externalLinks, other.externalLinks) &&
+            Utils.enhancedDeepEquals(this.content, other.content);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             strategyName,
             documents,
             person,

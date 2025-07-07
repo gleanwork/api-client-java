@@ -17,7 +17,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -1023,38 +1022,38 @@ public class EmployeeInfoDefinition {
         }
         EmployeeInfoDefinition other = (EmployeeInfoDefinition) o;
         return 
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.preferredName, other.preferredName) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.phoneNumber, other.phoneNumber) &&
-            Objects.deepEquals(this.location, other.location) &&
-            Objects.deepEquals(this.structuredLocation, other.structuredLocation) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.photoUrl, other.photoUrl) &&
-            Objects.deepEquals(this.businessUnit, other.businessUnit) &&
-            Objects.deepEquals(this.department, other.department) &&
-            Objects.deepEquals(this.datasourceProfiles, other.datasourceProfiles) &&
-            Objects.deepEquals(this.teams, other.teams) &&
-            Objects.deepEquals(this.startDate, other.startDate) &&
-            Objects.deepEquals(this.endDate, other.endDate) &&
-            Objects.deepEquals(this.bio, other.bio) &&
-            Objects.deepEquals(this.pronoun, other.pronoun) &&
-            Objects.deepEquals(this.alsoKnownAs, other.alsoKnownAs) &&
-            Objects.deepEquals(this.profileUrl, other.profileUrl) &&
-            Objects.deepEquals(this.socialNetworks, other.socialNetworks) &&
-            Objects.deepEquals(this.managerEmail, other.managerEmail) &&
-            Objects.deepEquals(this.managerId, other.managerId) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.relationships, other.relationships) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.additionalFields, other.additionalFields);
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.preferredName, other.preferredName) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
+            Utils.enhancedDeepEquals(this.location, other.location) &&
+            Utils.enhancedDeepEquals(this.structuredLocation, other.structuredLocation) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.photoUrl, other.photoUrl) &&
+            Utils.enhancedDeepEquals(this.businessUnit, other.businessUnit) &&
+            Utils.enhancedDeepEquals(this.department, other.department) &&
+            Utils.enhancedDeepEquals(this.datasourceProfiles, other.datasourceProfiles) &&
+            Utils.enhancedDeepEquals(this.teams, other.teams) &&
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
+            Utils.enhancedDeepEquals(this.bio, other.bio) &&
+            Utils.enhancedDeepEquals(this.pronoun, other.pronoun) &&
+            Utils.enhancedDeepEquals(this.alsoKnownAs, other.alsoKnownAs) &&
+            Utils.enhancedDeepEquals(this.profileUrl, other.profileUrl) &&
+            Utils.enhancedDeepEquals(this.socialNetworks, other.socialNetworks) &&
+            Utils.enhancedDeepEquals(this.managerEmail, other.managerEmail) &&
+            Utils.enhancedDeepEquals(this.managerId, other.managerId) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.relationships, other.relationships) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.additionalFields, other.additionalFields);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             email,
             firstName,
             lastName,

@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class RestrictionFilters {
@@ -78,12 +77,12 @@ public class RestrictionFilters {
         }
         RestrictionFilters other = (RestrictionFilters) o;
         return 
-            Objects.deepEquals(this.containerSpecs, other.containerSpecs);
+            Utils.enhancedDeepEquals(this.containerSpecs, other.containerSpecs);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             containerSpecs);
     }
     

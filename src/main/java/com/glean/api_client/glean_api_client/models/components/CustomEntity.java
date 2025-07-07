@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CustomEntity {
@@ -272,18 +271,18 @@ public class CustomEntity {
         }
         CustomEntity other = (CustomEntity) o;
         return 
-            Objects.deepEquals(this.permissions, other.permissions) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.datasource, other.datasource) &&
-            Objects.deepEquals(this.objectType, other.objectType) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.roles, other.roles);
+            Utils.enhancedDeepEquals(this.permissions, other.permissions) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.datasource, other.datasource) &&
+            Utils.enhancedDeepEquals(this.objectType, other.objectType) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.roles, other.roles);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             permissions,
             id,
             title,

@@ -26,7 +26,7 @@ public enum IconType {
     @JsonValue
     private final String value;
 
-    private IconType(String value) {
+    IconType(String value) {
         this.value = value;
     }
     

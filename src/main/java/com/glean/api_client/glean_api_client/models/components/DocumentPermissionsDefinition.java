@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -230,16 +229,16 @@ public class DocumentPermissionsDefinition {
         }
         DocumentPermissionsDefinition other = (DocumentPermissionsDefinition) o;
         return 
-            Objects.deepEquals(this.allowedUsers, other.allowedUsers) &&
-            Objects.deepEquals(this.allowedGroups, other.allowedGroups) &&
-            Objects.deepEquals(this.allowedGroupIntersections, other.allowedGroupIntersections) &&
-            Objects.deepEquals(this.allowAnonymousAccess, other.allowAnonymousAccess) &&
-            Objects.deepEquals(this.allowAllDatasourceUsersAccess, other.allowAllDatasourceUsersAccess);
+            Utils.enhancedDeepEquals(this.allowedUsers, other.allowedUsers) &&
+            Utils.enhancedDeepEquals(this.allowedGroups, other.allowedGroups) &&
+            Utils.enhancedDeepEquals(this.allowedGroupIntersections, other.allowedGroupIntersections) &&
+            Utils.enhancedDeepEquals(this.allowAnonymousAccess, other.allowAnonymousAccess) &&
+            Utils.enhancedDeepEquals(this.allowAllDatasourceUsersAccess, other.allowAllDatasourceUsersAccess);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             allowedUsers,
             allowedGroups,
             allowedGroupIntersections,

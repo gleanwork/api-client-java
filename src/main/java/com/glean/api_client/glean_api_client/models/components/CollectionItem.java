@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CollectionItem {
@@ -439,24 +438,24 @@ public class CollectionItem {
         }
         CollectionItem other = (CollectionItem) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.icon, other.icon) &&
-            Objects.deepEquals(this.collectionId, other.collectionId) &&
-            Objects.deepEquals(this.documentId, other.documentId) &&
-            Objects.deepEquals(this.url, other.url) &&
-            Objects.deepEquals(this.itemId, other.itemId) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.document, other.document) &&
-            Objects.deepEquals(this.shortcut, other.shortcut) &&
-            Objects.deepEquals(this.collection, other.collection) &&
-            Objects.deepEquals(this.itemType, other.itemType);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.icon, other.icon) &&
+            Utils.enhancedDeepEquals(this.collectionId, other.collectionId) &&
+            Utils.enhancedDeepEquals(this.documentId, other.documentId) &&
+            Utils.enhancedDeepEquals(this.url, other.url) &&
+            Utils.enhancedDeepEquals(this.itemId, other.itemId) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.document, other.document) &&
+            Utils.enhancedDeepEquals(this.shortcut, other.shortcut) &&
+            Utils.enhancedDeepEquals(this.collection, other.collection) &&
+            Utils.enhancedDeepEquals(this.itemType, other.itemType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name,
             description,
             icon,

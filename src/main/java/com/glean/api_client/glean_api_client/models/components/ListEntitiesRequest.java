@@ -16,7 +16,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ListEntitiesRequest {
@@ -78,6 +77,13 @@ public class ListEntitiesRequest {
     @JsonProperty("source")
     private Optional<String> source;
 
+    /**
+     * The type of request being made.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("requestType")
+    private Optional<? extends RequestType> requestType;
+
     @JsonCreator
     public ListEntitiesRequest(
             @JsonProperty("filter") Optional<? extends List<FacetFilter>> filter,
@@ -88,7 +94,8 @@ public class ListEntitiesRequest {
             @JsonProperty("includeFields") Optional<? extends List<ListEntitiesRequestIncludeField>> includeFields,
             @JsonProperty("pageSize") Optional<Long> pageSize,
             @JsonProperty("cursor") Optional<String> cursor,
-            @JsonProperty("source") Optional<String> source) {
+            @JsonProperty("source") Optional<String> source,
+            @JsonProperty("requestType") Optional<? extends RequestType> requestType) {
         Utils.checkNotNull(filter, "filter");
         Utils.checkNotNull(sort, "sort");
         Utils.checkNotNull(entityType, "entityType");
@@ -98,6 +105,7 @@ public class ListEntitiesRequest {
         Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(source, "source");
+        Utils.checkNotNull(requestType, "requestType");
         this.filter = filter;
         this.sort = sort;
         this.entityType = entityType;
@@ -107,10 +115,11 @@ public class ListEntitiesRequest {
         this.pageSize = pageSize;
         this.cursor = cursor;
         this.source = source;
+        this.requestType = requestType;
     }
     
     public ListEntitiesRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -181,6 +190,15 @@ public class ListEntitiesRequest {
     @JsonIgnore
     public Optional<String> source() {
         return source;
+    }
+
+    /**
+     * The type of request being made.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<RequestType> requestType() {
+        return (Optional<RequestType>) requestType;
     }
 
     public final static Builder builder() {
@@ -337,6 +355,24 @@ public class ListEntitiesRequest {
         return this;
     }
 
+    /**
+     * The type of request being made.
+     */
+    public ListEntitiesRequest withRequestType(RequestType requestType) {
+        Utils.checkNotNull(requestType, "requestType");
+        this.requestType = Optional.ofNullable(requestType);
+        return this;
+    }
+
+    /**
+     * The type of request being made.
+     */
+    public ListEntitiesRequest withRequestType(Optional<? extends RequestType> requestType) {
+        Utils.checkNotNull(requestType, "requestType");
+        this.requestType = requestType;
+        return this;
+    }
+
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -348,20 +384,21 @@ public class ListEntitiesRequest {
         }
         ListEntitiesRequest other = (ListEntitiesRequest) o;
         return 
-            Objects.deepEquals(this.filter, other.filter) &&
-            Objects.deepEquals(this.sort, other.sort) &&
-            Objects.deepEquals(this.entityType, other.entityType) &&
-            Objects.deepEquals(this.datasource, other.datasource) &&
-            Objects.deepEquals(this.query, other.query) &&
-            Objects.deepEquals(this.includeFields, other.includeFields) &&
-            Objects.deepEquals(this.pageSize, other.pageSize) &&
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.source, other.source);
+            Utils.enhancedDeepEquals(this.filter, other.filter) &&
+            Utils.enhancedDeepEquals(this.sort, other.sort) &&
+            Utils.enhancedDeepEquals(this.entityType, other.entityType) &&
+            Utils.enhancedDeepEquals(this.datasource, other.datasource) &&
+            Utils.enhancedDeepEquals(this.query, other.query) &&
+            Utils.enhancedDeepEquals(this.includeFields, other.includeFields) &&
+            Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.source, other.source) &&
+            Utils.enhancedDeepEquals(this.requestType, other.requestType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             filter,
             sort,
             entityType,
@@ -370,7 +407,8 @@ public class ListEntitiesRequest {
             includeFields,
             pageSize,
             cursor,
-            source);
+            source,
+            requestType);
     }
     
     @Override
@@ -384,7 +422,8 @@ public class ListEntitiesRequest {
                 "includeFields", includeFields,
                 "pageSize", pageSize,
                 "cursor", cursor,
-                "source", source);
+                "source", source,
+                "requestType", requestType);
     }
     
     public final static class Builder {
@@ -406,6 +445,8 @@ public class ListEntitiesRequest {
         private Optional<String> cursor = Optional.empty();
  
         private Optional<String> source = Optional.empty();
+ 
+        private Optional<? extends RequestType> requestType;
         
         private Builder() {
           // force use of static builder() method
@@ -560,10 +601,31 @@ public class ListEntitiesRequest {
             this.source = source;
             return this;
         }
+
+        /**
+         * The type of request being made.
+         */
+        public Builder requestType(RequestType requestType) {
+            Utils.checkNotNull(requestType, "requestType");
+            this.requestType = Optional.ofNullable(requestType);
+            return this;
+        }
+
+        /**
+         * The type of request being made.
+         */
+        public Builder requestType(Optional<? extends RequestType> requestType) {
+            Utils.checkNotNull(requestType, "requestType");
+            this.requestType = requestType;
+            return this;
+        }
         
         public ListEntitiesRequest build() {
             if (entityType == null) {
                 entityType = _SINGLETON_VALUE_EntityType.value();
+            }
+            if (requestType == null) {
+                requestType = _SINGLETON_VALUE_RequestType.value();
             }
             return new ListEntitiesRequest(
                 filter,
@@ -574,7 +636,8 @@ public class ListEntitiesRequest {
                 includeFields,
                 pageSize,
                 cursor,
-                source);
+                source,
+                requestType);
         }
 
         private static final LazySingletonValue<Optional<? extends ListEntitiesRequestEntityType>> _SINGLETON_VALUE_EntityType =
@@ -582,5 +645,11 @@ public class ListEntitiesRequest {
                         "entityType",
                         "\"PEOPLE\"",
                         new TypeReference<Optional<? extends ListEntitiesRequestEntityType>>() {});
+
+        private static final LazySingletonValue<Optional<? extends RequestType>> _SINGLETON_VALUE_RequestType =
+                new LazySingletonValue<>(
+                        "requestType",
+                        "\"STANDARD\"",
+                        new TypeReference<Optional<? extends RequestType>>() {});
     }
 }

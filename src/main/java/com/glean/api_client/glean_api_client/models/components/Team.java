@@ -19,7 +19,6 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 public class Team {
@@ -780,32 +779,32 @@ public class Team {
         }
         Team other = (Team) o;
         return 
-            Objects.deepEquals(this.relatedObjects, other.relatedObjects) &&
-            Objects.deepEquals(this.permissions, other.permissions) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.businessUnit, other.businessUnit) &&
-            Objects.deepEquals(this.department, other.department) &&
-            Objects.deepEquals(this.photoUrl, other.photoUrl) &&
-            Objects.deepEquals(this.bannerUrl, other.bannerUrl) &&
-            Objects.deepEquals(this.externalLink, other.externalLink) &&
-            Objects.deepEquals(this.members, other.members) &&
-            Objects.deepEquals(this.memberCount, other.memberCount) &&
-            Objects.deepEquals(this.emails, other.emails) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.datasourceProfiles, other.datasourceProfiles) &&
-            Objects.deepEquals(this.datasource, other.datasource) &&
-            Objects.deepEquals(this.createdFrom, other.createdFrom) &&
-            Objects.deepEquals(this.lastUpdatedAt, other.lastUpdatedAt) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.canBeDeleted, other.canBeDeleted) &&
-            Objects.deepEquals(this.loggingId, other.loggingId);
+            Utils.enhancedDeepEquals(this.relatedObjects, other.relatedObjects) &&
+            Utils.enhancedDeepEquals(this.permissions, other.permissions) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.businessUnit, other.businessUnit) &&
+            Utils.enhancedDeepEquals(this.department, other.department) &&
+            Utils.enhancedDeepEquals(this.photoUrl, other.photoUrl) &&
+            Utils.enhancedDeepEquals(this.bannerUrl, other.bannerUrl) &&
+            Utils.enhancedDeepEquals(this.externalLink, other.externalLink) &&
+            Utils.enhancedDeepEquals(this.members, other.members) &&
+            Utils.enhancedDeepEquals(this.memberCount, other.memberCount) &&
+            Utils.enhancedDeepEquals(this.emails, other.emails) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.datasourceProfiles, other.datasourceProfiles) &&
+            Utils.enhancedDeepEquals(this.datasource, other.datasource) &&
+            Utils.enhancedDeepEquals(this.createdFrom, other.createdFrom) &&
+            Utils.enhancedDeepEquals(this.lastUpdatedAt, other.lastUpdatedAt) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.canBeDeleted, other.canBeDeleted) &&
+            Utils.enhancedDeepEquals(this.loggingId, other.loggingId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             relatedObjects,
             permissions,
             id,

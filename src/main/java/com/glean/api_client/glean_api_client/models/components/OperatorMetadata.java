@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class OperatorMetadata {
@@ -242,18 +241,18 @@ public class OperatorMetadata {
         }
         OperatorMetadata other = (OperatorMetadata) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.isCustom, other.isCustom) &&
-            Objects.deepEquals(this.operatorType, other.operatorType) &&
-            Objects.deepEquals(this.helpText, other.helpText) &&
-            Objects.deepEquals(this.scopes, other.scopes) &&
-            Objects.deepEquals(this.value, other.value) &&
-            Objects.deepEquals(this.displayValue, other.displayValue);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.isCustom, other.isCustom) &&
+            Utils.enhancedDeepEquals(this.operatorType, other.operatorType) &&
+            Utils.enhancedDeepEquals(this.helpText, other.helpText) &&
+            Utils.enhancedDeepEquals(this.scopes, other.scopes) &&
+            Utils.enhancedDeepEquals(this.value, other.value) &&
+            Utils.enhancedDeepEquals(this.displayValue, other.displayValue);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name,
             isCustom,
             operatorType,

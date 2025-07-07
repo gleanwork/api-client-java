@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ResultsResponse {
@@ -275,19 +274,19 @@ public class ResultsResponse {
         }
         ResultsResponse other = (ResultsResponse) o;
         return 
-            Objects.deepEquals(this.trackingToken, other.trackingToken) &&
-            Objects.deepEquals(this.sessionInfo, other.sessionInfo) &&
-            Objects.deepEquals(this.results, other.results) &&
-            Objects.deepEquals(this.structuredResults, other.structuredResults) &&
-            Objects.deepEquals(this.generatedQnaResult, other.generatedQnaResult) &&
-            Objects.deepEquals(this.gleanDataError, other.gleanDataError) &&
-            Objects.deepEquals(this.requestID, other.requestID) &&
-            Objects.deepEquals(this.backendTimeMillis, other.backendTimeMillis);
+            Utils.enhancedDeepEquals(this.trackingToken, other.trackingToken) &&
+            Utils.enhancedDeepEquals(this.sessionInfo, other.sessionInfo) &&
+            Utils.enhancedDeepEquals(this.results, other.results) &&
+            Utils.enhancedDeepEquals(this.structuredResults, other.structuredResults) &&
+            Utils.enhancedDeepEquals(this.generatedQnaResult, other.generatedQnaResult) &&
+            Utils.enhancedDeepEquals(this.gleanDataError, other.gleanDataError) &&
+            Utils.enhancedDeepEquals(this.requestID, other.requestID) &&
+            Utils.enhancedDeepEquals(this.backendTimeMillis, other.backendTimeMillis);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             trackingToken,
             sessionInfo,
             results,

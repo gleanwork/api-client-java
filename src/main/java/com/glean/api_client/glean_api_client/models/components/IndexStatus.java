@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
 public class IndexStatus {
@@ -112,13 +111,13 @@ public class IndexStatus {
         }
         IndexStatus other = (IndexStatus) o;
         return 
-            Objects.deepEquals(this.lastCrawledTime, other.lastCrawledTime) &&
-            Objects.deepEquals(this.lastIndexedTime, other.lastIndexedTime);
+            Utils.enhancedDeepEquals(this.lastCrawledTime, other.lastCrawledTime) &&
+            Utils.enhancedDeepEquals(this.lastIndexedTime, other.lastIndexedTime);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             lastCrawledTime,
             lastIndexedTime);
     }

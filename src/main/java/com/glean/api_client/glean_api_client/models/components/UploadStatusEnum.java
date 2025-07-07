@@ -21,7 +21,7 @@ public enum UploadStatusEnum {
     @JsonValue
     private final String value;
 
-    private UploadStatusEnum(String value) {
+    UploadStatusEnum(String value) {
         this.value = value;
     }
     

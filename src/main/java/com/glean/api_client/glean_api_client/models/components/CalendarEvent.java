@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -443,24 +442,24 @@ public class CalendarEvent {
         }
         CalendarEvent other = (CalendarEvent) o;
         return 
-            Objects.deepEquals(this.time, other.time) &&
-            Objects.deepEquals(this.eventType, other.eventType) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.url, other.url) &&
-            Objects.deepEquals(this.attendees, other.attendees) &&
-            Objects.deepEquals(this.location, other.location) &&
-            Objects.deepEquals(this.conferenceData, other.conferenceData) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.datasource, other.datasource) &&
-            Objects.deepEquals(this.hasTranscript, other.hasTranscript) &&
-            Objects.deepEquals(this.transcriptUrl, other.transcriptUrl) &&
-            Objects.deepEquals(this.classifications, other.classifications) &&
-            Objects.deepEquals(this.generatedAttachments, other.generatedAttachments);
+            Utils.enhancedDeepEquals(this.time, other.time) &&
+            Utils.enhancedDeepEquals(this.eventType, other.eventType) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.url, other.url) &&
+            Utils.enhancedDeepEquals(this.attendees, other.attendees) &&
+            Utils.enhancedDeepEquals(this.location, other.location) &&
+            Utils.enhancedDeepEquals(this.conferenceData, other.conferenceData) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.datasource, other.datasource) &&
+            Utils.enhancedDeepEquals(this.hasTranscript, other.hasTranscript) &&
+            Utils.enhancedDeepEquals(this.transcriptUrl, other.transcriptUrl) &&
+            Utils.enhancedDeepEquals(this.classifications, other.classifications) &&
+            Utils.enhancedDeepEquals(this.generatedAttachments, other.generatedAttachments);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             time,
             eventType,
             id,

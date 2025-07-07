@@ -20,7 +20,7 @@ public enum AgentExecutionStatus {
     @JsonValue
     private final String value;
 
-    private AgentExecutionStatus(String value) {
+    AgentExecutionStatus(String value) {
         this.value = value;
     }
     

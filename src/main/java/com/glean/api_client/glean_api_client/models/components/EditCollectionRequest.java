@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class EditCollectionRequest {
@@ -413,22 +412,22 @@ public class EditCollectionRequest {
         }
         EditCollectionRequest other = (EditCollectionRequest) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.addedRoles, other.addedRoles) &&
-            Objects.deepEquals(this.removedRoles, other.removedRoles) &&
-            Objects.deepEquals(this.audienceFilters, other.audienceFilters) &&
-            Objects.deepEquals(this.icon, other.icon) &&
-            Objects.deepEquals(this.adminLocked, other.adminLocked) &&
-            Objects.deepEquals(this.parentId, other.parentId) &&
-            Objects.deepEquals(this.thumbnail, other.thumbnail) &&
-            Objects.deepEquals(this.allowedDatasource, other.allowedDatasource) &&
-            Objects.deepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.addedRoles, other.addedRoles) &&
+            Utils.enhancedDeepEquals(this.removedRoles, other.removedRoles) &&
+            Utils.enhancedDeepEquals(this.audienceFilters, other.audienceFilters) &&
+            Utils.enhancedDeepEquals(this.icon, other.icon) &&
+            Utils.enhancedDeepEquals(this.adminLocked, other.adminLocked) &&
+            Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
+            Utils.enhancedDeepEquals(this.thumbnail, other.thumbnail) &&
+            Utils.enhancedDeepEquals(this.allowedDatasource, other.allowedDatasource) &&
+            Utils.enhancedDeepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name,
             description,
             addedRoles,

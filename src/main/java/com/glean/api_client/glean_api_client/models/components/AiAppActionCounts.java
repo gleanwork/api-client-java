@@ -16,7 +16,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -288,18 +287,18 @@ public class AiAppActionCounts {
         }
         AiAppActionCounts other = (AiAppActionCounts) o;
         return 
-            Objects.deepEquals(this.totalSlackbotResponses, other.totalSlackbotResponses) &&
-            Objects.deepEquals(this.totalSlackbotResponsesShared, other.totalSlackbotResponsesShared) &&
-            Objects.deepEquals(this.totalSlackbotResponsesNotHelpful, other.totalSlackbotResponsesNotHelpful) &&
-            Objects.deepEquals(this.totalChatMessages, other.totalChatMessages) &&
-            Objects.deepEquals(this.totalUpvotes, other.totalUpvotes) &&
-            Objects.deepEquals(this.totalDownvotes, other.totalDownvotes) &&
-            Objects.deepEquals(this.additionalProperties, other.additionalProperties);
+            Utils.enhancedDeepEquals(this.totalSlackbotResponses, other.totalSlackbotResponses) &&
+            Utils.enhancedDeepEquals(this.totalSlackbotResponsesShared, other.totalSlackbotResponsesShared) &&
+            Utils.enhancedDeepEquals(this.totalSlackbotResponsesNotHelpful, other.totalSlackbotResponsesNotHelpful) &&
+            Utils.enhancedDeepEquals(this.totalChatMessages, other.totalChatMessages) &&
+            Utils.enhancedDeepEquals(this.totalUpvotes, other.totalUpvotes) &&
+            Utils.enhancedDeepEquals(this.totalDownvotes, other.totalDownvotes) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             totalSlackbotResponses,
             totalSlackbotResponsesShared,
             totalSlackbotResponsesNotHelpful,

@@ -23,7 +23,7 @@ public enum ResponseHint {
     @JsonValue
     private final String value;
 
-    private ResponseHint(String value) {
+    ResponseHint(String value) {
         this.value = value;
     }
     

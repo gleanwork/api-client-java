@@ -12,7 +12,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 
 public class AnswerLikes {
 
@@ -104,14 +103,14 @@ public class AnswerLikes {
         }
         AnswerLikes other = (AnswerLikes) o;
         return 
-            Objects.deepEquals(this.likedBy, other.likedBy) &&
-            Objects.deepEquals(this.likedByUser, other.likedByUser) &&
-            Objects.deepEquals(this.numLikes, other.numLikes);
+            Utils.enhancedDeepEquals(this.likedBy, other.likedBy) &&
+            Utils.enhancedDeepEquals(this.likedByUser, other.likedByUser) &&
+            Utils.enhancedDeepEquals(this.numLikes, other.numLikes);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             likedBy,
             likedByUser,
             numLikes);

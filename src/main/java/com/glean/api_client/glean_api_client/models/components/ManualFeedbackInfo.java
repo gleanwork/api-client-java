@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ManualFeedbackInfo {
@@ -674,28 +673,28 @@ public class ManualFeedbackInfo {
         }
         ManualFeedbackInfo other = (ManualFeedbackInfo) o;
         return 
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.source, other.source) &&
-            Objects.deepEquals(this.issue, other.issue) &&
-            Objects.deepEquals(this.issues, other.issues) &&
-            Objects.deepEquals(this.imageUrls, other.imageUrls) &&
-            Objects.deepEquals(this.query, other.query) &&
-            Objects.deepEquals(this.obscuredQuery, other.obscuredQuery) &&
-            Objects.deepEquals(this.activeTab, other.activeTab) &&
-            Objects.deepEquals(this.comments, other.comments) &&
-            Objects.deepEquals(this.searchResults, other.searchResults) &&
-            Objects.deepEquals(this.previousMessages, other.previousMessages) &&
-            Objects.deepEquals(this.chatTranscript, other.chatTranscript) &&
-            Objects.deepEquals(this.numQueriesFromFirstRun, other.numQueriesFromFirstRun) &&
-            Objects.deepEquals(this.vote, other.vote) &&
-            Objects.deepEquals(this.rating, other.rating) &&
-            Objects.deepEquals(this.ratingKey, other.ratingKey) &&
-            Objects.deepEquals(this.ratingScale, other.ratingScale);
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.source, other.source) &&
+            Utils.enhancedDeepEquals(this.issue, other.issue) &&
+            Utils.enhancedDeepEquals(this.issues, other.issues) &&
+            Utils.enhancedDeepEquals(this.imageUrls, other.imageUrls) &&
+            Utils.enhancedDeepEquals(this.query, other.query) &&
+            Utils.enhancedDeepEquals(this.obscuredQuery, other.obscuredQuery) &&
+            Utils.enhancedDeepEquals(this.activeTab, other.activeTab) &&
+            Utils.enhancedDeepEquals(this.comments, other.comments) &&
+            Utils.enhancedDeepEquals(this.searchResults, other.searchResults) &&
+            Utils.enhancedDeepEquals(this.previousMessages, other.previousMessages) &&
+            Utils.enhancedDeepEquals(this.chatTranscript, other.chatTranscript) &&
+            Utils.enhancedDeepEquals(this.numQueriesFromFirstRun, other.numQueriesFromFirstRun) &&
+            Utils.enhancedDeepEquals(this.vote, other.vote) &&
+            Utils.enhancedDeepEquals(this.rating, other.rating) &&
+            Utils.enhancedDeepEquals(this.ratingKey, other.ratingKey) &&
+            Utils.enhancedDeepEquals(this.ratingScale, other.ratingScale);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             email,
             source,
             issue,

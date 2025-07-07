@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class SortOptions {
@@ -89,13 +88,13 @@ public class SortOptions {
         }
         SortOptions other = (SortOptions) o;
         return 
-            Objects.deepEquals(this.orderBy, other.orderBy) &&
-            Objects.deepEquals(this.sortBy, other.sortBy);
+            Utils.enhancedDeepEquals(this.orderBy, other.orderBy) &&
+            Utils.enhancedDeepEquals(this.sortBy, other.sortBy);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             orderBy,
             sortBy);
     }

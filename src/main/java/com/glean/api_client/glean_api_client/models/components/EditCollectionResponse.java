@@ -16,7 +16,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class EditCollectionResponse {
@@ -841,37 +840,37 @@ public class EditCollectionResponse {
         }
         EditCollectionResponse other = (EditCollectionResponse) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.addedRoles, other.addedRoles) &&
-            Objects.deepEquals(this.removedRoles, other.removedRoles) &&
-            Objects.deepEquals(this.audienceFilters, other.audienceFilters) &&
-            Objects.deepEquals(this.icon, other.icon) &&
-            Objects.deepEquals(this.adminLocked, other.adminLocked) &&
-            Objects.deepEquals(this.parentId, other.parentId) &&
-            Objects.deepEquals(this.thumbnail, other.thumbnail) &&
-            Objects.deepEquals(this.allowedDatasource, other.allowedDatasource) &&
-            Objects.deepEquals(this.permissions, other.permissions) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.createTime, other.createTime) &&
-            Objects.deepEquals(this.updateTime, other.updateTime) &&
-            Objects.deepEquals(this.creator, other.creator) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.itemCount, other.itemCount) &&
-            Objects.deepEquals(this.childCount, other.childCount) &&
-            Objects.deepEquals(this.items, other.items) &&
-            Objects.deepEquals(this.pinMetadata, other.pinMetadata) &&
-            Objects.deepEquals(this.shortcuts, other.shortcuts) &&
-            Objects.deepEquals(this.children, other.children) &&
-            Objects.deepEquals(this.roles, other.roles) &&
-            Objects.deepEquals(this.errorCode, other.errorCode) &&
-            Objects.deepEquals(this.collection, other.collection) &&
-            Objects.deepEquals(this.error, other.error);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.addedRoles, other.addedRoles) &&
+            Utils.enhancedDeepEquals(this.removedRoles, other.removedRoles) &&
+            Utils.enhancedDeepEquals(this.audienceFilters, other.audienceFilters) &&
+            Utils.enhancedDeepEquals(this.icon, other.icon) &&
+            Utils.enhancedDeepEquals(this.adminLocked, other.adminLocked) &&
+            Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
+            Utils.enhancedDeepEquals(this.thumbnail, other.thumbnail) &&
+            Utils.enhancedDeepEquals(this.allowedDatasource, other.allowedDatasource) &&
+            Utils.enhancedDeepEquals(this.permissions, other.permissions) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.createTime, other.createTime) &&
+            Utils.enhancedDeepEquals(this.updateTime, other.updateTime) &&
+            Utils.enhancedDeepEquals(this.creator, other.creator) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.itemCount, other.itemCount) &&
+            Utils.enhancedDeepEquals(this.childCount, other.childCount) &&
+            Utils.enhancedDeepEquals(this.items, other.items) &&
+            Utils.enhancedDeepEquals(this.pinMetadata, other.pinMetadata) &&
+            Utils.enhancedDeepEquals(this.shortcuts, other.shortcuts) &&
+            Utils.enhancedDeepEquals(this.children, other.children) &&
+            Utils.enhancedDeepEquals(this.roles, other.roles) &&
+            Utils.enhancedDeepEquals(this.errorCode, other.errorCode) &&
+            Utils.enhancedDeepEquals(this.collection, other.collection) &&
+            Utils.enhancedDeepEquals(this.error, other.error);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name,
             description,
             addedRoles,

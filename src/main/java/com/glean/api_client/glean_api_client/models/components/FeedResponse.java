@@ -15,7 +15,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 public class FeedResponse {
@@ -241,17 +240,17 @@ public class FeedResponse {
         }
         FeedResponse other = (FeedResponse) o;
         return 
-            Objects.deepEquals(this.experimentIds, other.experimentIds) &&
-            Objects.deepEquals(this.trackingToken, other.trackingToken) &&
-            Objects.deepEquals(this.serverTimestamp, other.serverTimestamp) &&
-            Objects.deepEquals(this.results, other.results) &&
-            Objects.deepEquals(this.facetResults, other.facetResults) &&
-            Objects.deepEquals(this.mentionsTimeWindowInHours, other.mentionsTimeWindowInHours);
+            Utils.enhancedDeepEquals(this.experimentIds, other.experimentIds) &&
+            Utils.enhancedDeepEquals(this.trackingToken, other.trackingToken) &&
+            Utils.enhancedDeepEquals(this.serverTimestamp, other.serverTimestamp) &&
+            Utils.enhancedDeepEquals(this.results, other.results) &&
+            Utils.enhancedDeepEquals(this.facetResults, other.facetResults) &&
+            Utils.enhancedDeepEquals(this.mentionsTimeWindowInHours, other.mentionsTimeWindowInHours);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             experimentIds,
             trackingToken,
             serverTimestamp,

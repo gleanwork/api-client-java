@@ -19,7 +19,6 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 public class PersonMetadata {
@@ -1604,55 +1603,55 @@ public class PersonMetadata {
         }
         PersonMetadata other = (PersonMetadata) o;
         return 
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.businessUnit, other.businessUnit) &&
-            Objects.deepEquals(this.department, other.department) &&
-            Objects.deepEquals(this.teams, other.teams) &&
-            Objects.deepEquals(this.departmentCount, other.departmentCount) &&
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.aliasEmails, other.aliasEmails) &&
-            Objects.deepEquals(this.location, other.location) &&
-            Objects.deepEquals(this.structuredLocation, other.structuredLocation) &&
-            Objects.deepEquals(this.externalProfileLink, other.externalProfileLink) &&
-            Objects.deepEquals(this.manager, other.manager) &&
-            Objects.deepEquals(this.managementChain, other.managementChain) &&
-            Objects.deepEquals(this.phone, other.phone) &&
-            Objects.deepEquals(this.timezone, other.timezone) &&
-            Objects.deepEquals(this.timezoneOffset, other.timezoneOffset) &&
-            Objects.deepEquals(this.photoUrl, other.photoUrl) &&
-            Objects.deepEquals(this.uneditedPhotoUrl, other.uneditedPhotoUrl) &&
-            Objects.deepEquals(this.bannerUrl, other.bannerUrl) &&
-            Objects.deepEquals(this.reports, other.reports) &&
-            Objects.deepEquals(this.startDate, other.startDate) &&
-            Objects.deepEquals(this.endDate, other.endDate) &&
-            Objects.deepEquals(this.bio, other.bio) &&
-            Objects.deepEquals(this.pronoun, other.pronoun) &&
-            Objects.deepEquals(this.orgSizeCount, other.orgSizeCount) &&
-            Objects.deepEquals(this.directReportsCount, other.directReportsCount) &&
-            Objects.deepEquals(this.preferredName, other.preferredName) &&
-            Objects.deepEquals(this.socialNetwork, other.socialNetwork) &&
-            Objects.deepEquals(this.datasourceProfile, other.datasourceProfile) &&
-            Objects.deepEquals(this.querySuggestions, other.querySuggestions) &&
-            Objects.deepEquals(this.peopleDistance, other.peopleDistance) &&
-            Objects.deepEquals(this.inviteInfo, other.inviteInfo) &&
-            Objects.deepEquals(this.isSignedUp, other.isSignedUp) &&
-            Objects.deepEquals(this.lastExtensionUse, other.lastExtensionUse) &&
-            Objects.deepEquals(this.permissions, other.permissions) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.loggingId, other.loggingId) &&
-            Objects.deepEquals(this.startDatePercentile, other.startDatePercentile) &&
-            Objects.deepEquals(this.busyEvents, other.busyEvents) &&
-            Objects.deepEquals(this.profileBoolSettings, other.profileBoolSettings) &&
-            Objects.deepEquals(this.badges, other.badges) &&
-            Objects.deepEquals(this.isOrgRoot, other.isOrgRoot);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.businessUnit, other.businessUnit) &&
+            Utils.enhancedDeepEquals(this.department, other.department) &&
+            Utils.enhancedDeepEquals(this.teams, other.teams) &&
+            Utils.enhancedDeepEquals(this.departmentCount, other.departmentCount) &&
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.aliasEmails, other.aliasEmails) &&
+            Utils.enhancedDeepEquals(this.location, other.location) &&
+            Utils.enhancedDeepEquals(this.structuredLocation, other.structuredLocation) &&
+            Utils.enhancedDeepEquals(this.externalProfileLink, other.externalProfileLink) &&
+            Utils.enhancedDeepEquals(this.manager, other.manager) &&
+            Utils.enhancedDeepEquals(this.managementChain, other.managementChain) &&
+            Utils.enhancedDeepEquals(this.phone, other.phone) &&
+            Utils.enhancedDeepEquals(this.timezone, other.timezone) &&
+            Utils.enhancedDeepEquals(this.timezoneOffset, other.timezoneOffset) &&
+            Utils.enhancedDeepEquals(this.photoUrl, other.photoUrl) &&
+            Utils.enhancedDeepEquals(this.uneditedPhotoUrl, other.uneditedPhotoUrl) &&
+            Utils.enhancedDeepEquals(this.bannerUrl, other.bannerUrl) &&
+            Utils.enhancedDeepEquals(this.reports, other.reports) &&
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
+            Utils.enhancedDeepEquals(this.bio, other.bio) &&
+            Utils.enhancedDeepEquals(this.pronoun, other.pronoun) &&
+            Utils.enhancedDeepEquals(this.orgSizeCount, other.orgSizeCount) &&
+            Utils.enhancedDeepEquals(this.directReportsCount, other.directReportsCount) &&
+            Utils.enhancedDeepEquals(this.preferredName, other.preferredName) &&
+            Utils.enhancedDeepEquals(this.socialNetwork, other.socialNetwork) &&
+            Utils.enhancedDeepEquals(this.datasourceProfile, other.datasourceProfile) &&
+            Utils.enhancedDeepEquals(this.querySuggestions, other.querySuggestions) &&
+            Utils.enhancedDeepEquals(this.peopleDistance, other.peopleDistance) &&
+            Utils.enhancedDeepEquals(this.inviteInfo, other.inviteInfo) &&
+            Utils.enhancedDeepEquals(this.isSignedUp, other.isSignedUp) &&
+            Utils.enhancedDeepEquals(this.lastExtensionUse, other.lastExtensionUse) &&
+            Utils.enhancedDeepEquals(this.permissions, other.permissions) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.loggingId, other.loggingId) &&
+            Utils.enhancedDeepEquals(this.startDatePercentile, other.startDatePercentile) &&
+            Utils.enhancedDeepEquals(this.busyEvents, other.busyEvents) &&
+            Utils.enhancedDeepEquals(this.profileBoolSettings, other.profileBoolSettings) &&
+            Utils.enhancedDeepEquals(this.badges, other.badges) &&
+            Utils.enhancedDeepEquals(this.isOrgRoot, other.isOrgRoot);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             type,
             firstName,
             lastName,

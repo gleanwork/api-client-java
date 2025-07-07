@@ -15,7 +15,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -341,19 +340,19 @@ public class Permissions {
         }
         Permissions other = (Permissions) o;
         return 
-            Objects.deepEquals(this.canAdminSearch, other.canAdminSearch) &&
-            Objects.deepEquals(this.canAdminClientApiGlobalTokens, other.canAdminClientApiGlobalTokens) &&
-            Objects.deepEquals(this.canDlp, other.canDlp) &&
-            Objects.deepEquals(this.read, other.read) &&
-            Objects.deepEquals(this.write, other.write) &&
-            Objects.deepEquals(this.grant, other.grant) &&
-            Objects.deepEquals(this.role, other.role) &&
-            Objects.deepEquals(this.roles, other.roles);
+            Utils.enhancedDeepEquals(this.canAdminSearch, other.canAdminSearch) &&
+            Utils.enhancedDeepEquals(this.canAdminClientApiGlobalTokens, other.canAdminClientApiGlobalTokens) &&
+            Utils.enhancedDeepEquals(this.canDlp, other.canDlp) &&
+            Utils.enhancedDeepEquals(this.read, other.read) &&
+            Utils.enhancedDeepEquals(this.write, other.write) &&
+            Utils.enhancedDeepEquals(this.grant, other.grant) &&
+            Utils.enhancedDeepEquals(this.role, other.role) &&
+            Utils.enhancedDeepEquals(this.roles, other.roles);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             canAdminSearch,
             canAdminClientApiGlobalTokens,
             canDlp,

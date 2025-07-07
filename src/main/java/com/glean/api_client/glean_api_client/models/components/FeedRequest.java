@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class FeedRequest {
@@ -165,15 +164,15 @@ public class FeedRequest {
         }
         FeedRequest other = (FeedRequest) o;
         return 
-            Objects.deepEquals(this.categories, other.categories) &&
-            Objects.deepEquals(this.requestOptions, other.requestOptions) &&
-            Objects.deepEquals(this.timeoutMillis, other.timeoutMillis) &&
-            Objects.deepEquals(this.sessionInfo, other.sessionInfo);
+            Utils.enhancedDeepEquals(this.categories, other.categories) &&
+            Utils.enhancedDeepEquals(this.requestOptions, other.requestOptions) &&
+            Utils.enhancedDeepEquals(this.timeoutMillis, other.timeoutMillis) &&
+            Utils.enhancedDeepEquals(this.sessionInfo, other.sessionInfo);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             categories,
             requestOptions,
             timeoutMillis,

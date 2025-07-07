@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.EditAnswerRequest;
+import com.glean.api_client.glean_api_client.operations.EditanswerOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class EditanswerRequestBuilder {
 
     private EditAnswerRequest request;
-    private final SDKMethodInterfaces.MethodCallEditanswer sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public EditanswerRequestBuilder(SDKMethodInterfaces.MethodCallEditanswer sdk) {
-        this.sdk = sdk;
+    public EditanswerRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public EditanswerRequestBuilder request(EditAnswerRequest request) {
@@ -23,8 +27,10 @@ public class EditanswerRequestBuilder {
     }
 
     public EditanswerResponse call() throws Exception {
+        
+        RequestOperation<EditAnswerRequest, EditanswerResponse> operation
+              = new EditanswerOperation( sdkConfiguration);
 
-        return sdk.update(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ToolInfo {
@@ -115,13 +114,13 @@ public class ToolInfo {
         }
         ToolInfo other = (ToolInfo) o;
         return 
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.parameters, other.parameters);
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.parameters, other.parameters);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             metadata,
             parameters);
     }

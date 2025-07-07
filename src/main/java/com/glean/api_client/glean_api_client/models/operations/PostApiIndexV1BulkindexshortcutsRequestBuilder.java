@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.BulkIndexShortcutsRequest;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1BulkindexshortcutsOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class PostApiIndexV1BulkindexshortcutsRequestBuilder {
 
     private BulkIndexShortcutsRequest request;
-    private final SDKMethodInterfaces.MethodCallPostApiIndexV1Bulkindexshortcuts sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PostApiIndexV1BulkindexshortcutsRequestBuilder(SDKMethodInterfaces.MethodCallPostApiIndexV1Bulkindexshortcuts sdk) {
-        this.sdk = sdk;
+    public PostApiIndexV1BulkindexshortcutsRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PostApiIndexV1BulkindexshortcutsRequestBuilder request(BulkIndexShortcutsRequest request) {
@@ -23,8 +27,10 @@ public class PostApiIndexV1BulkindexshortcutsRequestBuilder {
     }
 
     public PostApiIndexV1BulkindexshortcutsResponse call() throws Exception {
+        
+        RequestOperation<BulkIndexShortcutsRequest, PostApiIndexV1BulkindexshortcutsResponse> operation
+              = new PostApiIndexV1BulkindexshortcutsOperation( sdkConfiguration);
 
-        return sdk.bulkIndex(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

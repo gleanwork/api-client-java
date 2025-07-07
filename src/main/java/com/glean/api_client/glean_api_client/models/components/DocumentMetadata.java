@@ -15,7 +15,6 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 public class DocumentMetadata {
@@ -1312,51 +1311,51 @@ public class DocumentMetadata {
         }
         DocumentMetadata other = (DocumentMetadata) o;
         return 
-            Objects.deepEquals(this.datasource, other.datasource) &&
-            Objects.deepEquals(this.datasourceInstance, other.datasourceInstance) &&
-            Objects.deepEquals(this.objectType, other.objectType) &&
-            Objects.deepEquals(this.container, other.container) &&
-            Objects.deepEquals(this.containerId, other.containerId) &&
-            Objects.deepEquals(this.superContainerId, other.superContainerId) &&
-            Objects.deepEquals(this.parentId, other.parentId) &&
-            Objects.deepEquals(this.mimeType, other.mimeType) &&
-            Objects.deepEquals(this.documentId, other.documentId) &&
-            Objects.deepEquals(this.loggingId, other.loggingId) &&
-            Objects.deepEquals(this.documentIdHash, other.documentIdHash) &&
-            Objects.deepEquals(this.createTime, other.createTime) &&
-            Objects.deepEquals(this.updateTime, other.updateTime) &&
-            Objects.deepEquals(this.author, other.author) &&
-            Objects.deepEquals(this.owner, other.owner) &&
-            Objects.deepEquals(this.mentionedPeople, other.mentionedPeople) &&
-            Objects.deepEquals(this.visibility, other.visibility) &&
-            Objects.deepEquals(this.components, other.components) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.statusCategory, other.statusCategory) &&
-            Objects.deepEquals(this.pins, other.pins) &&
-            Objects.deepEquals(this.priority, other.priority) &&
-            Objects.deepEquals(this.assignedTo, other.assignedTo) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.labels, other.labels) &&
-            Objects.deepEquals(this.collections, other.collections) &&
-            Objects.deepEquals(this.datasourceId, other.datasourceId) &&
-            Objects.deepEquals(this.interactions, other.interactions) &&
-            Objects.deepEquals(this.verification, other.verification) &&
-            Objects.deepEquals(this.viewerInfo, other.viewerInfo) &&
-            Objects.deepEquals(this.permissions, other.permissions) &&
-            Objects.deepEquals(this.visitCount, other.visitCount) &&
-            Objects.deepEquals(this.shortcuts, other.shortcuts) &&
-            Objects.deepEquals(this.path, other.path) &&
-            Objects.deepEquals(this.customData, other.customData) &&
-            Objects.deepEquals(this.documentCategory, other.documentCategory) &&
-            Objects.deepEquals(this.contactPerson, other.contactPerson) &&
-            Objects.deepEquals(this.thumbnail, other.thumbnail) &&
-            Objects.deepEquals(this.indexStatus, other.indexStatus) &&
-            Objects.deepEquals(this.ancestors, other.ancestors);
+            Utils.enhancedDeepEquals(this.datasource, other.datasource) &&
+            Utils.enhancedDeepEquals(this.datasourceInstance, other.datasourceInstance) &&
+            Utils.enhancedDeepEquals(this.objectType, other.objectType) &&
+            Utils.enhancedDeepEquals(this.container, other.container) &&
+            Utils.enhancedDeepEquals(this.containerId, other.containerId) &&
+            Utils.enhancedDeepEquals(this.superContainerId, other.superContainerId) &&
+            Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
+            Utils.enhancedDeepEquals(this.mimeType, other.mimeType) &&
+            Utils.enhancedDeepEquals(this.documentId, other.documentId) &&
+            Utils.enhancedDeepEquals(this.loggingId, other.loggingId) &&
+            Utils.enhancedDeepEquals(this.documentIdHash, other.documentIdHash) &&
+            Utils.enhancedDeepEquals(this.createTime, other.createTime) &&
+            Utils.enhancedDeepEquals(this.updateTime, other.updateTime) &&
+            Utils.enhancedDeepEquals(this.author, other.author) &&
+            Utils.enhancedDeepEquals(this.owner, other.owner) &&
+            Utils.enhancedDeepEquals(this.mentionedPeople, other.mentionedPeople) &&
+            Utils.enhancedDeepEquals(this.visibility, other.visibility) &&
+            Utils.enhancedDeepEquals(this.components, other.components) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.statusCategory, other.statusCategory) &&
+            Utils.enhancedDeepEquals(this.pins, other.pins) &&
+            Utils.enhancedDeepEquals(this.priority, other.priority) &&
+            Utils.enhancedDeepEquals(this.assignedTo, other.assignedTo) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.labels, other.labels) &&
+            Utils.enhancedDeepEquals(this.collections, other.collections) &&
+            Utils.enhancedDeepEquals(this.datasourceId, other.datasourceId) &&
+            Utils.enhancedDeepEquals(this.interactions, other.interactions) &&
+            Utils.enhancedDeepEquals(this.verification, other.verification) &&
+            Utils.enhancedDeepEquals(this.viewerInfo, other.viewerInfo) &&
+            Utils.enhancedDeepEquals(this.permissions, other.permissions) &&
+            Utils.enhancedDeepEquals(this.visitCount, other.visitCount) &&
+            Utils.enhancedDeepEquals(this.shortcuts, other.shortcuts) &&
+            Utils.enhancedDeepEquals(this.path, other.path) &&
+            Utils.enhancedDeepEquals(this.customData, other.customData) &&
+            Utils.enhancedDeepEquals(this.documentCategory, other.documentCategory) &&
+            Utils.enhancedDeepEquals(this.contactPerson, other.contactPerson) &&
+            Utils.enhancedDeepEquals(this.thumbnail, other.thumbnail) &&
+            Utils.enhancedDeepEquals(this.indexStatus, other.indexStatus) &&
+            Utils.enhancedDeepEquals(this.ancestors, other.ancestors);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             datasource,
             datasourceInstance,
             objectType,

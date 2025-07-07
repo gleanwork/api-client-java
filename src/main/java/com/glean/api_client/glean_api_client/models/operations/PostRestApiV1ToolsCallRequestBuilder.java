@@ -3,17 +3,21 @@
  */
 package com.glean.api_client.glean_api_client.models.operations;
 
+import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.ToolsCallRequest;
+import com.glean.api_client.glean_api_client.operations.PostRestApiV1ToolsCallOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
 public class PostRestApiV1ToolsCallRequestBuilder {
 
     private ToolsCallRequest request;
-    private final SDKMethodInterfaces.MethodCallPostRestApiV1ToolsCall sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public PostRestApiV1ToolsCallRequestBuilder(SDKMethodInterfaces.MethodCallPostRestApiV1ToolsCall sdk) {
-        this.sdk = sdk;
+    public PostRestApiV1ToolsCallRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public PostRestApiV1ToolsCallRequestBuilder request(ToolsCallRequest request) {
@@ -23,8 +27,10 @@ public class PostRestApiV1ToolsCallRequestBuilder {
     }
 
     public PostRestApiV1ToolsCallResponse call() throws Exception {
+        
+        RequestOperation<ToolsCallRequest, PostRestApiV1ToolsCallResponse> operation
+              = new PostRestApiV1ToolsCallOperation( sdkConfiguration);
 
-        return sdk.run(
-            request);
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

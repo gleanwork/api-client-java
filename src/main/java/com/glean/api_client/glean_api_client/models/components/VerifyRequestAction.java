@@ -21,7 +21,7 @@ public enum VerifyRequestAction {
     @JsonValue
     private final String value;
 
-    private VerifyRequestAction(String value) {
+    VerifyRequestAction(String value) {
         this.value = value;
     }
     

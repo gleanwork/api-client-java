@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ResultsDescription {
@@ -113,13 +112,13 @@ public class ResultsDescription {
         }
         ResultsDescription other = (ResultsDescription) o;
         return 
-            Objects.deepEquals(this.text, other.text) &&
-            Objects.deepEquals(this.iconConfig, other.iconConfig);
+            Utils.enhancedDeepEquals(this.text, other.text) &&
+            Utils.enhancedDeepEquals(this.iconConfig, other.iconConfig);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             text,
             iconConfig);
     }

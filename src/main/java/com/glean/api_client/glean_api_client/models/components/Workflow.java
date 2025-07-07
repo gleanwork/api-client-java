@@ -13,7 +13,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class Workflow {
@@ -260,18 +259,18 @@ public class Workflow {
         }
         Workflow other = (Workflow) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.author, other.author) &&
-            Objects.deepEquals(this.createTimestamp, other.createTimestamp) &&
-            Objects.deepEquals(this.lastUpdateTimestamp, other.lastUpdateTimestamp) &&
-            Objects.deepEquals(this.lastUpdatedBy, other.lastUpdatedBy) &&
-            Objects.deepEquals(this.permissions, other.permissions) &&
-            Objects.deepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.author, other.author) &&
+            Utils.enhancedDeepEquals(this.createTimestamp, other.createTimestamp) &&
+            Utils.enhancedDeepEquals(this.lastUpdateTimestamp, other.lastUpdateTimestamp) &&
+            Utils.enhancedDeepEquals(this.lastUpdatedBy, other.lastUpdatedBy) &&
+            Utils.enhancedDeepEquals(this.permissions, other.permissions) &&
+            Utils.enhancedDeepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name,
             author,
             createTimestamp,

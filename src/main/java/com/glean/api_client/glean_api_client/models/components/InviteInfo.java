@@ -15,7 +15,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -242,16 +241,16 @@ public class InviteInfo {
         }
         InviteInfo other = (InviteInfo) o;
         return 
-            Objects.deepEquals(this.signUpTime, other.signUpTime) &&
-            Objects.deepEquals(this.invites, other.invites) &&
-            Objects.deepEquals(this.inviter, other.inviter) &&
-            Objects.deepEquals(this.inviteTime, other.inviteTime) &&
-            Objects.deepEquals(this.reminderTime, other.reminderTime);
+            Utils.enhancedDeepEquals(this.signUpTime, other.signUpTime) &&
+            Utils.enhancedDeepEquals(this.invites, other.invites) &&
+            Utils.enhancedDeepEquals(this.inviter, other.inviter) &&
+            Utils.enhancedDeepEquals(this.inviteTime, other.inviteTime) &&
+            Utils.enhancedDeepEquals(this.reminderTime, other.reminderTime);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             signUpTime,
             invites,
             inviter,
