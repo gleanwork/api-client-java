@@ -15,17 +15,19 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class ListShortcutsPaginatedResponse {
 
+public class ListShortcutsPaginatedResponse {
     /**
      * List of all shortcuts accessible to the user
      */
     @JsonProperty("shortcuts")
     private List<Shortcut> shortcuts;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("facetResults")
     private Optional<? extends List<FacetResult>> facetResults;
+
 
     @JsonProperty("meta")
     private ShortcutsPaginationMetadata meta;
@@ -68,9 +70,10 @@ public class ListShortcutsPaginatedResponse {
         return meta;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * List of all shortcuts accessible to the user
@@ -87,6 +90,7 @@ public class ListShortcutsPaginatedResponse {
         return this;
     }
 
+
     public ListShortcutsPaginatedResponse withFacetResults(Optional<? extends List<FacetResult>> facetResults) {
         Utils.checkNotNull(facetResults, "facetResults");
         this.facetResults = facetResults;
@@ -99,7 +103,6 @@ public class ListShortcutsPaginatedResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -118,9 +121,7 @@ public class ListShortcutsPaginatedResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            shortcuts,
-            facetResults,
-            meta);
+            shortcuts, facetResults, meta);
     }
     
     @Override
@@ -130,18 +131,20 @@ public class ListShortcutsPaginatedResponse {
                 "facetResults", facetResults,
                 "meta", meta);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<Shortcut> shortcuts;
- 
+
         private Optional<? extends List<FacetResult>> facetResults = Optional.empty();
- 
+
         private ShortcutsPaginationMetadata meta;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * List of all shortcuts accessible to the user
@@ -151,6 +154,7 @@ public class ListShortcutsPaginatedResponse {
             this.shortcuts = shortcuts;
             return this;
         }
+
 
         public Builder facetResults(List<FacetResult> facetResults) {
             Utils.checkNotNull(facetResults, "facetResults");
@@ -164,17 +168,18 @@ public class ListShortcutsPaginatedResponse {
             return this;
         }
 
+
         public Builder meta(ShortcutsPaginationMetadata meta) {
             Utils.checkNotNull(meta, "meta");
             this.meta = meta;
             return this;
         }
-        
+
         public ListShortcutsPaginatedResponse build() {
+
             return new ListShortcutsPaginatedResponse(
-                shortcuts,
-                facetResults,
-                meta);
+                shortcuts, facetResults, meta);
         }
+
     }
 }

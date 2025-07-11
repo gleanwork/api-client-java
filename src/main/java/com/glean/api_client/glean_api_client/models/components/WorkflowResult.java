@@ -10,6 +10,7 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
+
 public class WorkflowResult {
 
     @JsonProperty("workflow")
@@ -27,9 +28,10 @@ public class WorkflowResult {
         return workflow;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public WorkflowResult withWorkflow(Workflow workflow) {
         Utils.checkNotNull(workflow, "workflow");
@@ -37,7 +39,6 @@ public class WorkflowResult {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -62,24 +63,28 @@ public class WorkflowResult {
         return Utils.toString(WorkflowResult.class,
                 "workflow", workflow);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Workflow workflow;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder workflow(Workflow workflow) {
             Utils.checkNotNull(workflow, "workflow");
             this.workflow = workflow;
             return this;
         }
-        
+
         public WorkflowResult build() {
+
             return new WorkflowResult(
                 workflow);
         }
+
     }
 }

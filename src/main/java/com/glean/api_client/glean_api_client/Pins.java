@@ -36,7 +36,6 @@ public class Pins {
     Pins(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Update pin
      * 
@@ -57,13 +56,11 @@ public class Pins {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public EditpinResponse update(
-            EditPinRequest request) throws Exception {
+    public EditpinResponse update(EditPinRequest request) throws Exception {
         RequestOperation<EditPinRequest, EditpinResponse> operation
-              = new EditpinOperation( sdkConfiguration);
+              = new EditpinOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Read pin
@@ -85,13 +82,11 @@ public class Pins {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetpinResponse retrieve(
-            GetPinRequest request) throws Exception {
+    public GetpinResponse retrieve(GetPinRequest request) throws Exception {
         RequestOperation<GetPinRequest, GetpinResponse> operation
-              = new GetpinOperation( sdkConfiguration);
+              = new GetpinOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List pins
@@ -113,13 +108,11 @@ public class Pins {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListpinsResponse list(
-            ListpinsRequest request) throws Exception {
+    public ListpinsResponse list(ListpinsRequest request) throws Exception {
         RequestOperation<ListpinsRequest, ListpinsResponse> operation
-              = new ListpinsOperation( sdkConfiguration);
+              = new ListpinsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create pin
@@ -141,13 +134,11 @@ public class Pins {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PinResponse create(
-            PinRequest request) throws Exception {
+    public PinResponse create(PinRequest request) throws Exception {
         RequestOperation<PinRequest, PinResponse> operation
-              = new PinOperation( sdkConfiguration);
+              = new PinOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete pin
@@ -169,10 +160,9 @@ public class Pins {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UnpinResponse remove(
-            Unpin request) throws Exception {
+    public UnpinResponse remove(Unpin request) throws Exception {
         RequestOperation<Unpin, UnpinResponse> operation
-              = new UnpinOperation( sdkConfiguration);
+              = new UnpinOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

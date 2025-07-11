@@ -16,7 +16,6 @@ import java.lang.String;
  * <p>Describes the request body of the /getdocumentcount API call
  */
 public class GetDocumentCountRequest {
-
     /**
      * Datasource name for which document count is needed.
      */
@@ -38,9 +37,10 @@ public class GetDocumentCountRequest {
         return datasource;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Datasource name for which document count is needed.
@@ -51,7 +51,6 @@ public class GetDocumentCountRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -76,14 +75,16 @@ public class GetDocumentCountRequest {
         return Utils.toString(GetDocumentCountRequest.class,
                 "datasource", datasource);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String datasource;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Datasource name for which document count is needed.
@@ -93,10 +94,12 @@ public class GetDocumentCountRequest {
             this.datasource = datasource;
             return this;
         }
-        
+
         public GetDocumentCountRequest build() {
+
             return new GetDocumentCountRequest(
                 datasource);
         }
+
     }
 }

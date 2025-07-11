@@ -18,8 +18,8 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 
-public class Shortcut {
 
+public class Shortcut {
     /**
      * The opaque id of the user generated content.
      */
@@ -82,9 +82,11 @@ public class Shortcut {
     @JsonProperty("removedRoles")
     private Optional<? extends List<UserRoleSpecification>> removedRoles;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("permissions")
     private Optional<? extends ObjectPermissions> permissions;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdBy")
@@ -97,6 +99,7 @@ public class Shortcut {
     @JsonProperty("createTime")
     private Optional<OffsetDateTime> createTime;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("updatedBy")
     private Optional<? extends Person> updatedBy;
@@ -107,6 +110,7 @@ public class Shortcut {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("updateTime")
     private Optional<OffsetDateTime> updateTime;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destinationDocument")
@@ -233,7 +237,14 @@ public class Shortcut {
     
     public Shortcut(
             String inputAlias) {
-        this(Optional.empty(), inputAlias, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), inputAlias, Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -407,9 +418,10 @@ public class Shortcut {
         return (Optional<List<UserRoleSpecification>>) roles;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The opaque id of the user generated content.
@@ -419,6 +431,7 @@ public class Shortcut {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The opaque id of the user generated content.
@@ -447,6 +460,7 @@ public class Shortcut {
         return this;
     }
 
+
     /**
      * Destination URL for the shortcut.
      */
@@ -464,6 +478,7 @@ public class Shortcut {
         this.destinationDocumentId = Optional.ofNullable(destinationDocumentId);
         return this;
     }
+
 
     /**
      * Glean Document ID for the URL, if known.
@@ -483,6 +498,7 @@ public class Shortcut {
         return this;
     }
 
+
     /**
      * A short, plain text blurb to help people understand the intent of the shortcut.
      */
@@ -500,6 +516,7 @@ public class Shortcut {
         this.unlisted = Optional.ofNullable(unlisted);
         return this;
     }
+
 
     /**
      * Whether this shortcut is unlisted or not. Unlisted shortcuts are visible to author + admins only.
@@ -519,6 +536,7 @@ public class Shortcut {
         return this;
     }
 
+
     /**
      * For variable shortcuts, contains the URL template; note, `destinationUrl` contains default URL.
      */
@@ -536,6 +554,7 @@ public class Shortcut {
         this.addedRoles = Optional.ofNullable(addedRoles);
         return this;
     }
+
 
     /**
      * A list of user roles added for the Shortcut.
@@ -555,6 +574,7 @@ public class Shortcut {
         return this;
     }
 
+
     /**
      * A list of user roles removed for the Shortcut.
      */
@@ -570,6 +590,7 @@ public class Shortcut {
         return this;
     }
 
+
     public Shortcut withPermissions(Optional<? extends ObjectPermissions> permissions) {
         Utils.checkNotNull(permissions, "permissions");
         this.permissions = permissions;
@@ -581,6 +602,7 @@ public class Shortcut {
         this.createdBy = Optional.ofNullable(createdBy);
         return this;
     }
+
 
     public Shortcut withCreatedBy(Optional<? extends Person> createdBy) {
         Utils.checkNotNull(createdBy, "createdBy");
@@ -597,6 +619,7 @@ public class Shortcut {
         return this;
     }
 
+
     /**
      * The time the shortcut was created in ISO format (ISO 8601).
      */
@@ -611,6 +634,7 @@ public class Shortcut {
         this.updatedBy = Optional.ofNullable(updatedBy);
         return this;
     }
+
 
     public Shortcut withUpdatedBy(Optional<? extends Person> updatedBy) {
         Utils.checkNotNull(updatedBy, "updatedBy");
@@ -627,6 +651,7 @@ public class Shortcut {
         return this;
     }
 
+
     /**
      * The time the shortcut was updated in ISO format (ISO 8601).
      */
@@ -642,6 +667,7 @@ public class Shortcut {
         return this;
     }
 
+
     public Shortcut withDestinationDocument(Optional<? extends Document> destinationDocument) {
         Utils.checkNotNull(destinationDocument, "destinationDocument");
         this.destinationDocument = destinationDocument;
@@ -656,6 +682,7 @@ public class Shortcut {
         this.intermediateUrl = Optional.ofNullable(intermediateUrl);
         return this;
     }
+
 
     /**
      * The URL from which the user is then redirected to the destination URL. Full replacement for https://go/&lt;inputAlias&gt;.
@@ -675,6 +702,7 @@ public class Shortcut {
         return this;
     }
 
+
     /**
      * The part of the shortcut preceding the input alias when used for showing shortcuts to users. Should end with "/". e.g. "go/" for native shortcuts.
      */
@@ -692,6 +720,7 @@ public class Shortcut {
         this.isExternal = Optional.ofNullable(isExternal);
         return this;
     }
+
 
     /**
      * Indicates whether a shortcut is native or external.
@@ -711,6 +740,7 @@ public class Shortcut {
         return this;
     }
 
+
     /**
      * The URL using which the user can access the edit page of the shortcut.
      */
@@ -728,6 +758,7 @@ public class Shortcut {
         this.alias = Optional.ofNullable(alias);
         return this;
     }
+
 
     /**
      * canonical link text following go/ prefix where hyphen/underscore is removed.
@@ -747,6 +778,7 @@ public class Shortcut {
         return this;
     }
 
+
     /**
      * Title for the Go Link
      */
@@ -765,6 +797,7 @@ public class Shortcut {
         return this;
     }
 
+
     /**
      * A list of user roles for the Go Link.
      */
@@ -774,7 +807,6 @@ public class Shortcut {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -812,27 +844,13 @@ public class Shortcut {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            inputAlias,
-            destinationUrl,
-            destinationDocumentId,
-            description,
-            unlisted,
-            urlTemplate,
-            addedRoles,
-            removedRoles,
-            permissions,
-            createdBy,
-            createTime,
-            updatedBy,
-            updateTime,
-            destinationDocument,
-            intermediateUrl,
-            viewPrefix,
-            isExternal,
-            editUrl,
-            alias,
-            title,
+            id, inputAlias, destinationUrl,
+            destinationDocumentId, description, unlisted,
+            urlTemplate, addedRoles, removedRoles,
+            permissions, createdBy, createTime,
+            updatedBy, updateTime, destinationDocument,
+            intermediateUrl, viewPrefix, isExternal,
+            editUrl, alias, title,
             roles);
     }
     
@@ -862,56 +880,58 @@ public class Shortcut {
                 "title", title,
                 "roles", roles);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> id = Optional.empty();
- 
+
         private String inputAlias;
- 
+
         private Optional<String> destinationUrl = Optional.empty();
- 
+
         private Optional<String> destinationDocumentId = Optional.empty();
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<Boolean> unlisted = Optional.empty();
- 
+
         private Optional<String> urlTemplate = Optional.empty();
- 
+
         private Optional<? extends List<UserRoleSpecification>> addedRoles = Optional.empty();
- 
+
         private Optional<? extends List<UserRoleSpecification>> removedRoles = Optional.empty();
- 
+
         private Optional<? extends ObjectPermissions> permissions = Optional.empty();
- 
+
         private Optional<? extends Person> createdBy = Optional.empty();
- 
+
         private Optional<OffsetDateTime> createTime = Optional.empty();
- 
+
         private Optional<? extends Person> updatedBy = Optional.empty();
- 
+
         private Optional<OffsetDateTime> updateTime = Optional.empty();
- 
+
         private Optional<? extends Document> destinationDocument = Optional.empty();
- 
+
         private Optional<String> intermediateUrl = Optional.empty();
- 
+
         private Optional<String> viewPrefix = Optional.empty();
- 
+
         private Optional<Boolean> isExternal = Optional.empty();
- 
+
         private Optional<String> editUrl = Optional.empty();
- 
+
         private Optional<String> alias = Optional.empty();
- 
+
         private Optional<String> title = Optional.empty();
- 
+
         private Optional<? extends List<UserRoleSpecification>> roles = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The opaque id of the user generated content.
@@ -931,6 +951,7 @@ public class Shortcut {
             return this;
         }
 
+
         /**
          * Link text following go/ prefix as entered by the user.
          */
@@ -939,6 +960,7 @@ public class Shortcut {
             this.inputAlias = inputAlias;
             return this;
         }
+
 
         /**
          * Destination URL for the shortcut.
@@ -958,6 +980,7 @@ public class Shortcut {
             return this;
         }
 
+
         /**
          * Glean Document ID for the URL, if known.
          */
@@ -975,6 +998,7 @@ public class Shortcut {
             this.destinationDocumentId = destinationDocumentId;
             return this;
         }
+
 
         /**
          * A short, plain text blurb to help people understand the intent of the shortcut.
@@ -994,6 +1018,7 @@ public class Shortcut {
             return this;
         }
 
+
         /**
          * Whether this shortcut is unlisted or not. Unlisted shortcuts are visible to author + admins only.
          */
@@ -1011,6 +1036,7 @@ public class Shortcut {
             this.unlisted = unlisted;
             return this;
         }
+
 
         /**
          * For variable shortcuts, contains the URL template; note, `destinationUrl` contains default URL.
@@ -1030,6 +1056,7 @@ public class Shortcut {
             return this;
         }
 
+
         /**
          * A list of user roles added for the Shortcut.
          */
@@ -1047,6 +1074,7 @@ public class Shortcut {
             this.addedRoles = addedRoles;
             return this;
         }
+
 
         /**
          * A list of user roles removed for the Shortcut.
@@ -1066,6 +1094,7 @@ public class Shortcut {
             return this;
         }
 
+
         public Builder permissions(ObjectPermissions permissions) {
             Utils.checkNotNull(permissions, "permissions");
             this.permissions = Optional.ofNullable(permissions);
@@ -1078,6 +1107,7 @@ public class Shortcut {
             return this;
         }
 
+
         public Builder createdBy(Person createdBy) {
             Utils.checkNotNull(createdBy, "createdBy");
             this.createdBy = Optional.ofNullable(createdBy);
@@ -1089,6 +1119,7 @@ public class Shortcut {
             this.createdBy = createdBy;
             return this;
         }
+
 
         /**
          * The time the shortcut was created in ISO format (ISO 8601).
@@ -1108,6 +1139,7 @@ public class Shortcut {
             return this;
         }
 
+
         public Builder updatedBy(Person updatedBy) {
             Utils.checkNotNull(updatedBy, "updatedBy");
             this.updatedBy = Optional.ofNullable(updatedBy);
@@ -1119,6 +1151,7 @@ public class Shortcut {
             this.updatedBy = updatedBy;
             return this;
         }
+
 
         /**
          * The time the shortcut was updated in ISO format (ISO 8601).
@@ -1138,6 +1171,7 @@ public class Shortcut {
             return this;
         }
 
+
         public Builder destinationDocument(Document destinationDocument) {
             Utils.checkNotNull(destinationDocument, "destinationDocument");
             this.destinationDocument = Optional.ofNullable(destinationDocument);
@@ -1149,6 +1183,7 @@ public class Shortcut {
             this.destinationDocument = destinationDocument;
             return this;
         }
+
 
         /**
          * The URL from which the user is then redirected to the destination URL. Full replacement for https://go/&lt;inputAlias&gt;.
@@ -1168,6 +1203,7 @@ public class Shortcut {
             return this;
         }
 
+
         /**
          * The part of the shortcut preceding the input alias when used for showing shortcuts to users. Should end with "/". e.g. "go/" for native shortcuts.
          */
@@ -1185,6 +1221,7 @@ public class Shortcut {
             this.viewPrefix = viewPrefix;
             return this;
         }
+
 
         /**
          * Indicates whether a shortcut is native or external.
@@ -1204,6 +1241,7 @@ public class Shortcut {
             return this;
         }
 
+
         /**
          * The URL using which the user can access the edit page of the shortcut.
          */
@@ -1221,6 +1259,7 @@ public class Shortcut {
             this.editUrl = editUrl;
             return this;
         }
+
 
         /**
          * canonical link text following go/ prefix where hyphen/underscore is removed.
@@ -1240,6 +1279,7 @@ public class Shortcut {
             return this;
         }
 
+
         /**
          * Title for the Go Link
          */
@@ -1258,6 +1298,7 @@ public class Shortcut {
             return this;
         }
 
+
         /**
          * A list of user roles for the Go Link.
          */
@@ -1275,31 +1316,19 @@ public class Shortcut {
             this.roles = roles;
             return this;
         }
-        
+
         public Shortcut build() {
+
             return new Shortcut(
-                id,
-                inputAlias,
-                destinationUrl,
-                destinationDocumentId,
-                description,
-                unlisted,
-                urlTemplate,
-                addedRoles,
-                removedRoles,
-                permissions,
-                createdBy,
-                createTime,
-                updatedBy,
-                updateTime,
-                destinationDocument,
-                intermediateUrl,
-                viewPrefix,
-                isExternal,
-                editUrl,
-                alias,
-                title,
+                id, inputAlias, destinationUrl,
+                destinationDocumentId, description, unlisted,
+                urlTemplate, addedRoles, removedRoles,
+                permissions, createdBy, createTime,
+                updatedBy, updateTime, destinationDocument,
+                intermediateUrl, viewPrefix, isExternal,
+                editUrl, alias, title,
                 roles);
         }
+
     }
 }

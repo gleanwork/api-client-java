@@ -29,7 +29,6 @@ public class Reports {
     Reports(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Creates new one-time report
      * 
@@ -50,13 +49,11 @@ public class Reports {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreatereportResponse create(
-            UpdateDlpConfigRequest request) throws Exception {
+    public CreatereportResponse create(UpdateDlpConfigRequest request) throws Exception {
         RequestOperation<UpdateDlpConfigRequest, CreatereportResponse> operation
-              = new CreatereportOperation( sdkConfiguration);
+              = new CreatereportOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Downloads violations CSV for report
@@ -78,18 +75,16 @@ public class Reports {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DownloadreportcsvResponse download(
-            String id) throws Exception {
+    public DownloadreportcsvResponse download(String id) throws Exception {
         DownloadreportcsvRequest request =
             DownloadreportcsvRequest
                 .builder()
                 .id(id)
                 .build();
         RequestOperation<DownloadreportcsvRequest, DownloadreportcsvResponse> operation
-              = new DownloadreportcsvOperation( sdkConfiguration);
+              = new DownloadreportcsvOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Fetches report run status
@@ -111,15 +106,14 @@ public class Reports {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetreportstatusResponse status(
-            String id) throws Exception {
+    public GetreportstatusResponse status(String id) throws Exception {
         GetreportstatusRequest request =
             GetreportstatusRequest
                 .builder()
                 .id(id)
                 .build();
         RequestOperation<GetreportstatusRequest, GetreportstatusResponse> operation
-              = new GetreportstatusOperation( sdkConfiguration);
+              = new GetreportstatusOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

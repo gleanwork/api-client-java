@@ -19,7 +19,6 @@ import java.util.Optional;
  * <p>Describes the document status response body
  */
 public class DocumentStatusResponse {
-
     /**
      * Upload status, enum of NOT_UPLOADED, UPLOADED, STATUS_UNKNOWN
      */
@@ -75,7 +74,8 @@ public class DocumentStatusResponse {
     }
     
     public DocumentStatusResponse() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -118,9 +118,10 @@ public class DocumentStatusResponse {
         return permissionIdentityStatus;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Upload status, enum of NOT_UPLOADED, UPLOADED, STATUS_UNKNOWN
@@ -130,6 +131,7 @@ public class DocumentStatusResponse {
         this.uploadStatus = Optional.ofNullable(uploadStatus);
         return this;
     }
+
 
     /**
      * Upload status, enum of NOT_UPLOADED, UPLOADED, STATUS_UNKNOWN
@@ -149,6 +151,7 @@ public class DocumentStatusResponse {
         return this;
     }
 
+
     /**
      * Time of last successful upload for the document, in ISO 8601 format
      */
@@ -166,6 +169,7 @@ public class DocumentStatusResponse {
         this.indexingStatus = Optional.ofNullable(indexingStatus);
         return this;
     }
+
 
     /**
      * Indexing status, enum of NOT_INDEXED, INDEXED, STATUS_UNKNOWN
@@ -185,6 +189,7 @@ public class DocumentStatusResponse {
         return this;
     }
 
+
     /**
      * Time of last successful indexing for the document, in ISO 8601 format
      */
@@ -203,6 +208,7 @@ public class DocumentStatusResponse {
         return this;
     }
 
+
     /**
      * Permission identity status, enum of NOT_UPLOADED, UPLOADED, STATUS_UNKNOWN (Always unknown if `identityDatasourceName` is set). Document visibility may be affected status is `NOT_UPLOADED`.
      */
@@ -212,7 +218,6 @@ public class DocumentStatusResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -233,11 +238,8 @@ public class DocumentStatusResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            uploadStatus,
-            lastUploadedAt,
-            indexingStatus,
-            lastIndexedAt,
-            permissionIdentityStatus);
+            uploadStatus, lastUploadedAt, indexingStatus,
+            lastIndexedAt, permissionIdentityStatus);
     }
     
     @Override
@@ -249,22 +251,24 @@ public class DocumentStatusResponse {
                 "lastIndexedAt", lastIndexedAt,
                 "permissionIdentityStatus", permissionIdentityStatus);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> uploadStatus = Optional.empty();
- 
+
         private Optional<String> lastUploadedAt = Optional.empty();
- 
+
         private Optional<String> indexingStatus = Optional.empty();
- 
+
         private Optional<String> lastIndexedAt = Optional.empty();
- 
+
         private Optional<String> permissionIdentityStatus = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Upload status, enum of NOT_UPLOADED, UPLOADED, STATUS_UNKNOWN
@@ -284,6 +288,7 @@ public class DocumentStatusResponse {
             return this;
         }
 
+
         /**
          * Time of last successful upload for the document, in ISO 8601 format
          */
@@ -301,6 +306,7 @@ public class DocumentStatusResponse {
             this.lastUploadedAt = lastUploadedAt;
             return this;
         }
+
 
         /**
          * Indexing status, enum of NOT_INDEXED, INDEXED, STATUS_UNKNOWN
@@ -320,6 +326,7 @@ public class DocumentStatusResponse {
             return this;
         }
 
+
         /**
          * Time of last successful indexing for the document, in ISO 8601 format
          */
@@ -338,6 +345,7 @@ public class DocumentStatusResponse {
             return this;
         }
 
+
         /**
          * Permission identity status, enum of NOT_UPLOADED, UPLOADED, STATUS_UNKNOWN (Always unknown if `identityDatasourceName` is set). Document visibility may be affected status is `NOT_UPLOADED`.
          */
@@ -355,14 +363,13 @@ public class DocumentStatusResponse {
             this.permissionIdentityStatus = permissionIdentityStatus;
             return this;
         }
-        
+
         public DocumentStatusResponse build() {
+
             return new DocumentStatusResponse(
-                uploadStatus,
-                lastUploadedAt,
-                indexingStatus,
-                lastIndexedAt,
-                permissionIdentityStatus);
+                uploadStatus, lastUploadedAt, indexingStatus,
+                lastIndexedAt, permissionIdentityStatus);
         }
+
     }
 }

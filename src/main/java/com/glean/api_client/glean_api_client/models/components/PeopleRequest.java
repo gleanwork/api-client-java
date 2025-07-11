@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class PeopleRequest {
 
+public class PeopleRequest {
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      */
@@ -83,7 +83,8 @@ public class PeopleRequest {
     }
     
     public PeopleRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -138,9 +139,10 @@ public class PeopleRequest {
         return source;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
@@ -150,6 +152,7 @@ public class PeopleRequest {
         this.timezoneOffset = Optional.ofNullable(timezoneOffset);
         return this;
     }
+
 
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
@@ -169,6 +172,7 @@ public class PeopleRequest {
         return this;
     }
 
+
     /**
      * The Person IDs to retrieve. If no IDs are requested, the current user's details are returned.
      */
@@ -186,6 +190,7 @@ public class PeopleRequest {
         this.emailIds = Optional.ofNullable(emailIds);
         return this;
     }
+
 
     /**
      * The email IDs to retrieve. The result is the deduplicated union of emailIds and obfuscatedIds.
@@ -205,6 +210,7 @@ public class PeopleRequest {
         return this;
     }
 
+
     /**
      * List of PersonMetadata fields to return (that aren't returned by default)
      */
@@ -222,6 +228,7 @@ public class PeopleRequest {
         this.includeTypes = Optional.ofNullable(includeTypes);
         return this;
     }
+
 
     /**
      * The types of people entities to include in the response in addition to those returned by default.
@@ -241,6 +248,7 @@ public class PeopleRequest {
         return this;
     }
 
+
     /**
      * A string denoting the search surface from which the endpoint is called.
      */
@@ -250,7 +258,6 @@ public class PeopleRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -272,12 +279,8 @@ public class PeopleRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            timezoneOffset,
-            obfuscatedIds,
-            emailIds,
-            includeFields,
-            includeTypes,
-            source);
+            timezoneOffset, obfuscatedIds, emailIds,
+            includeFields, includeTypes, source);
     }
     
     @Override
@@ -290,24 +293,26 @@ public class PeopleRequest {
                 "includeTypes", includeTypes,
                 "source", source);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> timezoneOffset = Optional.empty();
- 
+
         private Optional<? extends List<String>> obfuscatedIds = Optional.empty();
- 
+
         private Optional<? extends List<String>> emailIds = Optional.empty();
- 
+
         private Optional<? extends List<PeopleRequestIncludeField>> includeFields = Optional.empty();
- 
+
         private Optional<? extends List<IncludeType>> includeTypes = Optional.empty();
- 
+
         private Optional<String> source = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
@@ -327,6 +332,7 @@ public class PeopleRequest {
             return this;
         }
 
+
         /**
          * The Person IDs to retrieve. If no IDs are requested, the current user's details are returned.
          */
@@ -344,6 +350,7 @@ public class PeopleRequest {
             this.obfuscatedIds = obfuscatedIds;
             return this;
         }
+
 
         /**
          * The email IDs to retrieve. The result is the deduplicated union of emailIds and obfuscatedIds.
@@ -363,6 +370,7 @@ public class PeopleRequest {
             return this;
         }
 
+
         /**
          * List of PersonMetadata fields to return (that aren't returned by default)
          */
@@ -380,6 +388,7 @@ public class PeopleRequest {
             this.includeFields = includeFields;
             return this;
         }
+
 
         /**
          * The types of people entities to include in the response in addition to those returned by default.
@@ -399,6 +408,7 @@ public class PeopleRequest {
             return this;
         }
 
+
         /**
          * A string denoting the search surface from which the endpoint is called.
          */
@@ -416,15 +426,13 @@ public class PeopleRequest {
             this.source = source;
             return this;
         }
-        
+
         public PeopleRequest build() {
+
             return new PeopleRequest(
-                timezoneOffset,
-                obfuscatedIds,
-                emailIds,
-                includeFields,
-                includeTypes,
-                source);
+                timezoneOffset, obfuscatedIds, emailIds,
+                includeFields, includeTypes, source);
         }
+
     }
 }

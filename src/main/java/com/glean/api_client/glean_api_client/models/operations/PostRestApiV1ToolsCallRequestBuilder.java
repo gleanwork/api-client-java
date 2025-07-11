@@ -29,7 +29,7 @@ public class PostRestApiV1ToolsCallRequestBuilder {
     public PostRestApiV1ToolsCallResponse call() throws Exception {
         
         RequestOperation<ToolsCallRequest, PostRestApiV1ToolsCallResponse> operation
-              = new PostRestApiV1ToolsCallOperation( sdkConfiguration);
+              = new PostRestApiV1ToolsCallOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

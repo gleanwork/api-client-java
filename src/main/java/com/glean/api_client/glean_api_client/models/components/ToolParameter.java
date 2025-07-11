@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class ToolParameter {
 
+public class ToolParameter {
     /**
      * Parameter type (string, number, boolean, object, array)
      */
@@ -53,6 +53,7 @@ public class ToolParameter {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("possibleValues")
     private Optional<? extends List<String>> possibleValues;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("items")
@@ -91,7 +92,9 @@ public class ToolParameter {
     }
     
     public ToolParameter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -151,9 +154,10 @@ public class ToolParameter {
         return (Optional<Map<String, ToolParameter>>) properties;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Parameter type (string, number, boolean, object, array)
@@ -163,6 +167,7 @@ public class ToolParameter {
         this.type = Optional.ofNullable(type);
         return this;
     }
+
 
     /**
      * Parameter type (string, number, boolean, object, array)
@@ -182,6 +187,7 @@ public class ToolParameter {
         return this;
     }
 
+
     /**
      * The name of the parameter
      */
@@ -199,6 +205,7 @@ public class ToolParameter {
         this.description = Optional.ofNullable(description);
         return this;
     }
+
 
     /**
      * The description of the parameter
@@ -218,6 +225,7 @@ public class ToolParameter {
         return this;
     }
 
+
     /**
      * Whether the parameter is required
      */
@@ -236,6 +244,7 @@ public class ToolParameter {
         return this;
     }
 
+
     /**
      * The possible values for the parameter. Can contain only primitive values or arrays of primitive values.
      */
@@ -250,6 +259,7 @@ public class ToolParameter {
         this.items = Optional.ofNullable(items);
         return this;
     }
+
 
     public ToolParameter withItems(Optional<? extends ToolParameter> items) {
         Utils.checkNotNull(items, "items");
@@ -266,6 +276,7 @@ public class ToolParameter {
         return this;
     }
 
+
     /**
      * When type is 'object', this describes the structure of the object.
      */
@@ -275,7 +286,6 @@ public class ToolParameter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -298,12 +308,8 @@ public class ToolParameter {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            name,
-            description,
-            isRequired,
-            possibleValues,
-            items,
+            type, name, description,
+            isRequired, possibleValues, items,
             properties);
     }
     
@@ -318,26 +324,28 @@ public class ToolParameter {
                 "items", items,
                 "properties", properties);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ToolParameterType> type = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<Boolean> isRequired = Optional.empty();
- 
+
         private Optional<? extends List<String>> possibleValues = Optional.empty();
- 
+
         private Optional<? extends ToolParameter> items = Optional.empty();
- 
+
         private Optional<? extends Map<String, ToolParameter>> properties = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Parameter type (string, number, boolean, object, array)
@@ -357,6 +365,7 @@ public class ToolParameter {
             return this;
         }
 
+
         /**
          * The name of the parameter
          */
@@ -374,6 +383,7 @@ public class ToolParameter {
             this.name = name;
             return this;
         }
+
 
         /**
          * The description of the parameter
@@ -393,6 +403,7 @@ public class ToolParameter {
             return this;
         }
 
+
         /**
          * Whether the parameter is required
          */
@@ -410,6 +421,7 @@ public class ToolParameter {
             this.isRequired = isRequired;
             return this;
         }
+
 
         /**
          * The possible values for the parameter. Can contain only primitive values or arrays of primitive values.
@@ -429,6 +441,7 @@ public class ToolParameter {
             return this;
         }
 
+
         public Builder items(ToolParameter items) {
             Utils.checkNotNull(items, "items");
             this.items = Optional.ofNullable(items);
@@ -440,6 +453,7 @@ public class ToolParameter {
             this.items = items;
             return this;
         }
+
 
         /**
          * When type is 'object', this describes the structure of the object.
@@ -458,16 +472,14 @@ public class ToolParameter {
             this.properties = properties;
             return this;
         }
-        
+
         public ToolParameter build() {
+
             return new ToolParameter(
-                type,
-                name,
-                description,
-                isRequired,
-                possibleValues,
-                items,
+                type, name, description,
+                isRequired, possibleValues, items,
                 properties);
         }
+
     }
 }

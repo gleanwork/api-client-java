@@ -14,8 +14,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class WorkflowFeedbackInfo {
 
+public class WorkflowFeedbackInfo {
     /**
      * Where the feedback of the workflow originated from
      */
@@ -43,9 +43,10 @@ public class WorkflowFeedbackInfo {
         return (Optional<WorkflowFeedbackInfoSource>) source;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Where the feedback of the workflow originated from
@@ -56,6 +57,7 @@ public class WorkflowFeedbackInfo {
         return this;
     }
 
+
     /**
      * Where the feedback of the workflow originated from
      */
@@ -65,7 +67,6 @@ public class WorkflowFeedbackInfo {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,14 +91,16 @@ public class WorkflowFeedbackInfo {
         return Utils.toString(WorkflowFeedbackInfo.class,
                 "source", source);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends WorkflowFeedbackInfoSource> source = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Where the feedback of the workflow originated from
@@ -116,10 +119,12 @@ public class WorkflowFeedbackInfo {
             this.source = source;
             return this;
         }
-        
+
         public WorkflowFeedbackInfo build() {
+
             return new WorkflowFeedbackInfo(
                 source);
         }
+
     }
 }

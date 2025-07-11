@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.Map;
 import java.util.Optional;
 
-public class ToolInfo {
 
+public class ToolInfo {
     /**
      * The manifest for a tool that can be used to augment Glean Assistant.
      */
@@ -63,9 +63,10 @@ public class ToolInfo {
         return (Optional<Map<String, WriteActionParameter>>) parameters;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The manifest for a tool that can be used to augment Glean Assistant.
@@ -75,6 +76,7 @@ public class ToolInfo {
         this.metadata = Optional.ofNullable(metadata);
         return this;
     }
+
 
     /**
      * The manifest for a tool that can be used to augment Glean Assistant.
@@ -94,6 +96,7 @@ public class ToolInfo {
         return this;
     }
 
+
     /**
      * Parameters supported by the tool.
      */
@@ -103,7 +106,6 @@ public class ToolInfo {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -121,8 +123,7 @@ public class ToolInfo {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            metadata,
-            parameters);
+            metadata, parameters);
     }
     
     @Override
@@ -131,16 +132,18 @@ public class ToolInfo {
                 "metadata", metadata,
                 "parameters", parameters);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ToolMetadata> metadata = Optional.empty();
- 
+
         private Optional<? extends Map<String, WriteActionParameter>> parameters = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The manifest for a tool that can be used to augment Glean Assistant.
@@ -160,6 +163,7 @@ public class ToolInfo {
             return this;
         }
 
+
         /**
          * Parameters supported by the tool.
          */
@@ -177,11 +181,12 @@ public class ToolInfo {
             this.parameters = parameters;
             return this;
         }
-        
+
         public ToolInfo build() {
+
             return new ToolInfo(
-                metadata,
-                parameters);
+                metadata, parameters);
         }
+
     }
 }

@@ -21,13 +21,13 @@ import java.util.Optional;
  * <p>Information about the source for a ChatMessage.
  */
 public class ChatMessageCitation {
-
     /**
      * An opaque token that represents this particular result in this particular ChatMessage. To be used for /feedback reporting.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("trackingToken")
     private Optional<String> trackingToken;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sourceDocument")
@@ -39,6 +39,7 @@ public class ChatMessageCitation {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sourceFile")
     private Optional<? extends ChatFile> sourceFile;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sourcePerson")
@@ -71,7 +72,8 @@ public class ChatMessageCitation {
     }
     
     public ChatMessageCitation() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -112,9 +114,10 @@ public class ChatMessageCitation {
         return (Optional<List<ReferenceRange>>) referenceRanges;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An opaque token that represents this particular result in this particular ChatMessage. To be used for /feedback reporting.
@@ -124,6 +127,7 @@ public class ChatMessageCitation {
         this.trackingToken = Optional.ofNullable(trackingToken);
         return this;
     }
+
 
     /**
      * An opaque token that represents this particular result in this particular ChatMessage. To be used for /feedback reporting.
@@ -140,6 +144,7 @@ public class ChatMessageCitation {
         return this;
     }
 
+
     public ChatMessageCitation withSourceDocument(Optional<? extends Document> sourceDocument) {
         Utils.checkNotNull(sourceDocument, "sourceDocument");
         this.sourceDocument = sourceDocument;
@@ -154,6 +159,7 @@ public class ChatMessageCitation {
         this.sourceFile = Optional.ofNullable(sourceFile);
         return this;
     }
+
 
     /**
      * Structure for file uploaded by a user for Chat.
@@ -170,6 +176,7 @@ public class ChatMessageCitation {
         return this;
     }
 
+
     public ChatMessageCitation withSourcePerson(Optional<? extends Person> sourcePerson) {
         Utils.checkNotNull(sourcePerson, "sourcePerson");
         this.sourcePerson = sourcePerson;
@@ -185,6 +192,7 @@ public class ChatMessageCitation {
         return this;
     }
 
+
     /**
      * Each reference range and its corresponding snippets
      */
@@ -194,7 +202,6 @@ public class ChatMessageCitation {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -215,11 +222,8 @@ public class ChatMessageCitation {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            trackingToken,
-            sourceDocument,
-            sourceFile,
-            sourcePerson,
-            referenceRanges);
+            trackingToken, sourceDocument, sourceFile,
+            sourcePerson, referenceRanges);
     }
     
     @Override
@@ -231,22 +235,24 @@ public class ChatMessageCitation {
                 "sourcePerson", sourcePerson,
                 "referenceRanges", referenceRanges);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> trackingToken = Optional.empty();
- 
+
         private Optional<? extends Document> sourceDocument = Optional.empty();
- 
+
         private Optional<? extends ChatFile> sourceFile = Optional.empty();
- 
+
         private Optional<? extends Person> sourcePerson = Optional.empty();
- 
+
         private Optional<? extends List<ReferenceRange>> referenceRanges = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An opaque token that represents this particular result in this particular ChatMessage. To be used for /feedback reporting.
@@ -266,6 +272,7 @@ public class ChatMessageCitation {
             return this;
         }
 
+
         public Builder sourceDocument(Document sourceDocument) {
             Utils.checkNotNull(sourceDocument, "sourceDocument");
             this.sourceDocument = Optional.ofNullable(sourceDocument);
@@ -277,6 +284,7 @@ public class ChatMessageCitation {
             this.sourceDocument = sourceDocument;
             return this;
         }
+
 
         /**
          * Structure for file uploaded by a user for Chat.
@@ -296,6 +304,7 @@ public class ChatMessageCitation {
             return this;
         }
 
+
         public Builder sourcePerson(Person sourcePerson) {
             Utils.checkNotNull(sourcePerson, "sourcePerson");
             this.sourcePerson = Optional.ofNullable(sourcePerson);
@@ -307,6 +316,7 @@ public class ChatMessageCitation {
             this.sourcePerson = sourcePerson;
             return this;
         }
+
 
         /**
          * Each reference range and its corresponding snippets
@@ -325,14 +335,13 @@ public class ChatMessageCitation {
             this.referenceRanges = referenceRanges;
             return this;
         }
-        
+
         public ChatMessageCitation build() {
+
             return new ChatMessageCitation(
-                trackingToken,
-                sourceDocument,
-                sourceFile,
-                sourcePerson,
-                referenceRanges);
+                trackingToken, sourceDocument, sourceFile,
+                sourcePerson, referenceRanges);
         }
+
     }
 }

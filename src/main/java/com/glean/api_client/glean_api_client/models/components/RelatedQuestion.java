@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class RelatedQuestion {
 
+public class RelatedQuestion {
     /**
      * The text of the related question
      */
@@ -80,9 +80,10 @@ public class RelatedQuestion {
         return (Optional<List<TextRange>>) ranges;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The text of the related question
@@ -92,6 +93,7 @@ public class RelatedQuestion {
         this.question = Optional.ofNullable(question);
         return this;
     }
+
 
     /**
      * The text of the related question
@@ -111,6 +113,7 @@ public class RelatedQuestion {
         return this;
     }
 
+
     /**
      * The answer for the related question
      */
@@ -129,6 +132,7 @@ public class RelatedQuestion {
         return this;
     }
 
+
     /**
      * Subsections of the answer string to which some special formatting should be applied (eg. bold)
      */
@@ -138,7 +142,6 @@ public class RelatedQuestion {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -157,9 +160,7 @@ public class RelatedQuestion {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            question,
-            answer,
-            ranges);
+            question, answer, ranges);
     }
     
     @Override
@@ -169,18 +170,20 @@ public class RelatedQuestion {
                 "answer", answer,
                 "ranges", ranges);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> question = Optional.empty();
- 
+
         private Optional<String> answer = Optional.empty();
- 
+
         private Optional<? extends List<TextRange>> ranges = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The text of the related question
@@ -200,6 +203,7 @@ public class RelatedQuestion {
             return this;
         }
 
+
         /**
          * The answer for the related question
          */
@@ -218,6 +222,7 @@ public class RelatedQuestion {
             return this;
         }
 
+
         /**
          * Subsections of the answer string to which some special formatting should be applied (eg. bold)
          */
@@ -235,12 +240,12 @@ public class RelatedQuestion {
             this.ranges = ranges;
             return this;
         }
-        
+
         public RelatedQuestion build() {
+
             return new RelatedQuestion(
-                question,
-                answer,
-                ranges);
+                question, answer, ranges);
         }
+
     }
 }

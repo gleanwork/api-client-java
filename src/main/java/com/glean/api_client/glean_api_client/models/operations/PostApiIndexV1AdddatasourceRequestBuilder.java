@@ -29,7 +29,7 @@ public class PostApiIndexV1AdddatasourceRequestBuilder {
     public PostApiIndexV1AdddatasourceResponse call() throws Exception {
         
         RequestOperation<CustomDatasourceConfig, PostApiIndexV1AdddatasourceResponse> operation
-              = new PostApiIndexV1AdddatasourceOperation( sdkConfiguration);
+              = new PostApiIndexV1AdddatasourceOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

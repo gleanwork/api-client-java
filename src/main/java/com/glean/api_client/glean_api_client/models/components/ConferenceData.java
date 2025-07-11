@@ -14,6 +14,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class ConferenceData {
 
     @JsonProperty("provider")
@@ -24,6 +25,7 @@ public class ConferenceData {
      */
     @JsonProperty("uri")
     private String uri;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("source")
@@ -67,9 +69,10 @@ public class ConferenceData {
         return (Optional<ConferenceDataSource>) source;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ConferenceData withProvider(Provider provider) {
         Utils.checkNotNull(provider, "provider");
@@ -92,13 +95,13 @@ public class ConferenceData {
         return this;
     }
 
+
     public ConferenceData withSource(Optional<? extends ConferenceDataSource> source) {
         Utils.checkNotNull(source, "source");
         this.source = source;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -117,9 +120,7 @@ public class ConferenceData {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            provider,
-            uri,
-            source);
+            provider, uri, source);
     }
     
     @Override
@@ -129,24 +130,27 @@ public class ConferenceData {
                 "uri", uri,
                 "source", source);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Provider provider;
- 
+
         private String uri;
- 
+
         private Optional<? extends ConferenceDataSource> source = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder provider(Provider provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = provider;
             return this;
         }
+
 
         /**
          * A permalink for the conference.
@@ -156,6 +160,7 @@ public class ConferenceData {
             this.uri = uri;
             return this;
         }
+
 
         public Builder source(ConferenceDataSource source) {
             Utils.checkNotNull(source, "source");
@@ -168,12 +173,12 @@ public class ConferenceData {
             this.source = source;
             return this;
         }
-        
+
         public ConferenceData build() {
+
             return new ConferenceData(
-                provider,
-                uri,
-                source);
+                provider, uri, source);
         }
+
     }
 }

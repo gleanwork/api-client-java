@@ -29,7 +29,7 @@ public class CreateAndWaitRunRequestBuilder {
     public CreateAndWaitRunResponse call() throws Exception {
         
         RequestOperation<AgentRunCreate, CreateAndWaitRunResponse> operation
-              = new CreateAndWaitRunOperation( sdkConfiguration);
+              = new CreateAndWaitRunOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

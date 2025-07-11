@@ -13,6 +13,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
+
 public class Error {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -35,9 +36,10 @@ public class Error {
         return message;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Error withMessage(String message) {
         Utils.checkNotNull(message, "message");
@@ -45,13 +47,13 @@ public class Error {
         return this;
     }
 
+
     public Error withMessage(Optional<String> message) {
         Utils.checkNotNull(message, "message");
         this.message = message;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -76,14 +78,16 @@ public class Error {
         return Utils.toString(Error.class,
                 "message", message);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> message = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder message(String message) {
             Utils.checkNotNull(message, "message");
@@ -96,10 +100,12 @@ public class Error {
             this.message = message;
             return this;
         }
-        
+
         public Error build() {
+
             return new Error(
                 message);
         }
+
     }
 }

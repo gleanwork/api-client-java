@@ -21,7 +21,6 @@ import java.util.Optional;
  * <p>A subsection of a given string to which some special formatting should be applied.
  */
 public class TextRange {
-
     /**
      * The inclusive start index of the range.
      */
@@ -35,6 +34,7 @@ public class TextRange {
     @JsonProperty("endIndex")
     private Optional<Long> endIndex;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
     private Optional<? extends TextRangeType> type;
@@ -45,6 +45,7 @@ public class TextRange {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("url")
     private Optional<String> url;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("document")
@@ -71,7 +72,8 @@ public class TextRange {
     
     public TextRange(
             long startIndex) {
-        this(startIndex, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(startIndex, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -110,9 +112,10 @@ public class TextRange {
         return (Optional<Document>) document;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The inclusive start index of the range.
@@ -132,6 +135,7 @@ public class TextRange {
         return this;
     }
 
+
     /**
      * The exclusive end index of the range.
      */
@@ -146,6 +150,7 @@ public class TextRange {
         this.type = Optional.ofNullable(type);
         return this;
     }
+
 
     public TextRange withType(Optional<? extends TextRangeType> type) {
         Utils.checkNotNull(type, "type");
@@ -162,6 +167,7 @@ public class TextRange {
         return this;
     }
 
+
     /**
      * The URL associated with the range, if applicable. For example, the linked URL for a LINK range.
      */
@@ -177,13 +183,13 @@ public class TextRange {
         return this;
     }
 
+
     public TextRange withDocument(Optional<? extends Document> document) {
         Utils.checkNotNull(document, "document");
         this.document = document;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -204,11 +210,8 @@ public class TextRange {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            startIndex,
-            endIndex,
-            type,
-            url,
-            document);
+            startIndex, endIndex, type,
+            url, document);
     }
     
     @Override
@@ -220,22 +223,24 @@ public class TextRange {
                 "url", url,
                 "document", document);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long startIndex;
- 
+
         private Optional<Long> endIndex = Optional.empty();
- 
+
         private Optional<? extends TextRangeType> type = Optional.empty();
- 
+
         private Optional<String> url = Optional.empty();
- 
+
         private Optional<? extends Document> document = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The inclusive start index of the range.
@@ -245,6 +250,7 @@ public class TextRange {
             this.startIndex = startIndex;
             return this;
         }
+
 
         /**
          * The exclusive end index of the range.
@@ -264,6 +270,7 @@ public class TextRange {
             return this;
         }
 
+
         public Builder type(TextRangeType type) {
             Utils.checkNotNull(type, "type");
             this.type = Optional.ofNullable(type);
@@ -275,6 +282,7 @@ public class TextRange {
             this.type = type;
             return this;
         }
+
 
         /**
          * The URL associated with the range, if applicable. For example, the linked URL for a LINK range.
@@ -294,6 +302,7 @@ public class TextRange {
             return this;
         }
 
+
         public Builder document(Document document) {
             Utils.checkNotNull(document, "document");
             this.document = Optional.ofNullable(document);
@@ -305,14 +314,13 @@ public class TextRange {
             this.document = document;
             return this;
         }
-        
+
         public TextRange build() {
+
             return new TextRange(
-                startIndex,
-                endIndex,
-                type,
-                url,
-                document);
+                startIndex, endIndex, type,
+                url, document);
         }
+
     }
 }

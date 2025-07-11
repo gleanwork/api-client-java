@@ -24,7 +24,6 @@ import java.util.Optional;
  * <p>Map from action to frequency.
  */
 public class AiAppActionCounts {
-
     /**
      * Total number of Slackbot responses, both proactive and reactive.
      */
@@ -67,6 +66,7 @@ public class AiAppActionCounts {
     @JsonProperty("totalDownvotes")
     private Optional<Long> totalDownvotes;
 
+
     @JsonIgnore
     private Map<String, Long> additionalProperties;
 
@@ -94,7 +94,8 @@ public class AiAppActionCounts {
     }
     
     public AiAppActionCounts() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -150,9 +151,10 @@ public class AiAppActionCounts {
         return additionalProperties;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Total number of Slackbot responses, both proactive and reactive.
@@ -162,6 +164,7 @@ public class AiAppActionCounts {
         this.totalSlackbotResponses = Optional.ofNullable(totalSlackbotResponses);
         return this;
     }
+
 
     /**
      * Total number of Slackbot responses, both proactive and reactive.
@@ -181,6 +184,7 @@ public class AiAppActionCounts {
         return this;
     }
 
+
     /**
      * Total number of Slackbot responses shared publicly (upvoted).
      */
@@ -198,6 +202,7 @@ public class AiAppActionCounts {
         this.totalSlackbotResponsesNotHelpful = Optional.ofNullable(totalSlackbotResponsesNotHelpful);
         return this;
     }
+
 
     /**
      * Total number of Slackbot responses rejected as not helpful (downvoted).
@@ -217,6 +222,7 @@ public class AiAppActionCounts {
         return this;
     }
 
+
     /**
      * Total number of Chat messages sent in requested period.
      */
@@ -234,6 +240,7 @@ public class AiAppActionCounts {
         this.totalUpvotes = Optional.ofNullable(totalUpvotes);
         return this;
     }
+
 
     /**
      * Total number of Chat messages which received upvotes by the user.
@@ -253,6 +260,7 @@ public class AiAppActionCounts {
         return this;
     }
 
+
     /**
      * Total number of Chat messages which received downvotes by the user.
      */
@@ -268,15 +276,13 @@ public class AiAppActionCounts {
         Utils.checkNotNull(key, "key");
         additionalProperties.put(key, value); 
         return this;
-    }    
-
+    }
     public AiAppActionCounts withAdditionalProperties(Map<String, Long> additionalProperties) {
         Utils.checkNotNull(additionalProperties, "additionalProperties");
         this.additionalProperties = additionalProperties;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -299,12 +305,8 @@ public class AiAppActionCounts {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            totalSlackbotResponses,
-            totalSlackbotResponsesShared,
-            totalSlackbotResponsesNotHelpful,
-            totalChatMessages,
-            totalUpvotes,
-            totalDownvotes,
+            totalSlackbotResponses, totalSlackbotResponsesShared, totalSlackbotResponsesNotHelpful,
+            totalChatMessages, totalUpvotes, totalDownvotes,
             additionalProperties);
     }
     
@@ -319,26 +321,28 @@ public class AiAppActionCounts {
                 "totalDownvotes", totalDownvotes,
                 "additionalProperties", additionalProperties);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> totalSlackbotResponses = Optional.empty();
- 
+
         private Optional<Long> totalSlackbotResponsesShared = Optional.empty();
- 
+
         private Optional<Long> totalSlackbotResponsesNotHelpful = Optional.empty();
- 
+
         private Optional<Long> totalChatMessages = Optional.empty();
- 
+
         private Optional<Long> totalUpvotes = Optional.empty();
- 
+
         private Optional<Long> totalDownvotes = Optional.empty();
- 
+
         private Map<String, Long> additionalProperties = new HashMap<>();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Total number of Slackbot responses, both proactive and reactive.
@@ -358,6 +362,7 @@ public class AiAppActionCounts {
             return this;
         }
 
+
         /**
          * Total number of Slackbot responses shared publicly (upvoted).
          */
@@ -375,6 +380,7 @@ public class AiAppActionCounts {
             this.totalSlackbotResponsesShared = totalSlackbotResponsesShared;
             return this;
         }
+
 
         /**
          * Total number of Slackbot responses rejected as not helpful (downvoted).
@@ -394,6 +400,7 @@ public class AiAppActionCounts {
             return this;
         }
 
+
         /**
          * Total number of Chat messages sent in requested period.
          */
@@ -412,6 +419,7 @@ public class AiAppActionCounts {
             return this;
         }
 
+
         /**
          * Total number of Chat messages which received upvotes by the user.
          */
@@ -429,6 +437,7 @@ public class AiAppActionCounts {
             this.totalUpvotes = totalUpvotes;
             return this;
         }
+
 
         /**
          * Total number of Chat messages which received downvotes by the user.
@@ -463,16 +472,14 @@ public class AiAppActionCounts {
             this.additionalProperties = additionalProperties;
             return this;
         }
-        
+
         public AiAppActionCounts build() {
+
             return new AiAppActionCounts(
-                totalSlackbotResponses,
-                totalSlackbotResponsesShared,
-                totalSlackbotResponsesNotHelpful,
-                totalChatMessages,
-                totalUpvotes,
-                totalDownvotes)
+                totalSlackbotResponses, totalSlackbotResponsesShared, totalSlackbotResponsesNotHelpful,
+                totalChatMessages, totalUpvotes, totalDownvotes)
                 .withAdditionalProperties(additionalProperties);
         }
+
     }
 }

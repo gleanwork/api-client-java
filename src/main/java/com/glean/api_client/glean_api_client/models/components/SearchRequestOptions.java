@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class SearchRequestOptions {
 
+public class SearchRequestOptions {
     /**
      * Filter results to a single datasource name (e.g. gmail, slack). All results are returned if missing.
      */
@@ -53,6 +53,7 @@ public class SearchRequestOptions {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("facetFilterSets")
     private Optional<? extends List<FacetFilterSet>> facetFilterSets;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("facetBucketFilter")
@@ -120,9 +121,11 @@ public class SearchRequestOptions {
     @JsonProperty("returnLlmContentOverSnippets")
     private Optional<Boolean> returnLlmContentOverSnippets;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("inclusions")
     private Optional<? extends RestrictionFilters> inclusions;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("exclusions")
@@ -185,7 +188,12 @@ public class SearchRequestOptions {
     
     public SearchRequestOptions(
             long facetBucketSize) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), facetBucketSize, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            facetBucketSize, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -324,9 +332,10 @@ public class SearchRequestOptions {
         return (Optional<RestrictionFilters>) exclusions;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Filter results to a single datasource name (e.g. gmail, slack). All results are returned if missing.
@@ -336,6 +345,7 @@ public class SearchRequestOptions {
         this.datasourceFilter = Optional.ofNullable(datasourceFilter);
         return this;
     }
+
 
     /**
      * Filter results to a single datasource name (e.g. gmail, slack). All results are returned if missing.
@@ -355,6 +365,7 @@ public class SearchRequestOptions {
         return this;
     }
 
+
     /**
      * Filter results to one or more datasources (e.g. gmail, slack). All results are returned if missing.
      */
@@ -372,6 +383,7 @@ public class SearchRequestOptions {
         this.queryOverridesFacetFilters = Optional.ofNullable(queryOverridesFacetFilters);
         return this;
     }
+
 
     /**
      * If true, the operators in the query are taken to override any operators in facetFilters in the case of conflict. This is used to correctly set rewrittenFacetFilters and rewrittenQuery.
@@ -391,6 +403,7 @@ public class SearchRequestOptions {
         return this;
     }
 
+
     /**
      * A list of filters for the query. An AND is assumed between different facetFilters. For example, owner Sumeet and type Spreadsheet shows documents that are by Sumeet AND are Spreadsheets.
      */
@@ -409,6 +422,7 @@ public class SearchRequestOptions {
         return this;
     }
 
+
     /**
      * A list of facet filter sets that will be OR'ed together. SearchRequestOptions where both facetFilterSets and facetFilters set are considered as bad request. Callers should set only one of these fields.
      */
@@ -423,6 +437,7 @@ public class SearchRequestOptions {
         this.facetBucketFilter = Optional.ofNullable(facetBucketFilter);
         return this;
     }
+
 
     public SearchRequestOptions withFacetBucketFilter(Optional<? extends FacetBucketFilter> facetBucketFilter) {
         Utils.checkNotNull(facetBucketFilter, "facetBucketFilter");
@@ -448,6 +463,7 @@ public class SearchRequestOptions {
         return this;
     }
 
+
     /**
      * Facets for which FacetResults should be fetched and that don't apply to a particular datasource. If specified, these values will replace the standard default facets (last_updated_at, from, etc.). The requested facets will be returned alongside datasource-specific facets if searching a single datasource.
      */
@@ -465,6 +481,7 @@ public class SearchRequestOptions {
         this.authTokens = Optional.ofNullable(authTokens);
         return this;
     }
+
 
     /**
      * Auth tokens which may be used for non-indexed, federated results (e.g. Gmail).
@@ -484,6 +501,7 @@ public class SearchRequestOptions {
         return this;
     }
 
+
     /**
      * Hints that the QE should return result counts (via the datasource facet result) for all supported datasources, rather than just those specified in the datasource[s]Filter
      */
@@ -501,6 +519,7 @@ public class SearchRequestOptions {
         this.responseHints = Optional.ofNullable(responseHints);
         return this;
     }
+
 
     /**
      * Array of hints containing which fields should be populated in the response.
@@ -520,6 +539,7 @@ public class SearchRequestOptions {
         return this;
     }
 
+
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      */
@@ -537,6 +557,7 @@ public class SearchRequestOptions {
         this.disableSpellcheck = Optional.ofNullable(disableSpellcheck);
         return this;
     }
+
 
     /**
      * Whether or not to disable spellcheck.
@@ -556,6 +577,7 @@ public class SearchRequestOptions {
         return this;
     }
 
+
     /**
      * Disables automatic adjustment of the input query for spelling corrections or other reasons.
      */
@@ -574,6 +596,7 @@ public class SearchRequestOptions {
         return this;
     }
 
+
     /**
      * [beta] Enables expanded content to be returned for LLM usage. The size of content per result returned should be modified using maxSnippetSize. Server may return less or more than what is specified in maxSnippetSize. For more details, https://docs.google.com/document/d/1CTOLSxWWT9WDEnHVLoCUaxbGYyXYP8kctPRF-RluSQY/edit. Requires sufficient permissions.
      */
@@ -589,6 +612,7 @@ public class SearchRequestOptions {
         return this;
     }
 
+
     public SearchRequestOptions withInclusions(Optional<? extends RestrictionFilters> inclusions) {
         Utils.checkNotNull(inclusions, "inclusions");
         this.inclusions = inclusions;
@@ -601,13 +625,13 @@ public class SearchRequestOptions {
         return this;
     }
 
+
     public SearchRequestOptions withExclusions(Optional<? extends RestrictionFilters> exclusions) {
         Utils.checkNotNull(exclusions, "exclusions");
         this.exclusions = exclusions;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -640,23 +664,12 @@ public class SearchRequestOptions {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            datasourceFilter,
-            datasourcesFilter,
-            queryOverridesFacetFilters,
-            facetFilters,
-            facetFilterSets,
-            facetBucketFilter,
-            facetBucketSize,
-            defaultFacets,
-            authTokens,
-            fetchAllDatasourceCounts,
-            responseHints,
-            timezoneOffset,
-            disableSpellcheck,
-            disableQueryAutocorrect,
-            returnLlmContentOverSnippets,
-            inclusions,
-            exclusions);
+            datasourceFilter, datasourcesFilter, queryOverridesFacetFilters,
+            facetFilters, facetFilterSets, facetBucketFilter,
+            facetBucketSize, defaultFacets, authTokens,
+            fetchAllDatasourceCounts, responseHints, timezoneOffset,
+            disableSpellcheck, disableQueryAutocorrect, returnLlmContentOverSnippets,
+            inclusions, exclusions);
     }
     
     @Override
@@ -680,46 +693,48 @@ public class SearchRequestOptions {
                 "inclusions", inclusions,
                 "exclusions", exclusions);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> datasourceFilter = Optional.empty();
- 
+
         private Optional<? extends List<String>> datasourcesFilter = Optional.empty();
- 
+
         private Optional<Boolean> queryOverridesFacetFilters = Optional.empty();
- 
+
         private Optional<? extends List<FacetFilter>> facetFilters = Optional.empty();
- 
+
         private Optional<? extends List<FacetFilterSet>> facetFilterSets = Optional.empty();
- 
+
         private Optional<? extends FacetBucketFilter> facetBucketFilter = Optional.empty();
- 
+
         private Long facetBucketSize;
- 
+
         private Optional<? extends List<String>> defaultFacets = Optional.empty();
- 
+
         private Optional<? extends List<AuthToken>> authTokens = Optional.empty();
- 
+
         private Optional<Boolean> fetchAllDatasourceCounts = Optional.empty();
- 
+
         private Optional<? extends List<ResponseHint>> responseHints = Optional.empty();
- 
+
         private Optional<Long> timezoneOffset = Optional.empty();
- 
+
         private Optional<Boolean> disableSpellcheck = Optional.empty();
- 
+
         private Optional<Boolean> disableQueryAutocorrect = Optional.empty();
- 
+
         private Optional<Boolean> returnLlmContentOverSnippets = Optional.empty();
- 
+
         private Optional<? extends RestrictionFilters> inclusions = Optional.empty();
- 
+
         private Optional<? extends RestrictionFilters> exclusions = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Filter results to a single datasource name (e.g. gmail, slack). All results are returned if missing.
@@ -739,6 +754,7 @@ public class SearchRequestOptions {
             return this;
         }
 
+
         /**
          * Filter results to one or more datasources (e.g. gmail, slack). All results are returned if missing.
          */
@@ -756,6 +772,7 @@ public class SearchRequestOptions {
             this.datasourcesFilter = datasourcesFilter;
             return this;
         }
+
 
         /**
          * If true, the operators in the query are taken to override any operators in facetFilters in the case of conflict. This is used to correctly set rewrittenFacetFilters and rewrittenQuery.
@@ -775,6 +792,7 @@ public class SearchRequestOptions {
             return this;
         }
 
+
         /**
          * A list of filters for the query. An AND is assumed between different facetFilters. For example, owner Sumeet and type Spreadsheet shows documents that are by Sumeet AND are Spreadsheets.
          */
@@ -792,6 +810,7 @@ public class SearchRequestOptions {
             this.facetFilters = facetFilters;
             return this;
         }
+
 
         /**
          * A list of facet filter sets that will be OR'ed together. SearchRequestOptions where both facetFilterSets and facetFilters set are considered as bad request. Callers should set only one of these fields.
@@ -811,6 +830,7 @@ public class SearchRequestOptions {
             return this;
         }
 
+
         public Builder facetBucketFilter(FacetBucketFilter facetBucketFilter) {
             Utils.checkNotNull(facetBucketFilter, "facetBucketFilter");
             this.facetBucketFilter = Optional.ofNullable(facetBucketFilter);
@@ -823,6 +843,7 @@ public class SearchRequestOptions {
             return this;
         }
 
+
         /**
          * The maximum number of FacetBuckets to return in each FacetResult.
          */
@@ -831,6 +852,7 @@ public class SearchRequestOptions {
             this.facetBucketSize = facetBucketSize;
             return this;
         }
+
 
         /**
          * Facets for which FacetResults should be fetched and that don't apply to a particular datasource. If specified, these values will replace the standard default facets (last_updated_at, from, etc.). The requested facets will be returned alongside datasource-specific facets if searching a single datasource.
@@ -850,6 +872,7 @@ public class SearchRequestOptions {
             return this;
         }
 
+
         /**
          * Auth tokens which may be used for non-indexed, federated results (e.g. Gmail).
          */
@@ -867,6 +890,7 @@ public class SearchRequestOptions {
             this.authTokens = authTokens;
             return this;
         }
+
 
         /**
          * Hints that the QE should return result counts (via the datasource facet result) for all supported datasources, rather than just those specified in the datasource[s]Filter
@@ -886,6 +910,7 @@ public class SearchRequestOptions {
             return this;
         }
 
+
         /**
          * Array of hints containing which fields should be populated in the response.
          */
@@ -903,6 +928,7 @@ public class SearchRequestOptions {
             this.responseHints = responseHints;
             return this;
         }
+
 
         /**
          * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
@@ -922,6 +948,7 @@ public class SearchRequestOptions {
             return this;
         }
 
+
         /**
          * Whether or not to disable spellcheck.
          */
@@ -939,6 +966,7 @@ public class SearchRequestOptions {
             this.disableSpellcheck = disableSpellcheck;
             return this;
         }
+
 
         /**
          * Disables automatic adjustment of the input query for spelling corrections or other reasons.
@@ -958,6 +986,7 @@ public class SearchRequestOptions {
             return this;
         }
 
+
         /**
          * [beta] Enables expanded content to be returned for LLM usage. The size of content per result returned should be modified using maxSnippetSize. Server may return less or more than what is specified in maxSnippetSize. For more details, https://docs.google.com/document/d/1CTOLSxWWT9WDEnHVLoCUaxbGYyXYP8kctPRF-RluSQY/edit. Requires sufficient permissions.
          */
@@ -976,6 +1005,7 @@ public class SearchRequestOptions {
             return this;
         }
 
+
         public Builder inclusions(RestrictionFilters inclusions) {
             Utils.checkNotNull(inclusions, "inclusions");
             this.inclusions = Optional.ofNullable(inclusions);
@@ -988,6 +1018,7 @@ public class SearchRequestOptions {
             return this;
         }
 
+
         public Builder exclusions(RestrictionFilters exclusions) {
             Utils.checkNotNull(exclusions, "exclusions");
             this.exclusions = Optional.ofNullable(exclusions);
@@ -999,26 +1030,17 @@ public class SearchRequestOptions {
             this.exclusions = exclusions;
             return this;
         }
-        
+
         public SearchRequestOptions build() {
+
             return new SearchRequestOptions(
-                datasourceFilter,
-                datasourcesFilter,
-                queryOverridesFacetFilters,
-                facetFilters,
-                facetFilterSets,
-                facetBucketFilter,
-                facetBucketSize,
-                defaultFacets,
-                authTokens,
-                fetchAllDatasourceCounts,
-                responseHints,
-                timezoneOffset,
-                disableSpellcheck,
-                disableQueryAutocorrect,
-                returnLlmContentOverSnippets,
-                inclusions,
-                exclusions);
+                datasourceFilter, datasourcesFilter, queryOverridesFacetFilters,
+                facetFilters, facetFilterSets, facetBucketFilter,
+                facetBucketSize, defaultFacets, authTokens,
+                fetchAllDatasourceCounts, responseHints, timezoneOffset,
+                disableSpellcheck, disableQueryAutocorrect, returnLlmContentOverSnippets,
+                inclusions, exclusions);
         }
+
     }
 }

@@ -35,7 +35,6 @@ public class Search {
     Search(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Search the index (admin)
      * 
@@ -56,13 +55,11 @@ public class Search {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AdminsearchResponse queryAsAdmin(
-            SearchRequest request) throws Exception {
+    public AdminsearchResponse queryAsAdmin(SearchRequest request) throws Exception {
         RequestOperation<SearchRequest, AdminsearchResponse> operation
-              = new AdminsearchOperation( sdkConfiguration);
+              = new AdminsearchOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Autocomplete
@@ -84,13 +81,11 @@ public class Search {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AutocompleteResponse autocomplete(
-            AutocompleteRequest request) throws Exception {
+    public AutocompleteResponse autocomplete(AutocompleteRequest request) throws Exception {
         RequestOperation<AutocompleteRequest, AutocompleteResponse> operation
-              = new AutocompleteOperation( sdkConfiguration);
+              = new AutocompleteOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Feed of documents and events
@@ -112,13 +107,11 @@ public class Search {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FeedResponse retrieveFeed(
-            FeedRequest request) throws Exception {
+    public FeedResponse retrieveFeed(FeedRequest request) throws Exception {
         RequestOperation<FeedRequest, FeedResponse> operation
-              = new FeedOperation( sdkConfiguration);
+              = new FeedOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Recommend documents
@@ -140,13 +133,11 @@ public class Search {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public RecommendationsResponse recommendations(
-            RecommendationsRequest request) throws Exception {
+    public RecommendationsResponse recommendations(RecommendationsRequest request) throws Exception {
         RequestOperation<RecommendationsRequest, RecommendationsResponse> operation
-              = new RecommendationsOperation( sdkConfiguration);
+              = new RecommendationsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Search
@@ -168,10 +159,9 @@ public class Search {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public SearchResponse query(
-            SearchRequest request) throws Exception {
+    public SearchResponse query(SearchRequest request) throws Exception {
         RequestOperation<SearchRequest, SearchResponse> operation
-              = new SearchOperation( sdkConfiguration);
+              = new SearchOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

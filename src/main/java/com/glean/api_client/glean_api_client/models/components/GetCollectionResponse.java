@@ -14,11 +14,13 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class GetCollectionResponse {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("collection")
     private Optional<? extends Collection> collection;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("rootCollection")
@@ -30,6 +32,7 @@ public class GetCollectionResponse {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("trackingToken")
     private Optional<String> trackingToken;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
@@ -52,7 +55,8 @@ public class GetCollectionResponse {
     }
     
     public GetCollectionResponse() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -81,15 +85,17 @@ public class GetCollectionResponse {
         return (Optional<CollectionError3>) error;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetCollectionResponse withCollection(Collection collection) {
         Utils.checkNotNull(collection, "collection");
         this.collection = Optional.ofNullable(collection);
         return this;
     }
+
 
     public GetCollectionResponse withCollection(Optional<? extends Collection> collection) {
         Utils.checkNotNull(collection, "collection");
@@ -102,6 +108,7 @@ public class GetCollectionResponse {
         this.rootCollection = Optional.ofNullable(rootCollection);
         return this;
     }
+
 
     public GetCollectionResponse withRootCollection(Optional<? extends Collection> rootCollection) {
         Utils.checkNotNull(rootCollection, "rootCollection");
@@ -118,6 +125,7 @@ public class GetCollectionResponse {
         return this;
     }
 
+
     /**
      * An opaque token that represents this particular Collection. To be used for `/feedback` reporting.
      */
@@ -133,13 +141,13 @@ public class GetCollectionResponse {
         return this;
     }
 
+
     public GetCollectionResponse withError(Optional<? extends CollectionError3> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -159,9 +167,7 @@ public class GetCollectionResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            collection,
-            rootCollection,
-            trackingToken,
+            collection, rootCollection, trackingToken,
             error);
     }
     
@@ -173,20 +179,22 @@ public class GetCollectionResponse {
                 "trackingToken", trackingToken,
                 "error", error);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Collection> collection = Optional.empty();
- 
+
         private Optional<? extends Collection> rootCollection = Optional.empty();
- 
+
         private Optional<String> trackingToken = Optional.empty();
- 
+
         private Optional<? extends CollectionError3> error = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder collection(Collection collection) {
             Utils.checkNotNull(collection, "collection");
@@ -200,6 +208,7 @@ public class GetCollectionResponse {
             return this;
         }
 
+
         public Builder rootCollection(Collection rootCollection) {
             Utils.checkNotNull(rootCollection, "rootCollection");
             this.rootCollection = Optional.ofNullable(rootCollection);
@@ -211,6 +220,7 @@ public class GetCollectionResponse {
             this.rootCollection = rootCollection;
             return this;
         }
+
 
         /**
          * An opaque token that represents this particular Collection. To be used for `/feedback` reporting.
@@ -230,6 +240,7 @@ public class GetCollectionResponse {
             return this;
         }
 
+
         public Builder error(CollectionError3 error) {
             Utils.checkNotNull(error, "error");
             this.error = Optional.ofNullable(error);
@@ -241,13 +252,13 @@ public class GetCollectionResponse {
             this.error = error;
             return this;
         }
-        
+
         public GetCollectionResponse build() {
+
             return new GetCollectionResponse(
-                collection,
-                rootCollection,
-                trackingToken,
+                collection, rootCollection, trackingToken,
                 error);
         }
+
     }
 }

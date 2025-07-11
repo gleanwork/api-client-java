@@ -14,18 +14,15 @@ import java.lang.String;
  * <p>The schema for the agent input. In JSON Schema format.
  */
 public class InputSchema {
-
     @JsonCreator
     public InputSchema() {
-        
-        
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
 
-    
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -47,16 +44,19 @@ public class InputSchema {
     public String toString() {
         return Utils.toString(InputSchema.class);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-        
+
         private Builder() {
           // force use of static builder() method
         }
-        
+
         public InputSchema build() {
+
             return new InputSchema(
                 );
         }
+
     }
 }

@@ -21,7 +21,6 @@ import java.util.Optional;
  * <p>Describes the request body for the /bulkindexgroups API call
  */
 public class BulkIndexGroupsRequest {
-
     /**
      * Unique id that must be used for this instance of datasource groups upload
      */
@@ -97,7 +96,9 @@ public class BulkIndexGroupsRequest {
             String uploadId,
             String datasource,
             List<DatasourceGroupDefinition> groups) {
-        this(uploadId, Optional.empty(), Optional.empty(), Optional.empty(), datasource, groups, Optional.empty());
+        this(uploadId, Optional.empty(), Optional.empty(),
+            Optional.empty(), datasource, groups,
+            Optional.empty());
     }
 
     /**
@@ -156,9 +157,10 @@ public class BulkIndexGroupsRequest {
         return disableStaleDataDeletionCheck;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unique id that must be used for this instance of datasource groups upload
@@ -178,6 +180,7 @@ public class BulkIndexGroupsRequest {
         return this;
     }
 
+
     /**
      * true if this is the first page of the upload. Defaults to false
      */
@@ -196,6 +199,7 @@ public class BulkIndexGroupsRequest {
         return this;
     }
 
+
     /**
      * true if this is the last page of the upload. Defaults to false
      */
@@ -213,6 +217,7 @@ public class BulkIndexGroupsRequest {
         this.forceRestartUpload = Optional.ofNullable(forceRestartUpload);
         return this;
     }
+
 
     /**
      * Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true
@@ -250,6 +255,7 @@ public class BulkIndexGroupsRequest {
         return this;
     }
 
+
     /**
      * True if older group data needs to be force deleted after the upload completes. Defaults to older data being deleted only if the percentage of data being deleted is less than a reasonable threshold. This must only be set when `isLastPage = true`
      */
@@ -259,7 +265,6 @@ public class BulkIndexGroupsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -282,12 +287,8 @@ public class BulkIndexGroupsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            uploadId,
-            isFirstPage,
-            isLastPage,
-            forceRestartUpload,
-            datasource,
-            groups,
+            uploadId, isFirstPage, isLastPage,
+            forceRestartUpload, datasource, groups,
             disableStaleDataDeletionCheck);
     }
     
@@ -302,26 +303,28 @@ public class BulkIndexGroupsRequest {
                 "groups", groups,
                 "disableStaleDataDeletionCheck", disableStaleDataDeletionCheck);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String uploadId;
- 
+
         private Optional<Boolean> isFirstPage = Optional.empty();
- 
+
         private Optional<Boolean> isLastPage = Optional.empty();
- 
+
         private Optional<Boolean> forceRestartUpload = Optional.empty();
- 
+
         private String datasource;
- 
+
         private List<DatasourceGroupDefinition> groups;
- 
+
         private Optional<Boolean> disableStaleDataDeletionCheck = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unique id that must be used for this instance of datasource groups upload
@@ -331,6 +334,7 @@ public class BulkIndexGroupsRequest {
             this.uploadId = uploadId;
             return this;
         }
+
 
         /**
          * true if this is the first page of the upload. Defaults to false
@@ -350,6 +354,7 @@ public class BulkIndexGroupsRequest {
             return this;
         }
 
+
         /**
          * true if this is the last page of the upload. Defaults to false
          */
@@ -367,6 +372,7 @@ public class BulkIndexGroupsRequest {
             this.isLastPage = isLastPage;
             return this;
         }
+
 
         /**
          * Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true
@@ -386,6 +392,7 @@ public class BulkIndexGroupsRequest {
             return this;
         }
 
+
         /**
          * datasource of the groups
          */
@@ -395,6 +402,7 @@ public class BulkIndexGroupsRequest {
             return this;
         }
 
+
         /**
          * batch of groups for the datasource
          */
@@ -403,6 +411,7 @@ public class BulkIndexGroupsRequest {
             this.groups = groups;
             return this;
         }
+
 
         /**
          * True if older group data needs to be force deleted after the upload completes. Defaults to older data being deleted only if the percentage of data being deleted is less than a reasonable threshold. This must only be set when `isLastPage = true`
@@ -421,16 +430,14 @@ public class BulkIndexGroupsRequest {
             this.disableStaleDataDeletionCheck = disableStaleDataDeletionCheck;
             return this;
         }
-        
+
         public BulkIndexGroupsRequest build() {
+
             return new BulkIndexGroupsRequest(
-                uploadId,
-                isFirstPage,
-                isLastPage,
-                forceRestartUpload,
-                datasource,
-                groups,
+                uploadId, isFirstPage, isLastPage,
+                forceRestartUpload, datasource, groups,
                 disableStaleDataDeletionCheck);
         }
+
     }
 }

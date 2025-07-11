@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class FacetResult {
 
+public class FacetResult {
     /**
      * The source of this facet (e.g. container_name, type, last_updated_at).
      */
@@ -73,7 +73,8 @@ public class FacetResult {
     }
     
     public FacetResult() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -117,9 +118,10 @@ public class FacetResult {
         return groupName;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The source of this facet (e.g. container_name, type, last_updated_at).
@@ -129,6 +131,7 @@ public class FacetResult {
         this.sourceName = Optional.ofNullable(sourceName);
         return this;
     }
+
 
     /**
      * The source of this facet (e.g. container_name, type, last_updated_at).
@@ -148,6 +151,7 @@ public class FacetResult {
         return this;
     }
 
+
     /**
      * How to display this facet. Currently supportes 'SelectSingle' and 'SelectMultiple'.
      */
@@ -165,6 +169,7 @@ public class FacetResult {
         this.buckets = Optional.ofNullable(buckets);
         return this;
     }
+
 
     /**
      * A list of unique buckets that exist within this result set.
@@ -184,6 +189,7 @@ public class FacetResult {
         return this;
     }
 
+
     /**
      * Returns true if more buckets exist than those returned. Additional buckets can be retrieve by requesting again with a higher facetBucketSize.
      */
@@ -202,6 +208,7 @@ public class FacetResult {
         return this;
     }
 
+
     /**
      * For most facets this will be the empty string, meaning the facet is high-level and applies to all documents for the datasource. When non-empty, this is used to group facets together (i.e. group facets for each doctype for a certain datasource)
      */
@@ -211,7 +218,6 @@ public class FacetResult {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -232,11 +238,8 @@ public class FacetResult {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            sourceName,
-            operatorName,
-            buckets,
-            hasMoreBuckets,
-            groupName);
+            sourceName, operatorName, buckets,
+            hasMoreBuckets, groupName);
     }
     
     @Override
@@ -248,22 +251,24 @@ public class FacetResult {
                 "hasMoreBuckets", hasMoreBuckets,
                 "groupName", groupName);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> sourceName = Optional.empty();
- 
+
         private Optional<String> operatorName = Optional.empty();
- 
+
         private Optional<? extends List<FacetBucket>> buckets = Optional.empty();
- 
+
         private Optional<Boolean> hasMoreBuckets = Optional.empty();
- 
+
         private Optional<String> groupName = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The source of this facet (e.g. container_name, type, last_updated_at).
@@ -283,6 +288,7 @@ public class FacetResult {
             return this;
         }
 
+
         /**
          * How to display this facet. Currently supportes 'SelectSingle' and 'SelectMultiple'.
          */
@@ -300,6 +306,7 @@ public class FacetResult {
             this.operatorName = operatorName;
             return this;
         }
+
 
         /**
          * A list of unique buckets that exist within this result set.
@@ -319,6 +326,7 @@ public class FacetResult {
             return this;
         }
 
+
         /**
          * Returns true if more buckets exist than those returned. Additional buckets can be retrieve by requesting again with a higher facetBucketSize.
          */
@@ -337,6 +345,7 @@ public class FacetResult {
             return this;
         }
 
+
         /**
          * For most facets this will be the empty string, meaning the facet is high-level and applies to all documents for the datasource. When non-empty, this is used to group facets together (i.e. group facets for each doctype for a certain datasource)
          */
@@ -354,14 +363,13 @@ public class FacetResult {
             this.groupName = groupName;
             return this;
         }
-        
+
         public FacetResult build() {
+
             return new FacetResult(
-                sourceName,
-                operatorName,
-                buckets,
-                hasMoreBuckets,
-                groupName);
+                sourceName, operatorName, buckets,
+                hasMoreBuckets, groupName);
         }
+
     }
 }

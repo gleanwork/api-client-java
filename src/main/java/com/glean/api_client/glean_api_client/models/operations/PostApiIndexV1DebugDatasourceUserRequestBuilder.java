@@ -46,7 +46,7 @@ public class PostApiIndexV1DebugDatasourceUserRequestBuilder {
     public PostApiIndexV1DebugDatasourceUserResponse call() throws Exception {
         
         RequestOperation<PostApiIndexV1DebugDatasourceUserRequest, PostApiIndexV1DebugDatasourceUserResponse> operation
-              = new PostApiIndexV1DebugDatasourceUserOperation( sdkConfiguration);
+              = new PostApiIndexV1DebugDatasourceUserOperation(sdkConfiguration);
         PostApiIndexV1DebugDatasourceUserRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

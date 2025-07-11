@@ -11,13 +11,14 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class PostApiIndexV1DebugDatasourceDocumentsRequest {
 
+public class PostApiIndexV1DebugDatasourceDocumentsRequest {
     /**
      * The datasource to which the document belongs
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=datasource")
     private String datasource;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private DebugDocumentsRequest debugDocumentsRequest;
@@ -45,9 +46,10 @@ public class PostApiIndexV1DebugDatasourceDocumentsRequest {
         return debugDocumentsRequest;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The datasource to which the document belongs
@@ -64,7 +66,6 @@ public class PostApiIndexV1DebugDatasourceDocumentsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -82,8 +83,7 @@ public class PostApiIndexV1DebugDatasourceDocumentsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            datasource,
-            debugDocumentsRequest);
+            datasource, debugDocumentsRequest);
     }
     
     @Override
@@ -92,16 +92,18 @@ public class PostApiIndexV1DebugDatasourceDocumentsRequest {
                 "datasource", datasource,
                 "debugDocumentsRequest", debugDocumentsRequest);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String datasource;
- 
+
         private DebugDocumentsRequest debugDocumentsRequest;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The datasource to which the document belongs
@@ -112,16 +114,18 @@ public class PostApiIndexV1DebugDatasourceDocumentsRequest {
             return this;
         }
 
+
         public Builder debugDocumentsRequest(DebugDocumentsRequest debugDocumentsRequest) {
             Utils.checkNotNull(debugDocumentsRequest, "debugDocumentsRequest");
             this.debugDocumentsRequest = debugDocumentsRequest;
             return this;
         }
-        
+
         public PostApiIndexV1DebugDatasourceDocumentsRequest build() {
+
             return new PostApiIndexV1DebugDatasourceDocumentsRequest(
-                datasource,
-                debugDocumentsRequest);
+                datasource, debugDocumentsRequest);
         }
+
     }
 }

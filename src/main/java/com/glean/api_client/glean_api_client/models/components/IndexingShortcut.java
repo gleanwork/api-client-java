@@ -15,8 +15,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class IndexingShortcut {
 
+public class IndexingShortcut {
     /**
      * link text following the viewPrefix as entered by the user. For example, if the view prefix is `go/` and the shortened URL is `go/abc`, then `abc` is the inputAlias.
      */
@@ -112,7 +112,9 @@ public class IndexingShortcut {
             String inputAlias,
             String destinationUrl,
             String createdBy) {
-        this(inputAlias, Optional.empty(), destinationUrl, createdBy, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(inputAlias, Optional.empty(), destinationUrl,
+            createdBy, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -187,9 +189,10 @@ public class IndexingShortcut {
         return urlTemplate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * link text following the viewPrefix as entered by the user. For example, if the view prefix is `go/` and the shortened URL is `go/abc`, then `abc` is the inputAlias.
@@ -208,6 +211,7 @@ public class IndexingShortcut {
         this.description = Optional.ofNullable(description);
         return this;
     }
+
 
     /**
      * A short, plain text blurb to help people understand the intent of the shortcut.
@@ -245,6 +249,7 @@ public class IndexingShortcut {
         return this;
     }
 
+
     /**
      * The time the shortcut was created in epoch seconds.
      */
@@ -262,6 +267,7 @@ public class IndexingShortcut {
         this.updatedBy = Optional.ofNullable(updatedBy);
         return this;
     }
+
 
     /**
      * Email of the user who last updated this shortcut.
@@ -281,6 +287,7 @@ public class IndexingShortcut {
         return this;
     }
 
+
     /**
      * The time the shortcut was updated in epoch seconds.
      */
@@ -298,6 +305,7 @@ public class IndexingShortcut {
         this.unlisted = Optional.ofNullable(unlisted);
         return this;
     }
+
 
     /**
      * Whether this shortcut is unlisted or not. Unlisted shortcuts are visible to author and admins only.
@@ -317,6 +325,7 @@ public class IndexingShortcut {
         return this;
     }
 
+
     /**
      * For variable shortcuts, contains the URL template; note, `destinationUrl` contains default URL.
      */
@@ -326,7 +335,6 @@ public class IndexingShortcut {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -351,15 +359,9 @@ public class IndexingShortcut {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            inputAlias,
-            description,
-            destinationUrl,
-            createdBy,
-            createTime,
-            updatedBy,
-            updateTime,
-            unlisted,
-            urlTemplate);
+            inputAlias, description, destinationUrl,
+            createdBy, createTime, updatedBy,
+            updateTime, unlisted, urlTemplate);
     }
     
     @Override
@@ -375,30 +377,32 @@ public class IndexingShortcut {
                 "unlisted", unlisted,
                 "urlTemplate", urlTemplate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String inputAlias;
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private String destinationUrl;
- 
+
         private String createdBy;
- 
+
         private Optional<Long> createTime = Optional.empty();
- 
+
         private Optional<String> updatedBy = Optional.empty();
- 
+
         private Optional<Long> updateTime = Optional.empty();
- 
+
         private Optional<Boolean> unlisted = Optional.empty();
- 
+
         private Optional<String> urlTemplate = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * link text following the viewPrefix as entered by the user. For example, if the view prefix is `go/` and the shortened URL is `go/abc`, then `abc` is the inputAlias.
@@ -408,6 +412,7 @@ public class IndexingShortcut {
             this.inputAlias = inputAlias;
             return this;
         }
+
 
         /**
          * A short, plain text blurb to help people understand the intent of the shortcut.
@@ -427,6 +432,7 @@ public class IndexingShortcut {
             return this;
         }
 
+
         /**
          * destination URL for the shortcut.
          */
@@ -436,6 +442,7 @@ public class IndexingShortcut {
             return this;
         }
 
+
         /**
          * Email of the user who created this shortcut.
          */
@@ -444,6 +451,7 @@ public class IndexingShortcut {
             this.createdBy = createdBy;
             return this;
         }
+
 
         /**
          * The time the shortcut was created in epoch seconds.
@@ -463,6 +471,7 @@ public class IndexingShortcut {
             return this;
         }
 
+
         /**
          * Email of the user who last updated this shortcut.
          */
@@ -480,6 +489,7 @@ public class IndexingShortcut {
             this.updatedBy = updatedBy;
             return this;
         }
+
 
         /**
          * The time the shortcut was updated in epoch seconds.
@@ -499,6 +509,7 @@ public class IndexingShortcut {
             return this;
         }
 
+
         /**
          * Whether this shortcut is unlisted or not. Unlisted shortcuts are visible to author and admins only.
          */
@@ -517,6 +528,7 @@ public class IndexingShortcut {
             return this;
         }
 
+
         /**
          * For variable shortcuts, contains the URL template; note, `destinationUrl` contains default URL.
          */
@@ -534,18 +546,14 @@ public class IndexingShortcut {
             this.urlTemplate = urlTemplate;
             return this;
         }
-        
+
         public IndexingShortcut build() {
+
             return new IndexingShortcut(
-                inputAlias,
-                description,
-                destinationUrl,
-                createdBy,
-                createTime,
-                updatedBy,
-                updateTime,
-                unlisted,
-                urlTemplate);
+                inputAlias, description, destinationUrl,
+                createdBy, createTime, updatedBy,
+                updateTime, unlisted, urlTemplate);
         }
+
     }
 }

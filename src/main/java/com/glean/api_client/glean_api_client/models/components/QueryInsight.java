@@ -15,25 +15,29 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class QueryInsight {
 
+public class QueryInsight {
     /**
      * The query string the information is about.
      */
     @JsonProperty("query")
     private String query;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("searchCount")
     private Optional<? extends CountInfo> searchCount;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("searchorCount")
     private Optional<? extends CountInfo> searchorCount;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("searchWithClickCount")
     private Optional<? extends CountInfo> searchWithClickCount;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("clickCount")
@@ -70,7 +74,8 @@ public class QueryInsight {
     
     public QueryInsight(
             String query) {
-        this(query, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(query, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -114,9 +119,10 @@ public class QueryInsight {
         return (Optional<List<QueryInsight>>) similarQueries;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The query string the information is about.
@@ -133,6 +139,7 @@ public class QueryInsight {
         return this;
     }
 
+
     public QueryInsight withSearchCount(Optional<? extends CountInfo> searchCount) {
         Utils.checkNotNull(searchCount, "searchCount");
         this.searchCount = searchCount;
@@ -144,6 +151,7 @@ public class QueryInsight {
         this.searchorCount = Optional.ofNullable(searchorCount);
         return this;
     }
+
 
     public QueryInsight withSearchorCount(Optional<? extends CountInfo> searchorCount) {
         Utils.checkNotNull(searchorCount, "searchorCount");
@@ -157,6 +165,7 @@ public class QueryInsight {
         return this;
     }
 
+
     public QueryInsight withSearchWithClickCount(Optional<? extends CountInfo> searchWithClickCount) {
         Utils.checkNotNull(searchWithClickCount, "searchWithClickCount");
         this.searchWithClickCount = searchWithClickCount;
@@ -168,6 +177,7 @@ public class QueryInsight {
         this.clickCount = Optional.ofNullable(clickCount);
         return this;
     }
+
 
     public QueryInsight withClickCount(Optional<? extends CountInfo> clickCount) {
         Utils.checkNotNull(clickCount, "clickCount");
@@ -184,6 +194,7 @@ public class QueryInsight {
         return this;
     }
 
+
     /**
      * list of similar queries to current one.
      */
@@ -193,7 +204,6 @@ public class QueryInsight {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -215,12 +225,8 @@ public class QueryInsight {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            query,
-            searchCount,
-            searchorCount,
-            searchWithClickCount,
-            clickCount,
-            similarQueries);
+            query, searchCount, searchorCount,
+            searchWithClickCount, clickCount, similarQueries);
     }
     
     @Override
@@ -233,24 +239,26 @@ public class QueryInsight {
                 "clickCount", clickCount,
                 "similarQueries", similarQueries);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String query;
- 
+
         private Optional<? extends CountInfo> searchCount = Optional.empty();
- 
+
         private Optional<? extends CountInfo> searchorCount = Optional.empty();
- 
+
         private Optional<? extends CountInfo> searchWithClickCount = Optional.empty();
- 
+
         private Optional<? extends CountInfo> clickCount = Optional.empty();
- 
+
         private Optional<? extends List<QueryInsight>> similarQueries = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The query string the information is about.
@@ -260,6 +268,7 @@ public class QueryInsight {
             this.query = query;
             return this;
         }
+
 
         public Builder searchCount(CountInfo searchCount) {
             Utils.checkNotNull(searchCount, "searchCount");
@@ -273,6 +282,7 @@ public class QueryInsight {
             return this;
         }
 
+
         public Builder searchorCount(CountInfo searchorCount) {
             Utils.checkNotNull(searchorCount, "searchorCount");
             this.searchorCount = Optional.ofNullable(searchorCount);
@@ -284,6 +294,7 @@ public class QueryInsight {
             this.searchorCount = searchorCount;
             return this;
         }
+
 
         public Builder searchWithClickCount(CountInfo searchWithClickCount) {
             Utils.checkNotNull(searchWithClickCount, "searchWithClickCount");
@@ -297,6 +308,7 @@ public class QueryInsight {
             return this;
         }
 
+
         public Builder clickCount(CountInfo clickCount) {
             Utils.checkNotNull(clickCount, "clickCount");
             this.clickCount = Optional.ofNullable(clickCount);
@@ -308,6 +320,7 @@ public class QueryInsight {
             this.clickCount = clickCount;
             return this;
         }
+
 
         /**
          * list of similar queries to current one.
@@ -326,15 +339,13 @@ public class QueryInsight {
             this.similarQueries = similarQueries;
             return this;
         }
-        
+
         public QueryInsight build() {
+
             return new QueryInsight(
-                query,
-                searchCount,
-                searchorCount,
-                searchWithClickCount,
-                clickCount,
-                similarQueries);
+                query, searchCount, searchorCount,
+                searchWithClickCount, clickCount, similarQueries);
         }
+
     }
 }

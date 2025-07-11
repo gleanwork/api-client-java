@@ -14,8 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class ListCollectionsRequest {
 
+public class ListCollectionsRequest {
     /**
      * Whether to include the audience filters with the listed Collections.
      */
@@ -80,9 +80,10 @@ public class ListCollectionsRequest {
         return allowedDatasource;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Whether to include the audience filters with the listed Collections.
@@ -92,6 +93,7 @@ public class ListCollectionsRequest {
         this.includeAudience = Optional.ofNullable(includeAudience);
         return this;
     }
+
 
     /**
      * Whether to include the audience filters with the listed Collections.
@@ -110,6 +112,7 @@ public class ListCollectionsRequest {
         this.includeRoles = Optional.ofNullable(includeRoles);
         return this;
     }
+
 
     /**
      * Whether to include the editor roles with the listed Collections.
@@ -130,6 +133,7 @@ public class ListCollectionsRequest {
         return this;
     }
 
+
     /**
      * The datasource type this Collection can hold.
      * ANSWERS - for Collections representing answer boards
@@ -140,7 +144,6 @@ public class ListCollectionsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -159,9 +162,7 @@ public class ListCollectionsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            includeAudience,
-            includeRoles,
-            allowedDatasource);
+            includeAudience, includeRoles, allowedDatasource);
     }
     
     @Override
@@ -171,18 +172,20 @@ public class ListCollectionsRequest {
                 "includeRoles", includeRoles,
                 "allowedDatasource", allowedDatasource);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> includeAudience = Optional.empty();
- 
+
         private Optional<Boolean> includeRoles = Optional.empty();
- 
+
         private Optional<String> allowedDatasource = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Whether to include the audience filters with the listed Collections.
@@ -202,6 +205,7 @@ public class ListCollectionsRequest {
             return this;
         }
 
+
         /**
          * Whether to include the editor roles with the listed Collections.
          */
@@ -219,6 +223,7 @@ public class ListCollectionsRequest {
             this.includeRoles = includeRoles;
             return this;
         }
+
 
         /**
          * The datasource type this Collection can hold.
@@ -239,12 +244,12 @@ public class ListCollectionsRequest {
             this.allowedDatasource = allowedDatasource;
             return this;
         }
-        
+
         public ListCollectionsRequest build() {
+
             return new ListCollectionsRequest(
-                includeAudience,
-                includeRoles,
-                allowedDatasource);
+                includeAudience, includeRoles, allowedDatasource);
         }
+
     }
 }

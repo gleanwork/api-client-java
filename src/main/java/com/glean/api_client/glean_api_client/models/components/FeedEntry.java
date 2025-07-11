@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class FeedEntry {
 
+public class FeedEntry {
     /**
      * optional ID associated with a single feed entry (displayable_list_id)
      */
@@ -30,13 +30,16 @@ public class FeedEntry {
     @JsonProperty("title")
     private String title;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("thumbnail")
     private Optional<? extends Thumbnail> thumbnail;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdBy")
     private Optional<? extends Person> createdBy;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("uiConfig")
@@ -70,37 +73,46 @@ public class FeedEntry {
     @JsonProperty("viewUrl")
     private Optional<String> viewUrl;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("document")
     private Optional<? extends Document> document;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("event")
     private Optional<? extends CalendarEvent> event;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("announcement")
     private Optional<? extends Announcement> announcement;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("collection")
     private Optional<? extends Collection> collection;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("collectionItem")
     private Optional<? extends CollectionItem> collectionItem;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("person")
     private Optional<? extends Person> person;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("app")
     private Optional<? extends AppResult> app;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("promptTemplate")
     private Optional<? extends PromptTemplateResult> promptTemplate;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("workflow")
@@ -112,6 +124,7 @@ public class FeedEntry {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("activities")
     private Optional<? extends List<UserActivity>> activities;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentVisitorCount")
@@ -183,7 +196,13 @@ public class FeedEntry {
     
     public FeedEntry(
             String title) {
-        this(Optional.empty(), title, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), title, Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -322,9 +341,10 @@ public class FeedEntry {
         return (Optional<CountInfo>) documentVisitorCount;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * optional ID associated with a single feed entry (displayable_list_id)
@@ -334,6 +354,7 @@ public class FeedEntry {
         this.entryId = Optional.ofNullable(entryId);
         return this;
     }
+
 
     /**
      * optional ID associated with a single feed entry (displayable_list_id)
@@ -359,6 +380,7 @@ public class FeedEntry {
         return this;
     }
 
+
     public FeedEntry withThumbnail(Optional<? extends Thumbnail> thumbnail) {
         Utils.checkNotNull(thumbnail, "thumbnail");
         this.thumbnail = thumbnail;
@@ -371,6 +393,7 @@ public class FeedEntry {
         return this;
     }
 
+
     public FeedEntry withCreatedBy(Optional<? extends Person> createdBy) {
         Utils.checkNotNull(createdBy, "createdBy");
         this.createdBy = createdBy;
@@ -382,6 +405,7 @@ public class FeedEntry {
         this.uiConfig = Optional.ofNullable(uiConfig);
         return this;
     }
+
 
     public FeedEntry withUiConfig(Optional<? extends UiConfig> uiConfig) {
         Utils.checkNotNull(uiConfig, "uiConfig");
@@ -397,6 +421,7 @@ public class FeedEntry {
         this.justificationType = Optional.ofNullable(justificationType);
         return this;
     }
+
 
     /**
      * Type of the justification.
@@ -416,6 +441,7 @@ public class FeedEntry {
         return this;
     }
 
+
     /**
      * Server side generated justification string if server provides one.
      */
@@ -433,6 +459,7 @@ public class FeedEntry {
         this.trackingToken = Optional.ofNullable(trackingToken);
         return this;
     }
+
 
     /**
      * An opaque token that represents this particular feed entry in this particular response. To be used for /feedback reporting.
@@ -452,6 +479,7 @@ public class FeedEntry {
         return this;
     }
 
+
     /**
      * View URL for the entry if based on links that are not documents in Glean.
      */
@@ -467,6 +495,7 @@ public class FeedEntry {
         return this;
     }
 
+
     public FeedEntry withDocument(Optional<? extends Document> document) {
         Utils.checkNotNull(document, "document");
         this.document = document;
@@ -478,6 +507,7 @@ public class FeedEntry {
         this.event = Optional.ofNullable(event);
         return this;
     }
+
 
     public FeedEntry withEvent(Optional<? extends CalendarEvent> event) {
         Utils.checkNotNull(event, "event");
@@ -491,6 +521,7 @@ public class FeedEntry {
         return this;
     }
 
+
     public FeedEntry withAnnouncement(Optional<? extends Announcement> announcement) {
         Utils.checkNotNull(announcement, "announcement");
         this.announcement = announcement;
@@ -502,6 +533,7 @@ public class FeedEntry {
         this.collection = Optional.ofNullable(collection);
         return this;
     }
+
 
     public FeedEntry withCollection(Optional<? extends Collection> collection) {
         Utils.checkNotNull(collection, "collection");
@@ -515,6 +547,7 @@ public class FeedEntry {
         return this;
     }
 
+
     public FeedEntry withCollectionItem(Optional<? extends CollectionItem> collectionItem) {
         Utils.checkNotNull(collectionItem, "collectionItem");
         this.collectionItem = collectionItem;
@@ -526,6 +559,7 @@ public class FeedEntry {
         this.person = Optional.ofNullable(person);
         return this;
     }
+
 
     public FeedEntry withPerson(Optional<? extends Person> person) {
         Utils.checkNotNull(person, "person");
@@ -539,6 +573,7 @@ public class FeedEntry {
         return this;
     }
 
+
     public FeedEntry withApp(Optional<? extends AppResult> app) {
         Utils.checkNotNull(app, "app");
         this.app = app;
@@ -551,6 +586,7 @@ public class FeedEntry {
         return this;
     }
 
+
     public FeedEntry withPromptTemplate(Optional<? extends PromptTemplateResult> promptTemplate) {
         Utils.checkNotNull(promptTemplate, "promptTemplate");
         this.promptTemplate = promptTemplate;
@@ -562,6 +598,7 @@ public class FeedEntry {
         this.workflow = Optional.ofNullable(workflow);
         return this;
     }
+
 
     public FeedEntry withWorkflow(Optional<? extends WorkflowResult> workflow) {
         Utils.checkNotNull(workflow, "workflow");
@@ -578,6 +615,7 @@ public class FeedEntry {
         return this;
     }
 
+
     /**
      * List of activity where each activity has user, action, timestamp.
      */
@@ -593,13 +631,13 @@ public class FeedEntry {
         return this;
     }
 
+
     public FeedEntry withDocumentVisitorCount(Optional<? extends CountInfo> documentVisitorCount) {
         Utils.checkNotNull(documentVisitorCount, "documentVisitorCount");
         this.documentVisitorCount = documentVisitorCount;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -635,26 +673,13 @@ public class FeedEntry {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            entryId,
-            title,
-            thumbnail,
-            createdBy,
-            uiConfig,
-            justificationType,
-            justification,
-            trackingToken,
-            viewUrl,
-            document,
-            event,
-            announcement,
-            collection,
-            collectionItem,
-            person,
-            app,
-            promptTemplate,
-            workflow,
-            activities,
-            documentVisitorCount);
+            entryId, title, thumbnail,
+            createdBy, uiConfig, justificationType,
+            justification, trackingToken, viewUrl,
+            document, event, announcement,
+            collection, collectionItem, person,
+            app, promptTemplate, workflow,
+            activities, documentVisitorCount);
     }
     
     @Override
@@ -681,52 +706,54 @@ public class FeedEntry {
                 "activities", activities,
                 "documentVisitorCount", documentVisitorCount);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> entryId = Optional.empty();
- 
+
         private String title;
- 
+
         private Optional<? extends Thumbnail> thumbnail = Optional.empty();
- 
+
         private Optional<? extends Person> createdBy = Optional.empty();
- 
+
         private Optional<? extends UiConfig> uiConfig = Optional.empty();
- 
+
         private Optional<? extends JustificationType> justificationType = Optional.empty();
- 
+
         private Optional<String> justification = Optional.empty();
- 
+
         private Optional<String> trackingToken = Optional.empty();
- 
+
         private Optional<String> viewUrl = Optional.empty();
- 
+
         private Optional<? extends Document> document = Optional.empty();
- 
+
         private Optional<? extends CalendarEvent> event = Optional.empty();
- 
+
         private Optional<? extends Announcement> announcement = Optional.empty();
- 
+
         private Optional<? extends Collection> collection = Optional.empty();
- 
+
         private Optional<? extends CollectionItem> collectionItem = Optional.empty();
- 
+
         private Optional<? extends Person> person = Optional.empty();
- 
+
         private Optional<? extends AppResult> app = Optional.empty();
- 
+
         private Optional<? extends PromptTemplateResult> promptTemplate = Optional.empty();
- 
+
         private Optional<? extends WorkflowResult> workflow = Optional.empty();
- 
+
         private Optional<? extends List<UserActivity>> activities = Optional.empty();
- 
+
         private Optional<? extends CountInfo> documentVisitorCount = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * optional ID associated with a single feed entry (displayable_list_id)
@@ -746,6 +773,7 @@ public class FeedEntry {
             return this;
         }
 
+
         /**
          * Title for the result. Can be document title, event title and so on.
          */
@@ -754,6 +782,7 @@ public class FeedEntry {
             this.title = title;
             return this;
         }
+
 
         public Builder thumbnail(Thumbnail thumbnail) {
             Utils.checkNotNull(thumbnail, "thumbnail");
@@ -767,6 +796,7 @@ public class FeedEntry {
             return this;
         }
 
+
         public Builder createdBy(Person createdBy) {
             Utils.checkNotNull(createdBy, "createdBy");
             this.createdBy = Optional.ofNullable(createdBy);
@@ -779,6 +809,7 @@ public class FeedEntry {
             return this;
         }
 
+
         public Builder uiConfig(UiConfig uiConfig) {
             Utils.checkNotNull(uiConfig, "uiConfig");
             this.uiConfig = Optional.ofNullable(uiConfig);
@@ -790,6 +821,7 @@ public class FeedEntry {
             this.uiConfig = uiConfig;
             return this;
         }
+
 
         /**
          * Type of the justification.
@@ -809,6 +841,7 @@ public class FeedEntry {
             return this;
         }
 
+
         /**
          * Server side generated justification string if server provides one.
          */
@@ -826,6 +859,7 @@ public class FeedEntry {
             this.justification = justification;
             return this;
         }
+
 
         /**
          * An opaque token that represents this particular feed entry in this particular response. To be used for /feedback reporting.
@@ -845,6 +879,7 @@ public class FeedEntry {
             return this;
         }
 
+
         /**
          * View URL for the entry if based on links that are not documents in Glean.
          */
@@ -863,6 +898,7 @@ public class FeedEntry {
             return this;
         }
 
+
         public Builder document(Document document) {
             Utils.checkNotNull(document, "document");
             this.document = Optional.ofNullable(document);
@@ -874,6 +910,7 @@ public class FeedEntry {
             this.document = document;
             return this;
         }
+
 
         public Builder event(CalendarEvent event) {
             Utils.checkNotNull(event, "event");
@@ -887,6 +924,7 @@ public class FeedEntry {
             return this;
         }
 
+
         public Builder announcement(Announcement announcement) {
             Utils.checkNotNull(announcement, "announcement");
             this.announcement = Optional.ofNullable(announcement);
@@ -898,6 +936,7 @@ public class FeedEntry {
             this.announcement = announcement;
             return this;
         }
+
 
         public Builder collection(Collection collection) {
             Utils.checkNotNull(collection, "collection");
@@ -911,6 +950,7 @@ public class FeedEntry {
             return this;
         }
 
+
         public Builder collectionItem(CollectionItem collectionItem) {
             Utils.checkNotNull(collectionItem, "collectionItem");
             this.collectionItem = Optional.ofNullable(collectionItem);
@@ -922,6 +962,7 @@ public class FeedEntry {
             this.collectionItem = collectionItem;
             return this;
         }
+
 
         public Builder person(Person person) {
             Utils.checkNotNull(person, "person");
@@ -935,6 +976,7 @@ public class FeedEntry {
             return this;
         }
 
+
         public Builder app(AppResult app) {
             Utils.checkNotNull(app, "app");
             this.app = Optional.ofNullable(app);
@@ -946,6 +988,7 @@ public class FeedEntry {
             this.app = app;
             return this;
         }
+
 
         public Builder promptTemplate(PromptTemplateResult promptTemplate) {
             Utils.checkNotNull(promptTemplate, "promptTemplate");
@@ -959,6 +1002,7 @@ public class FeedEntry {
             return this;
         }
 
+
         public Builder workflow(WorkflowResult workflow) {
             Utils.checkNotNull(workflow, "workflow");
             this.workflow = Optional.ofNullable(workflow);
@@ -970,6 +1014,7 @@ public class FeedEntry {
             this.workflow = workflow;
             return this;
         }
+
 
         /**
          * List of activity where each activity has user, action, timestamp.
@@ -989,6 +1034,7 @@ public class FeedEntry {
             return this;
         }
 
+
         public Builder documentVisitorCount(CountInfo documentVisitorCount) {
             Utils.checkNotNull(documentVisitorCount, "documentVisitorCount");
             this.documentVisitorCount = Optional.ofNullable(documentVisitorCount);
@@ -1000,29 +1046,18 @@ public class FeedEntry {
             this.documentVisitorCount = documentVisitorCount;
             return this;
         }
-        
+
         public FeedEntry build() {
+
             return new FeedEntry(
-                entryId,
-                title,
-                thumbnail,
-                createdBy,
-                uiConfig,
-                justificationType,
-                justification,
-                trackingToken,
-                viewUrl,
-                document,
-                event,
-                announcement,
-                collection,
-                collectionItem,
-                person,
-                app,
-                promptTemplate,
-                workflow,
-                activities,
-                documentVisitorCount);
+                entryId, title, thumbnail,
+                createdBy, uiConfig, justificationType,
+                justification, trackingToken, viewUrl,
+                document, event, announcement,
+                collection, collectionItem, person,
+                app, promptTemplate, workflow,
+                activities, documentVisitorCount);
         }
+
     }
 }

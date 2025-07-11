@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.List;
 
-public class ListCollectionsResponse {
 
+public class ListCollectionsResponse {
     /**
      * List of all Collections, no Collection items are fetched.
      */
@@ -34,9 +34,10 @@ public class ListCollectionsResponse {
         return collections;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * List of all Collections, no Collection items are fetched.
@@ -47,7 +48,6 @@ public class ListCollectionsResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -72,14 +72,16 @@ public class ListCollectionsResponse {
         return Utils.toString(ListCollectionsResponse.class,
                 "collections", collections);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<Collection> collections;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * List of all Collections, no Collection items are fetched.
@@ -89,10 +91,12 @@ public class ListCollectionsResponse {
             this.collections = collections;
             return this;
         }
-        
+
         public ListCollectionsResponse build() {
+
             return new ListCollectionsResponse(
                 collections);
         }
+
     }
 }

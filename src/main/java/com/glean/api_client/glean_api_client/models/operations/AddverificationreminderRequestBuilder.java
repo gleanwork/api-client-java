@@ -29,7 +29,7 @@ public class AddverificationreminderRequestBuilder {
     public AddverificationreminderResponse call() throws Exception {
         
         RequestOperation<ReminderRequest, AddverificationreminderResponse> operation
-              = new AddverificationreminderOperation( sdkConfiguration);
+              = new AddverificationreminderOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

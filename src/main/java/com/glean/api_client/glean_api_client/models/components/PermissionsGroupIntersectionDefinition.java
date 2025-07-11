@@ -43,9 +43,10 @@ public class PermissionsGroupIntersectionDefinition {
         return (Optional<List<String>>) requiredGroups;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PermissionsGroupIntersectionDefinition withRequiredGroups(List<String> requiredGroups) {
         Utils.checkNotNull(requiredGroups, "requiredGroups");
@@ -53,13 +54,13 @@ public class PermissionsGroupIntersectionDefinition {
         return this;
     }
 
+
     public PermissionsGroupIntersectionDefinition withRequiredGroups(Optional<? extends List<String>> requiredGroups) {
         Utils.checkNotNull(requiredGroups, "requiredGroups");
         this.requiredGroups = requiredGroups;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -84,14 +85,16 @@ public class PermissionsGroupIntersectionDefinition {
         return Utils.toString(PermissionsGroupIntersectionDefinition.class,
                 "requiredGroups", requiredGroups);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<String>> requiredGroups = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder requiredGroups(List<String> requiredGroups) {
             Utils.checkNotNull(requiredGroups, "requiredGroups");
@@ -104,10 +107,12 @@ public class PermissionsGroupIntersectionDefinition {
             this.requiredGroups = requiredGroups;
             return this;
         }
-        
+
         public PermissionsGroupIntersectionDefinition build() {
+
             return new PermissionsGroupIntersectionDefinition(
                 requiredGroups);
         }
+
     }
 }

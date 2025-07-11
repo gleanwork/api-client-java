@@ -14,8 +14,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class RelatedObject {
 
+public class RelatedObject {
     /**
      * The ID of the related object
      */
@@ -61,9 +61,10 @@ public class RelatedObject {
         return (Optional<RelatedObjectMetadata>) metadata;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the related object
@@ -83,6 +84,7 @@ public class RelatedObject {
         return this;
     }
 
+
     /**
      * Some metadata of the object which can be displayed, while not having the actual object.
      */
@@ -92,7 +94,6 @@ public class RelatedObject {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -110,8 +111,7 @@ public class RelatedObject {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            metadata);
+            id, metadata);
     }
     
     @Override
@@ -120,16 +120,18 @@ public class RelatedObject {
                 "id", id,
                 "metadata", metadata);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private Optional<? extends RelatedObjectMetadata> metadata = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the related object
@@ -139,6 +141,7 @@ public class RelatedObject {
             this.id = id;
             return this;
         }
+
 
         /**
          * Some metadata of the object which can be displayed, while not having the actual object.
@@ -157,11 +160,12 @@ public class RelatedObject {
             this.metadata = metadata;
             return this;
         }
-        
+
         public RelatedObject build() {
+
             return new RelatedObject(
-                id,
-                metadata);
+                id, metadata);
         }
+
     }
 }

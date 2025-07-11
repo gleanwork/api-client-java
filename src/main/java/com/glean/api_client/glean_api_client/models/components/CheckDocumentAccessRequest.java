@@ -16,7 +16,6 @@ import java.lang.String;
  * <p>Describes the request body of the /checkdocumentaccess API call
  */
 public class CheckDocumentAccessRequest {
-
     /**
      * Datasource of document to check access for.
      */
@@ -89,9 +88,10 @@ public class CheckDocumentAccessRequest {
         return userEmail;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Datasource of document to check access for.
@@ -129,7 +129,6 @@ public class CheckDocumentAccessRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -149,9 +148,7 @@ public class CheckDocumentAccessRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            datasource,
-            objectType,
-            docId,
+            datasource, objectType, docId,
             userEmail);
     }
     
@@ -163,20 +160,22 @@ public class CheckDocumentAccessRequest {
                 "docId", docId,
                 "userEmail", userEmail);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String datasource;
- 
+
         private String objectType;
- 
+
         private String docId;
- 
+
         private String userEmail;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Datasource of document to check access for.
@@ -187,6 +186,7 @@ public class CheckDocumentAccessRequest {
             return this;
         }
 
+
         /**
          * Object type of document to check access for.
          */
@@ -195,6 +195,7 @@ public class CheckDocumentAccessRequest {
             this.objectType = objectType;
             return this;
         }
+
 
         /**
          * Glean Document ID to check access for.
@@ -205,6 +206,7 @@ public class CheckDocumentAccessRequest {
             return this;
         }
 
+
         /**
          * Email of user to check access for.
          */
@@ -213,13 +215,13 @@ public class CheckDocumentAccessRequest {
             this.userEmail = userEmail;
             return this;
         }
-        
+
         public CheckDocumentAccessRequest build() {
+
             return new CheckDocumentAccessRequest(
-                datasource,
-                objectType,
-                docId,
+                datasource, objectType, docId,
                 userEmail);
         }
+
     }
 }

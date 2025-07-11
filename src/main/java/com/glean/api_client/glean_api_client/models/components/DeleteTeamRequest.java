@@ -16,7 +16,6 @@ import java.lang.String;
  * <p>Describes the request body of the /deleteteam API call
  */
 public class DeleteTeamRequest {
-
     /**
      * The deleted team's id
      */
@@ -38,9 +37,10 @@ public class DeleteTeamRequest {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The deleted team's id
@@ -51,7 +51,6 @@ public class DeleteTeamRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -76,14 +75,16 @@ public class DeleteTeamRequest {
         return Utils.toString(DeleteTeamRequest.class,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The deleted team's id
@@ -93,10 +94,12 @@ public class DeleteTeamRequest {
             this.id = id;
             return this;
         }
-        
+
         public DeleteTeamRequest build() {
+
             return new DeleteTeamRequest(
                 id);
         }
+
     }
 }

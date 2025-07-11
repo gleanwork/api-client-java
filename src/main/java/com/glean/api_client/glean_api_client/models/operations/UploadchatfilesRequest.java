@@ -13,13 +13,14 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class UploadchatfilesRequest {
 
+public class UploadchatfilesRequest {
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=timezoneOffset")
     private Optional<Long> timezoneOffset;
+
 
     @SpeakeasyMetadata("request:mediaType=multipart/form-data")
     private UploadChatFilesRequest uploadChatFilesRequest;
@@ -52,9 +53,10 @@ public class UploadchatfilesRequest {
         return uploadChatFilesRequest;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
@@ -64,6 +66,7 @@ public class UploadchatfilesRequest {
         this.timezoneOffset = Optional.ofNullable(timezoneOffset);
         return this;
     }
+
 
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
@@ -80,7 +83,6 @@ public class UploadchatfilesRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -98,8 +100,7 @@ public class UploadchatfilesRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            timezoneOffset,
-            uploadChatFilesRequest);
+            timezoneOffset, uploadChatFilesRequest);
     }
     
     @Override
@@ -108,16 +109,18 @@ public class UploadchatfilesRequest {
                 "timezoneOffset", timezoneOffset,
                 "uploadChatFilesRequest", uploadChatFilesRequest);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> timezoneOffset = Optional.empty();
- 
+
         private UploadChatFilesRequest uploadChatFilesRequest;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
@@ -137,16 +140,18 @@ public class UploadchatfilesRequest {
             return this;
         }
 
+
         public Builder uploadChatFilesRequest(UploadChatFilesRequest uploadChatFilesRequest) {
             Utils.checkNotNull(uploadChatFilesRequest, "uploadChatFilesRequest");
             this.uploadChatFilesRequest = uploadChatFilesRequest;
             return this;
         }
-        
+
         public UploadchatfilesRequest build() {
+
             return new UploadchatfilesRequest(
-                timezoneOffset,
-                uploadChatFilesRequest);
+                timezoneOffset, uploadChatFilesRequest);
         }
+
     }
 }

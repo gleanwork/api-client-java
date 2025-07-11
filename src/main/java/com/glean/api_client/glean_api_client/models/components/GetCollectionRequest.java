@@ -15,8 +15,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class GetCollectionRequest {
 
+public class GetCollectionRequest {
     /**
      * The ID of the Collection to be retrieved.
      */
@@ -62,7 +62,8 @@ public class GetCollectionRequest {
     
     public GetCollectionRequest(
             long id) {
-        this(id, Optional.empty(), Optional.empty(), Optional.empty());
+        this(id, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -97,9 +98,10 @@ public class GetCollectionRequest {
         return allowedDatasource;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the Collection to be retrieved.
@@ -119,6 +121,7 @@ public class GetCollectionRequest {
         return this;
     }
 
+
     /**
      * Whether or not to include the Collection Items in this Collection. Only request if absolutely required, as this is expensive.
      */
@@ -136,6 +139,7 @@ public class GetCollectionRequest {
         this.withHierarchy = Optional.ofNullable(withHierarchy);
         return this;
     }
+
 
     /**
      * Whether or not to include the top level Collection in this Collection's hierarchy.
@@ -155,6 +159,7 @@ public class GetCollectionRequest {
         return this;
     }
 
+
     /**
      * The datasource allowed in the Collection returned.
      */
@@ -164,7 +169,6 @@ public class GetCollectionRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -184,9 +188,7 @@ public class GetCollectionRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            withItems,
-            withHierarchy,
+            id, withItems, withHierarchy,
             allowedDatasource);
     }
     
@@ -198,20 +200,22 @@ public class GetCollectionRequest {
                 "withHierarchy", withHierarchy,
                 "allowedDatasource", allowedDatasource);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long id;
- 
+
         private Optional<Boolean> withItems = Optional.empty();
- 
+
         private Optional<Boolean> withHierarchy = Optional.empty();
- 
+
         private Optional<String> allowedDatasource = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the Collection to be retrieved.
@@ -221,6 +225,7 @@ public class GetCollectionRequest {
             this.id = id;
             return this;
         }
+
 
         /**
          * Whether or not to include the Collection Items in this Collection. Only request if absolutely required, as this is expensive.
@@ -240,6 +245,7 @@ public class GetCollectionRequest {
             return this;
         }
 
+
         /**
          * Whether or not to include the top level Collection in this Collection's hierarchy.
          */
@@ -258,6 +264,7 @@ public class GetCollectionRequest {
             return this;
         }
 
+
         /**
          * The datasource allowed in the Collection returned.
          */
@@ -275,13 +282,13 @@ public class GetCollectionRequest {
             this.allowedDatasource = allowedDatasource;
             return this;
         }
-        
+
         public GetCollectionRequest build() {
+
             return new GetCollectionRequest(
-                id,
-                withItems,
-                withHierarchy,
+                id, withItems, withHierarchy,
                 allowedDatasource);
         }
+
     }
 }

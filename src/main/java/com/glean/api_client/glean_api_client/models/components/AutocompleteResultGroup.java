@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>A subsection of the results list from which distinct sections should be created.
  */
 public class AutocompleteResultGroup {
-
     /**
      * The inclusive start index of the range.
      */
@@ -83,9 +82,10 @@ public class AutocompleteResultGroup {
         return title;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The inclusive start index of the range.
@@ -95,6 +95,7 @@ public class AutocompleteResultGroup {
         this.startIndex = Optional.ofNullable(startIndex);
         return this;
     }
+
 
     /**
      * The inclusive start index of the range.
@@ -114,6 +115,7 @@ public class AutocompleteResultGroup {
         return this;
     }
 
+
     /**
      * The exclusive end index of the range.
      */
@@ -132,6 +134,7 @@ public class AutocompleteResultGroup {
         return this;
     }
 
+
     /**
      * The title of the result group to be displayed. Empty means no title.
      */
@@ -141,7 +144,6 @@ public class AutocompleteResultGroup {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -160,9 +162,7 @@ public class AutocompleteResultGroup {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            startIndex,
-            endIndex,
-            title);
+            startIndex, endIndex, title);
     }
     
     @Override
@@ -172,18 +172,20 @@ public class AutocompleteResultGroup {
                 "endIndex", endIndex,
                 "title", title);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> startIndex = Optional.empty();
- 
+
         private Optional<Long> endIndex = Optional.empty();
- 
+
         private Optional<String> title = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The inclusive start index of the range.
@@ -203,6 +205,7 @@ public class AutocompleteResultGroup {
             return this;
         }
 
+
         /**
          * The exclusive end index of the range.
          */
@@ -221,6 +224,7 @@ public class AutocompleteResultGroup {
             return this;
         }
 
+
         /**
          * The title of the result group to be displayed. Empty means no title.
          */
@@ -238,12 +242,12 @@ public class AutocompleteResultGroup {
             this.title = title;
             return this;
         }
-        
+
         public AutocompleteResultGroup build() {
+
             return new AutocompleteResultGroup(
-                startIndex,
-                endIndex,
-                title);
+                startIndex, endIndex, title);
         }
+
     }
 }

@@ -14,8 +14,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class ExtractedQnA {
 
+public class ExtractedQnA {
     /**
      * Heading text that was matched to produce this result.
      */
@@ -29,6 +29,7 @@ public class ExtractedQnA {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("question")
     private Optional<String> question;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("questionResult")
@@ -73,9 +74,10 @@ public class ExtractedQnA {
         return (Optional<SearchResult>) questionResult;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Heading text that was matched to produce this result.
@@ -85,6 +87,7 @@ public class ExtractedQnA {
         this.heading = Optional.ofNullable(heading);
         return this;
     }
+
 
     /**
      * Heading text that was matched to produce this result.
@@ -104,6 +107,7 @@ public class ExtractedQnA {
         return this;
     }
 
+
     /**
      * Question text that was matched to produce this result.
      */
@@ -119,13 +123,13 @@ public class ExtractedQnA {
         return this;
     }
 
+
     public ExtractedQnA withQuestionResult(Optional<? extends SearchResult> questionResult) {
         Utils.checkNotNull(questionResult, "questionResult");
         this.questionResult = questionResult;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -144,9 +148,7 @@ public class ExtractedQnA {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            heading,
-            question,
-            questionResult);
+            heading, question, questionResult);
     }
     
     @Override
@@ -156,18 +158,20 @@ public class ExtractedQnA {
                 "question", question,
                 "questionResult", questionResult);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> heading = Optional.empty();
- 
+
         private Optional<String> question = Optional.empty();
- 
+
         private Optional<? extends SearchResult> questionResult = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Heading text that was matched to produce this result.
@@ -187,6 +191,7 @@ public class ExtractedQnA {
             return this;
         }
 
+
         /**
          * Question text that was matched to produce this result.
          */
@@ -205,6 +210,7 @@ public class ExtractedQnA {
             return this;
         }
 
+
         public Builder questionResult(SearchResult questionResult) {
             Utils.checkNotNull(questionResult, "questionResult");
             this.questionResult = Optional.ofNullable(questionResult);
@@ -216,12 +222,12 @@ public class ExtractedQnA {
             this.questionResult = questionResult;
             return this;
         }
-        
+
         public ExtractedQnA build() {
+
             return new ExtractedQnA(
-                heading,
-                question,
-                questionResult);
+                heading, question, questionResult);
         }
+
     }
 }

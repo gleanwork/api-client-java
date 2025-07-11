@@ -15,6 +15,7 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
+
 public class AgentRunWaitResponse {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -57,15 +58,17 @@ public class AgentRunWaitResponse {
         return (Optional<List<Message>>) messages;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public AgentRunWaitResponse withRun(AgentRun run) {
         Utils.checkNotNull(run, "run");
         this.run = Optional.ofNullable(run);
         return this;
     }
+
 
     public AgentRunWaitResponse withRun(Optional<? extends AgentRun> run) {
         Utils.checkNotNull(run, "run");
@@ -82,6 +85,7 @@ public class AgentRunWaitResponse {
         return this;
     }
 
+
     /**
      * The messages returned by the run.
      */
@@ -91,7 +95,6 @@ public class AgentRunWaitResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -109,8 +112,7 @@ public class AgentRunWaitResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            run,
-            messages);
+            run, messages);
     }
     
     @Override
@@ -119,16 +121,18 @@ public class AgentRunWaitResponse {
                 "run", run,
                 "messages", messages);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends AgentRun> run = Optional.empty();
- 
+
         private Optional<? extends List<Message>> messages = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder run(AgentRun run) {
             Utils.checkNotNull(run, "run");
@@ -141,6 +145,7 @@ public class AgentRunWaitResponse {
             this.run = run;
             return this;
         }
+
 
         /**
          * The messages returned by the run.
@@ -159,11 +164,12 @@ public class AgentRunWaitResponse {
             this.messages = messages;
             return this;
         }
-        
+
         public AgentRunWaitResponse build() {
+
             return new AgentRunWaitResponse(
-                run,
-                messages);
+                run, messages);
         }
+
     }
 }

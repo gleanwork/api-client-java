@@ -11,13 +11,14 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class UpdatepolicyRequest {
 
+public class UpdatepolicyRequest {
     /**
      * The id of the policy to fetch.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
     private String id;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private UpdateDlpReportRequest updateDlpReportRequest;
@@ -45,9 +46,10 @@ public class UpdatepolicyRequest {
         return updateDlpReportRequest;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The id of the policy to fetch.
@@ -64,7 +66,6 @@ public class UpdatepolicyRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -82,8 +83,7 @@ public class UpdatepolicyRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            updateDlpReportRequest);
+            id, updateDlpReportRequest);
     }
     
     @Override
@@ -92,16 +92,18 @@ public class UpdatepolicyRequest {
                 "id", id,
                 "updateDlpReportRequest", updateDlpReportRequest);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private UpdateDlpReportRequest updateDlpReportRequest;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The id of the policy to fetch.
@@ -112,16 +114,18 @@ public class UpdatepolicyRequest {
             return this;
         }
 
+
         public Builder updateDlpReportRequest(UpdateDlpReportRequest updateDlpReportRequest) {
             Utils.checkNotNull(updateDlpReportRequest, "updateDlpReportRequest");
             this.updateDlpReportRequest = updateDlpReportRequest;
             return this;
         }
-        
+
         public UpdatepolicyRequest build() {
+
             return new UpdatepolicyRequest(
-                id,
-                updateDlpReportRequest);
+                id, updateDlpReportRequest);
         }
+
     }
 }

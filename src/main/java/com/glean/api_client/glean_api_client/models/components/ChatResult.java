@@ -14,8 +14,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class ChatResult {
 
+public class ChatResult {
     /**
      * A historical representation of a series of chat messages a user had with Glean Assistant.
      */
@@ -61,9 +61,10 @@ public class ChatResult {
         return trackingToken;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A historical representation of a series of chat messages a user had with Glean Assistant.
@@ -73,6 +74,7 @@ public class ChatResult {
         this.chat = Optional.ofNullable(chat);
         return this;
     }
+
 
     /**
      * A historical representation of a series of chat messages a user had with Glean Assistant.
@@ -92,6 +94,7 @@ public class ChatResult {
         return this;
     }
 
+
     /**
      * An opaque token that represents this particular Chat. To be used for `/feedback` reporting.
      */
@@ -101,7 +104,6 @@ public class ChatResult {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -119,8 +121,7 @@ public class ChatResult {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            chat,
-            trackingToken);
+            chat, trackingToken);
     }
     
     @Override
@@ -129,16 +130,18 @@ public class ChatResult {
                 "chat", chat,
                 "trackingToken", trackingToken);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Chat> chat = Optional.empty();
- 
+
         private Optional<String> trackingToken = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A historical representation of a series of chat messages a user had with Glean Assistant.
@@ -158,6 +161,7 @@ public class ChatResult {
             return this;
         }
 
+
         /**
          * An opaque token that represents this particular Chat. To be used for `/feedback` reporting.
          */
@@ -175,11 +179,12 @@ public class ChatResult {
             this.trackingToken = trackingToken;
             return this;
         }
-        
+
         public ChatResult build() {
+
             return new ChatResult(
-                chat,
-                trackingToken);
+                chat, trackingToken);
         }
+
     }
 }

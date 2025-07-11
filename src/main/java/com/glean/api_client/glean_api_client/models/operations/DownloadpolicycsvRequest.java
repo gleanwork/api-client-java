@@ -10,8 +10,8 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class DownloadpolicycsvRequest {
 
+public class DownloadpolicycsvRequest {
     /**
      * The id of the policy to download violations for.
      */
@@ -33,9 +33,10 @@ public class DownloadpolicycsvRequest {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The id of the policy to download violations for.
@@ -46,7 +47,6 @@ public class DownloadpolicycsvRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -71,14 +71,16 @@ public class DownloadpolicycsvRequest {
         return Utils.toString(DownloadpolicycsvRequest.class,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The id of the policy to download violations for.
@@ -88,10 +90,12 @@ public class DownloadpolicycsvRequest {
             this.id = id;
             return this;
         }
-        
+
         public DownloadpolicycsvRequest build() {
+
             return new DownloadpolicycsvRequest(
                 id);
         }
+
     }
 }

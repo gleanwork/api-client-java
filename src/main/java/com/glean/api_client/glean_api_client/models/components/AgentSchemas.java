@@ -16,7 +16,6 @@ import java.lang.String;
  * <p>Defines the structure and properties of an agent.
  */
 public class AgentSchemas {
-
     /**
      * The ID of the agent.
      */
@@ -72,9 +71,10 @@ public class AgentSchemas {
         return outputSchema;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the agent.
@@ -103,7 +103,6 @@ public class AgentSchemas {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -122,9 +121,7 @@ public class AgentSchemas {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            agentId,
-            inputSchema,
-            outputSchema);
+            agentId, inputSchema, outputSchema);
     }
     
     @Override
@@ -134,18 +131,20 @@ public class AgentSchemas {
                 "inputSchema", inputSchema,
                 "outputSchema", outputSchema);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String agentId;
- 
+
         private InputSchema inputSchema;
- 
+
         private OutputSchema outputSchema;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the agent.
@@ -156,6 +155,7 @@ public class AgentSchemas {
             return this;
         }
 
+
         /**
          * The schema for the agent input. In JSON Schema format.
          */
@@ -165,6 +165,7 @@ public class AgentSchemas {
             return this;
         }
 
+
         /**
          * The schema for the agent output. In JSON Schema format.
          */
@@ -173,12 +174,12 @@ public class AgentSchemas {
             this.outputSchema = outputSchema;
             return this;
         }
-        
+
         public AgentSchemas build() {
+
             return new AgentSchemas(
-                agentId,
-                inputSchema,
-                outputSchema);
+                agentId, inputSchema, outputSchema);
         }
+
     }
 }

@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>Details about the person who created this report/policy.
  */
 public class DlpPerson {
-
     /**
      * The display name.
      */
@@ -32,6 +31,7 @@ public class DlpPerson {
      */
     @JsonProperty("obfuscatedId")
     private String obfuscatedId;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
@@ -78,9 +78,10 @@ public class DlpPerson {
         return (Optional<DlpPersonMetadata>) metadata;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The display name.
@@ -106,13 +107,13 @@ public class DlpPerson {
         return this;
     }
 
+
     public DlpPerson withMetadata(Optional<? extends DlpPersonMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -131,9 +132,7 @@ public class DlpPerson {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            obfuscatedId,
-            metadata);
+            name, obfuscatedId, metadata);
     }
     
     @Override
@@ -143,18 +142,20 @@ public class DlpPerson {
                 "obfuscatedId", obfuscatedId,
                 "metadata", metadata);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
- 
+
         private String obfuscatedId;
- 
+
         private Optional<? extends DlpPersonMetadata> metadata = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The display name.
@@ -165,6 +166,7 @@ public class DlpPerson {
             return this;
         }
 
+
         /**
          * An opaque identifier that can be used to request metadata for a Person.
          */
@@ -173,6 +175,7 @@ public class DlpPerson {
             this.obfuscatedId = obfuscatedId;
             return this;
         }
+
 
         public Builder metadata(DlpPersonMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -185,12 +188,12 @@ public class DlpPerson {
             this.metadata = metadata;
             return this;
         }
-        
+
         public DlpPerson build() {
+
             return new DlpPerson(
-                name,
-                obfuscatedId,
-                metadata);
+                name, obfuscatedId, metadata);
         }
+
     }
 }

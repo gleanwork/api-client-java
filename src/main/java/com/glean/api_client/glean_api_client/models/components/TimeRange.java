@@ -15,8 +15,8 @@ import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-public class TimeRange {
 
+public class TimeRange {
     /**
      * start time of the time range, applicable for the CUSTOM type.
      */
@@ -79,9 +79,10 @@ public class TimeRange {
         return lastNDaysValue;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * start time of the time range, applicable for the CUSTOM type.
@@ -91,6 +92,7 @@ public class TimeRange {
         this.startTime = Optional.ofNullable(startTime);
         return this;
     }
+
 
     /**
      * start time of the time range, applicable for the CUSTOM type.
@@ -110,6 +112,7 @@ public class TimeRange {
         return this;
     }
 
+
     /**
      * end time of the time range, applicable for the CUSTOM type.
      */
@@ -128,6 +131,7 @@ public class TimeRange {
         return this;
     }
 
+
     /**
      * The number of days to look back from the current time, applicable for the LAST_N_DAYS type.
      */
@@ -137,7 +141,6 @@ public class TimeRange {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -156,9 +159,7 @@ public class TimeRange {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            startTime,
-            endTime,
-            lastNDaysValue);
+            startTime, endTime, lastNDaysValue);
     }
     
     @Override
@@ -168,18 +169,20 @@ public class TimeRange {
                 "endTime", endTime,
                 "lastNDaysValue", lastNDaysValue);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<OffsetDateTime> startTime = Optional.empty();
- 
+
         private Optional<OffsetDateTime> endTime = Optional.empty();
- 
+
         private Optional<Long> lastNDaysValue = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * start time of the time range, applicable for the CUSTOM type.
@@ -199,6 +202,7 @@ public class TimeRange {
             return this;
         }
 
+
         /**
          * end time of the time range, applicable for the CUSTOM type.
          */
@@ -217,6 +221,7 @@ public class TimeRange {
             return this;
         }
 
+
         /**
          * The number of days to look back from the current time, applicable for the LAST_N_DAYS type.
          */
@@ -234,12 +239,12 @@ public class TimeRange {
             this.lastNDaysValue = lastNDaysValue;
             return this;
         }
-        
+
         public TimeRange build() {
+
             return new TimeRange(
-                startTime,
-                endTime,
-                lastNDaysValue);
+                startTime, endTime, lastNDaysValue);
         }
+
     }
 }

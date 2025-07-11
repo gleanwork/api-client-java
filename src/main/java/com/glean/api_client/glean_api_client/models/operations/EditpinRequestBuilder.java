@@ -29,7 +29,7 @@ public class EditpinRequestBuilder {
     public EditpinResponse call() throws Exception {
         
         RequestOperation<EditPinRequest, EditpinResponse> operation
-              = new EditpinOperation( sdkConfiguration);
+              = new EditpinOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

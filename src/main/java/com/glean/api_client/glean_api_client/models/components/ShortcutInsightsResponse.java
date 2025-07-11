@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class ShortcutInsightsResponse {
 
+public class ShortcutInsightsResponse {
     /**
      * Unix timestamp of the last activity processed to make the response (in seconds since epoch UTC).
      */
@@ -63,7 +63,8 @@ public class ShortcutInsightsResponse {
     }
     
     public ShortcutInsightsResponse() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -100,9 +101,10 @@ public class ShortcutInsightsResponse {
         return minVisitorThreshold;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unix timestamp of the last activity processed to make the response (in seconds since epoch UTC).
@@ -112,6 +114,7 @@ public class ShortcutInsightsResponse {
         this.lastLogTimestamp = Optional.ofNullable(lastLogTimestamp);
         return this;
     }
+
 
     /**
      * Unix timestamp of the last activity processed to make the response (in seconds since epoch UTC).
@@ -131,6 +134,7 @@ public class ShortcutInsightsResponse {
         return this;
     }
 
+
     /**
      * Insights for shortcuts.
      */
@@ -148,6 +152,7 @@ public class ShortcutInsightsResponse {
         this.departments = Optional.ofNullable(departments);
         return this;
     }
+
 
     /**
      * list of departments applicable for shortcuts tab.
@@ -167,6 +172,7 @@ public class ShortcutInsightsResponse {
         return this;
     }
 
+
     /**
      * Min threshold in number of visitors while populating results, otherwise 0.
      */
@@ -176,7 +182,6 @@ public class ShortcutInsightsResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -196,9 +201,7 @@ public class ShortcutInsightsResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            lastLogTimestamp,
-            shortcutInsights,
-            departments,
+            lastLogTimestamp, shortcutInsights, departments,
             minVisitorThreshold);
     }
     
@@ -210,20 +213,22 @@ public class ShortcutInsightsResponse {
                 "departments", departments,
                 "minVisitorThreshold", minVisitorThreshold);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> lastLogTimestamp = Optional.empty();
- 
+
         private Optional<? extends List<ShortcutInsight>> shortcutInsights = Optional.empty();
- 
+
         private Optional<? extends List<String>> departments = Optional.empty();
- 
+
         private Optional<Long> minVisitorThreshold = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unix timestamp of the last activity processed to make the response (in seconds since epoch UTC).
@@ -243,6 +248,7 @@ public class ShortcutInsightsResponse {
             return this;
         }
 
+
         /**
          * Insights for shortcuts.
          */
@@ -260,6 +266,7 @@ public class ShortcutInsightsResponse {
             this.shortcutInsights = shortcutInsights;
             return this;
         }
+
 
         /**
          * list of departments applicable for shortcuts tab.
@@ -279,6 +286,7 @@ public class ShortcutInsightsResponse {
             return this;
         }
 
+
         /**
          * Min threshold in number of visitors while populating results, otherwise 0.
          */
@@ -296,13 +304,13 @@ public class ShortcutInsightsResponse {
             this.minVisitorThreshold = minVisitorThreshold;
             return this;
         }
-        
+
         public ShortcutInsightsResponse build() {
+
             return new ShortcutInsightsResponse(
-                lastLogTimestamp,
-                shortcutInsights,
-                departments,
+                lastLogTimestamp, shortcutInsights, departments,
                 minVisitorThreshold);
         }
+
     }
 }

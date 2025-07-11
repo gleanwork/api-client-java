@@ -46,7 +46,7 @@ public class UpdatepolicyRequestBuilder {
     public UpdatepolicyResponse call() throws Exception {
         
         RequestOperation<UpdatepolicyRequest, UpdatepolicyResponse> operation
-              = new UpdatepolicyOperation( sdkConfiguration);
+              = new UpdatepolicyOperation(sdkConfiguration);
         UpdatepolicyRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -21,7 +21,6 @@ import java.util.Optional;
  * <p>Displays a user's accomplishment or milestone
  */
 public class Badge {
-
     /**
      * An auto generated unique identifier.
      */
@@ -67,7 +66,8 @@ public class Badge {
     }
     
     public Badge() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -103,9 +103,10 @@ public class Badge {
         return pinned;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An auto generated unique identifier.
@@ -115,6 +116,7 @@ public class Badge {
         this.key = Optional.ofNullable(key);
         return this;
     }
+
 
     /**
      * An auto generated unique identifier.
@@ -134,6 +136,7 @@ public class Badge {
         return this;
     }
 
+
     /**
      * The badge name displayed to users
      */
@@ -151,6 +154,7 @@ public class Badge {
         this.iconConfig = Optional.ofNullable(iconConfig);
         return this;
     }
+
 
     /**
      * Defines how to render an icon
@@ -170,6 +174,7 @@ public class Badge {
         return this;
     }
 
+
     /**
      * The badge should be shown on the PersonAttribution
      */
@@ -179,7 +184,6 @@ public class Badge {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -199,9 +203,7 @@ public class Badge {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            key,
-            displayName,
-            iconConfig,
+            key, displayName, iconConfig,
             pinned);
     }
     
@@ -213,20 +215,22 @@ public class Badge {
                 "iconConfig", iconConfig,
                 "pinned", pinned);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> key = Optional.empty();
- 
+
         private Optional<String> displayName = Optional.empty();
- 
+
         private Optional<? extends IconConfig> iconConfig = Optional.empty();
- 
+
         private Optional<Boolean> pinned = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An auto generated unique identifier.
@@ -246,6 +250,7 @@ public class Badge {
             return this;
         }
 
+
         /**
          * The badge name displayed to users
          */
@@ -263,6 +268,7 @@ public class Badge {
             this.displayName = displayName;
             return this;
         }
+
 
         /**
          * Defines how to render an icon
@@ -282,6 +288,7 @@ public class Badge {
             return this;
         }
 
+
         /**
          * The badge should be shown on the PersonAttribution
          */
@@ -299,13 +306,13 @@ public class Badge {
             this.pinned = pinned;
             return this;
         }
-        
+
         public Badge build() {
+
             return new Badge(
-                key,
-                displayName,
-                iconConfig,
+                key, displayName, iconConfig,
                 pinned);
         }
+
     }
 }

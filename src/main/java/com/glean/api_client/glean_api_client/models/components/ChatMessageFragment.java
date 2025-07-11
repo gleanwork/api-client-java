@@ -21,7 +21,6 @@ import java.util.Optional;
  * <p>Represents a part of a ChatMessage that originates from a single action/tool. It is designed to support rich data formats beyond simple text, allowing for a more dynamic and interactive chat experience. Each fragment can include various types of content, such as text, search queries, action information, and more. Also, each ChatMessageFragment should only have one of structuredResults, querySuggestion, writeAction, followupAction, or file.
  */
 public class ChatMessageFragment {
-
     /**
      * An array of entities in the work graph retrieved via a data request.
      */
@@ -36,9 +35,11 @@ public class ChatMessageFragment {
     @JsonProperty("trackingToken")
     private Optional<String> trackingToken;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("text")
     private Optional<String> text;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("querySuggestion")
@@ -50,6 +51,7 @@ public class ChatMessageFragment {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("file")
     private Optional<? extends ChatFile> file;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("action")
@@ -78,7 +80,8 @@ public class ChatMessageFragment {
     }
     
     public ChatMessageFragment() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -124,9 +127,10 @@ public class ChatMessageFragment {
         return (Optional<ToolInfo>) action;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An array of entities in the work graph retrieved via a data request.
@@ -136,6 +140,7 @@ public class ChatMessageFragment {
         this.structuredResults = Optional.ofNullable(structuredResults);
         return this;
     }
+
 
     /**
      * An array of entities in the work graph retrieved via a data request.
@@ -155,6 +160,7 @@ public class ChatMessageFragment {
         return this;
     }
 
+
     /**
      * An opaque token that represents this particular result in this particular query. To be used for /feedback reporting.
      */
@@ -170,6 +176,7 @@ public class ChatMessageFragment {
         return this;
     }
 
+
     public ChatMessageFragment withText(Optional<String> text) {
         Utils.checkNotNull(text, "text");
         this.text = text;
@@ -181,6 +188,7 @@ public class ChatMessageFragment {
         this.querySuggestion = Optional.ofNullable(querySuggestion);
         return this;
     }
+
 
     public ChatMessageFragment withQuerySuggestion(Optional<? extends QuerySuggestion> querySuggestion) {
         Utils.checkNotNull(querySuggestion, "querySuggestion");
@@ -197,6 +205,7 @@ public class ChatMessageFragment {
         return this;
     }
 
+
     /**
      * Structure for file uploaded by a user for Chat.
      */
@@ -212,13 +221,13 @@ public class ChatMessageFragment {
         return this;
     }
 
+
     public ChatMessageFragment withAction(Optional<? extends ToolInfo> action) {
         Utils.checkNotNull(action, "action");
         this.action = action;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -240,12 +249,8 @@ public class ChatMessageFragment {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            structuredResults,
-            trackingToken,
-            text,
-            querySuggestion,
-            file,
-            action);
+            structuredResults, trackingToken, text,
+            querySuggestion, file, action);
     }
     
     @Override
@@ -258,24 +263,26 @@ public class ChatMessageFragment {
                 "file", file,
                 "action", action);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<StructuredResult>> structuredResults = Optional.empty();
- 
+
         private Optional<String> trackingToken = Optional.empty();
- 
+
         private Optional<String> text = Optional.empty();
- 
+
         private Optional<? extends QuerySuggestion> querySuggestion = Optional.empty();
- 
+
         private Optional<? extends ChatFile> file = Optional.empty();
- 
+
         private Optional<? extends ToolInfo> action = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An array of entities in the work graph retrieved via a data request.
@@ -295,6 +302,7 @@ public class ChatMessageFragment {
             return this;
         }
 
+
         /**
          * An opaque token that represents this particular result in this particular query. To be used for /feedback reporting.
          */
@@ -313,6 +321,7 @@ public class ChatMessageFragment {
             return this;
         }
 
+
         public Builder text(String text) {
             Utils.checkNotNull(text, "text");
             this.text = Optional.ofNullable(text);
@@ -325,6 +334,7 @@ public class ChatMessageFragment {
             return this;
         }
 
+
         public Builder querySuggestion(QuerySuggestion querySuggestion) {
             Utils.checkNotNull(querySuggestion, "querySuggestion");
             this.querySuggestion = Optional.ofNullable(querySuggestion);
@@ -336,6 +346,7 @@ public class ChatMessageFragment {
             this.querySuggestion = querySuggestion;
             return this;
         }
+
 
         /**
          * Structure for file uploaded by a user for Chat.
@@ -355,6 +366,7 @@ public class ChatMessageFragment {
             return this;
         }
 
+
         public Builder action(ToolInfo action) {
             Utils.checkNotNull(action, "action");
             this.action = Optional.ofNullable(action);
@@ -366,15 +378,13 @@ public class ChatMessageFragment {
             this.action = action;
             return this;
         }
-        
+
         public ChatMessageFragment build() {
+
             return new ChatMessageFragment(
-                structuredResults,
-                trackingToken,
-                text,
-                querySuggestion,
-                file,
-                action);
+                structuredResults, trackingToken, text,
+                querySuggestion, file, action);
         }
+
     }
 }

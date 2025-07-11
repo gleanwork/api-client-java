@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>Describes the request body of the /indexgroup API call
  */
 public class IndexGroupRequest {
-
     /**
      * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
      */
@@ -83,9 +82,10 @@ public class IndexGroupRequest {
         return group;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
@@ -95,6 +95,7 @@ public class IndexGroupRequest {
         this.version = Optional.ofNullable(version);
         return this;
     }
+
 
     /**
      * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
@@ -123,7 +124,6 @@ public class IndexGroupRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -142,9 +142,7 @@ public class IndexGroupRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            version,
-            datasource,
-            group);
+            version, datasource, group);
     }
     
     @Override
@@ -154,18 +152,20 @@ public class IndexGroupRequest {
                 "datasource", datasource,
                 "group", group);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> version = Optional.empty();
- 
+
         private String datasource;
- 
+
         private DatasourceGroupDefinition group;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
@@ -185,6 +185,7 @@ public class IndexGroupRequest {
             return this;
         }
 
+
         /**
          * The datasource for which the group is added
          */
@@ -194,6 +195,7 @@ public class IndexGroupRequest {
             return this;
         }
 
+
         /**
          * describes a group in the datasource
          */
@@ -202,12 +204,12 @@ public class IndexGroupRequest {
             this.group = group;
             return this;
         }
-        
+
         public IndexGroupRequest build() {
+
             return new IndexGroupRequest(
-                version,
-                datasource,
-                group);
+                version, datasource, group);
         }
+
     }
 }

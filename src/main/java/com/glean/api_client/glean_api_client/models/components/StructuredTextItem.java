@@ -14,15 +14,18 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class StructuredTextItem {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("link")
     private Optional<String> link;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("document")
     private Optional<? extends Document> document;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("text")
@@ -52,7 +55,8 @@ public class StructuredTextItem {
     }
     
     public StructuredTextItem() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -80,15 +84,17 @@ public class StructuredTextItem {
         return (Optional<StructuredResult>) structuredResult;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public StructuredTextItem withLink(String link) {
         Utils.checkNotNull(link, "link");
         this.link = Optional.ofNullable(link);
         return this;
     }
+
 
     public StructuredTextItem withLink(Optional<String> link) {
         Utils.checkNotNull(link, "link");
@@ -102,6 +108,7 @@ public class StructuredTextItem {
         return this;
     }
 
+
     public StructuredTextItem withDocument(Optional<? extends Document> document) {
         Utils.checkNotNull(document, "document");
         this.document = document;
@@ -113,6 +120,7 @@ public class StructuredTextItem {
         this.text = Optional.ofNullable(text);
         return this;
     }
+
 
     public StructuredTextItem withText(Optional<String> text) {
         Utils.checkNotNull(text, "text");
@@ -129,6 +137,7 @@ public class StructuredTextItem {
         return this;
     }
 
+
     /**
      * A single object that can support any object in the work graph. Only a single object will be populated.
      */
@@ -138,7 +147,6 @@ public class StructuredTextItem {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -158,9 +166,7 @@ public class StructuredTextItem {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            link,
-            document,
-            text,
+            link, document, text,
             structuredResult);
     }
     
@@ -172,20 +178,22 @@ public class StructuredTextItem {
                 "text", text,
                 "structuredResult", structuredResult);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> link = Optional.empty();
- 
+
         private Optional<? extends Document> document = Optional.empty();
- 
+
         private Optional<String> text = Optional.empty();
- 
+
         private Optional<? extends StructuredResult> structuredResult = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder link(String link) {
             Utils.checkNotNull(link, "link");
@@ -199,6 +207,7 @@ public class StructuredTextItem {
             return this;
         }
 
+
         public Builder document(Document document) {
             Utils.checkNotNull(document, "document");
             this.document = Optional.ofNullable(document);
@@ -211,6 +220,7 @@ public class StructuredTextItem {
             return this;
         }
 
+
         public Builder text(String text) {
             Utils.checkNotNull(text, "text");
             this.text = Optional.ofNullable(text);
@@ -222,6 +232,7 @@ public class StructuredTextItem {
             this.text = text;
             return this;
         }
+
 
         /**
          * A single object that can support any object in the work graph. Only a single object will be populated.
@@ -240,13 +251,13 @@ public class StructuredTextItem {
             this.structuredResult = structuredResult;
             return this;
         }
-        
+
         public StructuredTextItem build() {
+
             return new StructuredTextItem(
-                link,
-                document,
-                text,
+                link, document, text,
                 structuredResult);
         }
+
     }
 }

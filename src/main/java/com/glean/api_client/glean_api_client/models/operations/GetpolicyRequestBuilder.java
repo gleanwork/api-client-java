@@ -53,7 +53,7 @@ public class GetpolicyRequestBuilder {
     public GetpolicyResponse call() throws Exception {
         
         RequestOperation<GetpolicyRequest, GetpolicyResponse> operation
-              = new GetpolicyOperation( sdkConfiguration);
+              = new GetpolicyOperation(sdkConfiguration);
         GetpolicyRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

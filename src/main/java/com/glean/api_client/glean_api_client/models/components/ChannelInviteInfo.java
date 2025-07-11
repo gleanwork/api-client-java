@@ -34,6 +34,7 @@ public class ChannelInviteInfo {
     @JsonProperty("isAutoInvite")
     private Optional<Boolean> isAutoInvite;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("inviter")
     private Optional<? extends Person> inviter;
@@ -72,7 +73,8 @@ public class ChannelInviteInfo {
     }
     
     public ChannelInviteInfo() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -111,15 +113,17 @@ public class ChannelInviteInfo {
         return reminderTime;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ChannelInviteInfo withChannel(CommunicationChannel channel) {
         Utils.checkNotNull(channel, "channel");
         this.channel = Optional.ofNullable(channel);
         return this;
     }
+
 
     public ChannelInviteInfo withChannel(Optional<? extends CommunicationChannel> channel) {
         Utils.checkNotNull(channel, "channel");
@@ -136,6 +140,7 @@ public class ChannelInviteInfo {
         return this;
     }
 
+
     /**
      * Bit that tracks if this invite was automatically sent or user-sent
      */
@@ -151,6 +156,7 @@ public class ChannelInviteInfo {
         return this;
     }
 
+
     public ChannelInviteInfo withInviter(Optional<? extends Person> inviter) {
         Utils.checkNotNull(inviter, "inviter");
         this.inviter = inviter;
@@ -165,6 +171,7 @@ public class ChannelInviteInfo {
         this.inviteTime = Optional.ofNullable(inviteTime);
         return this;
     }
+
 
     /**
      * The time this person was invited in ISO format (ISO 8601).
@@ -184,6 +191,7 @@ public class ChannelInviteInfo {
         return this;
     }
 
+
     /**
      * The time this person was reminded in ISO format (ISO 8601) if a reminder was sent.
      */
@@ -193,7 +201,6 @@ public class ChannelInviteInfo {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -214,11 +221,8 @@ public class ChannelInviteInfo {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            channel,
-            isAutoInvite,
-            inviter,
-            inviteTime,
-            reminderTime);
+            channel, isAutoInvite, inviter,
+            inviteTime, reminderTime);
     }
     
     @Override
@@ -230,22 +234,24 @@ public class ChannelInviteInfo {
                 "inviteTime", inviteTime,
                 "reminderTime", reminderTime);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends CommunicationChannel> channel = Optional.empty();
- 
+
         private Optional<Boolean> isAutoInvite = Optional.empty();
- 
+
         private Optional<? extends Person> inviter = Optional.empty();
- 
+
         private Optional<OffsetDateTime> inviteTime = Optional.empty();
- 
+
         private Optional<OffsetDateTime> reminderTime = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder channel(CommunicationChannel channel) {
             Utils.checkNotNull(channel, "channel");
@@ -258,6 +264,7 @@ public class ChannelInviteInfo {
             this.channel = channel;
             return this;
         }
+
 
         /**
          * Bit that tracks if this invite was automatically sent or user-sent
@@ -277,6 +284,7 @@ public class ChannelInviteInfo {
             return this;
         }
 
+
         public Builder inviter(Person inviter) {
             Utils.checkNotNull(inviter, "inviter");
             this.inviter = Optional.ofNullable(inviter);
@@ -288,6 +296,7 @@ public class ChannelInviteInfo {
             this.inviter = inviter;
             return this;
         }
+
 
         /**
          * The time this person was invited in ISO format (ISO 8601).
@@ -307,6 +316,7 @@ public class ChannelInviteInfo {
             return this;
         }
 
+
         /**
          * The time this person was reminded in ISO format (ISO 8601) if a reminder was sent.
          */
@@ -324,14 +334,13 @@ public class ChannelInviteInfo {
             this.reminderTime = reminderTime;
             return this;
         }
-        
+
         public ChannelInviteInfo build() {
+
             return new ChannelInviteInfo(
-                channel,
-                isAutoInvite,
-                inviter,
-                inviteTime,
-                reminderTime);
+                channel, isAutoInvite, inviter,
+                inviteTime, reminderTime);
         }
+
     }
 }

@@ -23,7 +23,6 @@ import java.util.Optional;
  * <p>Config for tool's authentication method.
  */
 public class AuthConfig {
-
     /**
      * Whether or not this tool is hosted on-premise.
      */
@@ -133,7 +132,10 @@ public class AuthConfig {
     }
     
     public AuthConfig() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -225,9 +227,10 @@ public class AuthConfig {
         return lastAuthorizedAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Whether or not this tool is hosted on-premise.
@@ -237,6 +240,7 @@ public class AuthConfig {
         this.isOnPrem = Optional.ofNullable(isOnPrem);
         return this;
     }
+
 
     /**
      * Whether or not this tool is hosted on-premise.
@@ -255,6 +259,7 @@ public class AuthConfig {
         this.usesCentralAuth = Optional.ofNullable(usesCentralAuth);
         return this;
     }
+
 
     /**
      * Whether or not this uses central auth.
@@ -278,6 +283,7 @@ public class AuthConfig {
         return this;
     }
 
+
     /**
      * The type of authentication being used.
      * Use 'OAUTH_*' when Glean calls an external API (e.g., Jira) on behalf of a user to obtain an OAuth token.
@@ -300,6 +306,7 @@ public class AuthConfig {
         return this;
     }
 
+
     /**
      * The type of grant type being used.
      */
@@ -317,6 +324,7 @@ public class AuthConfig {
         this.status = Optional.ofNullable(status);
         return this;
     }
+
 
     /**
      * Auth status of the tool.
@@ -336,6 +344,7 @@ public class AuthConfig {
         return this;
     }
 
+
     /**
      * The URL where users will be directed to start the OAuth flow.
      */
@@ -353,6 +362,7 @@ public class AuthConfig {
         this.scopes = Optional.ofNullable(scopes);
         return this;
     }
+
 
     /**
      * A list of strings denoting the different scopes or access levels required by the tool.
@@ -372,6 +382,7 @@ public class AuthConfig {
         return this;
     }
 
+
     /**
      * A list of strings denoting the different audience which can access the tool.
      */
@@ -389,6 +400,7 @@ public class AuthConfig {
         this.authorizationUrl = Optional.ofNullable(authorizationUrl);
         return this;
     }
+
 
     /**
      * The OAuth provider's endpoint, where access tokens are requested.
@@ -408,6 +420,7 @@ public class AuthConfig {
         return this;
     }
 
+
     /**
      * The time the tool was last authorized in ISO format (ISO 8601).
      */
@@ -417,7 +430,6 @@ public class AuthConfig {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -443,15 +455,9 @@ public class AuthConfig {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            isOnPrem,
-            usesCentralAuth,
-            type,
-            grantType,
-            status,
-            clientUrl,
-            scopes,
-            audiences,
-            authorizationUrl,
+            isOnPrem, usesCentralAuth, type,
+            grantType, status, clientUrl,
+            scopes, audiences, authorizationUrl,
             lastAuthorizedAt);
     }
     
@@ -469,32 +475,34 @@ public class AuthConfig {
                 "authorizationUrl", authorizationUrl,
                 "lastAuthorizedAt", lastAuthorizedAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> isOnPrem = Optional.empty();
- 
+
         private Optional<Boolean> usesCentralAuth = Optional.empty();
- 
+
         private Optional<? extends AuthConfigType> type = Optional.empty();
- 
+
         private Optional<? extends GrantType> grantType = Optional.empty();
- 
+
         private Optional<? extends AuthConfigStatus> status = Optional.empty();
- 
+
         private Optional<String> clientUrl = Optional.empty();
- 
+
         private Optional<? extends List<String>> scopes = Optional.empty();
- 
+
         private Optional<? extends List<String>> audiences = Optional.empty();
- 
+
         private Optional<String> authorizationUrl = Optional.empty();
- 
+
         private Optional<OffsetDateTime> lastAuthorizedAt = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Whether or not this tool is hosted on-premise.
@@ -514,6 +522,7 @@ public class AuthConfig {
             return this;
         }
 
+
         /**
          * Whether or not this uses central auth.
          */
@@ -531,6 +540,7 @@ public class AuthConfig {
             this.usesCentralAuth = usesCentralAuth;
             return this;
         }
+
 
         /**
          * The type of authentication being used.
@@ -558,6 +568,7 @@ public class AuthConfig {
             return this;
         }
 
+
         /**
          * The type of grant type being used.
          */
@@ -575,6 +586,7 @@ public class AuthConfig {
             this.grantType = grantType;
             return this;
         }
+
 
         /**
          * Auth status of the tool.
@@ -594,6 +606,7 @@ public class AuthConfig {
             return this;
         }
 
+
         /**
          * The URL where users will be directed to start the OAuth flow.
          */
@@ -611,6 +624,7 @@ public class AuthConfig {
             this.clientUrl = clientUrl;
             return this;
         }
+
 
         /**
          * A list of strings denoting the different scopes or access levels required by the tool.
@@ -630,6 +644,7 @@ public class AuthConfig {
             return this;
         }
 
+
         /**
          * A list of strings denoting the different audience which can access the tool.
          */
@@ -647,6 +662,7 @@ public class AuthConfig {
             this.audiences = audiences;
             return this;
         }
+
 
         /**
          * The OAuth provider's endpoint, where access tokens are requested.
@@ -666,6 +682,7 @@ public class AuthConfig {
             return this;
         }
 
+
         /**
          * The time the tool was last authorized in ISO format (ISO 8601).
          */
@@ -683,19 +700,15 @@ public class AuthConfig {
             this.lastAuthorizedAt = lastAuthorizedAt;
             return this;
         }
-        
+
         public AuthConfig build() {
+
             return new AuthConfig(
-                isOnPrem,
-                usesCentralAuth,
-                type,
-                grantType,
-                status,
-                clientUrl,
-                scopes,
-                audiences,
-                authorizationUrl,
+                isOnPrem, usesCentralAuth, type,
+                grantType, status, clientUrl,
+                scopes, audiences, authorizationUrl,
                 lastAuthorizedAt);
         }
+
     }
 }

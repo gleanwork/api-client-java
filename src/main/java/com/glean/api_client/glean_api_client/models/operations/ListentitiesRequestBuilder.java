@@ -29,7 +29,7 @@ public class ListentitiesRequestBuilder {
     public ListentitiesResponse call() throws Exception {
         
         RequestOperation<ListEntitiesRequest, ListentitiesResponse> operation
-              = new ListentitiesOperation( sdkConfiguration);
+              = new ListentitiesOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

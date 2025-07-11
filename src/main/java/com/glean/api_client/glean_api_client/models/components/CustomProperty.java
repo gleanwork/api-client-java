@@ -61,15 +61,17 @@ public class CustomProperty {
         return (Optional<Object>) value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CustomProperty withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     public CustomProperty withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
@@ -86,6 +88,7 @@ public class CustomProperty {
         return this;
     }
 
+
     /**
      * Must either be a string or an array of strings. An integer, boolean, etc. is not valid. When OpenAPI Generator supports `oneOf`, we can semantically enforce this.
      */
@@ -95,7 +98,6 @@ public class CustomProperty {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -113,8 +115,7 @@ public class CustomProperty {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            value);
+            name, value);
     }
     
     @Override
@@ -123,16 +124,18 @@ public class CustomProperty {
                 "name", name,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<? extends Object> value = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
@@ -145,6 +148,7 @@ public class CustomProperty {
             this.name = name;
             return this;
         }
+
 
         /**
          * Must either be a string or an array of strings. An integer, boolean, etc. is not valid. When OpenAPI Generator supports `oneOf`, we can semantically enforce this.
@@ -163,11 +167,12 @@ public class CustomProperty {
             this.value = value;
             return this;
         }
-        
+
         public CustomProperty build() {
+
             return new CustomProperty(
-                name,
-                value);
+                name, value);
         }
+
     }
 }

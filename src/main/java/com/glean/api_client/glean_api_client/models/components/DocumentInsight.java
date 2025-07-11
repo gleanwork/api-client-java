@@ -14,14 +14,17 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class DocumentInsight {
 
     @JsonProperty("document")
     private Document document;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("viewCount")
     private Optional<? extends CountInfo> viewCount;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("visitorCount")
@@ -62,9 +65,10 @@ public class DocumentInsight {
         return (Optional<CountInfo>) visitorCount;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public DocumentInsight withDocument(Document document) {
         Utils.checkNotNull(document, "document");
@@ -78,6 +82,7 @@ public class DocumentInsight {
         return this;
     }
 
+
     public DocumentInsight withViewCount(Optional<? extends CountInfo> viewCount) {
         Utils.checkNotNull(viewCount, "viewCount");
         this.viewCount = viewCount;
@@ -90,13 +95,13 @@ public class DocumentInsight {
         return this;
     }
 
+
     public DocumentInsight withVisitorCount(Optional<? extends CountInfo> visitorCount) {
         Utils.checkNotNull(visitorCount, "visitorCount");
         this.visitorCount = visitorCount;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -115,9 +120,7 @@ public class DocumentInsight {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            document,
-            viewCount,
-            visitorCount);
+            document, viewCount, visitorCount);
     }
     
     @Override
@@ -127,24 +130,27 @@ public class DocumentInsight {
                 "viewCount", viewCount,
                 "visitorCount", visitorCount);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Document document;
- 
+
         private Optional<? extends CountInfo> viewCount = Optional.empty();
- 
+
         private Optional<? extends CountInfo> visitorCount = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder document(Document document) {
             Utils.checkNotNull(document, "document");
             this.document = document;
             return this;
         }
+
 
         public Builder viewCount(CountInfo viewCount) {
             Utils.checkNotNull(viewCount, "viewCount");
@@ -158,6 +164,7 @@ public class DocumentInsight {
             return this;
         }
 
+
         public Builder visitorCount(CountInfo visitorCount) {
             Utils.checkNotNull(visitorCount, "visitorCount");
             this.visitorCount = Optional.ofNullable(visitorCount);
@@ -169,12 +176,12 @@ public class DocumentInsight {
             this.visitorCount = visitorCount;
             return this;
         }
-        
+
         public DocumentInsight build() {
+
             return new DocumentInsight(
-                document,
-                viewCount,
-                visitorCount);
+                document, viewCount, visitorCount);
         }
+
     }
 }

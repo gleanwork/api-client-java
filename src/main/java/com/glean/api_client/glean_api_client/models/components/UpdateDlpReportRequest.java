@@ -15,8 +15,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class UpdateDlpReportRequest {
 
+public class UpdateDlpReportRequest {
     /**
      * Detailed configuration of what documents and sensitive content will be scanned.
      */
@@ -72,7 +72,8 @@ public class UpdateDlpReportRequest {
     }
     
     public UpdateDlpReportRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -118,9 +119,10 @@ public class UpdateDlpReportRequest {
         return reportName;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Detailed configuration of what documents and sensitive content will be scanned.
@@ -130,6 +132,7 @@ public class UpdateDlpReportRequest {
         this.config = Optional.ofNullable(config);
         return this;
     }
+
 
     /**
      * Detailed configuration of what documents and sensitive content will be scanned.
@@ -149,6 +152,7 @@ public class UpdateDlpReportRequest {
         return this;
     }
 
+
     /**
      * Interval between scans. DAILY is deprecated.
      */
@@ -166,6 +170,7 @@ public class UpdateDlpReportRequest {
         this.status = Optional.ofNullable(status);
         return this;
     }
+
 
     /**
      * The status of the policy/report. Only ACTIVE status will be picked for scans.
@@ -185,6 +190,7 @@ public class UpdateDlpReportRequest {
         return this;
     }
 
+
     /**
      * The new autoHideDoc boolean the policy will be updated to if provided.
      */
@@ -203,6 +209,7 @@ public class UpdateDlpReportRequest {
         return this;
     }
 
+
     /**
      * The new name of the policy if provided.
      */
@@ -212,7 +219,6 @@ public class UpdateDlpReportRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -233,11 +239,8 @@ public class UpdateDlpReportRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            config,
-            frequency,
-            status,
-            autoHideDocs,
-            reportName);
+            config, frequency, status,
+            autoHideDocs, reportName);
     }
     
     @Override
@@ -249,22 +252,24 @@ public class UpdateDlpReportRequest {
                 "autoHideDocs", autoHideDocs,
                 "reportName", reportName);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends DlpConfig> config = Optional.empty();
- 
+
         private Optional<? extends DlpFrequency> frequency = Optional.empty();
- 
+
         private Optional<? extends DlpReportStatus> status = Optional.empty();
- 
+
         private Optional<Boolean> autoHideDocs = Optional.empty();
- 
+
         private Optional<String> reportName = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Detailed configuration of what documents and sensitive content will be scanned.
@@ -284,6 +289,7 @@ public class UpdateDlpReportRequest {
             return this;
         }
 
+
         /**
          * Interval between scans. DAILY is deprecated.
          */
@@ -301,6 +307,7 @@ public class UpdateDlpReportRequest {
             this.frequency = frequency;
             return this;
         }
+
 
         /**
          * The status of the policy/report. Only ACTIVE status will be picked for scans.
@@ -320,6 +327,7 @@ public class UpdateDlpReportRequest {
             return this;
         }
 
+
         /**
          * The new autoHideDoc boolean the policy will be updated to if provided.
          */
@@ -338,6 +346,7 @@ public class UpdateDlpReportRequest {
             return this;
         }
 
+
         /**
          * The new name of the policy if provided.
          */
@@ -355,14 +364,13 @@ public class UpdateDlpReportRequest {
             this.reportName = reportName;
             return this;
         }
-        
+
         public UpdateDlpReportRequest build() {
+
             return new UpdateDlpReportRequest(
-                config,
-                frequency,
-                status,
-                autoHideDocs,
-                reportName);
+                config, frequency, status,
+                autoHideDocs, reportName);
         }
+
     }
 }

@@ -12,8 +12,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class GetAgentSchemasRequest {
 
+public class GetAgentSchemasRequest {
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      */
@@ -57,9 +57,10 @@ public class GetAgentSchemasRequest {
         return agentId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
@@ -69,6 +70,7 @@ public class GetAgentSchemasRequest {
         this.timezoneOffset = Optional.ofNullable(timezoneOffset);
         return this;
     }
+
 
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
@@ -88,7 +90,6 @@ public class GetAgentSchemasRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -106,8 +107,7 @@ public class GetAgentSchemasRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            timezoneOffset,
-            agentId);
+            timezoneOffset, agentId);
     }
     
     @Override
@@ -116,16 +116,18 @@ public class GetAgentSchemasRequest {
                 "timezoneOffset", timezoneOffset,
                 "agentId", agentId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> timezoneOffset = Optional.empty();
- 
+
         private String agentId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
@@ -145,6 +147,7 @@ public class GetAgentSchemasRequest {
             return this;
         }
 
+
         /**
          * The ID of the agent.
          */
@@ -153,11 +156,12 @@ public class GetAgentSchemasRequest {
             this.agentId = agentId;
             return this;
         }
-        
+
         public GetAgentSchemasRequest build() {
+
             return new GetAgentSchemasRequest(
-                timezoneOffset,
-                agentId);
+                timezoneOffset, agentId);
         }
+
     }
 }

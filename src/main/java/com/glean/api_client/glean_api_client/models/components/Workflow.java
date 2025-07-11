@@ -15,14 +15,15 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class Workflow {
 
+public class Workflow {
     /**
      * The name of the workflow.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private Optional<String> name;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("author")
@@ -42,9 +43,11 @@ public class Workflow {
     @JsonProperty("lastUpdateTimestamp")
     private Optional<Long> lastUpdateTimestamp;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lastUpdatedBy")
     private Optional<? extends Person> lastUpdatedBy;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("permissions")
@@ -83,7 +86,9 @@ public class Workflow {
     }
     
     public Workflow() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -136,9 +141,10 @@ public class Workflow {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the workflow.
@@ -148,6 +154,7 @@ public class Workflow {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * The name of the workflow.
@@ -164,6 +171,7 @@ public class Workflow {
         return this;
     }
 
+
     public Workflow withAuthor(Optional<? extends Person> author) {
         Utils.checkNotNull(author, "author");
         this.author = author;
@@ -178,6 +186,7 @@ public class Workflow {
         this.createTimestamp = Optional.ofNullable(createTimestamp);
         return this;
     }
+
 
     /**
      * Server Unix timestamp of the creation time.
@@ -197,6 +206,7 @@ public class Workflow {
         return this;
     }
 
+
     /**
      * Server Unix timestamp of the last update time.
      */
@@ -212,6 +222,7 @@ public class Workflow {
         return this;
     }
 
+
     public Workflow withLastUpdatedBy(Optional<? extends Person> lastUpdatedBy) {
         Utils.checkNotNull(lastUpdatedBy, "lastUpdatedBy");
         this.lastUpdatedBy = lastUpdatedBy;
@@ -223,6 +234,7 @@ public class Workflow {
         this.permissions = Optional.ofNullable(permissions);
         return this;
     }
+
 
     public Workflow withPermissions(Optional<? extends ObjectPermissions> permissions) {
         Utils.checkNotNull(permissions, "permissions");
@@ -239,6 +251,7 @@ public class Workflow {
         return this;
     }
 
+
     /**
      * The ID of the workflow.
      */
@@ -248,7 +261,6 @@ public class Workflow {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -271,12 +283,8 @@ public class Workflow {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            author,
-            createTimestamp,
-            lastUpdateTimestamp,
-            lastUpdatedBy,
-            permissions,
+            name, author, createTimestamp,
+            lastUpdateTimestamp, lastUpdatedBy, permissions,
             id);
     }
     
@@ -291,26 +299,28 @@ public class Workflow {
                 "permissions", permissions,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<? extends Person> author = Optional.empty();
- 
+
         private Optional<Long> createTimestamp = Optional.empty();
- 
+
         private Optional<Long> lastUpdateTimestamp = Optional.empty();
- 
+
         private Optional<? extends Person> lastUpdatedBy = Optional.empty();
- 
+
         private Optional<? extends ObjectPermissions> permissions = Optional.empty();
- 
+
         private Optional<String> id = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the workflow.
@@ -330,6 +340,7 @@ public class Workflow {
             return this;
         }
 
+
         public Builder author(Person author) {
             Utils.checkNotNull(author, "author");
             this.author = Optional.ofNullable(author);
@@ -341,6 +352,7 @@ public class Workflow {
             this.author = author;
             return this;
         }
+
 
         /**
          * Server Unix timestamp of the creation time.
@@ -360,6 +372,7 @@ public class Workflow {
             return this;
         }
 
+
         /**
          * Server Unix timestamp of the last update time.
          */
@@ -378,6 +391,7 @@ public class Workflow {
             return this;
         }
 
+
         public Builder lastUpdatedBy(Person lastUpdatedBy) {
             Utils.checkNotNull(lastUpdatedBy, "lastUpdatedBy");
             this.lastUpdatedBy = Optional.ofNullable(lastUpdatedBy);
@@ -390,6 +404,7 @@ public class Workflow {
             return this;
         }
 
+
         public Builder permissions(ObjectPermissions permissions) {
             Utils.checkNotNull(permissions, "permissions");
             this.permissions = Optional.ofNullable(permissions);
@@ -401,6 +416,7 @@ public class Workflow {
             this.permissions = permissions;
             return this;
         }
+
 
         /**
          * The ID of the workflow.
@@ -419,16 +435,14 @@ public class Workflow {
             this.id = id;
             return this;
         }
-        
+
         public Workflow build() {
+
             return new Workflow(
-                name,
-                author,
-                createTimestamp,
-                lastUpdateTimestamp,
-                lastUpdatedBy,
-                permissions,
+                name, author, createTimestamp,
+                lastUpdateTimestamp, lastUpdatedBy, permissions,
                 id);
         }
+
     }
 }

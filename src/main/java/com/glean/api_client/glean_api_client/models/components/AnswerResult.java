@@ -13,6 +13,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
+
 public class AnswerResult {
 
     @JsonProperty("answer")
@@ -53,9 +54,10 @@ public class AnswerResult {
         return trackingToken;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public AnswerResult withAnswer(Answer answer) {
         Utils.checkNotNull(answer, "answer");
@@ -72,6 +74,7 @@ public class AnswerResult {
         return this;
     }
 
+
     /**
      * An opaque token that represents this particular Answer. To be used for `/feedback` reporting.
      */
@@ -81,7 +84,6 @@ public class AnswerResult {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -99,8 +101,7 @@ public class AnswerResult {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            answer,
-            trackingToken);
+            answer, trackingToken);
     }
     
     @Override
@@ -109,22 +110,25 @@ public class AnswerResult {
                 "answer", answer,
                 "trackingToken", trackingToken);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Answer answer;
- 
+
         private Optional<String> trackingToken = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder answer(Answer answer) {
             Utils.checkNotNull(answer, "answer");
             this.answer = answer;
             return this;
         }
+
 
         /**
          * An opaque token that represents this particular Answer. To be used for `/feedback` reporting.
@@ -143,11 +147,12 @@ public class AnswerResult {
             this.trackingToken = trackingToken;
             return this;
         }
-        
+
         public AnswerResult build() {
+
             return new AnswerResult(
-                answer,
-                trackingToken);
+                answer, trackingToken);
         }
+
     }
 }

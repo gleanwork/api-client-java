@@ -25,9 +25,11 @@ public class DocumentInteractionsDefinition {
     @JsonProperty("numViews")
     private Optional<Long> numViews;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("numLikes")
     private Optional<Long> numLikes;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("numComments")
@@ -65,15 +67,17 @@ public class DocumentInteractionsDefinition {
         return numComments;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public DocumentInteractionsDefinition withNumViews(long numViews) {
         Utils.checkNotNull(numViews, "numViews");
         this.numViews = Optional.ofNullable(numViews);
         return this;
     }
+
 
     public DocumentInteractionsDefinition withNumViews(Optional<Long> numViews) {
         Utils.checkNotNull(numViews, "numViews");
@@ -87,6 +91,7 @@ public class DocumentInteractionsDefinition {
         return this;
     }
 
+
     public DocumentInteractionsDefinition withNumLikes(Optional<Long> numLikes) {
         Utils.checkNotNull(numLikes, "numLikes");
         this.numLikes = numLikes;
@@ -99,13 +104,13 @@ public class DocumentInteractionsDefinition {
         return this;
     }
 
+
     public DocumentInteractionsDefinition withNumComments(Optional<Long> numComments) {
         Utils.checkNotNull(numComments, "numComments");
         this.numComments = numComments;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -124,9 +129,7 @@ public class DocumentInteractionsDefinition {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            numViews,
-            numLikes,
-            numComments);
+            numViews, numLikes, numComments);
     }
     
     @Override
@@ -136,18 +139,20 @@ public class DocumentInteractionsDefinition {
                 "numLikes", numLikes,
                 "numComments", numComments);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> numViews = Optional.empty();
- 
+
         private Optional<Long> numLikes = Optional.empty();
- 
+
         private Optional<Long> numComments = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder numViews(long numViews) {
             Utils.checkNotNull(numViews, "numViews");
@@ -161,6 +166,7 @@ public class DocumentInteractionsDefinition {
             return this;
         }
 
+
         public Builder numLikes(long numLikes) {
             Utils.checkNotNull(numLikes, "numLikes");
             this.numLikes = Optional.ofNullable(numLikes);
@@ -173,6 +179,7 @@ public class DocumentInteractionsDefinition {
             return this;
         }
 
+
         public Builder numComments(long numComments) {
             Utils.checkNotNull(numComments, "numComments");
             this.numComments = Optional.ofNullable(numComments);
@@ -184,12 +191,12 @@ public class DocumentInteractionsDefinition {
             this.numComments = numComments;
             return this;
         }
-        
+
         public DocumentInteractionsDefinition build() {
+
             return new DocumentInteractionsDefinition(
-                numViews,
-                numLikes,
-                numComments);
+                numViews, numLikes, numComments);
         }
+
     }
 }

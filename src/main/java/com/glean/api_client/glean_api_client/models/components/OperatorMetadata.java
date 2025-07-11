@@ -16,6 +16,7 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
+
 public class OperatorMetadata {
 
     @JsonProperty("name")
@@ -28,13 +29,16 @@ public class OperatorMetadata {
     @JsonProperty("isCustom")
     private Optional<Boolean> isCustom;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("operatorType")
     private Optional<? extends OperatorType> operatorType;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("helpText")
     private Optional<String> helpText;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("scopes")
@@ -81,7 +85,9 @@ public class OperatorMetadata {
     
     public OperatorMetadata(
             String name) {
-        this(name, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(name, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -130,9 +136,10 @@ public class OperatorMetadata {
         return displayValue;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public OperatorMetadata withName(String name) {
         Utils.checkNotNull(name, "name");
@@ -149,6 +156,7 @@ public class OperatorMetadata {
         return this;
     }
 
+
     /**
      * Whether this operator is supported by default or something that was created within a workplace app (e.g. custom jira field).
      */
@@ -164,6 +172,7 @@ public class OperatorMetadata {
         return this;
     }
 
+
     public OperatorMetadata withOperatorType(Optional<? extends OperatorType> operatorType) {
         Utils.checkNotNull(operatorType, "operatorType");
         this.operatorType = operatorType;
@@ -176,6 +185,7 @@ public class OperatorMetadata {
         return this;
     }
 
+
     public OperatorMetadata withHelpText(Optional<String> helpText) {
         Utils.checkNotNull(helpText, "helpText");
         this.helpText = helpText;
@@ -187,6 +197,7 @@ public class OperatorMetadata {
         this.scopes = Optional.ofNullable(scopes);
         return this;
     }
+
 
     public OperatorMetadata withScopes(Optional<? extends List<OperatorScope>> scopes) {
         Utils.checkNotNull(scopes, "scopes");
@@ -202,6 +213,7 @@ public class OperatorMetadata {
         this.value = Optional.ofNullable(value);
         return this;
     }
+
 
     /**
      * Raw/canonical value of the operator. Only applies when result is an operator value.
@@ -221,6 +233,7 @@ public class OperatorMetadata {
         return this;
     }
 
+
     /**
      * Human readable value of the operator that can be shown to the user. Only applies when result is an operator value.
      */
@@ -230,7 +243,6 @@ public class OperatorMetadata {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -253,12 +265,8 @@ public class OperatorMetadata {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            isCustom,
-            operatorType,
-            helpText,
-            scopes,
-            value,
+            name, isCustom, operatorType,
+            helpText, scopes, value,
             displayValue);
     }
     
@@ -273,32 +281,35 @@ public class OperatorMetadata {
                 "value", value,
                 "displayValue", displayValue);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
- 
+
         private Optional<Boolean> isCustom = Optional.empty();
- 
+
         private Optional<? extends OperatorType> operatorType = Optional.empty();
- 
+
         private Optional<String> helpText = Optional.empty();
- 
+
         private Optional<? extends List<OperatorScope>> scopes = Optional.empty();
- 
+
         private Optional<String> value = Optional.empty();
- 
+
         private Optional<String> displayValue = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
+
 
         /**
          * Whether this operator is supported by default or something that was created within a workplace app (e.g. custom jira field).
@@ -318,6 +329,7 @@ public class OperatorMetadata {
             return this;
         }
 
+
         public Builder operatorType(OperatorType operatorType) {
             Utils.checkNotNull(operatorType, "operatorType");
             this.operatorType = Optional.ofNullable(operatorType);
@@ -329,6 +341,7 @@ public class OperatorMetadata {
             this.operatorType = operatorType;
             return this;
         }
+
 
         public Builder helpText(String helpText) {
             Utils.checkNotNull(helpText, "helpText");
@@ -342,6 +355,7 @@ public class OperatorMetadata {
             return this;
         }
 
+
         public Builder scopes(List<OperatorScope> scopes) {
             Utils.checkNotNull(scopes, "scopes");
             this.scopes = Optional.ofNullable(scopes);
@@ -353,6 +367,7 @@ public class OperatorMetadata {
             this.scopes = scopes;
             return this;
         }
+
 
         /**
          * Raw/canonical value of the operator. Only applies when result is an operator value.
@@ -372,6 +387,7 @@ public class OperatorMetadata {
             return this;
         }
 
+
         /**
          * Human readable value of the operator that can be shown to the user. Only applies when result is an operator value.
          */
@@ -389,16 +405,14 @@ public class OperatorMetadata {
             this.displayValue = displayValue;
             return this;
         }
-        
+
         public OperatorMetadata build() {
+
             return new OperatorMetadata(
-                name,
-                isCustom,
-                operatorType,
-                helpText,
-                scopes,
-                value,
+                name, isCustom, operatorType,
+                helpText, scopes, value,
                 displayValue);
         }
+
     }
 }

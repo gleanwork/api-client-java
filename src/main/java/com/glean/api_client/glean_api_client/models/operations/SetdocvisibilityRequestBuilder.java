@@ -29,7 +29,7 @@ public class SetdocvisibilityRequestBuilder {
     public SetdocvisibilityResponse call() throws Exception {
         
         RequestOperation<UpdateDocumentVisibilityOverridesRequest, SetdocvisibilityResponse> operation
-              = new SetdocvisibilityOperation( sdkConfiguration);
+              = new SetdocvisibilityOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

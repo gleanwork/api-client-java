@@ -21,7 +21,6 @@ import java.util.Optional;
  * <p>Information about a team's email
  */
 public class TeamEmail {
-
     /**
      * An email address
      */
@@ -66,9 +65,10 @@ public class TeamEmail {
         return type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An email address
@@ -88,6 +88,7 @@ public class TeamEmail {
         return this;
     }
 
+
     /**
      * An enum of `PRIMARY`, `SECONDARY`, `ONCALL`, `OTHER`
      */
@@ -97,7 +98,6 @@ public class TeamEmail {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -115,8 +115,7 @@ public class TeamEmail {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            email,
-            type);
+            email, type);
     }
     
     @Override
@@ -125,16 +124,18 @@ public class TeamEmail {
                 "email", email,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String email;
- 
+
         private Optional<String> type;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An email address
@@ -144,6 +145,7 @@ public class TeamEmail {
             this.email = email;
             return this;
         }
+
 
         /**
          * An enum of `PRIMARY`, `SECONDARY`, `ONCALL`, `OTHER`
@@ -162,15 +164,16 @@ public class TeamEmail {
             this.type = type;
             return this;
         }
-        
+
         public TeamEmail build() {
             if (type == null) {
                 type = _SINGLETON_VALUE_Type.value();
             }
+
             return new TeamEmail(
-                email,
-                type);
+                email, type);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

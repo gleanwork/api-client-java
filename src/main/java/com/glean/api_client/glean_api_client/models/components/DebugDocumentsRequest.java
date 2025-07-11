@@ -17,7 +17,6 @@ import java.util.List;
  * <p>Describes the request body of the /debug/{datasource}/documents API call.
  */
 public class DebugDocumentsRequest {
-
     /**
      * Documents to fetch debug information for
      */
@@ -39,9 +38,10 @@ public class DebugDocumentsRequest {
         return debugDocuments;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Documents to fetch debug information for
@@ -52,7 +52,6 @@ public class DebugDocumentsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -77,14 +76,16 @@ public class DebugDocumentsRequest {
         return Utils.toString(DebugDocumentsRequest.class,
                 "debugDocuments", debugDocuments);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<DebugDocumentRequest> debugDocuments;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Documents to fetch debug information for
@@ -94,10 +95,12 @@ public class DebugDocumentsRequest {
             this.debugDocuments = debugDocuments;
             return this;
         }
-        
+
         public DebugDocumentsRequest build() {
+
             return new DebugDocumentsRequest(
                 debugDocuments);
         }
+
     }
 }

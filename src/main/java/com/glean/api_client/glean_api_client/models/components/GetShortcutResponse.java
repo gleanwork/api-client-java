@@ -14,11 +14,13 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class GetShortcutResponse {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shortcut")
     private Optional<? extends Shortcut> shortcut;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
@@ -50,15 +52,17 @@ public class GetShortcutResponse {
         return (Optional<ShortcutError>) error;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetShortcutResponse withShortcut(Shortcut shortcut) {
         Utils.checkNotNull(shortcut, "shortcut");
         this.shortcut = Optional.ofNullable(shortcut);
         return this;
     }
+
 
     public GetShortcutResponse withShortcut(Optional<? extends Shortcut> shortcut) {
         Utils.checkNotNull(shortcut, "shortcut");
@@ -72,13 +76,13 @@ public class GetShortcutResponse {
         return this;
     }
 
+
     public GetShortcutResponse withError(Optional<? extends ShortcutError> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -96,8 +100,7 @@ public class GetShortcutResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            shortcut,
-            error);
+            shortcut, error);
     }
     
     @Override
@@ -106,16 +109,18 @@ public class GetShortcutResponse {
                 "shortcut", shortcut,
                 "error", error);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Shortcut> shortcut = Optional.empty();
- 
+
         private Optional<? extends ShortcutError> error = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder shortcut(Shortcut shortcut) {
             Utils.checkNotNull(shortcut, "shortcut");
@@ -129,6 +134,7 @@ public class GetShortcutResponse {
             return this;
         }
 
+
         public Builder error(ShortcutError error) {
             Utils.checkNotNull(error, "error");
             this.error = Optional.ofNullable(error);
@@ -140,11 +146,12 @@ public class GetShortcutResponse {
             this.error = error;
             return this;
         }
-        
+
         public GetShortcutResponse build() {
+
             return new GetShortcutResponse(
-                shortcut,
-                error);
+                shortcut, error);
         }
+
     }
 }

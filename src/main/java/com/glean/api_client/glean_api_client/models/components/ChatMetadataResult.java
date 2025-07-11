@@ -14,8 +14,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class ChatMetadataResult {
 
+public class ChatMetadataResult {
     /**
      * Metadata of a Chat a user had with Glean Assistant. This contains no actual conversational content.
      */
@@ -61,9 +61,10 @@ public class ChatMetadataResult {
         return trackingToken;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Metadata of a Chat a user had with Glean Assistant. This contains no actual conversational content.
@@ -73,6 +74,7 @@ public class ChatMetadataResult {
         this.chat = Optional.ofNullable(chat);
         return this;
     }
+
 
     /**
      * Metadata of a Chat a user had with Glean Assistant. This contains no actual conversational content.
@@ -92,6 +94,7 @@ public class ChatMetadataResult {
         return this;
     }
 
+
     /**
      * An opaque token that represents this particular Chat. To be used for `/feedback` reporting.
      */
@@ -101,7 +104,6 @@ public class ChatMetadataResult {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -119,8 +121,7 @@ public class ChatMetadataResult {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            chat,
-            trackingToken);
+            chat, trackingToken);
     }
     
     @Override
@@ -129,16 +130,18 @@ public class ChatMetadataResult {
                 "chat", chat,
                 "trackingToken", trackingToken);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ChatMetadata> chat = Optional.empty();
- 
+
         private Optional<String> trackingToken = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Metadata of a Chat a user had with Glean Assistant. This contains no actual conversational content.
@@ -158,6 +161,7 @@ public class ChatMetadataResult {
             return this;
         }
 
+
         /**
          * An opaque token that represents this particular Chat. To be used for `/feedback` reporting.
          */
@@ -175,11 +179,12 @@ public class ChatMetadataResult {
             this.trackingToken = trackingToken;
             return this;
         }
-        
+
         public ChatMetadataResult build() {
+
             return new ChatMetadataResult(
-                chat,
-                trackingToken);
+                chat, trackingToken);
         }
+
     }
 }

@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class CustomFieldValueStr {
 
+public class CustomFieldValueStr {
     /**
      * Text field for string value.
      */
@@ -41,9 +41,10 @@ public class CustomFieldValueStr {
         return strText;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Text field for string value.
@@ -54,6 +55,7 @@ public class CustomFieldValueStr {
         return this;
     }
 
+
     /**
      * Text field for string value.
      */
@@ -63,7 +65,6 @@ public class CustomFieldValueStr {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -88,14 +89,16 @@ public class CustomFieldValueStr {
         return Utils.toString(CustomFieldValueStr.class,
                 "strText", strText);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> strText = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Text field for string value.
@@ -114,10 +117,12 @@ public class CustomFieldValueStr {
             this.strText = strText;
             return this;
         }
-        
+
         public CustomFieldValueStr build() {
+
             return new CustomFieldValueStr(
                 strText);
         }
+
     }
 }

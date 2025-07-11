@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>Describes the request body of the /indexdocuments API call
  */
 public class IndexDocumentsRequest {
-
     /**
      * Optional id parameter to identify and track a batch of documents.
      */
@@ -83,9 +82,10 @@ public class IndexDocumentsRequest {
         return documents;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Optional id parameter to identify and track a batch of documents.
@@ -95,6 +95,7 @@ public class IndexDocumentsRequest {
         this.uploadId = Optional.ofNullable(uploadId);
         return this;
     }
+
 
     /**
      * Optional id parameter to identify and track a batch of documents.
@@ -123,7 +124,6 @@ public class IndexDocumentsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -142,9 +142,7 @@ public class IndexDocumentsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            uploadId,
-            datasource,
-            documents);
+            uploadId, datasource, documents);
     }
     
     @Override
@@ -154,18 +152,20 @@ public class IndexDocumentsRequest {
                 "datasource", datasource,
                 "documents", documents);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> uploadId = Optional.empty();
- 
+
         private String datasource;
- 
+
         private List<DocumentDefinition> documents;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Optional id parameter to identify and track a batch of documents.
@@ -185,6 +185,7 @@ public class IndexDocumentsRequest {
             return this;
         }
 
+
         /**
          * Datasource of the documents
          */
@@ -194,6 +195,7 @@ public class IndexDocumentsRequest {
             return this;
         }
 
+
         /**
          * Batch of documents being added/updated
          */
@@ -202,12 +204,12 @@ public class IndexDocumentsRequest {
             this.documents = documents;
             return this;
         }
-        
+
         public IndexDocumentsRequest build() {
+
             return new IndexDocumentsRequest(
-                uploadId,
-                datasource,
-                documents);
+                uploadId, datasource, documents);
         }
+
     }
 }

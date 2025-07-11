@@ -43,9 +43,10 @@ public class FacetFilterSet {
         return (Optional<List<FacetFilter>>) filters;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public FacetFilterSet withFilters(List<FacetFilter> filters) {
         Utils.checkNotNull(filters, "filters");
@@ -53,13 +54,13 @@ public class FacetFilterSet {
         return this;
     }
 
+
     public FacetFilterSet withFilters(Optional<? extends List<FacetFilter>> filters) {
         Utils.checkNotNull(filters, "filters");
         this.filters = filters;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -84,14 +85,16 @@ public class FacetFilterSet {
         return Utils.toString(FacetFilterSet.class,
                 "filters", filters);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<FacetFilter>> filters = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder filters(List<FacetFilter> filters) {
             Utils.checkNotNull(filters, "filters");
@@ -104,10 +107,12 @@ public class FacetFilterSet {
             this.filters = filters;
             return this;
         }
-        
+
         public FacetFilterSet build() {
+
             return new FacetFilterSet(
                 filters);
         }
+
     }
 }

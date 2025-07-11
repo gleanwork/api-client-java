@@ -15,17 +15,19 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class MessagesResponse {
 
+public class MessagesResponse {
     /**
      * Whether there are more results for client to continue requesting.
      */
     @JsonProperty("hasMore")
     private boolean hasMore;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("searchResponse")
     private Optional<? extends SearchResponse> searchResponse;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("rootMessage")
@@ -69,9 +71,10 @@ public class MessagesResponse {
         return (Optional<SearchResult>) rootMessage;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Whether there are more results for client to continue requesting.
@@ -88,6 +91,7 @@ public class MessagesResponse {
         return this;
     }
 
+
     public MessagesResponse withSearchResponse(Optional<? extends SearchResponse> searchResponse) {
         Utils.checkNotNull(searchResponse, "searchResponse");
         this.searchResponse = searchResponse;
@@ -100,13 +104,13 @@ public class MessagesResponse {
         return this;
     }
 
+
     public MessagesResponse withRootMessage(Optional<? extends SearchResult> rootMessage) {
         Utils.checkNotNull(rootMessage, "rootMessage");
         this.rootMessage = rootMessage;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -125,9 +129,7 @@ public class MessagesResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            hasMore,
-            searchResponse,
-            rootMessage);
+            hasMore, searchResponse, rootMessage);
     }
     
     @Override
@@ -137,18 +139,20 @@ public class MessagesResponse {
                 "searchResponse", searchResponse,
                 "rootMessage", rootMessage);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Boolean hasMore;
- 
+
         private Optional<? extends SearchResponse> searchResponse = Optional.empty();
- 
+
         private Optional<? extends SearchResult> rootMessage = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Whether there are more results for client to continue requesting.
@@ -158,6 +162,7 @@ public class MessagesResponse {
             this.hasMore = hasMore;
             return this;
         }
+
 
         public Builder searchResponse(SearchResponse searchResponse) {
             Utils.checkNotNull(searchResponse, "searchResponse");
@@ -171,6 +176,7 @@ public class MessagesResponse {
             return this;
         }
 
+
         public Builder rootMessage(SearchResult rootMessage) {
             Utils.checkNotNull(rootMessage, "rootMessage");
             this.rootMessage = Optional.ofNullable(rootMessage);
@@ -182,12 +188,12 @@ public class MessagesResponse {
             this.rootMessage = rootMessage;
             return this;
         }
-        
+
         public MessagesResponse build() {
+
             return new MessagesResponse(
-                hasMore,
-                searchResponse,
-                rootMessage);
+                hasMore, searchResponse, rootMessage);
         }
+
     }
 }

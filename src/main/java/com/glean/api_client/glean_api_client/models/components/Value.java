@@ -14,18 +14,15 @@ import java.lang.String;
  * <p>Either a string or HypertextField. When OpenAPI Generator supports oneOf, we can semantically enforce this in the docs.
  */
 public class Value {
-
     @JsonCreator
     public Value() {
-        
-        
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
 
-    
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -47,16 +44,19 @@ public class Value {
     public String toString() {
         return Utils.toString(Value.class);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-        
+
         private Builder() {
           // force use of static builder() method
         }
-        
+
         public Value build() {
+
             return new Value(
                 );
         }
+
     }
 }

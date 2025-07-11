@@ -21,7 +21,6 @@ import java.util.Optional;
  * <p>Describes the request body for the /bulkindexmemberships API call
  */
 public class BulkIndexMembershipsRequest {
-
     /**
      * Unique id that must be used for this instance of datasource group memberships upload
      */
@@ -97,7 +96,9 @@ public class BulkIndexMembershipsRequest {
             String uploadId,
             String datasource,
             List<DatasourceBulkMembershipDefinition> memberships) {
-        this(uploadId, Optional.empty(), Optional.empty(), Optional.empty(), datasource, Optional.empty(), memberships);
+        this(uploadId, Optional.empty(), Optional.empty(),
+            Optional.empty(), datasource, Optional.empty(),
+            memberships);
     }
 
     /**
@@ -156,9 +157,10 @@ public class BulkIndexMembershipsRequest {
         return memberships;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unique id that must be used for this instance of datasource group memberships upload
@@ -178,6 +180,7 @@ public class BulkIndexMembershipsRequest {
         return this;
     }
 
+
     /**
      * true if this is the first page of the upload. Defaults to false
      */
@@ -196,6 +199,7 @@ public class BulkIndexMembershipsRequest {
         return this;
     }
 
+
     /**
      * true if this is the last page of the upload. Defaults to false
      */
@@ -213,6 +217,7 @@ public class BulkIndexMembershipsRequest {
         this.forceRestartUpload = Optional.ofNullable(forceRestartUpload);
         return this;
     }
+
 
     /**
      * Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true
@@ -241,6 +246,7 @@ public class BulkIndexMembershipsRequest {
         return this;
     }
 
+
     /**
      * group who's memberships are specified
      */
@@ -259,7 +265,6 @@ public class BulkIndexMembershipsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -282,12 +287,8 @@ public class BulkIndexMembershipsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            uploadId,
-            isFirstPage,
-            isLastPage,
-            forceRestartUpload,
-            datasource,
-            group,
+            uploadId, isFirstPage, isLastPage,
+            forceRestartUpload, datasource, group,
             memberships);
     }
     
@@ -302,26 +303,28 @@ public class BulkIndexMembershipsRequest {
                 "group", group,
                 "memberships", memberships);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String uploadId;
- 
+
         private Optional<Boolean> isFirstPage = Optional.empty();
- 
+
         private Optional<Boolean> isLastPage = Optional.empty();
- 
+
         private Optional<Boolean> forceRestartUpload = Optional.empty();
- 
+
         private String datasource;
- 
+
         private Optional<String> group = Optional.empty();
- 
+
         private List<DatasourceBulkMembershipDefinition> memberships;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unique id that must be used for this instance of datasource group memberships upload
@@ -331,6 +334,7 @@ public class BulkIndexMembershipsRequest {
             this.uploadId = uploadId;
             return this;
         }
+
 
         /**
          * true if this is the first page of the upload. Defaults to false
@@ -350,6 +354,7 @@ public class BulkIndexMembershipsRequest {
             return this;
         }
 
+
         /**
          * true if this is the last page of the upload. Defaults to false
          */
@@ -367,6 +372,7 @@ public class BulkIndexMembershipsRequest {
             this.isLastPage = isLastPage;
             return this;
         }
+
 
         /**
          * Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true
@@ -386,6 +392,7 @@ public class BulkIndexMembershipsRequest {
             return this;
         }
 
+
         /**
          * datasource of the memberships
          */
@@ -394,6 +401,7 @@ public class BulkIndexMembershipsRequest {
             this.datasource = datasource;
             return this;
         }
+
 
         /**
          * group who's memberships are specified
@@ -413,6 +421,7 @@ public class BulkIndexMembershipsRequest {
             return this;
         }
 
+
         /**
          * batch of memberships for the group
          */
@@ -421,16 +430,14 @@ public class BulkIndexMembershipsRequest {
             this.memberships = memberships;
             return this;
         }
-        
+
         public BulkIndexMembershipsRequest build() {
+
             return new BulkIndexMembershipsRequest(
-                uploadId,
-                isFirstPage,
-                isLastPage,
-                forceRestartUpload,
-                datasource,
-                group,
+                uploadId, isFirstPage, isLastPage,
+                forceRestartUpload, datasource, group,
                 memberships);
         }
+
     }
 }

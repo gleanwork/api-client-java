@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>Describes the response body of a single document in the /debug/{datasource}/documents API call
  */
 public class DebugDocumentsResponseItem {
-
     /**
      * Id of the document
      */
@@ -84,9 +83,10 @@ public class DebugDocumentsResponseItem {
         return (Optional<DebugDocumentResponse>) debugInfo;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Id of the document
@@ -96,6 +96,7 @@ public class DebugDocumentsResponseItem {
         this.docId = Optional.ofNullable(docId);
         return this;
     }
+
 
     /**
      * Id of the document
@@ -115,6 +116,7 @@ public class DebugDocumentsResponseItem {
         return this;
     }
 
+
     /**
      * objectType of the document
      */
@@ -133,6 +135,7 @@ public class DebugDocumentsResponseItem {
         return this;
     }
 
+
     /**
      * Describes the response body of the /debug/{datasource}/document API call
      */
@@ -142,7 +145,6 @@ public class DebugDocumentsResponseItem {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -161,9 +163,7 @@ public class DebugDocumentsResponseItem {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            docId,
-            objectType,
-            debugInfo);
+            docId, objectType, debugInfo);
     }
     
     @Override
@@ -173,18 +173,20 @@ public class DebugDocumentsResponseItem {
                 "objectType", objectType,
                 "debugInfo", debugInfo);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> docId = Optional.empty();
- 
+
         private Optional<String> objectType = Optional.empty();
- 
+
         private Optional<? extends DebugDocumentResponse> debugInfo = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Id of the document
@@ -204,6 +206,7 @@ public class DebugDocumentsResponseItem {
             return this;
         }
 
+
         /**
          * objectType of the document
          */
@@ -222,6 +225,7 @@ public class DebugDocumentsResponseItem {
             return this;
         }
 
+
         /**
          * Describes the response body of the /debug/{datasource}/document API call
          */
@@ -239,12 +243,12 @@ public class DebugDocumentsResponseItem {
             this.debugInfo = debugInfo;
             return this;
         }
-        
+
         public DebugDocumentsResponseItem build() {
+
             return new DebugDocumentsResponseItem(
-                docId,
-                objectType,
-                debugInfo);
+                docId, objectType, debugInfo);
         }
+
     }
 }

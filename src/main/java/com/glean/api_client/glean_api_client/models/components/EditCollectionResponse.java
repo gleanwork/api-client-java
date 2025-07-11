@@ -18,8 +18,8 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 
-public class EditCollectionResponse {
 
+public class EditCollectionResponse {
     /**
      * The unique name of the Collection.
      */
@@ -74,6 +74,7 @@ public class EditCollectionResponse {
     @JsonProperty("parentId")
     private Optional<Long> parentId;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("thumbnail")
     private Optional<? extends Thumbnail> thumbnail;
@@ -85,6 +86,7 @@ public class EditCollectionResponse {
     @JsonProperty("allowedDatasource")
     private Optional<String> allowedDatasource;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("permissions")
     private Optional<? extends ObjectPermissions> permissions;
@@ -95,17 +97,21 @@ public class EditCollectionResponse {
     @JsonProperty("id")
     private long id;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createTime")
     private Optional<OffsetDateTime> createTime;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("updateTime")
     private Optional<OffsetDateTime> updateTime;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("creator")
     private Optional<? extends Person> creator;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("updatedBy")
@@ -132,6 +138,7 @@ public class EditCollectionResponse {
     @JsonProperty("items")
     private Optional<? extends List<CollectionItem>> items;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pinMetadata")
     private Optional<? extends CollectionPinnedMetadata> pinMetadata;
@@ -157,12 +164,15 @@ public class EditCollectionResponse {
     @JsonProperty("roles")
     private Optional<? extends List<UserRoleSpecification>> roles;
 
+
     @JsonProperty("errorCode")
     private EditCollectionResponseErrorCode errorCode;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("collection")
     private Optional<? extends Collection> collection;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
@@ -255,7 +265,15 @@ public class EditCollectionResponse {
             String description,
             long id,
             EditCollectionResponseErrorCode errorCode) {
-        this(name, description, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), id, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), errorCode, Optional.empty(), Optional.empty());
+        this(name, description, Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), id,
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), errorCode,
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -450,9 +468,10 @@ public class EditCollectionResponse {
         return (Optional<CollectionError2>) error;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique name of the Collection.
@@ -481,6 +500,7 @@ public class EditCollectionResponse {
         return this;
     }
 
+
     /**
      * A list of added user roles for the Collection.
      */
@@ -498,6 +518,7 @@ public class EditCollectionResponse {
         this.removedRoles = Optional.ofNullable(removedRoles);
         return this;
     }
+
 
     /**
      * A list of removed user roles for the Collection.
@@ -517,6 +538,7 @@ public class EditCollectionResponse {
         return this;
     }
 
+
     /**
      * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
      */
@@ -534,6 +556,7 @@ public class EditCollectionResponse {
         this.icon = Optional.ofNullable(icon);
         return this;
     }
+
 
     /**
      * The emoji icon of this Collection.
@@ -553,6 +576,7 @@ public class EditCollectionResponse {
         return this;
     }
 
+
     /**
      * Indicates whether edits are allowed for everyone or only admins.
      */
@@ -571,6 +595,7 @@ public class EditCollectionResponse {
         return this;
     }
 
+
     /**
      * The parent of this Collection, or 0 if it's a top-level Collection.
      */
@@ -585,6 +610,7 @@ public class EditCollectionResponse {
         this.thumbnail = Optional.ofNullable(thumbnail);
         return this;
     }
+
 
     public EditCollectionResponse withThumbnail(Optional<? extends Thumbnail> thumbnail) {
         Utils.checkNotNull(thumbnail, "thumbnail");
@@ -601,6 +627,7 @@ public class EditCollectionResponse {
         return this;
     }
 
+
     /**
      * The datasource type this Collection can hold.
      */
@@ -615,6 +642,7 @@ public class EditCollectionResponse {
         this.permissions = Optional.ofNullable(permissions);
         return this;
     }
+
 
     public EditCollectionResponse withPermissions(Optional<? extends ObjectPermissions> permissions) {
         Utils.checkNotNull(permissions, "permissions");
@@ -637,6 +665,7 @@ public class EditCollectionResponse {
         return this;
     }
 
+
     public EditCollectionResponse withCreateTime(Optional<OffsetDateTime> createTime) {
         Utils.checkNotNull(createTime, "createTime");
         this.createTime = createTime;
@@ -648,6 +677,7 @@ public class EditCollectionResponse {
         this.updateTime = Optional.ofNullable(updateTime);
         return this;
     }
+
 
     public EditCollectionResponse withUpdateTime(Optional<OffsetDateTime> updateTime) {
         Utils.checkNotNull(updateTime, "updateTime");
@@ -661,6 +691,7 @@ public class EditCollectionResponse {
         return this;
     }
 
+
     public EditCollectionResponse withCreator(Optional<? extends Person> creator) {
         Utils.checkNotNull(creator, "creator");
         this.creator = creator;
@@ -672,6 +703,7 @@ public class EditCollectionResponse {
         this.updatedBy = Optional.ofNullable(updatedBy);
         return this;
     }
+
 
     public EditCollectionResponse withUpdatedBy(Optional<? extends Person> updatedBy) {
         Utils.checkNotNull(updatedBy, "updatedBy");
@@ -687,6 +719,7 @@ public class EditCollectionResponse {
         this.itemCount = Optional.ofNullable(itemCount);
         return this;
     }
+
 
     /**
      * The number of items currently in the Collection. Separated from the actual items so we can grab the count without items.
@@ -706,6 +739,7 @@ public class EditCollectionResponse {
         return this;
     }
 
+
     /**
      * The number of children Collections. Separated from the actual children so we can grab the count without children.
      */
@@ -724,6 +758,7 @@ public class EditCollectionResponse {
         return this;
     }
 
+
     /**
      * The items in this Collection.
      */
@@ -739,6 +774,7 @@ public class EditCollectionResponse {
         return this;
     }
 
+
     public EditCollectionResponse withPinMetadata(Optional<? extends CollectionPinnedMetadata> pinMetadata) {
         Utils.checkNotNull(pinMetadata, "pinMetadata");
         this.pinMetadata = pinMetadata;
@@ -753,6 +789,7 @@ public class EditCollectionResponse {
         this.shortcuts = Optional.ofNullable(shortcuts);
         return this;
     }
+
 
     /**
      * The names of the shortcuts (Go Links) that point to this Collection.
@@ -772,6 +809,7 @@ public class EditCollectionResponse {
         return this;
     }
 
+
     /**
      * The children Collections of this Collection.
      */
@@ -789,6 +827,7 @@ public class EditCollectionResponse {
         this.roles = Optional.ofNullable(roles);
         return this;
     }
+
 
     /**
      * A list of user roles for the Collection.
@@ -811,6 +850,7 @@ public class EditCollectionResponse {
         return this;
     }
 
+
     public EditCollectionResponse withCollection(Optional<? extends Collection> collection) {
         Utils.checkNotNull(collection, "collection");
         this.collection = collection;
@@ -823,13 +863,13 @@ public class EditCollectionResponse {
         return this;
     }
 
+
     public EditCollectionResponse withError(Optional<? extends CollectionError2> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -871,32 +911,15 @@ public class EditCollectionResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            description,
-            addedRoles,
-            removedRoles,
-            audienceFilters,
-            icon,
-            adminLocked,
-            parentId,
-            thumbnail,
-            allowedDatasource,
-            permissions,
-            id,
-            createTime,
-            updateTime,
-            creator,
-            updatedBy,
-            itemCount,
-            childCount,
-            items,
-            pinMetadata,
-            shortcuts,
-            children,
-            roles,
-            errorCode,
-            collection,
-            error);
+            name, description, addedRoles,
+            removedRoles, audienceFilters, icon,
+            adminLocked, parentId, thumbnail,
+            allowedDatasource, permissions, id,
+            createTime, updateTime, creator,
+            updatedBy, itemCount, childCount,
+            items, pinMetadata, shortcuts,
+            children, roles, errorCode,
+            collection, error);
     }
     
     @Override
@@ -929,64 +952,66 @@ public class EditCollectionResponse {
                 "collection", collection,
                 "error", error);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
- 
+
         private String description;
- 
+
         private Optional<? extends List<UserRoleSpecification>> addedRoles = Optional.empty();
- 
+
         private Optional<? extends List<UserRoleSpecification>> removedRoles = Optional.empty();
- 
+
         private Optional<? extends List<FacetFilter>> audienceFilters = Optional.empty();
- 
+
         private Optional<String> icon = Optional.empty();
- 
+
         private Optional<Boolean> adminLocked = Optional.empty();
- 
+
         private Optional<Long> parentId = Optional.empty();
- 
+
         private Optional<? extends Thumbnail> thumbnail = Optional.empty();
- 
+
         private Optional<String> allowedDatasource = Optional.empty();
- 
+
         private Optional<? extends ObjectPermissions> permissions = Optional.empty();
- 
+
         private Long id;
- 
+
         private Optional<OffsetDateTime> createTime = Optional.empty();
- 
+
         private Optional<OffsetDateTime> updateTime = Optional.empty();
- 
+
         private Optional<? extends Person> creator = Optional.empty();
- 
+
         private Optional<? extends Person> updatedBy = Optional.empty();
- 
+
         private Optional<Long> itemCount = Optional.empty();
- 
+
         private Optional<Long> childCount = Optional.empty();
- 
+
         private Optional<? extends List<CollectionItem>> items = Optional.empty();
- 
+
         private Optional<? extends CollectionPinnedMetadata> pinMetadata = Optional.empty();
- 
+
         private Optional<? extends List<String>> shortcuts = Optional.empty();
- 
+
         private Optional<? extends List<Collection>> children = Optional.empty();
- 
+
         private Optional<? extends List<UserRoleSpecification>> roles = Optional.empty();
- 
+
         private EditCollectionResponseErrorCode errorCode;
- 
+
         private Optional<? extends Collection> collection = Optional.empty();
- 
+
         private Optional<? extends CollectionError2> error = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique name of the Collection.
@@ -997,6 +1022,7 @@ public class EditCollectionResponse {
             return this;
         }
 
+
         /**
          * A brief summary of the Collection's contents.
          */
@@ -1005,6 +1031,7 @@ public class EditCollectionResponse {
             this.description = description;
             return this;
         }
+
 
         /**
          * A list of added user roles for the Collection.
@@ -1024,6 +1051,7 @@ public class EditCollectionResponse {
             return this;
         }
 
+
         /**
          * A list of removed user roles for the Collection.
          */
@@ -1041,6 +1069,7 @@ public class EditCollectionResponse {
             this.removedRoles = removedRoles;
             return this;
         }
+
 
         /**
          * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
@@ -1060,6 +1089,7 @@ public class EditCollectionResponse {
             return this;
         }
 
+
         /**
          * The emoji icon of this Collection.
          */
@@ -1077,6 +1107,7 @@ public class EditCollectionResponse {
             this.icon = icon;
             return this;
         }
+
 
         /**
          * Indicates whether edits are allowed for everyone or only admins.
@@ -1096,6 +1127,7 @@ public class EditCollectionResponse {
             return this;
         }
 
+
         /**
          * The parent of this Collection, or 0 if it's a top-level Collection.
          */
@@ -1114,6 +1146,7 @@ public class EditCollectionResponse {
             return this;
         }
 
+
         public Builder thumbnail(Thumbnail thumbnail) {
             Utils.checkNotNull(thumbnail, "thumbnail");
             this.thumbnail = Optional.ofNullable(thumbnail);
@@ -1125,6 +1158,7 @@ public class EditCollectionResponse {
             this.thumbnail = thumbnail;
             return this;
         }
+
 
         /**
          * The datasource type this Collection can hold.
@@ -1144,6 +1178,7 @@ public class EditCollectionResponse {
             return this;
         }
 
+
         public Builder permissions(ObjectPermissions permissions) {
             Utils.checkNotNull(permissions, "permissions");
             this.permissions = Optional.ofNullable(permissions);
@@ -1156,6 +1191,7 @@ public class EditCollectionResponse {
             return this;
         }
 
+
         /**
          * The unique ID of the Collection.
          */
@@ -1164,6 +1200,7 @@ public class EditCollectionResponse {
             this.id = id;
             return this;
         }
+
 
         public Builder createTime(OffsetDateTime createTime) {
             Utils.checkNotNull(createTime, "createTime");
@@ -1177,6 +1214,7 @@ public class EditCollectionResponse {
             return this;
         }
 
+
         public Builder updateTime(OffsetDateTime updateTime) {
             Utils.checkNotNull(updateTime, "updateTime");
             this.updateTime = Optional.ofNullable(updateTime);
@@ -1188,6 +1226,7 @@ public class EditCollectionResponse {
             this.updateTime = updateTime;
             return this;
         }
+
 
         public Builder creator(Person creator) {
             Utils.checkNotNull(creator, "creator");
@@ -1201,6 +1240,7 @@ public class EditCollectionResponse {
             return this;
         }
 
+
         public Builder updatedBy(Person updatedBy) {
             Utils.checkNotNull(updatedBy, "updatedBy");
             this.updatedBy = Optional.ofNullable(updatedBy);
@@ -1212,6 +1252,7 @@ public class EditCollectionResponse {
             this.updatedBy = updatedBy;
             return this;
         }
+
 
         /**
          * The number of items currently in the Collection. Separated from the actual items so we can grab the count without items.
@@ -1231,6 +1272,7 @@ public class EditCollectionResponse {
             return this;
         }
 
+
         /**
          * The number of children Collections. Separated from the actual children so we can grab the count without children.
          */
@@ -1248,6 +1290,7 @@ public class EditCollectionResponse {
             this.childCount = childCount;
             return this;
         }
+
 
         /**
          * The items in this Collection.
@@ -1267,6 +1310,7 @@ public class EditCollectionResponse {
             return this;
         }
 
+
         public Builder pinMetadata(CollectionPinnedMetadata pinMetadata) {
             Utils.checkNotNull(pinMetadata, "pinMetadata");
             this.pinMetadata = Optional.ofNullable(pinMetadata);
@@ -1278,6 +1322,7 @@ public class EditCollectionResponse {
             this.pinMetadata = pinMetadata;
             return this;
         }
+
 
         /**
          * The names of the shortcuts (Go Links) that point to this Collection.
@@ -1297,6 +1342,7 @@ public class EditCollectionResponse {
             return this;
         }
 
+
         /**
          * The children Collections of this Collection.
          */
@@ -1314,6 +1360,7 @@ public class EditCollectionResponse {
             this.children = children;
             return this;
         }
+
 
         /**
          * A list of user roles for the Collection.
@@ -1333,11 +1380,13 @@ public class EditCollectionResponse {
             return this;
         }
 
+
         public Builder errorCode(EditCollectionResponseErrorCode errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
             this.errorCode = errorCode;
             return this;
         }
+
 
         public Builder collection(Collection collection) {
             Utils.checkNotNull(collection, "collection");
@@ -1351,6 +1400,7 @@ public class EditCollectionResponse {
             return this;
         }
 
+
         public Builder error(CollectionError2 error) {
             Utils.checkNotNull(error, "error");
             this.error = Optional.ofNullable(error);
@@ -1362,35 +1412,20 @@ public class EditCollectionResponse {
             this.error = error;
             return this;
         }
-        
+
         public EditCollectionResponse build() {
+
             return new EditCollectionResponse(
-                name,
-                description,
-                addedRoles,
-                removedRoles,
-                audienceFilters,
-                icon,
-                adminLocked,
-                parentId,
-                thumbnail,
-                allowedDatasource,
-                permissions,
-                id,
-                createTime,
-                updateTime,
-                creator,
-                updatedBy,
-                itemCount,
-                childCount,
-                items,
-                pinMetadata,
-                shortcuts,
-                children,
-                roles,
-                errorCode,
-                collection,
-                error);
+                name, description, addedRoles,
+                removedRoles, audienceFilters, icon,
+                adminLocked, parentId, thumbnail,
+                allowedDatasource, permissions, id,
+                createTime, updateTime, creator,
+                updatedBy, itemCount, childCount,
+                items, pinMetadata, shortcuts,
+                children, roles, errorCode,
+                collection, error);
         }
+
     }
 }

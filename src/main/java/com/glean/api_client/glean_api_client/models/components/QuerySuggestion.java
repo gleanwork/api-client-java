@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class QuerySuggestion {
 
+public class QuerySuggestion {
     /**
      * A query term missing from the original query on which this suggestion is based.
      */
@@ -29,6 +29,7 @@ public class QuerySuggestion {
      */
     @JsonProperty("query")
     private String query;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("searchProviderInfo")
@@ -48,6 +49,7 @@ public class QuerySuggestion {
     @JsonProperty("datasource")
     private Optional<String> datasource;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("requestOptions")
     private Optional<? extends SearchRequestOptions> requestOptions;
@@ -58,6 +60,7 @@ public class QuerySuggestion {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ranges")
     private Optional<? extends List<TextRange>> ranges;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("inputDetails")
@@ -93,7 +96,9 @@ public class QuerySuggestion {
     
     public QuerySuggestion(
             String query) {
-        this(Optional.empty(), query, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), query, Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -155,9 +160,10 @@ public class QuerySuggestion {
         return (Optional<SearchRequestInputDetails>) inputDetails;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A query term missing from the original query on which this suggestion is based.
@@ -167,6 +173,7 @@ public class QuerySuggestion {
         this.missingTerm = Optional.ofNullable(missingTerm);
         return this;
     }
+
 
     /**
      * A query term missing from the original query on which this suggestion is based.
@@ -192,6 +199,7 @@ public class QuerySuggestion {
         return this;
     }
 
+
     public QuerySuggestion withSearchProviderInfo(Optional<? extends SearchProviderInfo> searchProviderInfo) {
         Utils.checkNotNull(searchProviderInfo, "searchProviderInfo");
         this.searchProviderInfo = searchProviderInfo;
@@ -206,6 +214,7 @@ public class QuerySuggestion {
         this.label = Optional.ofNullable(label);
         return this;
     }
+
 
     /**
      * A user-facing description to display for the suggestion.
@@ -225,6 +234,7 @@ public class QuerySuggestion {
         return this;
     }
 
+
     /**
      * The datasource associated with the suggestion.
      */
@@ -239,6 +249,7 @@ public class QuerySuggestion {
         this.requestOptions = Optional.ofNullable(requestOptions);
         return this;
     }
+
 
     public QuerySuggestion withRequestOptions(Optional<? extends SearchRequestOptions> requestOptions) {
         Utils.checkNotNull(requestOptions, "requestOptions");
@@ -255,6 +266,7 @@ public class QuerySuggestion {
         return this;
     }
 
+
     /**
      * The bolded ranges within the query of the QuerySuggestion.
      */
@@ -270,13 +282,13 @@ public class QuerySuggestion {
         return this;
     }
 
+
     public QuerySuggestion withInputDetails(Optional<? extends SearchRequestInputDetails> inputDetails) {
         Utils.checkNotNull(inputDetails, "inputDetails");
         this.inputDetails = inputDetails;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -300,14 +312,9 @@ public class QuerySuggestion {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            missingTerm,
-            query,
-            searchProviderInfo,
-            label,
-            datasource,
-            requestOptions,
-            ranges,
-            inputDetails);
+            missingTerm, query, searchProviderInfo,
+            label, datasource, requestOptions,
+            ranges, inputDetails);
     }
     
     @Override
@@ -322,28 +329,30 @@ public class QuerySuggestion {
                 "ranges", ranges,
                 "inputDetails", inputDetails);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> missingTerm = Optional.empty();
- 
+
         private String query;
- 
+
         private Optional<? extends SearchProviderInfo> searchProviderInfo = Optional.empty();
- 
+
         private Optional<String> label = Optional.empty();
- 
+
         private Optional<String> datasource = Optional.empty();
- 
+
         private Optional<? extends SearchRequestOptions> requestOptions = Optional.empty();
- 
+
         private Optional<? extends List<TextRange>> ranges = Optional.empty();
- 
+
         private Optional<? extends SearchRequestInputDetails> inputDetails = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A query term missing from the original query on which this suggestion is based.
@@ -363,6 +372,7 @@ public class QuerySuggestion {
             return this;
         }
 
+
         /**
          * The query being suggested (e.g. enforcing the missing term from the original query).
          */
@@ -371,6 +381,7 @@ public class QuerySuggestion {
             this.query = query;
             return this;
         }
+
 
         public Builder searchProviderInfo(SearchProviderInfo searchProviderInfo) {
             Utils.checkNotNull(searchProviderInfo, "searchProviderInfo");
@@ -383,6 +394,7 @@ public class QuerySuggestion {
             this.searchProviderInfo = searchProviderInfo;
             return this;
         }
+
 
         /**
          * A user-facing description to display for the suggestion.
@@ -402,6 +414,7 @@ public class QuerySuggestion {
             return this;
         }
 
+
         /**
          * The datasource associated with the suggestion.
          */
@@ -420,6 +433,7 @@ public class QuerySuggestion {
             return this;
         }
 
+
         public Builder requestOptions(SearchRequestOptions requestOptions) {
             Utils.checkNotNull(requestOptions, "requestOptions");
             this.requestOptions = Optional.ofNullable(requestOptions);
@@ -431,6 +445,7 @@ public class QuerySuggestion {
             this.requestOptions = requestOptions;
             return this;
         }
+
 
         /**
          * The bolded ranges within the query of the QuerySuggestion.
@@ -450,6 +465,7 @@ public class QuerySuggestion {
             return this;
         }
 
+
         public Builder inputDetails(SearchRequestInputDetails inputDetails) {
             Utils.checkNotNull(inputDetails, "inputDetails");
             this.inputDetails = Optional.ofNullable(inputDetails);
@@ -461,17 +477,14 @@ public class QuerySuggestion {
             this.inputDetails = inputDetails;
             return this;
         }
-        
+
         public QuerySuggestion build() {
+
             return new QuerySuggestion(
-                missingTerm,
-                query,
-                searchProviderInfo,
-                label,
-                datasource,
-                requestOptions,
-                ranges,
-                inputDetails);
+                missingTerm, query, searchProviderInfo,
+                label, datasource, requestOptions,
+                ranges, inputDetails);
         }
+
     }
 }

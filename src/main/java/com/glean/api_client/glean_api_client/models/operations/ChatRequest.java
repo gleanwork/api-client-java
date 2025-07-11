@@ -12,8 +12,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class ChatRequest {
 
+public class ChatRequest {
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      */
@@ -57,9 +57,10 @@ public class ChatRequest {
         return chatRequest;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
@@ -69,6 +70,7 @@ public class ChatRequest {
         this.timezoneOffset = Optional.ofNullable(timezoneOffset);
         return this;
     }
+
 
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
@@ -88,7 +90,6 @@ public class ChatRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -106,8 +107,7 @@ public class ChatRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            timezoneOffset,
-            chatRequest);
+            timezoneOffset, chatRequest);
     }
     
     @Override
@@ -116,16 +116,18 @@ public class ChatRequest {
                 "timezoneOffset", timezoneOffset,
                 "chatRequest", chatRequest);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> timezoneOffset = Optional.empty();
- 
+
         private com.glean.api_client.glean_api_client.models.components.ChatRequest chatRequest;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
@@ -145,6 +147,7 @@ public class ChatRequest {
             return this;
         }
 
+
         /**
          * Includes chat history for Glean AI to respond to.
          */
@@ -153,11 +156,12 @@ public class ChatRequest {
             this.chatRequest = chatRequest;
             return this;
         }
-        
+
         public ChatRequest build() {
+
             return new ChatRequest(
-                timezoneOffset,
-                chatRequest);
+                timezoneOffset, chatRequest);
         }
+
     }
 }

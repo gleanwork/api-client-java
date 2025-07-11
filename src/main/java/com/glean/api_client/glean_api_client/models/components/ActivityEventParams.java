@@ -15,8 +15,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class ActivityEventParams {
 
+public class ActivityEventParams {
     /**
      * The HTML content of the page body.
      */
@@ -112,7 +112,9 @@ public class ActivityEventParams {
     }
     
     public ActivityEventParams() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -187,9 +189,10 @@ public class ActivityEventParams {
         return truncated;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The HTML content of the page body.
@@ -199,6 +202,7 @@ public class ActivityEventParams {
         this.bodyContent = Optional.ofNullable(bodyContent);
         return this;
     }
+
 
     /**
      * The HTML content of the page body.
@@ -218,6 +222,7 @@ public class ActivityEventParams {
         return this;
     }
 
+
     /**
      * The full datasource instance name inferred from the URL of the event
      */
@@ -235,6 +240,7 @@ public class ActivityEventParams {
         this.datasource = Optional.ofNullable(datasource);
         return this;
     }
+
 
     /**
      * The datasource without the instance inferred from the URL of the event
@@ -254,6 +260,7 @@ public class ActivityEventParams {
         return this;
     }
 
+
     /**
      * The instance only name of the datasource instance, e.g. 1 for jira_1, inferred from the URL of the event
      */
@@ -271,6 +278,7 @@ public class ActivityEventParams {
         this.duration = Optional.ofNullable(duration);
         return this;
     }
+
 
     /**
      * Length in seconds of the activity. For VIEWS, this represents the amount the page was visible in the foreground.
@@ -290,6 +298,7 @@ public class ActivityEventParams {
         return this;
     }
 
+
     /**
      * The user's search query associated with a SEARCH.
      */
@@ -307,6 +316,7 @@ public class ActivityEventParams {
         this.referrer = Optional.ofNullable(referrer);
         return this;
     }
+
 
     /**
      * The referring URL of the VIEW or SEARCH.
@@ -326,6 +336,7 @@ public class ActivityEventParams {
         return this;
     }
 
+
     /**
      * The page title associated with the URL of the event
      */
@@ -344,6 +355,7 @@ public class ActivityEventParams {
         return this;
     }
 
+
     /**
      * Indicates that the parameters are incomplete and more parameters may be sent with the same action+timestamp+URL in the future. This is used for sending the duration when a `VIEW` is finished.
      */
@@ -353,7 +365,6 @@ public class ActivityEventParams {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -378,15 +389,9 @@ public class ActivityEventParams {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            bodyContent,
-            datasourceInstance,
-            datasource,
-            instanceOnlyName,
-            duration,
-            query,
-            referrer,
-            title,
-            truncated);
+            bodyContent, datasourceInstance, datasource,
+            instanceOnlyName, duration, query,
+            referrer, title, truncated);
     }
     
     @Override
@@ -402,30 +407,32 @@ public class ActivityEventParams {
                 "title", title,
                 "truncated", truncated);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> bodyContent = Optional.empty();
- 
+
         private Optional<String> datasourceInstance = Optional.empty();
- 
+
         private Optional<String> datasource = Optional.empty();
- 
+
         private Optional<String> instanceOnlyName = Optional.empty();
- 
+
         private Optional<Long> duration = Optional.empty();
- 
+
         private Optional<String> query = Optional.empty();
- 
+
         private Optional<String> referrer = Optional.empty();
- 
+
         private Optional<String> title = Optional.empty();
- 
+
         private Optional<Boolean> truncated = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The HTML content of the page body.
@@ -445,6 +452,7 @@ public class ActivityEventParams {
             return this;
         }
 
+
         /**
          * The full datasource instance name inferred from the URL of the event
          */
@@ -462,6 +470,7 @@ public class ActivityEventParams {
             this.datasourceInstance = datasourceInstance;
             return this;
         }
+
 
         /**
          * The datasource without the instance inferred from the URL of the event
@@ -481,6 +490,7 @@ public class ActivityEventParams {
             return this;
         }
 
+
         /**
          * The instance only name of the datasource instance, e.g. 1 for jira_1, inferred from the URL of the event
          */
@@ -498,6 +508,7 @@ public class ActivityEventParams {
             this.instanceOnlyName = instanceOnlyName;
             return this;
         }
+
 
         /**
          * Length in seconds of the activity. For VIEWS, this represents the amount the page was visible in the foreground.
@@ -517,6 +528,7 @@ public class ActivityEventParams {
             return this;
         }
 
+
         /**
          * The user's search query associated with a SEARCH.
          */
@@ -534,6 +546,7 @@ public class ActivityEventParams {
             this.query = query;
             return this;
         }
+
 
         /**
          * The referring URL of the VIEW or SEARCH.
@@ -553,6 +566,7 @@ public class ActivityEventParams {
             return this;
         }
 
+
         /**
          * The page title associated with the URL of the event
          */
@@ -571,6 +585,7 @@ public class ActivityEventParams {
             return this;
         }
 
+
         /**
          * Indicates that the parameters are incomplete and more parameters may be sent with the same action+timestamp+URL in the future. This is used for sending the duration when a `VIEW` is finished.
          */
@@ -588,18 +603,14 @@ public class ActivityEventParams {
             this.truncated = truncated;
             return this;
         }
-        
+
         public ActivityEventParams build() {
+
             return new ActivityEventParams(
-                bodyContent,
-                datasourceInstance,
-                datasource,
-                instanceOnlyName,
-                duration,
-                query,
-                referrer,
-                title,
-                truncated);
+                bodyContent, datasourceInstance, datasource,
+                instanceOnlyName, duration, query,
+                referrer, title, truncated);
         }
+
     }
 }

@@ -13,13 +13,14 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class GetchatapplicationRequest {
 
+public class GetchatapplicationRequest {
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=timezoneOffset")
     private Optional<Long> timezoneOffset;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private GetChatApplicationRequest getChatApplicationRequest;
@@ -52,9 +53,10 @@ public class GetchatapplicationRequest {
         return getChatApplicationRequest;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
@@ -64,6 +66,7 @@ public class GetchatapplicationRequest {
         this.timezoneOffset = Optional.ofNullable(timezoneOffset);
         return this;
     }
+
 
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
@@ -80,7 +83,6 @@ public class GetchatapplicationRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -98,8 +100,7 @@ public class GetchatapplicationRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            timezoneOffset,
-            getChatApplicationRequest);
+            timezoneOffset, getChatApplicationRequest);
     }
     
     @Override
@@ -108,16 +109,18 @@ public class GetchatapplicationRequest {
                 "timezoneOffset", timezoneOffset,
                 "getChatApplicationRequest", getChatApplicationRequest);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> timezoneOffset = Optional.empty();
- 
+
         private GetChatApplicationRequest getChatApplicationRequest;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
@@ -137,16 +140,18 @@ public class GetchatapplicationRequest {
             return this;
         }
 
+
         public Builder getChatApplicationRequest(GetChatApplicationRequest getChatApplicationRequest) {
             Utils.checkNotNull(getChatApplicationRequest, "getChatApplicationRequest");
             this.getChatApplicationRequest = getChatApplicationRequest;
             return this;
         }
-        
+
         public GetchatapplicationRequest build() {
+
             return new GetchatapplicationRequest(
-                timezoneOffset,
-                getChatApplicationRequest);
+                timezoneOffset, getChatApplicationRequest);
         }
+
     }
 }

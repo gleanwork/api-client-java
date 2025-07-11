@@ -28,7 +28,6 @@ import java.util.Optional;
  * }
  */
 public class AgentCapabilities {
-
     /**
      * Whether the agent supports messages as an input. If true, you'll pass `messages` as an input when running the agent.
      */
@@ -42,6 +41,7 @@ public class AgentCapabilities {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ap.io.streaming")
     private Optional<Boolean> apIoStreaming;
+
 
     @JsonIgnore
     private Map<String, Object> additionalProperties;
@@ -82,9 +82,10 @@ public class AgentCapabilities {
         return additionalProperties;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Whether the agent supports messages as an input. If true, you'll pass `messages` as an input when running the agent.
@@ -94,6 +95,7 @@ public class AgentCapabilities {
         this.apIoMessages = Optional.ofNullable(apIoMessages);
         return this;
     }
+
 
     /**
      * Whether the agent supports messages as an input. If true, you'll pass `messages` as an input when running the agent.
@@ -113,6 +115,7 @@ public class AgentCapabilities {
         return this;
     }
 
+
     /**
      * Whether the agent supports streaming output. If true, you you can stream agent ouput. All agents currently support streaming.
      */
@@ -128,15 +131,13 @@ public class AgentCapabilities {
         Utils.checkNotNull(key, "key");
         additionalProperties.put(key, value); 
         return this;
-    }    
-
+    }
     public AgentCapabilities withAdditionalProperties(Map<String, Object> additionalProperties) {
         Utils.checkNotNull(additionalProperties, "additionalProperties");
         this.additionalProperties = additionalProperties;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -155,9 +156,7 @@ public class AgentCapabilities {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            apIoMessages,
-            apIoStreaming,
-            additionalProperties);
+            apIoMessages, apIoStreaming, additionalProperties);
     }
     
     @Override
@@ -167,18 +166,20 @@ public class AgentCapabilities {
                 "apIoStreaming", apIoStreaming,
                 "additionalProperties", additionalProperties);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> apIoMessages = Optional.empty();
- 
+
         private Optional<Boolean> apIoStreaming = Optional.empty();
- 
+
         private Map<String, Object> additionalProperties = new HashMap<>();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Whether the agent supports messages as an input. If true, you'll pass `messages` as an input when running the agent.
@@ -197,6 +198,7 @@ public class AgentCapabilities {
             this.apIoMessages = apIoMessages;
             return this;
         }
+
 
         /**
          * Whether the agent supports streaming output. If true, you you can stream agent ouput. All agents currently support streaming.
@@ -231,12 +233,13 @@ public class AgentCapabilities {
             this.additionalProperties = additionalProperties;
             return this;
         }
-        
+
         public AgentCapabilities build() {
+
             return new AgentCapabilities(
-                apIoMessages,
-                apIoStreaming)
+                apIoMessages, apIoStreaming)
                 .withAdditionalProperties(additionalProperties);
         }
+
     }
 }

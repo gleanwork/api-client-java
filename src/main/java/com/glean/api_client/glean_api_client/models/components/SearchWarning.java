@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class SearchWarning {
 
+public class SearchWarning {
     /**
      * The type of the warning.
      */
@@ -62,7 +62,8 @@ public class SearchWarning {
     
     public SearchWarning(
             WarningType warningType) {
-        this(warningType, Optional.empty(), Optional.empty(), Optional.empty());
+        this(warningType, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -98,9 +99,10 @@ public class SearchWarning {
         return (Optional<List<String>>) ignoredTerms;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The type of the warning.
@@ -120,6 +122,7 @@ public class SearchWarning {
         return this;
     }
 
+
     /**
      * The last term we considered in the user's long query.
      */
@@ -137,6 +140,7 @@ public class SearchWarning {
         this.quotesIgnoredQuery = Optional.ofNullable(quotesIgnoredQuery);
         return this;
     }
+
 
     /**
      * The query after ignoring/removing quotes.
@@ -156,6 +160,7 @@ public class SearchWarning {
         return this;
     }
 
+
     /**
      * A list of query terms that were ignored when generating search results, if any. For example, terms containing invalid filters such as "updated:invalid_date" will be ignored.
      */
@@ -165,7 +170,6 @@ public class SearchWarning {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -185,9 +189,7 @@ public class SearchWarning {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            warningType,
-            lastUsedTerm,
-            quotesIgnoredQuery,
+            warningType, lastUsedTerm, quotesIgnoredQuery,
             ignoredTerms);
     }
     
@@ -199,20 +201,22 @@ public class SearchWarning {
                 "quotesIgnoredQuery", quotesIgnoredQuery,
                 "ignoredTerms", ignoredTerms);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private WarningType warningType;
- 
+
         private Optional<String> lastUsedTerm = Optional.empty();
- 
+
         private Optional<String> quotesIgnoredQuery = Optional.empty();
- 
+
         private Optional<? extends List<String>> ignoredTerms = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The type of the warning.
@@ -222,6 +226,7 @@ public class SearchWarning {
             this.warningType = warningType;
             return this;
         }
+
 
         /**
          * The last term we considered in the user's long query.
@@ -241,6 +246,7 @@ public class SearchWarning {
             return this;
         }
 
+
         /**
          * The query after ignoring/removing quotes.
          */
@@ -259,6 +265,7 @@ public class SearchWarning {
             return this;
         }
 
+
         /**
          * A list of query terms that were ignored when generating search results, if any. For example, terms containing invalid filters such as "updated:invalid_date" will be ignored.
          */
@@ -276,13 +283,13 @@ public class SearchWarning {
             this.ignoredTerms = ignoredTerms;
             return this;
         }
-        
+
         public SearchWarning build() {
+
             return new SearchWarning(
-                warningType,
-                lastUsedTerm,
-                quotesIgnoredQuery,
+                warningType, lastUsedTerm, quotesIgnoredQuery,
                 ignoredTerms);
         }
+
     }
 }

@@ -53,7 +53,7 @@ public class ChatStreamRequestBuilder {
     public ChatStreamResponse call() throws Exception {
         
         RequestOperation<ChatStreamRequest, ChatStreamResponse> operation
-              = new ChatStreamOperation( sdkConfiguration);
+              = new ChatStreamOperation(sdkConfiguration);
         ChatStreamRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

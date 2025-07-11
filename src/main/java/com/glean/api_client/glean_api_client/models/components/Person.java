@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class Person {
 
+public class Person {
     /**
      * The display name.
      */
@@ -35,6 +35,7 @@ public class Person {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("relatedDocuments")
     private Optional<? extends List<RelatedDocuments>> relatedDocuments;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
@@ -59,7 +60,8 @@ public class Person {
     public Person(
             String name,
             String obfuscatedId) {
-        this(name, obfuscatedId, Optional.empty(), Optional.empty());
+        this(name, obfuscatedId, Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -93,9 +95,10 @@ public class Person {
         return (Optional<PersonMetadata>) metadata;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The display name.
@@ -124,6 +127,7 @@ public class Person {
         return this;
     }
 
+
     /**
      * A list of documents related to this person.
      */
@@ -139,13 +143,13 @@ public class Person {
         return this;
     }
 
+
     public Person withMetadata(Optional<? extends PersonMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -165,9 +169,7 @@ public class Person {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            obfuscatedId,
-            relatedDocuments,
+            name, obfuscatedId, relatedDocuments,
             metadata);
     }
     
@@ -179,20 +181,22 @@ public class Person {
                 "relatedDocuments", relatedDocuments,
                 "metadata", metadata);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
- 
+
         private String obfuscatedId;
- 
+
         private Optional<? extends List<RelatedDocuments>> relatedDocuments = Optional.empty();
- 
+
         private Optional<? extends PersonMetadata> metadata = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The display name.
@@ -203,6 +207,7 @@ public class Person {
             return this;
         }
 
+
         /**
          * An opaque identifier that can be used to request metadata for a Person.
          */
@@ -211,6 +216,7 @@ public class Person {
             this.obfuscatedId = obfuscatedId;
             return this;
         }
+
 
         /**
          * A list of documents related to this person.
@@ -230,6 +236,7 @@ public class Person {
             return this;
         }
 
+
         public Builder metadata(PersonMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
@@ -241,13 +248,13 @@ public class Person {
             this.metadata = metadata;
             return this;
         }
-        
+
         public Person build() {
+
             return new Person(
-                name,
-                obfuscatedId,
-                relatedDocuments,
+                name, obfuscatedId, relatedDocuments,
                 metadata);
         }
+
     }
 }

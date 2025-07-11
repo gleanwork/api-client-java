@@ -53,7 +53,7 @@ public class ChatRequestBuilder {
     public ChatResponse call() throws Exception {
         
         RequestOperation<com.glean.api_client.glean_api_client.models.operations.ChatRequest, ChatResponse> operation
-              = new ChatOperation( sdkConfiguration);
+              = new ChatOperation(sdkConfiguration);
         com.glean.api_client.glean_api_client.models.operations.ChatRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

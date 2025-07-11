@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class DocumentSpec1 {
 
+public class DocumentSpec1 {
     /**
      * The URL of the document.
      */
@@ -41,9 +41,10 @@ public class DocumentSpec1 {
         return url;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The URL of the document.
@@ -54,6 +55,7 @@ public class DocumentSpec1 {
         return this;
     }
 
+
     /**
      * The URL of the document.
      */
@@ -63,7 +65,6 @@ public class DocumentSpec1 {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -88,14 +89,16 @@ public class DocumentSpec1 {
         return Utils.toString(DocumentSpec1.class,
                 "url", url);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> url = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The URL of the document.
@@ -114,10 +117,12 @@ public class DocumentSpec1 {
             this.url = url;
             return this;
         }
-        
+
         public DocumentSpec1 build() {
+
             return new DocumentSpec1(
                 url);
         }
+
     }
 }

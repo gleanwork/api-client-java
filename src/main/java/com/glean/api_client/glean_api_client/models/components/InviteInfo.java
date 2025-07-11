@@ -23,7 +23,6 @@ import java.util.Optional;
  * <p>Information regarding the invite status of a person.
  */
 public class InviteInfo {
-
     /**
      * The time this person signed up in ISO format (ISO 8601).
      */
@@ -37,6 +36,7 @@ public class InviteInfo {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("invites")
     private Optional<? extends List<ChannelInviteInfo>> invites;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("inviter")
@@ -82,7 +82,8 @@ public class InviteInfo {
     }
     
     public InviteInfo() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -130,9 +131,10 @@ public class InviteInfo {
         return reminderTime;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The time this person signed up in ISO format (ISO 8601).
@@ -142,6 +144,7 @@ public class InviteInfo {
         this.signUpTime = Optional.ofNullable(signUpTime);
         return this;
     }
+
 
     /**
      * The time this person signed up in ISO format (ISO 8601).
@@ -161,6 +164,7 @@ public class InviteInfo {
         return this;
     }
 
+
     /**
      * Latest invites received by the user for each channel
      */
@@ -175,6 +179,7 @@ public class InviteInfo {
         this.inviter = Optional.ofNullable(inviter);
         return this;
     }
+
 
     public InviteInfo withInviter(Optional<? extends Person> inviter) {
         Utils.checkNotNull(inviter, "inviter");
@@ -193,6 +198,7 @@ public class InviteInfo {
         this.inviteTime = Optional.ofNullable(inviteTime);
         return this;
     }
+
 
     /**
      * The time this person was invited in ISO format (ISO 8601).
@@ -218,6 +224,7 @@ public class InviteInfo {
         return this;
     }
 
+
     /**
      * The time this person was reminded in ISO format (ISO 8601) if a reminder was sent.
      * 
@@ -230,7 +237,6 @@ public class InviteInfo {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -251,11 +257,8 @@ public class InviteInfo {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            signUpTime,
-            invites,
-            inviter,
-            inviteTime,
-            reminderTime);
+            signUpTime, invites, inviter,
+            inviteTime, reminderTime);
     }
     
     @Override
@@ -267,24 +270,26 @@ public class InviteInfo {
                 "inviteTime", inviteTime,
                 "reminderTime", reminderTime);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<OffsetDateTime> signUpTime = Optional.empty();
- 
+
         private Optional<? extends List<ChannelInviteInfo>> invites = Optional.empty();
- 
+
         private Optional<? extends Person> inviter = Optional.empty();
- 
+
         @Deprecated
         private Optional<OffsetDateTime> inviteTime = Optional.empty();
- 
+
         @Deprecated
         private Optional<OffsetDateTime> reminderTime = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The time this person signed up in ISO format (ISO 8601).
@@ -304,6 +309,7 @@ public class InviteInfo {
             return this;
         }
 
+
         /**
          * Latest invites received by the user for each channel
          */
@@ -322,6 +328,7 @@ public class InviteInfo {
             return this;
         }
 
+
         public Builder inviter(Person inviter) {
             Utils.checkNotNull(inviter, "inviter");
             this.inviter = Optional.ofNullable(inviter);
@@ -333,6 +340,7 @@ public class InviteInfo {
             this.inviter = inviter;
             return this;
         }
+
 
         /**
          * The time this person was invited in ISO format (ISO 8601).
@@ -358,6 +366,7 @@ public class InviteInfo {
             return this;
         }
 
+
         /**
          * The time this person was reminded in ISO format (ISO 8601) if a reminder was sent.
          * 
@@ -381,14 +390,13 @@ public class InviteInfo {
             this.reminderTime = reminderTime;
             return this;
         }
-        
+
         public InviteInfo build() {
+
             return new InviteInfo(
-                signUpTime,
-                invites,
-                inviter,
-                inviteTime,
-                reminderTime);
+                signUpTime, invites, inviter,
+                inviteTime, reminderTime);
         }
+
     }
 }

@@ -11,8 +11,8 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 
-public class DeleteShortcutRequest {
 
+public class DeleteShortcutRequest {
     /**
      * The opaque id of the user generated content.
      */
@@ -34,9 +34,10 @@ public class DeleteShortcutRequest {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The opaque id of the user generated content.
@@ -47,7 +48,6 @@ public class DeleteShortcutRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -72,14 +72,16 @@ public class DeleteShortcutRequest {
         return Utils.toString(DeleteShortcutRequest.class,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long id;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The opaque id of the user generated content.
@@ -89,10 +91,12 @@ public class DeleteShortcutRequest {
             this.id = id;
             return this;
         }
-        
+
         public DeleteShortcutRequest build() {
+
             return new DeleteShortcutRequest(
                 id);
         }
+
     }
 }

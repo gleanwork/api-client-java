@@ -37,7 +37,7 @@ public class DownloadpolicycsvRequestBuilder {
     public DownloadpolicycsvResponse call() throws Exception {
         
         RequestOperation<DownloadpolicycsvRequest, DownloadpolicycsvResponse> operation
-              = new DownloadpolicycsvOperation( sdkConfiguration);
+              = new DownloadpolicycsvOperation(sdkConfiguration);
         DownloadpolicycsvRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

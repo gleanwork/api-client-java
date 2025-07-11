@@ -25,7 +25,6 @@ import java.util.Optional;
  * <p>Describes employee info
  */
 public class EmployeeInfoDefinition {
-
     /**
      * The employee's email
      */
@@ -304,7 +303,15 @@ public class EmployeeInfoDefinition {
     public EmployeeInfoDefinition(
             String email,
             String department) {
-        this(email, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), department, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(email, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), department,
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -533,9 +540,10 @@ public class EmployeeInfoDefinition {
         return (Optional<List<AdditionalFieldDefinition>>) additionalFields;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The employee's email
@@ -555,6 +563,7 @@ public class EmployeeInfoDefinition {
         return this;
     }
 
+
     /**
      * The first name of the employee. **Note**: The value cannot be empty
      */
@@ -572,6 +581,7 @@ public class EmployeeInfoDefinition {
         this.lastName = Optional.ofNullable(lastName);
         return this;
     }
+
 
     /**
      * The last name of the employee. **Note**: The value cannot be empty
@@ -591,6 +601,7 @@ public class EmployeeInfoDefinition {
         return this;
     }
 
+
     /**
      * The preferred name or nickname of the employee
      */
@@ -609,6 +620,7 @@ public class EmployeeInfoDefinition {
         return this;
     }
 
+
     /**
      * **[Advanced]** A unique universal internal identifier for the employee. This is solely used for understanding manager relationships along with `managerId`.
      */
@@ -626,6 +638,7 @@ public class EmployeeInfoDefinition {
         this.phoneNumber = Optional.ofNullable(phoneNumber);
         return this;
     }
+
 
     /**
      * The employee's phone number.
@@ -648,6 +661,7 @@ public class EmployeeInfoDefinition {
         return this;
     }
 
+
     /**
      * The employee's location (city/office name etc).
      * 
@@ -669,6 +683,7 @@ public class EmployeeInfoDefinition {
         return this;
     }
 
+
     /**
      * Detailed location with information about country, state, city etc.
      */
@@ -686,6 +701,7 @@ public class EmployeeInfoDefinition {
         this.title = Optional.ofNullable(title);
         return this;
     }
+
 
     /**
      * The employee's role title.
@@ -705,6 +721,7 @@ public class EmployeeInfoDefinition {
         return this;
     }
 
+
     /**
      * The employee's profile pic
      */
@@ -722,6 +739,7 @@ public class EmployeeInfoDefinition {
         this.businessUnit = Optional.ofNullable(businessUnit);
         return this;
     }
+
 
     /**
      * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
@@ -750,6 +768,7 @@ public class EmployeeInfoDefinition {
         return this;
     }
 
+
     /**
      * The datasource profiles of the employee, e.g. `Slack`,`Github`.
      */
@@ -767,6 +786,7 @@ public class EmployeeInfoDefinition {
         this.teams = Optional.ofNullable(teams);
         return this;
     }
+
 
     /**
      * Info about the employee's team(s)
@@ -786,6 +806,7 @@ public class EmployeeInfoDefinition {
         return this;
     }
 
+
     /**
      * The date when the employee started
      */
@@ -803,6 +824,7 @@ public class EmployeeInfoDefinition {
         this.endDate = Optional.ofNullable(endDate);
         return this;
     }
+
 
     /**
      * If a former employee, the last date of employment.
@@ -822,6 +844,7 @@ public class EmployeeInfoDefinition {
         return this;
     }
 
+
     /**
      * Short biography or mission statement of the employee.
      */
@@ -839,6 +862,7 @@ public class EmployeeInfoDefinition {
         this.pronoun = Optional.ofNullable(pronoun);
         return this;
     }
+
 
     /**
      * She/her, He/his or other pronoun.
@@ -858,6 +882,7 @@ public class EmployeeInfoDefinition {
         return this;
     }
 
+
     /**
      * Other names associated with the employee.
      */
@@ -875,6 +900,7 @@ public class EmployeeInfoDefinition {
         this.profileUrl = Optional.ofNullable(profileUrl);
         return this;
     }
+
 
     /**
      * Link to internal company person profile.
@@ -894,6 +920,7 @@ public class EmployeeInfoDefinition {
         return this;
     }
 
+
     /**
      * List of social network profiles.
      */
@@ -911,6 +938,7 @@ public class EmployeeInfoDefinition {
         this.managerEmail = Optional.ofNullable(managerEmail);
         return this;
     }
+
 
     /**
      * The email of the employee's manager
@@ -930,6 +958,7 @@ public class EmployeeInfoDefinition {
         return this;
     }
 
+
     /**
      * **[Advanced]** A unique universal internal identifier for the employee's manager. This is solely used in conjunction with `id`.
      */
@@ -947,6 +976,7 @@ public class EmployeeInfoDefinition {
         this.type = Optional.ofNullable(type);
         return this;
     }
+
 
     /**
      * The type of the employee, an enum of `FULL_TIME`, `CONTRACTOR`, `NON_EMPLOYEE`
@@ -966,6 +996,7 @@ public class EmployeeInfoDefinition {
         return this;
     }
 
+
     /**
      * List of unidirectional relationships with other employees. E.g. this employee (`A`) is a CHIEF_OF_STAFF to another employee (`B`); or this employee (`A`) is an EXECUTIVE_ASSISTANT of another employee (`C`). The mapping should be attached to `A`'s profile.
      */
@@ -983,6 +1014,7 @@ public class EmployeeInfoDefinition {
         this.status = Optional.ofNullable(status);
         return this;
     }
+
 
     /**
      * The status of the employee, an enum of `CURRENT`, `FUTURE`, `EX`
@@ -1002,6 +1034,7 @@ public class EmployeeInfoDefinition {
         return this;
     }
 
+
     /**
      * List of additional fields with more information about the employee.
      */
@@ -1011,7 +1044,6 @@ public class EmployeeInfoDefinition {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1054,33 +1086,15 @@ public class EmployeeInfoDefinition {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            email,
-            firstName,
-            lastName,
-            preferredName,
-            id,
-            phoneNumber,
-            location,
-            structuredLocation,
-            title,
-            photoUrl,
-            businessUnit,
-            department,
-            datasourceProfiles,
-            teams,
-            startDate,
-            endDate,
-            bio,
-            pronoun,
-            alsoKnownAs,
-            profileUrl,
-            socialNetworks,
-            managerEmail,
-            managerId,
-            type,
-            relationships,
-            status,
-            additionalFields);
+            email, firstName, lastName,
+            preferredName, id, phoneNumber,
+            location, structuredLocation, title,
+            photoUrl, businessUnit, department,
+            datasourceProfiles, teams, startDate,
+            endDate, bio, pronoun,
+            alsoKnownAs, profileUrl, socialNetworks,
+            managerEmail, managerId, type,
+            relationships, status, additionalFields);
     }
     
     @Override
@@ -1114,67 +1128,69 @@ public class EmployeeInfoDefinition {
                 "status", status,
                 "additionalFields", additionalFields);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String email;
- 
+
         private Optional<String> firstName = Optional.empty();
- 
+
         private Optional<String> lastName = Optional.empty();
- 
+
         private Optional<String> preferredName = Optional.empty();
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> phoneNumber = Optional.empty();
- 
+
         @Deprecated
         private Optional<String> location = Optional.empty();
- 
+
         private Optional<? extends StructuredLocation> structuredLocation = Optional.empty();
- 
+
         private Optional<String> title = Optional.empty();
- 
+
         private Optional<String> photoUrl = Optional.empty();
- 
+
         private Optional<String> businessUnit = Optional.empty();
- 
+
         private String department;
- 
+
         private Optional<? extends List<DatasourceProfile>> datasourceProfiles = Optional.empty();
- 
+
         private Optional<? extends List<EmployeeTeamInfo>> teams = Optional.empty();
- 
+
         private Optional<LocalDate> startDate = Optional.empty();
- 
+
         private Optional<LocalDate> endDate = Optional.empty();
- 
+
         private Optional<String> bio = Optional.empty();
- 
+
         private Optional<String> pronoun = Optional.empty();
- 
+
         private Optional<? extends List<String>> alsoKnownAs = Optional.empty();
- 
+
         private Optional<String> profileUrl = Optional.empty();
- 
+
         private Optional<? extends List<SocialNetworkDefinition>> socialNetworks = Optional.empty();
- 
+
         private Optional<String> managerEmail = Optional.empty();
- 
+
         private Optional<String> managerId = Optional.empty();
- 
+
         private Optional<String> type;
- 
+
         private Optional<? extends List<EntityRelationship>> relationships = Optional.empty();
- 
+
         private Optional<String> status;
- 
+
         private Optional<? extends List<AdditionalFieldDefinition>> additionalFields = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The employee's email
@@ -1184,6 +1200,7 @@ public class EmployeeInfoDefinition {
             this.email = email;
             return this;
         }
+
 
         /**
          * The first name of the employee. **Note**: The value cannot be empty
@@ -1203,6 +1220,7 @@ public class EmployeeInfoDefinition {
             return this;
         }
 
+
         /**
          * The last name of the employee. **Note**: The value cannot be empty
          */
@@ -1220,6 +1238,7 @@ public class EmployeeInfoDefinition {
             this.lastName = lastName;
             return this;
         }
+
 
         /**
          * The preferred name or nickname of the employee
@@ -1239,6 +1258,7 @@ public class EmployeeInfoDefinition {
             return this;
         }
 
+
         /**
          * **[Advanced]** A unique universal internal identifier for the employee. This is solely used for understanding manager relationships along with `managerId`.
          */
@@ -1257,6 +1277,7 @@ public class EmployeeInfoDefinition {
             return this;
         }
 
+
         /**
          * The employee's phone number.
          */
@@ -1274,6 +1295,7 @@ public class EmployeeInfoDefinition {
             this.phoneNumber = phoneNumber;
             return this;
         }
+
 
         /**
          * The employee's location (city/office name etc).
@@ -1299,6 +1321,7 @@ public class EmployeeInfoDefinition {
             return this;
         }
 
+
         /**
          * Detailed location with information about country, state, city etc.
          */
@@ -1316,6 +1339,7 @@ public class EmployeeInfoDefinition {
             this.structuredLocation = structuredLocation;
             return this;
         }
+
 
         /**
          * The employee's role title.
@@ -1335,6 +1359,7 @@ public class EmployeeInfoDefinition {
             return this;
         }
 
+
         /**
          * The employee's profile pic
          */
@@ -1352,6 +1377,7 @@ public class EmployeeInfoDefinition {
             this.photoUrl = photoUrl;
             return this;
         }
+
 
         /**
          * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
@@ -1371,6 +1397,7 @@ public class EmployeeInfoDefinition {
             return this;
         }
 
+
         /**
          * An organizational unit where everyone has a similar task, e.g. `Engineering`.
          */
@@ -1379,6 +1406,7 @@ public class EmployeeInfoDefinition {
             this.department = department;
             return this;
         }
+
 
         /**
          * The datasource profiles of the employee, e.g. `Slack`,`Github`.
@@ -1398,6 +1426,7 @@ public class EmployeeInfoDefinition {
             return this;
         }
 
+
         /**
          * Info about the employee's team(s)
          */
@@ -1415,6 +1444,7 @@ public class EmployeeInfoDefinition {
             this.teams = teams;
             return this;
         }
+
 
         /**
          * The date when the employee started
@@ -1434,6 +1464,7 @@ public class EmployeeInfoDefinition {
             return this;
         }
 
+
         /**
          * If a former employee, the last date of employment.
          */
@@ -1451,6 +1482,7 @@ public class EmployeeInfoDefinition {
             this.endDate = endDate;
             return this;
         }
+
 
         /**
          * Short biography or mission statement of the employee.
@@ -1470,6 +1502,7 @@ public class EmployeeInfoDefinition {
             return this;
         }
 
+
         /**
          * She/her, He/his or other pronoun.
          */
@@ -1487,6 +1520,7 @@ public class EmployeeInfoDefinition {
             this.pronoun = pronoun;
             return this;
         }
+
 
         /**
          * Other names associated with the employee.
@@ -1506,6 +1540,7 @@ public class EmployeeInfoDefinition {
             return this;
         }
 
+
         /**
          * Link to internal company person profile.
          */
@@ -1523,6 +1558,7 @@ public class EmployeeInfoDefinition {
             this.profileUrl = profileUrl;
             return this;
         }
+
 
         /**
          * List of social network profiles.
@@ -1542,6 +1578,7 @@ public class EmployeeInfoDefinition {
             return this;
         }
 
+
         /**
          * The email of the employee's manager
          */
@@ -1559,6 +1596,7 @@ public class EmployeeInfoDefinition {
             this.managerEmail = managerEmail;
             return this;
         }
+
 
         /**
          * **[Advanced]** A unique universal internal identifier for the employee's manager. This is solely used in conjunction with `id`.
@@ -1578,6 +1616,7 @@ public class EmployeeInfoDefinition {
             return this;
         }
 
+
         /**
          * The type of the employee, an enum of `FULL_TIME`, `CONTRACTOR`, `NON_EMPLOYEE`
          */
@@ -1595,6 +1634,7 @@ public class EmployeeInfoDefinition {
             this.type = type;
             return this;
         }
+
 
         /**
          * List of unidirectional relationships with other employees. E.g. this employee (`A`) is a CHIEF_OF_STAFF to another employee (`B`); or this employee (`A`) is an EXECUTIVE_ASSISTANT of another employee (`C`). The mapping should be attached to `A`'s profile.
@@ -1614,6 +1654,7 @@ public class EmployeeInfoDefinition {
             return this;
         }
 
+
         /**
          * The status of the employee, an enum of `CURRENT`, `FUTURE`, `EX`
          */
@@ -1632,6 +1673,7 @@ public class EmployeeInfoDefinition {
             return this;
         }
 
+
         /**
          * List of additional fields with more information about the employee.
          */
@@ -1649,7 +1691,7 @@ public class EmployeeInfoDefinition {
             this.additionalFields = additionalFields;
             return this;
         }
-        
+
         public EmployeeInfoDefinition build() {
             if (type == null) {
                 type = _SINGLETON_VALUE_Type.value();
@@ -1657,35 +1699,19 @@ public class EmployeeInfoDefinition {
             if (status == null) {
                 status = _SINGLETON_VALUE_Status.value();
             }
+
             return new EmployeeInfoDefinition(
-                email,
-                firstName,
-                lastName,
-                preferredName,
-                id,
-                phoneNumber,
-                location,
-                structuredLocation,
-                title,
-                photoUrl,
-                businessUnit,
-                department,
-                datasourceProfiles,
-                teams,
-                startDate,
-                endDate,
-                bio,
-                pronoun,
-                alsoKnownAs,
-                profileUrl,
-                socialNetworks,
-                managerEmail,
-                managerId,
-                type,
-                relationships,
-                status,
-                additionalFields);
+                email, firstName, lastName,
+                preferredName, id, phoneNumber,
+                location, structuredLocation, title,
+                photoUrl, businessUnit, department,
+                datasourceProfiles, teams, startDate,
+                endDate, bio, pronoun,
+                alsoKnownAs, profileUrl, socialNetworks,
+                managerEmail, managerId, type,
+                relationships, status, additionalFields);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Type =
                 new LazySingletonValue<>(

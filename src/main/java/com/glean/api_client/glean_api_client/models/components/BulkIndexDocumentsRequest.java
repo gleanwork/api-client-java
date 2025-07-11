@@ -21,7 +21,6 @@ import java.util.Optional;
  * <p>Describes the request body of the /bulkindexdocuments API call
  */
 public class BulkIndexDocumentsRequest {
-
     /**
      * Unique id that must be used for this bulk upload instance
      */
@@ -97,7 +96,9 @@ public class BulkIndexDocumentsRequest {
             String uploadId,
             String datasource,
             List<DocumentDefinition> documents) {
-        this(uploadId, Optional.empty(), Optional.empty(), Optional.empty(), datasource, documents, Optional.empty());
+        this(uploadId, Optional.empty(), Optional.empty(),
+            Optional.empty(), datasource, documents,
+            Optional.empty());
     }
 
     /**
@@ -156,9 +157,10 @@ public class BulkIndexDocumentsRequest {
         return disableStaleDocumentDeletionCheck;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unique id that must be used for this bulk upload instance
@@ -178,6 +180,7 @@ public class BulkIndexDocumentsRequest {
         return this;
     }
 
+
     /**
      * true if this is the first page of the upload. Defaults to false
      */
@@ -196,6 +199,7 @@ public class BulkIndexDocumentsRequest {
         return this;
     }
 
+
     /**
      * true if this is the last page of the upload. Defaults to false
      */
@@ -213,6 +217,7 @@ public class BulkIndexDocumentsRequest {
         this.forceRestartUpload = Optional.ofNullable(forceRestartUpload);
         return this;
     }
+
 
     /**
      * Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true
@@ -250,6 +255,7 @@ public class BulkIndexDocumentsRequest {
         return this;
     }
 
+
     /**
      * True if older documents need to be force deleted after the upload completes. Defaults to older documents being deleted asynchronously. This must only be set when `isLastPage = true`
      */
@@ -259,7 +265,6 @@ public class BulkIndexDocumentsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -282,12 +287,8 @@ public class BulkIndexDocumentsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            uploadId,
-            isFirstPage,
-            isLastPage,
-            forceRestartUpload,
-            datasource,
-            documents,
+            uploadId, isFirstPage, isLastPage,
+            forceRestartUpload, datasource, documents,
             disableStaleDocumentDeletionCheck);
     }
     
@@ -302,26 +303,28 @@ public class BulkIndexDocumentsRequest {
                 "documents", documents,
                 "disableStaleDocumentDeletionCheck", disableStaleDocumentDeletionCheck);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String uploadId;
- 
+
         private Optional<Boolean> isFirstPage = Optional.empty();
- 
+
         private Optional<Boolean> isLastPage = Optional.empty();
- 
+
         private Optional<Boolean> forceRestartUpload = Optional.empty();
- 
+
         private String datasource;
- 
+
         private List<DocumentDefinition> documents;
- 
+
         private Optional<Boolean> disableStaleDocumentDeletionCheck = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unique id that must be used for this bulk upload instance
@@ -331,6 +334,7 @@ public class BulkIndexDocumentsRequest {
             this.uploadId = uploadId;
             return this;
         }
+
 
         /**
          * true if this is the first page of the upload. Defaults to false
@@ -350,6 +354,7 @@ public class BulkIndexDocumentsRequest {
             return this;
         }
 
+
         /**
          * true if this is the last page of the upload. Defaults to false
          */
@@ -367,6 +372,7 @@ public class BulkIndexDocumentsRequest {
             this.isLastPage = isLastPage;
             return this;
         }
+
 
         /**
          * Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true
@@ -386,6 +392,7 @@ public class BulkIndexDocumentsRequest {
             return this;
         }
 
+
         /**
          * Datasource of the documents
          */
@@ -395,6 +402,7 @@ public class BulkIndexDocumentsRequest {
             return this;
         }
 
+
         /**
          * Batch of documents for the datasource
          */
@@ -403,6 +411,7 @@ public class BulkIndexDocumentsRequest {
             this.documents = documents;
             return this;
         }
+
 
         /**
          * True if older documents need to be force deleted after the upload completes. Defaults to older documents being deleted asynchronously. This must only be set when `isLastPage = true`
@@ -421,16 +430,14 @@ public class BulkIndexDocumentsRequest {
             this.disableStaleDocumentDeletionCheck = disableStaleDocumentDeletionCheck;
             return this;
         }
-        
+
         public BulkIndexDocumentsRequest build() {
+
             return new BulkIndexDocumentsRequest(
-                uploadId,
-                isFirstPage,
-                isLastPage,
-                forceRestartUpload,
-                datasource,
-                documents,
+                uploadId, isFirstPage, isLastPage,
+                forceRestartUpload, datasource, documents,
                 disableStaleDocumentDeletionCheck);
         }
+
     }
 }

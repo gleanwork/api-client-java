@@ -36,7 +36,7 @@ public class PostApiIndexV1ProcessallmembershipsRequestBuilder {
     public PostApiIndexV1ProcessallmembershipsResponse call() throws Exception {
         
         RequestOperation<Optional<? extends ProcessAllMembershipsRequest>, PostApiIndexV1ProcessallmembershipsResponse> operation
-              = new PostApiIndexV1ProcessallmembershipsOperation( sdkConfiguration);
+              = new PostApiIndexV1ProcessallmembershipsOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

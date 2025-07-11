@@ -29,7 +29,7 @@ public class GetshortcutRequestBuilder {
     public GetshortcutResponse call() throws Exception {
         
         RequestOperation<GetShortcutRequestUnion, GetshortcutResponse> operation
-              = new GetshortcutOperation( sdkConfiguration);
+              = new GetshortcutOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

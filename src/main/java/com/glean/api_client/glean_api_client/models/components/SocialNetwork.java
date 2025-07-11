@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class SocialNetwork {
 
+public class SocialNetwork {
     /**
      * Possible values are "twitter", "linkedin".
      */
@@ -77,9 +77,10 @@ public class SocialNetwork {
         return profileUrl;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Possible values are "twitter", "linkedin".
@@ -99,6 +100,7 @@ public class SocialNetwork {
         return this;
     }
 
+
     /**
      * Human-readable profile name.
      */
@@ -117,7 +119,6 @@ public class SocialNetwork {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -136,9 +137,7 @@ public class SocialNetwork {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            profileName,
-            profileUrl);
+            name, profileName, profileUrl);
     }
     
     @Override
@@ -148,18 +147,20 @@ public class SocialNetwork {
                 "profileName", profileName,
                 "profileUrl", profileUrl);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
- 
+
         private Optional<String> profileName = Optional.empty();
- 
+
         private String profileUrl;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Possible values are "twitter", "linkedin".
@@ -169,6 +170,7 @@ public class SocialNetwork {
             this.name = name;
             return this;
         }
+
 
         /**
          * Human-readable profile name.
@@ -188,6 +190,7 @@ public class SocialNetwork {
             return this;
         }
 
+
         /**
          * Link to profile.
          */
@@ -196,12 +199,12 @@ public class SocialNetwork {
             this.profileUrl = profileUrl;
             return this;
         }
-        
+
         public SocialNetwork build() {
+
             return new SocialNetwork(
-                name,
-                profileName,
-                profileUrl);
+                name, profileName, profileUrl);
         }
+
     }
 }

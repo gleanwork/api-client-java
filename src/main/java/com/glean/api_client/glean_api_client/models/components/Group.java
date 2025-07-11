@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class Group {
 
+public class Group {
     /**
      * The type of user group
      */
@@ -77,9 +77,10 @@ public class Group {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The type of user group
@@ -108,6 +109,7 @@ public class Group {
         return this;
     }
 
+
     /**
      * Name of the group.
      */
@@ -117,7 +119,6 @@ public class Group {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -136,9 +137,7 @@ public class Group {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            id,
-            name);
+            type, id, name);
     }
     
     @Override
@@ -148,18 +147,20 @@ public class Group {
                 "id", id,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private GroupType type;
- 
+
         private String id;
- 
+
         private Optional<String> name = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The type of user group
@@ -170,6 +171,7 @@ public class Group {
             return this;
         }
 
+
         /**
          * A unique identifier for the group. May be the same as name.
          */
@@ -178,6 +180,7 @@ public class Group {
             this.id = id;
             return this;
         }
+
 
         /**
          * Name of the group.
@@ -196,12 +199,12 @@ public class Group {
             this.name = name;
             return this;
         }
-        
+
         public Group build() {
+
             return new Group(
-                type,
-                id,
-                name);
+                type, id, name);
         }
+
     }
 }

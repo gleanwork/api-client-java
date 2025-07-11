@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.Map;
 import java.util.Optional;
 
-public class GetDocumentsResponse {
 
+public class GetDocumentsResponse {
     /**
      * The document details or the error if document is not found.
      */
@@ -44,9 +44,10 @@ public class GetDocumentsResponse {
         return (Optional<Map<String, DocumentOrErrorUnion>>) documents;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The document details or the error if document is not found.
@@ -57,6 +58,7 @@ public class GetDocumentsResponse {
         return this;
     }
 
+
     /**
      * The document details or the error if document is not found.
      */
@@ -66,7 +68,6 @@ public class GetDocumentsResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,14 +92,16 @@ public class GetDocumentsResponse {
         return Utils.toString(GetDocumentsResponse.class,
                 "documents", documents);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Map<String, DocumentOrErrorUnion>> documents = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The document details or the error if document is not found.
@@ -117,10 +120,12 @@ public class GetDocumentsResponse {
             this.documents = documents;
             return this;
         }
-        
+
         public GetDocumentsResponse build() {
+
             return new GetDocumentsResponse(
                 documents);
         }
+
     }
 }

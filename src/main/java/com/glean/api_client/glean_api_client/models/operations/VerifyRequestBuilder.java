@@ -29,7 +29,7 @@ public class VerifyRequestBuilder {
     public VerifyResponse call() throws Exception {
         
         RequestOperation<VerifyRequest, VerifyResponse> operation
-              = new VerifyOperation( sdkConfiguration);
+              = new VerifyOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

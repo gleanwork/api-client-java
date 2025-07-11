@@ -40,7 +40,6 @@ public class Policies {
     Policies(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Gets specified policy
      * 
@@ -85,10 +84,9 @@ public class Policies {
                 .version(version)
                 .build();
         RequestOperation<GetpolicyRequest, GetpolicyResponse> operation
-              = new GetpolicyOperation( sdkConfiguration);
+              = new GetpolicyOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Updates an existing policy
@@ -121,10 +119,9 @@ public class Policies {
                 .updateDlpReportRequest(updateDlpReportRequest)
                 .build();
         RequestOperation<UpdatepolicyRequest, UpdatepolicyResponse> operation
-              = new UpdatepolicyOperation( sdkConfiguration);
+              = new UpdatepolicyOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Lists policies
@@ -169,10 +166,9 @@ public class Policies {
                 .frequency(frequency)
                 .build();
         RequestOperation<ListpoliciesRequest, ListpoliciesResponse> operation
-              = new ListpoliciesOperation( sdkConfiguration);
+              = new ListpoliciesOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Creates new policy
@@ -194,13 +190,11 @@ public class Policies {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreatepolicyResponse create(
-            CreateDlpReportRequest request) throws Exception {
+    public CreatepolicyResponse create(CreateDlpReportRequest request) throws Exception {
         RequestOperation<CreateDlpReportRequest, CreatepolicyResponse> operation
-              = new CreatepolicyOperation( sdkConfiguration);
+              = new CreatepolicyOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Downloads violations CSV for policy
@@ -222,15 +216,14 @@ public class Policies {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DownloadpolicycsvResponse download(
-            String id) throws Exception {
+    public DownloadpolicycsvResponse download(String id) throws Exception {
         DownloadpolicycsvRequest request =
             DownloadpolicycsvRequest
                 .builder()
                 .id(id)
                 .build();
         RequestOperation<DownloadpolicycsvRequest, DownloadpolicycsvResponse> operation
-              = new DownloadpolicycsvOperation( sdkConfiguration);
+              = new DownloadpolicycsvOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

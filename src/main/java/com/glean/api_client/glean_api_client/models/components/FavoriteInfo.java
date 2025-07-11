@@ -16,6 +16,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class FavoriteInfo {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -60,7 +61,8 @@ public class FavoriteInfo {
     }
     
     public FavoriteInfo() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -93,15 +95,17 @@ public class FavoriteInfo {
         return favoritedByUser;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public FavoriteInfo withUgcType(UgcType ugcType) {
         Utils.checkNotNull(ugcType, "ugcType");
         this.ugcType = Optional.ofNullable(ugcType);
         return this;
     }
+
 
     public FavoriteInfo withUgcType(Optional<? extends UgcType> ugcType) {
         Utils.checkNotNull(ugcType, "ugcType");
@@ -117,6 +121,7 @@ public class FavoriteInfo {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * Opaque id of the UGC.
@@ -136,6 +141,7 @@ public class FavoriteInfo {
         return this;
     }
 
+
     /**
      * Number of users this object has been favorited by.
      */
@@ -154,6 +160,7 @@ public class FavoriteInfo {
         return this;
     }
 
+
     /**
      * If the requesting user has favorited this object.
      */
@@ -163,7 +170,6 @@ public class FavoriteInfo {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -183,9 +189,7 @@ public class FavoriteInfo {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            ugcType,
-            id,
-            count,
+            ugcType, id, count,
             favoritedByUser);
     }
     
@@ -197,20 +201,22 @@ public class FavoriteInfo {
                 "count", count,
                 "favoritedByUser", favoritedByUser);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends UgcType> ugcType = Optional.empty();
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<Long> count = Optional.empty();
- 
+
         private Optional<Boolean> favoritedByUser = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder ugcType(UgcType ugcType) {
             Utils.checkNotNull(ugcType, "ugcType");
@@ -223,6 +229,7 @@ public class FavoriteInfo {
             this.ugcType = ugcType;
             return this;
         }
+
 
         /**
          * Opaque id of the UGC.
@@ -242,6 +249,7 @@ public class FavoriteInfo {
             return this;
         }
 
+
         /**
          * Number of users this object has been favorited by.
          */
@@ -260,6 +268,7 @@ public class FavoriteInfo {
             return this;
         }
 
+
         /**
          * If the requesting user has favorited this object.
          */
@@ -277,13 +286,13 @@ public class FavoriteInfo {
             this.favoritedByUser = favoritedByUser;
             return this;
         }
-        
+
         public FavoriteInfo build() {
+
             return new FavoriteInfo(
-                ugcType,
-                id,
-                count,
+                ugcType, id, count,
                 favoritedByUser);
         }
+
     }
 }

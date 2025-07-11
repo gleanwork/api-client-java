@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class GetPinRequest {
 
+public class GetPinRequest {
     /**
      * The opaque id of the pin to be fetched.
      */
@@ -41,9 +41,10 @@ public class GetPinRequest {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The opaque id of the pin to be fetched.
@@ -54,6 +55,7 @@ public class GetPinRequest {
         return this;
     }
 
+
     /**
      * The opaque id of the pin to be fetched.
      */
@@ -63,7 +65,6 @@ public class GetPinRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -88,14 +89,16 @@ public class GetPinRequest {
         return Utils.toString(GetPinRequest.class,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The opaque id of the pin to be fetched.
@@ -114,10 +117,12 @@ public class GetPinRequest {
             this.id = id;
             return this;
         }
-        
+
         public GetPinRequest build() {
+
             return new GetPinRequest(
                 id);
         }
+
     }
 }

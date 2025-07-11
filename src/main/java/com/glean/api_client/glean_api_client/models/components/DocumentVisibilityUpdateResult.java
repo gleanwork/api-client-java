@@ -15,6 +15,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class DocumentVisibilityUpdateResult {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -74,15 +75,17 @@ public class DocumentVisibilityUpdateResult {
         return success;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public DocumentVisibilityUpdateResult withDocId(String docId) {
         Utils.checkNotNull(docId, "docId");
         this.docId = Optional.ofNullable(docId);
         return this;
     }
+
 
     public DocumentVisibilityUpdateResult withDocId(Optional<String> docId) {
         Utils.checkNotNull(docId, "docId");
@@ -98,6 +101,7 @@ public class DocumentVisibilityUpdateResult {
         this.override = Optional.ofNullable(override);
         return this;
     }
+
 
     /**
      * The visibility-override state of the document.
@@ -117,6 +121,7 @@ public class DocumentVisibilityUpdateResult {
         return this;
     }
 
+
     /**
      * Whether this document was successfully set to its desired visibility state.
      */
@@ -126,7 +131,6 @@ public class DocumentVisibilityUpdateResult {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -145,9 +149,7 @@ public class DocumentVisibilityUpdateResult {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            docId,
-            override,
-            success);
+            docId, override, success);
     }
     
     @Override
@@ -157,18 +159,20 @@ public class DocumentVisibilityUpdateResult {
                 "override", override,
                 "success", success);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> docId = Optional.empty();
- 
+
         private Optional<? extends DocumentVisibilityUpdateResultOverride> override = Optional.empty();
- 
+
         private Optional<Boolean> success = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder docId(String docId) {
             Utils.checkNotNull(docId, "docId");
@@ -181,6 +185,7 @@ public class DocumentVisibilityUpdateResult {
             this.docId = docId;
             return this;
         }
+
 
         /**
          * The visibility-override state of the document.
@@ -200,6 +205,7 @@ public class DocumentVisibilityUpdateResult {
             return this;
         }
 
+
         /**
          * Whether this document was successfully set to its desired visibility state.
          */
@@ -217,12 +223,12 @@ public class DocumentVisibilityUpdateResult {
             this.success = success;
             return this;
         }
-        
+
         public DocumentVisibilityUpdateResult build() {
+
             return new DocumentVisibilityUpdateResult(
-                docId,
-                override,
-                success);
+                docId, override, success);
         }
+
     }
 }

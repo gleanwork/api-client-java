@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>Describes the agent that executes the request.
  */
 public class AgentConfig {
-
     /**
      * Name of the agent.
      */
@@ -67,9 +66,10 @@ public class AgentConfig {
         return (Optional<Mode>) mode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Name of the agent.
@@ -79,6 +79,7 @@ public class AgentConfig {
         this.agent = Optional.ofNullable(agent);
         return this;
     }
+
 
     /**
      * Name of the agent.
@@ -98,6 +99,7 @@ public class AgentConfig {
         return this;
     }
 
+
     /**
      * Top level modes to run GleanChat in.
      */
@@ -107,7 +109,6 @@ public class AgentConfig {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -125,8 +126,7 @@ public class AgentConfig {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            agent,
-            mode);
+            agent, mode);
     }
     
     @Override
@@ -135,16 +135,18 @@ public class AgentConfig {
                 "agent", agent,
                 "mode", mode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends AgentEnum> agent = Optional.empty();
- 
+
         private Optional<? extends Mode> mode = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Name of the agent.
@@ -164,6 +166,7 @@ public class AgentConfig {
             return this;
         }
 
+
         /**
          * Top level modes to run GleanChat in.
          */
@@ -181,11 +184,12 @@ public class AgentConfig {
             this.mode = mode;
             return this;
         }
-        
+
         public AgentConfig build() {
+
             return new AgentConfig(
-                agent,
-                mode);
+                agent, mode);
         }
+
     }
 }

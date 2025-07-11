@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class CollectionPinnedMetadata {
 
+public class CollectionPinnedMetadata {
     /**
      * List of targets this Collection is pinned to.
      */
@@ -63,9 +63,10 @@ public class CollectionPinnedMetadata {
         return (Optional<List<CollectionPinMetadata>>) eligiblePins;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * List of targets this Collection is pinned to.
@@ -75,6 +76,7 @@ public class CollectionPinnedMetadata {
         this.existingPins = Optional.ofNullable(existingPins);
         return this;
     }
+
 
     /**
      * List of targets this Collection is pinned to.
@@ -94,6 +96,7 @@ public class CollectionPinnedMetadata {
         return this;
     }
 
+
     /**
      * List of targets this Collection can be pinned to, excluding the targets this Collection is already pinned to. We also include Collection ID already is pinned to each eligible target, which will be 0 if the target has no pinned Collection.
      */
@@ -103,7 +106,6 @@ public class CollectionPinnedMetadata {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -121,8 +123,7 @@ public class CollectionPinnedMetadata {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            existingPins,
-            eligiblePins);
+            existingPins, eligiblePins);
     }
     
     @Override
@@ -131,16 +132,18 @@ public class CollectionPinnedMetadata {
                 "existingPins", existingPins,
                 "eligiblePins", eligiblePins);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<CollectionPinTarget>> existingPins = Optional.empty();
- 
+
         private Optional<? extends List<CollectionPinMetadata>> eligiblePins = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * List of targets this Collection is pinned to.
@@ -160,6 +163,7 @@ public class CollectionPinnedMetadata {
             return this;
         }
 
+
         /**
          * List of targets this Collection can be pinned to, excluding the targets this Collection is already pinned to. We also include Collection ID already is pinned to each eligible target, which will be 0 if the target has no pinned Collection.
          */
@@ -177,11 +181,12 @@ public class CollectionPinnedMetadata {
             this.eligiblePins = eligiblePins;
             return this;
         }
-        
+
         public CollectionPinnedMetadata build() {
+
             return new CollectionPinnedMetadata(
-                existingPins,
-                eligiblePins);
+                existingPins, eligiblePins);
         }
+
     }
 }

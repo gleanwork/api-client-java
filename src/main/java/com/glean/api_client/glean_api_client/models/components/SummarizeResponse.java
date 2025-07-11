@@ -14,11 +14,13 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class SummarizeResponse {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private Optional<? extends Error> error;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("summary")
@@ -68,15 +70,17 @@ public class SummarizeResponse {
         return trackingToken;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public SummarizeResponse withError(Error error) {
         Utils.checkNotNull(error, "error");
         this.error = Optional.ofNullable(error);
         return this;
     }
+
 
     public SummarizeResponse withError(Optional<? extends Error> error) {
         Utils.checkNotNull(error, "error");
@@ -89,6 +93,7 @@ public class SummarizeResponse {
         this.summary = Optional.ofNullable(summary);
         return this;
     }
+
 
     public SummarizeResponse withSummary(Optional<? extends Summary> summary) {
         Utils.checkNotNull(summary, "summary");
@@ -105,6 +110,7 @@ public class SummarizeResponse {
         return this;
     }
 
+
     /**
      * An opaque token that represents this summary in this particular query. To be used for /feedback reporting.
      */
@@ -114,7 +120,6 @@ public class SummarizeResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -133,9 +138,7 @@ public class SummarizeResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            error,
-            summary,
-            trackingToken);
+            error, summary, trackingToken);
     }
     
     @Override
@@ -145,18 +148,20 @@ public class SummarizeResponse {
                 "summary", summary,
                 "trackingToken", trackingToken);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Error> error = Optional.empty();
- 
+
         private Optional<? extends Summary> summary = Optional.empty();
- 
+
         private Optional<String> trackingToken = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder error(Error error) {
             Utils.checkNotNull(error, "error");
@@ -170,6 +175,7 @@ public class SummarizeResponse {
             return this;
         }
 
+
         public Builder summary(Summary summary) {
             Utils.checkNotNull(summary, "summary");
             this.summary = Optional.ofNullable(summary);
@@ -181,6 +187,7 @@ public class SummarizeResponse {
             this.summary = summary;
             return this;
         }
+
 
         /**
          * An opaque token that represents this summary in this particular query. To be used for /feedback reporting.
@@ -199,12 +206,12 @@ public class SummarizeResponse {
             this.trackingToken = trackingToken;
             return this;
         }
-        
+
         public SummarizeResponse build() {
+
             return new SummarizeResponse(
-                error,
-                summary,
-                trackingToken);
+                error, summary, trackingToken);
         }
+
     }
 }

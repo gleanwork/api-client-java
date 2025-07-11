@@ -14,8 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class DebugDatasourceStatusIdentityResponseComponentCounts {
 
+public class DebugDatasourceStatusIdentityResponseComponentCounts {
     /**
      * The number of users/groups/memberships uploaded
      */
@@ -42,9 +42,10 @@ public class DebugDatasourceStatusIdentityResponseComponentCounts {
         return uploaded;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The number of users/groups/memberships uploaded
@@ -55,6 +56,7 @@ public class DebugDatasourceStatusIdentityResponseComponentCounts {
         return this;
     }
 
+
     /**
      * The number of users/groups/memberships uploaded
      */
@@ -64,7 +66,6 @@ public class DebugDatasourceStatusIdentityResponseComponentCounts {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -89,14 +90,16 @@ public class DebugDatasourceStatusIdentityResponseComponentCounts {
         return Utils.toString(DebugDatasourceStatusIdentityResponseComponentCounts.class,
                 "uploaded", uploaded);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> uploaded = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The number of users/groups/memberships uploaded
@@ -115,10 +118,12 @@ public class DebugDatasourceStatusIdentityResponseComponentCounts {
             this.uploaded = uploaded;
             return this;
         }
-        
+
         public DebugDatasourceStatusIdentityResponseComponentCounts build() {
+
             return new DebugDatasourceStatusIdentityResponseComponentCounts(
                 uploaded);
         }
+
     }
 }

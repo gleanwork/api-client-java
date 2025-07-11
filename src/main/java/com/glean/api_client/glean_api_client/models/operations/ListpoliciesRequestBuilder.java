@@ -59,7 +59,7 @@ public class ListpoliciesRequestBuilder {
     public ListpoliciesResponse call() throws Exception {
         
         RequestOperation<ListpoliciesRequest, ListpoliciesResponse> operation
-              = new ListpoliciesOperation( sdkConfiguration);
+              = new ListpoliciesOperation(sdkConfiguration);
         ListpoliciesRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

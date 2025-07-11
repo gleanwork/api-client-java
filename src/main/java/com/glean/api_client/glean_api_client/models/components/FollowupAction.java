@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>A follow-up action that can be invoked by the user after a response. The action parameters are not included and need to be predicted/filled separately.
  */
 public class FollowupAction {
-
     /**
      * Unique identifier for this actionRun recommendation event.
      */
@@ -86,7 +85,8 @@ public class FollowupAction {
     }
     
     public FollowupAction() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -137,9 +137,10 @@ public class FollowupAction {
         return userConfirmationRequired;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unique identifier for this actionRun recommendation event.
@@ -149,6 +150,7 @@ public class FollowupAction {
         this.actionRunId = Optional.ofNullable(actionRunId);
         return this;
     }
+
 
     /**
      * Unique identifier for this actionRun recommendation event.
@@ -168,6 +170,7 @@ public class FollowupAction {
         return this;
     }
 
+
     /**
      * The ID of the action instance that will be invoked.
      */
@@ -185,6 +188,7 @@ public class FollowupAction {
         this.actionId = Optional.ofNullable(actionId);
         return this;
     }
+
 
     /**
      * The ID of the associated action.
@@ -204,6 +208,7 @@ public class FollowupAction {
         return this;
     }
 
+
     /**
      * Text to be displayed to the user when recommending the action instance.
      */
@@ -221,6 +226,7 @@ public class FollowupAction {
         this.actionLabel = Optional.ofNullable(actionLabel);
         return this;
     }
+
 
     /**
      * The label to be used when displaying a button to execute this action instance.
@@ -240,6 +246,7 @@ public class FollowupAction {
         return this;
     }
 
+
     /**
      * Whether user confirmation is needed before executing this action instance.
      */
@@ -249,7 +256,6 @@ public class FollowupAction {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -271,12 +277,8 @@ public class FollowupAction {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            actionRunId,
-            actionInstanceId,
-            actionId,
-            recommendationText,
-            actionLabel,
-            userConfirmationRequired);
+            actionRunId, actionInstanceId, actionId,
+            recommendationText, actionLabel, userConfirmationRequired);
     }
     
     @Override
@@ -289,24 +291,26 @@ public class FollowupAction {
                 "actionLabel", actionLabel,
                 "userConfirmationRequired", userConfirmationRequired);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> actionRunId = Optional.empty();
- 
+
         private Optional<String> actionInstanceId = Optional.empty();
- 
+
         private Optional<String> actionId = Optional.empty();
- 
+
         private Optional<String> recommendationText = Optional.empty();
- 
+
         private Optional<String> actionLabel = Optional.empty();
- 
+
         private Optional<Boolean> userConfirmationRequired = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unique identifier for this actionRun recommendation event.
@@ -326,6 +330,7 @@ public class FollowupAction {
             return this;
         }
 
+
         /**
          * The ID of the action instance that will be invoked.
          */
@@ -343,6 +348,7 @@ public class FollowupAction {
             this.actionInstanceId = actionInstanceId;
             return this;
         }
+
 
         /**
          * The ID of the associated action.
@@ -362,6 +368,7 @@ public class FollowupAction {
             return this;
         }
 
+
         /**
          * Text to be displayed to the user when recommending the action instance.
          */
@@ -379,6 +386,7 @@ public class FollowupAction {
             this.recommendationText = recommendationText;
             return this;
         }
+
 
         /**
          * The label to be used when displaying a button to execute this action instance.
@@ -398,6 +406,7 @@ public class FollowupAction {
             return this;
         }
 
+
         /**
          * Whether user confirmation is needed before executing this action instance.
          */
@@ -415,15 +424,13 @@ public class FollowupAction {
             this.userConfirmationRequired = userConfirmationRequired;
             return this;
         }
-        
+
         public FollowupAction build() {
+
             return new FollowupAction(
-                actionRunId,
-                actionInstanceId,
-                actionId,
-                recommendationText,
-                actionLabel,
-                userConfirmationRequired);
+                actionRunId, actionInstanceId, actionId,
+                recommendationText, actionLabel, userConfirmationRequired);
         }
+
     }
 }

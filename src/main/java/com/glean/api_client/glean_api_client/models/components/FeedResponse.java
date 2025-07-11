@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class FeedResponse {
 
+public class FeedResponse {
     /**
      * List of experiment ids for the corresponding request.
      */
@@ -38,6 +38,7 @@ public class FeedResponse {
      */
     @JsonProperty("serverTimestamp")
     private long serverTimestamp;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("results")
@@ -81,7 +82,8 @@ public class FeedResponse {
     
     public FeedResponse(
             long serverTimestamp) {
-        this(Optional.empty(), Optional.empty(), serverTimestamp, Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), serverTimestamp,
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -132,9 +134,10 @@ public class FeedResponse {
         return mentionsTimeWindowInHours;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * List of experiment ids for the corresponding request.
@@ -144,6 +147,7 @@ public class FeedResponse {
         this.experimentIds = Optional.ofNullable(experimentIds);
         return this;
     }
+
 
     /**
      * List of experiment ids for the corresponding request.
@@ -162,6 +166,7 @@ public class FeedResponse {
         this.trackingToken = Optional.ofNullable(trackingToken);
         return this;
     }
+
 
     /**
      * An opaque token that represents this particular feed response.
@@ -187,6 +192,7 @@ public class FeedResponse {
         return this;
     }
 
+
     public FeedResponse withResults(Optional<? extends List<FeedResult>> results) {
         Utils.checkNotNull(results, "results");
         this.results = results;
@@ -201,6 +207,7 @@ public class FeedResponse {
         this.facetResults = Optional.ofNullable(facetResults);
         return this;
     }
+
 
     /**
      * Map from category to the list of facets that can be used to filter the entry's content.
@@ -220,6 +227,7 @@ public class FeedResponse {
         return this;
     }
 
+
     /**
      * The time window (in hours) used for generating user mentions.
      */
@@ -229,7 +237,6 @@ public class FeedResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -251,12 +258,8 @@ public class FeedResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            experimentIds,
-            trackingToken,
-            serverTimestamp,
-            results,
-            facetResults,
-            mentionsTimeWindowInHours);
+            experimentIds, trackingToken, serverTimestamp,
+            results, facetResults, mentionsTimeWindowInHours);
     }
     
     @Override
@@ -269,24 +272,26 @@ public class FeedResponse {
                 "facetResults", facetResults,
                 "mentionsTimeWindowInHours", mentionsTimeWindowInHours);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<Long>> experimentIds = Optional.empty();
- 
+
         private Optional<String> trackingToken = Optional.empty();
- 
+
         private Long serverTimestamp;
- 
+
         private Optional<? extends List<FeedResult>> results = Optional.empty();
- 
+
         private Optional<? extends Map<String, List<FacetResult>>> facetResults = Optional.empty();
- 
+
         private Optional<Long> mentionsTimeWindowInHours = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * List of experiment ids for the corresponding request.
@@ -306,6 +311,7 @@ public class FeedResponse {
             return this;
         }
 
+
         /**
          * An opaque token that represents this particular feed response.
          */
@@ -324,6 +330,7 @@ public class FeedResponse {
             return this;
         }
 
+
         /**
          * Server unix timestamp (in seconds since epoch UTC).
          */
@@ -332,6 +339,7 @@ public class FeedResponse {
             this.serverTimestamp = serverTimestamp;
             return this;
         }
+
 
         public Builder results(List<FeedResult> results) {
             Utils.checkNotNull(results, "results");
@@ -344,6 +352,7 @@ public class FeedResponse {
             this.results = results;
             return this;
         }
+
 
         /**
          * Map from category to the list of facets that can be used to filter the entry's content.
@@ -363,6 +372,7 @@ public class FeedResponse {
             return this;
         }
 
+
         /**
          * The time window (in hours) used for generating user mentions.
          */
@@ -380,15 +390,13 @@ public class FeedResponse {
             this.mentionsTimeWindowInHours = mentionsTimeWindowInHours;
             return this;
         }
-        
+
         public FeedResponse build() {
+
             return new FeedResponse(
-                experimentIds,
-                trackingToken,
-                serverTimestamp,
-                results,
-                facetResults,
-                mentionsTimeWindowInHours);
+                experimentIds, trackingToken, serverTimestamp,
+                results, facetResults, mentionsTimeWindowInHours);
         }
+
     }
 }

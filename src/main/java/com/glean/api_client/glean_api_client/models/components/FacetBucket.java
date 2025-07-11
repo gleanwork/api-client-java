@@ -15,8 +15,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class FacetBucket {
 
+public class FacetBucket {
     /**
      * Estimated number of results in this facet.
      */
@@ -37,6 +37,7 @@ public class FacetBucket {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("percentage")
     private Optional<Long> percentage;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("value")
@@ -59,7 +60,8 @@ public class FacetBucket {
     }
     
     public FacetBucket() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -92,9 +94,10 @@ public class FacetBucket {
         return (Optional<FacetValue>) value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Estimated number of results in this facet.
@@ -104,6 +107,7 @@ public class FacetBucket {
         this.count = Optional.ofNullable(count);
         return this;
     }
+
 
     /**
      * Estimated number of results in this facet.
@@ -123,6 +127,7 @@ public class FacetBucket {
         return this;
     }
 
+
     /**
      * The datasource the value belongs to. This will be used by the all tab to show types across all datasources.
      */
@@ -141,6 +146,7 @@ public class FacetBucket {
         return this;
     }
 
+
     /**
      * Estimated percentage of results in this facet.
      */
@@ -156,13 +162,13 @@ public class FacetBucket {
         return this;
     }
 
+
     public FacetBucket withValue(Optional<? extends FacetValue> value) {
         Utils.checkNotNull(value, "value");
         this.value = value;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -182,9 +188,7 @@ public class FacetBucket {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            count,
-            datasource,
-            percentage,
+            count, datasource, percentage,
             value);
     }
     
@@ -196,20 +200,22 @@ public class FacetBucket {
                 "percentage", percentage,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> count = Optional.empty();
- 
+
         private Optional<String> datasource = Optional.empty();
- 
+
         private Optional<Long> percentage = Optional.empty();
- 
+
         private Optional<? extends FacetValue> value = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Estimated number of results in this facet.
@@ -229,6 +235,7 @@ public class FacetBucket {
             return this;
         }
 
+
         /**
          * The datasource the value belongs to. This will be used by the all tab to show types across all datasources.
          */
@@ -246,6 +253,7 @@ public class FacetBucket {
             this.datasource = datasource;
             return this;
         }
+
 
         /**
          * Estimated percentage of results in this facet.
@@ -265,6 +273,7 @@ public class FacetBucket {
             return this;
         }
 
+
         public Builder value(FacetValue value) {
             Utils.checkNotNull(value, "value");
             this.value = Optional.ofNullable(value);
@@ -276,13 +285,13 @@ public class FacetBucket {
             this.value = value;
             return this;
         }
-        
+
         public FacetBucket build() {
+
             return new FacetBucket(
-                count,
-                datasource,
-                percentage,
+                count, datasource, percentage,
                 value);
         }
+
     }
 }

@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class QueryInsightsResponse {
 
+public class QueryInsightsResponse {
     /**
      * Unix timestamp of the last activity processed to make the response (in seconds since epoch UTC).
      */
@@ -73,7 +73,8 @@ public class QueryInsightsResponse {
     }
     
     public QueryInsightsResponse() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -119,9 +120,10 @@ public class QueryInsightsResponse {
         return minVisitorThreshold;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unix timestamp of the last activity processed to make the response (in seconds since epoch UTC).
@@ -131,6 +133,7 @@ public class QueryInsightsResponse {
         this.lastLogTimestamp = Optional.ofNullable(lastLogTimestamp);
         return this;
     }
+
 
     /**
      * Unix timestamp of the last activity processed to make the response (in seconds since epoch UTC).
@@ -150,6 +153,7 @@ public class QueryInsightsResponse {
         return this;
     }
 
+
     /**
      * Insights for queries.
      */
@@ -167,6 +171,7 @@ public class QueryInsightsResponse {
         this.lowPerformingQueryInsights = Optional.ofNullable(lowPerformingQueryInsights);
         return this;
     }
+
 
     /**
      * Insights for low performing queries without good results.
@@ -186,6 +191,7 @@ public class QueryInsightsResponse {
         return this;
     }
 
+
     /**
      * list of departments applicable for queries tab.
      */
@@ -204,6 +210,7 @@ public class QueryInsightsResponse {
         return this;
     }
 
+
     /**
      * Min threshold in number of visitors while populating results, otherwise 0.
      */
@@ -213,7 +220,6 @@ public class QueryInsightsResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -234,11 +240,8 @@ public class QueryInsightsResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            lastLogTimestamp,
-            queryInsights,
-            lowPerformingQueryInsights,
-            departments,
-            minVisitorThreshold);
+            lastLogTimestamp, queryInsights, lowPerformingQueryInsights,
+            departments, minVisitorThreshold);
     }
     
     @Override
@@ -250,22 +253,24 @@ public class QueryInsightsResponse {
                 "departments", departments,
                 "minVisitorThreshold", minVisitorThreshold);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> lastLogTimestamp = Optional.empty();
- 
+
         private Optional<? extends List<QueryInsight>> queryInsights = Optional.empty();
- 
+
         private Optional<? extends List<QueryInsight>> lowPerformingQueryInsights = Optional.empty();
- 
+
         private Optional<? extends List<String>> departments = Optional.empty();
- 
+
         private Optional<Long> minVisitorThreshold = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unix timestamp of the last activity processed to make the response (in seconds since epoch UTC).
@@ -285,6 +290,7 @@ public class QueryInsightsResponse {
             return this;
         }
 
+
         /**
          * Insights for queries.
          */
@@ -302,6 +308,7 @@ public class QueryInsightsResponse {
             this.queryInsights = queryInsights;
             return this;
         }
+
 
         /**
          * Insights for low performing queries without good results.
@@ -321,6 +328,7 @@ public class QueryInsightsResponse {
             return this;
         }
 
+
         /**
          * list of departments applicable for queries tab.
          */
@@ -339,6 +347,7 @@ public class QueryInsightsResponse {
             return this;
         }
 
+
         /**
          * Min threshold in number of visitors while populating results, otherwise 0.
          */
@@ -356,14 +365,13 @@ public class QueryInsightsResponse {
             this.minVisitorThreshold = minVisitorThreshold;
             return this;
         }
-        
+
         public QueryInsightsResponse build() {
+
             return new QueryInsightsResponse(
-                lastLogTimestamp,
-                queryInsights,
-                lowPerformingQueryInsights,
-                departments,
-                minVisitorThreshold);
+                lastLogTimestamp, queryInsights, lowPerformingQueryInsights,
+                departments, minVisitorThreshold);
         }
+
     }
 }

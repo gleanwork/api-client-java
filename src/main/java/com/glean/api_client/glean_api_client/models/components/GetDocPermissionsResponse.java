@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class GetDocPermissionsResponse {
 
+public class GetDocPermissionsResponse {
     /**
      * A list of emails of users who have access to the document. If the document is visible to all Glean users, a list with only a single value of 'VISIBLE_TO_ALL'.
      */
@@ -44,9 +44,10 @@ public class GetDocPermissionsResponse {
         return (Optional<List<String>>) allowedUserEmails;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A list of emails of users who have access to the document. If the document is visible to all Glean users, a list with only a single value of 'VISIBLE_TO_ALL'.
@@ -57,6 +58,7 @@ public class GetDocPermissionsResponse {
         return this;
     }
 
+
     /**
      * A list of emails of users who have access to the document. If the document is visible to all Glean users, a list with only a single value of 'VISIBLE_TO_ALL'.
      */
@@ -66,7 +68,6 @@ public class GetDocPermissionsResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,14 +92,16 @@ public class GetDocPermissionsResponse {
         return Utils.toString(GetDocPermissionsResponse.class,
                 "allowedUserEmails", allowedUserEmails);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<String>> allowedUserEmails = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A list of emails of users who have access to the document. If the document is visible to all Glean users, a list with only a single value of 'VISIBLE_TO_ALL'.
@@ -117,10 +120,12 @@ public class GetDocPermissionsResponse {
             this.allowedUserEmails = allowedUserEmails;
             return this;
         }
-        
+
         public GetDocPermissionsResponse build() {
+
             return new GetDocPermissionsResponse(
                 allowedUserEmails);
         }
+
     }
 }

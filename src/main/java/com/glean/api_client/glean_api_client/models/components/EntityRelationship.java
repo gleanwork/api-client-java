@@ -16,7 +16,6 @@ import java.lang.String;
  * <p>Describes a relationship edge between a source and destination entity
  */
 public class EntityRelationship {
-
     /**
      * The title or type of relationship. Currently an enum of `CHIEF_OF_STAFF`, `EXECUTIVE_ASSISTANT`
      */
@@ -55,9 +54,10 @@ public class EntityRelationship {
         return email;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The title or type of relationship. Currently an enum of `CHIEF_OF_STAFF`, `EXECUTIVE_ASSISTANT`
@@ -77,7 +77,6 @@ public class EntityRelationship {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -95,8 +94,7 @@ public class EntityRelationship {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            email);
+            name, email);
     }
     
     @Override
@@ -105,16 +103,18 @@ public class EntityRelationship {
                 "name", name,
                 "email", email);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
- 
+
         private String email;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The title or type of relationship. Currently an enum of `CHIEF_OF_STAFF`, `EXECUTIVE_ASSISTANT`
@@ -125,6 +125,7 @@ public class EntityRelationship {
             return this;
         }
 
+
         /**
          * Email of the person with whom the relationship exists. Per the example above, either `B` or `C`'s email depending on the relationship.
          */
@@ -133,11 +134,12 @@ public class EntityRelationship {
             this.email = email;
             return this;
         }
-        
+
         public EntityRelationship build() {
+
             return new EntityRelationship(
-                name,
-                email);
+                name, email);
         }
+
     }
 }

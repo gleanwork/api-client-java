@@ -19,7 +19,6 @@ import java.util.Optional;
  * <p>Some metadata of the object which can be displayed, while not having the actual object.
  */
 public class RelatedObjectMetadata {
-
     /**
      * Placeholder name of the object, not the relationship.
      */
@@ -46,9 +45,10 @@ public class RelatedObjectMetadata {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Placeholder name of the object, not the relationship.
@@ -59,6 +59,7 @@ public class RelatedObjectMetadata {
         return this;
     }
 
+
     /**
      * Placeholder name of the object, not the relationship.
      */
@@ -68,7 +69,6 @@ public class RelatedObjectMetadata {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -93,14 +93,16 @@ public class RelatedObjectMetadata {
         return Utils.toString(RelatedObjectMetadata.class,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Placeholder name of the object, not the relationship.
@@ -119,10 +121,12 @@ public class RelatedObjectMetadata {
             this.name = name;
             return this;
         }
-        
+
         public RelatedObjectMetadata build() {
+
             return new RelatedObjectMetadata(
                 name);
         }
+
     }
 }

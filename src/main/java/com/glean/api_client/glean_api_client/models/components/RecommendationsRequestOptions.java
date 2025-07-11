@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class RecommendationsRequestOptions {
 
+public class RecommendationsRequestOptions {
     /**
      * Filter results to a single datasource name (e.g. gmail, slack). All results are returned if missing.
      */
@@ -37,6 +37,7 @@ public class RecommendationsRequestOptions {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("facetFilterSets")
     private Optional<? extends List<FacetFilterSet>> facetFilterSets;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("context")
@@ -69,7 +70,8 @@ public class RecommendationsRequestOptions {
     }
     
     public RecommendationsRequestOptions() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -113,9 +115,10 @@ public class RecommendationsRequestOptions {
         return (Optional<List<SearchResultProminenceEnum>>) resultProminence;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Filter results to a single datasource name (e.g. gmail, slack). All results are returned if missing.
@@ -125,6 +128,7 @@ public class RecommendationsRequestOptions {
         this.datasourceFilter = Optional.ofNullable(datasourceFilter);
         return this;
     }
+
 
     /**
      * Filter results to a single datasource name (e.g. gmail, slack). All results are returned if missing.
@@ -144,6 +148,7 @@ public class RecommendationsRequestOptions {
         return this;
     }
 
+
     /**
      * Filter results to only those relevant to one or more datasources (e.g. jira, gdrive). All results are returned if missing.
      */
@@ -162,6 +167,7 @@ public class RecommendationsRequestOptions {
         return this;
     }
 
+
     /**
      * A list of facet filter sets that will be OR'ed together.
      */
@@ -176,6 +182,7 @@ public class RecommendationsRequestOptions {
         this.context = Optional.ofNullable(context);
         return this;
     }
+
 
     public RecommendationsRequestOptions withContext(Optional<? extends Document> context) {
         Utils.checkNotNull(context, "context");
@@ -192,6 +199,7 @@ public class RecommendationsRequestOptions {
         return this;
     }
 
+
     /**
      * The types of prominence wanted in results returned. Default is any type.
      */
@@ -201,7 +209,6 @@ public class RecommendationsRequestOptions {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -222,11 +229,8 @@ public class RecommendationsRequestOptions {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            datasourceFilter,
-            datasourcesFilter,
-            facetFilterSets,
-            context,
-            resultProminence);
+            datasourceFilter, datasourcesFilter, facetFilterSets,
+            context, resultProminence);
     }
     
     @Override
@@ -238,22 +242,24 @@ public class RecommendationsRequestOptions {
                 "context", context,
                 "resultProminence", resultProminence);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> datasourceFilter = Optional.empty();
- 
+
         private Optional<? extends List<String>> datasourcesFilter = Optional.empty();
- 
+
         private Optional<? extends List<FacetFilterSet>> facetFilterSets = Optional.empty();
- 
+
         private Optional<? extends Document> context = Optional.empty();
- 
+
         private Optional<? extends List<SearchResultProminenceEnum>> resultProminence = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Filter results to a single datasource name (e.g. gmail, slack). All results are returned if missing.
@@ -273,6 +279,7 @@ public class RecommendationsRequestOptions {
             return this;
         }
 
+
         /**
          * Filter results to only those relevant to one or more datasources (e.g. jira, gdrive). All results are returned if missing.
          */
@@ -290,6 +297,7 @@ public class RecommendationsRequestOptions {
             this.datasourcesFilter = datasourcesFilter;
             return this;
         }
+
 
         /**
          * A list of facet filter sets that will be OR'ed together.
@@ -309,6 +317,7 @@ public class RecommendationsRequestOptions {
             return this;
         }
 
+
         public Builder context(Document context) {
             Utils.checkNotNull(context, "context");
             this.context = Optional.ofNullable(context);
@@ -320,6 +329,7 @@ public class RecommendationsRequestOptions {
             this.context = context;
             return this;
         }
+
 
         /**
          * The types of prominence wanted in results returned. Default is any type.
@@ -338,14 +348,13 @@ public class RecommendationsRequestOptions {
             this.resultProminence = resultProminence;
             return this;
         }
-        
+
         public RecommendationsRequestOptions build() {
+
             return new RecommendationsRequestOptions(
-                datasourceFilter,
-                datasourcesFilter,
-                facetFilterSets,
-                context,
-                resultProminence);
+                datasourceFilter, datasourcesFilter, facetFilterSets,
+                context, resultProminence);
         }
+
     }
 }

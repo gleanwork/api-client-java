@@ -13,8 +13,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class GetRestApiV1ToolsListRequest {
 
+public class GetRestApiV1ToolsListRequest {
     /**
      * Optional array of tool names to filter by
      */
@@ -41,9 +41,10 @@ public class GetRestApiV1ToolsListRequest {
         return (Optional<List<String>>) toolNames;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Optional array of tool names to filter by
@@ -54,6 +55,7 @@ public class GetRestApiV1ToolsListRequest {
         return this;
     }
 
+
     /**
      * Optional array of tool names to filter by
      */
@@ -63,7 +65,6 @@ public class GetRestApiV1ToolsListRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -88,14 +89,16 @@ public class GetRestApiV1ToolsListRequest {
         return Utils.toString(GetRestApiV1ToolsListRequest.class,
                 "toolNames", toolNames);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<String>> toolNames = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Optional array of tool names to filter by
@@ -114,10 +117,12 @@ public class GetRestApiV1ToolsListRequest {
             this.toolNames = toolNames;
             return this;
         }
-        
+
         public GetRestApiV1ToolsListRequest build() {
+
             return new GetRestApiV1ToolsListRequest(
                 toolNames);
         }
+
     }
 }

@@ -24,7 +24,6 @@ import java.util.Optional;
  * <p>Detailed configuration of what documents and sensitive content will be scanned.
  */
 public class DlpConfig {
-
     /**
      * Synonymous with report/policy id.
      */
@@ -71,6 +70,7 @@ public class DlpConfig {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sensitiveContentOptions")
     private Optional<? extends SensitiveContentOptions> sensitiveContentOptions;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reportName")
@@ -162,7 +162,11 @@ public class DlpConfig {
     }
     
     public DlpConfig() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -278,9 +282,10 @@ public class DlpConfig {
         return (Optional<AllowlistOptions>) allowlistOptions;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Synonymous with report/policy id.
@@ -290,6 +295,7 @@ public class DlpConfig {
         this.version = Optional.ofNullable(version);
         return this;
     }
+
 
     /**
      * Synonymous with report/policy id.
@@ -312,6 +318,7 @@ public class DlpConfig {
         return this;
     }
 
+
     /**
      * DEPRECATED - use `sensitiveContentOptions` instead.
      * 
@@ -333,6 +340,7 @@ public class DlpConfig {
         return this;
     }
 
+
     /**
      * Controls which data-sources and what time-range to include in scans.
      */
@@ -352,6 +360,7 @@ public class DlpConfig {
         this.externalSharingOptions = Optional.ofNullable(externalSharingOptions);
         return this;
     }
+
 
     /**
      * 
@@ -373,6 +382,7 @@ public class DlpConfig {
         return this;
     }
 
+
     /**
      * Controls how "shared" a document must be to get picked for scans.
      */
@@ -391,6 +401,7 @@ public class DlpConfig {
         return this;
     }
 
+
     /**
      * Options for defining sensitive content within scanned documents.
      */
@@ -406,6 +417,7 @@ public class DlpConfig {
         return this;
     }
 
+
     public DlpConfig withReportName(Optional<String> reportName) {
         Utils.checkNotNull(reportName, "reportName");
         this.reportName = reportName;
@@ -420,6 +432,7 @@ public class DlpConfig {
         this.frequency = Optional.ofNullable(frequency);
         return this;
     }
+
 
     /**
      * Interval between scans.
@@ -439,6 +452,7 @@ public class DlpConfig {
         return this;
     }
 
+
     /**
      * Details about the person who created this report/policy.
      */
@@ -456,6 +470,7 @@ public class DlpConfig {
         this.createdAt = Optional.ofNullable(createdAt);
         return this;
     }
+
 
     /**
      * Timestamp at which this configuration was created.
@@ -475,6 +490,7 @@ public class DlpConfig {
         return this;
     }
 
+
     /**
      * redact quote in findings of the report
      */
@@ -492,6 +508,7 @@ public class DlpConfig {
         this.autoHideDocs = Optional.ofNullable(autoHideDocs);
         return this;
     }
+
 
     /**
      * auto hide documents with findings in the report
@@ -511,6 +528,7 @@ public class DlpConfig {
         return this;
     }
 
+
     /**
      * Terms that are allow-listed during the scans. If any finding picked up by a rule exactly matches a term in the allow-list, it will not be counted as a violation.
      */
@@ -520,7 +538,6 @@ public class DlpConfig {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -549,18 +566,10 @@ public class DlpConfig {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            version,
-            sensitiveInfoTypes,
-            inputOptions,
-            externalSharingOptions,
-            broadSharingOptions,
-            sensitiveContentOptions,
-            reportName,
-            frequency,
-            createdBy,
-            createdAt,
-            redactQuote,
-            autoHideDocs,
+            version, sensitiveInfoTypes, inputOptions,
+            externalSharingOptions, broadSharingOptions, sensitiveContentOptions,
+            reportName, frequency, createdBy,
+            createdAt, redactQuote, autoHideDocs,
             allowlistOptions);
     }
     
@@ -581,40 +590,42 @@ public class DlpConfig {
                 "autoHideDocs", autoHideDocs,
                 "allowlistOptions", allowlistOptions);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> version = Optional.empty();
- 
+
         @Deprecated
         private Optional<? extends List<SensitiveInfoType>> sensitiveInfoTypes = Optional.empty();
- 
+
         private Optional<? extends InputOptions> inputOptions = Optional.empty();
- 
+
         @Deprecated
         private Optional<? extends ExternalSharingOptions> externalSharingOptions = Optional.empty();
- 
+
         private Optional<? extends SharingOptions> broadSharingOptions = Optional.empty();
- 
+
         private Optional<? extends SensitiveContentOptions> sensitiveContentOptions = Optional.empty();
- 
+
         private Optional<String> reportName = Optional.empty();
- 
+
         private Optional<String> frequency = Optional.empty();
- 
+
         private Optional<? extends DlpPerson> createdBy = Optional.empty();
- 
+
         private Optional<String> createdAt = Optional.empty();
- 
+
         private Optional<Boolean> redactQuote = Optional.empty();
- 
+
         private Optional<Boolean> autoHideDocs = Optional.empty();
- 
+
         private Optional<? extends AllowlistOptions> allowlistOptions = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Synonymous with report/policy id.
@@ -633,6 +644,7 @@ public class DlpConfig {
             this.version = version;
             return this;
         }
+
 
         /**
          * DEPRECATED - use `sensitiveContentOptions` instead.
@@ -658,6 +670,7 @@ public class DlpConfig {
             return this;
         }
 
+
         /**
          * Controls which data-sources and what time-range to include in scans.
          */
@@ -675,6 +688,7 @@ public class DlpConfig {
             this.inputOptions = inputOptions;
             return this;
         }
+
 
         /**
          * 
@@ -698,6 +712,7 @@ public class DlpConfig {
             return this;
         }
 
+
         /**
          * Controls how "shared" a document must be to get picked for scans.
          */
@@ -715,6 +730,7 @@ public class DlpConfig {
             this.broadSharingOptions = broadSharingOptions;
             return this;
         }
+
 
         /**
          * Options for defining sensitive content within scanned documents.
@@ -734,6 +750,7 @@ public class DlpConfig {
             return this;
         }
 
+
         public Builder reportName(String reportName) {
             Utils.checkNotNull(reportName, "reportName");
             this.reportName = Optional.ofNullable(reportName);
@@ -745,6 +762,7 @@ public class DlpConfig {
             this.reportName = reportName;
             return this;
         }
+
 
         /**
          * Interval between scans.
@@ -764,6 +782,7 @@ public class DlpConfig {
             return this;
         }
 
+
         /**
          * Details about the person who created this report/policy.
          */
@@ -781,6 +800,7 @@ public class DlpConfig {
             this.createdBy = createdBy;
             return this;
         }
+
 
         /**
          * Timestamp at which this configuration was created.
@@ -800,6 +820,7 @@ public class DlpConfig {
             return this;
         }
 
+
         /**
          * redact quote in findings of the report
          */
@@ -817,6 +838,7 @@ public class DlpConfig {
             this.redactQuote = redactQuote;
             return this;
         }
+
 
         /**
          * auto hide documents with findings in the report
@@ -836,6 +858,7 @@ public class DlpConfig {
             return this;
         }
 
+
         /**
          * Terms that are allow-listed during the scans. If any finding picked up by a rule exactly matches a term in the allow-list, it will not be counted as a violation.
          */
@@ -853,22 +876,16 @@ public class DlpConfig {
             this.allowlistOptions = allowlistOptions;
             return this;
         }
-        
+
         public DlpConfig build() {
+
             return new DlpConfig(
-                version,
-                sensitiveInfoTypes,
-                inputOptions,
-                externalSharingOptions,
-                broadSharingOptions,
-                sensitiveContentOptions,
-                reportName,
-                frequency,
-                createdBy,
-                createdAt,
-                redactQuote,
-                autoHideDocs,
+                version, sensitiveInfoTypes, inputOptions,
+                externalSharingOptions, broadSharingOptions, sensitiveContentOptions,
+                reportName, frequency, createdBy,
+                createdAt, redactQuote, autoHideDocs,
                 allowlistOptions);
         }
+
     }
 }

@@ -24,7 +24,6 @@ import java.util.Optional;
  * When the server sends this, Permissions.read and Permissions.write are the complete (merged) set of permissions the user has, and Permissions.roles is just for display purposes.
  */
 public class Permissions {
-
     /**
      * TODO--deprecate in favor of the read and write properties. True if the user has access to /adminsearch
      */
@@ -110,7 +109,9 @@ public class Permissions {
     }
     
     public Permissions() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -181,9 +182,10 @@ public class Permissions {
         return (Optional<List<String>>) roles;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * TODO--deprecate in favor of the read and write properties. True if the user has access to /adminsearch
@@ -193,6 +195,7 @@ public class Permissions {
         this.canAdminSearch = Optional.ofNullable(canAdminSearch);
         return this;
     }
+
 
     /**
      * TODO--deprecate in favor of the read and write properties. True if the user has access to /adminsearch
@@ -212,6 +215,7 @@ public class Permissions {
         return this;
     }
 
+
     /**
      * TODO--deprecate in favor of the read and write properties. True if the user can administrate client API tokens with global scope
      */
@@ -229,6 +233,7 @@ public class Permissions {
         this.canDlp = Optional.ofNullable(canDlp);
         return this;
     }
+
 
     /**
      * TODO--deprecate in favor of the read and write properties. True if the user has access to data loss prevention (DLP) features
@@ -248,6 +253,7 @@ public class Permissions {
         return this;
     }
 
+
     /**
      * Describes the read permission levels that a user has for permissioned features. Key must be PermissionedFeatureOrObject
      */
@@ -265,6 +271,7 @@ public class Permissions {
         this.write = Optional.ofNullable(write);
         return this;
     }
+
 
     /**
      * Describes the write permissions levels that a user has for permissioned features. Key must be PermissionedFeatureOrObject
@@ -284,6 +291,7 @@ public class Permissions {
         return this;
     }
 
+
     /**
      * Describes the grant permission levels that a user has for permissioned features. Key must be PermissionedFeatureOrObject
      */
@@ -301,6 +309,7 @@ public class Permissions {
         this.role = Optional.ofNullable(role);
         return this;
     }
+
 
     /**
      * The roleId of the canonical role a user has. The displayName is equal to the roleId.
@@ -320,6 +329,7 @@ public class Permissions {
         return this;
     }
 
+
     /**
      * The roleIds of the roles a user has.
      */
@@ -329,7 +339,6 @@ public class Permissions {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -353,14 +362,9 @@ public class Permissions {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            canAdminSearch,
-            canAdminClientApiGlobalTokens,
-            canDlp,
-            read,
-            write,
-            grant,
-            role,
-            roles);
+            canAdminSearch, canAdminClientApiGlobalTokens, canDlp,
+            read, write, grant,
+            role, roles);
     }
     
     @Override
@@ -375,28 +379,30 @@ public class Permissions {
                 "role", role,
                 "roles", roles);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> canAdminSearch = Optional.empty();
- 
+
         private Optional<Boolean> canAdminClientApiGlobalTokens = Optional.empty();
- 
+
         private Optional<Boolean> canDlp = Optional.empty();
- 
+
         private Optional<? extends Map<String, List<ReadPermission>>> read = Optional.empty();
- 
+
         private Optional<? extends Map<String, List<WritePermission>>> write = Optional.empty();
- 
+
         private Optional<? extends Map<String, List<GrantPermission>>> grant = Optional.empty();
- 
+
         private Optional<String> role = Optional.empty();
- 
+
         private Optional<? extends List<String>> roles = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * TODO--deprecate in favor of the read and write properties. True if the user has access to /adminsearch
@@ -416,6 +422,7 @@ public class Permissions {
             return this;
         }
 
+
         /**
          * TODO--deprecate in favor of the read and write properties. True if the user can administrate client API tokens with global scope
          */
@@ -433,6 +440,7 @@ public class Permissions {
             this.canAdminClientApiGlobalTokens = canAdminClientApiGlobalTokens;
             return this;
         }
+
 
         /**
          * TODO--deprecate in favor of the read and write properties. True if the user has access to data loss prevention (DLP) features
@@ -452,6 +460,7 @@ public class Permissions {
             return this;
         }
 
+
         /**
          * Describes the read permission levels that a user has for permissioned features. Key must be PermissionedFeatureOrObject
          */
@@ -469,6 +478,7 @@ public class Permissions {
             this.read = read;
             return this;
         }
+
 
         /**
          * Describes the write permissions levels that a user has for permissioned features. Key must be PermissionedFeatureOrObject
@@ -488,6 +498,7 @@ public class Permissions {
             return this;
         }
 
+
         /**
          * Describes the grant permission levels that a user has for permissioned features. Key must be PermissionedFeatureOrObject
          */
@@ -505,6 +516,7 @@ public class Permissions {
             this.grant = grant;
             return this;
         }
+
 
         /**
          * The roleId of the canonical role a user has. The displayName is equal to the roleId.
@@ -524,6 +536,7 @@ public class Permissions {
             return this;
         }
 
+
         /**
          * The roleIds of the roles a user has.
          */
@@ -541,17 +554,14 @@ public class Permissions {
             this.roles = roles;
             return this;
         }
-        
+
         public Permissions build() {
+
             return new Permissions(
-                canAdminSearch,
-                canAdminClientApiGlobalTokens,
-                canDlp,
-                read,
-                write,
-                grant,
-                role,
-                roles);
+                canAdminSearch, canAdminClientApiGlobalTokens, canDlp,
+                read, write, grant,
+                role, roles);
         }
+
     }
 }

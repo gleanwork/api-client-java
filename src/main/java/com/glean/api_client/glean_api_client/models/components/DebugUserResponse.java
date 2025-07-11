@@ -21,7 +21,6 @@ import java.util.Optional;
  * <p>Describes the response body of the /debug/{datasource}/user API call
  */
 public class DebugUserResponse {
-
     /**
      * Describes the user status response body
      */
@@ -68,9 +67,10 @@ public class DebugUserResponse {
         return (Optional<List<DatasourceGroupDefinition>>) uploadedGroups;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Describes the user status response body
@@ -80,6 +80,7 @@ public class DebugUserResponse {
         this.status = Optional.ofNullable(status);
         return this;
     }
+
 
     /**
      * Describes the user status response body
@@ -99,6 +100,7 @@ public class DebugUserResponse {
         return this;
     }
 
+
     /**
      * List of groups the user is a member of, as uploaded via permissions API.
      */
@@ -108,7 +110,6 @@ public class DebugUserResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -126,8 +127,7 @@ public class DebugUserResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            status,
-            uploadedGroups);
+            status, uploadedGroups);
     }
     
     @Override
@@ -136,16 +136,18 @@ public class DebugUserResponse {
                 "status", status,
                 "uploadedGroups", uploadedGroups);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends UserStatusResponse> status = Optional.empty();
- 
+
         private Optional<? extends List<DatasourceGroupDefinition>> uploadedGroups = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Describes the user status response body
@@ -165,6 +167,7 @@ public class DebugUserResponse {
             return this;
         }
 
+
         /**
          * List of groups the user is a member of, as uploaded via permissions API.
          */
@@ -182,11 +185,12 @@ public class DebugUserResponse {
             this.uploadedGroups = uploadedGroups;
             return this;
         }
-        
+
         public DebugUserResponse build() {
+
             return new DebugUserResponse(
-                status,
-                uploadedGroups);
+                status, uploadedGroups);
         }
+
     }
 }

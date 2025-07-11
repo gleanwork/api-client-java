@@ -25,6 +25,7 @@ public class DebugDatasourceStatusResponse {
     @JsonProperty("documents")
     private Optional<? extends Documents> documents;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("identity")
     private Optional<? extends Identity> identity;
@@ -74,15 +75,17 @@ public class DebugDatasourceStatusResponse {
         return (Optional<DatasourceVisibility>) datasourceVisibility;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public DebugDatasourceStatusResponse withDocuments(Documents documents) {
         Utils.checkNotNull(documents, "documents");
         this.documents = Optional.ofNullable(documents);
         return this;
     }
+
 
     public DebugDatasourceStatusResponse withDocuments(Optional<? extends Documents> documents) {
         Utils.checkNotNull(documents, "documents");
@@ -95,6 +98,7 @@ public class DebugDatasourceStatusResponse {
         this.identity = Optional.ofNullable(identity);
         return this;
     }
+
 
     public DebugDatasourceStatusResponse withIdentity(Optional<? extends Identity> identity) {
         Utils.checkNotNull(identity, "identity");
@@ -111,6 +115,7 @@ public class DebugDatasourceStatusResponse {
         return this;
     }
 
+
     /**
      * The visibility of the datasource, an enum of VISIBLE_TO_ALL, VISIBLE_TO_TEST_GROUP, NOT_VISIBLE
      */
@@ -120,7 +125,6 @@ public class DebugDatasourceStatusResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -139,9 +143,7 @@ public class DebugDatasourceStatusResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            documents,
-            identity,
-            datasourceVisibility);
+            documents, identity, datasourceVisibility);
     }
     
     @Override
@@ -151,18 +153,20 @@ public class DebugDatasourceStatusResponse {
                 "identity", identity,
                 "datasourceVisibility", datasourceVisibility);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Documents> documents = Optional.empty();
- 
+
         private Optional<? extends Identity> identity = Optional.empty();
- 
+
         private Optional<? extends DatasourceVisibility> datasourceVisibility = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder documents(Documents documents) {
             Utils.checkNotNull(documents, "documents");
@@ -176,6 +180,7 @@ public class DebugDatasourceStatusResponse {
             return this;
         }
 
+
         public Builder identity(Identity identity) {
             Utils.checkNotNull(identity, "identity");
             this.identity = Optional.ofNullable(identity);
@@ -187,6 +192,7 @@ public class DebugDatasourceStatusResponse {
             this.identity = identity;
             return this;
         }
+
 
         /**
          * The visibility of the datasource, an enum of VISIBLE_TO_ALL, VISIBLE_TO_TEST_GROUP, NOT_VISIBLE
@@ -205,12 +211,12 @@ public class DebugDatasourceStatusResponse {
             this.datasourceVisibility = datasourceVisibility;
             return this;
         }
-        
+
         public DebugDatasourceStatusResponse build() {
+
             return new DebugDatasourceStatusResponse(
-                documents,
-                identity,
-                datasourceVisibility);
+                documents, identity, datasourceVisibility);
         }
+
     }
 }

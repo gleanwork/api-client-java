@@ -22,7 +22,6 @@ import java.util.Optional;
  * <p>The manifest for a tool that can be used to augment Glean Assistant.
  */
 public class ToolMetadata {
-
     /**
      * The type of tool.
      */
@@ -75,9 +74,11 @@ public class ToolMetadata {
     @JsonProperty("knowledgeType")
     private Optional<? extends KnowledgeType> knowledgeType;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdBy")
     private Optional<? extends PersonObject> createdBy;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lastUpdatedBy")
@@ -121,6 +122,7 @@ public class ToolMetadata {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("auth")
     private Optional<? extends AuthConfig> auth;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("permissions")
@@ -203,7 +205,12 @@ public class ToolMetadata {
             String name,
             String displayName,
             String displayDescription) {
-        this(type, name, displayName, Optional.empty(), displayDescription, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(type, name, displayName,
+            Optional.empty(), displayDescription, Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -352,9 +359,10 @@ public class ToolMetadata {
         return isSetupFinished;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The type of tool.
@@ -392,6 +400,7 @@ public class ToolMetadata {
         return this;
     }
 
+
     /**
      * An opaque id which is unique identifier for the tool.
      */
@@ -419,6 +428,7 @@ public class ToolMetadata {
         return this;
     }
 
+
     /**
      * URL used to fetch the logo.
      */
@@ -436,6 +446,7 @@ public class ToolMetadata {
         this.objectName = Optional.ofNullable(objectName);
         return this;
     }
+
 
     /**
      * Name of the generated object. This will be used to indicate to the end user what the generated object contains.
@@ -455,6 +466,7 @@ public class ToolMetadata {
         return this;
     }
 
+
     /**
      * Indicates the kind of knowledge a tool would access or modify.
      */
@@ -470,6 +482,7 @@ public class ToolMetadata {
         return this;
     }
 
+
     public ToolMetadata withCreatedBy(Optional<? extends PersonObject> createdBy) {
         Utils.checkNotNull(createdBy, "createdBy");
         this.createdBy = createdBy;
@@ -481,6 +494,7 @@ public class ToolMetadata {
         this.lastUpdatedBy = Optional.ofNullable(lastUpdatedBy);
         return this;
     }
+
 
     public ToolMetadata withLastUpdatedBy(Optional<? extends PersonObject> lastUpdatedBy) {
         Utils.checkNotNull(lastUpdatedBy, "lastUpdatedBy");
@@ -496,6 +510,7 @@ public class ToolMetadata {
         this.createdAt = Optional.ofNullable(createdAt);
         return this;
     }
+
 
     /**
      * The time the tool was created in ISO format (ISO 8601)
@@ -515,6 +530,7 @@ public class ToolMetadata {
         return this;
     }
 
+
     /**
      * The time the tool was last updated in ISO format (ISO 8601)
      */
@@ -532,6 +548,7 @@ public class ToolMetadata {
         this.writeActionType = Optional.ofNullable(writeActionType);
         return this;
     }
+
 
     /**
      * Valid only for write actions. Represents the type of write action. REDIRECT - The client renders the URL which contains information for carrying out the action. EXECUTION - Send a request to an external server and execute the action.
@@ -555,6 +572,7 @@ public class ToolMetadata {
         return this;
     }
 
+
     /**
      * The type of authentication being used.
      * Use 'OAUTH_*' when Glean calls an external API (e.g., Jira) on behalf of a user to obtain an OAuth token.
@@ -577,6 +595,7 @@ public class ToolMetadata {
         return this;
     }
 
+
     /**
      * Config for tool's authentication method.
      */
@@ -592,6 +611,7 @@ public class ToolMetadata {
         return this;
     }
 
+
     public ToolMetadata withPermissions(Optional<? extends ObjectPermissions> permissions) {
         Utils.checkNotNull(permissions, "permissions");
         this.permissions = permissions;
@@ -606,6 +626,7 @@ public class ToolMetadata {
         this.usageInstructions = Optional.ofNullable(usageInstructions);
         return this;
     }
+
 
     /**
      * Usage instructions for the LLM to use this action.
@@ -625,6 +646,7 @@ public class ToolMetadata {
         return this;
     }
 
+
     /**
      * Whether this action has been fully configured and validated.
      */
@@ -634,7 +656,6 @@ public class ToolMetadata {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -668,24 +689,12 @@ public class ToolMetadata {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            name,
-            displayName,
-            toolId,
-            displayDescription,
-            logoUrl,
-            objectName,
-            knowledgeType,
-            createdBy,
-            lastUpdatedBy,
-            createdAt,
-            lastUpdatedAt,
-            writeActionType,
-            authType,
-            auth,
-            permissions,
-            usageInstructions,
-            isSetupFinished);
+            type, name, displayName,
+            toolId, displayDescription, logoUrl,
+            objectName, knowledgeType, createdBy,
+            lastUpdatedBy, createdAt, lastUpdatedAt,
+            writeActionType, authType, auth,
+            permissions, usageInstructions, isSetupFinished);
     }
     
     @Override
@@ -710,48 +719,50 @@ public class ToolMetadata {
                 "usageInstructions", usageInstructions,
                 "isSetupFinished", isSetupFinished);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private ToolMetadataType type;
- 
+
         private String name;
- 
+
         private String displayName;
- 
+
         private Optional<String> toolId = Optional.empty();
- 
+
         private String displayDescription;
- 
+
         private Optional<String> logoUrl = Optional.empty();
- 
+
         private Optional<String> objectName = Optional.empty();
- 
+
         private Optional<? extends KnowledgeType> knowledgeType = Optional.empty();
- 
+
         private Optional<? extends PersonObject> createdBy = Optional.empty();
- 
+
         private Optional<? extends PersonObject> lastUpdatedBy = Optional.empty();
- 
+
         private Optional<OffsetDateTime> createdAt = Optional.empty();
- 
+
         private Optional<OffsetDateTime> lastUpdatedAt = Optional.empty();
- 
+
         private Optional<? extends WriteActionType> writeActionType = Optional.empty();
- 
+
         private Optional<? extends AuthType> authType = Optional.empty();
- 
+
         private Optional<? extends AuthConfig> auth = Optional.empty();
- 
+
         private Optional<? extends ObjectPermissions> permissions = Optional.empty();
- 
+
         private Optional<String> usageInstructions = Optional.empty();
- 
+
         private Optional<Boolean> isSetupFinished = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The type of tool.
@@ -762,6 +773,7 @@ public class ToolMetadata {
             return this;
         }
 
+
         /**
          * Unique identifier for the tool. Name should be understandable by the LLM, and will be used to invoke a tool.
          */
@@ -771,6 +783,7 @@ public class ToolMetadata {
             return this;
         }
 
+
         /**
          * Human understandable name of the tool. Max 50 characters.
          */
@@ -779,6 +792,7 @@ public class ToolMetadata {
             this.displayName = displayName;
             return this;
         }
+
 
         /**
          * An opaque id which is unique identifier for the tool.
@@ -798,6 +812,7 @@ public class ToolMetadata {
             return this;
         }
 
+
         /**
          * Description of the tool meant for a human.
          */
@@ -806,6 +821,7 @@ public class ToolMetadata {
             this.displayDescription = displayDescription;
             return this;
         }
+
 
         /**
          * URL used to fetch the logo.
@@ -825,6 +841,7 @@ public class ToolMetadata {
             return this;
         }
 
+
         /**
          * Name of the generated object. This will be used to indicate to the end user what the generated object contains.
          */
@@ -842,6 +859,7 @@ public class ToolMetadata {
             this.objectName = objectName;
             return this;
         }
+
 
         /**
          * Indicates the kind of knowledge a tool would access or modify.
@@ -861,6 +879,7 @@ public class ToolMetadata {
             return this;
         }
 
+
         public Builder createdBy(PersonObject createdBy) {
             Utils.checkNotNull(createdBy, "createdBy");
             this.createdBy = Optional.ofNullable(createdBy);
@@ -873,6 +892,7 @@ public class ToolMetadata {
             return this;
         }
 
+
         public Builder lastUpdatedBy(PersonObject lastUpdatedBy) {
             Utils.checkNotNull(lastUpdatedBy, "lastUpdatedBy");
             this.lastUpdatedBy = Optional.ofNullable(lastUpdatedBy);
@@ -884,6 +904,7 @@ public class ToolMetadata {
             this.lastUpdatedBy = lastUpdatedBy;
             return this;
         }
+
 
         /**
          * The time the tool was created in ISO format (ISO 8601)
@@ -903,6 +924,7 @@ public class ToolMetadata {
             return this;
         }
 
+
         /**
          * The time the tool was last updated in ISO format (ISO 8601)
          */
@@ -921,6 +943,7 @@ public class ToolMetadata {
             return this;
         }
 
+
         /**
          * Valid only for write actions. Represents the type of write action. REDIRECT - The client renders the URL which contains information for carrying out the action. EXECUTION - Send a request to an external server and execute the action.
          */
@@ -938,6 +961,7 @@ public class ToolMetadata {
             this.writeActionType = writeActionType;
             return this;
         }
+
 
         /**
          * The type of authentication being used.
@@ -965,6 +989,7 @@ public class ToolMetadata {
             return this;
         }
 
+
         /**
          * Config for tool's authentication method.
          */
@@ -983,6 +1008,7 @@ public class ToolMetadata {
             return this;
         }
 
+
         public Builder permissions(ObjectPermissions permissions) {
             Utils.checkNotNull(permissions, "permissions");
             this.permissions = Optional.ofNullable(permissions);
@@ -994,6 +1020,7 @@ public class ToolMetadata {
             this.permissions = permissions;
             return this;
         }
+
 
         /**
          * Usage instructions for the LLM to use this action.
@@ -1013,6 +1040,7 @@ public class ToolMetadata {
             return this;
         }
 
+
         /**
          * Whether this action has been fully configured and validated.
          */
@@ -1030,27 +1058,17 @@ public class ToolMetadata {
             this.isSetupFinished = isSetupFinished;
             return this;
         }
-        
+
         public ToolMetadata build() {
+
             return new ToolMetadata(
-                type,
-                name,
-                displayName,
-                toolId,
-                displayDescription,
-                logoUrl,
-                objectName,
-                knowledgeType,
-                createdBy,
-                lastUpdatedBy,
-                createdAt,
-                lastUpdatedAt,
-                writeActionType,
-                authType,
-                auth,
-                permissions,
-                usageInstructions,
-                isSetupFinished);
+                type, name, displayName,
+                toolId, displayDescription, logoUrl,
+                objectName, knowledgeType, createdBy,
+                lastUpdatedBy, createdAt, lastUpdatedAt,
+                writeActionType, authType, auth,
+                permissions, usageInstructions, isSetupFinished);
         }
+
     }
 }

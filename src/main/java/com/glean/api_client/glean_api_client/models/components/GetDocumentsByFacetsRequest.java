@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class GetDocumentsByFacetsRequest {
 
+public class GetDocumentsByFacetsRequest {
     /**
      * Filter results to one or more datasources (e.g. gmail, slack). All results are returned if missing.
      */
@@ -80,9 +80,10 @@ public class GetDocumentsByFacetsRequest {
         return cursor;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Filter results to one or more datasources (e.g. gmail, slack). All results are returned if missing.
@@ -92,6 +93,7 @@ public class GetDocumentsByFacetsRequest {
         this.datasourcesFilter = Optional.ofNullable(datasourcesFilter);
         return this;
     }
+
 
     /**
      * Filter results to one or more datasources (e.g. gmail, slack). All results are returned if missing.
@@ -120,6 +122,7 @@ public class GetDocumentsByFacetsRequest {
         return this;
     }
 
+
     /**
      * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
      */
@@ -129,7 +132,6 @@ public class GetDocumentsByFacetsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -148,9 +150,7 @@ public class GetDocumentsByFacetsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            datasourcesFilter,
-            filterSets,
-            cursor);
+            datasourcesFilter, filterSets, cursor);
     }
     
     @Override
@@ -160,18 +160,20 @@ public class GetDocumentsByFacetsRequest {
                 "filterSets", filterSets,
                 "cursor", cursor);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<String>> datasourcesFilter = Optional.empty();
- 
+
         private List<FacetFilterSet> filterSets;
- 
+
         private Optional<String> cursor = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Filter results to one or more datasources (e.g. gmail, slack). All results are returned if missing.
@@ -191,6 +193,7 @@ public class GetDocumentsByFacetsRequest {
             return this;
         }
 
+
         /**
          * A list of facet filter sets that will be OR'ed together. An AND is assumed between different filters in each set.
          */
@@ -199,6 +202,7 @@ public class GetDocumentsByFacetsRequest {
             this.filterSets = filterSets;
             return this;
         }
+
 
         /**
          * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
@@ -217,12 +221,12 @@ public class GetDocumentsByFacetsRequest {
             this.cursor = cursor;
             return this;
         }
-        
+
         public GetDocumentsByFacetsRequest build() {
+
             return new GetDocumentsByFacetsRequest(
-                datasourcesFilter,
-                filterSets,
-                cursor);
+                datasourcesFilter, filterSets, cursor);
         }
+
     }
 }

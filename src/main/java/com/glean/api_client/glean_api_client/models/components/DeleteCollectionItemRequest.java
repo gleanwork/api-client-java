@@ -14,8 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class DeleteCollectionItemRequest {
 
+public class DeleteCollectionItemRequest {
     /**
      * The ID of the Collection to remove an item in.
      */
@@ -78,9 +78,10 @@ public class DeleteCollectionItemRequest {
         return documentId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the Collection to remove an item in.
@@ -109,6 +110,7 @@ public class DeleteCollectionItemRequest {
         return this;
     }
 
+
     /**
      * The (optional) Glean Document ID of the CollectionItem to remove from this Collection if this is an indexed document.
      */
@@ -118,7 +120,6 @@ public class DeleteCollectionItemRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -137,9 +138,7 @@ public class DeleteCollectionItemRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            collectionId,
-            itemId,
-            documentId);
+            collectionId, itemId, documentId);
     }
     
     @Override
@@ -149,18 +148,20 @@ public class DeleteCollectionItemRequest {
                 "itemId", itemId,
                 "documentId", documentId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Double collectionId;
- 
+
         private String itemId;
- 
+
         private Optional<String> documentId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the Collection to remove an item in.
@@ -171,6 +172,7 @@ public class DeleteCollectionItemRequest {
             return this;
         }
 
+
         /**
          * The item ID of the CollectionItem to remove from this Collection.
          */
@@ -179,6 +181,7 @@ public class DeleteCollectionItemRequest {
             this.itemId = itemId;
             return this;
         }
+
 
         /**
          * The (optional) Glean Document ID of the CollectionItem to remove from this Collection if this is an indexed document.
@@ -197,12 +200,12 @@ public class DeleteCollectionItemRequest {
             this.documentId = documentId;
             return this;
         }
-        
+
         public DeleteCollectionItemRequest build() {
+
             return new DeleteCollectionItemRequest(
-                collectionId,
-                itemId,
-                documentId);
+                collectionId, itemId, documentId);
         }
+
     }
 }

@@ -38,23 +38,27 @@ public class Glean {
      * SERVERS contains the list of server urls available to the SDK.
      */
     public static final String[] SERVERS = {
+
         "https://{instance}-be.glean.com",
     };
 
-    
 
     private final Client client;
 
+
     private final Indexing indexing;
+
 
     public Client client() {
         return client;
     }
 
+
     public Indexing indexing() {
         return indexing;
     }
-    private SDKConfiguration sdkConfiguration;
+
+    private final SDKConfiguration sdkConfiguration;
 
     /**
      * The Builder class allows the configuration of a new instance of the SDK.
@@ -152,11 +156,13 @@ public class Glean {
 
         /**
          * Enables debug logging for HTTP requests and responses, including JSON body content.
-         *
+         * <p>
          * Convenience method that calls {@link HTTPClient#enableDebugLogging(boolean)}.
          * {@link SpeakeasyHTTPClient} honors this setting. If you are using a custom HTTP client,
          * it is up to the custom client to honor this setting.
+         * </p>
          *
+         * @param enabled Whether to enable debug logging.
          * @return The builder instance.
          */
         public Builder enableHTTPDebugLogging(boolean enabled) {
@@ -222,8 +228,10 @@ public class Glean {
         this.sdkConfiguration.initialize();
         this.client = new Client(sdkConfiguration);
         this.indexing = new Indexing(sdkConfiguration);
-        
-        SdkInitData data = this.sdkConfiguration.hooks().sdkInit(new SdkInitData(this.sdkConfiguration.resolvedServerUrl(), this.sdkConfiguration.client()));
+        SdkInitData data = this.sdkConfiguration.hooks().sdkInit(
+                new SdkInitData(
+                        this.sdkConfiguration.resolvedServerUrl(), 
+                        this.sdkConfiguration.client()));
         this.sdkConfiguration.setServerUrl(data.baseUrl());
         this.sdkConfiguration.setClient(data.client());
     }

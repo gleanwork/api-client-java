@@ -18,6 +18,7 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
+
 public class ListEntitiesRequest {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -30,6 +31,7 @@ public class ListEntitiesRequest {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sort")
     private Optional<? extends List<SortOptions>> sort;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("entityType")
@@ -119,7 +121,10 @@ public class ListEntitiesRequest {
     }
     
     public ListEntitiesRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -201,15 +206,17 @@ public class ListEntitiesRequest {
         return (Optional<RequestType>) requestType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ListEntitiesRequest withFilter(List<FacetFilter> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = Optional.ofNullable(filter);
         return this;
     }
+
 
     public ListEntitiesRequest withFilter(Optional<? extends List<FacetFilter>> filter) {
         Utils.checkNotNull(filter, "filter");
@@ -226,6 +233,7 @@ public class ListEntitiesRequest {
         return this;
     }
 
+
     /**
      * Use EntitiesSortOrder enum for SortOptions.sortBy
      */
@@ -241,6 +249,7 @@ public class ListEntitiesRequest {
         return this;
     }
 
+
     public ListEntitiesRequest withEntityType(Optional<? extends ListEntitiesRequestEntityType> entityType) {
         Utils.checkNotNull(entityType, "entityType");
         this.entityType = entityType;
@@ -255,6 +264,7 @@ public class ListEntitiesRequest {
         this.datasource = Optional.ofNullable(datasource);
         return this;
     }
+
 
     /**
      * The datasource associated with the entity type, most commonly used with CUSTOM_ENTITIES
@@ -274,6 +284,7 @@ public class ListEntitiesRequest {
         return this;
     }
 
+
     /**
      * A query string to search for entities that each entity in the response must conform to. An empty query does not filter any entities.
      */
@@ -291,6 +302,7 @@ public class ListEntitiesRequest {
         this.includeFields = Optional.ofNullable(includeFields);
         return this;
     }
+
 
     /**
      * List of entity fields to return (that aren't returned by default)
@@ -310,6 +322,7 @@ public class ListEntitiesRequest {
         return this;
     }
 
+
     /**
      * Hint to the server about how many results to send back. Server may return less.
      */
@@ -327,6 +340,7 @@ public class ListEntitiesRequest {
         this.cursor = Optional.ofNullable(cursor);
         return this;
     }
+
 
     /**
      * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
@@ -346,6 +360,7 @@ public class ListEntitiesRequest {
         return this;
     }
 
+
     /**
      * A string denoting the search surface from which the endpoint is called.
      */
@@ -364,6 +379,7 @@ public class ListEntitiesRequest {
         return this;
     }
 
+
     /**
      * The type of request being made.
      */
@@ -373,7 +389,6 @@ public class ListEntitiesRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -399,15 +414,9 @@ public class ListEntitiesRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            filter,
-            sort,
-            entityType,
-            datasource,
-            query,
-            includeFields,
-            pageSize,
-            cursor,
-            source,
+            filter, sort, entityType,
+            datasource, query, includeFields,
+            pageSize, cursor, source,
             requestType);
     }
     
@@ -425,32 +434,34 @@ public class ListEntitiesRequest {
                 "source", source,
                 "requestType", requestType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<FacetFilter>> filter = Optional.empty();
- 
+
         private Optional<? extends List<SortOptions>> sort = Optional.empty();
- 
+
         private Optional<? extends ListEntitiesRequestEntityType> entityType;
- 
+
         private Optional<String> datasource = Optional.empty();
- 
+
         private Optional<String> query = Optional.empty();
- 
+
         private Optional<? extends List<ListEntitiesRequestIncludeField>> includeFields = Optional.empty();
- 
+
         private Optional<Long> pageSize = Optional.empty();
- 
+
         private Optional<String> cursor = Optional.empty();
- 
+
         private Optional<String> source = Optional.empty();
- 
+
         private Optional<? extends RequestType> requestType;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder filter(List<FacetFilter> filter) {
             Utils.checkNotNull(filter, "filter");
@@ -463,6 +474,7 @@ public class ListEntitiesRequest {
             this.filter = filter;
             return this;
         }
+
 
         /**
          * Use EntitiesSortOrder enum for SortOptions.sortBy
@@ -482,6 +494,7 @@ public class ListEntitiesRequest {
             return this;
         }
 
+
         public Builder entityType(ListEntitiesRequestEntityType entityType) {
             Utils.checkNotNull(entityType, "entityType");
             this.entityType = Optional.ofNullable(entityType);
@@ -493,6 +506,7 @@ public class ListEntitiesRequest {
             this.entityType = entityType;
             return this;
         }
+
 
         /**
          * The datasource associated with the entity type, most commonly used with CUSTOM_ENTITIES
@@ -512,6 +526,7 @@ public class ListEntitiesRequest {
             return this;
         }
 
+
         /**
          * A query string to search for entities that each entity in the response must conform to. An empty query does not filter any entities.
          */
@@ -529,6 +544,7 @@ public class ListEntitiesRequest {
             this.query = query;
             return this;
         }
+
 
         /**
          * List of entity fields to return (that aren't returned by default)
@@ -548,6 +564,7 @@ public class ListEntitiesRequest {
             return this;
         }
 
+
         /**
          * Hint to the server about how many results to send back. Server may return less.
          */
@@ -565,6 +582,7 @@ public class ListEntitiesRequest {
             this.pageSize = pageSize;
             return this;
         }
+
 
         /**
          * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
@@ -584,6 +602,7 @@ public class ListEntitiesRequest {
             return this;
         }
 
+
         /**
          * A string denoting the search surface from which the endpoint is called.
          */
@@ -602,6 +621,7 @@ public class ListEntitiesRequest {
             return this;
         }
 
+
         /**
          * The type of request being made.
          */
@@ -619,7 +639,7 @@ public class ListEntitiesRequest {
             this.requestType = requestType;
             return this;
         }
-        
+
         public ListEntitiesRequest build() {
             if (entityType == null) {
                 entityType = _SINGLETON_VALUE_EntityType.value();
@@ -627,18 +647,14 @@ public class ListEntitiesRequest {
             if (requestType == null) {
                 requestType = _SINGLETON_VALUE_RequestType.value();
             }
+
             return new ListEntitiesRequest(
-                filter,
-                sort,
-                entityType,
-                datasource,
-                query,
-                includeFields,
-                pageSize,
-                cursor,
-                source,
+                filter, sort, entityType,
+                datasource, query, includeFields,
+                pageSize, cursor, source,
                 requestType);
         }
+
 
         private static final LazySingletonValue<Optional<? extends ListEntitiesRequestEntityType>> _SINGLETON_VALUE_EntityType =
                 new LazySingletonValue<>(

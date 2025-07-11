@@ -16,7 +16,6 @@ import java.lang.String;
  * <p>Describes the request body of the /debug/{datasource}/document API call.
  */
 public class DebugDocumentRequest {
-
     /**
      * Object type of the document to get the status for.
      */
@@ -55,9 +54,10 @@ public class DebugDocumentRequest {
         return docId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Object type of the document to get the status for.
@@ -77,7 +77,6 @@ public class DebugDocumentRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -95,8 +94,7 @@ public class DebugDocumentRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            objectType,
-            docId);
+            objectType, docId);
     }
     
     @Override
@@ -105,16 +103,18 @@ public class DebugDocumentRequest {
                 "objectType", objectType,
                 "docId", docId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String objectType;
- 
+
         private String docId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Object type of the document to get the status for.
@@ -125,6 +125,7 @@ public class DebugDocumentRequest {
             return this;
         }
 
+
         /**
          * Glean Document ID within the datasource to get the status for.
          */
@@ -133,11 +134,12 @@ public class DebugDocumentRequest {
             this.docId = docId;
             return this;
         }
-        
+
         public DebugDocumentRequest build() {
+
             return new DebugDocumentRequest(
-                objectType,
-                docId);
+                objectType, docId);
         }
+
     }
 }

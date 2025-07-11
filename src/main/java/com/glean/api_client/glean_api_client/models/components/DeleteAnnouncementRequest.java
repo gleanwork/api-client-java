@@ -11,8 +11,8 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 
-public class DeleteAnnouncementRequest {
 
+public class DeleteAnnouncementRequest {
     /**
      * The opaque id of the announcement to be deleted.
      */
@@ -34,9 +34,10 @@ public class DeleteAnnouncementRequest {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The opaque id of the announcement to be deleted.
@@ -47,7 +48,6 @@ public class DeleteAnnouncementRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -72,14 +72,16 @@ public class DeleteAnnouncementRequest {
         return Utils.toString(DeleteAnnouncementRequest.class,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long id;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The opaque id of the announcement to be deleted.
@@ -89,10 +91,12 @@ public class DeleteAnnouncementRequest {
             this.id = id;
             return this;
         }
-        
+
         public DeleteAnnouncementRequest build() {
+
             return new DeleteAnnouncementRequest(
                 id);
         }
+
     }
 }

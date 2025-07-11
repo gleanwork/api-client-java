@@ -27,7 +27,6 @@ import java.util.Optional;
  */
 @Deprecated
 public class ExternalSharingOptions {
-
     /**
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -88,6 +87,7 @@ public class ExternalSharingOptions {
     @JsonProperty("userIds")
     private Optional<? extends List<String>> userIds;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("domainAccessEnabled")
     private Optional<Boolean> domainAccessEnabled;
@@ -124,7 +124,9 @@ public class ExternalSharingOptions {
     }
     
     public ExternalSharingOptions() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -201,9 +203,10 @@ public class ExternalSharingOptions {
         return domainAccessEnabled;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * 
@@ -215,6 +218,7 @@ public class ExternalSharingOptions {
         this.enabled = Optional.ofNullable(enabled);
         return this;
     }
+
 
     /**
      * 
@@ -236,6 +240,7 @@ public class ExternalSharingOptions {
         return this;
     }
 
+
     /**
      * The minimum number of users the document is shared with.
      */
@@ -253,6 +258,7 @@ public class ExternalSharingOptions {
         this.thresholdEnabled = Optional.ofNullable(thresholdEnabled);
         return this;
     }
+
 
     /**
      * Documents will be filtered based on how many people have access to it.
@@ -274,6 +280,7 @@ public class ExternalSharingOptions {
         return this;
     }
 
+
     /**
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -294,6 +301,7 @@ public class ExternalSharingOptions {
         return this;
     }
 
+
     /**
      * Only users within the organization can access the document.
      */
@@ -311,6 +319,7 @@ public class ExternalSharingOptions {
         this.anonymousAccessEnabled = Optional.ofNullable(anonymousAccessEnabled);
         return this;
     }
+
 
     /**
      * Anyone on the internet can access the document.
@@ -330,6 +339,7 @@ public class ExternalSharingOptions {
         return this;
     }
 
+
     /**
      * Enable user access check
      */
@@ -348,6 +358,7 @@ public class ExternalSharingOptions {
         return this;
     }
 
+
     /**
      * Any one of the specified users can access the document.
      */
@@ -363,13 +374,13 @@ public class ExternalSharingOptions {
         return this;
     }
 
+
     public ExternalSharingOptions withDomainAccessEnabled(Optional<Boolean> domainAccessEnabled) {
         Utils.checkNotNull(domainAccessEnabled, "domainAccessEnabled");
         this.domainAccessEnabled = domainAccessEnabled;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -394,15 +405,9 @@ public class ExternalSharingOptions {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            enabled,
-            threshold,
-            thresholdEnabled,
-            anyoneWithLinkEnabled,
-            anyoneInternalEnabled,
-            anonymousAccessEnabled,
-            userAccessEnabled,
-            userIds,
-            domainAccessEnabled);
+            enabled, threshold, thresholdEnabled,
+            anyoneWithLinkEnabled, anyoneInternalEnabled, anonymousAccessEnabled,
+            userAccessEnabled, userIds, domainAccessEnabled);
     }
     
     @Override
@@ -418,32 +423,34 @@ public class ExternalSharingOptions {
                 "userIds", userIds,
                 "domainAccessEnabled", domainAccessEnabled);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         @Deprecated
         private Optional<Boolean> enabled = Optional.empty();
- 
+
         private Optional<Long> threshold = Optional.empty();
- 
+
         private Optional<Boolean> thresholdEnabled = Optional.empty();
- 
+
         @Deprecated
         private Optional<Boolean> anyoneWithLinkEnabled = Optional.empty();
- 
+
         private Optional<Boolean> anyoneInternalEnabled = Optional.empty();
- 
+
         private Optional<Boolean> anonymousAccessEnabled = Optional.empty();
- 
+
         private Optional<Boolean> userAccessEnabled = Optional.empty();
- 
+
         private Optional<? extends List<String>> userIds = Optional.empty();
- 
+
         private Optional<Boolean> domainAccessEnabled = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * 
@@ -467,6 +474,7 @@ public class ExternalSharingOptions {
             return this;
         }
 
+
         /**
          * The minimum number of users the document is shared with.
          */
@@ -485,6 +493,7 @@ public class ExternalSharingOptions {
             return this;
         }
 
+
         /**
          * Documents will be filtered based on how many people have access to it.
          */
@@ -502,6 +511,7 @@ public class ExternalSharingOptions {
             this.thresholdEnabled = thresholdEnabled;
             return this;
         }
+
 
         /**
          * 
@@ -525,6 +535,7 @@ public class ExternalSharingOptions {
             return this;
         }
 
+
         /**
          * Only users within the organization can access the document.
          */
@@ -542,6 +553,7 @@ public class ExternalSharingOptions {
             this.anyoneInternalEnabled = anyoneInternalEnabled;
             return this;
         }
+
 
         /**
          * Anyone on the internet can access the document.
@@ -561,6 +573,7 @@ public class ExternalSharingOptions {
             return this;
         }
 
+
         /**
          * Enable user access check
          */
@@ -578,6 +591,7 @@ public class ExternalSharingOptions {
             this.userAccessEnabled = userAccessEnabled;
             return this;
         }
+
 
         /**
          * Any one of the specified users can access the document.
@@ -597,6 +611,7 @@ public class ExternalSharingOptions {
             return this;
         }
 
+
         public Builder domainAccessEnabled(boolean domainAccessEnabled) {
             Utils.checkNotNull(domainAccessEnabled, "domainAccessEnabled");
             this.domainAccessEnabled = Optional.ofNullable(domainAccessEnabled);
@@ -608,18 +623,14 @@ public class ExternalSharingOptions {
             this.domainAccessEnabled = domainAccessEnabled;
             return this;
         }
-        
+
         public ExternalSharingOptions build() {
+
             return new ExternalSharingOptions(
-                enabled,
-                threshold,
-                thresholdEnabled,
-                anyoneWithLinkEnabled,
-                anyoneInternalEnabled,
-                anonymousAccessEnabled,
-                userAccessEnabled,
-                userIds,
-                domainAccessEnabled);
+                enabled, threshold, thresholdEnabled,
+                anyoneWithLinkEnabled, anyoneInternalEnabled, anonymousAccessEnabled,
+                userAccessEnabled, userIds, domainAccessEnabled);
         }
+
     }
 }

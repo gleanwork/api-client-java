@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.Map;
 import java.util.Optional;
 
-public class Tool {
 
+public class Tool {
     /**
      * Type of tool (READ, WRITE)
      */
@@ -72,7 +72,8 @@ public class Tool {
     }
     
     public Tool() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -117,9 +118,10 @@ public class Tool {
         return (Optional<Map<String, ToolParameter>>) parameters;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Type of tool (READ, WRITE)
@@ -129,6 +131,7 @@ public class Tool {
         this.type = Optional.ofNullable(type);
         return this;
     }
+
 
     /**
      * Type of tool (READ, WRITE)
@@ -148,6 +151,7 @@ public class Tool {
         return this;
     }
 
+
     /**
      * Unique identifier for the tool
      */
@@ -165,6 +169,7 @@ public class Tool {
         this.displayName = Optional.ofNullable(displayName);
         return this;
     }
+
 
     /**
      * Human-readable name
@@ -184,6 +189,7 @@ public class Tool {
         return this;
     }
 
+
     /**
      * LLM friendly description of the tool
      */
@@ -202,6 +208,7 @@ public class Tool {
         return this;
     }
 
+
     /**
      * The parameters for the tool. Each key is the name of the parameter and the value is the parameter object.
      */
@@ -211,7 +218,6 @@ public class Tool {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -232,11 +238,8 @@ public class Tool {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            name,
-            displayName,
-            description,
-            parameters);
+            type, name, displayName,
+            description, parameters);
     }
     
     @Override
@@ -248,22 +251,24 @@ public class Tool {
                 "description", description,
                 "parameters", parameters);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ToolType> type = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> displayName = Optional.empty();
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<? extends Map<String, ToolParameter>> parameters = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Type of tool (READ, WRITE)
@@ -283,6 +288,7 @@ public class Tool {
             return this;
         }
 
+
         /**
          * Unique identifier for the tool
          */
@@ -300,6 +306,7 @@ public class Tool {
             this.name = name;
             return this;
         }
+
 
         /**
          * Human-readable name
@@ -319,6 +326,7 @@ public class Tool {
             return this;
         }
 
+
         /**
          * LLM friendly description of the tool
          */
@@ -337,6 +345,7 @@ public class Tool {
             return this;
         }
 
+
         /**
          * The parameters for the tool. Each key is the name of the parameter and the value is the parameter object.
          */
@@ -354,14 +363,13 @@ public class Tool {
             this.parameters = parameters;
             return this;
         }
-        
+
         public Tool build() {
+
             return new Tool(
-                type,
-                name,
-                displayName,
-                description,
-                parameters);
+                type, name, displayName,
+                description, parameters);
         }
+
     }
 }

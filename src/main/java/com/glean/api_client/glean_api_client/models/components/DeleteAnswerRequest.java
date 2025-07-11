@@ -14,8 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class DeleteAnswerRequest {
 
+public class DeleteAnswerRequest {
     /**
      * The opaque ID of the Answer.
      */
@@ -60,9 +60,10 @@ public class DeleteAnswerRequest {
         return docId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The opaque ID of the Answer.
@@ -82,6 +83,7 @@ public class DeleteAnswerRequest {
         return this;
     }
 
+
     /**
      * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID isn't available. If both are available, using the Answer ID is preferred.
      */
@@ -91,7 +93,6 @@ public class DeleteAnswerRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -109,8 +110,7 @@ public class DeleteAnswerRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            docId);
+            id, docId);
     }
     
     @Override
@@ -119,16 +119,18 @@ public class DeleteAnswerRequest {
                 "id", id,
                 "docId", docId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long id;
- 
+
         private Optional<String> docId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The opaque ID of the Answer.
@@ -138,6 +140,7 @@ public class DeleteAnswerRequest {
             this.id = id;
             return this;
         }
+
 
         /**
          * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID isn't available. If both are available, using the Answer ID is preferred.
@@ -156,11 +159,12 @@ public class DeleteAnswerRequest {
             this.docId = docId;
             return this;
         }
-        
+
         public DeleteAnswerRequest build() {
+
             return new DeleteAnswerRequest(
-                id,
-                docId);
+                id, docId);
         }
+
     }
 }

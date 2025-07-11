@@ -14,6 +14,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class GetPinResponse {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -37,9 +38,10 @@ public class GetPinResponse {
         return (Optional<PinDocument>) pin;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetPinResponse withPin(PinDocument pin) {
         Utils.checkNotNull(pin, "pin");
@@ -47,13 +49,13 @@ public class GetPinResponse {
         return this;
     }
 
+
     public GetPinResponse withPin(Optional<? extends PinDocument> pin) {
         Utils.checkNotNull(pin, "pin");
         this.pin = pin;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -78,14 +80,16 @@ public class GetPinResponse {
         return Utils.toString(GetPinResponse.class,
                 "pin", pin);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends PinDocument> pin = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder pin(PinDocument pin) {
             Utils.checkNotNull(pin, "pin");
@@ -98,10 +102,12 @@ public class GetPinResponse {
             this.pin = pin;
             return this;
         }
-        
+
         public GetPinResponse build() {
+
             return new GetPinResponse(
                 pin);
         }
+
     }
 }

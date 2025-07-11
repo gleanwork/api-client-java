@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>Info about an employee and optional version for that info
  */
 public class IndexEmployeeRequest {
-
     /**
      * Describes employee info
      */
@@ -65,9 +64,10 @@ public class IndexEmployeeRequest {
         return version;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Describes employee info
@@ -87,6 +87,7 @@ public class IndexEmployeeRequest {
         return this;
     }
 
+
     /**
      * Version number for the employee object. If absent or 0 then no version checks are done
      */
@@ -96,7 +97,6 @@ public class IndexEmployeeRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -114,8 +114,7 @@ public class IndexEmployeeRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            employee,
-            version);
+            employee, version);
     }
     
     @Override
@@ -124,16 +123,18 @@ public class IndexEmployeeRequest {
                 "employee", employee,
                 "version", version);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private EmployeeInfoDefinition employee;
- 
+
         private Optional<Long> version = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Describes employee info
@@ -143,6 +144,7 @@ public class IndexEmployeeRequest {
             this.employee = employee;
             return this;
         }
+
 
         /**
          * Version number for the employee object. If absent or 0 then no version checks are done
@@ -161,11 +163,12 @@ public class IndexEmployeeRequest {
             this.version = version;
             return this;
         }
-        
+
         public IndexEmployeeRequest build() {
+
             return new IndexEmployeeRequest(
-                employee,
-                version);
+                employee, version);
         }
+
     }
 }

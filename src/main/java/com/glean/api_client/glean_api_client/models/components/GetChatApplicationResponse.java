@@ -15,6 +15,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class GetChatApplicationResponse {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -38,9 +39,10 @@ public class GetChatApplicationResponse {
         return (Optional<Object>) application;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetChatApplicationResponse withApplication(Object application) {
         Utils.checkNotNull(application, "application");
@@ -48,13 +50,13 @@ public class GetChatApplicationResponse {
         return this;
     }
 
+
     public GetChatApplicationResponse withApplication(Optional<? extends Object> application) {
         Utils.checkNotNull(application, "application");
         this.application = application;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -79,14 +81,16 @@ public class GetChatApplicationResponse {
         return Utils.toString(GetChatApplicationResponse.class,
                 "application", application);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Object> application = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder application(Object application) {
             Utils.checkNotNull(application, "application");
@@ -99,10 +103,12 @@ public class GetChatApplicationResponse {
             this.application = application;
             return this;
         }
-        
+
         public GetChatApplicationResponse build() {
+
             return new GetChatApplicationResponse(
                 application);
         }
+
     }
 }

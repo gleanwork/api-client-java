@@ -21,13 +21,13 @@ import java.util.Optional;
  * <p>A generated classification of a given event.
  */
 public class EventClassification {
-
     /**
      * The name for a generated classification of an event.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private Optional<? extends EventClassificationName> name;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("strategies")
@@ -62,9 +62,10 @@ public class EventClassification {
         return (Optional<List<EventStrategyName>>) strategies;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name for a generated classification of an event.
@@ -74,6 +75,7 @@ public class EventClassification {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * The name for a generated classification of an event.
@@ -90,13 +92,13 @@ public class EventClassification {
         return this;
     }
 
+
     public EventClassification withStrategies(Optional<? extends List<EventStrategyName>> strategies) {
         Utils.checkNotNull(strategies, "strategies");
         this.strategies = strategies;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -114,8 +116,7 @@ public class EventClassification {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            strategies);
+            name, strategies);
     }
     
     @Override
@@ -124,16 +125,18 @@ public class EventClassification {
                 "name", name,
                 "strategies", strategies);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends EventClassificationName> name = Optional.empty();
- 
+
         private Optional<? extends List<EventStrategyName>> strategies = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name for a generated classification of an event.
@@ -153,6 +156,7 @@ public class EventClassification {
             return this;
         }
 
+
         public Builder strategies(List<EventStrategyName> strategies) {
             Utils.checkNotNull(strategies, "strategies");
             this.strategies = Optional.ofNullable(strategies);
@@ -164,11 +168,12 @@ public class EventClassification {
             this.strategies = strategies;
             return this;
         }
-        
+
         public EventClassification build() {
+
             return new EventClassification(
-                name,
-                strategies);
+                name, strategies);
         }
+
     }
 }

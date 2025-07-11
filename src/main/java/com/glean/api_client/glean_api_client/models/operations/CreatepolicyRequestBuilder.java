@@ -29,7 +29,7 @@ public class CreatepolicyRequestBuilder {
     public CreatepolicyResponse call() throws Exception {
         
         RequestOperation<CreateDlpReportRequest, CreatepolicyResponse> operation
-              = new CreatepolicyOperation( sdkConfiguration);
+              = new CreatepolicyOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -3,10 +3,10 @@ id: 0359d4fe-2923-46fc-aaca-cf70b48dcfa1
 management:
   docChecksum: bb65a174a6b697994f7bde3845843d9d
   docVersion: 0.9.0
-  speakeasyVersion: 1.576.1
-  generationVersion: 2.651.2
-  releaseVersion: 0.6.0
-  configChecksum: 36947d923e8382f9287cbfeee1bf3f84
+  speakeasyVersion: 1.580.2
+  generationVersion: 2.656.5
+  releaseVersion: 0.7.0
+  configChecksum: 5763d80380dc0fbbb84875250841f11a
   repoURL: https://github.com/gleanwork/api-client-java.git
   published: true
 features:
@@ -14,9 +14,9 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.0.1
     constsAndDefaults: 0.1.1
-    core: 3.42.3
+    core: 3.44.0
     deprecations: 2.81.1
-    examples: 2.81.5
+    examples: 2.81.6
     flattening: 2.81.1
     globalSecurity: 2.83.0
     globalSecurityCallbacks: 0.1.0

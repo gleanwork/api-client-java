@@ -29,7 +29,7 @@ public class UnpinRequestBuilder {
     public UnpinResponse call() throws Exception {
         
         RequestOperation<Unpin, UnpinResponse> operation
-              = new UnpinOperation( sdkConfiguration);
+              = new UnpinOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

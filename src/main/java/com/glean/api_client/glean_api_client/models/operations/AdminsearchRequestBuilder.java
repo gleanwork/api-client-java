@@ -29,7 +29,7 @@ public class AdminsearchRequestBuilder {
     public AdminsearchResponse call() throws Exception {
         
         RequestOperation<SearchRequest, AdminsearchResponse> operation
-              = new AdminsearchOperation( sdkConfiguration);
+              = new AdminsearchOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

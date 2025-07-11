@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class InsightsResponse {
 
+public class InsightsResponse {
     /**
      * List of timeseries to make charts (if applicable).
      */
@@ -24,45 +24,56 @@ public class InsightsResponse {
     @JsonProperty("timeseries")
     private Optional<? extends List<LabeledCountInfo>> timeseries;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("users")
     private Optional<? extends UserInsightsResponse> users;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("content")
     private Optional<? extends ContentInsightsResponse> content;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("queries")
     private Optional<? extends QueryInsightsResponse> queries;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("collections")
     private Optional<? extends ContentInsightsResponse> collections;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("collectionsV2")
     private Optional<? extends ContentInsightsResponse> collectionsV2;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shortcuts")
     private Optional<? extends ShortcutInsightsResponse> shortcuts;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("announcements")
     private Optional<? extends ContentInsightsResponse> announcements;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("answers")
     private Optional<? extends ContentInsightsResponse> answers;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ai")
     private Optional<? extends AiInsightsResponse> ai;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("aiApps")
     private Optional<? extends AiAppsInsightsResponse> aiApps;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("gleanAssist")
@@ -119,7 +130,11 @@ public class InsightsResponse {
     }
     
     public InsightsResponse() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -206,9 +221,10 @@ public class InsightsResponse {
         return (Optional<List<String>>) departments;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * List of timeseries to make charts (if applicable).
@@ -218,6 +234,7 @@ public class InsightsResponse {
         this.timeseries = Optional.ofNullable(timeseries);
         return this;
     }
+
 
     /**
      * List of timeseries to make charts (if applicable).
@@ -234,6 +251,7 @@ public class InsightsResponse {
         return this;
     }
 
+
     public InsightsResponse withUsers(Optional<? extends UserInsightsResponse> users) {
         Utils.checkNotNull(users, "users");
         this.users = users;
@@ -245,6 +263,7 @@ public class InsightsResponse {
         this.content = Optional.ofNullable(content);
         return this;
     }
+
 
     public InsightsResponse withContent(Optional<? extends ContentInsightsResponse> content) {
         Utils.checkNotNull(content, "content");
@@ -258,6 +277,7 @@ public class InsightsResponse {
         return this;
     }
 
+
     public InsightsResponse withQueries(Optional<? extends QueryInsightsResponse> queries) {
         Utils.checkNotNull(queries, "queries");
         this.queries = queries;
@@ -269,6 +289,7 @@ public class InsightsResponse {
         this.collections = Optional.ofNullable(collections);
         return this;
     }
+
 
     public InsightsResponse withCollections(Optional<? extends ContentInsightsResponse> collections) {
         Utils.checkNotNull(collections, "collections");
@@ -282,6 +303,7 @@ public class InsightsResponse {
         return this;
     }
 
+
     public InsightsResponse withCollectionsV2(Optional<? extends ContentInsightsResponse> collectionsV2) {
         Utils.checkNotNull(collectionsV2, "collectionsV2");
         this.collectionsV2 = collectionsV2;
@@ -293,6 +315,7 @@ public class InsightsResponse {
         this.shortcuts = Optional.ofNullable(shortcuts);
         return this;
     }
+
 
     public InsightsResponse withShortcuts(Optional<? extends ShortcutInsightsResponse> shortcuts) {
         Utils.checkNotNull(shortcuts, "shortcuts");
@@ -306,6 +329,7 @@ public class InsightsResponse {
         return this;
     }
 
+
     public InsightsResponse withAnnouncements(Optional<? extends ContentInsightsResponse> announcements) {
         Utils.checkNotNull(announcements, "announcements");
         this.announcements = announcements;
@@ -317,6 +341,7 @@ public class InsightsResponse {
         this.answers = Optional.ofNullable(answers);
         return this;
     }
+
 
     public InsightsResponse withAnswers(Optional<? extends ContentInsightsResponse> answers) {
         Utils.checkNotNull(answers, "answers");
@@ -330,6 +355,7 @@ public class InsightsResponse {
         return this;
     }
 
+
     public InsightsResponse withAi(Optional<? extends AiInsightsResponse> ai) {
         Utils.checkNotNull(ai, "ai");
         this.ai = ai;
@@ -342,6 +368,7 @@ public class InsightsResponse {
         return this;
     }
 
+
     public InsightsResponse withAiApps(Optional<? extends AiAppsInsightsResponse> aiApps) {
         Utils.checkNotNull(aiApps, "aiApps");
         this.aiApps = aiApps;
@@ -353,6 +380,7 @@ public class InsightsResponse {
         this.gleanAssist = Optional.ofNullable(gleanAssist);
         return this;
     }
+
 
     public InsightsResponse withGleanAssist(Optional<? extends GleanAssistInsightsResponse> gleanAssist) {
         Utils.checkNotNull(gleanAssist, "gleanAssist");
@@ -369,6 +397,7 @@ public class InsightsResponse {
         return this;
     }
 
+
     /**
      * list of all departments.
      */
@@ -378,7 +407,6 @@ public class InsightsResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -407,18 +435,10 @@ public class InsightsResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            timeseries,
-            users,
-            content,
-            queries,
-            collections,
-            collectionsV2,
-            shortcuts,
-            announcements,
-            answers,
-            ai,
-            aiApps,
-            gleanAssist,
+            timeseries, users, content,
+            queries, collections, collectionsV2,
+            shortcuts, announcements, answers,
+            ai, aiApps, gleanAssist,
             departments);
     }
     
@@ -439,38 +459,40 @@ public class InsightsResponse {
                 "gleanAssist", gleanAssist,
                 "departments", departments);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<LabeledCountInfo>> timeseries = Optional.empty();
- 
+
         private Optional<? extends UserInsightsResponse> users = Optional.empty();
- 
+
         private Optional<? extends ContentInsightsResponse> content = Optional.empty();
- 
+
         private Optional<? extends QueryInsightsResponse> queries = Optional.empty();
- 
+
         private Optional<? extends ContentInsightsResponse> collections = Optional.empty();
- 
+
         private Optional<? extends ContentInsightsResponse> collectionsV2 = Optional.empty();
- 
+
         private Optional<? extends ShortcutInsightsResponse> shortcuts = Optional.empty();
- 
+
         private Optional<? extends ContentInsightsResponse> announcements = Optional.empty();
- 
+
         private Optional<? extends ContentInsightsResponse> answers = Optional.empty();
- 
+
         private Optional<? extends AiInsightsResponse> ai = Optional.empty();
- 
+
         private Optional<? extends AiAppsInsightsResponse> aiApps = Optional.empty();
- 
+
         private Optional<? extends GleanAssistInsightsResponse> gleanAssist = Optional.empty();
- 
+
         private Optional<? extends List<String>> departments = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * List of timeseries to make charts (if applicable).
@@ -490,6 +512,7 @@ public class InsightsResponse {
             return this;
         }
 
+
         public Builder users(UserInsightsResponse users) {
             Utils.checkNotNull(users, "users");
             this.users = Optional.ofNullable(users);
@@ -501,6 +524,7 @@ public class InsightsResponse {
             this.users = users;
             return this;
         }
+
 
         public Builder content(ContentInsightsResponse content) {
             Utils.checkNotNull(content, "content");
@@ -514,6 +538,7 @@ public class InsightsResponse {
             return this;
         }
 
+
         public Builder queries(QueryInsightsResponse queries) {
             Utils.checkNotNull(queries, "queries");
             this.queries = Optional.ofNullable(queries);
@@ -525,6 +550,7 @@ public class InsightsResponse {
             this.queries = queries;
             return this;
         }
+
 
         public Builder collections(ContentInsightsResponse collections) {
             Utils.checkNotNull(collections, "collections");
@@ -538,6 +564,7 @@ public class InsightsResponse {
             return this;
         }
 
+
         public Builder collectionsV2(ContentInsightsResponse collectionsV2) {
             Utils.checkNotNull(collectionsV2, "collectionsV2");
             this.collectionsV2 = Optional.ofNullable(collectionsV2);
@@ -549,6 +576,7 @@ public class InsightsResponse {
             this.collectionsV2 = collectionsV2;
             return this;
         }
+
 
         public Builder shortcuts(ShortcutInsightsResponse shortcuts) {
             Utils.checkNotNull(shortcuts, "shortcuts");
@@ -562,6 +590,7 @@ public class InsightsResponse {
             return this;
         }
 
+
         public Builder announcements(ContentInsightsResponse announcements) {
             Utils.checkNotNull(announcements, "announcements");
             this.announcements = Optional.ofNullable(announcements);
@@ -573,6 +602,7 @@ public class InsightsResponse {
             this.announcements = announcements;
             return this;
         }
+
 
         public Builder answers(ContentInsightsResponse answers) {
             Utils.checkNotNull(answers, "answers");
@@ -586,6 +616,7 @@ public class InsightsResponse {
             return this;
         }
 
+
         public Builder ai(AiInsightsResponse ai) {
             Utils.checkNotNull(ai, "ai");
             this.ai = Optional.ofNullable(ai);
@@ -597,6 +628,7 @@ public class InsightsResponse {
             this.ai = ai;
             return this;
         }
+
 
         public Builder aiApps(AiAppsInsightsResponse aiApps) {
             Utils.checkNotNull(aiApps, "aiApps");
@@ -610,6 +642,7 @@ public class InsightsResponse {
             return this;
         }
 
+
         public Builder gleanAssist(GleanAssistInsightsResponse gleanAssist) {
             Utils.checkNotNull(gleanAssist, "gleanAssist");
             this.gleanAssist = Optional.ofNullable(gleanAssist);
@@ -621,6 +654,7 @@ public class InsightsResponse {
             this.gleanAssist = gleanAssist;
             return this;
         }
+
 
         /**
          * list of all departments.
@@ -639,22 +673,16 @@ public class InsightsResponse {
             this.departments = departments;
             return this;
         }
-        
+
         public InsightsResponse build() {
+
             return new InsightsResponse(
-                timeseries,
-                users,
-                content,
-                queries,
-                collections,
-                collectionsV2,
-                shortcuts,
-                announcements,
-                answers,
-                ai,
-                aiApps,
-                gleanAssist,
+                timeseries, users, content,
+                queries, collections, collectionsV2,
+                shortcuts, announcements, answers,
+                ai, aiApps, gleanAssist,
                 departments);
         }
+
     }
 }

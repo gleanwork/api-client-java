@@ -29,7 +29,7 @@ public class AutocompleteRequestBuilder {
     public AutocompleteResponse call() throws Exception {
         
         RequestOperation<AutocompleteRequest, AutocompleteResponse> operation
-              = new AutocompleteOperation( sdkConfiguration);
+              = new AutocompleteOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

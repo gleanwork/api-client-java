@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class InsightsAgentsRequestOptions {
 
+public class InsightsAgentsRequestOptions {
     /**
      * IDs of the Agents for which Insights should be returned. An empty array signifies all.
      */
@@ -44,9 +44,10 @@ public class InsightsAgentsRequestOptions {
         return (Optional<List<String>>) agentIds;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * IDs of the Agents for which Insights should be returned. An empty array signifies all.
@@ -57,6 +58,7 @@ public class InsightsAgentsRequestOptions {
         return this;
     }
 
+
     /**
      * IDs of the Agents for which Insights should be returned. An empty array signifies all.
      */
@@ -66,7 +68,6 @@ public class InsightsAgentsRequestOptions {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,14 +92,16 @@ public class InsightsAgentsRequestOptions {
         return Utils.toString(InsightsAgentsRequestOptions.class,
                 "agentIds", agentIds);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<String>> agentIds = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * IDs of the Agents for which Insights should be returned. An empty array signifies all.
@@ -117,10 +120,12 @@ public class InsightsAgentsRequestOptions {
             this.agentIds = agentIds;
             return this;
         }
-        
+
         public InsightsAgentsRequestOptions build() {
+
             return new InsightsAgentsRequestOptions(
                 agentIds);
         }
+
     }
 }

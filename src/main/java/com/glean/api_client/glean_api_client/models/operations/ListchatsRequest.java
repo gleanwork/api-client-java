@@ -12,8 +12,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class ListchatsRequest {
 
+public class ListchatsRequest {
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      */
@@ -39,9 +39,10 @@ public class ListchatsRequest {
         return timezoneOffset;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
@@ -52,6 +53,7 @@ public class ListchatsRequest {
         return this;
     }
 
+
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      */
@@ -61,7 +63,6 @@ public class ListchatsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -86,14 +87,16 @@ public class ListchatsRequest {
         return Utils.toString(ListchatsRequest.class,
                 "timezoneOffset", timezoneOffset);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> timezoneOffset = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
@@ -112,10 +115,12 @@ public class ListchatsRequest {
             this.timezoneOffset = timezoneOffset;
             return this;
         }
-        
+
         public ListchatsRequest build() {
+
             return new ListchatsRequest(
                 timezoneOffset);
         }
+
     }
 }

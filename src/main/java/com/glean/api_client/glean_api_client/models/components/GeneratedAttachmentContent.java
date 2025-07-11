@@ -19,7 +19,6 @@ import java.util.Optional;
  * <p>Content that has been generated or extrapolated from the documents present in the document field.
  */
 public class GeneratedAttachmentContent {
-
     /**
      * The header describing the generated content.
      */
@@ -64,9 +63,10 @@ public class GeneratedAttachmentContent {
         return text;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The header describing the generated content.
@@ -76,6 +76,7 @@ public class GeneratedAttachmentContent {
         this.displayHeader = Optional.ofNullable(displayHeader);
         return this;
     }
+
 
     /**
      * The header describing the generated content.
@@ -95,6 +96,7 @@ public class GeneratedAttachmentContent {
         return this;
     }
 
+
     /**
      * The content that has been generated.
      */
@@ -104,7 +106,6 @@ public class GeneratedAttachmentContent {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -122,8 +123,7 @@ public class GeneratedAttachmentContent {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            displayHeader,
-            text);
+            displayHeader, text);
     }
     
     @Override
@@ -132,16 +132,18 @@ public class GeneratedAttachmentContent {
                 "displayHeader", displayHeader,
                 "text", text);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> displayHeader = Optional.empty();
- 
+
         private Optional<String> text = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The header describing the generated content.
@@ -161,6 +163,7 @@ public class GeneratedAttachmentContent {
             return this;
         }
 
+
         /**
          * The content that has been generated.
          */
@@ -178,11 +181,12 @@ public class GeneratedAttachmentContent {
             this.text = text;
             return this;
         }
-        
+
         public GeneratedAttachmentContent build() {
+
             return new GeneratedAttachmentContent(
-                displayHeader,
-                text);
+                displayHeader, text);
         }
+
     }
 }

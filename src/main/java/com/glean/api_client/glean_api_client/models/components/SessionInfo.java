@@ -14,8 +14,8 @@ import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-public class SessionInfo {
 
+public class SessionInfo {
     /**
      * A unique token for this session. A new session (and token) is created when the user issues a request from a new tab or when our server hasn't seen activity for more than 10 minutes from a tab.
      */
@@ -61,7 +61,8 @@ public class SessionInfo {
     }
     
     public SessionInfo() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -96,9 +97,10 @@ public class SessionInfo {
         return lastQuery;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique token for this session. A new session (and token) is created when the user issues a request from a new tab or when our server hasn't seen activity for more than 10 minutes from a tab.
@@ -108,6 +110,7 @@ public class SessionInfo {
         this.sessionTrackingToken = Optional.ofNullable(sessionTrackingToken);
         return this;
     }
+
 
     /**
      * A unique token for this session. A new session (and token) is created when the user issues a request from a new tab or when our server hasn't seen activity for more than 10 minutes from a tab.
@@ -127,6 +130,7 @@ public class SessionInfo {
         return this;
     }
 
+
     /**
      * A unique id for all requests a user makes from a given tab, no matter how far apart. A new tab id is only generated when a user issues a request from a new tab.
      */
@@ -144,6 +148,7 @@ public class SessionInfo {
         this.lastSeen = Optional.ofNullable(lastSeen);
         return this;
     }
+
 
     /**
      * The last time the server saw this token.
@@ -163,6 +168,7 @@ public class SessionInfo {
         return this;
     }
 
+
     /**
      * The last query seen by the server.
      */
@@ -172,7 +178,6 @@ public class SessionInfo {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -192,9 +197,7 @@ public class SessionInfo {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            sessionTrackingToken,
-            tabId,
-            lastSeen,
+            sessionTrackingToken, tabId, lastSeen,
             lastQuery);
     }
     
@@ -206,20 +209,22 @@ public class SessionInfo {
                 "lastSeen", lastSeen,
                 "lastQuery", lastQuery);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> sessionTrackingToken = Optional.empty();
- 
+
         private Optional<String> tabId = Optional.empty();
- 
+
         private Optional<OffsetDateTime> lastSeen = Optional.empty();
- 
+
         private Optional<String> lastQuery = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique token for this session. A new session (and token) is created when the user issues a request from a new tab or when our server hasn't seen activity for more than 10 minutes from a tab.
@@ -239,6 +244,7 @@ public class SessionInfo {
             return this;
         }
 
+
         /**
          * A unique id for all requests a user makes from a given tab, no matter how far apart. A new tab id is only generated when a user issues a request from a new tab.
          */
@@ -256,6 +262,7 @@ public class SessionInfo {
             this.tabId = tabId;
             return this;
         }
+
 
         /**
          * The last time the server saw this token.
@@ -275,6 +282,7 @@ public class SessionInfo {
             return this;
         }
 
+
         /**
          * The last query seen by the server.
          */
@@ -292,13 +300,13 @@ public class SessionInfo {
             this.lastQuery = lastQuery;
             return this;
         }
-        
+
         public SessionInfo build() {
+
             return new SessionInfo(
-                sessionTrackingToken,
-                tabId,
-                lastSeen,
+                sessionTrackingToken, tabId, lastSeen,
                 lastQuery);
         }
+
     }
 }

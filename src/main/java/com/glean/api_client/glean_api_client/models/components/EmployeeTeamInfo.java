@@ -19,7 +19,6 @@ import java.util.Optional;
  * <p>Information about which team an employee belongs to
  */
 public class EmployeeTeamInfo {
-
     /**
      * unique identifier for this team
      */
@@ -82,9 +81,10 @@ public class EmployeeTeamInfo {
         return url;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * unique identifier for this team
@@ -94,6 +94,7 @@ public class EmployeeTeamInfo {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * unique identifier for this team
@@ -113,6 +114,7 @@ public class EmployeeTeamInfo {
         return this;
     }
 
+
     /**
      * Team name
      */
@@ -131,6 +133,7 @@ public class EmployeeTeamInfo {
         return this;
     }
 
+
     /**
      * Link to internal company team page
      */
@@ -140,7 +143,6 @@ public class EmployeeTeamInfo {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -159,9 +161,7 @@ public class EmployeeTeamInfo {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            name,
-            url);
+            id, name, url);
     }
     
     @Override
@@ -171,18 +171,20 @@ public class EmployeeTeamInfo {
                 "name", name,
                 "url", url);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> url = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * unique identifier for this team
@@ -202,6 +204,7 @@ public class EmployeeTeamInfo {
             return this;
         }
 
+
         /**
          * Team name
          */
@@ -220,6 +223,7 @@ public class EmployeeTeamInfo {
             return this;
         }
 
+
         /**
          * Link to internal company team page
          */
@@ -237,12 +241,12 @@ public class EmployeeTeamInfo {
             this.url = url;
             return this;
         }
-        
+
         public EmployeeTeamInfo build() {
+
             return new EmployeeTeamInfo(
-                id,
-                name,
-                url);
+                id, name, url);
         }
+
     }
 }

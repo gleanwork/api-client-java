@@ -21,7 +21,6 @@ import java.util.Optional;
  * <p>Information about an employee's team
  */
 public class TeamInfoDefinition {
-
     /**
      * The unique ID of the team
      */
@@ -137,7 +136,10 @@ public class TeamInfoDefinition {
             String id,
             String name,
             List<TeamMember> members) {
-        this(id, name, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), members, Optional.empty());
+        this(id, name, Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            members, Optional.empty());
     }
 
     /**
@@ -231,9 +233,10 @@ public class TeamInfoDefinition {
         return (Optional<List<AdditionalFieldDefinition>>) additionalFields;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique ID of the team
@@ -262,6 +265,7 @@ public class TeamInfoDefinition {
         return this;
     }
 
+
     /**
      * The description of this team
      */
@@ -279,6 +283,7 @@ public class TeamInfoDefinition {
         this.businessUnit = Optional.ofNullable(businessUnit);
         return this;
     }
+
 
     /**
      * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
@@ -298,6 +303,7 @@ public class TeamInfoDefinition {
         return this;
     }
 
+
     /**
      * An organizational unit where everyone has a similar task, e.g. `Engineering`.
      */
@@ -315,6 +321,7 @@ public class TeamInfoDefinition {
         this.photoUrl = Optional.ofNullable(photoUrl);
         return this;
     }
+
 
     /**
      * A link to the team's photo
@@ -334,6 +341,7 @@ public class TeamInfoDefinition {
         return this;
     }
 
+
     /**
      * A link to an external team page. If set, team results will link to it.
      */
@@ -352,6 +360,7 @@ public class TeamInfoDefinition {
         return this;
     }
 
+
     /**
      * The emails of the team
      */
@@ -369,6 +378,7 @@ public class TeamInfoDefinition {
         this.datasourceProfiles = Optional.ofNullable(datasourceProfiles);
         return this;
     }
+
 
     /**
      * The datasource profiles of the team, e.g. `Slack`,`Github`.
@@ -397,6 +407,7 @@ public class TeamInfoDefinition {
         return this;
     }
 
+
     /**
      * List of additional fields with more information about the team.
      */
@@ -406,7 +417,6 @@ public class TeamInfoDefinition {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -433,17 +443,10 @@ public class TeamInfoDefinition {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            name,
-            description,
-            businessUnit,
-            department,
-            photoUrl,
-            externalLink,
-            emails,
-            datasourceProfiles,
-            members,
-            additionalFields);
+            id, name, description,
+            businessUnit, department, photoUrl,
+            externalLink, emails, datasourceProfiles,
+            members, additionalFields);
     }
     
     @Override
@@ -461,34 +464,36 @@ public class TeamInfoDefinition {
                 "members", members,
                 "additionalFields", additionalFields);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private String name;
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<String> businessUnit = Optional.empty();
- 
+
         private Optional<String> department = Optional.empty();
- 
+
         private Optional<String> photoUrl = Optional.empty();
- 
+
         private Optional<String> externalLink = Optional.empty();
- 
+
         private Optional<? extends List<TeamEmail>> emails = Optional.empty();
- 
+
         private Optional<? extends List<DatasourceProfile>> datasourceProfiles = Optional.empty();
- 
+
         private List<TeamMember> members;
- 
+
         private Optional<? extends List<AdditionalFieldDefinition>> additionalFields = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique ID of the team
@@ -499,6 +504,7 @@ public class TeamInfoDefinition {
             return this;
         }
 
+
         /**
          * Human-readable team name
          */
@@ -507,6 +513,7 @@ public class TeamInfoDefinition {
             this.name = name;
             return this;
         }
+
 
         /**
          * The description of this team
@@ -526,6 +533,7 @@ public class TeamInfoDefinition {
             return this;
         }
 
+
         /**
          * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
          */
@@ -543,6 +551,7 @@ public class TeamInfoDefinition {
             this.businessUnit = businessUnit;
             return this;
         }
+
 
         /**
          * An organizational unit where everyone has a similar task, e.g. `Engineering`.
@@ -562,6 +571,7 @@ public class TeamInfoDefinition {
             return this;
         }
 
+
         /**
          * A link to the team's photo
          */
@@ -579,6 +589,7 @@ public class TeamInfoDefinition {
             this.photoUrl = photoUrl;
             return this;
         }
+
 
         /**
          * A link to an external team page. If set, team results will link to it.
@@ -598,6 +609,7 @@ public class TeamInfoDefinition {
             return this;
         }
 
+
         /**
          * The emails of the team
          */
@@ -615,6 +627,7 @@ public class TeamInfoDefinition {
             this.emails = emails;
             return this;
         }
+
 
         /**
          * The datasource profiles of the team, e.g. `Slack`,`Github`.
@@ -634,6 +647,7 @@ public class TeamInfoDefinition {
             return this;
         }
 
+
         /**
          * The members of the team
          */
@@ -642,6 +656,7 @@ public class TeamInfoDefinition {
             this.members = members;
             return this;
         }
+
 
         /**
          * List of additional fields with more information about the team.
@@ -660,20 +675,15 @@ public class TeamInfoDefinition {
             this.additionalFields = additionalFields;
             return this;
         }
-        
+
         public TeamInfoDefinition build() {
+
             return new TeamInfoDefinition(
-                id,
-                name,
-                description,
-                businessUnit,
-                department,
-                photoUrl,
-                externalLink,
-                emails,
-                datasourceProfiles,
-                members,
-                additionalFields);
+                id, name, description,
+                businessUnit, department, photoUrl,
+                externalLink, emails, datasourceProfiles,
+                members, additionalFields);
         }
+
     }
 }

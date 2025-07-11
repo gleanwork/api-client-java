@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>Describes the response body of the /getdocumentstatus API call
  */
 public class GetDocumentStatusResponse {
-
     /**
      * Upload status, enum of NOT_UPLOADED, UPLOADED, STATUS_UNKNOWN
      */
@@ -66,7 +65,8 @@ public class GetDocumentStatusResponse {
     }
     
     public GetDocumentStatusResponse() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -101,9 +101,10 @@ public class GetDocumentStatusResponse {
         return lastIndexedAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Upload status, enum of NOT_UPLOADED, UPLOADED, STATUS_UNKNOWN
@@ -113,6 +114,7 @@ public class GetDocumentStatusResponse {
         this.uploadStatus = Optional.ofNullable(uploadStatus);
         return this;
     }
+
 
     /**
      * Upload status, enum of NOT_UPLOADED, UPLOADED, STATUS_UNKNOWN
@@ -132,6 +134,7 @@ public class GetDocumentStatusResponse {
         return this;
     }
 
+
     /**
      * Time of last successful upload, in epoch seconds
      */
@@ -149,6 +152,7 @@ public class GetDocumentStatusResponse {
         this.indexingStatus = Optional.ofNullable(indexingStatus);
         return this;
     }
+
 
     /**
      * Indexing status, enum of NOT_INDEXED, INDEXED, STATUS_UNKNOWN
@@ -168,6 +172,7 @@ public class GetDocumentStatusResponse {
         return this;
     }
 
+
     /**
      * Time of last successful indexing, in epoch seconds
      */
@@ -177,7 +182,6 @@ public class GetDocumentStatusResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -197,9 +201,7 @@ public class GetDocumentStatusResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            uploadStatus,
-            lastUploadedAt,
-            indexingStatus,
+            uploadStatus, lastUploadedAt, indexingStatus,
             lastIndexedAt);
     }
     
@@ -211,20 +213,22 @@ public class GetDocumentStatusResponse {
                 "indexingStatus", indexingStatus,
                 "lastIndexedAt", lastIndexedAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> uploadStatus = Optional.empty();
- 
+
         private Optional<Long> lastUploadedAt = Optional.empty();
- 
+
         private Optional<String> indexingStatus = Optional.empty();
- 
+
         private Optional<Long> lastIndexedAt = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Upload status, enum of NOT_UPLOADED, UPLOADED, STATUS_UNKNOWN
@@ -244,6 +248,7 @@ public class GetDocumentStatusResponse {
             return this;
         }
 
+
         /**
          * Time of last successful upload, in epoch seconds
          */
@@ -261,6 +266,7 @@ public class GetDocumentStatusResponse {
             this.lastUploadedAt = lastUploadedAt;
             return this;
         }
+
 
         /**
          * Indexing status, enum of NOT_INDEXED, INDEXED, STATUS_UNKNOWN
@@ -280,6 +286,7 @@ public class GetDocumentStatusResponse {
             return this;
         }
 
+
         /**
          * Time of last successful indexing, in epoch seconds
          */
@@ -297,13 +304,13 @@ public class GetDocumentStatusResponse {
             this.lastIndexedAt = lastIndexedAt;
             return this;
         }
-        
+
         public GetDocumentStatusResponse build() {
+
             return new GetDocumentStatusResponse(
-                uploadStatus,
-                lastUploadedAt,
-                indexingStatus,
+                uploadStatus, lastUploadedAt, indexingStatus,
                 lastIndexedAt);
         }
+
     }
 }

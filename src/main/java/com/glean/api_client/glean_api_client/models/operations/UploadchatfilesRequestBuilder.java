@@ -53,7 +53,7 @@ public class UploadchatfilesRequestBuilder {
     public UploadchatfilesResponse call() throws Exception {
         
         RequestOperation<UploadchatfilesRequest, UploadchatfilesResponse> operation
-              = new UploadchatfilesOperation( sdkConfiguration);
+              = new UploadchatfilesOperation(sdkConfiguration);
         UploadchatfilesRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

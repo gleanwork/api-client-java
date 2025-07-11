@@ -29,7 +29,7 @@ public class FeedRequestBuilder {
     public FeedResponse call() throws Exception {
         
         RequestOperation<FeedRequest, FeedResponse> operation
-              = new FeedOperation( sdkConfiguration);
+              = new FeedOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

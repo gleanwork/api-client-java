@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>Describes the response body of the /checkdocumentaccess API call
  */
 public class CheckDocumentAccessResponse {
-
     /**
      * If true, user has access to document for search
      */
@@ -47,9 +46,10 @@ public class CheckDocumentAccessResponse {
         return hasAccess;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * If true, user has access to document for search
@@ -60,6 +60,7 @@ public class CheckDocumentAccessResponse {
         return this;
     }
 
+
     /**
      * If true, user has access to document for search
      */
@@ -69,7 +70,6 @@ public class CheckDocumentAccessResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -94,14 +94,16 @@ public class CheckDocumentAccessResponse {
         return Utils.toString(CheckDocumentAccessResponse.class,
                 "hasAccess", hasAccess);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> hasAccess = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * If true, user has access to document for search
@@ -120,10 +122,12 @@ public class CheckDocumentAccessResponse {
             this.hasAccess = hasAccess;
             return this;
         }
-        
+
         public CheckDocumentAccessResponse build() {
+
             return new CheckDocumentAccessResponse(
                 hasAccess);
         }
+
     }
 }

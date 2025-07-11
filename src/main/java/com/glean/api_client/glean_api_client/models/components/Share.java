@@ -21,16 +21,17 @@ import java.util.Optional;
  * <p>Search endpoint will only fill out numDays ago since that's all we need to display shared badge; docmetadata endpoint will fill out all the fields so that we can display shared badge tooltip
  */
 public class Share {
-
     /**
      * The number of days that has passed since the share happened
      */
     @JsonProperty("numDaysAgo")
     private long numDaysAgo;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sharer")
     private Optional<? extends Person> sharer;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sharingDocument")
@@ -74,9 +75,10 @@ public class Share {
         return (Optional<Document>) sharingDocument;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The number of days that has passed since the share happened
@@ -93,6 +95,7 @@ public class Share {
         return this;
     }
 
+
     public Share withSharer(Optional<? extends Person> sharer) {
         Utils.checkNotNull(sharer, "sharer");
         this.sharer = sharer;
@@ -105,13 +108,13 @@ public class Share {
         return this;
     }
 
+
     public Share withSharingDocument(Optional<? extends Document> sharingDocument) {
         Utils.checkNotNull(sharingDocument, "sharingDocument");
         this.sharingDocument = sharingDocument;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -130,9 +133,7 @@ public class Share {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            numDaysAgo,
-            sharer,
-            sharingDocument);
+            numDaysAgo, sharer, sharingDocument);
     }
     
     @Override
@@ -142,18 +143,20 @@ public class Share {
                 "sharer", sharer,
                 "sharingDocument", sharingDocument);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long numDaysAgo;
- 
+
         private Optional<? extends Person> sharer = Optional.empty();
- 
+
         private Optional<? extends Document> sharingDocument = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The number of days that has passed since the share happened
@@ -163,6 +166,7 @@ public class Share {
             this.numDaysAgo = numDaysAgo;
             return this;
         }
+
 
         public Builder sharer(Person sharer) {
             Utils.checkNotNull(sharer, "sharer");
@@ -176,6 +180,7 @@ public class Share {
             return this;
         }
 
+
         public Builder sharingDocument(Document sharingDocument) {
             Utils.checkNotNull(sharingDocument, "sharingDocument");
             this.sharingDocument = Optional.ofNullable(sharingDocument);
@@ -187,12 +192,12 @@ public class Share {
             this.sharingDocument = sharingDocument;
             return this;
         }
-        
+
         public Share build() {
+
             return new Share(
-                numDaysAgo,
-                sharer,
-                sharingDocument);
+                numDaysAgo, sharer, sharingDocument);
         }
+
     }
 }

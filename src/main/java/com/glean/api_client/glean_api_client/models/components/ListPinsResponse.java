@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.List;
 
-public class ListPinsResponse {
 
+public class ListPinsResponse {
     /**
      * List of pinned documents.
      */
@@ -34,9 +34,10 @@ public class ListPinsResponse {
         return pins;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * List of pinned documents.
@@ -47,7 +48,6 @@ public class ListPinsResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -72,14 +72,16 @@ public class ListPinsResponse {
         return Utils.toString(ListPinsResponse.class,
                 "pins", pins);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<PinDocument> pins;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * List of pinned documents.
@@ -89,10 +91,12 @@ public class ListPinsResponse {
             this.pins = pins;
             return this;
         }
-        
+
         public ListPinsResponse build() {
+
             return new ListPinsResponse(
                 pins);
         }
+
     }
 }

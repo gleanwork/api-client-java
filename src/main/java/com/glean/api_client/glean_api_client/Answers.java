@@ -36,7 +36,6 @@ public class Answers {
     Answers(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Create Answer
      * 
@@ -57,13 +56,11 @@ public class Answers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateanswerResponse create(
-            CreateAnswerRequest request) throws Exception {
+    public CreateanswerResponse create(CreateAnswerRequest request) throws Exception {
         RequestOperation<CreateAnswerRequest, CreateanswerResponse> operation
-              = new CreateanswerOperation( sdkConfiguration);
+              = new CreateanswerOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Answer
@@ -85,13 +82,11 @@ public class Answers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DeleteanswerResponse delete(
-            DeleteAnswerRequest request) throws Exception {
+    public DeleteanswerResponse delete(DeleteAnswerRequest request) throws Exception {
         RequestOperation<DeleteAnswerRequest, DeleteanswerResponse> operation
-              = new DeleteanswerOperation( sdkConfiguration);
+              = new DeleteanswerOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Answer
@@ -113,13 +108,11 @@ public class Answers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public EditanswerResponse update(
-            EditAnswerRequest request) throws Exception {
+    public EditanswerResponse update(EditAnswerRequest request) throws Exception {
         RequestOperation<EditAnswerRequest, EditanswerResponse> operation
-              = new EditanswerOperation( sdkConfiguration);
+              = new EditanswerOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Read Answer
@@ -141,13 +134,11 @@ public class Answers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetanswerResponse retrieve(
-            GetAnswerRequest request) throws Exception {
+    public GetanswerResponse retrieve(GetAnswerRequest request) throws Exception {
         RequestOperation<GetAnswerRequest, GetanswerResponse> operation
-              = new GetanswerOperation( sdkConfiguration);
+              = new GetanswerOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List Answers
@@ -169,10 +160,9 @@ public class Answers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListanswersResponse list(
-            ListAnswersRequest request) throws Exception {
+    public ListanswersResponse list(ListAnswersRequest request) throws Exception {
         RequestOperation<ListAnswersRequest, ListanswersResponse> operation
-              = new ListanswersOperation( sdkConfiguration);
+              = new ListanswersOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

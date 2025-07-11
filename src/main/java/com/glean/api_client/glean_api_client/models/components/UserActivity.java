@@ -15,6 +15,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class UserActivity {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -34,6 +35,7 @@ public class UserActivity {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("action")
     private Optional<? extends UserActivityAction> action;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("aggregateVisitCount")
@@ -56,7 +58,8 @@ public class UserActivity {
     }
     
     public UserActivity() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -88,15 +91,17 @@ public class UserActivity {
         return (Optional<CountInfo>) aggregateVisitCount;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public UserActivity withActor(Person actor) {
         Utils.checkNotNull(actor, "actor");
         this.actor = Optional.ofNullable(actor);
         return this;
     }
+
 
     public UserActivity withActor(Optional<? extends Person> actor) {
         Utils.checkNotNull(actor, "actor");
@@ -112,6 +117,7 @@ public class UserActivity {
         this.timestamp = Optional.ofNullable(timestamp);
         return this;
     }
+
 
     /**
      * Unix timestamp of the activity (in seconds since epoch UTC).
@@ -131,6 +137,7 @@ public class UserActivity {
         return this;
     }
 
+
     /**
      * The action for the activity
      */
@@ -146,13 +153,13 @@ public class UserActivity {
         return this;
     }
 
+
     public UserActivity withAggregateVisitCount(Optional<? extends CountInfo> aggregateVisitCount) {
         Utils.checkNotNull(aggregateVisitCount, "aggregateVisitCount");
         this.aggregateVisitCount = aggregateVisitCount;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -172,9 +179,7 @@ public class UserActivity {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            actor,
-            timestamp,
-            action,
+            actor, timestamp, action,
             aggregateVisitCount);
     }
     
@@ -186,20 +191,22 @@ public class UserActivity {
                 "action", action,
                 "aggregateVisitCount", aggregateVisitCount);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Person> actor = Optional.empty();
- 
+
         private Optional<Long> timestamp = Optional.empty();
- 
+
         private Optional<? extends UserActivityAction> action = Optional.empty();
- 
+
         private Optional<? extends CountInfo> aggregateVisitCount = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder actor(Person actor) {
             Utils.checkNotNull(actor, "actor");
@@ -212,6 +219,7 @@ public class UserActivity {
             this.actor = actor;
             return this;
         }
+
 
         /**
          * Unix timestamp of the activity (in seconds since epoch UTC).
@@ -231,6 +239,7 @@ public class UserActivity {
             return this;
         }
 
+
         /**
          * The action for the activity
          */
@@ -249,6 +258,7 @@ public class UserActivity {
             return this;
         }
 
+
         public Builder aggregateVisitCount(CountInfo aggregateVisitCount) {
             Utils.checkNotNull(aggregateVisitCount, "aggregateVisitCount");
             this.aggregateVisitCount = Optional.ofNullable(aggregateVisitCount);
@@ -260,13 +270,13 @@ public class UserActivity {
             this.aggregateVisitCount = aggregateVisitCount;
             return this;
         }
-        
+
         public UserActivity build() {
+
             return new UserActivity(
-                actor,
-                timestamp,
-                action,
+                actor, timestamp, action,
                 aggregateVisitCount);
         }
+
     }
 }

@@ -11,13 +11,14 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class PostApiIndexV1DebugDatasourceUserRequest {
 
+public class PostApiIndexV1DebugDatasourceUserRequest {
     /**
      * The datasource to which the user belongs
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=datasource")
     private String datasource;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private DebugUserRequest debugUserRequest;
@@ -45,9 +46,10 @@ public class PostApiIndexV1DebugDatasourceUserRequest {
         return debugUserRequest;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The datasource to which the user belongs
@@ -64,7 +66,6 @@ public class PostApiIndexV1DebugDatasourceUserRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -82,8 +83,7 @@ public class PostApiIndexV1DebugDatasourceUserRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            datasource,
-            debugUserRequest);
+            datasource, debugUserRequest);
     }
     
     @Override
@@ -92,16 +92,18 @@ public class PostApiIndexV1DebugDatasourceUserRequest {
                 "datasource", datasource,
                 "debugUserRequest", debugUserRequest);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String datasource;
- 
+
         private DebugUserRequest debugUserRequest;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The datasource to which the user belongs
@@ -112,16 +114,18 @@ public class PostApiIndexV1DebugDatasourceUserRequest {
             return this;
         }
 
+
         public Builder debugUserRequest(DebugUserRequest debugUserRequest) {
             Utils.checkNotNull(debugUserRequest, "debugUserRequest");
             this.debugUserRequest = debugUserRequest;
             return this;
         }
-        
+
         public PostApiIndexV1DebugDatasourceUserRequest build() {
+
             return new PostApiIndexV1DebugDatasourceUserRequest(
-                datasource,
-                debugUserRequest);
+                datasource, debugUserRequest);
         }
+
     }
 }

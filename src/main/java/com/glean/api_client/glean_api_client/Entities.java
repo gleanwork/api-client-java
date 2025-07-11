@@ -24,7 +24,6 @@ public class Entities {
     Entities(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List entities
      * 
@@ -45,13 +44,11 @@ public class Entities {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListentitiesResponse list(
-            ListEntitiesRequest request) throws Exception {
+    public ListentitiesResponse list(ListEntitiesRequest request) throws Exception {
         RequestOperation<ListEntitiesRequest, ListentitiesResponse> operation
-              = new ListentitiesOperation( sdkConfiguration);
+              = new ListentitiesOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Read people
@@ -73,10 +70,9 @@ public class Entities {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PeopleResponse readPeople(
-            PeopleRequest request) throws Exception {
+    public PeopleResponse readPeople(PeopleRequest request) throws Exception {
         RequestOperation<PeopleRequest, PeopleResponse> operation
-              = new PeopleOperation( sdkConfiguration);
+              = new PeopleOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

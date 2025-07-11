@@ -14,8 +14,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class ResultsDescription {
 
+public class ResultsDescription {
     /**
      * Textual description of the results. Can be shown at the top of SERP, e.g. 'People who write about this topic' for experts in people tab.
      */
@@ -61,9 +61,10 @@ public class ResultsDescription {
         return (Optional<IconConfig>) iconConfig;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Textual description of the results. Can be shown at the top of SERP, e.g. 'People who write about this topic' for experts in people tab.
@@ -73,6 +74,7 @@ public class ResultsDescription {
         this.text = Optional.ofNullable(text);
         return this;
     }
+
 
     /**
      * Textual description of the results. Can be shown at the top of SERP, e.g. 'People who write about this topic' for experts in people tab.
@@ -92,6 +94,7 @@ public class ResultsDescription {
         return this;
     }
 
+
     /**
      * Defines how to render an icon
      */
@@ -101,7 +104,6 @@ public class ResultsDescription {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -119,8 +121,7 @@ public class ResultsDescription {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            text,
-            iconConfig);
+            text, iconConfig);
     }
     
     @Override
@@ -129,16 +130,18 @@ public class ResultsDescription {
                 "text", text,
                 "iconConfig", iconConfig);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> text = Optional.empty();
- 
+
         private Optional<? extends IconConfig> iconConfig = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Textual description of the results. Can be shown at the top of SERP, e.g. 'People who write about this topic' for experts in people tab.
@@ -158,6 +161,7 @@ public class ResultsDescription {
             return this;
         }
 
+
         /**
          * Defines how to render an icon
          */
@@ -175,11 +179,12 @@ public class ResultsDescription {
             this.iconConfig = iconConfig;
             return this;
         }
-        
+
         public ResultsDescription build() {
+
             return new ResultsDescription(
-                text,
-                iconConfig);
+                text, iconConfig);
         }
+
     }
 }

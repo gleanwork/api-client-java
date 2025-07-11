@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class Thumbnail {
 
+public class Thumbnail {
     /**
      * Photo id if the thumbnail is from splash.
      */
@@ -59,9 +59,10 @@ public class Thumbnail {
         return url;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Photo id if the thumbnail is from splash.
@@ -71,6 +72,7 @@ public class Thumbnail {
         this.photoId = Optional.ofNullable(photoId);
         return this;
     }
+
 
     /**
      * Photo id if the thumbnail is from splash.
@@ -90,6 +92,7 @@ public class Thumbnail {
         return this;
     }
 
+
     /**
      * Thumbnail URL. This can be user provided image and/or from downloaded images hosted by Glean.
      */
@@ -99,7 +102,6 @@ public class Thumbnail {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -117,8 +119,7 @@ public class Thumbnail {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            photoId,
-            url);
+            photoId, url);
     }
     
     @Override
@@ -127,16 +128,18 @@ public class Thumbnail {
                 "photoId", photoId,
                 "url", url);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> photoId = Optional.empty();
- 
+
         private Optional<String> url = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Photo id if the thumbnail is from splash.
@@ -156,6 +159,7 @@ public class Thumbnail {
             return this;
         }
 
+
         /**
          * Thumbnail URL. This can be user provided image and/or from downloaded images hosted by Glean.
          */
@@ -173,11 +177,12 @@ public class Thumbnail {
             this.url = url;
             return this;
         }
-        
+
         public Thumbnail build() {
+
             return new Thumbnail(
-                photoId,
-                url);
+                photoId, url);
         }
+
     }
 }

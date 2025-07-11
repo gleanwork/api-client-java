@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class SearchProviderInfo {
 
+public class SearchProviderInfo {
     /**
      * Name of the search provider.
      */
@@ -77,9 +77,10 @@ public class SearchProviderInfo {
         return searchLinkUrlTemplate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Name of the search provider.
@@ -89,6 +90,7 @@ public class SearchProviderInfo {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * Name of the search provider.
@@ -108,6 +110,7 @@ public class SearchProviderInfo {
         return this;
     }
 
+
     /**
      * URL to the provider's logo.
      */
@@ -126,6 +129,7 @@ public class SearchProviderInfo {
         return this;
     }
 
+
     /**
      * URL template that can be used to perform the suggested search by replacing the {query} placeholder with the query suggestion.
      */
@@ -135,7 +139,6 @@ public class SearchProviderInfo {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -154,9 +157,7 @@ public class SearchProviderInfo {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            logoUrl,
-            searchLinkUrlTemplate);
+            name, logoUrl, searchLinkUrlTemplate);
     }
     
     @Override
@@ -166,18 +167,20 @@ public class SearchProviderInfo {
                 "logoUrl", logoUrl,
                 "searchLinkUrlTemplate", searchLinkUrlTemplate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> logoUrl = Optional.empty();
- 
+
         private Optional<String> searchLinkUrlTemplate = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Name of the search provider.
@@ -197,6 +200,7 @@ public class SearchProviderInfo {
             return this;
         }
 
+
         /**
          * URL to the provider's logo.
          */
@@ -215,6 +219,7 @@ public class SearchProviderInfo {
             return this;
         }
 
+
         /**
          * URL template that can be used to perform the suggested search by replacing the {query} placeholder with the query suggestion.
          */
@@ -232,12 +237,12 @@ public class SearchProviderInfo {
             this.searchLinkUrlTemplate = searchLinkUrlTemplate;
             return this;
         }
-        
+
         public SearchProviderInfo build() {
+
             return new SearchProviderInfo(
-                name,
-                logoUrl,
-                searchLinkUrlTemplate);
+                name, logoUrl, searchLinkUrlTemplate);
         }
+
     }
 }

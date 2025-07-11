@@ -24,7 +24,6 @@ public class Datasources {
     Datasources(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Add or update datasource
      * 
@@ -45,13 +44,11 @@ public class Datasources {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1AdddatasourceResponse add(
-            CustomDatasourceConfig request) throws Exception {
+    public PostApiIndexV1AdddatasourceResponse add(CustomDatasourceConfig request) throws Exception {
         RequestOperation<CustomDatasourceConfig, PostApiIndexV1AdddatasourceResponse> operation
-              = new PostApiIndexV1AdddatasourceOperation( sdkConfiguration);
+              = new PostApiIndexV1AdddatasourceOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get datasource config
@@ -73,10 +70,9 @@ public class Datasources {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1GetdatasourceconfigResponse retrieveConfig(
-            GetDatasourceConfigRequest request) throws Exception {
+    public PostApiIndexV1GetdatasourceconfigResponse retrieveConfig(GetDatasourceConfigRequest request) throws Exception {
         RequestOperation<GetDatasourceConfigRequest, PostApiIndexV1GetdatasourceconfigResponse> operation
-              = new PostApiIndexV1GetdatasourceconfigOperation( sdkConfiguration);
+              = new PostApiIndexV1GetdatasourceconfigOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

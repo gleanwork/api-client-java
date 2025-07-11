@@ -14,6 +14,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class EditCollectionItemResponse {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -37,9 +38,10 @@ public class EditCollectionItemResponse {
         return (Optional<Collection>) collection;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public EditCollectionItemResponse withCollection(Collection collection) {
         Utils.checkNotNull(collection, "collection");
@@ -47,13 +49,13 @@ public class EditCollectionItemResponse {
         return this;
     }
 
+
     public EditCollectionItemResponse withCollection(Optional<? extends Collection> collection) {
         Utils.checkNotNull(collection, "collection");
         this.collection = collection;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -78,14 +80,16 @@ public class EditCollectionItemResponse {
         return Utils.toString(EditCollectionItemResponse.class,
                 "collection", collection);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Collection> collection = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder collection(Collection collection) {
             Utils.checkNotNull(collection, "collection");
@@ -98,10 +102,12 @@ public class EditCollectionItemResponse {
             this.collection = collection;
             return this;
         }
-        
+
         public EditCollectionItemResponse build() {
+
             return new EditCollectionItemResponse(
                 collection);
         }
+
     }
 }

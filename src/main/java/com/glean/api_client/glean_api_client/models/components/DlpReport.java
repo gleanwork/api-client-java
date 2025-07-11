@@ -26,6 +26,7 @@ public class DlpReport {
     @JsonProperty("id")
     private Optional<String> id;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private Optional<String> name;
@@ -78,6 +79,7 @@ public class DlpReport {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("autoHideDocs")
     private Optional<Boolean> autoHideDocs;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lastScanStatus")
@@ -138,7 +140,10 @@ public class DlpReport {
     }
     
     public DlpReport() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -234,15 +239,17 @@ public class DlpReport {
         return (Optional<DlpPerson>) updatedBy;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public DlpReport withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     public DlpReport withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
@@ -255,6 +262,7 @@ public class DlpReport {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     public DlpReport withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
@@ -270,6 +278,7 @@ public class DlpReport {
         this.config = Optional.ofNullable(config);
         return this;
     }
+
 
     /**
      * Detailed configuration of what documents and sensitive content will be scanned.
@@ -289,6 +298,7 @@ public class DlpReport {
         return this;
     }
 
+
     /**
      * Interval between scans. DAILY is deprecated.
      */
@@ -306,6 +316,7 @@ public class DlpReport {
         this.status = Optional.ofNullable(status);
         return this;
     }
+
 
     /**
      * The status of the policy/report. Only ACTIVE status will be picked for scans.
@@ -325,6 +336,7 @@ public class DlpReport {
         return this;
     }
 
+
     /**
      * Details about the person who created this report/policy.
      */
@@ -342,6 +354,7 @@ public class DlpReport {
         this.createdAt = Optional.ofNullable(createdAt);
         return this;
     }
+
 
     /**
      * Timestamp at which the policy was created.
@@ -361,6 +374,7 @@ public class DlpReport {
         return this;
     }
 
+
     /**
      * Timestamp at which the policy was last updated.
      */
@@ -379,6 +393,7 @@ public class DlpReport {
         return this;
     }
 
+
     /**
      * Auto hide documents with findings in the policy.
      */
@@ -394,6 +409,7 @@ public class DlpReport {
         return this;
     }
 
+
     public DlpReport withLastScanStatus(Optional<? extends LastScanStatus> lastScanStatus) {
         Utils.checkNotNull(lastScanStatus, "lastScanStatus");
         this.lastScanStatus = lastScanStatus;
@@ -408,6 +424,7 @@ public class DlpReport {
         this.lastScanStartTime = Optional.ofNullable(lastScanStartTime);
         return this;
     }
+
 
     /**
      * The timestamp at which the report's last run/scan began.
@@ -427,6 +444,7 @@ public class DlpReport {
         return this;
     }
 
+
     /**
      * Details about the person who created this report/policy.
      */
@@ -436,7 +454,6 @@ public class DlpReport {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -464,18 +481,10 @@ public class DlpReport {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            name,
-            config,
-            frequency,
-            status,
-            createdBy,
-            createdAt,
-            lastUpdatedAt,
-            autoHideDocs,
-            lastScanStatus,
-            lastScanStartTime,
-            updatedBy);
+            id, name, config,
+            frequency, status, createdBy,
+            createdAt, lastUpdatedAt, autoHideDocs,
+            lastScanStatus, lastScanStartTime, updatedBy);
     }
     
     @Override
@@ -494,36 +503,38 @@ public class DlpReport {
                 "lastScanStartTime", lastScanStartTime,
                 "updatedBy", updatedBy);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<? extends DlpConfig> config = Optional.empty();
- 
+
         private Optional<? extends DlpFrequency> frequency = Optional.empty();
- 
+
         private Optional<? extends DlpReportStatus> status = Optional.empty();
- 
+
         private Optional<? extends DlpPerson> createdBy = Optional.empty();
- 
+
         private Optional<String> createdAt = Optional.empty();
- 
+
         private Optional<String> lastUpdatedAt = Optional.empty();
- 
+
         private Optional<Boolean> autoHideDocs = Optional.empty();
- 
+
         private Optional<? extends LastScanStatus> lastScanStatus = Optional.empty();
- 
+
         private Optional<String> lastScanStartTime = Optional.empty();
- 
+
         private Optional<? extends DlpPerson> updatedBy = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -537,6 +548,7 @@ public class DlpReport {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = Optional.ofNullable(name);
@@ -548,6 +560,7 @@ public class DlpReport {
             this.name = name;
             return this;
         }
+
 
         /**
          * Detailed configuration of what documents and sensitive content will be scanned.
@@ -567,6 +580,7 @@ public class DlpReport {
             return this;
         }
 
+
         /**
          * Interval between scans. DAILY is deprecated.
          */
@@ -584,6 +598,7 @@ public class DlpReport {
             this.frequency = frequency;
             return this;
         }
+
 
         /**
          * The status of the policy/report. Only ACTIVE status will be picked for scans.
@@ -603,6 +618,7 @@ public class DlpReport {
             return this;
         }
 
+
         /**
          * Details about the person who created this report/policy.
          */
@@ -620,6 +636,7 @@ public class DlpReport {
             this.createdBy = createdBy;
             return this;
         }
+
 
         /**
          * Timestamp at which the policy was created.
@@ -639,6 +656,7 @@ public class DlpReport {
             return this;
         }
 
+
         /**
          * Timestamp at which the policy was last updated.
          */
@@ -656,6 +674,7 @@ public class DlpReport {
             this.lastUpdatedAt = lastUpdatedAt;
             return this;
         }
+
 
         /**
          * Auto hide documents with findings in the policy.
@@ -675,6 +694,7 @@ public class DlpReport {
             return this;
         }
 
+
         public Builder lastScanStatus(LastScanStatus lastScanStatus) {
             Utils.checkNotNull(lastScanStatus, "lastScanStatus");
             this.lastScanStatus = Optional.ofNullable(lastScanStatus);
@@ -686,6 +706,7 @@ public class DlpReport {
             this.lastScanStatus = lastScanStatus;
             return this;
         }
+
 
         /**
          * The timestamp at which the report's last run/scan began.
@@ -705,6 +726,7 @@ public class DlpReport {
             return this;
         }
 
+
         /**
          * Details about the person who created this report/policy.
          */
@@ -722,21 +744,15 @@ public class DlpReport {
             this.updatedBy = updatedBy;
             return this;
         }
-        
+
         public DlpReport build() {
+
             return new DlpReport(
-                id,
-                name,
-                config,
-                frequency,
-                status,
-                createdBy,
-                createdAt,
-                lastUpdatedAt,
-                autoHideDocs,
-                lastScanStatus,
-                lastScanStartTime,
-                updatedBy);
+                id, name, config,
+                frequency, status, createdBy,
+                createdAt, lastUpdatedAt, autoHideDocs,
+                lastScanStatus, lastScanStartTime, updatedBy);
         }
+
     }
 }

@@ -21,14 +21,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class Team {
 
+public class Team {
     /**
      * A list of objects related to a source object.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("relatedObjects")
     private Optional<? extends Map<String, RelatedObjectEdge>> relatedObjects;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("permissions")
@@ -235,7 +236,13 @@ public class Team {
     public Team(
             String id,
             String name) {
-        this(Optional.empty(), Optional.empty(), id, name, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), id,
+            name, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -410,9 +417,10 @@ public class Team {
         return loggingId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A list of objects related to a source object.
@@ -422,6 +430,7 @@ public class Team {
         this.relatedObjects = Optional.ofNullable(relatedObjects);
         return this;
     }
+
 
     /**
      * A list of objects related to a source object.
@@ -437,6 +446,7 @@ public class Team {
         this.permissions = Optional.ofNullable(permissions);
         return this;
     }
+
 
     public Team withPermissions(Optional<? extends ObjectPermissions> permissions) {
         Utils.checkNotNull(permissions, "permissions");
@@ -471,6 +481,7 @@ public class Team {
         return this;
     }
 
+
     /**
      * A description of the team
      */
@@ -488,6 +499,7 @@ public class Team {
         this.businessUnit = Optional.ofNullable(businessUnit);
         return this;
     }
+
 
     /**
      * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
@@ -507,6 +519,7 @@ public class Team {
         return this;
     }
 
+
     /**
      * An organizational unit where everyone has a similar task, e.g. `Engineering`.
      */
@@ -524,6 +537,7 @@ public class Team {
         this.photoUrl = Optional.ofNullable(photoUrl);
         return this;
     }
+
 
     /**
      * A link to the team's photo.
@@ -543,6 +557,7 @@ public class Team {
         return this;
     }
 
+
     /**
      * A link to the team's banner photo.
      */
@@ -560,6 +575,7 @@ public class Team {
         this.externalLink = Optional.ofNullable(externalLink);
         return this;
     }
+
 
     /**
      * Link to a team page on the internet or your company's intranet
@@ -579,6 +595,7 @@ public class Team {
         return this;
     }
 
+
     /**
      * The members on this team
      */
@@ -596,6 +613,7 @@ public class Team {
         this.memberCount = Optional.ofNullable(memberCount);
         return this;
     }
+
 
     /**
      * Number of members on this team (recursive; includes all individuals that belong to this team, and all individuals that belong to a subteam within this team)
@@ -615,6 +633,7 @@ public class Team {
         return this;
     }
 
+
     /**
      * The emails for this team
      */
@@ -632,6 +651,7 @@ public class Team {
         this.customFields = Optional.ofNullable(customFields);
         return this;
     }
+
 
     /**
      * Customizable fields for additional team information.
@@ -651,6 +671,7 @@ public class Team {
         return this;
     }
 
+
     /**
      * The datasource profiles of the team
      */
@@ -668,6 +689,7 @@ public class Team {
         this.datasource = Optional.ofNullable(datasource);
         return this;
     }
+
 
     /**
      * the data source of the team, e.g. GDRIVE
@@ -687,6 +709,7 @@ public class Team {
         return this;
     }
 
+
     /**
      * For teams created from docs, the doc title. Otherwise empty.
      */
@@ -704,6 +727,7 @@ public class Team {
         this.lastUpdatedAt = Optional.ofNullable(lastUpdatedAt);
         return this;
     }
+
 
     /**
      * when this team was last updated.
@@ -723,6 +747,7 @@ public class Team {
         return this;
     }
 
+
     /**
      * whether this team is fully processed or there are still unprocessed operations that'll affect it
      */
@@ -740,6 +765,7 @@ public class Team {
         this.canBeDeleted = Optional.ofNullable(canBeDeleted);
         return this;
     }
+
 
     /**
      * can this team be deleted. Some manually ingested teams like GCS_CSV or PUSH_API cannot
@@ -759,6 +785,7 @@ public class Team {
         return this;
     }
 
+
     /**
      * The logging id of the team used in scrubbed logs, client analytics, and metrics.
      */
@@ -768,7 +795,6 @@ public class Team {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -805,27 +831,13 @@ public class Team {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            relatedObjects,
-            permissions,
-            id,
-            name,
-            description,
-            businessUnit,
-            department,
-            photoUrl,
-            bannerUrl,
-            externalLink,
-            members,
-            memberCount,
-            emails,
-            customFields,
-            datasourceProfiles,
-            datasource,
-            createdFrom,
-            lastUpdatedAt,
-            status,
-            canBeDeleted,
-            loggingId);
+            relatedObjects, permissions, id,
+            name, description, businessUnit,
+            department, photoUrl, bannerUrl,
+            externalLink, members, memberCount,
+            emails, customFields, datasourceProfiles,
+            datasource, createdFrom, lastUpdatedAt,
+            status, canBeDeleted, loggingId);
     }
     
     @Override
@@ -853,54 +865,56 @@ public class Team {
                 "canBeDeleted", canBeDeleted,
                 "loggingId", loggingId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Map<String, RelatedObjectEdge>> relatedObjects = Optional.empty();
- 
+
         private Optional<? extends ObjectPermissions> permissions = Optional.empty();
- 
+
         private String id;
- 
+
         private String name;
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<String> businessUnit = Optional.empty();
- 
+
         private Optional<String> department = Optional.empty();
- 
+
         private Optional<String> photoUrl = Optional.empty();
- 
+
         private Optional<String> bannerUrl = Optional.empty();
- 
+
         private Optional<String> externalLink = Optional.empty();
- 
+
         private Optional<? extends List<PersonToTeamRelationship>> members = Optional.empty();
- 
+
         private Optional<Long> memberCount = Optional.empty();
- 
+
         private Optional<? extends List<TeamEmail>> emails = Optional.empty();
- 
+
         private Optional<? extends List<CustomFieldData>> customFields = Optional.empty();
- 
+
         private Optional<? extends List<DatasourceProfile>> datasourceProfiles = Optional.empty();
- 
+
         private Optional<String> datasource = Optional.empty();
- 
+
         private Optional<String> createdFrom = Optional.empty();
- 
+
         private Optional<OffsetDateTime> lastUpdatedAt = Optional.empty();
- 
+
         private Optional<? extends TeamStatus> status;
- 
+
         private Optional<Boolean> canBeDeleted;
- 
+
         private Optional<String> loggingId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A list of objects related to a source object.
@@ -920,6 +934,7 @@ public class Team {
             return this;
         }
 
+
         public Builder permissions(ObjectPermissions permissions) {
             Utils.checkNotNull(permissions, "permissions");
             this.permissions = Optional.ofNullable(permissions);
@@ -932,6 +947,7 @@ public class Team {
             return this;
         }
 
+
         /**
          * Unique identifier
          */
@@ -941,6 +957,7 @@ public class Team {
             return this;
         }
 
+
         /**
          * Team name
          */
@@ -949,6 +966,7 @@ public class Team {
             this.name = name;
             return this;
         }
+
 
         /**
          * A description of the team
@@ -968,6 +986,7 @@ public class Team {
             return this;
         }
 
+
         /**
          * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
          */
@@ -985,6 +1004,7 @@ public class Team {
             this.businessUnit = businessUnit;
             return this;
         }
+
 
         /**
          * An organizational unit where everyone has a similar task, e.g. `Engineering`.
@@ -1004,6 +1024,7 @@ public class Team {
             return this;
         }
 
+
         /**
          * A link to the team's photo.
          */
@@ -1021,6 +1042,7 @@ public class Team {
             this.photoUrl = photoUrl;
             return this;
         }
+
 
         /**
          * A link to the team's banner photo.
@@ -1040,6 +1062,7 @@ public class Team {
             return this;
         }
 
+
         /**
          * Link to a team page on the internet or your company's intranet
          */
@@ -1057,6 +1080,7 @@ public class Team {
             this.externalLink = externalLink;
             return this;
         }
+
 
         /**
          * The members on this team
@@ -1076,6 +1100,7 @@ public class Team {
             return this;
         }
 
+
         /**
          * Number of members on this team (recursive; includes all individuals that belong to this team, and all individuals that belong to a subteam within this team)
          */
@@ -1093,6 +1118,7 @@ public class Team {
             this.memberCount = memberCount;
             return this;
         }
+
 
         /**
          * The emails for this team
@@ -1112,6 +1138,7 @@ public class Team {
             return this;
         }
 
+
         /**
          * Customizable fields for additional team information.
          */
@@ -1129,6 +1156,7 @@ public class Team {
             this.customFields = customFields;
             return this;
         }
+
 
         /**
          * The datasource profiles of the team
@@ -1148,6 +1176,7 @@ public class Team {
             return this;
         }
 
+
         /**
          * the data source of the team, e.g. GDRIVE
          */
@@ -1165,6 +1194,7 @@ public class Team {
             this.datasource = datasource;
             return this;
         }
+
 
         /**
          * For teams created from docs, the doc title. Otherwise empty.
@@ -1184,6 +1214,7 @@ public class Team {
             return this;
         }
 
+
         /**
          * when this team was last updated.
          */
@@ -1201,6 +1232,7 @@ public class Team {
             this.lastUpdatedAt = lastUpdatedAt;
             return this;
         }
+
 
         /**
          * whether this team is fully processed or there are still unprocessed operations that'll affect it
@@ -1220,6 +1252,7 @@ public class Team {
             return this;
         }
 
+
         /**
          * can this team be deleted. Some manually ingested teams like GCS_CSV or PUSH_API cannot
          */
@@ -1238,6 +1271,7 @@ public class Team {
             return this;
         }
 
+
         /**
          * The logging id of the team used in scrubbed logs, client analytics, and metrics.
          */
@@ -1255,7 +1289,7 @@ public class Team {
             this.loggingId = loggingId;
             return this;
         }
-        
+
         public Team build() {
             if (status == null) {
                 status = _SINGLETON_VALUE_Status.value();
@@ -1263,29 +1297,17 @@ public class Team {
             if (canBeDeleted == null) {
                 canBeDeleted = _SINGLETON_VALUE_CanBeDeleted.value();
             }
+
             return new Team(
-                relatedObjects,
-                permissions,
-                id,
-                name,
-                description,
-                businessUnit,
-                department,
-                photoUrl,
-                bannerUrl,
-                externalLink,
-                members,
-                memberCount,
-                emails,
-                customFields,
-                datasourceProfiles,
-                datasource,
-                createdFrom,
-                lastUpdatedAt,
-                status,
-                canBeDeleted,
-                loggingId);
+                relatedObjects, permissions, id,
+                name, description, businessUnit,
+                department, photoUrl, bannerUrl,
+                externalLink, members, memberCount,
+                emails, customFields, datasourceProfiles,
+                datasource, createdFrom, lastUpdatedAt,
+                status, canBeDeleted, loggingId);
         }
+
 
         private static final LazySingletonValue<Optional<? extends TeamStatus>> _SINGLETON_VALUE_Status =
                 new LazySingletonValue<>(

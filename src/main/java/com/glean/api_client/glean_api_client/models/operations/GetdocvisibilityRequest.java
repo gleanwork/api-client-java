@@ -13,8 +13,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class GetdocvisibilityRequest {
 
+public class GetdocvisibilityRequest {
     /**
      * List of doc-ids which will have their hide status fetched.
      */
@@ -41,9 +41,10 @@ public class GetdocvisibilityRequest {
         return (Optional<List<String>>) docIds;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * List of doc-ids which will have their hide status fetched.
@@ -54,6 +55,7 @@ public class GetdocvisibilityRequest {
         return this;
     }
 
+
     /**
      * List of doc-ids which will have their hide status fetched.
      */
@@ -63,7 +65,6 @@ public class GetdocvisibilityRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -88,14 +89,16 @@ public class GetdocvisibilityRequest {
         return Utils.toString(GetdocvisibilityRequest.class,
                 "docIds", docIds);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<String>> docIds = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * List of doc-ids which will have their hide status fetched.
@@ -114,10 +117,12 @@ public class GetdocvisibilityRequest {
             this.docIds = docIds;
             return this;
         }
-        
+
         public GetdocvisibilityRequest build() {
+
             return new GetdocvisibilityRequest(
                 docIds);
         }
+
     }
 }

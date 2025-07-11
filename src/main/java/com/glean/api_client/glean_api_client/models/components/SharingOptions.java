@@ -24,7 +24,6 @@ import java.util.Optional;
  * <p>Controls how "shared" a document must be to get picked for scans.
  */
 public class SharingOptions {
-
     /**
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -114,7 +113,9 @@ public class SharingOptions {
     }
     
     public SharingOptions() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -186,9 +187,10 @@ public class SharingOptions {
         return (Optional<List<String>>) userIds;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * 
@@ -200,6 +202,7 @@ public class SharingOptions {
         this.enabled = Optional.ofNullable(enabled);
         return this;
     }
+
 
     /**
      * 
@@ -221,6 +224,7 @@ public class SharingOptions {
         return this;
     }
 
+
     /**
      * The minimum number of users the document is shared with.
      */
@@ -238,6 +242,7 @@ public class SharingOptions {
         this.thresholdEnabled = Optional.ofNullable(thresholdEnabled);
         return this;
     }
+
 
     /**
      * Documents will be filtered based on how many people have access to it.
@@ -259,6 +264,7 @@ public class SharingOptions {
         return this;
     }
 
+
     /**
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -279,6 +285,7 @@ public class SharingOptions {
         return this;
     }
 
+
     /**
      * Only users within the organization can access the document.
      */
@@ -296,6 +303,7 @@ public class SharingOptions {
         this.anonymousAccessEnabled = Optional.ofNullable(anonymousAccessEnabled);
         return this;
     }
+
 
     /**
      * Anyone on the internet can access the document.
@@ -315,6 +323,7 @@ public class SharingOptions {
         return this;
     }
 
+
     /**
      * Enable user access check
      */
@@ -333,6 +342,7 @@ public class SharingOptions {
         return this;
     }
 
+
     /**
      * Any one of the specified users can access the document.
      */
@@ -342,7 +352,6 @@ public class SharingOptions {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -366,14 +375,9 @@ public class SharingOptions {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            enabled,
-            threshold,
-            thresholdEnabled,
-            anyoneWithLinkEnabled,
-            anyoneInternalEnabled,
-            anonymousAccessEnabled,
-            userAccessEnabled,
-            userIds);
+            enabled, threshold, thresholdEnabled,
+            anyoneWithLinkEnabled, anyoneInternalEnabled, anonymousAccessEnabled,
+            userAccessEnabled, userIds);
     }
     
     @Override
@@ -388,30 +392,32 @@ public class SharingOptions {
                 "userAccessEnabled", userAccessEnabled,
                 "userIds", userIds);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         @Deprecated
         private Optional<Boolean> enabled = Optional.empty();
- 
+
         private Optional<Long> threshold = Optional.empty();
- 
+
         private Optional<Boolean> thresholdEnabled = Optional.empty();
- 
+
         @Deprecated
         private Optional<Boolean> anyoneWithLinkEnabled = Optional.empty();
- 
+
         private Optional<Boolean> anyoneInternalEnabled = Optional.empty();
- 
+
         private Optional<Boolean> anonymousAccessEnabled = Optional.empty();
- 
+
         private Optional<Boolean> userAccessEnabled = Optional.empty();
- 
+
         private Optional<? extends List<String>> userIds = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * 
@@ -435,6 +441,7 @@ public class SharingOptions {
             return this;
         }
 
+
         /**
          * The minimum number of users the document is shared with.
          */
@@ -453,6 +460,7 @@ public class SharingOptions {
             return this;
         }
 
+
         /**
          * Documents will be filtered based on how many people have access to it.
          */
@@ -470,6 +478,7 @@ public class SharingOptions {
             this.thresholdEnabled = thresholdEnabled;
             return this;
         }
+
 
         /**
          * 
@@ -493,6 +502,7 @@ public class SharingOptions {
             return this;
         }
 
+
         /**
          * Only users within the organization can access the document.
          */
@@ -510,6 +520,7 @@ public class SharingOptions {
             this.anyoneInternalEnabled = anyoneInternalEnabled;
             return this;
         }
+
 
         /**
          * Anyone on the internet can access the document.
@@ -529,6 +540,7 @@ public class SharingOptions {
             return this;
         }
 
+
         /**
          * Enable user access check
          */
@@ -547,6 +559,7 @@ public class SharingOptions {
             return this;
         }
 
+
         /**
          * Any one of the specified users can access the document.
          */
@@ -564,17 +577,14 @@ public class SharingOptions {
             this.userIds = userIds;
             return this;
         }
-        
+
         public SharingOptions build() {
+
             return new SharingOptions(
-                enabled,
-                threshold,
-                thresholdEnabled,
-                anyoneWithLinkEnabled,
-                anyoneInternalEnabled,
-                anonymousAccessEnabled,
-                userAccessEnabled,
-                userIds);
+                enabled, threshold, thresholdEnabled,
+                anyoneWithLinkEnabled, anyoneInternalEnabled, anonymousAccessEnabled,
+                userAccessEnabled, userIds);
         }
+
     }
 }

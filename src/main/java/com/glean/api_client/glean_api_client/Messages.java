@@ -20,7 +20,6 @@ public class Messages {
     Messages(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Read messages
      * 
@@ -41,10 +40,9 @@ public class Messages {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public MessagesResponse retrieve(
-            MessagesRequest request) throws Exception {
+    public MessagesResponse retrieve(MessagesRequest request) throws Exception {
         RequestOperation<MessagesRequest, MessagesResponse> operation
-              = new MessagesOperation( sdkConfiguration);
+              = new MessagesOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

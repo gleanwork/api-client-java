@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class GetDocPermissionsRequest {
 
+public class GetDocPermissionsRequest {
     /**
      * The Glean Document ID to retrieve permissions for.
      */
@@ -41,9 +41,10 @@ public class GetDocPermissionsRequest {
         return documentId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The Glean Document ID to retrieve permissions for.
@@ -54,6 +55,7 @@ public class GetDocPermissionsRequest {
         return this;
     }
 
+
     /**
      * The Glean Document ID to retrieve permissions for.
      */
@@ -63,7 +65,6 @@ public class GetDocPermissionsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -88,14 +89,16 @@ public class GetDocPermissionsRequest {
         return Utils.toString(GetDocPermissionsRequest.class,
                 "documentId", documentId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> documentId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The Glean Document ID to retrieve permissions for.
@@ -114,10 +117,12 @@ public class GetDocPermissionsRequest {
             this.documentId = documentId;
             return this;
         }
-        
+
         public GetDocPermissionsRequest build() {
+
             return new GetDocPermissionsRequest(
                 documentId);
         }
+
     }
 }

@@ -10,6 +10,7 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
+
 public class CreateAnswerRequest {
 
     @JsonProperty("data")
@@ -27,9 +28,10 @@ public class CreateAnswerRequest {
         return data;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CreateAnswerRequest withData(AnswerCreationData data) {
         Utils.checkNotNull(data, "data");
@@ -37,7 +39,6 @@ public class CreateAnswerRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -62,24 +63,28 @@ public class CreateAnswerRequest {
         return Utils.toString(CreateAnswerRequest.class,
                 "data", data);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private AnswerCreationData data;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(AnswerCreationData data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
         }
-        
+
         public CreateAnswerRequest build() {
+
             return new CreateAnswerRequest(
                 data);
         }
+
     }
 }

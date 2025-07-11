@@ -37,7 +37,7 @@ public class DownloadreportcsvRequestBuilder {
     public DownloadreportcsvResponse call() throws Exception {
         
         RequestOperation<DownloadreportcsvRequest, DownloadreportcsvResponse> operation
-              = new DownloadreportcsvOperation( sdkConfiguration);
+              = new DownloadreportcsvOperation(sdkConfiguration);
         DownloadreportcsvRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

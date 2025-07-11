@@ -17,7 +17,6 @@ import java.util.List;
  * <p>Describes the request body of the /betausers API call
  */
 public class GreenlistUsersRequest {
-
     /**
      * Datasource which needs to be made visible to users specified in the `emails` field.
      */
@@ -56,9 +55,10 @@ public class GreenlistUsersRequest {
         return emails;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Datasource which needs to be made visible to users specified in the `emails` field.
@@ -78,7 +78,6 @@ public class GreenlistUsersRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -96,8 +95,7 @@ public class GreenlistUsersRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            datasource,
-            emails);
+            datasource, emails);
     }
     
     @Override
@@ -106,16 +104,18 @@ public class GreenlistUsersRequest {
                 "datasource", datasource,
                 "emails", emails);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String datasource;
- 
+
         private List<String> emails;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Datasource which needs to be made visible to users specified in the `emails` field.
@@ -126,6 +126,7 @@ public class GreenlistUsersRequest {
             return this;
         }
 
+
         /**
          * The emails of the beta users
          */
@@ -134,11 +135,12 @@ public class GreenlistUsersRequest {
             this.emails = emails;
             return this;
         }
-        
+
         public GreenlistUsersRequest build() {
+
             return new GreenlistUsersRequest(
-                datasource,
-                emails);
+                datasource, emails);
         }
+
     }
 }

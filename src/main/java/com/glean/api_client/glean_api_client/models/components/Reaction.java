@@ -17,6 +17,7 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
+
 public class Reaction {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -29,6 +30,7 @@ public class Reaction {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("count")
     private Optional<Long> count;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reactors")
@@ -58,7 +60,8 @@ public class Reaction {
     }
     
     public Reaction() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -88,15 +91,17 @@ public class Reaction {
         return reactedByViewer;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Reaction withType(String type) {
         Utils.checkNotNull(type, "type");
         this.type = Optional.ofNullable(type);
         return this;
     }
+
 
     public Reaction withType(Optional<String> type) {
         Utils.checkNotNull(type, "type");
@@ -113,6 +118,7 @@ public class Reaction {
         return this;
     }
 
+
     /**
      * The count of the reaction type on the document.
      */
@@ -127,6 +133,7 @@ public class Reaction {
         this.reactors = Optional.ofNullable(reactors);
         return this;
     }
+
 
     public Reaction withReactors(Optional<? extends List<Person>> reactors) {
         Utils.checkNotNull(reactors, "reactors");
@@ -143,6 +150,7 @@ public class Reaction {
         return this;
     }
 
+
     /**
      * Whether the user in context reacted with this type to the document.
      */
@@ -152,7 +160,6 @@ public class Reaction {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -172,9 +179,7 @@ public class Reaction {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            count,
-            reactors,
+            type, count, reactors,
             reactedByViewer);
     }
     
@@ -186,20 +191,22 @@ public class Reaction {
                 "reactors", reactors,
                 "reactedByViewer", reactedByViewer);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> type = Optional.empty();
- 
+
         private Optional<Long> count = Optional.empty();
- 
+
         private Optional<? extends List<Person>> reactors = Optional.empty();
- 
+
         private Optional<Boolean> reactedByViewer = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder type(String type) {
             Utils.checkNotNull(type, "type");
@@ -212,6 +219,7 @@ public class Reaction {
             this.type = type;
             return this;
         }
+
 
         /**
          * The count of the reaction type on the document.
@@ -231,6 +239,7 @@ public class Reaction {
             return this;
         }
 
+
         public Builder reactors(List<Person> reactors) {
             Utils.checkNotNull(reactors, "reactors");
             this.reactors = Optional.ofNullable(reactors);
@@ -242,6 +251,7 @@ public class Reaction {
             this.reactors = reactors;
             return this;
         }
+
 
         /**
          * Whether the user in context reacted with this type to the document.
@@ -260,13 +270,13 @@ public class Reaction {
             this.reactedByViewer = reactedByViewer;
             return this;
         }
-        
+
         public Reaction build() {
+
             return new Reaction(
-                type,
-                count,
-                reactors,
+                type, count, reactors,
                 reactedByViewer);
         }
+
     }
 }

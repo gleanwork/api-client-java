@@ -16,8 +16,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class Period {
 
+public class Period {
     /**
      * DEPRECATED - The number of days from now in the past to define upper boundary of time period.
      * 
@@ -38,9 +38,11 @@ public class Period {
     @Deprecated
     private Optional<Long> maxDaysFromNow;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("start")
     private Optional<? extends TimePoint> start;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("end")
@@ -63,7 +65,8 @@ public class Period {
     }
     
     public Period() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -100,9 +103,10 @@ public class Period {
         return (Optional<TimePoint>) end;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * DEPRECATED - The number of days from now in the past to define upper boundary of time period.
@@ -115,6 +119,7 @@ public class Period {
         this.minDaysFromNow = Optional.ofNullable(minDaysFromNow);
         return this;
     }
+
 
     /**
      * DEPRECATED - The number of days from now in the past to define upper boundary of time period.
@@ -140,6 +145,7 @@ public class Period {
         return this;
     }
 
+
     /**
      * DEPRECATED - The number of days from now in the past to define lower boundary of time period.
      * 
@@ -158,6 +164,7 @@ public class Period {
         return this;
     }
 
+
     public Period withStart(Optional<? extends TimePoint> start) {
         Utils.checkNotNull(start, "start");
         this.start = start;
@@ -170,13 +177,13 @@ public class Period {
         return this;
     }
 
+
     public Period withEnd(Optional<? extends TimePoint> end) {
         Utils.checkNotNull(end, "end");
         this.end = end;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -196,9 +203,7 @@ public class Period {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            minDaysFromNow,
-            maxDaysFromNow,
-            start,
+            minDaysFromNow, maxDaysFromNow, start,
             end);
     }
     
@@ -210,22 +215,24 @@ public class Period {
                 "start", start,
                 "end", end);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         @Deprecated
         private Optional<Long> minDaysFromNow = Optional.empty();
- 
+
         @Deprecated
         private Optional<Long> maxDaysFromNow = Optional.empty();
- 
+
         private Optional<? extends TimePoint> start = Optional.empty();
- 
+
         private Optional<? extends TimePoint> end = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * DEPRECATED - The number of days from now in the past to define upper boundary of time period.
@@ -251,6 +258,7 @@ public class Period {
             return this;
         }
 
+
         /**
          * DEPRECATED - The number of days from now in the past to define lower boundary of time period.
          * 
@@ -275,6 +283,7 @@ public class Period {
             return this;
         }
 
+
         public Builder start(TimePoint start) {
             Utils.checkNotNull(start, "start");
             this.start = Optional.ofNullable(start);
@@ -287,6 +296,7 @@ public class Period {
             return this;
         }
 
+
         public Builder end(TimePoint end) {
             Utils.checkNotNull(end, "end");
             this.end = Optional.ofNullable(end);
@@ -298,13 +308,13 @@ public class Period {
             this.end = end;
             return this;
         }
-        
+
         public Period build() {
+
             return new Period(
-                minDaysFromNow,
-                maxDaysFromNow,
-                start,
+                minDaysFromNow, maxDaysFromNow, start,
                 end);
         }
+
     }
 }

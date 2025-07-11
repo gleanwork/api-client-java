@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class LabeledCountInfo {
 
+public class LabeledCountInfo {
     /**
      * Label for the included count information.
      */
@@ -62,9 +62,10 @@ public class LabeledCountInfo {
         return (Optional<List<CountInfo>>) countInfo;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Label for the included count information.
@@ -84,6 +85,7 @@ public class LabeledCountInfo {
         return this;
     }
 
+
     /**
      * List of data points for counts for a given date period.
      */
@@ -93,7 +95,6 @@ public class LabeledCountInfo {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -111,8 +112,7 @@ public class LabeledCountInfo {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            label,
-            countInfo);
+            label, countInfo);
     }
     
     @Override
@@ -121,16 +121,18 @@ public class LabeledCountInfo {
                 "label", label,
                 "countInfo", countInfo);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String label;
- 
+
         private Optional<? extends List<CountInfo>> countInfo = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Label for the included count information.
@@ -140,6 +142,7 @@ public class LabeledCountInfo {
             this.label = label;
             return this;
         }
+
 
         /**
          * List of data points for counts for a given date period.
@@ -158,11 +161,12 @@ public class LabeledCountInfo {
             this.countInfo = countInfo;
             return this;
         }
-        
+
         public LabeledCountInfo build() {
+
             return new LabeledCountInfo(
-                label,
-                countInfo);
+                label, countInfo);
         }
+
     }
 }

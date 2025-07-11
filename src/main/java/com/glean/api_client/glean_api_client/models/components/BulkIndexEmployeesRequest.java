@@ -21,7 +21,6 @@ import java.util.Optional;
  * <p>Describes the request body of the /bulkindexemployees API call
  */
 public class BulkIndexEmployeesRequest {
-
     /**
      * Unique id that must be used for this bulk upload instance
      */
@@ -87,7 +86,8 @@ public class BulkIndexEmployeesRequest {
     public BulkIndexEmployeesRequest(
             String uploadId,
             List<EmployeeInfoDefinition> employees) {
-        this(uploadId, Optional.empty(), Optional.empty(), Optional.empty(), employees, Optional.empty());
+        this(uploadId, Optional.empty(), Optional.empty(),
+            Optional.empty(), employees, Optional.empty());
     }
 
     /**
@@ -138,9 +138,10 @@ public class BulkIndexEmployeesRequest {
         return disableStaleDataDeletionCheck;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unique id that must be used for this bulk upload instance
@@ -160,6 +161,7 @@ public class BulkIndexEmployeesRequest {
         return this;
     }
 
+
     /**
      * true if this is the first page of the upload. Defaults to false
      */
@@ -178,6 +180,7 @@ public class BulkIndexEmployeesRequest {
         return this;
     }
 
+
     /**
      * true if this is the last page of the upload. Defaults to false
      */
@@ -195,6 +198,7 @@ public class BulkIndexEmployeesRequest {
         this.forceRestartUpload = Optional.ofNullable(forceRestartUpload);
         return this;
     }
+
 
     /**
      * Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true
@@ -223,6 +227,7 @@ public class BulkIndexEmployeesRequest {
         return this;
     }
 
+
     /**
      * True if older employee data needs to be force deleted after the upload completes. Defaults to older data being deleted only if the percentage of data being deleted is less than 20%. This must only be set when `isLastPage = true`
      */
@@ -232,7 +237,6 @@ public class BulkIndexEmployeesRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -254,12 +258,8 @@ public class BulkIndexEmployeesRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            uploadId,
-            isFirstPage,
-            isLastPage,
-            forceRestartUpload,
-            employees,
-            disableStaleDataDeletionCheck);
+            uploadId, isFirstPage, isLastPage,
+            forceRestartUpload, employees, disableStaleDataDeletionCheck);
     }
     
     @Override
@@ -272,24 +272,26 @@ public class BulkIndexEmployeesRequest {
                 "employees", employees,
                 "disableStaleDataDeletionCheck", disableStaleDataDeletionCheck);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String uploadId;
- 
+
         private Optional<Boolean> isFirstPage = Optional.empty();
- 
+
         private Optional<Boolean> isLastPage = Optional.empty();
- 
+
         private Optional<Boolean> forceRestartUpload = Optional.empty();
- 
+
         private List<EmployeeInfoDefinition> employees;
- 
+
         private Optional<Boolean> disableStaleDataDeletionCheck = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unique id that must be used for this bulk upload instance
@@ -299,6 +301,7 @@ public class BulkIndexEmployeesRequest {
             this.uploadId = uploadId;
             return this;
         }
+
 
         /**
          * true if this is the first page of the upload. Defaults to false
@@ -318,6 +321,7 @@ public class BulkIndexEmployeesRequest {
             return this;
         }
 
+
         /**
          * true if this is the last page of the upload. Defaults to false
          */
@@ -335,6 +339,7 @@ public class BulkIndexEmployeesRequest {
             this.isLastPage = isLastPage;
             return this;
         }
+
 
         /**
          * Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true
@@ -354,6 +359,7 @@ public class BulkIndexEmployeesRequest {
             return this;
         }
 
+
         /**
          * Batch of employee information
          */
@@ -362,6 +368,7 @@ public class BulkIndexEmployeesRequest {
             this.employees = employees;
             return this;
         }
+
 
         /**
          * True if older employee data needs to be force deleted after the upload completes. Defaults to older data being deleted only if the percentage of data being deleted is less than 20%. This must only be set when `isLastPage = true`
@@ -380,15 +387,13 @@ public class BulkIndexEmployeesRequest {
             this.disableStaleDataDeletionCheck = disableStaleDataDeletionCheck;
             return this;
         }
-        
+
         public BulkIndexEmployeesRequest build() {
+
             return new BulkIndexEmployeesRequest(
-                uploadId,
-                isFirstPage,
-                isLastPage,
-                forceRestartUpload,
-                employees,
-                disableStaleDataDeletionCheck);
+                uploadId, isFirstPage, isLastPage,
+                forceRestartUpload, employees, disableStaleDataDeletionCheck);
         }
+
     }
 }

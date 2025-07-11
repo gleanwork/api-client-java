@@ -15,6 +15,7 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
+
 public class SearchAgentsResponse {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -38,9 +39,10 @@ public class SearchAgentsResponse {
         return (Optional<List<Agent>>) agents;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public SearchAgentsResponse withAgents(List<Agent> agents) {
         Utils.checkNotNull(agents, "agents");
@@ -48,13 +50,13 @@ public class SearchAgentsResponse {
         return this;
     }
 
+
     public SearchAgentsResponse withAgents(Optional<? extends List<Agent>> agents) {
         Utils.checkNotNull(agents, "agents");
         this.agents = agents;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -79,14 +81,16 @@ public class SearchAgentsResponse {
         return Utils.toString(SearchAgentsResponse.class,
                 "agents", agents);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<Agent>> agents = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder agents(List<Agent> agents) {
             Utils.checkNotNull(agents, "agents");
@@ -99,10 +103,12 @@ public class SearchAgentsResponse {
             this.agents = agents;
             return this;
         }
-        
+
         public SearchAgentsResponse build() {
+
             return new SearchAgentsResponse(
                 agents);
         }
+
     }
 }

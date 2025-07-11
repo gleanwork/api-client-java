@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>The display configuration for a link.
  */
 public class StructuredLink {
-
     /**
      * The display name for the link
      */
@@ -84,9 +83,10 @@ public class StructuredLink {
         return (Optional<IconConfig>) iconConfig;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The display name for the link
@@ -96,6 +96,7 @@ public class StructuredLink {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * The display name for the link
@@ -115,6 +116,7 @@ public class StructuredLink {
         return this;
     }
 
+
     /**
      * The URL for the link.
      */
@@ -133,6 +135,7 @@ public class StructuredLink {
         return this;
     }
 
+
     /**
      * Defines how to render an icon
      */
@@ -142,7 +145,6 @@ public class StructuredLink {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -161,9 +163,7 @@ public class StructuredLink {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            url,
-            iconConfig);
+            name, url, iconConfig);
     }
     
     @Override
@@ -173,18 +173,20 @@ public class StructuredLink {
                 "url", url,
                 "iconConfig", iconConfig);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> url = Optional.empty();
- 
+
         private Optional<? extends IconConfig> iconConfig = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The display name for the link
@@ -204,6 +206,7 @@ public class StructuredLink {
             return this;
         }
 
+
         /**
          * The URL for the link.
          */
@@ -222,6 +225,7 @@ public class StructuredLink {
             return this;
         }
 
+
         /**
          * Defines how to render an icon
          */
@@ -239,12 +243,12 @@ public class StructuredLink {
             this.iconConfig = iconConfig;
             return this;
         }
-        
+
         public StructuredLink build() {
+
             return new StructuredLink(
-                name,
-                url,
-                iconConfig);
+                name, url, iconConfig);
         }
+
     }
 }

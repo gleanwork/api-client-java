@@ -14,6 +14,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class ReportStatusResponse {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -55,15 +56,17 @@ public class ReportStatusResponse {
         return startTime;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ReportStatusResponse withStatus(ReportStatusResponseStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
     }
+
 
     public ReportStatusResponse withStatus(Optional<? extends ReportStatusResponseStatus> status) {
         Utils.checkNotNull(status, "status");
@@ -80,6 +83,7 @@ public class ReportStatusResponse {
         return this;
     }
 
+
     /**
      * The timestamp at which the report's run/scan began.
      */
@@ -89,7 +93,6 @@ public class ReportStatusResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -107,8 +110,7 @@ public class ReportStatusResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            status,
-            startTime);
+            status, startTime);
     }
     
     @Override
@@ -117,16 +119,18 @@ public class ReportStatusResponse {
                 "status", status,
                 "startTime", startTime);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ReportStatusResponseStatus> status = Optional.empty();
- 
+
         private Optional<String> startTime = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder status(ReportStatusResponseStatus status) {
             Utils.checkNotNull(status, "status");
@@ -139,6 +143,7 @@ public class ReportStatusResponse {
             this.status = status;
             return this;
         }
+
 
         /**
          * The timestamp at which the report's run/scan began.
@@ -157,11 +162,12 @@ public class ReportStatusResponse {
             this.startTime = startTime;
             return this;
         }
-        
+
         public ReportStatusResponse build() {
+
             return new ReportStatusResponse(
-                status,
-                startTime);
+                status, startTime);
         }
+
     }
 }

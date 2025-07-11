@@ -14,8 +14,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class CollectionPinTarget {
 
+public class CollectionPinTarget {
     /**
      * Categories a Collection can be pinned to.
      */
@@ -79,9 +79,10 @@ public class CollectionPinTarget {
         return (Optional<CollectionPinnableTargets>) target;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Categories a Collection can be pinned to.
@@ -101,6 +102,7 @@ public class CollectionPinTarget {
         return this;
     }
 
+
     /**
      * Optional. If category supports values, then the additional value for the category e.g. department name for DEPARTMENT_RESOURCE, team name/id for TEAM_RESOURCE and so on.
      */
@@ -119,6 +121,7 @@ public class CollectionPinTarget {
         return this;
     }
 
+
     /**
      * What targets can a Collection be pinned to.
      */
@@ -128,7 +131,6 @@ public class CollectionPinTarget {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -147,9 +149,7 @@ public class CollectionPinTarget {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            category,
-            value,
-            target);
+            category, value, target);
     }
     
     @Override
@@ -159,18 +159,20 @@ public class CollectionPinTarget {
                 "value", value,
                 "target", target);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private CollectionPinnableCategories category;
- 
+
         private Optional<String> value = Optional.empty();
- 
+
         private Optional<? extends CollectionPinnableTargets> target = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Categories a Collection can be pinned to.
@@ -180,6 +182,7 @@ public class CollectionPinTarget {
             this.category = category;
             return this;
         }
+
 
         /**
          * Optional. If category supports values, then the additional value for the category e.g. department name for DEPARTMENT_RESOURCE, team name/id for TEAM_RESOURCE and so on.
@@ -199,6 +202,7 @@ public class CollectionPinTarget {
             return this;
         }
 
+
         /**
          * What targets can a Collection be pinned to.
          */
@@ -216,12 +220,12 @@ public class CollectionPinTarget {
             this.target = target;
             return this;
         }
-        
+
         public CollectionPinTarget build() {
+
             return new CollectionPinTarget(
-                category,
-                value,
-                target);
+                category, value, target);
         }
+
     }
 }

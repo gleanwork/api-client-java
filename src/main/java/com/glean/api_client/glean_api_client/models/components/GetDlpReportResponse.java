@@ -14,8 +14,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class GetDlpReportResponse {
 
+public class GetDlpReportResponse {
     /**
      * Full policy information that will be used for scans.
      */
@@ -43,9 +43,10 @@ public class GetDlpReportResponse {
         return (Optional<DlpReport>) report;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Full policy information that will be used for scans.
@@ -56,6 +57,7 @@ public class GetDlpReportResponse {
         return this;
     }
 
+
     /**
      * Full policy information that will be used for scans.
      */
@@ -65,7 +67,6 @@ public class GetDlpReportResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,14 +91,16 @@ public class GetDlpReportResponse {
         return Utils.toString(GetDlpReportResponse.class,
                 "report", report);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends DlpReport> report = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Full policy information that will be used for scans.
@@ -116,10 +119,12 @@ public class GetDlpReportResponse {
             this.report = report;
             return this;
         }
-        
+
         public GetDlpReportResponse build() {
+
             return new GetDlpReportResponse(
                 report);
         }
+
     }
 }

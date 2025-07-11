@@ -16,8 +16,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class MessagesRequest {
 
+public class MessagesRequest {
     /**
      * Type of the id in the incoming request.
      */
@@ -103,7 +103,9 @@ public class MessagesRequest {
     public MessagesRequest(
             IdType idType,
             String id) {
-        this(idType, id, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(idType, id, Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -172,9 +174,10 @@ public class MessagesRequest {
         return datasourceInstanceDisplayName;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Type of the id in the incoming request.
@@ -203,6 +206,7 @@ public class MessagesRequest {
         return this;
     }
 
+
     /**
      * Id for the for the workspace in case of multiple workspaces.
      */
@@ -220,6 +224,7 @@ public class MessagesRequest {
         this.direction = Optional.ofNullable(direction);
         return this;
     }
+
 
     /**
      * The direction of the results asked with respect to the reference timestamp. Missing field defaults to OLDER. Only applicable when using a message_id.
@@ -239,6 +244,7 @@ public class MessagesRequest {
         return this;
     }
 
+
     /**
      * Timestamp in millis of the reference message. Only applicable when using a message_id.
      */
@@ -256,6 +262,7 @@ public class MessagesRequest {
         this.includeRootMessage = Optional.ofNullable(includeRootMessage);
         return this;
     }
+
 
     /**
      * Whether to include root message in response.
@@ -275,6 +282,7 @@ public class MessagesRequest {
         return this;
     }
 
+
     /**
      * The type of the data source. Missing field defaults to SLACK.
      */
@@ -293,6 +301,7 @@ public class MessagesRequest {
         return this;
     }
 
+
     /**
      * The datasource instance display name from which the document was extracted. This is used for appinstance facet filter for datasources that support multiple instances.
      */
@@ -302,7 +311,6 @@ public class MessagesRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -326,14 +334,9 @@ public class MessagesRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            idType,
-            id,
-            workspaceId,
-            direction,
-            timestampMillis,
-            includeRootMessage,
-            datasource,
-            datasourceInstanceDisplayName);
+            idType, id, workspaceId,
+            direction, timestampMillis, includeRootMessage,
+            datasource, datasourceInstanceDisplayName);
     }
     
     @Override
@@ -348,28 +351,30 @@ public class MessagesRequest {
                 "datasource", datasource,
                 "datasourceInstanceDisplayName", datasourceInstanceDisplayName);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private IdType idType;
- 
+
         private String id;
- 
+
         private Optional<String> workspaceId = Optional.empty();
- 
+
         private Optional<? extends Direction> direction = Optional.empty();
- 
+
         private Optional<Long> timestampMillis = Optional.empty();
- 
+
         private Optional<Boolean> includeRootMessage = Optional.empty();
- 
+
         private Optional<? extends Datasource> datasource = Optional.empty();
- 
+
         private Optional<String> datasourceInstanceDisplayName = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Type of the id in the incoming request.
@@ -380,6 +385,7 @@ public class MessagesRequest {
             return this;
         }
 
+
         /**
          * ID corresponding to the requested idType. Note that channel and threads are represented by the underlying datasource's ID and conversations are represented by their document's ID.
          */
@@ -388,6 +394,7 @@ public class MessagesRequest {
             this.id = id;
             return this;
         }
+
 
         /**
          * Id for the for the workspace in case of multiple workspaces.
@@ -407,6 +414,7 @@ public class MessagesRequest {
             return this;
         }
 
+
         /**
          * The direction of the results asked with respect to the reference timestamp. Missing field defaults to OLDER. Only applicable when using a message_id.
          */
@@ -424,6 +432,7 @@ public class MessagesRequest {
             this.direction = direction;
             return this;
         }
+
 
         /**
          * Timestamp in millis of the reference message. Only applicable when using a message_id.
@@ -443,6 +452,7 @@ public class MessagesRequest {
             return this;
         }
 
+
         /**
          * Whether to include root message in response.
          */
@@ -460,6 +470,7 @@ public class MessagesRequest {
             this.includeRootMessage = includeRootMessage;
             return this;
         }
+
 
         /**
          * The type of the data source. Missing field defaults to SLACK.
@@ -479,6 +490,7 @@ public class MessagesRequest {
             return this;
         }
 
+
         /**
          * The datasource instance display name from which the document was extracted. This is used for appinstance facet filter for datasources that support multiple instances.
          */
@@ -496,17 +508,14 @@ public class MessagesRequest {
             this.datasourceInstanceDisplayName = datasourceInstanceDisplayName;
             return this;
         }
-        
+
         public MessagesRequest build() {
+
             return new MessagesRequest(
-                idType,
-                id,
-                workspaceId,
-                direction,
-                timestampMillis,
-                includeRootMessage,
-                datasource,
-                datasourceInstanceDisplayName);
+                idType, id, workspaceId,
+                direction, timestampMillis, includeRootMessage,
+                datasource, datasourceInstanceDisplayName);
         }
+
     }
 }

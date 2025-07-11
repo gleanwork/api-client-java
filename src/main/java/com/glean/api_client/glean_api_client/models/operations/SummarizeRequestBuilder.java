@@ -29,7 +29,7 @@ public class SummarizeRequestBuilder {
     public SummarizeResponse call() throws Exception {
         
         RequestOperation<SummarizeRequest, SummarizeResponse> operation
-              = new SummarizeOperation( sdkConfiguration);
+              = new SummarizeOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -53,7 +53,7 @@ public class GetAgentRequestBuilder {
     public GetAgentResponse call() throws Exception {
         
         RequestOperation<GetAgentRequest, GetAgentResponse> operation
-              = new GetAgentOperation( sdkConfiguration);
+              = new GetAgentOperation(sdkConfiguration);
         GetAgentRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

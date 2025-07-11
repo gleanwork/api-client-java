@@ -16,8 +16,8 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 
-public class PinDocument {
 
+public class PinDocument {
     /**
      * The query strings for which the pinned result will show.
      */
@@ -45,17 +45,21 @@ public class PinDocument {
     @JsonProperty("documentId")
     private String documentId;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("attribution")
     private Optional<? extends Person> attribution;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("updatedBy")
     private Optional<? extends Person> updatedBy;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createTime")
     private Optional<OffsetDateTime> createTime;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("updateTime")
@@ -91,7 +95,9 @@ public class PinDocument {
     
     public PinDocument(
             String documentId) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), documentId, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            documentId, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -150,9 +156,10 @@ public class PinDocument {
         return updateTime;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The query strings for which the pinned result will show.
@@ -162,6 +169,7 @@ public class PinDocument {
         this.queries = Optional.ofNullable(queries);
         return this;
     }
+
 
     /**
      * The query strings for which the pinned result will show.
@@ -181,6 +189,7 @@ public class PinDocument {
         return this;
     }
 
+
     /**
      * Filters which restrict who should see the pinned document. Values are taken from the corresponding filters in people search.
      */
@@ -198,6 +207,7 @@ public class PinDocument {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The opaque id of the pin.
@@ -223,6 +233,7 @@ public class PinDocument {
         return this;
     }
 
+
     public PinDocument withAttribution(Optional<? extends Person> attribution) {
         Utils.checkNotNull(attribution, "attribution");
         this.attribution = attribution;
@@ -234,6 +245,7 @@ public class PinDocument {
         this.updatedBy = Optional.ofNullable(updatedBy);
         return this;
     }
+
 
     public PinDocument withUpdatedBy(Optional<? extends Person> updatedBy) {
         Utils.checkNotNull(updatedBy, "updatedBy");
@@ -247,6 +259,7 @@ public class PinDocument {
         return this;
     }
 
+
     public PinDocument withCreateTime(Optional<OffsetDateTime> createTime) {
         Utils.checkNotNull(createTime, "createTime");
         this.createTime = createTime;
@@ -259,13 +272,13 @@ public class PinDocument {
         return this;
     }
 
+
     public PinDocument withUpdateTime(Optional<OffsetDateTime> updateTime) {
         Utils.checkNotNull(updateTime, "updateTime");
         this.updateTime = updateTime;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -289,14 +302,9 @@ public class PinDocument {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            queries,
-            audienceFilters,
-            id,
-            documentId,
-            attribution,
-            updatedBy,
-            createTime,
-            updateTime);
+            queries, audienceFilters, id,
+            documentId, attribution, updatedBy,
+            createTime, updateTime);
     }
     
     @Override
@@ -311,28 +319,30 @@ public class PinDocument {
                 "createTime", createTime,
                 "updateTime", updateTime);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<String>> queries = Optional.empty();
- 
+
         private Optional<? extends List<FacetFilter>> audienceFilters = Optional.empty();
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private String documentId;
- 
+
         private Optional<? extends Person> attribution = Optional.empty();
- 
+
         private Optional<? extends Person> updatedBy = Optional.empty();
- 
+
         private Optional<OffsetDateTime> createTime = Optional.empty();
- 
+
         private Optional<OffsetDateTime> updateTime = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The query strings for which the pinned result will show.
@@ -352,6 +362,7 @@ public class PinDocument {
             return this;
         }
 
+
         /**
          * Filters which restrict who should see the pinned document. Values are taken from the corresponding filters in people search.
          */
@@ -369,6 +380,7 @@ public class PinDocument {
             this.audienceFilters = audienceFilters;
             return this;
         }
+
 
         /**
          * The opaque id of the pin.
@@ -388,6 +400,7 @@ public class PinDocument {
             return this;
         }
 
+
         /**
          * The document which should be a pinned result.
          */
@@ -396,6 +409,7 @@ public class PinDocument {
             this.documentId = documentId;
             return this;
         }
+
 
         public Builder attribution(Person attribution) {
             Utils.checkNotNull(attribution, "attribution");
@@ -409,6 +423,7 @@ public class PinDocument {
             return this;
         }
 
+
         public Builder updatedBy(Person updatedBy) {
             Utils.checkNotNull(updatedBy, "updatedBy");
             this.updatedBy = Optional.ofNullable(updatedBy);
@@ -420,6 +435,7 @@ public class PinDocument {
             this.updatedBy = updatedBy;
             return this;
         }
+
 
         public Builder createTime(OffsetDateTime createTime) {
             Utils.checkNotNull(createTime, "createTime");
@@ -433,6 +449,7 @@ public class PinDocument {
             return this;
         }
 
+
         public Builder updateTime(OffsetDateTime updateTime) {
             Utils.checkNotNull(updateTime, "updateTime");
             this.updateTime = Optional.ofNullable(updateTime);
@@ -444,17 +461,14 @@ public class PinDocument {
             this.updateTime = updateTime;
             return this;
         }
-        
+
         public PinDocument build() {
+
             return new PinDocument(
-                queries,
-                audienceFilters,
-                id,
-                documentId,
-                attribution,
-                updatedBy,
-                createTime,
-                updateTime);
+                queries, audienceFilters, id,
+                documentId, attribution, updatedBy,
+                createTime, updateTime);
         }
+
     }
 }

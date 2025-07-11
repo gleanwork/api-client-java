@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class GetDocumentsRequest {
 
+public class GetDocumentsRequest {
     /**
      * The specification for the documents to be retrieved.
      */
@@ -62,9 +62,10 @@ public class GetDocumentsRequest {
         return (Optional<List<GetDocumentsRequestIncludeField>>) includeFields;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The specification for the documents to be retrieved.
@@ -84,6 +85,7 @@ public class GetDocumentsRequest {
         return this;
     }
 
+
     /**
      * List of Document fields to return (that aren't returned by default)
      */
@@ -93,7 +95,6 @@ public class GetDocumentsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -111,8 +112,7 @@ public class GetDocumentsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            documentSpecs,
-            includeFields);
+            documentSpecs, includeFields);
     }
     
     @Override
@@ -121,16 +121,18 @@ public class GetDocumentsRequest {
                 "documentSpecs", documentSpecs,
                 "includeFields", includeFields);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<DocumentSpecUnion> documentSpecs;
- 
+
         private Optional<? extends List<GetDocumentsRequestIncludeField>> includeFields = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The specification for the documents to be retrieved.
@@ -140,6 +142,7 @@ public class GetDocumentsRequest {
             this.documentSpecs = documentSpecs;
             return this;
         }
+
 
         /**
          * List of Document fields to return (that aren't returned by default)
@@ -158,11 +161,12 @@ public class GetDocumentsRequest {
             this.includeFields = includeFields;
             return this;
         }
-        
+
         public GetDocumentsRequest build() {
+
             return new GetDocumentsRequest(
-                documentSpecs,
-                includeFields);
+                documentSpecs, includeFields);
         }
+
     }
 }

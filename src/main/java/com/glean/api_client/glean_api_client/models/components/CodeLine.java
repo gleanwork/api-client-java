@@ -16,11 +16,13 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
+
 public class CodeLine {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lineNumber")
     private Optional<Long> lineNumber;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("content")
@@ -69,15 +71,17 @@ public class CodeLine {
         return (Optional<List<TextRange>>) ranges;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CodeLine withLineNumber(long lineNumber) {
         Utils.checkNotNull(lineNumber, "lineNumber");
         this.lineNumber = Optional.ofNullable(lineNumber);
         return this;
     }
+
 
     public CodeLine withLineNumber(Optional<Long> lineNumber) {
         Utils.checkNotNull(lineNumber, "lineNumber");
@@ -90,6 +94,7 @@ public class CodeLine {
         this.content = Optional.ofNullable(content);
         return this;
     }
+
 
     public CodeLine withContent(Optional<String> content) {
         Utils.checkNotNull(content, "content");
@@ -106,6 +111,7 @@ public class CodeLine {
         return this;
     }
 
+
     /**
      * Index ranges depicting matched sections of the line
      */
@@ -115,7 +121,6 @@ public class CodeLine {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -134,9 +139,7 @@ public class CodeLine {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            lineNumber,
-            content,
-            ranges);
+            lineNumber, content, ranges);
     }
     
     @Override
@@ -146,18 +149,20 @@ public class CodeLine {
                 "content", content,
                 "ranges", ranges);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> lineNumber = Optional.empty();
- 
+
         private Optional<String> content = Optional.empty();
- 
+
         private Optional<? extends List<TextRange>> ranges = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder lineNumber(long lineNumber) {
             Utils.checkNotNull(lineNumber, "lineNumber");
@@ -171,6 +176,7 @@ public class CodeLine {
             return this;
         }
 
+
         public Builder content(String content) {
             Utils.checkNotNull(content, "content");
             this.content = Optional.ofNullable(content);
@@ -182,6 +188,7 @@ public class CodeLine {
             this.content = content;
             return this;
         }
+
 
         /**
          * Index ranges depicting matched sections of the line
@@ -200,12 +207,12 @@ public class CodeLine {
             this.ranges = ranges;
             return this;
         }
-        
+
         public CodeLine build() {
+
             return new CodeLine(
-                lineNumber,
-                content,
-                ranges);
+                lineNumber, content, ranges);
         }
+
     }
 }

@@ -29,7 +29,7 @@ public class DeleteanswerRequestBuilder {
     public DeleteanswerResponse call() throws Exception {
         
         RequestOperation<DeleteAnswerRequest, DeleteanswerResponse> operation
-              = new DeleteanswerOperation( sdkConfiguration);
+              = new DeleteanswerOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

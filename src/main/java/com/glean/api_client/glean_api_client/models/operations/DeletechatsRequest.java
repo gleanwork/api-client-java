@@ -13,13 +13,14 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class DeletechatsRequest {
 
+public class DeletechatsRequest {
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=timezoneOffset")
     private Optional<Long> timezoneOffset;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private DeleteChatsRequest deleteChatsRequest;
@@ -52,9 +53,10 @@ public class DeletechatsRequest {
         return deleteChatsRequest;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
@@ -64,6 +66,7 @@ public class DeletechatsRequest {
         this.timezoneOffset = Optional.ofNullable(timezoneOffset);
         return this;
     }
+
 
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
@@ -80,7 +83,6 @@ public class DeletechatsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -98,8 +100,7 @@ public class DeletechatsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            timezoneOffset,
-            deleteChatsRequest);
+            timezoneOffset, deleteChatsRequest);
     }
     
     @Override
@@ -108,16 +109,18 @@ public class DeletechatsRequest {
                 "timezoneOffset", timezoneOffset,
                 "deleteChatsRequest", deleteChatsRequest);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> timezoneOffset = Optional.empty();
- 
+
         private DeleteChatsRequest deleteChatsRequest;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
@@ -137,16 +140,18 @@ public class DeletechatsRequest {
             return this;
         }
 
+
         public Builder deleteChatsRequest(DeleteChatsRequest deleteChatsRequest) {
             Utils.checkNotNull(deleteChatsRequest, "deleteChatsRequest");
             this.deleteChatsRequest = deleteChatsRequest;
             return this;
         }
-        
+
         public DeletechatsRequest build() {
+
             return new DeletechatsRequest(
-                timezoneOffset,
-                deleteChatsRequest);
+                timezoneOffset, deleteChatsRequest);
         }
+
     }
 }

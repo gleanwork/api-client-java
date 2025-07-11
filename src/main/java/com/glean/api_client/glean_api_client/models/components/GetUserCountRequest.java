@@ -16,7 +16,6 @@ import java.lang.String;
  * <p>Describes the request body of the /getusercount API call
  */
 public class GetUserCountRequest {
-
     /**
      * Datasource name for which user count is needed.
      */
@@ -38,9 +37,10 @@ public class GetUserCountRequest {
         return datasource;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Datasource name for which user count is needed.
@@ -51,7 +51,6 @@ public class GetUserCountRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -76,14 +75,16 @@ public class GetUserCountRequest {
         return Utils.toString(GetUserCountRequest.class,
                 "datasource", datasource);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String datasource;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Datasource name for which user count is needed.
@@ -93,10 +94,12 @@ public class GetUserCountRequest {
             this.datasource = datasource;
             return this;
         }
-        
+
         public GetUserCountRequest build() {
+
             return new GetUserCountRequest(
                 datasource);
         }
+
     }
 }

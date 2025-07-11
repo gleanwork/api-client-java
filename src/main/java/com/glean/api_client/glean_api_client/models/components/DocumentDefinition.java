@@ -22,7 +22,6 @@ import java.util.Optional;
  * <p>Indexable document structure
  */
 public class DocumentDefinition {
-
     /**
      * Document title, in plain text, if present. If not present, the title would be attempted to be extracted from the content.
      */
@@ -57,6 +56,7 @@ public class DocumentDefinition {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("containerObjectType")
     private Optional<String> containerObjectType;
+
 
     @JsonProperty("datasource")
     private String datasource;
@@ -151,6 +151,7 @@ public class DocumentDefinition {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("interactions")
     private Optional<? extends DocumentInteractionsDefinition> interactions;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
@@ -252,7 +253,14 @@ public class DocumentDefinition {
     
     public DocumentDefinition(
             String datasource) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), datasource, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), datasource,
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -444,9 +452,10 @@ public class DocumentDefinition {
         return (Optional<List<CustomProperty>>) customProperties;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Document title, in plain text, if present. If not present, the title would be attempted to be extracted from the content.
@@ -456,6 +465,7 @@ public class DocumentDefinition {
         this.title = Optional.ofNullable(title);
         return this;
     }
+
 
     /**
      * Document title, in plain text, if present. If not present, the title would be attempted to be extracted from the content.
@@ -475,6 +485,7 @@ public class DocumentDefinition {
         return this;
     }
 
+
     /**
      * Source filename, in plain text, for the document. May be used as a fallback title for the document, if the title is not provided and cannot be extracted from the content. Populate this if there is no explicit title for the document and the content is sourced from a file.
      */
@@ -492,6 +503,7 @@ public class DocumentDefinition {
         this.container = Optional.ofNullable(container);
         return this;
     }
+
 
     /**
      * The container name for the content (Folder for example for file content).
@@ -511,6 +523,7 @@ public class DocumentDefinition {
         return this;
     }
 
+
     /**
      * This represents the datasource sepcific id of the container.
      */
@@ -528,6 +541,7 @@ public class DocumentDefinition {
         this.containerObjectType = Optional.ofNullable(containerObjectType);
         return this;
     }
+
 
     /**
      * This represents the object type of the container. It cannot have spaces or _
@@ -553,6 +567,7 @@ public class DocumentDefinition {
         return this;
     }
 
+
     /**
      * The type of the document (Case, KnowledgeArticle for Salesforce for example). It cannot have spaces or _
      */
@@ -570,6 +585,7 @@ public class DocumentDefinition {
         this.viewURL = Optional.ofNullable(viewURL);
         return this;
     }
+
 
     /**
      * The permalink for viewing the document. **Note: viewURL is a required field for non-entity datasources, but not required if the datasource is used to push custom entities (ie. datasources where isEntityDatasource is false).**'
@@ -589,6 +605,7 @@ public class DocumentDefinition {
         return this;
     }
 
+
     /**
      * The datasource specific id for the document. This field is case insensitive and should not be more than 200 characters in length.
      */
@@ -606,6 +623,7 @@ public class DocumentDefinition {
         this.summary = Optional.ofNullable(summary);
         return this;
     }
+
 
     /**
      * Describes text content or base64 encoded binary content
@@ -625,6 +643,7 @@ public class DocumentDefinition {
         return this;
     }
 
+
     /**
      * Describes text content or base64 encoded binary content
      */
@@ -642,6 +661,7 @@ public class DocumentDefinition {
         this.author = Optional.ofNullable(author);
         return this;
     }
+
 
     /**
      * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
@@ -661,6 +681,7 @@ public class DocumentDefinition {
         return this;
     }
 
+
     /**
      * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
      */
@@ -678,6 +699,7 @@ public class DocumentDefinition {
         this.permissions = Optional.ofNullable(permissions);
         return this;
     }
+
 
     /**
      * describes the access control details of the document
@@ -697,6 +719,7 @@ public class DocumentDefinition {
         return this;
     }
 
+
     /**
      * The creation time, in epoch seconds.
      */
@@ -714,6 +737,7 @@ public class DocumentDefinition {
         this.updatedAt = Optional.ofNullable(updatedAt);
         return this;
     }
+
 
     /**
      * The last update time, in epoch seconds.
@@ -733,6 +757,7 @@ public class DocumentDefinition {
         return this;
     }
 
+
     /**
      * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
      */
@@ -750,6 +775,7 @@ public class DocumentDefinition {
         this.tags = Optional.ofNullable(tags);
         return this;
     }
+
 
     /**
      * Labels associated with the document.
@@ -769,6 +795,7 @@ public class DocumentDefinition {
         return this;
     }
 
+
     /**
      * describes the interactions on the document
      */
@@ -784,6 +811,7 @@ public class DocumentDefinition {
         return this;
     }
 
+
     public DocumentDefinition withStatus(Optional<String> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
@@ -798,6 +826,7 @@ public class DocumentDefinition {
         this.additionalUrls = Optional.ofNullable(additionalUrls);
         return this;
     }
+
 
     /**
      * Additional variations of the URL that this document points to.
@@ -817,6 +846,7 @@ public class DocumentDefinition {
         return this;
     }
 
+
     /**
      * Comments associated with the document.
      */
@@ -835,6 +865,7 @@ public class DocumentDefinition {
         return this;
     }
 
+
     /**
      * Additional metadata properties of the document. These can surface as [facets and operators](https://developers.glean.com/docs/facets_and_operators_for_custom_datasources/).
      */
@@ -844,7 +875,6 @@ public class DocumentDefinition {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -883,29 +913,14 @@ public class DocumentDefinition {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            title,
-            filename,
-            container,
-            containerDatasourceId,
-            containerObjectType,
-            datasource,
-            objectType,
-            viewURL,
-            id,
-            summary,
-            body,
-            author,
-            owner,
-            permissions,
-            createdAt,
-            updatedAt,
-            updatedBy,
-            tags,
-            interactions,
-            status,
-            additionalUrls,
-            comments,
-            customProperties);
+            title, filename, container,
+            containerDatasourceId, containerObjectType, datasource,
+            objectType, viewURL, id,
+            summary, body, author,
+            owner, permissions, createdAt,
+            updatedAt, updatedBy, tags,
+            interactions, status, additionalUrls,
+            comments, customProperties);
     }
     
     @Override
@@ -935,58 +950,60 @@ public class DocumentDefinition {
                 "comments", comments,
                 "customProperties", customProperties);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> title = Optional.empty();
- 
+
         private Optional<String> filename = Optional.empty();
- 
+
         private Optional<String> container = Optional.empty();
- 
+
         private Optional<String> containerDatasourceId = Optional.empty();
- 
+
         private Optional<String> containerObjectType = Optional.empty();
- 
+
         private String datasource;
- 
+
         private Optional<String> objectType = Optional.empty();
- 
+
         private Optional<String> viewURL = Optional.empty();
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<? extends ContentDefinition> summary = Optional.empty();
- 
+
         private Optional<? extends ContentDefinition> body = Optional.empty();
- 
+
         private Optional<? extends UserReferenceDefinition> author = Optional.empty();
- 
+
         private Optional<? extends UserReferenceDefinition> owner = Optional.empty();
- 
+
         private Optional<? extends DocumentPermissionsDefinition> permissions = Optional.empty();
- 
+
         private Optional<Long> createdAt = Optional.empty();
- 
+
         private Optional<Long> updatedAt = Optional.empty();
- 
+
         private Optional<? extends UserReferenceDefinition> updatedBy = Optional.empty();
- 
+
         private Optional<? extends List<String>> tags = Optional.empty();
- 
+
         private Optional<? extends DocumentInteractionsDefinition> interactions = Optional.empty();
- 
+
         private Optional<String> status = Optional.empty();
- 
+
         private Optional<? extends List<String>> additionalUrls = Optional.empty();
- 
+
         private Optional<? extends List<CommentDefinition>> comments = Optional.empty();
- 
+
         private Optional<? extends List<CustomProperty>> customProperties = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Document title, in plain text, if present. If not present, the title would be attempted to be extracted from the content.
@@ -1006,6 +1023,7 @@ public class DocumentDefinition {
             return this;
         }
 
+
         /**
          * Source filename, in plain text, for the document. May be used as a fallback title for the document, if the title is not provided and cannot be extracted from the content. Populate this if there is no explicit title for the document and the content is sourced from a file.
          */
@@ -1023,6 +1041,7 @@ public class DocumentDefinition {
             this.filename = filename;
             return this;
         }
+
 
         /**
          * The container name for the content (Folder for example for file content).
@@ -1042,6 +1061,7 @@ public class DocumentDefinition {
             return this;
         }
 
+
         /**
          * This represents the datasource sepcific id of the container.
          */
@@ -1059,6 +1079,7 @@ public class DocumentDefinition {
             this.containerDatasourceId = containerDatasourceId;
             return this;
         }
+
 
         /**
          * This represents the object type of the container. It cannot have spaces or _
@@ -1078,11 +1099,13 @@ public class DocumentDefinition {
             return this;
         }
 
+
         public Builder datasource(String datasource) {
             Utils.checkNotNull(datasource, "datasource");
             this.datasource = datasource;
             return this;
         }
+
 
         /**
          * The type of the document (Case, KnowledgeArticle for Salesforce for example). It cannot have spaces or _
@@ -1102,6 +1125,7 @@ public class DocumentDefinition {
             return this;
         }
 
+
         /**
          * The permalink for viewing the document. **Note: viewURL is a required field for non-entity datasources, but not required if the datasource is used to push custom entities (ie. datasources where isEntityDatasource is false).**'
          */
@@ -1119,6 +1143,7 @@ public class DocumentDefinition {
             this.viewURL = viewURL;
             return this;
         }
+
 
         /**
          * The datasource specific id for the document. This field is case insensitive and should not be more than 200 characters in length.
@@ -1138,6 +1163,7 @@ public class DocumentDefinition {
             return this;
         }
 
+
         /**
          * Describes text content or base64 encoded binary content
          */
@@ -1155,6 +1181,7 @@ public class DocumentDefinition {
             this.summary = summary;
             return this;
         }
+
 
         /**
          * Describes text content or base64 encoded binary content
@@ -1174,6 +1201,7 @@ public class DocumentDefinition {
             return this;
         }
 
+
         /**
          * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
          */
@@ -1191,6 +1219,7 @@ public class DocumentDefinition {
             this.author = author;
             return this;
         }
+
 
         /**
          * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
@@ -1210,6 +1239,7 @@ public class DocumentDefinition {
             return this;
         }
 
+
         /**
          * describes the access control details of the document
          */
@@ -1227,6 +1257,7 @@ public class DocumentDefinition {
             this.permissions = permissions;
             return this;
         }
+
 
         /**
          * The creation time, in epoch seconds.
@@ -1246,6 +1277,7 @@ public class DocumentDefinition {
             return this;
         }
 
+
         /**
          * The last update time, in epoch seconds.
          */
@@ -1263,6 +1295,7 @@ public class DocumentDefinition {
             this.updatedAt = updatedAt;
             return this;
         }
+
 
         /**
          * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
@@ -1282,6 +1315,7 @@ public class DocumentDefinition {
             return this;
         }
 
+
         /**
          * Labels associated with the document.
          */
@@ -1299,6 +1333,7 @@ public class DocumentDefinition {
             this.tags = tags;
             return this;
         }
+
 
         /**
          * describes the interactions on the document
@@ -1318,6 +1353,7 @@ public class DocumentDefinition {
             return this;
         }
 
+
         public Builder status(String status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
@@ -1329,6 +1365,7 @@ public class DocumentDefinition {
             this.status = status;
             return this;
         }
+
 
         /**
          * Additional variations of the URL that this document points to.
@@ -1348,6 +1385,7 @@ public class DocumentDefinition {
             return this;
         }
 
+
         /**
          * Comments associated with the document.
          */
@@ -1366,6 +1404,7 @@ public class DocumentDefinition {
             return this;
         }
 
+
         /**
          * Additional metadata properties of the document. These can surface as [facets and operators](https://developers.glean.com/docs/facets_and_operators_for_custom_datasources/).
          */
@@ -1383,32 +1422,19 @@ public class DocumentDefinition {
             this.customProperties = customProperties;
             return this;
         }
-        
+
         public DocumentDefinition build() {
+
             return new DocumentDefinition(
-                title,
-                filename,
-                container,
-                containerDatasourceId,
-                containerObjectType,
-                datasource,
-                objectType,
-                viewURL,
-                id,
-                summary,
-                body,
-                author,
-                owner,
-                permissions,
-                createdAt,
-                updatedAt,
-                updatedBy,
-                tags,
-                interactions,
-                status,
-                additionalUrls,
-                comments,
-                customProperties);
+                title, filename, container,
+                containerDatasourceId, containerObjectType, datasource,
+                objectType, viewURL, id,
+                summary, body, author,
+                owner, permissions, createdAt,
+                updatedAt, updatedBy, tags,
+                interactions, status, additionalUrls,
+                comments, customProperties);
         }
+
     }
 }

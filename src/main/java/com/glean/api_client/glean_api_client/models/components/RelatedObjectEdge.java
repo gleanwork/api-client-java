@@ -15,6 +15,7 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
+
 public class RelatedObjectEdge {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -38,9 +39,10 @@ public class RelatedObjectEdge {
         return (Optional<List<RelatedObject>>) objects;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public RelatedObjectEdge withObjects(List<RelatedObject> objects) {
         Utils.checkNotNull(objects, "objects");
@@ -48,13 +50,13 @@ public class RelatedObjectEdge {
         return this;
     }
 
+
     public RelatedObjectEdge withObjects(Optional<? extends List<RelatedObject>> objects) {
         Utils.checkNotNull(objects, "objects");
         this.objects = objects;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -79,14 +81,16 @@ public class RelatedObjectEdge {
         return Utils.toString(RelatedObjectEdge.class,
                 "objects", objects);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<RelatedObject>> objects = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder objects(List<RelatedObject> objects) {
             Utils.checkNotNull(objects, "objects");
@@ -99,10 +103,12 @@ public class RelatedObjectEdge {
             this.objects = objects;
             return this;
         }
-        
+
         public RelatedObjectEdge build() {
+
             return new RelatedObjectEdge(
                 objects);
         }
+
     }
 }

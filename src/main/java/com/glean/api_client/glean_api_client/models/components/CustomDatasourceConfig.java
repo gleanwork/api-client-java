@@ -24,7 +24,6 @@ import java.util.Optional;
  * <p>Structure describing config properties of a custom datasource
  */
 public class CustomDatasourceConfig {
-
     /**
      * Unique identifier of datasource instance to which this config applies.
      */
@@ -121,6 +120,7 @@ public class CustomDatasourceConfig {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("redlistTitleRegex")
     private Optional<String> redlistTitleRegex;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("connectorType")
@@ -297,7 +297,15 @@ public class CustomDatasourceConfig {
     
     public CustomDatasourceConfig(
             String name) {
-        this(name, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(name, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -522,9 +530,10 @@ public class CustomDatasourceConfig {
         return isTestDatasource;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unique identifier of datasource instance to which this config applies.
@@ -544,6 +553,7 @@ public class CustomDatasourceConfig {
         return this;
     }
 
+
     /**
      * The user-friendly instance label to display. If omitted, falls back to the title-cased `name`.
      */
@@ -561,6 +571,7 @@ public class CustomDatasourceConfig {
         this.datasourceCategory = Optional.ofNullable(datasourceCategory);
         return this;
     }
+
 
     /**
      * The type of this datasource. It is an important signal for relevance and must be specified and cannot be UNCATEGORIZED. Please refer to [this](https://developers.glean.com/docs/indexing_api_datasource_category/) for more details.
@@ -580,6 +591,7 @@ public class CustomDatasourceConfig {
         return this;
     }
 
+
     /**
      * Regular expression that matches URLs of documents of the datasource instance. The behavior for multiple matches is non-deterministic. **Note: `urlRegex` is a required field for non-entity datasources, but not required if the datasource is used to push custom entities (ie. datasources where isEntityDatasource is false). Please add a regex as specific as possible to this datasource instance.**
      */
@@ -597,6 +609,7 @@ public class CustomDatasourceConfig {
         this.iconUrl = Optional.ofNullable(iconUrl);
         return this;
     }
+
 
     /**
      * The URL to an image to be displayed as an icon for this datasource instance. Must have a transparency mask. SVG are recommended over PNG. Public, scio-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
@@ -616,6 +629,7 @@ public class CustomDatasourceConfig {
         return this;
     }
 
+
     /**
      * The list of top-level `objectType`s for the datasource.
      */
@@ -633,6 +647,7 @@ public class CustomDatasourceConfig {
         this.suggestionText = Optional.ofNullable(suggestionText);
         return this;
     }
+
 
     /**
      * Example text for what to search for in this datasource
@@ -652,6 +667,7 @@ public class CustomDatasourceConfig {
         return this;
     }
 
+
     /**
      * The URL of the landing page for this datasource instance. Should point to the most useful page for users, not the company marketing page.
      */
@@ -669,6 +685,7 @@ public class CustomDatasourceConfig {
         this.crawlerSeedUrls = Optional.ofNullable(crawlerSeedUrls);
         return this;
     }
+
 
     /**
      * This only applies to WEB_CRAWL and BROWSER_CRAWL datasources. Defines the seed URLs for crawling.
@@ -688,6 +705,7 @@ public class CustomDatasourceConfig {
         return this;
     }
 
+
     /**
      * The URL to an image to be displayed as an icon for this datasource instance in dark mode. Must have a transparency mask. SVG are recommended over PNG. Public, scio-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
      */
@@ -705,6 +723,7 @@ public class CustomDatasourceConfig {
         this.hideBuiltInFacets = Optional.ofNullable(hideBuiltInFacets);
         return this;
     }
+
 
     /**
      * List of built-in facet types that should be hidden for the datasource.
@@ -724,6 +743,7 @@ public class CustomDatasourceConfig {
         return this;
     }
 
+
     /**
      * A list of regular expressions to apply to an arbitrary URL to transform it into a canonical URL for this datasource instance. Regexes are to be applied in the order specified in this list.
      */
@@ -741,6 +761,7 @@ public class CustomDatasourceConfig {
         this.canonicalizingTitleRegex = Optional.ofNullable(canonicalizingTitleRegex);
         return this;
     }
+
 
     /**
      * A list of regular expressions to apply to an arbitrary title to transform it into a title that will be displayed in the search results
@@ -760,6 +781,7 @@ public class CustomDatasourceConfig {
         return this;
     }
 
+
     /**
      * A regex that identifies titles that should not be indexed
      */
@@ -775,6 +797,7 @@ public class CustomDatasourceConfig {
         return this;
     }
 
+
     public CustomDatasourceConfig withConnectorType(Optional<? extends CustomDatasourceConfigConnectorType> connectorType) {
         Utils.checkNotNull(connectorType, "connectorType");
         this.connectorType = connectorType;
@@ -789,6 +812,7 @@ public class CustomDatasourceConfig {
         this.quicklinks = Optional.ofNullable(quicklinks);
         return this;
     }
+
 
     /**
      * List of actions for this datasource instance that will show up in autocomplete and app card, e.g. "Create new issue" for jira
@@ -808,6 +832,7 @@ public class CustomDatasourceConfig {
         return this;
     }
 
+
     /**
      * The name of a render config to use for displaying results from this datasource. Any well known datasource name may be used to render the same as that source, e.g. `web` or `gdrive`. Please refer to [this](https://developers.glean.com/docs/rendering_search_results/) for more details
      */
@@ -825,6 +850,7 @@ public class CustomDatasourceConfig {
         this.aliases = Optional.ofNullable(aliases);
         return this;
     }
+
 
     /**
      * Aliases that can be used as `app` operator-values.
@@ -844,6 +870,7 @@ public class CustomDatasourceConfig {
         return this;
     }
 
+
     /**
      * Whether or not this datasource is hosted on-premise.
      */
@@ -861,6 +888,7 @@ public class CustomDatasourceConfig {
         this.trustUrlRegexForViewActivity = Optional.ofNullable(trustUrlRegexForViewActivity);
         return this;
     }
+
 
     /**
      * True if browser activity is able to report the correct URL for VIEW events. Set this to true if the URLs reported by Chrome are constant throughout each page load. Set this to false if the page has Javascript that modifies the URL during or after the load.
@@ -880,6 +908,7 @@ public class CustomDatasourceConfig {
         return this;
     }
 
+
     /**
      * If true, a utm_source query param will be added to outbound links to this datasource within Glean.
      */
@@ -897,6 +926,7 @@ public class CustomDatasourceConfig {
         this.stripFragmentInCanonicalUrl = Optional.ofNullable(stripFragmentInCanonicalUrl);
         return this;
     }
+
 
     /**
      * If true, the fragment part of the URL will be stripped when converting to a canonical url.
@@ -916,6 +946,7 @@ public class CustomDatasourceConfig {
         return this;
     }
 
+
     /**
      * If the datasource uses another datasource for identity info, then the name of the datasource. The identity datasource must exist already.
      */
@@ -933,6 +964,7 @@ public class CustomDatasourceConfig {
         this.productAccessGroup = Optional.ofNullable(productAccessGroup);
         return this;
     }
+
 
     /**
      * If the datasource uses a specific product access group, then the name of that group.
@@ -952,6 +984,7 @@ public class CustomDatasourceConfig {
         return this;
     }
 
+
     /**
      * whether email is used to reference users in document ACLs and in group memberships.
      */
@@ -969,6 +1002,7 @@ public class CustomDatasourceConfig {
         this.isEntityDatasource = Optional.ofNullable(isEntityDatasource);
         return this;
     }
+
 
     /**
      * True if this datasource is used to push custom entities.
@@ -988,6 +1022,7 @@ public class CustomDatasourceConfig {
         return this;
     }
 
+
     /**
      * True if this datasource will be used for testing purpose only. Documents from such a datasource wouldn't have any effect on search rankings.
      */
@@ -997,7 +1032,6 @@ public class CustomDatasourceConfig {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1040,33 +1074,15 @@ public class CustomDatasourceConfig {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            displayName,
-            datasourceCategory,
-            urlRegex,
-            iconUrl,
-            objectDefinitions,
-            suggestionText,
-            homeUrl,
-            crawlerSeedUrls,
-            iconDarkUrl,
-            hideBuiltInFacets,
-            canonicalizingURLRegex,
-            canonicalizingTitleRegex,
-            redlistTitleRegex,
-            connectorType,
-            quicklinks,
-            renderConfigPreset,
-            aliases,
-            isOnPrem,
-            trustUrlRegexForViewActivity,
-            includeUtmSource,
-            stripFragmentInCanonicalUrl,
-            identityDatasourceName,
-            productAccessGroup,
-            isUserReferencedByEmail,
-            isEntityDatasource,
-            isTestDatasource);
+            name, displayName, datasourceCategory,
+            urlRegex, iconUrl, objectDefinitions,
+            suggestionText, homeUrl, crawlerSeedUrls,
+            iconDarkUrl, hideBuiltInFacets, canonicalizingURLRegex,
+            canonicalizingTitleRegex, redlistTitleRegex, connectorType,
+            quicklinks, renderConfigPreset, aliases,
+            isOnPrem, trustUrlRegexForViewActivity, includeUtmSource,
+            stripFragmentInCanonicalUrl, identityDatasourceName, productAccessGroup,
+            isUserReferencedByEmail, isEntityDatasource, isTestDatasource);
     }
     
     @Override
@@ -1100,66 +1116,68 @@ public class CustomDatasourceConfig {
                 "isEntityDatasource", isEntityDatasource,
                 "isTestDatasource", isTestDatasource);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
- 
+
         private Optional<String> displayName = Optional.empty();
- 
+
         private Optional<? extends DatasourceCategory> datasourceCategory;
- 
+
         private Optional<String> urlRegex = Optional.empty();
- 
+
         private Optional<String> iconUrl = Optional.empty();
- 
+
         private Optional<? extends List<ObjectDefinition>> objectDefinitions = Optional.empty();
- 
+
         private Optional<String> suggestionText = Optional.empty();
- 
+
         private Optional<String> homeUrl = Optional.empty();
- 
+
         private Optional<? extends List<String>> crawlerSeedUrls = Optional.empty();
- 
+
         private Optional<String> iconDarkUrl = Optional.empty();
- 
+
         private Optional<? extends List<HideBuiltInFacet>> hideBuiltInFacets = Optional.empty();
- 
+
         private Optional<? extends List<CanonicalizingRegexType>> canonicalizingURLRegex = Optional.empty();
- 
+
         private Optional<? extends List<CanonicalizingRegexType>> canonicalizingTitleRegex = Optional.empty();
- 
+
         private Optional<String> redlistTitleRegex = Optional.empty();
- 
+
         private Optional<? extends CustomDatasourceConfigConnectorType> connectorType = Optional.empty();
- 
+
         private Optional<? extends List<Quicklink>> quicklinks = Optional.empty();
- 
+
         private Optional<String> renderConfigPreset = Optional.empty();
- 
+
         private Optional<? extends List<String>> aliases = Optional.empty();
- 
+
         private Optional<Boolean> isOnPrem = Optional.empty();
- 
+
         private Optional<Boolean> trustUrlRegexForViewActivity;
- 
+
         private Optional<Boolean> includeUtmSource = Optional.empty();
- 
+
         private Optional<Boolean> stripFragmentInCanonicalUrl;
- 
+
         private Optional<String> identityDatasourceName = Optional.empty();
- 
+
         private Optional<String> productAccessGroup = Optional.empty();
- 
+
         private Optional<Boolean> isUserReferencedByEmail = Optional.empty();
- 
+
         private Optional<Boolean> isEntityDatasource;
- 
+
         private Optional<Boolean> isTestDatasource;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unique identifier of datasource instance to which this config applies.
@@ -1169,6 +1187,7 @@ public class CustomDatasourceConfig {
             this.name = name;
             return this;
         }
+
 
         /**
          * The user-friendly instance label to display. If omitted, falls back to the title-cased `name`.
@@ -1188,6 +1207,7 @@ public class CustomDatasourceConfig {
             return this;
         }
 
+
         /**
          * The type of this datasource. It is an important signal for relevance and must be specified and cannot be UNCATEGORIZED. Please refer to [this](https://developers.glean.com/docs/indexing_api_datasource_category/) for more details.
          */
@@ -1205,6 +1225,7 @@ public class CustomDatasourceConfig {
             this.datasourceCategory = datasourceCategory;
             return this;
         }
+
 
         /**
          * Regular expression that matches URLs of documents of the datasource instance. The behavior for multiple matches is non-deterministic. **Note: `urlRegex` is a required field for non-entity datasources, but not required if the datasource is used to push custom entities (ie. datasources where isEntityDatasource is false). Please add a regex as specific as possible to this datasource instance.**
@@ -1224,6 +1245,7 @@ public class CustomDatasourceConfig {
             return this;
         }
 
+
         /**
          * The URL to an image to be displayed as an icon for this datasource instance. Must have a transparency mask. SVG are recommended over PNG. Public, scio-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
          */
@@ -1241,6 +1263,7 @@ public class CustomDatasourceConfig {
             this.iconUrl = iconUrl;
             return this;
         }
+
 
         /**
          * The list of top-level `objectType`s for the datasource.
@@ -1260,6 +1283,7 @@ public class CustomDatasourceConfig {
             return this;
         }
 
+
         /**
          * Example text for what to search for in this datasource
          */
@@ -1277,6 +1301,7 @@ public class CustomDatasourceConfig {
             this.suggestionText = suggestionText;
             return this;
         }
+
 
         /**
          * The URL of the landing page for this datasource instance. Should point to the most useful page for users, not the company marketing page.
@@ -1296,6 +1321,7 @@ public class CustomDatasourceConfig {
             return this;
         }
 
+
         /**
          * This only applies to WEB_CRAWL and BROWSER_CRAWL datasources. Defines the seed URLs for crawling.
          */
@@ -1313,6 +1339,7 @@ public class CustomDatasourceConfig {
             this.crawlerSeedUrls = crawlerSeedUrls;
             return this;
         }
+
 
         /**
          * The URL to an image to be displayed as an icon for this datasource instance in dark mode. Must have a transparency mask. SVG are recommended over PNG. Public, scio-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
@@ -1332,6 +1359,7 @@ public class CustomDatasourceConfig {
             return this;
         }
 
+
         /**
          * List of built-in facet types that should be hidden for the datasource.
          */
@@ -1349,6 +1377,7 @@ public class CustomDatasourceConfig {
             this.hideBuiltInFacets = hideBuiltInFacets;
             return this;
         }
+
 
         /**
          * A list of regular expressions to apply to an arbitrary URL to transform it into a canonical URL for this datasource instance. Regexes are to be applied in the order specified in this list.
@@ -1368,6 +1397,7 @@ public class CustomDatasourceConfig {
             return this;
         }
 
+
         /**
          * A list of regular expressions to apply to an arbitrary title to transform it into a title that will be displayed in the search results
          */
@@ -1385,6 +1415,7 @@ public class CustomDatasourceConfig {
             this.canonicalizingTitleRegex = canonicalizingTitleRegex;
             return this;
         }
+
 
         /**
          * A regex that identifies titles that should not be indexed
@@ -1404,6 +1435,7 @@ public class CustomDatasourceConfig {
             return this;
         }
 
+
         public Builder connectorType(CustomDatasourceConfigConnectorType connectorType) {
             Utils.checkNotNull(connectorType, "connectorType");
             this.connectorType = Optional.ofNullable(connectorType);
@@ -1415,6 +1447,7 @@ public class CustomDatasourceConfig {
             this.connectorType = connectorType;
             return this;
         }
+
 
         /**
          * List of actions for this datasource instance that will show up in autocomplete and app card, e.g. "Create new issue" for jira
@@ -1434,6 +1467,7 @@ public class CustomDatasourceConfig {
             return this;
         }
 
+
         /**
          * The name of a render config to use for displaying results from this datasource. Any well known datasource name may be used to render the same as that source, e.g. `web` or `gdrive`. Please refer to [this](https://developers.glean.com/docs/rendering_search_results/) for more details
          */
@@ -1451,6 +1485,7 @@ public class CustomDatasourceConfig {
             this.renderConfigPreset = renderConfigPreset;
             return this;
         }
+
 
         /**
          * Aliases that can be used as `app` operator-values.
@@ -1470,6 +1505,7 @@ public class CustomDatasourceConfig {
             return this;
         }
 
+
         /**
          * Whether or not this datasource is hosted on-premise.
          */
@@ -1487,6 +1523,7 @@ public class CustomDatasourceConfig {
             this.isOnPrem = isOnPrem;
             return this;
         }
+
 
         /**
          * True if browser activity is able to report the correct URL for VIEW events. Set this to true if the URLs reported by Chrome are constant throughout each page load. Set this to false if the page has Javascript that modifies the URL during or after the load.
@@ -1506,6 +1543,7 @@ public class CustomDatasourceConfig {
             return this;
         }
 
+
         /**
          * If true, a utm_source query param will be added to outbound links to this datasource within Glean.
          */
@@ -1523,6 +1561,7 @@ public class CustomDatasourceConfig {
             this.includeUtmSource = includeUtmSource;
             return this;
         }
+
 
         /**
          * If true, the fragment part of the URL will be stripped when converting to a canonical url.
@@ -1542,6 +1581,7 @@ public class CustomDatasourceConfig {
             return this;
         }
 
+
         /**
          * If the datasource uses another datasource for identity info, then the name of the datasource. The identity datasource must exist already.
          */
@@ -1559,6 +1599,7 @@ public class CustomDatasourceConfig {
             this.identityDatasourceName = identityDatasourceName;
             return this;
         }
+
 
         /**
          * If the datasource uses a specific product access group, then the name of that group.
@@ -1578,6 +1619,7 @@ public class CustomDatasourceConfig {
             return this;
         }
 
+
         /**
          * whether email is used to reference users in document ACLs and in group memberships.
          */
@@ -1595,6 +1637,7 @@ public class CustomDatasourceConfig {
             this.isUserReferencedByEmail = isUserReferencedByEmail;
             return this;
         }
+
 
         /**
          * True if this datasource is used to push custom entities.
@@ -1614,6 +1657,7 @@ public class CustomDatasourceConfig {
             return this;
         }
 
+
         /**
          * True if this datasource will be used for testing purpose only. Documents from such a datasource wouldn't have any effect on search rankings.
          */
@@ -1631,7 +1675,7 @@ public class CustomDatasourceConfig {
             this.isTestDatasource = isTestDatasource;
             return this;
         }
-        
+
         public CustomDatasourceConfig build() {
             if (datasourceCategory == null) {
                 datasourceCategory = _SINGLETON_VALUE_DatasourceCategory.value();
@@ -1648,35 +1692,19 @@ public class CustomDatasourceConfig {
             if (isTestDatasource == null) {
                 isTestDatasource = _SINGLETON_VALUE_IsTestDatasource.value();
             }
+
             return new CustomDatasourceConfig(
-                name,
-                displayName,
-                datasourceCategory,
-                urlRegex,
-                iconUrl,
-                objectDefinitions,
-                suggestionText,
-                homeUrl,
-                crawlerSeedUrls,
-                iconDarkUrl,
-                hideBuiltInFacets,
-                canonicalizingURLRegex,
-                canonicalizingTitleRegex,
-                redlistTitleRegex,
-                connectorType,
-                quicklinks,
-                renderConfigPreset,
-                aliases,
-                isOnPrem,
-                trustUrlRegexForViewActivity,
-                includeUtmSource,
-                stripFragmentInCanonicalUrl,
-                identityDatasourceName,
-                productAccessGroup,
-                isUserReferencedByEmail,
-                isEntityDatasource,
-                isTestDatasource);
+                name, displayName, datasourceCategory,
+                urlRegex, iconUrl, objectDefinitions,
+                suggestionText, homeUrl, crawlerSeedUrls,
+                iconDarkUrl, hideBuiltInFacets, canonicalizingURLRegex,
+                canonicalizingTitleRegex, redlistTitleRegex, connectorType,
+                quicklinks, renderConfigPreset, aliases,
+                isOnPrem, trustUrlRegexForViewActivity, includeUtmSource,
+                stripFragmentInCanonicalUrl, identityDatasourceName, productAccessGroup,
+                isUserReferencedByEmail, isEntityDatasource, isTestDatasource);
         }
+
 
         private static final LazySingletonValue<Optional<? extends DatasourceCategory>> _SINGLETON_VALUE_DatasourceCategory =
                 new LazySingletonValue<>(

@@ -13,11 +13,13 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
+
 public class ResultDocument {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("title")
     private Optional<String> title;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("url")
@@ -47,15 +49,17 @@ public class ResultDocument {
         return url;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ResultDocument withTitle(String title) {
         Utils.checkNotNull(title, "title");
         this.title = Optional.ofNullable(title);
         return this;
     }
+
 
     public ResultDocument withTitle(Optional<String> title) {
         Utils.checkNotNull(title, "title");
@@ -69,13 +73,13 @@ public class ResultDocument {
         return this;
     }
 
+
     public ResultDocument withUrl(Optional<String> url) {
         Utils.checkNotNull(url, "url");
         this.url = url;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -93,8 +97,7 @@ public class ResultDocument {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            title,
-            url);
+            title, url);
     }
     
     @Override
@@ -103,16 +106,18 @@ public class ResultDocument {
                 "title", title,
                 "url", url);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> title = Optional.empty();
- 
+
         private Optional<String> url = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder title(String title) {
             Utils.checkNotNull(title, "title");
@@ -126,6 +131,7 @@ public class ResultDocument {
             return this;
         }
 
+
         public Builder url(String url) {
             Utils.checkNotNull(url, "url");
             this.url = Optional.ofNullable(url);
@@ -137,11 +143,12 @@ public class ResultDocument {
             this.url = url;
             return this;
         }
-        
+
         public ResultDocument build() {
+
             return new ResultDocument(
-                title,
-                url);
+                title, url);
         }
+
     }
 }

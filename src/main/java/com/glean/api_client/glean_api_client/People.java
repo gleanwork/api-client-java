@@ -55,7 +55,6 @@ public class People {
     People(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Beta: Get user information
      * 
@@ -91,10 +90,9 @@ public class People {
                 .debugUserRequest(debugUserRequest)
                 .build();
         RequestOperation<PostApiIndexV1DebugDatasourceUserRequest, PostApiIndexV1DebugDatasourceUserResponse> operation
-              = new PostApiIndexV1DebugDatasourceUserOperation( sdkConfiguration);
+              = new PostApiIndexV1DebugDatasourceUserOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get user count
@@ -124,13 +122,11 @@ public class People {
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public PostApiIndexV1GetusercountResponse count(
-            GetUserCountRequest request) throws Exception {
+    public PostApiIndexV1GetusercountResponse count(GetUserCountRequest request) throws Exception {
         RequestOperation<GetUserCountRequest, PostApiIndexV1GetusercountResponse> operation
-              = new PostApiIndexV1GetusercountOperation( sdkConfiguration);
+              = new PostApiIndexV1GetusercountOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Index employee
@@ -152,13 +148,11 @@ public class People {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1IndexemployeeResponse index(
-            IndexEmployeeRequest request) throws Exception {
+    public PostApiIndexV1IndexemployeeResponse index(IndexEmployeeRequest request) throws Exception {
         RequestOperation<IndexEmployeeRequest, PostApiIndexV1IndexemployeeResponse> operation
-              = new PostApiIndexV1IndexemployeeOperation( sdkConfiguration);
+              = new PostApiIndexV1IndexemployeeOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Bulk index employees
@@ -180,13 +174,11 @@ public class People {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1BulkindexemployeesResponse bulkIndex(
-            BulkIndexEmployeesRequest request) throws Exception {
+    public PostApiIndexV1BulkindexemployeesResponse bulkIndex(BulkIndexEmployeesRequest request) throws Exception {
         RequestOperation<BulkIndexEmployeesRequest, PostApiIndexV1BulkindexemployeesResponse> operation
-              = new PostApiIndexV1BulkindexemployeesOperation( sdkConfiguration);
+              = new PostApiIndexV1BulkindexemployeesOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Schedules the processing of uploaded employees and teams
@@ -209,10 +201,9 @@ public class People {
      */
     public PostApiIndexV1ProcessallemployeesandteamsResponse processAllEmployeesAndTeamsDirect() throws Exception {
         RequestlessOperation<PostApiIndexV1ProcessallemployeesandteamsResponse> operation
-            = new PostApiIndexV1ProcessallemployeesandteamsOperation( sdkConfiguration);
+            = new PostApiIndexV1ProcessallemployeesandteamsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest());
     }
-
 
     /**
      * Delete employee
@@ -234,13 +225,11 @@ public class People {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1DeleteemployeeResponse delete(
-            DeleteEmployeeRequest request) throws Exception {
+    public PostApiIndexV1DeleteemployeeResponse delete(DeleteEmployeeRequest request) throws Exception {
         RequestOperation<DeleteEmployeeRequest, PostApiIndexV1DeleteemployeeResponse> operation
-              = new PostApiIndexV1DeleteemployeeOperation( sdkConfiguration);
+              = new PostApiIndexV1DeleteemployeeOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Index team
@@ -262,13 +251,11 @@ public class People {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1IndexteamResponse indexTeam(
-            IndexTeamRequest request) throws Exception {
+    public PostApiIndexV1IndexteamResponse indexTeam(IndexTeamRequest request) throws Exception {
         RequestOperation<IndexTeamRequest, PostApiIndexV1IndexteamResponse> operation
-              = new PostApiIndexV1IndexteamOperation( sdkConfiguration);
+              = new PostApiIndexV1IndexteamOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete team
@@ -290,13 +277,11 @@ public class People {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1DeleteteamResponse deleteTeam(
-            DeleteTeamRequest request) throws Exception {
+    public PostApiIndexV1DeleteteamResponse deleteTeam(DeleteTeamRequest request) throws Exception {
         RequestOperation<DeleteTeamRequest, PostApiIndexV1DeleteteamResponse> operation
-              = new PostApiIndexV1DeleteteamOperation( sdkConfiguration);
+              = new PostApiIndexV1DeleteteamOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Bulk index teams
@@ -318,10 +303,9 @@ public class People {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1BulkindexteamsResponse bulkIndexTeams(
-            BulkIndexTeamsRequest request) throws Exception {
+    public PostApiIndexV1BulkindexteamsResponse bulkIndexTeams(BulkIndexTeamsRequest request) throws Exception {
         RequestOperation<BulkIndexTeamsRequest, PostApiIndexV1BulkindexteamsResponse> operation
-              = new PostApiIndexV1BulkindexteamsOperation( sdkConfiguration);
+              = new PostApiIndexV1BulkindexteamsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

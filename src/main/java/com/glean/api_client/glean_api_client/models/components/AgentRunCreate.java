@@ -23,7 +23,6 @@ import java.util.Optional;
  * <p>Payload for creating a run.
  */
 public class AgentRunCreate {
-
     /**
      * The ID of the agent to run.
      */
@@ -69,7 +68,8 @@ public class AgentRunCreate {
     
     public AgentRunCreate(
             String agentId) {
-        this(agentId, Optional.empty(), Optional.empty(), Optional.empty());
+        this(agentId, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -107,9 +107,10 @@ public class AgentRunCreate {
         return (Optional<Map<String, Object>>) metadata;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the agent to run.
@@ -129,6 +130,7 @@ public class AgentRunCreate {
         return this;
     }
 
+
     /**
      * The input to the agent.
      */
@@ -146,6 +148,7 @@ public class AgentRunCreate {
         this.messages = Optional.ofNullable(messages);
         return this;
     }
+
 
     /**
      * The messages to pass an input to the agent.
@@ -165,6 +168,7 @@ public class AgentRunCreate {
         return this;
     }
 
+
     /**
      * The metadata to pass to the agent.
      */
@@ -174,7 +178,6 @@ public class AgentRunCreate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -194,9 +197,7 @@ public class AgentRunCreate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            agentId,
-            input,
-            messages,
+            agentId, input, messages,
             metadata);
     }
     
@@ -208,20 +209,22 @@ public class AgentRunCreate {
                 "messages", messages,
                 "metadata", metadata);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String agentId;
- 
+
         private Optional<? extends Map<String, Object>> input = Optional.empty();
- 
+
         private Optional<? extends List<Message>> messages = Optional.empty();
- 
+
         private Optional<? extends Map<String, Object>> metadata = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the agent to run.
@@ -231,6 +234,7 @@ public class AgentRunCreate {
             this.agentId = agentId;
             return this;
         }
+
 
         /**
          * The input to the agent.
@@ -250,6 +254,7 @@ public class AgentRunCreate {
             return this;
         }
 
+
         /**
          * The messages to pass an input to the agent.
          */
@@ -268,6 +273,7 @@ public class AgentRunCreate {
             return this;
         }
 
+
         /**
          * The metadata to pass to the agent.
          */
@@ -285,13 +291,13 @@ public class AgentRunCreate {
             this.metadata = metadata;
             return this;
         }
-        
+
         public AgentRunCreate build() {
+
             return new AgentRunCreate(
-                agentId,
-                input,
-                messages,
+                agentId, input, messages,
                 metadata);
         }
+
     }
 }

@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>Describes the request body of the /deleteuser API call
  */
 public class DeleteUserRequest {
-
     /**
      * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
      */
@@ -83,9 +82,10 @@ public class DeleteUserRequest {
         return email;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
@@ -95,6 +95,7 @@ public class DeleteUserRequest {
         this.version = Optional.ofNullable(version);
         return this;
     }
+
 
     /**
      * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
@@ -123,7 +124,6 @@ public class DeleteUserRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -142,9 +142,7 @@ public class DeleteUserRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            version,
-            datasource,
-            email);
+            version, datasource, email);
     }
     
     @Override
@@ -154,18 +152,20 @@ public class DeleteUserRequest {
                 "datasource", datasource,
                 "email", email);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> version = Optional.empty();
- 
+
         private String datasource;
- 
+
         private String email;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
@@ -185,6 +185,7 @@ public class DeleteUserRequest {
             return this;
         }
 
+
         /**
          * The datasource for which the user is removed
          */
@@ -194,6 +195,7 @@ public class DeleteUserRequest {
             return this;
         }
 
+
         /**
          * The email of the user to be deleted
          */
@@ -202,12 +204,12 @@ public class DeleteUserRequest {
             this.email = email;
             return this;
         }
-        
+
         public DeleteUserRequest build() {
+
             return new DeleteUserRequest(
-                version,
-                datasource,
-                email);
+                version, datasource, email);
         }
+
     }
 }

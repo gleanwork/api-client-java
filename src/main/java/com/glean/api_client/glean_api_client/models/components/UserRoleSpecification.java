@@ -14,15 +14,18 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class UserRoleSpecification {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sourceDocumentSpec")
     private Optional<? extends DocumentSpecUnion> sourceDocumentSpec;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("person")
     private Optional<? extends Person> person;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("group")
@@ -52,7 +55,8 @@ public class UserRoleSpecification {
     
     public UserRoleSpecification(
             UserRole role) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), role);
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            role);
     }
 
     @SuppressWarnings("unchecked")
@@ -81,15 +85,17 @@ public class UserRoleSpecification {
         return role;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public UserRoleSpecification withSourceDocumentSpec(DocumentSpecUnion sourceDocumentSpec) {
         Utils.checkNotNull(sourceDocumentSpec, "sourceDocumentSpec");
         this.sourceDocumentSpec = Optional.ofNullable(sourceDocumentSpec);
         return this;
     }
+
 
     public UserRoleSpecification withSourceDocumentSpec(Optional<? extends DocumentSpecUnion> sourceDocumentSpec) {
         Utils.checkNotNull(sourceDocumentSpec, "sourceDocumentSpec");
@@ -103,6 +109,7 @@ public class UserRoleSpecification {
         return this;
     }
 
+
     public UserRoleSpecification withPerson(Optional<? extends Person> person) {
         Utils.checkNotNull(person, "person");
         this.person = person;
@@ -114,6 +121,7 @@ public class UserRoleSpecification {
         this.group = Optional.ofNullable(group);
         return this;
     }
+
 
     public UserRoleSpecification withGroup(Optional<? extends Group> group) {
         Utils.checkNotNull(group, "group");
@@ -130,7 +138,6 @@ public class UserRoleSpecification {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -150,9 +157,7 @@ public class UserRoleSpecification {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            sourceDocumentSpec,
-            person,
-            group,
+            sourceDocumentSpec, person, group,
             role);
     }
     
@@ -164,20 +169,22 @@ public class UserRoleSpecification {
                 "group", group,
                 "role", role);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends DocumentSpecUnion> sourceDocumentSpec = Optional.empty();
- 
+
         private Optional<? extends Person> person = Optional.empty();
- 
+
         private Optional<? extends Group> group = Optional.empty();
- 
+
         private UserRole role;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder sourceDocumentSpec(DocumentSpecUnion sourceDocumentSpec) {
             Utils.checkNotNull(sourceDocumentSpec, "sourceDocumentSpec");
@@ -191,6 +198,7 @@ public class UserRoleSpecification {
             return this;
         }
 
+
         public Builder person(Person person) {
             Utils.checkNotNull(person, "person");
             this.person = Optional.ofNullable(person);
@@ -202,6 +210,7 @@ public class UserRoleSpecification {
             this.person = person;
             return this;
         }
+
 
         public Builder group(Group group) {
             Utils.checkNotNull(group, "group");
@@ -215,6 +224,7 @@ public class UserRoleSpecification {
             return this;
         }
 
+
         /**
          * A user's role with respect to a specific document.
          */
@@ -223,13 +233,13 @@ public class UserRoleSpecification {
             this.role = role;
             return this;
         }
-        
+
         public UserRoleSpecification build() {
+
             return new UserRoleSpecification(
-                sourceDocumentSpec,
-                person,
-                group,
+                sourceDocumentSpec, person, group,
                 role);
         }
+
     }
 }

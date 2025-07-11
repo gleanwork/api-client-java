@@ -36,7 +36,7 @@ public class GetdocumentsRequestBuilder {
     public GetdocumentsResponse call() throws Exception {
         
         RequestOperation<Optional<? extends GetDocumentsRequest>, GetdocumentsResponse> operation
-              = new GetdocumentsOperation( sdkConfiguration);
+              = new GetdocumentsOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

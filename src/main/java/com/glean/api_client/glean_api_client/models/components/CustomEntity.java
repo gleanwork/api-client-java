@@ -15,6 +15,7 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
+
 public class CustomEntity {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -48,6 +49,7 @@ public class CustomEntity {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("objectType")
     private Optional<String> objectType;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
@@ -86,7 +88,9 @@ public class CustomEntity {
     }
     
     public CustomEntity() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -142,15 +146,17 @@ public class CustomEntity {
         return (Optional<List<UserRoleSpecification>>) roles;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CustomEntity withPermissions(ObjectPermissions permissions) {
         Utils.checkNotNull(permissions, "permissions");
         this.permissions = Optional.ofNullable(permissions);
         return this;
     }
+
 
     public CustomEntity withPermissions(Optional<? extends ObjectPermissions> permissions) {
         Utils.checkNotNull(permissions, "permissions");
@@ -166,6 +172,7 @@ public class CustomEntity {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * Unique identifier.
@@ -185,6 +192,7 @@ public class CustomEntity {
         return this;
     }
 
+
     /**
      * Title or name of the custom entity.
      */
@@ -202,6 +210,7 @@ public class CustomEntity {
         this.datasource = Optional.ofNullable(datasource);
         return this;
     }
+
 
     /**
      * The datasource the custom entity is from.
@@ -221,6 +230,7 @@ public class CustomEntity {
         return this;
     }
 
+
     /**
      * The type of the entity. Interpretation is specific to each datasource
      */
@@ -235,6 +245,7 @@ public class CustomEntity {
         this.metadata = Optional.ofNullable(metadata);
         return this;
     }
+
 
     public CustomEntity withMetadata(Optional<? extends CustomEntityMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -251,6 +262,7 @@ public class CustomEntity {
         return this;
     }
 
+
     /**
      * A list of user roles for the custom entity explicitly granted by the owner.
      */
@@ -260,7 +272,6 @@ public class CustomEntity {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -283,12 +294,8 @@ public class CustomEntity {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            permissions,
-            id,
-            title,
-            datasource,
-            objectType,
-            metadata,
+            permissions, id, title,
+            datasource, objectType, metadata,
             roles);
     }
     
@@ -303,26 +310,28 @@ public class CustomEntity {
                 "metadata", metadata,
                 "roles", roles);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ObjectPermissions> permissions = Optional.empty();
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> title = Optional.empty();
- 
+
         private Optional<String> datasource = Optional.empty();
- 
+
         private Optional<String> objectType = Optional.empty();
- 
+
         private Optional<? extends CustomEntityMetadata> metadata = Optional.empty();
- 
+
         private Optional<? extends List<UserRoleSpecification>> roles = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder permissions(ObjectPermissions permissions) {
             Utils.checkNotNull(permissions, "permissions");
@@ -335,6 +344,7 @@ public class CustomEntity {
             this.permissions = permissions;
             return this;
         }
+
 
         /**
          * Unique identifier.
@@ -354,6 +364,7 @@ public class CustomEntity {
             return this;
         }
 
+
         /**
          * Title or name of the custom entity.
          */
@@ -371,6 +382,7 @@ public class CustomEntity {
             this.title = title;
             return this;
         }
+
 
         /**
          * The datasource the custom entity is from.
@@ -390,6 +402,7 @@ public class CustomEntity {
             return this;
         }
 
+
         /**
          * The type of the entity. Interpretation is specific to each datasource
          */
@@ -408,6 +421,7 @@ public class CustomEntity {
             return this;
         }
 
+
         public Builder metadata(CustomEntityMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
@@ -419,6 +433,7 @@ public class CustomEntity {
             this.metadata = metadata;
             return this;
         }
+
 
         /**
          * A list of user roles for the custom entity explicitly granted by the owner.
@@ -437,16 +452,14 @@ public class CustomEntity {
             this.roles = roles;
             return this;
         }
-        
+
         public CustomEntity build() {
+
             return new CustomEntity(
-                permissions,
-                id,
-                title,
-                datasource,
-                objectType,
-                metadata,
+                permissions, id, title,
+                datasource, objectType, metadata,
                 roles);
         }
+
     }
 }

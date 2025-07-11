@@ -64,7 +64,6 @@ public class Permissions {
     Permissions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Update document permissions
      * 
@@ -85,13 +84,11 @@ public class Permissions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1UpdatepermissionsResponse updatePermissions(
-            UpdatePermissionsRequest request) throws Exception {
+    public PostApiIndexV1UpdatepermissionsResponse updatePermissions(UpdatePermissionsRequest request) throws Exception {
         RequestOperation<UpdatePermissionsRequest, PostApiIndexV1UpdatepermissionsResponse> operation
-              = new PostApiIndexV1UpdatepermissionsOperation( sdkConfiguration);
+              = new PostApiIndexV1UpdatepermissionsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Index user
@@ -113,13 +110,11 @@ public class Permissions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1IndexuserResponse indexUser(
-            IndexUserRequest request) throws Exception {
+    public PostApiIndexV1IndexuserResponse indexUser(IndexUserRequest request) throws Exception {
         RequestOperation<IndexUserRequest, PostApiIndexV1IndexuserResponse> operation
-              = new PostApiIndexV1IndexuserOperation( sdkConfiguration);
+              = new PostApiIndexV1IndexuserOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Bulk index users
@@ -141,13 +136,11 @@ public class Permissions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1BulkindexusersResponse bulkIndexUsers(
-            BulkIndexUsersRequest request) throws Exception {
+    public PostApiIndexV1BulkindexusersResponse bulkIndexUsers(BulkIndexUsersRequest request) throws Exception {
         RequestOperation<BulkIndexUsersRequest, PostApiIndexV1BulkindexusersResponse> operation
-              = new PostApiIndexV1BulkindexusersOperation( sdkConfiguration);
+              = new PostApiIndexV1BulkindexusersOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Index group
@@ -169,13 +162,11 @@ public class Permissions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1IndexgroupResponse indexGroup(
-            IndexGroupRequest request) throws Exception {
+    public PostApiIndexV1IndexgroupResponse indexGroup(IndexGroupRequest request) throws Exception {
         RequestOperation<IndexGroupRequest, PostApiIndexV1IndexgroupResponse> operation
-              = new PostApiIndexV1IndexgroupOperation( sdkConfiguration);
+              = new PostApiIndexV1IndexgroupOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Bulk index groups
@@ -197,13 +188,11 @@ public class Permissions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1BulkindexgroupsResponse bulkIndexGroups(
-            BulkIndexGroupsRequest request) throws Exception {
+    public PostApiIndexV1BulkindexgroupsResponse bulkIndexGroups(BulkIndexGroupsRequest request) throws Exception {
         RequestOperation<BulkIndexGroupsRequest, PostApiIndexV1BulkindexgroupsResponse> operation
-              = new PostApiIndexV1BulkindexgroupsOperation( sdkConfiguration);
+              = new PostApiIndexV1BulkindexgroupsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Index membership
@@ -225,13 +214,11 @@ public class Permissions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1IndexmembershipResponse indexMembership(
-            IndexMembershipRequest request) throws Exception {
+    public PostApiIndexV1IndexmembershipResponse indexMembership(IndexMembershipRequest request) throws Exception {
         RequestOperation<IndexMembershipRequest, PostApiIndexV1IndexmembershipResponse> operation
-              = new PostApiIndexV1IndexmembershipOperation( sdkConfiguration);
+              = new PostApiIndexV1IndexmembershipOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Bulk index memberships for a group
@@ -253,13 +240,11 @@ public class Permissions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1BulkindexmembershipsResponse bulkIndexMemberships(
-            BulkIndexMembershipsRequest request) throws Exception {
+    public PostApiIndexV1BulkindexmembershipsResponse bulkIndexMemberships(BulkIndexMembershipsRequest request) throws Exception {
         RequestOperation<BulkIndexMembershipsRequest, PostApiIndexV1BulkindexmembershipsResponse> operation
-              = new PostApiIndexV1BulkindexmembershipsOperation( sdkConfiguration);
+              = new PostApiIndexV1BulkindexmembershipsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Schedules the processing of group memberships
@@ -293,13 +278,11 @@ public class Permissions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1ProcessallmembershipsResponse processMemberships(
-            Optional<? extends ProcessAllMembershipsRequest> request) throws Exception {
+    public PostApiIndexV1ProcessallmembershipsResponse processMemberships(Optional<? extends ProcessAllMembershipsRequest> request) throws Exception {
         RequestOperation<Optional<? extends ProcessAllMembershipsRequest>, PostApiIndexV1ProcessallmembershipsResponse> operation
-              = new PostApiIndexV1ProcessallmembershipsOperation( sdkConfiguration);
+              = new PostApiIndexV1ProcessallmembershipsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete user
@@ -321,13 +304,11 @@ public class Permissions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1DeleteuserResponse deleteUser(
-            DeleteUserRequest request) throws Exception {
+    public PostApiIndexV1DeleteuserResponse deleteUser(DeleteUserRequest request) throws Exception {
         RequestOperation<DeleteUserRequest, PostApiIndexV1DeleteuserResponse> operation
-              = new PostApiIndexV1DeleteuserOperation( sdkConfiguration);
+              = new PostApiIndexV1DeleteuserOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete group
@@ -349,13 +330,11 @@ public class Permissions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1DeletegroupResponse deleteGroup(
-            DeleteGroupRequest request) throws Exception {
+    public PostApiIndexV1DeletegroupResponse deleteGroup(DeleteGroupRequest request) throws Exception {
         RequestOperation<DeleteGroupRequest, PostApiIndexV1DeletegroupResponse> operation
-              = new PostApiIndexV1DeletegroupOperation( sdkConfiguration);
+              = new PostApiIndexV1DeletegroupOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete membership
@@ -377,13 +356,11 @@ public class Permissions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1DeletemembershipResponse deleteMembership(
-            DeleteMembershipRequest request) throws Exception {
+    public PostApiIndexV1DeletemembershipResponse deleteMembership(DeleteMembershipRequest request) throws Exception {
         RequestOperation<DeleteMembershipRequest, PostApiIndexV1DeletemembershipResponse> operation
-              = new PostApiIndexV1DeletemembershipOperation( sdkConfiguration);
+              = new PostApiIndexV1DeletemembershipOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Beta users
@@ -405,10 +382,9 @@ public class Permissions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1BetausersResponse authorizeBetaUsers(
-            GreenlistUsersRequest request) throws Exception {
+    public PostApiIndexV1BetausersResponse authorizeBetaUsers(GreenlistUsersRequest request) throws Exception {
         RequestOperation<GreenlistUsersRequest, PostApiIndexV1BetausersResponse> operation
-              = new PostApiIndexV1BetausersOperation( sdkConfiguration);
+              = new PostApiIndexV1BetausersOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

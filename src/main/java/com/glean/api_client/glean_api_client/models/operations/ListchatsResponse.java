@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-public class ListchatsResponse implements Response {
 
+public class ListchatsResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
@@ -58,7 +58,8 @@ public class ListchatsResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, statusCode, rawResponse, Optional.empty());
+        this(contentType, statusCode, rawResponse,
+            Optional.empty());
     }
 
     /**
@@ -94,9 +95,10 @@ public class ListchatsResponse implements Response {
         return (Optional<ListChatsResponse>) listChatsResponse;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP response content type for this operation
@@ -134,6 +136,7 @@ public class ListchatsResponse implements Response {
         return this;
     }
 
+
     /**
      * OK
      */
@@ -143,7 +146,6 @@ public class ListchatsResponse implements Response {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -163,9 +165,7 @@ public class ListchatsResponse implements Response {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            contentType,
-            statusCode,
-            rawResponse,
+            contentType, statusCode, rawResponse,
             listChatsResponse);
     }
     
@@ -177,20 +177,22 @@ public class ListchatsResponse implements Response {
                 "rawResponse", rawResponse,
                 "listChatsResponse", listChatsResponse);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String contentType;
- 
+
         private Integer statusCode;
- 
+
         private HttpResponse<InputStream> rawResponse;
- 
+
         private Optional<? extends ListChatsResponse> listChatsResponse = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP response content type for this operation
@@ -201,6 +203,7 @@ public class ListchatsResponse implements Response {
             return this;
         }
 
+
         /**
          * HTTP response status code for this operation
          */
@@ -210,6 +213,7 @@ public class ListchatsResponse implements Response {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -218,6 +222,7 @@ public class ListchatsResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
+
 
         /**
          * OK
@@ -236,13 +241,13 @@ public class ListchatsResponse implements Response {
             this.listChatsResponse = listChatsResponse;
             return this;
         }
-        
+
         public ListchatsResponse build() {
+
             return new ListchatsResponse(
-                contentType,
-                statusCode,
-                rawResponse,
+                contentType, statusCode, rawResponse,
                 listChatsResponse);
         }
+
     }
 }

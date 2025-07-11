@@ -37,7 +37,6 @@ public class Agents {
     Agents(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Retrieve an agent
      * 
@@ -82,10 +81,9 @@ public class Agents {
                 .agentId(agentId)
                 .build();
         RequestOperation<GetAgentRequest, GetAgentResponse> operation
-              = new GetAgentOperation( sdkConfiguration);
+              = new GetAgentOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List an agent's schemas
@@ -131,10 +129,9 @@ public class Agents {
                 .agentId(agentId)
                 .build();
         RequestOperation<GetAgentSchemasRequest, GetAgentSchemasResponse> operation
-              = new GetAgentSchemasOperation( sdkConfiguration);
+              = new GetAgentSchemasOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Search agents
@@ -156,13 +153,11 @@ public class Agents {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public SearchAgentsResponse list(
-            SearchAgentsRequest request) throws Exception {
+    public SearchAgentsResponse list(SearchAgentsRequest request) throws Exception {
         RequestOperation<SearchAgentsRequest, SearchAgentsResponse> operation
-              = new SearchAgentsOperation( sdkConfiguration);
+              = new SearchAgentsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create an agent run and stream the response
@@ -184,13 +179,11 @@ public class Agents {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateAndStreamRunResponse runStream(
-            AgentRunCreate request) throws Exception {
+    public CreateAndStreamRunResponse runStream(AgentRunCreate request) throws Exception {
         RequestOperation<AgentRunCreate, CreateAndStreamRunResponse> operation
-              = new CreateAndStreamRunOperation( sdkConfiguration);
+              = new CreateAndStreamRunOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create an agent run and wait for the response
@@ -212,10 +205,9 @@ public class Agents {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateAndWaitRunResponse run(
-            AgentRunCreate request) throws Exception {
+    public CreateAndWaitRunResponse run(AgentRunCreate request) throws Exception {
         RequestOperation<AgentRunCreate, CreateAndWaitRunResponse> operation
-              = new CreateAndWaitRunOperation( sdkConfiguration);
+              = new CreateAndWaitRunOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -14,11 +14,13 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class GetAnswerError {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("errorType")
     private Optional<? extends GetAnswerErrorErrorType> errorType;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("answerAuthor")
@@ -50,15 +52,17 @@ public class GetAnswerError {
         return (Optional<Person>) answerAuthor;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetAnswerError withErrorType(GetAnswerErrorErrorType errorType) {
         Utils.checkNotNull(errorType, "errorType");
         this.errorType = Optional.ofNullable(errorType);
         return this;
     }
+
 
     public GetAnswerError withErrorType(Optional<? extends GetAnswerErrorErrorType> errorType) {
         Utils.checkNotNull(errorType, "errorType");
@@ -72,13 +76,13 @@ public class GetAnswerError {
         return this;
     }
 
+
     public GetAnswerError withAnswerAuthor(Optional<? extends Person> answerAuthor) {
         Utils.checkNotNull(answerAuthor, "answerAuthor");
         this.answerAuthor = answerAuthor;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -96,8 +100,7 @@ public class GetAnswerError {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            errorType,
-            answerAuthor);
+            errorType, answerAuthor);
     }
     
     @Override
@@ -106,16 +109,18 @@ public class GetAnswerError {
                 "errorType", errorType,
                 "answerAuthor", answerAuthor);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends GetAnswerErrorErrorType> errorType = Optional.empty();
- 
+
         private Optional<? extends Person> answerAuthor = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder errorType(GetAnswerErrorErrorType errorType) {
             Utils.checkNotNull(errorType, "errorType");
@@ -129,6 +134,7 @@ public class GetAnswerError {
             return this;
         }
 
+
         public Builder answerAuthor(Person answerAuthor) {
             Utils.checkNotNull(answerAuthor, "answerAuthor");
             this.answerAuthor = Optional.ofNullable(answerAuthor);
@@ -140,11 +146,12 @@ public class GetAnswerError {
             this.answerAuthor = answerAuthor;
             return this;
         }
-        
+
         public GetAnswerError build() {
+
             return new GetAnswerError(
-                errorType,
-                answerAuthor);
+                errorType, answerAuthor);
         }
+
     }
 }

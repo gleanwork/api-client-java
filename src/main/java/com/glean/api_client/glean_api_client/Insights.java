@@ -20,7 +20,6 @@ public class Insights {
     Insights(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Read insights
      * 
@@ -41,10 +40,9 @@ public class Insights {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public InsightsResponse retrieve(
-            InsightsRequest request) throws Exception {
+    public InsightsResponse retrieve(InsightsRequest request) throws Exception {
         RequestOperation<InsightsRequest, InsightsResponse> operation
-              = new InsightsOperation( sdkConfiguration);
+              = new InsightsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

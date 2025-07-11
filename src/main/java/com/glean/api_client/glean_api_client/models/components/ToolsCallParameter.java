@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class ToolsCallParameter {
 
+public class ToolsCallParameter {
     /**
      * The name of the parameter
      */
@@ -63,7 +63,8 @@ public class ToolsCallParameter {
     public ToolsCallParameter(
             String name,
             String value) {
-        this(name, value, Optional.empty(), Optional.empty());
+        this(name, value, Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -100,9 +101,10 @@ public class ToolsCallParameter {
         return (Optional<Map<String, ToolsCallParameter>>) properties;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the parameter
@@ -131,6 +133,7 @@ public class ToolsCallParameter {
         return this;
     }
 
+
     /**
      * The value of the parameter (for array types)
      */
@@ -149,6 +152,7 @@ public class ToolsCallParameter {
         return this;
     }
 
+
     /**
      * The value of the parameter (for object types)
      */
@@ -158,7 +162,6 @@ public class ToolsCallParameter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -178,9 +181,7 @@ public class ToolsCallParameter {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            value,
-            items,
+            name, value, items,
             properties);
     }
     
@@ -192,20 +193,22 @@ public class ToolsCallParameter {
                 "items", items,
                 "properties", properties);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
- 
+
         private String value;
- 
+
         private Optional<? extends List<ToolsCallParameter>> items = Optional.empty();
- 
+
         private Optional<? extends Map<String, ToolsCallParameter>> properties = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the parameter
@@ -216,6 +219,7 @@ public class ToolsCallParameter {
             return this;
         }
 
+
         /**
          * The value of the parameter (for primitive types)
          */
@@ -224,6 +228,7 @@ public class ToolsCallParameter {
             this.value = value;
             return this;
         }
+
 
         /**
          * The value of the parameter (for array types)
@@ -243,6 +248,7 @@ public class ToolsCallParameter {
             return this;
         }
 
+
         /**
          * The value of the parameter (for object types)
          */
@@ -260,13 +266,13 @@ public class ToolsCallParameter {
             this.properties = properties;
             return this;
         }
-        
+
         public ToolsCallParameter build() {
+
             return new ToolsCallParameter(
-                name,
-                value,
-                items,
+                name, value, items,
                 properties);
         }
+
     }
 }

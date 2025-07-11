@@ -22,7 +22,6 @@ import java.util.Optional;
  * <p>Controls which data-sources and what time-range to include in scans.
  */
 public class InputOptions {
-
     /**
      * list of url regex matching documents excluded from report
      * 
@@ -64,6 +63,7 @@ public class InputOptions {
     @JsonProperty("timePeriodType")
     private Optional<? extends TimePeriodType> timePeriodType;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("customTimeRange")
     private Optional<? extends TimeRange> customTimeRange;
@@ -91,7 +91,8 @@ public class InputOptions {
     }
     
     public InputOptions() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -151,9 +152,10 @@ public class InputOptions {
         return (Optional<TimeRange>) customTimeRange;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * list of url regex matching documents excluded from report
@@ -166,6 +168,7 @@ public class InputOptions {
         this.urlGreenlist = Optional.ofNullable(urlGreenlist);
         return this;
     }
+
 
     /**
      * list of url regex matching documents excluded from report
@@ -188,6 +191,7 @@ public class InputOptions {
         return this;
     }
 
+
     /**
      * The types of datasource for which to run the report/policy.
      */
@@ -208,6 +212,7 @@ public class InputOptions {
         this.datasources = Optional.ofNullable(datasources);
         return this;
     }
+
 
     /**
      * List of datasources to consider for report. DEPRECATED - use datasourceInstances instead.
@@ -230,6 +235,7 @@ public class InputOptions {
         return this;
     }
 
+
     /**
      * List of datasource instances to consider for report/policy.
      */
@@ -248,6 +254,7 @@ public class InputOptions {
         return this;
     }
 
+
     /**
      * Type of time period for which to run the report/policy. PAST_DAY is deprecated.
      */
@@ -263,13 +270,13 @@ public class InputOptions {
         return this;
     }
 
+
     public InputOptions withCustomTimeRange(Optional<? extends TimeRange> customTimeRange) {
         Utils.checkNotNull(customTimeRange, "customTimeRange");
         this.customTimeRange = customTimeRange;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -291,12 +298,8 @@ public class InputOptions {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            urlGreenlist,
-            datasourcesType,
-            datasources,
-            datasourceInstances,
-            timePeriodType,
-            customTimeRange);
+            urlGreenlist, datasourcesType, datasources,
+            datasourceInstances, timePeriodType, customTimeRange);
     }
     
     @Override
@@ -309,26 +312,28 @@ public class InputOptions {
                 "timePeriodType", timePeriodType,
                 "customTimeRange", customTimeRange);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         @Deprecated
         private Optional<? extends List<String>> urlGreenlist = Optional.empty();
- 
+
         private Optional<? extends DatasourcesType> datasourcesType = Optional.empty();
- 
+
         @Deprecated
         private Optional<? extends List<String>> datasources = Optional.empty();
- 
+
         private Optional<? extends List<String>> datasourceInstances = Optional.empty();
- 
+
         private Optional<? extends TimePeriodType> timePeriodType = Optional.empty();
- 
+
         private Optional<? extends TimeRange> customTimeRange = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * list of url regex matching documents excluded from report
@@ -354,6 +359,7 @@ public class InputOptions {
             return this;
         }
 
+
         /**
          * The types of datasource for which to run the report/policy.
          */
@@ -371,6 +377,7 @@ public class InputOptions {
             this.datasourcesType = datasourcesType;
             return this;
         }
+
 
         /**
          * List of datasources to consider for report. DEPRECATED - use datasourceInstances instead.
@@ -396,6 +403,7 @@ public class InputOptions {
             return this;
         }
 
+
         /**
          * List of datasource instances to consider for report/policy.
          */
@@ -413,6 +421,7 @@ public class InputOptions {
             this.datasourceInstances = datasourceInstances;
             return this;
         }
+
 
         /**
          * Type of time period for which to run the report/policy. PAST_DAY is deprecated.
@@ -432,6 +441,7 @@ public class InputOptions {
             return this;
         }
 
+
         public Builder customTimeRange(TimeRange customTimeRange) {
             Utils.checkNotNull(customTimeRange, "customTimeRange");
             this.customTimeRange = Optional.ofNullable(customTimeRange);
@@ -443,15 +453,13 @@ public class InputOptions {
             this.customTimeRange = customTimeRange;
             return this;
         }
-        
+
         public InputOptions build() {
+
             return new InputOptions(
-                urlGreenlist,
-                datasourcesType,
-                datasources,
-                datasourceInstances,
-                timePeriodType,
-                customTimeRange);
+                urlGreenlist, datasourcesType, datasources,
+                datasourceInstances, timePeriodType, customTimeRange);
         }
+
     }
 }

@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>Describes the response body of the /getusercount API call
  */
 public class GetUserCountResponse {
-
     /**
      * Number of users corresponding to the specified custom datasource.
      */
@@ -47,9 +46,10 @@ public class GetUserCountResponse {
         return userCount;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Number of users corresponding to the specified custom datasource.
@@ -60,6 +60,7 @@ public class GetUserCountResponse {
         return this;
     }
 
+
     /**
      * Number of users corresponding to the specified custom datasource.
      */
@@ -69,7 +70,6 @@ public class GetUserCountResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -94,14 +94,16 @@ public class GetUserCountResponse {
         return Utils.toString(GetUserCountResponse.class,
                 "userCount", userCount);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> userCount = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Number of users corresponding to the specified custom datasource.
@@ -120,10 +122,12 @@ public class GetUserCountResponse {
             this.userCount = userCount;
             return this;
         }
-        
+
         public GetUserCountResponse build() {
+
             return new GetUserCountResponse(
                 userCount);
         }
+
     }
 }

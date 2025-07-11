@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class RelatedDocuments {
 
+public class RelatedDocuments {
     /**
      * How this document relates to the including entity.
      */
@@ -31,6 +31,7 @@ public class RelatedDocuments {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("associatedEntityId")
     private Optional<String> associatedEntityId;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("querySuggestion")
@@ -73,7 +74,8 @@ public class RelatedDocuments {
     }
     
     public RelatedDocuments() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -120,9 +122,10 @@ public class RelatedDocuments {
         return (Optional<List<SearchResult>>) results;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * How this document relates to the including entity.
@@ -132,6 +135,7 @@ public class RelatedDocuments {
         this.relation = Optional.ofNullable(relation);
         return this;
     }
+
 
     /**
      * How this document relates to the including entity.
@@ -151,6 +155,7 @@ public class RelatedDocuments {
         return this;
     }
 
+
     /**
      * Which entity in the response that this entity relates to. Relevant when there are multiple entities associated with the response (such as merged customers)
      */
@@ -165,6 +170,7 @@ public class RelatedDocuments {
         this.querySuggestion = Optional.ofNullable(querySuggestion);
         return this;
     }
+
 
     public RelatedDocuments withQuerySuggestion(Optional<? extends QuerySuggestion> querySuggestion) {
         Utils.checkNotNull(querySuggestion, "querySuggestion");
@@ -183,6 +189,7 @@ public class RelatedDocuments {
         this.documents = Optional.ofNullable(documents);
         return this;
     }
+
 
     /**
      * A truncated list of documents with this relation. TO BE DEPRECATED.
@@ -205,6 +212,7 @@ public class RelatedDocuments {
         return this;
     }
 
+
     /**
      * A truncated list of documents associated with this relation. To be used in favor of `documents` because it contains a trackingToken.
      */
@@ -214,7 +222,6 @@ public class RelatedDocuments {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -235,11 +242,8 @@ public class RelatedDocuments {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            relation,
-            associatedEntityId,
-            querySuggestion,
-            documents,
-            results);
+            relation, associatedEntityId, querySuggestion,
+            documents, results);
     }
     
     @Override
@@ -251,23 +255,25 @@ public class RelatedDocuments {
                 "documents", documents,
                 "results", results);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Relation> relation = Optional.empty();
- 
+
         private Optional<String> associatedEntityId = Optional.empty();
- 
+
         private Optional<? extends QuerySuggestion> querySuggestion = Optional.empty();
- 
+
         @Deprecated
         private Optional<? extends List<Document>> documents = Optional.empty();
- 
+
         private Optional<? extends List<SearchResult>> results = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * How this document relates to the including entity.
@@ -287,6 +293,7 @@ public class RelatedDocuments {
             return this;
         }
 
+
         /**
          * Which entity in the response that this entity relates to. Relevant when there are multiple entities associated with the response (such as merged customers)
          */
@@ -305,6 +312,7 @@ public class RelatedDocuments {
             return this;
         }
 
+
         public Builder querySuggestion(QuerySuggestion querySuggestion) {
             Utils.checkNotNull(querySuggestion, "querySuggestion");
             this.querySuggestion = Optional.ofNullable(querySuggestion);
@@ -316,6 +324,7 @@ public class RelatedDocuments {
             this.querySuggestion = querySuggestion;
             return this;
         }
+
 
         /**
          * A truncated list of documents with this relation. TO BE DEPRECATED.
@@ -341,6 +350,7 @@ public class RelatedDocuments {
             return this;
         }
 
+
         /**
          * A truncated list of documents associated with this relation. To be used in favor of `documents` because it contains a trackingToken.
          */
@@ -358,14 +368,13 @@ public class RelatedDocuments {
             this.results = results;
             return this;
         }
-        
+
         public RelatedDocuments build() {
+
             return new RelatedDocuments(
-                relation,
-                associatedEntityId,
-                querySuggestion,
-                documents,
-                results);
+                relation, associatedEntityId, querySuggestion,
+                documents, results);
         }
+
     }
 }

@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class PromptTemplate {
 
+public class PromptTemplate {
     /**
      * The user-given identifier for this prompt template.
      */
@@ -38,6 +38,7 @@ public class PromptTemplate {
     @JsonProperty("applicationId")
     private Optional<String> applicationId;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("inclusions")
     private Optional<? extends ChatRestrictionFilters> inclusions;
@@ -56,6 +57,7 @@ public class PromptTemplate {
     @JsonProperty("removedRoles")
     private Optional<? extends List<UserRoleSpecification>> removedRoles;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("permissions")
     private Optional<? extends ObjectPermissions> permissions;
@@ -66,6 +68,7 @@ public class PromptTemplate {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
     private Optional<String> id;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("author")
@@ -84,6 +87,7 @@ public class PromptTemplate {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lastUpdateTimestamp")
     private Optional<Long> lastUpdateTimestamp;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lastUpdatedBy")
@@ -141,7 +145,11 @@ public class PromptTemplate {
     
     public PromptTemplate(
             String template) {
-        this(Optional.empty(), template, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), template, Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -243,9 +251,10 @@ public class PromptTemplate {
         return (Optional<List<UserRoleSpecification>>) roles;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The user-given identifier for this prompt template.
@@ -255,6 +264,7 @@ public class PromptTemplate {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * The user-given identifier for this prompt template.
@@ -283,6 +293,7 @@ public class PromptTemplate {
         return this;
     }
 
+
     /**
      * The Application Id the prompt template should be created under. Empty for default assistant.
      */
@@ -298,6 +309,7 @@ public class PromptTemplate {
         return this;
     }
 
+
     public PromptTemplate withInclusions(Optional<? extends ChatRestrictionFilters> inclusions) {
         Utils.checkNotNull(inclusions, "inclusions");
         this.inclusions = inclusions;
@@ -312,6 +324,7 @@ public class PromptTemplate {
         this.addedRoles = Optional.ofNullable(addedRoles);
         return this;
     }
+
 
     /**
      * A list of added user roles for the Workflow.
@@ -331,6 +344,7 @@ public class PromptTemplate {
         return this;
     }
 
+
     /**
      * A list of removed user roles for the Workflow.
      */
@@ -345,6 +359,7 @@ public class PromptTemplate {
         this.permissions = Optional.ofNullable(permissions);
         return this;
     }
+
 
     public PromptTemplate withPermissions(Optional<? extends ObjectPermissions> permissions) {
         Utils.checkNotNull(permissions, "permissions");
@@ -361,6 +376,7 @@ public class PromptTemplate {
         return this;
     }
 
+
     /**
      * Opaque id for this prompt template
      */
@@ -376,6 +392,7 @@ public class PromptTemplate {
         return this;
     }
 
+
     public PromptTemplate withAuthor(Optional<? extends Person> author) {
         Utils.checkNotNull(author, "author");
         this.author = author;
@@ -390,6 +407,7 @@ public class PromptTemplate {
         this.createTimestamp = Optional.ofNullable(createTimestamp);
         return this;
     }
+
 
     /**
      * Server Unix timestamp of the creation time.
@@ -409,6 +427,7 @@ public class PromptTemplate {
         return this;
     }
 
+
     /**
      * Server Unix timestamp of the last update time.
      */
@@ -423,6 +442,7 @@ public class PromptTemplate {
         this.lastUpdatedBy = Optional.ofNullable(lastUpdatedBy);
         return this;
     }
+
 
     public PromptTemplate withLastUpdatedBy(Optional<? extends Person> lastUpdatedBy) {
         Utils.checkNotNull(lastUpdatedBy, "lastUpdatedBy");
@@ -439,6 +459,7 @@ public class PromptTemplate {
         return this;
     }
 
+
     /**
      * A list of roles for this prompt template explicitly granted.
      */
@@ -448,7 +469,6 @@ public class PromptTemplate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -477,18 +497,10 @@ public class PromptTemplate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            template,
-            applicationId,
-            inclusions,
-            addedRoles,
-            removedRoles,
-            permissions,
-            id,
-            author,
-            createTimestamp,
-            lastUpdateTimestamp,
-            lastUpdatedBy,
+            name, template, applicationId,
+            inclusions, addedRoles, removedRoles,
+            permissions, id, author,
+            createTimestamp, lastUpdateTimestamp, lastUpdatedBy,
             roles);
     }
     
@@ -509,38 +521,40 @@ public class PromptTemplate {
                 "lastUpdatedBy", lastUpdatedBy,
                 "roles", roles);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private String template;
- 
+
         private Optional<String> applicationId = Optional.empty();
- 
+
         private Optional<? extends ChatRestrictionFilters> inclusions = Optional.empty();
- 
+
         private Optional<? extends List<UserRoleSpecification>> addedRoles = Optional.empty();
- 
+
         private Optional<? extends List<UserRoleSpecification>> removedRoles = Optional.empty();
- 
+
         private Optional<? extends ObjectPermissions> permissions = Optional.empty();
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<? extends Person> author = Optional.empty();
- 
+
         private Optional<Long> createTimestamp = Optional.empty();
- 
+
         private Optional<Long> lastUpdateTimestamp = Optional.empty();
- 
+
         private Optional<? extends Person> lastUpdatedBy = Optional.empty();
- 
+
         private Optional<? extends List<UserRoleSpecification>> roles = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The user-given identifier for this prompt template.
@@ -560,6 +574,7 @@ public class PromptTemplate {
             return this;
         }
 
+
         /**
          * The actual template string.
          */
@@ -568,6 +583,7 @@ public class PromptTemplate {
             this.template = template;
             return this;
         }
+
 
         /**
          * The Application Id the prompt template should be created under. Empty for default assistant.
@@ -587,6 +603,7 @@ public class PromptTemplate {
             return this;
         }
 
+
         public Builder inclusions(ChatRestrictionFilters inclusions) {
             Utils.checkNotNull(inclusions, "inclusions");
             this.inclusions = Optional.ofNullable(inclusions);
@@ -598,6 +615,7 @@ public class PromptTemplate {
             this.inclusions = inclusions;
             return this;
         }
+
 
         /**
          * A list of added user roles for the Workflow.
@@ -617,6 +635,7 @@ public class PromptTemplate {
             return this;
         }
 
+
         /**
          * A list of removed user roles for the Workflow.
          */
@@ -635,6 +654,7 @@ public class PromptTemplate {
             return this;
         }
 
+
         public Builder permissions(ObjectPermissions permissions) {
             Utils.checkNotNull(permissions, "permissions");
             this.permissions = Optional.ofNullable(permissions);
@@ -646,6 +666,7 @@ public class PromptTemplate {
             this.permissions = permissions;
             return this;
         }
+
 
         /**
          * Opaque id for this prompt template
@@ -665,6 +686,7 @@ public class PromptTemplate {
             return this;
         }
 
+
         public Builder author(Person author) {
             Utils.checkNotNull(author, "author");
             this.author = Optional.ofNullable(author);
@@ -676,6 +698,7 @@ public class PromptTemplate {
             this.author = author;
             return this;
         }
+
 
         /**
          * Server Unix timestamp of the creation time.
@@ -695,6 +718,7 @@ public class PromptTemplate {
             return this;
         }
 
+
         /**
          * Server Unix timestamp of the last update time.
          */
@@ -713,6 +737,7 @@ public class PromptTemplate {
             return this;
         }
 
+
         public Builder lastUpdatedBy(Person lastUpdatedBy) {
             Utils.checkNotNull(lastUpdatedBy, "lastUpdatedBy");
             this.lastUpdatedBy = Optional.ofNullable(lastUpdatedBy);
@@ -724,6 +749,7 @@ public class PromptTemplate {
             this.lastUpdatedBy = lastUpdatedBy;
             return this;
         }
+
 
         /**
          * A list of roles for this prompt template explicitly granted.
@@ -742,22 +768,16 @@ public class PromptTemplate {
             this.roles = roles;
             return this;
         }
-        
+
         public PromptTemplate build() {
+
             return new PromptTemplate(
-                name,
-                template,
-                applicationId,
-                inclusions,
-                addedRoles,
-                removedRoles,
-                permissions,
-                id,
-                author,
-                createTimestamp,
-                lastUpdateTimestamp,
-                lastUpdatedBy,
+                name, template, applicationId,
+                inclusions, addedRoles, removedRoles,
+                permissions, id, author,
+                createTimestamp, lastUpdateTimestamp, lastUpdatedBy,
                 roles);
         }
+
     }
 }

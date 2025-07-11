@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class WriteActionParameter {
 
+public class WriteActionParameter {
     /**
      * The type of the value (e.g., integer, string, boolean, etc.)
      */
@@ -83,7 +83,8 @@ public class WriteActionParameter {
     }
     
     public WriteActionParameter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -136,9 +137,10 @@ public class WriteActionParameter {
         return (Optional<List<PossibleValue>>) possibleValues;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The type of the value (e.g., integer, string, boolean, etc.)
@@ -148,6 +150,7 @@ public class WriteActionParameter {
         this.type = Optional.ofNullable(type);
         return this;
     }
+
 
     /**
      * The type of the value (e.g., integer, string, boolean, etc.)
@@ -167,6 +170,7 @@ public class WriteActionParameter {
         return this;
     }
 
+
     /**
      * Human readable display name for the key.
      */
@@ -184,6 +188,7 @@ public class WriteActionParameter {
         this.value = Optional.ofNullable(value);
         return this;
     }
+
 
     /**
      * The value of the field.
@@ -203,6 +208,7 @@ public class WriteActionParameter {
         return this;
     }
 
+
     /**
      * Is the parameter a required field.
      */
@@ -220,6 +226,7 @@ public class WriteActionParameter {
         this.description = Optional.ofNullable(description);
         return this;
     }
+
 
     /**
      * Description of the parameter.
@@ -239,6 +246,7 @@ public class WriteActionParameter {
         return this;
     }
 
+
     /**
      * Possible values that the parameter can take.
      */
@@ -248,7 +256,6 @@ public class WriteActionParameter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -270,12 +277,8 @@ public class WriteActionParameter {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            displayName,
-            value,
-            isRequired,
-            description,
-            possibleValues);
+            type, displayName, value,
+            isRequired, description, possibleValues);
     }
     
     @Override
@@ -288,24 +291,26 @@ public class WriteActionParameter {
                 "description", description,
                 "possibleValues", possibleValues);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends WriteActionParameterType> type = Optional.empty();
- 
+
         private Optional<String> displayName = Optional.empty();
- 
+
         private Optional<String> value = Optional.empty();
- 
+
         private Optional<Boolean> isRequired = Optional.empty();
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<? extends List<PossibleValue>> possibleValues = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The type of the value (e.g., integer, string, boolean, etc.)
@@ -325,6 +330,7 @@ public class WriteActionParameter {
             return this;
         }
 
+
         /**
          * Human readable display name for the key.
          */
@@ -342,6 +348,7 @@ public class WriteActionParameter {
             this.displayName = displayName;
             return this;
         }
+
 
         /**
          * The value of the field.
@@ -361,6 +368,7 @@ public class WriteActionParameter {
             return this;
         }
 
+
         /**
          * Is the parameter a required field.
          */
@@ -378,6 +386,7 @@ public class WriteActionParameter {
             this.isRequired = isRequired;
             return this;
         }
+
 
         /**
          * Description of the parameter.
@@ -397,6 +406,7 @@ public class WriteActionParameter {
             return this;
         }
 
+
         /**
          * Possible values that the parameter can take.
          */
@@ -414,15 +424,13 @@ public class WriteActionParameter {
             this.possibleValues = possibleValues;
             return this;
         }
-        
+
         public WriteActionParameter build() {
+
             return new WriteActionParameter(
-                type,
-                displayName,
-                value,
-                isRequired,
-                description,
-                possibleValues);
+                type, displayName, value,
+                isRequired, description, possibleValues);
         }
+
     }
 }

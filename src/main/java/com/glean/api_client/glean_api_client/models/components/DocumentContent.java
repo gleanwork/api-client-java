@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class DocumentContent {
 
+public class DocumentContent {
     /**
      * The plaintext content of the document.
      */
@@ -44,9 +44,10 @@ public class DocumentContent {
         return (Optional<List<String>>) fullTextList;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The plaintext content of the document.
@@ -57,6 +58,7 @@ public class DocumentContent {
         return this;
     }
 
+
     /**
      * The plaintext content of the document.
      */
@@ -66,7 +68,6 @@ public class DocumentContent {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,14 +92,16 @@ public class DocumentContent {
         return Utils.toString(DocumentContent.class,
                 "fullTextList", fullTextList);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<String>> fullTextList = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The plaintext content of the document.
@@ -117,10 +120,12 @@ public class DocumentContent {
             this.fullTextList = fullTextList;
             return this;
         }
-        
+
         public DocumentContent build() {
+
             return new DocumentContent(
                 fullTextList);
         }
+
     }
 }

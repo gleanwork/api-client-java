@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class DlpPersonMetadata {
 
+public class DlpPersonMetadata {
     /**
      * The first name of the person
      */
@@ -59,9 +59,10 @@ public class DlpPersonMetadata {
         return email;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The first name of the person
@@ -71,6 +72,7 @@ public class DlpPersonMetadata {
         this.firstName = Optional.ofNullable(firstName);
         return this;
     }
+
 
     /**
      * The first name of the person
@@ -90,6 +92,7 @@ public class DlpPersonMetadata {
         return this;
     }
 
+
     /**
      * The user's primary email address
      */
@@ -99,7 +102,6 @@ public class DlpPersonMetadata {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -117,8 +119,7 @@ public class DlpPersonMetadata {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            firstName,
-            email);
+            firstName, email);
     }
     
     @Override
@@ -127,16 +128,18 @@ public class DlpPersonMetadata {
                 "firstName", firstName,
                 "email", email);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> firstName = Optional.empty();
- 
+
         private Optional<String> email = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The first name of the person
@@ -156,6 +159,7 @@ public class DlpPersonMetadata {
             return this;
         }
 
+
         /**
          * The user's primary email address
          */
@@ -173,11 +177,12 @@ public class DlpPersonMetadata {
             this.email = email;
             return this;
         }
-        
+
         public DlpPersonMetadata build() {
+
             return new DlpPersonMetadata(
-                firstName,
-                email);
+                firstName, email);
         }
+
     }
 }

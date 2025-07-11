@@ -20,7 +20,7 @@ public class CreateauthtokenRequestBuilder {
     public CreateauthtokenResponse call() throws Exception {
         
         RequestlessOperation<CreateauthtokenResponse> operation
-            = new CreateauthtokenOperation( sdkConfiguration);
+            = new CreateauthtokenOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest());
     }

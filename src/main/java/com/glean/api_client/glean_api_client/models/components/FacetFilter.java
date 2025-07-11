@@ -15,6 +15,7 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
+
 public class FacetFilter {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -74,15 +75,17 @@ public class FacetFilter {
         return groupName;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public FacetFilter withFieldName(String fieldName) {
         Utils.checkNotNull(fieldName, "fieldName");
         this.fieldName = Optional.ofNullable(fieldName);
         return this;
     }
+
 
     public FacetFilter withFieldName(Optional<String> fieldName) {
         Utils.checkNotNull(fieldName, "fieldName");
@@ -98,6 +101,7 @@ public class FacetFilter {
         this.values = Optional.ofNullable(values);
         return this;
     }
+
 
     /**
      * Within a single FacetFilter, the values are to be treated like an OR. For example, fieldName type with values [EQUALS Presentation, EQUALS Spreadsheet] means we want to show a document if it's a Presentation OR a Spreadsheet.
@@ -117,6 +121,7 @@ public class FacetFilter {
         return this;
     }
 
+
     /**
      * Indicates the value of a facet, if any, that the given facet is grouped under. This is only used for nested facets, for example, fieldName could be owner and groupName would be Spreadsheet if showing all owners for spreadsheets as a nested facet.
      */
@@ -126,7 +131,6 @@ public class FacetFilter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -145,9 +149,7 @@ public class FacetFilter {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            fieldName,
-            values,
-            groupName);
+            fieldName, values, groupName);
     }
     
     @Override
@@ -157,18 +159,20 @@ public class FacetFilter {
                 "values", values,
                 "groupName", groupName);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> fieldName = Optional.empty();
- 
+
         private Optional<? extends List<FacetFilterValue>> values = Optional.empty();
- 
+
         private Optional<String> groupName = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder fieldName(String fieldName) {
             Utils.checkNotNull(fieldName, "fieldName");
@@ -181,6 +185,7 @@ public class FacetFilter {
             this.fieldName = fieldName;
             return this;
         }
+
 
         /**
          * Within a single FacetFilter, the values are to be treated like an OR. For example, fieldName type with values [EQUALS Presentation, EQUALS Spreadsheet] means we want to show a document if it's a Presentation OR a Spreadsheet.
@@ -200,6 +205,7 @@ public class FacetFilter {
             return this;
         }
 
+
         /**
          * Indicates the value of a facet, if any, that the given facet is grouped under. This is only used for nested facets, for example, fieldName could be owner and groupName would be Spreadsheet if showing all owners for spreadsheets as a nested facet.
          */
@@ -217,12 +223,12 @@ public class FacetFilter {
             this.groupName = groupName;
             return this;
         }
-        
+
         public FacetFilter build() {
+
             return new FacetFilter(
-                fieldName,
-                values,
-                groupName);
+                fieldName, values, groupName);
         }
+
     }
 }

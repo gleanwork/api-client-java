@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.List;
 
-public class DeleteChatsRequest {
 
+public class DeleteChatsRequest {
     /**
      * A non-empty list of ids of the Chats to be deleted.
      */
@@ -34,9 +34,10 @@ public class DeleteChatsRequest {
         return ids;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A non-empty list of ids of the Chats to be deleted.
@@ -47,7 +48,6 @@ public class DeleteChatsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -72,14 +72,16 @@ public class DeleteChatsRequest {
         return Utils.toString(DeleteChatsRequest.class,
                 "ids", ids);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<String> ids;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A non-empty list of ids of the Chats to be deleted.
@@ -89,10 +91,12 @@ public class DeleteChatsRequest {
             this.ids = ids;
             return this;
         }
-        
+
         public DeleteChatsRequest build() {
+
             return new DeleteChatsRequest(
                 ids);
         }
+
     }
 }

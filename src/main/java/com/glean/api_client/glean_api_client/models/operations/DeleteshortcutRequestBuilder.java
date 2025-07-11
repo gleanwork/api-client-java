@@ -29,7 +29,7 @@ public class DeleteshortcutRequestBuilder {
     public DeleteshortcutResponse call() throws Exception {
         
         RequestOperation<DeleteShortcutRequest, DeleteshortcutResponse> operation
-              = new DeleteshortcutOperation( sdkConfiguration);
+              = new DeleteshortcutOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

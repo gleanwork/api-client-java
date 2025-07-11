@@ -15,6 +15,7 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
+
 public class AnswerLike {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -56,15 +57,17 @@ public class AnswerLike {
         return createTime;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public AnswerLike withUser(Person user) {
         Utils.checkNotNull(user, "user");
         this.user = Optional.ofNullable(user);
         return this;
     }
+
 
     public AnswerLike withUser(Optional<? extends Person> user) {
         Utils.checkNotNull(user, "user");
@@ -81,6 +84,7 @@ public class AnswerLike {
         return this;
     }
 
+
     /**
      * The time the user liked the answer in ISO format (ISO 8601).
      */
@@ -90,7 +94,6 @@ public class AnswerLike {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -108,8 +111,7 @@ public class AnswerLike {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            user,
-            createTime);
+            user, createTime);
     }
     
     @Override
@@ -118,16 +120,18 @@ public class AnswerLike {
                 "user", user,
                 "createTime", createTime);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Person> user = Optional.empty();
- 
+
         private Optional<OffsetDateTime> createTime = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder user(Person user) {
             Utils.checkNotNull(user, "user");
@@ -140,6 +144,7 @@ public class AnswerLike {
             this.user = user;
             return this;
         }
+
 
         /**
          * The time the user liked the answer in ISO format (ISO 8601).
@@ -158,11 +163,12 @@ public class AnswerLike {
             this.createTime = createTime;
             return this;
         }
-        
+
         public AnswerLike build() {
+
             return new AnswerLike(
-                user,
-                createTime);
+                user, createTime);
         }
+
     }
 }

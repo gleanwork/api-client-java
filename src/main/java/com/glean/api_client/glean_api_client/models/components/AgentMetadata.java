@@ -14,18 +14,15 @@ import java.lang.String;
  * <p>The agent metadata. Currently not implemented.
  */
 public class AgentMetadata {
-
     @JsonCreator
     public AgentMetadata() {
-        
-        
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
 
-    
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -47,16 +44,19 @@ public class AgentMetadata {
     public String toString() {
         return Utils.toString(AgentMetadata.class);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-        
+
         private Builder() {
           // force use of static builder() method
         }
-        
+
         public AgentMetadata build() {
+
             return new AgentMetadata(
                 );
         }
+
     }
 }

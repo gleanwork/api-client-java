@@ -14,8 +14,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class CollectionItemDescriptor {
 
+public class CollectionItemDescriptor {
     /**
      * The optional name of the Collection item.
      */
@@ -58,6 +58,7 @@ public class CollectionItemDescriptor {
     @JsonProperty("newNextItemId")
     private Optional<String> newNextItemId;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("itemType")
     private Optional<? extends CollectionItemDescriptorItemType> itemType;
@@ -88,7 +89,9 @@ public class CollectionItemDescriptor {
     }
     
     public CollectionItemDescriptor() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -145,9 +148,10 @@ public class CollectionItemDescriptor {
         return (Optional<CollectionItemDescriptorItemType>) itemType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The optional name of the Collection item.
@@ -157,6 +161,7 @@ public class CollectionItemDescriptor {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * The optional name of the Collection item.
@@ -176,6 +181,7 @@ public class CollectionItemDescriptor {
         return this;
     }
 
+
     /**
      * A helpful description of why this CollectionItem is in the Collection that it's in.
      */
@@ -193,6 +199,7 @@ public class CollectionItemDescriptor {
         this.icon = Optional.ofNullable(icon);
         return this;
     }
+
 
     /**
      * The emoji icon for this CollectionItem. Only used for Text type items.
@@ -212,6 +219,7 @@ public class CollectionItemDescriptor {
         return this;
     }
 
+
     /**
      * The URL of the item being added.
      */
@@ -229,6 +237,7 @@ public class CollectionItemDescriptor {
         this.documentId = Optional.ofNullable(documentId);
         return this;
     }
+
 
     /**
      * The Glean Document ID of the item being added if it's an indexed document.
@@ -248,6 +257,7 @@ public class CollectionItemDescriptor {
         return this;
     }
 
+
     /**
      * The (optional) ItemId of the next CollectionItem in sequence. If omitted, will be added to the end of the Collection
      */
@@ -263,13 +273,13 @@ public class CollectionItemDescriptor {
         return this;
     }
 
+
     public CollectionItemDescriptor withItemType(Optional<? extends CollectionItemDescriptorItemType> itemType) {
         Utils.checkNotNull(itemType, "itemType");
         this.itemType = itemType;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -292,12 +302,8 @@ public class CollectionItemDescriptor {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            description,
-            icon,
-            url,
-            documentId,
-            newNextItemId,
+            name, description, icon,
+            url, documentId, newNextItemId,
             itemType);
     }
     
@@ -312,26 +318,28 @@ public class CollectionItemDescriptor {
                 "newNextItemId", newNextItemId,
                 "itemType", itemType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<String> icon = Optional.empty();
- 
+
         private Optional<String> url = Optional.empty();
- 
+
         private Optional<String> documentId = Optional.empty();
- 
+
         private Optional<String> newNextItemId = Optional.empty();
- 
+
         private Optional<? extends CollectionItemDescriptorItemType> itemType = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The optional name of the Collection item.
@@ -351,6 +359,7 @@ public class CollectionItemDescriptor {
             return this;
         }
 
+
         /**
          * A helpful description of why this CollectionItem is in the Collection that it's in.
          */
@@ -368,6 +377,7 @@ public class CollectionItemDescriptor {
             this.description = description;
             return this;
         }
+
 
         /**
          * The emoji icon for this CollectionItem. Only used for Text type items.
@@ -387,6 +397,7 @@ public class CollectionItemDescriptor {
             return this;
         }
 
+
         /**
          * The URL of the item being added.
          */
@@ -404,6 +415,7 @@ public class CollectionItemDescriptor {
             this.url = url;
             return this;
         }
+
 
         /**
          * The Glean Document ID of the item being added if it's an indexed document.
@@ -423,6 +435,7 @@ public class CollectionItemDescriptor {
             return this;
         }
 
+
         /**
          * The (optional) ItemId of the next CollectionItem in sequence. If omitted, will be added to the end of the Collection
          */
@@ -441,6 +454,7 @@ public class CollectionItemDescriptor {
             return this;
         }
 
+
         public Builder itemType(CollectionItemDescriptorItemType itemType) {
             Utils.checkNotNull(itemType, "itemType");
             this.itemType = Optional.ofNullable(itemType);
@@ -452,16 +466,14 @@ public class CollectionItemDescriptor {
             this.itemType = itemType;
             return this;
         }
-        
+
         public CollectionItemDescriptor build() {
+
             return new CollectionItemDescriptor(
-                name,
-                description,
-                icon,
-                url,
-                documentId,
-                newNextItemId,
+                name, description, icon,
+                url, documentId, newNextItemId,
                 itemType);
         }
+
     }
 }

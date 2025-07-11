@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-public class CreateauthtokenResponse implements Response {
 
+public class CreateauthtokenResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
@@ -58,7 +58,8 @@ public class CreateauthtokenResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, statusCode, rawResponse, Optional.empty());
+        this(contentType, statusCode, rawResponse,
+            Optional.empty());
     }
 
     /**
@@ -94,9 +95,10 @@ public class CreateauthtokenResponse implements Response {
         return (Optional<CreateAuthTokenResponse>) createAuthTokenResponse;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP response content type for this operation
@@ -134,6 +136,7 @@ public class CreateauthtokenResponse implements Response {
         return this;
     }
 
+
     /**
      * OK
      */
@@ -143,7 +146,6 @@ public class CreateauthtokenResponse implements Response {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -163,9 +165,7 @@ public class CreateauthtokenResponse implements Response {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            contentType,
-            statusCode,
-            rawResponse,
+            contentType, statusCode, rawResponse,
             createAuthTokenResponse);
     }
     
@@ -177,20 +177,22 @@ public class CreateauthtokenResponse implements Response {
                 "rawResponse", rawResponse,
                 "createAuthTokenResponse", createAuthTokenResponse);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String contentType;
- 
+
         private Integer statusCode;
- 
+
         private HttpResponse<InputStream> rawResponse;
- 
+
         private Optional<? extends CreateAuthTokenResponse> createAuthTokenResponse = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP response content type for this operation
@@ -201,6 +203,7 @@ public class CreateauthtokenResponse implements Response {
             return this;
         }
 
+
         /**
          * HTTP response status code for this operation
          */
@@ -210,6 +213,7 @@ public class CreateauthtokenResponse implements Response {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -218,6 +222,7 @@ public class CreateauthtokenResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
+
 
         /**
          * OK
@@ -236,13 +241,13 @@ public class CreateauthtokenResponse implements Response {
             this.createAuthTokenResponse = createAuthTokenResponse;
             return this;
         }
-        
+
         public CreateauthtokenResponse build() {
+
             return new CreateauthtokenResponse(
-                contentType,
-                statusCode,
-                rawResponse,
+                contentType, statusCode, rawResponse,
                 createAuthTokenResponse);
         }
+
     }
 }

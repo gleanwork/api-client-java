@@ -22,7 +22,6 @@ import java.util.Optional;
  * <p>describes the access control details of the document
  */
 public class DocumentPermissionsDefinition {
-
     /**
      * List of users who can view the document
      */
@@ -78,7 +77,8 @@ public class DocumentPermissionsDefinition {
     }
     
     public DocumentPermissionsDefinition() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -124,9 +124,10 @@ public class DocumentPermissionsDefinition {
         return allowAllDatasourceUsersAccess;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * List of users who can view the document
@@ -136,6 +137,7 @@ public class DocumentPermissionsDefinition {
         this.allowedUsers = Optional.ofNullable(allowedUsers);
         return this;
     }
+
 
     /**
      * List of users who can view the document
@@ -155,6 +157,7 @@ public class DocumentPermissionsDefinition {
         return this;
     }
 
+
     /**
      * List of groups that can view the document
      */
@@ -172,6 +175,7 @@ public class DocumentPermissionsDefinition {
         this.allowedGroupIntersections = Optional.ofNullable(allowedGroupIntersections);
         return this;
     }
+
 
     /**
      * List of allowed group intersections. This describes a permissions constraint of the form ((GroupA AND GroupB AND GroupC) OR (GroupX AND GroupY) OR ...
@@ -191,6 +195,7 @@ public class DocumentPermissionsDefinition {
         return this;
     }
 
+
     /**
      * If true, then any Glean user can view the document
      */
@@ -209,6 +214,7 @@ public class DocumentPermissionsDefinition {
         return this;
     }
 
+
     /**
      * If true, then any user who has an account in the datasource can view the document.
      */
@@ -218,7 +224,6 @@ public class DocumentPermissionsDefinition {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -239,11 +244,8 @@ public class DocumentPermissionsDefinition {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            allowedUsers,
-            allowedGroups,
-            allowedGroupIntersections,
-            allowAnonymousAccess,
-            allowAllDatasourceUsersAccess);
+            allowedUsers, allowedGroups, allowedGroupIntersections,
+            allowAnonymousAccess, allowAllDatasourceUsersAccess);
     }
     
     @Override
@@ -255,22 +257,24 @@ public class DocumentPermissionsDefinition {
                 "allowAnonymousAccess", allowAnonymousAccess,
                 "allowAllDatasourceUsersAccess", allowAllDatasourceUsersAccess);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<UserReferenceDefinition>> allowedUsers = Optional.empty();
- 
+
         private Optional<? extends List<String>> allowedGroups = Optional.empty();
- 
+
         private Optional<? extends List<PermissionsGroupIntersectionDefinition>> allowedGroupIntersections = Optional.empty();
- 
+
         private Optional<Boolean> allowAnonymousAccess = Optional.empty();
- 
+
         private Optional<Boolean> allowAllDatasourceUsersAccess = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * List of users who can view the document
@@ -290,6 +294,7 @@ public class DocumentPermissionsDefinition {
             return this;
         }
 
+
         /**
          * List of groups that can view the document
          */
@@ -307,6 +312,7 @@ public class DocumentPermissionsDefinition {
             this.allowedGroups = allowedGroups;
             return this;
         }
+
 
         /**
          * List of allowed group intersections. This describes a permissions constraint of the form ((GroupA AND GroupB AND GroupC) OR (GroupX AND GroupY) OR ...
@@ -326,6 +332,7 @@ public class DocumentPermissionsDefinition {
             return this;
         }
 
+
         /**
          * If true, then any Glean user can view the document
          */
@@ -344,6 +351,7 @@ public class DocumentPermissionsDefinition {
             return this;
         }
 
+
         /**
          * If true, then any user who has an account in the datasource can view the document.
          */
@@ -361,14 +369,13 @@ public class DocumentPermissionsDefinition {
             this.allowAllDatasourceUsersAccess = allowAllDatasourceUsersAccess;
             return this;
         }
-        
+
         public DocumentPermissionsDefinition build() {
+
             return new DocumentPermissionsDefinition(
-                allowedUsers,
-                allowedGroups,
-                allowedGroupIntersections,
-                allowAnonymousAccess,
-                allowAllDatasourceUsersAccess);
+                allowedUsers, allowedGroups, allowedGroupIntersections,
+                allowAnonymousAccess, allowAllDatasourceUsersAccess);
         }
+
     }
 }

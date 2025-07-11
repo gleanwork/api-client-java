@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class EditPinRequest {
 
+public class EditPinRequest {
     /**
      * The query strings for which the pinned result will show.
      */
@@ -81,9 +81,10 @@ public class EditPinRequest {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The query strings for which the pinned result will show.
@@ -93,6 +94,7 @@ public class EditPinRequest {
         this.queries = Optional.ofNullable(queries);
         return this;
     }
+
 
     /**
      * The query strings for which the pinned result will show.
@@ -112,6 +114,7 @@ public class EditPinRequest {
         return this;
     }
 
+
     /**
      * Filters which restrict who should see the pinned document. Values are taken from the corresponding filters in people search.
      */
@@ -130,6 +133,7 @@ public class EditPinRequest {
         return this;
     }
 
+
     /**
      * The opaque id of the pin to be edited.
      */
@@ -139,7 +143,6 @@ public class EditPinRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -158,9 +161,7 @@ public class EditPinRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            queries,
-            audienceFilters,
-            id);
+            queries, audienceFilters, id);
     }
     
     @Override
@@ -170,18 +171,20 @@ public class EditPinRequest {
                 "audienceFilters", audienceFilters,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<String>> queries = Optional.empty();
- 
+
         private Optional<? extends List<FacetFilter>> audienceFilters = Optional.empty();
- 
+
         private Optional<String> id = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The query strings for which the pinned result will show.
@@ -201,6 +204,7 @@ public class EditPinRequest {
             return this;
         }
 
+
         /**
          * Filters which restrict who should see the pinned document. Values are taken from the corresponding filters in people search.
          */
@@ -219,6 +223,7 @@ public class EditPinRequest {
             return this;
         }
 
+
         /**
          * The opaque id of the pin to be edited.
          */
@@ -236,12 +241,12 @@ public class EditPinRequest {
             this.id = id;
             return this;
         }
-        
+
         public EditPinRequest build() {
+
             return new EditPinRequest(
-                queries,
-                audienceFilters,
-                id);
+                queries, audienceFilters, id);
         }
+
     }
 }

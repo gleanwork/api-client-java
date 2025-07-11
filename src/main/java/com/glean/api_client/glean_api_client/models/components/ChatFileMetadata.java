@@ -21,7 +21,6 @@ import java.util.Optional;
  * <p>Metadata of a file uploaded by a user for Chat.
  */
 public class ChatFileMetadata {
-
     /**
      * Current status of the file.
      */
@@ -77,7 +76,8 @@ public class ChatFileMetadata {
     }
     
     public ChatFileMetadata() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -122,9 +122,10 @@ public class ChatFileMetadata {
         return mimeType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Current status of the file.
@@ -134,6 +135,7 @@ public class ChatFileMetadata {
         this.status = Optional.ofNullable(status);
         return this;
     }
+
 
     /**
      * Current status of the file.
@@ -153,6 +155,7 @@ public class ChatFileMetadata {
         return this;
     }
 
+
     /**
      * Upload time, in epoch seconds.
      */
@@ -170,6 +173,7 @@ public class ChatFileMetadata {
         this.processedSize = Optional.ofNullable(processedSize);
         return this;
     }
+
 
     /**
      * Size of the processed file in bytes.
@@ -189,6 +193,7 @@ public class ChatFileMetadata {
         return this;
     }
 
+
     /**
      * Reason for failed status.
      */
@@ -207,6 +212,7 @@ public class ChatFileMetadata {
         return this;
     }
 
+
     /**
      * MIME type of the file.
      */
@@ -216,7 +222,6 @@ public class ChatFileMetadata {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -237,11 +242,8 @@ public class ChatFileMetadata {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            status,
-            uploadTime,
-            processedSize,
-            failureReason,
-            mimeType);
+            status, uploadTime, processedSize,
+            failureReason, mimeType);
     }
     
     @Override
@@ -253,22 +255,24 @@ public class ChatFileMetadata {
                 "failureReason", failureReason,
                 "mimeType", mimeType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ChatFileStatus> status = Optional.empty();
- 
+
         private Optional<Long> uploadTime = Optional.empty();
- 
+
         private Optional<Long> processedSize = Optional.empty();
- 
+
         private Optional<? extends ChatFileFailureReason> failureReason = Optional.empty();
- 
+
         private Optional<String> mimeType = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Current status of the file.
@@ -288,6 +292,7 @@ public class ChatFileMetadata {
             return this;
         }
 
+
         /**
          * Upload time, in epoch seconds.
          */
@@ -305,6 +310,7 @@ public class ChatFileMetadata {
             this.uploadTime = uploadTime;
             return this;
         }
+
 
         /**
          * Size of the processed file in bytes.
@@ -324,6 +330,7 @@ public class ChatFileMetadata {
             return this;
         }
 
+
         /**
          * Reason for failed status.
          */
@@ -342,6 +349,7 @@ public class ChatFileMetadata {
             return this;
         }
 
+
         /**
          * MIME type of the file.
          */
@@ -359,14 +367,13 @@ public class ChatFileMetadata {
             this.mimeType = mimeType;
             return this;
         }
-        
+
         public ChatFileMetadata build() {
+
             return new ChatFileMetadata(
-                status,
-                uploadTime,
-                processedSize,
-                failureReason,
-                mimeType);
+                status, uploadTime, processedSize,
+                failureReason, mimeType);
         }
+
     }
 }

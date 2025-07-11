@@ -14,6 +14,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class CustomFieldValuePerson {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -37,9 +38,10 @@ public class CustomFieldValuePerson {
         return (Optional<Person>) person;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CustomFieldValuePerson withPerson(Person person) {
         Utils.checkNotNull(person, "person");
@@ -47,13 +49,13 @@ public class CustomFieldValuePerson {
         return this;
     }
 
+
     public CustomFieldValuePerson withPerson(Optional<? extends Person> person) {
         Utils.checkNotNull(person, "person");
         this.person = person;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -78,14 +80,16 @@ public class CustomFieldValuePerson {
         return Utils.toString(CustomFieldValuePerson.class,
                 "person", person);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Person> person = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder person(Person person) {
             Utils.checkNotNull(person, "person");
@@ -98,10 +102,12 @@ public class CustomFieldValuePerson {
             this.person = person;
             return this;
         }
-        
+
         public CustomFieldValuePerson build() {
+
             return new CustomFieldValuePerson(
                 person);
         }
+
     }
 }

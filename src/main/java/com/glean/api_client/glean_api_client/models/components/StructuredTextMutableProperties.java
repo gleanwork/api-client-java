@@ -10,6 +10,7 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
+
 public class StructuredTextMutableProperties {
 
     @JsonProperty("text")
@@ -27,9 +28,10 @@ public class StructuredTextMutableProperties {
         return text;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public StructuredTextMutableProperties withText(String text) {
         Utils.checkNotNull(text, "text");
@@ -37,7 +39,6 @@ public class StructuredTextMutableProperties {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -62,24 +63,28 @@ public class StructuredTextMutableProperties {
         return Utils.toString(StructuredTextMutableProperties.class,
                 "text", text);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String text;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder text(String text) {
             Utils.checkNotNull(text, "text");
             this.text = text;
             return this;
         }
-        
+
         public StructuredTextMutableProperties build() {
+
             return new StructuredTextMutableProperties(
                 text);
         }
+
     }
 }

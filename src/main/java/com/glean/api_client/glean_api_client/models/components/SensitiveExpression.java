@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class SensitiveExpression {
 
+public class SensitiveExpression {
     /**
      * Sensitive word, phrase, or regular expression.
      */
@@ -62,9 +62,10 @@ public class SensitiveExpression {
         return (Optional<List<Hotword>>) hotwords;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Sensitive word, phrase, or regular expression.
@@ -74,6 +75,7 @@ public class SensitiveExpression {
         this.expression = Optional.ofNullable(expression);
         return this;
     }
+
 
     /**
      * Sensitive word, phrase, or regular expression.
@@ -93,6 +95,7 @@ public class SensitiveExpression {
         return this;
     }
 
+
     /**
      * Zero to three proximate regular expressions necessary to consider an expression as sensitive content.
      */
@@ -102,7 +105,6 @@ public class SensitiveExpression {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -120,8 +122,7 @@ public class SensitiveExpression {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            expression,
-            hotwords);
+            expression, hotwords);
     }
     
     @Override
@@ -130,16 +131,18 @@ public class SensitiveExpression {
                 "expression", expression,
                 "hotwords", hotwords);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> expression = Optional.empty();
- 
+
         private Optional<? extends List<Hotword>> hotwords = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Sensitive word, phrase, or regular expression.
@@ -159,6 +162,7 @@ public class SensitiveExpression {
             return this;
         }
 
+
         /**
          * Zero to three proximate regular expressions necessary to consider an expression as sensitive content.
          */
@@ -176,11 +180,12 @@ public class SensitiveExpression {
             this.hotwords = hotwords;
             return this;
         }
-        
+
         public SensitiveExpression build() {
+
             return new SensitiveExpression(
-                expression,
-                hotwords);
+                expression, hotwords);
         }
+
     }
 }

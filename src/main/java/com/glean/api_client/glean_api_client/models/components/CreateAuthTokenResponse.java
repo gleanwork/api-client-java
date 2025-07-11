@@ -11,8 +11,8 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 
-public class CreateAuthTokenResponse {
 
+public class CreateAuthTokenResponse {
     /**
      * An authentication token that can be passed to any endpoint via Bearer Authentication
      */
@@ -51,9 +51,10 @@ public class CreateAuthTokenResponse {
         return expirationTime;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An authentication token that can be passed to any endpoint via Bearer Authentication
@@ -73,7 +74,6 @@ public class CreateAuthTokenResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,8 +91,7 @@ public class CreateAuthTokenResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            token,
-            expirationTime);
+            token, expirationTime);
     }
     
     @Override
@@ -101,16 +100,18 @@ public class CreateAuthTokenResponse {
                 "token", token,
                 "expirationTime", expirationTime);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String token;
- 
+
         private Long expirationTime;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An authentication token that can be passed to any endpoint via Bearer Authentication
@@ -121,6 +122,7 @@ public class CreateAuthTokenResponse {
             return this;
         }
 
+
         /**
          * Unix timestamp for when this token expires (in seconds since epoch UTC).
          */
@@ -129,11 +131,12 @@ public class CreateAuthTokenResponse {
             this.expirationTime = expirationTime;
             return this;
         }
-        
+
         public CreateAuthTokenResponse build() {
+
             return new CreateAuthTokenResponse(
-                token,
-                expirationTime);
+                token, expirationTime);
         }
+
     }
 }

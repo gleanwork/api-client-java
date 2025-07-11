@@ -10,10 +10,12 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
+
 public class MessageTextBlock {
 
     @JsonProperty("text")
     private String text;
+
 
     @JsonProperty("type")
     private ContentType type;
@@ -38,9 +40,10 @@ public class MessageTextBlock {
         return type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public MessageTextBlock withText(String text) {
         Utils.checkNotNull(text, "text");
@@ -54,7 +57,6 @@ public class MessageTextBlock {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -72,8 +74,7 @@ public class MessageTextBlock {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            text,
-            type);
+            text, type);
     }
     
     @Override
@@ -82,16 +83,18 @@ public class MessageTextBlock {
                 "text", text,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String text;
- 
+
         private ContentType type;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder text(String text) {
             Utils.checkNotNull(text, "text");
@@ -99,16 +102,18 @@ public class MessageTextBlock {
             return this;
         }
 
+
         public Builder type(ContentType type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
         }
-        
+
         public MessageTextBlock build() {
+
             return new MessageTextBlock(
-                text,
-                type);
+                text, type);
         }
+
     }
 }

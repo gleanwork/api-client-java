@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class Document {
 
+public class Document {
     /**
      * The Glean Document ID.
      */
@@ -45,13 +45,16 @@ public class Document {
     @JsonProperty("docType")
     private Optional<String> docType;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("content")
     private Optional<? extends DocumentContent> content;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("containerDocument")
     private Optional<? extends Document> containerDocument;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("parentDocument")
@@ -70,6 +73,7 @@ public class Document {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("url")
     private Optional<String> url;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
@@ -120,7 +124,10 @@ public class Document {
     }
     
     public Document() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -205,9 +212,10 @@ public class Document {
         return (Optional<List<DocumentSection>>) sections;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The Glean Document ID.
@@ -217,6 +225,7 @@ public class Document {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The Glean Document ID.
@@ -236,6 +245,7 @@ public class Document {
         return this;
     }
 
+
     /**
      * The app or other repository type from which the document was extracted
      */
@@ -253,6 +263,7 @@ public class Document {
         this.connectorType = Optional.ofNullable(connectorType);
         return this;
     }
+
 
     /**
      * The source from which document content was pulled, e.g. an API crawl or browser history
@@ -272,6 +283,7 @@ public class Document {
         return this;
     }
 
+
     /**
      * The datasource-specific type of the document (e.g. for Jira issues, this is the issue type such as Bug or Feature Request).
      */
@@ -287,6 +299,7 @@ public class Document {
         return this;
     }
 
+
     public Document withContent(Optional<? extends DocumentContent> content) {
         Utils.checkNotNull(content, "content");
         this.content = content;
@@ -299,6 +312,7 @@ public class Document {
         return this;
     }
 
+
     public Document withContainerDocument(Optional<? extends Document> containerDocument) {
         Utils.checkNotNull(containerDocument, "containerDocument");
         this.containerDocument = containerDocument;
@@ -310,6 +324,7 @@ public class Document {
         this.parentDocument = Optional.ofNullable(parentDocument);
         return this;
     }
+
 
     public Document withParentDocument(Optional<? extends Document> parentDocument) {
         Utils.checkNotNull(parentDocument, "parentDocument");
@@ -325,6 +340,7 @@ public class Document {
         this.title = Optional.ofNullable(title);
         return this;
     }
+
 
     /**
      * The title of the document.
@@ -344,6 +360,7 @@ public class Document {
         return this;
     }
 
+
     /**
      * A permalink for the document.
      */
@@ -358,6 +375,7 @@ public class Document {
         this.metadata = Optional.ofNullable(metadata);
         return this;
     }
+
 
     public Document withMetadata(Optional<? extends DocumentMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -374,6 +392,7 @@ public class Document {
         return this;
     }
 
+
     /**
      * A list of content sub-sections in the document, e.g. text blocks with different headings in a Drive doc or Confluence page.
      */
@@ -383,7 +402,6 @@ public class Document {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -410,17 +428,10 @@ public class Document {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            datasource,
-            connectorType,
-            docType,
-            content,
-            containerDocument,
-            parentDocument,
-            title,
-            url,
-            metadata,
-            sections);
+            id, datasource, connectorType,
+            docType, content, containerDocument,
+            parentDocument, title, url,
+            metadata, sections);
     }
     
     @Override
@@ -438,34 +449,36 @@ public class Document {
                 "metadata", metadata,
                 "sections", sections);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> datasource = Optional.empty();
- 
+
         private Optional<? extends ConnectorType> connectorType = Optional.empty();
- 
+
         private Optional<String> docType = Optional.empty();
- 
+
         private Optional<? extends DocumentContent> content = Optional.empty();
- 
+
         private Optional<? extends Document> containerDocument = Optional.empty();
- 
+
         private Optional<? extends Document> parentDocument = Optional.empty();
- 
+
         private Optional<String> title = Optional.empty();
- 
+
         private Optional<String> url = Optional.empty();
- 
+
         private Optional<? extends DocumentMetadata> metadata = Optional.empty();
- 
+
         private Optional<? extends List<DocumentSection>> sections = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The Glean Document ID.
@@ -485,6 +498,7 @@ public class Document {
             return this;
         }
 
+
         /**
          * The app or other repository type from which the document was extracted
          */
@@ -502,6 +516,7 @@ public class Document {
             this.datasource = datasource;
             return this;
         }
+
 
         /**
          * The source from which document content was pulled, e.g. an API crawl or browser history
@@ -521,6 +536,7 @@ public class Document {
             return this;
         }
 
+
         /**
          * The datasource-specific type of the document (e.g. for Jira issues, this is the issue type such as Bug or Feature Request).
          */
@@ -539,6 +555,7 @@ public class Document {
             return this;
         }
 
+
         public Builder content(DocumentContent content) {
             Utils.checkNotNull(content, "content");
             this.content = Optional.ofNullable(content);
@@ -550,6 +567,7 @@ public class Document {
             this.content = content;
             return this;
         }
+
 
         public Builder containerDocument(Document containerDocument) {
             Utils.checkNotNull(containerDocument, "containerDocument");
@@ -563,6 +581,7 @@ public class Document {
             return this;
         }
 
+
         public Builder parentDocument(Document parentDocument) {
             Utils.checkNotNull(parentDocument, "parentDocument");
             this.parentDocument = Optional.ofNullable(parentDocument);
@@ -574,6 +593,7 @@ public class Document {
             this.parentDocument = parentDocument;
             return this;
         }
+
 
         /**
          * The title of the document.
@@ -593,6 +613,7 @@ public class Document {
             return this;
         }
 
+
         /**
          * A permalink for the document.
          */
@@ -611,6 +632,7 @@ public class Document {
             return this;
         }
 
+
         public Builder metadata(DocumentMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
@@ -622,6 +644,7 @@ public class Document {
             this.metadata = metadata;
             return this;
         }
+
 
         /**
          * A list of content sub-sections in the document, e.g. text blocks with different headings in a Drive doc or Confluence page.
@@ -640,20 +663,15 @@ public class Document {
             this.sections = sections;
             return this;
         }
-        
+
         public Document build() {
+
             return new Document(
-                id,
-                datasource,
-                connectorType,
-                docType,
-                content,
-                containerDocument,
-                parentDocument,
-                title,
-                url,
-                metadata,
-                sections);
+                id, datasource, connectorType,
+                docType, content, containerDocument,
+                parentDocument, title, url,
+                metadata, sections);
         }
+
     }
 }

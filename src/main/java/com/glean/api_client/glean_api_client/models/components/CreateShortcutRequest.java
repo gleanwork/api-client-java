@@ -10,6 +10,7 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
+
 public class CreateShortcutRequest {
 
     @JsonProperty("data")
@@ -27,9 +28,10 @@ public class CreateShortcutRequest {
         return data;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CreateShortcutRequest withData(ShortcutMutableProperties data) {
         Utils.checkNotNull(data, "data");
@@ -37,7 +39,6 @@ public class CreateShortcutRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -62,24 +63,28 @@ public class CreateShortcutRequest {
         return Utils.toString(CreateShortcutRequest.class,
                 "data", data);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private ShortcutMutableProperties data;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder data(ShortcutMutableProperties data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
         }
-        
+
         public CreateShortcutRequest build() {
+
             return new CreateShortcutRequest(
                 data);
         }
+
     }
 }

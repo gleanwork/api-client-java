@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class GetDocumentsByFacetsResponse {
 
+public class GetDocumentsByFacetsResponse {
     /**
      * The document details, ordered by score.
      */
@@ -81,9 +81,10 @@ public class GetDocumentsByFacetsResponse {
         return cursor;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The document details, ordered by score.
@@ -93,6 +94,7 @@ public class GetDocumentsByFacetsResponse {
         this.documents = Optional.ofNullable(documents);
         return this;
     }
+
 
     /**
      * The document details, ordered by score.
@@ -112,6 +114,7 @@ public class GetDocumentsByFacetsResponse {
         return this;
     }
 
+
     /**
      * Whether more results are available. Use cursor to retrieve them.
      */
@@ -130,6 +133,7 @@ public class GetDocumentsByFacetsResponse {
         return this;
     }
 
+
     /**
      * Cursor that indicates the start of the next page of results. To be passed in "more" requests for this query.
      */
@@ -139,7 +143,6 @@ public class GetDocumentsByFacetsResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -158,9 +161,7 @@ public class GetDocumentsByFacetsResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            documents,
-            hasMoreResults,
-            cursor);
+            documents, hasMoreResults, cursor);
     }
     
     @Override
@@ -170,18 +171,20 @@ public class GetDocumentsByFacetsResponse {
                 "hasMoreResults", hasMoreResults,
                 "cursor", cursor);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<Document>> documents = Optional.empty();
- 
+
         private Optional<Boolean> hasMoreResults = Optional.empty();
- 
+
         private Optional<String> cursor = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The document details, ordered by score.
@@ -201,6 +204,7 @@ public class GetDocumentsByFacetsResponse {
             return this;
         }
 
+
         /**
          * Whether more results are available. Use cursor to retrieve them.
          */
@@ -219,6 +223,7 @@ public class GetDocumentsByFacetsResponse {
             return this;
         }
 
+
         /**
          * Cursor that indicates the start of the next page of results. To be passed in "more" requests for this query.
          */
@@ -236,12 +241,12 @@ public class GetDocumentsByFacetsResponse {
             this.cursor = cursor;
             return this;
         }
-        
+
         public GetDocumentsByFacetsResponse build() {
+
             return new GetDocumentsByFacetsResponse(
-                documents,
-                hasMoreResults,
-                cursor);
+                documents, hasMoreResults, cursor);
         }
+
     }
 }

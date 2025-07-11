@@ -14,8 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class DatasourceObjectTypeDocumentCountEntry {
 
+public class DatasourceObjectTypeDocumentCountEntry {
     /**
      * The object type of the document
      */
@@ -60,9 +60,10 @@ public class DatasourceObjectTypeDocumentCountEntry {
         return count;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The object type of the document
@@ -72,6 +73,7 @@ public class DatasourceObjectTypeDocumentCountEntry {
         this.objectType = Optional.ofNullable(objectType);
         return this;
     }
+
 
     /**
      * The object type of the document
@@ -91,6 +93,7 @@ public class DatasourceObjectTypeDocumentCountEntry {
         return this;
     }
 
+
     /**
      * The number of documents of the corresponding objectType
      */
@@ -100,7 +103,6 @@ public class DatasourceObjectTypeDocumentCountEntry {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -118,8 +120,7 @@ public class DatasourceObjectTypeDocumentCountEntry {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            objectType,
-            count);
+            objectType, count);
     }
     
     @Override
@@ -128,16 +129,18 @@ public class DatasourceObjectTypeDocumentCountEntry {
                 "objectType", objectType,
                 "count", count);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> objectType = Optional.empty();
- 
+
         private Optional<Long> count = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The object type of the document
@@ -157,6 +160,7 @@ public class DatasourceObjectTypeDocumentCountEntry {
             return this;
         }
 
+
         /**
          * The number of documents of the corresponding objectType
          */
@@ -174,11 +178,12 @@ public class DatasourceObjectTypeDocumentCountEntry {
             this.count = count;
             return this;
         }
-        
+
         public DatasourceObjectTypeDocumentCountEntry build() {
+
             return new DatasourceObjectTypeDocumentCountEntry(
-                objectType,
-                count);
+                objectType, count);
         }
+
     }
 }

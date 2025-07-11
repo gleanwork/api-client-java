@@ -23,7 +23,6 @@ import java.util.Optional;
  * <p>Use `id` if you index teams via Glean, and use `name` and `externalLink` if you want to use your own team pages
  */
 public class PersonTeam {
-
     /**
      * Unique identifier
      */
@@ -79,7 +78,8 @@ public class PersonTeam {
     }
     
     public PersonTeam() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -123,9 +123,10 @@ public class PersonTeam {
         return joinDate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unique identifier
@@ -135,6 +136,7 @@ public class PersonTeam {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * Unique identifier
@@ -154,6 +156,7 @@ public class PersonTeam {
         return this;
     }
 
+
     /**
      * Team name
      */
@@ -171,6 +174,7 @@ public class PersonTeam {
         this.externalLink = Optional.ofNullable(externalLink);
         return this;
     }
+
 
     /**
      * Link to a team page on the internet or your company's intranet
@@ -190,6 +194,7 @@ public class PersonTeam {
         return this;
     }
 
+
     /**
      * The team member's relationship to the team. This defaults to MEMBER if not set.
      */
@@ -208,6 +213,7 @@ public class PersonTeam {
         return this;
     }
 
+
     /**
      * The team member's start date
      */
@@ -217,7 +223,6 @@ public class PersonTeam {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -238,11 +243,8 @@ public class PersonTeam {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            name,
-            externalLink,
-            relationship,
-            joinDate);
+            id, name, externalLink,
+            relationship, joinDate);
     }
     
     @Override
@@ -254,22 +256,24 @@ public class PersonTeam {
                 "relationship", relationship,
                 "joinDate", joinDate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> externalLink = Optional.empty();
- 
+
         private Optional<? extends PersonTeamRelationship> relationship;
- 
+
         private Optional<OffsetDateTime> joinDate = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unique identifier
@@ -289,6 +293,7 @@ public class PersonTeam {
             return this;
         }
 
+
         /**
          * Team name
          */
@@ -306,6 +311,7 @@ public class PersonTeam {
             this.name = name;
             return this;
         }
+
 
         /**
          * Link to a team page on the internet or your company's intranet
@@ -325,6 +331,7 @@ public class PersonTeam {
             return this;
         }
 
+
         /**
          * The team member's relationship to the team. This defaults to MEMBER if not set.
          */
@@ -343,6 +350,7 @@ public class PersonTeam {
             return this;
         }
 
+
         /**
          * The team member's start date
          */
@@ -360,18 +368,17 @@ public class PersonTeam {
             this.joinDate = joinDate;
             return this;
         }
-        
+
         public PersonTeam build() {
             if (relationship == null) {
                 relationship = _SINGLETON_VALUE_Relationship.value();
             }
+
             return new PersonTeam(
-                id,
-                name,
-                externalLink,
-                relationship,
-                joinDate);
+                id, name, externalLink,
+                relationship, joinDate);
         }
+
 
         private static final LazySingletonValue<Optional<? extends PersonTeamRelationship>> _SINGLETON_VALUE_Relationship =
                 new LazySingletonValue<>(

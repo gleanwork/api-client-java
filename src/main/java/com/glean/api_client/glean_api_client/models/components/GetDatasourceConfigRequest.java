@@ -16,7 +16,6 @@ import java.lang.String;
  * <p>Describes the request body of the /getdatasourceconfig API call
  */
 public class GetDatasourceConfigRequest {
-
     /**
      * Datasource name for which config is needed.
      */
@@ -38,9 +37,10 @@ public class GetDatasourceConfigRequest {
         return datasource;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Datasource name for which config is needed.
@@ -51,7 +51,6 @@ public class GetDatasourceConfigRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -76,14 +75,16 @@ public class GetDatasourceConfigRequest {
         return Utils.toString(GetDatasourceConfigRequest.class,
                 "datasource", datasource);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String datasource;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Datasource name for which config is needed.
@@ -93,10 +94,12 @@ public class GetDatasourceConfigRequest {
             this.datasource = datasource;
             return this;
         }
-        
+
         public GetDatasourceConfigRequest build() {
+
             return new GetDatasourceConfigRequest(
                 datasource);
         }
+
     }
 }

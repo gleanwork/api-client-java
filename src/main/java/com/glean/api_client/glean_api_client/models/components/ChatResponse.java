@@ -75,7 +75,8 @@ public class ChatResponse {
     }
     
     public ChatResponse() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -117,15 +118,17 @@ public class ChatResponse {
         return chatSessionTrackingToken;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ChatResponse withMessages(List<ChatMessage> messages) {
         Utils.checkNotNull(messages, "messages");
         this.messages = Optional.ofNullable(messages);
         return this;
     }
+
 
     public ChatResponse withMessages(Optional<? extends List<ChatMessage>> messages) {
         Utils.checkNotNull(messages, "messages");
@@ -141,6 +144,7 @@ public class ChatResponse {
         this.chatId = Optional.ofNullable(chatId);
         return this;
     }
+
 
     /**
      * The id of the associated Chat the messages belong to, if one exists.
@@ -160,6 +164,7 @@ public class ChatResponse {
         return this;
     }
 
+
     /**
      * Follow-up prompts for the user to potentially use
      */
@@ -177,6 +182,7 @@ public class ChatResponse {
         this.backendTimeMillis = Optional.ofNullable(backendTimeMillis);
         return this;
     }
+
 
     /**
      * Time in milliseconds the backend took to respond to the request.
@@ -196,6 +202,7 @@ public class ChatResponse {
         return this;
     }
 
+
     /**
      * A token that is used to track the session.
      */
@@ -205,7 +212,6 @@ public class ChatResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -226,11 +232,8 @@ public class ChatResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            messages,
-            chatId,
-            followUpPrompts,
-            backendTimeMillis,
-            chatSessionTrackingToken);
+            messages, chatId, followUpPrompts,
+            backendTimeMillis, chatSessionTrackingToken);
     }
     
     @Override
@@ -242,22 +245,24 @@ public class ChatResponse {
                 "backendTimeMillis", backendTimeMillis,
                 "chatSessionTrackingToken", chatSessionTrackingToken);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<ChatMessage>> messages = Optional.empty();
- 
+
         private Optional<String> chatId = Optional.empty();
- 
+
         private Optional<? extends List<String>> followUpPrompts = Optional.empty();
- 
+
         private Optional<Long> backendTimeMillis = Optional.empty();
- 
+
         private Optional<String> chatSessionTrackingToken = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder messages(List<ChatMessage> messages) {
             Utils.checkNotNull(messages, "messages");
@@ -270,6 +275,7 @@ public class ChatResponse {
             this.messages = messages;
             return this;
         }
+
 
         /**
          * The id of the associated Chat the messages belong to, if one exists.
@@ -289,6 +295,7 @@ public class ChatResponse {
             return this;
         }
 
+
         /**
          * Follow-up prompts for the user to potentially use
          */
@@ -306,6 +313,7 @@ public class ChatResponse {
             this.followUpPrompts = followUpPrompts;
             return this;
         }
+
 
         /**
          * Time in milliseconds the backend took to respond to the request.
@@ -325,6 +333,7 @@ public class ChatResponse {
             return this;
         }
 
+
         /**
          * A token that is used to track the session.
          */
@@ -342,14 +351,13 @@ public class ChatResponse {
             this.chatSessionTrackingToken = chatSessionTrackingToken;
             return this;
         }
-        
+
         public ChatResponse build() {
+
             return new ChatResponse(
-                messages,
-                chatId,
-                followUpPrompts,
-                backendTimeMillis,
-                chatSessionTrackingToken);
+                messages, chatId, followUpPrompts,
+                backendTimeMillis, chatSessionTrackingToken);
         }
+
     }
 }

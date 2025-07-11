@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class SearchResponse {
 
+public class SearchResponse {
     /**
      * A token that should be passed for additional requests related to this request (such as more results requests).
      */
@@ -26,21 +26,26 @@ public class SearchResponse {
     @JsonProperty("trackingToken")
     private Optional<String> trackingToken;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sessionInfo")
     private Optional<? extends SessionInfo> sessionInfo;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("results")
     private Optional<? extends List<SearchResult>> results;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("structuredResults")
     private Optional<? extends List<StructuredResult>> structuredResults;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("generatedQnaResult")
     private Optional<? extends GeneratedQna> generatedQnaResult;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("errorInfo")
@@ -67,9 +72,11 @@ public class SearchResponse {
     @JsonProperty("experimentIds")
     private Optional<? extends List<Long>> experimentIds;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private Optional<? extends SearchResponseMetadata> metadata;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("facetResults")
@@ -88,6 +95,7 @@ public class SearchResponse {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resultTabIds")
     private Optional<? extends List<String>> resultTabIds;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resultsDescription")
@@ -170,7 +178,12 @@ public class SearchResponse {
     }
     
     public SearchResponse() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -297,9 +310,10 @@ public class SearchResponse {
         return hasMoreResults;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A token that should be passed for additional requests related to this request (such as more results requests).
@@ -309,6 +323,7 @@ public class SearchResponse {
         this.trackingToken = Optional.ofNullable(trackingToken);
         return this;
     }
+
 
     /**
      * A token that should be passed for additional requests related to this request (such as more results requests).
@@ -325,6 +340,7 @@ public class SearchResponse {
         return this;
     }
 
+
     public SearchResponse withSessionInfo(Optional<? extends SessionInfo> sessionInfo) {
         Utils.checkNotNull(sessionInfo, "sessionInfo");
         this.sessionInfo = sessionInfo;
@@ -336,6 +352,7 @@ public class SearchResponse {
         this.results = Optional.ofNullable(results);
         return this;
     }
+
 
     public SearchResponse withResults(Optional<? extends List<SearchResult>> results) {
         Utils.checkNotNull(results, "results");
@@ -349,6 +366,7 @@ public class SearchResponse {
         return this;
     }
 
+
     public SearchResponse withStructuredResults(Optional<? extends List<StructuredResult>> structuredResults) {
         Utils.checkNotNull(structuredResults, "structuredResults");
         this.structuredResults = structuredResults;
@@ -361,6 +379,7 @@ public class SearchResponse {
         return this;
     }
 
+
     public SearchResponse withGeneratedQnaResult(Optional<? extends GeneratedQna> generatedQnaResult) {
         Utils.checkNotNull(generatedQnaResult, "generatedQnaResult");
         this.generatedQnaResult = generatedQnaResult;
@@ -372,6 +391,7 @@ public class SearchResponse {
         this.gleanDataError = Optional.ofNullable(gleanDataError);
         return this;
     }
+
 
     public SearchResponse withGleanDataError(Optional<? extends GleanDataError> gleanDataError) {
         Utils.checkNotNull(gleanDataError, "gleanDataError");
@@ -387,6 +407,7 @@ public class SearchResponse {
         this.requestID = Optional.ofNullable(requestID);
         return this;
     }
+
 
     /**
      * A platform-generated request ID to correlate backend logs.
@@ -406,6 +427,7 @@ public class SearchResponse {
         return this;
     }
 
+
     /**
      * Time in milliseconds the backend took to respond to the request.
      */
@@ -424,6 +446,7 @@ public class SearchResponse {
         return this;
     }
 
+
     /**
      * List of experiment ids for the corresponding request.
      */
@@ -439,6 +462,7 @@ public class SearchResponse {
         return this;
     }
 
+
     public SearchResponse withMetadata(Optional<? extends SearchResponseMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
@@ -450,6 +474,7 @@ public class SearchResponse {
         this.facetResults = Optional.ofNullable(facetResults);
         return this;
     }
+
 
     public SearchResponse withFacetResults(Optional<? extends List<FacetResult>> facetResults) {
         Utils.checkNotNull(facetResults, "facetResults");
@@ -465,6 +490,7 @@ public class SearchResponse {
         this.resultTabs = Optional.ofNullable(resultTabs);
         return this;
     }
+
 
     /**
      * All result tabs available for the current query. Populated if QUERY_METADATA is specified in the request.
@@ -484,6 +510,7 @@ public class SearchResponse {
         return this;
     }
 
+
     /**
      * The unique IDs of the result tabs to which this response belongs.
      */
@@ -499,6 +526,7 @@ public class SearchResponse {
         return this;
     }
 
+
     public SearchResponse withResultsDescription(Optional<? extends ResultsDescription> resultsDescription) {
         Utils.checkNotNull(resultsDescription, "resultsDescription");
         this.resultsDescription = resultsDescription;
@@ -513,6 +541,7 @@ public class SearchResponse {
         this.rewrittenFacetFilters = Optional.ofNullable(rewrittenFacetFilters);
         return this;
     }
+
 
     /**
      * The actual applied facet filters based on the operators and facetFilters in the query. Useful for mapping typed operators to visual facets.
@@ -532,6 +561,7 @@ public class SearchResponse {
         return this;
     }
 
+
     /**
      * Cursor that indicates the start of the next page of results. To be passed in "more" requests for this query.
      */
@@ -550,6 +580,7 @@ public class SearchResponse {
         return this;
     }
 
+
     /**
      * Whether more results are available. Use cursor to retrieve them.
      */
@@ -559,7 +590,6 @@ public class SearchResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -592,23 +622,12 @@ public class SearchResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            trackingToken,
-            sessionInfo,
-            results,
-            structuredResults,
-            generatedQnaResult,
-            gleanDataError,
-            requestID,
-            backendTimeMillis,
-            experimentIds,
-            metadata,
-            facetResults,
-            resultTabs,
-            resultTabIds,
-            resultsDescription,
-            rewrittenFacetFilters,
-            cursor,
-            hasMoreResults);
+            trackingToken, sessionInfo, results,
+            structuredResults, generatedQnaResult, gleanDataError,
+            requestID, backendTimeMillis, experimentIds,
+            metadata, facetResults, resultTabs,
+            resultTabIds, resultsDescription, rewrittenFacetFilters,
+            cursor, hasMoreResults);
     }
     
     @Override
@@ -632,46 +651,48 @@ public class SearchResponse {
                 "cursor", cursor,
                 "hasMoreResults", hasMoreResults);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> trackingToken = Optional.empty();
- 
+
         private Optional<? extends SessionInfo> sessionInfo = Optional.empty();
- 
+
         private Optional<? extends List<SearchResult>> results = Optional.empty();
- 
+
         private Optional<? extends List<StructuredResult>> structuredResults = Optional.empty();
- 
+
         private Optional<? extends GeneratedQna> generatedQnaResult = Optional.empty();
- 
+
         private Optional<? extends GleanDataError> gleanDataError = Optional.empty();
- 
+
         private Optional<String> requestID = Optional.empty();
- 
+
         private Optional<Long> backendTimeMillis = Optional.empty();
- 
+
         private Optional<? extends List<Long>> experimentIds = Optional.empty();
- 
+
         private Optional<? extends SearchResponseMetadata> metadata = Optional.empty();
- 
+
         private Optional<? extends List<FacetResult>> facetResults = Optional.empty();
- 
+
         private Optional<? extends List<ResultTab>> resultTabs = Optional.empty();
- 
+
         private Optional<? extends List<String>> resultTabIds = Optional.empty();
- 
+
         private Optional<? extends ResultsDescription> resultsDescription = Optional.empty();
- 
+
         private Optional<? extends List<FacetFilter>> rewrittenFacetFilters = Optional.empty();
- 
+
         private Optional<String> cursor = Optional.empty();
- 
+
         private Optional<Boolean> hasMoreResults = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A token that should be passed for additional requests related to this request (such as more results requests).
@@ -691,6 +712,7 @@ public class SearchResponse {
             return this;
         }
 
+
         public Builder sessionInfo(SessionInfo sessionInfo) {
             Utils.checkNotNull(sessionInfo, "sessionInfo");
             this.sessionInfo = Optional.ofNullable(sessionInfo);
@@ -702,6 +724,7 @@ public class SearchResponse {
             this.sessionInfo = sessionInfo;
             return this;
         }
+
 
         public Builder results(List<SearchResult> results) {
             Utils.checkNotNull(results, "results");
@@ -715,6 +738,7 @@ public class SearchResponse {
             return this;
         }
 
+
         public Builder structuredResults(List<StructuredResult> structuredResults) {
             Utils.checkNotNull(structuredResults, "structuredResults");
             this.structuredResults = Optional.ofNullable(structuredResults);
@@ -726,6 +750,7 @@ public class SearchResponse {
             this.structuredResults = structuredResults;
             return this;
         }
+
 
         public Builder generatedQnaResult(GeneratedQna generatedQnaResult) {
             Utils.checkNotNull(generatedQnaResult, "generatedQnaResult");
@@ -739,6 +764,7 @@ public class SearchResponse {
             return this;
         }
 
+
         public Builder gleanDataError(GleanDataError gleanDataError) {
             Utils.checkNotNull(gleanDataError, "gleanDataError");
             this.gleanDataError = Optional.ofNullable(gleanDataError);
@@ -750,6 +776,7 @@ public class SearchResponse {
             this.gleanDataError = gleanDataError;
             return this;
         }
+
 
         /**
          * A platform-generated request ID to correlate backend logs.
@@ -769,6 +796,7 @@ public class SearchResponse {
             return this;
         }
 
+
         /**
          * Time in milliseconds the backend took to respond to the request.
          */
@@ -786,6 +814,7 @@ public class SearchResponse {
             this.backendTimeMillis = backendTimeMillis;
             return this;
         }
+
 
         /**
          * List of experiment ids for the corresponding request.
@@ -805,6 +834,7 @@ public class SearchResponse {
             return this;
         }
 
+
         public Builder metadata(SearchResponseMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
@@ -817,6 +847,7 @@ public class SearchResponse {
             return this;
         }
 
+
         public Builder facetResults(List<FacetResult> facetResults) {
             Utils.checkNotNull(facetResults, "facetResults");
             this.facetResults = Optional.ofNullable(facetResults);
@@ -828,6 +859,7 @@ public class SearchResponse {
             this.facetResults = facetResults;
             return this;
         }
+
 
         /**
          * All result tabs available for the current query. Populated if QUERY_METADATA is specified in the request.
@@ -847,6 +879,7 @@ public class SearchResponse {
             return this;
         }
 
+
         /**
          * The unique IDs of the result tabs to which this response belongs.
          */
@@ -865,6 +898,7 @@ public class SearchResponse {
             return this;
         }
 
+
         public Builder resultsDescription(ResultsDescription resultsDescription) {
             Utils.checkNotNull(resultsDescription, "resultsDescription");
             this.resultsDescription = Optional.ofNullable(resultsDescription);
@@ -876,6 +910,7 @@ public class SearchResponse {
             this.resultsDescription = resultsDescription;
             return this;
         }
+
 
         /**
          * The actual applied facet filters based on the operators and facetFilters in the query. Useful for mapping typed operators to visual facets.
@@ -895,6 +930,7 @@ public class SearchResponse {
             return this;
         }
 
+
         /**
          * Cursor that indicates the start of the next page of results. To be passed in "more" requests for this query.
          */
@@ -913,6 +949,7 @@ public class SearchResponse {
             return this;
         }
 
+
         /**
          * Whether more results are available. Use cursor to retrieve them.
          */
@@ -930,26 +967,17 @@ public class SearchResponse {
             this.hasMoreResults = hasMoreResults;
             return this;
         }
-        
+
         public SearchResponse build() {
+
             return new SearchResponse(
-                trackingToken,
-                sessionInfo,
-                results,
-                structuredResults,
-                generatedQnaResult,
-                gleanDataError,
-                requestID,
-                backendTimeMillis,
-                experimentIds,
-                metadata,
-                facetResults,
-                resultTabs,
-                resultTabIds,
-                resultsDescription,
-                rewrittenFacetFilters,
-                cursor,
-                hasMoreResults);
+                trackingToken, sessionInfo, results,
+                structuredResults, generatedQnaResult, gleanDataError,
+                requestID, backendTimeMillis, experimentIds,
+                metadata, facetResults, resultTabs,
+                resultTabIds, resultsDescription, rewrittenFacetFilters,
+                cursor, hasMoreResults);
         }
+
     }
 }

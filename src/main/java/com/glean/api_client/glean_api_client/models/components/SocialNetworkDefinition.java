@@ -19,7 +19,6 @@ import java.util.Optional;
  * <p>Employee's social network profile
  */
 public class SocialNetworkDefinition {
-
     /**
      * Possible values are "twitter", "linkedin".
      */
@@ -82,9 +81,10 @@ public class SocialNetworkDefinition {
         return profileUrl;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Possible values are "twitter", "linkedin".
@@ -94,6 +94,7 @@ public class SocialNetworkDefinition {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * Possible values are "twitter", "linkedin".
@@ -113,6 +114,7 @@ public class SocialNetworkDefinition {
         return this;
     }
 
+
     /**
      * Human-readable profile name.
      */
@@ -131,6 +133,7 @@ public class SocialNetworkDefinition {
         return this;
     }
 
+
     /**
      * Link to profile.
      */
@@ -140,7 +143,6 @@ public class SocialNetworkDefinition {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -159,9 +161,7 @@ public class SocialNetworkDefinition {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            profileName,
-            profileUrl);
+            name, profileName, profileUrl);
     }
     
     @Override
@@ -171,18 +171,20 @@ public class SocialNetworkDefinition {
                 "profileName", profileName,
                 "profileUrl", profileUrl);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> profileName = Optional.empty();
- 
+
         private Optional<String> profileUrl = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Possible values are "twitter", "linkedin".
@@ -202,6 +204,7 @@ public class SocialNetworkDefinition {
             return this;
         }
 
+
         /**
          * Human-readable profile name.
          */
@@ -220,6 +223,7 @@ public class SocialNetworkDefinition {
             return this;
         }
 
+
         /**
          * Link to profile.
          */
@@ -237,12 +241,12 @@ public class SocialNetworkDefinition {
             this.profileUrl = profileUrl;
             return this;
         }
-        
+
         public SocialNetworkDefinition build() {
+
             return new SocialNetworkDefinition(
-                name,
-                profileName,
-                profileUrl);
+                name, profileName, profileUrl);
         }
+
     }
 }

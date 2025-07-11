@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class ResultsResponse {
 
+public class ResultsResponse {
     /**
      * A token that should be passed for additional requests related to this request (such as more results requests).
      */
@@ -25,21 +25,26 @@ public class ResultsResponse {
     @JsonProperty("trackingToken")
     private Optional<String> trackingToken;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sessionInfo")
     private Optional<? extends SessionInfo> sessionInfo;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("results")
     private Optional<? extends List<SearchResult>> results;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("structuredResults")
     private Optional<? extends List<StructuredResult>> structuredResults;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("generatedQnaResult")
     private Optional<? extends GeneratedQna> generatedQnaResult;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("errorInfo")
@@ -88,7 +93,9 @@ public class ResultsResponse {
     }
     
     public ResultsResponse() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -145,9 +152,10 @@ public class ResultsResponse {
         return backendTimeMillis;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A token that should be passed for additional requests related to this request (such as more results requests).
@@ -157,6 +165,7 @@ public class ResultsResponse {
         this.trackingToken = Optional.ofNullable(trackingToken);
         return this;
     }
+
 
     /**
      * A token that should be passed for additional requests related to this request (such as more results requests).
@@ -173,6 +182,7 @@ public class ResultsResponse {
         return this;
     }
 
+
     public ResultsResponse withSessionInfo(Optional<? extends SessionInfo> sessionInfo) {
         Utils.checkNotNull(sessionInfo, "sessionInfo");
         this.sessionInfo = sessionInfo;
@@ -184,6 +194,7 @@ public class ResultsResponse {
         this.results = Optional.ofNullable(results);
         return this;
     }
+
 
     public ResultsResponse withResults(Optional<? extends List<SearchResult>> results) {
         Utils.checkNotNull(results, "results");
@@ -197,6 +208,7 @@ public class ResultsResponse {
         return this;
     }
 
+
     public ResultsResponse withStructuredResults(Optional<? extends List<StructuredResult>> structuredResults) {
         Utils.checkNotNull(structuredResults, "structuredResults");
         this.structuredResults = structuredResults;
@@ -209,6 +221,7 @@ public class ResultsResponse {
         return this;
     }
 
+
     public ResultsResponse withGeneratedQnaResult(Optional<? extends GeneratedQna> generatedQnaResult) {
         Utils.checkNotNull(generatedQnaResult, "generatedQnaResult");
         this.generatedQnaResult = generatedQnaResult;
@@ -220,6 +233,7 @@ public class ResultsResponse {
         this.gleanDataError = Optional.ofNullable(gleanDataError);
         return this;
     }
+
 
     public ResultsResponse withGleanDataError(Optional<? extends GleanDataError> gleanDataError) {
         Utils.checkNotNull(gleanDataError, "gleanDataError");
@@ -235,6 +249,7 @@ public class ResultsResponse {
         this.requestID = Optional.ofNullable(requestID);
         return this;
     }
+
 
     /**
      * A platform-generated request ID to correlate backend logs.
@@ -254,6 +269,7 @@ public class ResultsResponse {
         return this;
     }
 
+
     /**
      * Time in milliseconds the backend took to respond to the request.
      */
@@ -263,7 +279,6 @@ public class ResultsResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -287,14 +302,9 @@ public class ResultsResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            trackingToken,
-            sessionInfo,
-            results,
-            structuredResults,
-            generatedQnaResult,
-            gleanDataError,
-            requestID,
-            backendTimeMillis);
+            trackingToken, sessionInfo, results,
+            structuredResults, generatedQnaResult, gleanDataError,
+            requestID, backendTimeMillis);
     }
     
     @Override
@@ -309,28 +319,30 @@ public class ResultsResponse {
                 "requestID", requestID,
                 "backendTimeMillis", backendTimeMillis);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> trackingToken = Optional.empty();
- 
+
         private Optional<? extends SessionInfo> sessionInfo = Optional.empty();
- 
+
         private Optional<? extends List<SearchResult>> results = Optional.empty();
- 
+
         private Optional<? extends List<StructuredResult>> structuredResults = Optional.empty();
- 
+
         private Optional<? extends GeneratedQna> generatedQnaResult = Optional.empty();
- 
+
         private Optional<? extends GleanDataError> gleanDataError = Optional.empty();
- 
+
         private Optional<String> requestID = Optional.empty();
- 
+
         private Optional<Long> backendTimeMillis = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A token that should be passed for additional requests related to this request (such as more results requests).
@@ -350,6 +362,7 @@ public class ResultsResponse {
             return this;
         }
 
+
         public Builder sessionInfo(SessionInfo sessionInfo) {
             Utils.checkNotNull(sessionInfo, "sessionInfo");
             this.sessionInfo = Optional.ofNullable(sessionInfo);
@@ -361,6 +374,7 @@ public class ResultsResponse {
             this.sessionInfo = sessionInfo;
             return this;
         }
+
 
         public Builder results(List<SearchResult> results) {
             Utils.checkNotNull(results, "results");
@@ -374,6 +388,7 @@ public class ResultsResponse {
             return this;
         }
 
+
         public Builder structuredResults(List<StructuredResult> structuredResults) {
             Utils.checkNotNull(structuredResults, "structuredResults");
             this.structuredResults = Optional.ofNullable(structuredResults);
@@ -385,6 +400,7 @@ public class ResultsResponse {
             this.structuredResults = structuredResults;
             return this;
         }
+
 
         public Builder generatedQnaResult(GeneratedQna generatedQnaResult) {
             Utils.checkNotNull(generatedQnaResult, "generatedQnaResult");
@@ -398,6 +414,7 @@ public class ResultsResponse {
             return this;
         }
 
+
         public Builder gleanDataError(GleanDataError gleanDataError) {
             Utils.checkNotNull(gleanDataError, "gleanDataError");
             this.gleanDataError = Optional.ofNullable(gleanDataError);
@@ -409,6 +426,7 @@ public class ResultsResponse {
             this.gleanDataError = gleanDataError;
             return this;
         }
+
 
         /**
          * A platform-generated request ID to correlate backend logs.
@@ -428,6 +446,7 @@ public class ResultsResponse {
             return this;
         }
 
+
         /**
          * Time in milliseconds the backend took to respond to the request.
          */
@@ -445,17 +464,14 @@ public class ResultsResponse {
             this.backendTimeMillis = backendTimeMillis;
             return this;
         }
-        
+
         public ResultsResponse build() {
+
             return new ResultsResponse(
-                trackingToken,
-                sessionInfo,
-                results,
-                structuredResults,
-                generatedQnaResult,
-                gleanDataError,
-                requestID,
-                backendTimeMillis);
+                trackingToken, sessionInfo, results,
+                structuredResults, generatedQnaResult, gleanDataError,
+                requestID, backendTimeMillis);
         }
+
     }
 }

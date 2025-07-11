@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class UserInsightsResponse {
 
+public class UserInsightsResponse {
     /**
      * Unix timestamp of the last activity processed to make the response (in seconds since epoch UTC).
      */
@@ -83,7 +83,8 @@ public class UserInsightsResponse {
     }
     
     public UserInsightsResponse() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -137,9 +138,10 @@ public class UserInsightsResponse {
         return (Optional<List<String>>) departments;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unix timestamp of the last activity processed to make the response (in seconds since epoch UTC).
@@ -149,6 +151,7 @@ public class UserInsightsResponse {
         this.lastLogTimestamp = Optional.ofNullable(lastLogTimestamp);
         return this;
     }
+
 
     /**
      * Unix timestamp of the last activity processed to make the response (in seconds since epoch UTC).
@@ -168,6 +171,7 @@ public class UserInsightsResponse {
         return this;
     }
 
+
     /**
      * Insights for all active users with respect to set of actions.
      */
@@ -185,6 +189,7 @@ public class UserInsightsResponse {
         this.inactiveInsights = Optional.ofNullable(inactiveInsights);
         return this;
     }
+
 
     /**
      * Insights for all in inactive users with respect to set of actions and time period. Activity count will be set to 0.
@@ -204,6 +209,7 @@ public class UserInsightsResponse {
         return this;
     }
 
+
     /**
      * Total number of teammates that have logged in to the product, that are still valid teammates.
      */
@@ -221,6 +227,7 @@ public class UserInsightsResponse {
         this.totalActiveUsers = Optional.ofNullable(totalActiveUsers);
         return this;
     }
+
 
     /**
      * Total number of active users in the requested period.
@@ -240,6 +247,7 @@ public class UserInsightsResponse {
         return this;
     }
 
+
     /**
      * list of departments applicable for users tab.
      */
@@ -249,7 +257,6 @@ public class UserInsightsResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -271,12 +278,8 @@ public class UserInsightsResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            lastLogTimestamp,
-            activityInsights,
-            inactiveInsights,
-            totalTeammates,
-            totalActiveUsers,
-            departments);
+            lastLogTimestamp, activityInsights, inactiveInsights,
+            totalTeammates, totalActiveUsers, departments);
     }
     
     @Override
@@ -289,24 +292,26 @@ public class UserInsightsResponse {
                 "totalActiveUsers", totalActiveUsers,
                 "departments", departments);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> lastLogTimestamp = Optional.empty();
- 
+
         private Optional<? extends List<UserActivityInsight>> activityInsights = Optional.empty();
- 
+
         private Optional<? extends List<UserActivityInsight>> inactiveInsights = Optional.empty();
- 
+
         private Optional<Long> totalTeammates = Optional.empty();
- 
+
         private Optional<Long> totalActiveUsers = Optional.empty();
- 
+
         private Optional<? extends List<String>> departments = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unix timestamp of the last activity processed to make the response (in seconds since epoch UTC).
@@ -326,6 +331,7 @@ public class UserInsightsResponse {
             return this;
         }
 
+
         /**
          * Insights for all active users with respect to set of actions.
          */
@@ -343,6 +349,7 @@ public class UserInsightsResponse {
             this.activityInsights = activityInsights;
             return this;
         }
+
 
         /**
          * Insights for all in inactive users with respect to set of actions and time period. Activity count will be set to 0.
@@ -362,6 +369,7 @@ public class UserInsightsResponse {
             return this;
         }
 
+
         /**
          * Total number of teammates that have logged in to the product, that are still valid teammates.
          */
@@ -379,6 +387,7 @@ public class UserInsightsResponse {
             this.totalTeammates = totalTeammates;
             return this;
         }
+
 
         /**
          * Total number of active users in the requested period.
@@ -398,6 +407,7 @@ public class UserInsightsResponse {
             return this;
         }
 
+
         /**
          * list of departments applicable for users tab.
          */
@@ -415,15 +425,13 @@ public class UserInsightsResponse {
             this.departments = departments;
             return this;
         }
-        
+
         public UserInsightsResponse build() {
+
             return new UserInsightsResponse(
-                lastLogTimestamp,
-                activityInsights,
-                inactiveInsights,
-                totalTeammates,
-                totalActiveUsers,
-                departments);
+                lastLogTimestamp, activityInsights, inactiveInsights,
+                totalTeammates, totalActiveUsers, departments);
         }
+
     }
 }

@@ -25,7 +25,6 @@ public class Tools {
     Tools(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List available tools
      * 
@@ -58,18 +57,16 @@ public class Tools {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetRestApiV1ToolsListResponse list(
-            Optional<? extends List<String>> toolNames) throws Exception {
+    public GetRestApiV1ToolsListResponse list(Optional<? extends List<String>> toolNames) throws Exception {
         GetRestApiV1ToolsListRequest request =
             GetRestApiV1ToolsListRequest
                 .builder()
                 .toolNames(toolNames)
                 .build();
         RequestOperation<GetRestApiV1ToolsListRequest, GetRestApiV1ToolsListResponse> operation
-              = new GetRestApiV1ToolsListOperation( sdkConfiguration);
+              = new GetRestApiV1ToolsListOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Execute the specified tool
@@ -91,10 +88,9 @@ public class Tools {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostRestApiV1ToolsCallResponse run(
-            ToolsCallRequest request) throws Exception {
+    public PostRestApiV1ToolsCallResponse run(ToolsCallRequest request) throws Exception {
         RequestOperation<ToolsCallRequest, PostRestApiV1ToolsCallResponse> operation
-              = new PostRestApiV1ToolsCallOperation( sdkConfiguration);
+              = new PostRestApiV1ToolsCallOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -16,11 +16,13 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
+
 public class AutocompleteRequest {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("trackingToken")
     private Optional<String> trackingToken;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sessionInfo")
@@ -97,7 +99,9 @@ public class AutocompleteRequest {
     }
     
     public AutocompleteRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -162,15 +166,17 @@ public class AutocompleteRequest {
         return (Optional<List<AuthToken>>) authTokens;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public AutocompleteRequest withTrackingToken(String trackingToken) {
         Utils.checkNotNull(trackingToken, "trackingToken");
         this.trackingToken = Optional.ofNullable(trackingToken);
         return this;
     }
+
 
     public AutocompleteRequest withTrackingToken(Optional<String> trackingToken) {
         Utils.checkNotNull(trackingToken, "trackingToken");
@@ -183,6 +189,7 @@ public class AutocompleteRequest {
         this.sessionInfo = Optional.ofNullable(sessionInfo);
         return this;
     }
+
 
     public AutocompleteRequest withSessionInfo(Optional<? extends SessionInfo> sessionInfo) {
         Utils.checkNotNull(sessionInfo, "sessionInfo");
@@ -198,6 +205,7 @@ public class AutocompleteRequest {
         this.query = Optional.ofNullable(query);
         return this;
     }
+
 
     /**
      * Partially typed query.
@@ -217,6 +225,7 @@ public class AutocompleteRequest {
         return this;
     }
 
+
     /**
      * Filter results to only those relevant to one or more datasources (e.g. jira, gdrive). Results are unfiltered if missing.
      */
@@ -234,6 +243,7 @@ public class AutocompleteRequest {
         this.datasource = Optional.ofNullable(datasource);
         return this;
     }
+
 
     /**
      * Filter to only return results relevant to the given datasource.
@@ -253,6 +263,7 @@ public class AutocompleteRequest {
         return this;
     }
 
+
     /**
      * Filter to only return results of the given type(s). All types may be returned if omitted.
      */
@@ -270,6 +281,7 @@ public class AutocompleteRequest {
         this.resultSize = Optional.ofNullable(resultSize);
         return this;
     }
+
 
     /**
      * Maximum number of results to be returned. If no value is provided, the backend will cap at 200.
@@ -289,6 +301,7 @@ public class AutocompleteRequest {
         return this;
     }
 
+
     /**
      * Auth tokens which may be used for federated results.
      */
@@ -298,7 +311,6 @@ public class AutocompleteRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -322,14 +334,9 @@ public class AutocompleteRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            trackingToken,
-            sessionInfo,
-            query,
-            datasourcesFilter,
-            datasource,
-            resultTypes,
-            resultSize,
-            authTokens);
+            trackingToken, sessionInfo, query,
+            datasourcesFilter, datasource, resultTypes,
+            resultSize, authTokens);
     }
     
     @Override
@@ -344,28 +351,30 @@ public class AutocompleteRequest {
                 "resultSize", resultSize,
                 "authTokens", authTokens);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> trackingToken = Optional.empty();
- 
+
         private Optional<? extends SessionInfo> sessionInfo = Optional.empty();
- 
+
         private Optional<String> query = Optional.empty();
- 
+
         private Optional<? extends List<String>> datasourcesFilter = Optional.empty();
- 
+
         private Optional<String> datasource = Optional.empty();
- 
+
         private Optional<? extends List<AutocompleteRequestResultType>> resultTypes = Optional.empty();
- 
+
         private Optional<Long> resultSize = Optional.empty();
- 
+
         private Optional<? extends List<AuthToken>> authTokens = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder trackingToken(String trackingToken) {
             Utils.checkNotNull(trackingToken, "trackingToken");
@@ -379,6 +388,7 @@ public class AutocompleteRequest {
             return this;
         }
 
+
         public Builder sessionInfo(SessionInfo sessionInfo) {
             Utils.checkNotNull(sessionInfo, "sessionInfo");
             this.sessionInfo = Optional.ofNullable(sessionInfo);
@@ -390,6 +400,7 @@ public class AutocompleteRequest {
             this.sessionInfo = sessionInfo;
             return this;
         }
+
 
         /**
          * Partially typed query.
@@ -409,6 +420,7 @@ public class AutocompleteRequest {
             return this;
         }
 
+
         /**
          * Filter results to only those relevant to one or more datasources (e.g. jira, gdrive). Results are unfiltered if missing.
          */
@@ -426,6 +438,7 @@ public class AutocompleteRequest {
             this.datasourcesFilter = datasourcesFilter;
             return this;
         }
+
 
         /**
          * Filter to only return results relevant to the given datasource.
@@ -445,6 +458,7 @@ public class AutocompleteRequest {
             return this;
         }
 
+
         /**
          * Filter to only return results of the given type(s). All types may be returned if omitted.
          */
@@ -462,6 +476,7 @@ public class AutocompleteRequest {
             this.resultTypes = resultTypes;
             return this;
         }
+
 
         /**
          * Maximum number of results to be returned. If no value is provided, the backend will cap at 200.
@@ -481,6 +496,7 @@ public class AutocompleteRequest {
             return this;
         }
 
+
         /**
          * Auth tokens which may be used for federated results.
          */
@@ -498,17 +514,14 @@ public class AutocompleteRequest {
             this.authTokens = authTokens;
             return this;
         }
-        
+
         public AutocompleteRequest build() {
+
             return new AutocompleteRequest(
-                trackingToken,
-                sessionInfo,
-                query,
-                datasourcesFilter,
-                datasource,
-                resultTypes,
-                resultSize,
-                authTokens);
+                trackingToken, sessionInfo, query,
+                datasourcesFilter, datasource, resultTypes,
+                resultSize, authTokens);
         }
+
     }
 }

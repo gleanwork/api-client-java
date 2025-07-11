@@ -16,6 +16,7 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
+
 public class VerificationMetadata {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -36,6 +37,7 @@ public class VerificationMetadata {
     @JsonProperty("expirationTs")
     private Optional<Long> expirationTs;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("document")
     private Optional<? extends Document> document;
@@ -46,6 +48,7 @@ public class VerificationMetadata {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reminders")
     private Optional<? extends List<Reminder>> reminders;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lastReminder")
@@ -94,7 +97,9 @@ public class VerificationMetadata {
     }
     
     public VerificationMetadata() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -158,15 +163,17 @@ public class VerificationMetadata {
         return (Optional<List<Person>>) candidateVerifiers;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public VerificationMetadata withLastVerifier(Person lastVerifier) {
         Utils.checkNotNull(lastVerifier, "lastVerifier");
         this.lastVerifier = Optional.ofNullable(lastVerifier);
         return this;
     }
+
 
     public VerificationMetadata withLastVerifier(Optional<? extends Person> lastVerifier) {
         Utils.checkNotNull(lastVerifier, "lastVerifier");
@@ -182,6 +189,7 @@ public class VerificationMetadata {
         this.lastVerificationTs = Optional.ofNullable(lastVerificationTs);
         return this;
     }
+
 
     /**
      * The unix timestamp of the verification (in seconds since epoch UTC).
@@ -201,6 +209,7 @@ public class VerificationMetadata {
         return this;
     }
 
+
     /**
      * The unix timestamp of the verification expiration if applicable (in seconds since epoch UTC).
      */
@@ -215,6 +224,7 @@ public class VerificationMetadata {
         this.document = Optional.ofNullable(document);
         return this;
     }
+
 
     public VerificationMetadata withDocument(Optional<? extends Document> document) {
         Utils.checkNotNull(document, "document");
@@ -231,6 +241,7 @@ public class VerificationMetadata {
         return this;
     }
 
+
     /**
      * Info about all outstanding verification reminders for the document if exists.
      */
@@ -246,6 +257,7 @@ public class VerificationMetadata {
         return this;
     }
 
+
     public VerificationMetadata withLastReminder(Optional<? extends Reminder> lastReminder) {
         Utils.checkNotNull(lastReminder, "lastReminder");
         this.lastReminder = lastReminder;
@@ -260,6 +272,7 @@ public class VerificationMetadata {
         this.visitorCount = Optional.ofNullable(visitorCount);
         return this;
     }
+
 
     /**
      * Number of visitors to the document during included time periods.
@@ -279,6 +292,7 @@ public class VerificationMetadata {
         return this;
     }
 
+
     /**
      * List of potential verifiers for the document e.g. old verifiers and/or users with view/edit permissions.
      */
@@ -288,7 +302,6 @@ public class VerificationMetadata {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -312,14 +325,9 @@ public class VerificationMetadata {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            lastVerifier,
-            lastVerificationTs,
-            expirationTs,
-            document,
-            reminders,
-            lastReminder,
-            visitorCount,
-            candidateVerifiers);
+            lastVerifier, lastVerificationTs, expirationTs,
+            document, reminders, lastReminder,
+            visitorCount, candidateVerifiers);
     }
     
     @Override
@@ -334,28 +342,30 @@ public class VerificationMetadata {
                 "visitorCount", visitorCount,
                 "candidateVerifiers", candidateVerifiers);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Person> lastVerifier = Optional.empty();
- 
+
         private Optional<Long> lastVerificationTs = Optional.empty();
- 
+
         private Optional<Long> expirationTs = Optional.empty();
- 
+
         private Optional<? extends Document> document = Optional.empty();
- 
+
         private Optional<? extends List<Reminder>> reminders = Optional.empty();
- 
+
         private Optional<? extends Reminder> lastReminder = Optional.empty();
- 
+
         private Optional<? extends List<CountInfo>> visitorCount = Optional.empty();
- 
+
         private Optional<? extends List<Person>> candidateVerifiers = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder lastVerifier(Person lastVerifier) {
             Utils.checkNotNull(lastVerifier, "lastVerifier");
@@ -368,6 +378,7 @@ public class VerificationMetadata {
             this.lastVerifier = lastVerifier;
             return this;
         }
+
 
         /**
          * The unix timestamp of the verification (in seconds since epoch UTC).
@@ -387,6 +398,7 @@ public class VerificationMetadata {
             return this;
         }
 
+
         /**
          * The unix timestamp of the verification expiration if applicable (in seconds since epoch UTC).
          */
@@ -405,6 +417,7 @@ public class VerificationMetadata {
             return this;
         }
 
+
         public Builder document(Document document) {
             Utils.checkNotNull(document, "document");
             this.document = Optional.ofNullable(document);
@@ -416,6 +429,7 @@ public class VerificationMetadata {
             this.document = document;
             return this;
         }
+
 
         /**
          * Info about all outstanding verification reminders for the document if exists.
@@ -435,6 +449,7 @@ public class VerificationMetadata {
             return this;
         }
 
+
         public Builder lastReminder(Reminder lastReminder) {
             Utils.checkNotNull(lastReminder, "lastReminder");
             this.lastReminder = Optional.ofNullable(lastReminder);
@@ -446,6 +461,7 @@ public class VerificationMetadata {
             this.lastReminder = lastReminder;
             return this;
         }
+
 
         /**
          * Number of visitors to the document during included time periods.
@@ -465,6 +481,7 @@ public class VerificationMetadata {
             return this;
         }
 
+
         /**
          * List of potential verifiers for the document e.g. old verifiers and/or users with view/edit permissions.
          */
@@ -482,17 +499,14 @@ public class VerificationMetadata {
             this.candidateVerifiers = candidateVerifiers;
             return this;
         }
-        
+
         public VerificationMetadata build() {
+
             return new VerificationMetadata(
-                lastVerifier,
-                lastVerificationTs,
-                expirationTs,
-                document,
-                reminders,
-                lastReminder,
-                visitorCount,
-                candidateVerifiers);
+                lastVerifier, lastVerificationTs, expirationTs,
+                document, reminders, lastReminder,
+                visitorCount, candidateVerifiers);
         }
+
     }
 }

@@ -29,7 +29,7 @@ public class GetpinRequestBuilder {
     public GetpinResponse call() throws Exception {
         
         RequestOperation<GetPinRequest, GetpinResponse> operation
-              = new GetpinOperation( sdkConfiguration);
+              = new GetpinOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

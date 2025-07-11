@@ -14,6 +14,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class PromptTemplateResult {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -27,9 +28,11 @@ public class PromptTemplateResult {
     @JsonProperty("trackingToken")
     private Optional<String> trackingToken;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("favoriteInfo")
     private Optional<? extends FavoriteInfo> favoriteInfo;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("runCount")
@@ -52,7 +55,8 @@ public class PromptTemplateResult {
     }
     
     public PromptTemplateResult() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -81,15 +85,17 @@ public class PromptTemplateResult {
         return (Optional<CountInfo>) runCount;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PromptTemplateResult withPromptTemplate(PromptTemplate promptTemplate) {
         Utils.checkNotNull(promptTemplate, "promptTemplate");
         this.promptTemplate = Optional.ofNullable(promptTemplate);
         return this;
     }
+
 
     public PromptTemplateResult withPromptTemplate(Optional<? extends PromptTemplate> promptTemplate) {
         Utils.checkNotNull(promptTemplate, "promptTemplate");
@@ -106,6 +112,7 @@ public class PromptTemplateResult {
         return this;
     }
 
+
     /**
      * An opaque token that represents this prompt template
      */
@@ -121,6 +128,7 @@ public class PromptTemplateResult {
         return this;
     }
 
+
     public PromptTemplateResult withFavoriteInfo(Optional<? extends FavoriteInfo> favoriteInfo) {
         Utils.checkNotNull(favoriteInfo, "favoriteInfo");
         this.favoriteInfo = favoriteInfo;
@@ -133,13 +141,13 @@ public class PromptTemplateResult {
         return this;
     }
 
+
     public PromptTemplateResult withRunCount(Optional<? extends CountInfo> runCount) {
         Utils.checkNotNull(runCount, "runCount");
         this.runCount = runCount;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -159,9 +167,7 @@ public class PromptTemplateResult {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            promptTemplate,
-            trackingToken,
-            favoriteInfo,
+            promptTemplate, trackingToken, favoriteInfo,
             runCount);
     }
     
@@ -173,20 +179,22 @@ public class PromptTemplateResult {
                 "favoriteInfo", favoriteInfo,
                 "runCount", runCount);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends PromptTemplate> promptTemplate = Optional.empty();
- 
+
         private Optional<String> trackingToken = Optional.empty();
- 
+
         private Optional<? extends FavoriteInfo> favoriteInfo = Optional.empty();
- 
+
         private Optional<? extends CountInfo> runCount = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder promptTemplate(PromptTemplate promptTemplate) {
             Utils.checkNotNull(promptTemplate, "promptTemplate");
@@ -199,6 +207,7 @@ public class PromptTemplateResult {
             this.promptTemplate = promptTemplate;
             return this;
         }
+
 
         /**
          * An opaque token that represents this prompt template
@@ -218,6 +227,7 @@ public class PromptTemplateResult {
             return this;
         }
 
+
         public Builder favoriteInfo(FavoriteInfo favoriteInfo) {
             Utils.checkNotNull(favoriteInfo, "favoriteInfo");
             this.favoriteInfo = Optional.ofNullable(favoriteInfo);
@@ -230,6 +240,7 @@ public class PromptTemplateResult {
             return this;
         }
 
+
         public Builder runCount(CountInfo runCount) {
             Utils.checkNotNull(runCount, "runCount");
             this.runCount = Optional.ofNullable(runCount);
@@ -241,13 +252,13 @@ public class PromptTemplateResult {
             this.runCount = runCount;
             return this;
         }
-        
+
         public PromptTemplateResult build() {
+
             return new PromptTemplateResult(
-                promptTemplate,
-                trackingToken,
-                favoriteInfo,
+                promptTemplate, trackingToken, favoriteInfo,
                 runCount);
         }
+
     }
 }

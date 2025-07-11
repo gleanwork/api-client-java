@@ -29,7 +29,7 @@ public class CreateAndStreamRunRequestBuilder {
     public CreateAndStreamRunResponse call() throws Exception {
         
         RequestOperation<AgentRunCreate, CreateAndStreamRunResponse> operation
-              = new CreateAndStreamRunOperation( sdkConfiguration);
+              = new CreateAndStreamRunOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

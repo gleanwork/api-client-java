@@ -14,11 +14,13 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class GetAnswerResponse {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("answerResult")
     private Optional<? extends AnswerResult> answerResult;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
@@ -50,15 +52,17 @@ public class GetAnswerResponse {
         return (Optional<GetAnswerError>) error;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public GetAnswerResponse withAnswerResult(AnswerResult answerResult) {
         Utils.checkNotNull(answerResult, "answerResult");
         this.answerResult = Optional.ofNullable(answerResult);
         return this;
     }
+
 
     public GetAnswerResponse withAnswerResult(Optional<? extends AnswerResult> answerResult) {
         Utils.checkNotNull(answerResult, "answerResult");
@@ -72,13 +76,13 @@ public class GetAnswerResponse {
         return this;
     }
 
+
     public GetAnswerResponse withError(Optional<? extends GetAnswerError> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -96,8 +100,7 @@ public class GetAnswerResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            answerResult,
-            error);
+            answerResult, error);
     }
     
     @Override
@@ -106,16 +109,18 @@ public class GetAnswerResponse {
                 "answerResult", answerResult,
                 "error", error);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends AnswerResult> answerResult = Optional.empty();
- 
+
         private Optional<? extends GetAnswerError> error = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder answerResult(AnswerResult answerResult) {
             Utils.checkNotNull(answerResult, "answerResult");
@@ -129,6 +134,7 @@ public class GetAnswerResponse {
             return this;
         }
 
+
         public Builder error(GetAnswerError error) {
             Utils.checkNotNull(error, "error");
             this.error = Optional.ofNullable(error);
@@ -140,11 +146,12 @@ public class GetAnswerResponse {
             this.error = error;
             return this;
         }
-        
+
         public GetAnswerResponse build() {
+
             return new GetAnswerResponse(
-                answerResult,
-                error);
+                answerResult, error);
         }
+
     }
 }

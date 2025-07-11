@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class InvalidOperatorValueError {
 
+public class InvalidOperatorValueError {
     /**
      * The operator key that has an invalid value.
      */
@@ -59,9 +59,10 @@ public class InvalidOperatorValueError {
         return value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The operator key that has an invalid value.
@@ -71,6 +72,7 @@ public class InvalidOperatorValueError {
         this.key = Optional.ofNullable(key);
         return this;
     }
+
 
     /**
      * The operator key that has an invalid value.
@@ -90,6 +92,7 @@ public class InvalidOperatorValueError {
         return this;
     }
 
+
     /**
      * The invalid operator value.
      */
@@ -99,7 +102,6 @@ public class InvalidOperatorValueError {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -117,8 +119,7 @@ public class InvalidOperatorValueError {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            key,
-            value);
+            key, value);
     }
     
     @Override
@@ -127,16 +128,18 @@ public class InvalidOperatorValueError {
                 "key", key,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> key = Optional.empty();
- 
+
         private Optional<String> value = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The operator key that has an invalid value.
@@ -156,6 +159,7 @@ public class InvalidOperatorValueError {
             return this;
         }
 
+
         /**
          * The invalid operator value.
          */
@@ -173,11 +177,12 @@ public class InvalidOperatorValueError {
             this.value = value;
             return this;
         }
-        
+
         public InvalidOperatorValueError build() {
+
             return new InvalidOperatorValueError(
-                key,
-                value);
+                key, value);
         }
+
     }
 }

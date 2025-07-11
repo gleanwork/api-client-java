@@ -29,7 +29,6 @@ public class Verification {
     Verification(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Create verification
      * 
@@ -50,13 +49,11 @@ public class Verification {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AddverificationreminderResponse addReminder(
-            ReminderRequest request) throws Exception {
+    public AddverificationreminderResponse addReminder(ReminderRequest request) throws Exception {
         RequestOperation<ReminderRequest, AddverificationreminderResponse> operation
-              = new AddverificationreminderOperation( sdkConfiguration);
+              = new AddverificationreminderOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List verifications
@@ -90,18 +87,16 @@ public class Verification {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListverificationsResponse list(
-            Optional<Long> count) throws Exception {
+    public ListverificationsResponse list(Optional<Long> count) throws Exception {
         ListverificationsRequest request =
             ListverificationsRequest
                 .builder()
                 .count(count)
                 .build();
         RequestOperation<ListverificationsRequest, ListverificationsResponse> operation
-              = new ListverificationsOperation( sdkConfiguration);
+              = new ListverificationsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update verification
@@ -123,10 +118,9 @@ public class Verification {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public VerifyResponse verify(
-            VerifyRequest request) throws Exception {
+    public VerifyResponse verify(VerifyRequest request) throws Exception {
         RequestOperation<VerifyRequest, VerifyResponse> operation
-              = new VerifyOperation( sdkConfiguration);
+              = new VerifyOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

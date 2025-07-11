@@ -29,7 +29,7 @@ public class SearchRequestBuilder {
     public SearchResponse call() throws Exception {
         
         RequestOperation<SearchRequest, SearchResponse> operation
-              = new SearchOperation( sdkConfiguration);
+              = new SearchOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

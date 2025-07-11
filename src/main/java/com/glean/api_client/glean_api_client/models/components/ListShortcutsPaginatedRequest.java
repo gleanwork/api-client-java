@@ -16,14 +16,15 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class ListShortcutsPaginatedRequest {
 
+public class ListShortcutsPaginatedRequest {
     /**
      * Array of fields/data to be included in response that are not included by default
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("includeFields")
     private Optional<? extends List<ListShortcutsPaginatedRequestIncludeField>> includeFields;
+
 
     @JsonProperty("pageSize")
     private long pageSize;
@@ -41,6 +42,7 @@ public class ListShortcutsPaginatedRequest {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("filters")
     private Optional<? extends List<FacetFilter>> filters;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sort")
@@ -77,7 +79,8 @@ public class ListShortcutsPaginatedRequest {
     
     public ListShortcutsPaginatedRequest(
             long pageSize) {
-        this(Optional.empty(), pageSize, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), pageSize, Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -125,9 +128,10 @@ public class ListShortcutsPaginatedRequest {
         return query;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Array of fields/data to be included in response that are not included by default
@@ -137,6 +141,7 @@ public class ListShortcutsPaginatedRequest {
         this.includeFields = Optional.ofNullable(includeFields);
         return this;
     }
+
 
     /**
      * Array of fields/data to be included in response that are not included by default
@@ -162,6 +167,7 @@ public class ListShortcutsPaginatedRequest {
         return this;
     }
 
+
     /**
      * A token specifying the position in the overall results to start at. Received from the endpoint and iterated back. Currently being used as page no (as we implement offset pagination)
      */
@@ -180,6 +186,7 @@ public class ListShortcutsPaginatedRequest {
         return this;
     }
 
+
     /**
      * A list of filters for the query. An AND is assumed between different filters. We support filters on Go Link name, author, department and type.
      */
@@ -194,6 +201,7 @@ public class ListShortcutsPaginatedRequest {
         this.sort = Optional.ofNullable(sort);
         return this;
     }
+
 
     public ListShortcutsPaginatedRequest withSort(Optional<? extends SortOptions> sort) {
         Utils.checkNotNull(sort, "sort");
@@ -210,6 +218,7 @@ public class ListShortcutsPaginatedRequest {
         return this;
     }
 
+
     /**
      * Search query that should be a substring in atleast one of the fields (alias , inputAlias, destinationUrl, description). Empty query does not filter shortcuts.
      */
@@ -219,7 +228,6 @@ public class ListShortcutsPaginatedRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -241,12 +249,8 @@ public class ListShortcutsPaginatedRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            includeFields,
-            pageSize,
-            cursor,
-            filters,
-            sort,
-            query);
+            includeFields, pageSize, cursor,
+            filters, sort, query);
     }
     
     @Override
@@ -259,24 +263,26 @@ public class ListShortcutsPaginatedRequest {
                 "sort", sort,
                 "query", query);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<ListShortcutsPaginatedRequestIncludeField>> includeFields = Optional.empty();
- 
+
         private Long pageSize;
- 
+
         private Optional<String> cursor = Optional.empty();
- 
+
         private Optional<? extends List<FacetFilter>> filters = Optional.empty();
- 
+
         private Optional<? extends SortOptions> sort = Optional.empty();
- 
+
         private Optional<String> query = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Array of fields/data to be included in response that are not included by default
@@ -296,11 +302,13 @@ public class ListShortcutsPaginatedRequest {
             return this;
         }
 
+
         public Builder pageSize(long pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
             this.pageSize = pageSize;
             return this;
         }
+
 
         /**
          * A token specifying the position in the overall results to start at. Received from the endpoint and iterated back. Currently being used as page no (as we implement offset pagination)
@@ -320,6 +328,7 @@ public class ListShortcutsPaginatedRequest {
             return this;
         }
 
+
         /**
          * A list of filters for the query. An AND is assumed between different filters. We support filters on Go Link name, author, department and type.
          */
@@ -338,6 +347,7 @@ public class ListShortcutsPaginatedRequest {
             return this;
         }
 
+
         public Builder sort(SortOptions sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = Optional.ofNullable(sort);
@@ -349,6 +359,7 @@ public class ListShortcutsPaginatedRequest {
             this.sort = sort;
             return this;
         }
+
 
         /**
          * Search query that should be a substring in atleast one of the fields (alias , inputAlias, destinationUrl, description). Empty query does not filter shortcuts.
@@ -367,15 +378,13 @@ public class ListShortcutsPaginatedRequest {
             this.query = query;
             return this;
         }
-        
+
         public ListShortcutsPaginatedRequest build() {
+
             return new ListShortcutsPaginatedRequest(
-                includeFields,
-                pageSize,
-                cursor,
-                filters,
-                sort,
-                query);
+                includeFields, pageSize, cursor,
+                filters, sort, query);
         }
+
     }
 }

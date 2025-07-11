@@ -25,13 +25,13 @@ import java.util.Optional;
  * <p>A message that is rendered as one coherent unit with one given sender.
  */
 public class ChatMessage {
-
     /**
      * Describes the agent that executes the request.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("agentConfig")
     private Optional<? extends AgentConfig> agentConfig;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("author")
@@ -131,7 +131,10 @@ public class ChatMessage {
     }
     
     public ChatMessage() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -220,9 +223,10 @@ public class ChatMessage {
         return hasMoreFragments;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Describes the agent that executes the request.
@@ -232,6 +236,7 @@ public class ChatMessage {
         this.agentConfig = Optional.ofNullable(agentConfig);
         return this;
     }
+
 
     /**
      * Describes the agent that executes the request.
@@ -248,6 +253,7 @@ public class ChatMessage {
         return this;
     }
 
+
     public ChatMessage withAuthor(Optional<? extends Author> author) {
         Utils.checkNotNull(author, "author");
         this.author = author;
@@ -262,6 +268,7 @@ public class ChatMessage {
         this.citations = Optional.ofNullable(citations);
         return this;
     }
+
 
     /**
      * A list of Citations that were used to generate the response.
@@ -281,6 +288,7 @@ public class ChatMessage {
         return this;
     }
 
+
     /**
      * IDs of files uploaded in the message that are referenced to generate the answer.
      */
@@ -298,6 +306,7 @@ public class ChatMessage {
         this.fragments = Optional.ofNullable(fragments);
         return this;
     }
+
 
     /**
      * A list of rich data used to represent the response or formulate a request. These are linearly stitched together to support richer data formats beyond simple text.
@@ -317,6 +326,7 @@ public class ChatMessage {
         return this;
     }
 
+
     /**
      * Response timestamp of the message.
      */
@@ -334,6 +344,7 @@ public class ChatMessage {
         this.messageId = Optional.ofNullable(messageId);
         return this;
     }
+
 
     /**
      * A unique server-side generated ID used to identify a message, automatically populated for any USER authored messages.
@@ -353,6 +364,7 @@ public class ChatMessage {
         return this;
     }
 
+
     /**
      * Opaque tracking token generated server-side.
      */
@@ -370,6 +382,7 @@ public class ChatMessage {
         this.messageType = Optional.ofNullable(messageType);
         return this;
     }
+
 
     /**
      * Semantically groups content of a certain type. It can be used for purposes such as differential UI treatment. USER authored messages should be of type CONTENT and do not need `messageType` specified.
@@ -392,6 +405,7 @@ public class ChatMessage {
         return this;
     }
 
+
     /**
      * Signals there are additional response fragments incoming.
      * 
@@ -404,7 +418,6 @@ public class ChatMessage {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -430,15 +443,9 @@ public class ChatMessage {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            agentConfig,
-            author,
-            citations,
-            uploadedFileIds,
-            fragments,
-            ts,
-            messageId,
-            messageTrackingToken,
-            messageType,
+            agentConfig, author, citations,
+            uploadedFileIds, fragments, ts,
+            messageId, messageTrackingToken, messageType,
             hasMoreFragments);
     }
     
@@ -456,33 +463,35 @@ public class ChatMessage {
                 "messageType", messageType,
                 "hasMoreFragments", hasMoreFragments);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends AgentConfig> agentConfig = Optional.empty();
- 
+
         private Optional<? extends Author> author;
- 
+
         private Optional<? extends List<ChatMessageCitation>> citations = Optional.empty();
- 
+
         private Optional<? extends List<String>> uploadedFileIds = Optional.empty();
- 
+
         private Optional<? extends List<ChatMessageFragment>> fragments = Optional.empty();
- 
+
         private Optional<String> ts = Optional.empty();
- 
+
         private Optional<String> messageId = Optional.empty();
- 
+
         private Optional<String> messageTrackingToken = Optional.empty();
- 
+
         private Optional<? extends MessageType> messageType;
- 
+
         @Deprecated
         private Optional<Boolean> hasMoreFragments = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Describes the agent that executes the request.
@@ -502,6 +511,7 @@ public class ChatMessage {
             return this;
         }
 
+
         public Builder author(Author author) {
             Utils.checkNotNull(author, "author");
             this.author = Optional.ofNullable(author);
@@ -513,6 +523,7 @@ public class ChatMessage {
             this.author = author;
             return this;
         }
+
 
         /**
          * A list of Citations that were used to generate the response.
@@ -532,6 +543,7 @@ public class ChatMessage {
             return this;
         }
 
+
         /**
          * IDs of files uploaded in the message that are referenced to generate the answer.
          */
@@ -549,6 +561,7 @@ public class ChatMessage {
             this.uploadedFileIds = uploadedFileIds;
             return this;
         }
+
 
         /**
          * A list of rich data used to represent the response or formulate a request. These are linearly stitched together to support richer data formats beyond simple text.
@@ -568,6 +581,7 @@ public class ChatMessage {
             return this;
         }
 
+
         /**
          * Response timestamp of the message.
          */
@@ -585,6 +599,7 @@ public class ChatMessage {
             this.ts = ts;
             return this;
         }
+
 
         /**
          * A unique server-side generated ID used to identify a message, automatically populated for any USER authored messages.
@@ -604,6 +619,7 @@ public class ChatMessage {
             return this;
         }
 
+
         /**
          * Opaque tracking token generated server-side.
          */
@@ -622,6 +638,7 @@ public class ChatMessage {
             return this;
         }
 
+
         /**
          * Semantically groups content of a certain type. It can be used for purposes such as differential UI treatment. USER authored messages should be of type CONTENT and do not need `messageType` specified.
          */
@@ -639,6 +656,7 @@ public class ChatMessage {
             this.messageType = messageType;
             return this;
         }
+
 
         /**
          * Signals there are additional response fragments incoming.
@@ -663,7 +681,7 @@ public class ChatMessage {
             this.hasMoreFragments = hasMoreFragments;
             return this;
         }
-        
+
         public ChatMessage build() {
             if (author == null) {
                 author = _SINGLETON_VALUE_Author.value();
@@ -671,18 +689,14 @@ public class ChatMessage {
             if (messageType == null) {
                 messageType = _SINGLETON_VALUE_MessageType.value();
             }
+
             return new ChatMessage(
-                agentConfig,
-                author,
-                citations,
-                uploadedFileIds,
-                fragments,
-                ts,
-                messageId,
-                messageTrackingToken,
-                messageType,
+                agentConfig, author, citations,
+                uploadedFileIds, fragments, ts,
+                messageId, messageTrackingToken, messageType,
                 hasMoreFragments);
         }
+
 
         private static final LazySingletonValue<Optional<? extends Author>> _SINGLETON_VALUE_Author =
                 new LazySingletonValue<>(

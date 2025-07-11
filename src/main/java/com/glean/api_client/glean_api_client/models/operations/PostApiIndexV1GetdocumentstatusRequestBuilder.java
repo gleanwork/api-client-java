@@ -29,7 +29,7 @@ public class PostApiIndexV1GetdocumentstatusRequestBuilder {
     public PostApiIndexV1GetdocumentstatusResponse call() throws Exception {
         
         RequestOperation<GetDocumentStatusRequest, PostApiIndexV1GetdocumentstatusResponse> operation
-              = new PostApiIndexV1GetdocumentstatusOperation( sdkConfiguration);
+              = new PostApiIndexV1GetdocumentstatusOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

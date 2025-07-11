@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>UI configurations for each item of the list
  */
 public class DisplayableListItemUIConfig {
-
     /**
      * show a "New" pill next to the item
      */
@@ -47,9 +46,10 @@ public class DisplayableListItemUIConfig {
         return showNewIndicator;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * show a "New" pill next to the item
@@ -60,6 +60,7 @@ public class DisplayableListItemUIConfig {
         return this;
     }
 
+
     /**
      * show a "New" pill next to the item
      */
@@ -69,7 +70,6 @@ public class DisplayableListItemUIConfig {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -94,14 +94,16 @@ public class DisplayableListItemUIConfig {
         return Utils.toString(DisplayableListItemUIConfig.class,
                 "showNewIndicator", showNewIndicator);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> showNewIndicator = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * show a "New" pill next to the item
@@ -120,10 +122,12 @@ public class DisplayableListItemUIConfig {
             this.showNewIndicator = showNewIndicator;
             return this;
         }
-        
+
         public DisplayableListItemUIConfig build() {
+
             return new DisplayableListItemUIConfig(
                 showNewIndicator);
         }
+
     }
 }

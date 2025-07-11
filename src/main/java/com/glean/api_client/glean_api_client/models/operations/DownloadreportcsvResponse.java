@@ -14,8 +14,8 @@ import java.lang.String;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-public class DownloadreportcsvResponse implements Response {
 
+public class DownloadreportcsvResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
@@ -56,7 +56,8 @@ public class DownloadreportcsvResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, statusCode, rawResponse, Optional.empty());
+        this(contentType, statusCode, rawResponse,
+            Optional.empty());
     }
 
     /**
@@ -91,9 +92,10 @@ public class DownloadreportcsvResponse implements Response {
         return res;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP response content type for this operation
@@ -131,6 +133,7 @@ public class DownloadreportcsvResponse implements Response {
         return this;
     }
 
+
     /**
      * Downloads csv of one-time report violations.
      */
@@ -140,7 +143,6 @@ public class DownloadreportcsvResponse implements Response {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -160,9 +162,7 @@ public class DownloadreportcsvResponse implements Response {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            contentType,
-            statusCode,
-            rawResponse,
+            contentType, statusCode, rawResponse,
             res);
     }
     
@@ -174,20 +174,22 @@ public class DownloadreportcsvResponse implements Response {
                 "rawResponse", rawResponse,
                 "res", res);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String contentType;
- 
+
         private Integer statusCode;
- 
+
         private HttpResponse<InputStream> rawResponse;
- 
+
         private Optional<String> res = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP response content type for this operation
@@ -198,6 +200,7 @@ public class DownloadreportcsvResponse implements Response {
             return this;
         }
 
+
         /**
          * HTTP response status code for this operation
          */
@@ -207,6 +210,7 @@ public class DownloadreportcsvResponse implements Response {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -215,6 +219,7 @@ public class DownloadreportcsvResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
+
 
         /**
          * Downloads csv of one-time report violations.
@@ -233,13 +238,13 @@ public class DownloadreportcsvResponse implements Response {
             this.res = res;
             return this;
         }
-        
+
         public DownloadreportcsvResponse build() {
+
             return new DownloadreportcsvResponse(
-                contentType,
-                statusCode,
-                rawResponse,
+                contentType, statusCode, rawResponse,
                 res);
         }
+
     }
 }

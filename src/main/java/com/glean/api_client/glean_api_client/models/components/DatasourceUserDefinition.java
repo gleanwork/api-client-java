@@ -31,6 +31,7 @@ public class DatasourceUserDefinition {
     @JsonProperty("userId")
     private Optional<String> userId;
 
+
     @JsonProperty("name")
     private String name;
 
@@ -60,7 +61,8 @@ public class DatasourceUserDefinition {
     public DatasourceUserDefinition(
             String email,
             String name) {
-        this(email, Optional.empty(), name, Optional.empty());
+        this(email, Optional.empty(), name,
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -89,9 +91,10 @@ public class DatasourceUserDefinition {
         return isActive;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public DatasourceUserDefinition withEmail(String email) {
         Utils.checkNotNull(email, "email");
@@ -107,6 +110,7 @@ public class DatasourceUserDefinition {
         this.userId = Optional.ofNullable(userId);
         return this;
     }
+
 
     /**
      * To be supplied if the user id in the datasource is not the email
@@ -132,6 +136,7 @@ public class DatasourceUserDefinition {
         return this;
     }
 
+
     /**
      * set to false if the user is a former employee or a bot
      */
@@ -141,7 +146,6 @@ public class DatasourceUserDefinition {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -161,9 +165,7 @@ public class DatasourceUserDefinition {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            email,
-            userId,
-            name,
+            email, userId, name,
             isActive);
     }
     
@@ -175,26 +177,29 @@ public class DatasourceUserDefinition {
                 "name", name,
                 "isActive", isActive);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String email;
- 
+
         private Optional<String> userId = Optional.empty();
- 
+
         private String name;
- 
+
         private Optional<Boolean> isActive = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder email(String email) {
             Utils.checkNotNull(email, "email");
             this.email = email;
             return this;
         }
+
 
         /**
          * To be supplied if the user id in the datasource is not the email
@@ -214,11 +219,13 @@ public class DatasourceUserDefinition {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
+
 
         /**
          * set to false if the user is a former employee or a bot
@@ -237,13 +244,13 @@ public class DatasourceUserDefinition {
             this.isActive = isActive;
             return this;
         }
-        
+
         public DatasourceUserDefinition build() {
+
             return new DatasourceUserDefinition(
-                email,
-                userId,
-                name,
+                email, userId, name,
                 isActive);
         }
+
     }
 }

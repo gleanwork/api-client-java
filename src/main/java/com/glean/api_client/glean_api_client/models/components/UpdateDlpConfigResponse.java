@@ -14,6 +14,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class UpdateDlpConfigResponse {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -55,15 +56,17 @@ public class UpdateDlpConfigResponse {
         return reportId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public UpdateDlpConfigResponse withResult(DlpSimpleResult result) {
         Utils.checkNotNull(result, "result");
         this.result = Optional.ofNullable(result);
         return this;
     }
+
 
     public UpdateDlpConfigResponse withResult(Optional<? extends DlpSimpleResult> result) {
         Utils.checkNotNull(result, "result");
@@ -80,6 +83,7 @@ public class UpdateDlpConfigResponse {
         return this;
     }
 
+
     /**
      * The id of the report that was just created and run.
      */
@@ -89,7 +93,6 @@ public class UpdateDlpConfigResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -107,8 +110,7 @@ public class UpdateDlpConfigResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            result,
-            reportId);
+            result, reportId);
     }
     
     @Override
@@ -117,16 +119,18 @@ public class UpdateDlpConfigResponse {
                 "result", result,
                 "reportId", reportId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends DlpSimpleResult> result = Optional.empty();
- 
+
         private Optional<String> reportId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder result(DlpSimpleResult result) {
             Utils.checkNotNull(result, "result");
@@ -139,6 +143,7 @@ public class UpdateDlpConfigResponse {
             this.result = result;
             return this;
         }
+
 
         /**
          * The id of the report that was just created and run.
@@ -157,11 +162,12 @@ public class UpdateDlpConfigResponse {
             this.reportId = reportId;
             return this;
         }
-        
+
         public UpdateDlpConfigResponse build() {
+
             return new UpdateDlpConfigResponse(
-                result,
-                reportId);
+                result, reportId);
         }
+
     }
 }

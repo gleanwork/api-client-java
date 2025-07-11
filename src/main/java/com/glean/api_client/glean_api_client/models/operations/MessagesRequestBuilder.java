@@ -29,7 +29,7 @@ public class MessagesRequestBuilder {
     public MessagesResponse call() throws Exception {
         
         RequestOperation<MessagesRequest, MessagesResponse> operation
-              = new MessagesOperation( sdkConfiguration);
+              = new MessagesOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -29,7 +29,7 @@ public class PostApiIndexV1BetausersRequestBuilder {
     public PostApiIndexV1BetausersResponse call() throws Exception {
         
         RequestOperation<GreenlistUsersRequest, PostApiIndexV1BetausersResponse> operation
-              = new PostApiIndexV1BetausersOperation( sdkConfiguration);
+              = new PostApiIndexV1BetausersOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

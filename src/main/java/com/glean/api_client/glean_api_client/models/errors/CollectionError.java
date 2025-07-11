@@ -12,6 +12,7 @@ import java.lang.RuntimeException;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 
+
 @SuppressWarnings("serial")
 public class CollectionError extends RuntimeException {
 
@@ -31,9 +32,10 @@ public class CollectionError extends RuntimeException {
         return errorCode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CollectionError withErrorCode(ErrorCode errorCode) {
         Utils.checkNotNull(errorCode, "errorCode");
@@ -41,7 +43,6 @@ public class CollectionError extends RuntimeException {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -66,25 +67,29 @@ public class CollectionError extends RuntimeException {
         return Utils.toString(CollectionError.class,
                 "errorCode", errorCode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private ErrorCode errorCode;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder errorCode(ErrorCode errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
             this.errorCode = errorCode;
             return this;
         }
-        
+
         public CollectionError build() {
+
             return new CollectionError(
                 errorCode);
         }
+
     }
 }
 

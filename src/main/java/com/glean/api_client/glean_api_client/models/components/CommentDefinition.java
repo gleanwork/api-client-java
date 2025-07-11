@@ -21,7 +21,6 @@ import java.util.Optional;
  * <p>Describes a comment on a document
  */
 public class CommentDefinition {
-
     /**
      * The document specific id for the comment. This field is case insensitive and should not be more than 200 characters in length.
      */
@@ -87,7 +86,8 @@ public class CommentDefinition {
     
     public CommentDefinition(
             String id) {
-        this(id, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(id, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -141,9 +141,10 @@ public class CommentDefinition {
         return (Optional<UserReferenceDefinition>) updatedBy;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The document specific id for the comment. This field is case insensitive and should not be more than 200 characters in length.
@@ -163,6 +164,7 @@ public class CommentDefinition {
         return this;
     }
 
+
     /**
      * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
      */
@@ -180,6 +182,7 @@ public class CommentDefinition {
         this.content = Optional.ofNullable(content);
         return this;
     }
+
 
     /**
      * Describes text content or base64 encoded binary content
@@ -199,6 +202,7 @@ public class CommentDefinition {
         return this;
     }
 
+
     /**
      * The creation time, in epoch seconds.
      */
@@ -216,6 +220,7 @@ public class CommentDefinition {
         this.updatedAt = Optional.ofNullable(updatedAt);
         return this;
     }
+
 
     /**
      * The last updated time, in epoch seconds.
@@ -235,6 +240,7 @@ public class CommentDefinition {
         return this;
     }
 
+
     /**
      * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
      */
@@ -244,7 +250,6 @@ public class CommentDefinition {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -266,12 +271,8 @@ public class CommentDefinition {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            author,
-            content,
-            createdAt,
-            updatedAt,
-            updatedBy);
+            id, author, content,
+            createdAt, updatedAt, updatedBy);
     }
     
     @Override
@@ -284,24 +285,26 @@ public class CommentDefinition {
                 "updatedAt", updatedAt,
                 "updatedBy", updatedBy);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private Optional<? extends UserReferenceDefinition> author = Optional.empty();
- 
+
         private Optional<? extends ContentDefinition> content = Optional.empty();
- 
+
         private Optional<Long> createdAt = Optional.empty();
- 
+
         private Optional<Long> updatedAt = Optional.empty();
- 
+
         private Optional<? extends UserReferenceDefinition> updatedBy = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The document specific id for the comment. This field is case insensitive and should not be more than 200 characters in length.
@@ -311,6 +314,7 @@ public class CommentDefinition {
             this.id = id;
             return this;
         }
+
 
         /**
          * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
@@ -330,6 +334,7 @@ public class CommentDefinition {
             return this;
         }
 
+
         /**
          * Describes text content or base64 encoded binary content
          */
@@ -347,6 +352,7 @@ public class CommentDefinition {
             this.content = content;
             return this;
         }
+
 
         /**
          * The creation time, in epoch seconds.
@@ -366,6 +372,7 @@ public class CommentDefinition {
             return this;
         }
 
+
         /**
          * The last updated time, in epoch seconds.
          */
@@ -384,6 +391,7 @@ public class CommentDefinition {
             return this;
         }
 
+
         /**
          * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
          */
@@ -401,15 +409,13 @@ public class CommentDefinition {
             this.updatedBy = updatedBy;
             return this;
         }
-        
+
         public CommentDefinition build() {
+
             return new CommentDefinition(
-                id,
-                author,
-                content,
-                createdAt,
-                updatedAt,
-                updatedBy);
+                id, author, content,
+                createdAt, updatedAt, updatedBy);
         }
+
     }
 }

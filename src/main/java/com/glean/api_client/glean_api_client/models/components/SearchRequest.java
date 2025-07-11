@@ -18,8 +18,8 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 
-public class SearchRequest {
 
+public class SearchRequest {
     /**
      * The ISO 8601 timestamp associated with the client request.
      */
@@ -34,9 +34,11 @@ public class SearchRequest {
     @JsonProperty("trackingToken")
     private Optional<String> trackingToken;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sessionInfo")
     private Optional<? extends SessionInfo> sessionInfo;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sourceDocument")
@@ -76,9 +78,11 @@ public class SearchRequest {
     @JsonProperty("resultTabIds")
     private Optional<? extends List<String>> resultTabIds;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("inputDetails")
     private Optional<? extends SearchRequestInputDetails> inputDetails;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("requestOptions")
@@ -153,7 +157,11 @@ public class SearchRequest {
     
     public SearchRequest(
             String query) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), query, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            query, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -262,9 +270,10 @@ public class SearchRequest {
         return disableSpellcheck;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ISO 8601 timestamp associated with the client request.
@@ -274,6 +283,7 @@ public class SearchRequest {
         this.timestamp = Optional.ofNullable(timestamp);
         return this;
     }
+
 
     /**
      * The ISO 8601 timestamp associated with the client request.
@@ -293,6 +303,7 @@ public class SearchRequest {
         return this;
     }
 
+
     /**
      * A previously received trackingToken for a search associated with the same query. Useful for more requests and requests for other tabs.
      */
@@ -308,6 +319,7 @@ public class SearchRequest {
         return this;
     }
 
+
     public SearchRequest withSessionInfo(Optional<? extends SessionInfo> sessionInfo) {
         Utils.checkNotNull(sessionInfo, "sessionInfo");
         this.sessionInfo = sessionInfo;
@@ -319,6 +331,7 @@ public class SearchRequest {
         this.sourceDocument = Optional.ofNullable(sourceDocument);
         return this;
     }
+
 
     public SearchRequest withSourceDocument(Optional<? extends Document> sourceDocument) {
         Utils.checkNotNull(sourceDocument, "sourceDocument");
@@ -334,6 +347,7 @@ public class SearchRequest {
         this.pageSize = Optional.ofNullable(pageSize);
         return this;
     }
+
 
     /**
      * Hint to the server about how many results to send back. Server may return less or more. Structured results and clustered results don't count towards pageSize.
@@ -352,6 +366,7 @@ public class SearchRequest {
         this.maxSnippetSize = Optional.ofNullable(maxSnippetSize);
         return this;
     }
+
 
     /**
      * Hint to the server about how many characters long a snippet may be. Server may return less or more.
@@ -380,6 +395,7 @@ public class SearchRequest {
         return this;
     }
 
+
     /**
      * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
      */
@@ -398,6 +414,7 @@ public class SearchRequest {
         return this;
     }
 
+
     /**
      * The unique IDs of the result tabs for which to fetch results. This will have precedence over datasource filters if both are specified and in conflict.
      */
@@ -413,6 +430,7 @@ public class SearchRequest {
         return this;
     }
 
+
     public SearchRequest withInputDetails(Optional<? extends SearchRequestInputDetails> inputDetails) {
         Utils.checkNotNull(inputDetails, "inputDetails");
         this.inputDetails = inputDetails;
@@ -424,6 +442,7 @@ public class SearchRequest {
         this.requestOptions = Optional.ofNullable(requestOptions);
         return this;
     }
+
 
     public SearchRequest withRequestOptions(Optional<? extends SearchRequestOptions> requestOptions) {
         Utils.checkNotNull(requestOptions, "requestOptions");
@@ -439,6 +458,7 @@ public class SearchRequest {
         this.timeoutMillis = Optional.ofNullable(timeoutMillis);
         return this;
     }
+
 
     /**
      * Timeout in milliseconds for the request. A `408` error will be returned if handling the request takes longer.
@@ -458,6 +478,7 @@ public class SearchRequest {
         return this;
     }
 
+
     /**
      * People associated with the search request. Hints to the server to fetch additional information for these people. Note that in this request, an email may be used as a person's obfuscatedId value.
      */
@@ -476,6 +497,7 @@ public class SearchRequest {
         return this;
     }
 
+
     /**
      * Whether or not to disable spellcheck.
      */
@@ -485,7 +507,6 @@ public class SearchRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -515,20 +536,11 @@ public class SearchRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            timestamp,
-            trackingToken,
-            sessionInfo,
-            sourceDocument,
-            pageSize,
-            maxSnippetSize,
-            query,
-            cursor,
-            resultTabIds,
-            inputDetails,
-            requestOptions,
-            timeoutMillis,
-            people,
-            disableSpellcheck);
+            timestamp, trackingToken, sessionInfo,
+            sourceDocument, pageSize, maxSnippetSize,
+            query, cursor, resultTabIds,
+            inputDetails, requestOptions, timeoutMillis,
+            people, disableSpellcheck);
     }
     
     @Override
@@ -549,40 +561,42 @@ public class SearchRequest {
                 "people", people,
                 "disableSpellcheck", disableSpellcheck);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<OffsetDateTime> timestamp = Optional.empty();
- 
+
         private Optional<String> trackingToken = Optional.empty();
- 
+
         private Optional<? extends SessionInfo> sessionInfo = Optional.empty();
- 
+
         private Optional<? extends Document> sourceDocument = Optional.empty();
- 
+
         private Optional<Long> pageSize = Optional.empty();
- 
+
         private Optional<Long> maxSnippetSize = Optional.empty();
- 
+
         private String query;
- 
+
         private Optional<String> cursor = Optional.empty();
- 
+
         private Optional<? extends List<String>> resultTabIds = Optional.empty();
- 
+
         private Optional<? extends SearchRequestInputDetails> inputDetails = Optional.empty();
- 
+
         private Optional<? extends SearchRequestOptions> requestOptions = Optional.empty();
- 
+
         private Optional<Long> timeoutMillis = Optional.empty();
- 
+
         private Optional<? extends List<Person>> people = Optional.empty();
- 
+
         private Optional<Boolean> disableSpellcheck = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ISO 8601 timestamp associated with the client request.
@@ -602,6 +616,7 @@ public class SearchRequest {
             return this;
         }
 
+
         /**
          * A previously received trackingToken for a search associated with the same query. Useful for more requests and requests for other tabs.
          */
@@ -620,6 +635,7 @@ public class SearchRequest {
             return this;
         }
 
+
         public Builder sessionInfo(SessionInfo sessionInfo) {
             Utils.checkNotNull(sessionInfo, "sessionInfo");
             this.sessionInfo = Optional.ofNullable(sessionInfo);
@@ -632,6 +648,7 @@ public class SearchRequest {
             return this;
         }
 
+
         public Builder sourceDocument(Document sourceDocument) {
             Utils.checkNotNull(sourceDocument, "sourceDocument");
             this.sourceDocument = Optional.ofNullable(sourceDocument);
@@ -643,6 +660,7 @@ public class SearchRequest {
             this.sourceDocument = sourceDocument;
             return this;
         }
+
 
         /**
          * Hint to the server about how many results to send back. Server may return less or more. Structured results and clustered results don't count towards pageSize.
@@ -662,6 +680,7 @@ public class SearchRequest {
             return this;
         }
 
+
         /**
          * Hint to the server about how many characters long a snippet may be. Server may return less or more.
          */
@@ -680,6 +699,7 @@ public class SearchRequest {
             return this;
         }
 
+
         /**
          * The search terms.
          */
@@ -688,6 +708,7 @@ public class SearchRequest {
             this.query = query;
             return this;
         }
+
 
         /**
          * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
@@ -707,6 +728,7 @@ public class SearchRequest {
             return this;
         }
 
+
         /**
          * The unique IDs of the result tabs for which to fetch results. This will have precedence over datasource filters if both are specified and in conflict.
          */
@@ -725,6 +747,7 @@ public class SearchRequest {
             return this;
         }
 
+
         public Builder inputDetails(SearchRequestInputDetails inputDetails) {
             Utils.checkNotNull(inputDetails, "inputDetails");
             this.inputDetails = Optional.ofNullable(inputDetails);
@@ -737,6 +760,7 @@ public class SearchRequest {
             return this;
         }
 
+
         public Builder requestOptions(SearchRequestOptions requestOptions) {
             Utils.checkNotNull(requestOptions, "requestOptions");
             this.requestOptions = Optional.ofNullable(requestOptions);
@@ -748,6 +772,7 @@ public class SearchRequest {
             this.requestOptions = requestOptions;
             return this;
         }
+
 
         /**
          * Timeout in milliseconds for the request. A `408` error will be returned if handling the request takes longer.
@@ -767,6 +792,7 @@ public class SearchRequest {
             return this;
         }
 
+
         /**
          * People associated with the search request. Hints to the server to fetch additional information for these people. Note that in this request, an email may be used as a person's obfuscatedId value.
          */
@@ -785,6 +811,7 @@ public class SearchRequest {
             return this;
         }
 
+
         /**
          * Whether or not to disable spellcheck.
          */
@@ -802,23 +829,16 @@ public class SearchRequest {
             this.disableSpellcheck = disableSpellcheck;
             return this;
         }
-        
+
         public SearchRequest build() {
+
             return new SearchRequest(
-                timestamp,
-                trackingToken,
-                sessionInfo,
-                sourceDocument,
-                pageSize,
-                maxSnippetSize,
-                query,
-                cursor,
-                resultTabIds,
-                inputDetails,
-                requestOptions,
-                timeoutMillis,
-                people,
-                disableSpellcheck);
+                timestamp, trackingToken, sessionInfo,
+                sourceDocument, pageSize, maxSnippetSize,
+                query, cursor, resultTabIds,
+                inputDetails, requestOptions, timeoutMillis,
+                people, disableSpellcheck);
         }
+
     }
 }

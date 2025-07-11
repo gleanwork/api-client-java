@@ -14,18 +14,15 @@ import java.lang.String;
  * <p>List pins request
  */
 public class ListpinsRequest {
-
     @JsonCreator
     public ListpinsRequest() {
-        
-        
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
 
-    
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -47,16 +44,19 @@ public class ListpinsRequest {
     public String toString() {
         return Utils.toString(ListpinsRequest.class);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-        
+
         private Builder() {
           // force use of static builder() method
         }
-        
+
         public ListpinsRequest build() {
+
             return new ListpinsRequest(
                 );
         }
+
     }
 }

@@ -29,7 +29,7 @@ public class ListanswersRequestBuilder {
     public ListanswersResponse call() throws Exception {
         
         RequestOperation<ListAnswersRequest, ListanswersResponse> operation
-              = new ListanswersOperation( sdkConfiguration);
+              = new ListanswersOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

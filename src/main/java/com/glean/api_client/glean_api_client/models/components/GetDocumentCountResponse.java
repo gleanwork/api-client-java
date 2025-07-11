@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>Describes the response body of the /getdocumentcount API call
  */
 public class GetDocumentCountResponse {
-
     /**
      * Number of documents corresponding to the specified custom datasource.
      */
@@ -47,9 +46,10 @@ public class GetDocumentCountResponse {
         return documentCount;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Number of documents corresponding to the specified custom datasource.
@@ -60,6 +60,7 @@ public class GetDocumentCountResponse {
         return this;
     }
 
+
     /**
      * Number of documents corresponding to the specified custom datasource.
      */
@@ -69,7 +70,6 @@ public class GetDocumentCountResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -94,14 +94,16 @@ public class GetDocumentCountResponse {
         return Utils.toString(GetDocumentCountResponse.class,
                 "documentCount", documentCount);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> documentCount = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Number of documents corresponding to the specified custom datasource.
@@ -120,10 +122,12 @@ public class GetDocumentCountResponse {
             this.documentCount = documentCount;
             return this;
         }
-        
+
         public GetDocumentCountResponse build() {
+
             return new GetDocumentCountResponse(
                 documentCount);
         }
+
     }
 }

@@ -29,7 +29,7 @@ public class PostApiIndexV1GetusercountRequestBuilder {
     public PostApiIndexV1GetusercountResponse call() throws Exception {
         
         RequestOperation<GetUserCountRequest, PostApiIndexV1GetusercountResponse> operation
-              = new PostApiIndexV1GetusercountOperation( sdkConfiguration);
+              = new PostApiIndexV1GetusercountOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

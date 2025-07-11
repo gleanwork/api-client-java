@@ -29,7 +29,7 @@ public class ActivityRequestBuilder {
     public ActivityResponse call() throws Exception {
         
         RequestOperation<Activity, ActivityResponse> operation
-              = new ActivityOperation( sdkConfiguration);
+              = new ActivityOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

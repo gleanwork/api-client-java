@@ -29,7 +29,7 @@ public class UpdateannouncementRequestBuilder {
     public UpdateannouncementResponse call() throws Exception {
         
         RequestOperation<UpdateAnnouncementRequest, UpdateannouncementResponse> operation
-              = new UpdateannouncementOperation( sdkConfiguration);
+              = new UpdateannouncementOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

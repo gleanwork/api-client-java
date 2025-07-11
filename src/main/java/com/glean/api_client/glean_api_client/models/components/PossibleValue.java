@@ -19,7 +19,6 @@ import java.util.Optional;
  * <p>Possible value of a specific parameter
  */
 public class PossibleValue {
-
     /**
      * Possible value
      */
@@ -64,9 +63,10 @@ public class PossibleValue {
         return label;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Possible value
@@ -76,6 +76,7 @@ public class PossibleValue {
         this.value = Optional.ofNullable(value);
         return this;
     }
+
 
     /**
      * Possible value
@@ -95,6 +96,7 @@ public class PossibleValue {
         return this;
     }
 
+
     /**
      * User-friendly label associated with the value
      */
@@ -104,7 +106,6 @@ public class PossibleValue {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -122,8 +123,7 @@ public class PossibleValue {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            value,
-            label);
+            value, label);
     }
     
     @Override
@@ -132,16 +132,18 @@ public class PossibleValue {
                 "value", value,
                 "label", label);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> value = Optional.empty();
- 
+
         private Optional<String> label = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Possible value
@@ -161,6 +163,7 @@ public class PossibleValue {
             return this;
         }
 
+
         /**
          * User-friendly label associated with the value
          */
@@ -178,11 +181,12 @@ public class PossibleValue {
             this.label = label;
             return this;
         }
-        
+
         public PossibleValue build() {
+
             return new PossibleValue(
-                value,
-                label);
+                value, label);
         }
+
     }
 }

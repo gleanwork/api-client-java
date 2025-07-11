@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.Map;
 import java.util.Optional;
 
-public class CustomerMetadata {
 
+public class CustomerMetadata {
     /**
      * The user visible id of the salesforce customer account.
      */
@@ -62,9 +62,10 @@ public class CustomerMetadata {
         return (Optional<Map<String, CustomDataValue>>) customData;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The user visible id of the salesforce customer account.
@@ -74,6 +75,7 @@ public class CustomerMetadata {
         this.datasourceId = Optional.ofNullable(datasourceId);
         return this;
     }
+
 
     /**
      * The user visible id of the salesforce customer account.
@@ -93,6 +95,7 @@ public class CustomerMetadata {
         return this;
     }
 
+
     /**
      * Custom fields specific to individual datasources
      */
@@ -102,7 +105,6 @@ public class CustomerMetadata {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -120,8 +122,7 @@ public class CustomerMetadata {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            datasourceId,
-            customData);
+            datasourceId, customData);
     }
     
     @Override
@@ -130,16 +131,18 @@ public class CustomerMetadata {
                 "datasourceId", datasourceId,
                 "customData", customData);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> datasourceId = Optional.empty();
- 
+
         private Optional<? extends Map<String, CustomDataValue>> customData = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The user visible id of the salesforce customer account.
@@ -159,6 +162,7 @@ public class CustomerMetadata {
             return this;
         }
 
+
         /**
          * Custom fields specific to individual datasources
          */
@@ -176,11 +180,12 @@ public class CustomerMetadata {
             this.customData = customData;
             return this;
         }
-        
+
         public CustomerMetadata build() {
+
             return new CustomerMetadata(
-                datasourceId,
-                customData);
+                datasourceId, customData);
         }
+
     }
 }
