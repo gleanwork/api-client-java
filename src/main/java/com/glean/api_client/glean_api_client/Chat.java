@@ -63,7 +63,6 @@ public class Chat {
     Chat(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Chat
      * 
@@ -108,10 +107,9 @@ public class Chat {
                 .chatRequest(chatRequest)
                 .build();
         RequestOperation<com.glean.api_client.glean_api_client.models.operations.ChatRequest, ChatResponse> operation
-              = new ChatOperation( sdkConfiguration);
+              = new ChatOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Deletes all saved Chats owned by a user
@@ -145,18 +143,16 @@ public class Chat {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DeleteallchatsResponse deleteAll(
-            Optional<Long> timezoneOffset) throws Exception {
+    public DeleteallchatsResponse deleteAll(Optional<Long> timezoneOffset) throws Exception {
         DeleteallchatsRequest request =
             DeleteallchatsRequest
                 .builder()
                 .timezoneOffset(timezoneOffset)
                 .build();
         RequestOperation<DeleteallchatsRequest, DeleteallchatsResponse> operation
-              = new DeleteallchatsOperation( sdkConfiguration);
+              = new DeleteallchatsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Deletes saved Chats
@@ -202,10 +198,9 @@ public class Chat {
                 .deleteChatsRequest(deleteChatsRequest)
                 .build();
         RequestOperation<DeletechatsRequest, DeletechatsResponse> operation
-              = new DeletechatsOperation( sdkConfiguration);
+              = new DeletechatsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Retrieves a Chat
@@ -251,10 +246,9 @@ public class Chat {
                 .getChatRequest(getChatRequest)
                 .build();
         RequestOperation<GetchatRequest, GetchatResponse> operation
-              = new GetchatOperation( sdkConfiguration);
+              = new GetchatOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Retrieves all saved Chats
@@ -288,18 +282,16 @@ public class Chat {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListchatsResponse list(
-            Optional<Long> timezoneOffset) throws Exception {
+    public ListchatsResponse list(Optional<Long> timezoneOffset) throws Exception {
         ListchatsRequest request =
             ListchatsRequest
                 .builder()
                 .timezoneOffset(timezoneOffset)
                 .build();
         RequestOperation<ListchatsRequest, ListchatsResponse> operation
-              = new ListchatsOperation( sdkConfiguration);
+              = new ListchatsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Gets the metadata for a custom Chat application
@@ -345,10 +337,9 @@ public class Chat {
                 .getChatApplicationRequest(getChatApplicationRequest)
                 .build();
         RequestOperation<GetchatapplicationRequest, GetchatapplicationResponse> operation
-              = new GetchatapplicationOperation( sdkConfiguration);
+              = new GetchatapplicationOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Upload files for Chat.
@@ -394,10 +385,9 @@ public class Chat {
                 .uploadChatFilesRequest(uploadChatFilesRequest)
                 .build();
         RequestOperation<UploadchatfilesRequest, UploadchatfilesResponse> operation
-              = new UploadchatfilesOperation( sdkConfiguration);
+              = new UploadchatfilesOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get files uploaded by a user for Chat.
@@ -443,10 +433,9 @@ public class Chat {
                 .getChatFilesRequest(getChatFilesRequest)
                 .build();
         RequestOperation<GetchatfilesRequest, GetchatfilesResponse> operation
-              = new GetchatfilesOperation( sdkConfiguration);
+              = new GetchatfilesOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete files uploaded by a user for chat.
@@ -492,10 +481,9 @@ public class Chat {
                 .deleteChatFilesRequest(deleteChatFilesRequest)
                 .build();
         RequestOperation<DeletechatfilesRequest, DeletechatfilesResponse> operation
-              = new DeletechatfilesOperation( sdkConfiguration);
+              = new DeletechatfilesOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Chat
@@ -541,7 +529,7 @@ public class Chat {
                 .chatRequest(chatRequest)
                 .build();
         RequestOperation<ChatStreamRequest, ChatStreamResponse> operation
-              = new ChatStreamOperation( sdkConfiguration);
+              = new ChatStreamOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

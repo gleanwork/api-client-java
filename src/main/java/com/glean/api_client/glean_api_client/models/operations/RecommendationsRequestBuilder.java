@@ -29,7 +29,7 @@ public class RecommendationsRequestBuilder {
     public RecommendationsResponse call() throws Exception {
         
         RequestOperation<RecommendationsRequest, RecommendationsResponse> operation
-              = new RecommendationsOperation( sdkConfiguration);
+              = new RecommendationsOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

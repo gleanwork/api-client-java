@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class GleanDataError {
 
+public class GleanDataError {
     /**
      * Indicates the gmail results could not be fetched due to bad token.
      */
@@ -38,6 +38,7 @@ public class GleanDataError {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("invalidOperators")
     private Optional<? extends List<InvalidOperatorValueError>> invalidOperators;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("errorMessages")
@@ -60,7 +61,8 @@ public class GleanDataError {
     }
     
     public GleanDataError() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -94,9 +96,10 @@ public class GleanDataError {
         return (Optional<List<ErrorMessage>>) errorMessages;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the gmail results could not be fetched due to bad token.
@@ -106,6 +109,7 @@ public class GleanDataError {
         this.badGmailToken = Optional.ofNullable(badGmailToken);
         return this;
     }
+
 
     /**
      * Indicates the gmail results could not be fetched due to bad token.
@@ -125,6 +129,7 @@ public class GleanDataError {
         return this;
     }
 
+
     /**
      * Indicates the outlook results could not be fetched due to bad token.
      */
@@ -143,6 +148,7 @@ public class GleanDataError {
         return this;
     }
 
+
     /**
      * Indicates results could not be fetched due to invalid operators in the query.
      */
@@ -158,13 +164,13 @@ public class GleanDataError {
         return this;
     }
 
+
     public GleanDataError withErrorMessages(Optional<? extends List<ErrorMessage>> errorMessages) {
         Utils.checkNotNull(errorMessages, "errorMessages");
         this.errorMessages = errorMessages;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -184,9 +190,7 @@ public class GleanDataError {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            badGmailToken,
-            badOutlookToken,
-            invalidOperators,
+            badGmailToken, badOutlookToken, invalidOperators,
             errorMessages);
     }
     
@@ -198,20 +202,22 @@ public class GleanDataError {
                 "invalidOperators", invalidOperators,
                 "errorMessages", errorMessages);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> badGmailToken = Optional.empty();
- 
+
         private Optional<Boolean> badOutlookToken = Optional.empty();
- 
+
         private Optional<? extends List<InvalidOperatorValueError>> invalidOperators = Optional.empty();
- 
+
         private Optional<? extends List<ErrorMessage>> errorMessages = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the gmail results could not be fetched due to bad token.
@@ -231,6 +237,7 @@ public class GleanDataError {
             return this;
         }
 
+
         /**
          * Indicates the outlook results could not be fetched due to bad token.
          */
@@ -248,6 +255,7 @@ public class GleanDataError {
             this.badOutlookToken = badOutlookToken;
             return this;
         }
+
 
         /**
          * Indicates results could not be fetched due to invalid operators in the query.
@@ -267,6 +275,7 @@ public class GleanDataError {
             return this;
         }
 
+
         public Builder errorMessages(List<ErrorMessage> errorMessages) {
             Utils.checkNotNull(errorMessages, "errorMessages");
             this.errorMessages = Optional.ofNullable(errorMessages);
@@ -278,13 +287,13 @@ public class GleanDataError {
             this.errorMessages = errorMessages;
             return this;
         }
-        
+
         public GleanDataError build() {
+
             return new GleanDataError(
-                badGmailToken,
-                badOutlookToken,
-                invalidOperators,
+                badGmailToken, badOutlookToken, invalidOperators,
                 errorMessages);
         }
+
     }
 }

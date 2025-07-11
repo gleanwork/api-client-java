@@ -15,8 +15,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class CreateDlpReportRequest {
 
+public class CreateDlpReportRequest {
     /**
      * Name of the policy being created.
      */
@@ -62,7 +62,8 @@ public class CreateDlpReportRequest {
     }
     
     public CreateDlpReportRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -99,9 +100,10 @@ public class CreateDlpReportRequest {
         return autoHideDocs;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Name of the policy being created.
@@ -111,6 +113,7 @@ public class CreateDlpReportRequest {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * Name of the policy being created.
@@ -130,6 +133,7 @@ public class CreateDlpReportRequest {
         return this;
     }
 
+
     /**
      * Detailed configuration of what documents and sensitive content will be scanned.
      */
@@ -147,6 +151,7 @@ public class CreateDlpReportRequest {
         this.frequency = Optional.ofNullable(frequency);
         return this;
     }
+
 
     /**
      * Interval between scans. DAILY is deprecated.
@@ -166,6 +171,7 @@ public class CreateDlpReportRequest {
         return this;
     }
 
+
     /**
      * Controls whether the policy should hide documents with violations.
      */
@@ -175,7 +181,6 @@ public class CreateDlpReportRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -195,9 +200,7 @@ public class CreateDlpReportRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            config,
-            frequency,
+            name, config, frequency,
             autoHideDocs);
     }
     
@@ -209,20 +212,22 @@ public class CreateDlpReportRequest {
                 "frequency", frequency,
                 "autoHideDocs", autoHideDocs);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<? extends DlpConfig> config = Optional.empty();
- 
+
         private Optional<? extends DlpFrequency> frequency = Optional.empty();
- 
+
         private Optional<Boolean> autoHideDocs = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Name of the policy being created.
@@ -242,6 +247,7 @@ public class CreateDlpReportRequest {
             return this;
         }
 
+
         /**
          * Detailed configuration of what documents and sensitive content will be scanned.
          */
@@ -259,6 +265,7 @@ public class CreateDlpReportRequest {
             this.config = config;
             return this;
         }
+
 
         /**
          * Interval between scans. DAILY is deprecated.
@@ -278,6 +285,7 @@ public class CreateDlpReportRequest {
             return this;
         }
 
+
         /**
          * Controls whether the policy should hide documents with violations.
          */
@@ -295,13 +303,13 @@ public class CreateDlpReportRequest {
             this.autoHideDocs = autoHideDocs;
             return this;
         }
-        
+
         public CreateDlpReportRequest build() {
+
             return new CreateDlpReportRequest(
-                name,
-                config,
-                frequency,
+                name, config, frequency,
                 autoHideDocs);
         }
+
     }
 }

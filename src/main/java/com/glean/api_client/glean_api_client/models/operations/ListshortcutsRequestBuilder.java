@@ -29,7 +29,7 @@ public class ListshortcutsRequestBuilder {
     public ListshortcutsResponse call() throws Exception {
         
         RequestOperation<ListShortcutsPaginatedRequest, ListshortcutsResponse> operation
-              = new ListshortcutsOperation( sdkConfiguration);
+              = new ListshortcutsOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

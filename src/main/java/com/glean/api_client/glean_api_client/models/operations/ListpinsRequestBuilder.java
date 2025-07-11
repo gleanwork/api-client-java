@@ -28,7 +28,7 @@ public class ListpinsRequestBuilder {
     public ListpinsResponse call() throws Exception {
         
         RequestOperation<ListpinsRequest, ListpinsResponse> operation
-              = new ListpinsOperation( sdkConfiguration);
+              = new ListpinsOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

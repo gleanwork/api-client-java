@@ -29,7 +29,7 @@ public class PostApiIndexV1BulkindexshortcutsRequestBuilder {
     public PostApiIndexV1BulkindexshortcutsResponse call() throws Exception {
         
         RequestOperation<BulkIndexShortcutsRequest, PostApiIndexV1BulkindexshortcutsResponse> operation
-              = new PostApiIndexV1BulkindexshortcutsOperation( sdkConfiguration);
+              = new PostApiIndexV1BulkindexshortcutsOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

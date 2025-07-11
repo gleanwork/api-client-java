@@ -15,6 +15,7 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
+
 public class ListChatsResponse {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -38,9 +39,10 @@ public class ListChatsResponse {
         return (Optional<List<ChatMetadataResult>>) chatResults;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ListChatsResponse withChatResults(List<ChatMetadataResult> chatResults) {
         Utils.checkNotNull(chatResults, "chatResults");
@@ -48,13 +50,13 @@ public class ListChatsResponse {
         return this;
     }
 
+
     public ListChatsResponse withChatResults(Optional<? extends List<ChatMetadataResult>> chatResults) {
         Utils.checkNotNull(chatResults, "chatResults");
         this.chatResults = chatResults;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -79,14 +81,16 @@ public class ListChatsResponse {
         return Utils.toString(ListChatsResponse.class,
                 "chatResults", chatResults);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<ChatMetadataResult>> chatResults = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder chatResults(List<ChatMetadataResult> chatResults) {
             Utils.checkNotNull(chatResults, "chatResults");
@@ -99,10 +103,12 @@ public class ListChatsResponse {
             this.chatResults = chatResults;
             return this;
         }
-        
+
         public ListChatsResponse build() {
+
             return new ListChatsResponse(
                 chatResults);
         }
+
     }
 }

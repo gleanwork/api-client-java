@@ -36,7 +36,7 @@ public class GetdocumentsbyfacetsRequestBuilder {
     public GetdocumentsbyfacetsResponse call() throws Exception {
         
         RequestOperation<Optional<? extends GetDocumentsByFacetsRequest>, GetdocumentsbyfacetsResponse> operation
-              = new GetdocumentsbyfacetsOperation( sdkConfiguration);
+              = new GetdocumentsbyfacetsOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

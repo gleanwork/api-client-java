@@ -29,7 +29,7 @@ public class CreatereportRequestBuilder {
     public CreatereportResponse call() throws Exception {
         
         RequestOperation<UpdateDlpConfigRequest, CreatereportResponse> operation
-              = new CreatereportOperation( sdkConfiguration);
+              = new CreatereportOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

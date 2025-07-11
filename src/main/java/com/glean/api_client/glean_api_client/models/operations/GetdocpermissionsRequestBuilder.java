@@ -29,7 +29,7 @@ public class GetdocpermissionsRequestBuilder {
     public GetdocpermissionsResponse call() throws Exception {
         
         RequestOperation<GetDocPermissionsRequest, GetdocpermissionsResponse> operation
-              = new GetdocpermissionsOperation( sdkConfiguration);
+              = new GetdocpermissionsOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

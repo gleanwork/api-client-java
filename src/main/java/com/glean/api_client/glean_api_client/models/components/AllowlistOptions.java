@@ -21,7 +21,6 @@ import java.util.Optional;
  * <p>Terms that are allow-listed during the scans. If any finding picked up by a rule exactly matches a term in the allow-list, it will not be counted as a violation.
  */
 public class AllowlistOptions {
-
     /**
      * list of words and phrases to consider as whitelisted content
      */
@@ -49,9 +48,10 @@ public class AllowlistOptions {
         return (Optional<List<String>>) terms;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * list of words and phrases to consider as whitelisted content
@@ -62,6 +62,7 @@ public class AllowlistOptions {
         return this;
     }
 
+
     /**
      * list of words and phrases to consider as whitelisted content
      */
@@ -71,7 +72,6 @@ public class AllowlistOptions {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -96,14 +96,16 @@ public class AllowlistOptions {
         return Utils.toString(AllowlistOptions.class,
                 "terms", terms);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<String>> terms = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * list of words and phrases to consider as whitelisted content
@@ -122,10 +124,12 @@ public class AllowlistOptions {
             this.terms = terms;
             return this;
         }
-        
+
         public AllowlistOptions build() {
+
             return new AllowlistOptions(
                 terms);
         }
+
     }
 }

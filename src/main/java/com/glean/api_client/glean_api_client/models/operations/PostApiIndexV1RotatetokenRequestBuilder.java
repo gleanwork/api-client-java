@@ -20,7 +20,7 @@ public class PostApiIndexV1RotatetokenRequestBuilder {
     public PostApiIndexV1RotatetokenResponse call() throws Exception {
         
         RequestlessOperation<PostApiIndexV1RotatetokenResponse> operation
-            = new PostApiIndexV1RotatetokenOperation( sdkConfiguration);
+            = new PostApiIndexV1RotatetokenOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest());
     }

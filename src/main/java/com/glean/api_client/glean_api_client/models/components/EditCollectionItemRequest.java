@@ -14,8 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class EditCollectionItemRequest {
 
+public class EditCollectionItemRequest {
     /**
      * The optional name of the Collection item.
      */
@@ -71,7 +71,8 @@ public class EditCollectionItemRequest {
     public EditCollectionItemRequest(
             long collectionId,
             String itemId) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), collectionId, itemId);
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            collectionId, itemId);
     }
 
     /**
@@ -114,9 +115,10 @@ public class EditCollectionItemRequest {
         return itemId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The optional name of the Collection item.
@@ -126,6 +128,7 @@ public class EditCollectionItemRequest {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * The optional name of the Collection item.
@@ -145,6 +148,7 @@ public class EditCollectionItemRequest {
         return this;
     }
 
+
     /**
      * A helpful description of why this CollectionItem is in the Collection that it's in.
      */
@@ -162,6 +166,7 @@ public class EditCollectionItemRequest {
         this.icon = Optional.ofNullable(icon);
         return this;
     }
+
 
     /**
      * The emoji icon for this CollectionItem. Only used for Text type items.
@@ -190,7 +195,6 @@ public class EditCollectionItemRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -211,11 +215,8 @@ public class EditCollectionItemRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            description,
-            icon,
-            collectionId,
-            itemId);
+            name, description, icon,
+            collectionId, itemId);
     }
     
     @Override
@@ -227,22 +228,24 @@ public class EditCollectionItemRequest {
                 "collectionId", collectionId,
                 "itemId", itemId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<String> icon = Optional.empty();
- 
+
         private Long collectionId;
- 
+
         private String itemId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The optional name of the Collection item.
@@ -262,6 +265,7 @@ public class EditCollectionItemRequest {
             return this;
         }
 
+
         /**
          * A helpful description of why this CollectionItem is in the Collection that it's in.
          */
@@ -279,6 +283,7 @@ public class EditCollectionItemRequest {
             this.description = description;
             return this;
         }
+
 
         /**
          * The emoji icon for this CollectionItem. Only used for Text type items.
@@ -298,6 +303,7 @@ public class EditCollectionItemRequest {
             return this;
         }
 
+
         /**
          * The ID of the Collection to edit CollectionItems in.
          */
@@ -307,6 +313,7 @@ public class EditCollectionItemRequest {
             return this;
         }
 
+
         /**
          * The ID of the CollectionItem to edit.
          */
@@ -315,14 +322,13 @@ public class EditCollectionItemRequest {
             this.itemId = itemId;
             return this;
         }
-        
+
         public EditCollectionItemRequest build() {
+
             return new EditCollectionItemRequest(
-                name,
-                description,
-                icon,
-                collectionId,
-                itemId);
+                name, description, icon,
+                collectionId, itemId);
         }
+
     }
 }

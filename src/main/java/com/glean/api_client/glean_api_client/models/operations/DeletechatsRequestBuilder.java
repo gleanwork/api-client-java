@@ -53,7 +53,7 @@ public class DeletechatsRequestBuilder {
     public DeletechatsResponse call() throws Exception {
         
         RequestOperation<DeletechatsRequest, DeletechatsResponse> operation
-              = new DeletechatsOperation( sdkConfiguration);
+              = new DeletechatsOperation(sdkConfiguration);
         DeletechatsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

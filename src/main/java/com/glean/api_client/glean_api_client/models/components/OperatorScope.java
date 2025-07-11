@@ -13,11 +13,13 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
+
 public class OperatorScope {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("datasource")
     private Optional<String> datasource;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("docType")
@@ -47,15 +49,17 @@ public class OperatorScope {
         return docType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public OperatorScope withDatasource(String datasource) {
         Utils.checkNotNull(datasource, "datasource");
         this.datasource = Optional.ofNullable(datasource);
         return this;
     }
+
 
     public OperatorScope withDatasource(Optional<String> datasource) {
         Utils.checkNotNull(datasource, "datasource");
@@ -69,13 +73,13 @@ public class OperatorScope {
         return this;
     }
 
+
     public OperatorScope withDocType(Optional<String> docType) {
         Utils.checkNotNull(docType, "docType");
         this.docType = docType;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -93,8 +97,7 @@ public class OperatorScope {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            datasource,
-            docType);
+            datasource, docType);
     }
     
     @Override
@@ -103,16 +106,18 @@ public class OperatorScope {
                 "datasource", datasource,
                 "docType", docType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> datasource = Optional.empty();
- 
+
         private Optional<String> docType = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder datasource(String datasource) {
             Utils.checkNotNull(datasource, "datasource");
@@ -126,6 +131,7 @@ public class OperatorScope {
             return this;
         }
 
+
         public Builder docType(String docType) {
             Utils.checkNotNull(docType, "docType");
             this.docType = Optional.ofNullable(docType);
@@ -137,11 +143,12 @@ public class OperatorScope {
             this.docType = docType;
             return this;
         }
-        
+
         public OperatorScope build() {
+
             return new OperatorScope(
-                datasource,
-                docType);
+                datasource, docType);
         }
+
     }
 }

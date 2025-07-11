@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class AddCollectionItemsRequest {
 
+public class AddCollectionItemsRequest {
     /**
      * The ID of the Collection to add items to.
      */
@@ -63,9 +63,10 @@ public class AddCollectionItemsRequest {
         return (Optional<List<CollectionItemDescriptor>>) addedCollectionItemDescriptors;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the Collection to add items to.
@@ -85,6 +86,7 @@ public class AddCollectionItemsRequest {
         return this;
     }
 
+
     /**
      * The CollectionItemDescriptors of the items being added.
      */
@@ -94,7 +96,6 @@ public class AddCollectionItemsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -112,8 +113,7 @@ public class AddCollectionItemsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            collectionId,
-            addedCollectionItemDescriptors);
+            collectionId, addedCollectionItemDescriptors);
     }
     
     @Override
@@ -122,16 +122,18 @@ public class AddCollectionItemsRequest {
                 "collectionId", collectionId,
                 "addedCollectionItemDescriptors", addedCollectionItemDescriptors);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Double collectionId;
- 
+
         private Optional<? extends List<CollectionItemDescriptor>> addedCollectionItemDescriptors = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the Collection to add items to.
@@ -141,6 +143,7 @@ public class AddCollectionItemsRequest {
             this.collectionId = collectionId;
             return this;
         }
+
 
         /**
          * The CollectionItemDescriptors of the items being added.
@@ -159,11 +162,12 @@ public class AddCollectionItemsRequest {
             this.addedCollectionItemDescriptors = addedCollectionItemDescriptors;
             return this;
         }
-        
+
         public AddCollectionItemsRequest build() {
+
             return new AddCollectionItemsRequest(
-                collectionId,
-                addedCollectionItemDescriptors);
+                collectionId, addedCollectionItemDescriptors);
         }
+
     }
 }

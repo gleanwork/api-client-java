@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-public class CollectionItem {
 
+public class CollectionItem {
     /**
      * The optional name of the Collection item.
      */
@@ -66,6 +66,7 @@ public class CollectionItem {
     @JsonProperty("itemId")
     private Optional<String> itemId;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdBy")
     private Optional<? extends Person> createdBy;
@@ -77,17 +78,21 @@ public class CollectionItem {
     @JsonProperty("createdAt")
     private Optional<OffsetDateTime> createdAt;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("document")
     private Optional<? extends Document> document;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shortcut")
     private Optional<? extends Shortcut> shortcut;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("collection")
     private Optional<? extends Collection> collection;
+
 
     @JsonProperty("itemType")
     private CollectionItemItemType itemType;
@@ -138,7 +143,11 @@ public class CollectionItem {
     public CollectionItem(
             long collectionId,
             CollectionItemItemType itemType) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), collectionId, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), itemType);
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            collectionId, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            itemType);
     }
 
     /**
@@ -234,9 +243,10 @@ public class CollectionItem {
         return itemType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The optional name of the Collection item.
@@ -246,6 +256,7 @@ public class CollectionItem {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * The optional name of the Collection item.
@@ -265,6 +276,7 @@ public class CollectionItem {
         return this;
     }
 
+
     /**
      * A helpful description of why this CollectionItem is in the Collection that it's in.
      */
@@ -282,6 +294,7 @@ public class CollectionItem {
         this.icon = Optional.ofNullable(icon);
         return this;
     }
+
 
     /**
      * The emoji icon for this CollectionItem. Only used for Text type items.
@@ -310,6 +323,7 @@ public class CollectionItem {
         return this;
     }
 
+
     /**
      * If this CollectionItem is indexed, the Glean Document ID of that document.
      */
@@ -327,6 +341,7 @@ public class CollectionItem {
         this.url = Optional.ofNullable(url);
         return this;
     }
+
 
     /**
      * The URL of this CollectionItem.
@@ -346,6 +361,7 @@ public class CollectionItem {
         return this;
     }
 
+
     /**
      * Unique identifier for the item within the Collection it belongs to.
      */
@@ -360,6 +376,7 @@ public class CollectionItem {
         this.createdBy = Optional.ofNullable(createdBy);
         return this;
     }
+
 
     public CollectionItem withCreatedBy(Optional<? extends Person> createdBy) {
         Utils.checkNotNull(createdBy, "createdBy");
@@ -376,6 +393,7 @@ public class CollectionItem {
         return this;
     }
 
+
     /**
      * Unix timestamp for when the item was first added (in seconds since epoch UTC).
      */
@@ -391,6 +409,7 @@ public class CollectionItem {
         return this;
     }
 
+
     public CollectionItem withDocument(Optional<? extends Document> document) {
         Utils.checkNotNull(document, "document");
         this.document = document;
@@ -402,6 +421,7 @@ public class CollectionItem {
         this.shortcut = Optional.ofNullable(shortcut);
         return this;
     }
+
 
     public CollectionItem withShortcut(Optional<? extends Shortcut> shortcut) {
         Utils.checkNotNull(shortcut, "shortcut");
@@ -415,6 +435,7 @@ public class CollectionItem {
         return this;
     }
 
+
     public CollectionItem withCollection(Optional<? extends Collection> collection) {
         Utils.checkNotNull(collection, "collection");
         this.collection = collection;
@@ -427,7 +448,6 @@ public class CollectionItem {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -456,18 +476,10 @@ public class CollectionItem {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            description,
-            icon,
-            collectionId,
-            documentId,
-            url,
-            itemId,
-            createdBy,
-            createdAt,
-            document,
-            shortcut,
-            collection,
+            name, description, icon,
+            collectionId, documentId, url,
+            itemId, createdBy, createdAt,
+            document, shortcut, collection,
             itemType);
     }
     
@@ -488,38 +500,40 @@ public class CollectionItem {
                 "collection", collection,
                 "itemType", itemType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<String> icon = Optional.empty();
- 
+
         private Long collectionId;
- 
+
         private Optional<String> documentId = Optional.empty();
- 
+
         private Optional<String> url = Optional.empty();
- 
+
         private Optional<String> itemId = Optional.empty();
- 
+
         private Optional<? extends Person> createdBy = Optional.empty();
- 
+
         private Optional<OffsetDateTime> createdAt = Optional.empty();
- 
+
         private Optional<? extends Document> document = Optional.empty();
- 
+
         private Optional<? extends Shortcut> shortcut = Optional.empty();
- 
+
         private Optional<? extends Collection> collection = Optional.empty();
- 
+
         private CollectionItemItemType itemType;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The optional name of the Collection item.
@@ -539,6 +553,7 @@ public class CollectionItem {
             return this;
         }
 
+
         /**
          * A helpful description of why this CollectionItem is in the Collection that it's in.
          */
@@ -556,6 +571,7 @@ public class CollectionItem {
             this.description = description;
             return this;
         }
+
 
         /**
          * The emoji icon for this CollectionItem. Only used for Text type items.
@@ -575,6 +591,7 @@ public class CollectionItem {
             return this;
         }
 
+
         /**
          * The Collection ID of the Collection that this CollectionItem belongs in.
          */
@@ -583,6 +600,7 @@ public class CollectionItem {
             this.collectionId = collectionId;
             return this;
         }
+
 
         /**
          * If this CollectionItem is indexed, the Glean Document ID of that document.
@@ -602,6 +620,7 @@ public class CollectionItem {
             return this;
         }
 
+
         /**
          * The URL of this CollectionItem.
          */
@@ -619,6 +638,7 @@ public class CollectionItem {
             this.url = url;
             return this;
         }
+
 
         /**
          * Unique identifier for the item within the Collection it belongs to.
@@ -638,6 +658,7 @@ public class CollectionItem {
             return this;
         }
 
+
         public Builder createdBy(Person createdBy) {
             Utils.checkNotNull(createdBy, "createdBy");
             this.createdBy = Optional.ofNullable(createdBy);
@@ -649,6 +670,7 @@ public class CollectionItem {
             this.createdBy = createdBy;
             return this;
         }
+
 
         /**
          * Unix timestamp for when the item was first added (in seconds since epoch UTC).
@@ -668,6 +690,7 @@ public class CollectionItem {
             return this;
         }
 
+
         public Builder document(Document document) {
             Utils.checkNotNull(document, "document");
             this.document = Optional.ofNullable(document);
@@ -679,6 +702,7 @@ public class CollectionItem {
             this.document = document;
             return this;
         }
+
 
         public Builder shortcut(Shortcut shortcut) {
             Utils.checkNotNull(shortcut, "shortcut");
@@ -692,6 +716,7 @@ public class CollectionItem {
             return this;
         }
 
+
         public Builder collection(Collection collection) {
             Utils.checkNotNull(collection, "collection");
             this.collection = Optional.ofNullable(collection);
@@ -704,27 +729,22 @@ public class CollectionItem {
             return this;
         }
 
+
         public Builder itemType(CollectionItemItemType itemType) {
             Utils.checkNotNull(itemType, "itemType");
             this.itemType = itemType;
             return this;
         }
-        
+
         public CollectionItem build() {
+
             return new CollectionItem(
-                name,
-                description,
-                icon,
-                collectionId,
-                documentId,
-                url,
-                itemId,
-                createdBy,
-                createdAt,
-                document,
-                shortcut,
-                collection,
+                name, description, icon,
+                collectionId, documentId, url,
+                itemId, createdBy, createdAt,
+                document, shortcut, collection,
                 itemType);
         }
+
     }
 }

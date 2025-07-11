@@ -46,6 +46,7 @@ public class CalendarEvent {
     @JsonProperty("url")
     private String url;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("attendees")
     private Optional<? extends CalendarAttendees> attendees;
@@ -56,6 +57,7 @@ public class CalendarEvent {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("location")
     private Optional<String> location;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("conferenceData")
@@ -89,9 +91,11 @@ public class CalendarEvent {
     @JsonProperty("transcriptUrl")
     private Optional<String> transcriptUrl;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("classifications")
     private Optional<? extends List<EventClassification>> classifications;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("generatedAttachments")
@@ -143,7 +147,11 @@ public class CalendarEvent {
     public CalendarEvent(
             String id,
             String url) {
-        this(Optional.empty(), Optional.empty(), id, url, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), id,
+            url, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -241,15 +249,17 @@ public class CalendarEvent {
         return (Optional<List<GeneratedAttachment>>) generatedAttachments;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CalendarEvent withTime(TimeInterval time) {
         Utils.checkNotNull(time, "time");
         this.time = Optional.ofNullable(time);
         return this;
     }
+
 
     public CalendarEvent withTime(Optional<? extends TimeInterval> time) {
         Utils.checkNotNull(time, "time");
@@ -265,6 +275,7 @@ public class CalendarEvent {
         this.eventType = Optional.ofNullable(eventType);
         return this;
     }
+
 
     /**
      * The nature of the event, for example "out of office".
@@ -299,6 +310,7 @@ public class CalendarEvent {
         return this;
     }
 
+
     public CalendarEvent withAttendees(Optional<? extends CalendarAttendees> attendees) {
         Utils.checkNotNull(attendees, "attendees");
         this.attendees = attendees;
@@ -313,6 +325,7 @@ public class CalendarEvent {
         this.location = Optional.ofNullable(location);
         return this;
     }
+
 
     /**
      * The location that this event is taking place at.
@@ -329,6 +342,7 @@ public class CalendarEvent {
         return this;
     }
 
+
     public CalendarEvent withConferenceData(Optional<? extends ConferenceData> conferenceData) {
         Utils.checkNotNull(conferenceData, "conferenceData");
         this.conferenceData = conferenceData;
@@ -343,6 +357,7 @@ public class CalendarEvent {
         this.description = Optional.ofNullable(description);
         return this;
     }
+
 
     /**
      * The HTML description of the event.
@@ -362,6 +377,7 @@ public class CalendarEvent {
         return this;
     }
 
+
     /**
      * The app or other repository type from which the event was extracted
      */
@@ -379,6 +395,7 @@ public class CalendarEvent {
         this.hasTranscript = Optional.ofNullable(hasTranscript);
         return this;
     }
+
 
     /**
      * The event has a transcript associated with it enabling features like summarization
@@ -398,6 +415,7 @@ public class CalendarEvent {
         return this;
     }
 
+
     /**
      * A link to the transcript of the event
      */
@@ -413,6 +431,7 @@ public class CalendarEvent {
         return this;
     }
 
+
     public CalendarEvent withClassifications(Optional<? extends List<EventClassification>> classifications) {
         Utils.checkNotNull(classifications, "classifications");
         this.classifications = classifications;
@@ -425,13 +444,13 @@ public class CalendarEvent {
         return this;
     }
 
+
     public CalendarEvent withGeneratedAttachments(Optional<? extends List<GeneratedAttachment>> generatedAttachments) {
         Utils.checkNotNull(generatedAttachments, "generatedAttachments");
         this.generatedAttachments = generatedAttachments;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -460,18 +479,10 @@ public class CalendarEvent {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            time,
-            eventType,
-            id,
-            url,
-            attendees,
-            location,
-            conferenceData,
-            description,
-            datasource,
-            hasTranscript,
-            transcriptUrl,
-            classifications,
+            time, eventType, id,
+            url, attendees, location,
+            conferenceData, description, datasource,
+            hasTranscript, transcriptUrl, classifications,
             generatedAttachments);
     }
     
@@ -492,38 +503,40 @@ public class CalendarEvent {
                 "classifications", classifications,
                 "generatedAttachments", generatedAttachments);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends TimeInterval> time = Optional.empty();
- 
+
         private Optional<? extends CalendarEventEventType> eventType = Optional.empty();
- 
+
         private String id;
- 
+
         private String url;
- 
+
         private Optional<? extends CalendarAttendees> attendees = Optional.empty();
- 
+
         private Optional<String> location = Optional.empty();
- 
+
         private Optional<? extends ConferenceData> conferenceData = Optional.empty();
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<String> datasource = Optional.empty();
- 
+
         private Optional<Boolean> hasTranscript = Optional.empty();
- 
+
         private Optional<String> transcriptUrl = Optional.empty();
- 
+
         private Optional<? extends List<EventClassification>> classifications = Optional.empty();
- 
+
         private Optional<? extends List<GeneratedAttachment>> generatedAttachments = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder time(TimeInterval time) {
             Utils.checkNotNull(time, "time");
@@ -536,6 +549,7 @@ public class CalendarEvent {
             this.time = time;
             return this;
         }
+
 
         /**
          * The nature of the event, for example "out of office".
@@ -555,6 +569,7 @@ public class CalendarEvent {
             return this;
         }
 
+
         /**
          * The calendar event id
          */
@@ -564,6 +579,7 @@ public class CalendarEvent {
             return this;
         }
 
+
         /**
          * A permalink for this calendar event
          */
@@ -572,6 +588,7 @@ public class CalendarEvent {
             this.url = url;
             return this;
         }
+
 
         public Builder attendees(CalendarAttendees attendees) {
             Utils.checkNotNull(attendees, "attendees");
@@ -584,6 +601,7 @@ public class CalendarEvent {
             this.attendees = attendees;
             return this;
         }
+
 
         /**
          * The location that this event is taking place at.
@@ -603,6 +621,7 @@ public class CalendarEvent {
             return this;
         }
 
+
         public Builder conferenceData(ConferenceData conferenceData) {
             Utils.checkNotNull(conferenceData, "conferenceData");
             this.conferenceData = Optional.ofNullable(conferenceData);
@@ -614,6 +633,7 @@ public class CalendarEvent {
             this.conferenceData = conferenceData;
             return this;
         }
+
 
         /**
          * The HTML description of the event.
@@ -633,6 +653,7 @@ public class CalendarEvent {
             return this;
         }
 
+
         /**
          * The app or other repository type from which the event was extracted
          */
@@ -650,6 +671,7 @@ public class CalendarEvent {
             this.datasource = datasource;
             return this;
         }
+
 
         /**
          * The event has a transcript associated with it enabling features like summarization
@@ -669,6 +691,7 @@ public class CalendarEvent {
             return this;
         }
 
+
         /**
          * A link to the transcript of the event
          */
@@ -687,6 +710,7 @@ public class CalendarEvent {
             return this;
         }
 
+
         public Builder classifications(List<EventClassification> classifications) {
             Utils.checkNotNull(classifications, "classifications");
             this.classifications = Optional.ofNullable(classifications);
@@ -699,6 +723,7 @@ public class CalendarEvent {
             return this;
         }
 
+
         public Builder generatedAttachments(List<GeneratedAttachment> generatedAttachments) {
             Utils.checkNotNull(generatedAttachments, "generatedAttachments");
             this.generatedAttachments = Optional.ofNullable(generatedAttachments);
@@ -710,22 +735,16 @@ public class CalendarEvent {
             this.generatedAttachments = generatedAttachments;
             return this;
         }
-        
+
         public CalendarEvent build() {
+
             return new CalendarEvent(
-                time,
-                eventType,
-                id,
-                url,
-                attendees,
-                location,
-                conferenceData,
-                description,
-                datasource,
-                hasTranscript,
-                transcriptUrl,
-                classifications,
+                time, eventType, id,
+                url, attendees, location,
+                conferenceData, description, datasource,
+                hasTranscript, transcriptUrl, classifications,
                 generatedAttachments);
         }
+
     }
 }

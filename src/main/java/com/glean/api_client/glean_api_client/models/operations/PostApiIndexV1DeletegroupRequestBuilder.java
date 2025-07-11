@@ -29,7 +29,7 @@ public class PostApiIndexV1DeletegroupRequestBuilder {
     public PostApiIndexV1DeletegroupResponse call() throws Exception {
         
         RequestOperation<DeleteGroupRequest, PostApiIndexV1DeletegroupResponse> operation
-              = new PostApiIndexV1DeletegroupOperation( sdkConfiguration);
+              = new PostApiIndexV1DeletegroupOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

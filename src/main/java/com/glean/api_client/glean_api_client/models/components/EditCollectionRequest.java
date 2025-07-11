@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class EditCollectionRequest {
 
+public class EditCollectionRequest {
     /**
      * The unique name of the Collection.
      */
@@ -73,6 +73,7 @@ public class EditCollectionRequest {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("parentId")
     private Optional<Long> parentId;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("thumbnail")
@@ -131,7 +132,10 @@ public class EditCollectionRequest {
     public EditCollectionRequest(
             String name,
             long id) {
-        this(name, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), id);
+        this(name, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), id);
     }
 
     /**
@@ -223,9 +227,10 @@ public class EditCollectionRequest {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique name of the Collection.
@@ -245,6 +250,7 @@ public class EditCollectionRequest {
         return this;
     }
 
+
     /**
      * A brief summary of the Collection's contents.
      */
@@ -262,6 +268,7 @@ public class EditCollectionRequest {
         this.addedRoles = Optional.ofNullable(addedRoles);
         return this;
     }
+
 
     /**
      * A list of added user roles for the Collection.
@@ -281,6 +288,7 @@ public class EditCollectionRequest {
         return this;
     }
 
+
     /**
      * A list of removed user roles for the Collection.
      */
@@ -298,6 +306,7 @@ public class EditCollectionRequest {
         this.audienceFilters = Optional.ofNullable(audienceFilters);
         return this;
     }
+
 
     /**
      * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
@@ -317,6 +326,7 @@ public class EditCollectionRequest {
         return this;
     }
 
+
     /**
      * The emoji icon of this Collection.
      */
@@ -334,6 +344,7 @@ public class EditCollectionRequest {
         this.adminLocked = Optional.ofNullable(adminLocked);
         return this;
     }
+
 
     /**
      * Indicates whether edits are allowed for everyone or only admins.
@@ -353,6 +364,7 @@ public class EditCollectionRequest {
         return this;
     }
 
+
     /**
      * The parent of this Collection, or 0 if it's a top-level Collection.
      */
@@ -368,6 +380,7 @@ public class EditCollectionRequest {
         return this;
     }
 
+
     public EditCollectionRequest withThumbnail(Optional<? extends Thumbnail> thumbnail) {
         Utils.checkNotNull(thumbnail, "thumbnail");
         this.thumbnail = thumbnail;
@@ -382,6 +395,7 @@ public class EditCollectionRequest {
         this.allowedDatasource = Optional.ofNullable(allowedDatasource);
         return this;
     }
+
 
     /**
      * The datasource type this Collection can hold.
@@ -401,7 +415,6 @@ public class EditCollectionRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -428,17 +441,10 @@ public class EditCollectionRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            description,
-            addedRoles,
-            removedRoles,
-            audienceFilters,
-            icon,
-            adminLocked,
-            parentId,
-            thumbnail,
-            allowedDatasource,
-            id);
+            name, description, addedRoles,
+            removedRoles, audienceFilters, icon,
+            adminLocked, parentId, thumbnail,
+            allowedDatasource, id);
     }
     
     @Override
@@ -456,34 +462,36 @@ public class EditCollectionRequest {
                 "allowedDatasource", allowedDatasource,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<? extends List<UserRoleSpecification>> addedRoles = Optional.empty();
- 
+
         private Optional<? extends List<UserRoleSpecification>> removedRoles = Optional.empty();
- 
+
         private Optional<? extends List<FacetFilter>> audienceFilters = Optional.empty();
- 
+
         private Optional<String> icon = Optional.empty();
- 
+
         private Optional<Boolean> adminLocked = Optional.empty();
- 
+
         private Optional<Long> parentId = Optional.empty();
- 
+
         private Optional<? extends Thumbnail> thumbnail = Optional.empty();
- 
+
         private Optional<String> allowedDatasource = Optional.empty();
- 
+
         private Long id;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique name of the Collection.
@@ -493,6 +501,7 @@ public class EditCollectionRequest {
             this.name = name;
             return this;
         }
+
 
         /**
          * A brief summary of the Collection's contents.
@@ -512,6 +521,7 @@ public class EditCollectionRequest {
             return this;
         }
 
+
         /**
          * A list of added user roles for the Collection.
          */
@@ -529,6 +539,7 @@ public class EditCollectionRequest {
             this.addedRoles = addedRoles;
             return this;
         }
+
 
         /**
          * A list of removed user roles for the Collection.
@@ -548,6 +559,7 @@ public class EditCollectionRequest {
             return this;
         }
 
+
         /**
          * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
          */
@@ -565,6 +577,7 @@ public class EditCollectionRequest {
             this.audienceFilters = audienceFilters;
             return this;
         }
+
 
         /**
          * The emoji icon of this Collection.
@@ -584,6 +597,7 @@ public class EditCollectionRequest {
             return this;
         }
 
+
         /**
          * Indicates whether edits are allowed for everyone or only admins.
          */
@@ -601,6 +615,7 @@ public class EditCollectionRequest {
             this.adminLocked = adminLocked;
             return this;
         }
+
 
         /**
          * The parent of this Collection, or 0 if it's a top-level Collection.
@@ -620,6 +635,7 @@ public class EditCollectionRequest {
             return this;
         }
 
+
         public Builder thumbnail(Thumbnail thumbnail) {
             Utils.checkNotNull(thumbnail, "thumbnail");
             this.thumbnail = Optional.ofNullable(thumbnail);
@@ -631,6 +647,7 @@ public class EditCollectionRequest {
             this.thumbnail = thumbnail;
             return this;
         }
+
 
         /**
          * The datasource type this Collection can hold.
@@ -650,6 +667,7 @@ public class EditCollectionRequest {
             return this;
         }
 
+
         /**
          * The ID of the Collection to modify.
          */
@@ -658,20 +676,15 @@ public class EditCollectionRequest {
             this.id = id;
             return this;
         }
-        
+
         public EditCollectionRequest build() {
+
             return new EditCollectionRequest(
-                name,
-                description,
-                addedRoles,
-                removedRoles,
-                audienceFilters,
-                icon,
-                adminLocked,
-                parentId,
-                thumbnail,
-                allowedDatasource,
-                id);
+                name, description, addedRoles,
+                removedRoles, audienceFilters, icon,
+                adminLocked, parentId, thumbnail,
+                allowedDatasource, id);
         }
+
     }
 }

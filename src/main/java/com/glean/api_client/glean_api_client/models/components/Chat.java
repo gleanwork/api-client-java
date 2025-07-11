@@ -22,7 +22,6 @@ import java.util.Optional;
  * <p>A historical representation of a series of chat messages a user had with Glean Assistant.
  */
 public class Chat {
-
     /**
      * The opaque id of the Chat.
      */
@@ -36,6 +35,7 @@ public class Chat {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createTime")
     private Optional<Long> createTime;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdBy")
@@ -115,7 +115,9 @@ public class Chat {
     }
     
     public Chat() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -190,9 +192,10 @@ public class Chat {
         return (Optional<List<ChatMessage>>) messages;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The opaque id of the Chat.
@@ -202,6 +205,7 @@ public class Chat {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The opaque id of the Chat.
@@ -221,6 +225,7 @@ public class Chat {
         return this;
     }
 
+
     /**
      * Server Unix timestamp of the creation time (in seconds since epoch UTC).
      */
@@ -236,6 +241,7 @@ public class Chat {
         return this;
     }
 
+
     public Chat withCreatedBy(Optional<? extends Person> createdBy) {
         Utils.checkNotNull(createdBy, "createdBy");
         this.createdBy = createdBy;
@@ -250,6 +256,7 @@ public class Chat {
         this.updateTime = Optional.ofNullable(updateTime);
         return this;
     }
+
 
     /**
      * Server Unix timestamp of the update time (in seconds since epoch UTC).
@@ -269,6 +276,7 @@ public class Chat {
         return this;
     }
 
+
     /**
      * The name of the Chat.
      */
@@ -286,6 +294,7 @@ public class Chat {
         this.applicationId = Optional.ofNullable(applicationId);
         return this;
     }
+
 
     /**
      * The ID of the AI App that this Chat is associated to.
@@ -305,6 +314,7 @@ public class Chat {
         return this;
     }
 
+
     /**
      * The display name of the AI App that this Chat is associated to.
      */
@@ -322,6 +332,7 @@ public class Chat {
         this.icon = Optional.ofNullable(icon);
         return this;
     }
+
 
     /**
      * Defines how to render an icon
@@ -341,6 +352,7 @@ public class Chat {
         return this;
     }
 
+
     /**
      * The chat messages within a Chat.
      */
@@ -350,7 +362,6 @@ public class Chat {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -375,15 +386,9 @@ public class Chat {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            createTime,
-            createdBy,
-            updateTime,
-            name,
-            applicationId,
-            applicationName,
-            icon,
-            messages);
+            id, createTime, createdBy,
+            updateTime, name, applicationId,
+            applicationName, icon, messages);
     }
     
     @Override
@@ -399,30 +404,32 @@ public class Chat {
                 "icon", icon,
                 "messages", messages);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<Long> createTime = Optional.empty();
- 
+
         private Optional<? extends Person> createdBy = Optional.empty();
- 
+
         private Optional<Long> updateTime = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> applicationId = Optional.empty();
- 
+
         private Optional<String> applicationName = Optional.empty();
- 
+
         private Optional<? extends IconConfig> icon = Optional.empty();
- 
+
         private Optional<? extends List<ChatMessage>> messages = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The opaque id of the Chat.
@@ -442,6 +449,7 @@ public class Chat {
             return this;
         }
 
+
         /**
          * Server Unix timestamp of the creation time (in seconds since epoch UTC).
          */
@@ -460,6 +468,7 @@ public class Chat {
             return this;
         }
 
+
         public Builder createdBy(Person createdBy) {
             Utils.checkNotNull(createdBy, "createdBy");
             this.createdBy = Optional.ofNullable(createdBy);
@@ -471,6 +480,7 @@ public class Chat {
             this.createdBy = createdBy;
             return this;
         }
+
 
         /**
          * Server Unix timestamp of the update time (in seconds since epoch UTC).
@@ -490,6 +500,7 @@ public class Chat {
             return this;
         }
 
+
         /**
          * The name of the Chat.
          */
@@ -507,6 +518,7 @@ public class Chat {
             this.name = name;
             return this;
         }
+
 
         /**
          * The ID of the AI App that this Chat is associated to.
@@ -526,6 +538,7 @@ public class Chat {
             return this;
         }
 
+
         /**
          * The display name of the AI App that this Chat is associated to.
          */
@@ -543,6 +556,7 @@ public class Chat {
             this.applicationName = applicationName;
             return this;
         }
+
 
         /**
          * Defines how to render an icon
@@ -562,6 +576,7 @@ public class Chat {
             return this;
         }
 
+
         /**
          * The chat messages within a Chat.
          */
@@ -579,18 +594,14 @@ public class Chat {
             this.messages = messages;
             return this;
         }
-        
+
         public Chat build() {
+
             return new Chat(
-                id,
-                createTime,
-                createdBy,
-                updateTime,
-                name,
-                applicationId,
-                applicationName,
-                icon,
-                messages);
+                id, createTime, createdBy,
+                updateTime, name, applicationId,
+                applicationName, icon, messages);
         }
+
     }
 }

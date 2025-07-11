@@ -18,8 +18,8 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 
-public class Answer {
 
+public class Answer {
     /**
      * The opaque ID of the Answer.
      */
@@ -32,6 +32,7 @@ public class Answer {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("docId")
     private Optional<String> docId;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("question")
@@ -89,25 +90,31 @@ public class Answer {
     @JsonProperty("roles")
     private Optional<? extends List<UserRoleSpecification>> roles;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sourceDocumentSpec")
     private Optional<? extends DocumentSpecUnion> sourceDocumentSpec;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sourceType")
     private Optional<? extends AnswerSourceType> sourceType;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("permissions")
     private Optional<? extends ObjectPermissions> permissions;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("combinedAnswerText")
     private Optional<? extends StructuredText> combinedAnswerText;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("likes")
     private Optional<? extends AnswerLikes> likes;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("author")
@@ -127,13 +134,16 @@ public class Answer {
     @JsonProperty("updateTime")
     private Optional<OffsetDateTime> updateTime;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("updatedBy")
     private Optional<? extends Person> updatedBy;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("verification")
     private Optional<? extends Verification> verification;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("board")
@@ -152,6 +162,7 @@ public class Answer {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentCategory")
     private Optional<String> documentCategory;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sourceDocument")
@@ -235,7 +246,14 @@ public class Answer {
     
     public Answer(
             long id) {
-        this(id, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(id, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -416,9 +434,10 @@ public class Answer {
         return (Optional<Document>) sourceDocument;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The opaque ID of the Answer.
@@ -438,6 +457,7 @@ public class Answer {
         return this;
     }
 
+
     /**
      * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID isn't available. If both are available, using the Answer ID is preferred.
      */
@@ -453,6 +473,7 @@ public class Answer {
         return this;
     }
 
+
     public Answer withQuestion(Optional<String> question) {
         Utils.checkNotNull(question, "question");
         this.question = question;
@@ -467,6 +488,7 @@ public class Answer {
         this.questionVariations = Optional.ofNullable(questionVariations);
         return this;
     }
+
 
     /**
      * Additional ways of phrasing this question.
@@ -485,6 +507,7 @@ public class Answer {
         this.bodyText = Optional.ofNullable(bodyText);
         return this;
     }
+
 
     /**
      * The plain text answer to the question.
@@ -507,6 +530,7 @@ public class Answer {
         return this;
     }
 
+
     /**
      * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
      * 
@@ -528,6 +552,7 @@ public class Answer {
         return this;
     }
 
+
     /**
      * Filters which restrict who should see the answer. Values are taken from the corresponding filters in people search.
      */
@@ -545,6 +570,7 @@ public class Answer {
         this.addedRoles = Optional.ofNullable(addedRoles);
         return this;
     }
+
 
     /**
      * A list of user roles for the answer added by the owner.
@@ -564,6 +590,7 @@ public class Answer {
         return this;
     }
 
+
     /**
      * A list of user roles for the answer removed by the owner.
      */
@@ -582,6 +609,7 @@ public class Answer {
         return this;
     }
 
+
     /**
      * A list of roles for this answer explicitly granted by an owner, editor, or admin.
      */
@@ -597,6 +625,7 @@ public class Answer {
         return this;
     }
 
+
     public Answer withSourceDocumentSpec(Optional<? extends DocumentSpecUnion> sourceDocumentSpec) {
         Utils.checkNotNull(sourceDocumentSpec, "sourceDocumentSpec");
         this.sourceDocumentSpec = sourceDocumentSpec;
@@ -608,6 +637,7 @@ public class Answer {
         this.sourceType = Optional.ofNullable(sourceType);
         return this;
     }
+
 
     public Answer withSourceType(Optional<? extends AnswerSourceType> sourceType) {
         Utils.checkNotNull(sourceType, "sourceType");
@@ -621,6 +651,7 @@ public class Answer {
         return this;
     }
 
+
     public Answer withPermissions(Optional<? extends ObjectPermissions> permissions) {
         Utils.checkNotNull(permissions, "permissions");
         this.permissions = permissions;
@@ -632,6 +663,7 @@ public class Answer {
         this.combinedAnswerText = Optional.ofNullable(combinedAnswerText);
         return this;
     }
+
 
     public Answer withCombinedAnswerText(Optional<? extends StructuredText> combinedAnswerText) {
         Utils.checkNotNull(combinedAnswerText, "combinedAnswerText");
@@ -645,6 +677,7 @@ public class Answer {
         return this;
     }
 
+
     public Answer withLikes(Optional<? extends AnswerLikes> likes) {
         Utils.checkNotNull(likes, "likes");
         this.likes = likes;
@@ -656,6 +689,7 @@ public class Answer {
         this.author = Optional.ofNullable(author);
         return this;
     }
+
 
     public Answer withAuthor(Optional<? extends Person> author) {
         Utils.checkNotNull(author, "author");
@@ -671,6 +705,7 @@ public class Answer {
         this.createTime = Optional.ofNullable(createTime);
         return this;
     }
+
 
     /**
      * The time the answer was created in ISO format (ISO 8601).
@@ -690,6 +725,7 @@ public class Answer {
         return this;
     }
 
+
     /**
      * The time the answer was last updated in ISO format (ISO 8601).
      */
@@ -705,6 +741,7 @@ public class Answer {
         return this;
     }
 
+
     public Answer withUpdatedBy(Optional<? extends Person> updatedBy) {
         Utils.checkNotNull(updatedBy, "updatedBy");
         this.updatedBy = updatedBy;
@@ -717,6 +754,7 @@ public class Answer {
         return this;
     }
 
+
     public Answer withVerification(Optional<? extends Verification> verification) {
         Utils.checkNotNull(verification, "verification");
         this.verification = verification;
@@ -728,6 +766,7 @@ public class Answer {
         this.board = Optional.ofNullable(board);
         return this;
     }
+
 
     public Answer withBoard(Optional<? extends AnswerBoard> board) {
         Utils.checkNotNull(board, "board");
@@ -743,6 +782,7 @@ public class Answer {
         this.collections = Optional.ofNullable(collections);
         return this;
     }
+
 
     /**
      * The collections to which the answer belongs.
@@ -762,6 +802,7 @@ public class Answer {
         return this;
     }
 
+
     /**
      * The document's document_category(.proto).
      */
@@ -777,13 +818,13 @@ public class Answer {
         return this;
     }
 
+
     public Answer withSourceDocument(Optional<? extends Document> sourceDocument) {
         Utils.checkNotNull(sourceDocument, "sourceDocument");
         this.sourceDocument = sourceDocument;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -823,30 +864,14 @@ public class Answer {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            docId,
-            question,
-            questionVariations,
-            bodyText,
-            boardId,
-            audienceFilters,
-            addedRoles,
-            removedRoles,
-            roles,
-            sourceDocumentSpec,
-            sourceType,
-            permissions,
-            combinedAnswerText,
-            likes,
-            author,
-            createTime,
-            updateTime,
-            updatedBy,
-            verification,
-            board,
-            collections,
-            documentCategory,
-            sourceDocument);
+            id, docId, question,
+            questionVariations, bodyText, boardId,
+            audienceFilters, addedRoles, removedRoles,
+            roles, sourceDocumentSpec, sourceType,
+            permissions, combinedAnswerText, likes,
+            author, createTime, updateTime,
+            updatedBy, verification, board,
+            collections, documentCategory, sourceDocument);
     }
     
     @Override
@@ -877,61 +902,63 @@ public class Answer {
                 "documentCategory", documentCategory,
                 "sourceDocument", sourceDocument);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long id;
- 
+
         private Optional<String> docId = Optional.empty();
- 
+
         private Optional<String> question = Optional.empty();
- 
+
         private Optional<? extends List<String>> questionVariations = Optional.empty();
- 
+
         private Optional<String> bodyText = Optional.empty();
- 
+
         @Deprecated
         private Optional<Long> boardId = Optional.empty();
- 
+
         private Optional<? extends List<FacetFilter>> audienceFilters = Optional.empty();
- 
+
         private Optional<? extends List<UserRoleSpecification>> addedRoles = Optional.empty();
- 
+
         private Optional<? extends List<UserRoleSpecification>> removedRoles = Optional.empty();
- 
+
         private Optional<? extends List<UserRoleSpecification>> roles = Optional.empty();
- 
+
         private Optional<? extends DocumentSpecUnion> sourceDocumentSpec = Optional.empty();
- 
+
         private Optional<? extends AnswerSourceType> sourceType = Optional.empty();
- 
+
         private Optional<? extends ObjectPermissions> permissions = Optional.empty();
- 
+
         private Optional<? extends StructuredText> combinedAnswerText = Optional.empty();
- 
+
         private Optional<? extends AnswerLikes> likes = Optional.empty();
- 
+
         private Optional<? extends Person> author = Optional.empty();
- 
+
         private Optional<OffsetDateTime> createTime = Optional.empty();
- 
+
         private Optional<OffsetDateTime> updateTime = Optional.empty();
- 
+
         private Optional<? extends Person> updatedBy = Optional.empty();
- 
+
         private Optional<? extends Verification> verification = Optional.empty();
- 
+
         private Optional<? extends AnswerBoard> board = Optional.empty();
- 
+
         private Optional<? extends List<Collection>> collections = Optional.empty();
- 
+
         private Optional<String> documentCategory = Optional.empty();
- 
+
         private Optional<? extends Document> sourceDocument = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The opaque ID of the Answer.
@@ -941,6 +968,7 @@ public class Answer {
             this.id = id;
             return this;
         }
+
 
         /**
          * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID isn't available. If both are available, using the Answer ID is preferred.
@@ -960,6 +988,7 @@ public class Answer {
             return this;
         }
 
+
         public Builder question(String question) {
             Utils.checkNotNull(question, "question");
             this.question = Optional.ofNullable(question);
@@ -971,6 +1000,7 @@ public class Answer {
             this.question = question;
             return this;
         }
+
 
         /**
          * Additional ways of phrasing this question.
@@ -990,6 +1020,7 @@ public class Answer {
             return this;
         }
 
+
         /**
          * The plain text answer to the question.
          */
@@ -1007,6 +1038,7 @@ public class Answer {
             this.bodyText = bodyText;
             return this;
         }
+
 
         /**
          * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
@@ -1032,6 +1064,7 @@ public class Answer {
             return this;
         }
 
+
         /**
          * Filters which restrict who should see the answer. Values are taken from the corresponding filters in people search.
          */
@@ -1049,6 +1082,7 @@ public class Answer {
             this.audienceFilters = audienceFilters;
             return this;
         }
+
 
         /**
          * A list of user roles for the answer added by the owner.
@@ -1068,6 +1102,7 @@ public class Answer {
             return this;
         }
 
+
         /**
          * A list of user roles for the answer removed by the owner.
          */
@@ -1085,6 +1120,7 @@ public class Answer {
             this.removedRoles = removedRoles;
             return this;
         }
+
 
         /**
          * A list of roles for this answer explicitly granted by an owner, editor, or admin.
@@ -1104,6 +1140,7 @@ public class Answer {
             return this;
         }
 
+
         public Builder sourceDocumentSpec(DocumentSpecUnion sourceDocumentSpec) {
             Utils.checkNotNull(sourceDocumentSpec, "sourceDocumentSpec");
             this.sourceDocumentSpec = Optional.ofNullable(sourceDocumentSpec);
@@ -1115,6 +1152,7 @@ public class Answer {
             this.sourceDocumentSpec = sourceDocumentSpec;
             return this;
         }
+
 
         public Builder sourceType(AnswerSourceType sourceType) {
             Utils.checkNotNull(sourceType, "sourceType");
@@ -1128,6 +1166,7 @@ public class Answer {
             return this;
         }
 
+
         public Builder permissions(ObjectPermissions permissions) {
             Utils.checkNotNull(permissions, "permissions");
             this.permissions = Optional.ofNullable(permissions);
@@ -1139,6 +1178,7 @@ public class Answer {
             this.permissions = permissions;
             return this;
         }
+
 
         public Builder combinedAnswerText(StructuredText combinedAnswerText) {
             Utils.checkNotNull(combinedAnswerText, "combinedAnswerText");
@@ -1152,6 +1192,7 @@ public class Answer {
             return this;
         }
 
+
         public Builder likes(AnswerLikes likes) {
             Utils.checkNotNull(likes, "likes");
             this.likes = Optional.ofNullable(likes);
@@ -1164,6 +1205,7 @@ public class Answer {
             return this;
         }
 
+
         public Builder author(Person author) {
             Utils.checkNotNull(author, "author");
             this.author = Optional.ofNullable(author);
@@ -1175,6 +1217,7 @@ public class Answer {
             this.author = author;
             return this;
         }
+
 
         /**
          * The time the answer was created in ISO format (ISO 8601).
@@ -1194,6 +1237,7 @@ public class Answer {
             return this;
         }
 
+
         /**
          * The time the answer was last updated in ISO format (ISO 8601).
          */
@@ -1212,6 +1256,7 @@ public class Answer {
             return this;
         }
 
+
         public Builder updatedBy(Person updatedBy) {
             Utils.checkNotNull(updatedBy, "updatedBy");
             this.updatedBy = Optional.ofNullable(updatedBy);
@@ -1223,6 +1268,7 @@ public class Answer {
             this.updatedBy = updatedBy;
             return this;
         }
+
 
         public Builder verification(Verification verification) {
             Utils.checkNotNull(verification, "verification");
@@ -1236,6 +1282,7 @@ public class Answer {
             return this;
         }
 
+
         public Builder board(AnswerBoard board) {
             Utils.checkNotNull(board, "board");
             this.board = Optional.ofNullable(board);
@@ -1247,6 +1294,7 @@ public class Answer {
             this.board = board;
             return this;
         }
+
 
         /**
          * The collections to which the answer belongs.
@@ -1266,6 +1314,7 @@ public class Answer {
             return this;
         }
 
+
         /**
          * The document's document_category(.proto).
          */
@@ -1284,6 +1333,7 @@ public class Answer {
             return this;
         }
 
+
         public Builder sourceDocument(Document sourceDocument) {
             Utils.checkNotNull(sourceDocument, "sourceDocument");
             this.sourceDocument = Optional.ofNullable(sourceDocument);
@@ -1295,33 +1345,19 @@ public class Answer {
             this.sourceDocument = sourceDocument;
             return this;
         }
-        
+
         public Answer build() {
+
             return new Answer(
-                id,
-                docId,
-                question,
-                questionVariations,
-                bodyText,
-                boardId,
-                audienceFilters,
-                addedRoles,
-                removedRoles,
-                roles,
-                sourceDocumentSpec,
-                sourceType,
-                permissions,
-                combinedAnswerText,
-                likes,
-                author,
-                createTime,
-                updateTime,
-                updatedBy,
-                verification,
-                board,
-                collections,
-                documentCategory,
-                sourceDocument);
+                id, docId, question,
+                questionVariations, bodyText, boardId,
+                audienceFilters, addedRoles, removedRoles,
+                roles, sourceDocumentSpec, sourceType,
+                permissions, combinedAnswerText, likes,
+                author, createTime, updateTime,
+                updatedBy, verification, board,
+                collections, documentCategory, sourceDocument);
         }
+
     }
 }

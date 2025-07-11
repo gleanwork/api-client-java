@@ -14,11 +14,13 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class AddCollectionItemsResponse {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("collection")
     private Optional<? extends Collection> collection;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
@@ -50,15 +52,17 @@ public class AddCollectionItemsResponse {
         return (Optional<AddCollectionItemsError>) error;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public AddCollectionItemsResponse withCollection(Collection collection) {
         Utils.checkNotNull(collection, "collection");
         this.collection = Optional.ofNullable(collection);
         return this;
     }
+
 
     public AddCollectionItemsResponse withCollection(Optional<? extends Collection> collection) {
         Utils.checkNotNull(collection, "collection");
@@ -72,13 +76,13 @@ public class AddCollectionItemsResponse {
         return this;
     }
 
+
     public AddCollectionItemsResponse withError(Optional<? extends AddCollectionItemsError> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -96,8 +100,7 @@ public class AddCollectionItemsResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            collection,
-            error);
+            collection, error);
     }
     
     @Override
@@ -106,16 +109,18 @@ public class AddCollectionItemsResponse {
                 "collection", collection,
                 "error", error);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Collection> collection = Optional.empty();
- 
+
         private Optional<? extends AddCollectionItemsError> error = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder collection(Collection collection) {
             Utils.checkNotNull(collection, "collection");
@@ -129,6 +134,7 @@ public class AddCollectionItemsResponse {
             return this;
         }
 
+
         public Builder error(AddCollectionItemsError error) {
             Utils.checkNotNull(error, "error");
             this.error = Optional.ofNullable(error);
@@ -140,11 +146,12 @@ public class AddCollectionItemsResponse {
             this.error = error;
             return this;
         }
-        
+
         public AddCollectionItemsResponse build() {
+
             return new AddCollectionItemsResponse(
-                collection,
-                error);
+                collection, error);
         }
+
     }
 }

@@ -29,7 +29,7 @@ public class PeopleRequestBuilder {
     public PeopleResponse call() throws Exception {
         
         RequestOperation<PeopleRequest, PeopleResponse> operation
-              = new PeopleOperation( sdkConfiguration);
+              = new PeopleOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

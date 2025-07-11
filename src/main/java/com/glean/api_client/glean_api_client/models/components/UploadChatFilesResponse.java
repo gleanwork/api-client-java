@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class UploadChatFilesResponse {
 
+public class UploadChatFilesResponse {
     /**
      * Files uploaded for chat.
      */
@@ -44,9 +44,10 @@ public class UploadChatFilesResponse {
         return (Optional<List<ChatFile>>) files;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Files uploaded for chat.
@@ -57,6 +58,7 @@ public class UploadChatFilesResponse {
         return this;
     }
 
+
     /**
      * Files uploaded for chat.
      */
@@ -66,7 +68,6 @@ public class UploadChatFilesResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,14 +92,16 @@ public class UploadChatFilesResponse {
         return Utils.toString(UploadChatFilesResponse.class,
                 "files", files);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<ChatFile>> files = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Files uploaded for chat.
@@ -117,10 +120,12 @@ public class UploadChatFilesResponse {
             this.files = files;
             return this;
         }
-        
+
         public UploadChatFilesResponse build() {
+
             return new UploadChatFilesResponse(
                 files);
         }
+
     }
 }

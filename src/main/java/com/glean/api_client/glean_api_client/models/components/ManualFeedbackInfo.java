@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class ManualFeedbackInfo {
 
+public class ManualFeedbackInfo {
     /**
      * The email address of the user who submitted the Feedback.event.MANUAL_FEEDBACK event.
      */
@@ -197,7 +197,12 @@ public class ManualFeedbackInfo {
     }
     
     public ManualFeedbackInfo() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -346,9 +351,10 @@ public class ManualFeedbackInfo {
         return ratingScale;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The email address of the user who submitted the Feedback.event.MANUAL_FEEDBACK event.
@@ -358,6 +364,7 @@ public class ManualFeedbackInfo {
         this.email = Optional.ofNullable(email);
         return this;
     }
+
 
     /**
      * The email address of the user who submitted the Feedback.event.MANUAL_FEEDBACK event.
@@ -376,6 +383,7 @@ public class ManualFeedbackInfo {
         this.source = Optional.ofNullable(source);
         return this;
     }
+
 
     /**
      * The source associated with the Feedback.event.MANUAL_FEEDBACK event.
@@ -398,6 +406,7 @@ public class ManualFeedbackInfo {
         return this;
     }
 
+
     /**
      * The issue the user indicated in the feedback.
      * 
@@ -419,6 +428,7 @@ public class ManualFeedbackInfo {
         return this;
     }
 
+
     /**
      * The issue(s) the user indicated in the feedback.
      */
@@ -436,6 +446,7 @@ public class ManualFeedbackInfo {
         this.imageUrls = Optional.ofNullable(imageUrls);
         return this;
     }
+
 
     /**
      * URLs of images uploaded by user when providing feedback
@@ -455,6 +466,7 @@ public class ManualFeedbackInfo {
         return this;
     }
 
+
     /**
      * The query associated with the Feedback.event.MANUAL_FEEDBACK event.
      */
@@ -472,6 +484,7 @@ public class ManualFeedbackInfo {
         this.obscuredQuery = Optional.ofNullable(obscuredQuery);
         return this;
     }
+
 
     /**
      * The query associated with the Feedback.event.MANUAL_FEEDBACK event, but obscured such that the vowels are replaced with special characters. For search feedback events only.
@@ -491,6 +504,7 @@ public class ManualFeedbackInfo {
         return this;
     }
 
+
     /**
      * Which tabs the user had chosen at the time of the Feedback.event.MANUAL_FEEDBACK event. For search feedback events only.
      */
@@ -508,6 +522,7 @@ public class ManualFeedbackInfo {
         this.comments = Optional.ofNullable(comments);
         return this;
     }
+
 
     /**
      * The comments users can optionally add to the Feedback.event.MANUAL_FEEDBACK events.
@@ -527,6 +542,7 @@ public class ManualFeedbackInfo {
         return this;
     }
 
+
     /**
      * The array of search result Glean Document IDs, ordered by top to bottom result.
      */
@@ -544,6 +560,7 @@ public class ManualFeedbackInfo {
         this.previousMessages = Optional.ofNullable(previousMessages);
         return this;
     }
+
 
     /**
      * The array of previous messages in a chat session, ordered by oldest to newest.
@@ -563,6 +580,7 @@ public class ManualFeedbackInfo {
         return this;
     }
 
+
     /**
      * Array of previous request/response exchanges, ordered by oldest to newest.
      */
@@ -580,6 +598,7 @@ public class ManualFeedbackInfo {
         this.numQueriesFromFirstRun = Optional.ofNullable(numQueriesFromFirstRun);
         return this;
     }
+
 
     /**
      * How many times this query has been run in the past.
@@ -599,6 +618,7 @@ public class ManualFeedbackInfo {
         return this;
     }
 
+
     /**
      * The vote associated with the Feedback.event.MANUAL_FEEDBACK event.
      */
@@ -616,6 +636,7 @@ public class ManualFeedbackInfo {
         this.rating = Optional.ofNullable(rating);
         return this;
     }
+
 
     /**
      * A rating associated with the user feedback. The value will be between one and the maximum given by ratingScale, inclusive.
@@ -635,6 +656,7 @@ public class ManualFeedbackInfo {
         return this;
     }
 
+
     /**
      * A description of the rating that contextualizes how it appeared to the user, e.g. "satisfied".
      */
@@ -653,6 +675,7 @@ public class ManualFeedbackInfo {
         return this;
     }
 
+
     /**
      * The scale of comparison for a rating associated with the feedback. Rating values start from one and go up to the maximum specified by ratingScale. For example, a five-option satisfaction rating will have a ratingScale of 5 and a thumbs-up/thumbs-down rating will have a ratingScale of 2.
      */
@@ -662,7 +685,6 @@ public class ManualFeedbackInfo {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -695,23 +717,12 @@ public class ManualFeedbackInfo {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            email,
-            source,
-            issue,
-            issues,
-            imageUrls,
-            query,
-            obscuredQuery,
-            activeTab,
-            comments,
-            searchResults,
-            previousMessages,
-            chatTranscript,
-            numQueriesFromFirstRun,
-            vote,
-            rating,
-            ratingKey,
-            ratingScale);
+            email, source, issue,
+            issues, imageUrls, query,
+            obscuredQuery, activeTab, comments,
+            searchResults, previousMessages, chatTranscript,
+            numQueriesFromFirstRun, vote, rating,
+            ratingKey, ratingScale);
     }
     
     @Override
@@ -735,47 +746,49 @@ public class ManualFeedbackInfo {
                 "ratingKey", ratingKey,
                 "ratingScale", ratingScale);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> email = Optional.empty();
- 
+
         private Optional<? extends ManualFeedbackInfoSource> source = Optional.empty();
- 
+
         @Deprecated
         private Optional<String> issue = Optional.empty();
- 
+
         private Optional<? extends List<Issue>> issues = Optional.empty();
- 
+
         private Optional<? extends List<String>> imageUrls = Optional.empty();
- 
+
         private Optional<String> query = Optional.empty();
- 
+
         private Optional<String> obscuredQuery = Optional.empty();
- 
+
         private Optional<String> activeTab = Optional.empty();
- 
+
         private Optional<String> comments = Optional.empty();
- 
+
         private Optional<? extends List<String>> searchResults = Optional.empty();
- 
+
         private Optional<? extends List<String>> previousMessages = Optional.empty();
- 
+
         private Optional<? extends List<FeedbackChatExchange>> chatTranscript = Optional.empty();
- 
+
         private Optional<Long> numQueriesFromFirstRun = Optional.empty();
- 
+
         private Optional<? extends Vote> vote = Optional.empty();
- 
+
         private Optional<Long> rating = Optional.empty();
- 
+
         private Optional<String> ratingKey = Optional.empty();
- 
+
         private Optional<Long> ratingScale = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The email address of the user who submitted the Feedback.event.MANUAL_FEEDBACK event.
@@ -795,6 +808,7 @@ public class ManualFeedbackInfo {
             return this;
         }
 
+
         /**
          * The source associated with the Feedback.event.MANUAL_FEEDBACK event.
          */
@@ -812,6 +826,7 @@ public class ManualFeedbackInfo {
             this.source = source;
             return this;
         }
+
 
         /**
          * The issue the user indicated in the feedback.
@@ -837,6 +852,7 @@ public class ManualFeedbackInfo {
             return this;
         }
 
+
         /**
          * The issue(s) the user indicated in the feedback.
          */
@@ -854,6 +870,7 @@ public class ManualFeedbackInfo {
             this.issues = issues;
             return this;
         }
+
 
         /**
          * URLs of images uploaded by user when providing feedback
@@ -873,6 +890,7 @@ public class ManualFeedbackInfo {
             return this;
         }
 
+
         /**
          * The query associated with the Feedback.event.MANUAL_FEEDBACK event.
          */
@@ -890,6 +908,7 @@ public class ManualFeedbackInfo {
             this.query = query;
             return this;
         }
+
 
         /**
          * The query associated with the Feedback.event.MANUAL_FEEDBACK event, but obscured such that the vowels are replaced with special characters. For search feedback events only.
@@ -909,6 +928,7 @@ public class ManualFeedbackInfo {
             return this;
         }
 
+
         /**
          * Which tabs the user had chosen at the time of the Feedback.event.MANUAL_FEEDBACK event. For search feedback events only.
          */
@@ -926,6 +946,7 @@ public class ManualFeedbackInfo {
             this.activeTab = activeTab;
             return this;
         }
+
 
         /**
          * The comments users can optionally add to the Feedback.event.MANUAL_FEEDBACK events.
@@ -945,6 +966,7 @@ public class ManualFeedbackInfo {
             return this;
         }
 
+
         /**
          * The array of search result Glean Document IDs, ordered by top to bottom result.
          */
@@ -962,6 +984,7 @@ public class ManualFeedbackInfo {
             this.searchResults = searchResults;
             return this;
         }
+
 
         /**
          * The array of previous messages in a chat session, ordered by oldest to newest.
@@ -981,6 +1004,7 @@ public class ManualFeedbackInfo {
             return this;
         }
 
+
         /**
          * Array of previous request/response exchanges, ordered by oldest to newest.
          */
@@ -998,6 +1022,7 @@ public class ManualFeedbackInfo {
             this.chatTranscript = chatTranscript;
             return this;
         }
+
 
         /**
          * How many times this query has been run in the past.
@@ -1017,6 +1042,7 @@ public class ManualFeedbackInfo {
             return this;
         }
 
+
         /**
          * The vote associated with the Feedback.event.MANUAL_FEEDBACK event.
          */
@@ -1034,6 +1060,7 @@ public class ManualFeedbackInfo {
             this.vote = vote;
             return this;
         }
+
 
         /**
          * A rating associated with the user feedback. The value will be between one and the maximum given by ratingScale, inclusive.
@@ -1053,6 +1080,7 @@ public class ManualFeedbackInfo {
             return this;
         }
 
+
         /**
          * A description of the rating that contextualizes how it appeared to the user, e.g. "satisfied".
          */
@@ -1071,6 +1099,7 @@ public class ManualFeedbackInfo {
             return this;
         }
 
+
         /**
          * The scale of comparison for a rating associated with the feedback. Rating values start from one and go up to the maximum specified by ratingScale. For example, a five-option satisfaction rating will have a ratingScale of 5 and a thumbs-up/thumbs-down rating will have a ratingScale of 2.
          */
@@ -1088,26 +1117,17 @@ public class ManualFeedbackInfo {
             this.ratingScale = ratingScale;
             return this;
         }
-        
+
         public ManualFeedbackInfo build() {
+
             return new ManualFeedbackInfo(
-                email,
-                source,
-                issue,
-                issues,
-                imageUrls,
-                query,
-                obscuredQuery,
-                activeTab,
-                comments,
-                searchResults,
-                previousMessages,
-                chatTranscript,
-                numQueriesFromFirstRun,
-                vote,
-                rating,
-                ratingKey,
-                ratingScale);
+                email, source, issue,
+                issues, imageUrls, query,
+                obscuredQuery, activeTab, comments,
+                searchResults, previousMessages, chatTranscript,
+                numQueriesFromFirstRun, vote, rating,
+                ratingKey, ratingScale);
         }
+
     }
 }

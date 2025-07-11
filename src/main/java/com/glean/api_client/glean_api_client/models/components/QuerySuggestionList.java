@@ -15,11 +15,13 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
+
 public class QuerySuggestionList {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("suggestions")
     private Optional<? extends List<QuerySuggestion>> suggestions;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("person")
@@ -51,15 +53,17 @@ public class QuerySuggestionList {
         return (Optional<Person>) person;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public QuerySuggestionList withSuggestions(List<QuerySuggestion> suggestions) {
         Utils.checkNotNull(suggestions, "suggestions");
         this.suggestions = Optional.ofNullable(suggestions);
         return this;
     }
+
 
     public QuerySuggestionList withSuggestions(Optional<? extends List<QuerySuggestion>> suggestions) {
         Utils.checkNotNull(suggestions, "suggestions");
@@ -73,13 +77,13 @@ public class QuerySuggestionList {
         return this;
     }
 
+
     public QuerySuggestionList withPerson(Optional<? extends Person> person) {
         Utils.checkNotNull(person, "person");
         this.person = person;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -97,8 +101,7 @@ public class QuerySuggestionList {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            suggestions,
-            person);
+            suggestions, person);
     }
     
     @Override
@@ -107,16 +110,18 @@ public class QuerySuggestionList {
                 "suggestions", suggestions,
                 "person", person);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<QuerySuggestion>> suggestions = Optional.empty();
- 
+
         private Optional<? extends Person> person = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder suggestions(List<QuerySuggestion> suggestions) {
             Utils.checkNotNull(suggestions, "suggestions");
@@ -130,6 +135,7 @@ public class QuerySuggestionList {
             return this;
         }
 
+
         public Builder person(Person person) {
             Utils.checkNotNull(person, "person");
             this.person = Optional.ofNullable(person);
@@ -141,11 +147,12 @@ public class QuerySuggestionList {
             this.person = person;
             return this;
         }
-        
+
         public QuerySuggestionList build() {
+
             return new QuerySuggestionList(
-                suggestions,
-                person);
+                suggestions, person);
         }
+
     }
 }

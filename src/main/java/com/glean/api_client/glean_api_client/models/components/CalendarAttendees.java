@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class CalendarAttendees {
 
+public class CalendarAttendees {
     /**
      * Full details of some of the attendees of this event
      */
@@ -94,7 +94,9 @@ public class CalendarAttendees {
     }
     
     public CalendarAttendees() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -154,9 +156,10 @@ public class CalendarAttendees {
         return numTentative;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Full details of some of the attendees of this event
@@ -166,6 +169,7 @@ public class CalendarAttendees {
         this.people = Optional.ofNullable(people);
         return this;
     }
+
 
     /**
      * Full details of some of the attendees of this event
@@ -185,6 +189,7 @@ public class CalendarAttendees {
         return this;
     }
 
+
     /**
      * Whether the total count of the people returned is at the retrieval limit.
      */
@@ -202,6 +207,7 @@ public class CalendarAttendees {
         this.total = Optional.ofNullable(total);
         return this;
     }
+
 
     /**
      * Total number of attendees in this event.
@@ -221,6 +227,7 @@ public class CalendarAttendees {
         return this;
     }
 
+
     /**
      * Total number of attendees who have accepted this event.
      */
@@ -238,6 +245,7 @@ public class CalendarAttendees {
         this.numDeclined = Optional.ofNullable(numDeclined);
         return this;
     }
+
 
     /**
      * Total number of attendees who have declined this event.
@@ -257,6 +265,7 @@ public class CalendarAttendees {
         return this;
     }
 
+
     /**
      * Total number of attendees who have not responded to this event.
      */
@@ -275,6 +284,7 @@ public class CalendarAttendees {
         return this;
     }
 
+
     /**
      * Total number of attendees who have responded tentatively (i.e. responded maybe) to this event.
      */
@@ -284,7 +294,6 @@ public class CalendarAttendees {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -307,12 +316,8 @@ public class CalendarAttendees {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            people,
-            isLimit,
-            total,
-            numAccepted,
-            numDeclined,
-            numNoResponse,
+            people, isLimit, total,
+            numAccepted, numDeclined, numNoResponse,
             numTentative);
     }
     
@@ -327,26 +332,28 @@ public class CalendarAttendees {
                 "numNoResponse", numNoResponse,
                 "numTentative", numTentative);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<CalendarAttendee>> people = Optional.empty();
- 
+
         private Optional<Boolean> isLimit = Optional.empty();
- 
+
         private Optional<Long> total = Optional.empty();
- 
+
         private Optional<Long> numAccepted = Optional.empty();
- 
+
         private Optional<Long> numDeclined = Optional.empty();
- 
+
         private Optional<Long> numNoResponse = Optional.empty();
- 
+
         private Optional<Long> numTentative = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Full details of some of the attendees of this event
@@ -366,6 +373,7 @@ public class CalendarAttendees {
             return this;
         }
 
+
         /**
          * Whether the total count of the people returned is at the retrieval limit.
          */
@@ -383,6 +391,7 @@ public class CalendarAttendees {
             this.isLimit = isLimit;
             return this;
         }
+
 
         /**
          * Total number of attendees in this event.
@@ -402,6 +411,7 @@ public class CalendarAttendees {
             return this;
         }
 
+
         /**
          * Total number of attendees who have accepted this event.
          */
@@ -419,6 +429,7 @@ public class CalendarAttendees {
             this.numAccepted = numAccepted;
             return this;
         }
+
 
         /**
          * Total number of attendees who have declined this event.
@@ -438,6 +449,7 @@ public class CalendarAttendees {
             return this;
         }
 
+
         /**
          * Total number of attendees who have not responded to this event.
          */
@@ -456,6 +468,7 @@ public class CalendarAttendees {
             return this;
         }
 
+
         /**
          * Total number of attendees who have responded tentatively (i.e. responded maybe) to this event.
          */
@@ -473,16 +486,14 @@ public class CalendarAttendees {
             this.numTentative = numTentative;
             return this;
         }
-        
+
         public CalendarAttendees build() {
+
             return new CalendarAttendees(
-                people,
-                isLimit,
-                total,
-                numAccepted,
-                numDeclined,
-                numNoResponse,
+                people, isLimit, total,
+                numAccepted, numDeclined, numNoResponse,
                 numTentative);
         }
+
     }
 }

@@ -14,11 +14,13 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class Hotword {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("regex")
     private Optional<String> regex;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("proximity")
@@ -49,15 +51,17 @@ public class Hotword {
         return (Optional<HotwordProximity>) proximity;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Hotword withRegex(String regex) {
         Utils.checkNotNull(regex, "regex");
         this.regex = Optional.ofNullable(regex);
         return this;
     }
+
 
     public Hotword withRegex(Optional<String> regex) {
         Utils.checkNotNull(regex, "regex");
@@ -71,13 +75,13 @@ public class Hotword {
         return this;
     }
 
+
     public Hotword withProximity(Optional<? extends HotwordProximity> proximity) {
         Utils.checkNotNull(proximity, "proximity");
         this.proximity = proximity;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -95,8 +99,7 @@ public class Hotword {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            regex,
-            proximity);
+            regex, proximity);
     }
     
     @Override
@@ -105,16 +108,18 @@ public class Hotword {
                 "regex", regex,
                 "proximity", proximity);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> regex = Optional.empty();
- 
+
         private Optional<? extends HotwordProximity> proximity = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder regex(String regex) {
             Utils.checkNotNull(regex, "regex");
@@ -128,6 +133,7 @@ public class Hotword {
             return this;
         }
 
+
         public Builder proximity(HotwordProximity proximity) {
             Utils.checkNotNull(proximity, "proximity");
             this.proximity = Optional.ofNullable(proximity);
@@ -139,11 +145,12 @@ public class Hotword {
             this.proximity = proximity;
             return this;
         }
-        
+
         public Hotword build() {
+
             return new Hotword(
-                regex,
-                proximity);
+                regex, proximity);
         }
+
     }
 }

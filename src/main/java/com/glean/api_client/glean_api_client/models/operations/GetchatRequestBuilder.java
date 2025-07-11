@@ -53,7 +53,7 @@ public class GetchatRequestBuilder {
     public GetchatResponse call() throws Exception {
         
         RequestOperation<GetchatRequest, GetchatResponse> operation
-              = new GetchatOperation( sdkConfiguration);
+              = new GetchatOperation(sdkConfiguration);
         GetchatRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

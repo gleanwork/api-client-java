@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class DocumentSpec2 {
 
+public class DocumentSpec2 {
     /**
      * The ID of the document.
      */
@@ -41,9 +41,10 @@ public class DocumentSpec2 {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the document.
@@ -54,6 +55,7 @@ public class DocumentSpec2 {
         return this;
     }
 
+
     /**
      * The ID of the document.
      */
@@ -63,7 +65,6 @@ public class DocumentSpec2 {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -88,14 +89,16 @@ public class DocumentSpec2 {
         return Utils.toString(DocumentSpec2.class,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the document.
@@ -114,10 +117,12 @@ public class DocumentSpec2 {
             this.id = id;
             return this;
         }
-        
+
         public DocumentSpec2 build() {
+
             return new DocumentSpec2(
                 id);
         }
+
     }
 }

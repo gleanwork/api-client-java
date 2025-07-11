@@ -14,8 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class ResultTab {
 
+public class ResultTab {
     /**
      * The unique ID of the tab. Can be passed in a search request to get results for that tab.
      */
@@ -61,7 +61,8 @@ public class ResultTab {
     }
     
     public ResultTab() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -96,9 +97,10 @@ public class ResultTab {
         return datasourceInstance;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique ID of the tab. Can be passed in a search request to get results for that tab.
@@ -108,6 +110,7 @@ public class ResultTab {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The unique ID of the tab. Can be passed in a search request to get results for that tab.
@@ -127,6 +130,7 @@ public class ResultTab {
         return this;
     }
 
+
     /**
      * The number of results in this tab for the current query.
      */
@@ -144,6 +148,7 @@ public class ResultTab {
         this.datasource = Optional.ofNullable(datasource);
         return this;
     }
+
 
     /**
      * The datasource associated with the tab, if any.
@@ -163,6 +168,7 @@ public class ResultTab {
         return this;
     }
 
+
     /**
      * The datasource instance associated with the tab, if any.
      */
@@ -172,7 +178,6 @@ public class ResultTab {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -192,9 +197,7 @@ public class ResultTab {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            count,
-            datasource,
+            id, count, datasource,
             datasourceInstance);
     }
     
@@ -206,20 +209,22 @@ public class ResultTab {
                 "datasource", datasource,
                 "datasourceInstance", datasourceInstance);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<Long> count = Optional.empty();
- 
+
         private Optional<String> datasource = Optional.empty();
- 
+
         private Optional<String> datasourceInstance = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique ID of the tab. Can be passed in a search request to get results for that tab.
@@ -239,6 +244,7 @@ public class ResultTab {
             return this;
         }
 
+
         /**
          * The number of results in this tab for the current query.
          */
@@ -256,6 +262,7 @@ public class ResultTab {
             this.count = count;
             return this;
         }
+
 
         /**
          * The datasource associated with the tab, if any.
@@ -275,6 +282,7 @@ public class ResultTab {
             return this;
         }
 
+
         /**
          * The datasource instance associated with the tab, if any.
          */
@@ -292,13 +300,13 @@ public class ResultTab {
             this.datasourceInstance = datasourceInstance;
             return this;
         }
-        
+
         public ResultTab build() {
+
             return new ResultTab(
-                id,
-                count,
-                datasource,
+                id, count, datasource,
                 datasourceInstance);
         }
+
     }
 }

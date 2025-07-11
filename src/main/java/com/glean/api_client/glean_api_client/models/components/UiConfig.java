@@ -14,8 +14,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class UiConfig {
 
+public class UiConfig {
     /**
      * defines how to render this particular displayable list card
      */
@@ -62,9 +62,10 @@ public class UiConfig {
         return (Optional<DisplayableListItemUIConfig>) additionalFlags;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * defines how to render this particular displayable list card
@@ -74,6 +75,7 @@ public class UiConfig {
         this.format = Optional.ofNullable(format);
         return this;
     }
+
 
     /**
      * defines how to render this particular displayable list card
@@ -93,6 +95,7 @@ public class UiConfig {
         return this;
     }
 
+
     /**
      * UI configurations for each item of the list
      */
@@ -102,7 +105,6 @@ public class UiConfig {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -120,8 +122,7 @@ public class UiConfig {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            format,
-            additionalFlags);
+            format, additionalFlags);
     }
     
     @Override
@@ -130,16 +131,18 @@ public class UiConfig {
                 "format", format,
                 "additionalFlags", additionalFlags);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Format> format = Optional.empty();
- 
+
         private Optional<? extends DisplayableListItemUIConfig> additionalFlags = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * defines how to render this particular displayable list card
@@ -159,6 +162,7 @@ public class UiConfig {
             return this;
         }
 
+
         /**
          * UI configurations for each item of the list
          */
@@ -176,11 +180,12 @@ public class UiConfig {
             this.additionalFlags = additionalFlags;
             return this;
         }
-        
+
         public UiConfig build() {
+
             return new UiConfig(
-                format,
-                additionalFlags);
+                format, additionalFlags);
         }
+
     }
 }

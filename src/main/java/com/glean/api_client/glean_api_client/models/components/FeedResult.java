@@ -16,13 +16,14 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class FeedResult {
 
+public class FeedResult {
     /**
      * Category of the result, one of the requested categories in incoming request.
      */
     @JsonProperty("category")
     private FeedResultCategory category;
+
 
     @JsonProperty("primaryEntry")
     private FeedEntry primaryEntry;
@@ -60,7 +61,8 @@ public class FeedResult {
     public FeedResult(
             FeedResultCategory category,
             FeedEntry primaryEntry) {
-        this(category, primaryEntry, Optional.empty(), Optional.empty());
+        this(category, primaryEntry, Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -93,9 +95,10 @@ public class FeedResult {
         return rank;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Category of the result, one of the requested categories in incoming request.
@@ -121,6 +124,7 @@ public class FeedResult {
         return this;
     }
 
+
     /**
      * Secondary entries for the result e.g. suggested docs for the calendar, carousel.
      */
@@ -139,6 +143,7 @@ public class FeedResult {
         return this;
     }
 
+
     /**
      * Rank of the result. Rank is suggested by server. Client side rank may differ.
      */
@@ -148,7 +153,6 @@ public class FeedResult {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -168,9 +172,7 @@ public class FeedResult {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            category,
-            primaryEntry,
-            secondaryEntries,
+            category, primaryEntry, secondaryEntries,
             rank);
     }
     
@@ -182,20 +184,22 @@ public class FeedResult {
                 "secondaryEntries", secondaryEntries,
                 "rank", rank);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private FeedResultCategory category;
- 
+
         private FeedEntry primaryEntry;
- 
+
         private Optional<? extends List<FeedEntry>> secondaryEntries = Optional.empty();
- 
+
         private Optional<Long> rank = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Category of the result, one of the requested categories in incoming request.
@@ -206,11 +210,13 @@ public class FeedResult {
             return this;
         }
 
+
         public Builder primaryEntry(FeedEntry primaryEntry) {
             Utils.checkNotNull(primaryEntry, "primaryEntry");
             this.primaryEntry = primaryEntry;
             return this;
         }
+
 
         /**
          * Secondary entries for the result e.g. suggested docs for the calendar, carousel.
@@ -230,6 +236,7 @@ public class FeedResult {
             return this;
         }
 
+
         /**
          * Rank of the result. Rank is suggested by server. Client side rank may differ.
          */
@@ -247,13 +254,13 @@ public class FeedResult {
             this.rank = rank;
             return this;
         }
-        
+
         public FeedResult build() {
+
             return new FeedResult(
-                category,
-                primaryEntry,
-                secondaryEntries,
+                category, primaryEntry, secondaryEntries,
                 rank);
         }
+
     }
 }

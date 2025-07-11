@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-public class ChatResponse implements Response {
 
+public class ChatResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
@@ -57,7 +57,8 @@ public class ChatResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, statusCode, rawResponse, Optional.empty());
+        this(contentType, statusCode, rawResponse,
+            Optional.empty());
     }
 
     /**
@@ -93,9 +94,10 @@ public class ChatResponse implements Response {
         return (Optional<com.glean.api_client.glean_api_client.models.components.ChatResponse>) chatResponse;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP response content type for this operation
@@ -133,6 +135,7 @@ public class ChatResponse implements Response {
         return this;
     }
 
+
     /**
      * OK
      */
@@ -142,7 +145,6 @@ public class ChatResponse implements Response {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -162,9 +164,7 @@ public class ChatResponse implements Response {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            contentType,
-            statusCode,
-            rawResponse,
+            contentType, statusCode, rawResponse,
             chatResponse);
     }
     
@@ -176,20 +176,22 @@ public class ChatResponse implements Response {
                 "rawResponse", rawResponse,
                 "chatResponse", chatResponse);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String contentType;
- 
+
         private Integer statusCode;
- 
+
         private HttpResponse<InputStream> rawResponse;
- 
+
         private Optional<? extends com.glean.api_client.glean_api_client.models.components.ChatResponse> chatResponse = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP response content type for this operation
@@ -200,6 +202,7 @@ public class ChatResponse implements Response {
             return this;
         }
 
+
         /**
          * HTTP response status code for this operation
          */
@@ -209,6 +212,7 @@ public class ChatResponse implements Response {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -217,6 +221,7 @@ public class ChatResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
+
 
         /**
          * OK
@@ -235,13 +240,13 @@ public class ChatResponse implements Response {
             this.chatResponse = chatResponse;
             return this;
         }
-        
+
         public ChatResponse build() {
+
             return new ChatResponse(
-                contentType,
-                statusCode,
-                rawResponse,
+                contentType, statusCode, rawResponse,
                 chatResponse);
         }
+
     }
 }

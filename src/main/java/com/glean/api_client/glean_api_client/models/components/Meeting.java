@@ -15,31 +15,38 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
+
 public class Meeting {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
     private Optional<String> id;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("title")
     private Optional<String> title;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
     private Optional<String> description;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("url")
     private Optional<String> url;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("startTime")
     private Optional<OffsetDateTime> startTime;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("endTime")
     private Optional<OffsetDateTime> endTime;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("attendees")
@@ -71,7 +78,9 @@ public class Meeting {
     }
     
     public Meeting() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -110,15 +119,17 @@ public class Meeting {
         return (Optional<CalendarAttendees>) attendees;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Meeting withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     public Meeting withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
@@ -132,6 +143,7 @@ public class Meeting {
         return this;
     }
 
+
     public Meeting withTitle(Optional<String> title) {
         Utils.checkNotNull(title, "title");
         this.title = title;
@@ -143,6 +155,7 @@ public class Meeting {
         this.description = Optional.ofNullable(description);
         return this;
     }
+
 
     public Meeting withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
@@ -156,6 +169,7 @@ public class Meeting {
         return this;
     }
 
+
     public Meeting withUrl(Optional<String> url) {
         Utils.checkNotNull(url, "url");
         this.url = url;
@@ -167,6 +181,7 @@ public class Meeting {
         this.startTime = Optional.ofNullable(startTime);
         return this;
     }
+
 
     public Meeting withStartTime(Optional<OffsetDateTime> startTime) {
         Utils.checkNotNull(startTime, "startTime");
@@ -180,6 +195,7 @@ public class Meeting {
         return this;
     }
 
+
     public Meeting withEndTime(Optional<OffsetDateTime> endTime) {
         Utils.checkNotNull(endTime, "endTime");
         this.endTime = endTime;
@@ -192,13 +208,13 @@ public class Meeting {
         return this;
     }
 
+
     public Meeting withAttendees(Optional<? extends CalendarAttendees> attendees) {
         Utils.checkNotNull(attendees, "attendees");
         this.attendees = attendees;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -221,12 +237,8 @@ public class Meeting {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            title,
-            description,
-            url,
-            startTime,
-            endTime,
+            id, title, description,
+            url, startTime, endTime,
             attendees);
     }
     
@@ -241,26 +253,28 @@ public class Meeting {
                 "endTime", endTime,
                 "attendees", attendees);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> title = Optional.empty();
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<String> url = Optional.empty();
- 
+
         private Optional<OffsetDateTime> startTime = Optional.empty();
- 
+
         private Optional<OffsetDateTime> endTime = Optional.empty();
- 
+
         private Optional<? extends CalendarAttendees> attendees = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -274,6 +288,7 @@ public class Meeting {
             return this;
         }
 
+
         public Builder title(String title) {
             Utils.checkNotNull(title, "title");
             this.title = Optional.ofNullable(title);
@@ -285,6 +300,7 @@ public class Meeting {
             this.title = title;
             return this;
         }
+
 
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
@@ -298,6 +314,7 @@ public class Meeting {
             return this;
         }
 
+
         public Builder url(String url) {
             Utils.checkNotNull(url, "url");
             this.url = Optional.ofNullable(url);
@@ -309,6 +326,7 @@ public class Meeting {
             this.url = url;
             return this;
         }
+
 
         public Builder startTime(OffsetDateTime startTime) {
             Utils.checkNotNull(startTime, "startTime");
@@ -322,6 +340,7 @@ public class Meeting {
             return this;
         }
 
+
         public Builder endTime(OffsetDateTime endTime) {
             Utils.checkNotNull(endTime, "endTime");
             this.endTime = Optional.ofNullable(endTime);
@@ -334,6 +353,7 @@ public class Meeting {
             return this;
         }
 
+
         public Builder attendees(CalendarAttendees attendees) {
             Utils.checkNotNull(attendees, "attendees");
             this.attendees = Optional.ofNullable(attendees);
@@ -345,16 +365,14 @@ public class Meeting {
             this.attendees = attendees;
             return this;
         }
-        
+
         public Meeting build() {
+
             return new Meeting(
-                id,
-                title,
-                description,
-                url,
-                startTime,
-                endTime,
+                id, title, description,
+                url, startTime, endTime,
                 attendees);
         }
+
     }
 }

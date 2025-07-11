@@ -15,6 +15,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class UserActivityInsight {
 
     @JsonProperty("user")
@@ -33,9 +34,11 @@ public class UserActivityInsight {
     @JsonProperty("lastActivityTimestamp")
     private Optional<Long> lastActivityTimestamp;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("activityCount")
     private Optional<? extends CountInfo> activityCount;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("activeDayCount")
@@ -63,7 +66,8 @@ public class UserActivityInsight {
     public UserActivityInsight(
             Person user,
             ActivityEnum activity) {
-        this(user, activity, Optional.empty(), Optional.empty(), Optional.empty());
+        this(user, activity, Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -99,9 +103,10 @@ public class UserActivityInsight {
         return (Optional<CountInfo>) activeDayCount;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public UserActivityInsight withUser(Person user) {
         Utils.checkNotNull(user, "user");
@@ -127,6 +132,7 @@ public class UserActivityInsight {
         return this;
     }
 
+
     /**
      * Unix timestamp of the last activity (in seconds since epoch UTC).
      */
@@ -142,6 +148,7 @@ public class UserActivityInsight {
         return this;
     }
 
+
     public UserActivityInsight withActivityCount(Optional<? extends CountInfo> activityCount) {
         Utils.checkNotNull(activityCount, "activityCount");
         this.activityCount = activityCount;
@@ -154,13 +161,13 @@ public class UserActivityInsight {
         return this;
     }
 
+
     public UserActivityInsight withActiveDayCount(Optional<? extends CountInfo> activeDayCount) {
         Utils.checkNotNull(activeDayCount, "activeDayCount");
         this.activeDayCount = activeDayCount;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -181,11 +188,8 @@ public class UserActivityInsight {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            user,
-            activity,
-            lastActivityTimestamp,
-            activityCount,
-            activeDayCount);
+            user, activity, lastActivityTimestamp,
+            activityCount, activeDayCount);
     }
     
     @Override
@@ -197,28 +201,31 @@ public class UserActivityInsight {
                 "activityCount", activityCount,
                 "activeDayCount", activeDayCount);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Person user;
- 
+
         private ActivityEnum activity;
- 
+
         private Optional<Long> lastActivityTimestamp = Optional.empty();
- 
+
         private Optional<? extends CountInfo> activityCount = Optional.empty();
- 
+
         private Optional<? extends CountInfo> activeDayCount = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder user(Person user) {
             Utils.checkNotNull(user, "user");
             this.user = user;
             return this;
         }
+
 
         /**
          * Activity e.g. search, home page visit or all.
@@ -228,6 +235,7 @@ public class UserActivityInsight {
             this.activity = activity;
             return this;
         }
+
 
         /**
          * Unix timestamp of the last activity (in seconds since epoch UTC).
@@ -247,6 +255,7 @@ public class UserActivityInsight {
             return this;
         }
 
+
         public Builder activityCount(CountInfo activityCount) {
             Utils.checkNotNull(activityCount, "activityCount");
             this.activityCount = Optional.ofNullable(activityCount);
@@ -259,6 +268,7 @@ public class UserActivityInsight {
             return this;
         }
 
+
         public Builder activeDayCount(CountInfo activeDayCount) {
             Utils.checkNotNull(activeDayCount, "activeDayCount");
             this.activeDayCount = Optional.ofNullable(activeDayCount);
@@ -270,14 +280,13 @@ public class UserActivityInsight {
             this.activeDayCount = activeDayCount;
             return this;
         }
-        
+
         public UserActivityInsight build() {
+
             return new UserActivityInsight(
-                user,
-                activity,
-                lastActivityTimestamp,
-                activityCount,
-                activeDayCount);
+                user, activity, lastActivityTimestamp,
+                activityCount, activeDayCount);
         }
+
     }
 }

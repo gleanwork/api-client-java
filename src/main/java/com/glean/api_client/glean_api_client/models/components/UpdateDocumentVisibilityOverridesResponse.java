@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class UpdateDocumentVisibilityOverridesResponse {
 
+public class UpdateDocumentVisibilityOverridesResponse {
     /**
      * The documents and whether their visibility was successfully updated.
      */
@@ -44,9 +44,10 @@ public class UpdateDocumentVisibilityOverridesResponse {
         return (Optional<List<DocumentVisibilityUpdateResult>>) results;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The documents and whether their visibility was successfully updated.
@@ -57,6 +58,7 @@ public class UpdateDocumentVisibilityOverridesResponse {
         return this;
     }
 
+
     /**
      * The documents and whether their visibility was successfully updated.
      */
@@ -66,7 +68,6 @@ public class UpdateDocumentVisibilityOverridesResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,14 +92,16 @@ public class UpdateDocumentVisibilityOverridesResponse {
         return Utils.toString(UpdateDocumentVisibilityOverridesResponse.class,
                 "results", results);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<DocumentVisibilityUpdateResult>> results = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The documents and whether their visibility was successfully updated.
@@ -117,10 +120,12 @@ public class UpdateDocumentVisibilityOverridesResponse {
             this.results = results;
             return this;
         }
-        
+
         public UpdateDocumentVisibilityOverridesResponse build() {
+
             return new UpdateDocumentVisibilityOverridesResponse(
                 results);
         }
+
     }
 }

@@ -11,6 +11,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.List;
 
+
 public class Activity {
 
     @JsonProperty("events")
@@ -28,9 +29,10 @@ public class Activity {
         return events;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Activity withEvents(List<ActivityEvent> events) {
         Utils.checkNotNull(events, "events");
@@ -38,7 +40,6 @@ public class Activity {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -63,24 +64,28 @@ public class Activity {
         return Utils.toString(Activity.class,
                 "events", events);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<ActivityEvent> events;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder events(List<ActivityEvent> events) {
             Utils.checkNotNull(events, "events");
             this.events = events;
             return this;
         }
-        
+
         public Activity build() {
+
             return new Activity(
                 events);
         }
+
     }
 }

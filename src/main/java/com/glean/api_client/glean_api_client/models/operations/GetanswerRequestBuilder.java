@@ -29,7 +29,7 @@ public class GetanswerRequestBuilder {
     public GetanswerResponse call() throws Exception {
         
         RequestOperation<GetAnswerRequest, GetanswerResponse> operation
-              = new GetanswerOperation( sdkConfiguration);
+              = new GetanswerOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

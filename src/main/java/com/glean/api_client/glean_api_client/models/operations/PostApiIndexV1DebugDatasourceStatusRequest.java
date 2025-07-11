@@ -10,8 +10,8 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class PostApiIndexV1DebugDatasourceStatusRequest {
 
+public class PostApiIndexV1DebugDatasourceStatusRequest {
     /**
      * The datasource to get debug status for.
      */
@@ -33,9 +33,10 @@ public class PostApiIndexV1DebugDatasourceStatusRequest {
         return datasource;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The datasource to get debug status for.
@@ -46,7 +47,6 @@ public class PostApiIndexV1DebugDatasourceStatusRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -71,14 +71,16 @@ public class PostApiIndexV1DebugDatasourceStatusRequest {
         return Utils.toString(PostApiIndexV1DebugDatasourceStatusRequest.class,
                 "datasource", datasource);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String datasource;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The datasource to get debug status for.
@@ -88,10 +90,12 @@ public class PostApiIndexV1DebugDatasourceStatusRequest {
             this.datasource = datasource;
             return this;
         }
-        
+
         public PostApiIndexV1DebugDatasourceStatusRequest build() {
+
             return new PostApiIndexV1DebugDatasourceStatusRequest(
                 datasource);
         }
+
     }
 }

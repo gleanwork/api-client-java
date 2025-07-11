@@ -11,8 +11,8 @@ import java.lang.Float;
 import java.lang.Override;
 import java.lang.String;
 
-public class PersonDistance {
 
+public class PersonDistance {
     /**
      * The display name.
      */
@@ -68,9 +68,10 @@ public class PersonDistance {
         return distance;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The display name.
@@ -99,7 +100,6 @@ public class PersonDistance {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -118,9 +118,7 @@ public class PersonDistance {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            obfuscatedId,
-            distance);
+            name, obfuscatedId, distance);
     }
     
     @Override
@@ -130,18 +128,20 @@ public class PersonDistance {
                 "obfuscatedId", obfuscatedId,
                 "distance", distance);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
- 
+
         private String obfuscatedId;
- 
+
         private Float distance;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The display name.
@@ -152,6 +152,7 @@ public class PersonDistance {
             return this;
         }
 
+
         /**
          * An opaque identifier that can be used to request metadata for a Person.
          */
@@ -161,6 +162,7 @@ public class PersonDistance {
             return this;
         }
 
+
         /**
          * Distance to person, refer to PeopleDistance pipeline on interpretation of the value.
          */
@@ -169,12 +171,12 @@ public class PersonDistance {
             this.distance = distance;
             return this;
         }
-        
+
         public PersonDistance build() {
+
             return new PersonDistance(
-                name,
-                obfuscatedId,
-                distance);
+                name, obfuscatedId, distance);
         }
+
     }
 }

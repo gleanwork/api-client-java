@@ -15,8 +15,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class DocumentSpec3 {
 
+public class DocumentSpec3 {
     /**
      * The type of the user generated content (UGC datasource).
      */
@@ -80,9 +80,10 @@ public class DocumentSpec3 {
         return docType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The type of the user generated content (UGC datasource).
@@ -92,6 +93,7 @@ public class DocumentSpec3 {
         this.ugcType = Optional.ofNullable(ugcType);
         return this;
     }
+
 
     /**
      * The type of the user generated content (UGC datasource).
@@ -111,6 +113,7 @@ public class DocumentSpec3 {
         return this;
     }
 
+
     /**
      * The id for user generated content.
      */
@@ -129,6 +132,7 @@ public class DocumentSpec3 {
         return this;
     }
 
+
     /**
      * The specific type of the user generated content type.
      */
@@ -138,7 +142,6 @@ public class DocumentSpec3 {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -157,9 +160,7 @@ public class DocumentSpec3 {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            ugcType,
-            contentId,
-            docType);
+            ugcType, contentId, docType);
     }
     
     @Override
@@ -169,18 +170,20 @@ public class DocumentSpec3 {
                 "contentId", contentId,
                 "docType", docType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends DocumentSpecUgcType> ugcType = Optional.empty();
- 
+
         private Optional<Long> contentId = Optional.empty();
- 
+
         private Optional<String> docType = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The type of the user generated content (UGC datasource).
@@ -200,6 +203,7 @@ public class DocumentSpec3 {
             return this;
         }
 
+
         /**
          * The id for user generated content.
          */
@@ -218,6 +222,7 @@ public class DocumentSpec3 {
             return this;
         }
 
+
         /**
          * The specific type of the user generated content type.
          */
@@ -235,12 +240,12 @@ public class DocumentSpec3 {
             this.docType = docType;
             return this;
         }
-        
+
         public DocumentSpec3 build() {
+
             return new DocumentSpec3(
-                ugcType,
-                contentId,
-                docType);
+                ugcType, contentId, docType);
         }
+
     }
 }

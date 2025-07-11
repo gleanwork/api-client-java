@@ -59,7 +59,7 @@ public class FeedbackRequestBuilder {
     public FeedbackResponse call() throws Exception {
         
         RequestOperation<FeedbackRequest, FeedbackResponse> operation
-              = new FeedbackOperation( sdkConfiguration);
+              = new FeedbackOperation(sdkConfiguration);
         FeedbackRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

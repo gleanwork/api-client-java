@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class Message {
 
+public class Message {
     /**
      * The role of the message.
      */
@@ -62,9 +62,10 @@ public class Message {
         return (Optional<List<MessageTextBlock>>) content;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The role of the message.
@@ -74,6 +75,7 @@ public class Message {
         this.role = Optional.ofNullable(role);
         return this;
     }
+
 
     /**
      * The role of the message.
@@ -93,6 +95,7 @@ public class Message {
         return this;
     }
 
+
     /**
      * The content of the message.
      */
@@ -102,7 +105,6 @@ public class Message {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -120,8 +122,7 @@ public class Message {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            role,
-            content);
+            role, content);
     }
     
     @Override
@@ -130,16 +131,18 @@ public class Message {
                 "role", role,
                 "content", content);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> role = Optional.empty();
- 
+
         private Optional<? extends List<MessageTextBlock>> content = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The role of the message.
@@ -159,6 +162,7 @@ public class Message {
             return this;
         }
 
+
         /**
          * The content of the message.
          */
@@ -176,11 +180,12 @@ public class Message {
             this.content = content;
             return this;
         }
-        
+
         public Message build() {
+
             return new Message(
-                role,
-                content);
+                role, content);
         }
+
     }
 }

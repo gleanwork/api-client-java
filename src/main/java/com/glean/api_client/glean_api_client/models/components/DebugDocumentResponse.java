@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>Describes the response body of the /debug/{datasource}/document API call
  */
 public class DebugDocumentResponse {
-
     /**
      * Describes the document status response body
      */
@@ -67,9 +66,10 @@ public class DebugDocumentResponse {
         return (Optional<DocumentPermissionsDefinition>) uploadedPermissions;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Describes the document status response body
@@ -79,6 +79,7 @@ public class DebugDocumentResponse {
         this.status = Optional.ofNullable(status);
         return this;
     }
+
 
     /**
      * Describes the document status response body
@@ -98,6 +99,7 @@ public class DebugDocumentResponse {
         return this;
     }
 
+
     /**
      * describes the access control details of the document
      */
@@ -107,7 +109,6 @@ public class DebugDocumentResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -125,8 +126,7 @@ public class DebugDocumentResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            status,
-            uploadedPermissions);
+            status, uploadedPermissions);
     }
     
     @Override
@@ -135,16 +135,18 @@ public class DebugDocumentResponse {
                 "status", status,
                 "uploadedPermissions", uploadedPermissions);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends DocumentStatusResponse> status = Optional.empty();
- 
+
         private Optional<? extends DocumentPermissionsDefinition> uploadedPermissions = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Describes the document status response body
@@ -164,6 +166,7 @@ public class DebugDocumentResponse {
             return this;
         }
 
+
         /**
          * describes the access control details of the document
          */
@@ -181,11 +184,12 @@ public class DebugDocumentResponse {
             this.uploadedPermissions = uploadedPermissions;
             return this;
         }
-        
+
         public DebugDocumentResponse build() {
+
             return new DebugDocumentResponse(
-                status,
-                uploadedPermissions);
+                status, uploadedPermissions);
         }
+
     }
 }

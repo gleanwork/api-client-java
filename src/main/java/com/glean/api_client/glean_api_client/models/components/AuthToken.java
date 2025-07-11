@@ -14,17 +14,21 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
+
 public class AuthToken {
 
     @JsonProperty("accessToken")
     private String accessToken;
 
+
     @JsonProperty("datasource")
     private String datasource;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("scope")
     private Optional<String> scope;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tokenType")
@@ -69,7 +73,8 @@ public class AuthToken {
     public AuthToken(
             String accessToken,
             String datasource) {
-        this(accessToken, datasource, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(accessToken, datasource, Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -108,9 +113,10 @@ public class AuthToken {
         return expiration;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public AuthToken withAccessToken(String accessToken) {
         Utils.checkNotNull(accessToken, "accessToken");
@@ -130,6 +136,7 @@ public class AuthToken {
         return this;
     }
 
+
     public AuthToken withScope(Optional<String> scope) {
         Utils.checkNotNull(scope, "scope");
         this.scope = scope;
@@ -141,6 +148,7 @@ public class AuthToken {
         this.tokenType = Optional.ofNullable(tokenType);
         return this;
     }
+
 
     public AuthToken withTokenType(Optional<String> tokenType) {
         Utils.checkNotNull(tokenType, "tokenType");
@@ -156,6 +164,7 @@ public class AuthToken {
         this.authUser = Optional.ofNullable(authUser);
         return this;
     }
+
 
     /**
      * Used by Google to indicate the index of the logged in user. Useful for generating hyperlinks that support multilogin.
@@ -175,6 +184,7 @@ public class AuthToken {
         return this;
     }
 
+
     /**
      * Unix timestamp when this token expires (in seconds since epoch UTC).
      */
@@ -184,7 +194,6 @@ public class AuthToken {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -206,12 +215,8 @@ public class AuthToken {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            accessToken,
-            datasource,
-            scope,
-            tokenType,
-            authUser,
-            expiration);
+            accessToken, datasource, scope,
+            tokenType, authUser, expiration);
     }
     
     @Override
@@ -224,24 +229,26 @@ public class AuthToken {
                 "authUser", authUser,
                 "expiration", expiration);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String accessToken;
- 
+
         private String datasource;
- 
+
         private Optional<String> scope = Optional.empty();
- 
+
         private Optional<String> tokenType = Optional.empty();
- 
+
         private Optional<String> authUser = Optional.empty();
- 
+
         private Optional<Long> expiration = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder accessToken(String accessToken) {
             Utils.checkNotNull(accessToken, "accessToken");
@@ -249,11 +256,13 @@ public class AuthToken {
             return this;
         }
 
+
         public Builder datasource(String datasource) {
             Utils.checkNotNull(datasource, "datasource");
             this.datasource = datasource;
             return this;
         }
+
 
         public Builder scope(String scope) {
             Utils.checkNotNull(scope, "scope");
@@ -267,6 +276,7 @@ public class AuthToken {
             return this;
         }
 
+
         public Builder tokenType(String tokenType) {
             Utils.checkNotNull(tokenType, "tokenType");
             this.tokenType = Optional.ofNullable(tokenType);
@@ -278,6 +288,7 @@ public class AuthToken {
             this.tokenType = tokenType;
             return this;
         }
+
 
         /**
          * Used by Google to indicate the index of the logged in user. Useful for generating hyperlinks that support multilogin.
@@ -297,6 +308,7 @@ public class AuthToken {
             return this;
         }
 
+
         /**
          * Unix timestamp when this token expires (in seconds since epoch UTC).
          */
@@ -314,15 +326,13 @@ public class AuthToken {
             this.expiration = expiration;
             return this;
         }
-        
+
         public AuthToken build() {
+
             return new AuthToken(
-                accessToken,
-                datasource,
-                scope,
-                tokenType,
-                authUser,
-                expiration);
+                accessToken, datasource, scope,
+                tokenType, authUser, expiration);
         }
+
     }
 }

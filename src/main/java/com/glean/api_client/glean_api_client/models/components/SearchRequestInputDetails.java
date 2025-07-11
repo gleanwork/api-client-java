@@ -14,8 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class SearchRequestInputDetails {
 
+public class SearchRequestInputDetails {
     /**
      * Whether the associated query was at least partially copy-pasted.  If subsequent requests are issued after a copy-pasted query is constructed (e.g. with facet modifications), this bit should continue to be set for those requests.
      */
@@ -42,9 +42,10 @@ public class SearchRequestInputDetails {
         return hasCopyPaste;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Whether the associated query was at least partially copy-pasted.  If subsequent requests are issued after a copy-pasted query is constructed (e.g. with facet modifications), this bit should continue to be set for those requests.
@@ -55,6 +56,7 @@ public class SearchRequestInputDetails {
         return this;
     }
 
+
     /**
      * Whether the associated query was at least partially copy-pasted.  If subsequent requests are issued after a copy-pasted query is constructed (e.g. with facet modifications), this bit should continue to be set for those requests.
      */
@@ -64,7 +66,6 @@ public class SearchRequestInputDetails {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -89,14 +90,16 @@ public class SearchRequestInputDetails {
         return Utils.toString(SearchRequestInputDetails.class,
                 "hasCopyPaste", hasCopyPaste);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> hasCopyPaste = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Whether the associated query was at least partially copy-pasted.  If subsequent requests are issued after a copy-pasted query is constructed (e.g. with facet modifications), this bit should continue to be set for those requests.
@@ -115,10 +118,12 @@ public class SearchRequestInputDetails {
             this.hasCopyPaste = hasCopyPaste;
             return this;
         }
-        
+
         public SearchRequestInputDetails build() {
+
             return new SearchRequestInputDetails(
                 hasCopyPaste);
         }
+
     }
 }

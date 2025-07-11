@@ -15,6 +15,7 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
+
 public class ToolsListResponse {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -38,9 +39,10 @@ public class ToolsListResponse {
         return (Optional<List<Tool>>) tools;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ToolsListResponse withTools(List<Tool> tools) {
         Utils.checkNotNull(tools, "tools");
@@ -48,13 +50,13 @@ public class ToolsListResponse {
         return this;
     }
 
+
     public ToolsListResponse withTools(Optional<? extends List<Tool>> tools) {
         Utils.checkNotNull(tools, "tools");
         this.tools = tools;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -79,14 +81,16 @@ public class ToolsListResponse {
         return Utils.toString(ToolsListResponse.class,
                 "tools", tools);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<Tool>> tools = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder tools(List<Tool> tools) {
             Utils.checkNotNull(tools, "tools");
@@ -99,10 +103,12 @@ public class ToolsListResponse {
             this.tools = tools;
             return this;
         }
-        
+
         public ToolsListResponse build() {
+
             return new ToolsListResponse(
                 tools);
         }
+
     }
 }

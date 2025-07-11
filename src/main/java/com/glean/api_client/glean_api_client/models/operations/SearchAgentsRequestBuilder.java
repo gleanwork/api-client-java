@@ -29,7 +29,7 @@ public class SearchAgentsRequestBuilder {
     public SearchAgentsResponse call() throws Exception {
         
         RequestOperation<SearchAgentsRequest, SearchAgentsResponse> operation
-              = new SearchAgentsOperation( sdkConfiguration);
+              = new SearchAgentsOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

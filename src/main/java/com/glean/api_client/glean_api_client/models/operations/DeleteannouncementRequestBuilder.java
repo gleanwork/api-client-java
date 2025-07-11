@@ -29,7 +29,7 @@ public class DeleteannouncementRequestBuilder {
     public DeleteannouncementResponse call() throws Exception {
         
         RequestOperation<DeleteAnnouncementRequest, DeleteannouncementResponse> operation
-              = new DeleteannouncementOperation( sdkConfiguration);
+              = new DeleteannouncementOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

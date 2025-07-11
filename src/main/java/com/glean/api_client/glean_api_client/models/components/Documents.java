@@ -15,14 +15,15 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class Documents {
 
+public class Documents {
     /**
      * Information about active and recent successful uploads for the datasource
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bulkUploadHistory")
     private Optional<? extends List<BulkUploadHistoryEvent>> bulkUploadHistory;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("counts")
@@ -76,9 +77,10 @@ public class Documents {
         return (Optional<List<ProcessingHistoryEvent>>) processingHistory;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Information about active and recent successful uploads for the datasource
@@ -88,6 +90,7 @@ public class Documents {
         this.bulkUploadHistory = Optional.ofNullable(bulkUploadHistory);
         return this;
     }
+
 
     /**
      * Information about active and recent successful uploads for the datasource
@@ -104,6 +107,7 @@ public class Documents {
         return this;
     }
 
+
     public Documents withCounts(Optional<? extends DebugDatasourceStatusResponseCounts> counts) {
         Utils.checkNotNull(counts, "counts");
         this.counts = counts;
@@ -119,6 +123,7 @@ public class Documents {
         return this;
     }
 
+
     /**
      * Information about processing history for the datasource
      */
@@ -128,7 +133,6 @@ public class Documents {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -147,9 +151,7 @@ public class Documents {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            bulkUploadHistory,
-            counts,
-            processingHistory);
+            bulkUploadHistory, counts, processingHistory);
     }
     
     @Override
@@ -159,18 +161,20 @@ public class Documents {
                 "counts", counts,
                 "processingHistory", processingHistory);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<BulkUploadHistoryEvent>> bulkUploadHistory = Optional.empty();
- 
+
         private Optional<? extends DebugDatasourceStatusResponseCounts> counts = Optional.empty();
- 
+
         private Optional<? extends List<ProcessingHistoryEvent>> processingHistory = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Information about active and recent successful uploads for the datasource
@@ -190,6 +194,7 @@ public class Documents {
             return this;
         }
 
+
         public Builder counts(DebugDatasourceStatusResponseCounts counts) {
             Utils.checkNotNull(counts, "counts");
             this.counts = Optional.ofNullable(counts);
@@ -201,6 +206,7 @@ public class Documents {
             this.counts = counts;
             return this;
         }
+
 
         /**
          * Information about processing history for the datasource
@@ -219,12 +225,12 @@ public class Documents {
             this.processingHistory = processingHistory;
             return this;
         }
-        
+
         public Documents build() {
+
             return new Documents(
-                bulkUploadHistory,
-                counts,
-                processingHistory);
+                bulkUploadHistory, counts, processingHistory);
         }
+
     }
 }

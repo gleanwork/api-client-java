@@ -14,8 +14,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class UpdateDlpConfigRequest {
 
+public class UpdateDlpConfigRequest {
     /**
      * Detailed configuration of what documents and sensitive content will be scanned.
      */
@@ -61,9 +61,10 @@ public class UpdateDlpConfigRequest {
         return frequency;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Detailed configuration of what documents and sensitive content will be scanned.
@@ -73,6 +74,7 @@ public class UpdateDlpConfigRequest {
         this.config = Optional.ofNullable(config);
         return this;
     }
+
 
     /**
      * Detailed configuration of what documents and sensitive content will be scanned.
@@ -92,6 +94,7 @@ public class UpdateDlpConfigRequest {
         return this;
     }
 
+
     /**
      * Only "ONCE" is supported for reports.
      */
@@ -101,7 +104,6 @@ public class UpdateDlpConfigRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -119,8 +121,7 @@ public class UpdateDlpConfigRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            config,
-            frequency);
+            config, frequency);
     }
     
     @Override
@@ -129,16 +130,18 @@ public class UpdateDlpConfigRequest {
                 "config", config,
                 "frequency", frequency);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends DlpConfig> config = Optional.empty();
- 
+
         private Optional<String> frequency = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Detailed configuration of what documents and sensitive content will be scanned.
@@ -158,6 +161,7 @@ public class UpdateDlpConfigRequest {
             return this;
         }
 
+
         /**
          * Only "ONCE" is supported for reports.
          */
@@ -175,11 +179,12 @@ public class UpdateDlpConfigRequest {
             this.frequency = frequency;
             return this;
         }
-        
+
         public UpdateDlpConfigRequest build() {
+
             return new UpdateDlpConfigRequest(
-                config,
-                frequency);
+                config, frequency);
         }
+
     }
 }

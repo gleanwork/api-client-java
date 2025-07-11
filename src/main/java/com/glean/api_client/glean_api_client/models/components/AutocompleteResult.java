@@ -16,6 +16,7 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
+
 public class AutocompleteResult {
 
     @JsonProperty("result")
@@ -28,6 +29,7 @@ public class AutocompleteResult {
     @JsonProperty("keywords")
     private Optional<? extends List<String>> keywords;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resultType")
     private Optional<? extends AutocompleteResultResultType> resultType;
@@ -38,6 +40,7 @@ public class AutocompleteResult {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("score")
     private Optional<Double> score;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("operatorMetadata")
@@ -50,9 +53,11 @@ public class AutocompleteResult {
     @JsonProperty("quicklink")
     private Optional<? extends Quicklink> quicklink;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("document")
     private Optional<? extends Document> document;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("url")
@@ -118,7 +123,10 @@ public class AutocompleteResult {
     
     public AutocompleteResult(
             String result) {
-        this(result, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(result, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -201,9 +209,10 @@ public class AutocompleteResult {
         return (Optional<List<TextRange>>) ranges;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public AutocompleteResult withResult(String result) {
         Utils.checkNotNull(result, "result");
@@ -220,6 +229,7 @@ public class AutocompleteResult {
         return this;
     }
 
+
     /**
      * A list of all possible keywords for given result.
      */
@@ -234,6 +244,7 @@ public class AutocompleteResult {
         this.resultType = Optional.ofNullable(resultType);
         return this;
     }
+
 
     public AutocompleteResult withResultType(Optional<? extends AutocompleteResultResultType> resultType) {
         Utils.checkNotNull(resultType, "resultType");
@@ -250,6 +261,7 @@ public class AutocompleteResult {
         return this;
     }
 
+
     /**
      * Higher indicates a more confident match.
      */
@@ -264,6 +276,7 @@ public class AutocompleteResult {
         this.operatorMetadata = Optional.ofNullable(operatorMetadata);
         return this;
     }
+
 
     public AutocompleteResult withOperatorMetadata(Optional<? extends OperatorMetadata> operatorMetadata) {
         Utils.checkNotNull(operatorMetadata, "operatorMetadata");
@@ -280,6 +293,7 @@ public class AutocompleteResult {
         return this;
     }
 
+
     /**
      * An action for a specific datasource that will show up in autocomplete and app card, e.g. "Create new issue" for jira.
      */
@@ -295,6 +309,7 @@ public class AutocompleteResult {
         return this;
     }
 
+
     public AutocompleteResult withDocument(Optional<? extends Document> document) {
         Utils.checkNotNull(document, "document");
         this.document = document;
@@ -306,6 +321,7 @@ public class AutocompleteResult {
         this.url = Optional.ofNullable(url);
         return this;
     }
+
 
     public AutocompleteResult withUrl(Optional<String> url) {
         Utils.checkNotNull(url, "url");
@@ -321,6 +337,7 @@ public class AutocompleteResult {
         this.structuredResult = Optional.ofNullable(structuredResult);
         return this;
     }
+
 
     /**
      * A single object that can support any object in the work graph. Only a single object will be populated.
@@ -340,6 +357,7 @@ public class AutocompleteResult {
         return this;
     }
 
+
     /**
      * A token to be passed in /feedback events associated with this autocomplete result.
      */
@@ -358,6 +376,7 @@ public class AutocompleteResult {
         return this;
     }
 
+
     /**
      * Subsections of the result string to which some special formatting should be applied (eg. bold)
      */
@@ -367,7 +386,6 @@ public class AutocompleteResult {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -394,17 +412,10 @@ public class AutocompleteResult {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            result,
-            keywords,
-            resultType,
-            score,
-            operatorMetadata,
-            quicklink,
-            document,
-            url,
-            structuredResult,
-            trackingToken,
-            ranges);
+            result, keywords, resultType,
+            score, operatorMetadata, quicklink,
+            document, url, structuredResult,
+            trackingToken, ranges);
     }
     
     @Override
@@ -422,40 +433,43 @@ public class AutocompleteResult {
                 "trackingToken", trackingToken,
                 "ranges", ranges);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String result;
- 
+
         private Optional<? extends List<String>> keywords = Optional.empty();
- 
+
         private Optional<? extends AutocompleteResultResultType> resultType = Optional.empty();
- 
+
         private Optional<Double> score = Optional.empty();
- 
+
         private Optional<? extends OperatorMetadata> operatorMetadata = Optional.empty();
- 
+
         private Optional<? extends Quicklink> quicklink = Optional.empty();
- 
+
         private Optional<? extends Document> document = Optional.empty();
- 
+
         private Optional<String> url = Optional.empty();
- 
+
         private Optional<? extends StructuredResult> structuredResult = Optional.empty();
- 
+
         private Optional<String> trackingToken = Optional.empty();
- 
+
         private Optional<? extends List<TextRange>> ranges = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder result(String result) {
             Utils.checkNotNull(result, "result");
             this.result = result;
             return this;
         }
+
 
         /**
          * A list of all possible keywords for given result.
@@ -475,6 +489,7 @@ public class AutocompleteResult {
             return this;
         }
 
+
         public Builder resultType(AutocompleteResultResultType resultType) {
             Utils.checkNotNull(resultType, "resultType");
             this.resultType = Optional.ofNullable(resultType);
@@ -486,6 +501,7 @@ public class AutocompleteResult {
             this.resultType = resultType;
             return this;
         }
+
 
         /**
          * Higher indicates a more confident match.
@@ -505,6 +521,7 @@ public class AutocompleteResult {
             return this;
         }
 
+
         public Builder operatorMetadata(OperatorMetadata operatorMetadata) {
             Utils.checkNotNull(operatorMetadata, "operatorMetadata");
             this.operatorMetadata = Optional.ofNullable(operatorMetadata);
@@ -516,6 +533,7 @@ public class AutocompleteResult {
             this.operatorMetadata = operatorMetadata;
             return this;
         }
+
 
         /**
          * An action for a specific datasource that will show up in autocomplete and app card, e.g. "Create new issue" for jira.
@@ -535,6 +553,7 @@ public class AutocompleteResult {
             return this;
         }
 
+
         public Builder document(Document document) {
             Utils.checkNotNull(document, "document");
             this.document = Optional.ofNullable(document);
@@ -547,6 +566,7 @@ public class AutocompleteResult {
             return this;
         }
 
+
         public Builder url(String url) {
             Utils.checkNotNull(url, "url");
             this.url = Optional.ofNullable(url);
@@ -558,6 +578,7 @@ public class AutocompleteResult {
             this.url = url;
             return this;
         }
+
 
         /**
          * A single object that can support any object in the work graph. Only a single object will be populated.
@@ -577,6 +598,7 @@ public class AutocompleteResult {
             return this;
         }
 
+
         /**
          * A token to be passed in /feedback events associated with this autocomplete result.
          */
@@ -595,6 +617,7 @@ public class AutocompleteResult {
             return this;
         }
 
+
         /**
          * Subsections of the result string to which some special formatting should be applied (eg. bold)
          */
@@ -612,20 +635,15 @@ public class AutocompleteResult {
             this.ranges = ranges;
             return this;
         }
-        
+
         public AutocompleteResult build() {
+
             return new AutocompleteResult(
-                result,
-                keywords,
-                resultType,
-                score,
-                operatorMetadata,
-                quicklink,
-                document,
-                url,
-                structuredResult,
-                trackingToken,
-                ranges);
+                result, keywords, resultType,
+                score, operatorMetadata, quicklink,
+                document, url, structuredResult,
+                trackingToken, ranges);
         }
+
     }
 }

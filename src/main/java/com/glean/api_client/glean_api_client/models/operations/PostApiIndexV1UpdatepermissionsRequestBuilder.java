@@ -29,7 +29,7 @@ public class PostApiIndexV1UpdatepermissionsRequestBuilder {
     public PostApiIndexV1UpdatepermissionsResponse call() throws Exception {
         
         RequestOperation<UpdatePermissionsRequest, PostApiIndexV1UpdatepermissionsResponse> operation
-              = new PostApiIndexV1UpdatepermissionsOperation( sdkConfiguration);
+              = new PostApiIndexV1UpdatepermissionsOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

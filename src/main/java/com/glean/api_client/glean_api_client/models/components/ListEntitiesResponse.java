@@ -17,19 +17,23 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
+
 public class ListEntitiesResponse {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("results")
     private Optional<? extends List<Person>> results;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("teamResults")
     private Optional<? extends List<Team>> teamResults;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("customEntityResults")
     private Optional<? extends List<CustomEntity>> customEntityResults;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("facetResults")
@@ -102,7 +106,9 @@ public class ListEntitiesResponse {
     }
     
     public ListEntitiesResponse() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -171,15 +177,17 @@ public class ListEntitiesResponse {
         return (Optional<List<String>>) customFacetNames;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ListEntitiesResponse withResults(List<Person> results) {
         Utils.checkNotNull(results, "results");
         this.results = Optional.ofNullable(results);
         return this;
     }
+
 
     public ListEntitiesResponse withResults(Optional<? extends List<Person>> results) {
         Utils.checkNotNull(results, "results");
@@ -193,6 +201,7 @@ public class ListEntitiesResponse {
         return this;
     }
 
+
     public ListEntitiesResponse withTeamResults(Optional<? extends List<Team>> teamResults) {
         Utils.checkNotNull(teamResults, "teamResults");
         this.teamResults = teamResults;
@@ -205,6 +214,7 @@ public class ListEntitiesResponse {
         return this;
     }
 
+
     public ListEntitiesResponse withCustomEntityResults(Optional<? extends List<CustomEntity>> customEntityResults) {
         Utils.checkNotNull(customEntityResults, "customEntityResults");
         this.customEntityResults = customEntityResults;
@@ -216,6 +226,7 @@ public class ListEntitiesResponse {
         this.facetResults = Optional.ofNullable(facetResults);
         return this;
     }
+
 
     public ListEntitiesResponse withFacetResults(Optional<? extends List<FacetResult>> facetResults) {
         Utils.checkNotNull(facetResults, "facetResults");
@@ -231,6 +242,7 @@ public class ListEntitiesResponse {
         this.cursor = Optional.ofNullable(cursor);
         return this;
     }
+
 
     /**
      * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
@@ -250,6 +262,7 @@ public class ListEntitiesResponse {
         return this;
     }
 
+
     /**
      * The total number of entities available
      */
@@ -267,6 +280,7 @@ public class ListEntitiesResponse {
         this.hasMoreResults = Optional.ofNullable(hasMoreResults);
         return this;
     }
+
 
     /**
      * Whether or not more entities can be fetched.
@@ -286,6 +300,7 @@ public class ListEntitiesResponse {
         return this;
     }
 
+
     /**
      * Sort options from EntitiesSortOrder supported for this response. Default is empty list.
      */
@@ -304,6 +319,7 @@ public class ListEntitiesResponse {
         return this;
     }
 
+
     /**
      * list of Person attributes that are custom setup by deployment
      */
@@ -313,7 +329,6 @@ public class ListEntitiesResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -338,15 +353,9 @@ public class ListEntitiesResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            results,
-            teamResults,
-            customEntityResults,
-            facetResults,
-            cursor,
-            totalCount,
-            hasMoreResults,
-            sortOptions,
-            customFacetNames);
+            results, teamResults, customEntityResults,
+            facetResults, cursor, totalCount,
+            hasMoreResults, sortOptions, customFacetNames);
     }
     
     @Override
@@ -362,30 +371,32 @@ public class ListEntitiesResponse {
                 "sortOptions", sortOptions,
                 "customFacetNames", customFacetNames);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<Person>> results = Optional.empty();
- 
+
         private Optional<? extends List<Team>> teamResults = Optional.empty();
- 
+
         private Optional<? extends List<CustomEntity>> customEntityResults = Optional.empty();
- 
+
         private Optional<? extends List<FacetResult>> facetResults = Optional.empty();
- 
+
         private Optional<String> cursor = Optional.empty();
- 
+
         private Optional<Long> totalCount = Optional.empty();
- 
+
         private Optional<Boolean> hasMoreResults = Optional.empty();
- 
+
         private Optional<? extends List<EntitiesSortOrder>> sortOptions = Optional.empty();
- 
+
         private Optional<? extends List<String>> customFacetNames = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder results(List<Person> results) {
             Utils.checkNotNull(results, "results");
@@ -399,6 +410,7 @@ public class ListEntitiesResponse {
             return this;
         }
 
+
         public Builder teamResults(List<Team> teamResults) {
             Utils.checkNotNull(teamResults, "teamResults");
             this.teamResults = Optional.ofNullable(teamResults);
@@ -410,6 +422,7 @@ public class ListEntitiesResponse {
             this.teamResults = teamResults;
             return this;
         }
+
 
         public Builder customEntityResults(List<CustomEntity> customEntityResults) {
             Utils.checkNotNull(customEntityResults, "customEntityResults");
@@ -423,6 +436,7 @@ public class ListEntitiesResponse {
             return this;
         }
 
+
         public Builder facetResults(List<FacetResult> facetResults) {
             Utils.checkNotNull(facetResults, "facetResults");
             this.facetResults = Optional.ofNullable(facetResults);
@@ -434,6 +448,7 @@ public class ListEntitiesResponse {
             this.facetResults = facetResults;
             return this;
         }
+
 
         /**
          * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
@@ -453,6 +468,7 @@ public class ListEntitiesResponse {
             return this;
         }
 
+
         /**
          * The total number of entities available
          */
@@ -470,6 +486,7 @@ public class ListEntitiesResponse {
             this.totalCount = totalCount;
             return this;
         }
+
 
         /**
          * Whether or not more entities can be fetched.
@@ -489,6 +506,7 @@ public class ListEntitiesResponse {
             return this;
         }
 
+
         /**
          * Sort options from EntitiesSortOrder supported for this response. Default is empty list.
          */
@@ -507,6 +525,7 @@ public class ListEntitiesResponse {
             return this;
         }
 
+
         /**
          * list of Person attributes that are custom setup by deployment
          */
@@ -524,18 +543,14 @@ public class ListEntitiesResponse {
             this.customFacetNames = customFacetNames;
             return this;
         }
-        
+
         public ListEntitiesResponse build() {
+
             return new ListEntitiesResponse(
-                results,
-                teamResults,
-                customEntityResults,
-                facetResults,
-                cursor,
-                totalCount,
-                hasMoreResults,
-                sortOptions,
-                customFacetNames);
+                results, teamResults, customEntityResults,
+                facetResults, cursor, totalCount,
+                hasMoreResults, sortOptions, customFacetNames);
         }
+
     }
 }

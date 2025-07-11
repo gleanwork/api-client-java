@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class ClusterGroup {
 
+public class ClusterGroup {
     /**
      * A list of results that should be displayed as associated with this result.
      */
@@ -82,9 +82,10 @@ public class ClusterGroup {
         return visibleCountHint;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A list of results that should be displayed as associated with this result.
@@ -94,6 +95,7 @@ public class ClusterGroup {
         this.clusteredResults = Optional.ofNullable(clusteredResults);
         return this;
     }
+
 
     /**
      * A list of results that should be displayed as associated with this result.
@@ -113,6 +115,7 @@ public class ClusterGroup {
         return this;
     }
 
+
     /**
      * The reason for inclusion of clusteredResults.
      */
@@ -131,7 +134,6 @@ public class ClusterGroup {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -150,9 +152,7 @@ public class ClusterGroup {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            clusteredResults,
-            clusterType,
-            visibleCountHint);
+            clusteredResults, clusterType, visibleCountHint);
     }
     
     @Override
@@ -162,18 +162,20 @@ public class ClusterGroup {
                 "clusterType", clusterType,
                 "visibleCountHint", visibleCountHint);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<SearchResult>> clusteredResults = Optional.empty();
- 
+
         private Optional<? extends ClusterTypeEnum> clusterType = Optional.empty();
- 
+
         private Long visibleCountHint;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A list of results that should be displayed as associated with this result.
@@ -193,6 +195,7 @@ public class ClusterGroup {
             return this;
         }
 
+
         /**
          * The reason for inclusion of clusteredResults.
          */
@@ -211,6 +214,7 @@ public class ClusterGroup {
             return this;
         }
 
+
         /**
          * The default number of results to display before truncating and showing a "see more" link
          */
@@ -219,12 +223,12 @@ public class ClusterGroup {
             this.visibleCountHint = visibleCountHint;
             return this;
         }
-        
+
         public ClusterGroup build() {
+
             return new ClusterGroup(
-                clusteredResults,
-                clusterType,
-                visibleCountHint);
+                clusteredResults, clusterType, visibleCountHint);
         }
+
     }
 }

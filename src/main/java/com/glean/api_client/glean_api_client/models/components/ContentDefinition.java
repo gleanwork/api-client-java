@@ -76,9 +76,10 @@ public class ContentDefinition {
         return binaryContent;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ContentDefinition withMimeType(String mimeType) {
         Utils.checkNotNull(mimeType, "mimeType");
@@ -94,6 +95,7 @@ public class ContentDefinition {
         this.textContent = Optional.ofNullable(textContent);
         return this;
     }
+
 
     /**
      * text content. Only one of textContent or binary content can be specified
@@ -113,6 +115,7 @@ public class ContentDefinition {
         return this;
     }
 
+
     /**
      * base64 encoded binary content. Only one of textContent or binary content can be specified
      */
@@ -122,7 +125,6 @@ public class ContentDefinition {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -141,9 +143,7 @@ public class ContentDefinition {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            mimeType,
-            textContent,
-            binaryContent);
+            mimeType, textContent, binaryContent);
     }
     
     @Override
@@ -153,24 +153,27 @@ public class ContentDefinition {
                 "textContent", textContent,
                 "binaryContent", binaryContent);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String mimeType;
- 
+
         private Optional<String> textContent = Optional.empty();
- 
+
         private Optional<String> binaryContent = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder mimeType(String mimeType) {
             Utils.checkNotNull(mimeType, "mimeType");
             this.mimeType = mimeType;
             return this;
         }
+
 
         /**
          * text content. Only one of textContent or binary content can be specified
@@ -190,6 +193,7 @@ public class ContentDefinition {
             return this;
         }
 
+
         /**
          * base64 encoded binary content. Only one of textContent or binary content can be specified
          */
@@ -207,12 +211,12 @@ public class ContentDefinition {
             this.binaryContent = binaryContent;
             return this;
         }
-        
+
         public ContentDefinition build() {
+
             return new ContentDefinition(
-                mimeType,
-                textContent,
-                binaryContent);
+                mimeType, textContent, binaryContent);
         }
+
     }
 }

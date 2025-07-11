@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class GeneratedQna {
 
+public class GeneratedQna {
     /**
      * Search query rephrased into a question.
      */
@@ -102,7 +102,9 @@ public class GeneratedQna {
     }
     
     public GeneratedQna() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -173,9 +175,10 @@ public class GeneratedQna {
         return trackingToken;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Search query rephrased into a question.
@@ -185,6 +188,7 @@ public class GeneratedQna {
         this.question = Optional.ofNullable(question);
         return this;
     }
+
 
     /**
      * Search query rephrased into a question.
@@ -204,6 +208,7 @@ public class GeneratedQna {
         return this;
     }
 
+
     /**
      * Answer generated for the given query or the generated question.
      */
@@ -221,6 +226,7 @@ public class GeneratedQna {
         this.followUpPrompts = Optional.ofNullable(followUpPrompts);
         return this;
     }
+
 
     /**
      * List of all follow-up prompts generated for the given query or the generated question.
@@ -240,6 +246,7 @@ public class GeneratedQna {
         return this;
     }
 
+
     /**
      * List of follow-up actions generated for the given query or the generated question.
      */
@@ -257,6 +264,7 @@ public class GeneratedQna {
         this.ranges = Optional.ofNullable(ranges);
         return this;
     }
+
 
     /**
      * Answer subsections to mark with special formatting (citations, bolding etc)
@@ -276,6 +284,7 @@ public class GeneratedQna {
         return this;
     }
 
+
     /**
      * Status of backend generating the answer
      */
@@ -293,6 +302,7 @@ public class GeneratedQna {
         this.cursor = Optional.ofNullable(cursor);
         return this;
     }
+
 
     /**
      * An opaque cursor representing the search request
@@ -312,6 +322,7 @@ public class GeneratedQna {
         return this;
     }
 
+
     /**
      * An opaque token that represents this particular result in this particular query. To be used for /feedback reporting.
      */
@@ -321,7 +332,6 @@ public class GeneratedQna {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -345,14 +355,9 @@ public class GeneratedQna {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            question,
-            answer,
-            followUpPrompts,
-            followupActions,
-            ranges,
-            status,
-            cursor,
-            trackingToken);
+            question, answer, followUpPrompts,
+            followupActions, ranges, status,
+            cursor, trackingToken);
     }
     
     @Override
@@ -367,28 +372,30 @@ public class GeneratedQna {
                 "cursor", cursor,
                 "trackingToken", trackingToken);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> question = Optional.empty();
- 
+
         private Optional<String> answer = Optional.empty();
- 
+
         private Optional<? extends List<String>> followUpPrompts = Optional.empty();
- 
+
         private Optional<? extends List<FollowupAction>> followupActions = Optional.empty();
- 
+
         private Optional<? extends List<TextRange>> ranges = Optional.empty();
- 
+
         private Optional<? extends GeneratedQnaStatus> status = Optional.empty();
- 
+
         private Optional<String> cursor = Optional.empty();
- 
+
         private Optional<String> trackingToken = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Search query rephrased into a question.
@@ -408,6 +415,7 @@ public class GeneratedQna {
             return this;
         }
 
+
         /**
          * Answer generated for the given query or the generated question.
          */
@@ -425,6 +433,7 @@ public class GeneratedQna {
             this.answer = answer;
             return this;
         }
+
 
         /**
          * List of all follow-up prompts generated for the given query or the generated question.
@@ -444,6 +453,7 @@ public class GeneratedQna {
             return this;
         }
 
+
         /**
          * List of follow-up actions generated for the given query or the generated question.
          */
@@ -461,6 +471,7 @@ public class GeneratedQna {
             this.followupActions = followupActions;
             return this;
         }
+
 
         /**
          * Answer subsections to mark with special formatting (citations, bolding etc)
@@ -480,6 +491,7 @@ public class GeneratedQna {
             return this;
         }
 
+
         /**
          * Status of backend generating the answer
          */
@@ -497,6 +509,7 @@ public class GeneratedQna {
             this.status = status;
             return this;
         }
+
 
         /**
          * An opaque cursor representing the search request
@@ -516,6 +529,7 @@ public class GeneratedQna {
             return this;
         }
 
+
         /**
          * An opaque token that represents this particular result in this particular query. To be used for /feedback reporting.
          */
@@ -533,17 +547,14 @@ public class GeneratedQna {
             this.trackingToken = trackingToken;
             return this;
         }
-        
+
         public GeneratedQna build() {
+
             return new GeneratedQna(
-                question,
-                answer,
-                followUpPrompts,
-                followupActions,
-                ranges,
-                status,
-                cursor,
-                trackingToken);
+                question, answer, followUpPrompts,
+                followupActions, ranges, status,
+                cursor, trackingToken);
         }
+
     }
 }

@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+
 public class PersonMetadata {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -111,6 +112,7 @@ public class PersonMetadata {
     @JsonProperty("externalProfileLink")
     private Optional<String> externalProfileLink;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("manager")
     private Optional<? extends Person> manager;
@@ -163,6 +165,7 @@ public class PersonMetadata {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bannerUrl")
     private Optional<String> bannerUrl;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reports")
@@ -230,6 +233,7 @@ public class PersonMetadata {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("datasourceProfile")
     private Optional<? extends List<DatasourceProfile>> datasourceProfile;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("querySuggestions")
@@ -457,7 +461,21 @@ public class PersonMetadata {
     }
     
     public PersonMetadata() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -818,15 +836,17 @@ public class PersonMetadata {
         return isOrgRoot;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PersonMetadata withType(PersonMetadataType type) {
         Utils.checkNotNull(type, "type");
         this.type = Optional.ofNullable(type);
         return this;
     }
+
 
     public PersonMetadata withType(Optional<? extends PersonMetadataType> type) {
         Utils.checkNotNull(type, "type");
@@ -842,6 +862,7 @@ public class PersonMetadata {
         this.firstName = Optional.ofNullable(firstName);
         return this;
     }
+
 
     /**
      * The first name of the person
@@ -861,6 +882,7 @@ public class PersonMetadata {
         return this;
     }
 
+
     /**
      * The last name of the person
      */
@@ -878,6 +900,7 @@ public class PersonMetadata {
         this.title = Optional.ofNullable(title);
         return this;
     }
+
 
     /**
      * Job title.
@@ -897,6 +920,7 @@ public class PersonMetadata {
         return this;
     }
 
+
     /**
      * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
      */
@@ -914,6 +938,7 @@ public class PersonMetadata {
         this.department = Optional.ofNullable(department);
         return this;
     }
+
 
     /**
      * An organizational unit where everyone has a similar task, e.g. `Engineering`.
@@ -933,6 +958,7 @@ public class PersonMetadata {
         return this;
     }
 
+
     /**
      * Info about the employee's team(s).
      */
@@ -950,6 +976,7 @@ public class PersonMetadata {
         this.departmentCount = Optional.ofNullable(departmentCount);
         return this;
     }
+
 
     /**
      * The number of people in this person's department.
@@ -969,6 +996,7 @@ public class PersonMetadata {
         return this;
     }
 
+
     /**
      * The user's primary email address
      */
@@ -986,6 +1014,7 @@ public class PersonMetadata {
         this.aliasEmails = Optional.ofNullable(aliasEmails);
         return this;
     }
+
 
     /**
      * Additional email addresses of this user beyond the primary, if any.
@@ -1005,6 +1034,7 @@ public class PersonMetadata {
         return this;
     }
 
+
     /**
      * User facing string representing the person's location.
      */
@@ -1022,6 +1052,7 @@ public class PersonMetadata {
         this.structuredLocation = Optional.ofNullable(structuredLocation);
         return this;
     }
+
 
     /**
      * Detailed location with information about country, state, city etc.
@@ -1041,6 +1072,7 @@ public class PersonMetadata {
         return this;
     }
 
+
     /**
      * Link to a customer's internal profile page. This is set to '#' when no link is desired.
      */
@@ -1056,6 +1088,7 @@ public class PersonMetadata {
         return this;
     }
 
+
     public PersonMetadata withManager(Optional<? extends Person> manager) {
         Utils.checkNotNull(manager, "manager");
         this.manager = manager;
@@ -1070,6 +1103,7 @@ public class PersonMetadata {
         this.managementChain = Optional.ofNullable(managementChain);
         return this;
     }
+
 
     /**
      * The chain of reporting in the company as far up as it goes. The last entry is this person's direct manager.
@@ -1089,6 +1123,7 @@ public class PersonMetadata {
         return this;
     }
 
+
     /**
      * Phone number as a number string.
      */
@@ -1106,6 +1141,7 @@ public class PersonMetadata {
         this.timezone = Optional.ofNullable(timezone);
         return this;
     }
+
 
     /**
      * The timezone of the person. E.g. "Pacific Daylight Time".
@@ -1125,6 +1161,7 @@ public class PersonMetadata {
         return this;
     }
 
+
     /**
      * The offset of the person's timezone in seconds from UTC.
      */
@@ -1142,6 +1179,7 @@ public class PersonMetadata {
         this.photoUrl = Optional.ofNullable(photoUrl);
         return this;
     }
+
 
     /**
      * The URL of the person's avatar. Public, glean-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
@@ -1161,6 +1199,7 @@ public class PersonMetadata {
         return this;
     }
 
+
     /**
      * The original photo URL of the person's avatar before any edits they made are applied
      */
@@ -1179,6 +1218,7 @@ public class PersonMetadata {
         return this;
     }
 
+
     /**
      * The URL of the person's banner photo.
      */
@@ -1194,6 +1234,7 @@ public class PersonMetadata {
         return this;
     }
 
+
     public PersonMetadata withReports(Optional<? extends List<Person>> reports) {
         Utils.checkNotNull(reports, "reports");
         this.reports = reports;
@@ -1208,6 +1249,7 @@ public class PersonMetadata {
         this.startDate = Optional.ofNullable(startDate);
         return this;
     }
+
 
     /**
      * The date when the employee started.
@@ -1227,6 +1269,7 @@ public class PersonMetadata {
         return this;
     }
 
+
     /**
      * If a former employee, the last date of employment.
      */
@@ -1244,6 +1287,7 @@ public class PersonMetadata {
         this.bio = Optional.ofNullable(bio);
         return this;
     }
+
 
     /**
      * Short biography or mission statement of the employee.
@@ -1263,6 +1307,7 @@ public class PersonMetadata {
         return this;
     }
 
+
     /**
      * She/her, He/his or other pronoun.
      */
@@ -1280,6 +1325,7 @@ public class PersonMetadata {
         this.orgSizeCount = Optional.ofNullable(orgSizeCount);
         return this;
     }
+
 
     /**
      * The total recursive size of the people reporting to this person, or 1
@@ -1299,6 +1345,7 @@ public class PersonMetadata {
         return this;
     }
 
+
     /**
      * The total number of people who directly report to this person, or 0
      */
@@ -1316,6 +1363,7 @@ public class PersonMetadata {
         this.preferredName = Optional.ofNullable(preferredName);
         return this;
     }
+
 
     /**
      * The preferred name of the person, or a nickname.
@@ -1335,6 +1383,7 @@ public class PersonMetadata {
         return this;
     }
 
+
     /**
      * List of social network profiles.
      */
@@ -1353,6 +1402,7 @@ public class PersonMetadata {
         return this;
     }
 
+
     /**
      * List of profiles this user has in different datasources / tools that they use.
      */
@@ -1368,6 +1418,7 @@ public class PersonMetadata {
         return this;
     }
 
+
     public PersonMetadata withQuerySuggestions(Optional<? extends QuerySuggestionList> querySuggestions) {
         Utils.checkNotNull(querySuggestions, "querySuggestions");
         this.querySuggestions = querySuggestions;
@@ -1382,6 +1433,7 @@ public class PersonMetadata {
         this.peopleDistance = Optional.ofNullable(peopleDistance);
         return this;
     }
+
 
     /**
      * List of people and distances to those people from this person. Optionally with metadata.
@@ -1401,6 +1453,7 @@ public class PersonMetadata {
         return this;
     }
 
+
     /**
      * Information regarding the invite status of a person.
      */
@@ -1419,6 +1472,7 @@ public class PersonMetadata {
         return this;
     }
 
+
     /**
      * Whether the user has signed into Glean at least once.
      */
@@ -1436,6 +1490,7 @@ public class PersonMetadata {
         this.lastExtensionUse = Optional.ofNullable(lastExtensionUse);
         return this;
     }
+
 
     /**
      * The last time the user has used the Glean extension in ISO 8601 format.
@@ -1456,6 +1511,7 @@ public class PersonMetadata {
         return this;
     }
 
+
     /**
      * Describes the permissions levels that a user has for permissioned features. When the client sends this, Permissions.read and Permissions.write are the additional permissions granted to a user on top of what they have via their roles.
      * When the server sends this, Permissions.read and Permissions.write are the complete (merged) set of permissions the user has, and Permissions.roles is just for display purposes.
@@ -1475,6 +1531,7 @@ public class PersonMetadata {
         return this;
     }
 
+
     /**
      * User customizable fields for additional people information.
      */
@@ -1492,6 +1549,7 @@ public class PersonMetadata {
         this.loggingId = Optional.ofNullable(loggingId);
         return this;
     }
+
 
     /**
      * The logging id of the person used in scrubbed logs, tracking GA metrics.
@@ -1511,6 +1569,7 @@ public class PersonMetadata {
         return this;
     }
 
+
     /**
      * Percentage of the company that started strictly after this person. Between [0,100).
      */
@@ -1528,6 +1587,7 @@ public class PersonMetadata {
         this.busyEvents = Optional.ofNullable(busyEvents);
         return this;
     }
+
 
     /**
      * Intervals of busy time for this person, along with the type of event they're busy with.
@@ -1547,6 +1607,7 @@ public class PersonMetadata {
         return this;
     }
 
+
     /**
      * flag settings to indicate user profile settings for certain items
      */
@@ -1564,6 +1625,7 @@ public class PersonMetadata {
         this.badges = Optional.ofNullable(badges);
         return this;
     }
+
 
     /**
      * The badges that a user has earned over their lifetime.
@@ -1583,6 +1645,7 @@ public class PersonMetadata {
         return this;
     }
 
+
     /**
      * Whether this person is a "root" node in their organization's hierarchy.
      */
@@ -1592,7 +1655,6 @@ public class PersonMetadata {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1652,50 +1714,21 @@ public class PersonMetadata {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type,
-            firstName,
-            lastName,
-            title,
-            businessUnit,
-            department,
-            teams,
-            departmentCount,
-            email,
-            aliasEmails,
-            location,
-            structuredLocation,
-            externalProfileLink,
-            manager,
-            managementChain,
-            phone,
-            timezone,
-            timezoneOffset,
-            photoUrl,
-            uneditedPhotoUrl,
-            bannerUrl,
-            reports,
-            startDate,
-            endDate,
-            bio,
-            pronoun,
-            orgSizeCount,
-            directReportsCount,
-            preferredName,
-            socialNetwork,
-            datasourceProfile,
-            querySuggestions,
-            peopleDistance,
-            inviteInfo,
-            isSignedUp,
-            lastExtensionUse,
-            permissions,
-            customFields,
-            loggingId,
-            startDatePercentile,
-            busyEvents,
-            profileBoolSettings,
-            badges,
-            isOrgRoot);
+            type, firstName, lastName,
+            title, businessUnit, department,
+            teams, departmentCount, email,
+            aliasEmails, location, structuredLocation,
+            externalProfileLink, manager, managementChain,
+            phone, timezone, timezoneOffset,
+            photoUrl, uneditedPhotoUrl, bannerUrl,
+            reports, startDate, endDate,
+            bio, pronoun, orgSizeCount,
+            directReportsCount, preferredName, socialNetwork,
+            datasourceProfile, querySuggestions, peopleDistance,
+            inviteInfo, isSignedUp, lastExtensionUse,
+            permissions, customFields, loggingId,
+            startDatePercentile, busyEvents, profileBoolSettings,
+            badges, isOrgRoot);
     }
     
     @Override
@@ -1746,100 +1779,102 @@ public class PersonMetadata {
                 "badges", badges,
                 "isOrgRoot", isOrgRoot);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends PersonMetadataType> type = Optional.empty();
- 
+
         private Optional<String> firstName = Optional.empty();
- 
+
         private Optional<String> lastName = Optional.empty();
- 
+
         private Optional<String> title = Optional.empty();
- 
+
         private Optional<String> businessUnit = Optional.empty();
- 
+
         private Optional<String> department = Optional.empty();
- 
+
         private Optional<? extends List<PersonTeam>> teams = Optional.empty();
- 
+
         private Optional<Long> departmentCount = Optional.empty();
- 
+
         private Optional<String> email = Optional.empty();
- 
+
         private Optional<? extends List<String>> aliasEmails = Optional.empty();
- 
+
         private Optional<String> location = Optional.empty();
- 
+
         private Optional<? extends StructuredLocation> structuredLocation = Optional.empty();
- 
+
         private Optional<String> externalProfileLink = Optional.empty();
- 
+
         private Optional<? extends Person> manager = Optional.empty();
- 
+
         private Optional<? extends List<Person>> managementChain = Optional.empty();
- 
+
         private Optional<String> phone = Optional.empty();
- 
+
         private Optional<String> timezone = Optional.empty();
- 
+
         private Optional<Long> timezoneOffset = Optional.empty();
- 
+
         private Optional<String> photoUrl = Optional.empty();
- 
+
         private Optional<String> uneditedPhotoUrl = Optional.empty();
- 
+
         private Optional<String> bannerUrl = Optional.empty();
- 
+
         private Optional<? extends List<Person>> reports = Optional.empty();
- 
+
         private Optional<LocalDate> startDate = Optional.empty();
- 
+
         private Optional<LocalDate> endDate = Optional.empty();
- 
+
         private Optional<String> bio = Optional.empty();
- 
+
         private Optional<String> pronoun = Optional.empty();
- 
+
         private Optional<Long> orgSizeCount = Optional.empty();
- 
+
         private Optional<Long> directReportsCount = Optional.empty();
- 
+
         private Optional<String> preferredName = Optional.empty();
- 
+
         private Optional<? extends List<SocialNetwork>> socialNetwork = Optional.empty();
- 
+
         private Optional<? extends List<DatasourceProfile>> datasourceProfile = Optional.empty();
- 
+
         private Optional<? extends QuerySuggestionList> querySuggestions = Optional.empty();
- 
+
         private Optional<? extends List<PersonDistance>> peopleDistance = Optional.empty();
- 
+
         private Optional<? extends InviteInfo> inviteInfo = Optional.empty();
- 
+
         private Optional<Boolean> isSignedUp = Optional.empty();
- 
+
         private Optional<OffsetDateTime> lastExtensionUse = Optional.empty();
- 
+
         private Optional<? extends Permissions> permissions = Optional.empty();
- 
+
         private Optional<? extends List<CustomFieldData>> customFields = Optional.empty();
- 
+
         private Optional<String> loggingId = Optional.empty();
- 
+
         private Optional<Float> startDatePercentile = Optional.empty();
- 
+
         private Optional<? extends List<AnonymousEvent>> busyEvents = Optional.empty();
- 
+
         private Optional<? extends Map<String, Boolean>> profileBoolSettings = Optional.empty();
- 
+
         private Optional<? extends List<Badge>> badges = Optional.empty();
- 
+
         private Optional<Boolean> isOrgRoot = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder type(PersonMetadataType type) {
             Utils.checkNotNull(type, "type");
@@ -1852,6 +1887,7 @@ public class PersonMetadata {
             this.type = type;
             return this;
         }
+
 
         /**
          * The first name of the person
@@ -1871,6 +1907,7 @@ public class PersonMetadata {
             return this;
         }
 
+
         /**
          * The last name of the person
          */
@@ -1888,6 +1925,7 @@ public class PersonMetadata {
             this.lastName = lastName;
             return this;
         }
+
 
         /**
          * Job title.
@@ -1907,6 +1945,7 @@ public class PersonMetadata {
             return this;
         }
 
+
         /**
          * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
          */
@@ -1924,6 +1963,7 @@ public class PersonMetadata {
             this.businessUnit = businessUnit;
             return this;
         }
+
 
         /**
          * An organizational unit where everyone has a similar task, e.g. `Engineering`.
@@ -1943,6 +1983,7 @@ public class PersonMetadata {
             return this;
         }
 
+
         /**
          * Info about the employee's team(s).
          */
@@ -1960,6 +2001,7 @@ public class PersonMetadata {
             this.teams = teams;
             return this;
         }
+
 
         /**
          * The number of people in this person's department.
@@ -1979,6 +2021,7 @@ public class PersonMetadata {
             return this;
         }
 
+
         /**
          * The user's primary email address
          */
@@ -1996,6 +2039,7 @@ public class PersonMetadata {
             this.email = email;
             return this;
         }
+
 
         /**
          * Additional email addresses of this user beyond the primary, if any.
@@ -2015,6 +2059,7 @@ public class PersonMetadata {
             return this;
         }
 
+
         /**
          * User facing string representing the person's location.
          */
@@ -2032,6 +2077,7 @@ public class PersonMetadata {
             this.location = location;
             return this;
         }
+
 
         /**
          * Detailed location with information about country, state, city etc.
@@ -2051,6 +2097,7 @@ public class PersonMetadata {
             return this;
         }
 
+
         /**
          * Link to a customer's internal profile page. This is set to '#' when no link is desired.
          */
@@ -2069,6 +2116,7 @@ public class PersonMetadata {
             return this;
         }
 
+
         public Builder manager(Person manager) {
             Utils.checkNotNull(manager, "manager");
             this.manager = Optional.ofNullable(manager);
@@ -2080,6 +2128,7 @@ public class PersonMetadata {
             this.manager = manager;
             return this;
         }
+
 
         /**
          * The chain of reporting in the company as far up as it goes. The last entry is this person's direct manager.
@@ -2099,6 +2148,7 @@ public class PersonMetadata {
             return this;
         }
 
+
         /**
          * Phone number as a number string.
          */
@@ -2116,6 +2166,7 @@ public class PersonMetadata {
             this.phone = phone;
             return this;
         }
+
 
         /**
          * The timezone of the person. E.g. "Pacific Daylight Time".
@@ -2135,6 +2186,7 @@ public class PersonMetadata {
             return this;
         }
 
+
         /**
          * The offset of the person's timezone in seconds from UTC.
          */
@@ -2152,6 +2204,7 @@ public class PersonMetadata {
             this.timezoneOffset = timezoneOffset;
             return this;
         }
+
 
         /**
          * The URL of the person's avatar. Public, glean-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
@@ -2171,6 +2224,7 @@ public class PersonMetadata {
             return this;
         }
 
+
         /**
          * The original photo URL of the person's avatar before any edits they made are applied
          */
@@ -2188,6 +2242,7 @@ public class PersonMetadata {
             this.uneditedPhotoUrl = uneditedPhotoUrl;
             return this;
         }
+
 
         /**
          * The URL of the person's banner photo.
@@ -2207,6 +2262,7 @@ public class PersonMetadata {
             return this;
         }
 
+
         public Builder reports(List<Person> reports) {
             Utils.checkNotNull(reports, "reports");
             this.reports = Optional.ofNullable(reports);
@@ -2218,6 +2274,7 @@ public class PersonMetadata {
             this.reports = reports;
             return this;
         }
+
 
         /**
          * The date when the employee started.
@@ -2237,6 +2294,7 @@ public class PersonMetadata {
             return this;
         }
 
+
         /**
          * If a former employee, the last date of employment.
          */
@@ -2254,6 +2312,7 @@ public class PersonMetadata {
             this.endDate = endDate;
             return this;
         }
+
 
         /**
          * Short biography or mission statement of the employee.
@@ -2273,6 +2332,7 @@ public class PersonMetadata {
             return this;
         }
 
+
         /**
          * She/her, He/his or other pronoun.
          */
@@ -2290,6 +2350,7 @@ public class PersonMetadata {
             this.pronoun = pronoun;
             return this;
         }
+
 
         /**
          * The total recursive size of the people reporting to this person, or 1
@@ -2309,6 +2370,7 @@ public class PersonMetadata {
             return this;
         }
 
+
         /**
          * The total number of people who directly report to this person, or 0
          */
@@ -2326,6 +2388,7 @@ public class PersonMetadata {
             this.directReportsCount = directReportsCount;
             return this;
         }
+
 
         /**
          * The preferred name of the person, or a nickname.
@@ -2345,6 +2408,7 @@ public class PersonMetadata {
             return this;
         }
 
+
         /**
          * List of social network profiles.
          */
@@ -2362,6 +2426,7 @@ public class PersonMetadata {
             this.socialNetwork = socialNetwork;
             return this;
         }
+
 
         /**
          * List of profiles this user has in different datasources / tools that they use.
@@ -2381,6 +2446,7 @@ public class PersonMetadata {
             return this;
         }
 
+
         public Builder querySuggestions(QuerySuggestionList querySuggestions) {
             Utils.checkNotNull(querySuggestions, "querySuggestions");
             this.querySuggestions = Optional.ofNullable(querySuggestions);
@@ -2392,6 +2458,7 @@ public class PersonMetadata {
             this.querySuggestions = querySuggestions;
             return this;
         }
+
 
         /**
          * List of people and distances to those people from this person. Optionally with metadata.
@@ -2411,6 +2478,7 @@ public class PersonMetadata {
             return this;
         }
 
+
         /**
          * Information regarding the invite status of a person.
          */
@@ -2428,6 +2496,7 @@ public class PersonMetadata {
             this.inviteInfo = inviteInfo;
             return this;
         }
+
 
         /**
          * Whether the user has signed into Glean at least once.
@@ -2447,6 +2516,7 @@ public class PersonMetadata {
             return this;
         }
 
+
         /**
          * The last time the user has used the Glean extension in ISO 8601 format.
          */
@@ -2464,6 +2534,7 @@ public class PersonMetadata {
             this.lastExtensionUse = lastExtensionUse;
             return this;
         }
+
 
         /**
          * Describes the permissions levels that a user has for permissioned features. When the client sends this, Permissions.read and Permissions.write are the additional permissions granted to a user on top of what they have via their roles.
@@ -2485,6 +2556,7 @@ public class PersonMetadata {
             return this;
         }
 
+
         /**
          * User customizable fields for additional people information.
          */
@@ -2502,6 +2574,7 @@ public class PersonMetadata {
             this.customFields = customFields;
             return this;
         }
+
 
         /**
          * The logging id of the person used in scrubbed logs, tracking GA metrics.
@@ -2521,6 +2594,7 @@ public class PersonMetadata {
             return this;
         }
 
+
         /**
          * Percentage of the company that started strictly after this person. Between [0,100).
          */
@@ -2538,6 +2612,7 @@ public class PersonMetadata {
             this.startDatePercentile = startDatePercentile;
             return this;
         }
+
 
         /**
          * Intervals of busy time for this person, along with the type of event they're busy with.
@@ -2557,6 +2632,7 @@ public class PersonMetadata {
             return this;
         }
 
+
         /**
          * flag settings to indicate user profile settings for certain items
          */
@@ -2574,6 +2650,7 @@ public class PersonMetadata {
             this.profileBoolSettings = profileBoolSettings;
             return this;
         }
+
 
         /**
          * The badges that a user has earned over their lifetime.
@@ -2593,6 +2670,7 @@ public class PersonMetadata {
             return this;
         }
 
+
         /**
          * Whether this person is a "root" node in their organization's hierarchy.
          */
@@ -2610,53 +2688,26 @@ public class PersonMetadata {
             this.isOrgRoot = isOrgRoot;
             return this;
         }
-        
+
         public PersonMetadata build() {
+
             return new PersonMetadata(
-                type,
-                firstName,
-                lastName,
-                title,
-                businessUnit,
-                department,
-                teams,
-                departmentCount,
-                email,
-                aliasEmails,
-                location,
-                structuredLocation,
-                externalProfileLink,
-                manager,
-                managementChain,
-                phone,
-                timezone,
-                timezoneOffset,
-                photoUrl,
-                uneditedPhotoUrl,
-                bannerUrl,
-                reports,
-                startDate,
-                endDate,
-                bio,
-                pronoun,
-                orgSizeCount,
-                directReportsCount,
-                preferredName,
-                socialNetwork,
-                datasourceProfile,
-                querySuggestions,
-                peopleDistance,
-                inviteInfo,
-                isSignedUp,
-                lastExtensionUse,
-                permissions,
-                customFields,
-                loggingId,
-                startDatePercentile,
-                busyEvents,
-                profileBoolSettings,
-                badges,
-                isOrgRoot);
+                type, firstName, lastName,
+                title, businessUnit, department,
+                teams, departmentCount, email,
+                aliasEmails, location, structuredLocation,
+                externalProfileLink, manager, managementChain,
+                phone, timezone, timezoneOffset,
+                photoUrl, uneditedPhotoUrl, bannerUrl,
+                reports, startDate, endDate,
+                bio, pronoun, orgSizeCount,
+                directReportsCount, preferredName, socialNetwork,
+                datasourceProfile, querySuggestions, peopleDistance,
+                inviteInfo, isSignedUp, lastExtensionUse,
+                permissions, customFields, loggingId,
+                startDatePercentile, busyEvents, profileBoolSettings,
+                badges, isOrgRoot);
         }
+
     }
 }

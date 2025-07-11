@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class DocumentSection {
 
+public class DocumentSection {
     /**
      * The title of the document section (e.g. the section header).
      */
@@ -59,9 +59,10 @@ public class DocumentSection {
         return url;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The title of the document section (e.g. the section header).
@@ -71,6 +72,7 @@ public class DocumentSection {
         this.title = Optional.ofNullable(title);
         return this;
     }
+
 
     /**
      * The title of the document section (e.g. the section header).
@@ -90,6 +92,7 @@ public class DocumentSection {
         return this;
     }
 
+
     /**
      * The permalink of the document section.
      */
@@ -99,7 +102,6 @@ public class DocumentSection {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -117,8 +119,7 @@ public class DocumentSection {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            title,
-            url);
+            title, url);
     }
     
     @Override
@@ -127,16 +128,18 @@ public class DocumentSection {
                 "title", title,
                 "url", url);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> title = Optional.empty();
- 
+
         private Optional<String> url = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The title of the document section (e.g. the section header).
@@ -156,6 +159,7 @@ public class DocumentSection {
             return this;
         }
 
+
         /**
          * The permalink of the document section.
          */
@@ -173,11 +177,12 @@ public class DocumentSection {
             this.url = url;
             return this;
         }
-        
+
         public DocumentSection build() {
+
             return new DocumentSection(
-                title,
-                url);
+                title, url);
         }
+
     }
 }

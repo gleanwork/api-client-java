@@ -18,8 +18,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-public class Company {
 
+public class Company {
     /**
      * User-friendly display name.
      */
@@ -155,7 +155,11 @@ public class Company {
     
     public Company(
             String name) {
-        this(name, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(name, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -263,9 +267,10 @@ public class Company {
         return about;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * User-friendly display name.
@@ -285,6 +290,7 @@ public class Company {
         return this;
     }
 
+
     /**
      * Link to internal company company profile.
      */
@@ -302,6 +308,7 @@ public class Company {
         this.websiteUrls = Optional.ofNullable(websiteUrls);
         return this;
     }
+
 
     /**
      * Link to company's associated websites.
@@ -321,6 +328,7 @@ public class Company {
         return this;
     }
 
+
     /**
      * The URL of the company's logo. Public, Glean-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
      */
@@ -338,6 +346,7 @@ public class Company {
         this.location = Optional.ofNullable(location);
         return this;
     }
+
 
     /**
      * User facing string representing the company's location.
@@ -357,6 +366,7 @@ public class Company {
         return this;
     }
 
+
     /**
      * Phone number as a number string.
      */
@@ -374,6 +384,7 @@ public class Company {
         this.fax = Optional.ofNullable(fax);
         return this;
     }
+
 
     /**
      * Fax number as a number string.
@@ -393,6 +404,7 @@ public class Company {
         return this;
     }
 
+
     /**
      * User facing string representing the company's industry.
      */
@@ -410,6 +422,7 @@ public class Company {
         this.annualRevenue = Optional.ofNullable(annualRevenue);
         return this;
     }
+
 
     /**
      * Average company's annual revenue for reference.
@@ -429,6 +442,7 @@ public class Company {
         return this;
     }
 
+
     /**
      * Average company's number of employees for reference.
      */
@@ -446,6 +460,7 @@ public class Company {
         this.stockSymbol = Optional.ofNullable(stockSymbol);
         return this;
     }
+
 
     /**
      * Company's stock symbol if company is public.
@@ -465,6 +480,7 @@ public class Company {
         return this;
     }
 
+
     /**
      * The date when the company was founded.
      */
@@ -483,6 +499,7 @@ public class Company {
         return this;
     }
 
+
     /**
      * User facing description of company.
      */
@@ -492,7 +509,6 @@ public class Company {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -521,18 +537,10 @@ public class Company {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            profileUrl,
-            websiteUrls,
-            logoUrl,
-            location,
-            phone,
-            fax,
-            industry,
-            annualRevenue,
-            numberOfEmployees,
-            stockSymbol,
-            foundedDate,
+            name, profileUrl, websiteUrls,
+            logoUrl, location, phone,
+            fax, industry, annualRevenue,
+            numberOfEmployees, stockSymbol, foundedDate,
             about);
     }
     
@@ -553,38 +561,40 @@ public class Company {
                 "foundedDate", foundedDate,
                 "about", about);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
- 
+
         private Optional<String> profileUrl = Optional.empty();
- 
+
         private Optional<? extends List<String>> websiteUrls = Optional.empty();
- 
+
         private Optional<String> logoUrl = Optional.empty();
- 
+
         private Optional<String> location = Optional.empty();
- 
+
         private Optional<String> phone = Optional.empty();
- 
+
         private Optional<String> fax = Optional.empty();
- 
+
         private Optional<String> industry = Optional.empty();
- 
+
         private Optional<Double> annualRevenue = Optional.empty();
- 
+
         private Optional<Long> numberOfEmployees = Optional.empty();
- 
+
         private Optional<String> stockSymbol = Optional.empty();
- 
+
         private Optional<LocalDate> foundedDate = Optional.empty();
- 
+
         private Optional<String> about = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * User-friendly display name.
@@ -594,6 +604,7 @@ public class Company {
             this.name = name;
             return this;
         }
+
 
         /**
          * Link to internal company company profile.
@@ -613,6 +624,7 @@ public class Company {
             return this;
         }
 
+
         /**
          * Link to company's associated websites.
          */
@@ -630,6 +642,7 @@ public class Company {
             this.websiteUrls = websiteUrls;
             return this;
         }
+
 
         /**
          * The URL of the company's logo. Public, Glean-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
@@ -649,6 +662,7 @@ public class Company {
             return this;
         }
 
+
         /**
          * User facing string representing the company's location.
          */
@@ -666,6 +680,7 @@ public class Company {
             this.location = location;
             return this;
         }
+
 
         /**
          * Phone number as a number string.
@@ -685,6 +700,7 @@ public class Company {
             return this;
         }
 
+
         /**
          * Fax number as a number string.
          */
@@ -702,6 +718,7 @@ public class Company {
             this.fax = fax;
             return this;
         }
+
 
         /**
          * User facing string representing the company's industry.
@@ -721,6 +738,7 @@ public class Company {
             return this;
         }
 
+
         /**
          * Average company's annual revenue for reference.
          */
@@ -738,6 +756,7 @@ public class Company {
             this.annualRevenue = annualRevenue;
             return this;
         }
+
 
         /**
          * Average company's number of employees for reference.
@@ -757,6 +776,7 @@ public class Company {
             return this;
         }
 
+
         /**
          * Company's stock symbol if company is public.
          */
@@ -774,6 +794,7 @@ public class Company {
             this.stockSymbol = stockSymbol;
             return this;
         }
+
 
         /**
          * The date when the company was founded.
@@ -793,6 +814,7 @@ public class Company {
             return this;
         }
 
+
         /**
          * User facing description of company.
          */
@@ -810,22 +832,16 @@ public class Company {
             this.about = about;
             return this;
         }
-        
+
         public Company build() {
+
             return new Company(
-                name,
-                profileUrl,
-                websiteUrls,
-                logoUrl,
-                location,
-                phone,
-                fax,
-                industry,
-                annualRevenue,
-                numberOfEmployees,
-                stockSymbol,
-                foundedDate,
+                name, profileUrl, websiteUrls,
+                logoUrl, location, phone,
+                fax, industry, annualRevenue,
+                numberOfEmployees, stockSymbol, foundedDate,
                 about);
         }
+
     }
 }

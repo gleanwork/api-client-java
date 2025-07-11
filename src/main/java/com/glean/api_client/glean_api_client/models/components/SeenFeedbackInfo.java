@@ -14,8 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class SeenFeedbackInfo {
 
+public class SeenFeedbackInfo {
     /**
      * The confidence of the user seeing the object is high because they explicitly interacted with it e.g. answer impression in SERP with additional user interaction.
      */
@@ -42,9 +42,10 @@ public class SeenFeedbackInfo {
         return isExplicit;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The confidence of the user seeing the object is high because they explicitly interacted with it e.g. answer impression in SERP with additional user interaction.
@@ -55,6 +56,7 @@ public class SeenFeedbackInfo {
         return this;
     }
 
+
     /**
      * The confidence of the user seeing the object is high because they explicitly interacted with it e.g. answer impression in SERP with additional user interaction.
      */
@@ -64,7 +66,6 @@ public class SeenFeedbackInfo {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -89,14 +90,16 @@ public class SeenFeedbackInfo {
         return Utils.toString(SeenFeedbackInfo.class,
                 "isExplicit", isExplicit);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> isExplicit = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The confidence of the user seeing the object is high because they explicitly interacted with it e.g. answer impression in SERP with additional user interaction.
@@ -115,10 +118,12 @@ public class SeenFeedbackInfo {
             this.isExplicit = isExplicit;
             return this;
         }
-        
+
         public SeenFeedbackInfo build() {
+
             return new SeenFeedbackInfo(
                 isExplicit);
         }
+
     }
 }

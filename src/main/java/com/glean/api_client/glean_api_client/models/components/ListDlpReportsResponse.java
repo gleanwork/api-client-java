@@ -15,6 +15,7 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
+
 public class ListDlpReportsResponse {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -38,9 +39,10 @@ public class ListDlpReportsResponse {
         return (Optional<List<DlpReport>>) reports;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ListDlpReportsResponse withReports(List<DlpReport> reports) {
         Utils.checkNotNull(reports, "reports");
@@ -48,13 +50,13 @@ public class ListDlpReportsResponse {
         return this;
     }
 
+
     public ListDlpReportsResponse withReports(Optional<? extends List<DlpReport>> reports) {
         Utils.checkNotNull(reports, "reports");
         this.reports = reports;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -79,14 +81,16 @@ public class ListDlpReportsResponse {
         return Utils.toString(ListDlpReportsResponse.class,
                 "reports", reports);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<DlpReport>> reports = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder reports(List<DlpReport> reports) {
             Utils.checkNotNull(reports, "reports");
@@ -99,10 +103,12 @@ public class ListDlpReportsResponse {
             this.reports = reports;
             return this;
         }
-        
+
         public ListDlpReportsResponse build() {
+
             return new ListDlpReportsResponse(
                 reports);
         }
+
     }
 }

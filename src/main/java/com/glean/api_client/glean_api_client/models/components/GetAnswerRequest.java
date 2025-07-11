@@ -14,8 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class GetAnswerRequest {
 
+public class GetAnswerRequest {
     /**
      * The opaque ID of the Answer.
      */
@@ -60,9 +60,10 @@ public class GetAnswerRequest {
         return docId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The opaque ID of the Answer.
@@ -72,6 +73,7 @@ public class GetAnswerRequest {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The opaque ID of the Answer.
@@ -91,6 +93,7 @@ public class GetAnswerRequest {
         return this;
     }
 
+
     /**
      * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID isn't available. If both are available, using the Answer ID is preferred.
      */
@@ -100,7 +103,6 @@ public class GetAnswerRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -118,8 +120,7 @@ public class GetAnswerRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            docId);
+            id, docId);
     }
     
     @Override
@@ -128,16 +129,18 @@ public class GetAnswerRequest {
                 "id", id,
                 "docId", docId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> id = Optional.empty();
- 
+
         private Optional<String> docId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The opaque ID of the Answer.
@@ -157,6 +160,7 @@ public class GetAnswerRequest {
             return this;
         }
 
+
         /**
          * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID isn't available. If both are available, using the Answer ID is preferred.
          */
@@ -174,11 +178,12 @@ public class GetAnswerRequest {
             this.docId = docId;
             return this;
         }
-        
+
         public GetAnswerRequest build() {
+
             return new GetAnswerRequest(
-                id,
-                docId);
+                id, docId);
         }
+
     }
 }

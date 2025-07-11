@@ -14,6 +14,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class ShortcutError {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -37,9 +38,10 @@ public class ShortcutError {
         return (Optional<ShortcutErrorErrorType>) errorType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ShortcutError withErrorType(ShortcutErrorErrorType errorType) {
         Utils.checkNotNull(errorType, "errorType");
@@ -47,13 +49,13 @@ public class ShortcutError {
         return this;
     }
 
+
     public ShortcutError withErrorType(Optional<? extends ShortcutErrorErrorType> errorType) {
         Utils.checkNotNull(errorType, "errorType");
         this.errorType = errorType;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -78,14 +80,16 @@ public class ShortcutError {
         return Utils.toString(ShortcutError.class,
                 "errorType", errorType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ShortcutErrorErrorType> errorType = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder errorType(ShortcutErrorErrorType errorType) {
             Utils.checkNotNull(errorType, "errorType");
@@ -98,10 +102,12 @@ public class ShortcutError {
             this.errorType = errorType;
             return this;
         }
-        
+
         public ShortcutError build() {
+
             return new ShortcutError(
                 errorType);
         }
+
     }
 }

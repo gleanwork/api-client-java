@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-public class RecommendationsRequest {
 
+public class RecommendationsRequest {
     /**
      * The ISO 8601 timestamp associated with the client request.
      */
@@ -32,9 +32,11 @@ public class RecommendationsRequest {
     @JsonProperty("trackingToken")
     private Optional<String> trackingToken;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sessionInfo")
     private Optional<? extends SessionInfo> sessionInfo;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sourceDocument")
@@ -54,9 +56,11 @@ public class RecommendationsRequest {
     @JsonProperty("maxSnippetSize")
     private Optional<Long> maxSnippetSize;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("recommendationDocumentSpec")
     private Optional<? extends DocumentSpecUnion> recommendationDocumentSpec;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("requestOptions")
@@ -91,7 +95,9 @@ public class RecommendationsRequest {
     }
     
     public RecommendationsRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -150,9 +156,10 @@ public class RecommendationsRequest {
         return (Optional<RecommendationsRequestOptions>) requestOptions;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ISO 8601 timestamp associated with the client request.
@@ -162,6 +169,7 @@ public class RecommendationsRequest {
         this.timestamp = Optional.ofNullable(timestamp);
         return this;
     }
+
 
     /**
      * The ISO 8601 timestamp associated with the client request.
@@ -181,6 +189,7 @@ public class RecommendationsRequest {
         return this;
     }
 
+
     /**
      * A previously received trackingToken for a search associated with the same query. Useful for more requests and requests for other tabs.
      */
@@ -196,6 +205,7 @@ public class RecommendationsRequest {
         return this;
     }
 
+
     public RecommendationsRequest withSessionInfo(Optional<? extends SessionInfo> sessionInfo) {
         Utils.checkNotNull(sessionInfo, "sessionInfo");
         this.sessionInfo = sessionInfo;
@@ -207,6 +217,7 @@ public class RecommendationsRequest {
         this.sourceDocument = Optional.ofNullable(sourceDocument);
         return this;
     }
+
 
     public RecommendationsRequest withSourceDocument(Optional<? extends Document> sourceDocument) {
         Utils.checkNotNull(sourceDocument, "sourceDocument");
@@ -222,6 +233,7 @@ public class RecommendationsRequest {
         this.pageSize = Optional.ofNullable(pageSize);
         return this;
     }
+
 
     /**
      * Hint to the server about how many results to send back. Server may return less or more. Structured results and clustered results don't count towards pageSize.
@@ -241,6 +253,7 @@ public class RecommendationsRequest {
         return this;
     }
 
+
     /**
      * Hint to the server about how many characters long a snippet may be. Server may return less or more.
      */
@@ -256,6 +269,7 @@ public class RecommendationsRequest {
         return this;
     }
 
+
     public RecommendationsRequest withRecommendationDocumentSpec(Optional<? extends DocumentSpecUnion> recommendationDocumentSpec) {
         Utils.checkNotNull(recommendationDocumentSpec, "recommendationDocumentSpec");
         this.recommendationDocumentSpec = recommendationDocumentSpec;
@@ -268,13 +282,13 @@ public class RecommendationsRequest {
         return this;
     }
 
+
     public RecommendationsRequest withRequestOptions(Optional<? extends RecommendationsRequestOptions> requestOptions) {
         Utils.checkNotNull(requestOptions, "requestOptions");
         this.requestOptions = requestOptions;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -298,14 +312,9 @@ public class RecommendationsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            timestamp,
-            trackingToken,
-            sessionInfo,
-            sourceDocument,
-            pageSize,
-            maxSnippetSize,
-            recommendationDocumentSpec,
-            requestOptions);
+            timestamp, trackingToken, sessionInfo,
+            sourceDocument, pageSize, maxSnippetSize,
+            recommendationDocumentSpec, requestOptions);
     }
     
     @Override
@@ -320,28 +329,30 @@ public class RecommendationsRequest {
                 "recommendationDocumentSpec", recommendationDocumentSpec,
                 "requestOptions", requestOptions);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<OffsetDateTime> timestamp = Optional.empty();
- 
+
         private Optional<String> trackingToken = Optional.empty();
- 
+
         private Optional<? extends SessionInfo> sessionInfo = Optional.empty();
- 
+
         private Optional<? extends Document> sourceDocument = Optional.empty();
- 
+
         private Optional<Long> pageSize = Optional.empty();
- 
+
         private Optional<Long> maxSnippetSize = Optional.empty();
- 
+
         private Optional<? extends DocumentSpecUnion> recommendationDocumentSpec = Optional.empty();
- 
+
         private Optional<? extends RecommendationsRequestOptions> requestOptions = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ISO 8601 timestamp associated with the client request.
@@ -361,6 +372,7 @@ public class RecommendationsRequest {
             return this;
         }
 
+
         /**
          * A previously received trackingToken for a search associated with the same query. Useful for more requests and requests for other tabs.
          */
@@ -379,6 +391,7 @@ public class RecommendationsRequest {
             return this;
         }
 
+
         public Builder sessionInfo(SessionInfo sessionInfo) {
             Utils.checkNotNull(sessionInfo, "sessionInfo");
             this.sessionInfo = Optional.ofNullable(sessionInfo);
@@ -391,6 +404,7 @@ public class RecommendationsRequest {
             return this;
         }
 
+
         public Builder sourceDocument(Document sourceDocument) {
             Utils.checkNotNull(sourceDocument, "sourceDocument");
             this.sourceDocument = Optional.ofNullable(sourceDocument);
@@ -402,6 +416,7 @@ public class RecommendationsRequest {
             this.sourceDocument = sourceDocument;
             return this;
         }
+
 
         /**
          * Hint to the server about how many results to send back. Server may return less or more. Structured results and clustered results don't count towards pageSize.
@@ -421,6 +436,7 @@ public class RecommendationsRequest {
             return this;
         }
 
+
         /**
          * Hint to the server about how many characters long a snippet may be. Server may return less or more.
          */
@@ -439,6 +455,7 @@ public class RecommendationsRequest {
             return this;
         }
 
+
         public Builder recommendationDocumentSpec(DocumentSpecUnion recommendationDocumentSpec) {
             Utils.checkNotNull(recommendationDocumentSpec, "recommendationDocumentSpec");
             this.recommendationDocumentSpec = Optional.ofNullable(recommendationDocumentSpec);
@@ -451,6 +468,7 @@ public class RecommendationsRequest {
             return this;
         }
 
+
         public Builder requestOptions(RecommendationsRequestOptions requestOptions) {
             Utils.checkNotNull(requestOptions, "requestOptions");
             this.requestOptions = Optional.ofNullable(requestOptions);
@@ -462,17 +480,14 @@ public class RecommendationsRequest {
             this.requestOptions = requestOptions;
             return this;
         }
-        
+
         public RecommendationsRequest build() {
+
             return new RecommendationsRequest(
-                timestamp,
-                trackingToken,
-                sessionInfo,
-                sourceDocument,
-                pageSize,
-                maxSnippetSize,
-                recommendationDocumentSpec,
-                requestOptions);
+                timestamp, trackingToken, sessionInfo,
+                sourceDocument, pageSize, maxSnippetSize,
+                recommendationDocumentSpec, requestOptions);
         }
+
     }
 }

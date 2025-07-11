@@ -61,15 +61,17 @@ public class AnonymousEvent {
         return (Optional<AnonymousEventEventType>) eventType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public AnonymousEvent withTime(TimeInterval time) {
         Utils.checkNotNull(time, "time");
         this.time = Optional.ofNullable(time);
         return this;
     }
+
 
     public AnonymousEvent withTime(Optional<? extends TimeInterval> time) {
         Utils.checkNotNull(time, "time");
@@ -86,6 +88,7 @@ public class AnonymousEvent {
         return this;
     }
 
+
     /**
      * The nature of the event, for example "out of office".
      */
@@ -95,7 +98,6 @@ public class AnonymousEvent {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -113,8 +115,7 @@ public class AnonymousEvent {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            time,
-            eventType);
+            time, eventType);
     }
     
     @Override
@@ -123,16 +124,18 @@ public class AnonymousEvent {
                 "time", time,
                 "eventType", eventType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends TimeInterval> time = Optional.empty();
- 
+
         private Optional<? extends AnonymousEventEventType> eventType = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder time(TimeInterval time) {
             Utils.checkNotNull(time, "time");
@@ -145,6 +148,7 @@ public class AnonymousEvent {
             this.time = time;
             return this;
         }
+
 
         /**
          * The nature of the event, for example "out of office".
@@ -163,11 +167,12 @@ public class AnonymousEvent {
             this.eventType = eventType;
             return this;
         }
-        
+
         public AnonymousEvent build() {
+
             return new AnonymousEvent(
-                time,
-                eventType);
+                time, eventType);
         }
+
     }
 }

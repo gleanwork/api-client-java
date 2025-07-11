@@ -60,7 +60,6 @@ public class IndexingDocuments {
     IndexingDocuments(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Index document
      * 
@@ -81,13 +80,11 @@ public class IndexingDocuments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1IndexdocumentResponse addOrUpdate(
-            IndexDocumentRequest request) throws Exception {
+    public PostApiIndexV1IndexdocumentResponse addOrUpdate(IndexDocumentRequest request) throws Exception {
         RequestOperation<IndexDocumentRequest, PostApiIndexV1IndexdocumentResponse> operation
-              = new PostApiIndexV1IndexdocumentOperation( sdkConfiguration);
+              = new PostApiIndexV1IndexdocumentOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Index documents
@@ -109,13 +106,11 @@ public class IndexingDocuments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1IndexdocumentsResponse index(
-            IndexDocumentsRequest request) throws Exception {
+    public PostApiIndexV1IndexdocumentsResponse index(IndexDocumentsRequest request) throws Exception {
         RequestOperation<IndexDocumentsRequest, PostApiIndexV1IndexdocumentsResponse> operation
-              = new PostApiIndexV1IndexdocumentsOperation( sdkConfiguration);
+              = new PostApiIndexV1IndexdocumentsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Bulk index documents
@@ -137,13 +132,11 @@ public class IndexingDocuments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1BulkindexdocumentsResponse bulkIndex(
-            BulkIndexDocumentsRequest request) throws Exception {
+    public PostApiIndexV1BulkindexdocumentsResponse bulkIndex(BulkIndexDocumentsRequest request) throws Exception {
         RequestOperation<BulkIndexDocumentsRequest, PostApiIndexV1BulkindexdocumentsResponse> operation
-              = new PostApiIndexV1BulkindexdocumentsOperation( sdkConfiguration);
+              = new PostApiIndexV1BulkindexdocumentsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Schedules the processing of uploaded documents
@@ -207,13 +200,11 @@ public class IndexingDocuments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1ProcessalldocumentsResponse processAll(
-            Optional<? extends ProcessAllDocumentsRequest> request) throws Exception {
+    public PostApiIndexV1ProcessalldocumentsResponse processAll(Optional<? extends ProcessAllDocumentsRequest> request) throws Exception {
         RequestOperation<Optional<? extends ProcessAllDocumentsRequest>, PostApiIndexV1ProcessalldocumentsResponse> operation
-              = new PostApiIndexV1ProcessalldocumentsOperation( sdkConfiguration);
+              = new PostApiIndexV1ProcessalldocumentsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete document
@@ -235,13 +226,11 @@ public class IndexingDocuments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1DeletedocumentResponse delete(
-            DeleteDocumentRequest request) throws Exception {
+    public PostApiIndexV1DeletedocumentResponse delete(DeleteDocumentRequest request) throws Exception {
         RequestOperation<DeleteDocumentRequest, PostApiIndexV1DeletedocumentResponse> operation
-              = new PostApiIndexV1DeletedocumentOperation( sdkConfiguration);
+              = new PostApiIndexV1DeletedocumentOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Beta: Get document information
@@ -278,10 +267,9 @@ public class IndexingDocuments {
                 .debugDocumentRequest(debugDocumentRequest)
                 .build();
         RequestOperation<PostApiIndexV1DebugDatasourceDocumentRequest, PostApiIndexV1DebugDatasourceDocumentResponse> operation
-              = new PostApiIndexV1DebugDatasourceDocumentOperation( sdkConfiguration);
+              = new PostApiIndexV1DebugDatasourceDocumentOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Beta: Get information of a batch of documents
@@ -318,10 +306,9 @@ public class IndexingDocuments {
                 .debugDocumentsRequest(debugDocumentsRequest)
                 .build();
         RequestOperation<PostApiIndexV1DebugDatasourceDocumentsRequest, PostApiIndexV1DebugDatasourceDocumentsResponse> operation
-              = new PostApiIndexV1DebugDatasourceDocumentsOperation( sdkConfiguration);
+              = new PostApiIndexV1DebugDatasourceDocumentsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Check document access
@@ -347,13 +334,11 @@ public class IndexingDocuments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1CheckdocumentaccessResponse checkAccess(
-            CheckDocumentAccessRequest request) throws Exception {
+    public PostApiIndexV1CheckdocumentaccessResponse checkAccess(CheckDocumentAccessRequest request) throws Exception {
         RequestOperation<CheckDocumentAccessRequest, PostApiIndexV1CheckdocumentaccessResponse> operation
-              = new PostApiIndexV1CheckdocumentaccessOperation( sdkConfiguration);
+              = new PostApiIndexV1CheckdocumentaccessOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get document upload and indexing status
@@ -383,13 +368,11 @@ public class IndexingDocuments {
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public PostApiIndexV1GetdocumentstatusResponse status(
-            GetDocumentStatusRequest request) throws Exception {
+    public PostApiIndexV1GetdocumentstatusResponse status(GetDocumentStatusRequest request) throws Exception {
         RequestOperation<GetDocumentStatusRequest, PostApiIndexV1GetdocumentstatusResponse> operation
-              = new PostApiIndexV1GetdocumentstatusOperation( sdkConfiguration);
+              = new PostApiIndexV1GetdocumentstatusOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get document count
@@ -419,10 +402,9 @@ public class IndexingDocuments {
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public PostApiIndexV1GetdocumentcountResponse count(
-            GetDocumentCountRequest request) throws Exception {
+    public PostApiIndexV1GetdocumentcountResponse count(GetDocumentCountRequest request) throws Exception {
         RequestOperation<GetDocumentCountRequest, PostApiIndexV1GetdocumentcountResponse> operation
-              = new PostApiIndexV1GetdocumentcountOperation( sdkConfiguration);
+              = new PostApiIndexV1GetdocumentcountOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

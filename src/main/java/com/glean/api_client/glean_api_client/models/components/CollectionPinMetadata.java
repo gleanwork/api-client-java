@@ -11,13 +11,14 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 
-public class CollectionPinMetadata {
 
+public class CollectionPinMetadata {
     /**
      * The ID of the Collection.
      */
     @JsonProperty("id")
     private long id;
+
 
     @JsonProperty("target")
     private CollectionPinTarget target;
@@ -45,9 +46,10 @@ public class CollectionPinMetadata {
         return target;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the Collection.
@@ -64,7 +66,6 @@ public class CollectionPinMetadata {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -82,8 +83,7 @@ public class CollectionPinMetadata {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            target);
+            id, target);
     }
     
     @Override
@@ -92,16 +92,18 @@ public class CollectionPinMetadata {
                 "id", id,
                 "target", target);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long id;
- 
+
         private CollectionPinTarget target;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the Collection.
@@ -112,16 +114,18 @@ public class CollectionPinMetadata {
             return this;
         }
 
+
         public Builder target(CollectionPinTarget target) {
             Utils.checkNotNull(target, "target");
             this.target = target;
             return this;
         }
-        
+
         public CollectionPinMetadata build() {
+
             return new CollectionPinMetadata(
-                id,
-                target);
+                id, target);
         }
+
     }
 }

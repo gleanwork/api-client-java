@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class DebugDatasourceStatusResponseCounts {
 
+public class DebugDatasourceStatusResponseCounts {
     /**
      * A list of object types and corresponding upload counts
      */
@@ -63,9 +63,10 @@ public class DebugDatasourceStatusResponseCounts {
         return (Optional<List<DatasourceObjectTypeDocumentCountEntry>>) indexed;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A list of object types and corresponding upload counts
@@ -75,6 +76,7 @@ public class DebugDatasourceStatusResponseCounts {
         this.uploaded = Optional.ofNullable(uploaded);
         return this;
     }
+
 
     /**
      * A list of object types and corresponding upload counts
@@ -94,6 +96,7 @@ public class DebugDatasourceStatusResponseCounts {
         return this;
     }
 
+
     /**
      * The number of documents indexed, grouped by objectType
      */
@@ -103,7 +106,6 @@ public class DebugDatasourceStatusResponseCounts {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -121,8 +123,7 @@ public class DebugDatasourceStatusResponseCounts {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            uploaded,
-            indexed);
+            uploaded, indexed);
     }
     
     @Override
@@ -131,16 +132,18 @@ public class DebugDatasourceStatusResponseCounts {
                 "uploaded", uploaded,
                 "indexed", indexed);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<DatasourceObjectTypeDocumentCountEntry>> uploaded = Optional.empty();
- 
+
         private Optional<? extends List<DatasourceObjectTypeDocumentCountEntry>> indexed = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A list of object types and corresponding upload counts
@@ -160,6 +163,7 @@ public class DebugDatasourceStatusResponseCounts {
             return this;
         }
 
+
         /**
          * The number of documents indexed, grouped by objectType
          */
@@ -177,11 +181,12 @@ public class DebugDatasourceStatusResponseCounts {
             this.indexed = indexed;
             return this;
         }
-        
+
         public DebugDatasourceStatusResponseCounts build() {
+
             return new DebugDatasourceStatusResponseCounts(
-                uploaded,
-                indexed);
+                uploaded, indexed);
         }
+
     }
 }

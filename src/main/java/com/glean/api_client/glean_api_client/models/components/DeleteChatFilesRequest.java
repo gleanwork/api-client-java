@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.List;
 
-public class DeleteChatFilesRequest {
 
+public class DeleteChatFilesRequest {
     /**
      * IDs of files to delete.
      */
@@ -34,9 +34,10 @@ public class DeleteChatFilesRequest {
         return fileIds;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * IDs of files to delete.
@@ -47,7 +48,6 @@ public class DeleteChatFilesRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -72,14 +72,16 @@ public class DeleteChatFilesRequest {
         return Utils.toString(DeleteChatFilesRequest.class,
                 "fileIds", fileIds);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<String> fileIds;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * IDs of files to delete.
@@ -89,10 +91,12 @@ public class DeleteChatFilesRequest {
             this.fileIds = fileIds;
             return this;
         }
-        
+
         public DeleteChatFilesRequest build() {
+
             return new DeleteChatFilesRequest(
                 fileIds);
         }
+
     }
 }

@@ -25,7 +25,6 @@ public class Activity {
     Activity(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Report document activity
      * 
@@ -46,13 +45,11 @@ public class Activity {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ActivityResponse report(
-            com.glean.api_client.glean_api_client.models.components.Activity request) throws Exception {
+    public ActivityResponse report(com.glean.api_client.glean_api_client.models.components.Activity request) throws Exception {
         RequestOperation<com.glean.api_client.glean_api_client.models.components.Activity, ActivityResponse> operation
-              = new ActivityOperation( sdkConfiguration);
+              = new ActivityOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Report client activity
@@ -97,7 +94,7 @@ public class Activity {
                 .feedback1(feedback1)
                 .build();
         RequestOperation<FeedbackRequest, FeedbackResponse> operation
-              = new FeedbackOperation( sdkConfiguration);
+              = new FeedbackOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

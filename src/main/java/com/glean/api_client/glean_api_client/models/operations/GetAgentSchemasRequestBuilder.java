@@ -53,7 +53,7 @@ public class GetAgentSchemasRequestBuilder {
     public GetAgentSchemasResponse call() throws Exception {
         
         RequestOperation<GetAgentSchemasRequest, GetAgentSchemasResponse> operation
-              = new GetAgentSchemasOperation( sdkConfiguration);
+              = new GetAgentSchemasOperation(sdkConfiguration);
         GetAgentSchemasRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

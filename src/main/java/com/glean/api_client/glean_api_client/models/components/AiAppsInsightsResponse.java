@@ -16,14 +16,15 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class AiAppsInsightsResponse {
 
+public class AiAppsInsightsResponse {
     /**
      * Unix timestamp of the last activity processed to make the response (in seconds since epoch UTC).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lastLogTimestamp")
     private Optional<Long> lastLogTimestamp;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("aiAppInsights")
@@ -70,7 +71,8 @@ public class AiAppsInsightsResponse {
     }
     
     public AiAppsInsightsResponse() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -113,9 +115,10 @@ public class AiAppsInsightsResponse {
         return (Optional<List<String>>) departments;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unix timestamp of the last activity processed to make the response (in seconds since epoch UTC).
@@ -125,6 +128,7 @@ public class AiAppsInsightsResponse {
         this.lastLogTimestamp = Optional.ofNullable(lastLogTimestamp);
         return this;
     }
+
 
     /**
      * Unix timestamp of the last activity processed to make the response (in seconds since epoch UTC).
@@ -141,6 +145,7 @@ public class AiAppsInsightsResponse {
         return this;
     }
 
+
     public AiAppsInsightsResponse withAiAppInsights(Optional<? extends List<UserActivityInsight>> aiAppInsights) {
         Utils.checkNotNull(aiAppInsights, "aiAppInsights");
         this.aiAppInsights = aiAppInsights;
@@ -155,6 +160,7 @@ public class AiAppsInsightsResponse {
         this.totalActiveUsers = Optional.ofNullable(totalActiveUsers);
         return this;
     }
+
 
     /**
      * Total number of active users on the Ai App in the requested period.
@@ -174,6 +180,7 @@ public class AiAppsInsightsResponse {
         return this;
     }
 
+
     /**
      * Map from action to frequency.
      */
@@ -192,6 +199,7 @@ public class AiAppsInsightsResponse {
         return this;
     }
 
+
     /**
      * list of departments applicable for users tab.
      */
@@ -201,7 +209,6 @@ public class AiAppsInsightsResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -222,11 +229,8 @@ public class AiAppsInsightsResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            lastLogTimestamp,
-            aiAppInsights,
-            totalActiveUsers,
-            actionCounts,
-            departments);
+            lastLogTimestamp, aiAppInsights, totalActiveUsers,
+            actionCounts, departments);
     }
     
     @Override
@@ -238,22 +242,24 @@ public class AiAppsInsightsResponse {
                 "actionCounts", actionCounts,
                 "departments", departments);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> lastLogTimestamp = Optional.empty();
- 
+
         private Optional<? extends List<UserActivityInsight>> aiAppInsights = Optional.empty();
- 
+
         private Optional<Long> totalActiveUsers = Optional.empty();
- 
+
         private Optional<? extends AiAppActionCounts> actionCounts = Optional.empty();
- 
+
         private Optional<? extends List<String>> departments = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unix timestamp of the last activity processed to make the response (in seconds since epoch UTC).
@@ -273,6 +279,7 @@ public class AiAppsInsightsResponse {
             return this;
         }
 
+
         public Builder aiAppInsights(List<UserActivityInsight> aiAppInsights) {
             Utils.checkNotNull(aiAppInsights, "aiAppInsights");
             this.aiAppInsights = Optional.ofNullable(aiAppInsights);
@@ -284,6 +291,7 @@ public class AiAppsInsightsResponse {
             this.aiAppInsights = aiAppInsights;
             return this;
         }
+
 
         /**
          * Total number of active users on the Ai App in the requested period.
@@ -303,6 +311,7 @@ public class AiAppsInsightsResponse {
             return this;
         }
 
+
         /**
          * Map from action to frequency.
          */
@@ -321,6 +330,7 @@ public class AiAppsInsightsResponse {
             return this;
         }
 
+
         /**
          * list of departments applicable for users tab.
          */
@@ -338,14 +348,13 @@ public class AiAppsInsightsResponse {
             this.departments = departments;
             return this;
         }
-        
+
         public AiAppsInsightsResponse build() {
+
             return new AiAppsInsightsResponse(
-                lastLogTimestamp,
-                aiAppInsights,
-                totalActiveUsers,
-                actionCounts,
-                departments);
+                lastLogTimestamp, aiAppInsights, totalActiveUsers,
+                actionCounts, departments);
         }
+
     }
 }

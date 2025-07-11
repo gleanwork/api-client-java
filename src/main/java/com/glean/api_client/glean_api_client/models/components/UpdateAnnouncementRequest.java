@@ -18,8 +18,8 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 
-public class UpdateAnnouncementRequest {
 
+public class UpdateAnnouncementRequest {
     /**
      * The date and time at which the announcement becomes active.
      */
@@ -38,6 +38,7 @@ public class UpdateAnnouncementRequest {
     @JsonProperty("title")
     private String title;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("body")
     private Optional<? extends StructuredText> body;
@@ -49,9 +50,11 @@ public class UpdateAnnouncementRequest {
     @JsonProperty("emoji")
     private Optional<String> emoji;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("thumbnail")
     private Optional<? extends Thumbnail> thumbnail;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("banner")
@@ -166,7 +169,11 @@ public class UpdateAnnouncementRequest {
             OffsetDateTime endTime,
             String title,
             long id) {
-        this(startTime, endTime, title, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), id);
+        this(startTime, endTime, title,
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), id);
     }
 
     /**
@@ -286,9 +293,10 @@ public class UpdateAnnouncementRequest {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The date and time at which the announcement becomes active.
@@ -323,6 +331,7 @@ public class UpdateAnnouncementRequest {
         return this;
     }
 
+
     public UpdateAnnouncementRequest withBody(Optional<? extends StructuredText> body) {
         Utils.checkNotNull(body, "body");
         this.body = body;
@@ -337,6 +346,7 @@ public class UpdateAnnouncementRequest {
         this.emoji = Optional.ofNullable(emoji);
         return this;
     }
+
 
     /**
      * An emoji used to indicate the nature of the announcement.
@@ -353,6 +363,7 @@ public class UpdateAnnouncementRequest {
         return this;
     }
 
+
     public UpdateAnnouncementRequest withThumbnail(Optional<? extends Thumbnail> thumbnail) {
         Utils.checkNotNull(thumbnail, "thumbnail");
         this.thumbnail = thumbnail;
@@ -364,6 +375,7 @@ public class UpdateAnnouncementRequest {
         this.banner = Optional.ofNullable(banner);
         return this;
     }
+
 
     public UpdateAnnouncementRequest withBanner(Optional<? extends Thumbnail> banner) {
         Utils.checkNotNull(banner, "banner");
@@ -379,6 +391,7 @@ public class UpdateAnnouncementRequest {
         this.audienceFilters = Optional.ofNullable(audienceFilters);
         return this;
     }
+
 
     /**
      * Filters which restrict who should see the announcement. Values are taken from the corresponding filters in people search.
@@ -398,6 +411,7 @@ public class UpdateAnnouncementRequest {
         return this;
     }
 
+
     /**
      * The Glean Document ID of the source document this Announcement was created from (e.g. Slack thread).
      */
@@ -415,6 +429,7 @@ public class UpdateAnnouncementRequest {
         this.hideAttribution = Optional.ofNullable(hideAttribution);
         return this;
     }
+
 
     /**
      * Whether or not to hide an author attribution.
@@ -434,6 +449,7 @@ public class UpdateAnnouncementRequest {
         return this;
     }
 
+
     /**
      * This determines whether this is a Social Feed post or a regular announcement.
      */
@@ -451,6 +467,7 @@ public class UpdateAnnouncementRequest {
         this.postType = Optional.ofNullable(postType);
         return this;
     }
+
 
     /**
      * This determines whether this is an external-link post or a regular announcement post. TEXT - Regular announcement that can contain rich text. LINK - Announcement that is linked to an external site.
@@ -470,6 +487,7 @@ public class UpdateAnnouncementRequest {
         return this;
     }
 
+
     /**
      * Used by the Social Feed to pin posts to the front of the feed.
      */
@@ -487,6 +505,7 @@ public class UpdateAnnouncementRequest {
         this.viewUrl = Optional.ofNullable(viewUrl);
         return this;
     }
+
 
     /**
      * URL for viewing the announcement. It will be set to document URL for announcements from other datasources e.g. simpplr. Can only be written when channel="SOCIAL_FEED".
@@ -506,7 +525,6 @@ public class UpdateAnnouncementRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -537,21 +555,11 @@ public class UpdateAnnouncementRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            startTime,
-            endTime,
-            title,
-            body,
-            emoji,
-            thumbnail,
-            banner,
-            audienceFilters,
-            sourceDocumentId,
-            hideAttribution,
-            channel,
-            postType,
-            isPrioritized,
-            viewUrl,
-            id);
+            startTime, endTime, title,
+            body, emoji, thumbnail,
+            banner, audienceFilters, sourceDocumentId,
+            hideAttribution, channel, postType,
+            isPrioritized, viewUrl, id);
     }
     
     @Override
@@ -573,42 +581,44 @@ public class UpdateAnnouncementRequest {
                 "viewUrl", viewUrl,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private OffsetDateTime startTime;
- 
+
         private OffsetDateTime endTime;
- 
+
         private String title;
- 
+
         private Optional<? extends StructuredText> body = Optional.empty();
- 
+
         private Optional<String> emoji = Optional.empty();
- 
+
         private Optional<? extends Thumbnail> thumbnail = Optional.empty();
- 
+
         private Optional<? extends Thumbnail> banner = Optional.empty();
- 
+
         private Optional<? extends List<FacetFilter>> audienceFilters = Optional.empty();
- 
+
         private Optional<String> sourceDocumentId = Optional.empty();
- 
+
         private Optional<Boolean> hideAttribution = Optional.empty();
- 
+
         private Optional<? extends UpdateAnnouncementRequestChannel> channel = Optional.empty();
- 
+
         private Optional<? extends UpdateAnnouncementRequestPostType> postType = Optional.empty();
- 
+
         private Optional<Boolean> isPrioritized = Optional.empty();
- 
+
         private Optional<String> viewUrl = Optional.empty();
- 
+
         private Long id;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The date and time at which the announcement becomes active.
@@ -619,6 +629,7 @@ public class UpdateAnnouncementRequest {
             return this;
         }
 
+
         /**
          * The date and time at which the announcement expires.
          */
@@ -628,6 +639,7 @@ public class UpdateAnnouncementRequest {
             return this;
         }
 
+
         /**
          * The headline of the announcement.
          */
@@ -636,6 +648,7 @@ public class UpdateAnnouncementRequest {
             this.title = title;
             return this;
         }
+
 
         public Builder body(StructuredText body) {
             Utils.checkNotNull(body, "body");
@@ -648,6 +661,7 @@ public class UpdateAnnouncementRequest {
             this.body = body;
             return this;
         }
+
 
         /**
          * An emoji used to indicate the nature of the announcement.
@@ -667,6 +681,7 @@ public class UpdateAnnouncementRequest {
             return this;
         }
 
+
         public Builder thumbnail(Thumbnail thumbnail) {
             Utils.checkNotNull(thumbnail, "thumbnail");
             this.thumbnail = Optional.ofNullable(thumbnail);
@@ -679,6 +694,7 @@ public class UpdateAnnouncementRequest {
             return this;
         }
 
+
         public Builder banner(Thumbnail banner) {
             Utils.checkNotNull(banner, "banner");
             this.banner = Optional.ofNullable(banner);
@@ -690,6 +706,7 @@ public class UpdateAnnouncementRequest {
             this.banner = banner;
             return this;
         }
+
 
         /**
          * Filters which restrict who should see the announcement. Values are taken from the corresponding filters in people search.
@@ -709,6 +726,7 @@ public class UpdateAnnouncementRequest {
             return this;
         }
 
+
         /**
          * The Glean Document ID of the source document this Announcement was created from (e.g. Slack thread).
          */
@@ -726,6 +744,7 @@ public class UpdateAnnouncementRequest {
             this.sourceDocumentId = sourceDocumentId;
             return this;
         }
+
 
         /**
          * Whether or not to hide an author attribution.
@@ -745,6 +764,7 @@ public class UpdateAnnouncementRequest {
             return this;
         }
 
+
         /**
          * This determines whether this is a Social Feed post or a regular announcement.
          */
@@ -762,6 +782,7 @@ public class UpdateAnnouncementRequest {
             this.channel = channel;
             return this;
         }
+
 
         /**
          * This determines whether this is an external-link post or a regular announcement post. TEXT - Regular announcement that can contain rich text. LINK - Announcement that is linked to an external site.
@@ -781,6 +802,7 @@ public class UpdateAnnouncementRequest {
             return this;
         }
 
+
         /**
          * Used by the Social Feed to pin posts to the front of the feed.
          */
@@ -798,6 +820,7 @@ public class UpdateAnnouncementRequest {
             this.isPrioritized = isPrioritized;
             return this;
         }
+
 
         /**
          * URL for viewing the announcement. It will be set to document URL for announcements from other datasources e.g. simpplr. Can only be written when channel="SOCIAL_FEED".
@@ -817,6 +840,7 @@ public class UpdateAnnouncementRequest {
             return this;
         }
 
+
         /**
          * The opaque id of the announcement.
          */
@@ -825,24 +849,16 @@ public class UpdateAnnouncementRequest {
             this.id = id;
             return this;
         }
-        
+
         public UpdateAnnouncementRequest build() {
+
             return new UpdateAnnouncementRequest(
-                startTime,
-                endTime,
-                title,
-                body,
-                emoji,
-                thumbnail,
-                banner,
-                audienceFilters,
-                sourceDocumentId,
-                hideAttribution,
-                channel,
-                postType,
-                isPrioritized,
-                viewUrl,
-                id);
+                startTime, endTime, title,
+                body, emoji, thumbnail,
+                banner, audienceFilters, sourceDocumentId,
+                hideAttribution, channel, postType,
+                isPrioritized, viewUrl, id);
         }
+
     }
 }

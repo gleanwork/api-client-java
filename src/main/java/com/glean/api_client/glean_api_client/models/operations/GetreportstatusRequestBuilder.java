@@ -37,7 +37,7 @@ public class GetreportstatusRequestBuilder {
     public GetreportstatusResponse call() throws Exception {
         
         RequestOperation<GetreportstatusRequest, GetreportstatusResponse> operation
-              = new GetreportstatusOperation( sdkConfiguration);
+              = new GetreportstatusOperation(sdkConfiguration);
         GetreportstatusRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

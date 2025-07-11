@@ -37,7 +37,7 @@ public class PostApiIndexV1DebugDatasourceStatusRequestBuilder {
     public PostApiIndexV1DebugDatasourceStatusResponse call() throws Exception {
         
         RequestOperation<PostApiIndexV1DebugDatasourceStatusRequest, PostApiIndexV1DebugDatasourceStatusResponse> operation
-              = new PostApiIndexV1DebugDatasourceStatusOperation( sdkConfiguration);
+              = new PostApiIndexV1DebugDatasourceStatusOperation(sdkConfiguration);
         PostApiIndexV1DebugDatasourceStatusRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

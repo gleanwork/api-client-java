@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class ContentInsightsResponse {
 
+public class ContentInsightsResponse {
     /**
      * Unix timestamp of the last activity processed to make the response (in seconds since epoch UTC).
      */
@@ -73,7 +73,8 @@ public class ContentInsightsResponse {
     }
     
     public ContentInsightsResponse() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -118,9 +119,10 @@ public class ContentInsightsResponse {
         return minVisitorThreshold;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unix timestamp of the last activity processed to make the response (in seconds since epoch UTC).
@@ -130,6 +132,7 @@ public class ContentInsightsResponse {
         this.lastLogTimestamp = Optional.ofNullable(lastLogTimestamp);
         return this;
     }
+
 
     /**
      * Unix timestamp of the last activity processed to make the response (in seconds since epoch UTC).
@@ -149,6 +152,7 @@ public class ContentInsightsResponse {
         return this;
     }
 
+
     /**
      * Insights for documents.
      */
@@ -166,6 +170,7 @@ public class ContentInsightsResponse {
         this.departments = Optional.ofNullable(departments);
         return this;
     }
+
 
     /**
      * list of departments applicable for contents tab.
@@ -185,6 +190,7 @@ public class ContentInsightsResponse {
         return this;
     }
 
+
     /**
      * Min threshold in size of departments while populating results, otherwise 0.
      */
@@ -203,6 +209,7 @@ public class ContentInsightsResponse {
         return this;
     }
 
+
     /**
      * Minimum number of visitors to a document required to be included in insights.
      */
@@ -212,7 +219,6 @@ public class ContentInsightsResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -233,11 +239,8 @@ public class ContentInsightsResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            lastLogTimestamp,
-            documentInsights,
-            departments,
-            minDepartmentSizeThreshold,
-            minVisitorThreshold);
+            lastLogTimestamp, documentInsights, departments,
+            minDepartmentSizeThreshold, minVisitorThreshold);
     }
     
     @Override
@@ -249,22 +252,24 @@ public class ContentInsightsResponse {
                 "minDepartmentSizeThreshold", minDepartmentSizeThreshold,
                 "minVisitorThreshold", minVisitorThreshold);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> lastLogTimestamp = Optional.empty();
- 
+
         private Optional<? extends List<DocumentInsight>> documentInsights = Optional.empty();
- 
+
         private Optional<? extends List<String>> departments = Optional.empty();
- 
+
         private Optional<Long> minDepartmentSizeThreshold = Optional.empty();
- 
+
         private Optional<Long> minVisitorThreshold = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unix timestamp of the last activity processed to make the response (in seconds since epoch UTC).
@@ -284,6 +289,7 @@ public class ContentInsightsResponse {
             return this;
         }
 
+
         /**
          * Insights for documents.
          */
@@ -301,6 +307,7 @@ public class ContentInsightsResponse {
             this.documentInsights = documentInsights;
             return this;
         }
+
 
         /**
          * list of departments applicable for contents tab.
@@ -320,6 +327,7 @@ public class ContentInsightsResponse {
             return this;
         }
 
+
         /**
          * Min threshold in size of departments while populating results, otherwise 0.
          */
@@ -338,6 +346,7 @@ public class ContentInsightsResponse {
             return this;
         }
 
+
         /**
          * Minimum number of visitors to a document required to be included in insights.
          */
@@ -355,14 +364,13 @@ public class ContentInsightsResponse {
             this.minVisitorThreshold = minVisitorThreshold;
             return this;
         }
-        
+
         public ContentInsightsResponse build() {
+
             return new ContentInsightsResponse(
-                lastLogTimestamp,
-                documentInsights,
-                departments,
-                minDepartmentSizeThreshold,
-                minVisitorThreshold);
+                lastLogTimestamp, documentInsights, departments,
+                minDepartmentSizeThreshold, minVisitorThreshold);
         }
+
     }
 }

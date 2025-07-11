@@ -21,7 +21,6 @@ import java.util.Optional;
  * <p>Describes the user status response body
  */
 public class UserStatusResponse {
-
     /**
      * Whether the user is active or not
      */
@@ -85,9 +84,10 @@ public class UserStatusResponse {
         return lastUploadedAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Whether the user is active or not
@@ -97,6 +97,7 @@ public class UserStatusResponse {
         this.isActiveUser = Optional.ofNullable(isActiveUser);
         return this;
     }
+
 
     /**
      * Whether the user is active or not
@@ -116,6 +117,7 @@ public class UserStatusResponse {
         return this;
     }
 
+
     /**
      * Upload status, enum of NOT_UPLOADED, UPLOADED, STATUS_UNKNOWN
      */
@@ -134,6 +136,7 @@ public class UserStatusResponse {
         return this;
     }
 
+
     /**
      * Time of last successful upload for the user, in ISO 8601 format
      */
@@ -143,7 +146,6 @@ public class UserStatusResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -162,9 +164,7 @@ public class UserStatusResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            isActiveUser,
-            uploadStatus,
-            lastUploadedAt);
+            isActiveUser, uploadStatus, lastUploadedAt);
     }
     
     @Override
@@ -174,18 +174,20 @@ public class UserStatusResponse {
                 "uploadStatus", uploadStatus,
                 "lastUploadedAt", lastUploadedAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> isActiveUser = Optional.empty();
- 
+
         private Optional<? extends UploadStatusEnum> uploadStatus = Optional.empty();
- 
+
         private Optional<String> lastUploadedAt = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Whether the user is active or not
@@ -205,6 +207,7 @@ public class UserStatusResponse {
             return this;
         }
 
+
         /**
          * Upload status, enum of NOT_UPLOADED, UPLOADED, STATUS_UNKNOWN
          */
@@ -223,6 +226,7 @@ public class UserStatusResponse {
             return this;
         }
 
+
         /**
          * Time of last successful upload for the user, in ISO 8601 format
          */
@@ -240,12 +244,12 @@ public class UserStatusResponse {
             this.lastUploadedAt = lastUploadedAt;
             return this;
         }
-        
+
         public UserStatusResponse build() {
+
             return new UserStatusResponse(
-                isActiveUser,
-                uploadStatus,
-                lastUploadedAt);
+                isActiveUser, uploadStatus, lastUploadedAt);
         }
+
     }
 }

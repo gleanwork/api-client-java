@@ -36,7 +36,7 @@ public class PostApiIndexV1ProcessalldocumentsRequestBuilder {
     public PostApiIndexV1ProcessalldocumentsResponse call() throws Exception {
         
         RequestOperation<Optional<? extends ProcessAllDocumentsRequest>, PostApiIndexV1ProcessalldocumentsResponse> operation
-              = new PostApiIndexV1ProcessalldocumentsOperation( sdkConfiguration);
+              = new PostApiIndexV1ProcessalldocumentsOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

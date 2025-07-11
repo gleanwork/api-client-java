@@ -16,11 +16,13 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class FacetFilterValue {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("value")
     private Optional<String> value;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("relationType")
@@ -75,15 +77,17 @@ public class FacetFilterValue {
         return isNegated;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public FacetFilterValue withValue(String value) {
         Utils.checkNotNull(value, "value");
         this.value = Optional.ofNullable(value);
         return this;
     }
+
 
     public FacetFilterValue withValue(Optional<String> value) {
         Utils.checkNotNull(value, "value");
@@ -96,6 +100,7 @@ public class FacetFilterValue {
         this.relationType = Optional.ofNullable(relationType);
         return this;
     }
+
 
     public FacetFilterValue withRelationType(Optional<? extends RelationType> relationType) {
         Utils.checkNotNull(relationType, "relationType");
@@ -115,6 +120,7 @@ public class FacetFilterValue {
         return this;
     }
 
+
     /**
      * DEPRECATED - please use relationType instead
      * 
@@ -127,7 +133,6 @@ public class FacetFilterValue {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -146,9 +151,7 @@ public class FacetFilterValue {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            value,
-            relationType,
-            isNegated);
+            value, relationType, isNegated);
     }
     
     @Override
@@ -158,19 +161,21 @@ public class FacetFilterValue {
                 "relationType", relationType,
                 "isNegated", isNegated);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> value = Optional.empty();
- 
+
         private Optional<? extends RelationType> relationType = Optional.empty();
- 
+
         @Deprecated
         private Optional<Boolean> isNegated = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder value(String value) {
             Utils.checkNotNull(value, "value");
@@ -184,6 +189,7 @@ public class FacetFilterValue {
             return this;
         }
 
+
         public Builder relationType(RelationType relationType) {
             Utils.checkNotNull(relationType, "relationType");
             this.relationType = Optional.ofNullable(relationType);
@@ -195,6 +201,7 @@ public class FacetFilterValue {
             this.relationType = relationType;
             return this;
         }
+
 
         /**
          * DEPRECATED - please use relationType instead
@@ -219,12 +226,12 @@ public class FacetFilterValue {
             this.isNegated = isNegated;
             return this;
         }
-        
+
         public FacetFilterValue build() {
+
             return new FacetFilterValue(
-                value,
-                relationType,
-                isNegated);
+                value, relationType, isNegated);
         }
+
     }
 }

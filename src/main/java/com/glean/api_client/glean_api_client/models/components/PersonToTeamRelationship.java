@@ -66,7 +66,8 @@ public class PersonToTeamRelationship {
     
     public PersonToTeamRelationship(
             Person person) {
-        this(person, Optional.empty(), Optional.empty(), Optional.empty());
+        this(person, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -99,9 +100,10 @@ public class PersonToTeamRelationship {
         return joinDate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PersonToTeamRelationship withPerson(Person person) {
         Utils.checkNotNull(person, "person");
@@ -117,6 +119,7 @@ public class PersonToTeamRelationship {
         this.relationship = Optional.ofNullable(relationship);
         return this;
     }
+
 
     /**
      * The team member's relationship to the team. This defaults to MEMBER if not set.
@@ -136,6 +139,7 @@ public class PersonToTeamRelationship {
         return this;
     }
 
+
     /**
      * Displayed name for the relationship if relationship is set to `OTHER`.
      */
@@ -154,6 +158,7 @@ public class PersonToTeamRelationship {
         return this;
     }
 
+
     /**
      * The team member's start date
      */
@@ -163,7 +168,6 @@ public class PersonToTeamRelationship {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -183,9 +187,7 @@ public class PersonToTeamRelationship {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            person,
-            relationship,
-            customRelationshipStr,
+            person, relationship, customRelationshipStr,
             joinDate);
     }
     
@@ -197,26 +199,29 @@ public class PersonToTeamRelationship {
                 "customRelationshipStr", customRelationshipStr,
                 "joinDate", joinDate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Person person;
- 
+
         private Optional<? extends PersonToTeamRelationshipRelationship> relationship;
- 
+
         private Optional<String> customRelationshipStr = Optional.empty();
- 
+
         private Optional<OffsetDateTime> joinDate = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder person(Person person) {
             Utils.checkNotNull(person, "person");
             this.person = person;
             return this;
         }
+
 
         /**
          * The team member's relationship to the team. This defaults to MEMBER if not set.
@@ -236,6 +241,7 @@ public class PersonToTeamRelationship {
             return this;
         }
 
+
         /**
          * Displayed name for the relationship if relationship is set to `OTHER`.
          */
@@ -254,6 +260,7 @@ public class PersonToTeamRelationship {
             return this;
         }
 
+
         /**
          * The team member's start date
          */
@@ -271,17 +278,17 @@ public class PersonToTeamRelationship {
             this.joinDate = joinDate;
             return this;
         }
-        
+
         public PersonToTeamRelationship build() {
             if (relationship == null) {
                 relationship = _SINGLETON_VALUE_Relationship.value();
             }
+
             return new PersonToTeamRelationship(
-                person,
-                relationship,
-                customRelationshipStr,
+                person, relationship, customRelationshipStr,
                 joinDate);
         }
+
 
         private static final LazySingletonValue<Optional<? extends PersonToTeamRelationshipRelationship>> _SINGLETON_VALUE_Relationship =
                 new LazySingletonValue<>(

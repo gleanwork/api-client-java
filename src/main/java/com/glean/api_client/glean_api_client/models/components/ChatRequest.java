@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class ChatRequest {
 
+public class ChatRequest {
     /**
      * Save the current interaction as a Chat for the user to access and potentially continue later.
      */
@@ -46,9 +46,11 @@ public class ChatRequest {
     @JsonProperty("agentConfig")
     private Optional<? extends AgentConfig> agentConfig;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("inclusions")
     private Optional<? extends ChatRestrictionFilters> inclusions;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("exclusions")
@@ -60,6 +62,7 @@ public class ChatRequest {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timeoutMillis")
     private Optional<Long> timeoutMillis;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sessionInfo")
@@ -125,7 +128,10 @@ public class ChatRequest {
     
     public ChatRequest(
             List<ChatMessage> messages) {
-        this(Optional.empty(), Optional.empty(), messages, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), messages,
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -211,9 +217,10 @@ public class ChatRequest {
         return stream;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Save the current interaction as a Chat for the user to access and potentially continue later.
@@ -223,6 +230,7 @@ public class ChatRequest {
         this.saveChat = Optional.ofNullable(saveChat);
         return this;
     }
+
 
     /**
      * Save the current interaction as a Chat for the user to access and potentially continue later.
@@ -241,6 +249,7 @@ public class ChatRequest {
         this.chatId = Optional.ofNullable(chatId);
         return this;
     }
+
 
     /**
      * The id of the Chat that context should be retrieved from and messages added to. An empty id starts a new Chat, and the Chat is saved if saveChat is true.
@@ -269,6 +278,7 @@ public class ChatRequest {
         return this;
     }
 
+
     /**
      * Describes the agent that executes the request.
      */
@@ -284,6 +294,7 @@ public class ChatRequest {
         return this;
     }
 
+
     public ChatRequest withInclusions(Optional<? extends ChatRestrictionFilters> inclusions) {
         Utils.checkNotNull(inclusions, "inclusions");
         this.inclusions = inclusions;
@@ -295,6 +306,7 @@ public class ChatRequest {
         this.exclusions = Optional.ofNullable(exclusions);
         return this;
     }
+
 
     public ChatRequest withExclusions(Optional<? extends ChatRestrictionFilters> exclusions) {
         Utils.checkNotNull(exclusions, "exclusions");
@@ -311,6 +323,7 @@ public class ChatRequest {
         return this;
     }
 
+
     /**
      * Timeout in milliseconds for the request. A `408` error will be returned if handling the request takes longer.
      */
@@ -326,6 +339,7 @@ public class ChatRequest {
         return this;
     }
 
+
     public ChatRequest withSessionInfo(Optional<? extends SessionInfo> sessionInfo) {
         Utils.checkNotNull(sessionInfo, "sessionInfo");
         this.sessionInfo = sessionInfo;
@@ -340,6 +354,7 @@ public class ChatRequest {
         this.applicationId = Optional.ofNullable(applicationId);
         return this;
     }
+
 
     /**
      * The ID of the application this request originates from, used to determine the configuration of underlying chat processes. This should correspond to the ID set during admin setup. If not specified, the default chat experience will be used.
@@ -359,6 +374,7 @@ public class ChatRequest {
         return this;
     }
 
+
     /**
      * The ID of the Agent that should process this chat request. Only Agents with trigger set to 'User chat message' are invokable through this API. If not specified, the default chat experience will be used.
      */
@@ -377,6 +393,7 @@ public class ChatRequest {
         return this;
     }
 
+
     /**
      * If set, response lines will be streamed one-by-one as they become available. Each will be a ChatResponse, formatted as JSON, and separated by a new line. If false, the entire response will be returned at once. Note that if this is set and the model being used does not support streaming, the model's response will not be streamed, but other messages from the endpoint still will be.
      */
@@ -386,7 +403,6 @@ public class ChatRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -413,17 +429,10 @@ public class ChatRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            saveChat,
-            chatId,
-            messages,
-            agentConfig,
-            inclusions,
-            exclusions,
-            timeoutMillis,
-            sessionInfo,
-            applicationId,
-            agentId,
-            stream);
+            saveChat, chatId, messages,
+            agentConfig, inclusions, exclusions,
+            timeoutMillis, sessionInfo, applicationId,
+            agentId, stream);
     }
     
     @Override
@@ -441,34 +450,36 @@ public class ChatRequest {
                 "agentId", agentId,
                 "stream", stream);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> saveChat = Optional.empty();
- 
+
         private Optional<String> chatId = Optional.empty();
- 
+
         private List<ChatMessage> messages;
- 
+
         private Optional<? extends AgentConfig> agentConfig = Optional.empty();
- 
+
         private Optional<? extends ChatRestrictionFilters> inclusions = Optional.empty();
- 
+
         private Optional<? extends ChatRestrictionFilters> exclusions = Optional.empty();
- 
+
         private Optional<Long> timeoutMillis = Optional.empty();
- 
+
         private Optional<? extends SessionInfo> sessionInfo = Optional.empty();
- 
+
         private Optional<String> applicationId = Optional.empty();
- 
+
         private Optional<String> agentId = Optional.empty();
- 
+
         private Optional<Boolean> stream = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Save the current interaction as a Chat for the user to access and potentially continue later.
@@ -488,6 +499,7 @@ public class ChatRequest {
             return this;
         }
 
+
         /**
          * The id of the Chat that context should be retrieved from and messages added to. An empty id starts a new Chat, and the Chat is saved if saveChat is true.
          */
@@ -506,6 +518,7 @@ public class ChatRequest {
             return this;
         }
 
+
         /**
          * A list of chat messages, from most recent to least recent. It can be assumed that the first chat message in the list is the user's most recent query.
          */
@@ -514,6 +527,7 @@ public class ChatRequest {
             this.messages = messages;
             return this;
         }
+
 
         /**
          * Describes the agent that executes the request.
@@ -533,6 +547,7 @@ public class ChatRequest {
             return this;
         }
 
+
         public Builder inclusions(ChatRestrictionFilters inclusions) {
             Utils.checkNotNull(inclusions, "inclusions");
             this.inclusions = Optional.ofNullable(inclusions);
@@ -545,6 +560,7 @@ public class ChatRequest {
             return this;
         }
 
+
         public Builder exclusions(ChatRestrictionFilters exclusions) {
             Utils.checkNotNull(exclusions, "exclusions");
             this.exclusions = Optional.ofNullable(exclusions);
@@ -556,6 +572,7 @@ public class ChatRequest {
             this.exclusions = exclusions;
             return this;
         }
+
 
         /**
          * Timeout in milliseconds for the request. A `408` error will be returned if handling the request takes longer.
@@ -575,6 +592,7 @@ public class ChatRequest {
             return this;
         }
 
+
         public Builder sessionInfo(SessionInfo sessionInfo) {
             Utils.checkNotNull(sessionInfo, "sessionInfo");
             this.sessionInfo = Optional.ofNullable(sessionInfo);
@@ -586,6 +604,7 @@ public class ChatRequest {
             this.sessionInfo = sessionInfo;
             return this;
         }
+
 
         /**
          * The ID of the application this request originates from, used to determine the configuration of underlying chat processes. This should correspond to the ID set during admin setup. If not specified, the default chat experience will be used.
@@ -605,6 +624,7 @@ public class ChatRequest {
             return this;
         }
 
+
         /**
          * The ID of the Agent that should process this chat request. Only Agents with trigger set to 'User chat message' are invokable through this API. If not specified, the default chat experience will be used.
          */
@@ -623,6 +643,7 @@ public class ChatRequest {
             return this;
         }
 
+
         /**
          * If set, response lines will be streamed one-by-one as they become available. Each will be a ChatResponse, formatted as JSON, and separated by a new line. If false, the entire response will be returned at once. Note that if this is set and the model being used does not support streaming, the model's response will not be streamed, but other messages from the endpoint still will be.
          */
@@ -640,20 +661,15 @@ public class ChatRequest {
             this.stream = stream;
             return this;
         }
-        
+
         public ChatRequest build() {
+
             return new ChatRequest(
-                saveChat,
-                chatId,
-                messages,
-                agentConfig,
-                inclusions,
-                exclusions,
-                timeoutMillis,
-                sessionInfo,
-                applicationId,
-                agentId,
-                stream);
+                saveChat, chatId, messages,
+                agentConfig, inclusions, exclusions,
+                timeoutMillis, sessionInfo, applicationId,
+                agentId, stream);
         }
+
     }
 }

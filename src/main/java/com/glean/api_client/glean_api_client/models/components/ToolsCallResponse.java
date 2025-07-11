@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.Map;
 import java.util.Optional;
 
-public class ToolsCallResponse {
 
+public class ToolsCallResponse {
     /**
      * The raw response from the tool
      */
@@ -63,9 +63,10 @@ public class ToolsCallResponse {
         return error;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The raw response from the tool
@@ -75,6 +76,7 @@ public class ToolsCallResponse {
         this.rawResponse = Optional.ofNullable(rawResponse);
         return this;
     }
+
 
     /**
      * The raw response from the tool
@@ -94,6 +96,7 @@ public class ToolsCallResponse {
         return this;
     }
 
+
     /**
      * The error message if applicable
      */
@@ -103,7 +106,6 @@ public class ToolsCallResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -121,8 +123,7 @@ public class ToolsCallResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            rawResponse,
-            error);
+            rawResponse, error);
     }
     
     @Override
@@ -131,16 +132,18 @@ public class ToolsCallResponse {
                 "rawResponse", rawResponse,
                 "error", error);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Map<String, Object>> rawResponse = Optional.empty();
- 
+
         private Optional<String> error = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The raw response from the tool
@@ -160,6 +163,7 @@ public class ToolsCallResponse {
             return this;
         }
 
+
         /**
          * The error message if applicable
          */
@@ -177,11 +181,12 @@ public class ToolsCallResponse {
             this.error = error;
             return this;
         }
-        
+
         public ToolsCallResponse build() {
+
             return new ToolsCallResponse(
-                rawResponse,
-                error);
+                rawResponse, error);
         }
+
     }
 }

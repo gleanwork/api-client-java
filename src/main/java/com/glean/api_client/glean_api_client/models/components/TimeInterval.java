@@ -10,8 +10,8 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class TimeInterval {
 
+public class TimeInterval {
     /**
      * The RFC3339 timestamp formatted start time of this event.
      */
@@ -50,9 +50,10 @@ public class TimeInterval {
         return end;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The RFC3339 timestamp formatted start time of this event.
@@ -72,7 +73,6 @@ public class TimeInterval {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,8 +90,7 @@ public class TimeInterval {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            start,
-            end);
+            start, end);
     }
     
     @Override
@@ -100,16 +99,18 @@ public class TimeInterval {
                 "start", start,
                 "end", end);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String start;
- 
+
         private String end;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The RFC3339 timestamp formatted start time of this event.
@@ -120,6 +121,7 @@ public class TimeInterval {
             return this;
         }
 
+
         /**
          * The RFC3339 timestamp formatted end time of this event.
          */
@@ -128,11 +130,12 @@ public class TimeInterval {
             this.end = end;
             return this;
         }
-        
+
         public TimeInterval build() {
+
             return new TimeInterval(
-                start,
-                end);
+                start, end);
         }
+
     }
 }

@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class ShortcutMutableProperties {
 
+public class ShortcutMutableProperties {
     /**
      * Link text following go/ prefix as entered by the user.
      */
@@ -103,7 +103,9 @@ public class ShortcutMutableProperties {
     }
     
     public ShortcutMutableProperties() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -172,9 +174,10 @@ public class ShortcutMutableProperties {
         return (Optional<List<UserRoleSpecification>>) removedRoles;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Link text following go/ prefix as entered by the user.
@@ -184,6 +187,7 @@ public class ShortcutMutableProperties {
         this.inputAlias = Optional.ofNullable(inputAlias);
         return this;
     }
+
 
     /**
      * Link text following go/ prefix as entered by the user.
@@ -203,6 +207,7 @@ public class ShortcutMutableProperties {
         return this;
     }
 
+
     /**
      * Destination URL for the shortcut.
      */
@@ -220,6 +225,7 @@ public class ShortcutMutableProperties {
         this.destinationDocumentId = Optional.ofNullable(destinationDocumentId);
         return this;
     }
+
 
     /**
      * Glean Document ID for the URL, if known.
@@ -239,6 +245,7 @@ public class ShortcutMutableProperties {
         return this;
     }
 
+
     /**
      * A short, plain text blurb to help people understand the intent of the shortcut.
      */
@@ -256,6 +263,7 @@ public class ShortcutMutableProperties {
         this.unlisted = Optional.ofNullable(unlisted);
         return this;
     }
+
 
     /**
      * Whether this shortcut is unlisted or not. Unlisted shortcuts are visible to author + admins only.
@@ -275,6 +283,7 @@ public class ShortcutMutableProperties {
         return this;
     }
 
+
     /**
      * For variable shortcuts, contains the URL template; note, `destinationUrl` contains default URL.
      */
@@ -292,6 +301,7 @@ public class ShortcutMutableProperties {
         this.addedRoles = Optional.ofNullable(addedRoles);
         return this;
     }
+
 
     /**
      * A list of user roles added for the Shortcut.
@@ -311,6 +321,7 @@ public class ShortcutMutableProperties {
         return this;
     }
 
+
     /**
      * A list of user roles removed for the Shortcut.
      */
@@ -320,7 +331,6 @@ public class ShortcutMutableProperties {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -344,14 +354,9 @@ public class ShortcutMutableProperties {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            inputAlias,
-            destinationUrl,
-            destinationDocumentId,
-            description,
-            unlisted,
-            urlTemplate,
-            addedRoles,
-            removedRoles);
+            inputAlias, destinationUrl, destinationDocumentId,
+            description, unlisted, urlTemplate,
+            addedRoles, removedRoles);
     }
     
     @Override
@@ -366,28 +371,30 @@ public class ShortcutMutableProperties {
                 "addedRoles", addedRoles,
                 "removedRoles", removedRoles);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> inputAlias = Optional.empty();
- 
+
         private Optional<String> destinationUrl = Optional.empty();
- 
+
         private Optional<String> destinationDocumentId = Optional.empty();
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<Boolean> unlisted = Optional.empty();
- 
+
         private Optional<String> urlTemplate = Optional.empty();
- 
+
         private Optional<? extends List<UserRoleSpecification>> addedRoles = Optional.empty();
- 
+
         private Optional<? extends List<UserRoleSpecification>> removedRoles = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Link text following go/ prefix as entered by the user.
@@ -407,6 +414,7 @@ public class ShortcutMutableProperties {
             return this;
         }
 
+
         /**
          * Destination URL for the shortcut.
          */
@@ -424,6 +432,7 @@ public class ShortcutMutableProperties {
             this.destinationUrl = destinationUrl;
             return this;
         }
+
 
         /**
          * Glean Document ID for the URL, if known.
@@ -443,6 +452,7 @@ public class ShortcutMutableProperties {
             return this;
         }
 
+
         /**
          * A short, plain text blurb to help people understand the intent of the shortcut.
          */
@@ -460,6 +470,7 @@ public class ShortcutMutableProperties {
             this.description = description;
             return this;
         }
+
 
         /**
          * Whether this shortcut is unlisted or not. Unlisted shortcuts are visible to author + admins only.
@@ -479,6 +490,7 @@ public class ShortcutMutableProperties {
             return this;
         }
 
+
         /**
          * For variable shortcuts, contains the URL template; note, `destinationUrl` contains default URL.
          */
@@ -496,6 +508,7 @@ public class ShortcutMutableProperties {
             this.urlTemplate = urlTemplate;
             return this;
         }
+
 
         /**
          * A list of user roles added for the Shortcut.
@@ -515,6 +528,7 @@ public class ShortcutMutableProperties {
             return this;
         }
 
+
         /**
          * A list of user roles removed for the Shortcut.
          */
@@ -532,17 +546,14 @@ public class ShortcutMutableProperties {
             this.removedRoles = removedRoles;
             return this;
         }
-        
+
         public ShortcutMutableProperties build() {
+
             return new ShortcutMutableProperties(
-                inputAlias,
-                destinationUrl,
-                destinationDocumentId,
-                description,
-                unlisted,
-                urlTemplate,
-                addedRoles,
-                removedRoles);
+                inputAlias, destinationUrl, destinationDocumentId,
+                description, unlisted, urlTemplate,
+                addedRoles, removedRoles);
         }
+
     }
 }

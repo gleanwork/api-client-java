@@ -72,7 +72,8 @@ public class UpdatePermissionsRequest {
     public UpdatePermissionsRequest(
             String datasource,
             DocumentPermissionsDefinition permissions) {
-        this(datasource, Optional.empty(), Optional.empty(), Optional.empty(), permissions);
+        this(datasource, Optional.empty(), Optional.empty(),
+            Optional.empty(), permissions);
     }
 
     @JsonIgnore
@@ -112,9 +113,10 @@ public class UpdatePermissionsRequest {
         return permissions;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public UpdatePermissionsRequest withDatasource(String datasource) {
         Utils.checkNotNull(datasource, "datasource");
@@ -130,6 +132,7 @@ public class UpdatePermissionsRequest {
         this.objectType = Optional.ofNullable(objectType);
         return this;
     }
+
 
     /**
      * The type of the document (Case, KnowledgeArticle for Salesforce for example). It cannot have spaces or _
@@ -149,6 +152,7 @@ public class UpdatePermissionsRequest {
         return this;
     }
 
+
     /**
      * The datasource specific id for the document. This field is case insensitive and should not be more than 200 characters in length.
      */
@@ -166,6 +170,7 @@ public class UpdatePermissionsRequest {
         this.viewURL = Optional.ofNullable(viewURL);
         return this;
     }
+
 
     /**
      * The permalink for viewing the document. **Note: viewURL is a required field if id was not set when uploading the document.**'
@@ -185,7 +190,6 @@ public class UpdatePermissionsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -206,11 +210,8 @@ public class UpdatePermissionsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            datasource,
-            objectType,
-            id,
-            viewURL,
-            permissions);
+            datasource, objectType, id,
+            viewURL, permissions);
     }
     
     @Override
@@ -222,28 +223,31 @@ public class UpdatePermissionsRequest {
                 "viewURL", viewURL,
                 "permissions", permissions);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String datasource;
- 
+
         private Optional<String> objectType = Optional.empty();
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> viewURL = Optional.empty();
- 
+
         private DocumentPermissionsDefinition permissions;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder datasource(String datasource) {
             Utils.checkNotNull(datasource, "datasource");
             this.datasource = datasource;
             return this;
         }
+
 
         /**
          * The type of the document (Case, KnowledgeArticle for Salesforce for example). It cannot have spaces or _
@@ -263,6 +267,7 @@ public class UpdatePermissionsRequest {
             return this;
         }
 
+
         /**
          * The datasource specific id for the document. This field is case insensitive and should not be more than 200 characters in length.
          */
@@ -280,6 +285,7 @@ public class UpdatePermissionsRequest {
             this.id = id;
             return this;
         }
+
 
         /**
          * The permalink for viewing the document. **Note: viewURL is a required field if id was not set when uploading the document.**'
@@ -299,6 +305,7 @@ public class UpdatePermissionsRequest {
             return this;
         }
 
+
         /**
          * describes the access control details of the document
          */
@@ -307,14 +314,13 @@ public class UpdatePermissionsRequest {
             this.permissions = permissions;
             return this;
         }
-        
+
         public UpdatePermissionsRequest build() {
+
             return new UpdatePermissionsRequest(
-                datasource,
-                objectType,
-                id,
-                viewURL,
-                permissions);
+                datasource, objectType, id,
+                viewURL, permissions);
         }
+
     }
 }

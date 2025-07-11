@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>Information about a successful bulk upload
  */
 public class BulkUploadHistoryEvent {
-
     /**
      * The unique ID of the upload
      */
@@ -76,7 +75,8 @@ public class BulkUploadHistoryEvent {
     }
     
     public BulkUploadHistoryEvent() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -121,9 +121,10 @@ public class BulkUploadHistoryEvent {
         return (Optional<ProcessingState>) processingState;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique ID of the upload
@@ -133,6 +134,7 @@ public class BulkUploadHistoryEvent {
         this.uploadId = Optional.ofNullable(uploadId);
         return this;
     }
+
 
     /**
      * The unique ID of the upload
@@ -152,6 +154,7 @@ public class BulkUploadHistoryEvent {
         return this;
     }
 
+
     /**
      * The start time of the upload in ISO 8601 format
      */
@@ -169,6 +172,7 @@ public class BulkUploadHistoryEvent {
         this.endTime = Optional.ofNullable(endTime);
         return this;
     }
+
 
     /**
      * The end time of the upload in ISO 8601 format, 'NA' if the upload is still active
@@ -188,6 +192,7 @@ public class BulkUploadHistoryEvent {
         return this;
     }
 
+
     /**
      * The status of the upload, an enum of ACTIVE, SUCCESSFUL
      */
@@ -206,6 +211,7 @@ public class BulkUploadHistoryEvent {
         return this;
     }
 
+
     /**
      * The current state of the upload, an enum of UNAVAILABLE, UPLOAD STARTED, UPLOAD IN PROGRESS, UPLOAD COMPLETED, DELETION PAUSED, INDEXING COMPLETED
      */
@@ -215,7 +221,6 @@ public class BulkUploadHistoryEvent {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -236,11 +241,8 @@ public class BulkUploadHistoryEvent {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            uploadId,
-            startTime,
-            endTime,
-            status,
-            processingState);
+            uploadId, startTime, endTime,
+            status, processingState);
     }
     
     @Override
@@ -252,22 +254,24 @@ public class BulkUploadHistoryEvent {
                 "status", status,
                 "processingState", processingState);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> uploadId = Optional.empty();
- 
+
         private Optional<String> startTime = Optional.empty();
- 
+
         private Optional<String> endTime = Optional.empty();
- 
+
         private Optional<? extends BulkUploadHistoryEventStatus> status = Optional.empty();
- 
+
         private Optional<? extends ProcessingState> processingState = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique ID of the upload
@@ -287,6 +291,7 @@ public class BulkUploadHistoryEvent {
             return this;
         }
 
+
         /**
          * The start time of the upload in ISO 8601 format
          */
@@ -304,6 +309,7 @@ public class BulkUploadHistoryEvent {
             this.startTime = startTime;
             return this;
         }
+
 
         /**
          * The end time of the upload in ISO 8601 format, 'NA' if the upload is still active
@@ -323,6 +329,7 @@ public class BulkUploadHistoryEvent {
             return this;
         }
 
+
         /**
          * The status of the upload, an enum of ACTIVE, SUCCESSFUL
          */
@@ -341,6 +348,7 @@ public class BulkUploadHistoryEvent {
             return this;
         }
 
+
         /**
          * The current state of the upload, an enum of UNAVAILABLE, UPLOAD STARTED, UPLOAD IN PROGRESS, UPLOAD COMPLETED, DELETION PAUSED, INDEXING COMPLETED
          */
@@ -358,14 +366,13 @@ public class BulkUploadHistoryEvent {
             this.processingState = processingState;
             return this;
         }
-        
+
         public BulkUploadHistoryEvent build() {
+
             return new BulkUploadHistoryEvent(
-                uploadId,
-                startTime,
-                endTime,
-                status,
-                processingState);
+                uploadId, startTime, endTime,
+                status, processingState);
         }
+
     }
 }

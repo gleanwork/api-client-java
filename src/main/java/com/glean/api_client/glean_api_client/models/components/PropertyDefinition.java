@@ -16,8 +16,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class PropertyDefinition {
 
+public class PropertyDefinition {
     /**
      * The name of the property in the `DocumentMetadata` (e.g. 'createTime', 'updateTime', 'author', 'container'). In the future, this will support custom properties too.
      */
@@ -45,6 +45,7 @@ public class PropertyDefinition {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("propertyType")
     private Optional<? extends PropertyType> propertyType;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("uiOptions")
@@ -110,7 +111,9 @@ public class PropertyDefinition {
     }
     
     public PropertyDefinition() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -184,9 +187,10 @@ public class PropertyDefinition {
         return group;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the property in the `DocumentMetadata` (e.g. 'createTime', 'updateTime', 'author', 'container'). In the future, this will support custom properties too.
@@ -196,6 +200,7 @@ public class PropertyDefinition {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * The name of the property in the `DocumentMetadata` (e.g. 'createTime', 'updateTime', 'author', 'container'). In the future, this will support custom properties too.
@@ -215,6 +220,7 @@ public class PropertyDefinition {
         return this;
     }
 
+
     /**
      * The user friendly label for the property.
      */
@@ -232,6 +238,7 @@ public class PropertyDefinition {
         this.displayLabelPlural = Optional.ofNullable(displayLabelPlural);
         return this;
     }
+
 
     /**
      * The user friendly label for the property that will be used if a plural context.
@@ -251,6 +258,7 @@ public class PropertyDefinition {
         return this;
     }
 
+
     /**
      * The type of custom property - this governs the search and faceting behavior. Note that MULTIPICKLIST is not yet supported.
      */
@@ -266,6 +274,7 @@ public class PropertyDefinition {
         return this;
     }
 
+
     public PropertyDefinition withUiOptions(Optional<? extends UiOptions> uiOptions) {
         Utils.checkNotNull(uiOptions, "uiOptions");
         this.uiOptions = uiOptions;
@@ -280,6 +289,7 @@ public class PropertyDefinition {
         this.hideUiFacet = Optional.ofNullable(hideUiFacet);
         return this;
     }
+
 
     /**
      * If true then the property will not show up as a facet in the UI.
@@ -299,6 +309,7 @@ public class PropertyDefinition {
         return this;
     }
 
+
     /**
      * Will be used to set the order of facets in the UI, if present. If set for one facet, must be set for all non-hidden UI facets. Must take on an integer value from 1 (shown at the top) to N (shown last), where N is the number of non-hidden UI facets. These facets will be ordered below the built-in "Type" and "Tag" operators.
      */
@@ -316,6 +327,7 @@ public class PropertyDefinition {
         this.skipIndexing = Optional.ofNullable(skipIndexing);
         return this;
     }
+
 
     /**
      * If true then the property will not be indexed for retrieval and ranking.
@@ -335,6 +347,7 @@ public class PropertyDefinition {
         return this;
     }
 
+
     /**
      * The unique identifier of the `PropertyGroup` to which this property belongs.
      */
@@ -344,7 +357,6 @@ public class PropertyDefinition {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -369,15 +381,9 @@ public class PropertyDefinition {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            displayLabel,
-            displayLabelPlural,
-            propertyType,
-            uiOptions,
-            hideUiFacet,
-            uiFacetOrder,
-            skipIndexing,
-            group);
+            name, displayLabel, displayLabelPlural,
+            propertyType, uiOptions, hideUiFacet,
+            uiFacetOrder, skipIndexing, group);
     }
     
     @Override
@@ -393,30 +399,32 @@ public class PropertyDefinition {
                 "skipIndexing", skipIndexing,
                 "group", group);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> displayLabel = Optional.empty();
- 
+
         private Optional<String> displayLabelPlural = Optional.empty();
- 
+
         private Optional<? extends PropertyType> propertyType = Optional.empty();
- 
+
         private Optional<? extends UiOptions> uiOptions = Optional.empty();
- 
+
         private Optional<Boolean> hideUiFacet = Optional.empty();
- 
+
         private Optional<Long> uiFacetOrder = Optional.empty();
- 
+
         private Optional<Boolean> skipIndexing = Optional.empty();
- 
+
         private Optional<String> group = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the property in the `DocumentMetadata` (e.g. 'createTime', 'updateTime', 'author', 'container'). In the future, this will support custom properties too.
@@ -436,6 +444,7 @@ public class PropertyDefinition {
             return this;
         }
 
+
         /**
          * The user friendly label for the property.
          */
@@ -453,6 +462,7 @@ public class PropertyDefinition {
             this.displayLabel = displayLabel;
             return this;
         }
+
 
         /**
          * The user friendly label for the property that will be used if a plural context.
@@ -472,6 +482,7 @@ public class PropertyDefinition {
             return this;
         }
 
+
         /**
          * The type of custom property - this governs the search and faceting behavior. Note that MULTIPICKLIST is not yet supported.
          */
@@ -490,6 +501,7 @@ public class PropertyDefinition {
             return this;
         }
 
+
         public Builder uiOptions(UiOptions uiOptions) {
             Utils.checkNotNull(uiOptions, "uiOptions");
             this.uiOptions = Optional.ofNullable(uiOptions);
@@ -501,6 +513,7 @@ public class PropertyDefinition {
             this.uiOptions = uiOptions;
             return this;
         }
+
 
         /**
          * If true then the property will not show up as a facet in the UI.
@@ -520,6 +533,7 @@ public class PropertyDefinition {
             return this;
         }
 
+
         /**
          * Will be used to set the order of facets in the UI, if present. If set for one facet, must be set for all non-hidden UI facets. Must take on an integer value from 1 (shown at the top) to N (shown last), where N is the number of non-hidden UI facets. These facets will be ordered below the built-in "Type" and "Tag" operators.
          */
@@ -537,6 +551,7 @@ public class PropertyDefinition {
             this.uiFacetOrder = uiFacetOrder;
             return this;
         }
+
 
         /**
          * If true then the property will not be indexed for retrieval and ranking.
@@ -556,6 +571,7 @@ public class PropertyDefinition {
             return this;
         }
 
+
         /**
          * The unique identifier of the `PropertyGroup` to which this property belongs.
          */
@@ -573,18 +589,14 @@ public class PropertyDefinition {
             this.group = group;
             return this;
         }
-        
+
         public PropertyDefinition build() {
+
             return new PropertyDefinition(
-                name,
-                displayLabel,
-                displayLabelPlural,
-                propertyType,
-                uiOptions,
-                hideUiFacet,
-                uiFacetOrder,
-                skipIndexing,
-                group);
+                name, displayLabel, displayLabelPlural,
+                propertyType, uiOptions, hideUiFacet,
+                uiFacetOrder, skipIndexing, group);
         }
+
     }
 }

@@ -19,7 +19,6 @@ public class ClientAuthentication {
     ClientAuthentication(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Create authentication token
      * 
@@ -49,7 +48,7 @@ public class ClientAuthentication {
      */
     public CreateauthtokenResponse createTokenDirect() throws Exception {
         RequestlessOperation<CreateauthtokenResponse> operation
-            = new CreateauthtokenOperation( sdkConfiguration);
+            = new CreateauthtokenOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest());
     }
 

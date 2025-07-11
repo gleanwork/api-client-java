@@ -32,7 +32,6 @@ public class ClientDocuments {
     ClientDocuments(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Read document permissions
      * 
@@ -53,13 +52,11 @@ public class ClientDocuments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetdocpermissionsResponse retrievePermissions(
-            GetDocPermissionsRequest request) throws Exception {
+    public GetdocpermissionsResponse retrievePermissions(GetDocPermissionsRequest request) throws Exception {
         RequestOperation<GetDocPermissionsRequest, GetdocpermissionsResponse> operation
-              = new GetdocpermissionsOperation( sdkConfiguration);
+              = new GetdocpermissionsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Read documents
@@ -93,13 +90,11 @@ public class ClientDocuments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetdocumentsResponse retrieve(
-            Optional<? extends GetDocumentsRequest> request) throws Exception {
+    public GetdocumentsResponse retrieve(Optional<? extends GetDocumentsRequest> request) throws Exception {
         RequestOperation<Optional<? extends GetDocumentsRequest>, GetdocumentsResponse> operation
-              = new GetdocumentsOperation( sdkConfiguration);
+              = new GetdocumentsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Read documents by facets
@@ -133,13 +128,11 @@ public class ClientDocuments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetdocumentsbyfacetsResponse retrieveByFacets(
-            Optional<? extends GetDocumentsByFacetsRequest> request) throws Exception {
+    public GetdocumentsbyfacetsResponse retrieveByFacets(Optional<? extends GetDocumentsByFacetsRequest> request) throws Exception {
         RequestOperation<Optional<? extends GetDocumentsByFacetsRequest>, GetdocumentsbyfacetsResponse> operation
-              = new GetdocumentsbyfacetsOperation( sdkConfiguration);
+              = new GetdocumentsbyfacetsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Summarize documents
@@ -161,10 +154,9 @@ public class ClientDocuments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public SummarizeResponse summarize(
-            SummarizeRequest request) throws Exception {
+    public SummarizeResponse summarize(SummarizeRequest request) throws Exception {
         RequestOperation<SummarizeRequest, SummarizeResponse> operation
-              = new SummarizeOperation( sdkConfiguration);
+              = new SummarizeOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -15,14 +15,15 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class DebugDatasourceStatusIdentityResponseComponent {
 
+public class DebugDatasourceStatusIdentityResponseComponent {
     /**
      * Information about active and recent successful uploads for the datasource
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bulkUploadHistory")
     private Optional<? extends List<BulkUploadHistoryEvent>> bulkUploadHistory;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("counts")
@@ -57,9 +58,10 @@ public class DebugDatasourceStatusIdentityResponseComponent {
         return (Optional<DebugDatasourceStatusIdentityResponseComponentCounts>) counts;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Information about active and recent successful uploads for the datasource
@@ -69,6 +71,7 @@ public class DebugDatasourceStatusIdentityResponseComponent {
         this.bulkUploadHistory = Optional.ofNullable(bulkUploadHistory);
         return this;
     }
+
 
     /**
      * Information about active and recent successful uploads for the datasource
@@ -85,13 +88,13 @@ public class DebugDatasourceStatusIdentityResponseComponent {
         return this;
     }
 
+
     public DebugDatasourceStatusIdentityResponseComponent withCounts(Optional<? extends DebugDatasourceStatusIdentityResponseComponentCounts> counts) {
         Utils.checkNotNull(counts, "counts");
         this.counts = counts;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -109,8 +112,7 @@ public class DebugDatasourceStatusIdentityResponseComponent {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            bulkUploadHistory,
-            counts);
+            bulkUploadHistory, counts);
     }
     
     @Override
@@ -119,16 +121,18 @@ public class DebugDatasourceStatusIdentityResponseComponent {
                 "bulkUploadHistory", bulkUploadHistory,
                 "counts", counts);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<BulkUploadHistoryEvent>> bulkUploadHistory = Optional.empty();
- 
+
         private Optional<? extends DebugDatasourceStatusIdentityResponseComponentCounts> counts = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Information about active and recent successful uploads for the datasource
@@ -148,6 +152,7 @@ public class DebugDatasourceStatusIdentityResponseComponent {
             return this;
         }
 
+
         public Builder counts(DebugDatasourceStatusIdentityResponseComponentCounts counts) {
             Utils.checkNotNull(counts, "counts");
             this.counts = Optional.ofNullable(counts);
@@ -159,11 +164,12 @@ public class DebugDatasourceStatusIdentityResponseComponent {
             this.counts = counts;
             return this;
         }
-        
+
         public DebugDatasourceStatusIdentityResponseComponent build() {
+
             return new DebugDatasourceStatusIdentityResponseComponent(
-                bulkUploadHistory,
-                counts);
+                bulkUploadHistory, counts);
         }
+
     }
 }

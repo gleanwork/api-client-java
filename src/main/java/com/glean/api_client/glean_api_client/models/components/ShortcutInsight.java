@@ -14,14 +14,17 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class ShortcutInsight {
 
     @JsonProperty("shortcut")
     private Shortcut shortcut;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("visitCount")
     private Optional<? extends CountInfo> visitCount;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("visitorCount")
@@ -62,9 +65,10 @@ public class ShortcutInsight {
         return (Optional<CountInfo>) visitorCount;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ShortcutInsight withShortcut(Shortcut shortcut) {
         Utils.checkNotNull(shortcut, "shortcut");
@@ -78,6 +82,7 @@ public class ShortcutInsight {
         return this;
     }
 
+
     public ShortcutInsight withVisitCount(Optional<? extends CountInfo> visitCount) {
         Utils.checkNotNull(visitCount, "visitCount");
         this.visitCount = visitCount;
@@ -90,13 +95,13 @@ public class ShortcutInsight {
         return this;
     }
 
+
     public ShortcutInsight withVisitorCount(Optional<? extends CountInfo> visitorCount) {
         Utils.checkNotNull(visitorCount, "visitorCount");
         this.visitorCount = visitorCount;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -115,9 +120,7 @@ public class ShortcutInsight {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            shortcut,
-            visitCount,
-            visitorCount);
+            shortcut, visitCount, visitorCount);
     }
     
     @Override
@@ -127,24 +130,27 @@ public class ShortcutInsight {
                 "visitCount", visitCount,
                 "visitorCount", visitorCount);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Shortcut shortcut;
- 
+
         private Optional<? extends CountInfo> visitCount = Optional.empty();
- 
+
         private Optional<? extends CountInfo> visitorCount = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder shortcut(Shortcut shortcut) {
             Utils.checkNotNull(shortcut, "shortcut");
             this.shortcut = shortcut;
             return this;
         }
+
 
         public Builder visitCount(CountInfo visitCount) {
             Utils.checkNotNull(visitCount, "visitCount");
@@ -158,6 +164,7 @@ public class ShortcutInsight {
             return this;
         }
 
+
         public Builder visitorCount(CountInfo visitorCount) {
             Utils.checkNotNull(visitorCount, "visitorCount");
             this.visitorCount = Optional.ofNullable(visitorCount);
@@ -169,12 +176,12 @@ public class ShortcutInsight {
             this.visitorCount = visitorCount;
             return this;
         }
-        
+
         public ShortcutInsight build() {
+
             return new ShortcutInsight(
-                shortcut,
-                visitCount,
-                visitorCount);
+                shortcut, visitCount, visitorCount);
         }
+
     }
 }

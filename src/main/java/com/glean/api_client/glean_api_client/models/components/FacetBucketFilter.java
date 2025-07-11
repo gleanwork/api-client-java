@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class FacetBucketFilter {
 
+public class FacetBucketFilter {
     /**
      * The facet whose buckets should be filtered.
      */
@@ -59,9 +59,10 @@ public class FacetBucketFilter {
         return prefix;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The facet whose buckets should be filtered.
@@ -71,6 +72,7 @@ public class FacetBucketFilter {
         this.facet = Optional.ofNullable(facet);
         return this;
     }
+
 
     /**
      * The facet whose buckets should be filtered.
@@ -90,6 +92,7 @@ public class FacetBucketFilter {
         return this;
     }
 
+
     /**
      * The per-term prefix that facet buckets should be filtered on.
      */
@@ -99,7 +102,6 @@ public class FacetBucketFilter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -117,8 +119,7 @@ public class FacetBucketFilter {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            facet,
-            prefix);
+            facet, prefix);
     }
     
     @Override
@@ -127,16 +128,18 @@ public class FacetBucketFilter {
                 "facet", facet,
                 "prefix", prefix);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> facet = Optional.empty();
- 
+
         private Optional<String> prefix = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The facet whose buckets should be filtered.
@@ -156,6 +159,7 @@ public class FacetBucketFilter {
             return this;
         }
 
+
         /**
          * The per-term prefix that facet buckets should be filtered on.
          */
@@ -173,11 +177,12 @@ public class FacetBucketFilter {
             this.prefix = prefix;
             return this;
         }
-        
+
         public FacetBucketFilter build() {
+
             return new FacetBucketFilter(
-                facet,
-                prefix);
+                facet, prefix);
         }
+
     }
 }

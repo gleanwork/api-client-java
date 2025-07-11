@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class AppResult {
 
+public class AppResult {
     /**
      * The app or other repository type this represents
      */
@@ -60,7 +60,8 @@ public class AppResult {
     
     public AppResult(
             String datasource) {
-        this(datasource, Optional.empty(), Optional.empty(), Optional.empty());
+        this(datasource, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -95,9 +96,10 @@ public class AppResult {
         return iconUrl;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The app or other repository type this represents
@@ -117,6 +119,7 @@ public class AppResult {
         return this;
     }
 
+
     /**
      * The datasource-specific type of the document (e.g. for Jira issues, this is the issue type such as Bug or Feature Request).
      */
@@ -134,6 +137,7 @@ public class AppResult {
         this.mimeType = Optional.ofNullable(mimeType);
         return this;
     }
+
 
     /**
      * Mimetype is used to differentiate between sub applications from a datasource (e.g. Sheets, Docs from Gdrive)
@@ -153,6 +157,7 @@ public class AppResult {
         return this;
     }
 
+
     /**
      * If there is available icon URL.
      */
@@ -162,7 +167,6 @@ public class AppResult {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -182,9 +186,7 @@ public class AppResult {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            datasource,
-            docType,
-            mimeType,
+            datasource, docType, mimeType,
             iconUrl);
     }
     
@@ -196,20 +198,22 @@ public class AppResult {
                 "mimeType", mimeType,
                 "iconUrl", iconUrl);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String datasource;
- 
+
         private Optional<String> docType = Optional.empty();
- 
+
         private Optional<String> mimeType = Optional.empty();
- 
+
         private Optional<String> iconUrl = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The app or other repository type this represents
@@ -219,6 +223,7 @@ public class AppResult {
             this.datasource = datasource;
             return this;
         }
+
 
         /**
          * The datasource-specific type of the document (e.g. for Jira issues, this is the issue type such as Bug or Feature Request).
@@ -238,6 +243,7 @@ public class AppResult {
             return this;
         }
 
+
         /**
          * Mimetype is used to differentiate between sub applications from a datasource (e.g. Sheets, Docs from Gdrive)
          */
@@ -256,6 +262,7 @@ public class AppResult {
             return this;
         }
 
+
         /**
          * If there is available icon URL.
          */
@@ -273,13 +280,13 @@ public class AppResult {
             this.iconUrl = iconUrl;
             return this;
         }
-        
+
         public AppResult build() {
+
             return new AppResult(
-                datasource,
-                docType,
-                mimeType,
+                datasource, docType, mimeType,
                 iconUrl);
         }
+
     }
 }

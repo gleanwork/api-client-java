@@ -15,6 +15,7 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
+
 public class Summary {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -56,15 +57,17 @@ public class Summary {
         return (Optional<List<String>>) followUpPrompts;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Summary withText(String text) {
         Utils.checkNotNull(text, "text");
         this.text = Optional.ofNullable(text);
         return this;
     }
+
 
     public Summary withText(Optional<String> text) {
         Utils.checkNotNull(text, "text");
@@ -81,6 +84,7 @@ public class Summary {
         return this;
     }
 
+
     /**
      * Follow-up prompts based on the summarized doc
      */
@@ -90,7 +94,6 @@ public class Summary {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -108,8 +111,7 @@ public class Summary {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            text,
-            followUpPrompts);
+            text, followUpPrompts);
     }
     
     @Override
@@ -118,16 +120,18 @@ public class Summary {
                 "text", text,
                 "followUpPrompts", followUpPrompts);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> text = Optional.empty();
- 
+
         private Optional<? extends List<String>> followUpPrompts = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder text(String text) {
             Utils.checkNotNull(text, "text");
@@ -140,6 +144,7 @@ public class Summary {
             this.text = text;
             return this;
         }
+
 
         /**
          * Follow-up prompts based on the summarized doc
@@ -158,11 +163,12 @@ public class Summary {
             this.followUpPrompts = followUpPrompts;
             return this;
         }
-        
+
         public Summary build() {
+
             return new Summary(
-                text,
-                followUpPrompts);
+                text, followUpPrompts);
         }
+
     }
 }

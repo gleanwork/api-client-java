@@ -13,13 +13,14 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class FeedbackRequest {
 
+public class FeedbackRequest {
     /**
      * A URL encoded versions of Feedback. This is useful for requests.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=feedback")
     private Optional<String> feedbackQueryParameter;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends Feedback> feedback1;
@@ -52,9 +53,10 @@ public class FeedbackRequest {
         return (Optional<Feedback>) feedback1;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A URL encoded versions of Feedback. This is useful for requests.
@@ -64,6 +66,7 @@ public class FeedbackRequest {
         this.feedbackQueryParameter = Optional.ofNullable(feedbackQueryParameter);
         return this;
     }
+
 
     /**
      * A URL encoded versions of Feedback. This is useful for requests.
@@ -80,13 +83,13 @@ public class FeedbackRequest {
         return this;
     }
 
+
     public FeedbackRequest withFeedback1(Optional<? extends Feedback> feedback1) {
         Utils.checkNotNull(feedback1, "feedback1");
         this.feedback1 = feedback1;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -104,8 +107,7 @@ public class FeedbackRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            feedbackQueryParameter,
-            feedback1);
+            feedbackQueryParameter, feedback1);
     }
     
     @Override
@@ -114,16 +116,18 @@ public class FeedbackRequest {
                 "feedbackQueryParameter", feedbackQueryParameter,
                 "feedback1", feedback1);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> feedbackQueryParameter = Optional.empty();
- 
+
         private Optional<? extends Feedback> feedback1 = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A URL encoded versions of Feedback. This is useful for requests.
@@ -143,6 +147,7 @@ public class FeedbackRequest {
             return this;
         }
 
+
         public Builder feedback1(Feedback feedback1) {
             Utils.checkNotNull(feedback1, "feedback1");
             this.feedback1 = Optional.ofNullable(feedback1);
@@ -154,11 +159,12 @@ public class FeedbackRequest {
             this.feedback1 = feedback1;
             return this;
         }
-        
+
         public FeedbackRequest build() {
+
             return new FeedbackRequest(
-                feedbackQueryParameter,
-                feedback1);
+                feedbackQueryParameter, feedback1);
         }
+
     }
 }

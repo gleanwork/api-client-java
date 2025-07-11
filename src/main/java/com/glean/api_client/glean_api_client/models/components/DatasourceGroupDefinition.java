@@ -16,7 +16,6 @@ import java.lang.String;
  * <p>describes a group in the datasource
  */
 public class DatasourceGroupDefinition {
-
     /**
      * name of the group. Should be unique among all groups for the datasource, and cannot have spaces.
      */
@@ -38,9 +37,10 @@ public class DatasourceGroupDefinition {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * name of the group. Should be unique among all groups for the datasource, and cannot have spaces.
@@ -51,7 +51,6 @@ public class DatasourceGroupDefinition {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -76,14 +75,16 @@ public class DatasourceGroupDefinition {
         return Utils.toString(DatasourceGroupDefinition.class,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * name of the group. Should be unique among all groups for the datasource, and cannot have spaces.
@@ -93,10 +94,12 @@ public class DatasourceGroupDefinition {
             this.name = name;
             return this;
         }
-        
+
         public DatasourceGroupDefinition build() {
+
             return new DatasourceGroupDefinition(
                 name);
         }
+
     }
 }

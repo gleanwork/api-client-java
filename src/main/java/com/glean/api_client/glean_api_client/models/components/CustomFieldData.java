@@ -17,13 +17,14 @@ import java.lang.String;
 import java.util.List;
 import java.util.Optional;
 
-public class CustomFieldData {
 
+public class CustomFieldData {
     /**
      * A user-facing label for this field.
      */
     @JsonProperty("label")
     private String label;
+
 
     @JsonProperty("values")
     private List<CustomFieldValue> values;
@@ -75,9 +76,10 @@ public class CustomFieldData {
         return displayable;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A user-facing label for this field.
@@ -103,6 +105,7 @@ public class CustomFieldData {
         return this;
     }
 
+
     /**
      * Determines whether the client should display this custom field
      */
@@ -112,7 +115,6 @@ public class CustomFieldData {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -131,9 +133,7 @@ public class CustomFieldData {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            label,
-            values,
-            displayable);
+            label, values, displayable);
     }
     
     @Override
@@ -143,18 +143,20 @@ public class CustomFieldData {
                 "values", values,
                 "displayable", displayable);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String label;
- 
+
         private List<CustomFieldValue> values;
- 
+
         private Optional<Boolean> displayable;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A user-facing label for this field.
@@ -165,11 +167,13 @@ public class CustomFieldData {
             return this;
         }
 
+
         public Builder values(List<CustomFieldValue> values) {
             Utils.checkNotNull(values, "values");
             this.values = values;
             return this;
         }
+
 
         /**
          * Determines whether the client should display this custom field
@@ -188,16 +192,16 @@ public class CustomFieldData {
             this.displayable = displayable;
             return this;
         }
-        
+
         public CustomFieldData build() {
             if (displayable == null) {
                 displayable = _SINGLETON_VALUE_Displayable.value();
             }
+
             return new CustomFieldData(
-                label,
-                values,
-                displayable);
+                label, values, displayable);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Displayable =
                 new LazySingletonValue<>(

@@ -29,7 +29,7 @@ public class CreatecollectionRequestBuilder {
     public CreatecollectionResponse call() throws Exception {
         
         RequestOperation<CreateCollectionRequest, CreatecollectionResponse> operation
-              = new CreatecollectionOperation( sdkConfiguration);
+              = new CreatecollectionOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -21,7 +21,6 @@ import java.util.Optional;
  * <p>Describes the request body of the /bulkindexteams API call
  */
 public class BulkIndexTeamsRequest {
-
     /**
      * Unique id that must be used for this bulk upload instance
      */
@@ -77,7 +76,8 @@ public class BulkIndexTeamsRequest {
     public BulkIndexTeamsRequest(
             String uploadId,
             List<TeamInfoDefinition> teams) {
-        this(uploadId, Optional.empty(), Optional.empty(), Optional.empty(), teams);
+        this(uploadId, Optional.empty(), Optional.empty(),
+            Optional.empty(), teams);
     }
 
     /**
@@ -120,9 +120,10 @@ public class BulkIndexTeamsRequest {
         return teams;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unique id that must be used for this bulk upload instance
@@ -142,6 +143,7 @@ public class BulkIndexTeamsRequest {
         return this;
     }
 
+
     /**
      * true if this is the first page of the upload. Defaults to false
      */
@@ -159,6 +161,7 @@ public class BulkIndexTeamsRequest {
         this.isLastPage = Optional.ofNullable(isLastPage);
         return this;
     }
+
 
     /**
      * true if this is the last page of the upload. Defaults to false
@@ -178,6 +181,7 @@ public class BulkIndexTeamsRequest {
         return this;
     }
 
+
     /**
      * Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true
      */
@@ -196,7 +200,6 @@ public class BulkIndexTeamsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -217,11 +220,8 @@ public class BulkIndexTeamsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            uploadId,
-            isFirstPage,
-            isLastPage,
-            forceRestartUpload,
-            teams);
+            uploadId, isFirstPage, isLastPage,
+            forceRestartUpload, teams);
     }
     
     @Override
@@ -233,22 +233,24 @@ public class BulkIndexTeamsRequest {
                 "forceRestartUpload", forceRestartUpload,
                 "teams", teams);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String uploadId;
- 
+
         private Optional<Boolean> isFirstPage = Optional.empty();
- 
+
         private Optional<Boolean> isLastPage = Optional.empty();
- 
+
         private Optional<Boolean> forceRestartUpload = Optional.empty();
- 
+
         private List<TeamInfoDefinition> teams;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unique id that must be used for this bulk upload instance
@@ -258,6 +260,7 @@ public class BulkIndexTeamsRequest {
             this.uploadId = uploadId;
             return this;
         }
+
 
         /**
          * true if this is the first page of the upload. Defaults to false
@@ -277,6 +280,7 @@ public class BulkIndexTeamsRequest {
             return this;
         }
 
+
         /**
          * true if this is the last page of the upload. Defaults to false
          */
@@ -294,6 +298,7 @@ public class BulkIndexTeamsRequest {
             this.isLastPage = isLastPage;
             return this;
         }
+
 
         /**
          * Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true
@@ -313,6 +318,7 @@ public class BulkIndexTeamsRequest {
             return this;
         }
 
+
         /**
          * Batch of team information
          */
@@ -321,14 +327,13 @@ public class BulkIndexTeamsRequest {
             this.teams = teams;
             return this;
         }
-        
+
         public BulkIndexTeamsRequest build() {
+
             return new BulkIndexTeamsRequest(
-                uploadId,
-                isFirstPage,
-                isLastPage,
-                forceRestartUpload,
-                teams);
+                uploadId, isFirstPage, isLastPage,
+                forceRestartUpload, teams);
         }
+
     }
 }

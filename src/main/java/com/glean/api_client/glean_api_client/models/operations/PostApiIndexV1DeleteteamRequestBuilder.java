@@ -29,7 +29,7 @@ public class PostApiIndexV1DeleteteamRequestBuilder {
     public PostApiIndexV1DeleteteamResponse call() throws Exception {
         
         RequestOperation<DeleteTeamRequest, PostApiIndexV1DeleteteamResponse> operation
-              = new PostApiIndexV1DeleteteamOperation( sdkConfiguration);
+              = new PostApiIndexV1DeleteteamOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

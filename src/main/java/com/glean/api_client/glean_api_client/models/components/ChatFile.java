@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>Structure for file uploaded by a user for Chat.
  */
 public class ChatFile {
-
     /**
      * Unique identifier of the file.
      */
@@ -66,7 +65,8 @@ public class ChatFile {
     }
     
     public ChatFile() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -102,9 +102,10 @@ public class ChatFile {
         return (Optional<ChatFileMetadata>) metadata;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unique identifier of the file.
@@ -114,6 +115,7 @@ public class ChatFile {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * Unique identifier of the file.
@@ -133,6 +135,7 @@ public class ChatFile {
         return this;
     }
 
+
     /**
      * Url of the file.
      */
@@ -150,6 +153,7 @@ public class ChatFile {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * Name of the uploaded file.
@@ -169,6 +173,7 @@ public class ChatFile {
         return this;
     }
 
+
     /**
      * Metadata of a file uploaded by a user for Chat.
      */
@@ -178,7 +183,6 @@ public class ChatFile {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -198,9 +202,7 @@ public class ChatFile {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            url,
-            name,
+            id, url, name,
             metadata);
     }
     
@@ -212,20 +214,22 @@ public class ChatFile {
                 "name", name,
                 "metadata", metadata);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> url = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<? extends ChatFileMetadata> metadata = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unique identifier of the file.
@@ -245,6 +249,7 @@ public class ChatFile {
             return this;
         }
 
+
         /**
          * Url of the file.
          */
@@ -262,6 +267,7 @@ public class ChatFile {
             this.url = url;
             return this;
         }
+
 
         /**
          * Name of the uploaded file.
@@ -281,6 +287,7 @@ public class ChatFile {
             return this;
         }
 
+
         /**
          * Metadata of a file uploaded by a user for Chat.
          */
@@ -298,13 +305,13 @@ public class ChatFile {
             this.metadata = metadata;
             return this;
         }
-        
+
         public ChatFile build() {
+
             return new ChatFile(
-                id,
-                url,
-                name,
+                id, url, name,
                 metadata);
         }
+
     }
 }

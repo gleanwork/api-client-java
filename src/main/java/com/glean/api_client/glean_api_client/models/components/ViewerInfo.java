@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-public class ViewerInfo {
 
+public class ViewerInfo {
     /**
      * DEPRECATED - use permissions instead. Viewer's role on the specific document.
      * 
@@ -27,6 +27,7 @@ public class ViewerInfo {
     @JsonProperty("role")
     @Deprecated
     private Optional<? extends Role> role;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lastViewedTime")
@@ -63,9 +64,10 @@ public class ViewerInfo {
         return lastViewedTime;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * DEPRECATED - use permissions instead. Viewer's role on the specific document.
@@ -78,6 +80,7 @@ public class ViewerInfo {
         this.role = Optional.ofNullable(role);
         return this;
     }
+
 
     /**
      * DEPRECATED - use permissions instead. Viewer's role on the specific document.
@@ -97,13 +100,13 @@ public class ViewerInfo {
         return this;
     }
 
+
     public ViewerInfo withLastViewedTime(Optional<OffsetDateTime> lastViewedTime) {
         Utils.checkNotNull(lastViewedTime, "lastViewedTime");
         this.lastViewedTime = lastViewedTime;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -121,8 +124,7 @@ public class ViewerInfo {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            role,
-            lastViewedTime);
+            role, lastViewedTime);
     }
     
     @Override
@@ -131,17 +133,19 @@ public class ViewerInfo {
                 "role", role,
                 "lastViewedTime", lastViewedTime);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         @Deprecated
         private Optional<? extends Role> role = Optional.empty();
- 
+
         private Optional<OffsetDateTime> lastViewedTime = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * DEPRECATED - use permissions instead. Viewer's role on the specific document.
@@ -167,6 +171,7 @@ public class ViewerInfo {
             return this;
         }
 
+
         public Builder lastViewedTime(OffsetDateTime lastViewedTime) {
             Utils.checkNotNull(lastViewedTime, "lastViewedTime");
             this.lastViewedTime = Optional.ofNullable(lastViewedTime);
@@ -178,11 +183,12 @@ public class ViewerInfo {
             this.lastViewedTime = lastViewedTime;
             return this;
         }
-        
+
         public ViewerInfo build() {
+
             return new ViewerInfo(
-                role,
-                lastViewedTime);
+                role, lastViewedTime);
         }
+
     }
 }

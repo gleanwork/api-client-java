@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.Map;
 import java.util.Optional;
 
-public class CustomEntityMetadata {
 
+public class CustomEntityMetadata {
     /**
      * Custom fields specific to individual datasources
      */
@@ -44,9 +44,10 @@ public class CustomEntityMetadata {
         return (Optional<Map<String, CustomDataValue>>) customData;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Custom fields specific to individual datasources
@@ -57,6 +58,7 @@ public class CustomEntityMetadata {
         return this;
     }
 
+
     /**
      * Custom fields specific to individual datasources
      */
@@ -66,7 +68,6 @@ public class CustomEntityMetadata {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,14 +92,16 @@ public class CustomEntityMetadata {
         return Utils.toString(CustomEntityMetadata.class,
                 "customData", customData);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Map<String, CustomDataValue>> customData = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Custom fields specific to individual datasources
@@ -117,10 +120,12 @@ public class CustomEntityMetadata {
             this.customData = customData;
             return this;
         }
-        
+
         public CustomEntityMetadata build() {
+
             return new CustomEntityMetadata(
                 customData);
         }
+
     }
 }

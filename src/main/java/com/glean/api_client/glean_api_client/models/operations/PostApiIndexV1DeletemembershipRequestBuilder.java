@@ -29,7 +29,7 @@ public class PostApiIndexV1DeletemembershipRequestBuilder {
     public PostApiIndexV1DeletemembershipResponse call() throws Exception {
         
         RequestOperation<DeleteMembershipRequest, PostApiIndexV1DeletemembershipResponse> operation
-              = new PostApiIndexV1DeletemembershipOperation( sdkConfiguration);
+              = new PostApiIndexV1DeletemembershipOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

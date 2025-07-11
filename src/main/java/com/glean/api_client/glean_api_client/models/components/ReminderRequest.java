@@ -14,8 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class ReminderRequest {
 
+public class ReminderRequest {
     /**
      * The document which the verification is for new reminders and/or update.
      */
@@ -61,7 +61,8 @@ public class ReminderRequest {
     
     public ReminderRequest(
             String documentId) {
-        this(documentId, Optional.empty(), Optional.empty(), Optional.empty());
+        this(documentId, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -96,9 +97,10 @@ public class ReminderRequest {
         return reason;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The document which the verification is for new reminders and/or update.
@@ -118,6 +120,7 @@ public class ReminderRequest {
         return this;
     }
 
+
     /**
      * The obfuscated id of the person this verification is assigned to.
      */
@@ -135,6 +138,7 @@ public class ReminderRequest {
         this.remindInDays = Optional.ofNullable(remindInDays);
         return this;
     }
+
 
     /**
      * Reminder for the next verifications in terms of days. For deletion, this will be omitted.
@@ -154,6 +158,7 @@ public class ReminderRequest {
         return this;
     }
 
+
     /**
      * An optional free-text reason for the reminder. This is particularly useful when a reminder is used to ask for verification from another user (for example, "Duplicate", "Incomplete", "Incorrect").
      */
@@ -163,7 +168,6 @@ public class ReminderRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -183,9 +187,7 @@ public class ReminderRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            documentId,
-            assignee,
-            remindInDays,
+            documentId, assignee, remindInDays,
             reason);
     }
     
@@ -197,20 +199,22 @@ public class ReminderRequest {
                 "remindInDays", remindInDays,
                 "reason", reason);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String documentId;
- 
+
         private Optional<String> assignee = Optional.empty();
- 
+
         private Optional<Long> remindInDays = Optional.empty();
- 
+
         private Optional<String> reason = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The document which the verification is for new reminders and/or update.
@@ -220,6 +224,7 @@ public class ReminderRequest {
             this.documentId = documentId;
             return this;
         }
+
 
         /**
          * The obfuscated id of the person this verification is assigned to.
@@ -239,6 +244,7 @@ public class ReminderRequest {
             return this;
         }
 
+
         /**
          * Reminder for the next verifications in terms of days. For deletion, this will be omitted.
          */
@@ -257,6 +263,7 @@ public class ReminderRequest {
             return this;
         }
 
+
         /**
          * An optional free-text reason for the reminder. This is particularly useful when a reminder is used to ask for verification from another user (for example, "Duplicate", "Incomplete", "Incorrect").
          */
@@ -274,13 +281,13 @@ public class ReminderRequest {
             this.reason = reason;
             return this;
         }
-        
+
         public ReminderRequest build() {
+
             return new ReminderRequest(
-                documentId,
-                assignee,
-                remindInDays,
+                documentId, assignee, remindInDays,
                 reason);
         }
+
     }
 }

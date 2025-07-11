@@ -44,7 +44,7 @@ public class ListverificationsRequestBuilder {
     public ListverificationsResponse call() throws Exception {
         
         RequestOperation<ListverificationsRequest, ListverificationsResponse> operation
-              = new ListverificationsOperation( sdkConfiguration);
+              = new ListverificationsOperation(sdkConfiguration);
         ListverificationsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

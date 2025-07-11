@@ -265,9 +265,17 @@ func testCreatecollectionCreatecollection0(w http.ResponseWriter, req *http.Requ
 													Metadata: &components.VerificationMetadata{
 														Reminders: []components.Reminder{
 															components.Reminder{
+																Assignee: components.Person{
+																	Name:         "George Clooney",
+																	ObfuscatedID: "abc123",
+																},
 																RemindAt: 493315,
 															},
 															components.Reminder{
+																Assignee: components.Person{
+																	Name:         "George Clooney",
+																	ObfuscatedID: "abc123",
+																},
 																RemindAt: 778851,
 															},
 															components.Reminder{

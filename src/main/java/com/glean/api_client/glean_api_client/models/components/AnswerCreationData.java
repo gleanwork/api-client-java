@@ -17,6 +17,7 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
+
 public class AnswerCreationData {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -75,9 +76,11 @@ public class AnswerCreationData {
     @JsonProperty("roles")
     private Optional<? extends List<UserRoleSpecification>> roles;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sourceDocumentSpec")
     private Optional<? extends DocumentSpecUnion> sourceDocumentSpec;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sourceType")
@@ -89,6 +92,7 @@ public class AnswerCreationData {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("addedCollections")
     private Optional<? extends List<Long>> addedCollections;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("combinedAnswerText")
@@ -135,7 +139,10 @@ public class AnswerCreationData {
     }
     
     public AnswerCreationData() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -234,15 +241,17 @@ public class AnswerCreationData {
         return (Optional<StructuredTextMutableProperties>) combinedAnswerText;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public AnswerCreationData withQuestion(String question) {
         Utils.checkNotNull(question, "question");
         this.question = Optional.ofNullable(question);
         return this;
     }
+
 
     public AnswerCreationData withQuestion(Optional<String> question) {
         Utils.checkNotNull(question, "question");
@@ -258,6 +267,7 @@ public class AnswerCreationData {
         this.questionVariations = Optional.ofNullable(questionVariations);
         return this;
     }
+
 
     /**
      * Additional ways of phrasing this question.
@@ -276,6 +286,7 @@ public class AnswerCreationData {
         this.bodyText = Optional.ofNullable(bodyText);
         return this;
     }
+
 
     /**
      * The plain text answer to the question.
@@ -298,6 +309,7 @@ public class AnswerCreationData {
         return this;
     }
 
+
     /**
      * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
      * 
@@ -319,6 +331,7 @@ public class AnswerCreationData {
         return this;
     }
 
+
     /**
      * Filters which restrict who should see the answer. Values are taken from the corresponding filters in people search.
      */
@@ -336,6 +349,7 @@ public class AnswerCreationData {
         this.addedRoles = Optional.ofNullable(addedRoles);
         return this;
     }
+
 
     /**
      * A list of user roles for the answer added by the owner.
@@ -355,6 +369,7 @@ public class AnswerCreationData {
         return this;
     }
 
+
     /**
      * A list of user roles for the answer removed by the owner.
      */
@@ -373,6 +388,7 @@ public class AnswerCreationData {
         return this;
     }
 
+
     /**
      * A list of roles for this answer explicitly granted by an owner, editor, or admin.
      */
@@ -388,6 +404,7 @@ public class AnswerCreationData {
         return this;
     }
 
+
     public AnswerCreationData withSourceDocumentSpec(Optional<? extends DocumentSpecUnion> sourceDocumentSpec) {
         Utils.checkNotNull(sourceDocumentSpec, "sourceDocumentSpec");
         this.sourceDocumentSpec = sourceDocumentSpec;
@@ -399,6 +416,7 @@ public class AnswerCreationData {
         this.sourceType = Optional.ofNullable(sourceType);
         return this;
     }
+
 
     public AnswerCreationData withSourceType(Optional<? extends AnswerCreationDataSourceType> sourceType) {
         Utils.checkNotNull(sourceType, "sourceType");
@@ -415,6 +433,7 @@ public class AnswerCreationData {
         return this;
     }
 
+
     /**
      * IDs of Collections to which a document is added.
      */
@@ -430,13 +449,13 @@ public class AnswerCreationData {
         return this;
     }
 
+
     public AnswerCreationData withCombinedAnswerText(Optional<? extends StructuredTextMutableProperties> combinedAnswerText) {
         Utils.checkNotNull(combinedAnswerText, "combinedAnswerText");
         this.combinedAnswerText = combinedAnswerText;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -464,18 +483,10 @@ public class AnswerCreationData {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            question,
-            questionVariations,
-            bodyText,
-            boardId,
-            audienceFilters,
-            addedRoles,
-            removedRoles,
-            roles,
-            sourceDocumentSpec,
-            sourceType,
-            addedCollections,
-            combinedAnswerText);
+            question, questionVariations, bodyText,
+            boardId, audienceFilters, addedRoles,
+            removedRoles, roles, sourceDocumentSpec,
+            sourceType, addedCollections, combinedAnswerText);
     }
     
     @Override
@@ -494,37 +505,39 @@ public class AnswerCreationData {
                 "addedCollections", addedCollections,
                 "combinedAnswerText", combinedAnswerText);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> question = Optional.empty();
- 
+
         private Optional<? extends List<String>> questionVariations = Optional.empty();
- 
+
         private Optional<String> bodyText = Optional.empty();
- 
+
         @Deprecated
         private Optional<Long> boardId = Optional.empty();
- 
+
         private Optional<? extends List<FacetFilter>> audienceFilters = Optional.empty();
- 
+
         private Optional<? extends List<UserRoleSpecification>> addedRoles = Optional.empty();
- 
+
         private Optional<? extends List<UserRoleSpecification>> removedRoles = Optional.empty();
- 
+
         private Optional<? extends List<UserRoleSpecification>> roles = Optional.empty();
- 
+
         private Optional<? extends DocumentSpecUnion> sourceDocumentSpec = Optional.empty();
- 
+
         private Optional<? extends AnswerCreationDataSourceType> sourceType = Optional.empty();
- 
+
         private Optional<? extends List<Long>> addedCollections = Optional.empty();
- 
+
         private Optional<? extends StructuredTextMutableProperties> combinedAnswerText = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder question(String question) {
             Utils.checkNotNull(question, "question");
@@ -537,6 +550,7 @@ public class AnswerCreationData {
             this.question = question;
             return this;
         }
+
 
         /**
          * Additional ways of phrasing this question.
@@ -556,6 +570,7 @@ public class AnswerCreationData {
             return this;
         }
 
+
         /**
          * The plain text answer to the question.
          */
@@ -573,6 +588,7 @@ public class AnswerCreationData {
             this.bodyText = bodyText;
             return this;
         }
+
 
         /**
          * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
@@ -598,6 +614,7 @@ public class AnswerCreationData {
             return this;
         }
 
+
         /**
          * Filters which restrict who should see the answer. Values are taken from the corresponding filters in people search.
          */
@@ -615,6 +632,7 @@ public class AnswerCreationData {
             this.audienceFilters = audienceFilters;
             return this;
         }
+
 
         /**
          * A list of user roles for the answer added by the owner.
@@ -634,6 +652,7 @@ public class AnswerCreationData {
             return this;
         }
 
+
         /**
          * A list of user roles for the answer removed by the owner.
          */
@@ -651,6 +670,7 @@ public class AnswerCreationData {
             this.removedRoles = removedRoles;
             return this;
         }
+
 
         /**
          * A list of roles for this answer explicitly granted by an owner, editor, or admin.
@@ -670,6 +690,7 @@ public class AnswerCreationData {
             return this;
         }
 
+
         public Builder sourceDocumentSpec(DocumentSpecUnion sourceDocumentSpec) {
             Utils.checkNotNull(sourceDocumentSpec, "sourceDocumentSpec");
             this.sourceDocumentSpec = Optional.ofNullable(sourceDocumentSpec);
@@ -682,6 +703,7 @@ public class AnswerCreationData {
             return this;
         }
 
+
         public Builder sourceType(AnswerCreationDataSourceType sourceType) {
             Utils.checkNotNull(sourceType, "sourceType");
             this.sourceType = Optional.ofNullable(sourceType);
@@ -693,6 +715,7 @@ public class AnswerCreationData {
             this.sourceType = sourceType;
             return this;
         }
+
 
         /**
          * IDs of Collections to which a document is added.
@@ -712,6 +735,7 @@ public class AnswerCreationData {
             return this;
         }
 
+
         public Builder combinedAnswerText(StructuredTextMutableProperties combinedAnswerText) {
             Utils.checkNotNull(combinedAnswerText, "combinedAnswerText");
             this.combinedAnswerText = Optional.ofNullable(combinedAnswerText);
@@ -723,21 +747,15 @@ public class AnswerCreationData {
             this.combinedAnswerText = combinedAnswerText;
             return this;
         }
-        
+
         public AnswerCreationData build() {
+
             return new AnswerCreationData(
-                question,
-                questionVariations,
-                bodyText,
-                boardId,
-                audienceFilters,
-                addedRoles,
-                removedRoles,
-                roles,
-                sourceDocumentSpec,
-                sourceType,
-                addedCollections,
-                combinedAnswerText);
+                question, questionVariations, bodyText,
+                boardId, audienceFilters, addedRoles,
+                removedRoles, roles, sourceDocumentSpec,
+                sourceType, addedCollections, combinedAnswerText);
         }
+
     }
 }

@@ -21,7 +21,6 @@ import java.util.Optional;
  * <p>Options for defining sensitive content within scanned documents.
  */
 public class SensitiveContentOptions {
-
     /**
      * Predefined categories of terms to consider as sensitive content. See https://cloud.google.com/dlp/docs/infotypes-reference for available types.
      */
@@ -87,9 +86,10 @@ public class SensitiveContentOptions {
         return (Optional<List<SensitiveExpression>>) sensitiveRegexes;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Predefined categories of terms to consider as sensitive content. See https://cloud.google.com/dlp/docs/infotypes-reference for available types.
@@ -99,6 +99,7 @@ public class SensitiveContentOptions {
         this.sensitiveInfoTypes = Optional.ofNullable(sensitiveInfoTypes);
         return this;
     }
+
 
     /**
      * Predefined categories of terms to consider as sensitive content. See https://cloud.google.com/dlp/docs/infotypes-reference for available types.
@@ -118,6 +119,7 @@ public class SensitiveContentOptions {
         return this;
     }
 
+
     /**
      * list of words and phrases to consider as sensitive content
      */
@@ -136,6 +138,7 @@ public class SensitiveContentOptions {
         return this;
     }
 
+
     /**
      * list of regular expressions to consider as sensitive content
      */
@@ -145,7 +148,6 @@ public class SensitiveContentOptions {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -164,9 +166,7 @@ public class SensitiveContentOptions {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            sensitiveInfoTypes,
-            sensitiveTerms,
-            sensitiveRegexes);
+            sensitiveInfoTypes, sensitiveTerms, sensitiveRegexes);
     }
     
     @Override
@@ -176,18 +176,20 @@ public class SensitiveContentOptions {
                 "sensitiveTerms", sensitiveTerms,
                 "sensitiveRegexes", sensitiveRegexes);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<SensitiveInfoType>> sensitiveInfoTypes = Optional.empty();
- 
+
         private Optional<? extends List<SensitiveExpression>> sensitiveTerms = Optional.empty();
- 
+
         private Optional<? extends List<SensitiveExpression>> sensitiveRegexes = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Predefined categories of terms to consider as sensitive content. See https://cloud.google.com/dlp/docs/infotypes-reference for available types.
@@ -207,6 +209,7 @@ public class SensitiveContentOptions {
             return this;
         }
 
+
         /**
          * list of words and phrases to consider as sensitive content
          */
@@ -225,6 +228,7 @@ public class SensitiveContentOptions {
             return this;
         }
 
+
         /**
          * list of regular expressions to consider as sensitive content
          */
@@ -242,12 +246,12 @@ public class SensitiveContentOptions {
             this.sensitiveRegexes = sensitiveRegexes;
             return this;
         }
-        
+
         public SensitiveContentOptions build() {
+
             return new SensitiveContentOptions(
-                sensitiveInfoTypes,
-                sensitiveTerms,
-                sensitiveRegexes);
+                sensitiveInfoTypes, sensitiveTerms, sensitiveRegexes);
         }
+
     }
 }

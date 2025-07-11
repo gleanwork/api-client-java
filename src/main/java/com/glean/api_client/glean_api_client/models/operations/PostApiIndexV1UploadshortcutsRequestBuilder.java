@@ -29,7 +29,7 @@ public class PostApiIndexV1UploadshortcutsRequestBuilder {
     public PostApiIndexV1UploadshortcutsResponse call() throws Exception {
         
         RequestOperation<UploadShortcutsRequest, PostApiIndexV1UploadshortcutsResponse> operation
-              = new PostApiIndexV1UploadshortcutsOperation( sdkConfiguration);
+              = new PostApiIndexV1UploadshortcutsOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

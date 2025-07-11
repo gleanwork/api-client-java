@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class GleanAssistInsightsResponse {
 
+public class GleanAssistInsightsResponse {
     /**
      * Unix timestamp of the last activity processed to make the response (in seconds since epoch UTC).
      */
@@ -73,7 +73,8 @@ public class GleanAssistInsightsResponse {
     }
     
     public GleanAssistInsightsResponse() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -119,9 +120,10 @@ public class GleanAssistInsightsResponse {
         return (Optional<List<String>>) departments;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unix timestamp of the last activity processed to make the response (in seconds since epoch UTC).
@@ -131,6 +133,7 @@ public class GleanAssistInsightsResponse {
         this.lastLogTimestamp = Optional.ofNullable(lastLogTimestamp);
         return this;
     }
+
 
     /**
      * Unix timestamp of the last activity processed to make the response (in seconds since epoch UTC).
@@ -150,6 +153,7 @@ public class GleanAssistInsightsResponse {
         return this;
     }
 
+
     /**
      * Insights for all active users with respect to set of actions.
      */
@@ -167,6 +171,7 @@ public class GleanAssistInsightsResponse {
         this.totalActiveUsers = Optional.ofNullable(totalActiveUsers);
         return this;
     }
+
 
     /**
      * Total number of active users in the requested period.
@@ -186,6 +191,7 @@ public class GleanAssistInsightsResponse {
         return this;
     }
 
+
     /**
      * List of datasource instances for which glean assist is enabled.
      */
@@ -204,6 +210,7 @@ public class GleanAssistInsightsResponse {
         return this;
     }
 
+
     /**
      * List of departments applicable for users tab.
      */
@@ -213,7 +220,6 @@ public class GleanAssistInsightsResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -234,11 +240,8 @@ public class GleanAssistInsightsResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            lastLogTimestamp,
-            activityInsights,
-            totalActiveUsers,
-            datasourceInstances,
-            departments);
+            lastLogTimestamp, activityInsights, totalActiveUsers,
+            datasourceInstances, departments);
     }
     
     @Override
@@ -250,22 +253,24 @@ public class GleanAssistInsightsResponse {
                 "datasourceInstances", datasourceInstances,
                 "departments", departments);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> lastLogTimestamp = Optional.empty();
- 
+
         private Optional<? extends List<UserActivityInsight>> activityInsights = Optional.empty();
- 
+
         private Optional<Long> totalActiveUsers = Optional.empty();
- 
+
         private Optional<? extends List<String>> datasourceInstances = Optional.empty();
- 
+
         private Optional<? extends List<String>> departments = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unix timestamp of the last activity processed to make the response (in seconds since epoch UTC).
@@ -285,6 +290,7 @@ public class GleanAssistInsightsResponse {
             return this;
         }
 
+
         /**
          * Insights for all active users with respect to set of actions.
          */
@@ -302,6 +308,7 @@ public class GleanAssistInsightsResponse {
             this.activityInsights = activityInsights;
             return this;
         }
+
 
         /**
          * Total number of active users in the requested period.
@@ -321,6 +328,7 @@ public class GleanAssistInsightsResponse {
             return this;
         }
 
+
         /**
          * List of datasource instances for which glean assist is enabled.
          */
@@ -339,6 +347,7 @@ public class GleanAssistInsightsResponse {
             return this;
         }
 
+
         /**
          * List of departments applicable for users tab.
          */
@@ -356,14 +365,13 @@ public class GleanAssistInsightsResponse {
             this.departments = departments;
             return this;
         }
-        
+
         public GleanAssistInsightsResponse build() {
+
             return new GleanAssistInsightsResponse(
-                lastLogTimestamp,
-                activityInsights,
-                totalActiveUsers,
-                datasourceInstances,
-                departments);
+                lastLogTimestamp, activityInsights, totalActiveUsers,
+                datasourceInstances, departments);
         }
+
     }
 }

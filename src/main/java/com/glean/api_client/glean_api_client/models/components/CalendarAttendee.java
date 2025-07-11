@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class CalendarAttendee {
 
+public class CalendarAttendee {
     /**
      * Whether or not this attendee is an organizer.
      */
@@ -32,6 +32,7 @@ public class CalendarAttendee {
     @JsonProperty("isInGroup")
     private Optional<Boolean> isInGroup;
 
+
     @JsonProperty("person")
     private Person person;
 
@@ -41,6 +42,7 @@ public class CalendarAttendee {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("groupAttendees")
     private Optional<? extends List<CalendarAttendee>> groupAttendees;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("responseStatus")
@@ -67,7 +69,8 @@ public class CalendarAttendee {
     
     public CalendarAttendee(
             Person person) {
-        this(Optional.empty(), Optional.empty(), person, Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), person,
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -106,9 +109,10 @@ public class CalendarAttendee {
         return (Optional<ResponseStatus>) responseStatus;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Whether or not this attendee is an organizer.
@@ -118,6 +122,7 @@ public class CalendarAttendee {
         this.isOrganizer = Optional.ofNullable(isOrganizer);
         return this;
     }
+
 
     /**
      * Whether or not this attendee is an organizer.
@@ -136,6 +141,7 @@ public class CalendarAttendee {
         this.isInGroup = Optional.ofNullable(isInGroup);
         return this;
     }
+
 
     /**
      * Whether or not this attendee is in a group. Needed temporarily at least to support both flat attendees and tree for compatibility.
@@ -161,6 +167,7 @@ public class CalendarAttendee {
         return this;
     }
 
+
     /**
      * If this attendee is a group, represents the list of individual attendees in the group.
      */
@@ -176,13 +183,13 @@ public class CalendarAttendee {
         return this;
     }
 
+
     public CalendarAttendee withResponseStatus(Optional<? extends ResponseStatus> responseStatus) {
         Utils.checkNotNull(responseStatus, "responseStatus");
         this.responseStatus = responseStatus;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -203,11 +210,8 @@ public class CalendarAttendee {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            isOrganizer,
-            isInGroup,
-            person,
-            groupAttendees,
-            responseStatus);
+            isOrganizer, isInGroup, person,
+            groupAttendees, responseStatus);
     }
     
     @Override
@@ -219,22 +223,24 @@ public class CalendarAttendee {
                 "groupAttendees", groupAttendees,
                 "responseStatus", responseStatus);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> isOrganizer = Optional.empty();
- 
+
         private Optional<Boolean> isInGroup = Optional.empty();
- 
+
         private Person person;
- 
+
         private Optional<? extends List<CalendarAttendee>> groupAttendees = Optional.empty();
- 
+
         private Optional<? extends ResponseStatus> responseStatus = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Whether or not this attendee is an organizer.
@@ -254,6 +260,7 @@ public class CalendarAttendee {
             return this;
         }
 
+
         /**
          * Whether or not this attendee is in a group. Needed temporarily at least to support both flat attendees and tree for compatibility.
          */
@@ -272,11 +279,13 @@ public class CalendarAttendee {
             return this;
         }
 
+
         public Builder person(Person person) {
             Utils.checkNotNull(person, "person");
             this.person = person;
             return this;
         }
+
 
         /**
          * If this attendee is a group, represents the list of individual attendees in the group.
@@ -296,6 +305,7 @@ public class CalendarAttendee {
             return this;
         }
 
+
         public Builder responseStatus(ResponseStatus responseStatus) {
             Utils.checkNotNull(responseStatus, "responseStatus");
             this.responseStatus = Optional.ofNullable(responseStatus);
@@ -307,14 +317,13 @@ public class CalendarAttendee {
             this.responseStatus = responseStatus;
             return this;
         }
-        
+
         public CalendarAttendee build() {
+
             return new CalendarAttendee(
-                isOrganizer,
-                isInGroup,
-                person,
-                groupAttendees,
-                responseStatus);
+                isOrganizer, isInGroup, person,
+                groupAttendees, responseStatus);
         }
+
     }
 }

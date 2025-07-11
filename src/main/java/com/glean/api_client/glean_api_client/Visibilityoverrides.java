@@ -25,7 +25,6 @@ public class Visibilityoverrides {
     Visibilityoverrides(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Fetches documents visibility
      * 
@@ -58,18 +57,16 @@ public class Visibilityoverrides {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetdocvisibilityResponse list(
-            Optional<? extends List<String>> docIds) throws Exception {
+    public GetdocvisibilityResponse list(Optional<? extends List<String>> docIds) throws Exception {
         GetdocvisibilityRequest request =
             GetdocvisibilityRequest
                 .builder()
                 .docIds(docIds)
                 .build();
         RequestOperation<GetdocvisibilityRequest, GetdocvisibilityResponse> operation
-              = new GetdocvisibilityOperation( sdkConfiguration);
+              = new GetdocvisibilityOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Hide or unhide docs
@@ -91,10 +88,9 @@ public class Visibilityoverrides {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public SetdocvisibilityResponse create(
-            UpdateDocumentVisibilityOverridesRequest request) throws Exception {
+    public SetdocvisibilityResponse create(UpdateDocumentVisibilityOverridesRequest request) throws Exception {
         RequestOperation<UpdateDocumentVisibilityOverridesRequest, SetdocvisibilityResponse> operation
-              = new SetdocvisibilityOperation( sdkConfiguration);
+              = new SetdocvisibilityOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

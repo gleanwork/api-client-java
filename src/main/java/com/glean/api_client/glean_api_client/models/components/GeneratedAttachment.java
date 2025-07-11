@@ -21,7 +21,6 @@ import java.util.Optional;
  * <p>These are attachments that aren't natively present on the event, and have been smartly suggested.
  */
 public class GeneratedAttachment {
-
     /**
      * The name of method used to surface relevant data for a given calendar event.
      */
@@ -29,13 +28,16 @@ public class GeneratedAttachment {
     @JsonProperty("strategyName")
     private Optional<? extends EventStrategyName> strategyName;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documents")
     private Optional<? extends List<Document>> documents;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("person")
     private Optional<? extends Person> person;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("customer")
@@ -47,6 +49,7 @@ public class GeneratedAttachment {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("externalLinks")
     private Optional<? extends List<StructuredLink>> externalLinks;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("content")
@@ -75,7 +78,8 @@ public class GeneratedAttachment {
     }
     
     public GeneratedAttachment() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -120,9 +124,10 @@ public class GeneratedAttachment {
         return (Optional<List<GeneratedAttachmentContent>>) content;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of method used to surface relevant data for a given calendar event.
@@ -132,6 +137,7 @@ public class GeneratedAttachment {
         this.strategyName = Optional.ofNullable(strategyName);
         return this;
     }
+
 
     /**
      * The name of method used to surface relevant data for a given calendar event.
@@ -148,6 +154,7 @@ public class GeneratedAttachment {
         return this;
     }
 
+
     public GeneratedAttachment withDocuments(Optional<? extends List<Document>> documents) {
         Utils.checkNotNull(documents, "documents");
         this.documents = documents;
@@ -160,6 +167,7 @@ public class GeneratedAttachment {
         return this;
     }
 
+
     public GeneratedAttachment withPerson(Optional<? extends Person> person) {
         Utils.checkNotNull(person, "person");
         this.person = person;
@@ -171,6 +179,7 @@ public class GeneratedAttachment {
         this.customer = Optional.ofNullable(customer);
         return this;
     }
+
 
     public GeneratedAttachment withCustomer(Optional<? extends Customer> customer) {
         Utils.checkNotNull(customer, "customer");
@@ -187,6 +196,7 @@ public class GeneratedAttachment {
         return this;
     }
 
+
     /**
      * A list of links to external sources outside of Glean.
      */
@@ -202,13 +212,13 @@ public class GeneratedAttachment {
         return this;
     }
 
+
     public GeneratedAttachment withContent(Optional<? extends List<GeneratedAttachmentContent>> content) {
         Utils.checkNotNull(content, "content");
         this.content = content;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -230,12 +240,8 @@ public class GeneratedAttachment {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            strategyName,
-            documents,
-            person,
-            customer,
-            externalLinks,
-            content);
+            strategyName, documents, person,
+            customer, externalLinks, content);
     }
     
     @Override
@@ -248,24 +254,26 @@ public class GeneratedAttachment {
                 "externalLinks", externalLinks,
                 "content", content);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends EventStrategyName> strategyName = Optional.empty();
- 
+
         private Optional<? extends List<Document>> documents = Optional.empty();
- 
+
         private Optional<? extends Person> person = Optional.empty();
- 
+
         private Optional<? extends Customer> customer = Optional.empty();
- 
+
         private Optional<? extends List<StructuredLink>> externalLinks = Optional.empty();
- 
+
         private Optional<? extends List<GeneratedAttachmentContent>> content = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of method used to surface relevant data for a given calendar event.
@@ -285,6 +293,7 @@ public class GeneratedAttachment {
             return this;
         }
 
+
         public Builder documents(List<Document> documents) {
             Utils.checkNotNull(documents, "documents");
             this.documents = Optional.ofNullable(documents);
@@ -296,6 +305,7 @@ public class GeneratedAttachment {
             this.documents = documents;
             return this;
         }
+
 
         public Builder person(Person person) {
             Utils.checkNotNull(person, "person");
@@ -309,6 +319,7 @@ public class GeneratedAttachment {
             return this;
         }
 
+
         public Builder customer(Customer customer) {
             Utils.checkNotNull(customer, "customer");
             this.customer = Optional.ofNullable(customer);
@@ -320,6 +331,7 @@ public class GeneratedAttachment {
             this.customer = customer;
             return this;
         }
+
 
         /**
          * A list of links to external sources outside of Glean.
@@ -339,6 +351,7 @@ public class GeneratedAttachment {
             return this;
         }
 
+
         public Builder content(List<GeneratedAttachmentContent> content) {
             Utils.checkNotNull(content, "content");
             this.content = Optional.ofNullable(content);
@@ -350,15 +363,13 @@ public class GeneratedAttachment {
             this.content = content;
             return this;
         }
-        
+
         public GeneratedAttachment build() {
+
             return new GeneratedAttachment(
-                strategyName,
-                documents,
-                person,
-                customer,
-                externalLinks,
-                content);
+                strategyName, documents, person,
+                customer, externalLinks, content);
         }
+
     }
 }

@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class CustomFieldValueHyperlink {
 
+public class CustomFieldValueHyperlink {
     /**
      * Anchor text for hyperlink.
      */
@@ -59,9 +59,10 @@ public class CustomFieldValueHyperlink {
         return urlLink;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Anchor text for hyperlink.
@@ -71,6 +72,7 @@ public class CustomFieldValueHyperlink {
         this.urlAnchor = Optional.ofNullable(urlAnchor);
         return this;
     }
+
 
     /**
      * Anchor text for hyperlink.
@@ -90,6 +92,7 @@ public class CustomFieldValueHyperlink {
         return this;
     }
 
+
     /**
      * Link for this URL.
      */
@@ -99,7 +102,6 @@ public class CustomFieldValueHyperlink {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -117,8 +119,7 @@ public class CustomFieldValueHyperlink {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            urlAnchor,
-            urlLink);
+            urlAnchor, urlLink);
     }
     
     @Override
@@ -127,16 +128,18 @@ public class CustomFieldValueHyperlink {
                 "urlAnchor", urlAnchor,
                 "urlLink", urlLink);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> urlAnchor = Optional.empty();
- 
+
         private Optional<String> urlLink = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Anchor text for hyperlink.
@@ -156,6 +159,7 @@ public class CustomFieldValueHyperlink {
             return this;
         }
 
+
         /**
          * Link for this URL.
          */
@@ -173,11 +177,12 @@ public class CustomFieldValueHyperlink {
             this.urlLink = urlLink;
             return this;
         }
-        
+
         public CustomFieldValueHyperlink build() {
+
             return new CustomFieldValueHyperlink(
-                urlAnchor,
-                urlLink);
+                urlAnchor, urlLink);
         }
+
     }
 }

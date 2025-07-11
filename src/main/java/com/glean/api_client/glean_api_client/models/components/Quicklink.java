@@ -21,7 +21,6 @@ import java.util.Optional;
  * <p>An action for a specific datasource that will show up in autocomplete and app card, e.g. "Create new issue" for jira.
  */
 public class Quicklink {
-
     /**
      * Full action name. Used in autocomplete.
      */
@@ -87,7 +86,8 @@ public class Quicklink {
     }
     
     public Quicklink() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -140,9 +140,10 @@ public class Quicklink {
         return (Optional<List<Scope>>) scopes;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Full action name. Used in autocomplete.
@@ -152,6 +153,7 @@ public class Quicklink {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * Full action name. Used in autocomplete.
@@ -171,6 +173,7 @@ public class Quicklink {
         return this;
     }
 
+
     /**
      * Shortened name. Used in app cards.
      */
@@ -188,6 +191,7 @@ public class Quicklink {
         this.url = Optional.ofNullable(url);
         return this;
     }
+
 
     /**
      * The URL of the action.
@@ -207,6 +211,7 @@ public class Quicklink {
         return this;
     }
 
+
     /**
      * Defines how to render an icon
      */
@@ -224,6 +229,7 @@ public class Quicklink {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * Unique identifier of this quicklink
@@ -243,6 +249,7 @@ public class Quicklink {
         return this;
     }
 
+
     /**
      * The scopes for which this quicklink is applicable
      */
@@ -252,7 +259,6 @@ public class Quicklink {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -274,12 +280,8 @@ public class Quicklink {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            shortName,
-            url,
-            iconConfig,
-            id,
-            scopes);
+            name, shortName, url,
+            iconConfig, id, scopes);
     }
     
     @Override
@@ -292,24 +294,26 @@ public class Quicklink {
                 "id", id,
                 "scopes", scopes);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> shortName = Optional.empty();
- 
+
         private Optional<String> url = Optional.empty();
- 
+
         private Optional<? extends IconConfig> iconConfig = Optional.empty();
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<? extends List<Scope>> scopes = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Full action name. Used in autocomplete.
@@ -329,6 +333,7 @@ public class Quicklink {
             return this;
         }
 
+
         /**
          * Shortened name. Used in app cards.
          */
@@ -346,6 +351,7 @@ public class Quicklink {
             this.shortName = shortName;
             return this;
         }
+
 
         /**
          * The URL of the action.
@@ -365,6 +371,7 @@ public class Quicklink {
             return this;
         }
 
+
         /**
          * Defines how to render an icon
          */
@@ -382,6 +389,7 @@ public class Quicklink {
             this.iconConfig = iconConfig;
             return this;
         }
+
 
         /**
          * Unique identifier of this quicklink
@@ -401,6 +409,7 @@ public class Quicklink {
             return this;
         }
 
+
         /**
          * The scopes for which this quicklink is applicable
          */
@@ -418,15 +427,13 @@ public class Quicklink {
             this.scopes = scopes;
             return this;
         }
-        
+
         public Quicklink build() {
+
             return new Quicklink(
-                name,
-                shortName,
-                url,
-                iconConfig,
-                id,
-                scopes);
+                name, shortName, url,
+                iconConfig, id, scopes);
         }
+
     }
 }

@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.Map;
 import java.util.Optional;
 
-public class GetChatFilesResponse {
 
+public class GetChatFilesResponse {
     /**
      * A map of file IDs to ChatFile structs.
      */
@@ -44,9 +44,10 @@ public class GetChatFilesResponse {
         return (Optional<Map<String, ChatFile>>) files;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A map of file IDs to ChatFile structs.
@@ -57,6 +58,7 @@ public class GetChatFilesResponse {
         return this;
     }
 
+
     /**
      * A map of file IDs to ChatFile structs.
      */
@@ -66,7 +68,6 @@ public class GetChatFilesResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,14 +92,16 @@ public class GetChatFilesResponse {
         return Utils.toString(GetChatFilesResponse.class,
                 "files", files);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Map<String, ChatFile>> files = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A map of file IDs to ChatFile structs.
@@ -117,10 +120,12 @@ public class GetChatFilesResponse {
             this.files = files;
             return this;
         }
-        
+
         public GetChatFilesResponse build() {
+
             return new GetChatFilesResponse(
                 files);
         }
+
     }
 }

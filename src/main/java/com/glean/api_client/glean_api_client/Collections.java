@@ -48,7 +48,6 @@ public class Collections {
     Collections(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Add Collection item
      * 
@@ -69,13 +68,11 @@ public class Collections {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AddcollectionitemsResponse addItems(
-            AddCollectionItemsRequest request) throws Exception {
+    public AddcollectionitemsResponse addItems(AddCollectionItemsRequest request) throws Exception {
         RequestOperation<AddCollectionItemsRequest, AddcollectionitemsResponse> operation
-              = new AddcollectionitemsOperation( sdkConfiguration);
+              = new AddcollectionitemsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create Collection
@@ -97,13 +94,11 @@ public class Collections {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreatecollectionResponse create(
-            CreateCollectionRequest request) throws Exception {
+    public CreatecollectionResponse create(CreateCollectionRequest request) throws Exception {
         RequestOperation<CreateCollectionRequest, CreatecollectionResponse> operation
-              = new CreatecollectionOperation( sdkConfiguration);
+              = new CreatecollectionOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Collection
@@ -125,13 +120,11 @@ public class Collections {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DeletecollectionResponse delete(
-            DeleteCollectionRequest request) throws Exception {
+    public DeletecollectionResponse delete(DeleteCollectionRequest request) throws Exception {
         RequestOperation<DeleteCollectionRequest, DeletecollectionResponse> operation
-              = new DeletecollectionOperation( sdkConfiguration);
+              = new DeletecollectionOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Collection item
@@ -153,13 +146,11 @@ public class Collections {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DeletecollectionitemResponse deleteItem(
-            DeleteCollectionItemRequest request) throws Exception {
+    public DeletecollectionitemResponse deleteItem(DeleteCollectionItemRequest request) throws Exception {
         RequestOperation<DeleteCollectionItemRequest, DeletecollectionitemResponse> operation
-              = new DeletecollectionitemOperation( sdkConfiguration);
+              = new DeletecollectionitemOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Collection
@@ -181,13 +172,11 @@ public class Collections {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public EditcollectionResponse update(
-            EditCollectionRequest request) throws Exception {
+    public EditcollectionResponse update(EditCollectionRequest request) throws Exception {
         RequestOperation<EditCollectionRequest, EditcollectionResponse> operation
-              = new EditcollectionOperation( sdkConfiguration);
+              = new EditcollectionOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Collection item
@@ -209,13 +198,11 @@ public class Collections {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public EditcollectionitemResponse updateItem(
-            EditCollectionItemRequest request) throws Exception {
+    public EditcollectionitemResponse updateItem(EditCollectionItemRequest request) throws Exception {
         RequestOperation<EditCollectionItemRequest, EditcollectionitemResponse> operation
-              = new EditcollectionitemOperation( sdkConfiguration);
+              = new EditcollectionitemOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Read Collection
@@ -237,13 +224,11 @@ public class Collections {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetcollectionResponse retrieve(
-            GetCollectionRequest request) throws Exception {
+    public GetcollectionResponse retrieve(GetCollectionRequest request) throws Exception {
         RequestOperation<GetCollectionRequest, GetcollectionResponse> operation
-              = new GetcollectionOperation( sdkConfiguration);
+              = new GetcollectionOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List Collections
@@ -265,10 +250,9 @@ public class Collections {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListcollectionsResponse list(
-            ListCollectionsRequest request) throws Exception {
+    public ListcollectionsResponse list(ListCollectionsRequest request) throws Exception {
         RequestOperation<ListCollectionsRequest, ListcollectionsResponse> operation
-              = new ListcollectionsOperation( sdkConfiguration);
+              = new ListcollectionsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -19,7 +19,6 @@ import java.util.Optional;
  * <p>describes the membership row of a group. Only one of memberUserId and memberGroupName can be specified.
  */
 public class DatasourceMembershipDefinition {
-
     /**
      * The group for which the membership is specified
      */
@@ -82,9 +81,10 @@ public class DatasourceMembershipDefinition {
         return memberGroupName;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The group for which the membership is specified
@@ -104,6 +104,7 @@ public class DatasourceMembershipDefinition {
         return this;
     }
 
+
     /**
      * If the member is a user, then the email or datasource id for the user
      */
@@ -122,6 +123,7 @@ public class DatasourceMembershipDefinition {
         return this;
     }
 
+
     /**
      * If the member is a group, then the name of the member group
      */
@@ -131,7 +133,6 @@ public class DatasourceMembershipDefinition {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -150,9 +151,7 @@ public class DatasourceMembershipDefinition {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            groupName,
-            memberUserId,
-            memberGroupName);
+            groupName, memberUserId, memberGroupName);
     }
     
     @Override
@@ -162,18 +161,20 @@ public class DatasourceMembershipDefinition {
                 "memberUserId", memberUserId,
                 "memberGroupName", memberGroupName);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String groupName;
- 
+
         private Optional<String> memberUserId = Optional.empty();
- 
+
         private Optional<String> memberGroupName = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The group for which the membership is specified
@@ -183,6 +184,7 @@ public class DatasourceMembershipDefinition {
             this.groupName = groupName;
             return this;
         }
+
 
         /**
          * If the member is a user, then the email or datasource id for the user
@@ -202,6 +204,7 @@ public class DatasourceMembershipDefinition {
             return this;
         }
 
+
         /**
          * If the member is a group, then the name of the member group
          */
@@ -219,12 +222,12 @@ public class DatasourceMembershipDefinition {
             this.memberGroupName = memberGroupName;
             return this;
         }
-        
+
         public DatasourceMembershipDefinition build() {
+
             return new DatasourceMembershipDefinition(
-                groupName,
-                memberUserId,
-                memberGroupName);
+                groupName, memberUserId, memberGroupName);
         }
+
     }
 }

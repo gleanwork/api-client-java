@@ -36,7 +36,6 @@ public class ClientShortcuts {
     ClientShortcuts(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Create shortcut
      * 
@@ -57,13 +56,11 @@ public class ClientShortcuts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateshortcutResponse create(
-            CreateShortcutRequest request) throws Exception {
+    public CreateshortcutResponse create(CreateShortcutRequest request) throws Exception {
         RequestOperation<CreateShortcutRequest, CreateshortcutResponse> operation
-              = new CreateshortcutOperation( sdkConfiguration);
+              = new CreateshortcutOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete shortcut
@@ -85,13 +82,11 @@ public class ClientShortcuts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DeleteshortcutResponse delete(
-            DeleteShortcutRequest request) throws Exception {
+    public DeleteshortcutResponse delete(DeleteShortcutRequest request) throws Exception {
         RequestOperation<DeleteShortcutRequest, DeleteshortcutResponse> operation
-              = new DeleteshortcutOperation( sdkConfiguration);
+              = new DeleteshortcutOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Read shortcut
@@ -113,13 +108,11 @@ public class ClientShortcuts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetshortcutResponse retrieve(
-            GetShortcutRequestUnion request) throws Exception {
+    public GetshortcutResponse retrieve(GetShortcutRequestUnion request) throws Exception {
         RequestOperation<GetShortcutRequestUnion, GetshortcutResponse> operation
-              = new GetshortcutOperation( sdkConfiguration);
+              = new GetshortcutOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * List shortcuts
@@ -141,13 +134,11 @@ public class ClientShortcuts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListshortcutsResponse list(
-            ListShortcutsPaginatedRequest request) throws Exception {
+    public ListshortcutsResponse list(ListShortcutsPaginatedRequest request) throws Exception {
         RequestOperation<ListShortcutsPaginatedRequest, ListshortcutsResponse> operation
-              = new ListshortcutsOperation( sdkConfiguration);
+              = new ListshortcutsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update shortcut
@@ -169,10 +160,9 @@ public class ClientShortcuts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdateshortcutResponse update(
-            UpdateShortcutRequest request) throws Exception {
+    public UpdateshortcutResponse update(UpdateShortcutRequest request) throws Exception {
         RequestOperation<UpdateShortcutRequest, UpdateshortcutResponse> operation
-              = new UpdateshortcutOperation( sdkConfiguration);
+              = new UpdateshortcutOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

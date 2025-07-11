@@ -10,8 +10,8 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class GetShortcutRequest {
 
+public class GetShortcutRequest {
     /**
      * The alias for the shortcut, including any arguments for variable shortcuts.
      */
@@ -33,9 +33,10 @@ public class GetShortcutRequest {
         return alias;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The alias for the shortcut, including any arguments for variable shortcuts.
@@ -46,7 +47,6 @@ public class GetShortcutRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -71,14 +71,16 @@ public class GetShortcutRequest {
         return Utils.toString(GetShortcutRequest.class,
                 "alias", alias);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String alias;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The alias for the shortcut, including any arguments for variable shortcuts.
@@ -88,10 +90,12 @@ public class GetShortcutRequest {
             this.alias = alias;
             return this;
         }
-        
+
         public GetShortcutRequest build() {
+
             return new GetShortcutRequest(
                 alias);
         }
+
     }
 }

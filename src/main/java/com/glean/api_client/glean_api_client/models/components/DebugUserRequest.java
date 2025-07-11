@@ -16,7 +16,6 @@ import java.lang.String;
  * <p>Describes the request body of the /debug/{datasource}/user API call
  */
 public class DebugUserRequest {
-
     /**
      * Email ID of the user to get the status for
      */
@@ -38,9 +37,10 @@ public class DebugUserRequest {
         return email;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Email ID of the user to get the status for
@@ -51,7 +51,6 @@ public class DebugUserRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -76,14 +75,16 @@ public class DebugUserRequest {
         return Utils.toString(DebugUserRequest.class,
                 "email", email);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String email;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Email ID of the user to get the status for
@@ -93,10 +94,12 @@ public class DebugUserRequest {
             this.email = email;
             return this;
         }
-        
+
         public DebugUserRequest build() {
+
             return new DebugUserRequest(
                 email);
         }
+
     }
 }

@@ -15,6 +15,7 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
+
 public class UpdateDocumentVisibilityOverridesRequest {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -38,9 +39,10 @@ public class UpdateDocumentVisibilityOverridesRequest {
         return (Optional<List<DocumentVisibilityOverride>>) visibilityOverrides;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public UpdateDocumentVisibilityOverridesRequest withVisibilityOverrides(List<DocumentVisibilityOverride> visibilityOverrides) {
         Utils.checkNotNull(visibilityOverrides, "visibilityOverrides");
@@ -48,13 +50,13 @@ public class UpdateDocumentVisibilityOverridesRequest {
         return this;
     }
 
+
     public UpdateDocumentVisibilityOverridesRequest withVisibilityOverrides(Optional<? extends List<DocumentVisibilityOverride>> visibilityOverrides) {
         Utils.checkNotNull(visibilityOverrides, "visibilityOverrides");
         this.visibilityOverrides = visibilityOverrides;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -79,14 +81,16 @@ public class UpdateDocumentVisibilityOverridesRequest {
         return Utils.toString(UpdateDocumentVisibilityOverridesRequest.class,
                 "visibilityOverrides", visibilityOverrides);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<DocumentVisibilityOverride>> visibilityOverrides = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder visibilityOverrides(List<DocumentVisibilityOverride> visibilityOverrides) {
             Utils.checkNotNull(visibilityOverrides, "visibilityOverrides");
@@ -99,10 +103,12 @@ public class UpdateDocumentVisibilityOverridesRequest {
             this.visibilityOverrides = visibilityOverrides;
             return this;
         }
-        
+
         public UpdateDocumentVisibilityOverridesRequest build() {
+
             return new UpdateDocumentVisibilityOverridesRequest(
                 visibilityOverrides);
         }
+
     }
 }

@@ -21,7 +21,6 @@ import java.util.Optional;
  * <p>Describes the write permissions levels that a user has for a specific feature
  */
 public class WritePermission {
-
     /**
      * Describes the scope for a ReadPermission, WritePermission, or GrantPermission object
      */
@@ -67,7 +66,8 @@ public class WritePermission {
     }
     
     public WritePermission() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -103,9 +103,10 @@ public class WritePermission {
         return delete;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Describes the scope for a ReadPermission, WritePermission, or GrantPermission object
@@ -115,6 +116,7 @@ public class WritePermission {
         this.scopeType = Optional.ofNullable(scopeType);
         return this;
     }
+
 
     /**
      * Describes the scope for a ReadPermission, WritePermission, or GrantPermission object
@@ -134,6 +136,7 @@ public class WritePermission {
         return this;
     }
 
+
     /**
      * True if user has create permission for this feature and scope
      */
@@ -151,6 +154,7 @@ public class WritePermission {
         this.update = Optional.ofNullable(update);
         return this;
     }
+
 
     /**
      * True if user has update permission for this feature and scope
@@ -170,6 +174,7 @@ public class WritePermission {
         return this;
     }
 
+
     /**
      * True if user has delete permission for this feature and scope
      */
@@ -179,7 +184,6 @@ public class WritePermission {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -199,9 +203,7 @@ public class WritePermission {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            scopeType,
-            create,
-            update,
+            scopeType, create, update,
             delete);
     }
     
@@ -213,20 +215,22 @@ public class WritePermission {
                 "update", update,
                 "delete", delete);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ScopeType> scopeType = Optional.empty();
- 
+
         private Optional<Boolean> create = Optional.empty();
- 
+
         private Optional<Boolean> update = Optional.empty();
- 
+
         private Optional<Boolean> delete = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Describes the scope for a ReadPermission, WritePermission, or GrantPermission object
@@ -246,6 +250,7 @@ public class WritePermission {
             return this;
         }
 
+
         /**
          * True if user has create permission for this feature and scope
          */
@@ -263,6 +268,7 @@ public class WritePermission {
             this.create = create;
             return this;
         }
+
 
         /**
          * True if user has update permission for this feature and scope
@@ -282,6 +288,7 @@ public class WritePermission {
             return this;
         }
 
+
         /**
          * True if user has delete permission for this feature and scope
          */
@@ -299,13 +306,13 @@ public class WritePermission {
             this.delete = delete;
             return this;
         }
-        
+
         public WritePermission build() {
+
             return new WritePermission(
-                scopeType,
-                create,
-                update,
+                scopeType, create, update,
                 delete);
         }
+
     }
 }

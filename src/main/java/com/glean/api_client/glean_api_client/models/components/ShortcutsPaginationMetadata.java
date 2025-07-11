@@ -15,8 +15,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class ShortcutsPaginationMetadata {
 
+public class ShortcutsPaginationMetadata {
     /**
      * Cursor indicates the start of the next page of results
      */
@@ -24,9 +24,11 @@ public class ShortcutsPaginationMetadata {
     @JsonProperty("cursor")
     private Optional<String> cursor;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("hasNextPage")
     private Optional<Boolean> hasNextPage;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("totalItemCount")
@@ -67,9 +69,10 @@ public class ShortcutsPaginationMetadata {
         return totalItemCount;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Cursor indicates the start of the next page of results
@@ -79,6 +82,7 @@ public class ShortcutsPaginationMetadata {
         this.cursor = Optional.ofNullable(cursor);
         return this;
     }
+
 
     /**
      * Cursor indicates the start of the next page of results
@@ -95,6 +99,7 @@ public class ShortcutsPaginationMetadata {
         return this;
     }
 
+
     public ShortcutsPaginationMetadata withHasNextPage(Optional<Boolean> hasNextPage) {
         Utils.checkNotNull(hasNextPage, "hasNextPage");
         this.hasNextPage = hasNextPage;
@@ -107,13 +112,13 @@ public class ShortcutsPaginationMetadata {
         return this;
     }
 
+
     public ShortcutsPaginationMetadata withTotalItemCount(Optional<Long> totalItemCount) {
         Utils.checkNotNull(totalItemCount, "totalItemCount");
         this.totalItemCount = totalItemCount;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -132,9 +137,7 @@ public class ShortcutsPaginationMetadata {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            cursor,
-            hasNextPage,
-            totalItemCount);
+            cursor, hasNextPage, totalItemCount);
     }
     
     @Override
@@ -144,18 +147,20 @@ public class ShortcutsPaginationMetadata {
                 "hasNextPage", hasNextPage,
                 "totalItemCount", totalItemCount);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> cursor = Optional.empty();
- 
+
         private Optional<Boolean> hasNextPage = Optional.empty();
- 
+
         private Optional<Long> totalItemCount = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Cursor indicates the start of the next page of results
@@ -175,6 +180,7 @@ public class ShortcutsPaginationMetadata {
             return this;
         }
 
+
         public Builder hasNextPage(boolean hasNextPage) {
             Utils.checkNotNull(hasNextPage, "hasNextPage");
             this.hasNextPage = Optional.ofNullable(hasNextPage);
@@ -187,6 +193,7 @@ public class ShortcutsPaginationMetadata {
             return this;
         }
 
+
         public Builder totalItemCount(long totalItemCount) {
             Utils.checkNotNull(totalItemCount, "totalItemCount");
             this.totalItemCount = Optional.ofNullable(totalItemCount);
@@ -198,12 +205,12 @@ public class ShortcutsPaginationMetadata {
             this.totalItemCount = totalItemCount;
             return this;
         }
-        
+
         public ShortcutsPaginationMetadata build() {
+
             return new ShortcutsPaginationMetadata(
-                cursor,
-                hasNextPage,
-                totalItemCount);
+                cursor, hasNextPage, totalItemCount);
         }
+
     }
 }

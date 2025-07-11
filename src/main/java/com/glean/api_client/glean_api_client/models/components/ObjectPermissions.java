@@ -14,8 +14,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class ObjectPermissions {
 
+public class ObjectPermissions {
     /**
      * Describes the write permissions levels that a user has for a specific feature
      */
@@ -43,9 +43,10 @@ public class ObjectPermissions {
         return (Optional<WritePermission>) write;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Describes the write permissions levels that a user has for a specific feature
@@ -56,6 +57,7 @@ public class ObjectPermissions {
         return this;
     }
 
+
     /**
      * Describes the write permissions levels that a user has for a specific feature
      */
@@ -65,7 +67,6 @@ public class ObjectPermissions {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,14 +91,16 @@ public class ObjectPermissions {
         return Utils.toString(ObjectPermissions.class,
                 "write", write);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends WritePermission> write = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Describes the write permissions levels that a user has for a specific feature
@@ -116,10 +119,12 @@ public class ObjectPermissions {
             this.write = write;
             return this;
         }
-        
+
         public ObjectPermissions build() {
+
             return new ObjectPermissions(
                 write);
         }
+
     }
 }

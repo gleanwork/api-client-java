@@ -16,14 +16,15 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class AiInsightsResponse {
 
+public class AiInsightsResponse {
     /**
      * Unix timestamp of the last activity processed to make the response (in seconds since epoch UTC).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lastLogTimestamp")
     private Optional<Long> lastLogTimestamp;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("assistantInsights")
@@ -140,7 +141,10 @@ public class AiInsightsResponse {
     }
     
     public AiInsightsResponse() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -238,9 +242,10 @@ public class AiInsightsResponse {
         return (Optional<List<String>>) departments;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unix timestamp of the last activity processed to make the response (in seconds since epoch UTC).
@@ -250,6 +255,7 @@ public class AiInsightsResponse {
         this.lastLogTimestamp = Optional.ofNullable(lastLogTimestamp);
         return this;
     }
+
 
     /**
      * Unix timestamp of the last activity processed to make the response (in seconds since epoch UTC).
@@ -266,6 +272,7 @@ public class AiInsightsResponse {
         return this;
     }
 
+
     public AiInsightsResponse withAssistantInsights(Optional<? extends List<UserActivityInsight>> assistantInsights) {
         Utils.checkNotNull(assistantInsights, "assistantInsights");
         this.assistantInsights = assistantInsights;
@@ -280,6 +287,7 @@ public class AiInsightsResponse {
         this.totalActiveAssistantUsers = Optional.ofNullable(totalActiveAssistantUsers);
         return this;
     }
+
 
     /**
      * Total number of Active Assistant users (chat, summary, AIA) in requested period.
@@ -299,6 +307,7 @@ public class AiInsightsResponse {
         return this;
     }
 
+
     /**
      * Total number of Chat messages sent in requested period.
      */
@@ -316,6 +325,7 @@ public class AiInsightsResponse {
         this.totalAiSummarizations = Optional.ofNullable(totalAiSummarizations);
         return this;
     }
+
 
     /**
      * Total number of AI Document Summarizations invoked in the requested period.
@@ -335,6 +345,7 @@ public class AiInsightsResponse {
         return this;
     }
 
+
     /**
      * Total number of AI Answers generated in the requested period.
      */
@@ -352,6 +363,7 @@ public class AiInsightsResponse {
         this.totalUpvotes = Optional.ofNullable(totalUpvotes);
         return this;
     }
+
 
     /**
      * Total number of Chat messages which received upvotes by the user.
@@ -371,6 +383,7 @@ public class AiInsightsResponse {
         return this;
     }
 
+
     /**
      * Total number of Chat messages which received downvotes by the user.
      */
@@ -388,6 +401,7 @@ public class AiInsightsResponse {
         this.totalGleanbotResponses = Optional.ofNullable(totalGleanbotResponses);
         return this;
     }
+
 
     /**
      * Total number of Gleanbot responses, both proactive and reactive.
@@ -407,6 +421,7 @@ public class AiInsightsResponse {
         return this;
     }
 
+
     /**
      * Total number of Gleanbot responses shared publicly (upvoted).
      */
@@ -424,6 +439,7 @@ public class AiInsightsResponse {
         this.totalGleanbotResponsesNotHelpful = Optional.ofNullable(totalGleanbotResponsesNotHelpful);
         return this;
     }
+
 
     /**
      * Total number of Glean responses rejected as not helpful (downvoted).
@@ -443,6 +459,7 @@ public class AiInsightsResponse {
         return this;
     }
 
+
     /**
      * list of departments applicable for users tab.
      */
@@ -452,7 +469,6 @@ public class AiInsightsResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -480,18 +496,10 @@ public class AiInsightsResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            lastLogTimestamp,
-            assistantInsights,
-            totalActiveAssistantUsers,
-            totalChatMessages,
-            totalAiSummarizations,
-            totalAiAnswers,
-            totalUpvotes,
-            totalDownvotes,
-            totalGleanbotResponses,
-            totalGleanbotResponsesShared,
-            totalGleanbotResponsesNotHelpful,
-            departments);
+            lastLogTimestamp, assistantInsights, totalActiveAssistantUsers,
+            totalChatMessages, totalAiSummarizations, totalAiAnswers,
+            totalUpvotes, totalDownvotes, totalGleanbotResponses,
+            totalGleanbotResponsesShared, totalGleanbotResponsesNotHelpful, departments);
     }
     
     @Override
@@ -510,36 +518,38 @@ public class AiInsightsResponse {
                 "totalGleanbotResponsesNotHelpful", totalGleanbotResponsesNotHelpful,
                 "departments", departments);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> lastLogTimestamp = Optional.empty();
- 
+
         private Optional<? extends List<UserActivityInsight>> assistantInsights = Optional.empty();
- 
+
         private Optional<Long> totalActiveAssistantUsers = Optional.empty();
- 
+
         private Optional<Long> totalChatMessages = Optional.empty();
- 
+
         private Optional<Long> totalAiSummarizations = Optional.empty();
- 
+
         private Optional<Long> totalAiAnswers = Optional.empty();
- 
+
         private Optional<Long> totalUpvotes = Optional.empty();
- 
+
         private Optional<Long> totalDownvotes = Optional.empty();
- 
+
         private Optional<Long> totalGleanbotResponses = Optional.empty();
- 
+
         private Optional<Long> totalGleanbotResponsesShared = Optional.empty();
- 
+
         private Optional<Long> totalGleanbotResponsesNotHelpful = Optional.empty();
- 
+
         private Optional<? extends List<String>> departments = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unix timestamp of the last activity processed to make the response (in seconds since epoch UTC).
@@ -559,6 +569,7 @@ public class AiInsightsResponse {
             return this;
         }
 
+
         public Builder assistantInsights(List<UserActivityInsight> assistantInsights) {
             Utils.checkNotNull(assistantInsights, "assistantInsights");
             this.assistantInsights = Optional.ofNullable(assistantInsights);
@@ -570,6 +581,7 @@ public class AiInsightsResponse {
             this.assistantInsights = assistantInsights;
             return this;
         }
+
 
         /**
          * Total number of Active Assistant users (chat, summary, AIA) in requested period.
@@ -589,6 +601,7 @@ public class AiInsightsResponse {
             return this;
         }
 
+
         /**
          * Total number of Chat messages sent in requested period.
          */
@@ -606,6 +619,7 @@ public class AiInsightsResponse {
             this.totalChatMessages = totalChatMessages;
             return this;
         }
+
 
         /**
          * Total number of AI Document Summarizations invoked in the requested period.
@@ -625,6 +639,7 @@ public class AiInsightsResponse {
             return this;
         }
 
+
         /**
          * Total number of AI Answers generated in the requested period.
          */
@@ -642,6 +657,7 @@ public class AiInsightsResponse {
             this.totalAiAnswers = totalAiAnswers;
             return this;
         }
+
 
         /**
          * Total number of Chat messages which received upvotes by the user.
@@ -661,6 +677,7 @@ public class AiInsightsResponse {
             return this;
         }
 
+
         /**
          * Total number of Chat messages which received downvotes by the user.
          */
@@ -678,6 +695,7 @@ public class AiInsightsResponse {
             this.totalDownvotes = totalDownvotes;
             return this;
         }
+
 
         /**
          * Total number of Gleanbot responses, both proactive and reactive.
@@ -697,6 +715,7 @@ public class AiInsightsResponse {
             return this;
         }
 
+
         /**
          * Total number of Gleanbot responses shared publicly (upvoted).
          */
@@ -714,6 +733,7 @@ public class AiInsightsResponse {
             this.totalGleanbotResponsesShared = totalGleanbotResponsesShared;
             return this;
         }
+
 
         /**
          * Total number of Glean responses rejected as not helpful (downvoted).
@@ -733,6 +753,7 @@ public class AiInsightsResponse {
             return this;
         }
 
+
         /**
          * list of departments applicable for users tab.
          */
@@ -750,21 +771,15 @@ public class AiInsightsResponse {
             this.departments = departments;
             return this;
         }
-        
+
         public AiInsightsResponse build() {
+
             return new AiInsightsResponse(
-                lastLogTimestamp,
-                assistantInsights,
-                totalActiveAssistantUsers,
-                totalChatMessages,
-                totalAiSummarizations,
-                totalAiAnswers,
-                totalUpvotes,
-                totalDownvotes,
-                totalGleanbotResponses,
-                totalGleanbotResponsesShared,
-                totalGleanbotResponsesNotHelpful,
-                departments);
+                lastLogTimestamp, assistantInsights, totalActiveAssistantUsers,
+                totalChatMessages, totalAiSummarizations, totalAiAnswers,
+                totalUpvotes, totalDownvotes, totalGleanbotResponses,
+                totalGleanbotResponsesShared, totalGleanbotResponsesNotHelpful, departments);
         }
+
     }
 }

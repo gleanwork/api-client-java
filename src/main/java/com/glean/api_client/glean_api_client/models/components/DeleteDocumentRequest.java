@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>Describes the request body of the /deletedocument API call
  */
 public class DeleteDocumentRequest {
-
     /**
      * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
      */
@@ -66,7 +65,8 @@ public class DeleteDocumentRequest {
             String datasource,
             String objectType,
             String id) {
-        this(Optional.empty(), datasource, objectType, id);
+        this(Optional.empty(), datasource, objectType,
+            id);
     }
 
     /**
@@ -101,9 +101,10 @@ public class DeleteDocumentRequest {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
@@ -113,6 +114,7 @@ public class DeleteDocumentRequest {
         this.version = Optional.ofNullable(version);
         return this;
     }
+
 
     /**
      * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
@@ -150,7 +152,6 @@ public class DeleteDocumentRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -170,9 +171,7 @@ public class DeleteDocumentRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            version,
-            datasource,
-            objectType,
+            version, datasource, objectType,
             id);
     }
     
@@ -184,20 +183,22 @@ public class DeleteDocumentRequest {
                 "objectType", objectType,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> version = Optional.empty();
- 
+
         private String datasource;
- 
+
         private String objectType;
- 
+
         private String id;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
@@ -217,6 +218,7 @@ public class DeleteDocumentRequest {
             return this;
         }
 
+
         /**
          * datasource of the document
          */
@@ -225,6 +227,7 @@ public class DeleteDocumentRequest {
             this.datasource = datasource;
             return this;
         }
+
 
         /**
          * object type of the document
@@ -235,6 +238,7 @@ public class DeleteDocumentRequest {
             return this;
         }
 
+
         /**
          * The id of the document
          */
@@ -243,13 +247,13 @@ public class DeleteDocumentRequest {
             this.id = id;
             return this;
         }
-        
+
         public DeleteDocumentRequest build() {
+
             return new DeleteDocumentRequest(
-                version,
-                datasource,
-                objectType,
+                version, datasource, objectType,
                 id);
         }
+
     }
 }

@@ -29,7 +29,7 @@ public class EditcollectionRequestBuilder {
     public EditcollectionResponse call() throws Exception {
         
         RequestOperation<EditCollectionRequest, EditcollectionResponse> operation
-              = new EditcollectionOperation( sdkConfiguration);
+              = new EditcollectionOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class Identity {
 
+public class Identity {
     /**
      * Information about processing history for the datasource
      */
@@ -24,13 +24,16 @@ public class Identity {
     @JsonProperty("processingHistory")
     private Optional<? extends List<ProcessingHistoryEvent>> processingHistory;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("users")
     private Optional<? extends DebugDatasourceStatusIdentityResponseComponent> users;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("groups")
     private Optional<? extends DebugDatasourceStatusIdentityResponseComponent> groups;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("memberships")
@@ -53,7 +56,8 @@ public class Identity {
     }
     
     public Identity() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -83,9 +87,10 @@ public class Identity {
         return (Optional<DebugDatasourceStatusIdentityResponseComponent>) memberships;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Information about processing history for the datasource
@@ -95,6 +100,7 @@ public class Identity {
         this.processingHistory = Optional.ofNullable(processingHistory);
         return this;
     }
+
 
     /**
      * Information about processing history for the datasource
@@ -111,6 +117,7 @@ public class Identity {
         return this;
     }
 
+
     public Identity withUsers(Optional<? extends DebugDatasourceStatusIdentityResponseComponent> users) {
         Utils.checkNotNull(users, "users");
         this.users = users;
@@ -122,6 +129,7 @@ public class Identity {
         this.groups = Optional.ofNullable(groups);
         return this;
     }
+
 
     public Identity withGroups(Optional<? extends DebugDatasourceStatusIdentityResponseComponent> groups) {
         Utils.checkNotNull(groups, "groups");
@@ -135,13 +143,13 @@ public class Identity {
         return this;
     }
 
+
     public Identity withMemberships(Optional<? extends DebugDatasourceStatusIdentityResponseComponent> memberships) {
         Utils.checkNotNull(memberships, "memberships");
         this.memberships = memberships;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -161,9 +169,7 @@ public class Identity {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            processingHistory,
-            users,
-            groups,
+            processingHistory, users, groups,
             memberships);
     }
     
@@ -175,20 +181,22 @@ public class Identity {
                 "groups", groups,
                 "memberships", memberships);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<ProcessingHistoryEvent>> processingHistory = Optional.empty();
- 
+
         private Optional<? extends DebugDatasourceStatusIdentityResponseComponent> users = Optional.empty();
- 
+
         private Optional<? extends DebugDatasourceStatusIdentityResponseComponent> groups = Optional.empty();
- 
+
         private Optional<? extends DebugDatasourceStatusIdentityResponseComponent> memberships = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Information about processing history for the datasource
@@ -208,6 +216,7 @@ public class Identity {
             return this;
         }
 
+
         public Builder users(DebugDatasourceStatusIdentityResponseComponent users) {
             Utils.checkNotNull(users, "users");
             this.users = Optional.ofNullable(users);
@@ -219,6 +228,7 @@ public class Identity {
             this.users = users;
             return this;
         }
+
 
         public Builder groups(DebugDatasourceStatusIdentityResponseComponent groups) {
             Utils.checkNotNull(groups, "groups");
@@ -232,6 +242,7 @@ public class Identity {
             return this;
         }
 
+
         public Builder memberships(DebugDatasourceStatusIdentityResponseComponent memberships) {
             Utils.checkNotNull(memberships, "memberships");
             this.memberships = Optional.ofNullable(memberships);
@@ -243,13 +254,13 @@ public class Identity {
             this.memberships = memberships;
             return this;
         }
-        
+
         public Identity build() {
+
             return new Identity(
-                processingHistory,
-                users,
-                groups,
+                processingHistory, users, groups,
                 memberships);
         }
+
     }
 }

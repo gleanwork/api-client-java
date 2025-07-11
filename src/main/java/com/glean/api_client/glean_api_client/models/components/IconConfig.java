@@ -26,17 +26,21 @@ public class IconConfig {
     @JsonProperty("generatedBackgroundColorKey")
     private Optional<String> generatedBackgroundColorKey;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("backgroundColor")
     private Optional<String> backgroundColor;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("color")
     private Optional<String> color;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("key")
     private Optional<String> key;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("iconType")
@@ -92,7 +96,9 @@ public class IconConfig {
     }
     
     public IconConfig() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -145,15 +151,17 @@ public class IconConfig {
         return url;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public IconConfig withGeneratedBackgroundColorKey(String generatedBackgroundColorKey) {
         Utils.checkNotNull(generatedBackgroundColorKey, "generatedBackgroundColorKey");
         this.generatedBackgroundColorKey = Optional.ofNullable(generatedBackgroundColorKey);
         return this;
     }
+
 
     public IconConfig withGeneratedBackgroundColorKey(Optional<String> generatedBackgroundColorKey) {
         Utils.checkNotNull(generatedBackgroundColorKey, "generatedBackgroundColorKey");
@@ -167,6 +175,7 @@ public class IconConfig {
         return this;
     }
 
+
     public IconConfig withBackgroundColor(Optional<String> backgroundColor) {
         Utils.checkNotNull(backgroundColor, "backgroundColor");
         this.backgroundColor = backgroundColor;
@@ -178,6 +187,7 @@ public class IconConfig {
         this.color = Optional.ofNullable(color);
         return this;
     }
+
 
     public IconConfig withColor(Optional<String> color) {
         Utils.checkNotNull(color, "color");
@@ -191,6 +201,7 @@ public class IconConfig {
         return this;
     }
 
+
     public IconConfig withKey(Optional<String> key) {
         Utils.checkNotNull(key, "key");
         this.key = key;
@@ -202,6 +213,7 @@ public class IconConfig {
         this.iconType = Optional.ofNullable(iconType);
         return this;
     }
+
 
     public IconConfig withIconType(Optional<? extends IconType> iconType) {
         Utils.checkNotNull(iconType, "iconType");
@@ -217,6 +229,7 @@ public class IconConfig {
         this.masked = Optional.ofNullable(masked);
         return this;
     }
+
 
     /**
      * Whether the icon should be masked based on current theme.
@@ -236,6 +249,7 @@ public class IconConfig {
         return this;
     }
 
+
     /**
      * The name of the icon if applicable, e.g. the glyph name for `IconType.GLYPH` icons.
      */
@@ -254,6 +268,7 @@ public class IconConfig {
         return this;
     }
 
+
     /**
      * The URL to an image to be displayed if applicable, e.g. the URL for `iconType.URL` icons.
      */
@@ -263,7 +278,6 @@ public class IconConfig {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -287,14 +301,9 @@ public class IconConfig {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            generatedBackgroundColorKey,
-            backgroundColor,
-            color,
-            key,
-            iconType,
-            masked,
-            name,
-            url);
+            generatedBackgroundColorKey, backgroundColor, color,
+            key, iconType, masked,
+            name, url);
     }
     
     @Override
@@ -309,28 +318,30 @@ public class IconConfig {
                 "name", name,
                 "url", url);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> generatedBackgroundColorKey = Optional.empty();
- 
+
         private Optional<String> backgroundColor = Optional.empty();
- 
+
         private Optional<String> color = Optional.empty();
- 
+
         private Optional<String> key = Optional.empty();
- 
+
         private Optional<? extends IconType> iconType = Optional.empty();
- 
+
         private Optional<Boolean> masked = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> url = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder generatedBackgroundColorKey(String generatedBackgroundColorKey) {
             Utils.checkNotNull(generatedBackgroundColorKey, "generatedBackgroundColorKey");
@@ -344,6 +355,7 @@ public class IconConfig {
             return this;
         }
 
+
         public Builder backgroundColor(String backgroundColor) {
             Utils.checkNotNull(backgroundColor, "backgroundColor");
             this.backgroundColor = Optional.ofNullable(backgroundColor);
@@ -355,6 +367,7 @@ public class IconConfig {
             this.backgroundColor = backgroundColor;
             return this;
         }
+
 
         public Builder color(String color) {
             Utils.checkNotNull(color, "color");
@@ -368,6 +381,7 @@ public class IconConfig {
             return this;
         }
 
+
         public Builder key(String key) {
             Utils.checkNotNull(key, "key");
             this.key = Optional.ofNullable(key);
@@ -380,6 +394,7 @@ public class IconConfig {
             return this;
         }
 
+
         public Builder iconType(IconType iconType) {
             Utils.checkNotNull(iconType, "iconType");
             this.iconType = Optional.ofNullable(iconType);
@@ -391,6 +406,7 @@ public class IconConfig {
             this.iconType = iconType;
             return this;
         }
+
 
         /**
          * Whether the icon should be masked based on current theme.
@@ -410,6 +426,7 @@ public class IconConfig {
             return this;
         }
 
+
         /**
          * The name of the icon if applicable, e.g. the glyph name for `IconType.GLYPH` icons.
          */
@@ -428,6 +445,7 @@ public class IconConfig {
             return this;
         }
 
+
         /**
          * The URL to an image to be displayed if applicable, e.g. the URL for `iconType.URL` icons.
          */
@@ -445,17 +463,14 @@ public class IconConfig {
             this.url = url;
             return this;
         }
-        
+
         public IconConfig build() {
+
             return new IconConfig(
-                generatedBackgroundColorKey,
-                backgroundColor,
-                color,
-                key,
-                iconType,
-                masked,
-                name,
-                url);
+                generatedBackgroundColorKey, backgroundColor, color,
+                key, iconType, masked,
+                name, url);
         }
+
     }
 }

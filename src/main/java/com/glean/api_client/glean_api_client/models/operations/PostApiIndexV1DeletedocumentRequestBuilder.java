@@ -29,7 +29,7 @@ public class PostApiIndexV1DeletedocumentRequestBuilder {
     public PostApiIndexV1DeletedocumentResponse call() throws Exception {
         
         RequestOperation<DeleteDocumentRequest, PostApiIndexV1DeletedocumentResponse> operation
-              = new PostApiIndexV1DeletedocumentOperation( sdkConfiguration);
+              = new PostApiIndexV1DeletedocumentOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

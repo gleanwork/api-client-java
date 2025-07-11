@@ -15,13 +15,14 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class CountInfo {
 
+public class CountInfo {
     /**
      * The counter value
      */
     @JsonProperty("count")
     private long count;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("period")
@@ -74,9 +75,10 @@ public class CountInfo {
         return org;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The counter value
@@ -93,6 +95,7 @@ public class CountInfo {
         return this;
     }
 
+
     public CountInfo withPeriod(Optional<? extends Period> period) {
         Utils.checkNotNull(period, "period");
         this.period = period;
@@ -108,6 +111,7 @@ public class CountInfo {
         return this;
     }
 
+
     /**
      * The unit of organization over which we did the count aggregation, e.g. org (department) or company
      */
@@ -117,7 +121,6 @@ public class CountInfo {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -136,9 +139,7 @@ public class CountInfo {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            count,
-            period,
-            org);
+            count, period, org);
     }
     
     @Override
@@ -148,18 +149,20 @@ public class CountInfo {
                 "period", period,
                 "org", org);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long count;
- 
+
         private Optional<? extends Period> period = Optional.empty();
- 
+
         private Optional<String> org = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The counter value
@@ -169,6 +172,7 @@ public class CountInfo {
             this.count = count;
             return this;
         }
+
 
         public Builder period(Period period) {
             Utils.checkNotNull(period, "period");
@@ -181,6 +185,7 @@ public class CountInfo {
             this.period = period;
             return this;
         }
+
 
         /**
          * The unit of organization over which we did the count aggregation, e.g. org (department) or company
@@ -199,12 +204,12 @@ public class CountInfo {
             this.org = org;
             return this;
         }
-        
+
         public CountInfo build() {
+
             return new CountInfo(
-                count,
-                period,
-                org);
+                count, period, org);
         }
+
     }
 }

@@ -14,6 +14,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class UpdateDlpReportResponse {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -37,9 +38,10 @@ public class UpdateDlpReportResponse {
         return (Optional<DlpSimpleResult>) result;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public UpdateDlpReportResponse withResult(DlpSimpleResult result) {
         Utils.checkNotNull(result, "result");
@@ -47,13 +49,13 @@ public class UpdateDlpReportResponse {
         return this;
     }
 
+
     public UpdateDlpReportResponse withResult(Optional<? extends DlpSimpleResult> result) {
         Utils.checkNotNull(result, "result");
         this.result = result;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -78,14 +80,16 @@ public class UpdateDlpReportResponse {
         return Utils.toString(UpdateDlpReportResponse.class,
                 "result", result);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends DlpSimpleResult> result = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder result(DlpSimpleResult result) {
             Utils.checkNotNull(result, "result");
@@ -98,10 +102,12 @@ public class UpdateDlpReportResponse {
             this.result = result;
             return this;
         }
-        
+
         public UpdateDlpReportResponse build() {
+
             return new UpdateDlpReportResponse(
                 result);
         }
+
     }
 }

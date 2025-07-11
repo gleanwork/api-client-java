@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>Describes the request body of the /indexdocument API call
  */
 public class IndexDocumentRequest {
-
     /**
      * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
      */
@@ -65,9 +64,10 @@ public class IndexDocumentRequest {
         return document;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
@@ -77,6 +77,7 @@ public class IndexDocumentRequest {
         this.version = Optional.ofNullable(version);
         return this;
     }
+
 
     /**
      * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
@@ -96,7 +97,6 @@ public class IndexDocumentRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -114,8 +114,7 @@ public class IndexDocumentRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            version,
-            document);
+            version, document);
     }
     
     @Override
@@ -124,16 +123,18 @@ public class IndexDocumentRequest {
                 "version", version,
                 "document", document);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> version = Optional.empty();
- 
+
         private DocumentDefinition document;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
@@ -153,6 +154,7 @@ public class IndexDocumentRequest {
             return this;
         }
 
+
         /**
          * Indexable document structure
          */
@@ -161,11 +163,12 @@ public class IndexDocumentRequest {
             this.document = document;
             return this;
         }
-        
+
         public IndexDocumentRequest build() {
+
             return new IndexDocumentRequest(
-                version,
-                document);
+                version, document);
         }
+
     }
 }

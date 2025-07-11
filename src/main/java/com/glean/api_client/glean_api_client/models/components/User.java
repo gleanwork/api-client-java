@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class User {
 
+public class User {
     /**
      * An opaque user ID for the claimed authority (i.e., the actas param, or the origid if actas is not specified).
      */
@@ -59,9 +59,10 @@ public class User {
         return origID;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An opaque user ID for the claimed authority (i.e., the actas param, or the origid if actas is not specified).
@@ -71,6 +72,7 @@ public class User {
         this.userID = Optional.ofNullable(userID);
         return this;
     }
+
 
     /**
      * An opaque user ID for the claimed authority (i.e., the actas param, or the origid if actas is not specified).
@@ -90,6 +92,7 @@ public class User {
         return this;
     }
 
+
     /**
      * An opaque user ID for the authenticated user (ignores actas).
      */
@@ -99,7 +102,6 @@ public class User {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -117,8 +119,7 @@ public class User {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            userID,
-            origID);
+            userID, origID);
     }
     
     @Override
@@ -127,16 +128,18 @@ public class User {
                 "userID", userID,
                 "origID", origID);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> userID = Optional.empty();
- 
+
         private Optional<String> origID = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An opaque user ID for the claimed authority (i.e., the actas param, or the origid if actas is not specified).
@@ -156,6 +159,7 @@ public class User {
             return this;
         }
 
+
         /**
          * An opaque user ID for the authenticated user (ignores actas).
          */
@@ -173,11 +177,12 @@ public class User {
             this.origID = origID;
             return this;
         }
-        
+
         public User build() {
+
             return new User(
-                userID,
-                origID);
+                userID, origID);
         }
+
     }
 }

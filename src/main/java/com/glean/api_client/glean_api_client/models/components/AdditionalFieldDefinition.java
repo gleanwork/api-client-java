@@ -21,7 +21,6 @@ import java.util.Optional;
  * <p>Additional information about the employee or team.
  */
 public class AdditionalFieldDefinition {
-
     /**
      * Key to reference this field, e.g. "languages". Note that the key should be all lowercase alphabetic characters with no numbers, spaces, hyphens or underscores.
      */
@@ -95,9 +94,10 @@ public class AdditionalFieldDefinition {
         return (Optional<List<Value>>) value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Key to reference this field, e.g. "languages". Note that the key should be all lowercase alphabetic characters with no numbers, spaces, hyphens or underscores.
@@ -107,6 +107,7 @@ public class AdditionalFieldDefinition {
         this.key = Optional.ofNullable(key);
         return this;
     }
+
 
     /**
      * Key to reference this field, e.g. "languages". Note that the key should be all lowercase alphabetic characters with no numbers, spaces, hyphens or underscores.
@@ -140,6 +141,7 @@ public class AdditionalFieldDefinition {
         return this;
     }
 
+
     /**
      * List of type string or HypertextField.
      * 
@@ -163,7 +165,6 @@ public class AdditionalFieldDefinition {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -181,8 +182,7 @@ public class AdditionalFieldDefinition {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            key,
-            value);
+            key, value);
     }
     
     @Override
@@ -191,16 +191,18 @@ public class AdditionalFieldDefinition {
                 "key", key,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> key = Optional.empty();
- 
+
         private Optional<? extends List<Value>> value = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Key to reference this field, e.g. "languages". Note that the key should be all lowercase alphabetic characters with no numbers, spaces, hyphens or underscores.
@@ -219,6 +221,7 @@ public class AdditionalFieldDefinition {
             this.key = key;
             return this;
         }
+
 
         /**
          * List of type string or HypertextField.
@@ -265,11 +268,12 @@ public class AdditionalFieldDefinition {
             this.value = value;
             return this;
         }
-        
+
         public AdditionalFieldDefinition build() {
+
             return new AdditionalFieldDefinition(
-                key,
-                value);
+                key, value);
         }
+
     }
 }

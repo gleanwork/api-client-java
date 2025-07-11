@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>Describes the request body of the /deletemembership API call
  */
 public class DeleteMembershipRequest {
-
     /**
      * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
      */
@@ -83,9 +82,10 @@ public class DeleteMembershipRequest {
         return membership;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
@@ -95,6 +95,7 @@ public class DeleteMembershipRequest {
         this.version = Optional.ofNullable(version);
         return this;
     }
+
 
     /**
      * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
@@ -123,7 +124,6 @@ public class DeleteMembershipRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -142,9 +142,7 @@ public class DeleteMembershipRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            version,
-            datasource,
-            membership);
+            version, datasource, membership);
     }
     
     @Override
@@ -154,18 +152,20 @@ public class DeleteMembershipRequest {
                 "datasource", datasource,
                 "membership", membership);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> version = Optional.empty();
- 
+
         private String datasource;
- 
+
         private DatasourceMembershipDefinition membership;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
@@ -185,6 +185,7 @@ public class DeleteMembershipRequest {
             return this;
         }
 
+
         /**
          * The datasource for which the membership is removed
          */
@@ -194,6 +195,7 @@ public class DeleteMembershipRequest {
             return this;
         }
 
+
         /**
          * describes the membership row of a group. Only one of memberUserId and memberGroupName can be specified.
          */
@@ -202,12 +204,12 @@ public class DeleteMembershipRequest {
             this.membership = membership;
             return this;
         }
-        
+
         public DeleteMembershipRequest build() {
+
             return new DeleteMembershipRequest(
-                version,
-                datasource,
-                membership);
+                version, datasource, membership);
         }
+
     }
 }

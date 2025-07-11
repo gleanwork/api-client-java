@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class DocumentInteractions {
 
+public class DocumentInteractions {
     /**
      * The count of comments (thread replies in the case of slack).
      */
@@ -43,6 +43,7 @@ public class DocumentInteractions {
     @Deprecated
     private Optional<? extends List<String>> reactions;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reacts")
     private Optional<? extends List<Reaction>> reacts;
@@ -53,6 +54,7 @@ public class DocumentInteractions {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shares")
     private Optional<? extends List<Share>> shares;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("visitorCount")
@@ -81,7 +83,8 @@ public class DocumentInteractions {
     }
     
     public DocumentInteractions() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -133,9 +136,10 @@ public class DocumentInteractions {
         return (Optional<CountInfo>) visitorCount;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The count of comments (thread replies in the case of slack).
@@ -145,6 +149,7 @@ public class DocumentInteractions {
         this.numComments = Optional.ofNullable(numComments);
         return this;
     }
+
 
     /**
      * The count of comments (thread replies in the case of slack).
@@ -163,6 +168,7 @@ public class DocumentInteractions {
         this.numReactions = Optional.ofNullable(numReactions);
         return this;
     }
+
 
     /**
      * The count of reactions on the document.
@@ -185,6 +191,7 @@ public class DocumentInteractions {
         return this;
     }
 
+
     /**
      * To be deprecated in favor of reacts. A (potentially non-exhaustive) list of reactions for the document.
      * 
@@ -203,6 +210,7 @@ public class DocumentInteractions {
         return this;
     }
 
+
     public DocumentInteractions withReacts(Optional<? extends List<Reaction>> reacts) {
         Utils.checkNotNull(reacts, "reacts");
         this.reacts = reacts;
@@ -217,6 +225,7 @@ public class DocumentInteractions {
         this.shares = Optional.ofNullable(shares);
         return this;
     }
+
 
     /**
      * Describes instances of someone posting a link to this document in one of our indexed datasources.
@@ -233,13 +242,13 @@ public class DocumentInteractions {
         return this;
     }
 
+
     public DocumentInteractions withVisitorCount(Optional<? extends CountInfo> visitorCount) {
         Utils.checkNotNull(visitorCount, "visitorCount");
         this.visitorCount = visitorCount;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -261,12 +270,8 @@ public class DocumentInteractions {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            numComments,
-            numReactions,
-            reactions,
-            reacts,
-            shares,
-            visitorCount);
+            numComments, numReactions, reactions,
+            reacts, shares, visitorCount);
     }
     
     @Override
@@ -279,25 +284,27 @@ public class DocumentInteractions {
                 "shares", shares,
                 "visitorCount", visitorCount);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> numComments = Optional.empty();
- 
+
         private Optional<Long> numReactions = Optional.empty();
- 
+
         @Deprecated
         private Optional<? extends List<String>> reactions = Optional.empty();
- 
+
         private Optional<? extends List<Reaction>> reacts = Optional.empty();
- 
+
         private Optional<? extends List<Share>> shares = Optional.empty();
- 
+
         private Optional<? extends CountInfo> visitorCount = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The count of comments (thread replies in the case of slack).
@@ -317,6 +324,7 @@ public class DocumentInteractions {
             return this;
         }
 
+
         /**
          * The count of reactions on the document.
          */
@@ -334,6 +342,7 @@ public class DocumentInteractions {
             this.numReactions = numReactions;
             return this;
         }
+
 
         /**
          * To be deprecated in favor of reacts. A (potentially non-exhaustive) list of reactions for the document.
@@ -359,6 +368,7 @@ public class DocumentInteractions {
             return this;
         }
 
+
         public Builder reacts(List<Reaction> reacts) {
             Utils.checkNotNull(reacts, "reacts");
             this.reacts = Optional.ofNullable(reacts);
@@ -370,6 +380,7 @@ public class DocumentInteractions {
             this.reacts = reacts;
             return this;
         }
+
 
         /**
          * Describes instances of someone posting a link to this document in one of our indexed datasources.
@@ -389,6 +400,7 @@ public class DocumentInteractions {
             return this;
         }
 
+
         public Builder visitorCount(CountInfo visitorCount) {
             Utils.checkNotNull(visitorCount, "visitorCount");
             this.visitorCount = Optional.ofNullable(visitorCount);
@@ -400,15 +412,13 @@ public class DocumentInteractions {
             this.visitorCount = visitorCount;
             return this;
         }
-        
+
         public DocumentInteractions build() {
+
             return new DocumentInteractions(
-                numComments,
-                numReactions,
-                reactions,
-                reacts,
-                shares,
-                visitorCount);
+                numComments, numReactions, reactions,
+                reacts, shares, visitorCount);
         }
+
     }
 }

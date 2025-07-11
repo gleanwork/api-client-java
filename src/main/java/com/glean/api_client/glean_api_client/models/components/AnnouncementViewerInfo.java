@@ -14,8 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class AnnouncementViewerInfo {
 
+public class AnnouncementViewerInfo {
     /**
      * Whether the viewer has dismissed the announcement.
      */
@@ -60,9 +60,10 @@ public class AnnouncementViewerInfo {
         return isRead;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Whether the viewer has dismissed the announcement.
@@ -72,6 +73,7 @@ public class AnnouncementViewerInfo {
         this.isDismissed = Optional.ofNullable(isDismissed);
         return this;
     }
+
 
     /**
      * Whether the viewer has dismissed the announcement.
@@ -91,6 +93,7 @@ public class AnnouncementViewerInfo {
         return this;
     }
 
+
     /**
      * Whether the viewer has read the announcement.
      */
@@ -100,7 +103,6 @@ public class AnnouncementViewerInfo {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -118,8 +120,7 @@ public class AnnouncementViewerInfo {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            isDismissed,
-            isRead);
+            isDismissed, isRead);
     }
     
     @Override
@@ -128,16 +129,18 @@ public class AnnouncementViewerInfo {
                 "isDismissed", isDismissed,
                 "isRead", isRead);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> isDismissed = Optional.empty();
- 
+
         private Optional<Boolean> isRead = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Whether the viewer has dismissed the announcement.
@@ -157,6 +160,7 @@ public class AnnouncementViewerInfo {
             return this;
         }
 
+
         /**
          * Whether the viewer has read the announcement.
          */
@@ -174,11 +178,12 @@ public class AnnouncementViewerInfo {
             this.isRead = isRead;
             return this;
         }
-        
+
         public AnnouncementViewerInfo build() {
+
             return new AnnouncementViewerInfo(
-                isDismissed,
-                isRead);
+                isDismissed, isRead);
         }
+
     }
 }

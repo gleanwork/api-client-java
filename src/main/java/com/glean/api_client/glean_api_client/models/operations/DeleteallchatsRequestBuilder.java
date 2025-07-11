@@ -44,7 +44,7 @@ public class DeleteallchatsRequestBuilder {
     public DeleteallchatsResponse call() throws Exception {
         
         RequestOperation<DeleteallchatsRequest, DeleteallchatsResponse> operation
-              = new DeleteallchatsOperation( sdkConfiguration);
+              = new DeleteallchatsOperation(sdkConfiguration);
         DeleteallchatsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

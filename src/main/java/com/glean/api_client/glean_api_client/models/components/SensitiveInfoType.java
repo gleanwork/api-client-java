@@ -15,8 +15,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class SensitiveInfoType {
 
+public class SensitiveInfoType {
     /**
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -66,9 +66,10 @@ public class SensitiveInfoType {
         return infoType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * 
@@ -80,6 +81,7 @@ public class SensitiveInfoType {
         this.likelihoodThreshold = Optional.ofNullable(likelihoodThreshold);
         return this;
     }
+
 
     /**
      * 
@@ -101,6 +103,7 @@ public class SensitiveInfoType {
         return this;
     }
 
+
     /**
      * Text representation of an info-type to scan for.
      */
@@ -110,7 +113,6 @@ public class SensitiveInfoType {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -128,8 +130,7 @@ public class SensitiveInfoType {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            likelihoodThreshold,
-            infoType);
+            likelihoodThreshold, infoType);
     }
     
     @Override
@@ -138,17 +139,19 @@ public class SensitiveInfoType {
                 "likelihoodThreshold", likelihoodThreshold,
                 "infoType", infoType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         @Deprecated
         private Optional<? extends LikelihoodThreshold> likelihoodThreshold = Optional.empty();
- 
+
         private Optional<String> infoType = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * 
@@ -172,6 +175,7 @@ public class SensitiveInfoType {
             return this;
         }
 
+
         /**
          * Text representation of an info-type to scan for.
          */
@@ -189,11 +193,12 @@ public class SensitiveInfoType {
             this.infoType = infoType;
             return this;
         }
-        
+
         public SensitiveInfoType build() {
+
             return new SensitiveInfoType(
-                likelihoodThreshold,
-                infoType);
+                likelihoodThreshold, infoType);
         }
+
     }
 }

@@ -15,6 +15,7 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
+
 public class StructuredText {
 
     @JsonProperty("text")
@@ -56,9 +57,10 @@ public class StructuredText {
         return (Optional<List<StructuredTextItem>>) structuredList;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public StructuredText withText(String text) {
         Utils.checkNotNull(text, "text");
@@ -75,6 +77,7 @@ public class StructuredText {
         return this;
     }
 
+
     /**
      * An array of objects each of which contains either a string or a link which optionally corresponds to a document.
      */
@@ -84,7 +87,6 @@ public class StructuredText {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -102,8 +104,7 @@ public class StructuredText {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            text,
-            structuredList);
+            text, structuredList);
     }
     
     @Override
@@ -112,22 +113,25 @@ public class StructuredText {
                 "text", text,
                 "structuredList", structuredList);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String text;
- 
+
         private Optional<? extends List<StructuredTextItem>> structuredList = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder text(String text) {
             Utils.checkNotNull(text, "text");
             this.text = text;
             return this;
         }
+
 
         /**
          * An array of objects each of which contains either a string or a link which optionally corresponds to a document.
@@ -146,11 +150,12 @@ public class StructuredText {
             this.structuredList = structuredList;
             return this;
         }
-        
+
         public StructuredText build() {
+
             return new StructuredText(
-                text,
-                structuredList);
+                text, structuredList);
         }
+
     }
 }

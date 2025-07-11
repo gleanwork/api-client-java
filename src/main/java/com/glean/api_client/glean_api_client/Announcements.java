@@ -28,7 +28,6 @@ public class Announcements {
     Announcements(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Create Announcement
      * 
@@ -49,13 +48,11 @@ public class Announcements {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateannouncementResponse create(
-            CreateAnnouncementRequest request) throws Exception {
+    public CreateannouncementResponse create(CreateAnnouncementRequest request) throws Exception {
         RequestOperation<CreateAnnouncementRequest, CreateannouncementResponse> operation
-              = new CreateannouncementOperation( sdkConfiguration);
+              = new CreateannouncementOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Announcement
@@ -77,13 +74,11 @@ public class Announcements {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DeleteannouncementResponse delete(
-            DeleteAnnouncementRequest request) throws Exception {
+    public DeleteannouncementResponse delete(DeleteAnnouncementRequest request) throws Exception {
         RequestOperation<DeleteAnnouncementRequest, DeleteannouncementResponse> operation
-              = new DeleteannouncementOperation( sdkConfiguration);
+              = new DeleteannouncementOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Announcement
@@ -105,10 +100,9 @@ public class Announcements {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdateannouncementResponse update(
-            UpdateAnnouncementRequest request) throws Exception {
+    public UpdateannouncementResponse update(UpdateAnnouncementRequest request) throws Exception {
         RequestOperation<UpdateAnnouncementRequest, UpdateannouncementResponse> operation
-              = new UpdateannouncementOperation( sdkConfiguration);
+              = new UpdateannouncementOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

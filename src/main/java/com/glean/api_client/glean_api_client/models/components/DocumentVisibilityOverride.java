@@ -14,6 +14,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class DocumentVisibilityOverride {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -55,15 +56,17 @@ public class DocumentVisibilityOverride {
         return (Optional<DocumentVisibilityOverrideOverride>) override;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public DocumentVisibilityOverride withDocId(String docId) {
         Utils.checkNotNull(docId, "docId");
         this.docId = Optional.ofNullable(docId);
         return this;
     }
+
 
     public DocumentVisibilityOverride withDocId(Optional<String> docId) {
         Utils.checkNotNull(docId, "docId");
@@ -80,6 +83,7 @@ public class DocumentVisibilityOverride {
         return this;
     }
 
+
     /**
      * The visibility-override state of the document.
      */
@@ -89,7 +93,6 @@ public class DocumentVisibilityOverride {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -107,8 +110,7 @@ public class DocumentVisibilityOverride {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            docId,
-            override);
+            docId, override);
     }
     
     @Override
@@ -117,16 +119,18 @@ public class DocumentVisibilityOverride {
                 "docId", docId,
                 "override", override);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> docId = Optional.empty();
- 
+
         private Optional<? extends DocumentVisibilityOverrideOverride> override = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder docId(String docId) {
             Utils.checkNotNull(docId, "docId");
@@ -139,6 +143,7 @@ public class DocumentVisibilityOverride {
             this.docId = docId;
             return this;
         }
+
 
         /**
          * The visibility-override state of the document.
@@ -157,11 +162,12 @@ public class DocumentVisibilityOverride {
             this.override = override;
             return this;
         }
-        
+
         public DocumentVisibilityOverride build() {
+
             return new DocumentVisibilityOverride(
-                docId,
-                override);
+                docId, override);
         }
+
     }
 }

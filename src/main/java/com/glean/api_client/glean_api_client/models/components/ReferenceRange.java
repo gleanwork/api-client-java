@@ -21,13 +21,13 @@ import java.util.Optional;
  * <p>Each text range from the response can correspond to an array of snippets from the citation source.
  */
 public class ReferenceRange {
-
     /**
      * A subsection of a given string to which some special formatting should be applied.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("textRange")
     private Optional<? extends TextRange> textRange;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("snippets")
@@ -62,9 +62,10 @@ public class ReferenceRange {
         return (Optional<List<SearchResultSnippet>>) snippets;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A subsection of a given string to which some special formatting should be applied.
@@ -74,6 +75,7 @@ public class ReferenceRange {
         this.textRange = Optional.ofNullable(textRange);
         return this;
     }
+
 
     /**
      * A subsection of a given string to which some special formatting should be applied.
@@ -90,13 +92,13 @@ public class ReferenceRange {
         return this;
     }
 
+
     public ReferenceRange withSnippets(Optional<? extends List<SearchResultSnippet>> snippets) {
         Utils.checkNotNull(snippets, "snippets");
         this.snippets = snippets;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -114,8 +116,7 @@ public class ReferenceRange {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            textRange,
-            snippets);
+            textRange, snippets);
     }
     
     @Override
@@ -124,16 +125,18 @@ public class ReferenceRange {
                 "textRange", textRange,
                 "snippets", snippets);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends TextRange> textRange = Optional.empty();
- 
+
         private Optional<? extends List<SearchResultSnippet>> snippets = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A subsection of a given string to which some special formatting should be applied.
@@ -153,6 +156,7 @@ public class ReferenceRange {
             return this;
         }
 
+
         public Builder snippets(List<SearchResultSnippet> snippets) {
             Utils.checkNotNull(snippets, "snippets");
             this.snippets = Optional.ofNullable(snippets);
@@ -164,11 +168,12 @@ public class ReferenceRange {
             this.snippets = snippets;
             return this;
         }
-        
+
         public ReferenceRange build() {
+
             return new ReferenceRange(
-                textRange,
-                snippets);
+                textRange, snippets);
         }
+
     }
 }

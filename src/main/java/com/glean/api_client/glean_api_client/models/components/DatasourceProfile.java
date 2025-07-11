@@ -14,8 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class DatasourceProfile {
 
+public class DatasourceProfile {
     /**
      * The datasource the profile is of.
      */
@@ -71,7 +71,8 @@ public class DatasourceProfile {
     public DatasourceProfile(
             String datasource,
             String handle) {
-        this(datasource, handle, Optional.empty(), Optional.empty(), Optional.empty());
+        this(datasource, handle, Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -114,9 +115,10 @@ public class DatasourceProfile {
         return isUserGenerated;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The datasource the profile is of.
@@ -145,6 +147,7 @@ public class DatasourceProfile {
         return this;
     }
 
+
     /**
      * URL to view the entity's profile.
      */
@@ -162,6 +165,7 @@ public class DatasourceProfile {
         this.nativeAppUrl = Optional.ofNullable(nativeAppUrl);
         return this;
     }
+
 
     /**
      * A deep link, if available, into the datasource's native application for the entity's platform (i.e. slack://...).
@@ -181,6 +185,7 @@ public class DatasourceProfile {
         return this;
     }
 
+
     /**
      * For internal use only. True iff the data source profile was manually added by a user from within Glean (aka not from the original data source)
      */
@@ -190,7 +195,6 @@ public class DatasourceProfile {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -211,11 +215,8 @@ public class DatasourceProfile {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            datasource,
-            handle,
-            url,
-            nativeAppUrl,
-            isUserGenerated);
+            datasource, handle, url,
+            nativeAppUrl, isUserGenerated);
     }
     
     @Override
@@ -227,22 +228,24 @@ public class DatasourceProfile {
                 "nativeAppUrl", nativeAppUrl,
                 "isUserGenerated", isUserGenerated);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String datasource;
- 
+
         private String handle;
- 
+
         private Optional<String> url = Optional.empty();
- 
+
         private Optional<String> nativeAppUrl = Optional.empty();
- 
+
         private Optional<Boolean> isUserGenerated = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The datasource the profile is of.
@@ -253,6 +256,7 @@ public class DatasourceProfile {
             return this;
         }
 
+
         /**
          * The display name of the entity in the given datasource.
          */
@@ -261,6 +265,7 @@ public class DatasourceProfile {
             this.handle = handle;
             return this;
         }
+
 
         /**
          * URL to view the entity's profile.
@@ -280,6 +285,7 @@ public class DatasourceProfile {
             return this;
         }
 
+
         /**
          * A deep link, if available, into the datasource's native application for the entity's platform (i.e. slack://...).
          */
@@ -298,6 +304,7 @@ public class DatasourceProfile {
             return this;
         }
 
+
         /**
          * For internal use only. True iff the data source profile was manually added by a user from within Glean (aka not from the original data source)
          */
@@ -315,14 +322,13 @@ public class DatasourceProfile {
             this.isUserGenerated = isUserGenerated;
             return this;
         }
-        
+
         public DatasourceProfile build() {
+
             return new DatasourceProfile(
-                datasource,
-                handle,
-                url,
-                nativeAppUrl,
-                isUserGenerated);
+                datasource, handle, url,
+                nativeAppUrl, isUserGenerated);
         }
+
     }
 }

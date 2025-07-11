@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+
 public class DocumentMetadata {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -65,6 +66,7 @@ public class DocumentMetadata {
     @JsonProperty("parentId")
     private Optional<String> parentId;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mimeType")
     private Optional<String> mimeType;
@@ -90,17 +92,21 @@ public class DocumentMetadata {
     @JsonProperty("documentIdHash")
     private Optional<String> documentIdHash;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createTime")
     private Optional<OffsetDateTime> createTime;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("updateTime")
     private Optional<OffsetDateTime> updateTime;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("author")
     private Optional<? extends Person> author;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("owner")
@@ -155,9 +161,11 @@ public class DocumentMetadata {
     @JsonProperty("priority")
     private Optional<String> priority;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("assignedTo")
     private Optional<? extends Person> assignedTo;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("updatedBy")
@@ -184,21 +192,26 @@ public class DocumentMetadata {
     @JsonProperty("datasourceId")
     private Optional<String> datasourceId;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("interactions")
     private Optional<? extends DocumentInteractions> interactions;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("verification")
     private Optional<? extends Verification> verification;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("viewerInfo")
     private Optional<? extends ViewerInfo> viewerInfo;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("permissions")
     private Optional<? extends ObjectPermissions> permissions;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("visitCount")
@@ -232,13 +245,16 @@ public class DocumentMetadata {
     @JsonProperty("documentCategory")
     private Optional<String> documentCategory;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("contactPerson")
     private Optional<? extends Person> contactPerson;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("thumbnail")
     private Optional<? extends Thumbnail> thumbnail;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("indexStatus")
@@ -376,7 +392,20 @@ public class DocumentMetadata {
     }
     
     public DocumentMetadata() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -672,15 +701,17 @@ public class DocumentMetadata {
         return (Optional<List<Document>>) ancestors;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public DocumentMetadata withDatasource(String datasource) {
         Utils.checkNotNull(datasource, "datasource");
         this.datasource = Optional.ofNullable(datasource);
         return this;
     }
+
 
     public DocumentMetadata withDatasource(Optional<String> datasource) {
         Utils.checkNotNull(datasource, "datasource");
@@ -696,6 +727,7 @@ public class DocumentMetadata {
         this.datasourceInstance = Optional.ofNullable(datasourceInstance);
         return this;
     }
+
 
     /**
      * The datasource instance from which the document was extracted.
@@ -715,6 +747,7 @@ public class DocumentMetadata {
         return this;
     }
 
+
     /**
      * The type of the result. Interpretation is specific to each datasource. (e.g. for Jira issues, this is the issue type such as Bug or Feature Request).
      */
@@ -732,6 +765,7 @@ public class DocumentMetadata {
         this.container = Optional.ofNullable(container);
         return this;
     }
+
 
     /**
      * The name of the container (higher level parent, not direct parent) of the result. Interpretation is specific to each datasource (e.g. Channels for Slack, Project for Jira). cf. parentId
@@ -751,6 +785,7 @@ public class DocumentMetadata {
         return this;
     }
 
+
     /**
      * The Glean Document ID of the container. Uniquely identifies the container.
      */
@@ -768,6 +803,7 @@ public class DocumentMetadata {
         this.superContainerId = Optional.ofNullable(superContainerId);
         return this;
     }
+
 
     /**
      * The Glean Document ID of the super container. Super container represents a broader abstraction that contains many containers. For example, whereas container might refer to a folder, super container would refer to a drive.
@@ -787,6 +823,7 @@ public class DocumentMetadata {
         return this;
     }
 
+
     /**
      * The id of the direct parent of the result. Interpretation is specific to each datasource (e.g. parent issue for Jira). cf. container
      */
@@ -802,6 +839,7 @@ public class DocumentMetadata {
         return this;
     }
 
+
     public DocumentMetadata withMimeType(Optional<String> mimeType) {
         Utils.checkNotNull(mimeType, "mimeType");
         this.mimeType = mimeType;
@@ -816,6 +854,7 @@ public class DocumentMetadata {
         this.documentId = Optional.ofNullable(documentId);
         return this;
     }
+
 
     /**
      * The index-wide unique identifier.
@@ -835,6 +874,7 @@ public class DocumentMetadata {
         return this;
     }
 
+
     /**
      * A unique identifier used to represent the document in any logging or feedback requests in place of documentId.
      */
@@ -853,6 +893,7 @@ public class DocumentMetadata {
         return this;
     }
 
+
     /**
      * Hash of the Glean Document ID.
      */
@@ -868,6 +909,7 @@ public class DocumentMetadata {
         return this;
     }
 
+
     public DocumentMetadata withCreateTime(Optional<OffsetDateTime> createTime) {
         Utils.checkNotNull(createTime, "createTime");
         this.createTime = createTime;
@@ -879,6 +921,7 @@ public class DocumentMetadata {
         this.updateTime = Optional.ofNullable(updateTime);
         return this;
     }
+
 
     public DocumentMetadata withUpdateTime(Optional<OffsetDateTime> updateTime) {
         Utils.checkNotNull(updateTime, "updateTime");
@@ -892,6 +935,7 @@ public class DocumentMetadata {
         return this;
     }
 
+
     public DocumentMetadata withAuthor(Optional<? extends Person> author) {
         Utils.checkNotNull(author, "author");
         this.author = author;
@@ -903,6 +947,7 @@ public class DocumentMetadata {
         this.owner = Optional.ofNullable(owner);
         return this;
     }
+
 
     public DocumentMetadata withOwner(Optional<? extends Person> owner) {
         Utils.checkNotNull(owner, "owner");
@@ -918,6 +963,7 @@ public class DocumentMetadata {
         this.mentionedPeople = Optional.ofNullable(mentionedPeople);
         return this;
     }
+
 
     /**
      * A list of people mentioned in the document.
@@ -937,6 +983,7 @@ public class DocumentMetadata {
         return this;
     }
 
+
     /**
      * The level of visibility of the document as understood by our system.
      */
@@ -954,6 +1001,7 @@ public class DocumentMetadata {
         this.components = Optional.ofNullable(components);
         return this;
     }
+
 
     /**
      * A list of components this result is associated with. Interpretation is specific to each datasource. (e.g. for Jira issues, these are [components](https://confluence.atlassian.com/jirasoftwarecloud/organizing-work-with-components-764478279.html).)
@@ -973,6 +1021,7 @@ public class DocumentMetadata {
         return this;
     }
 
+
     /**
      * The status or disposition of the result. Interpretation is specific to each datasource. (e.g. for Jira issues, this is the issue status such as Done, In Progress or Will Not Fix).
      */
@@ -990,6 +1039,7 @@ public class DocumentMetadata {
         this.statusCategory = Optional.ofNullable(statusCategory);
         return this;
     }
+
 
     /**
      * The status category of the result. Meant to be more general than status. Interpretation is specific to each datasource.
@@ -1009,6 +1059,7 @@ public class DocumentMetadata {
         return this;
     }
 
+
     /**
      * A list of stars associated with this result.  "Pin" is an older name.
      */
@@ -1027,6 +1078,7 @@ public class DocumentMetadata {
         return this;
     }
 
+
     /**
      * The document priority. Interpretation is datasource specific.
      */
@@ -1042,6 +1094,7 @@ public class DocumentMetadata {
         return this;
     }
 
+
     public DocumentMetadata withAssignedTo(Optional<? extends Person> assignedTo) {
         Utils.checkNotNull(assignedTo, "assignedTo");
         this.assignedTo = assignedTo;
@@ -1053,6 +1106,7 @@ public class DocumentMetadata {
         this.updatedBy = Optional.ofNullable(updatedBy);
         return this;
     }
+
 
     public DocumentMetadata withUpdatedBy(Optional<? extends Person> updatedBy) {
         Utils.checkNotNull(updatedBy, "updatedBy");
@@ -1068,6 +1122,7 @@ public class DocumentMetadata {
         this.labels = Optional.ofNullable(labels);
         return this;
     }
+
 
     /**
      * A list of tags for the document. Interpretation is datasource specific.
@@ -1087,6 +1142,7 @@ public class DocumentMetadata {
         return this;
     }
 
+
     /**
      * A list of collections that the document belongs to.
      */
@@ -1105,6 +1161,7 @@ public class DocumentMetadata {
         return this;
     }
 
+
     /**
      * The user-visible datasource specific id (e.g. Salesforce case number for example, GitHub PR number).
      */
@@ -1120,6 +1177,7 @@ public class DocumentMetadata {
         return this;
     }
 
+
     public DocumentMetadata withInteractions(Optional<? extends DocumentInteractions> interactions) {
         Utils.checkNotNull(interactions, "interactions");
         this.interactions = interactions;
@@ -1131,6 +1189,7 @@ public class DocumentMetadata {
         this.verification = Optional.ofNullable(verification);
         return this;
     }
+
 
     public DocumentMetadata withVerification(Optional<? extends Verification> verification) {
         Utils.checkNotNull(verification, "verification");
@@ -1144,6 +1203,7 @@ public class DocumentMetadata {
         return this;
     }
 
+
     public DocumentMetadata withViewerInfo(Optional<? extends ViewerInfo> viewerInfo) {
         Utils.checkNotNull(viewerInfo, "viewerInfo");
         this.viewerInfo = viewerInfo;
@@ -1156,6 +1216,7 @@ public class DocumentMetadata {
         return this;
     }
 
+
     public DocumentMetadata withPermissions(Optional<? extends ObjectPermissions> permissions) {
         Utils.checkNotNull(permissions, "permissions");
         this.permissions = permissions;
@@ -1167,6 +1228,7 @@ public class DocumentMetadata {
         this.visitCount = Optional.ofNullable(visitCount);
         return this;
     }
+
 
     public DocumentMetadata withVisitCount(Optional<? extends CountInfo> visitCount) {
         Utils.checkNotNull(visitCount, "visitCount");
@@ -1182,6 +1244,7 @@ public class DocumentMetadata {
         this.shortcuts = Optional.ofNullable(shortcuts);
         return this;
     }
+
 
     /**
      * A list of shortcuts of which destination URL is for the document.
@@ -1201,6 +1264,7 @@ public class DocumentMetadata {
         return this;
     }
 
+
     /**
      * For file datasources like onedrive/github etc this has the path to the file
      */
@@ -1218,6 +1282,7 @@ public class DocumentMetadata {
         this.customData = Optional.ofNullable(customData);
         return this;
     }
+
 
     /**
      * Custom fields specific to individual datasources
@@ -1237,6 +1302,7 @@ public class DocumentMetadata {
         return this;
     }
 
+
     /**
      * The document's document_category(.proto).
      */
@@ -1252,6 +1318,7 @@ public class DocumentMetadata {
         return this;
     }
 
+
     public DocumentMetadata withContactPerson(Optional<? extends Person> contactPerson) {
         Utils.checkNotNull(contactPerson, "contactPerson");
         this.contactPerson = contactPerson;
@@ -1264,6 +1331,7 @@ public class DocumentMetadata {
         return this;
     }
 
+
     public DocumentMetadata withThumbnail(Optional<? extends Thumbnail> thumbnail) {
         Utils.checkNotNull(thumbnail, "thumbnail");
         this.thumbnail = thumbnail;
@@ -1275,6 +1343,7 @@ public class DocumentMetadata {
         this.indexStatus = Optional.ofNullable(indexStatus);
         return this;
     }
+
 
     public DocumentMetadata withIndexStatus(Optional<? extends IndexStatus> indexStatus) {
         Utils.checkNotNull(indexStatus, "indexStatus");
@@ -1291,6 +1360,7 @@ public class DocumentMetadata {
         return this;
     }
 
+
     /**
      * A list of documents that are ancestors of this document in the hierarchy of the document's datasource, for example parent folders or containers. Ancestors can be of different types and some may not be indexed. Higher level ancestors appear earlier in the list.
      */
@@ -1300,7 +1370,6 @@ public class DocumentMetadata {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1356,45 +1425,19 @@ public class DocumentMetadata {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            datasource,
-            datasourceInstance,
-            objectType,
-            container,
-            containerId,
-            superContainerId,
-            parentId,
-            mimeType,
-            documentId,
-            loggingId,
-            documentIdHash,
-            createTime,
-            updateTime,
-            author,
-            owner,
-            mentionedPeople,
-            visibility,
-            components,
-            status,
-            statusCategory,
-            pins,
-            priority,
-            assignedTo,
-            updatedBy,
-            labels,
-            collections,
-            datasourceId,
-            interactions,
-            verification,
-            viewerInfo,
-            permissions,
-            visitCount,
-            shortcuts,
-            path,
-            customData,
-            documentCategory,
-            contactPerson,
-            thumbnail,
-            indexStatus,
+            datasource, datasourceInstance, objectType,
+            container, containerId, superContainerId,
+            parentId, mimeType, documentId,
+            loggingId, documentIdHash, createTime,
+            updateTime, author, owner,
+            mentionedPeople, visibility, components,
+            status, statusCategory, pins,
+            priority, assignedTo, updatedBy,
+            labels, collections, datasourceId,
+            interactions, verification, viewerInfo,
+            permissions, visitCount, shortcuts,
+            path, customData, documentCategory,
+            contactPerson, thumbnail, indexStatus,
             ancestors);
     }
     
@@ -1442,92 +1485,94 @@ public class DocumentMetadata {
                 "indexStatus", indexStatus,
                 "ancestors", ancestors);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> datasource = Optional.empty();
- 
+
         private Optional<String> datasourceInstance = Optional.empty();
- 
+
         private Optional<String> objectType = Optional.empty();
- 
+
         private Optional<String> container = Optional.empty();
- 
+
         private Optional<String> containerId = Optional.empty();
- 
+
         private Optional<String> superContainerId = Optional.empty();
- 
+
         private Optional<String> parentId = Optional.empty();
- 
+
         private Optional<String> mimeType = Optional.empty();
- 
+
         private Optional<String> documentId = Optional.empty();
- 
+
         private Optional<String> loggingId = Optional.empty();
- 
+
         private Optional<String> documentIdHash = Optional.empty();
- 
+
         private Optional<OffsetDateTime> createTime = Optional.empty();
- 
+
         private Optional<OffsetDateTime> updateTime = Optional.empty();
- 
+
         private Optional<? extends Person> author = Optional.empty();
- 
+
         private Optional<? extends Person> owner = Optional.empty();
- 
+
         private Optional<? extends List<Person>> mentionedPeople = Optional.empty();
- 
+
         private Optional<? extends DocumentVisibility> visibility = Optional.empty();
- 
+
         private Optional<? extends List<String>> components = Optional.empty();
- 
+
         private Optional<String> status = Optional.empty();
- 
+
         private Optional<String> statusCategory = Optional.empty();
- 
+
         private Optional<? extends List<PinDocument>> pins = Optional.empty();
- 
+
         private Optional<String> priority = Optional.empty();
- 
+
         private Optional<? extends Person> assignedTo = Optional.empty();
- 
+
         private Optional<? extends Person> updatedBy = Optional.empty();
- 
+
         private Optional<? extends List<String>> labels = Optional.empty();
- 
+
         private Optional<? extends List<Collection>> collections = Optional.empty();
- 
+
         private Optional<String> datasourceId = Optional.empty();
- 
+
         private Optional<? extends DocumentInteractions> interactions = Optional.empty();
- 
+
         private Optional<? extends Verification> verification = Optional.empty();
- 
+
         private Optional<? extends ViewerInfo> viewerInfo = Optional.empty();
- 
+
         private Optional<? extends ObjectPermissions> permissions = Optional.empty();
- 
+
         private Optional<? extends CountInfo> visitCount = Optional.empty();
- 
+
         private Optional<? extends List<Shortcut>> shortcuts = Optional.empty();
- 
+
         private Optional<String> path = Optional.empty();
- 
+
         private Optional<? extends Map<String, CustomDataValue>> customData = Optional.empty();
- 
+
         private Optional<String> documentCategory = Optional.empty();
- 
+
         private Optional<? extends Person> contactPerson = Optional.empty();
- 
+
         private Optional<? extends Thumbnail> thumbnail = Optional.empty();
- 
+
         private Optional<? extends IndexStatus> indexStatus = Optional.empty();
- 
+
         private Optional<? extends List<Document>> ancestors = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder datasource(String datasource) {
             Utils.checkNotNull(datasource, "datasource");
@@ -1540,6 +1585,7 @@ public class DocumentMetadata {
             this.datasource = datasource;
             return this;
         }
+
 
         /**
          * The datasource instance from which the document was extracted.
@@ -1559,6 +1605,7 @@ public class DocumentMetadata {
             return this;
         }
 
+
         /**
          * The type of the result. Interpretation is specific to each datasource. (e.g. for Jira issues, this is the issue type such as Bug or Feature Request).
          */
@@ -1576,6 +1623,7 @@ public class DocumentMetadata {
             this.objectType = objectType;
             return this;
         }
+
 
         /**
          * The name of the container (higher level parent, not direct parent) of the result. Interpretation is specific to each datasource (e.g. Channels for Slack, Project for Jira). cf. parentId
@@ -1595,6 +1643,7 @@ public class DocumentMetadata {
             return this;
         }
 
+
         /**
          * The Glean Document ID of the container. Uniquely identifies the container.
          */
@@ -1612,6 +1661,7 @@ public class DocumentMetadata {
             this.containerId = containerId;
             return this;
         }
+
 
         /**
          * The Glean Document ID of the super container. Super container represents a broader abstraction that contains many containers. For example, whereas container might refer to a folder, super container would refer to a drive.
@@ -1631,6 +1681,7 @@ public class DocumentMetadata {
             return this;
         }
 
+
         /**
          * The id of the direct parent of the result. Interpretation is specific to each datasource (e.g. parent issue for Jira). cf. container
          */
@@ -1649,6 +1700,7 @@ public class DocumentMetadata {
             return this;
         }
 
+
         public Builder mimeType(String mimeType) {
             Utils.checkNotNull(mimeType, "mimeType");
             this.mimeType = Optional.ofNullable(mimeType);
@@ -1660,6 +1712,7 @@ public class DocumentMetadata {
             this.mimeType = mimeType;
             return this;
         }
+
 
         /**
          * The index-wide unique identifier.
@@ -1679,6 +1732,7 @@ public class DocumentMetadata {
             return this;
         }
 
+
         /**
          * A unique identifier used to represent the document in any logging or feedback requests in place of documentId.
          */
@@ -1696,6 +1750,7 @@ public class DocumentMetadata {
             this.loggingId = loggingId;
             return this;
         }
+
 
         /**
          * Hash of the Glean Document ID.
@@ -1715,6 +1770,7 @@ public class DocumentMetadata {
             return this;
         }
 
+
         public Builder createTime(OffsetDateTime createTime) {
             Utils.checkNotNull(createTime, "createTime");
             this.createTime = Optional.ofNullable(createTime);
@@ -1726,6 +1782,7 @@ public class DocumentMetadata {
             this.createTime = createTime;
             return this;
         }
+
 
         public Builder updateTime(OffsetDateTime updateTime) {
             Utils.checkNotNull(updateTime, "updateTime");
@@ -1739,6 +1796,7 @@ public class DocumentMetadata {
             return this;
         }
 
+
         public Builder author(Person author) {
             Utils.checkNotNull(author, "author");
             this.author = Optional.ofNullable(author);
@@ -1751,6 +1809,7 @@ public class DocumentMetadata {
             return this;
         }
 
+
         public Builder owner(Person owner) {
             Utils.checkNotNull(owner, "owner");
             this.owner = Optional.ofNullable(owner);
@@ -1762,6 +1821,7 @@ public class DocumentMetadata {
             this.owner = owner;
             return this;
         }
+
 
         /**
          * A list of people mentioned in the document.
@@ -1781,6 +1841,7 @@ public class DocumentMetadata {
             return this;
         }
 
+
         /**
          * The level of visibility of the document as understood by our system.
          */
@@ -1798,6 +1859,7 @@ public class DocumentMetadata {
             this.visibility = visibility;
             return this;
         }
+
 
         /**
          * A list of components this result is associated with. Interpretation is specific to each datasource. (e.g. for Jira issues, these are [components](https://confluence.atlassian.com/jirasoftwarecloud/organizing-work-with-components-764478279.html).)
@@ -1817,6 +1879,7 @@ public class DocumentMetadata {
             return this;
         }
 
+
         /**
          * The status or disposition of the result. Interpretation is specific to each datasource. (e.g. for Jira issues, this is the issue status such as Done, In Progress or Will Not Fix).
          */
@@ -1834,6 +1897,7 @@ public class DocumentMetadata {
             this.status = status;
             return this;
         }
+
 
         /**
          * The status category of the result. Meant to be more general than status. Interpretation is specific to each datasource.
@@ -1853,6 +1917,7 @@ public class DocumentMetadata {
             return this;
         }
 
+
         /**
          * A list of stars associated with this result.  "Pin" is an older name.
          */
@@ -1870,6 +1935,7 @@ public class DocumentMetadata {
             this.pins = pins;
             return this;
         }
+
 
         /**
          * The document priority. Interpretation is datasource specific.
@@ -1889,6 +1955,7 @@ public class DocumentMetadata {
             return this;
         }
 
+
         public Builder assignedTo(Person assignedTo) {
             Utils.checkNotNull(assignedTo, "assignedTo");
             this.assignedTo = Optional.ofNullable(assignedTo);
@@ -1901,6 +1968,7 @@ public class DocumentMetadata {
             return this;
         }
 
+
         public Builder updatedBy(Person updatedBy) {
             Utils.checkNotNull(updatedBy, "updatedBy");
             this.updatedBy = Optional.ofNullable(updatedBy);
@@ -1912,6 +1980,7 @@ public class DocumentMetadata {
             this.updatedBy = updatedBy;
             return this;
         }
+
 
         /**
          * A list of tags for the document. Interpretation is datasource specific.
@@ -1931,6 +2000,7 @@ public class DocumentMetadata {
             return this;
         }
 
+
         /**
          * A list of collections that the document belongs to.
          */
@@ -1948,6 +2018,7 @@ public class DocumentMetadata {
             this.collections = collections;
             return this;
         }
+
 
         /**
          * The user-visible datasource specific id (e.g. Salesforce case number for example, GitHub PR number).
@@ -1967,6 +2038,7 @@ public class DocumentMetadata {
             return this;
         }
 
+
         public Builder interactions(DocumentInteractions interactions) {
             Utils.checkNotNull(interactions, "interactions");
             this.interactions = Optional.ofNullable(interactions);
@@ -1978,6 +2050,7 @@ public class DocumentMetadata {
             this.interactions = interactions;
             return this;
         }
+
 
         public Builder verification(Verification verification) {
             Utils.checkNotNull(verification, "verification");
@@ -1991,6 +2064,7 @@ public class DocumentMetadata {
             return this;
         }
 
+
         public Builder viewerInfo(ViewerInfo viewerInfo) {
             Utils.checkNotNull(viewerInfo, "viewerInfo");
             this.viewerInfo = Optional.ofNullable(viewerInfo);
@@ -2002,6 +2076,7 @@ public class DocumentMetadata {
             this.viewerInfo = viewerInfo;
             return this;
         }
+
 
         public Builder permissions(ObjectPermissions permissions) {
             Utils.checkNotNull(permissions, "permissions");
@@ -2015,6 +2090,7 @@ public class DocumentMetadata {
             return this;
         }
 
+
         public Builder visitCount(CountInfo visitCount) {
             Utils.checkNotNull(visitCount, "visitCount");
             this.visitCount = Optional.ofNullable(visitCount);
@@ -2026,6 +2102,7 @@ public class DocumentMetadata {
             this.visitCount = visitCount;
             return this;
         }
+
 
         /**
          * A list of shortcuts of which destination URL is for the document.
@@ -2045,6 +2122,7 @@ public class DocumentMetadata {
             return this;
         }
 
+
         /**
          * For file datasources like onedrive/github etc this has the path to the file
          */
@@ -2062,6 +2140,7 @@ public class DocumentMetadata {
             this.path = path;
             return this;
         }
+
 
         /**
          * Custom fields specific to individual datasources
@@ -2081,6 +2160,7 @@ public class DocumentMetadata {
             return this;
         }
 
+
         /**
          * The document's document_category(.proto).
          */
@@ -2099,6 +2179,7 @@ public class DocumentMetadata {
             return this;
         }
 
+
         public Builder contactPerson(Person contactPerson) {
             Utils.checkNotNull(contactPerson, "contactPerson");
             this.contactPerson = Optional.ofNullable(contactPerson);
@@ -2110,6 +2191,7 @@ public class DocumentMetadata {
             this.contactPerson = contactPerson;
             return this;
         }
+
 
         public Builder thumbnail(Thumbnail thumbnail) {
             Utils.checkNotNull(thumbnail, "thumbnail");
@@ -2123,6 +2205,7 @@ public class DocumentMetadata {
             return this;
         }
 
+
         public Builder indexStatus(IndexStatus indexStatus) {
             Utils.checkNotNull(indexStatus, "indexStatus");
             this.indexStatus = Optional.ofNullable(indexStatus);
@@ -2134,6 +2217,7 @@ public class DocumentMetadata {
             this.indexStatus = indexStatus;
             return this;
         }
+
 
         /**
          * A list of documents that are ancestors of this document in the hierarchy of the document's datasource, for example parent folders or containers. Ancestors can be of different types and some may not be indexed. Higher level ancestors appear earlier in the list.
@@ -2152,49 +2236,25 @@ public class DocumentMetadata {
             this.ancestors = ancestors;
             return this;
         }
-        
+
         public DocumentMetadata build() {
+
             return new DocumentMetadata(
-                datasource,
-                datasourceInstance,
-                objectType,
-                container,
-                containerId,
-                superContainerId,
-                parentId,
-                mimeType,
-                documentId,
-                loggingId,
-                documentIdHash,
-                createTime,
-                updateTime,
-                author,
-                owner,
-                mentionedPeople,
-                visibility,
-                components,
-                status,
-                statusCategory,
-                pins,
-                priority,
-                assignedTo,
-                updatedBy,
-                labels,
-                collections,
-                datasourceId,
-                interactions,
-                verification,
-                viewerInfo,
-                permissions,
-                visitCount,
-                shortcuts,
-                path,
-                customData,
-                documentCategory,
-                contactPerson,
-                thumbnail,
-                indexStatus,
+                datasource, datasourceInstance, objectType,
+                container, containerId, superContainerId,
+                parentId, mimeType, documentId,
+                loggingId, documentIdHash, createTime,
+                updateTime, author, owner,
+                mentionedPeople, visibility, components,
+                status, statusCategory, pins,
+                priority, assignedTo, updatedBy,
+                labels, collections, datasourceId,
+                interactions, verification, viewerInfo,
+                permissions, visitCount, shortcuts,
+                path, customData, documentCategory,
+                contactPerson, thumbnail, indexStatus,
                 ancestors);
         }
+
     }
 }

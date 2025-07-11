@@ -45,7 +45,7 @@ public class GetRestApiV1ToolsListRequestBuilder {
     public GetRestApiV1ToolsListResponse call() throws Exception {
         
         RequestOperation<GetRestApiV1ToolsListRequest, GetRestApiV1ToolsListResponse> operation
-              = new GetRestApiV1ToolsListOperation( sdkConfiguration);
+              = new GetRestApiV1ToolsListOperation(sdkConfiguration);
         GetRestApiV1ToolsListRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

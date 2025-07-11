@@ -29,7 +29,7 @@ public class EditanswerRequestBuilder {
     public EditanswerResponse call() throws Exception {
         
         RequestOperation<EditAnswerRequest, EditanswerResponse> operation
-              = new EditanswerOperation( sdkConfiguration);
+              = new EditanswerOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

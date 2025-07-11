@@ -14,8 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class UserGeneratedContentId {
 
+public class UserGeneratedContentId {
     /**
      * The opaque id of the user generated content.
      */
@@ -42,9 +42,10 @@ public class UserGeneratedContentId {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The opaque id of the user generated content.
@@ -55,6 +56,7 @@ public class UserGeneratedContentId {
         return this;
     }
 
+
     /**
      * The opaque id of the user generated content.
      */
@@ -64,7 +66,6 @@ public class UserGeneratedContentId {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -89,14 +90,16 @@ public class UserGeneratedContentId {
         return Utils.toString(UserGeneratedContentId.class,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> id = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The opaque id of the user generated content.
@@ -115,10 +118,12 @@ public class UserGeneratedContentId {
             this.id = id;
             return this;
         }
-        
+
         public UserGeneratedContentId build() {
+
             return new UserGeneratedContentId(
                 id);
         }
+
     }
 }

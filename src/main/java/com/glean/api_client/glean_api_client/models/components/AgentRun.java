@@ -23,7 +23,6 @@ import java.util.Optional;
  * <p>Payload for creating a run.
  */
 public class AgentRun {
-
     /**
      * The ID of the agent to run.
      */
@@ -79,7 +78,8 @@ public class AgentRun {
     
     public AgentRun(
             String agentId) {
-        this(agentId, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(agentId, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -126,9 +126,10 @@ public class AgentRun {
         return (Optional<AgentExecutionStatus>) status;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the agent to run.
@@ -148,6 +149,7 @@ public class AgentRun {
         return this;
     }
 
+
     /**
      * The input to the agent.
      */
@@ -165,6 +167,7 @@ public class AgentRun {
         this.messages = Optional.ofNullable(messages);
         return this;
     }
+
 
     /**
      * The messages to pass an input to the agent.
@@ -184,6 +187,7 @@ public class AgentRun {
         return this;
     }
 
+
     /**
      * The metadata to pass to the agent.
      */
@@ -202,6 +206,7 @@ public class AgentRun {
         return this;
     }
 
+
     /**
      * The status of the run. One of 'error', 'success'.
      */
@@ -211,7 +216,6 @@ public class AgentRun {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -232,11 +236,8 @@ public class AgentRun {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            agentId,
-            input,
-            messages,
-            metadata,
-            status);
+            agentId, input, messages,
+            metadata, status);
     }
     
     @Override
@@ -248,22 +249,24 @@ public class AgentRun {
                 "metadata", metadata,
                 "status", status);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String agentId;
- 
+
         private Optional<? extends Map<String, Object>> input = Optional.empty();
- 
+
         private Optional<? extends List<Message>> messages = Optional.empty();
- 
+
         private Optional<? extends Map<String, Object>> metadata = Optional.empty();
- 
+
         private Optional<? extends AgentExecutionStatus> status = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the agent to run.
@@ -273,6 +276,7 @@ public class AgentRun {
             this.agentId = agentId;
             return this;
         }
+
 
         /**
          * The input to the agent.
@@ -292,6 +296,7 @@ public class AgentRun {
             return this;
         }
 
+
         /**
          * The messages to pass an input to the agent.
          */
@@ -309,6 +314,7 @@ public class AgentRun {
             this.messages = messages;
             return this;
         }
+
 
         /**
          * The metadata to pass to the agent.
@@ -328,6 +334,7 @@ public class AgentRun {
             return this;
         }
 
+
         /**
          * The status of the run. One of 'error', 'success'.
          */
@@ -345,14 +352,13 @@ public class AgentRun {
             this.status = status;
             return this;
         }
-        
+
         public AgentRun build() {
+
             return new AgentRun(
-                agentId,
-                input,
-                messages,
-                metadata,
-                status);
+                agentId, input, messages,
+                metadata, status);
         }
+
     }
 }

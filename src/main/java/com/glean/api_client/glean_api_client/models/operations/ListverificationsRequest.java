@@ -12,8 +12,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class ListverificationsRequest {
 
+public class ListverificationsRequest {
     /**
      * Maximum number of documents to return
      */
@@ -39,9 +39,10 @@ public class ListverificationsRequest {
         return count;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Maximum number of documents to return
@@ -52,6 +53,7 @@ public class ListverificationsRequest {
         return this;
     }
 
+
     /**
      * Maximum number of documents to return
      */
@@ -61,7 +63,6 @@ public class ListverificationsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -86,14 +87,16 @@ public class ListverificationsRequest {
         return Utils.toString(ListverificationsRequest.class,
                 "count", count);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> count = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Maximum number of documents to return
@@ -112,10 +115,12 @@ public class ListverificationsRequest {
             this.count = count;
             return this;
         }
-        
+
         public ListverificationsRequest build() {
+
             return new ListverificationsRequest(
                 count);
         }
+
     }
 }

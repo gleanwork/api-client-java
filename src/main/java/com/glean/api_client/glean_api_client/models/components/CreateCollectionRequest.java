@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class CreateCollectionRequest {
 
+public class CreateCollectionRequest {
     /**
      * The unique name of the Collection.
      */
@@ -73,6 +73,7 @@ public class CreateCollectionRequest {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("parentId")
     private Optional<Long> parentId;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("thumbnail")
@@ -131,7 +132,10 @@ public class CreateCollectionRequest {
     
     public CreateCollectionRequest(
             String name) {
-        this(name, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(name, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -223,9 +227,10 @@ public class CreateCollectionRequest {
         return newNextItemId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique name of the Collection.
@@ -245,6 +250,7 @@ public class CreateCollectionRequest {
         return this;
     }
 
+
     /**
      * A brief summary of the Collection's contents.
      */
@@ -262,6 +268,7 @@ public class CreateCollectionRequest {
         this.addedRoles = Optional.ofNullable(addedRoles);
         return this;
     }
+
 
     /**
      * A list of added user roles for the Collection.
@@ -281,6 +288,7 @@ public class CreateCollectionRequest {
         return this;
     }
 
+
     /**
      * A list of removed user roles for the Collection.
      */
@@ -298,6 +306,7 @@ public class CreateCollectionRequest {
         this.audienceFilters = Optional.ofNullable(audienceFilters);
         return this;
     }
+
 
     /**
      * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
@@ -317,6 +326,7 @@ public class CreateCollectionRequest {
         return this;
     }
 
+
     /**
      * The emoji icon of this Collection.
      */
@@ -334,6 +344,7 @@ public class CreateCollectionRequest {
         this.adminLocked = Optional.ofNullable(adminLocked);
         return this;
     }
+
 
     /**
      * Indicates whether edits are allowed for everyone or only admins.
@@ -353,6 +364,7 @@ public class CreateCollectionRequest {
         return this;
     }
 
+
     /**
      * The parent of this Collection, or 0 if it's a top-level Collection.
      */
@@ -368,6 +380,7 @@ public class CreateCollectionRequest {
         return this;
     }
 
+
     public CreateCollectionRequest withThumbnail(Optional<? extends Thumbnail> thumbnail) {
         Utils.checkNotNull(thumbnail, "thumbnail");
         this.thumbnail = thumbnail;
@@ -382,6 +395,7 @@ public class CreateCollectionRequest {
         this.allowedDatasource = Optional.ofNullable(allowedDatasource);
         return this;
     }
+
 
     /**
      * The datasource type this Collection can hold.
@@ -401,6 +415,7 @@ public class CreateCollectionRequest {
         return this;
     }
 
+
     /**
      * The (optional) ItemId of the next CollectionItem in sequence. If omitted, will be added to the end of the Collection. Only used if parentId is specified.
      */
@@ -410,7 +425,6 @@ public class CreateCollectionRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -437,17 +451,10 @@ public class CreateCollectionRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            description,
-            addedRoles,
-            removedRoles,
-            audienceFilters,
-            icon,
-            adminLocked,
-            parentId,
-            thumbnail,
-            allowedDatasource,
-            newNextItemId);
+            name, description, addedRoles,
+            removedRoles, audienceFilters, icon,
+            adminLocked, parentId, thumbnail,
+            allowedDatasource, newNextItemId);
     }
     
     @Override
@@ -465,34 +472,36 @@ public class CreateCollectionRequest {
                 "allowedDatasource", allowedDatasource,
                 "newNextItemId", newNextItemId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<? extends List<UserRoleSpecification>> addedRoles = Optional.empty();
- 
+
         private Optional<? extends List<UserRoleSpecification>> removedRoles = Optional.empty();
- 
+
         private Optional<? extends List<FacetFilter>> audienceFilters = Optional.empty();
- 
+
         private Optional<String> icon = Optional.empty();
- 
+
         private Optional<Boolean> adminLocked = Optional.empty();
- 
+
         private Optional<Long> parentId = Optional.empty();
- 
+
         private Optional<? extends Thumbnail> thumbnail = Optional.empty();
- 
+
         private Optional<String> allowedDatasource = Optional.empty();
- 
+
         private Optional<String> newNextItemId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique name of the Collection.
@@ -502,6 +511,7 @@ public class CreateCollectionRequest {
             this.name = name;
             return this;
         }
+
 
         /**
          * A brief summary of the Collection's contents.
@@ -521,6 +531,7 @@ public class CreateCollectionRequest {
             return this;
         }
 
+
         /**
          * A list of added user roles for the Collection.
          */
@@ -538,6 +549,7 @@ public class CreateCollectionRequest {
             this.addedRoles = addedRoles;
             return this;
         }
+
 
         /**
          * A list of removed user roles for the Collection.
@@ -557,6 +569,7 @@ public class CreateCollectionRequest {
             return this;
         }
 
+
         /**
          * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
          */
@@ -574,6 +587,7 @@ public class CreateCollectionRequest {
             this.audienceFilters = audienceFilters;
             return this;
         }
+
 
         /**
          * The emoji icon of this Collection.
@@ -593,6 +607,7 @@ public class CreateCollectionRequest {
             return this;
         }
 
+
         /**
          * Indicates whether edits are allowed for everyone or only admins.
          */
@@ -610,6 +625,7 @@ public class CreateCollectionRequest {
             this.adminLocked = adminLocked;
             return this;
         }
+
 
         /**
          * The parent of this Collection, or 0 if it's a top-level Collection.
@@ -629,6 +645,7 @@ public class CreateCollectionRequest {
             return this;
         }
 
+
         public Builder thumbnail(Thumbnail thumbnail) {
             Utils.checkNotNull(thumbnail, "thumbnail");
             this.thumbnail = Optional.ofNullable(thumbnail);
@@ -640,6 +657,7 @@ public class CreateCollectionRequest {
             this.thumbnail = thumbnail;
             return this;
         }
+
 
         /**
          * The datasource type this Collection can hold.
@@ -659,6 +677,7 @@ public class CreateCollectionRequest {
             return this;
         }
 
+
         /**
          * The (optional) ItemId of the next CollectionItem in sequence. If omitted, will be added to the end of the Collection. Only used if parentId is specified.
          */
@@ -676,20 +695,15 @@ public class CreateCollectionRequest {
             this.newNextItemId = newNextItemId;
             return this;
         }
-        
+
         public CreateCollectionRequest build() {
+
             return new CreateCollectionRequest(
-                name,
-                description,
-                addedRoles,
-                removedRoles,
-                audienceFilters,
-                icon,
-                adminLocked,
-                parentId,
-                thumbnail,
-                allowedDatasource,
-                newNextItemId);
+                name, description, addedRoles,
+                removedRoles, audienceFilters, icon,
+                adminLocked, parentId, thumbnail,
+                allowedDatasource, newNextItemId);
         }
+
     }
 }

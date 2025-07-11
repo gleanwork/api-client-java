@@ -15,8 +15,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class ExternalShortcut {
 
+public class ExternalShortcut {
     /**
      * link text following the viewPrefix as entered by the user. For example, if the view prefix is `go/` and the shortened URL is `go/abc`, then `abc` is the inputAlias.
      */
@@ -132,7 +132,10 @@ public class ExternalShortcut {
             String destinationUrl,
             String createdBy,
             String intermediateUrl) {
-        this(inputAlias, Optional.empty(), destinationUrl, createdBy, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), intermediateUrl, Optional.empty(), Optional.empty());
+        this(inputAlias, Optional.empty(), destinationUrl,
+            createdBy, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), intermediateUrl,
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -223,9 +226,10 @@ public class ExternalShortcut {
         return editUrl;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * link text following the viewPrefix as entered by the user. For example, if the view prefix is `go/` and the shortened URL is `go/abc`, then `abc` is the inputAlias.
@@ -244,6 +248,7 @@ public class ExternalShortcut {
         this.description = Optional.ofNullable(description);
         return this;
     }
+
 
     /**
      * A short, plain text blurb to help people understand the intent of the shortcut.
@@ -281,6 +286,7 @@ public class ExternalShortcut {
         return this;
     }
 
+
     /**
      * The time the shortcut was created in epoch seconds.
      */
@@ -298,6 +304,7 @@ public class ExternalShortcut {
         this.updatedBy = Optional.ofNullable(updatedBy);
         return this;
     }
+
 
     /**
      * Email of the user who last updated this shortcut.
@@ -317,6 +324,7 @@ public class ExternalShortcut {
         return this;
     }
 
+
     /**
      * The time the shortcut was updated in epoch seconds.
      */
@@ -334,6 +342,7 @@ public class ExternalShortcut {
         this.title = Optional.ofNullable(title);
         return this;
     }
+
 
     /**
      * Title of the golink
@@ -362,6 +371,7 @@ public class ExternalShortcut {
         return this;
     }
 
+
     /**
      * decayed visits score for ranking
      */
@@ -380,6 +390,7 @@ public class ExternalShortcut {
         return this;
     }
 
+
     /**
      * The URL using which the user can access the edit page of the shortcut.
      */
@@ -389,7 +400,6 @@ public class ExternalShortcut {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -416,17 +426,10 @@ public class ExternalShortcut {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            inputAlias,
-            description,
-            destinationUrl,
-            createdBy,
-            createTime,
-            updatedBy,
-            updateTime,
-            title,
-            intermediateUrl,
-            decayedVisitScore,
-            editUrl);
+            inputAlias, description, destinationUrl,
+            createdBy, createTime, updatedBy,
+            updateTime, title, intermediateUrl,
+            decayedVisitScore, editUrl);
     }
     
     @Override
@@ -444,34 +447,36 @@ public class ExternalShortcut {
                 "decayedVisitScore", decayedVisitScore,
                 "editUrl", editUrl);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String inputAlias;
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private String destinationUrl;
- 
+
         private String createdBy;
- 
+
         private Optional<Long> createTime = Optional.empty();
- 
+
         private Optional<String> updatedBy = Optional.empty();
- 
+
         private Optional<Long> updateTime = Optional.empty();
- 
+
         private Optional<String> title = Optional.empty();
- 
+
         private String intermediateUrl;
- 
+
         private Optional<Double> decayedVisitScore = Optional.empty();
- 
+
         private Optional<String> editUrl = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * link text following the viewPrefix as entered by the user. For example, if the view prefix is `go/` and the shortened URL is `go/abc`, then `abc` is the inputAlias.
@@ -481,6 +486,7 @@ public class ExternalShortcut {
             this.inputAlias = inputAlias;
             return this;
         }
+
 
         /**
          * A short, plain text blurb to help people understand the intent of the shortcut.
@@ -500,6 +506,7 @@ public class ExternalShortcut {
             return this;
         }
 
+
         /**
          * destination URL for the shortcut.
          */
@@ -509,6 +516,7 @@ public class ExternalShortcut {
             return this;
         }
 
+
         /**
          * Email of the user who created this shortcut.
          */
@@ -517,6 +525,7 @@ public class ExternalShortcut {
             this.createdBy = createdBy;
             return this;
         }
+
 
         /**
          * The time the shortcut was created in epoch seconds.
@@ -536,6 +545,7 @@ public class ExternalShortcut {
             return this;
         }
 
+
         /**
          * Email of the user who last updated this shortcut.
          */
@@ -553,6 +563,7 @@ public class ExternalShortcut {
             this.updatedBy = updatedBy;
             return this;
         }
+
 
         /**
          * The time the shortcut was updated in epoch seconds.
@@ -572,6 +583,7 @@ public class ExternalShortcut {
             return this;
         }
 
+
         /**
          * Title of the golink
          */
@@ -590,6 +602,7 @@ public class ExternalShortcut {
             return this;
         }
 
+
         /**
          * The URL from which the user is then redirected to the destination URL.
          */
@@ -598,6 +611,7 @@ public class ExternalShortcut {
             this.intermediateUrl = intermediateUrl;
             return this;
         }
+
 
         /**
          * decayed visits score for ranking
@@ -617,6 +631,7 @@ public class ExternalShortcut {
             return this;
         }
 
+
         /**
          * The URL using which the user can access the edit page of the shortcut.
          */
@@ -634,20 +649,15 @@ public class ExternalShortcut {
             this.editUrl = editUrl;
             return this;
         }
-        
+
         public ExternalShortcut build() {
+
             return new ExternalShortcut(
-                inputAlias,
-                description,
-                destinationUrl,
-                createdBy,
-                createTime,
-                updatedBy,
-                updateTime,
-                title,
-                intermediateUrl,
-                decayedVisitScore,
-                editUrl);
+                inputAlias, description, destinationUrl,
+                createdBy, createTime, updatedBy,
+                updateTime, title, intermediateUrl,
+                decayedVisitScore, editUrl);
         }
+
     }
 }

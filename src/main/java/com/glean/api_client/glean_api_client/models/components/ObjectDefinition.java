@@ -22,7 +22,6 @@ import java.util.Optional;
  * <p>The definition for an `DocumentMetadata.objectType` within a datasource.
  */
 public class ObjectDefinition {
-
     /**
      * Unique identifier for this `DocumentMetadata.objectType`. If omitted, this definition is used as a default for all unmatched `DocumentMetadata.objectType`s in this datasource.
      */
@@ -43,6 +42,7 @@ public class ObjectDefinition {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("docCategory")
     private Optional<? extends DocCategory> docCategory;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("propertyDefinitions")
@@ -85,7 +85,8 @@ public class ObjectDefinition {
     }
     
     public ObjectDefinition() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -136,9 +137,10 @@ public class ObjectDefinition {
         return summarizable;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unique identifier for this `DocumentMetadata.objectType`. If omitted, this definition is used as a default for all unmatched `DocumentMetadata.objectType`s in this datasource.
@@ -148,6 +150,7 @@ public class ObjectDefinition {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * Unique identifier for this `DocumentMetadata.objectType`. If omitted, this definition is used as a default for all unmatched `DocumentMetadata.objectType`s in this datasource.
@@ -167,6 +170,7 @@ public class ObjectDefinition {
         return this;
     }
 
+
     /**
      * The user-friendly name of the object for display.
      */
@@ -185,6 +189,7 @@ public class ObjectDefinition {
         return this;
     }
 
+
     /**
      * The document category of this object type.
      */
@@ -200,6 +205,7 @@ public class ObjectDefinition {
         return this;
     }
 
+
     public ObjectDefinition withPropertyDefinitions(Optional<? extends List<PropertyDefinition>> propertyDefinitions) {
         Utils.checkNotNull(propertyDefinitions, "propertyDefinitions");
         this.propertyDefinitions = propertyDefinitions;
@@ -214,6 +220,7 @@ public class ObjectDefinition {
         this.propertyGroups = Optional.ofNullable(propertyGroups);
         return this;
     }
+
 
     /**
      * A list of `PropertyGroup`s belonging to this object type, which will group properties to be displayed together in the UI.
@@ -233,6 +240,7 @@ public class ObjectDefinition {
         return this;
     }
 
+
     /**
      * Whether or not the object is summarizable
      */
@@ -242,7 +250,6 @@ public class ObjectDefinition {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -264,12 +271,8 @@ public class ObjectDefinition {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            displayLabel,
-            docCategory,
-            propertyDefinitions,
-            propertyGroups,
-            summarizable);
+            name, displayLabel, docCategory,
+            propertyDefinitions, propertyGroups, summarizable);
     }
     
     @Override
@@ -282,24 +285,26 @@ public class ObjectDefinition {
                 "propertyGroups", propertyGroups,
                 "summarizable", summarizable);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> displayLabel = Optional.empty();
- 
+
         private Optional<? extends DocCategory> docCategory = Optional.empty();
- 
+
         private Optional<? extends List<PropertyDefinition>> propertyDefinitions = Optional.empty();
- 
+
         private Optional<? extends List<PropertyGroup>> propertyGroups = Optional.empty();
- 
+
         private Optional<Boolean> summarizable = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unique identifier for this `DocumentMetadata.objectType`. If omitted, this definition is used as a default for all unmatched `DocumentMetadata.objectType`s in this datasource.
@@ -319,6 +324,7 @@ public class ObjectDefinition {
             return this;
         }
 
+
         /**
          * The user-friendly name of the object for display.
          */
@@ -336,6 +342,7 @@ public class ObjectDefinition {
             this.displayLabel = displayLabel;
             return this;
         }
+
 
         /**
          * The document category of this object type.
@@ -355,6 +362,7 @@ public class ObjectDefinition {
             return this;
         }
 
+
         public Builder propertyDefinitions(List<PropertyDefinition> propertyDefinitions) {
             Utils.checkNotNull(propertyDefinitions, "propertyDefinitions");
             this.propertyDefinitions = Optional.ofNullable(propertyDefinitions);
@@ -366,6 +374,7 @@ public class ObjectDefinition {
             this.propertyDefinitions = propertyDefinitions;
             return this;
         }
+
 
         /**
          * A list of `PropertyGroup`s belonging to this object type, which will group properties to be displayed together in the UI.
@@ -385,6 +394,7 @@ public class ObjectDefinition {
             return this;
         }
 
+
         /**
          * Whether or not the object is summarizable
          */
@@ -402,15 +412,13 @@ public class ObjectDefinition {
             this.summarizable = summarizable;
             return this;
         }
-        
+
         public ObjectDefinition build() {
+
             return new ObjectDefinition(
-                name,
-                displayLabel,
-                docCategory,
-                propertyDefinitions,
-                propertyGroups,
-                summarizable);
+                name, displayLabel, docCategory,
+                propertyDefinitions, propertyGroups, summarizable);
         }
+
     }
 }

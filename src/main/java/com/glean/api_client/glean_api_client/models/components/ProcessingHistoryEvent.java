@@ -19,7 +19,6 @@ import java.util.Optional;
  * <p>Processing history event for a datasource
  */
 public class ProcessingHistoryEvent {
-
     /**
      * The start time of the processing in ISO 8601 format
      */
@@ -64,9 +63,10 @@ public class ProcessingHistoryEvent {
         return endTime;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The start time of the processing in ISO 8601 format
@@ -76,6 +76,7 @@ public class ProcessingHistoryEvent {
         this.startTime = Optional.ofNullable(startTime);
         return this;
     }
+
 
     /**
      * The start time of the processing in ISO 8601 format
@@ -95,6 +96,7 @@ public class ProcessingHistoryEvent {
         return this;
     }
 
+
     /**
      * The end time of the processing in ISO 8601 format, 'NA' if still in progress
      */
@@ -104,7 +106,6 @@ public class ProcessingHistoryEvent {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -122,8 +123,7 @@ public class ProcessingHistoryEvent {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            startTime,
-            endTime);
+            startTime, endTime);
     }
     
     @Override
@@ -132,16 +132,18 @@ public class ProcessingHistoryEvent {
                 "startTime", startTime,
                 "endTime", endTime);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> startTime = Optional.empty();
- 
+
         private Optional<String> endTime = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The start time of the processing in ISO 8601 format
@@ -161,6 +163,7 @@ public class ProcessingHistoryEvent {
             return this;
         }
 
+
         /**
          * The end time of the processing in ISO 8601 format, 'NA' if still in progress
          */
@@ -178,11 +181,12 @@ public class ProcessingHistoryEvent {
             this.endTime = endTime;
             return this;
         }
-        
+
         public ProcessingHistoryEvent build() {
+
             return new ProcessingHistoryEvent(
-                startTime,
-                endTime);
+                startTime, endTime);
         }
+
     }
 }

@@ -15,8 +15,8 @@ import java.lang.String;
 import java.util.List;
 import java.util.Optional;
 
-public class DeleteCollectionRequest {
 
+public class DeleteCollectionRequest {
     /**
      * The IDs of the Collections to delete.
      */
@@ -61,9 +61,10 @@ public class DeleteCollectionRequest {
         return allowedDatasource;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The IDs of the Collections to delete.
@@ -83,6 +84,7 @@ public class DeleteCollectionRequest {
         return this;
     }
 
+
     /**
      * The datasource allowed in the Collection to be deleted.
      */
@@ -92,7 +94,6 @@ public class DeleteCollectionRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -110,8 +111,7 @@ public class DeleteCollectionRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            ids,
-            allowedDatasource);
+            ids, allowedDatasource);
     }
     
     @Override
@@ -120,16 +120,18 @@ public class DeleteCollectionRequest {
                 "ids", ids,
                 "allowedDatasource", allowedDatasource);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<Long> ids;
- 
+
         private Optional<String> allowedDatasource = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The IDs of the Collections to delete.
@@ -139,6 +141,7 @@ public class DeleteCollectionRequest {
             this.ids = ids;
             return this;
         }
+
 
         /**
          * The datasource allowed in the Collection to be deleted.
@@ -157,11 +160,12 @@ public class DeleteCollectionRequest {
             this.allowedDatasource = allowedDatasource;
             return this;
         }
-        
+
         public DeleteCollectionRequest build() {
+
             return new DeleteCollectionRequest(
-                ids,
-                allowedDatasource);
+                ids, allowedDatasource);
         }
+
     }
 }

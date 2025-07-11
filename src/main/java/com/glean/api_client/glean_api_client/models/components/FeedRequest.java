@@ -16,14 +16,15 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class FeedRequest {
 
+public class FeedRequest {
     /**
      * Categories of content requested. An allowlist gives flexibility to request content separately or together.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("categories")
     private Optional<? extends List<FeedRequestCategory>> categories;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("requestOptions")
@@ -35,6 +36,7 @@ public class FeedRequest {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timeoutMillis")
     private Optional<Long> timeoutMillis;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sessionInfo")
@@ -57,7 +59,8 @@ public class FeedRequest {
     }
     
     public FeedRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -89,9 +92,10 @@ public class FeedRequest {
         return (Optional<SessionInfo>) sessionInfo;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Categories of content requested. An allowlist gives flexibility to request content separately or together.
@@ -101,6 +105,7 @@ public class FeedRequest {
         this.categories = Optional.ofNullable(categories);
         return this;
     }
+
 
     /**
      * Categories of content requested. An allowlist gives flexibility to request content separately or together.
@@ -117,6 +122,7 @@ public class FeedRequest {
         return this;
     }
 
+
     public FeedRequest withRequestOptions(Optional<? extends FeedRequestOptions> requestOptions) {
         Utils.checkNotNull(requestOptions, "requestOptions");
         this.requestOptions = requestOptions;
@@ -131,6 +137,7 @@ public class FeedRequest {
         this.timeoutMillis = Optional.ofNullable(timeoutMillis);
         return this;
     }
+
 
     /**
      * Timeout in milliseconds for the request. A `408` error will be returned if handling the request takes longer.
@@ -147,13 +154,13 @@ public class FeedRequest {
         return this;
     }
 
+
     public FeedRequest withSessionInfo(Optional<? extends SessionInfo> sessionInfo) {
         Utils.checkNotNull(sessionInfo, "sessionInfo");
         this.sessionInfo = sessionInfo;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -173,9 +180,7 @@ public class FeedRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            categories,
-            requestOptions,
-            timeoutMillis,
+            categories, requestOptions, timeoutMillis,
             sessionInfo);
     }
     
@@ -187,20 +192,22 @@ public class FeedRequest {
                 "timeoutMillis", timeoutMillis,
                 "sessionInfo", sessionInfo);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<FeedRequestCategory>> categories = Optional.empty();
- 
+
         private Optional<? extends FeedRequestOptions> requestOptions = Optional.empty();
- 
+
         private Optional<Long> timeoutMillis = Optional.empty();
- 
+
         private Optional<? extends SessionInfo> sessionInfo = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Categories of content requested. An allowlist gives flexibility to request content separately or together.
@@ -220,6 +227,7 @@ public class FeedRequest {
             return this;
         }
 
+
         public Builder requestOptions(FeedRequestOptions requestOptions) {
             Utils.checkNotNull(requestOptions, "requestOptions");
             this.requestOptions = Optional.ofNullable(requestOptions);
@@ -231,6 +239,7 @@ public class FeedRequest {
             this.requestOptions = requestOptions;
             return this;
         }
+
 
         /**
          * Timeout in milliseconds for the request. A `408` error will be returned if handling the request takes longer.
@@ -250,6 +259,7 @@ public class FeedRequest {
             return this;
         }
 
+
         public Builder sessionInfo(SessionInfo sessionInfo) {
             Utils.checkNotNull(sessionInfo, "sessionInfo");
             this.sessionInfo = Optional.ofNullable(sessionInfo);
@@ -261,13 +271,13 @@ public class FeedRequest {
             this.sessionInfo = sessionInfo;
             return this;
         }
-        
+
         public FeedRequest build() {
+
             return new FeedRequest(
-                categories,
-                requestOptions,
-                timeoutMillis,
+                categories, requestOptions, timeoutMillis,
                 sessionInfo);
         }
+
     }
 }

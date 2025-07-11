@@ -19,7 +19,6 @@ import java.util.Optional;
  * <p>Detailed location with information about country, state, city etc.
  */
 public class StructuredLocation {
-
     /**
      * Desk number.
      */
@@ -115,7 +114,9 @@ public class StructuredLocation {
     }
     
     public StructuredLocation() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -190,9 +191,10 @@ public class StructuredLocation {
         return countryCode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Desk number.
@@ -202,6 +204,7 @@ public class StructuredLocation {
         this.deskLocation = Optional.ofNullable(deskLocation);
         return this;
     }
+
 
     /**
      * Desk number.
@@ -221,6 +224,7 @@ public class StructuredLocation {
         return this;
     }
 
+
     /**
      * Location's timezone, e.g. UTC, PST.
      */
@@ -238,6 +242,7 @@ public class StructuredLocation {
         this.address = Optional.ofNullable(address);
         return this;
     }
+
 
     /**
      * Office address or name.
@@ -257,6 +262,7 @@ public class StructuredLocation {
         return this;
     }
 
+
     /**
      * Name of the city.
      */
@@ -274,6 +280,7 @@ public class StructuredLocation {
         this.state = Optional.ofNullable(state);
         return this;
     }
+
 
     /**
      * State code.
@@ -293,6 +300,7 @@ public class StructuredLocation {
         return this;
     }
 
+
     /**
      * Region information, e.g. NORAM, APAC.
      */
@@ -310,6 +318,7 @@ public class StructuredLocation {
         this.zipCode = Optional.ofNullable(zipCode);
         return this;
     }
+
 
     /**
      * ZIP Code for the address.
@@ -329,6 +338,7 @@ public class StructuredLocation {
         return this;
     }
 
+
     /**
      * Country name.
      */
@@ -347,6 +357,7 @@ public class StructuredLocation {
         return this;
     }
 
+
     /**
      * Alpha-2 or Alpha-3 ISO 3166 country code, e.g. US or USA.
      */
@@ -356,7 +367,6 @@ public class StructuredLocation {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -381,15 +391,9 @@ public class StructuredLocation {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            deskLocation,
-            timezone,
-            address,
-            city,
-            state,
-            region,
-            zipCode,
-            country,
-            countryCode);
+            deskLocation, timezone, address,
+            city, state, region,
+            zipCode, country, countryCode);
     }
     
     @Override
@@ -405,30 +409,32 @@ public class StructuredLocation {
                 "country", country,
                 "countryCode", countryCode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> deskLocation = Optional.empty();
- 
+
         private Optional<String> timezone = Optional.empty();
- 
+
         private Optional<String> address = Optional.empty();
- 
+
         private Optional<String> city = Optional.empty();
- 
+
         private Optional<String> state = Optional.empty();
- 
+
         private Optional<String> region = Optional.empty();
- 
+
         private Optional<String> zipCode = Optional.empty();
- 
+
         private Optional<String> country = Optional.empty();
- 
+
         private Optional<String> countryCode = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Desk number.
@@ -448,6 +454,7 @@ public class StructuredLocation {
             return this;
         }
 
+
         /**
          * Location's timezone, e.g. UTC, PST.
          */
@@ -465,6 +472,7 @@ public class StructuredLocation {
             this.timezone = timezone;
             return this;
         }
+
 
         /**
          * Office address or name.
@@ -484,6 +492,7 @@ public class StructuredLocation {
             return this;
         }
 
+
         /**
          * Name of the city.
          */
@@ -501,6 +510,7 @@ public class StructuredLocation {
             this.city = city;
             return this;
         }
+
 
         /**
          * State code.
@@ -520,6 +530,7 @@ public class StructuredLocation {
             return this;
         }
 
+
         /**
          * Region information, e.g. NORAM, APAC.
          */
@@ -537,6 +548,7 @@ public class StructuredLocation {
             this.region = region;
             return this;
         }
+
 
         /**
          * ZIP Code for the address.
@@ -556,6 +568,7 @@ public class StructuredLocation {
             return this;
         }
 
+
         /**
          * Country name.
          */
@@ -574,6 +587,7 @@ public class StructuredLocation {
             return this;
         }
 
+
         /**
          * Alpha-2 or Alpha-3 ISO 3166 country code, e.g. US or USA.
          */
@@ -591,18 +605,14 @@ public class StructuredLocation {
             this.countryCode = countryCode;
             return this;
         }
-        
+
         public StructuredLocation build() {
+
             return new StructuredLocation(
-                deskLocation,
-                timezone,
-                address,
-                city,
-                state,
-                region,
-                zipCode,
-                country,
-                countryCode);
+                deskLocation, timezone, address,
+                city, state, region,
+                zipCode, country, countryCode);
         }
+
     }
 }

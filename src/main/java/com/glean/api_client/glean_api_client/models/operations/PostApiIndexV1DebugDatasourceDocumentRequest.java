@@ -11,13 +11,14 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class PostApiIndexV1DebugDatasourceDocumentRequest {
 
+public class PostApiIndexV1DebugDatasourceDocumentRequest {
     /**
      * The datasource to which the document belongs
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=datasource")
     private String datasource;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private DebugDocumentRequest debugDocumentRequest;
@@ -45,9 +46,10 @@ public class PostApiIndexV1DebugDatasourceDocumentRequest {
         return debugDocumentRequest;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The datasource to which the document belongs
@@ -64,7 +66,6 @@ public class PostApiIndexV1DebugDatasourceDocumentRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -82,8 +83,7 @@ public class PostApiIndexV1DebugDatasourceDocumentRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            datasource,
-            debugDocumentRequest);
+            datasource, debugDocumentRequest);
     }
     
     @Override
@@ -92,16 +92,18 @@ public class PostApiIndexV1DebugDatasourceDocumentRequest {
                 "datasource", datasource,
                 "debugDocumentRequest", debugDocumentRequest);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String datasource;
- 
+
         private DebugDocumentRequest debugDocumentRequest;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The datasource to which the document belongs
@@ -112,16 +114,18 @@ public class PostApiIndexV1DebugDatasourceDocumentRequest {
             return this;
         }
 
+
         public Builder debugDocumentRequest(DebugDocumentRequest debugDocumentRequest) {
             Utils.checkNotNull(debugDocumentRequest, "debugDocumentRequest");
             this.debugDocumentRequest = debugDocumentRequest;
             return this;
         }
-        
+
         public PostApiIndexV1DebugDatasourceDocumentRequest build() {
+
             return new PostApiIndexV1DebugDatasourceDocumentRequest(
-                datasource,
-                debugDocumentRequest);
+                datasource, debugDocumentRequest);
         }
+
     }
 }

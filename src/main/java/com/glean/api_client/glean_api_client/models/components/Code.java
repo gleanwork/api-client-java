@@ -16,19 +16,23 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
+
 public class Code {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("repoName")
     private Optional<String> repoName;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("fileName")
     private Optional<String> fileName;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("fileUrl")
     private Optional<String> fileUrl;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lines")
@@ -61,7 +65,8 @@ public class Code {
     }
     
     public Code() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -93,15 +98,17 @@ public class Code {
         return isLastMatch;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Code withRepoName(String repoName) {
         Utils.checkNotNull(repoName, "repoName");
         this.repoName = Optional.ofNullable(repoName);
         return this;
     }
+
 
     public Code withRepoName(Optional<String> repoName) {
         Utils.checkNotNull(repoName, "repoName");
@@ -115,6 +122,7 @@ public class Code {
         return this;
     }
 
+
     public Code withFileName(Optional<String> fileName) {
         Utils.checkNotNull(fileName, "fileName");
         this.fileName = fileName;
@@ -127,6 +135,7 @@ public class Code {
         return this;
     }
 
+
     public Code withFileUrl(Optional<String> fileUrl) {
         Utils.checkNotNull(fileUrl, "fileUrl");
         this.fileUrl = fileUrl;
@@ -138,6 +147,7 @@ public class Code {
         this.lines = Optional.ofNullable(lines);
         return this;
     }
+
 
     public Code withLines(Optional<? extends List<CodeLine>> lines) {
         Utils.checkNotNull(lines, "lines");
@@ -154,6 +164,7 @@ public class Code {
         return this;
     }
 
+
     /**
      * Last file match for a repo
      */
@@ -163,7 +174,6 @@ public class Code {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -184,11 +194,8 @@ public class Code {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            repoName,
-            fileName,
-            fileUrl,
-            lines,
-            isLastMatch);
+            repoName, fileName, fileUrl,
+            lines, isLastMatch);
     }
     
     @Override
@@ -200,22 +207,24 @@ public class Code {
                 "lines", lines,
                 "isLastMatch", isLastMatch);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> repoName = Optional.empty();
- 
+
         private Optional<String> fileName = Optional.empty();
- 
+
         private Optional<String> fileUrl = Optional.empty();
- 
+
         private Optional<? extends List<CodeLine>> lines = Optional.empty();
- 
+
         private Optional<Boolean> isLastMatch = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder repoName(String repoName) {
             Utils.checkNotNull(repoName, "repoName");
@@ -229,6 +238,7 @@ public class Code {
             return this;
         }
 
+
         public Builder fileName(String fileName) {
             Utils.checkNotNull(fileName, "fileName");
             this.fileName = Optional.ofNullable(fileName);
@@ -240,6 +250,7 @@ public class Code {
             this.fileName = fileName;
             return this;
         }
+
 
         public Builder fileUrl(String fileUrl) {
             Utils.checkNotNull(fileUrl, "fileUrl");
@@ -253,6 +264,7 @@ public class Code {
             return this;
         }
 
+
         public Builder lines(List<CodeLine> lines) {
             Utils.checkNotNull(lines, "lines");
             this.lines = Optional.ofNullable(lines);
@@ -264,6 +276,7 @@ public class Code {
             this.lines = lines;
             return this;
         }
+
 
         /**
          * Last file match for a repo
@@ -282,14 +295,13 @@ public class Code {
             this.isLastMatch = isLastMatch;
             return this;
         }
-        
+
         public Code build() {
+
             return new Code(
-                repoName,
-                fileName,
-                fileUrl,
-                lines,
-                isLastMatch);
+                repoName, fileName, fileUrl,
+                lines, isLastMatch);
         }
+
     }
 }

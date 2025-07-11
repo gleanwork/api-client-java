@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class InsightsRequest {
 
+public class InsightsRequest {
     /**
      * Categories of data requested. Request can include single or multiple types.
      */
@@ -31,13 +31,16 @@ public class InsightsRequest {
     @JsonProperty("departments")
     private Optional<? extends List<String>> departments;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("dayRange")
     private Optional<? extends Period> dayRange;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("aiAppRequestOptions")
     private Optional<? extends InsightsAiAppRequestOptions> aiAppRequestOptions;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("agentsRequestOptions")
@@ -84,7 +87,9 @@ public class InsightsRequest {
     
     public InsightsRequest(
             List<InsightsRequestCategory> categories) {
-        this(categories, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(categories, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -139,9 +144,10 @@ public class InsightsRequest {
         return disablePerUserInsights;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Categories of data requested. Request can include single or multiple types.
@@ -161,6 +167,7 @@ public class InsightsRequest {
         return this;
     }
 
+
     /**
      * Departments that the data is requested for. If this is empty, corresponds to whole company.
      */
@@ -176,6 +183,7 @@ public class InsightsRequest {
         return this;
     }
 
+
     public InsightsRequest withDayRange(Optional<? extends Period> dayRange) {
         Utils.checkNotNull(dayRange, "dayRange");
         this.dayRange = dayRange;
@@ -188,6 +196,7 @@ public class InsightsRequest {
         return this;
     }
 
+
     public InsightsRequest withAiAppRequestOptions(Optional<? extends InsightsAiAppRequestOptions> aiAppRequestOptions) {
         Utils.checkNotNull(aiAppRequestOptions, "aiAppRequestOptions");
         this.aiAppRequestOptions = aiAppRequestOptions;
@@ -199,6 +208,7 @@ public class InsightsRequest {
         this.agentsRequestOptions = Optional.ofNullable(agentsRequestOptions);
         return this;
     }
+
 
     public InsightsRequest withAgentsRequestOptions(Optional<? extends InsightsAgentsRequestOptions> agentsRequestOptions) {
         Utils.checkNotNull(agentsRequestOptions, "agentsRequestOptions");
@@ -214,6 +224,7 @@ public class InsightsRequest {
         this.assistantActivityTypes = Optional.ofNullable(assistantActivityTypes);
         return this;
     }
+
 
     /**
      * Types of activity that should count in the definition of an Assistant Active User. Affects only insights for AI category.
@@ -233,6 +244,7 @@ public class InsightsRequest {
         return this;
     }
 
+
     /**
      * If true, suppresses the generation of per-user Insights in the response. Default is false.
      */
@@ -242,7 +254,6 @@ public class InsightsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -265,12 +276,8 @@ public class InsightsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            categories,
-            departments,
-            dayRange,
-            aiAppRequestOptions,
-            agentsRequestOptions,
-            assistantActivityTypes,
+            categories, departments, dayRange,
+            aiAppRequestOptions, agentsRequestOptions, assistantActivityTypes,
             disablePerUserInsights);
     }
     
@@ -285,26 +292,28 @@ public class InsightsRequest {
                 "assistantActivityTypes", assistantActivityTypes,
                 "disablePerUserInsights", disablePerUserInsights);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<InsightsRequestCategory> categories;
- 
+
         private Optional<? extends List<String>> departments = Optional.empty();
- 
+
         private Optional<? extends Period> dayRange = Optional.empty();
- 
+
         private Optional<? extends InsightsAiAppRequestOptions> aiAppRequestOptions = Optional.empty();
- 
+
         private Optional<? extends InsightsAgentsRequestOptions> agentsRequestOptions = Optional.empty();
- 
+
         private Optional<? extends List<AssistantActivityType>> assistantActivityTypes = Optional.empty();
- 
+
         private Optional<Boolean> disablePerUserInsights = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Categories of data requested. Request can include single or multiple types.
@@ -314,6 +323,7 @@ public class InsightsRequest {
             this.categories = categories;
             return this;
         }
+
 
         /**
          * Departments that the data is requested for. If this is empty, corresponds to whole company.
@@ -333,6 +343,7 @@ public class InsightsRequest {
             return this;
         }
 
+
         public Builder dayRange(Period dayRange) {
             Utils.checkNotNull(dayRange, "dayRange");
             this.dayRange = Optional.ofNullable(dayRange);
@@ -344,6 +355,7 @@ public class InsightsRequest {
             this.dayRange = dayRange;
             return this;
         }
+
 
         public Builder aiAppRequestOptions(InsightsAiAppRequestOptions aiAppRequestOptions) {
             Utils.checkNotNull(aiAppRequestOptions, "aiAppRequestOptions");
@@ -357,6 +369,7 @@ public class InsightsRequest {
             return this;
         }
 
+
         public Builder agentsRequestOptions(InsightsAgentsRequestOptions agentsRequestOptions) {
             Utils.checkNotNull(agentsRequestOptions, "agentsRequestOptions");
             this.agentsRequestOptions = Optional.ofNullable(agentsRequestOptions);
@@ -368,6 +381,7 @@ public class InsightsRequest {
             this.agentsRequestOptions = agentsRequestOptions;
             return this;
         }
+
 
         /**
          * Types of activity that should count in the definition of an Assistant Active User. Affects only insights for AI category.
@@ -387,6 +401,7 @@ public class InsightsRequest {
             return this;
         }
 
+
         /**
          * If true, suppresses the generation of per-user Insights in the response. Default is false.
          */
@@ -404,16 +419,14 @@ public class InsightsRequest {
             this.disablePerUserInsights = disablePerUserInsights;
             return this;
         }
-        
+
         public InsightsRequest build() {
+
             return new InsightsRequest(
-                categories,
-                departments,
-                dayRange,
-                aiAppRequestOptions,
-                agentsRequestOptions,
-                assistantActivityTypes,
+                categories, departments, dayRange,
+                aiAppRequestOptions, agentsRequestOptions, assistantActivityTypes,
                 disablePerUserInsights);
         }
+
     }
 }

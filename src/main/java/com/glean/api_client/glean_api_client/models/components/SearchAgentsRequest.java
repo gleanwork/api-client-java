@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class SearchAgentsRequest {
 
+public class SearchAgentsRequest {
     /**
      * Filters on the name of the agent. The keyword search is case-insensitive. If search string is ommited or empty, acts as no filter.
      */
@@ -41,9 +41,10 @@ public class SearchAgentsRequest {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Filters on the name of the agent. The keyword search is case-insensitive. If search string is ommited or empty, acts as no filter.
@@ -54,6 +55,7 @@ public class SearchAgentsRequest {
         return this;
     }
 
+
     /**
      * Filters on the name of the agent. The keyword search is case-insensitive. If search string is ommited or empty, acts as no filter.
      */
@@ -63,7 +65,6 @@ public class SearchAgentsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -88,14 +89,16 @@ public class SearchAgentsRequest {
         return Utils.toString(SearchAgentsRequest.class,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Filters on the name of the agent. The keyword search is case-insensitive. If search string is ommited or empty, acts as no filter.
@@ -114,10 +117,12 @@ public class SearchAgentsRequest {
             this.name = name;
             return this;
         }
-        
+
         public SearchAgentsRequest build() {
+
             return new SearchAgentsRequest(
                 name);
         }
+
     }
 }

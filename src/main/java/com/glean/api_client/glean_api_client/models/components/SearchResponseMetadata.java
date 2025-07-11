@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class SearchResponseMetadata {
 
+public class SearchResponseMetadata {
     /**
      * A cleaned up or updated version of the query to be displayed in the query box. Useful for mapping visual facets to search operators.
      */
@@ -46,9 +46,11 @@ public class SearchResponseMetadata {
     @JsonProperty("originalQuery")
     private Optional<String> originalQuery;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("querySuggestion")
     private Optional<? extends QuerySuggestion> querySuggestion;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("additionalQuerySuggestions")
@@ -74,6 +76,7 @@ public class SearchResponseMetadata {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("originalQueryHadNoResults")
     private Optional<Boolean> originalQueryHadNoResults;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("searchWarning")
@@ -134,7 +137,10 @@ public class SearchResponseMetadata {
     }
     
     public SearchResponseMetadata() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -229,9 +235,10 @@ public class SearchResponseMetadata {
         return isNoQuotesSuggestion;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A cleaned up or updated version of the query to be displayed in the query box. Useful for mapping visual facets to search operators.
@@ -241,6 +248,7 @@ public class SearchResponseMetadata {
         this.rewrittenQuery = Optional.ofNullable(rewrittenQuery);
         return this;
     }
+
 
     /**
      * A cleaned up or updated version of the query to be displayed in the query box. Useful for mapping visual facets to search operators.
@@ -260,6 +268,7 @@ public class SearchResponseMetadata {
         return this;
     }
 
+
     /**
      * The actual query used to perform search and return results.
      */
@@ -277,6 +286,7 @@ public class SearchResponseMetadata {
         this.searchedQueryRanges = Optional.ofNullable(searchedQueryRanges);
         return this;
     }
+
 
     /**
      * The bolded ranges within the searched query.
@@ -296,6 +306,7 @@ public class SearchResponseMetadata {
         return this;
     }
 
+
     /**
      * The query text sent by the client in the request.
      */
@@ -311,6 +322,7 @@ public class SearchResponseMetadata {
         return this;
     }
 
+
     public SearchResponseMetadata withQuerySuggestion(Optional<? extends QuerySuggestion> querySuggestion) {
         Utils.checkNotNull(querySuggestion, "querySuggestion");
         this.querySuggestion = querySuggestion;
@@ -322,6 +334,7 @@ public class SearchResponseMetadata {
         this.additionalQuerySuggestions = Optional.ofNullable(additionalQuerySuggestions);
         return this;
     }
+
 
     public SearchResponseMetadata withAdditionalQuerySuggestions(Optional<? extends QuerySuggestionList> additionalQuerySuggestions) {
         Utils.checkNotNull(additionalQuerySuggestions, "additionalQuerySuggestions");
@@ -337,6 +350,7 @@ public class SearchResponseMetadata {
         this.negatedTerms = Optional.ofNullable(negatedTerms);
         return this;
     }
+
 
     /**
      * A list of terms that were negated when processing the query.
@@ -356,6 +370,7 @@ public class SearchResponseMetadata {
         return this;
     }
 
+
     /**
      * A different query was performed than the one requested.
      */
@@ -374,6 +389,7 @@ public class SearchResponseMetadata {
         return this;
     }
 
+
     /**
      * No results were found for the original query. The usage of this bit in conjunction with modifiedQueryWasUsed will dictate whether the full page replacement is 0-result or few-result based.
      */
@@ -389,6 +405,7 @@ public class SearchResponseMetadata {
         return this;
     }
 
+
     public SearchResponseMetadata withSearchWarning(Optional<? extends SearchWarning> searchWarning) {
         Utils.checkNotNull(searchWarning, "searchWarning");
         this.searchWarning = searchWarning;
@@ -403,6 +420,7 @@ public class SearchResponseMetadata {
         this.triggeredExpertDetection = Optional.ofNullable(triggeredExpertDetection);
         return this;
     }
+
 
     /**
      * Whether the query triggered expert detection results in the People tab.
@@ -422,6 +440,7 @@ public class SearchResponseMetadata {
         return this;
     }
 
+
     /**
      * Whether the query was modified to remove quotes
      */
@@ -431,7 +450,6 @@ public class SearchResponseMetadata {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -459,18 +477,10 @@ public class SearchResponseMetadata {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            rewrittenQuery,
-            searchedQuery,
-            searchedQueryRanges,
-            originalQuery,
-            querySuggestion,
-            additionalQuerySuggestions,
-            negatedTerms,
-            modifiedQueryWasUsed,
-            originalQueryHadNoResults,
-            searchWarning,
-            triggeredExpertDetection,
-            isNoQuotesSuggestion);
+            rewrittenQuery, searchedQuery, searchedQueryRanges,
+            originalQuery, querySuggestion, additionalQuerySuggestions,
+            negatedTerms, modifiedQueryWasUsed, originalQueryHadNoResults,
+            searchWarning, triggeredExpertDetection, isNoQuotesSuggestion);
     }
     
     @Override
@@ -489,36 +499,38 @@ public class SearchResponseMetadata {
                 "triggeredExpertDetection", triggeredExpertDetection,
                 "isNoQuotesSuggestion", isNoQuotesSuggestion);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> rewrittenQuery = Optional.empty();
- 
+
         private Optional<String> searchedQuery = Optional.empty();
- 
+
         private Optional<? extends List<TextRange>> searchedQueryRanges = Optional.empty();
- 
+
         private Optional<String> originalQuery = Optional.empty();
- 
+
         private Optional<? extends QuerySuggestion> querySuggestion = Optional.empty();
- 
+
         private Optional<? extends QuerySuggestionList> additionalQuerySuggestions = Optional.empty();
- 
+
         private Optional<? extends List<String>> negatedTerms = Optional.empty();
- 
+
         private Optional<Boolean> modifiedQueryWasUsed = Optional.empty();
- 
+
         private Optional<Boolean> originalQueryHadNoResults = Optional.empty();
- 
+
         private Optional<? extends SearchWarning> searchWarning = Optional.empty();
- 
+
         private Optional<Boolean> triggeredExpertDetection = Optional.empty();
- 
+
         private Optional<Boolean> isNoQuotesSuggestion = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A cleaned up or updated version of the query to be displayed in the query box. Useful for mapping visual facets to search operators.
@@ -538,6 +550,7 @@ public class SearchResponseMetadata {
             return this;
         }
 
+
         /**
          * The actual query used to perform search and return results.
          */
@@ -555,6 +568,7 @@ public class SearchResponseMetadata {
             this.searchedQuery = searchedQuery;
             return this;
         }
+
 
         /**
          * The bolded ranges within the searched query.
@@ -574,6 +588,7 @@ public class SearchResponseMetadata {
             return this;
         }
 
+
         /**
          * The query text sent by the client in the request.
          */
@@ -592,6 +607,7 @@ public class SearchResponseMetadata {
             return this;
         }
 
+
         public Builder querySuggestion(QuerySuggestion querySuggestion) {
             Utils.checkNotNull(querySuggestion, "querySuggestion");
             this.querySuggestion = Optional.ofNullable(querySuggestion);
@@ -604,6 +620,7 @@ public class SearchResponseMetadata {
             return this;
         }
 
+
         public Builder additionalQuerySuggestions(QuerySuggestionList additionalQuerySuggestions) {
             Utils.checkNotNull(additionalQuerySuggestions, "additionalQuerySuggestions");
             this.additionalQuerySuggestions = Optional.ofNullable(additionalQuerySuggestions);
@@ -615,6 +632,7 @@ public class SearchResponseMetadata {
             this.additionalQuerySuggestions = additionalQuerySuggestions;
             return this;
         }
+
 
         /**
          * A list of terms that were negated when processing the query.
@@ -634,6 +652,7 @@ public class SearchResponseMetadata {
             return this;
         }
 
+
         /**
          * A different query was performed than the one requested.
          */
@@ -651,6 +670,7 @@ public class SearchResponseMetadata {
             this.modifiedQueryWasUsed = modifiedQueryWasUsed;
             return this;
         }
+
 
         /**
          * No results were found for the original query. The usage of this bit in conjunction with modifiedQueryWasUsed will dictate whether the full page replacement is 0-result or few-result based.
@@ -670,6 +690,7 @@ public class SearchResponseMetadata {
             return this;
         }
 
+
         public Builder searchWarning(SearchWarning searchWarning) {
             Utils.checkNotNull(searchWarning, "searchWarning");
             this.searchWarning = Optional.ofNullable(searchWarning);
@@ -681,6 +702,7 @@ public class SearchResponseMetadata {
             this.searchWarning = searchWarning;
             return this;
         }
+
 
         /**
          * Whether the query triggered expert detection results in the People tab.
@@ -700,6 +722,7 @@ public class SearchResponseMetadata {
             return this;
         }
 
+
         /**
          * Whether the query was modified to remove quotes
          */
@@ -717,21 +740,15 @@ public class SearchResponseMetadata {
             this.isNoQuotesSuggestion = isNoQuotesSuggestion;
             return this;
         }
-        
+
         public SearchResponseMetadata build() {
+
             return new SearchResponseMetadata(
-                rewrittenQuery,
-                searchedQuery,
-                searchedQueryRanges,
-                originalQuery,
-                querySuggestion,
-                additionalQuerySuggestions,
-                negatedTerms,
-                modifiedQueryWasUsed,
-                originalQueryHadNoResults,
-                searchWarning,
-                triggeredExpertDetection,
-                isNoQuotesSuggestion);
+                rewrittenQuery, searchedQuery, searchedQueryRanges,
+                originalQuery, querySuggestion, additionalQuerySuggestions,
+                negatedTerms, modifiedQueryWasUsed, originalQueryHadNoResults,
+                searchWarning, triggeredExpertDetection, isNoQuotesSuggestion);
         }
+
     }
 }

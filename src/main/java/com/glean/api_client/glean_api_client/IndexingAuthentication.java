@@ -19,7 +19,6 @@ public class IndexingAuthentication {
     IndexingAuthentication(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Rotate token
      * 
@@ -41,7 +40,7 @@ public class IndexingAuthentication {
      */
     public PostApiIndexV1RotatetokenResponse rotateTokenDirect() throws Exception {
         RequestlessOperation<PostApiIndexV1RotatetokenResponse> operation
-            = new PostApiIndexV1RotatetokenOperation( sdkConfiguration);
+            = new PostApiIndexV1RotatetokenOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest());
     }
 

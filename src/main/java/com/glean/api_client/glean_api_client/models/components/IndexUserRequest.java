@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>Describes the request body of the /indexuser API call
  */
 public class IndexUserRequest {
-
     /**
      * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
      */
@@ -83,9 +82,10 @@ public class IndexUserRequest {
         return user;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
@@ -95,6 +95,7 @@ public class IndexUserRequest {
         this.version = Optional.ofNullable(version);
         return this;
     }
+
 
     /**
      * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
@@ -123,7 +124,6 @@ public class IndexUserRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -142,9 +142,7 @@ public class IndexUserRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            version,
-            datasource,
-            user);
+            version, datasource, user);
     }
     
     @Override
@@ -154,18 +152,20 @@ public class IndexUserRequest {
                 "datasource", datasource,
                 "user", user);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> version = Optional.empty();
- 
+
         private String datasource;
- 
+
         private DatasourceUserDefinition user;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
@@ -185,6 +185,7 @@ public class IndexUserRequest {
             return this;
         }
 
+
         /**
          * The datasource for which the user is added
          */
@@ -194,6 +195,7 @@ public class IndexUserRequest {
             return this;
         }
 
+
         /**
          * describes a user in the datasource
          */
@@ -202,12 +204,12 @@ public class IndexUserRequest {
             this.user = user;
             return this;
         }
-        
+
         public IndexUserRequest build() {
+
             return new IndexUserRequest(
-                version,
-                datasource,
-                user);
+                version, datasource, user);
         }
+
     }
 }

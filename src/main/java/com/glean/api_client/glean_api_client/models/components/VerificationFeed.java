@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class VerificationFeed {
 
+public class VerificationFeed {
     /**
      * List of document infos that include verification related information for them.
      */
@@ -44,9 +44,10 @@ public class VerificationFeed {
         return (Optional<List<Verification>>) documents;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * List of document infos that include verification related information for them.
@@ -57,6 +58,7 @@ public class VerificationFeed {
         return this;
     }
 
+
     /**
      * List of document infos that include verification related information for them.
      */
@@ -66,7 +68,6 @@ public class VerificationFeed {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,14 +92,16 @@ public class VerificationFeed {
         return Utils.toString(VerificationFeed.class,
                 "documents", documents);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<Verification>> documents = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * List of document infos that include verification related information for them.
@@ -117,10 +120,12 @@ public class VerificationFeed {
             this.documents = documents;
             return this;
         }
-        
+
         public VerificationFeed build() {
+
             return new VerificationFeed(
                 documents);
         }
+
     }
 }

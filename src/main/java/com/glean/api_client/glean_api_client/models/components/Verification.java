@@ -14,13 +14,14 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class Verification {
 
+public class Verification {
     /**
      * The verification state for the document.
      */
     @JsonProperty("state")
     private State state;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
@@ -55,9 +56,10 @@ public class Verification {
         return (Optional<VerificationMetadata>) metadata;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The verification state for the document.
@@ -74,13 +76,13 @@ public class Verification {
         return this;
     }
 
+
     public Verification withMetadata(Optional<? extends VerificationMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -98,8 +100,7 @@ public class Verification {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            state,
-            metadata);
+            state, metadata);
     }
     
     @Override
@@ -108,16 +109,18 @@ public class Verification {
                 "state", state,
                 "metadata", metadata);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private State state;
- 
+
         private Optional<? extends VerificationMetadata> metadata = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The verification state for the document.
@@ -127,6 +130,7 @@ public class Verification {
             this.state = state;
             return this;
         }
+
 
         public Builder metadata(VerificationMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -139,11 +143,12 @@ public class Verification {
             this.metadata = metadata;
             return this;
         }
-        
+
         public Verification build() {
+
             return new Verification(
-                state,
-                metadata);
+                state, metadata);
         }
+
     }
 }

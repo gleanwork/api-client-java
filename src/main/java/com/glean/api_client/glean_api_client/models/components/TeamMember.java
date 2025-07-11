@@ -22,7 +22,6 @@ import java.util.Optional;
  * <p>Information about a team's member
  */
 public class TeamMember {
-
     /**
      * The member's email
      */
@@ -85,9 +84,10 @@ public class TeamMember {
         return joinDate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The member's email
@@ -107,6 +107,7 @@ public class TeamMember {
         return this;
     }
 
+
     /**
      * The member's relationship to the team, an enum of `MEMBER`, `MANAGER`, `LEAD`, `POINT_OF_CONTACT`, `OTHER`
      */
@@ -125,6 +126,7 @@ public class TeamMember {
         return this;
     }
 
+
     /**
      * The member's start date
      */
@@ -134,7 +136,6 @@ public class TeamMember {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -153,9 +154,7 @@ public class TeamMember {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            email,
-            relationship,
-            joinDate);
+            email, relationship, joinDate);
     }
     
     @Override
@@ -165,18 +164,20 @@ public class TeamMember {
                 "relationship", relationship,
                 "joinDate", joinDate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String email;
- 
+
         private Optional<String> relationship;
- 
+
         private Optional<LocalDate> joinDate = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The member's email
@@ -186,6 +187,7 @@ public class TeamMember {
             this.email = email;
             return this;
         }
+
 
         /**
          * The member's relationship to the team, an enum of `MEMBER`, `MANAGER`, `LEAD`, `POINT_OF_CONTACT`, `OTHER`
@@ -205,6 +207,7 @@ public class TeamMember {
             return this;
         }
 
+
         /**
          * The member's start date
          */
@@ -222,16 +225,16 @@ public class TeamMember {
             this.joinDate = joinDate;
             return this;
         }
-        
+
         public TeamMember build() {
             if (relationship == null) {
                 relationship = _SINGLETON_VALUE_Relationship.value();
             }
+
             return new TeamMember(
-                email,
-                relationship,
-                joinDate);
+                email, relationship, joinDate);
         }
+
 
         private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_Relationship =
                 new LazySingletonValue<>(

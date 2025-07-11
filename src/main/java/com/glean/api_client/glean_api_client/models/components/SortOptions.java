@@ -14,11 +14,13 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class SortOptions {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("orderBy")
     private Optional<? extends OrderBy> orderBy;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sortBy")
@@ -49,15 +51,17 @@ public class SortOptions {
         return sortBy;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public SortOptions withOrderBy(OrderBy orderBy) {
         Utils.checkNotNull(orderBy, "orderBy");
         this.orderBy = Optional.ofNullable(orderBy);
         return this;
     }
+
 
     public SortOptions withOrderBy(Optional<? extends OrderBy> orderBy) {
         Utils.checkNotNull(orderBy, "orderBy");
@@ -71,13 +75,13 @@ public class SortOptions {
         return this;
     }
 
+
     public SortOptions withSortBy(Optional<String> sortBy) {
         Utils.checkNotNull(sortBy, "sortBy");
         this.sortBy = sortBy;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -95,8 +99,7 @@ public class SortOptions {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            orderBy,
-            sortBy);
+            orderBy, sortBy);
     }
     
     @Override
@@ -105,16 +108,18 @@ public class SortOptions {
                 "orderBy", orderBy,
                 "sortBy", sortBy);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends OrderBy> orderBy = Optional.empty();
- 
+
         private Optional<String> sortBy = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder orderBy(OrderBy orderBy) {
             Utils.checkNotNull(orderBy, "orderBy");
@@ -128,6 +133,7 @@ public class SortOptions {
             return this;
         }
 
+
         public Builder sortBy(String sortBy) {
             Utils.checkNotNull(sortBy, "sortBy");
             this.sortBy = Optional.ofNullable(sortBy);
@@ -139,11 +145,12 @@ public class SortOptions {
             this.sortBy = sortBy;
             return this;
         }
-        
+
         public SortOptions build() {
+
             return new SortOptions(
-                orderBy,
-                sortBy);
+                orderBy, sortBy);
         }
+
     }
 }

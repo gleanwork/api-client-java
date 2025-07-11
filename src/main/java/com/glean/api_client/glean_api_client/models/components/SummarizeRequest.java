@@ -22,7 +22,6 @@ import java.util.Optional;
  * <p>Summary of the document
  */
 public class SummarizeRequest {
-
     /**
      * The ISO 8601 timestamp associated with the client request.
      */
@@ -78,7 +77,8 @@ public class SummarizeRequest {
     
     public SummarizeRequest(
             List<DocumentSpecUnion> documentSpecs) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), documentSpecs, Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            documentSpecs, Optional.empty());
     }
 
     /**
@@ -121,9 +121,10 @@ public class SummarizeRequest {
         return trackingToken;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ISO 8601 timestamp associated with the client request.
@@ -133,6 +134,7 @@ public class SummarizeRequest {
         this.timestamp = Optional.ofNullable(timestamp);
         return this;
     }
+
 
     /**
      * The ISO 8601 timestamp associated with the client request.
@@ -152,6 +154,7 @@ public class SummarizeRequest {
         return this;
     }
 
+
     /**
      * Optional query that the summary should be about
      */
@@ -169,6 +172,7 @@ public class SummarizeRequest {
         this.preferredSummaryLength = Optional.ofNullable(preferredSummaryLength);
         return this;
     }
+
 
     /**
      * Optional length of summary output. If not given, defaults to 500 chars.
@@ -197,6 +201,7 @@ public class SummarizeRequest {
         return this;
     }
 
+
     /**
      * An opaque token that represents this particular result. To be used for /feedback reporting.
      */
@@ -206,7 +211,6 @@ public class SummarizeRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -227,11 +231,8 @@ public class SummarizeRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            timestamp,
-            query,
-            preferredSummaryLength,
-            documentSpecs,
-            trackingToken);
+            timestamp, query, preferredSummaryLength,
+            documentSpecs, trackingToken);
     }
     
     @Override
@@ -243,22 +244,24 @@ public class SummarizeRequest {
                 "documentSpecs", documentSpecs,
                 "trackingToken", trackingToken);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<OffsetDateTime> timestamp = Optional.empty();
- 
+
         private Optional<String> query = Optional.empty();
- 
+
         private Optional<Long> preferredSummaryLength = Optional.empty();
- 
+
         private List<DocumentSpecUnion> documentSpecs;
- 
+
         private Optional<String> trackingToken = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ISO 8601 timestamp associated with the client request.
@@ -278,6 +281,7 @@ public class SummarizeRequest {
             return this;
         }
 
+
         /**
          * Optional query that the summary should be about
          */
@@ -295,6 +299,7 @@ public class SummarizeRequest {
             this.query = query;
             return this;
         }
+
 
         /**
          * Optional length of summary output. If not given, defaults to 500 chars.
@@ -314,6 +319,7 @@ public class SummarizeRequest {
             return this;
         }
 
+
         /**
          * Specifications of documents to summarize
          */
@@ -322,6 +328,7 @@ public class SummarizeRequest {
             this.documentSpecs = documentSpecs;
             return this;
         }
+
 
         /**
          * An opaque token that represents this particular result. To be used for /feedback reporting.
@@ -340,14 +347,13 @@ public class SummarizeRequest {
             this.trackingToken = trackingToken;
             return this;
         }
-        
+
         public SummarizeRequest build() {
+
             return new SummarizeRequest(
-                timestamp,
-                query,
-                preferredSummaryLength,
-                documentSpecs,
-                trackingToken);
+                timestamp, query, preferredSummaryLength,
+                documentSpecs, trackingToken);
         }
+
     }
 }

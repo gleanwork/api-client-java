@@ -29,7 +29,7 @@ public class PostApiIndexV1IndexemployeeRequestBuilder {
     public PostApiIndexV1IndexemployeeResponse call() throws Exception {
         
         RequestOperation<IndexEmployeeRequest, PostApiIndexV1IndexemployeeResponse> operation
-              = new PostApiIndexV1IndexemployeeOperation( sdkConfiguration);
+              = new PostApiIndexV1IndexemployeeOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

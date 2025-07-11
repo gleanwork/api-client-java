@@ -17,8 +17,8 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 
-public class AnswerBoard {
 
+public class AnswerBoard {
     /**
      * The unique name of the Collection.
      */
@@ -52,6 +52,7 @@ public class AnswerBoard {
     @JsonProperty("audienceFilters")
     private Optional<? extends List<FacetFilter>> audienceFilters;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("permissions")
     private Optional<? extends ObjectPermissions> permissions;
@@ -62,17 +63,21 @@ public class AnswerBoard {
     @JsonProperty("id")
     private long id;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createTime")
     private Optional<OffsetDateTime> createTime;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("updateTime")
     private Optional<OffsetDateTime> updateTime;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("creator")
     private Optional<? extends Person> creator;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("updatedBy")
@@ -139,7 +144,11 @@ public class AnswerBoard {
             String name,
             String description,
             long id) {
-        this(name, description, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), id, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(name, description, Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            id, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -238,9 +247,10 @@ public class AnswerBoard {
         return (Optional<List<UserRoleSpecification>>) roles;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique name of the Collection.
@@ -269,6 +279,7 @@ public class AnswerBoard {
         return this;
     }
 
+
     /**
      * A list of added user roles for the Collection.
      */
@@ -286,6 +297,7 @@ public class AnswerBoard {
         this.removedRoles = Optional.ofNullable(removedRoles);
         return this;
     }
+
 
     /**
      * A list of removed user roles for the Collection.
@@ -305,6 +317,7 @@ public class AnswerBoard {
         return this;
     }
 
+
     /**
      * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
      */
@@ -319,6 +332,7 @@ public class AnswerBoard {
         this.permissions = Optional.ofNullable(permissions);
         return this;
     }
+
 
     public AnswerBoard withPermissions(Optional<? extends ObjectPermissions> permissions) {
         Utils.checkNotNull(permissions, "permissions");
@@ -341,6 +355,7 @@ public class AnswerBoard {
         return this;
     }
 
+
     public AnswerBoard withCreateTime(Optional<OffsetDateTime> createTime) {
         Utils.checkNotNull(createTime, "createTime");
         this.createTime = createTime;
@@ -352,6 +367,7 @@ public class AnswerBoard {
         this.updateTime = Optional.ofNullable(updateTime);
         return this;
     }
+
 
     public AnswerBoard withUpdateTime(Optional<OffsetDateTime> updateTime) {
         Utils.checkNotNull(updateTime, "updateTime");
@@ -365,6 +381,7 @@ public class AnswerBoard {
         return this;
     }
 
+
     public AnswerBoard withCreator(Optional<? extends Person> creator) {
         Utils.checkNotNull(creator, "creator");
         this.creator = creator;
@@ -376,6 +393,7 @@ public class AnswerBoard {
         this.updatedBy = Optional.ofNullable(updatedBy);
         return this;
     }
+
 
     public AnswerBoard withUpdatedBy(Optional<? extends Person> updatedBy) {
         Utils.checkNotNull(updatedBy, "updatedBy");
@@ -391,6 +409,7 @@ public class AnswerBoard {
         this.itemCount = Optional.ofNullable(itemCount);
         return this;
     }
+
 
     /**
      * The number of items currently in the Answer Board. Separated from the actual items so we can grab the count without items.
@@ -410,6 +429,7 @@ public class AnswerBoard {
         return this;
     }
 
+
     /**
      * A list of user roles for the Answer Board.
      */
@@ -419,7 +439,6 @@ public class AnswerBoard {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -448,18 +467,10 @@ public class AnswerBoard {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            description,
-            addedRoles,
-            removedRoles,
-            audienceFilters,
-            permissions,
-            id,
-            createTime,
-            updateTime,
-            creator,
-            updatedBy,
-            itemCount,
+            name, description, addedRoles,
+            removedRoles, audienceFilters, permissions,
+            id, createTime, updateTime,
+            creator, updatedBy, itemCount,
             roles);
     }
     
@@ -480,38 +491,40 @@ public class AnswerBoard {
                 "itemCount", itemCount,
                 "roles", roles);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
- 
+
         private String description;
- 
+
         private Optional<? extends List<UserRoleSpecification>> addedRoles = Optional.empty();
- 
+
         private Optional<? extends List<UserRoleSpecification>> removedRoles = Optional.empty();
- 
+
         private Optional<? extends List<FacetFilter>> audienceFilters = Optional.empty();
- 
+
         private Optional<? extends ObjectPermissions> permissions = Optional.empty();
- 
+
         private Long id;
- 
+
         private Optional<OffsetDateTime> createTime = Optional.empty();
- 
+
         private Optional<OffsetDateTime> updateTime = Optional.empty();
- 
+
         private Optional<? extends Person> creator = Optional.empty();
- 
+
         private Optional<? extends Person> updatedBy = Optional.empty();
- 
+
         private Optional<Long> itemCount = Optional.empty();
- 
+
         private Optional<? extends List<UserRoleSpecification>> roles = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique name of the Collection.
@@ -522,6 +535,7 @@ public class AnswerBoard {
             return this;
         }
 
+
         /**
          * A brief summary of the Collection's contents.
          */
@@ -530,6 +544,7 @@ public class AnswerBoard {
             this.description = description;
             return this;
         }
+
 
         /**
          * A list of added user roles for the Collection.
@@ -549,6 +564,7 @@ public class AnswerBoard {
             return this;
         }
 
+
         /**
          * A list of removed user roles for the Collection.
          */
@@ -566,6 +582,7 @@ public class AnswerBoard {
             this.removedRoles = removedRoles;
             return this;
         }
+
 
         /**
          * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
@@ -585,6 +602,7 @@ public class AnswerBoard {
             return this;
         }
 
+
         public Builder permissions(ObjectPermissions permissions) {
             Utils.checkNotNull(permissions, "permissions");
             this.permissions = Optional.ofNullable(permissions);
@@ -597,6 +615,7 @@ public class AnswerBoard {
             return this;
         }
 
+
         /**
          * The unique ID of the Answer Board.
          */
@@ -605,6 +624,7 @@ public class AnswerBoard {
             this.id = id;
             return this;
         }
+
 
         public Builder createTime(OffsetDateTime createTime) {
             Utils.checkNotNull(createTime, "createTime");
@@ -618,6 +638,7 @@ public class AnswerBoard {
             return this;
         }
 
+
         public Builder updateTime(OffsetDateTime updateTime) {
             Utils.checkNotNull(updateTime, "updateTime");
             this.updateTime = Optional.ofNullable(updateTime);
@@ -629,6 +650,7 @@ public class AnswerBoard {
             this.updateTime = updateTime;
             return this;
         }
+
 
         public Builder creator(Person creator) {
             Utils.checkNotNull(creator, "creator");
@@ -642,6 +664,7 @@ public class AnswerBoard {
             return this;
         }
 
+
         public Builder updatedBy(Person updatedBy) {
             Utils.checkNotNull(updatedBy, "updatedBy");
             this.updatedBy = Optional.ofNullable(updatedBy);
@@ -653,6 +676,7 @@ public class AnswerBoard {
             this.updatedBy = updatedBy;
             return this;
         }
+
 
         /**
          * The number of items currently in the Answer Board. Separated from the actual items so we can grab the count without items.
@@ -672,6 +696,7 @@ public class AnswerBoard {
             return this;
         }
 
+
         /**
          * A list of user roles for the Answer Board.
          */
@@ -689,22 +714,16 @@ public class AnswerBoard {
             this.roles = roles;
             return this;
         }
-        
+
         public AnswerBoard build() {
+
             return new AnswerBoard(
-                name,
-                description,
-                addedRoles,
-                removedRoles,
-                audienceFilters,
-                permissions,
-                id,
-                createTime,
-                updateTime,
-                creator,
-                updatedBy,
-                itemCount,
+                name, description, addedRoles,
+                removedRoles, audienceFilters, permissions,
+                id, createTime, updateTime,
+                creator, updatedBy, itemCount,
                 roles);
         }
+
     }
 }

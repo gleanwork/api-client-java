@@ -29,7 +29,7 @@ public class PostApiIndexV1CheckdocumentaccessRequestBuilder {
     public PostApiIndexV1CheckdocumentaccessResponse call() throws Exception {
         
         RequestOperation<CheckDocumentAccessRequest, PostApiIndexV1CheckdocumentaccessResponse> operation
-              = new PostApiIndexV1CheckdocumentaccessOperation( sdkConfiguration);
+              = new PostApiIndexV1CheckdocumentaccessOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>A disambiguation between multiple entities with the same name
  */
 public class Disambiguation {
-
     /**
      * Name of the ambiguous entity
      */
@@ -84,9 +83,10 @@ public class Disambiguation {
         return (Optional<EntityType>) type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Name of the ambiguous entity
@@ -96,6 +96,7 @@ public class Disambiguation {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * Name of the ambiguous entity
@@ -115,6 +116,7 @@ public class Disambiguation {
         return this;
     }
 
+
     /**
      * The unique id of the entity in the knowledge graph
      */
@@ -133,6 +135,7 @@ public class Disambiguation {
         return this;
     }
 
+
     /**
      * The type of entity.
      */
@@ -142,7 +145,6 @@ public class Disambiguation {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -161,9 +163,7 @@ public class Disambiguation {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            id,
-            type);
+            name, id, type);
     }
     
     @Override
@@ -173,18 +173,20 @@ public class Disambiguation {
                 "id", id,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<? extends EntityType> type = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Name of the ambiguous entity
@@ -204,6 +206,7 @@ public class Disambiguation {
             return this;
         }
 
+
         /**
          * The unique id of the entity in the knowledge graph
          */
@@ -222,6 +225,7 @@ public class Disambiguation {
             return this;
         }
 
+
         /**
          * The type of entity.
          */
@@ -239,12 +243,12 @@ public class Disambiguation {
             this.type = type;
             return this;
         }
-        
+
         public Disambiguation build() {
+
             return new Disambiguation(
-                name,
-                id,
-                type);
+                name, id, type);
         }
+
     }
 }

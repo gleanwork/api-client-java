@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class FeedRequestOptions {
 
+public class FeedRequestOptions {
     /**
      * Number of results asked in response. If a result is a collection, counts as one.
      */
@@ -46,6 +46,7 @@ public class FeedRequestOptions {
     @JsonProperty("datasourceFilter")
     private Optional<? extends List<String>> datasourceFilter;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("chatZeroStateSuggestionOptions")
     private Optional<? extends ChatZeroStateSuggestionOptions> chatZeroStateSuggestionOptions;
@@ -71,7 +72,8 @@ public class FeedRequestOptions {
     
     public FeedRequestOptions(
             long resultSize) {
-        this(resultSize, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(resultSize, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -114,9 +116,10 @@ public class FeedRequestOptions {
         return (Optional<ChatZeroStateSuggestionOptions>) chatZeroStateSuggestionOptions;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Number of results asked in response. If a result is a collection, counts as one.
@@ -136,6 +139,7 @@ public class FeedRequestOptions {
         return this;
     }
 
+
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      */
@@ -153,6 +157,7 @@ public class FeedRequestOptions {
         this.categoryToResultSize = Optional.ofNullable(categoryToResultSize);
         return this;
     }
+
 
     /**
      * Mapping from category to number of results asked for the category.
@@ -172,6 +177,7 @@ public class FeedRequestOptions {
         return this;
     }
 
+
     /**
      * Datasources for which content should be included. Empty is for all.
      */
@@ -187,13 +193,13 @@ public class FeedRequestOptions {
         return this;
     }
 
+
     public FeedRequestOptions withChatZeroStateSuggestionOptions(Optional<? extends ChatZeroStateSuggestionOptions> chatZeroStateSuggestionOptions) {
         Utils.checkNotNull(chatZeroStateSuggestionOptions, "chatZeroStateSuggestionOptions");
         this.chatZeroStateSuggestionOptions = chatZeroStateSuggestionOptions;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -214,11 +220,8 @@ public class FeedRequestOptions {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resultSize,
-            timezoneOffset,
-            categoryToResultSize,
-            datasourceFilter,
-            chatZeroStateSuggestionOptions);
+            resultSize, timezoneOffset, categoryToResultSize,
+            datasourceFilter, chatZeroStateSuggestionOptions);
     }
     
     @Override
@@ -230,22 +233,24 @@ public class FeedRequestOptions {
                 "datasourceFilter", datasourceFilter,
                 "chatZeroStateSuggestionOptions", chatZeroStateSuggestionOptions);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long resultSize;
- 
+
         private Optional<Long> timezoneOffset = Optional.empty();
- 
+
         private Optional<? extends Map<String, CategoryToResultSize>> categoryToResultSize = Optional.empty();
- 
+
         private Optional<? extends List<String>> datasourceFilter = Optional.empty();
- 
+
         private Optional<? extends ChatZeroStateSuggestionOptions> chatZeroStateSuggestionOptions = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Number of results asked in response. If a result is a collection, counts as one.
@@ -255,6 +260,7 @@ public class FeedRequestOptions {
             this.resultSize = resultSize;
             return this;
         }
+
 
         /**
          * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
@@ -274,6 +280,7 @@ public class FeedRequestOptions {
             return this;
         }
 
+
         /**
          * Mapping from category to number of results asked for the category.
          */
@@ -291,6 +298,7 @@ public class FeedRequestOptions {
             this.categoryToResultSize = categoryToResultSize;
             return this;
         }
+
 
         /**
          * Datasources for which content should be included. Empty is for all.
@@ -310,6 +318,7 @@ public class FeedRequestOptions {
             return this;
         }
 
+
         public Builder chatZeroStateSuggestionOptions(ChatZeroStateSuggestionOptions chatZeroStateSuggestionOptions) {
             Utils.checkNotNull(chatZeroStateSuggestionOptions, "chatZeroStateSuggestionOptions");
             this.chatZeroStateSuggestionOptions = Optional.ofNullable(chatZeroStateSuggestionOptions);
@@ -321,14 +330,13 @@ public class FeedRequestOptions {
             this.chatZeroStateSuggestionOptions = chatZeroStateSuggestionOptions;
             return this;
         }
-        
+
         public FeedRequestOptions build() {
+
             return new FeedRequestOptions(
-                resultSize,
-                timezoneOffset,
-                categoryToResultSize,
-                datasourceFilter,
-                chatZeroStateSuggestionOptions);
+                resultSize, timezoneOffset, categoryToResultSize,
+                datasourceFilter, chatZeroStateSuggestionOptions);
         }
+
     }
 }

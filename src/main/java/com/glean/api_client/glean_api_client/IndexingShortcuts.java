@@ -24,7 +24,6 @@ public class IndexingShortcuts {
     IndexingShortcuts(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Bulk index external shortcuts
      * 
@@ -45,13 +44,11 @@ public class IndexingShortcuts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1BulkindexshortcutsResponse bulkIndex(
-            BulkIndexShortcutsRequest request) throws Exception {
+    public PostApiIndexV1BulkindexshortcutsResponse bulkIndex(BulkIndexShortcutsRequest request) throws Exception {
         RequestOperation<BulkIndexShortcutsRequest, PostApiIndexV1BulkindexshortcutsResponse> operation
-              = new PostApiIndexV1BulkindexshortcutsOperation( sdkConfiguration);
+              = new PostApiIndexV1BulkindexshortcutsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Upload shortcuts
@@ -73,10 +70,9 @@ public class IndexingShortcuts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1UploadshortcutsResponse upload(
-            UploadShortcutsRequest request) throws Exception {
+    public PostApiIndexV1UploadshortcutsResponse upload(UploadShortcutsRequest request) throws Exception {
         RequestOperation<UploadShortcutsRequest, PostApiIndexV1UploadshortcutsResponse> operation
-              = new PostApiIndexV1UploadshortcutsOperation( sdkConfiguration);
+              = new PostApiIndexV1UploadshortcutsOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

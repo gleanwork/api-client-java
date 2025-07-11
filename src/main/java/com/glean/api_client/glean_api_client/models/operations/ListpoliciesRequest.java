@@ -12,8 +12,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class ListpoliciesRequest {
 
+public class ListpoliciesRequest {
     /**
      * Filter to return reports with a given value of auto-hide.
      */
@@ -56,9 +56,10 @@ public class ListpoliciesRequest {
         return frequency;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Filter to return reports with a given value of auto-hide.
@@ -68,6 +69,7 @@ public class ListpoliciesRequest {
         this.autoHide = Optional.ofNullable(autoHide);
         return this;
     }
+
 
     /**
      * Filter to return reports with a given value of auto-hide.
@@ -87,6 +89,7 @@ public class ListpoliciesRequest {
         return this;
     }
 
+
     /**
      * Filter to return reports with a given frequency.
      */
@@ -96,7 +99,6 @@ public class ListpoliciesRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -114,8 +116,7 @@ public class ListpoliciesRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            autoHide,
-            frequency);
+            autoHide, frequency);
     }
     
     @Override
@@ -124,16 +125,18 @@ public class ListpoliciesRequest {
                 "autoHide", autoHide,
                 "frequency", frequency);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> autoHide = Optional.empty();
- 
+
         private Optional<String> frequency = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Filter to return reports with a given value of auto-hide.
@@ -153,6 +156,7 @@ public class ListpoliciesRequest {
             return this;
         }
 
+
         /**
          * Filter to return reports with a given frequency.
          */
@@ -170,11 +174,12 @@ public class ListpoliciesRequest {
             this.frequency = frequency;
             return this;
         }
-        
+
         public ListpoliciesRequest build() {
+
             return new ListpoliciesRequest(
-                autoHide,
-                frequency);
+                autoHide, frequency);
         }
+
     }
 }

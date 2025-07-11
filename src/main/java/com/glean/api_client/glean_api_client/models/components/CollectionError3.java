@@ -10,6 +10,7 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
+
 public class CollectionError3 {
 
     @JsonProperty("errorCode")
@@ -27,9 +28,10 @@ public class CollectionError3 {
         return errorCode;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CollectionError3 withErrorCode(CollectionErrorErrorCode errorCode) {
         Utils.checkNotNull(errorCode, "errorCode");
@@ -37,7 +39,6 @@ public class CollectionError3 {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -62,24 +63,28 @@ public class CollectionError3 {
         return Utils.toString(CollectionError3.class,
                 "errorCode", errorCode);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private CollectionErrorErrorCode errorCode;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder errorCode(CollectionErrorErrorCode errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
             this.errorCode = errorCode;
             return this;
         }
-        
+
         public CollectionError3 build() {
+
             return new CollectionError3(
                 errorCode);
         }
+
     }
 }

@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-public class ActivityEvent {
 
+public class ActivityEvent {
     /**
      * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest received event of a given UUID is considered valid by the server and subsequent are ignored.
      */
@@ -29,6 +29,7 @@ public class ActivityEvent {
      */
     @JsonProperty("action")
     private ActivityEventAction action;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("params")
@@ -69,7 +70,8 @@ public class ActivityEvent {
             ActivityEventAction action,
             OffsetDateTime timestamp,
             String url) {
-        this(Optional.empty(), action, Optional.empty(), timestamp, url);
+        this(Optional.empty(), action, Optional.empty(),
+            timestamp, url);
     }
 
     /**
@@ -110,9 +112,10 @@ public class ActivityEvent {
         return url;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest received event of a given UUID is considered valid by the server and subsequent are ignored.
@@ -122,6 +125,7 @@ public class ActivityEvent {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest received event of a given UUID is considered valid by the server and subsequent are ignored.
@@ -147,6 +151,7 @@ public class ActivityEvent {
         return this;
     }
 
+
     public ActivityEvent withParams(Optional<? extends ActivityEventParams> params) {
         Utils.checkNotNull(params, "params");
         this.params = params;
@@ -171,7 +176,6 @@ public class ActivityEvent {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -192,11 +196,8 @@ public class ActivityEvent {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            action,
-            params,
-            timestamp,
-            url);
+            id, action, params,
+            timestamp, url);
     }
     
     @Override
@@ -208,22 +209,24 @@ public class ActivityEvent {
                 "timestamp", timestamp,
                 "url", url);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private ActivityEventAction action;
- 
+
         private Optional<? extends ActivityEventParams> params = Optional.empty();
- 
+
         private OffsetDateTime timestamp;
- 
+
         private String url;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest received event of a given UUID is considered valid by the server and subsequent are ignored.
@@ -243,6 +246,7 @@ public class ActivityEvent {
             return this;
         }
 
+
         /**
          * The type of activity this represents.
          */
@@ -251,6 +255,7 @@ public class ActivityEvent {
             this.action = action;
             return this;
         }
+
 
         public Builder params(ActivityEventParams params) {
             Utils.checkNotNull(params, "params");
@@ -264,6 +269,7 @@ public class ActivityEvent {
             return this;
         }
 
+
         /**
          * The ISO 8601 timestamp when the activity began.
          */
@@ -273,6 +279,7 @@ public class ActivityEvent {
             return this;
         }
 
+
         /**
          * The URL of the activity.
          */
@@ -281,14 +288,13 @@ public class ActivityEvent {
             this.url = url;
             return this;
         }
-        
+
         public ActivityEvent build() {
+
             return new ActivityEvent(
-                id,
-                action,
-                params,
-                timestamp,
-                url);
+                id, action, params,
+                timestamp, url);
         }
+
     }
 }

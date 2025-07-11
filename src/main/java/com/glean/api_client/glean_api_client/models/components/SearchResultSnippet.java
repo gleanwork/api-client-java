@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class SearchResultSnippet {
 
+public class SearchResultSnippet {
     /**
      * A matching snippet from the document. Query term matches are marked by the unicode characters uE006 and uE007.
      */
@@ -83,7 +83,8 @@ public class SearchResultSnippet {
     
     public SearchResultSnippet(
             String snippet) {
-        this(snippet, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(snippet, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -135,9 +136,10 @@ public class SearchResultSnippet {
         return url;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A matching snippet from the document. Query term matches are marked by the unicode characters uE006 and uE007.
@@ -157,6 +159,7 @@ public class SearchResultSnippet {
         return this;
     }
 
+
     /**
      * The mime type of the snippets, currently either text/plain or text/html.
      */
@@ -174,6 +177,7 @@ public class SearchResultSnippet {
         this.text = Optional.ofNullable(text);
         return this;
     }
+
 
     /**
      * A matching snippet from the document with no highlights.
@@ -193,6 +197,7 @@ public class SearchResultSnippet {
         return this;
     }
 
+
     /**
      * Used for sorting based off the snippet's location within all_snippetable_text
      */
@@ -210,6 +215,7 @@ public class SearchResultSnippet {
         this.ranges = Optional.ofNullable(ranges);
         return this;
     }
+
 
     /**
      * The bolded ranges within text.
@@ -229,6 +235,7 @@ public class SearchResultSnippet {
         return this;
     }
 
+
     /**
      * A URL, generated based on availability, that links to the position of the snippet text or to the nearest header above the snippet text.
      */
@@ -238,7 +245,6 @@ public class SearchResultSnippet {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -260,12 +266,8 @@ public class SearchResultSnippet {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            snippet,
-            mimeType,
-            text,
-            snippetTextOrdering,
-            ranges,
-            url);
+            snippet, mimeType, text,
+            snippetTextOrdering, ranges, url);
     }
     
     @Override
@@ -278,24 +280,26 @@ public class SearchResultSnippet {
                 "ranges", ranges,
                 "url", url);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String snippet;
- 
+
         private Optional<String> mimeType = Optional.empty();
- 
+
         private Optional<String> text = Optional.empty();
- 
+
         private Optional<Long> snippetTextOrdering = Optional.empty();
- 
+
         private Optional<? extends List<TextRange>> ranges = Optional.empty();
- 
+
         private Optional<String> url = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A matching snippet from the document. Query term matches are marked by the unicode characters uE006 and uE007.
@@ -305,6 +309,7 @@ public class SearchResultSnippet {
             this.snippet = snippet;
             return this;
         }
+
 
         /**
          * The mime type of the snippets, currently either text/plain or text/html.
@@ -324,6 +329,7 @@ public class SearchResultSnippet {
             return this;
         }
 
+
         /**
          * A matching snippet from the document with no highlights.
          */
@@ -341,6 +347,7 @@ public class SearchResultSnippet {
             this.text = text;
             return this;
         }
+
 
         /**
          * Used for sorting based off the snippet's location within all_snippetable_text
@@ -360,6 +367,7 @@ public class SearchResultSnippet {
             return this;
         }
 
+
         /**
          * The bolded ranges within text.
          */
@@ -378,6 +386,7 @@ public class SearchResultSnippet {
             return this;
         }
 
+
         /**
          * A URL, generated based on availability, that links to the position of the snippet text or to the nearest header above the snippet text.
          */
@@ -395,15 +404,13 @@ public class SearchResultSnippet {
             this.url = url;
             return this;
         }
-        
+
         public SearchResultSnippet build() {
+
             return new SearchResultSnippet(
-                snippet,
-                mimeType,
-                text,
-                snippetTextOrdering,
-                ranges,
-                url);
+                snippet, mimeType, text,
+                snippetTextOrdering, ranges, url);
         }
+
     }
 }

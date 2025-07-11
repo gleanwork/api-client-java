@@ -19,8 +19,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class Customer {
 
+public class Customer {
     /**
      * Unique identifier.
      */
@@ -33,6 +33,7 @@ public class Customer {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("domains")
     private Optional<? extends List<String>> domains;
+
 
     @JsonProperty("company")
     private Company company;
@@ -50,6 +51,7 @@ public class Customer {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("poc")
     private Optional<? extends List<Person>> poc;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
@@ -120,7 +122,10 @@ public class Customer {
     public Customer(
             String id,
             Company company) {
-        this(id, Optional.empty(), company, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(id, Optional.empty(), company,
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -202,9 +207,10 @@ public class Customer {
         return notes;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unique identifier.
@@ -223,6 +229,7 @@ public class Customer {
         this.domains = Optional.ofNullable(domains);
         return this;
     }
+
 
     /**
      * Link to company's associated website domains.
@@ -248,6 +255,7 @@ public class Customer {
         return this;
     }
 
+
     /**
      * A map of {string, int} pairs representing counts of each document type associated with this customer.
      */
@@ -266,6 +274,7 @@ public class Customer {
         return this;
     }
 
+
     /**
      * A list of POC for company.
      */
@@ -281,6 +290,7 @@ public class Customer {
         return this;
     }
 
+
     public Customer withMetadata(Optional<? extends CustomerMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
@@ -295,6 +305,7 @@ public class Customer {
         this.mergedCustomers = Optional.ofNullable(mergedCustomers);
         return this;
     }
+
 
     /**
      * A list of Customers.
@@ -314,6 +325,7 @@ public class Customer {
         return this;
     }
 
+
     /**
      * The date when the interaction with customer started.
      */
@@ -331,6 +343,7 @@ public class Customer {
         this.contractAnnualRevenue = Optional.ofNullable(contractAnnualRevenue);
         return this;
     }
+
 
     /**
      * Average contract annual revenue with that customer.
@@ -350,6 +363,7 @@ public class Customer {
         return this;
     }
 
+
     /**
      * User facing (potentially generated) notes about company.
      */
@@ -359,7 +373,6 @@ public class Customer {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -385,15 +398,9 @@ public class Customer {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            domains,
-            company,
-            documentCounts,
-            poc,
-            metadata,
-            mergedCustomers,
-            startDate,
-            contractAnnualRevenue,
+            id, domains, company,
+            documentCounts, poc, metadata,
+            mergedCustomers, startDate, contractAnnualRevenue,
             notes);
     }
     
@@ -411,32 +418,34 @@ public class Customer {
                 "contractAnnualRevenue", contractAnnualRevenue,
                 "notes", notes);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private Optional<? extends List<String>> domains = Optional.empty();
- 
+
         private Company company;
- 
+
         private Optional<? extends Map<String, Long>> documentCounts = Optional.empty();
- 
+
         private Optional<? extends List<Person>> poc = Optional.empty();
- 
+
         private Optional<? extends CustomerMetadata> metadata = Optional.empty();
- 
+
         private Optional<? extends List<Customer>> mergedCustomers = Optional.empty();
- 
+
         private Optional<LocalDate> startDate = Optional.empty();
- 
+
         private Optional<Double> contractAnnualRevenue = Optional.empty();
- 
+
         private Optional<String> notes = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unique identifier.
@@ -446,6 +455,7 @@ public class Customer {
             this.id = id;
             return this;
         }
+
 
         /**
          * Link to company's associated website domains.
@@ -465,11 +475,13 @@ public class Customer {
             return this;
         }
 
+
         public Builder company(Company company) {
             Utils.checkNotNull(company, "company");
             this.company = company;
             return this;
         }
+
 
         /**
          * A map of {string, int} pairs representing counts of each document type associated with this customer.
@@ -489,6 +501,7 @@ public class Customer {
             return this;
         }
 
+
         /**
          * A list of POC for company.
          */
@@ -507,6 +520,7 @@ public class Customer {
             return this;
         }
 
+
         public Builder metadata(CustomerMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = Optional.ofNullable(metadata);
@@ -518,6 +532,7 @@ public class Customer {
             this.metadata = metadata;
             return this;
         }
+
 
         /**
          * A list of Customers.
@@ -537,6 +552,7 @@ public class Customer {
             return this;
         }
 
+
         /**
          * The date when the interaction with customer started.
          */
@@ -554,6 +570,7 @@ public class Customer {
             this.startDate = startDate;
             return this;
         }
+
 
         /**
          * Average contract annual revenue with that customer.
@@ -573,6 +590,7 @@ public class Customer {
             return this;
         }
 
+
         /**
          * User facing (potentially generated) notes about company.
          */
@@ -590,19 +608,15 @@ public class Customer {
             this.notes = notes;
             return this;
         }
-        
+
         public Customer build() {
+
             return new Customer(
-                id,
-                domains,
-                company,
-                documentCounts,
-                poc,
-                metadata,
-                mergedCustomers,
-                startDate,
-                contractAnnualRevenue,
+                id, domains, company,
+                documentCounts, poc, metadata,
+                mergedCustomers, startDate, contractAnnualRevenue,
                 notes);
         }
+
     }
 }

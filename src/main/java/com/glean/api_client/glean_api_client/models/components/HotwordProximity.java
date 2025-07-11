@@ -14,11 +14,13 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
+
 public class HotwordProximity {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("windowBefore")
     private Optional<Long> windowBefore;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("windowAfter")
@@ -48,15 +50,17 @@ public class HotwordProximity {
         return windowAfter;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public HotwordProximity withWindowBefore(long windowBefore) {
         Utils.checkNotNull(windowBefore, "windowBefore");
         this.windowBefore = Optional.ofNullable(windowBefore);
         return this;
     }
+
 
     public HotwordProximity withWindowBefore(Optional<Long> windowBefore) {
         Utils.checkNotNull(windowBefore, "windowBefore");
@@ -70,13 +74,13 @@ public class HotwordProximity {
         return this;
     }
 
+
     public HotwordProximity withWindowAfter(Optional<Long> windowAfter) {
         Utils.checkNotNull(windowAfter, "windowAfter");
         this.windowAfter = windowAfter;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -94,8 +98,7 @@ public class HotwordProximity {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            windowBefore,
-            windowAfter);
+            windowBefore, windowAfter);
     }
     
     @Override
@@ -104,16 +107,18 @@ public class HotwordProximity {
                 "windowBefore", windowBefore,
                 "windowAfter", windowAfter);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> windowBefore = Optional.empty();
- 
+
         private Optional<Long> windowAfter = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder windowBefore(long windowBefore) {
             Utils.checkNotNull(windowBefore, "windowBefore");
@@ -127,6 +132,7 @@ public class HotwordProximity {
             return this;
         }
 
+
         public Builder windowAfter(long windowAfter) {
             Utils.checkNotNull(windowAfter, "windowAfter");
             this.windowAfter = Optional.ofNullable(windowAfter);
@@ -138,11 +144,12 @@ public class HotwordProximity {
             this.windowAfter = windowAfter;
             return this;
         }
-        
+
         public HotwordProximity build() {
+
             return new HotwordProximity(
-                windowBefore,
-                windowAfter);
+                windowBefore, windowAfter);
         }
+
     }
 }

@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class InsightsAiAppRequestOptions {
 
+public class InsightsAiAppRequestOptions {
     /**
      * IDs of the AI Apps for which Insights should be returned. An empty array signifies all.
      */
@@ -44,9 +44,10 @@ public class InsightsAiAppRequestOptions {
         return (Optional<List<String>>) aiAppIds;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * IDs of the AI Apps for which Insights should be returned. An empty array signifies all.
@@ -57,6 +58,7 @@ public class InsightsAiAppRequestOptions {
         return this;
     }
 
+
     /**
      * IDs of the AI Apps for which Insights should be returned. An empty array signifies all.
      */
@@ -66,7 +68,6 @@ public class InsightsAiAppRequestOptions {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,14 +92,16 @@ public class InsightsAiAppRequestOptions {
         return Utils.toString(InsightsAiAppRequestOptions.class,
                 "aiAppIds", aiAppIds);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<String>> aiAppIds = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * IDs of the AI Apps for which Insights should be returned. An empty array signifies all.
@@ -117,10 +120,12 @@ public class InsightsAiAppRequestOptions {
             this.aiAppIds = aiAppIds;
             return this;
         }
-        
+
         public InsightsAiAppRequestOptions build() {
+
             return new InsightsAiAppRequestOptions(
                 aiAppIds);
         }
+
     }
 }

@@ -14,8 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class ListAnswersRequest {
 
+public class ListAnswersRequest {
     /**
      * The Answer Board Id to list answers on.
      */
@@ -42,9 +42,10 @@ public class ListAnswersRequest {
         return boardId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The Answer Board Id to list answers on.
@@ -55,6 +56,7 @@ public class ListAnswersRequest {
         return this;
     }
 
+
     /**
      * The Answer Board Id to list answers on.
      */
@@ -64,7 +66,6 @@ public class ListAnswersRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -89,14 +90,16 @@ public class ListAnswersRequest {
         return Utils.toString(ListAnswersRequest.class,
                 "boardId", boardId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> boardId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The Answer Board Id to list answers on.
@@ -115,10 +118,12 @@ public class ListAnswersRequest {
             this.boardId = boardId;
             return this;
         }
-        
+
         public ListAnswersRequest build() {
+
             return new ListAnswersRequest(
                 boardId);
         }
+
     }
 }

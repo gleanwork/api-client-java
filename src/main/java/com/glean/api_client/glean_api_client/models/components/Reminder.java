@@ -15,10 +15,12 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class Reminder {
 
     @JsonProperty("assignee")
     private Person assignee;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("requestor")
@@ -66,7 +68,8 @@ public class Reminder {
     public Reminder(
             Person assignee,
             long remindAt) {
-        this(assignee, Optional.empty(), remindAt, Optional.empty(), Optional.empty());
+        this(assignee, Optional.empty(), remindAt,
+            Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -104,9 +107,10 @@ public class Reminder {
         return reason;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Reminder withAssignee(Person assignee) {
         Utils.checkNotNull(assignee, "assignee");
@@ -119,6 +123,7 @@ public class Reminder {
         this.requestor = Optional.ofNullable(requestor);
         return this;
     }
+
 
     public Reminder withRequestor(Optional<? extends Person> requestor) {
         Utils.checkNotNull(requestor, "requestor");
@@ -144,6 +149,7 @@ public class Reminder {
         return this;
     }
 
+
     /**
      * Unix timestamp for when the reminder was first created (in seconds since epoch UTC).
      */
@@ -162,6 +168,7 @@ public class Reminder {
         return this;
     }
 
+
     /**
      * An optional free-text reason for the reminder. This is particularly useful when a reminder is used to ask for verification from another user (for example, "Duplicate", "Incomplete", "Incorrect").
      */
@@ -171,7 +178,6 @@ public class Reminder {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -192,11 +198,8 @@ public class Reminder {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            assignee,
-            requestor,
-            remindAt,
-            createdAt,
-            reason);
+            assignee, requestor, remindAt,
+            createdAt, reason);
     }
     
     @Override
@@ -208,28 +211,31 @@ public class Reminder {
                 "createdAt", createdAt,
                 "reason", reason);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Person assignee;
- 
+
         private Optional<? extends Person> requestor = Optional.empty();
- 
+
         private Long remindAt;
- 
+
         private Optional<Long> createdAt = Optional.empty();
- 
+
         private Optional<String> reason = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder assignee(Person assignee) {
             Utils.checkNotNull(assignee, "assignee");
             this.assignee = assignee;
             return this;
         }
+
 
         public Builder requestor(Person requestor) {
             Utils.checkNotNull(requestor, "requestor");
@@ -243,6 +249,7 @@ public class Reminder {
             return this;
         }
 
+
         /**
          * Unix timestamp for when the reminder should trigger (in seconds since epoch UTC).
          */
@@ -251,6 +258,7 @@ public class Reminder {
             this.remindAt = remindAt;
             return this;
         }
+
 
         /**
          * Unix timestamp for when the reminder was first created (in seconds since epoch UTC).
@@ -270,6 +278,7 @@ public class Reminder {
             return this;
         }
 
+
         /**
          * An optional free-text reason for the reminder. This is particularly useful when a reminder is used to ask for verification from another user (for example, "Duplicate", "Incomplete", "Incorrect").
          */
@@ -287,14 +296,13 @@ public class Reminder {
             this.reason = reason;
             return this;
         }
-        
+
         public Reminder build() {
+
             return new Reminder(
-                assignee,
-                requestor,
-                remindAt,
-                createdAt,
-                reason);
+                assignee, requestor, remindAt,
+                createdAt, reason);
         }
+
     }
 }

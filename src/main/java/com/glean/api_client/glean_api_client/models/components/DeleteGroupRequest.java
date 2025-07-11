@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>Describes the request body of the /deletegroup API call
  */
 public class DeleteGroupRequest {
-
     /**
      * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
      */
@@ -83,9 +82,10 @@ public class DeleteGroupRequest {
         return groupName;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
@@ -95,6 +95,7 @@ public class DeleteGroupRequest {
         this.version = Optional.ofNullable(version);
         return this;
     }
+
 
     /**
      * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
@@ -123,7 +124,6 @@ public class DeleteGroupRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -142,9 +142,7 @@ public class DeleteGroupRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            version,
-            datasource,
-            groupName);
+            version, datasource, groupName);
     }
     
     @Override
@@ -154,18 +152,20 @@ public class DeleteGroupRequest {
                 "datasource", datasource,
                 "groupName", groupName);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> version = Optional.empty();
- 
+
         private String datasource;
- 
+
         private String groupName;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
@@ -185,6 +185,7 @@ public class DeleteGroupRequest {
             return this;
         }
 
+
         /**
          * The datasource for which the group is removed
          */
@@ -194,6 +195,7 @@ public class DeleteGroupRequest {
             return this;
         }
 
+
         /**
          * the name of the group to be deleted
          */
@@ -202,12 +204,12 @@ public class DeleteGroupRequest {
             this.groupName = groupName;
             return this;
         }
-        
+
         public DeleteGroupRequest build() {
+
             return new DeleteGroupRequest(
-                version,
-                datasource,
-                groupName);
+                version, datasource, groupName);
         }
+
     }
 }

@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>Describes the response body of the /rotatetoken API call
  */
 public class RotateTokenResponse {
-
     /**
      * New raw secret
      */
@@ -83,9 +82,10 @@ public class RotateTokenResponse {
         return rotationPeriodMinutes;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * New raw secret
@@ -95,6 +95,7 @@ public class RotateTokenResponse {
         this.rawSecret = Optional.ofNullable(rawSecret);
         return this;
     }
+
 
     /**
      * New raw secret
@@ -114,6 +115,7 @@ public class RotateTokenResponse {
         return this;
     }
 
+
     /**
      * Unix timestamp in seconds when the new secret value is assigned to the token. The token needs to be rotated before `rotationPeriodMinutes` past the createdAt timestamp otherwise it would be rendered unusable.
      */
@@ -132,6 +134,7 @@ public class RotateTokenResponse {
         return this;
     }
 
+
     /**
      * Refers to the time period in minutes before which this token needs to be rotated. It is required to rotate the token within the specified `rotationPeriodMinutes` after each `/rotatetoken` call, otherwise the tokens would expire. Note that the token would still expire at `expiresAt` timestamp provided during token creation even if the token is being regularly rotated. `rotationPeriodMinutes` property is inherited from the parent token being rotated
      */
@@ -141,7 +144,6 @@ public class RotateTokenResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -160,9 +162,7 @@ public class RotateTokenResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            rawSecret,
-            createdAt,
-            rotationPeriodMinutes);
+            rawSecret, createdAt, rotationPeriodMinutes);
     }
     
     @Override
@@ -172,18 +172,20 @@ public class RotateTokenResponse {
                 "createdAt", createdAt,
                 "rotationPeriodMinutes", rotationPeriodMinutes);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> rawSecret = Optional.empty();
- 
+
         private Optional<Long> createdAt = Optional.empty();
- 
+
         private Optional<Long> rotationPeriodMinutes = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * New raw secret
@@ -203,6 +205,7 @@ public class RotateTokenResponse {
             return this;
         }
 
+
         /**
          * Unix timestamp in seconds when the new secret value is assigned to the token. The token needs to be rotated before `rotationPeriodMinutes` past the createdAt timestamp otherwise it would be rendered unusable.
          */
@@ -221,6 +224,7 @@ public class RotateTokenResponse {
             return this;
         }
 
+
         /**
          * Refers to the time period in minutes before which this token needs to be rotated. It is required to rotate the token within the specified `rotationPeriodMinutes` after each `/rotatetoken` call, otherwise the tokens would expire. Note that the token would still expire at `expiresAt` timestamp provided during token creation even if the token is being regularly rotated. `rotationPeriodMinutes` property is inherited from the parent token being rotated
          */
@@ -238,12 +242,12 @@ public class RotateTokenResponse {
             this.rotationPeriodMinutes = rotationPeriodMinutes;
             return this;
         }
-        
+
         public RotateTokenResponse build() {
+
             return new RotateTokenResponse(
-                rawSecret,
-                createdAt,
-                rotationPeriodMinutes);
+                rawSecret, createdAt, rotationPeriodMinutes);
         }
+
     }
 }

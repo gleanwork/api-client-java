@@ -29,7 +29,7 @@ public class InsightsRequestBuilder {
     public InsightsResponse call() throws Exception {
         
         RequestOperation<InsightsRequest, InsightsResponse> operation
-              = new InsightsOperation( sdkConfiguration);
+              = new InsightsOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

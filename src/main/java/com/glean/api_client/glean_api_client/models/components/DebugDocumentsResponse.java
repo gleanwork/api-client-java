@@ -21,7 +21,6 @@ import java.util.Optional;
  * <p>Describes the response body of a single document in the /debug/{datasource}/documents API call
  */
 public class DebugDocumentsResponse {
-
     /**
      * List of document ids/urls and their debug information
      */
@@ -49,9 +48,10 @@ public class DebugDocumentsResponse {
         return (Optional<List<DebugDocumentsResponseItem>>) documentStatuses;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * List of document ids/urls and their debug information
@@ -62,6 +62,7 @@ public class DebugDocumentsResponse {
         return this;
     }
 
+
     /**
      * List of document ids/urls and their debug information
      */
@@ -71,7 +72,6 @@ public class DebugDocumentsResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -96,14 +96,16 @@ public class DebugDocumentsResponse {
         return Utils.toString(DebugDocumentsResponse.class,
                 "documentStatuses", documentStatuses);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<DebugDocumentsResponseItem>> documentStatuses = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * List of document ids/urls and their debug information
@@ -122,10 +124,12 @@ public class DebugDocumentsResponse {
             this.documentStatuses = documentStatuses;
             return this;
         }
-        
+
         public DebugDocumentsResponse build() {
+
             return new DebugDocumentsResponse(
                 documentStatuses);
         }
+
     }
 }

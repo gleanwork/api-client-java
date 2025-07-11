@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class ChatRestrictionFilters {
 
+public class ChatRestrictionFilters {
     /**
      * Specifications for containers that should be used as part of the restriction (include/exclude). Memberships are recursively defined for a subset of datasources (currently: SharePoint, OneDrive, Google Drive, and Confluence). Please contact the Glean team to enable this for more datasources. Recursive memberships do not apply for Collections.
      */
@@ -24,9 +24,11 @@ public class ChatRestrictionFilters {
     @JsonProperty("containerSpecs")
     private Optional<? extends List<DocumentSpecUnion>> containerSpecs;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentSpecs")
     private Optional<? extends List<DocumentSpecUnion>> documentSpecs;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("datasourceInstances")
@@ -70,9 +72,10 @@ public class ChatRestrictionFilters {
         return (Optional<List<String>>) datasourceInstances;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Specifications for containers that should be used as part of the restriction (include/exclude). Memberships are recursively defined for a subset of datasources (currently: SharePoint, OneDrive, Google Drive, and Confluence). Please contact the Glean team to enable this for more datasources. Recursive memberships do not apply for Collections.
@@ -82,6 +85,7 @@ public class ChatRestrictionFilters {
         this.containerSpecs = Optional.ofNullable(containerSpecs);
         return this;
     }
+
 
     /**
      * Specifications for containers that should be used as part of the restriction (include/exclude). Memberships are recursively defined for a subset of datasources (currently: SharePoint, OneDrive, Google Drive, and Confluence). Please contact the Glean team to enable this for more datasources. Recursive memberships do not apply for Collections.
@@ -98,6 +102,7 @@ public class ChatRestrictionFilters {
         return this;
     }
 
+
     public ChatRestrictionFilters withDocumentSpecs(Optional<? extends List<DocumentSpecUnion>> documentSpecs) {
         Utils.checkNotNull(documentSpecs, "documentSpecs");
         this.documentSpecs = documentSpecs;
@@ -110,13 +115,13 @@ public class ChatRestrictionFilters {
         return this;
     }
 
+
     public ChatRestrictionFilters withDatasourceInstances(Optional<? extends List<String>> datasourceInstances) {
         Utils.checkNotNull(datasourceInstances, "datasourceInstances");
         this.datasourceInstances = datasourceInstances;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -135,9 +140,7 @@ public class ChatRestrictionFilters {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            containerSpecs,
-            documentSpecs,
-            datasourceInstances);
+            containerSpecs, documentSpecs, datasourceInstances);
     }
     
     @Override
@@ -147,18 +150,20 @@ public class ChatRestrictionFilters {
                 "documentSpecs", documentSpecs,
                 "datasourceInstances", datasourceInstances);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<DocumentSpecUnion>> containerSpecs = Optional.empty();
- 
+
         private Optional<? extends List<DocumentSpecUnion>> documentSpecs = Optional.empty();
- 
+
         private Optional<? extends List<String>> datasourceInstances = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Specifications for containers that should be used as part of the restriction (include/exclude). Memberships are recursively defined for a subset of datasources (currently: SharePoint, OneDrive, Google Drive, and Confluence). Please contact the Glean team to enable this for more datasources. Recursive memberships do not apply for Collections.
@@ -178,6 +183,7 @@ public class ChatRestrictionFilters {
             return this;
         }
 
+
         public Builder documentSpecs(List<DocumentSpecUnion> documentSpecs) {
             Utils.checkNotNull(documentSpecs, "documentSpecs");
             this.documentSpecs = Optional.ofNullable(documentSpecs);
@@ -190,6 +196,7 @@ public class ChatRestrictionFilters {
             return this;
         }
 
+
         public Builder datasourceInstances(List<String> datasourceInstances) {
             Utils.checkNotNull(datasourceInstances, "datasourceInstances");
             this.datasourceInstances = Optional.ofNullable(datasourceInstances);
@@ -201,12 +208,12 @@ public class ChatRestrictionFilters {
             this.datasourceInstances = datasourceInstances;
             return this;
         }
-        
+
         public ChatRestrictionFilters build() {
+
             return new ChatRestrictionFilters(
-                containerSpecs,
-                documentSpecs,
-                datasourceInstances);
+                containerSpecs, documentSpecs, datasourceInstances);
         }
+
     }
 }

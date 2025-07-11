@@ -14,6 +14,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
+
 public class CategoryToResultSize {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -36,9 +37,10 @@ public class CategoryToResultSize {
         return resultSize;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CategoryToResultSize withResultSize(long resultSize) {
         Utils.checkNotNull(resultSize, "resultSize");
@@ -46,13 +48,13 @@ public class CategoryToResultSize {
         return this;
     }
 
+
     public CategoryToResultSize withResultSize(Optional<Long> resultSize) {
         Utils.checkNotNull(resultSize, "resultSize");
         this.resultSize = resultSize;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -77,14 +79,16 @@ public class CategoryToResultSize {
         return Utils.toString(CategoryToResultSize.class,
                 "resultSize", resultSize);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> resultSize = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder resultSize(long resultSize) {
             Utils.checkNotNull(resultSize, "resultSize");
@@ -97,10 +101,12 @@ public class CategoryToResultSize {
             this.resultSize = resultSize;
             return this;
         }
-        
+
         public CategoryToResultSize build() {
+
             return new CategoryToResultSize(
                 resultSize);
         }
+
     }
 }

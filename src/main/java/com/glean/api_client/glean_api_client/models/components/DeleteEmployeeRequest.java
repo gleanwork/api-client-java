@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>Describes the request body of the /deleteemployee API call
  */
 public class DeleteEmployeeRequest {
-
     /**
      * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
      */
@@ -65,9 +64,10 @@ public class DeleteEmployeeRequest {
         return employeeEmail;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
@@ -77,6 +77,7 @@ public class DeleteEmployeeRequest {
         this.version = Optional.ofNullable(version);
         return this;
     }
+
 
     /**
      * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
@@ -96,7 +97,6 @@ public class DeleteEmployeeRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -114,8 +114,7 @@ public class DeleteEmployeeRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            version,
-            employeeEmail);
+            version, employeeEmail);
     }
     
     @Override
@@ -124,16 +123,18 @@ public class DeleteEmployeeRequest {
                 "version", version,
                 "employeeEmail", employeeEmail);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> version = Optional.empty();
- 
+
         private String employeeEmail;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
@@ -153,6 +154,7 @@ public class DeleteEmployeeRequest {
             return this;
         }
 
+
         /**
          * The deleted employee's email
          */
@@ -161,11 +163,12 @@ public class DeleteEmployeeRequest {
             this.employeeEmail = employeeEmail;
             return this;
         }
-        
+
         public DeleteEmployeeRequest build() {
+
             return new DeleteEmployeeRequest(
-                version,
-                employeeEmail);
+                version, employeeEmail);
         }
+
     }
 }

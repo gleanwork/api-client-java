@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class DocumentOrError {
 
+public class DocumentOrError {
     /**
      * The text for error, reason.
      */
@@ -41,9 +41,10 @@ public class DocumentOrError {
         return error;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The text for error, reason.
@@ -54,6 +55,7 @@ public class DocumentOrError {
         return this;
     }
 
+
     /**
      * The text for error, reason.
      */
@@ -63,7 +65,6 @@ public class DocumentOrError {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -88,14 +89,16 @@ public class DocumentOrError {
         return Utils.toString(DocumentOrError.class,
                 "error", error);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> error = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The text for error, reason.
@@ -114,10 +117,12 @@ public class DocumentOrError {
             this.error = error;
             return this;
         }
-        
+
         public DocumentOrError build() {
+
             return new DocumentOrError(
                 error);
         }
+
     }
 }

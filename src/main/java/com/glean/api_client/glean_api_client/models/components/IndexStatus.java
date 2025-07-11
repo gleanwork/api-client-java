@@ -14,8 +14,8 @@ import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-public class IndexStatus {
 
+public class IndexStatus {
     /**
      * When the document was last crawled
      */
@@ -60,9 +60,10 @@ public class IndexStatus {
         return lastIndexedTime;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * When the document was last crawled
@@ -72,6 +73,7 @@ public class IndexStatus {
         this.lastCrawledTime = Optional.ofNullable(lastCrawledTime);
         return this;
     }
+
 
     /**
      * When the document was last crawled
@@ -91,6 +93,7 @@ public class IndexStatus {
         return this;
     }
 
+
     /**
      * When the document was last indexed
      */
@@ -100,7 +103,6 @@ public class IndexStatus {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -118,8 +120,7 @@ public class IndexStatus {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            lastCrawledTime,
-            lastIndexedTime);
+            lastCrawledTime, lastIndexedTime);
     }
     
     @Override
@@ -128,16 +129,18 @@ public class IndexStatus {
                 "lastCrawledTime", lastCrawledTime,
                 "lastIndexedTime", lastIndexedTime);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<OffsetDateTime> lastCrawledTime = Optional.empty();
- 
+
         private Optional<OffsetDateTime> lastIndexedTime = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * When the document was last crawled
@@ -157,6 +160,7 @@ public class IndexStatus {
             return this;
         }
 
+
         /**
          * When the document was last indexed
          */
@@ -174,11 +178,12 @@ public class IndexStatus {
             this.lastIndexedTime = lastIndexedTime;
             return this;
         }
-        
+
         public IndexStatus build() {
+
             return new IndexStatus(
-                lastCrawledTime,
-                lastIndexedTime);
+                lastCrawledTime, lastIndexedTime);
         }
+
     }
 }

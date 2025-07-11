@@ -13,14 +13,15 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class ErrorMessage {
 
+public class ErrorMessage {
     /**
      * The datasource this message relates to.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("source")
     private Optional<String> source;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("errorMessage")
@@ -53,9 +54,10 @@ public class ErrorMessage {
         return errorMessage;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The datasource this message relates to.
@@ -65,6 +67,7 @@ public class ErrorMessage {
         this.source = Optional.ofNullable(source);
         return this;
     }
+
 
     /**
      * The datasource this message relates to.
@@ -81,13 +84,13 @@ public class ErrorMessage {
         return this;
     }
 
+
     public ErrorMessage withErrorMessage(Optional<String> errorMessage) {
         Utils.checkNotNull(errorMessage, "errorMessage");
         this.errorMessage = errorMessage;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -105,8 +108,7 @@ public class ErrorMessage {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            source,
-            errorMessage);
+            source, errorMessage);
     }
     
     @Override
@@ -115,16 +117,18 @@ public class ErrorMessage {
                 "source", source,
                 "errorMessage", errorMessage);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> source = Optional.empty();
- 
+
         private Optional<String> errorMessage = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The datasource this message relates to.
@@ -144,6 +148,7 @@ public class ErrorMessage {
             return this;
         }
 
+
         public Builder errorMessage(String errorMessage) {
             Utils.checkNotNull(errorMessage, "errorMessage");
             this.errorMessage = Optional.ofNullable(errorMessage);
@@ -155,11 +160,12 @@ public class ErrorMessage {
             this.errorMessage = errorMessage;
             return this;
         }
-        
+
         public ErrorMessage build() {
+
             return new ErrorMessage(
-                source,
-                errorMessage);
+                source, errorMessage);
         }
+
     }
 }

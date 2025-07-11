@@ -45,7 +45,7 @@ public class GetdocvisibilityRequestBuilder {
     public GetdocvisibilityResponse call() throws Exception {
         
         RequestOperation<GetdocvisibilityRequest, GetdocvisibilityResponse> operation
-              = new GetdocvisibilityOperation( sdkConfiguration);
+              = new GetdocvisibilityOperation(sdkConfiguration);
         GetdocvisibilityRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

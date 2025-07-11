@@ -19,7 +19,6 @@ import java.util.Optional;
  * <p>Regular expression to apply to an arbitrary string to transform it into a canonical string.
  */
 public class CanonicalizingRegexType {
-
     /**
      * Regular expression to match to an arbitrary string.
      */
@@ -64,9 +63,10 @@ public class CanonicalizingRegexType {
         return rewriteRegex;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Regular expression to match to an arbitrary string.
@@ -76,6 +76,7 @@ public class CanonicalizingRegexType {
         this.matchRegex = Optional.ofNullable(matchRegex);
         return this;
     }
+
 
     /**
      * Regular expression to match to an arbitrary string.
@@ -95,6 +96,7 @@ public class CanonicalizingRegexType {
         return this;
     }
 
+
     /**
      * Regular expression to transform into a canonical string.
      */
@@ -104,7 +106,6 @@ public class CanonicalizingRegexType {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -122,8 +123,7 @@ public class CanonicalizingRegexType {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            matchRegex,
-            rewriteRegex);
+            matchRegex, rewriteRegex);
     }
     
     @Override
@@ -132,16 +132,18 @@ public class CanonicalizingRegexType {
                 "matchRegex", matchRegex,
                 "rewriteRegex", rewriteRegex);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> matchRegex = Optional.empty();
- 
+
         private Optional<String> rewriteRegex = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Regular expression to match to an arbitrary string.
@@ -161,6 +163,7 @@ public class CanonicalizingRegexType {
             return this;
         }
 
+
         /**
          * Regular expression to transform into a canonical string.
          */
@@ -178,11 +181,12 @@ public class CanonicalizingRegexType {
             this.rewriteRegex = rewriteRegex;
             return this;
         }
-        
+
         public CanonicalizingRegexType build() {
+
             return new CanonicalizingRegexType(
-                matchRegex,
-                rewriteRegex);
+                matchRegex, rewriteRegex);
         }
+
     }
 }

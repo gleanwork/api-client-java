@@ -21,7 +21,6 @@ import java.util.Optional;
  * <p>Metadata of a Chat a user had with Glean Assistant. This contains no actual conversational content.
  */
 public class ChatMetadata {
-
     /**
      * The opaque id of the Chat.
      */
@@ -35,6 +34,7 @@ public class ChatMetadata {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createTime")
     private Optional<Long> createTime;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdBy")
@@ -104,7 +104,9 @@ public class ChatMetadata {
     }
     
     public ChatMetadata() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -170,9 +172,10 @@ public class ChatMetadata {
         return (Optional<IconConfig>) icon;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The opaque id of the Chat.
@@ -182,6 +185,7 @@ public class ChatMetadata {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The opaque id of the Chat.
@@ -201,6 +205,7 @@ public class ChatMetadata {
         return this;
     }
 
+
     /**
      * Server Unix timestamp of the creation time (in seconds since epoch UTC).
      */
@@ -216,6 +221,7 @@ public class ChatMetadata {
         return this;
     }
 
+
     public ChatMetadata withCreatedBy(Optional<? extends Person> createdBy) {
         Utils.checkNotNull(createdBy, "createdBy");
         this.createdBy = createdBy;
@@ -230,6 +236,7 @@ public class ChatMetadata {
         this.updateTime = Optional.ofNullable(updateTime);
         return this;
     }
+
 
     /**
      * Server Unix timestamp of the update time (in seconds since epoch UTC).
@@ -249,6 +256,7 @@ public class ChatMetadata {
         return this;
     }
 
+
     /**
      * The name of the Chat.
      */
@@ -266,6 +274,7 @@ public class ChatMetadata {
         this.applicationId = Optional.ofNullable(applicationId);
         return this;
     }
+
 
     /**
      * The ID of the AI App that this Chat is associated to.
@@ -285,6 +294,7 @@ public class ChatMetadata {
         return this;
     }
 
+
     /**
      * The display name of the AI App that this Chat is associated to.
      */
@@ -303,6 +313,7 @@ public class ChatMetadata {
         return this;
     }
 
+
     /**
      * Defines how to render an icon
      */
@@ -312,7 +323,6 @@ public class ChatMetadata {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -336,14 +346,9 @@ public class ChatMetadata {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            createTime,
-            createdBy,
-            updateTime,
-            name,
-            applicationId,
-            applicationName,
-            icon);
+            id, createTime, createdBy,
+            updateTime, name, applicationId,
+            applicationName, icon);
     }
     
     @Override
@@ -358,28 +363,30 @@ public class ChatMetadata {
                 "applicationName", applicationName,
                 "icon", icon);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<Long> createTime = Optional.empty();
- 
+
         private Optional<? extends Person> createdBy = Optional.empty();
- 
+
         private Optional<Long> updateTime = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> applicationId = Optional.empty();
- 
+
         private Optional<String> applicationName = Optional.empty();
- 
+
         private Optional<? extends IconConfig> icon = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The opaque id of the Chat.
@@ -399,6 +406,7 @@ public class ChatMetadata {
             return this;
         }
 
+
         /**
          * Server Unix timestamp of the creation time (in seconds since epoch UTC).
          */
@@ -417,6 +425,7 @@ public class ChatMetadata {
             return this;
         }
 
+
         public Builder createdBy(Person createdBy) {
             Utils.checkNotNull(createdBy, "createdBy");
             this.createdBy = Optional.ofNullable(createdBy);
@@ -428,6 +437,7 @@ public class ChatMetadata {
             this.createdBy = createdBy;
             return this;
         }
+
 
         /**
          * Server Unix timestamp of the update time (in seconds since epoch UTC).
@@ -447,6 +457,7 @@ public class ChatMetadata {
             return this;
         }
 
+
         /**
          * The name of the Chat.
          */
@@ -464,6 +475,7 @@ public class ChatMetadata {
             this.name = name;
             return this;
         }
+
 
         /**
          * The ID of the AI App that this Chat is associated to.
@@ -483,6 +495,7 @@ public class ChatMetadata {
             return this;
         }
 
+
         /**
          * The display name of the AI App that this Chat is associated to.
          */
@@ -501,6 +514,7 @@ public class ChatMetadata {
             return this;
         }
 
+
         /**
          * Defines how to render an icon
          */
@@ -518,17 +532,14 @@ public class ChatMetadata {
             this.icon = icon;
             return this;
         }
-        
+
         public ChatMetadata build() {
+
             return new ChatMetadata(
-                id,
-                createTime,
-                createdBy,
-                updateTime,
-                name,
-                applicationId,
-                applicationName,
-                icon);
+                id, createTime, createdBy,
+                updateTime, name, applicationId,
+                applicationName, icon);
         }
+
     }
 }

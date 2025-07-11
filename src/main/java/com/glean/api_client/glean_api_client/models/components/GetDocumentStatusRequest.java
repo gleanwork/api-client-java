@@ -16,7 +16,6 @@ import java.lang.String;
  * <p>Describes the request body for /getdocumentstatus API call
  */
 public class GetDocumentStatusRequest {
-
     /**
      * Datasource to get fetch document status for
      */
@@ -72,9 +71,10 @@ public class GetDocumentStatusRequest {
         return docId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Datasource to get fetch document status for
@@ -103,7 +103,6 @@ public class GetDocumentStatusRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -122,9 +121,7 @@ public class GetDocumentStatusRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            datasource,
-            objectType,
-            docId);
+            datasource, objectType, docId);
     }
     
     @Override
@@ -134,18 +131,20 @@ public class GetDocumentStatusRequest {
                 "objectType", objectType,
                 "docId", docId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String datasource;
- 
+
         private String objectType;
- 
+
         private String docId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Datasource to get fetch document status for
@@ -156,6 +155,7 @@ public class GetDocumentStatusRequest {
             return this;
         }
 
+
         /**
          * Object type of the document to get the status for
          */
@@ -165,6 +165,7 @@ public class GetDocumentStatusRequest {
             return this;
         }
 
+
         /**
          * Glean Document ID within the datasource to get the status for.
          */
@@ -173,12 +174,12 @@ public class GetDocumentStatusRequest {
             this.docId = docId;
             return this;
         }
-        
+
         public GetDocumentStatusRequest build() {
+
             return new GetDocumentStatusRequest(
-                datasource,
-                objectType,
-                docId);
+                datasource, objectType, docId);
         }
+
     }
 }

@@ -14,8 +14,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class VerifyRequest {
 
+public class VerifyRequest {
     /**
      * The document which is verified.
      */
@@ -61,9 +61,10 @@ public class VerifyRequest {
         return (Optional<VerifyRequestAction>) action;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The document which is verified.
@@ -83,6 +84,7 @@ public class VerifyRequest {
         return this;
     }
 
+
     /**
      * The verification action requested.
      */
@@ -92,7 +94,6 @@ public class VerifyRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -110,8 +111,7 @@ public class VerifyRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            documentId,
-            action);
+            documentId, action);
     }
     
     @Override
@@ -120,16 +120,18 @@ public class VerifyRequest {
                 "documentId", documentId,
                 "action", action);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String documentId;
- 
+
         private Optional<? extends VerifyRequestAction> action = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The document which is verified.
@@ -139,6 +141,7 @@ public class VerifyRequest {
             this.documentId = documentId;
             return this;
         }
+
 
         /**
          * The verification action requested.
@@ -157,11 +160,12 @@ public class VerifyRequest {
             this.action = action;
             return this;
         }
-        
+
         public VerifyRequest build() {
+
             return new VerifyRequest(
-                documentId,
-                action);
+                documentId, action);
         }
+
     }
 }

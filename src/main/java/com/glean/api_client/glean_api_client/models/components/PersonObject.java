@@ -10,8 +10,8 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class PersonObject {
 
+public class PersonObject {
     /**
      * The display name.
      */
@@ -50,9 +50,10 @@ public class PersonObject {
         return obfuscatedId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The display name.
@@ -72,7 +73,6 @@ public class PersonObject {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,8 +90,7 @@ public class PersonObject {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            obfuscatedId);
+            name, obfuscatedId);
     }
     
     @Override
@@ -100,16 +99,18 @@ public class PersonObject {
                 "name", name,
                 "obfuscatedId", obfuscatedId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
- 
+
         private String obfuscatedId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The display name.
@@ -120,6 +121,7 @@ public class PersonObject {
             return this;
         }
 
+
         /**
          * An opaque identifier that can be used to request metadata for a Person.
          */
@@ -128,11 +130,12 @@ public class PersonObject {
             this.obfuscatedId = obfuscatedId;
             return this;
         }
-        
+
         public PersonObject build() {
+
             return new PersonObject(
-                name,
-                obfuscatedId);
+                name, obfuscatedId);
         }
+
     }
 }

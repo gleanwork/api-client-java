@@ -14,6 +14,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
+
 public class AddCollectionItemsError {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -37,9 +38,10 @@ public class AddCollectionItemsError {
         return (Optional<AddCollectionItemsErrorErrorType>) errorType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public AddCollectionItemsError withErrorType(AddCollectionItemsErrorErrorType errorType) {
         Utils.checkNotNull(errorType, "errorType");
@@ -47,13 +49,13 @@ public class AddCollectionItemsError {
         return this;
     }
 
+
     public AddCollectionItemsError withErrorType(Optional<? extends AddCollectionItemsErrorErrorType> errorType) {
         Utils.checkNotNull(errorType, "errorType");
         this.errorType = errorType;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -78,14 +80,16 @@ public class AddCollectionItemsError {
         return Utils.toString(AddCollectionItemsError.class,
                 "errorType", errorType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends AddCollectionItemsErrorErrorType> errorType = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder errorType(AddCollectionItemsErrorErrorType errorType) {
             Utils.checkNotNull(errorType, "errorType");
@@ -98,10 +102,12 @@ public class AddCollectionItemsError {
             this.errorType = errorType;
             return this;
         }
-        
+
         public AddCollectionItemsError build() {
+
             return new AddCollectionItemsError(
                 errorType);
         }
+
     }
 }

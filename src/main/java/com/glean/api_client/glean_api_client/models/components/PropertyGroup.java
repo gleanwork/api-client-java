@@ -19,7 +19,6 @@ import java.util.Optional;
  * <p>A grouping for multiple PropertyDefinition. Grouped properties will be displayed together in the UI.
  */
 public class PropertyGroup {
-
     /**
      * The unique identifier of the group.
      */
@@ -64,9 +63,10 @@ public class PropertyGroup {
         return displayLabel;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique identifier of the group.
@@ -76,6 +76,7 @@ public class PropertyGroup {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * The unique identifier of the group.
@@ -95,6 +96,7 @@ public class PropertyGroup {
         return this;
     }
 
+
     /**
      * The user-friendly group label to display.
      */
@@ -104,7 +106,6 @@ public class PropertyGroup {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -122,8 +123,7 @@ public class PropertyGroup {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            displayLabel);
+            name, displayLabel);
     }
     
     @Override
@@ -132,16 +132,18 @@ public class PropertyGroup {
                 "name", name,
                 "displayLabel", displayLabel);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> displayLabel = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique identifier of the group.
@@ -161,6 +163,7 @@ public class PropertyGroup {
             return this;
         }
 
+
         /**
          * The user-friendly group label to display.
          */
@@ -178,11 +181,12 @@ public class PropertyGroup {
             this.displayLabel = displayLabel;
             return this;
         }
-        
+
         public PropertyGroup build() {
+
             return new PropertyGroup(
-                name,
-                displayLabel);
+                name, displayLabel);
         }
+
     }
 }

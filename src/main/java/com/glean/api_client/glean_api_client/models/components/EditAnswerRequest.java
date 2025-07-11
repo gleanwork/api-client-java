@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class EditAnswerRequest {
 
+public class EditAnswerRequest {
     /**
      * The opaque ID of the Answer.
      */
@@ -31,6 +31,7 @@ public class EditAnswerRequest {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("docId")
     private Optional<String> docId;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("question")
@@ -88,9 +89,11 @@ public class EditAnswerRequest {
     @JsonProperty("roles")
     private Optional<? extends List<UserRoleSpecification>> roles;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sourceDocumentSpec")
     private Optional<? extends DocumentSpecUnion> sourceDocumentSpec;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sourceType")
@@ -109,6 +112,7 @@ public class EditAnswerRequest {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("removedCollections")
     private Optional<? extends List<Long>> removedCollections;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("combinedAnswerText")
@@ -165,7 +169,11 @@ public class EditAnswerRequest {
     
     public EditAnswerRequest(
             long id) {
-        this(id, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(id, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -289,9 +297,10 @@ public class EditAnswerRequest {
         return (Optional<StructuredTextMutableProperties>) combinedAnswerText;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The opaque ID of the Answer.
@@ -311,6 +320,7 @@ public class EditAnswerRequest {
         return this;
     }
 
+
     /**
      * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID isn't available. If both are available, using the Answer ID is preferred.
      */
@@ -326,6 +336,7 @@ public class EditAnswerRequest {
         return this;
     }
 
+
     public EditAnswerRequest withQuestion(Optional<String> question) {
         Utils.checkNotNull(question, "question");
         this.question = question;
@@ -340,6 +351,7 @@ public class EditAnswerRequest {
         this.questionVariations = Optional.ofNullable(questionVariations);
         return this;
     }
+
 
     /**
      * Additional ways of phrasing this question.
@@ -358,6 +370,7 @@ public class EditAnswerRequest {
         this.bodyText = Optional.ofNullable(bodyText);
         return this;
     }
+
 
     /**
      * The plain text answer to the question.
@@ -380,6 +393,7 @@ public class EditAnswerRequest {
         return this;
     }
 
+
     /**
      * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
      * 
@@ -401,6 +415,7 @@ public class EditAnswerRequest {
         return this;
     }
 
+
     /**
      * Filters which restrict who should see the answer. Values are taken from the corresponding filters in people search.
      */
@@ -418,6 +433,7 @@ public class EditAnswerRequest {
         this.addedRoles = Optional.ofNullable(addedRoles);
         return this;
     }
+
 
     /**
      * A list of user roles for the answer added by the owner.
@@ -437,6 +453,7 @@ public class EditAnswerRequest {
         return this;
     }
 
+
     /**
      * A list of user roles for the answer removed by the owner.
      */
@@ -455,6 +472,7 @@ public class EditAnswerRequest {
         return this;
     }
 
+
     /**
      * A list of roles for this answer explicitly granted by an owner, editor, or admin.
      */
@@ -470,6 +488,7 @@ public class EditAnswerRequest {
         return this;
     }
 
+
     public EditAnswerRequest withSourceDocumentSpec(Optional<? extends DocumentSpecUnion> sourceDocumentSpec) {
         Utils.checkNotNull(sourceDocumentSpec, "sourceDocumentSpec");
         this.sourceDocumentSpec = sourceDocumentSpec;
@@ -481,6 +500,7 @@ public class EditAnswerRequest {
         this.sourceType = Optional.ofNullable(sourceType);
         return this;
     }
+
 
     public EditAnswerRequest withSourceType(Optional<? extends EditAnswerRequestSourceType> sourceType) {
         Utils.checkNotNull(sourceType, "sourceType");
@@ -496,6 +516,7 @@ public class EditAnswerRequest {
         this.addedCollections = Optional.ofNullable(addedCollections);
         return this;
     }
+
 
     /**
      * IDs of Collections to which a document is added.
@@ -515,6 +536,7 @@ public class EditAnswerRequest {
         return this;
     }
 
+
     /**
      * IDs of Collections from which a document is removed.
      */
@@ -530,13 +552,13 @@ public class EditAnswerRequest {
         return this;
     }
 
+
     public EditAnswerRequest withCombinedAnswerText(Optional<? extends StructuredTextMutableProperties> combinedAnswerText) {
         Utils.checkNotNull(combinedAnswerText, "combinedAnswerText");
         this.combinedAnswerText = combinedAnswerText;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -567,21 +589,11 @@ public class EditAnswerRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            docId,
-            question,
-            questionVariations,
-            bodyText,
-            boardId,
-            audienceFilters,
-            addedRoles,
-            removedRoles,
-            roles,
-            sourceDocumentSpec,
-            sourceType,
-            addedCollections,
-            removedCollections,
-            combinedAnswerText);
+            id, docId, question,
+            questionVariations, bodyText, boardId,
+            audienceFilters, addedRoles, removedRoles,
+            roles, sourceDocumentSpec, sourceType,
+            addedCollections, removedCollections, combinedAnswerText);
     }
     
     @Override
@@ -603,43 +615,45 @@ public class EditAnswerRequest {
                 "removedCollections", removedCollections,
                 "combinedAnswerText", combinedAnswerText);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long id;
- 
+
         private Optional<String> docId = Optional.empty();
- 
+
         private Optional<String> question = Optional.empty();
- 
+
         private Optional<? extends List<String>> questionVariations = Optional.empty();
- 
+
         private Optional<String> bodyText = Optional.empty();
- 
+
         @Deprecated
         private Optional<Long> boardId = Optional.empty();
- 
+
         private Optional<? extends List<FacetFilter>> audienceFilters = Optional.empty();
- 
+
         private Optional<? extends List<UserRoleSpecification>> addedRoles = Optional.empty();
- 
+
         private Optional<? extends List<UserRoleSpecification>> removedRoles = Optional.empty();
- 
+
         private Optional<? extends List<UserRoleSpecification>> roles = Optional.empty();
- 
+
         private Optional<? extends DocumentSpecUnion> sourceDocumentSpec = Optional.empty();
- 
+
         private Optional<? extends EditAnswerRequestSourceType> sourceType = Optional.empty();
- 
+
         private Optional<? extends List<Long>> addedCollections = Optional.empty();
- 
+
         private Optional<? extends List<Long>> removedCollections = Optional.empty();
- 
+
         private Optional<? extends StructuredTextMutableProperties> combinedAnswerText = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The opaque ID of the Answer.
@@ -649,6 +663,7 @@ public class EditAnswerRequest {
             this.id = id;
             return this;
         }
+
 
         /**
          * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID isn't available. If both are available, using the Answer ID is preferred.
@@ -668,6 +683,7 @@ public class EditAnswerRequest {
             return this;
         }
 
+
         public Builder question(String question) {
             Utils.checkNotNull(question, "question");
             this.question = Optional.ofNullable(question);
@@ -679,6 +695,7 @@ public class EditAnswerRequest {
             this.question = question;
             return this;
         }
+
 
         /**
          * Additional ways of phrasing this question.
@@ -698,6 +715,7 @@ public class EditAnswerRequest {
             return this;
         }
 
+
         /**
          * The plain text answer to the question.
          */
@@ -715,6 +733,7 @@ public class EditAnswerRequest {
             this.bodyText = bodyText;
             return this;
         }
+
 
         /**
          * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
@@ -740,6 +759,7 @@ public class EditAnswerRequest {
             return this;
         }
 
+
         /**
          * Filters which restrict who should see the answer. Values are taken from the corresponding filters in people search.
          */
@@ -757,6 +777,7 @@ public class EditAnswerRequest {
             this.audienceFilters = audienceFilters;
             return this;
         }
+
 
         /**
          * A list of user roles for the answer added by the owner.
@@ -776,6 +797,7 @@ public class EditAnswerRequest {
             return this;
         }
 
+
         /**
          * A list of user roles for the answer removed by the owner.
          */
@@ -793,6 +815,7 @@ public class EditAnswerRequest {
             this.removedRoles = removedRoles;
             return this;
         }
+
 
         /**
          * A list of roles for this answer explicitly granted by an owner, editor, or admin.
@@ -812,6 +835,7 @@ public class EditAnswerRequest {
             return this;
         }
 
+
         public Builder sourceDocumentSpec(DocumentSpecUnion sourceDocumentSpec) {
             Utils.checkNotNull(sourceDocumentSpec, "sourceDocumentSpec");
             this.sourceDocumentSpec = Optional.ofNullable(sourceDocumentSpec);
@@ -824,6 +848,7 @@ public class EditAnswerRequest {
             return this;
         }
 
+
         public Builder sourceType(EditAnswerRequestSourceType sourceType) {
             Utils.checkNotNull(sourceType, "sourceType");
             this.sourceType = Optional.ofNullable(sourceType);
@@ -835,6 +860,7 @@ public class EditAnswerRequest {
             this.sourceType = sourceType;
             return this;
         }
+
 
         /**
          * IDs of Collections to which a document is added.
@@ -854,6 +880,7 @@ public class EditAnswerRequest {
             return this;
         }
 
+
         /**
          * IDs of Collections from which a document is removed.
          */
@@ -872,6 +899,7 @@ public class EditAnswerRequest {
             return this;
         }
 
+
         public Builder combinedAnswerText(StructuredTextMutableProperties combinedAnswerText) {
             Utils.checkNotNull(combinedAnswerText, "combinedAnswerText");
             this.combinedAnswerText = Optional.ofNullable(combinedAnswerText);
@@ -883,24 +911,16 @@ public class EditAnswerRequest {
             this.combinedAnswerText = combinedAnswerText;
             return this;
         }
-        
+
         public EditAnswerRequest build() {
+
             return new EditAnswerRequest(
-                id,
-                docId,
-                question,
-                questionVariations,
-                bodyText,
-                boardId,
-                audienceFilters,
-                addedRoles,
-                removedRoles,
-                roles,
-                sourceDocumentSpec,
-                sourceType,
-                addedCollections,
-                removedCollections,
-                combinedAnswerText);
+                id, docId, question,
+                questionVariations, bodyText, boardId,
+                audienceFilters, addedRoles, removedRoles,
+                roles, sourceDocumentSpec, sourceType,
+                addedCollections, removedCollections, combinedAnswerText);
         }
+
     }
 }

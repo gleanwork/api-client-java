@@ -20,7 +20,7 @@ public class PostApiIndexV1ProcessallemployeesandteamsRequestBuilder {
     public PostApiIndexV1ProcessallemployeesandteamsResponse call() throws Exception {
         
         RequestlessOperation<PostApiIndexV1ProcessallemployeesandteamsResponse> operation
-            = new PostApiIndexV1ProcessallemployeesandteamsOperation( sdkConfiguration);
+            = new PostApiIndexV1ProcessallemployeesandteamsOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest());
     }

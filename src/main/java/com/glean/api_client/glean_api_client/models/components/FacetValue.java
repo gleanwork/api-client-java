@@ -15,14 +15,15 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class FacetValue {
 
+public class FacetValue {
     /**
      * The value that should be set in the FacetFilter when applying this filter to a search request.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("stringValue")
     private Optional<String> stringValue;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("integerValue")
@@ -59,7 +60,8 @@ public class FacetValue {
     }
     
     public FacetValue() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -92,9 +94,10 @@ public class FacetValue {
         return (Optional<IconConfig>) iconConfig;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The value that should be set in the FacetFilter when applying this filter to a search request.
@@ -104,6 +107,7 @@ public class FacetValue {
         this.stringValue = Optional.ofNullable(stringValue);
         return this;
     }
+
 
     /**
      * The value that should be set in the FacetFilter when applying this filter to a search request.
@@ -120,6 +124,7 @@ public class FacetValue {
         return this;
     }
 
+
     public FacetValue withIntegerValue(Optional<Long> integerValue) {
         Utils.checkNotNull(integerValue, "integerValue");
         this.integerValue = integerValue;
@@ -134,6 +139,7 @@ public class FacetValue {
         this.displayLabel = Optional.ofNullable(displayLabel);
         return this;
     }
+
 
     /**
      * An optional user-friendly label to display in place of the facet value.
@@ -153,6 +159,7 @@ public class FacetValue {
         return this;
     }
 
+
     /**
      * Defines how to render an icon
      */
@@ -162,7 +169,6 @@ public class FacetValue {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -182,9 +188,7 @@ public class FacetValue {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            stringValue,
-            integerValue,
-            displayLabel,
+            stringValue, integerValue, displayLabel,
             iconConfig);
     }
     
@@ -196,20 +200,22 @@ public class FacetValue {
                 "displayLabel", displayLabel,
                 "iconConfig", iconConfig);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> stringValue = Optional.empty();
- 
+
         private Optional<Long> integerValue = Optional.empty();
- 
+
         private Optional<String> displayLabel = Optional.empty();
- 
+
         private Optional<? extends IconConfig> iconConfig = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The value that should be set in the FacetFilter when applying this filter to a search request.
@@ -229,6 +235,7 @@ public class FacetValue {
             return this;
         }
 
+
         public Builder integerValue(long integerValue) {
             Utils.checkNotNull(integerValue, "integerValue");
             this.integerValue = Optional.ofNullable(integerValue);
@@ -240,6 +247,7 @@ public class FacetValue {
             this.integerValue = integerValue;
             return this;
         }
+
 
         /**
          * An optional user-friendly label to display in place of the facet value.
@@ -259,6 +267,7 @@ public class FacetValue {
             return this;
         }
 
+
         /**
          * Defines how to render an icon
          */
@@ -276,13 +285,13 @@ public class FacetValue {
             this.iconConfig = iconConfig;
             return this;
         }
-        
+
         public FacetValue build() {
+
             return new FacetValue(
-                stringValue,
-                integerValue,
-                displayLabel,
+                stringValue, integerValue, displayLabel,
                 iconConfig);
         }
+
     }
 }

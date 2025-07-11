@@ -11,6 +11,7 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
+
 public class Security implements HasSecurity {
 
     @SpeakeasyMetadata("security:scheme=true,type=http,subtype=bearer,name=Authorization")
@@ -28,9 +29,10 @@ public class Security implements HasSecurity {
         return apiToken;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Security withAPIToken(String apiToken) {
         Utils.checkNotNull(apiToken, "apiToken");
@@ -38,7 +40,6 @@ public class Security implements HasSecurity {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -63,24 +64,28 @@ public class Security implements HasSecurity {
         return Utils.toString(Security.class,
                 "apiToken", apiToken);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String apiToken;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder apiToken(String apiToken) {
             Utils.checkNotNull(apiToken, "apiToken");
             this.apiToken = apiToken;
             return this;
         }
-        
+
         public Security build() {
+
             return new Security(
                 apiToken);
         }
+
     }
 }

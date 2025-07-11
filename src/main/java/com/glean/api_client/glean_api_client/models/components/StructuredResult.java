@@ -26,53 +26,66 @@ public class StructuredResult {
     @JsonProperty("document")
     private Optional<? extends Document> document;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("person")
     private Optional<? extends Person> person;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("customer")
     private Optional<? extends Customer> customer;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("team")
     private Optional<? extends Team> team;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("customEntity")
     private Optional<? extends CustomEntity> customEntity;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("answer")
     private Optional<? extends Answer> answer;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("extractedQnA")
     private Optional<? extends ExtractedQnA> extractedQnA;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("meeting")
     private Optional<? extends Meeting> meeting;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("app")
     private Optional<? extends AppResult> app;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("collection")
     private Optional<? extends Collection> collection;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("answerBoard")
     private Optional<? extends AnswerBoard> answerBoard;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("code")
     private Optional<? extends Code> code;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shortcut")
     private Optional<? extends Shortcut> shortcut;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("querySuggestions")
@@ -84,6 +97,7 @@ public class StructuredResult {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("relatedDocuments")
     private Optional<? extends List<RelatedDocuments>> relatedDocuments;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("relatedQuestion")
@@ -192,7 +206,13 @@ public class StructuredResult {
     }
     
     public StructuredResult() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -338,15 +358,17 @@ public class StructuredResult {
         return (Optional<StructuredResultSource>) source;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public StructuredResult withDocument(Document document) {
         Utils.checkNotNull(document, "document");
         this.document = Optional.ofNullable(document);
         return this;
     }
+
 
     public StructuredResult withDocument(Optional<? extends Document> document) {
         Utils.checkNotNull(document, "document");
@@ -360,6 +382,7 @@ public class StructuredResult {
         return this;
     }
 
+
     public StructuredResult withPerson(Optional<? extends Person> person) {
         Utils.checkNotNull(person, "person");
         this.person = person;
@@ -371,6 +394,7 @@ public class StructuredResult {
         this.customer = Optional.ofNullable(customer);
         return this;
     }
+
 
     public StructuredResult withCustomer(Optional<? extends Customer> customer) {
         Utils.checkNotNull(customer, "customer");
@@ -384,6 +408,7 @@ public class StructuredResult {
         return this;
     }
 
+
     public StructuredResult withTeam(Optional<? extends Team> team) {
         Utils.checkNotNull(team, "team");
         this.team = team;
@@ -395,6 +420,7 @@ public class StructuredResult {
         this.customEntity = Optional.ofNullable(customEntity);
         return this;
     }
+
 
     public StructuredResult withCustomEntity(Optional<? extends CustomEntity> customEntity) {
         Utils.checkNotNull(customEntity, "customEntity");
@@ -408,6 +434,7 @@ public class StructuredResult {
         return this;
     }
 
+
     public StructuredResult withAnswer(Optional<? extends Answer> answer) {
         Utils.checkNotNull(answer, "answer");
         this.answer = answer;
@@ -419,6 +446,7 @@ public class StructuredResult {
         this.extractedQnA = Optional.ofNullable(extractedQnA);
         return this;
     }
+
 
     public StructuredResult withExtractedQnA(Optional<? extends ExtractedQnA> extractedQnA) {
         Utils.checkNotNull(extractedQnA, "extractedQnA");
@@ -432,6 +460,7 @@ public class StructuredResult {
         return this;
     }
 
+
     public StructuredResult withMeeting(Optional<? extends Meeting> meeting) {
         Utils.checkNotNull(meeting, "meeting");
         this.meeting = meeting;
@@ -443,6 +472,7 @@ public class StructuredResult {
         this.app = Optional.ofNullable(app);
         return this;
     }
+
 
     public StructuredResult withApp(Optional<? extends AppResult> app) {
         Utils.checkNotNull(app, "app");
@@ -456,6 +486,7 @@ public class StructuredResult {
         return this;
     }
 
+
     public StructuredResult withCollection(Optional<? extends Collection> collection) {
         Utils.checkNotNull(collection, "collection");
         this.collection = collection;
@@ -467,6 +498,7 @@ public class StructuredResult {
         this.answerBoard = Optional.ofNullable(answerBoard);
         return this;
     }
+
 
     public StructuredResult withAnswerBoard(Optional<? extends AnswerBoard> answerBoard) {
         Utils.checkNotNull(answerBoard, "answerBoard");
@@ -480,6 +512,7 @@ public class StructuredResult {
         return this;
     }
 
+
     public StructuredResult withCode(Optional<? extends Code> code) {
         Utils.checkNotNull(code, "code");
         this.code = code;
@@ -492,6 +525,7 @@ public class StructuredResult {
         return this;
     }
 
+
     public StructuredResult withShortcut(Optional<? extends Shortcut> shortcut) {
         Utils.checkNotNull(shortcut, "shortcut");
         this.shortcut = shortcut;
@@ -503,6 +537,7 @@ public class StructuredResult {
         this.querySuggestions = Optional.ofNullable(querySuggestions);
         return this;
     }
+
 
     public StructuredResult withQuerySuggestions(Optional<? extends QuerySuggestionList> querySuggestions) {
         Utils.checkNotNull(querySuggestions, "querySuggestions");
@@ -519,6 +554,7 @@ public class StructuredResult {
         return this;
     }
 
+
     /**
      * A list of documents related to this structured result.
      */
@@ -534,6 +570,7 @@ public class StructuredResult {
         return this;
     }
 
+
     public StructuredResult withRelatedQuestion(Optional<? extends RelatedQuestion> relatedQuestion) {
         Utils.checkNotNull(relatedQuestion, "relatedQuestion");
         this.relatedQuestion = relatedQuestion;
@@ -548,6 +585,7 @@ public class StructuredResult {
         this.disambiguation = Optional.ofNullable(disambiguation);
         return this;
     }
+
 
     /**
      * A disambiguation between multiple entities with the same name
@@ -567,6 +605,7 @@ public class StructuredResult {
         return this;
     }
 
+
     /**
      * Any snippets associated to the populated object.
      */
@@ -584,6 +623,7 @@ public class StructuredResult {
         this.trackingToken = Optional.ofNullable(trackingToken);
         return this;
     }
+
 
     /**
      * An opaque token that represents this particular result in this particular query. To be used for /feedback reporting.
@@ -603,6 +643,7 @@ public class StructuredResult {
         return this;
     }
 
+
     /**
      * The level of visual distinction that should be given to a result.
      */
@@ -621,6 +662,7 @@ public class StructuredResult {
         return this;
     }
 
+
     /**
      * Source context for this result. Possible values depend on the result type.
      */
@@ -630,7 +672,6 @@ public class StructuredResult {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -667,27 +708,13 @@ public class StructuredResult {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            document,
-            person,
-            customer,
-            team,
-            customEntity,
-            answer,
-            extractedQnA,
-            meeting,
-            app,
-            collection,
-            answerBoard,
-            code,
-            shortcut,
-            querySuggestions,
-            relatedDocuments,
-            relatedQuestion,
-            disambiguation,
-            snippets,
-            trackingToken,
-            prominence,
-            source);
+            document, person, customer,
+            team, customEntity, answer,
+            extractedQnA, meeting, app,
+            collection, answerBoard, code,
+            shortcut, querySuggestions, relatedDocuments,
+            relatedQuestion, disambiguation, snippets,
+            trackingToken, prominence, source);
     }
     
     @Override
@@ -715,54 +742,56 @@ public class StructuredResult {
                 "prominence", prominence,
                 "source", source);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Document> document = Optional.empty();
- 
+
         private Optional<? extends Person> person = Optional.empty();
- 
+
         private Optional<? extends Customer> customer = Optional.empty();
- 
+
         private Optional<? extends Team> team = Optional.empty();
- 
+
         private Optional<? extends CustomEntity> customEntity = Optional.empty();
- 
+
         private Optional<? extends Answer> answer = Optional.empty();
- 
+
         private Optional<? extends ExtractedQnA> extractedQnA = Optional.empty();
- 
+
         private Optional<? extends Meeting> meeting = Optional.empty();
- 
+
         private Optional<? extends AppResult> app = Optional.empty();
- 
+
         private Optional<? extends Collection> collection = Optional.empty();
- 
+
         private Optional<? extends AnswerBoard> answerBoard = Optional.empty();
- 
+
         private Optional<? extends Code> code = Optional.empty();
- 
+
         private Optional<? extends Shortcut> shortcut = Optional.empty();
- 
+
         private Optional<? extends QuerySuggestionList> querySuggestions = Optional.empty();
- 
+
         private Optional<? extends List<RelatedDocuments>> relatedDocuments = Optional.empty();
- 
+
         private Optional<? extends RelatedQuestion> relatedQuestion = Optional.empty();
- 
+
         private Optional<? extends Disambiguation> disambiguation = Optional.empty();
- 
+
         private Optional<? extends List<SearchResultSnippet>> snippets = Optional.empty();
- 
+
         private Optional<String> trackingToken = Optional.empty();
- 
+
         private Optional<? extends Prominence> prominence = Optional.empty();
- 
+
         private Optional<? extends StructuredResultSource> source = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder document(Document document) {
             Utils.checkNotNull(document, "document");
@@ -776,6 +805,7 @@ public class StructuredResult {
             return this;
         }
 
+
         public Builder person(Person person) {
             Utils.checkNotNull(person, "person");
             this.person = Optional.ofNullable(person);
@@ -787,6 +817,7 @@ public class StructuredResult {
             this.person = person;
             return this;
         }
+
 
         public Builder customer(Customer customer) {
             Utils.checkNotNull(customer, "customer");
@@ -800,6 +831,7 @@ public class StructuredResult {
             return this;
         }
 
+
         public Builder team(Team team) {
             Utils.checkNotNull(team, "team");
             this.team = Optional.ofNullable(team);
@@ -811,6 +843,7 @@ public class StructuredResult {
             this.team = team;
             return this;
         }
+
 
         public Builder customEntity(CustomEntity customEntity) {
             Utils.checkNotNull(customEntity, "customEntity");
@@ -824,6 +857,7 @@ public class StructuredResult {
             return this;
         }
 
+
         public Builder answer(Answer answer) {
             Utils.checkNotNull(answer, "answer");
             this.answer = Optional.ofNullable(answer);
@@ -835,6 +869,7 @@ public class StructuredResult {
             this.answer = answer;
             return this;
         }
+
 
         public Builder extractedQnA(ExtractedQnA extractedQnA) {
             Utils.checkNotNull(extractedQnA, "extractedQnA");
@@ -848,6 +883,7 @@ public class StructuredResult {
             return this;
         }
 
+
         public Builder meeting(Meeting meeting) {
             Utils.checkNotNull(meeting, "meeting");
             this.meeting = Optional.ofNullable(meeting);
@@ -859,6 +895,7 @@ public class StructuredResult {
             this.meeting = meeting;
             return this;
         }
+
 
         public Builder app(AppResult app) {
             Utils.checkNotNull(app, "app");
@@ -872,6 +909,7 @@ public class StructuredResult {
             return this;
         }
 
+
         public Builder collection(Collection collection) {
             Utils.checkNotNull(collection, "collection");
             this.collection = Optional.ofNullable(collection);
@@ -883,6 +921,7 @@ public class StructuredResult {
             this.collection = collection;
             return this;
         }
+
 
         public Builder answerBoard(AnswerBoard answerBoard) {
             Utils.checkNotNull(answerBoard, "answerBoard");
@@ -896,6 +935,7 @@ public class StructuredResult {
             return this;
         }
 
+
         public Builder code(Code code) {
             Utils.checkNotNull(code, "code");
             this.code = Optional.ofNullable(code);
@@ -907,6 +947,7 @@ public class StructuredResult {
             this.code = code;
             return this;
         }
+
 
         public Builder shortcut(Shortcut shortcut) {
             Utils.checkNotNull(shortcut, "shortcut");
@@ -920,6 +961,7 @@ public class StructuredResult {
             return this;
         }
 
+
         public Builder querySuggestions(QuerySuggestionList querySuggestions) {
             Utils.checkNotNull(querySuggestions, "querySuggestions");
             this.querySuggestions = Optional.ofNullable(querySuggestions);
@@ -931,6 +973,7 @@ public class StructuredResult {
             this.querySuggestions = querySuggestions;
             return this;
         }
+
 
         /**
          * A list of documents related to this structured result.
@@ -950,6 +993,7 @@ public class StructuredResult {
             return this;
         }
 
+
         public Builder relatedQuestion(RelatedQuestion relatedQuestion) {
             Utils.checkNotNull(relatedQuestion, "relatedQuestion");
             this.relatedQuestion = Optional.ofNullable(relatedQuestion);
@@ -961,6 +1005,7 @@ public class StructuredResult {
             this.relatedQuestion = relatedQuestion;
             return this;
         }
+
 
         /**
          * A disambiguation between multiple entities with the same name
@@ -980,6 +1025,7 @@ public class StructuredResult {
             return this;
         }
 
+
         /**
          * Any snippets associated to the populated object.
          */
@@ -997,6 +1043,7 @@ public class StructuredResult {
             this.snippets = snippets;
             return this;
         }
+
 
         /**
          * An opaque token that represents this particular result in this particular query. To be used for /feedback reporting.
@@ -1016,6 +1063,7 @@ public class StructuredResult {
             return this;
         }
 
+
         /**
          * The level of visual distinction that should be given to a result.
          */
@@ -1034,6 +1082,7 @@ public class StructuredResult {
             return this;
         }
 
+
         /**
          * Source context for this result. Possible values depend on the result type.
          */
@@ -1051,30 +1100,18 @@ public class StructuredResult {
             this.source = source;
             return this;
         }
-        
+
         public StructuredResult build() {
+
             return new StructuredResult(
-                document,
-                person,
-                customer,
-                team,
-                customEntity,
-                answer,
-                extractedQnA,
-                meeting,
-                app,
-                collection,
-                answerBoard,
-                code,
-                shortcut,
-                querySuggestions,
-                relatedDocuments,
-                relatedQuestion,
-                disambiguation,
-                snippets,
-                trackingToken,
-                prominence,
-                source);
+                document, person, customer,
+                team, customEntity, answer,
+                extractedQnA, meeting, app,
+                collection, answerBoard, code,
+                shortcut, querySuggestions, relatedDocuments,
+                relatedQuestion, disambiguation, snippets,
+                trackingToken, prominence, source);
         }
+
     }
 }

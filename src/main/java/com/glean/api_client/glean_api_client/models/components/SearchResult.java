@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class SearchResult {
 
+public class SearchResult {
     /**
      * An array of entities in the work graph retrieved via a data request.
      */
@@ -32,13 +32,16 @@ public class SearchResult {
     @JsonProperty("trackingToken")
     private Optional<String> trackingToken;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("document")
     private Optional<? extends Document> document;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("title")
     private Optional<String> title;
+
 
     @JsonProperty("url")
     private String url;
@@ -120,9 +123,11 @@ public class SearchResult {
     @JsonProperty("clusterType")
     private Optional<? extends ClusterTypeEnum> clusterType;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mustIncludeSuggestions")
     private Optional<? extends QuerySuggestionList> mustIncludeSuggestions;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("querySuggestion")
@@ -218,7 +223,13 @@ public class SearchResult {
     
     public SearchResult(
             String url) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), url, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), url, Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -388,9 +399,10 @@ public class SearchResult {
         return (Optional<List<PinDocument>>) pins;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * An array of entities in the work graph retrieved via a data request.
@@ -400,6 +412,7 @@ public class SearchResult {
         this.structuredResults = Optional.ofNullable(structuredResults);
         return this;
     }
+
 
     /**
      * An array of entities in the work graph retrieved via a data request.
@@ -419,6 +432,7 @@ public class SearchResult {
         return this;
     }
 
+
     /**
      * An opaque token that represents this particular result in this particular query. To be used for /feedback reporting.
      */
@@ -434,6 +448,7 @@ public class SearchResult {
         return this;
     }
 
+
     public SearchResult withDocument(Optional<? extends Document> document) {
         Utils.checkNotNull(document, "document");
         this.document = document;
@@ -445,6 +460,7 @@ public class SearchResult {
         this.title = Optional.ofNullable(title);
         return this;
     }
+
 
     public SearchResult withTitle(Optional<String> title) {
         Utils.checkNotNull(title, "title");
@@ -467,6 +483,7 @@ public class SearchResult {
         return this;
     }
 
+
     /**
      * A deep link, if available, into the datasource's native application for the user's platform (e.g. slack://...).
      */
@@ -484,6 +501,7 @@ public class SearchResult {
         this.snippets = Optional.ofNullable(snippets);
         return this;
     }
+
 
     /**
      * Text content from the result document which contains search query terms, if available.
@@ -503,6 +521,7 @@ public class SearchResult {
         return this;
     }
 
+
     /**
      * The full body text of the result if not already contained in the snippets. Only populated for conversation results (e.g. results from a messaging app such as Slack).
      */
@@ -520,6 +539,7 @@ public class SearchResult {
         this.fullTextList = Optional.ofNullable(fullTextList);
         return this;
     }
+
 
     /**
      * The full body text of the result if not already contained in the snippets; each item in the array represents a separate line in the original text. Only populated for conversation results (e.g. results from a messaging app such as Slack).
@@ -539,6 +559,7 @@ public class SearchResult {
         return this;
     }
 
+
     /**
      * A list of results related to this search result. Eg. for conversation results it contains individual messages from the conversation document which will be shown on SERP.
      */
@@ -556,6 +577,7 @@ public class SearchResult {
         this.clusteredResults = Optional.ofNullable(clusteredResults);
         return this;
     }
+
 
     /**
      * A list of results that should be displayed as associated with this result.
@@ -575,6 +597,7 @@ public class SearchResult {
         return this;
     }
 
+
     /**
      * A list of results that should be displayed as associated with this result.
      */
@@ -592,6 +615,7 @@ public class SearchResult {
         this.attachmentCount = Optional.ofNullable(attachmentCount);
         return this;
     }
+
 
     /**
      * The total number of attachments.
@@ -611,6 +635,7 @@ public class SearchResult {
         return this;
     }
 
+
     /**
      * A (potentially partial) list of results representing documents attached to the main result document.
      */
@@ -628,6 +653,7 @@ public class SearchResult {
         this.backlinkResults = Optional.ofNullable(backlinkResults);
         return this;
     }
+
 
     /**
      * A list of results that should be displayed as backlinks of this result in reverse chronological order.
@@ -647,6 +673,7 @@ public class SearchResult {
         return this;
     }
 
+
     /**
      * The reason for inclusion of clusteredResults.
      */
@@ -662,6 +689,7 @@ public class SearchResult {
         return this;
     }
 
+
     public SearchResult withMustIncludeSuggestions(Optional<? extends QuerySuggestionList> mustIncludeSuggestions) {
         Utils.checkNotNull(mustIncludeSuggestions, "mustIncludeSuggestions");
         this.mustIncludeSuggestions = mustIncludeSuggestions;
@@ -673,6 +701,7 @@ public class SearchResult {
         this.querySuggestion = Optional.ofNullable(querySuggestion);
         return this;
     }
+
 
     public SearchResult withQuerySuggestion(Optional<? extends QuerySuggestion> querySuggestion) {
         Utils.checkNotNull(querySuggestion, "querySuggestion");
@@ -688,6 +717,7 @@ public class SearchResult {
         this.prominence = Optional.ofNullable(prominence);
         return this;
     }
+
 
     /**
      * The level of visual distinction that should be given to a result.
@@ -707,6 +737,7 @@ public class SearchResult {
         return this;
     }
 
+
     /**
      * Additional context for the relationship between the result and the document it's attached to.
      */
@@ -725,6 +756,7 @@ public class SearchResult {
         return this;
     }
 
+
     /**
      * A list of pins associated with this search result.
      */
@@ -734,7 +766,6 @@ public class SearchResult {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -771,27 +802,13 @@ public class SearchResult {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            structuredResults,
-            trackingToken,
-            document,
-            title,
-            url,
-            nativeAppUrl,
-            snippets,
-            fullText,
-            fullTextList,
-            relatedResults,
-            clusteredResults,
-            allClusteredResults,
-            attachmentCount,
-            attachments,
-            backlinkResults,
-            clusterType,
-            mustIncludeSuggestions,
-            querySuggestion,
-            prominence,
-            attachmentContext,
-            pins);
+            structuredResults, trackingToken, document,
+            title, url, nativeAppUrl,
+            snippets, fullText, fullTextList,
+            relatedResults, clusteredResults, allClusteredResults,
+            attachmentCount, attachments, backlinkResults,
+            clusterType, mustIncludeSuggestions, querySuggestion,
+            prominence, attachmentContext, pins);
     }
     
     @Override
@@ -819,54 +836,56 @@ public class SearchResult {
                 "attachmentContext", attachmentContext,
                 "pins", pins);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<StructuredResult>> structuredResults = Optional.empty();
- 
+
         private Optional<String> trackingToken = Optional.empty();
- 
+
         private Optional<? extends Document> document = Optional.empty();
- 
+
         private Optional<String> title = Optional.empty();
- 
+
         private String url;
- 
+
         private Optional<String> nativeAppUrl = Optional.empty();
- 
+
         private Optional<? extends List<SearchResultSnippet>> snippets = Optional.empty();
- 
+
         private Optional<String> fullText = Optional.empty();
- 
+
         private Optional<? extends List<String>> fullTextList = Optional.empty();
- 
+
         private Optional<? extends List<RelatedDocuments>> relatedResults = Optional.empty();
- 
+
         private Optional<? extends List<SearchResult>> clusteredResults = Optional.empty();
- 
+
         private Optional<? extends List<ClusterGroup>> allClusteredResults = Optional.empty();
- 
+
         private Optional<Long> attachmentCount = Optional.empty();
- 
+
         private Optional<? extends List<SearchResult>> attachments = Optional.empty();
- 
+
         private Optional<? extends List<SearchResult>> backlinkResults = Optional.empty();
- 
+
         private Optional<? extends ClusterTypeEnum> clusterType = Optional.empty();
- 
+
         private Optional<? extends QuerySuggestionList> mustIncludeSuggestions = Optional.empty();
- 
+
         private Optional<? extends QuerySuggestion> querySuggestion = Optional.empty();
- 
+
         private Optional<? extends SearchResultProminenceEnum> prominence = Optional.empty();
- 
+
         private Optional<String> attachmentContext = Optional.empty();
- 
+
         private Optional<? extends List<PinDocument>> pins = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * An array of entities in the work graph retrieved via a data request.
@@ -886,6 +905,7 @@ public class SearchResult {
             return this;
         }
 
+
         /**
          * An opaque token that represents this particular result in this particular query. To be used for /feedback reporting.
          */
@@ -904,6 +924,7 @@ public class SearchResult {
             return this;
         }
 
+
         public Builder document(Document document) {
             Utils.checkNotNull(document, "document");
             this.document = Optional.ofNullable(document);
@@ -915,6 +936,7 @@ public class SearchResult {
             this.document = document;
             return this;
         }
+
 
         public Builder title(String title) {
             Utils.checkNotNull(title, "title");
@@ -928,11 +950,13 @@ public class SearchResult {
             return this;
         }
 
+
         public Builder url(String url) {
             Utils.checkNotNull(url, "url");
             this.url = url;
             return this;
         }
+
 
         /**
          * A deep link, if available, into the datasource's native application for the user's platform (e.g. slack://...).
@@ -952,6 +976,7 @@ public class SearchResult {
             return this;
         }
 
+
         /**
          * Text content from the result document which contains search query terms, if available.
          */
@@ -969,6 +994,7 @@ public class SearchResult {
             this.snippets = snippets;
             return this;
         }
+
 
         /**
          * The full body text of the result if not already contained in the snippets. Only populated for conversation results (e.g. results from a messaging app such as Slack).
@@ -988,6 +1014,7 @@ public class SearchResult {
             return this;
         }
 
+
         /**
          * The full body text of the result if not already contained in the snippets; each item in the array represents a separate line in the original text. Only populated for conversation results (e.g. results from a messaging app such as Slack).
          */
@@ -1005,6 +1032,7 @@ public class SearchResult {
             this.fullTextList = fullTextList;
             return this;
         }
+
 
         /**
          * A list of results related to this search result. Eg. for conversation results it contains individual messages from the conversation document which will be shown on SERP.
@@ -1024,6 +1052,7 @@ public class SearchResult {
             return this;
         }
 
+
         /**
          * A list of results that should be displayed as associated with this result.
          */
@@ -1041,6 +1070,7 @@ public class SearchResult {
             this.clusteredResults = clusteredResults;
             return this;
         }
+
 
         /**
          * A list of results that should be displayed as associated with this result.
@@ -1060,6 +1090,7 @@ public class SearchResult {
             return this;
         }
 
+
         /**
          * The total number of attachments.
          */
@@ -1077,6 +1108,7 @@ public class SearchResult {
             this.attachmentCount = attachmentCount;
             return this;
         }
+
 
         /**
          * A (potentially partial) list of results representing documents attached to the main result document.
@@ -1096,6 +1128,7 @@ public class SearchResult {
             return this;
         }
 
+
         /**
          * A list of results that should be displayed as backlinks of this result in reverse chronological order.
          */
@@ -1113,6 +1146,7 @@ public class SearchResult {
             this.backlinkResults = backlinkResults;
             return this;
         }
+
 
         /**
          * The reason for inclusion of clusteredResults.
@@ -1132,6 +1166,7 @@ public class SearchResult {
             return this;
         }
 
+
         public Builder mustIncludeSuggestions(QuerySuggestionList mustIncludeSuggestions) {
             Utils.checkNotNull(mustIncludeSuggestions, "mustIncludeSuggestions");
             this.mustIncludeSuggestions = Optional.ofNullable(mustIncludeSuggestions);
@@ -1144,6 +1179,7 @@ public class SearchResult {
             return this;
         }
 
+
         public Builder querySuggestion(QuerySuggestion querySuggestion) {
             Utils.checkNotNull(querySuggestion, "querySuggestion");
             this.querySuggestion = Optional.ofNullable(querySuggestion);
@@ -1155,6 +1191,7 @@ public class SearchResult {
             this.querySuggestion = querySuggestion;
             return this;
         }
+
 
         /**
          * The level of visual distinction that should be given to a result.
@@ -1174,6 +1211,7 @@ public class SearchResult {
             return this;
         }
 
+
         /**
          * Additional context for the relationship between the result and the document it's attached to.
          */
@@ -1192,6 +1230,7 @@ public class SearchResult {
             return this;
         }
 
+
         /**
          * A list of pins associated with this search result.
          */
@@ -1209,30 +1248,18 @@ public class SearchResult {
             this.pins = pins;
             return this;
         }
-        
+
         public SearchResult build() {
+
             return new SearchResult(
-                structuredResults,
-                trackingToken,
-                document,
-                title,
-                url,
-                nativeAppUrl,
-                snippets,
-                fullText,
-                fullTextList,
-                relatedResults,
-                clusteredResults,
-                allClusteredResults,
-                attachmentCount,
-                attachments,
-                backlinkResults,
-                clusterType,
-                mustIncludeSuggestions,
-                querySuggestion,
-                prominence,
-                attachmentContext,
-                pins);
+                structuredResults, trackingToken, document,
+                title, url, nativeAppUrl,
+                snippets, fullText, fullTextList,
+                relatedResults, clusteredResults, allClusteredResults,
+                attachmentCount, attachments, backlinkResults,
+                clusterType, mustIncludeSuggestions, querySuggestion,
+                prominence, attachmentContext, pins);
         }
+
     }
 }

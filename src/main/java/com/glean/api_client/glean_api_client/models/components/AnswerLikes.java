@@ -13,6 +13,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.List;
 
+
 public class AnswerLikes {
 
     @JsonProperty("likedBy")
@@ -64,9 +65,10 @@ public class AnswerLikes {
         return numLikes;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public AnswerLikes withLikedBy(List<AnswerLike> likedBy) {
         Utils.checkNotNull(likedBy, "likedBy");
@@ -92,7 +94,6 @@ public class AnswerLikes {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -111,9 +112,7 @@ public class AnswerLikes {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            likedBy,
-            likedByUser,
-            numLikes);
+            likedBy, likedByUser, numLikes);
     }
     
     @Override
@@ -123,24 +122,27 @@ public class AnswerLikes {
                 "likedByUser", likedByUser,
                 "numLikes", numLikes);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<AnswerLike> likedBy;
- 
+
         private Boolean likedByUser;
- 
+
         private Long numLikes;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder likedBy(List<AnswerLike> likedBy) {
             Utils.checkNotNull(likedBy, "likedBy");
             this.likedBy = likedBy;
             return this;
         }
+
 
         /**
          * Whether the user in context liked the answer.
@@ -151,6 +153,7 @@ public class AnswerLikes {
             return this;
         }
 
+
         /**
          * The total number of likes for the answer.
          */
@@ -159,12 +162,12 @@ public class AnswerLikes {
             this.numLikes = numLikes;
             return this;
         }
-        
+
         public AnswerLikes build() {
+
             return new AnswerLikes(
-                likedBy,
-                likedByUser,
-                numLikes);
+                likedBy, likedByUser, numLikes);
         }
+
     }
 }

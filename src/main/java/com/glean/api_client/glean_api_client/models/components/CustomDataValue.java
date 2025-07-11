@@ -17,11 +17,13 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
+
 public class CustomDataValue {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("displayLabel")
     private Optional<String> displayLabel;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("stringValue")
@@ -34,9 +36,11 @@ public class CustomDataValue {
     @JsonProperty("stringListValue")
     private Optional<? extends List<String>> stringListValue;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("numberValue")
     private Optional<Double> numberValue;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("booleanValue")
@@ -62,7 +66,8 @@ public class CustomDataValue {
     }
     
     public CustomDataValue() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -94,15 +99,17 @@ public class CustomDataValue {
         return booleanValue;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CustomDataValue withDisplayLabel(String displayLabel) {
         Utils.checkNotNull(displayLabel, "displayLabel");
         this.displayLabel = Optional.ofNullable(displayLabel);
         return this;
     }
+
 
     public CustomDataValue withDisplayLabel(Optional<String> displayLabel) {
         Utils.checkNotNull(displayLabel, "displayLabel");
@@ -115,6 +122,7 @@ public class CustomDataValue {
         this.stringValue = Optional.ofNullable(stringValue);
         return this;
     }
+
 
     public CustomDataValue withStringValue(Optional<String> stringValue) {
         Utils.checkNotNull(stringValue, "stringValue");
@@ -131,6 +139,7 @@ public class CustomDataValue {
         return this;
     }
 
+
     /**
      * list of strings for multi-value properties
      */
@@ -146,6 +155,7 @@ public class CustomDataValue {
         return this;
     }
 
+
     public CustomDataValue withNumberValue(Optional<Double> numberValue) {
         Utils.checkNotNull(numberValue, "numberValue");
         this.numberValue = numberValue;
@@ -158,13 +168,13 @@ public class CustomDataValue {
         return this;
     }
 
+
     public CustomDataValue withBooleanValue(Optional<Boolean> booleanValue) {
         Utils.checkNotNull(booleanValue, "booleanValue");
         this.booleanValue = booleanValue;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -185,11 +195,8 @@ public class CustomDataValue {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            displayLabel,
-            stringValue,
-            stringListValue,
-            numberValue,
-            booleanValue);
+            displayLabel, stringValue, stringListValue,
+            numberValue, booleanValue);
     }
     
     @Override
@@ -201,22 +208,24 @@ public class CustomDataValue {
                 "numberValue", numberValue,
                 "booleanValue", booleanValue);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> displayLabel = Optional.empty();
- 
+
         private Optional<String> stringValue = Optional.empty();
- 
+
         private Optional<? extends List<String>> stringListValue = Optional.empty();
- 
+
         private Optional<Double> numberValue = Optional.empty();
- 
+
         private Optional<Boolean> booleanValue = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder displayLabel(String displayLabel) {
             Utils.checkNotNull(displayLabel, "displayLabel");
@@ -230,6 +239,7 @@ public class CustomDataValue {
             return this;
         }
 
+
         public Builder stringValue(String stringValue) {
             Utils.checkNotNull(stringValue, "stringValue");
             this.stringValue = Optional.ofNullable(stringValue);
@@ -241,6 +251,7 @@ public class CustomDataValue {
             this.stringValue = stringValue;
             return this;
         }
+
 
         /**
          * list of strings for multi-value properties
@@ -260,6 +271,7 @@ public class CustomDataValue {
             return this;
         }
 
+
         public Builder numberValue(double numberValue) {
             Utils.checkNotNull(numberValue, "numberValue");
             this.numberValue = Optional.ofNullable(numberValue);
@@ -272,6 +284,7 @@ public class CustomDataValue {
             return this;
         }
 
+
         public Builder booleanValue(boolean booleanValue) {
             Utils.checkNotNull(booleanValue, "booleanValue");
             this.booleanValue = Optional.ofNullable(booleanValue);
@@ -283,14 +296,13 @@ public class CustomDataValue {
             this.booleanValue = booleanValue;
             return this;
         }
-        
+
         public CustomDataValue build() {
+
             return new CustomDataValue(
-                displayLabel,
-                stringValue,
-                stringListValue,
-                numberValue,
-                booleanValue);
+                displayLabel, stringValue, stringListValue,
+                numberValue, booleanValue);
         }
+
     }
 }

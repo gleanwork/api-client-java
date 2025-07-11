@@ -21,7 +21,6 @@ public class Datasource {
     Datasource(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Beta: Get datasource status
      * 
@@ -46,15 +45,14 @@ public class Datasource {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1DebugDatasourceStatusResponse status(
-            String datasource) throws Exception {
+    public PostApiIndexV1DebugDatasourceStatusResponse status(String datasource) throws Exception {
         PostApiIndexV1DebugDatasourceStatusRequest request =
             PostApiIndexV1DebugDatasourceStatusRequest
                 .builder()
                 .datasource(datasource)
                 .build();
         RequestOperation<PostApiIndexV1DebugDatasourceStatusRequest, PostApiIndexV1DebugDatasourceStatusResponse> operation
-              = new PostApiIndexV1DebugDatasourceStatusOperation( sdkConfiguration);
+              = new PostApiIndexV1DebugDatasourceStatusOperation(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

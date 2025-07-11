@@ -17,8 +17,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class UpdateShortcutRequest {
 
+public class UpdateShortcutRequest {
     /**
      * The opaque id of the user generated content.
      */
@@ -114,7 +114,9 @@ public class UpdateShortcutRequest {
     
     public UpdateShortcutRequest(
             long id) {
-        this(id, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(id, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -191,9 +193,10 @@ public class UpdateShortcutRequest {
         return (Optional<List<UserRoleSpecification>>) removedRoles;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The opaque id of the user generated content.
@@ -213,6 +216,7 @@ public class UpdateShortcutRequest {
         return this;
     }
 
+
     /**
      * Link text following go/ prefix as entered by the user.
      */
@@ -230,6 +234,7 @@ public class UpdateShortcutRequest {
         this.destinationUrl = Optional.ofNullable(destinationUrl);
         return this;
     }
+
 
     /**
      * Destination URL for the shortcut.
@@ -249,6 +254,7 @@ public class UpdateShortcutRequest {
         return this;
     }
 
+
     /**
      * Glean Document ID for the URL, if known.
      */
@@ -266,6 +272,7 @@ public class UpdateShortcutRequest {
         this.description = Optional.ofNullable(description);
         return this;
     }
+
 
     /**
      * A short, plain text blurb to help people understand the intent of the shortcut.
@@ -285,6 +292,7 @@ public class UpdateShortcutRequest {
         return this;
     }
 
+
     /**
      * Whether this shortcut is unlisted or not. Unlisted shortcuts are visible to author + admins only.
      */
@@ -302,6 +310,7 @@ public class UpdateShortcutRequest {
         this.urlTemplate = Optional.ofNullable(urlTemplate);
         return this;
     }
+
 
     /**
      * For variable shortcuts, contains the URL template; note, `destinationUrl` contains default URL.
@@ -321,6 +330,7 @@ public class UpdateShortcutRequest {
         return this;
     }
 
+
     /**
      * A list of user roles added for the Shortcut.
      */
@@ -339,6 +349,7 @@ public class UpdateShortcutRequest {
         return this;
     }
 
+
     /**
      * A list of user roles removed for the Shortcut.
      */
@@ -348,7 +359,6 @@ public class UpdateShortcutRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -373,15 +383,9 @@ public class UpdateShortcutRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            inputAlias,
-            destinationUrl,
-            destinationDocumentId,
-            description,
-            unlisted,
-            urlTemplate,
-            addedRoles,
-            removedRoles);
+            id, inputAlias, destinationUrl,
+            destinationDocumentId, description, unlisted,
+            urlTemplate, addedRoles, removedRoles);
     }
     
     @Override
@@ -397,30 +401,32 @@ public class UpdateShortcutRequest {
                 "addedRoles", addedRoles,
                 "removedRoles", removedRoles);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long id;
- 
+
         private Optional<String> inputAlias = Optional.empty();
- 
+
         private Optional<String> destinationUrl = Optional.empty();
- 
+
         private Optional<String> destinationDocumentId = Optional.empty();
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<Boolean> unlisted = Optional.empty();
- 
+
         private Optional<String> urlTemplate = Optional.empty();
- 
+
         private Optional<? extends List<UserRoleSpecification>> addedRoles = Optional.empty();
- 
+
         private Optional<? extends List<UserRoleSpecification>> removedRoles = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The opaque id of the user generated content.
@@ -430,6 +436,7 @@ public class UpdateShortcutRequest {
             this.id = id;
             return this;
         }
+
 
         /**
          * Link text following go/ prefix as entered by the user.
@@ -449,6 +456,7 @@ public class UpdateShortcutRequest {
             return this;
         }
 
+
         /**
          * Destination URL for the shortcut.
          */
@@ -466,6 +474,7 @@ public class UpdateShortcutRequest {
             this.destinationUrl = destinationUrl;
             return this;
         }
+
 
         /**
          * Glean Document ID for the URL, if known.
@@ -485,6 +494,7 @@ public class UpdateShortcutRequest {
             return this;
         }
 
+
         /**
          * A short, plain text blurb to help people understand the intent of the shortcut.
          */
@@ -502,6 +512,7 @@ public class UpdateShortcutRequest {
             this.description = description;
             return this;
         }
+
 
         /**
          * Whether this shortcut is unlisted or not. Unlisted shortcuts are visible to author + admins only.
@@ -521,6 +532,7 @@ public class UpdateShortcutRequest {
             return this;
         }
 
+
         /**
          * For variable shortcuts, contains the URL template; note, `destinationUrl` contains default URL.
          */
@@ -538,6 +550,7 @@ public class UpdateShortcutRequest {
             this.urlTemplate = urlTemplate;
             return this;
         }
+
 
         /**
          * A list of user roles added for the Shortcut.
@@ -557,6 +570,7 @@ public class UpdateShortcutRequest {
             return this;
         }
 
+
         /**
          * A list of user roles removed for the Shortcut.
          */
@@ -574,18 +588,14 @@ public class UpdateShortcutRequest {
             this.removedRoles = removedRoles;
             return this;
         }
-        
+
         public UpdateShortcutRequest build() {
+
             return new UpdateShortcutRequest(
-                id,
-                inputAlias,
-                destinationUrl,
-                destinationDocumentId,
-                description,
-                unlisted,
-                urlTemplate,
-                addedRoles,
-                removedRoles);
+                id, inputAlias, destinationUrl,
+                destinationDocumentId, description, unlisted,
+                urlTemplate, addedRoles, removedRoles);
         }
+
     }
 }

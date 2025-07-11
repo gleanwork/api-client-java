@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.List;
 
-public class UploadChatFilesRequest {
 
+public class UploadChatFilesRequest {
     /**
      * Raw files to be uploaded for chat in binary format.
      */
@@ -34,9 +34,10 @@ public class UploadChatFilesRequest {
         return files;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Raw files to be uploaded for chat in binary format.
@@ -47,7 +48,6 @@ public class UploadChatFilesRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -72,14 +72,16 @@ public class UploadChatFilesRequest {
         return Utils.toString(UploadChatFilesRequest.class,
                 "files", files);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<File> files;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Raw files to be uploaded for chat in binary format.
@@ -89,10 +91,12 @@ public class UploadChatFilesRequest {
             this.files = files;
             return this;
         }
-        
+
         public UploadChatFilesRequest build() {
+
             return new UploadChatFilesRequest(
                 files);
         }
+
     }
 }

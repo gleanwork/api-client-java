@@ -14,8 +14,8 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
 
-public class Agent {
 
+public class Agent {
     /**
      * The ID of the agent.
      */
@@ -74,7 +74,8 @@ public class Agent {
             String agentId,
             String name,
             AgentCapabilities capabilities) {
-        this(agentId, name, Optional.empty(), Optional.empty(), capabilities);
+        this(agentId, name, Optional.empty(),
+            Optional.empty(), capabilities);
     }
 
     /**
@@ -121,9 +122,10 @@ public class Agent {
         return capabilities;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the agent.
@@ -152,6 +154,7 @@ public class Agent {
         return this;
     }
 
+
     /**
      * The description of the agent.
      */
@@ -169,6 +172,7 @@ public class Agent {
         this.metadata = Optional.ofNullable(metadata);
         return this;
     }
+
 
     /**
      * The agent metadata. Currently not implemented.
@@ -191,7 +195,6 @@ public class Agent {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -212,11 +215,8 @@ public class Agent {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            agentId,
-            name,
-            description,
-            metadata,
-            capabilities);
+            agentId, name, description,
+            metadata, capabilities);
     }
     
     @Override
@@ -228,22 +228,24 @@ public class Agent {
                 "metadata", metadata,
                 "capabilities", capabilities);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String agentId;
- 
+
         private String name;
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<? extends AgentMetadata> metadata = Optional.empty();
- 
+
         private AgentCapabilities capabilities;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the agent.
@@ -254,6 +256,7 @@ public class Agent {
             return this;
         }
 
+
         /**
          * The name of the agent
          */
@@ -262,6 +265,7 @@ public class Agent {
             this.name = name;
             return this;
         }
+
 
         /**
          * The description of the agent.
@@ -281,6 +285,7 @@ public class Agent {
             return this;
         }
 
+
         /**
          * The agent metadata. Currently not implemented.
          */
@@ -299,6 +304,7 @@ public class Agent {
             return this;
         }
 
+
         /**
          * Describes features that the agent supports. example: {
          *   "ap.io.messages": true,
@@ -310,14 +316,13 @@ public class Agent {
             this.capabilities = capabilities;
             return this;
         }
-        
+
         public Agent build() {
+
             return new Agent(
-                agentId,
-                name,
-                description,
-                metadata,
-                capabilities);
+                agentId, name, description,
+                metadata, capabilities);
         }
+
     }
 }

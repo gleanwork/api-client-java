@@ -10,8 +10,8 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-public class GetChatRequest {
 
+public class GetChatRequest {
     /**
      * The id of the Chat to be retrieved.
      */
@@ -33,9 +33,10 @@ public class GetChatRequest {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The id of the Chat to be retrieved.
@@ -46,7 +47,6 @@ public class GetChatRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -71,14 +71,16 @@ public class GetChatRequest {
         return Utils.toString(GetChatRequest.class,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The id of the Chat to be retrieved.
@@ -88,10 +90,12 @@ public class GetChatRequest {
             this.id = id;
             return this;
         }
-        
+
         public GetChatRequest build() {
+
             return new GetChatRequest(
                 id);
         }
+
     }
 }

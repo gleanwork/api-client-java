@@ -15,8 +15,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class PeopleResponse {
 
+public class PeopleResponse {
     /**
      * A Person for each ID in the request, each with PersonMetadata populated.
      */
@@ -82,9 +82,10 @@ public class PeopleResponse {
         return (Optional<List<String>>) errors;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A Person for each ID in the request, each with PersonMetadata populated.
@@ -94,6 +95,7 @@ public class PeopleResponse {
         this.results = Optional.ofNullable(results);
         return this;
     }
+
 
     /**
      * A Person for each ID in the request, each with PersonMetadata populated.
@@ -113,6 +115,7 @@ public class PeopleResponse {
         return this;
     }
 
+
     /**
      * A list of documents related to this people response. This is only included if DOCUMENT_ACTIVITY is requested and only 1 person is included in the request.
      */
@@ -131,6 +134,7 @@ public class PeopleResponse {
         return this;
     }
 
+
     /**
      * A list of IDs that could not be found.
      */
@@ -140,7 +144,6 @@ public class PeopleResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -159,9 +162,7 @@ public class PeopleResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            results,
-            relatedDocuments,
-            errors);
+            results, relatedDocuments, errors);
     }
     
     @Override
@@ -171,18 +172,20 @@ public class PeopleResponse {
                 "relatedDocuments", relatedDocuments,
                 "errors", errors);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<Person>> results = Optional.empty();
- 
+
         private Optional<? extends List<RelatedDocuments>> relatedDocuments = Optional.empty();
- 
+
         private Optional<? extends List<String>> errors = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A Person for each ID in the request, each with PersonMetadata populated.
@@ -202,6 +205,7 @@ public class PeopleResponse {
             return this;
         }
 
+
         /**
          * A list of documents related to this people response. This is only included if DOCUMENT_ACTIVITY is requested and only 1 person is included in the request.
          */
@@ -220,6 +224,7 @@ public class PeopleResponse {
             return this;
         }
 
+
         /**
          * A list of IDs that could not be found.
          */
@@ -237,12 +242,12 @@ public class PeopleResponse {
             this.errors = errors;
             return this;
         }
-        
+
         public PeopleResponse build() {
+
             return new PeopleResponse(
-                results,
-                relatedDocuments,
-                errors);
+                results, relatedDocuments, errors);
         }
+
     }
 }

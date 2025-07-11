@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class UserViewInfo {
 
+public class UserViewInfo {
     /**
      * Unique Glean Document ID of the associated document.
      */
@@ -77,9 +77,10 @@ public class UserViewInfo {
         return docUrl;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unique Glean Document ID of the associated document.
@@ -89,6 +90,7 @@ public class UserViewInfo {
         this.docId = Optional.ofNullable(docId);
         return this;
     }
+
 
     /**
      * Unique Glean Document ID of the associated document.
@@ -108,6 +110,7 @@ public class UserViewInfo {
         return this;
     }
 
+
     /**
      * Title of associated document.
      */
@@ -126,6 +129,7 @@ public class UserViewInfo {
         return this;
     }
 
+
     /**
      * URL of associated document.
      */
@@ -135,7 +139,6 @@ public class UserViewInfo {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -154,9 +157,7 @@ public class UserViewInfo {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            docId,
-            docTitle,
-            docUrl);
+            docId, docTitle, docUrl);
     }
     
     @Override
@@ -166,18 +167,20 @@ public class UserViewInfo {
                 "docTitle", docTitle,
                 "docUrl", docUrl);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> docId = Optional.empty();
- 
+
         private Optional<String> docTitle = Optional.empty();
- 
+
         private Optional<String> docUrl = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unique Glean Document ID of the associated document.
@@ -197,6 +200,7 @@ public class UserViewInfo {
             return this;
         }
 
+
         /**
          * Title of associated document.
          */
@@ -215,6 +219,7 @@ public class UserViewInfo {
             return this;
         }
 
+
         /**
          * URL of associated document.
          */
@@ -232,12 +237,12 @@ public class UserViewInfo {
             this.docUrl = docUrl;
             return this;
         }
-        
+
         public UserViewInfo build() {
+
             return new UserViewInfo(
-                docId,
-                docTitle,
-                docUrl);
+                docId, docTitle, docUrl);
         }
+
     }
 }

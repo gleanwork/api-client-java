@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Map;
 
-public class ToolsCallRequest {
 
+public class ToolsCallRequest {
     /**
      * Required name of the tool to execute
      */
@@ -31,6 +31,7 @@ public class ToolsCallRequest {
             @JsonProperty("parameters") Map<String, ToolsCallParameter> parameters) {
         Utils.checkNotNull(name, "name");
         parameters = Utils.emptyMapIfNull(parameters);
+        Utils.checkNotNull(parameters, "parameters");
         this.name = name;
         this.parameters = parameters;
     }
@@ -51,9 +52,10 @@ public class ToolsCallRequest {
         return parameters;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Required name of the tool to execute
@@ -73,7 +75,6 @@ public class ToolsCallRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,8 +92,7 @@ public class ToolsCallRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name,
-            parameters);
+            name, parameters);
     }
     
     @Override
@@ -101,16 +101,18 @@ public class ToolsCallRequest {
                 "name", name,
                 "parameters", parameters);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
- 
+
         private Map<String, ToolsCallParameter> parameters;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Required name of the tool to execute
@@ -121,6 +123,7 @@ public class ToolsCallRequest {
             return this;
         }
 
+
         /**
          * The parameters for the tool. Each key is the name of the parameter and the value is the parameter object.
          */
@@ -129,11 +132,12 @@ public class ToolsCallRequest {
             this.parameters = parameters;
             return this;
         }
-        
+
         public ToolsCallRequest build() {
+
             return new ToolsCallRequest(
-                name,
-                parameters);
+                name, parameters);
         }
+
     }
 }

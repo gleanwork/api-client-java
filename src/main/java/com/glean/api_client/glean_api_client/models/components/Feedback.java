@@ -17,8 +17,8 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 
-public class Feedback {
 
+public class Feedback {
     /**
      * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest received event of a given UUID is considered valid by the server and subsequent are ignored.
      */
@@ -59,6 +59,7 @@ public class Feedback {
     @JsonProperty("payload")
     private Optional<String> payload;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sessionInfo")
     private Optional<? extends SessionInfo> sessionInfo;
@@ -69,6 +70,7 @@ public class Feedback {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timestamp")
     private Optional<OffsetDateTime> timestamp;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("user")
@@ -109,17 +111,21 @@ public class Feedback {
     @JsonProperty("uiElement")
     private Optional<String> uiElement;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("manualFeedbackInfo")
     private Optional<? extends ManualFeedbackInfo> manualFeedbackInfo;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("seenFeedbackInfo")
     private Optional<? extends SeenFeedbackInfo> seenFeedbackInfo;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("userViewInfo")
     private Optional<? extends UserViewInfo> userViewInfo;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("workflowFeedbackInfo")
@@ -206,7 +212,13 @@ public class Feedback {
     public Feedback(
             List<String> trackingTokens,
             Event event) {
-        this(Optional.empty(), Optional.empty(), trackingTokens, event, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), trackingTokens,
+            event, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -360,9 +372,10 @@ public class Feedback {
         return agentId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest received event of a given UUID is considered valid by the server and subsequent are ignored.
@@ -372,6 +385,7 @@ public class Feedback {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest received event of a given UUID is considered valid by the server and subsequent are ignored.
@@ -390,6 +404,7 @@ public class Feedback {
         this.category = Optional.ofNullable(category);
         return this;
     }
+
 
     /**
      * The feature category to which the feedback applies. These should be broad product areas such as Announcements, Answers, Search, etc. rather than specific components or UI treatments within those areas.
@@ -427,6 +442,7 @@ public class Feedback {
         return this;
     }
 
+
     /**
      * Position of the element in the case that the client controls order (such as feed and autocomplete).
      */
@@ -445,6 +461,7 @@ public class Feedback {
         return this;
     }
 
+
     /**
      * For type MANUAL_FEEDBACK, contains string of user feedback. For autocomplete, partial query string. For feed, string of user feedback in addition to manual feedback signals extracted from all suggested content.
      */
@@ -459,6 +476,7 @@ public class Feedback {
         this.sessionInfo = Optional.ofNullable(sessionInfo);
         return this;
     }
+
 
     public Feedback withSessionInfo(Optional<? extends SessionInfo> sessionInfo) {
         Utils.checkNotNull(sessionInfo, "sessionInfo");
@@ -475,6 +493,7 @@ public class Feedback {
         return this;
     }
 
+
     /**
      * The ISO 8601 timestamp when the event occured.
      */
@@ -490,6 +509,7 @@ public class Feedback {
         return this;
     }
 
+
     public Feedback withUser(Optional<? extends User> user) {
         Utils.checkNotNull(user, "user");
         this.user = user;
@@ -504,6 +524,7 @@ public class Feedback {
         this.pathname = Optional.ofNullable(pathname);
         return this;
     }
+
 
     /**
      * The path the client was at when the feedback event triggered.
@@ -523,6 +544,7 @@ public class Feedback {
         return this;
     }
 
+
     /**
      * Where the feedback will be sent, e.g. to Glean, the user's company, or both. If no channels are specified, feedback will go only to Glean.
      */
@@ -540,6 +562,7 @@ public class Feedback {
         this.url = Optional.ofNullable(url);
         return this;
     }
+
 
     /**
      * The URL the client was at when the feedback event triggered.
@@ -559,6 +582,7 @@ public class Feedback {
         return this;
     }
 
+
     /**
      * The UI element tree associated with the event, if any.
      */
@@ -577,6 +601,7 @@ public class Feedback {
         return this;
     }
 
+
     /**
      * The UI element associated with the event, if any.
      */
@@ -592,6 +617,7 @@ public class Feedback {
         return this;
     }
 
+
     public Feedback withManualFeedbackInfo(Optional<? extends ManualFeedbackInfo> manualFeedbackInfo) {
         Utils.checkNotNull(manualFeedbackInfo, "manualFeedbackInfo");
         this.manualFeedbackInfo = manualFeedbackInfo;
@@ -603,6 +629,7 @@ public class Feedback {
         this.seenFeedbackInfo = Optional.ofNullable(seenFeedbackInfo);
         return this;
     }
+
 
     public Feedback withSeenFeedbackInfo(Optional<? extends SeenFeedbackInfo> seenFeedbackInfo) {
         Utils.checkNotNull(seenFeedbackInfo, "seenFeedbackInfo");
@@ -616,6 +643,7 @@ public class Feedback {
         return this;
     }
 
+
     public Feedback withUserViewInfo(Optional<? extends UserViewInfo> userViewInfo) {
         Utils.checkNotNull(userViewInfo, "userViewInfo");
         this.userViewInfo = userViewInfo;
@@ -627,6 +655,7 @@ public class Feedback {
         this.workflowFeedbackInfo = Optional.ofNullable(workflowFeedbackInfo);
         return this;
     }
+
 
     public Feedback withWorkflowFeedbackInfo(Optional<? extends WorkflowFeedbackInfo> workflowFeedbackInfo) {
         Utils.checkNotNull(workflowFeedbackInfo, "workflowFeedbackInfo");
@@ -642,6 +671,7 @@ public class Feedback {
         this.applicationId = Optional.ofNullable(applicationId);
         return this;
     }
+
 
     /**
      * The application ID of the client that sent the feedback event.
@@ -661,6 +691,7 @@ public class Feedback {
         return this;
     }
 
+
     /**
      * The agent ID of the client that sent the feedback event.
      */
@@ -670,7 +701,6 @@ public class Feedback {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -706,26 +736,13 @@ public class Feedback {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            category,
-            trackingTokens,
-            event,
-            position,
-            payload,
-            sessionInfo,
-            timestamp,
-            user,
-            pathname,
-            channels,
-            url,
-            uiTree,
-            uiElement,
-            manualFeedbackInfo,
-            seenFeedbackInfo,
-            userViewInfo,
-            workflowFeedbackInfo,
-            applicationId,
-            agentId);
+            id, category, trackingTokens,
+            event, position, payload,
+            sessionInfo, timestamp, user,
+            pathname, channels, url,
+            uiTree, uiElement, manualFeedbackInfo,
+            seenFeedbackInfo, userViewInfo, workflowFeedbackInfo,
+            applicationId, agentId);
     }
     
     @Override
@@ -752,52 +769,54 @@ public class Feedback {
                 "applicationId", applicationId,
                 "agentId", agentId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<? extends FeedbackCategory> category = Optional.empty();
- 
+
         private List<String> trackingTokens;
- 
+
         private Event event;
- 
+
         private Optional<Long> position = Optional.empty();
- 
+
         private Optional<String> payload = Optional.empty();
- 
+
         private Optional<? extends SessionInfo> sessionInfo = Optional.empty();
- 
+
         private Optional<OffsetDateTime> timestamp = Optional.empty();
- 
+
         private Optional<? extends User> user = Optional.empty();
- 
+
         private Optional<String> pathname = Optional.empty();
- 
+
         private Optional<? extends List<FeedbackChannel>> channels = Optional.empty();
- 
+
         private Optional<String> url = Optional.empty();
- 
+
         private Optional<? extends List<String>> uiTree = Optional.empty();
- 
+
         private Optional<String> uiElement = Optional.empty();
- 
+
         private Optional<? extends ManualFeedbackInfo> manualFeedbackInfo = Optional.empty();
- 
+
         private Optional<? extends SeenFeedbackInfo> seenFeedbackInfo = Optional.empty();
- 
+
         private Optional<? extends UserViewInfo> userViewInfo = Optional.empty();
- 
+
         private Optional<? extends WorkflowFeedbackInfo> workflowFeedbackInfo = Optional.empty();
- 
+
         private Optional<String> applicationId = Optional.empty();
- 
+
         private Optional<String> agentId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest received event of a given UUID is considered valid by the server and subsequent are ignored.
@@ -817,6 +836,7 @@ public class Feedback {
             return this;
         }
 
+
         /**
          * The feature category to which the feedback applies. These should be broad product areas such as Announcements, Answers, Search, etc. rather than specific components or UI treatments within those areas.
          */
@@ -835,6 +855,7 @@ public class Feedback {
             return this;
         }
 
+
         /**
          * A list of server-generated trackingTokens to which this event applies.
          */
@@ -844,6 +865,7 @@ public class Feedback {
             return this;
         }
 
+
         /**
          * The action the user took within a Glean client with respect to the object referred to by the given `trackingToken`.
          */
@@ -852,6 +874,7 @@ public class Feedback {
             this.event = event;
             return this;
         }
+
 
         /**
          * Position of the element in the case that the client controls order (such as feed and autocomplete).
@@ -871,6 +894,7 @@ public class Feedback {
             return this;
         }
 
+
         /**
          * For type MANUAL_FEEDBACK, contains string of user feedback. For autocomplete, partial query string. For feed, string of user feedback in addition to manual feedback signals extracted from all suggested content.
          */
@@ -889,6 +913,7 @@ public class Feedback {
             return this;
         }
 
+
         public Builder sessionInfo(SessionInfo sessionInfo) {
             Utils.checkNotNull(sessionInfo, "sessionInfo");
             this.sessionInfo = Optional.ofNullable(sessionInfo);
@@ -900,6 +925,7 @@ public class Feedback {
             this.sessionInfo = sessionInfo;
             return this;
         }
+
 
         /**
          * The ISO 8601 timestamp when the event occured.
@@ -919,6 +945,7 @@ public class Feedback {
             return this;
         }
 
+
         public Builder user(User user) {
             Utils.checkNotNull(user, "user");
             this.user = Optional.ofNullable(user);
@@ -930,6 +957,7 @@ public class Feedback {
             this.user = user;
             return this;
         }
+
 
         /**
          * The path the client was at when the feedback event triggered.
@@ -949,6 +977,7 @@ public class Feedback {
             return this;
         }
 
+
         /**
          * Where the feedback will be sent, e.g. to Glean, the user's company, or both. If no channels are specified, feedback will go only to Glean.
          */
@@ -966,6 +995,7 @@ public class Feedback {
             this.channels = channels;
             return this;
         }
+
 
         /**
          * The URL the client was at when the feedback event triggered.
@@ -985,6 +1015,7 @@ public class Feedback {
             return this;
         }
 
+
         /**
          * The UI element tree associated with the event, if any.
          */
@@ -1002,6 +1033,7 @@ public class Feedback {
             this.uiTree = uiTree;
             return this;
         }
+
 
         /**
          * The UI element associated with the event, if any.
@@ -1021,6 +1053,7 @@ public class Feedback {
             return this;
         }
 
+
         public Builder manualFeedbackInfo(ManualFeedbackInfo manualFeedbackInfo) {
             Utils.checkNotNull(manualFeedbackInfo, "manualFeedbackInfo");
             this.manualFeedbackInfo = Optional.ofNullable(manualFeedbackInfo);
@@ -1032,6 +1065,7 @@ public class Feedback {
             this.manualFeedbackInfo = manualFeedbackInfo;
             return this;
         }
+
 
         public Builder seenFeedbackInfo(SeenFeedbackInfo seenFeedbackInfo) {
             Utils.checkNotNull(seenFeedbackInfo, "seenFeedbackInfo");
@@ -1045,6 +1079,7 @@ public class Feedback {
             return this;
         }
 
+
         public Builder userViewInfo(UserViewInfo userViewInfo) {
             Utils.checkNotNull(userViewInfo, "userViewInfo");
             this.userViewInfo = Optional.ofNullable(userViewInfo);
@@ -1057,6 +1092,7 @@ public class Feedback {
             return this;
         }
 
+
         public Builder workflowFeedbackInfo(WorkflowFeedbackInfo workflowFeedbackInfo) {
             Utils.checkNotNull(workflowFeedbackInfo, "workflowFeedbackInfo");
             this.workflowFeedbackInfo = Optional.ofNullable(workflowFeedbackInfo);
@@ -1068,6 +1104,7 @@ public class Feedback {
             this.workflowFeedbackInfo = workflowFeedbackInfo;
             return this;
         }
+
 
         /**
          * The application ID of the client that sent the feedback event.
@@ -1087,6 +1124,7 @@ public class Feedback {
             return this;
         }
 
+
         /**
          * The agent ID of the client that sent the feedback event.
          */
@@ -1104,29 +1142,18 @@ public class Feedback {
             this.agentId = agentId;
             return this;
         }
-        
+
         public Feedback build() {
+
             return new Feedback(
-                id,
-                category,
-                trackingTokens,
-                event,
-                position,
-                payload,
-                sessionInfo,
-                timestamp,
-                user,
-                pathname,
-                channels,
-                url,
-                uiTree,
-                uiElement,
-                manualFeedbackInfo,
-                seenFeedbackInfo,
-                userViewInfo,
-                workflowFeedbackInfo,
-                applicationId,
-                agentId);
+                id, category, trackingTokens,
+                event, position, payload,
+                sessionInfo, timestamp, user,
+                pathname, channels, url,
+                uiTree, uiElement, manualFeedbackInfo,
+                seenFeedbackInfo, userViewInfo, workflowFeedbackInfo,
+                applicationId, agentId);
         }
+
     }
 }

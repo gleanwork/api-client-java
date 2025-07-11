@@ -31,6 +31,7 @@ public class UserReferenceDefinition {
     @JsonProperty("datasourceUserId")
     private Optional<String> datasourceUserId;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private Optional<String> name;
@@ -70,15 +71,17 @@ public class UserReferenceDefinition {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public UserReferenceDefinition withEmail(String email) {
         Utils.checkNotNull(email, "email");
         this.email = Optional.ofNullable(email);
         return this;
     }
+
 
     public UserReferenceDefinition withEmail(Optional<String> email) {
         Utils.checkNotNull(email, "email");
@@ -95,6 +98,7 @@ public class UserReferenceDefinition {
         return this;
     }
 
+
     /**
      * some datasources refer to the user by the datasource user id in the document
      */
@@ -110,13 +114,13 @@ public class UserReferenceDefinition {
         return this;
     }
 
+
     public UserReferenceDefinition withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -135,9 +139,7 @@ public class UserReferenceDefinition {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            email,
-            datasourceUserId,
-            name);
+            email, datasourceUserId, name);
     }
     
     @Override
@@ -147,18 +149,20 @@ public class UserReferenceDefinition {
                 "datasourceUserId", datasourceUserId,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> email = Optional.empty();
- 
+
         private Optional<String> datasourceUserId = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder email(String email) {
             Utils.checkNotNull(email, "email");
@@ -171,6 +175,7 @@ public class UserReferenceDefinition {
             this.email = email;
             return this;
         }
+
 
         /**
          * some datasources refer to the user by the datasource user id in the document
@@ -190,6 +195,7 @@ public class UserReferenceDefinition {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = Optional.ofNullable(name);
@@ -201,12 +207,12 @@ public class UserReferenceDefinition {
             this.name = name;
             return this;
         }
-        
+
         public UserReferenceDefinition build() {
+
             return new UserReferenceDefinition(
-                email,
-                datasourceUserId,
-                name);
+                email, datasourceUserId, name);
         }
+
     }
 }

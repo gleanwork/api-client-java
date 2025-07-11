@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.net.http.HttpResponse;
 
-public class PostApiIndexV1DeleteteamResponse implements Response {
 
+public class PostApiIndexV1DeleteteamResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
@@ -67,9 +67,10 @@ public class PostApiIndexV1DeleteteamResponse implements Response {
         return rawResponse;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP response content type for this operation
@@ -98,7 +99,6 @@ public class PostApiIndexV1DeleteteamResponse implements Response {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -117,9 +117,7 @@ public class PostApiIndexV1DeleteteamResponse implements Response {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            contentType,
-            statusCode,
-            rawResponse);
+            contentType, statusCode, rawResponse);
     }
     
     @Override
@@ -129,18 +127,20 @@ public class PostApiIndexV1DeleteteamResponse implements Response {
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String contentType;
- 
+
         private Integer statusCode;
- 
+
         private HttpResponse<InputStream> rawResponse;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP response content type for this operation
@@ -151,6 +151,7 @@ public class PostApiIndexV1DeleteteamResponse implements Response {
             return this;
         }
 
+
         /**
          * HTTP response status code for this operation
          */
@@ -160,6 +161,7 @@ public class PostApiIndexV1DeleteteamResponse implements Response {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -168,12 +170,12 @@ public class PostApiIndexV1DeleteteamResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
-        
+
         public PostApiIndexV1DeleteteamResponse build() {
+
             return new PostApiIndexV1DeleteteamResponse(
-                contentType,
-                statusCode,
-                rawResponse);
+                contentType, statusCode, rawResponse);
         }
+
     }
 }

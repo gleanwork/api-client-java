@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class AutocompleteResponse {
 
+public class AutocompleteResponse {
     /**
      * List of experiment ids for the corresponding request.
      */
@@ -32,9 +32,11 @@ public class AutocompleteResponse {
     @JsonProperty("trackingToken")
     private Optional<String> trackingToken;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sessionInfo")
     private Optional<? extends SessionInfo> sessionInfo;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("results")
@@ -46,6 +48,7 @@ public class AutocompleteResponse {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("groups")
     private Optional<? extends List<AutocompleteResultGroup>> groups;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("errorInfo")
@@ -84,7 +87,9 @@ public class AutocompleteResponse {
     }
     
     public AutocompleteResponse() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -139,9 +144,10 @@ public class AutocompleteResponse {
         return backendTimeMillis;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * List of experiment ids for the corresponding request.
@@ -151,6 +157,7 @@ public class AutocompleteResponse {
         this.experimentIds = Optional.ofNullable(experimentIds);
         return this;
     }
+
 
     /**
      * List of experiment ids for the corresponding request.
@@ -170,6 +177,7 @@ public class AutocompleteResponse {
         return this;
     }
 
+
     /**
      * An opaque token that represents this particular set of autocomplete results. To be used for /feedback reporting.
      */
@@ -185,6 +193,7 @@ public class AutocompleteResponse {
         return this;
     }
 
+
     public AutocompleteResponse withSessionInfo(Optional<? extends SessionInfo> sessionInfo) {
         Utils.checkNotNull(sessionInfo, "sessionInfo");
         this.sessionInfo = sessionInfo;
@@ -196,6 +205,7 @@ public class AutocompleteResponse {
         this.results = Optional.ofNullable(results);
         return this;
     }
+
 
     public AutocompleteResponse withResults(Optional<? extends List<AutocompleteResult>> results) {
         Utils.checkNotNull(results, "results");
@@ -212,6 +222,7 @@ public class AutocompleteResponse {
         return this;
     }
 
+
     /**
      * Subsections of the results list from which distinct sections should be created.
      */
@@ -226,6 +237,7 @@ public class AutocompleteResponse {
         this.gleanDataError = Optional.ofNullable(gleanDataError);
         return this;
     }
+
 
     public AutocompleteResponse withGleanDataError(Optional<? extends GleanDataError> gleanDataError) {
         Utils.checkNotNull(gleanDataError, "gleanDataError");
@@ -242,6 +254,7 @@ public class AutocompleteResponse {
         return this;
     }
 
+
     /**
      * Time in milliseconds the backend took to respond to the request.
      */
@@ -251,7 +264,6 @@ public class AutocompleteResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -274,12 +286,8 @@ public class AutocompleteResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            experimentIds,
-            trackingToken,
-            sessionInfo,
-            results,
-            groups,
-            gleanDataError,
+            experimentIds, trackingToken, sessionInfo,
+            results, groups, gleanDataError,
             backendTimeMillis);
     }
     
@@ -294,26 +302,28 @@ public class AutocompleteResponse {
                 "gleanDataError", gleanDataError,
                 "backendTimeMillis", backendTimeMillis);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<Long>> experimentIds = Optional.empty();
- 
+
         private Optional<String> trackingToken = Optional.empty();
- 
+
         private Optional<? extends SessionInfo> sessionInfo = Optional.empty();
- 
+
         private Optional<? extends List<AutocompleteResult>> results = Optional.empty();
- 
+
         private Optional<? extends List<AutocompleteResultGroup>> groups = Optional.empty();
- 
+
         private Optional<? extends GleanDataError> gleanDataError = Optional.empty();
- 
+
         private Optional<Long> backendTimeMillis = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * List of experiment ids for the corresponding request.
@@ -333,6 +343,7 @@ public class AutocompleteResponse {
             return this;
         }
 
+
         /**
          * An opaque token that represents this particular set of autocomplete results. To be used for /feedback reporting.
          */
@@ -351,6 +362,7 @@ public class AutocompleteResponse {
             return this;
         }
 
+
         public Builder sessionInfo(SessionInfo sessionInfo) {
             Utils.checkNotNull(sessionInfo, "sessionInfo");
             this.sessionInfo = Optional.ofNullable(sessionInfo);
@@ -363,6 +375,7 @@ public class AutocompleteResponse {
             return this;
         }
 
+
         public Builder results(List<AutocompleteResult> results) {
             Utils.checkNotNull(results, "results");
             this.results = Optional.ofNullable(results);
@@ -374,6 +387,7 @@ public class AutocompleteResponse {
             this.results = results;
             return this;
         }
+
 
         /**
          * Subsections of the results list from which distinct sections should be created.
@@ -393,6 +407,7 @@ public class AutocompleteResponse {
             return this;
         }
 
+
         public Builder gleanDataError(GleanDataError gleanDataError) {
             Utils.checkNotNull(gleanDataError, "gleanDataError");
             this.gleanDataError = Optional.ofNullable(gleanDataError);
@@ -404,6 +419,7 @@ public class AutocompleteResponse {
             this.gleanDataError = gleanDataError;
             return this;
         }
+
 
         /**
          * Time in milliseconds the backend took to respond to the request.
@@ -422,16 +438,14 @@ public class AutocompleteResponse {
             this.backendTimeMillis = backendTimeMillis;
             return this;
         }
-        
+
         public AutocompleteResponse build() {
+
             return new AutocompleteResponse(
-                experimentIds,
-                trackingToken,
-                sessionInfo,
-                results,
-                groups,
-                gleanDataError,
+                experimentIds, trackingToken, sessionInfo,
+                results, groups, gleanDataError,
                 backendTimeMillis);
         }
+
     }
 }

@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class ChatZeroStateSuggestionOptions {
 
+public class ChatZeroStateSuggestionOptions {
     /**
      * The Chat Application ID this feed request should be scoped to. Empty means there is no Chat Application ID..
      */
@@ -41,9 +41,10 @@ public class ChatZeroStateSuggestionOptions {
         return applicationId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The Chat Application ID this feed request should be scoped to. Empty means there is no Chat Application ID..
@@ -54,6 +55,7 @@ public class ChatZeroStateSuggestionOptions {
         return this;
     }
 
+
     /**
      * The Chat Application ID this feed request should be scoped to. Empty means there is no Chat Application ID..
      */
@@ -63,7 +65,6 @@ public class ChatZeroStateSuggestionOptions {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -88,14 +89,16 @@ public class ChatZeroStateSuggestionOptions {
         return Utils.toString(ChatZeroStateSuggestionOptions.class,
                 "applicationId", applicationId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> applicationId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The Chat Application ID this feed request should be scoped to. Empty means there is no Chat Application ID..
@@ -114,10 +117,12 @@ public class ChatZeroStateSuggestionOptions {
             this.applicationId = applicationId;
             return this;
         }
-        
+
         public ChatZeroStateSuggestionOptions build() {
+
             return new ChatZeroStateSuggestionOptions(
                 applicationId);
         }
+
     }
 }

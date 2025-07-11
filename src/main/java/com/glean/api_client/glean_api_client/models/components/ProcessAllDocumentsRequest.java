@@ -19,7 +19,6 @@ import java.util.Optional;
  * <p>Describes the request body of the /processalldocuments API call
  */
 public class ProcessAllDocumentsRequest {
-
     /**
      * If provided, process documents only for this custom datasource. Otherwise all uploaded documents are processed.
      */
@@ -46,9 +45,10 @@ public class ProcessAllDocumentsRequest {
         return datasource;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * If provided, process documents only for this custom datasource. Otherwise all uploaded documents are processed.
@@ -59,6 +59,7 @@ public class ProcessAllDocumentsRequest {
         return this;
     }
 
+
     /**
      * If provided, process documents only for this custom datasource. Otherwise all uploaded documents are processed.
      */
@@ -68,7 +69,6 @@ public class ProcessAllDocumentsRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -93,14 +93,16 @@ public class ProcessAllDocumentsRequest {
         return Utils.toString(ProcessAllDocumentsRequest.class,
                 "datasource", datasource);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> datasource = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * If provided, process documents only for this custom datasource. Otherwise all uploaded documents are processed.
@@ -119,10 +121,12 @@ public class ProcessAllDocumentsRequest {
             this.datasource = datasource;
             return this;
         }
-        
+
         public ProcessAllDocumentsRequest build() {
+
             return new ProcessAllDocumentsRequest(
                 datasource);
         }
+
     }
 }

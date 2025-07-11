@@ -29,7 +29,7 @@ public class AddcollectionitemsRequestBuilder {
     public AddcollectionitemsResponse call() throws Exception {
         
         RequestOperation<AddCollectionItemsRequest, AddcollectionitemsResponse> operation
-              = new AddcollectionitemsOperation( sdkConfiguration);
+              = new AddcollectionitemsOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

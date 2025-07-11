@@ -16,8 +16,8 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-public class FeedbackChatExchange {
 
+public class FeedbackChatExchange {
     /**
      * Unix timestamp in millis for the chat request.
      */
@@ -53,6 +53,7 @@ public class FeedbackChatExchange {
     @JsonProperty("resultDocuments")
     private Optional<? extends List<ResultDocument>> resultDocuments;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("response")
     private Optional<String> response;
@@ -80,7 +81,8 @@ public class FeedbackChatExchange {
     }
     
     public FeedbackChatExchange() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -129,9 +131,10 @@ public class FeedbackChatExchange {
         return response;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unix timestamp in millis for the chat request.
@@ -141,6 +144,7 @@ public class FeedbackChatExchange {
         this.timestamp = Optional.ofNullable(timestamp);
         return this;
     }
+
 
     /**
      * Unix timestamp in millis for the chat request.
@@ -160,6 +164,7 @@ public class FeedbackChatExchange {
         return this;
     }
 
+
     /**
      * Either DEFAULT (company knowledge) or GPT (world knowledge).
      */
@@ -177,6 +182,7 @@ public class FeedbackChatExchange {
         this.userQuery = Optional.ofNullable(userQuery);
         return this;
     }
+
 
     /**
      * Initial query entered by the user.
@@ -196,6 +202,7 @@ public class FeedbackChatExchange {
         return this;
     }
 
+
     /**
      * Search query performed by the agent.
      */
@@ -214,6 +221,7 @@ public class FeedbackChatExchange {
         return this;
     }
 
+
     /**
      * List of documents read by the agent.
      */
@@ -229,13 +237,13 @@ public class FeedbackChatExchange {
         return this;
     }
 
+
     public FeedbackChatExchange withResponse(Optional<String> response) {
         Utils.checkNotNull(response, "response");
         this.response = response;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -257,12 +265,8 @@ public class FeedbackChatExchange {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            timestamp,
-            agent,
-            userQuery,
-            searchQuery,
-            resultDocuments,
-            response);
+            timestamp, agent, userQuery,
+            searchQuery, resultDocuments, response);
     }
     
     @Override
@@ -275,24 +279,26 @@ public class FeedbackChatExchange {
                 "resultDocuments", resultDocuments,
                 "response", response);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> timestamp = Optional.empty();
- 
+
         private Optional<String> agent = Optional.empty();
- 
+
         private Optional<String> userQuery = Optional.empty();
- 
+
         private Optional<String> searchQuery = Optional.empty();
- 
+
         private Optional<? extends List<ResultDocument>> resultDocuments = Optional.empty();
- 
+
         private Optional<String> response = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unix timestamp in millis for the chat request.
@@ -312,6 +318,7 @@ public class FeedbackChatExchange {
             return this;
         }
 
+
         /**
          * Either DEFAULT (company knowledge) or GPT (world knowledge).
          */
@@ -329,6 +336,7 @@ public class FeedbackChatExchange {
             this.agent = agent;
             return this;
         }
+
 
         /**
          * Initial query entered by the user.
@@ -348,6 +356,7 @@ public class FeedbackChatExchange {
             return this;
         }
 
+
         /**
          * Search query performed by the agent.
          */
@@ -365,6 +374,7 @@ public class FeedbackChatExchange {
             this.searchQuery = searchQuery;
             return this;
         }
+
 
         /**
          * List of documents read by the agent.
@@ -384,6 +394,7 @@ public class FeedbackChatExchange {
             return this;
         }
 
+
         public Builder response(String response) {
             Utils.checkNotNull(response, "response");
             this.response = Optional.ofNullable(response);
@@ -395,15 +406,13 @@ public class FeedbackChatExchange {
             this.response = response;
             return this;
         }
-        
+
         public FeedbackChatExchange build() {
+
             return new FeedbackChatExchange(
-                timestamp,
-                agent,
-                userQuery,
-                searchQuery,
-                resultDocuments,
-                response);
+                timestamp, agent, userQuery,
+                searchQuery, resultDocuments, response);
         }
+
     }
 }

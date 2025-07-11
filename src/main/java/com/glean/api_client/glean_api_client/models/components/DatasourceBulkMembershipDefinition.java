@@ -19,7 +19,6 @@ import java.util.Optional;
  * <p>describes the membership row of a group in the bulk uploaded. Only one of memberUserId and memberGroupName can be specified.
  */
 public class DatasourceBulkMembershipDefinition {
-
     /**
      * If the member is a user, then the email or datasource id for the user
      */
@@ -64,9 +63,10 @@ public class DatasourceBulkMembershipDefinition {
         return memberGroupName;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * If the member is a user, then the email or datasource id for the user
@@ -76,6 +76,7 @@ public class DatasourceBulkMembershipDefinition {
         this.memberUserId = Optional.ofNullable(memberUserId);
         return this;
     }
+
 
     /**
      * If the member is a user, then the email or datasource id for the user
@@ -95,6 +96,7 @@ public class DatasourceBulkMembershipDefinition {
         return this;
     }
 
+
     /**
      * If the member is a group, then the name of the member group
      */
@@ -104,7 +106,6 @@ public class DatasourceBulkMembershipDefinition {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -122,8 +123,7 @@ public class DatasourceBulkMembershipDefinition {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            memberUserId,
-            memberGroupName);
+            memberUserId, memberGroupName);
     }
     
     @Override
@@ -132,16 +132,18 @@ public class DatasourceBulkMembershipDefinition {
                 "memberUserId", memberUserId,
                 "memberGroupName", memberGroupName);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> memberUserId = Optional.empty();
- 
+
         private Optional<String> memberGroupName = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * If the member is a user, then the email or datasource id for the user
@@ -161,6 +163,7 @@ public class DatasourceBulkMembershipDefinition {
             return this;
         }
 
+
         /**
          * If the member is a group, then the name of the member group
          */
@@ -178,11 +181,12 @@ public class DatasourceBulkMembershipDefinition {
             this.memberGroupName = memberGroupName;
             return this;
         }
-        
+
         public DatasourceBulkMembershipDefinition build() {
+
             return new DatasourceBulkMembershipDefinition(
-                memberUserId,
-                memberGroupName);
+                memberUserId, memberGroupName);
         }
+
     }
 }

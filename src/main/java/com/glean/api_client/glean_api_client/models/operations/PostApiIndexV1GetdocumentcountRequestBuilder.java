@@ -29,7 +29,7 @@ public class PostApiIndexV1GetdocumentcountRequestBuilder {
     public PostApiIndexV1GetdocumentcountResponse call() throws Exception {
         
         RequestOperation<GetDocumentCountRequest, PostApiIndexV1GetdocumentcountResponse> operation
-              = new PostApiIndexV1GetdocumentcountOperation( sdkConfiguration);
+              = new PostApiIndexV1GetdocumentcountOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -53,7 +53,7 @@ public class GetchatfilesRequestBuilder {
     public GetchatfilesResponse call() throws Exception {
         
         RequestOperation<GetchatfilesRequest, GetchatfilesResponse> operation
-              = new GetchatfilesOperation( sdkConfiguration);
+              = new GetchatfilesOperation(sdkConfiguration);
         GetchatfilesRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

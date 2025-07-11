@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>Info about a team and optional version for that info
  */
 public class IndexTeamRequest {
-
     /**
      * Information about an employee's team
      */
@@ -65,9 +64,10 @@ public class IndexTeamRequest {
         return version;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Information about an employee's team
@@ -87,6 +87,7 @@ public class IndexTeamRequest {
         return this;
     }
 
+
     /**
      * Version number for the team object. If absent or 0 then no version checks are done
      */
@@ -96,7 +97,6 @@ public class IndexTeamRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -114,8 +114,7 @@ public class IndexTeamRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            team,
-            version);
+            team, version);
     }
     
     @Override
@@ -124,16 +123,18 @@ public class IndexTeamRequest {
                 "team", team,
                 "version", version);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private TeamInfoDefinition team;
- 
+
         private Optional<Long> version = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Information about an employee's team
@@ -143,6 +144,7 @@ public class IndexTeamRequest {
             this.team = team;
             return this;
         }
+
 
         /**
          * Version number for the team object. If absent or 0 then no version checks are done
@@ -161,11 +163,12 @@ public class IndexTeamRequest {
             this.version = version;
             return this;
         }
-        
+
         public IndexTeamRequest build() {
+
             return new IndexTeamRequest(
-                team,
-                version);
+                team, version);
         }
+
     }
 }

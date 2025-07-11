@@ -20,7 +20,6 @@ import java.util.Optional;
  * <p>Describes the grant permission level that a user has for a specific feature
  */
 public class GrantPermission {
-
     /**
      * Describes the scope for a ReadPermission, WritePermission, or GrantPermission object
      */
@@ -48,9 +47,10 @@ public class GrantPermission {
         return (Optional<ScopeType>) scopeType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Describes the scope for a ReadPermission, WritePermission, or GrantPermission object
@@ -61,6 +61,7 @@ public class GrantPermission {
         return this;
     }
 
+
     /**
      * Describes the scope for a ReadPermission, WritePermission, or GrantPermission object
      */
@@ -70,7 +71,6 @@ public class GrantPermission {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -95,14 +95,16 @@ public class GrantPermission {
         return Utils.toString(GrantPermission.class,
                 "scopeType", scopeType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ScopeType> scopeType = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Describes the scope for a ReadPermission, WritePermission, or GrantPermission object
@@ -121,10 +123,12 @@ public class GrantPermission {
             this.scopeType = scopeType;
             return this;
         }
-        
+
         public GrantPermission build() {
+
             return new GrantPermission(
                 scopeType);
         }
+
     }
 }

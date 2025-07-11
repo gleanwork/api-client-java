@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.List;
 
-public class ListAnswersResponse {
 
+public class ListAnswersResponse {
     /**
      * List of answers with tracking tokens.
      */
@@ -34,9 +34,10 @@ public class ListAnswersResponse {
         return answerResults;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * List of answers with tracking tokens.
@@ -47,7 +48,6 @@ public class ListAnswersResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -72,14 +72,16 @@ public class ListAnswersResponse {
         return Utils.toString(ListAnswersResponse.class,
                 "answerResults", answerResults);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<AnswerResult> answerResults;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * List of answers with tracking tokens.
@@ -89,10 +91,12 @@ public class ListAnswersResponse {
             this.answerResults = answerResults;
             return this;
         }
-        
+
         public ListAnswersResponse build() {
+
             return new ListAnswersResponse(
                 answerResults);
         }
+
     }
 }

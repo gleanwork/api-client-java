@@ -14,8 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class TimePoint {
 
+public class TimePoint {
     /**
      * Epoch seconds. Has precedence over daysFromNow.
      */
@@ -60,9 +60,10 @@ public class TimePoint {
         return daysFromNow;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Epoch seconds. Has precedence over daysFromNow.
@@ -72,6 +73,7 @@ public class TimePoint {
         this.epochSeconds = Optional.ofNullable(epochSeconds);
         return this;
     }
+
 
     /**
      * Epoch seconds. Has precedence over daysFromNow.
@@ -91,6 +93,7 @@ public class TimePoint {
         return this;
     }
 
+
     /**
      * The number of days from now. Specification relative to current time. Can be negative.
      */
@@ -100,7 +103,6 @@ public class TimePoint {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -118,8 +120,7 @@ public class TimePoint {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            epochSeconds,
-            daysFromNow);
+            epochSeconds, daysFromNow);
     }
     
     @Override
@@ -128,16 +129,18 @@ public class TimePoint {
                 "epochSeconds", epochSeconds,
                 "daysFromNow", daysFromNow);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> epochSeconds = Optional.empty();
- 
+
         private Optional<Long> daysFromNow = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Epoch seconds. Has precedence over daysFromNow.
@@ -157,6 +160,7 @@ public class TimePoint {
             return this;
         }
 
+
         /**
          * The number of days from now. Specification relative to current time. Can be negative.
          */
@@ -174,11 +178,12 @@ public class TimePoint {
             this.daysFromNow = daysFromNow;
             return this;
         }
-        
+
         public TimePoint build() {
+
             return new TimePoint(
-                epochSeconds,
-                daysFromNow);
+                epochSeconds, daysFromNow);
         }
+
     }
 }

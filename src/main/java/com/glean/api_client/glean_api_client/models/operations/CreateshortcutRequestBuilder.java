@@ -29,7 +29,7 @@ public class CreateshortcutRequestBuilder {
     public CreateshortcutResponse call() throws Exception {
         
         RequestOperation<CreateShortcutRequest, CreateshortcutResponse> operation
-              = new CreateshortcutOperation( sdkConfiguration);
+              = new CreateshortcutOperation(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

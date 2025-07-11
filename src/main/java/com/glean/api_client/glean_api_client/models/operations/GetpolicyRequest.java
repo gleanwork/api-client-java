@@ -12,8 +12,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
-public class GetpolicyRequest {
 
+public class GetpolicyRequest {
     /**
      * The id of the policy to fetch.
      */
@@ -57,9 +57,10 @@ public class GetpolicyRequest {
         return version;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The id of the policy to fetch.
@@ -79,6 +80,7 @@ public class GetpolicyRequest {
         return this;
     }
 
+
     /**
      * The version of the policy to fetch. Each time a policy is updated, the older version is still stored. If this is left empty, the latest policy is fetched.
      */
@@ -88,7 +90,6 @@ public class GetpolicyRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -106,8 +107,7 @@ public class GetpolicyRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id,
-            version);
+            id, version);
     }
     
     @Override
@@ -116,16 +116,18 @@ public class GetpolicyRequest {
                 "id", id,
                 "version", version);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private Optional<Long> version = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The id of the policy to fetch.
@@ -135,6 +137,7 @@ public class GetpolicyRequest {
             this.id = id;
             return this;
         }
+
 
         /**
          * The version of the policy to fetch. Each time a policy is updated, the older version is still stored. If this is left empty, the latest policy is fetched.
@@ -153,11 +156,12 @@ public class GetpolicyRequest {
             this.version = version;
             return this;
         }
-        
+
         public GetpolicyRequest build() {
+
             return new GetpolicyRequest(
-                id,
-                version);
+                id, version);
         }
+
     }
 }

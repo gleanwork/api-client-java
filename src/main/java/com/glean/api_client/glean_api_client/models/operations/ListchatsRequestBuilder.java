@@ -44,7 +44,7 @@ public class ListchatsRequestBuilder {
     public ListchatsResponse call() throws Exception {
         
         RequestOperation<ListchatsRequest, ListchatsResponse> operation
-              = new ListchatsOperation( sdkConfiguration);
+              = new ListchatsOperation(sdkConfiguration);
         ListchatsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

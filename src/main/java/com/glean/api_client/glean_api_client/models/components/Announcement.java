@@ -18,8 +18,8 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 
-public class Announcement {
 
+public class Announcement {
     /**
      * The date and time at which the announcement becomes active.
      */
@@ -41,6 +41,7 @@ public class Announcement {
     @JsonProperty("title")
     private Optional<String> title;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("body")
     private Optional<? extends StructuredText> body;
@@ -52,9 +53,11 @@ public class Announcement {
     @JsonProperty("emoji")
     private Optional<String> emoji;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("thumbnail")
     private Optional<? extends Thumbnail> thumbnail;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("banner")
@@ -116,6 +119,7 @@ public class Announcement {
     @JsonProperty("draftId")
     private Optional<Long> draftId;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("permissions")
     private Optional<? extends ObjectPermissions> permissions;
@@ -126,6 +130,7 @@ public class Announcement {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
     private Optional<Long> id;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("author")
@@ -145,13 +150,16 @@ public class Announcement {
     @JsonProperty("lastUpdateTimestamp")
     private Optional<Long> lastUpdateTimestamp;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("updatedBy")
     private Optional<? extends Person> updatedBy;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("viewerInfo")
     private Optional<? extends AnnouncementViewerInfo> viewerInfo;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sourceDocument")
@@ -241,7 +249,14 @@ public class Announcement {
     }
     
     public Announcement() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -423,9 +438,10 @@ public class Announcement {
         return isPublished;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The date and time at which the announcement becomes active.
@@ -435,6 +451,7 @@ public class Announcement {
         this.startTime = Optional.ofNullable(startTime);
         return this;
     }
+
 
     /**
      * The date and time at which the announcement becomes active.
@@ -454,6 +471,7 @@ public class Announcement {
         return this;
     }
 
+
     /**
      * The date and time at which the announcement expires.
      */
@@ -472,6 +490,7 @@ public class Announcement {
         return this;
     }
 
+
     /**
      * The headline of the announcement.
      */
@@ -486,6 +505,7 @@ public class Announcement {
         this.body = Optional.ofNullable(body);
         return this;
     }
+
 
     public Announcement withBody(Optional<? extends StructuredText> body) {
         Utils.checkNotNull(body, "body");
@@ -502,6 +522,7 @@ public class Announcement {
         return this;
     }
 
+
     /**
      * An emoji used to indicate the nature of the announcement.
      */
@@ -517,6 +538,7 @@ public class Announcement {
         return this;
     }
 
+
     public Announcement withThumbnail(Optional<? extends Thumbnail> thumbnail) {
         Utils.checkNotNull(thumbnail, "thumbnail");
         this.thumbnail = thumbnail;
@@ -528,6 +550,7 @@ public class Announcement {
         this.banner = Optional.ofNullable(banner);
         return this;
     }
+
 
     public Announcement withBanner(Optional<? extends Thumbnail> banner) {
         Utils.checkNotNull(banner, "banner");
@@ -543,6 +566,7 @@ public class Announcement {
         this.audienceFilters = Optional.ofNullable(audienceFilters);
         return this;
     }
+
 
     /**
      * Filters which restrict who should see the announcement. Values are taken from the corresponding filters in people search.
@@ -562,6 +586,7 @@ public class Announcement {
         return this;
     }
 
+
     /**
      * The Glean Document ID of the source document this Announcement was created from (e.g. Slack thread).
      */
@@ -579,6 +604,7 @@ public class Announcement {
         this.hideAttribution = Optional.ofNullable(hideAttribution);
         return this;
     }
+
 
     /**
      * Whether or not to hide an author attribution.
@@ -598,6 +624,7 @@ public class Announcement {
         return this;
     }
 
+
     /**
      * This determines whether this is a Social Feed post or a regular announcement.
      */
@@ -615,6 +642,7 @@ public class Announcement {
         this.postType = Optional.ofNullable(postType);
         return this;
     }
+
 
     /**
      * This determines whether this is an external-link post or a regular announcement post. TEXT - Regular announcement that can contain rich text. LINK - Announcement that is linked to an external site.
@@ -634,6 +662,7 @@ public class Announcement {
         return this;
     }
 
+
     /**
      * Used by the Social Feed to pin posts to the front of the feed.
      */
@@ -651,6 +680,7 @@ public class Announcement {
         this.viewUrl = Optional.ofNullable(viewUrl);
         return this;
     }
+
 
     /**
      * URL for viewing the announcement. It will be set to document URL for announcements from other datasources e.g. simpplr. Can only be written when channel="SOCIAL_FEED".
@@ -670,6 +700,7 @@ public class Announcement {
         return this;
     }
 
+
     /**
      * The opaque id of the associated draft.
      */
@@ -684,6 +715,7 @@ public class Announcement {
         this.permissions = Optional.ofNullable(permissions);
         return this;
     }
+
 
     public Announcement withPermissions(Optional<? extends ObjectPermissions> permissions) {
         Utils.checkNotNull(permissions, "permissions");
@@ -700,6 +732,7 @@ public class Announcement {
         return this;
     }
 
+
     /**
      * The opaque id of the announcement.
      */
@@ -715,6 +748,7 @@ public class Announcement {
         return this;
     }
 
+
     public Announcement withAuthor(Optional<? extends Person> author) {
         Utils.checkNotNull(author, "author");
         this.author = author;
@@ -729,6 +763,7 @@ public class Announcement {
         this.createTimestamp = Optional.ofNullable(createTimestamp);
         return this;
     }
+
 
     /**
      * Server Unix timestamp of the creation time (in seconds since epoch UTC).
@@ -748,6 +783,7 @@ public class Announcement {
         return this;
     }
 
+
     /**
      * Server Unix timestamp of the last update time (in seconds since epoch UTC).
      */
@@ -763,6 +799,7 @@ public class Announcement {
         return this;
     }
 
+
     public Announcement withUpdatedBy(Optional<? extends Person> updatedBy) {
         Utils.checkNotNull(updatedBy, "updatedBy");
         this.updatedBy = updatedBy;
@@ -775,6 +812,7 @@ public class Announcement {
         return this;
     }
 
+
     public Announcement withViewerInfo(Optional<? extends AnnouncementViewerInfo> viewerInfo) {
         Utils.checkNotNull(viewerInfo, "viewerInfo");
         this.viewerInfo = viewerInfo;
@@ -786,6 +824,7 @@ public class Announcement {
         this.sourceDocument = Optional.ofNullable(sourceDocument);
         return this;
     }
+
 
     public Announcement withSourceDocument(Optional<? extends Document> sourceDocument) {
         Utils.checkNotNull(sourceDocument, "sourceDocument");
@@ -802,6 +841,7 @@ public class Announcement {
         return this;
     }
 
+
     /**
      * Whether or not the announcement is published.
      */
@@ -811,7 +851,6 @@ public class Announcement {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -851,30 +890,14 @@ public class Announcement {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            startTime,
-            endTime,
-            title,
-            body,
-            emoji,
-            thumbnail,
-            banner,
-            audienceFilters,
-            sourceDocumentId,
-            hideAttribution,
-            channel,
-            postType,
-            isPrioritized,
-            viewUrl,
-            draftId,
-            permissions,
-            id,
-            author,
-            createTimestamp,
-            lastUpdateTimestamp,
-            updatedBy,
-            viewerInfo,
-            sourceDocument,
-            isPublished);
+            startTime, endTime, title,
+            body, emoji, thumbnail,
+            banner, audienceFilters, sourceDocumentId,
+            hideAttribution, channel, postType,
+            isPrioritized, viewUrl, draftId,
+            permissions, id, author,
+            createTimestamp, lastUpdateTimestamp, updatedBy,
+            viewerInfo, sourceDocument, isPublished);
     }
     
     @Override
@@ -905,60 +928,62 @@ public class Announcement {
                 "sourceDocument", sourceDocument,
                 "isPublished", isPublished);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<OffsetDateTime> startTime = Optional.empty();
- 
+
         private Optional<OffsetDateTime> endTime = Optional.empty();
- 
+
         private Optional<String> title = Optional.empty();
- 
+
         private Optional<? extends StructuredText> body = Optional.empty();
- 
+
         private Optional<String> emoji = Optional.empty();
- 
+
         private Optional<? extends Thumbnail> thumbnail = Optional.empty();
- 
+
         private Optional<? extends Thumbnail> banner = Optional.empty();
- 
+
         private Optional<? extends List<FacetFilter>> audienceFilters = Optional.empty();
- 
+
         private Optional<String> sourceDocumentId = Optional.empty();
- 
+
         private Optional<Boolean> hideAttribution = Optional.empty();
- 
+
         private Optional<? extends AnnouncementChannel> channel = Optional.empty();
- 
+
         private Optional<? extends AnnouncementPostType> postType = Optional.empty();
- 
+
         private Optional<Boolean> isPrioritized = Optional.empty();
- 
+
         private Optional<String> viewUrl = Optional.empty();
- 
+
         private Optional<Long> draftId = Optional.empty();
- 
+
         private Optional<? extends ObjectPermissions> permissions = Optional.empty();
- 
+
         private Optional<Long> id = Optional.empty();
- 
+
         private Optional<? extends Person> author = Optional.empty();
- 
+
         private Optional<Long> createTimestamp = Optional.empty();
- 
+
         private Optional<Long> lastUpdateTimestamp = Optional.empty();
- 
+
         private Optional<? extends Person> updatedBy = Optional.empty();
- 
+
         private Optional<? extends AnnouncementViewerInfo> viewerInfo = Optional.empty();
- 
+
         private Optional<? extends Document> sourceDocument = Optional.empty();
- 
+
         private Optional<Boolean> isPublished = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The date and time at which the announcement becomes active.
@@ -978,6 +1003,7 @@ public class Announcement {
             return this;
         }
 
+
         /**
          * The date and time at which the announcement expires.
          */
@@ -995,6 +1021,7 @@ public class Announcement {
             this.endTime = endTime;
             return this;
         }
+
 
         /**
          * The headline of the announcement.
@@ -1014,6 +1041,7 @@ public class Announcement {
             return this;
         }
 
+
         public Builder body(StructuredText body) {
             Utils.checkNotNull(body, "body");
             this.body = Optional.ofNullable(body);
@@ -1025,6 +1053,7 @@ public class Announcement {
             this.body = body;
             return this;
         }
+
 
         /**
          * An emoji used to indicate the nature of the announcement.
@@ -1044,6 +1073,7 @@ public class Announcement {
             return this;
         }
 
+
         public Builder thumbnail(Thumbnail thumbnail) {
             Utils.checkNotNull(thumbnail, "thumbnail");
             this.thumbnail = Optional.ofNullable(thumbnail);
@@ -1056,6 +1086,7 @@ public class Announcement {
             return this;
         }
 
+
         public Builder banner(Thumbnail banner) {
             Utils.checkNotNull(banner, "banner");
             this.banner = Optional.ofNullable(banner);
@@ -1067,6 +1098,7 @@ public class Announcement {
             this.banner = banner;
             return this;
         }
+
 
         /**
          * Filters which restrict who should see the announcement. Values are taken from the corresponding filters in people search.
@@ -1086,6 +1118,7 @@ public class Announcement {
             return this;
         }
 
+
         /**
          * The Glean Document ID of the source document this Announcement was created from (e.g. Slack thread).
          */
@@ -1103,6 +1136,7 @@ public class Announcement {
             this.sourceDocumentId = sourceDocumentId;
             return this;
         }
+
 
         /**
          * Whether or not to hide an author attribution.
@@ -1122,6 +1156,7 @@ public class Announcement {
             return this;
         }
 
+
         /**
          * This determines whether this is a Social Feed post or a regular announcement.
          */
@@ -1139,6 +1174,7 @@ public class Announcement {
             this.channel = channel;
             return this;
         }
+
 
         /**
          * This determines whether this is an external-link post or a regular announcement post. TEXT - Regular announcement that can contain rich text. LINK - Announcement that is linked to an external site.
@@ -1158,6 +1194,7 @@ public class Announcement {
             return this;
         }
 
+
         /**
          * Used by the Social Feed to pin posts to the front of the feed.
          */
@@ -1175,6 +1212,7 @@ public class Announcement {
             this.isPrioritized = isPrioritized;
             return this;
         }
+
 
         /**
          * URL for viewing the announcement. It will be set to document URL for announcements from other datasources e.g. simpplr. Can only be written when channel="SOCIAL_FEED".
@@ -1194,6 +1232,7 @@ public class Announcement {
             return this;
         }
 
+
         /**
          * The opaque id of the associated draft.
          */
@@ -1212,6 +1251,7 @@ public class Announcement {
             return this;
         }
 
+
         public Builder permissions(ObjectPermissions permissions) {
             Utils.checkNotNull(permissions, "permissions");
             this.permissions = Optional.ofNullable(permissions);
@@ -1223,6 +1263,7 @@ public class Announcement {
             this.permissions = permissions;
             return this;
         }
+
 
         /**
          * The opaque id of the announcement.
@@ -1242,6 +1283,7 @@ public class Announcement {
             return this;
         }
 
+
         public Builder author(Person author) {
             Utils.checkNotNull(author, "author");
             this.author = Optional.ofNullable(author);
@@ -1253,6 +1295,7 @@ public class Announcement {
             this.author = author;
             return this;
         }
+
 
         /**
          * Server Unix timestamp of the creation time (in seconds since epoch UTC).
@@ -1272,6 +1315,7 @@ public class Announcement {
             return this;
         }
 
+
         /**
          * Server Unix timestamp of the last update time (in seconds since epoch UTC).
          */
@@ -1290,6 +1334,7 @@ public class Announcement {
             return this;
         }
 
+
         public Builder updatedBy(Person updatedBy) {
             Utils.checkNotNull(updatedBy, "updatedBy");
             this.updatedBy = Optional.ofNullable(updatedBy);
@@ -1301,6 +1346,7 @@ public class Announcement {
             this.updatedBy = updatedBy;
             return this;
         }
+
 
         public Builder viewerInfo(AnnouncementViewerInfo viewerInfo) {
             Utils.checkNotNull(viewerInfo, "viewerInfo");
@@ -1314,6 +1360,7 @@ public class Announcement {
             return this;
         }
 
+
         public Builder sourceDocument(Document sourceDocument) {
             Utils.checkNotNull(sourceDocument, "sourceDocument");
             this.sourceDocument = Optional.ofNullable(sourceDocument);
@@ -1325,6 +1372,7 @@ public class Announcement {
             this.sourceDocument = sourceDocument;
             return this;
         }
+
 
         /**
          * Whether or not the announcement is published.
@@ -1343,33 +1391,19 @@ public class Announcement {
             this.isPublished = isPublished;
             return this;
         }
-        
+
         public Announcement build() {
+
             return new Announcement(
-                startTime,
-                endTime,
-                title,
-                body,
-                emoji,
-                thumbnail,
-                banner,
-                audienceFilters,
-                sourceDocumentId,
-                hideAttribution,
-                channel,
-                postType,
-                isPrioritized,
-                viewUrl,
-                draftId,
-                permissions,
-                id,
-                author,
-                createTimestamp,
-                lastUpdateTimestamp,
-                updatedBy,
-                viewerInfo,
-                sourceDocument,
-                isPublished);
+                startTime, endTime, title,
+                body, emoji, thumbnail,
+                banner, audienceFilters, sourceDocumentId,
+                hideAttribution, channel, postType,
+                isPrioritized, viewUrl, draftId,
+                permissions, id, author,
+                createTimestamp, lastUpdateTimestamp, updatedBy,
+                viewerInfo, sourceDocument, isPublished);
         }
+
     }
 }
