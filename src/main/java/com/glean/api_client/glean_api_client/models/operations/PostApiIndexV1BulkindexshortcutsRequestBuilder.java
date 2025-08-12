@@ -7,7 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.BulkIndexShortcutsRequest;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1BulkindexshortcutsOperation;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Bulkindexshortcuts;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -29,7 +29,7 @@ public class PostApiIndexV1BulkindexshortcutsRequestBuilder {
     public PostApiIndexV1BulkindexshortcutsResponse call() throws Exception {
         
         RequestOperation<BulkIndexShortcutsRequest, PostApiIndexV1BulkindexshortcutsResponse> operation
-              = new PostApiIndexV1BulkindexshortcutsOperation(sdkConfiguration);
+              = new PostApiIndexV1Bulkindexshortcuts.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

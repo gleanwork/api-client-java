@@ -6,7 +6,7 @@ package com.glean.api_client.glean_api_client.models.operations;
 import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
-import com.glean.api_client.glean_api_client.operations.ListchatsOperation;
+import com.glean.api_client.glean_api_client.operations.Listchats;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
@@ -44,7 +44,7 @@ public class ListchatsRequestBuilder {
     public ListchatsResponse call() throws Exception {
         
         RequestOperation<ListchatsRequest, ListchatsResponse> operation
-              = new ListchatsOperation(sdkConfiguration);
+              = new Listchats.Sync(sdkConfiguration);
         ListchatsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

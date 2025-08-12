@@ -17,6 +17,7 @@ Fetches the specified policy version, or the latest if no version is provided.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="getpolicy" method="get" path="/rest/api/v1/governance/data/policies/{id}" -->
 ```java
 package hello.world;
 
@@ -66,6 +67,7 @@ Updates an existing policy.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="updatepolicy" method="post" path="/rest/api/v1/governance/data/policies/{id}" -->
 ```java
 package hello.world;
 
@@ -118,6 +120,7 @@ Lists policies with filtering.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="listpolicies" method="get" path="/rest/api/v1/governance/data/policies" -->
 ```java
 package hello.world;
 
@@ -166,6 +169,7 @@ Creates a new policy with specified specifications and returns its id.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="createpolicy" method="post" path="/rest/api/v1/governance/data/policies" -->
 ```java
 package hello.world;
 
@@ -218,6 +222,7 @@ Downloads CSV violations report for a specific policy id. This does not support 
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="downloadpolicycsv" method="get" path="/rest/api/v1/governance/data/policies/{id}/download" -->
 ```java
 package hello.world;
 

@@ -7,7 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.UploadShortcutsRequest;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1UploadshortcutsOperation;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Uploadshortcuts;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -29,7 +29,7 @@ public class PostApiIndexV1UploadshortcutsRequestBuilder {
     public PostApiIndexV1UploadshortcutsResponse call() throws Exception {
         
         RequestOperation<UploadShortcutsRequest, PostApiIndexV1UploadshortcutsResponse> operation
-              = new PostApiIndexV1UploadshortcutsOperation(sdkConfiguration);
+              = new PostApiIndexV1Uploadshortcuts.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

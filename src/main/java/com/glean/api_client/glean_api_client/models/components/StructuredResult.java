@@ -53,6 +53,11 @@ public class StructuredResult {
 
 
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("generatedQna")
+    private Optional<? extends GeneratedQna> generatedQna;
+
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("extractedQnA")
     private Optional<? extends ExtractedQnA> extractedQnA;
 
@@ -146,6 +151,7 @@ public class StructuredResult {
             @JsonProperty("team") Optional<? extends Team> team,
             @JsonProperty("customEntity") Optional<? extends CustomEntity> customEntity,
             @JsonProperty("answer") Optional<? extends Answer> answer,
+            @JsonProperty("generatedQna") Optional<? extends GeneratedQna> generatedQna,
             @JsonProperty("extractedQnA") Optional<? extends ExtractedQnA> extractedQnA,
             @JsonProperty("meeting") Optional<? extends Meeting> meeting,
             @JsonProperty("app") Optional<? extends AppResult> app,
@@ -167,6 +173,7 @@ public class StructuredResult {
         Utils.checkNotNull(team, "team");
         Utils.checkNotNull(customEntity, "customEntity");
         Utils.checkNotNull(answer, "answer");
+        Utils.checkNotNull(generatedQna, "generatedQna");
         Utils.checkNotNull(extractedQnA, "extractedQnA");
         Utils.checkNotNull(meeting, "meeting");
         Utils.checkNotNull(app, "app");
@@ -188,6 +195,7 @@ public class StructuredResult {
         this.team = team;
         this.customEntity = customEntity;
         this.answer = answer;
+        this.generatedQna = generatedQna;
         this.extractedQnA = extractedQnA;
         this.meeting = meeting;
         this.app = app;
@@ -212,7 +220,8 @@ public class StructuredResult {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -249,6 +258,12 @@ public class StructuredResult {
     @JsonIgnore
     public Optional<Answer> answer() {
         return (Optional<Answer>) answer;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<GeneratedQna> generatedQna() {
+        return (Optional<GeneratedQna>) generatedQna;
     }
 
     @SuppressWarnings("unchecked")
@@ -438,6 +453,19 @@ public class StructuredResult {
     public StructuredResult withAnswer(Optional<? extends Answer> answer) {
         Utils.checkNotNull(answer, "answer");
         this.answer = answer;
+        return this;
+    }
+
+    public StructuredResult withGeneratedQna(GeneratedQna generatedQna) {
+        Utils.checkNotNull(generatedQna, "generatedQna");
+        this.generatedQna = Optional.ofNullable(generatedQna);
+        return this;
+    }
+
+
+    public StructuredResult withGeneratedQna(Optional<? extends GeneratedQna> generatedQna) {
+        Utils.checkNotNull(generatedQna, "generatedQna");
+        this.generatedQna = generatedQna;
         return this;
     }
 
@@ -688,6 +716,7 @@ public class StructuredResult {
             Utils.enhancedDeepEquals(this.team, other.team) &&
             Utils.enhancedDeepEquals(this.customEntity, other.customEntity) &&
             Utils.enhancedDeepEquals(this.answer, other.answer) &&
+            Utils.enhancedDeepEquals(this.generatedQna, other.generatedQna) &&
             Utils.enhancedDeepEquals(this.extractedQnA, other.extractedQnA) &&
             Utils.enhancedDeepEquals(this.meeting, other.meeting) &&
             Utils.enhancedDeepEquals(this.app, other.app) &&
@@ -710,11 +739,12 @@ public class StructuredResult {
         return Utils.enhancedHash(
             document, person, customer,
             team, customEntity, answer,
-            extractedQnA, meeting, app,
-            collection, answerBoard, code,
-            shortcut, querySuggestions, relatedDocuments,
-            relatedQuestion, disambiguation, snippets,
-            trackingToken, prominence, source);
+            generatedQna, extractedQnA, meeting,
+            app, collection, answerBoard,
+            code, shortcut, querySuggestions,
+            relatedDocuments, relatedQuestion, disambiguation,
+            snippets, trackingToken, prominence,
+            source);
     }
     
     @Override
@@ -726,6 +756,7 @@ public class StructuredResult {
                 "team", team,
                 "customEntity", customEntity,
                 "answer", answer,
+                "generatedQna", generatedQna,
                 "extractedQnA", extractedQnA,
                 "meeting", meeting,
                 "app", app,
@@ -757,6 +788,8 @@ public class StructuredResult {
         private Optional<? extends CustomEntity> customEntity = Optional.empty();
 
         private Optional<? extends Answer> answer = Optional.empty();
+
+        private Optional<? extends GeneratedQna> generatedQna = Optional.empty();
 
         private Optional<? extends ExtractedQnA> extractedQnA = Optional.empty();
 
@@ -867,6 +900,19 @@ public class StructuredResult {
         public Builder answer(Optional<? extends Answer> answer) {
             Utils.checkNotNull(answer, "answer");
             this.answer = answer;
+            return this;
+        }
+
+
+        public Builder generatedQna(GeneratedQna generatedQna) {
+            Utils.checkNotNull(generatedQna, "generatedQna");
+            this.generatedQna = Optional.ofNullable(generatedQna);
+            return this;
+        }
+
+        public Builder generatedQna(Optional<? extends GeneratedQna> generatedQna) {
+            Utils.checkNotNull(generatedQna, "generatedQna");
+            this.generatedQna = generatedQna;
             return this;
         }
 
@@ -1106,11 +1152,12 @@ public class StructuredResult {
             return new StructuredResult(
                 document, person, customer,
                 team, customEntity, answer,
-                extractedQnA, meeting, app,
-                collection, answerBoard, code,
-                shortcut, querySuggestions, relatedDocuments,
-                relatedQuestion, disambiguation, snippets,
-                trackingToken, prominence, source);
+                generatedQna, extractedQnA, meeting,
+                app, collection, answerBoard,
+                code, shortcut, querySuggestions,
+                relatedDocuments, relatedQuestion, disambiguation,
+                snippets, trackingToken, prominence,
+                source);
         }
 
     }

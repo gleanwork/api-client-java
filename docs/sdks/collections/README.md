@@ -20,6 +20,7 @@ Add items to a Collection.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="addcollectionitems" method="post" path="/rest/api/v1/addcollectionitems" -->
 ```java
 package hello.world;
 
@@ -73,6 +74,7 @@ Create a publicly visible (empty) Collection of documents.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="createcollection" method="post" path="/rest/api/v1/createcollection" -->
 ```java
 package hello.world;
 
@@ -727,6 +729,7 @@ Delete a Collection given the Collection's ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="deletecollection" method="post" path="/rest/api/v1/deletecollection" -->
 ```java
 package hello.world;
 
@@ -784,6 +787,7 @@ Delete a single item from a Collection.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="deletecollectionitem" method="post" path="/rest/api/v1/deletecollectionitem" -->
 ```java
 package hello.world;
 
@@ -838,6 +842,7 @@ Update the properties of an existing Collection.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="editcollection" method="post" path="/rest/api/v1/editcollection" -->
 ```java
 package hello.world;
 
@@ -1863,6 +1868,7 @@ Update the URL, Glean Document ID, description of an item within a Collection gi
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="editcollectionitem" method="post" path="/rest/api/v1/editcollectionitem" -->
 ```java
 package hello.world;
 
@@ -1917,6 +1923,7 @@ Read the details of a Collection given its ID. Does not fetch items in this Coll
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="getcollection" method="post" path="/rest/api/v1/getcollection" -->
 ```java
 package hello.world;
 
@@ -1970,6 +1977,7 @@ List all existing Collections.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="listcollections" method="post" path="/rest/api/v1/listcollections" -->
 ```java
 package hello.world;
 

@@ -14,13 +14,11 @@ import com.glean.api_client.glean_api_client.models.operations.Downloadreportcsv
 import com.glean.api_client.glean_api_client.models.operations.GetreportstatusRequest;
 import com.glean.api_client.glean_api_client.models.operations.GetreportstatusRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.GetreportstatusResponse;
-import com.glean.api_client.glean_api_client.operations.CreatereportOperation;
-import com.glean.api_client.glean_api_client.operations.DownloadreportcsvOperation;
-import com.glean.api_client.glean_api_client.operations.GetreportstatusOperation;
+import com.glean.api_client.glean_api_client.operations.Createreport;
+import com.glean.api_client.glean_api_client.operations.Downloadreportcsv;
+import com.glean.api_client.glean_api_client.operations.Getreportstatus;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
-import java.util.Optional;
 
 
 public class Reports {
@@ -29,6 +27,7 @@ public class Reports {
     Reports(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Creates new one-time report
      * 
@@ -51,7 +50,7 @@ public class Reports {
      */
     public CreatereportResponse create(UpdateDlpConfigRequest request) throws Exception {
         RequestOperation<UpdateDlpConfigRequest, CreatereportResponse> operation
-              = new CreatereportOperation(sdkConfiguration);
+              = new Createreport.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -82,7 +81,7 @@ public class Reports {
                 .id(id)
                 .build();
         RequestOperation<DownloadreportcsvRequest, DownloadreportcsvResponse> operation
-              = new DownloadreportcsvOperation(sdkConfiguration);
+              = new Downloadreportcsv.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +112,7 @@ public class Reports {
                 .id(id)
                 .build();
         RequestOperation<GetreportstatusRequest, GetreportstatusResponse> operation
-              = new GetreportstatusOperation(sdkConfiguration);
+              = new Getreportstatus.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

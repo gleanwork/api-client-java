@@ -8,10 +8,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.models.components.InsightsRequest;
 import com.glean.api_client.glean_api_client.models.operations.InsightsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.InsightsResponse;
-import com.glean.api_client.glean_api_client.operations.InsightsOperation;
 import java.lang.Exception;
-import java.util.List;
-import java.util.Optional;
 
 
 public class Insights {
@@ -20,6 +17,7 @@ public class Insights {
     Insights(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Read insights
      * 
@@ -42,7 +40,7 @@ public class Insights {
      */
     public InsightsResponse retrieve(InsightsRequest request) throws Exception {
         RequestOperation<InsightsRequest, InsightsResponse> operation
-              = new InsightsOperation(sdkConfiguration);
+              = new com.glean.api_client.glean_api_client.operations.Insights.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

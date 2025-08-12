@@ -6,7 +6,7 @@ package com.glean.api_client.glean_api_client.models.operations;
 import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
-import com.glean.api_client.glean_api_client.operations.GetpolicyOperation;
+import com.glean.api_client.glean_api_client.operations.Getpolicy;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
@@ -53,7 +53,7 @@ public class GetpolicyRequestBuilder {
     public GetpolicyResponse call() throws Exception {
         
         RequestOperation<GetpolicyRequest, GetpolicyResponse> operation
-              = new GetpolicyOperation(sdkConfiguration);
+              = new Getpolicy.Sync(sdkConfiguration);
         GetpolicyRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

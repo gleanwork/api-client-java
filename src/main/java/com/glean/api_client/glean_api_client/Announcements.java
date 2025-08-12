@@ -14,12 +14,10 @@ import com.glean.api_client.glean_api_client.models.operations.Deleteannouncemen
 import com.glean.api_client.glean_api_client.models.operations.DeleteannouncementResponse;
 import com.glean.api_client.glean_api_client.models.operations.UpdateannouncementRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.UpdateannouncementResponse;
-import com.glean.api_client.glean_api_client.operations.CreateannouncementOperation;
-import com.glean.api_client.glean_api_client.operations.DeleteannouncementOperation;
-import com.glean.api_client.glean_api_client.operations.UpdateannouncementOperation;
+import com.glean.api_client.glean_api_client.operations.Createannouncement;
+import com.glean.api_client.glean_api_client.operations.Deleteannouncement;
+import com.glean.api_client.glean_api_client.operations.Updateannouncement;
 import java.lang.Exception;
-import java.util.List;
-import java.util.Optional;
 
 
 public class Announcements {
@@ -28,6 +26,7 @@ public class Announcements {
     Announcements(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Create Announcement
      * 
@@ -50,7 +49,7 @@ public class Announcements {
      */
     public CreateannouncementResponse create(CreateAnnouncementRequest request) throws Exception {
         RequestOperation<CreateAnnouncementRequest, CreateannouncementResponse> operation
-              = new CreateannouncementOperation(sdkConfiguration);
+              = new Createannouncement.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -76,7 +75,7 @@ public class Announcements {
      */
     public DeleteannouncementResponse delete(DeleteAnnouncementRequest request) throws Exception {
         RequestOperation<DeleteAnnouncementRequest, DeleteannouncementResponse> operation
-              = new DeleteannouncementOperation(sdkConfiguration);
+              = new Deleteannouncement.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -102,7 +101,7 @@ public class Announcements {
      */
     public UpdateannouncementResponse update(UpdateAnnouncementRequest request) throws Exception {
         RequestOperation<UpdateAnnouncementRequest, UpdateannouncementResponse> operation
-              = new UpdateannouncementOperation(sdkConfiguration);
+              = new Updateannouncement.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

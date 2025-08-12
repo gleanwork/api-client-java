@@ -118,7 +118,7 @@ public class ManualFeedbackInfo {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vote")
-    private Optional<? extends Vote> vote;
+    private Optional<? extends ManualFeedbackInfoVote> vote;
 
     /**
      * A rating associated with the user feedback. The value will be between one and the maximum given by ratingScale, inclusive.
@@ -156,7 +156,7 @@ public class ManualFeedbackInfo {
             @JsonProperty("previousMessages") Optional<? extends List<String>> previousMessages,
             @JsonProperty("chatTranscript") Optional<? extends List<FeedbackChatExchange>> chatTranscript,
             @JsonProperty("numQueriesFromFirstRun") Optional<Long> numQueriesFromFirstRun,
-            @JsonProperty("vote") Optional<? extends Vote> vote,
+            @JsonProperty("vote") Optional<? extends ManualFeedbackInfoVote> vote,
             @JsonProperty("rating") Optional<Long> rating,
             @JsonProperty("ratingKey") Optional<String> ratingKey,
             @JsonProperty("ratingScale") Optional<Long> ratingScale) {
@@ -323,8 +323,8 @@ public class ManualFeedbackInfo {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Vote> vote() {
-        return (Optional<Vote>) vote;
+    public Optional<ManualFeedbackInfoVote> vote() {
+        return (Optional<ManualFeedbackInfoVote>) vote;
     }
 
     /**
@@ -612,7 +612,7 @@ public class ManualFeedbackInfo {
     /**
      * The vote associated with the Feedback.event.MANUAL_FEEDBACK event.
      */
-    public ManualFeedbackInfo withVote(Vote vote) {
+    public ManualFeedbackInfo withVote(ManualFeedbackInfoVote vote) {
         Utils.checkNotNull(vote, "vote");
         this.vote = Optional.ofNullable(vote);
         return this;
@@ -622,7 +622,7 @@ public class ManualFeedbackInfo {
     /**
      * The vote associated with the Feedback.event.MANUAL_FEEDBACK event.
      */
-    public ManualFeedbackInfo withVote(Optional<? extends Vote> vote) {
+    public ManualFeedbackInfo withVote(Optional<? extends ManualFeedbackInfoVote> vote) {
         Utils.checkNotNull(vote, "vote");
         this.vote = vote;
         return this;
@@ -777,7 +777,7 @@ public class ManualFeedbackInfo {
 
         private Optional<Long> numQueriesFromFirstRun = Optional.empty();
 
-        private Optional<? extends Vote> vote = Optional.empty();
+        private Optional<? extends ManualFeedbackInfoVote> vote = Optional.empty();
 
         private Optional<Long> rating = Optional.empty();
 
@@ -1046,7 +1046,7 @@ public class ManualFeedbackInfo {
         /**
          * The vote associated with the Feedback.event.MANUAL_FEEDBACK event.
          */
-        public Builder vote(Vote vote) {
+        public Builder vote(ManualFeedbackInfoVote vote) {
             Utils.checkNotNull(vote, "vote");
             this.vote = Optional.ofNullable(vote);
             return this;
@@ -1055,7 +1055,7 @@ public class ManualFeedbackInfo {
         /**
          * The vote associated with the Feedback.event.MANUAL_FEEDBACK event.
          */
-        public Builder vote(Optional<? extends Vote> vote) {
+        public Builder vote(Optional<? extends ManualFeedbackInfoVote> vote) {
             Utils.checkNotNull(vote, "vote");
             this.vote = vote;
             return this;

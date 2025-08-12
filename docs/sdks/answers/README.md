@@ -17,6 +17,7 @@ Create a user-generated Answer that contains a question and answer.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="createanswer" method="post" path="/rest/api/v1/createanswer" -->
 ```java
 package hello.world;
 
@@ -1316,6 +1317,7 @@ Delete an existing user-generated Answer.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="deleteanswer" method="post" path="/rest/api/v1/deleteanswer" -->
 ```java
 package hello.world;
 
@@ -1368,6 +1370,7 @@ Update an existing user-generated Answer.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="editanswer" method="post" path="/rest/api/v1/editanswer" -->
 ```java
 package hello.world;
 
@@ -2259,6 +2262,7 @@ Read the details of a particular Answer given its ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="getanswer" method="post" path="/rest/api/v1/getanswer" -->
 ```java
 package hello.world;
 
@@ -2313,6 +2317,7 @@ List Answers created by the current user.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="listanswers" method="post" path="/rest/api/v1/listanswers" -->
 ```java
 package hello.world;
 

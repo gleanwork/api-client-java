@@ -6,7 +6,7 @@ package com.glean.api_client.glean_api_client.models.operations;
 import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
-import com.glean.api_client.glean_api_client.operations.GetRestApiV1ToolsListOperation;
+import com.glean.api_client.glean_api_client.operations.GetRestApiV1ToolsList;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -45,7 +45,7 @@ public class GetRestApiV1ToolsListRequestBuilder {
     public GetRestApiV1ToolsListResponse call() throws Exception {
         
         RequestOperation<GetRestApiV1ToolsListRequest, GetRestApiV1ToolsListResponse> operation
-              = new GetRestApiV1ToolsListOperation(sdkConfiguration);
+              = new GetRestApiV1ToolsList.Sync(sdkConfiguration);
         GetRestApiV1ToolsListRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

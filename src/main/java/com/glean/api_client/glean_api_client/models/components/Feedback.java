@@ -118,6 +118,11 @@ public class Feedback {
 
 
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("manualFeedbackSideBySideInfo")
+    private Optional<? extends ManualFeedbackSideBySideInfo> manualFeedbackSideBySideInfo;
+
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("seenFeedbackInfo")
     private Optional<? extends SeenFeedbackInfo> seenFeedbackInfo;
 
@@ -162,6 +167,7 @@ public class Feedback {
             @JsonProperty("uiTree") Optional<? extends List<String>> uiTree,
             @JsonProperty("uiElement") Optional<String> uiElement,
             @JsonProperty("manualFeedbackInfo") Optional<? extends ManualFeedbackInfo> manualFeedbackInfo,
+            @JsonProperty("manualFeedbackSideBySideInfo") Optional<? extends ManualFeedbackSideBySideInfo> manualFeedbackSideBySideInfo,
             @JsonProperty("seenFeedbackInfo") Optional<? extends SeenFeedbackInfo> seenFeedbackInfo,
             @JsonProperty("userViewInfo") Optional<? extends UserViewInfo> userViewInfo,
             @JsonProperty("workflowFeedbackInfo") Optional<? extends WorkflowFeedbackInfo> workflowFeedbackInfo,
@@ -182,6 +188,7 @@ public class Feedback {
         Utils.checkNotNull(uiTree, "uiTree");
         Utils.checkNotNull(uiElement, "uiElement");
         Utils.checkNotNull(manualFeedbackInfo, "manualFeedbackInfo");
+        Utils.checkNotNull(manualFeedbackSideBySideInfo, "manualFeedbackSideBySideInfo");
         Utils.checkNotNull(seenFeedbackInfo, "seenFeedbackInfo");
         Utils.checkNotNull(userViewInfo, "userViewInfo");
         Utils.checkNotNull(workflowFeedbackInfo, "workflowFeedbackInfo");
@@ -202,6 +209,7 @@ public class Feedback {
         this.uiTree = uiTree;
         this.uiElement = uiElement;
         this.manualFeedbackInfo = manualFeedbackInfo;
+        this.manualFeedbackSideBySideInfo = manualFeedbackSideBySideInfo;
         this.seenFeedbackInfo = seenFeedbackInfo;
         this.userViewInfo = userViewInfo;
         this.workflowFeedbackInfo = workflowFeedbackInfo;
@@ -218,7 +226,7 @@ public class Feedback {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -336,6 +344,12 @@ public class Feedback {
     @JsonIgnore
     public Optional<ManualFeedbackInfo> manualFeedbackInfo() {
         return (Optional<ManualFeedbackInfo>) manualFeedbackInfo;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ManualFeedbackSideBySideInfo> manualFeedbackSideBySideInfo() {
+        return (Optional<ManualFeedbackSideBySideInfo>) manualFeedbackSideBySideInfo;
     }
 
     @SuppressWarnings("unchecked")
@@ -624,6 +638,19 @@ public class Feedback {
         return this;
     }
 
+    public Feedback withManualFeedbackSideBySideInfo(ManualFeedbackSideBySideInfo manualFeedbackSideBySideInfo) {
+        Utils.checkNotNull(manualFeedbackSideBySideInfo, "manualFeedbackSideBySideInfo");
+        this.manualFeedbackSideBySideInfo = Optional.ofNullable(manualFeedbackSideBySideInfo);
+        return this;
+    }
+
+
+    public Feedback withManualFeedbackSideBySideInfo(Optional<? extends ManualFeedbackSideBySideInfo> manualFeedbackSideBySideInfo) {
+        Utils.checkNotNull(manualFeedbackSideBySideInfo, "manualFeedbackSideBySideInfo");
+        this.manualFeedbackSideBySideInfo = manualFeedbackSideBySideInfo;
+        return this;
+    }
+
     public Feedback withSeenFeedbackInfo(SeenFeedbackInfo seenFeedbackInfo) {
         Utils.checkNotNull(seenFeedbackInfo, "seenFeedbackInfo");
         this.seenFeedbackInfo = Optional.ofNullable(seenFeedbackInfo);
@@ -726,6 +753,7 @@ public class Feedback {
             Utils.enhancedDeepEquals(this.uiTree, other.uiTree) &&
             Utils.enhancedDeepEquals(this.uiElement, other.uiElement) &&
             Utils.enhancedDeepEquals(this.manualFeedbackInfo, other.manualFeedbackInfo) &&
+            Utils.enhancedDeepEquals(this.manualFeedbackSideBySideInfo, other.manualFeedbackSideBySideInfo) &&
             Utils.enhancedDeepEquals(this.seenFeedbackInfo, other.seenFeedbackInfo) &&
             Utils.enhancedDeepEquals(this.userViewInfo, other.userViewInfo) &&
             Utils.enhancedDeepEquals(this.workflowFeedbackInfo, other.workflowFeedbackInfo) &&
@@ -741,8 +769,8 @@ public class Feedback {
             sessionInfo, timestamp, user,
             pathname, channels, url,
             uiTree, uiElement, manualFeedbackInfo,
-            seenFeedbackInfo, userViewInfo, workflowFeedbackInfo,
-            applicationId, agentId);
+            manualFeedbackSideBySideInfo, seenFeedbackInfo, userViewInfo,
+            workflowFeedbackInfo, applicationId, agentId);
     }
     
     @Override
@@ -763,6 +791,7 @@ public class Feedback {
                 "uiTree", uiTree,
                 "uiElement", uiElement,
                 "manualFeedbackInfo", manualFeedbackInfo,
+                "manualFeedbackSideBySideInfo", manualFeedbackSideBySideInfo,
                 "seenFeedbackInfo", seenFeedbackInfo,
                 "userViewInfo", userViewInfo,
                 "workflowFeedbackInfo", workflowFeedbackInfo,
@@ -802,6 +831,8 @@ public class Feedback {
         private Optional<String> uiElement = Optional.empty();
 
         private Optional<? extends ManualFeedbackInfo> manualFeedbackInfo = Optional.empty();
+
+        private Optional<? extends ManualFeedbackSideBySideInfo> manualFeedbackSideBySideInfo = Optional.empty();
 
         private Optional<? extends SeenFeedbackInfo> seenFeedbackInfo = Optional.empty();
 
@@ -1067,6 +1098,19 @@ public class Feedback {
         }
 
 
+        public Builder manualFeedbackSideBySideInfo(ManualFeedbackSideBySideInfo manualFeedbackSideBySideInfo) {
+            Utils.checkNotNull(manualFeedbackSideBySideInfo, "manualFeedbackSideBySideInfo");
+            this.manualFeedbackSideBySideInfo = Optional.ofNullable(manualFeedbackSideBySideInfo);
+            return this;
+        }
+
+        public Builder manualFeedbackSideBySideInfo(Optional<? extends ManualFeedbackSideBySideInfo> manualFeedbackSideBySideInfo) {
+            Utils.checkNotNull(manualFeedbackSideBySideInfo, "manualFeedbackSideBySideInfo");
+            this.manualFeedbackSideBySideInfo = manualFeedbackSideBySideInfo;
+            return this;
+        }
+
+
         public Builder seenFeedbackInfo(SeenFeedbackInfo seenFeedbackInfo) {
             Utils.checkNotNull(seenFeedbackInfo, "seenFeedbackInfo");
             this.seenFeedbackInfo = Optional.ofNullable(seenFeedbackInfo);
@@ -1151,8 +1195,8 @@ public class Feedback {
                 sessionInfo, timestamp, user,
                 pathname, channels, url,
                 uiTree, uiElement, manualFeedbackInfo,
-                seenFeedbackInfo, userViewInfo, workflowFeedbackInfo,
-                applicationId, agentId);
+                manualFeedbackSideBySideInfo, seenFeedbackInfo, userViewInfo,
+                workflowFeedbackInfo, applicationId, agentId);
         }
 
     }

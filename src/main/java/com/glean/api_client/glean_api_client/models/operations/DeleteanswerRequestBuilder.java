@@ -7,7 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.DeleteAnswerRequest;
-import com.glean.api_client.glean_api_client.operations.DeleteanswerOperation;
+import com.glean.api_client.glean_api_client.operations.Deleteanswer;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -29,7 +29,7 @@ public class DeleteanswerRequestBuilder {
     public DeleteanswerResponse call() throws Exception {
         
         RequestOperation<DeleteAnswerRequest, DeleteanswerResponse> operation
-              = new DeleteanswerOperation(sdkConfiguration);
+              = new Deleteanswer.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

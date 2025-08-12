@@ -6,7 +6,7 @@ package com.glean.api_client.glean_api_client.models.operations;
 import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
-import com.glean.api_client.glean_api_client.operations.ListpinsOperation;
+import com.glean.api_client.glean_api_client.operations.Listpins;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -28,7 +28,7 @@ public class ListpinsRequestBuilder {
     public ListpinsResponse call() throws Exception {
         
         RequestOperation<ListpinsRequest, ListpinsResponse> operation
-              = new ListpinsOperation(sdkConfiguration);
+              = new Listpins.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

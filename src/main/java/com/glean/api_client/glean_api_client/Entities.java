@@ -11,11 +11,9 @@ import com.glean.api_client.glean_api_client.models.operations.ListentitiesReque
 import com.glean.api_client.glean_api_client.models.operations.ListentitiesResponse;
 import com.glean.api_client.glean_api_client.models.operations.PeopleRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PeopleResponse;
-import com.glean.api_client.glean_api_client.operations.ListentitiesOperation;
-import com.glean.api_client.glean_api_client.operations.PeopleOperation;
+import com.glean.api_client.glean_api_client.operations.Listentities;
+import com.glean.api_client.glean_api_client.operations.People;
 import java.lang.Exception;
-import java.util.List;
-import java.util.Optional;
 
 
 public class Entities {
@@ -24,6 +22,7 @@ public class Entities {
     Entities(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List entities
      * 
@@ -46,7 +45,7 @@ public class Entities {
      */
     public ListentitiesResponse list(ListEntitiesRequest request) throws Exception {
         RequestOperation<ListEntitiesRequest, ListentitiesResponse> operation
-              = new ListentitiesOperation(sdkConfiguration);
+              = new Listentities.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -72,7 +71,7 @@ public class Entities {
      */
     public PeopleResponse readPeople(PeopleRequest request) throws Exception {
         RequestOperation<PeopleRequest, PeopleResponse> operation
-              = new PeopleOperation(sdkConfiguration);
+              = new People.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

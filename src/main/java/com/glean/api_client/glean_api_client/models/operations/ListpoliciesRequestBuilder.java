@@ -6,7 +6,7 @@ package com.glean.api_client.glean_api_client.models.operations;
 import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
-import com.glean.api_client.glean_api_client.operations.ListpoliciesOperation;
+import com.glean.api_client.glean_api_client.operations.Listpolicies;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -59,7 +59,7 @@ public class ListpoliciesRequestBuilder {
     public ListpoliciesResponse call() throws Exception {
         
         RequestOperation<ListpoliciesRequest, ListpoliciesResponse> operation
-              = new ListpoliciesOperation(sdkConfiguration);
+              = new Listpolicies.Sync(sdkConfiguration);
         ListpoliciesRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

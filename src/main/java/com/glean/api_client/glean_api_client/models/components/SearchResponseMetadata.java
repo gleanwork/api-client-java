@@ -33,6 +33,13 @@ public class SearchResponseMetadata {
     private Optional<String> searchedQuery;
 
     /**
+     * The query used to perform search and return results, with negated terms and facets removed.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("searchedQueryWithoutNegation")
+    private Optional<String> searchedQueryWithoutNegation;
+
+    /**
      * The bolded ranges within the searched query.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -100,6 +107,7 @@ public class SearchResponseMetadata {
     public SearchResponseMetadata(
             @JsonProperty("rewrittenQuery") Optional<String> rewrittenQuery,
             @JsonProperty("searchedQuery") Optional<String> searchedQuery,
+            @JsonProperty("searchedQueryWithoutNegation") Optional<String> searchedQueryWithoutNegation,
             @JsonProperty("searchedQueryRanges") Optional<? extends List<TextRange>> searchedQueryRanges,
             @JsonProperty("originalQuery") Optional<String> originalQuery,
             @JsonProperty("querySuggestion") Optional<? extends QuerySuggestion> querySuggestion,
@@ -112,6 +120,7 @@ public class SearchResponseMetadata {
             @JsonProperty("isNoQuotesSuggestion") Optional<Boolean> isNoQuotesSuggestion) {
         Utils.checkNotNull(rewrittenQuery, "rewrittenQuery");
         Utils.checkNotNull(searchedQuery, "searchedQuery");
+        Utils.checkNotNull(searchedQueryWithoutNegation, "searchedQueryWithoutNegation");
         Utils.checkNotNull(searchedQueryRanges, "searchedQueryRanges");
         Utils.checkNotNull(originalQuery, "originalQuery");
         Utils.checkNotNull(querySuggestion, "querySuggestion");
@@ -124,6 +133,7 @@ public class SearchResponseMetadata {
         Utils.checkNotNull(isNoQuotesSuggestion, "isNoQuotesSuggestion");
         this.rewrittenQuery = rewrittenQuery;
         this.searchedQuery = searchedQuery;
+        this.searchedQueryWithoutNegation = searchedQueryWithoutNegation;
         this.searchedQueryRanges = searchedQueryRanges;
         this.originalQuery = originalQuery;
         this.querySuggestion = querySuggestion;
@@ -140,7 +150,8 @@ public class SearchResponseMetadata {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -157,6 +168,14 @@ public class SearchResponseMetadata {
     @JsonIgnore
     public Optional<String> searchedQuery() {
         return searchedQuery;
+    }
+
+    /**
+     * The query used to perform search and return results, with negated terms and facets removed.
+     */
+    @JsonIgnore
+    public Optional<String> searchedQueryWithoutNegation() {
+        return searchedQueryWithoutNegation;
     }
 
     /**
@@ -275,6 +294,25 @@ public class SearchResponseMetadata {
     public SearchResponseMetadata withSearchedQuery(Optional<String> searchedQuery) {
         Utils.checkNotNull(searchedQuery, "searchedQuery");
         this.searchedQuery = searchedQuery;
+        return this;
+    }
+
+    /**
+     * The query used to perform search and return results, with negated terms and facets removed.
+     */
+    public SearchResponseMetadata withSearchedQueryWithoutNegation(String searchedQueryWithoutNegation) {
+        Utils.checkNotNull(searchedQueryWithoutNegation, "searchedQueryWithoutNegation");
+        this.searchedQueryWithoutNegation = Optional.ofNullable(searchedQueryWithoutNegation);
+        return this;
+    }
+
+
+    /**
+     * The query used to perform search and return results, with negated terms and facets removed.
+     */
+    public SearchResponseMetadata withSearchedQueryWithoutNegation(Optional<String> searchedQueryWithoutNegation) {
+        Utils.checkNotNull(searchedQueryWithoutNegation, "searchedQueryWithoutNegation");
+        this.searchedQueryWithoutNegation = searchedQueryWithoutNegation;
         return this;
     }
 
@@ -462,6 +500,7 @@ public class SearchResponseMetadata {
         return 
             Utils.enhancedDeepEquals(this.rewrittenQuery, other.rewrittenQuery) &&
             Utils.enhancedDeepEquals(this.searchedQuery, other.searchedQuery) &&
+            Utils.enhancedDeepEquals(this.searchedQueryWithoutNegation, other.searchedQueryWithoutNegation) &&
             Utils.enhancedDeepEquals(this.searchedQueryRanges, other.searchedQueryRanges) &&
             Utils.enhancedDeepEquals(this.originalQuery, other.originalQuery) &&
             Utils.enhancedDeepEquals(this.querySuggestion, other.querySuggestion) &&
@@ -477,10 +516,11 @@ public class SearchResponseMetadata {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            rewrittenQuery, searchedQuery, searchedQueryRanges,
-            originalQuery, querySuggestion, additionalQuerySuggestions,
-            negatedTerms, modifiedQueryWasUsed, originalQueryHadNoResults,
-            searchWarning, triggeredExpertDetection, isNoQuotesSuggestion);
+            rewrittenQuery, searchedQuery, searchedQueryWithoutNegation,
+            searchedQueryRanges, originalQuery, querySuggestion,
+            additionalQuerySuggestions, negatedTerms, modifiedQueryWasUsed,
+            originalQueryHadNoResults, searchWarning, triggeredExpertDetection,
+            isNoQuotesSuggestion);
     }
     
     @Override
@@ -488,6 +528,7 @@ public class SearchResponseMetadata {
         return Utils.toString(SearchResponseMetadata.class,
                 "rewrittenQuery", rewrittenQuery,
                 "searchedQuery", searchedQuery,
+                "searchedQueryWithoutNegation", searchedQueryWithoutNegation,
                 "searchedQueryRanges", searchedQueryRanges,
                 "originalQuery", originalQuery,
                 "querySuggestion", querySuggestion,
@@ -506,6 +547,8 @@ public class SearchResponseMetadata {
         private Optional<String> rewrittenQuery = Optional.empty();
 
         private Optional<String> searchedQuery = Optional.empty();
+
+        private Optional<String> searchedQueryWithoutNegation = Optional.empty();
 
         private Optional<? extends List<TextRange>> searchedQueryRanges = Optional.empty();
 
@@ -566,6 +609,25 @@ public class SearchResponseMetadata {
         public Builder searchedQuery(Optional<String> searchedQuery) {
             Utils.checkNotNull(searchedQuery, "searchedQuery");
             this.searchedQuery = searchedQuery;
+            return this;
+        }
+
+
+        /**
+         * The query used to perform search and return results, with negated terms and facets removed.
+         */
+        public Builder searchedQueryWithoutNegation(String searchedQueryWithoutNegation) {
+            Utils.checkNotNull(searchedQueryWithoutNegation, "searchedQueryWithoutNegation");
+            this.searchedQueryWithoutNegation = Optional.ofNullable(searchedQueryWithoutNegation);
+            return this;
+        }
+
+        /**
+         * The query used to perform search and return results, with negated terms and facets removed.
+         */
+        public Builder searchedQueryWithoutNegation(Optional<String> searchedQueryWithoutNegation) {
+            Utils.checkNotNull(searchedQueryWithoutNegation, "searchedQueryWithoutNegation");
+            this.searchedQueryWithoutNegation = searchedQueryWithoutNegation;
             return this;
         }
 
@@ -744,10 +806,11 @@ public class SearchResponseMetadata {
         public SearchResponseMetadata build() {
 
             return new SearchResponseMetadata(
-                rewrittenQuery, searchedQuery, searchedQueryRanges,
-                originalQuery, querySuggestion, additionalQuerySuggestions,
-                negatedTerms, modifiedQueryWasUsed, originalQueryHadNoResults,
-                searchWarning, triggeredExpertDetection, isNoQuotesSuggestion);
+                rewrittenQuery, searchedQuery, searchedQueryWithoutNegation,
+                searchedQueryRanges, originalQuery, querySuggestion,
+                additionalQuerySuggestions, negatedTerms, modifiedQueryWasUsed,
+                originalQueryHadNoResults, searchWarning, triggeredExpertDetection,
+                isNoQuotesSuggestion);
         }
 
     }

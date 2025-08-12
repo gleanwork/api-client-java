@@ -41,20 +41,19 @@ import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1Pro
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1ProcessallmembershipsResponse;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1UpdatepermissionsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1UpdatepermissionsResponse;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1BetausersOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1BulkindexgroupsOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1BulkindexmembershipsOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1BulkindexusersOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DeletegroupOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DeletemembershipOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DeleteuserOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1IndexgroupOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1IndexmembershipOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1IndexuserOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1ProcessallmembershipsOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1UpdatepermissionsOperation;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Betausers;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Bulkindexgroups;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Bulkindexmemberships;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Bulkindexusers;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Deletegroup;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Deletemembership;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Deleteuser;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Indexgroup;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Indexmembership;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Indexuser;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Processallmemberships;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Updatepermissions;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -64,6 +63,7 @@ public class Permissions {
     Permissions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Update document permissions
      * 
@@ -86,7 +86,7 @@ public class Permissions {
      */
     public PostApiIndexV1UpdatepermissionsResponse updatePermissions(UpdatePermissionsRequest request) throws Exception {
         RequestOperation<UpdatePermissionsRequest, PostApiIndexV1UpdatepermissionsResponse> operation
-              = new PostApiIndexV1UpdatepermissionsOperation(sdkConfiguration);
+              = new PostApiIndexV1Updatepermissions.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -112,14 +112,14 @@ public class Permissions {
      */
     public PostApiIndexV1IndexuserResponse indexUser(IndexUserRequest request) throws Exception {
         RequestOperation<IndexUserRequest, PostApiIndexV1IndexuserResponse> operation
-              = new PostApiIndexV1IndexuserOperation(sdkConfiguration);
+              = new PostApiIndexV1Indexuser.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Bulk index users
      * 
-     * <p>Replaces the users in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/docs/indexing_api_bulk_indexing/#bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces the users in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
      * 
      * @return The call builder
      */
@@ -130,7 +130,7 @@ public class Permissions {
     /**
      * Bulk index users
      * 
-     * <p>Replaces the users in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/docs/indexing_api_bulk_indexing/#bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces the users in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -138,7 +138,7 @@ public class Permissions {
      */
     public PostApiIndexV1BulkindexusersResponse bulkIndexUsers(BulkIndexUsersRequest request) throws Exception {
         RequestOperation<BulkIndexUsersRequest, PostApiIndexV1BulkindexusersResponse> operation
-              = new PostApiIndexV1BulkindexusersOperation(sdkConfiguration);
+              = new PostApiIndexV1Bulkindexusers.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,14 +164,14 @@ public class Permissions {
      */
     public PostApiIndexV1IndexgroupResponse indexGroup(IndexGroupRequest request) throws Exception {
         RequestOperation<IndexGroupRequest, PostApiIndexV1IndexgroupResponse> operation
-              = new PostApiIndexV1IndexgroupOperation(sdkConfiguration);
+              = new PostApiIndexV1Indexgroup.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Bulk index groups
      * 
-     * <p>Replaces the groups in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/docs/indexing_api_bulk_indexing/#bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces the groups in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
      * 
      * @return The call builder
      */
@@ -182,7 +182,7 @@ public class Permissions {
     /**
      * Bulk index groups
      * 
-     * <p>Replaces the groups in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/docs/indexing_api_bulk_indexing/#bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces the groups in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -190,7 +190,7 @@ public class Permissions {
      */
     public PostApiIndexV1BulkindexgroupsResponse bulkIndexGroups(BulkIndexGroupsRequest request) throws Exception {
         RequestOperation<BulkIndexGroupsRequest, PostApiIndexV1BulkindexgroupsResponse> operation
-              = new PostApiIndexV1BulkindexgroupsOperation(sdkConfiguration);
+              = new PostApiIndexV1Bulkindexgroups.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -216,14 +216,14 @@ public class Permissions {
      */
     public PostApiIndexV1IndexmembershipResponse indexMembership(IndexMembershipRequest request) throws Exception {
         RequestOperation<IndexMembershipRequest, PostApiIndexV1IndexmembershipResponse> operation
-              = new PostApiIndexV1IndexmembershipOperation(sdkConfiguration);
+              = new PostApiIndexV1Indexmembership.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Bulk index memberships for a group
      * 
-     * <p>Replaces the memberships for a group in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/docs/indexing_api_bulk_indexing/#bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces the memberships for a group in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
      * 
      * @return The call builder
      */
@@ -234,7 +234,7 @@ public class Permissions {
     /**
      * Bulk index memberships for a group
      * 
-     * <p>Replaces the memberships for a group in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/docs/indexing_api_bulk_indexing/#bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces the memberships for a group in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -242,7 +242,7 @@ public class Permissions {
      */
     public PostApiIndexV1BulkindexmembershipsResponse bulkIndexMemberships(BulkIndexMembershipsRequest request) throws Exception {
         RequestOperation<BulkIndexMembershipsRequest, PostApiIndexV1BulkindexmembershipsResponse> operation
-              = new PostApiIndexV1BulkindexmembershipsOperation(sdkConfiguration);
+              = new PostApiIndexV1Bulkindexmemberships.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -280,7 +280,7 @@ public class Permissions {
      */
     public PostApiIndexV1ProcessallmembershipsResponse processMemberships(Optional<? extends ProcessAllMembershipsRequest> request) throws Exception {
         RequestOperation<Optional<? extends ProcessAllMembershipsRequest>, PostApiIndexV1ProcessallmembershipsResponse> operation
-              = new PostApiIndexV1ProcessallmembershipsOperation(sdkConfiguration);
+              = new PostApiIndexV1Processallmemberships.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -306,7 +306,7 @@ public class Permissions {
      */
     public PostApiIndexV1DeleteuserResponse deleteUser(DeleteUserRequest request) throws Exception {
         RequestOperation<DeleteUserRequest, PostApiIndexV1DeleteuserResponse> operation
-              = new PostApiIndexV1DeleteuserOperation(sdkConfiguration);
+              = new PostApiIndexV1Deleteuser.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -332,7 +332,7 @@ public class Permissions {
      */
     public PostApiIndexV1DeletegroupResponse deleteGroup(DeleteGroupRequest request) throws Exception {
         RequestOperation<DeleteGroupRequest, PostApiIndexV1DeletegroupResponse> operation
-              = new PostApiIndexV1DeletegroupOperation(sdkConfiguration);
+              = new PostApiIndexV1Deletegroup.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -358,7 +358,7 @@ public class Permissions {
      */
     public PostApiIndexV1DeletemembershipResponse deleteMembership(DeleteMembershipRequest request) throws Exception {
         RequestOperation<DeleteMembershipRequest, PostApiIndexV1DeletemembershipResponse> operation
-              = new PostApiIndexV1DeletemembershipOperation(sdkConfiguration);
+              = new PostApiIndexV1Deletemembership.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -384,7 +384,7 @@ public class Permissions {
      */
     public PostApiIndexV1BetausersResponse authorizeBetaUsers(GreenlistUsersRequest request) throws Exception {
         RequestOperation<GreenlistUsersRequest, PostApiIndexV1BetausersResponse> operation
-              = new PostApiIndexV1BetausersOperation(sdkConfiguration);
+              = new PostApiIndexV1Betausers.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

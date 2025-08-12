@@ -17,6 +17,7 @@ Returns details of an [agent](https://developers.glean.com/agents/agents-api) cr
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="getAgent" method="get" path="/rest/api/v1/agents/{agent_id}" -->
 ```java
 package hello.world;
 
@@ -66,6 +67,7 @@ Return [agent](https://developers.glean.com/agents/agents-api)'s input and outpu
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="getAgentSchemas" method="get" path="/rest/api/v1/agents/{agent_id}/schemas" -->
 ```java
 package hello.world;
 
@@ -115,6 +117,7 @@ Search for [agents](https://developers.glean.com/agents/agents-api) by agent nam
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="searchAgents" method="post" path="/rest/api/v1/agents/search" -->
 ```java
 package hello.world;
 
@@ -168,6 +171,7 @@ Executes an [agent](https://developers.glean.com/agents/agents-api) run and retu
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="createAndStreamRun" method="post" path="/rest/api/v1/agents/runs/stream" -->
 ```java
 package hello.world;
 
@@ -227,6 +231,7 @@ Executes an [agent](https://developers.glean.com/agents/agents-api) run and retu
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="createAndWaitRun" method="post" path="/rest/api/v1/agents/runs/wait" -->
 ```java
 package hello.world;
 

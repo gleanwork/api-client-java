@@ -63,7 +63,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.glean.api-client:glean-api-client:0.7.0'
+implementation 'com.glean.api-client:glean-api-client:0.8.0'
 ```
 
 Maven:
@@ -71,7 +71,7 @@ Maven:
 <dependency>
     <groupId>com.glean.api-client</groupId>
     <artifactId>glean-api-client</artifactId>
-    <version>0.7.0</version>
+    <version>0.8.0</version>
 </dependency>
 ```
 
@@ -116,6 +116,7 @@ public class Application {
                 .chatRequest(ChatRequest.builder()
                     .messages(List.of(
                         ChatMessage.builder()
+                            .author(Author.USER)
                             .fragments(List.of(
                                 ChatMessageFragment.builder()
                                     .text("What are the company holidays this year?")
@@ -154,6 +155,7 @@ public class Application {
                 .chatRequest(ChatRequest.builder()
                     .messages(List.of(
                         ChatMessage.builder()
+                            .author(Author.USER)
                             .fragments(List.of(
                                 ChatMessageFragment.builder()
                                     .text("What are the company holidays this year?")

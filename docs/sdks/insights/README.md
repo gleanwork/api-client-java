@@ -13,6 +13,7 @@ Reads the aggregate information for each user, query, and content.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="insights" method="post" path="/rest/api/v1/insights" -->
 ```java
 package hello.world;
 

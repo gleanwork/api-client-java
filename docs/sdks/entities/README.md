@@ -14,6 +14,7 @@ List some set of details for all entities that fit the given criteria and return
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="listentities" method="post" path="/rest/api/v1/listentities" -->
 ```java
 package hello.world;
 
@@ -81,6 +82,7 @@ Read people details for the given IDs.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="people" method="post" path="/rest/api/v1/people" -->
 ```java
 package hello.world;
 

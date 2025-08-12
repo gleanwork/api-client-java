@@ -5,18 +5,21 @@ package com.glean.api_client.glean_api_client;
 
 public class Governance {
     private final SDKConfiguration sdkConfiguration;
-private final Data data;
-private final GovernanceDocuments documents;
+    private final Data data;
+    private final GovernanceDocuments documents;
 
     Governance(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.data = new Data(this.sdkConfiguration);
         this.documents = new GovernanceDocuments(this.sdkConfiguration);
     }
-public final Data data() {
+
+    public final Data data() {
         return data;
     }
-public final GovernanceDocuments documents() {
+
+    public final GovernanceDocuments documents() {
         return documents;
     }
+
 }

@@ -8,11 +8,9 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DebugDatasourceStatusRequest;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DebugDatasourceStatusRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DebugDatasourceStatusResponse;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DebugDatasourceStatusOperation;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DebugDatasourceStatus;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
-import java.util.Optional;
 
 
 public class Datasource {
@@ -21,12 +19,13 @@ public class Datasource {
     Datasource(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Beta: Get datasource status
      * 
      * <p>Gather information about the datasource's overall status. Currently in beta, might undergo breaking changes without prior notice.
      * 
-     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/docs/indexing_api/indexing_api_troubleshooting/) for more information.
+     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
      * 
      * @return The call builder
      */
@@ -39,7 +38,7 @@ public class Datasource {
      * 
      * <p>Gather information about the datasource's overall status. Currently in beta, might undergo breaking changes without prior notice.
      * 
-     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/docs/indexing_api/indexing_api_troubleshooting/) for more information.
+     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
      * 
      * @param datasource The datasource to get debug status for.
      * @return The response from the API call
@@ -52,7 +51,7 @@ public class Datasource {
                 .datasource(datasource)
                 .build();
         RequestOperation<PostApiIndexV1DebugDatasourceStatusRequest, PostApiIndexV1DebugDatasourceStatusResponse> operation
-              = new PostApiIndexV1DebugDatasourceStatusOperation(sdkConfiguration);
+              = new PostApiIndexV1DebugDatasourceStatus.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

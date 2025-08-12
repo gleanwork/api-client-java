@@ -11,11 +11,8 @@ import com.glean.api_client.glean_api_client.models.operations.ActivityResponse;
 import com.glean.api_client.glean_api_client.models.operations.FeedbackRequest;
 import com.glean.api_client.glean_api_client.models.operations.FeedbackRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.FeedbackResponse;
-import com.glean.api_client.glean_api_client.operations.ActivityOperation;
-import com.glean.api_client.glean_api_client.operations.FeedbackOperation;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -25,6 +22,7 @@ public class Activity {
     Activity(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Report document activity
      * 
@@ -47,7 +45,7 @@ public class Activity {
      */
     public ActivityResponse report(com.glean.api_client.glean_api_client.models.components.Activity request) throws Exception {
         RequestOperation<com.glean.api_client.glean_api_client.models.components.Activity, ActivityResponse> operation
-              = new ActivityOperation(sdkConfiguration);
+              = new com.glean.api_client.glean_api_client.operations.Activity.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -84,9 +82,7 @@ public class Activity {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FeedbackResponse feedback(
-            Optional<String> feedbackQueryParameter,
-            Optional<? extends Feedback> feedback1) throws Exception {
+    public FeedbackResponse feedback(Optional<String> feedbackQueryParameter, Optional<? extends Feedback> feedback1) throws Exception {
         FeedbackRequest request =
             FeedbackRequest
                 .builder()
@@ -94,7 +90,7 @@ public class Activity {
                 .feedback1(feedback1)
                 .build();
         RequestOperation<FeedbackRequest, FeedbackResponse> operation
-              = new FeedbackOperation(sdkConfiguration);
+              = new com.glean.api_client.glean_api_client.operations.Feedback.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

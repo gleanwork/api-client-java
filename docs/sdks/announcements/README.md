@@ -15,6 +15,7 @@ Create a textual announcement visible to some set of users based on department a
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="createannouncement" method="post" path="/rest/api/v1/createannouncement" -->
 ```java
 package hello.world;
 
@@ -21271,6 +21272,7 @@ Delete an existing user-generated announcement.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="deleteannouncement" method="post" path="/rest/api/v1/deleteannouncement" -->
 ```java
 package hello.world;
 
@@ -21322,6 +21324,7 @@ Update a textual announcement visible to some set of users based on department a
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="updateannouncement" method="post" path="/rest/api/v1/updateannouncement" -->
 ```java
 package hello.world;
 

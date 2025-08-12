@@ -7,7 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.MessagesRequest;
-import com.glean.api_client.glean_api_client.operations.MessagesOperation;
+import com.glean.api_client.glean_api_client.operations.Messages;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -29,7 +29,7 @@ public class MessagesRequestBuilder {
     public MessagesResponse call() throws Exception {
         
         RequestOperation<MessagesRequest, MessagesResponse> operation
-              = new MessagesOperation(sdkConfiguration);
+              = new Messages.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

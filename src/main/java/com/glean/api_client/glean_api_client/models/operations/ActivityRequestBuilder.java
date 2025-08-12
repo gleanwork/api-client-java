@@ -7,7 +7,6 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.Activity;
-import com.glean.api_client.glean_api_client.operations.ActivityOperation;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -29,7 +28,7 @@ public class ActivityRequestBuilder {
     public ActivityResponse call() throws Exception {
         
         RequestOperation<Activity, ActivityResponse> operation
-              = new ActivityOperation(sdkConfiguration);
+              = new com.glean.api_client.glean_api_client.operations.Activity.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

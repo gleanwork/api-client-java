@@ -7,7 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.GetShortcutRequestUnion;
-import com.glean.api_client.glean_api_client.operations.GetshortcutOperation;
+import com.glean.api_client.glean_api_client.operations.Getshortcut;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -29,7 +29,7 @@ public class GetshortcutRequestBuilder {
     public GetshortcutResponse call() throws Exception {
         
         RequestOperation<GetShortcutRequestUnion, GetshortcutResponse> operation
-              = new GetshortcutOperation(sdkConfiguration);
+              = new Getshortcut.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -11,11 +11,9 @@ import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1Bul
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1BulkindexshortcutsResponse;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1UploadshortcutsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1UploadshortcutsResponse;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1BulkindexshortcutsOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1UploadshortcutsOperation;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Bulkindexshortcuts;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Uploadshortcuts;
 import java.lang.Exception;
-import java.util.List;
-import java.util.Optional;
 
 
 public class IndexingShortcuts {
@@ -24,6 +22,7 @@ public class IndexingShortcuts {
     IndexingShortcuts(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Bulk index external shortcuts
      * 
@@ -46,7 +45,7 @@ public class IndexingShortcuts {
      */
     public PostApiIndexV1BulkindexshortcutsResponse bulkIndex(BulkIndexShortcutsRequest request) throws Exception {
         RequestOperation<BulkIndexShortcutsRequest, PostApiIndexV1BulkindexshortcutsResponse> operation
-              = new PostApiIndexV1BulkindexshortcutsOperation(sdkConfiguration);
+              = new PostApiIndexV1Bulkindexshortcuts.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -72,7 +71,7 @@ public class IndexingShortcuts {
      */
     public PostApiIndexV1UploadshortcutsResponse upload(UploadShortcutsRequest request) throws Exception {
         RequestOperation<UploadShortcutsRequest, PostApiIndexV1UploadshortcutsResponse> operation
-              = new PostApiIndexV1UploadshortcutsOperation(sdkConfiguration);
+              = new PostApiIndexV1Uploadshortcuts.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

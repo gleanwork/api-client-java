@@ -7,7 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.DeleteEmployeeRequest;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DeleteemployeeOperation;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Deleteemployee;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -29,7 +29,7 @@ public class PostApiIndexV1DeleteemployeeRequestBuilder {
     public PostApiIndexV1DeleteemployeeResponse call() throws Exception {
         
         RequestOperation<DeleteEmployeeRequest, PostApiIndexV1DeleteemployeeResponse> operation
-              = new PostApiIndexV1DeleteemployeeOperation(sdkConfiguration);
+              = new PostApiIndexV1Deleteemployee.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

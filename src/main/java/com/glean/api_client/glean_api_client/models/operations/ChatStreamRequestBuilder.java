@@ -7,7 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.ChatRequest;
-import com.glean.api_client.glean_api_client.operations.ChatStreamOperation;
+import com.glean.api_client.glean_api_client.operations.ChatStream;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
@@ -53,7 +53,7 @@ public class ChatStreamRequestBuilder {
     public ChatStreamResponse call() throws Exception {
         
         RequestOperation<ChatStreamRequest, ChatStreamResponse> operation
-              = new ChatStreamOperation(sdkConfiguration);
+              = new ChatStream.Sync(sdkConfiguration);
         ChatStreamRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -172,7 +172,7 @@ public class DocumentDefinition {
     private Optional<? extends List<CommentDefinition>> comments;
 
     /**
-     * Additional metadata properties of the document. These can surface as [facets and operators](https://developers.glean.com/docs/facets_and_operators_for_custom_datasources/).
+     * Additional metadata properties of the document. These can surface as [facets and operators](https://developers.glean.com/indexing/datasource/custom-properties/operators_and_facets).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("customProperties")
@@ -444,7 +444,7 @@ public class DocumentDefinition {
     }
 
     /**
-     * Additional metadata properties of the document. These can surface as [facets and operators](https://developers.glean.com/docs/facets_and_operators_for_custom_datasources/).
+     * Additional metadata properties of the document. These can surface as [facets and operators](https://developers.glean.com/indexing/datasource/custom-properties/operators_and_facets).
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -857,7 +857,7 @@ public class DocumentDefinition {
     }
 
     /**
-     * Additional metadata properties of the document. These can surface as [facets and operators](https://developers.glean.com/docs/facets_and_operators_for_custom_datasources/).
+     * Additional metadata properties of the document. These can surface as [facets and operators](https://developers.glean.com/indexing/datasource/custom-properties/operators_and_facets).
      */
     public DocumentDefinition withCustomProperties(List<CustomProperty> customProperties) {
         Utils.checkNotNull(customProperties, "customProperties");
@@ -867,7 +867,7 @@ public class DocumentDefinition {
 
 
     /**
-     * Additional metadata properties of the document. These can surface as [facets and operators](https://developers.glean.com/docs/facets_and_operators_for_custom_datasources/).
+     * Additional metadata properties of the document. These can surface as [facets and operators](https://developers.glean.com/indexing/datasource/custom-properties/operators_and_facets).
      */
     public DocumentDefinition withCustomProperties(Optional<? extends List<CustomProperty>> customProperties) {
         Utils.checkNotNull(customProperties, "customProperties");
@@ -1406,7 +1406,7 @@ public class DocumentDefinition {
 
 
         /**
-         * Additional metadata properties of the document. These can surface as [facets and operators](https://developers.glean.com/docs/facets_and_operators_for_custom_datasources/).
+         * Additional metadata properties of the document. These can surface as [facets and operators](https://developers.glean.com/indexing/datasource/custom-properties/operators_and_facets).
          */
         public Builder customProperties(List<CustomProperty> customProperties) {
             Utils.checkNotNull(customProperties, "customProperties");
@@ -1415,7 +1415,7 @@ public class DocumentDefinition {
         }
 
         /**
-         * Additional metadata properties of the document. These can surface as [facets and operators](https://developers.glean.com/docs/facets_and_operators_for_custom_datasources/).
+         * Additional metadata properties of the document. These can surface as [facets and operators](https://developers.glean.com/indexing/datasource/custom-properties/operators_and_facets).
          */
         public Builder customProperties(Optional<? extends List<CustomProperty>> customProperties) {
             Utils.checkNotNull(customProperties, "customProperties");

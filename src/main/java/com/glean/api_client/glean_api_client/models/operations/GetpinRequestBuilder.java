@@ -7,7 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.GetPinRequest;
-import com.glean.api_client.glean_api_client.operations.GetpinOperation;
+import com.glean.api_client.glean_api_client.operations.Getpin;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -29,7 +29,7 @@ public class GetpinRequestBuilder {
     public GetpinResponse call() throws Exception {
         
         RequestOperation<GetPinRequest, GetpinResponse> operation
-              = new GetpinOperation(sdkConfiguration);
+              = new Getpin.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

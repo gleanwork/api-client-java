@@ -17,6 +17,7 @@ Update an existing user-generated pin.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="editpin" method="post" path="/rest/api/v1/editpin" -->
 ```java
 package hello.world;
 
@@ -83,6 +84,7 @@ Read pin details given its ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="getpin" method="post" path="/rest/api/v1/getpin" -->
 ```java
 package hello.world;
 
@@ -135,6 +137,7 @@ Lists all pins.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="listpins" method="post" path="/rest/api/v1/listpins" -->
 ```java
 package hello.world;
 
@@ -187,6 +190,7 @@ Pin a document as a result for a given search query.Pin results that are known t
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="pin" method="post" path="/rest/api/v1/pin" -->
 ```java
 package hello.world;
 
@@ -253,6 +257,7 @@ Unpin a previously pinned result.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="unpin" method="post" path="/rest/api/v1/unpin" -->
 ```java
 package hello.world;
 

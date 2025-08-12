@@ -6,7 +6,7 @@ package com.glean.api_client.glean_api_client.models.operations;
 import static com.glean.api_client.glean_api_client.operations.Operations.RequestlessOperation;
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
-import com.glean.api_client.glean_api_client.operations.CreateauthtokenOperation;
+import com.glean.api_client.glean_api_client.operations.Createauthtoken;
 import java.lang.Exception;
 
 public class CreateauthtokenRequestBuilder {
@@ -20,7 +20,7 @@ public class CreateauthtokenRequestBuilder {
     public CreateauthtokenResponse call() throws Exception {
         
         RequestlessOperation<CreateauthtokenResponse> operation
-            = new CreateauthtokenOperation(sdkConfiguration);
+            = new Createauthtoken.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest());
     }

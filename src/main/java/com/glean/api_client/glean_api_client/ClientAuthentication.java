@@ -7,10 +7,8 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.models.operations.CreateauthtokenRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.CreateauthtokenResponse;
-import com.glean.api_client.glean_api_client.operations.CreateauthtokenOperation;
+import com.glean.api_client.glean_api_client.operations.Createauthtoken;
 import java.lang.Exception;
-import java.util.List;
-import java.util.Optional;
 
 
 public class ClientAuthentication {
@@ -19,6 +17,7 @@ public class ClientAuthentication {
     ClientAuthentication(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Create authentication token
      * 
@@ -48,7 +47,7 @@ public class ClientAuthentication {
      */
     public CreateauthtokenResponse createTokenDirect() throws Exception {
         RequestlessOperation<CreateauthtokenResponse> operation
-            = new CreateauthtokenOperation(sdkConfiguration);
+            = new Createauthtoken.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest());
     }
 

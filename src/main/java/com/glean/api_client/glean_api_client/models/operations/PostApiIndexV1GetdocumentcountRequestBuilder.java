@@ -7,7 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.GetDocumentCountRequest;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1GetdocumentcountOperation;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Getdocumentcount;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -29,7 +29,7 @@ public class PostApiIndexV1GetdocumentcountRequestBuilder {
     public PostApiIndexV1GetdocumentcountResponse call() throws Exception {
         
         RequestOperation<GetDocumentCountRequest, PostApiIndexV1GetdocumentcountResponse> operation
-              = new PostApiIndexV1GetdocumentcountOperation(sdkConfiguration);
+              = new PostApiIndexV1Getdocumentcount.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

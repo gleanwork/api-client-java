@@ -19,15 +19,14 @@ import com.glean.api_client.glean_api_client.models.operations.GetAgentSchemasRe
 import com.glean.api_client.glean_api_client.models.operations.GetAgentSchemasResponse;
 import com.glean.api_client.glean_api_client.models.operations.SearchAgentsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.SearchAgentsResponse;
-import com.glean.api_client.glean_api_client.operations.CreateAndStreamRunOperation;
-import com.glean.api_client.glean_api_client.operations.CreateAndWaitRunOperation;
-import com.glean.api_client.glean_api_client.operations.GetAgentOperation;
-import com.glean.api_client.glean_api_client.operations.GetAgentSchemasOperation;
-import com.glean.api_client.glean_api_client.operations.SearchAgentsOperation;
+import com.glean.api_client.glean_api_client.operations.CreateAndStreamRun;
+import com.glean.api_client.glean_api_client.operations.CreateAndWaitRun;
+import com.glean.api_client.glean_api_client.operations.GetAgent;
+import com.glean.api_client.glean_api_client.operations.GetAgentSchemas;
+import com.glean.api_client.glean_api_client.operations.SearchAgents;
 import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class Agents {
     Agents(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Retrieve an agent
      * 
@@ -71,9 +71,7 @@ public class Agents {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetAgentResponse retrieve(
-            Optional<Long> timezoneOffset,
-            String agentId) throws Exception {
+    public GetAgentResponse retrieve(Optional<Long> timezoneOffset, String agentId) throws Exception {
         GetAgentRequest request =
             GetAgentRequest
                 .builder()
@@ -81,7 +79,7 @@ public class Agents {
                 .agentId(agentId)
                 .build();
         RequestOperation<GetAgentRequest, GetAgentResponse> operation
-              = new GetAgentOperation(sdkConfiguration);
+              = new GetAgent.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -119,9 +117,7 @@ public class Agents {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetAgentSchemasResponse retrieveSchemas(
-            Optional<Long> timezoneOffset,
-            String agentId) throws Exception {
+    public GetAgentSchemasResponse retrieveSchemas(Optional<Long> timezoneOffset, String agentId) throws Exception {
         GetAgentSchemasRequest request =
             GetAgentSchemasRequest
                 .builder()
@@ -129,7 +125,7 @@ public class Agents {
                 .agentId(agentId)
                 .build();
         RequestOperation<GetAgentSchemasRequest, GetAgentSchemasResponse> operation
-              = new GetAgentSchemasOperation(sdkConfiguration);
+              = new GetAgentSchemas.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -155,7 +151,7 @@ public class Agents {
      */
     public SearchAgentsResponse list(SearchAgentsRequest request) throws Exception {
         RequestOperation<SearchAgentsRequest, SearchAgentsResponse> operation
-              = new SearchAgentsOperation(sdkConfiguration);
+              = new SearchAgents.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -181,7 +177,7 @@ public class Agents {
      */
     public CreateAndStreamRunResponse runStream(AgentRunCreate request) throws Exception {
         RequestOperation<AgentRunCreate, CreateAndStreamRunResponse> operation
-              = new CreateAndStreamRunOperation(sdkConfiguration);
+              = new CreateAndStreamRun.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -207,7 +203,7 @@ public class Agents {
      */
     public CreateAndWaitRunResponse run(AgentRunCreate request) throws Exception {
         RequestOperation<AgentRunCreate, CreateAndWaitRunResponse> operation
-              = new CreateAndWaitRunOperation(sdkConfiguration);
+              = new CreateAndWaitRun.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

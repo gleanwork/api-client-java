@@ -8,10 +8,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.models.components.MessagesRequest;
 import com.glean.api_client.glean_api_client.models.operations.MessagesRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.MessagesResponse;
-import com.glean.api_client.glean_api_client.operations.MessagesOperation;
 import java.lang.Exception;
-import java.util.List;
-import java.util.Optional;
 
 
 public class Messages {
@@ -20,6 +17,7 @@ public class Messages {
     Messages(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Read messages
      * 
@@ -42,7 +40,7 @@ public class Messages {
      */
     public MessagesResponse retrieve(MessagesRequest request) throws Exception {
         RequestOperation<MessagesRequest, MessagesResponse> operation
-              = new MessagesOperation(sdkConfiguration);
+              = new com.glean.api_client.glean_api_client.operations.Messages.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

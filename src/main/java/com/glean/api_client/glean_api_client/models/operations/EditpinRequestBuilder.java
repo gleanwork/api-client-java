@@ -7,7 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.EditPinRequest;
-import com.glean.api_client.glean_api_client.operations.EditpinOperation;
+import com.glean.api_client.glean_api_client.operations.Editpin;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -29,7 +29,7 @@ public class EditpinRequestBuilder {
     public EditpinResponse call() throws Exception {
         
         RequestOperation<EditPinRequest, EditpinResponse> operation
-              = new EditpinOperation(sdkConfiguration);
+              = new Editpin.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

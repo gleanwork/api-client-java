@@ -7,7 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.BulkIndexTeamsRequest;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1BulkindexteamsOperation;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Bulkindexteams;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -29,7 +29,7 @@ public class PostApiIndexV1BulkindexteamsRequestBuilder {
     public PostApiIndexV1BulkindexteamsResponse call() throws Exception {
         
         RequestOperation<BulkIndexTeamsRequest, PostApiIndexV1BulkindexteamsResponse> operation
-              = new PostApiIndexV1BulkindexteamsOperation(sdkConfiguration);
+              = new PostApiIndexV1Bulkindexteams.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

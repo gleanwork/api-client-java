@@ -41,19 +41,17 @@ import com.glean.api_client.glean_api_client.models.operations.ListchatsResponse
 import com.glean.api_client.glean_api_client.models.operations.UploadchatfilesRequest;
 import com.glean.api_client.glean_api_client.models.operations.UploadchatfilesRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.UploadchatfilesResponse;
-import com.glean.api_client.glean_api_client.operations.ChatOperation;
-import com.glean.api_client.glean_api_client.operations.ChatStreamOperation;
-import com.glean.api_client.glean_api_client.operations.DeleteallchatsOperation;
-import com.glean.api_client.glean_api_client.operations.DeletechatfilesOperation;
-import com.glean.api_client.glean_api_client.operations.DeletechatsOperation;
-import com.glean.api_client.glean_api_client.operations.GetchatOperation;
-import com.glean.api_client.glean_api_client.operations.GetchatapplicationOperation;
-import com.glean.api_client.glean_api_client.operations.GetchatfilesOperation;
-import com.glean.api_client.glean_api_client.operations.ListchatsOperation;
-import com.glean.api_client.glean_api_client.operations.UploadchatfilesOperation;
+import com.glean.api_client.glean_api_client.operations.ChatStream;
+import com.glean.api_client.glean_api_client.operations.Deleteallchats;
+import com.glean.api_client.glean_api_client.operations.Deletechatfiles;
+import com.glean.api_client.glean_api_client.operations.Deletechats;
+import com.glean.api_client.glean_api_client.operations.Getchat;
+import com.glean.api_client.glean_api_client.operations.Getchatapplication;
+import com.glean.api_client.glean_api_client.operations.Getchatfiles;
+import com.glean.api_client.glean_api_client.operations.Listchats;
+import com.glean.api_client.glean_api_client.operations.Uploadchatfiles;
 import java.lang.Exception;
 import java.lang.Long;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -63,6 +61,7 @@ public class Chat {
     Chat(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Chat
      * 
@@ -97,9 +96,7 @@ public class Chat {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ChatResponse create(
-            Optional<Long> timezoneOffset,
-            ChatRequest chatRequest) throws Exception {
+    public ChatResponse create(Optional<Long> timezoneOffset, ChatRequest chatRequest) throws Exception {
         com.glean.api_client.glean_api_client.models.operations.ChatRequest request =
             com.glean.api_client.glean_api_client.models.operations.ChatRequest
                 .builder()
@@ -107,7 +104,7 @@ public class Chat {
                 .chatRequest(chatRequest)
                 .build();
         RequestOperation<com.glean.api_client.glean_api_client.models.operations.ChatRequest, ChatResponse> operation
-              = new ChatOperation(sdkConfiguration);
+              = new com.glean.api_client.glean_api_client.operations.Chat.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -150,7 +147,7 @@ public class Chat {
                 .timezoneOffset(timezoneOffset)
                 .build();
         RequestOperation<DeleteallchatsRequest, DeleteallchatsResponse> operation
-              = new DeleteallchatsOperation(sdkConfiguration);
+              = new Deleteallchats.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -188,9 +185,7 @@ public class Chat {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DeletechatsResponse delete(
-            Optional<Long> timezoneOffset,
-            DeleteChatsRequest deleteChatsRequest) throws Exception {
+    public DeletechatsResponse delete(Optional<Long> timezoneOffset, DeleteChatsRequest deleteChatsRequest) throws Exception {
         DeletechatsRequest request =
             DeletechatsRequest
                 .builder()
@@ -198,7 +193,7 @@ public class Chat {
                 .deleteChatsRequest(deleteChatsRequest)
                 .build();
         RequestOperation<DeletechatsRequest, DeletechatsResponse> operation
-              = new DeletechatsOperation(sdkConfiguration);
+              = new Deletechats.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -236,9 +231,7 @@ public class Chat {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetchatResponse retrieve(
-            Optional<Long> timezoneOffset,
-            GetChatRequest getChatRequest) throws Exception {
+    public GetchatResponse retrieve(Optional<Long> timezoneOffset, GetChatRequest getChatRequest) throws Exception {
         GetchatRequest request =
             GetchatRequest
                 .builder()
@@ -246,7 +239,7 @@ public class Chat {
                 .getChatRequest(getChatRequest)
                 .build();
         RequestOperation<GetchatRequest, GetchatResponse> operation
-              = new GetchatOperation(sdkConfiguration);
+              = new Getchat.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -289,7 +282,7 @@ public class Chat {
                 .timezoneOffset(timezoneOffset)
                 .build();
         RequestOperation<ListchatsRequest, ListchatsResponse> operation
-              = new ListchatsOperation(sdkConfiguration);
+              = new Listchats.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -327,9 +320,7 @@ public class Chat {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetchatapplicationResponse retrieveApplication(
-            Optional<Long> timezoneOffset,
-            GetChatApplicationRequest getChatApplicationRequest) throws Exception {
+    public GetchatapplicationResponse retrieveApplication(Optional<Long> timezoneOffset, GetChatApplicationRequest getChatApplicationRequest) throws Exception {
         GetchatapplicationRequest request =
             GetchatapplicationRequest
                 .builder()
@@ -337,7 +328,7 @@ public class Chat {
                 .getChatApplicationRequest(getChatApplicationRequest)
                 .build();
         RequestOperation<GetchatapplicationRequest, GetchatapplicationResponse> operation
-              = new GetchatapplicationOperation(sdkConfiguration);
+              = new Getchatapplication.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -375,9 +366,7 @@ public class Chat {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UploadchatfilesResponse uploadFiles(
-            Optional<Long> timezoneOffset,
-            UploadChatFilesRequest uploadChatFilesRequest) throws Exception {
+    public UploadchatfilesResponse uploadFiles(Optional<Long> timezoneOffset, UploadChatFilesRequest uploadChatFilesRequest) throws Exception {
         UploadchatfilesRequest request =
             UploadchatfilesRequest
                 .builder()
@@ -385,7 +374,7 @@ public class Chat {
                 .uploadChatFilesRequest(uploadChatFilesRequest)
                 .build();
         RequestOperation<UploadchatfilesRequest, UploadchatfilesResponse> operation
-              = new UploadchatfilesOperation(sdkConfiguration);
+              = new Uploadchatfiles.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -423,9 +412,7 @@ public class Chat {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetchatfilesResponse retrieveFiles(
-            Optional<Long> timezoneOffset,
-            GetChatFilesRequest getChatFilesRequest) throws Exception {
+    public GetchatfilesResponse retrieveFiles(Optional<Long> timezoneOffset, GetChatFilesRequest getChatFilesRequest) throws Exception {
         GetchatfilesRequest request =
             GetchatfilesRequest
                 .builder()
@@ -433,7 +420,7 @@ public class Chat {
                 .getChatFilesRequest(getChatFilesRequest)
                 .build();
         RequestOperation<GetchatfilesRequest, GetchatfilesResponse> operation
-              = new GetchatfilesOperation(sdkConfiguration);
+              = new Getchatfiles.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -471,9 +458,7 @@ public class Chat {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DeletechatfilesResponse deleteFiles(
-            Optional<Long> timezoneOffset,
-            DeleteChatFilesRequest deleteChatFilesRequest) throws Exception {
+    public DeletechatfilesResponse deleteFiles(Optional<Long> timezoneOffset, DeleteChatFilesRequest deleteChatFilesRequest) throws Exception {
         DeletechatfilesRequest request =
             DeletechatfilesRequest
                 .builder()
@@ -481,7 +466,7 @@ public class Chat {
                 .deleteChatFilesRequest(deleteChatFilesRequest)
                 .build();
         RequestOperation<DeletechatfilesRequest, DeletechatfilesResponse> operation
-              = new DeletechatfilesOperation(sdkConfiguration);
+              = new Deletechatfiles.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -519,9 +504,7 @@ public class Chat {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ChatStreamResponse createStream(
-            Optional<Long> timezoneOffset,
-            ChatRequest chatRequest) throws Exception {
+    public ChatStreamResponse createStream(Optional<Long> timezoneOffset, ChatRequest chatRequest) throws Exception {
         ChatStreamRequest request =
             ChatStreamRequest
                 .builder()
@@ -529,7 +512,7 @@ public class Chat {
                 .chatRequest(chatRequest)
                 .build();
         RequestOperation<ChatStreamRequest, ChatStreamResponse> operation
-              = new ChatStreamOperation(sdkConfiguration);
+              = new ChatStream.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

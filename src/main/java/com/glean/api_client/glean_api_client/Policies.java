@@ -21,16 +21,15 @@ import com.glean.api_client.glean_api_client.models.operations.ListpoliciesRespo
 import com.glean.api_client.glean_api_client.models.operations.UpdatepolicyRequest;
 import com.glean.api_client.glean_api_client.models.operations.UpdatepolicyRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.UpdatepolicyResponse;
-import com.glean.api_client.glean_api_client.operations.CreatepolicyOperation;
-import com.glean.api_client.glean_api_client.operations.DownloadpolicycsvOperation;
-import com.glean.api_client.glean_api_client.operations.GetpolicyOperation;
-import com.glean.api_client.glean_api_client.operations.ListpoliciesOperation;
-import com.glean.api_client.glean_api_client.operations.UpdatepolicyOperation;
+import com.glean.api_client.glean_api_client.operations.Createpolicy;
+import com.glean.api_client.glean_api_client.operations.Downloadpolicycsv;
+import com.glean.api_client.glean_api_client.operations.Getpolicy;
+import com.glean.api_client.glean_api_client.operations.Listpolicies;
+import com.glean.api_client.glean_api_client.operations.Updatepolicy;
 import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -40,6 +39,7 @@ public class Policies {
     Policies(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Gets specified policy
      * 
@@ -74,9 +74,7 @@ public class Policies {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetpolicyResponse retrieve(
-            String id,
-            Optional<Long> version) throws Exception {
+    public GetpolicyResponse retrieve(String id, Optional<Long> version) throws Exception {
         GetpolicyRequest request =
             GetpolicyRequest
                 .builder()
@@ -84,7 +82,7 @@ public class Policies {
                 .version(version)
                 .build();
         RequestOperation<GetpolicyRequest, GetpolicyResponse> operation
-              = new GetpolicyOperation(sdkConfiguration);
+              = new Getpolicy.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -109,9 +107,7 @@ public class Policies {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public UpdatepolicyResponse update(
-            String id,
-            UpdateDlpReportRequest updateDlpReportRequest) throws Exception {
+    public UpdatepolicyResponse update(String id, UpdateDlpReportRequest updateDlpReportRequest) throws Exception {
         UpdatepolicyRequest request =
             UpdatepolicyRequest
                 .builder()
@@ -119,7 +115,7 @@ public class Policies {
                 .updateDlpReportRequest(updateDlpReportRequest)
                 .build();
         RequestOperation<UpdatepolicyRequest, UpdatepolicyResponse> operation
-              = new UpdatepolicyOperation(sdkConfiguration);
+              = new Updatepolicy.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -156,9 +152,7 @@ public class Policies {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListpoliciesResponse list(
-            Optional<Boolean> autoHide,
-            Optional<String> frequency) throws Exception {
+    public ListpoliciesResponse list(Optional<Boolean> autoHide, Optional<String> frequency) throws Exception {
         ListpoliciesRequest request =
             ListpoliciesRequest
                 .builder()
@@ -166,7 +160,7 @@ public class Policies {
                 .frequency(frequency)
                 .build();
         RequestOperation<ListpoliciesRequest, ListpoliciesResponse> operation
-              = new ListpoliciesOperation(sdkConfiguration);
+              = new Listpolicies.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -192,7 +186,7 @@ public class Policies {
      */
     public CreatepolicyResponse create(CreateDlpReportRequest request) throws Exception {
         RequestOperation<CreateDlpReportRequest, CreatepolicyResponse> operation
-              = new CreatepolicyOperation(sdkConfiguration);
+              = new Createpolicy.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -223,7 +217,7 @@ public class Policies {
                 .id(id)
                 .build();
         RequestOperation<DownloadpolicycsvRequest, DownloadpolicycsvResponse> operation
-              = new DownloadpolicycsvOperation(sdkConfiguration);
+              = new Downloadpolicycsv.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -17,6 +17,7 @@ Create a user-generated shortcut that contains an alias and destination URL.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="createshortcut" method="post" path="/rest/api/v1/createshortcut" -->
 ```java
 package hello.world;
 
@@ -1541,6 +1542,7 @@ Delete an existing user-generated shortcut.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="deleteshortcut" method="post" path="/rest/api/v1/deleteshortcut" -->
 ```java
 package hello.world;
 
@@ -1592,6 +1594,7 @@ Read a particular shortcut's details given its ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="getshortcut" method="post" path="/rest/api/v1/getshortcut" -->
 ```java
 package hello.world;
 
@@ -1646,6 +1649,7 @@ List shortcuts editable/owned by the currently authenticated user.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="listshortcuts" method="post" path="/rest/api/v1/listshortcuts" -->
 ```java
 package hello.world;
 
@@ -1713,6 +1717,7 @@ Updates the shortcut with the given ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="updateshortcut" method="post" path="/rest/api/v1/updateshortcut" -->
 ```java
 package hello.world;
 

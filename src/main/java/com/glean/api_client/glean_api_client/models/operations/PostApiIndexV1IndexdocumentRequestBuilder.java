@@ -7,7 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.IndexDocumentRequest;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1IndexdocumentOperation;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Indexdocument;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -29,7 +29,7 @@ public class PostApiIndexV1IndexdocumentRequestBuilder {
     public PostApiIndexV1IndexdocumentResponse call() throws Exception {
         
         RequestOperation<IndexDocumentRequest, PostApiIndexV1IndexdocumentResponse> operation
-              = new PostApiIndexV1IndexdocumentOperation(sdkConfiguration);
+              = new PostApiIndexV1Indexdocument.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }
