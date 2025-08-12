@@ -7,7 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.DeleteCollectionItemRequest;
-import com.glean.api_client.glean_api_client.operations.DeletecollectionitemOperation;
+import com.glean.api_client.glean_api_client.operations.Deletecollectionitem;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -29,7 +29,7 @@ public class DeletecollectionitemRequestBuilder {
     public DeletecollectionitemResponse call() throws Exception {
         
         RequestOperation<DeleteCollectionItemRequest, DeletecollectionitemResponse> operation
-              = new DeletecollectionitemOperation(sdkConfiguration);
+              = new Deletecollectionitem.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

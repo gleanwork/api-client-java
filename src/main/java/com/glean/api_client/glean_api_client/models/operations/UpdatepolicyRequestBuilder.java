@@ -7,7 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.UpdateDlpReportRequest;
-import com.glean.api_client.glean_api_client.operations.UpdatepolicyOperation;
+import com.glean.api_client.glean_api_client.operations.Updatepolicy;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -46,7 +46,7 @@ public class UpdatepolicyRequestBuilder {
     public UpdatepolicyResponse call() throws Exception {
         
         RequestOperation<UpdatepolicyRequest, UpdatepolicyResponse> operation
-              = new UpdatepolicyOperation(sdkConfiguration);
+              = new Updatepolicy.Sync(sdkConfiguration);
         UpdatepolicyRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -7,7 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.CreateAnswerRequest;
-import com.glean.api_client.glean_api_client.operations.CreateanswerOperation;
+import com.glean.api_client.glean_api_client.operations.Createanswer;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -29,7 +29,7 @@ public class CreateanswerRequestBuilder {
     public CreateanswerResponse call() throws Exception {
         
         RequestOperation<CreateAnswerRequest, CreateanswerResponse> operation
-              = new CreateanswerOperation(sdkConfiguration);
+              = new Createanswer.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

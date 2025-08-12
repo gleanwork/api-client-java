@@ -22,6 +22,7 @@ Have a conversation with Glean AI.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="chat" method="post" path="/rest/api/v1/chat" -->
 ```java
 package hello.world;
 
@@ -43,6 +44,7 @@ public class Application {
                 .chatRequest(ChatRequest.builder()
                     .messages(List.of(
                         ChatMessage.builder()
+                            .author(Author.USER)
                             .fragments(List.of(
                                 ChatMessageFragment.builder()
                                     .text("What are the company holidays this year?")
@@ -81,6 +83,7 @@ Deletes all saved Chats a user has had and all their contained conversational co
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="deleteallchats" method="post" path="/rest/api/v1/deleteallchats" -->
 ```java
 package hello.world;
 
@@ -126,6 +129,7 @@ Deletes saved Chats and all their contained conversational content.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="deletechats" method="post" path="/rest/api/v1/deletechats" -->
 ```java
 package hello.world;
 
@@ -177,6 +181,7 @@ Retrieves the chat history between Glean Assistant and the user for a given Chat
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="getchat" method="post" path="/rest/api/v1/getchat" -->
 ```java
 package hello.world;
 
@@ -229,6 +234,7 @@ Retrieves all the saved Chats between Glean Assistant and the user. The returned
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="listchats" method="post" path="/rest/api/v1/listchats" -->
 ```java
 package hello.world;
 
@@ -276,6 +282,7 @@ Gets the Chat application details for the specified application ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="getchatapplication" method="post" path="/rest/api/v1/getchatapplication" -->
 ```java
 package hello.world;
 
@@ -328,6 +335,7 @@ Upload files for Chat.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="uploadchatfiles" method="post" path="/rest/api/v1/uploadchatfiles" -->
 ```java
 package hello.world;
 
@@ -387,6 +395,7 @@ Get files uploaded by a user for Chat.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="getchatfiles" method="post" path="/rest/api/v1/getchatfiles" -->
 ```java
 package hello.world;
 
@@ -441,6 +450,7 @@ Delete files uploaded by a user for Chat.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="deletechatfiles" method="post" path="/rest/api/v1/deletechatfiles" -->
 ```java
 package hello.world;
 
@@ -495,6 +505,7 @@ Have a conversation with Glean AI.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="chatStream" method="post" path="/rest/api/v1/chat#stream" -->
 ```java
 package hello.world;
 
@@ -516,6 +527,7 @@ public class Application {
                 .chatRequest(ChatRequest.builder()
                     .messages(List.of(
                         ChatMessage.builder()
+                            .author(Author.USER)
                             .fragments(List.of(
                                 ChatMessageFragment.builder()
                                     .text("What are the company holidays this year?")

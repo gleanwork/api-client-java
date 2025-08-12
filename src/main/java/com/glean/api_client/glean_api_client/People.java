@@ -33,20 +33,18 @@ import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1Ind
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1IndexteamResponse;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1ProcessallemployeesandteamsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1ProcessallemployeesandteamsResponse;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1BulkindexemployeesOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1BulkindexteamsOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DebugDatasourceUserOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DeleteemployeeOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DeleteteamOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1GetusercountOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1IndexemployeeOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1IndexteamOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1ProcessallemployeesandteamsOperation;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Bulkindexemployees;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Bulkindexteams;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DebugDatasourceUser;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Deleteemployee;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Deleteteam;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Getusercount;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Indexemployee;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Indexteam;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Processallemployeesandteams;
 import java.lang.Deprecated;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
-import java.util.Optional;
 
 
 public class People {
@@ -55,12 +53,13 @@ public class People {
     People(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Beta: Get user information
      * 
      * <p>Gives various information that would help in debugging related to a particular user. Currently in beta, might undergo breaking changes without prior notice.
      * 
-     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/docs/indexing_api/indexing_api_troubleshooting/) for more information.
+     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
      * 
      * @return The call builder
      */
@@ -73,16 +72,14 @@ public class People {
      * 
      * <p>Gives various information that would help in debugging related to a particular user. Currently in beta, might undergo breaking changes without prior notice.
      * 
-     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/docs/indexing_api/indexing_api_troubleshooting/) for more information.
+     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
      * 
      * @param datasource The datasource to which the user belongs
      * @param debugUserRequest Describes the request body of the /debug/{datasource}/user API call
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1DebugDatasourceUserResponse debug(
-            String datasource,
-            DebugUserRequest debugUserRequest) throws Exception {
+    public PostApiIndexV1DebugDatasourceUserResponse debug(String datasource, DebugUserRequest debugUserRequest) throws Exception {
         PostApiIndexV1DebugDatasourceUserRequest request =
             PostApiIndexV1DebugDatasourceUserRequest
                 .builder()
@@ -90,7 +87,7 @@ public class People {
                 .debugUserRequest(debugUserRequest)
                 .build();
         RequestOperation<PostApiIndexV1DebugDatasourceUserRequest, PostApiIndexV1DebugDatasourceUserResponse> operation
-              = new PostApiIndexV1DebugDatasourceUserOperation(sdkConfiguration);
+              = new PostApiIndexV1DebugDatasourceUser.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -99,7 +96,7 @@ public class People {
      * 
      * <p>Fetches user count for the specified custom datasource.
      * 
-     * <p>Tip: Use [/debug/{datasource}/status](https://developers.glean.com/docs/indexing_api/indexing_api_troubleshooting/#debug-datasource-status) for richer information.
+     * <p>Tip: Use [/debug/{datasource}/status](https://developers.glean.com/indexing/debugging/datasource-status) for richer information.
      * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -114,7 +111,7 @@ public class People {
      * 
      * <p>Fetches user count for the specified custom datasource.
      * 
-     * <p>Tip: Use [/debug/{datasource}/status](https://developers.glean.com/docs/indexing_api/indexing_api_troubleshooting/#debug-datasource-status) for richer information.
+     * <p>Tip: Use [/debug/{datasource}/status](https://developers.glean.com/indexing/debugging/datasource-status) for richer information.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -124,7 +121,7 @@ public class People {
     @Deprecated
     public PostApiIndexV1GetusercountResponse count(GetUserCountRequest request) throws Exception {
         RequestOperation<GetUserCountRequest, PostApiIndexV1GetusercountResponse> operation
-              = new PostApiIndexV1GetusercountOperation(sdkConfiguration);
+              = new PostApiIndexV1Getusercount.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -150,14 +147,14 @@ public class People {
      */
     public PostApiIndexV1IndexemployeeResponse index(IndexEmployeeRequest request) throws Exception {
         RequestOperation<IndexEmployeeRequest, PostApiIndexV1IndexemployeeResponse> operation
-              = new PostApiIndexV1IndexemployeeOperation(sdkConfiguration);
+              = new PostApiIndexV1Indexemployee.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Bulk index employees
      * 
-     * <p>Replaces all the currently indexed employees using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/docs/indexing_api_bulk_indexing/#bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces all the currently indexed employees using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
      * 
      * @return The call builder
      */
@@ -168,7 +165,7 @@ public class People {
     /**
      * Bulk index employees
      * 
-     * <p>Replaces all the currently indexed employees using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/docs/indexing_api_bulk_indexing/#bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces all the currently indexed employees using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -176,7 +173,7 @@ public class People {
      */
     public PostApiIndexV1BulkindexemployeesResponse bulkIndex(BulkIndexEmployeesRequest request) throws Exception {
         RequestOperation<BulkIndexEmployeesRequest, PostApiIndexV1BulkindexemployeesResponse> operation
-              = new PostApiIndexV1BulkindexemployeesOperation(sdkConfiguration);
+              = new PostApiIndexV1Bulkindexemployees.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -201,7 +198,7 @@ public class People {
      */
     public PostApiIndexV1ProcessallemployeesandteamsResponse processAllEmployeesAndTeamsDirect() throws Exception {
         RequestlessOperation<PostApiIndexV1ProcessallemployeesandteamsResponse> operation
-            = new PostApiIndexV1ProcessallemployeesandteamsOperation(sdkConfiguration);
+            = new PostApiIndexV1Processallemployeesandteams.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -227,7 +224,7 @@ public class People {
      */
     public PostApiIndexV1DeleteemployeeResponse delete(DeleteEmployeeRequest request) throws Exception {
         RequestOperation<DeleteEmployeeRequest, PostApiIndexV1DeleteemployeeResponse> operation
-              = new PostApiIndexV1DeleteemployeeOperation(sdkConfiguration);
+              = new PostApiIndexV1Deleteemployee.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -253,7 +250,7 @@ public class People {
      */
     public PostApiIndexV1IndexteamResponse indexTeam(IndexTeamRequest request) throws Exception {
         RequestOperation<IndexTeamRequest, PostApiIndexV1IndexteamResponse> operation
-              = new PostApiIndexV1IndexteamOperation(sdkConfiguration);
+              = new PostApiIndexV1Indexteam.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -279,14 +276,14 @@ public class People {
      */
     public PostApiIndexV1DeleteteamResponse deleteTeam(DeleteTeamRequest request) throws Exception {
         RequestOperation<DeleteTeamRequest, PostApiIndexV1DeleteteamResponse> operation
-              = new PostApiIndexV1DeleteteamOperation(sdkConfiguration);
+              = new PostApiIndexV1Deleteteam.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Bulk index teams
      * 
-     * <p>Replaces all the currently indexed teams using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/docs/indexing_api_bulk_indexing/#bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces all the currently indexed teams using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
      * 
      * @return The call builder
      */
@@ -297,7 +294,7 @@ public class People {
     /**
      * Bulk index teams
      * 
-     * <p>Replaces all the currently indexed teams using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/docs/indexing_api_bulk_indexing/#bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces all the currently indexed teams using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -305,7 +302,7 @@ public class People {
      */
     public PostApiIndexV1BulkindexteamsResponse bulkIndexTeams(BulkIndexTeamsRequest request) throws Exception {
         RequestOperation<BulkIndexTeamsRequest, PostApiIndexV1BulkindexteamsResponse> operation
-              = new PostApiIndexV1BulkindexteamsOperation(sdkConfiguration);
+              = new PostApiIndexV1Bulkindexteams.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

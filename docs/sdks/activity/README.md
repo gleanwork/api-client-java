@@ -14,6 +14,7 @@ Report user activity that occurs on indexed documents such as viewing or editing
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="activity" method="post" path="/rest/api/v1/activity" -->
 ```java
 package hello.world;
 
@@ -89,6 +90,7 @@ Report events that happen to results within a Glean client UI, such as search re
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="feedback" method="post" path="/rest/api/v1/feedback" -->
 ```java
 package hello.world;
 

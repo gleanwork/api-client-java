@@ -5,13 +5,15 @@ package com.glean.api_client.glean_api_client;
 
 public class GovernanceDocuments {
     private final SDKConfiguration sdkConfiguration;
-private final Visibilityoverrides visibilityoverrides;
+    private final Visibilityoverrides visibilityoverrides;
 
     GovernanceDocuments(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.visibilityoverrides = new Visibilityoverrides(this.sdkConfiguration);
     }
-public final Visibilityoverrides visibilityoverrides() {
+
+    public final Visibilityoverrides visibilityoverrides() {
         return visibilityoverrides;
     }
+
 }

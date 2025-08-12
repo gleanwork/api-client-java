@@ -7,7 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.UpdateDlpConfigRequest;
-import com.glean.api_client.glean_api_client.operations.CreatereportOperation;
+import com.glean.api_client.glean_api_client.operations.Createreport;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -29,7 +29,7 @@ public class CreatereportRequestBuilder {
     public CreatereportResponse call() throws Exception {
         
         RequestOperation<UpdateDlpConfigRequest, CreatereportResponse> operation
-              = new CreatereportOperation(sdkConfiguration);
+              = new Createreport.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

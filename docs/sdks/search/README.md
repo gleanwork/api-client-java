@@ -17,6 +17,7 @@ Retrieves results for search query without respect for permissions. This is avai
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="adminsearch" method="post" path="/rest/api/v1/adminsearch" -->
 ```java
 package hello.world;
 
@@ -99,6 +100,7 @@ Retrieve query suggestions, operators and documents for the given partially type
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="autocomplete" method="post" path="/rest/api/v1/autocomplete" -->
 ```java
 package hello.world;
 
@@ -155,6 +157,7 @@ The personalized feed/home includes different types of contents including sugges
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="feed" method="post" path="/rest/api/v1/feed" -->
 ```java
 package hello.world;
 
@@ -208,6 +211,7 @@ Retrieve recommended documents for the given URL or Glean Document ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="recommendations" method="post" path="/rest/api/v1/recommendations" -->
 ```java
 package hello.world;
 
@@ -451,6 +455,7 @@ Retrieve results from the index for the given query and filters.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="search" method="post" path="/rest/api/v1/search" -->
 ```java
 package hello.world;
 

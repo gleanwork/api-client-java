@@ -15,7 +15,8 @@ import java.util.Optional;
  */
 public enum AuthConfigStatus {
     AWAITING_AUTH("AWAITING_AUTH"),
-    AUTHORIZED("AUTHORIZED");
+    AUTHORIZED("AUTHORIZED"),
+    AUTH_DISABLED("AUTH_DISABLED");
 
     @JsonValue
     private final String value;

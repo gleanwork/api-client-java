@@ -20,14 +20,12 @@ import com.glean.api_client.glean_api_client.models.operations.GetanswerRequestB
 import com.glean.api_client.glean_api_client.models.operations.GetanswerResponse;
 import com.glean.api_client.glean_api_client.models.operations.ListanswersRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.ListanswersResponse;
-import com.glean.api_client.glean_api_client.operations.CreateanswerOperation;
-import com.glean.api_client.glean_api_client.operations.DeleteanswerOperation;
-import com.glean.api_client.glean_api_client.operations.EditanswerOperation;
-import com.glean.api_client.glean_api_client.operations.GetanswerOperation;
-import com.glean.api_client.glean_api_client.operations.ListanswersOperation;
+import com.glean.api_client.glean_api_client.operations.Createanswer;
+import com.glean.api_client.glean_api_client.operations.Deleteanswer;
+import com.glean.api_client.glean_api_client.operations.Editanswer;
+import com.glean.api_client.glean_api_client.operations.Getanswer;
+import com.glean.api_client.glean_api_client.operations.Listanswers;
 import java.lang.Exception;
-import java.util.List;
-import java.util.Optional;
 
 
 public class Answers {
@@ -36,6 +34,7 @@ public class Answers {
     Answers(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Create Answer
      * 
@@ -58,7 +57,7 @@ public class Answers {
      */
     public CreateanswerResponse create(CreateAnswerRequest request) throws Exception {
         RequestOperation<CreateAnswerRequest, CreateanswerResponse> operation
-              = new CreateanswerOperation(sdkConfiguration);
+              = new Createanswer.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -84,7 +83,7 @@ public class Answers {
      */
     public DeleteanswerResponse delete(DeleteAnswerRequest request) throws Exception {
         RequestOperation<DeleteAnswerRequest, DeleteanswerResponse> operation
-              = new DeleteanswerOperation(sdkConfiguration);
+              = new Deleteanswer.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -110,7 +109,7 @@ public class Answers {
      */
     public EditanswerResponse update(EditAnswerRequest request) throws Exception {
         RequestOperation<EditAnswerRequest, EditanswerResponse> operation
-              = new EditanswerOperation(sdkConfiguration);
+              = new Editanswer.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -136,7 +135,7 @@ public class Answers {
      */
     public GetanswerResponse retrieve(GetAnswerRequest request) throws Exception {
         RequestOperation<GetAnswerRequest, GetanswerResponse> operation
-              = new GetanswerOperation(sdkConfiguration);
+              = new Getanswer.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -162,7 +161,7 @@ public class Answers {
      */
     public ListanswersResponse list(ListAnswersRequest request) throws Exception {
         RequestOperation<ListAnswersRequest, ListanswersResponse> operation
-              = new ListanswersOperation(sdkConfiguration);
+              = new Listanswers.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

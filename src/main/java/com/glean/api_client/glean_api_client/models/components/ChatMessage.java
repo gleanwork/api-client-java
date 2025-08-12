@@ -701,7 +701,7 @@ public class ChatMessage {
         private static final LazySingletonValue<Optional<? extends Author>> _SINGLETON_VALUE_Author =
                 new LazySingletonValue<>(
                         "author",
-                        "\"USER\"",
+                        "\"GLEAN_AI\"",
                         new TypeReference<Optional<? extends Author>>() {});
 
         private static final LazySingletonValue<Optional<? extends MessageType>> _SINGLETON_VALUE_MessageType =

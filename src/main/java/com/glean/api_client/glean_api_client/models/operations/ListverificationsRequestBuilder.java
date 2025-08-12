@@ -6,7 +6,7 @@ package com.glean.api_client.glean_api_client.models.operations;
 import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
-import com.glean.api_client.glean_api_client.operations.ListverificationsOperation;
+import com.glean.api_client.glean_api_client.operations.Listverifications;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
@@ -44,7 +44,7 @@ public class ListverificationsRequestBuilder {
     public ListverificationsResponse call() throws Exception {
         
         RequestOperation<ListverificationsRequest, ListverificationsResponse> operation
-              = new ListverificationsOperation(sdkConfiguration);
+              = new Listverifications.Sync(sdkConfiguration);
         ListverificationsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

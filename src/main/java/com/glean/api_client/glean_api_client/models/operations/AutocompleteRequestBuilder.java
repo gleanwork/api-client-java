@@ -7,7 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.AutocompleteRequest;
-import com.glean.api_client.glean_api_client.operations.AutocompleteOperation;
+import com.glean.api_client.glean_api_client.operations.Autocomplete;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -29,7 +29,7 @@ public class AutocompleteRequestBuilder {
     public AutocompleteResponse call() throws Exception {
         
         RequestOperation<AutocompleteRequest, AutocompleteResponse> operation
-              = new AutocompleteOperation(sdkConfiguration);
+              = new Autocomplete.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

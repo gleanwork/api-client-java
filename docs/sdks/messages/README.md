@@ -13,6 +13,7 @@ Retrieves list of messages from messaging/chat datasources (e.g. Slack, Teams).
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="messages" method="post" path="/rest/api/v1/messages" -->
 ```java
 package hello.world;
 

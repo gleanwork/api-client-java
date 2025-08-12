@@ -14,12 +14,11 @@ import com.glean.api_client.glean_api_client.models.operations.Listverifications
 import com.glean.api_client.glean_api_client.models.operations.ListverificationsResponse;
 import com.glean.api_client.glean_api_client.models.operations.VerifyRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.VerifyResponse;
-import com.glean.api_client.glean_api_client.operations.AddverificationreminderOperation;
-import com.glean.api_client.glean_api_client.operations.ListverificationsOperation;
-import com.glean.api_client.glean_api_client.operations.VerifyOperation;
+import com.glean.api_client.glean_api_client.operations.Addverificationreminder;
+import com.glean.api_client.glean_api_client.operations.Listverifications;
+import com.glean.api_client.glean_api_client.operations.Verify;
 import java.lang.Exception;
 import java.lang.Long;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -29,6 +28,7 @@ public class Verification {
     Verification(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Create verification
      * 
@@ -51,7 +51,7 @@ public class Verification {
      */
     public AddverificationreminderResponse addReminder(ReminderRequest request) throws Exception {
         RequestOperation<ReminderRequest, AddverificationreminderResponse> operation
-              = new AddverificationreminderOperation(sdkConfiguration);
+              = new Addverificationreminder.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -94,7 +94,7 @@ public class Verification {
                 .count(count)
                 .build();
         RequestOperation<ListverificationsRequest, ListverificationsResponse> operation
-              = new ListverificationsOperation(sdkConfiguration);
+              = new Listverifications.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -120,7 +120,7 @@ public class Verification {
      */
     public VerifyResponse verify(VerifyRequest request) throws Exception {
         RequestOperation<VerifyRequest, VerifyResponse> operation
-              = new VerifyOperation(sdkConfiguration);
+              = new Verify.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

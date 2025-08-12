@@ -57,6 +57,13 @@ public class ChatMessageFragment {
     @JsonProperty("action")
     private Optional<? extends ToolInfo> action;
 
+    /**
+     * Information about the source for a ChatMessage.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("citation")
+    private Optional<? extends ChatMessageCitation> citation;
+
     @JsonCreator
     public ChatMessageFragment(
             @JsonProperty("structuredResults") Optional<? extends List<StructuredResult>> structuredResults,
@@ -64,24 +71,28 @@ public class ChatMessageFragment {
             @JsonProperty("text") Optional<String> text,
             @JsonProperty("querySuggestion") Optional<? extends QuerySuggestion> querySuggestion,
             @JsonProperty("file") Optional<? extends ChatFile> file,
-            @JsonProperty("action") Optional<? extends ToolInfo> action) {
+            @JsonProperty("action") Optional<? extends ToolInfo> action,
+            @JsonProperty("citation") Optional<? extends ChatMessageCitation> citation) {
         Utils.checkNotNull(structuredResults, "structuredResults");
         Utils.checkNotNull(trackingToken, "trackingToken");
         Utils.checkNotNull(text, "text");
         Utils.checkNotNull(querySuggestion, "querySuggestion");
         Utils.checkNotNull(file, "file");
         Utils.checkNotNull(action, "action");
+        Utils.checkNotNull(citation, "citation");
         this.structuredResults = structuredResults;
         this.trackingToken = trackingToken;
         this.text = text;
         this.querySuggestion = querySuggestion;
         this.file = file;
         this.action = action;
+        this.citation = citation;
     }
     
     public ChatMessageFragment() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -125,6 +136,15 @@ public class ChatMessageFragment {
     @JsonIgnore
     public Optional<ToolInfo> action() {
         return (Optional<ToolInfo>) action;
+    }
+
+    /**
+     * Information about the source for a ChatMessage.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ChatMessageCitation> citation() {
+        return (Optional<ChatMessageCitation>) citation;
     }
 
     public static Builder builder() {
@@ -228,6 +248,25 @@ public class ChatMessageFragment {
         return this;
     }
 
+    /**
+     * Information about the source for a ChatMessage.
+     */
+    public ChatMessageFragment withCitation(ChatMessageCitation citation) {
+        Utils.checkNotNull(citation, "citation");
+        this.citation = Optional.ofNullable(citation);
+        return this;
+    }
+
+
+    /**
+     * Information about the source for a ChatMessage.
+     */
+    public ChatMessageFragment withCitation(Optional<? extends ChatMessageCitation> citation) {
+        Utils.checkNotNull(citation, "citation");
+        this.citation = citation;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -243,14 +282,16 @@ public class ChatMessageFragment {
             Utils.enhancedDeepEquals(this.text, other.text) &&
             Utils.enhancedDeepEquals(this.querySuggestion, other.querySuggestion) &&
             Utils.enhancedDeepEquals(this.file, other.file) &&
-            Utils.enhancedDeepEquals(this.action, other.action);
+            Utils.enhancedDeepEquals(this.action, other.action) &&
+            Utils.enhancedDeepEquals(this.citation, other.citation);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             structuredResults, trackingToken, text,
-            querySuggestion, file, action);
+            querySuggestion, file, action,
+            citation);
     }
     
     @Override
@@ -261,7 +302,8 @@ public class ChatMessageFragment {
                 "text", text,
                 "querySuggestion", querySuggestion,
                 "file", file,
-                "action", action);
+                "action", action,
+                "citation", citation);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -278,6 +320,8 @@ public class ChatMessageFragment {
         private Optional<? extends ChatFile> file = Optional.empty();
 
         private Optional<? extends ToolInfo> action = Optional.empty();
+
+        private Optional<? extends ChatMessageCitation> citation = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -379,11 +423,31 @@ public class ChatMessageFragment {
             return this;
         }
 
+
+        /**
+         * Information about the source for a ChatMessage.
+         */
+        public Builder citation(ChatMessageCitation citation) {
+            Utils.checkNotNull(citation, "citation");
+            this.citation = Optional.ofNullable(citation);
+            return this;
+        }
+
+        /**
+         * Information about the source for a ChatMessage.
+         */
+        public Builder citation(Optional<? extends ChatMessageCitation> citation) {
+            Utils.checkNotNull(citation, "citation");
+            this.citation = citation;
+            return this;
+        }
+
         public ChatMessageFragment build() {
 
             return new ChatMessageFragment(
                 structuredResults, trackingToken, text,
-                querySuggestion, file, action);
+                querySuggestion, file, action,
+                citation);
         }
 
     }

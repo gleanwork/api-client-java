@@ -17,12 +17,11 @@ import com.glean.api_client.glean_api_client.models.operations.Getdocumentsbyfac
 import com.glean.api_client.glean_api_client.models.operations.GetdocumentsbyfacetsResponse;
 import com.glean.api_client.glean_api_client.models.operations.SummarizeRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.SummarizeResponse;
-import com.glean.api_client.glean_api_client.operations.GetdocpermissionsOperation;
-import com.glean.api_client.glean_api_client.operations.GetdocumentsOperation;
-import com.glean.api_client.glean_api_client.operations.GetdocumentsbyfacetsOperation;
-import com.glean.api_client.glean_api_client.operations.SummarizeOperation;
+import com.glean.api_client.glean_api_client.operations.Getdocpermissions;
+import com.glean.api_client.glean_api_client.operations.Getdocuments;
+import com.glean.api_client.glean_api_client.operations.Getdocumentsbyfacets;
+import com.glean.api_client.glean_api_client.operations.Summarize;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -32,6 +31,7 @@ public class ClientDocuments {
     ClientDocuments(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Read document permissions
      * 
@@ -54,7 +54,7 @@ public class ClientDocuments {
      */
     public GetdocpermissionsResponse retrievePermissions(GetDocPermissionsRequest request) throws Exception {
         RequestOperation<GetDocPermissionsRequest, GetdocpermissionsResponse> operation
-              = new GetdocpermissionsOperation(sdkConfiguration);
+              = new Getdocpermissions.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -92,7 +92,7 @@ public class ClientDocuments {
      */
     public GetdocumentsResponse retrieve(Optional<? extends GetDocumentsRequest> request) throws Exception {
         RequestOperation<Optional<? extends GetDocumentsRequest>, GetdocumentsResponse> operation
-              = new GetdocumentsOperation(sdkConfiguration);
+              = new Getdocuments.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -130,7 +130,7 @@ public class ClientDocuments {
      */
     public GetdocumentsbyfacetsResponse retrieveByFacets(Optional<? extends GetDocumentsByFacetsRequest> request) throws Exception {
         RequestOperation<Optional<? extends GetDocumentsByFacetsRequest>, GetdocumentsbyfacetsResponse> operation
-              = new GetdocumentsbyfacetsOperation(sdkConfiguration);
+              = new Getdocumentsbyfacets.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -156,7 +156,7 @@ public class ClientDocuments {
      */
     public SummarizeResponse summarize(SummarizeRequest request) throws Exception {
         RequestOperation<SummarizeRequest, SummarizeResponse> operation
-              = new SummarizeOperation(sdkConfiguration);
+              = new Summarize.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

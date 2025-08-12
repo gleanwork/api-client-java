@@ -15,6 +15,7 @@ Creates a new one-time report and executes its batch job.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="createreport" method="post" path="/rest/api/v1/governance/data/reports" -->
 ```java
 package hello.world;
 
@@ -67,6 +68,7 @@ Downloads CSV violations report for a specific report id.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="downloadreportcsv" method="get" path="/rest/api/v1/governance/data/reports/{id}/download" -->
 ```java
 package hello.world;
 
@@ -115,6 +117,7 @@ Fetches the status of the run corresponding to the report-id.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="getreportstatus" method="get" path="/rest/api/v1/governance/data/reports/{id}/status" -->
 ```java
 package hello.world;
 

@@ -6,7 +6,7 @@ package com.glean.api_client.glean_api_client.models.operations;
 import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
-import com.glean.api_client.glean_api_client.operations.GetdocvisibilityOperation;
+import com.glean.api_client.glean_api_client.operations.Getdocvisibility;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -45,7 +45,7 @@ public class GetdocvisibilityRequestBuilder {
     public GetdocvisibilityResponse call() throws Exception {
         
         RequestOperation<GetdocvisibilityRequest, GetdocvisibilityResponse> operation
-              = new GetdocvisibilityOperation(sdkConfiguration);
+              = new Getdocvisibility.Sync(sdkConfiguration);
         GetdocvisibilityRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

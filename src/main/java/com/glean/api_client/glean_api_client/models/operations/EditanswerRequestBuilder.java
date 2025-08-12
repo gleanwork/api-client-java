@@ -7,7 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.EditAnswerRequest;
-import com.glean.api_client.glean_api_client.operations.EditanswerOperation;
+import com.glean.api_client.glean_api_client.operations.Editanswer;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -29,7 +29,7 @@ public class EditanswerRequestBuilder {
     public EditanswerResponse call() throws Exception {
         
         RequestOperation<EditAnswerRequest, EditanswerResponse> operation
-              = new EditanswerOperation(sdkConfiguration);
+              = new Editanswer.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

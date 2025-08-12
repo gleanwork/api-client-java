@@ -21,7 +21,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 0.7.0
+  version: 0.8.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: glean-api-client
@@ -31,6 +31,7 @@ java:
   companyName: Glean
   companyURL: https://www.glean.com
   defaultErrorName: APIException
+  enableAsync: false
   enableCustomCodeRegions: false
   envVarPrefix: GLEAN
   flattenGlobalSecurity: true

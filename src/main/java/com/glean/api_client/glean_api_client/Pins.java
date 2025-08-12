@@ -20,14 +20,11 @@ import com.glean.api_client.glean_api_client.models.operations.PinRequestBuilder
 import com.glean.api_client.glean_api_client.models.operations.PinResponse;
 import com.glean.api_client.glean_api_client.models.operations.UnpinRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.UnpinResponse;
-import com.glean.api_client.glean_api_client.operations.EditpinOperation;
-import com.glean.api_client.glean_api_client.operations.GetpinOperation;
-import com.glean.api_client.glean_api_client.operations.ListpinsOperation;
-import com.glean.api_client.glean_api_client.operations.PinOperation;
-import com.glean.api_client.glean_api_client.operations.UnpinOperation;
+import com.glean.api_client.glean_api_client.operations.Editpin;
+import com.glean.api_client.glean_api_client.operations.Getpin;
+import com.glean.api_client.glean_api_client.operations.Listpins;
+import com.glean.api_client.glean_api_client.operations.Pin;
 import java.lang.Exception;
-import java.util.List;
-import java.util.Optional;
 
 
 public class Pins {
@@ -36,6 +33,7 @@ public class Pins {
     Pins(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Update pin
      * 
@@ -58,7 +56,7 @@ public class Pins {
      */
     public EditpinResponse update(EditPinRequest request) throws Exception {
         RequestOperation<EditPinRequest, EditpinResponse> operation
-              = new EditpinOperation(sdkConfiguration);
+              = new Editpin.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -84,7 +82,7 @@ public class Pins {
      */
     public GetpinResponse retrieve(GetPinRequest request) throws Exception {
         RequestOperation<GetPinRequest, GetpinResponse> operation
-              = new GetpinOperation(sdkConfiguration);
+              = new Getpin.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -110,7 +108,7 @@ public class Pins {
      */
     public ListpinsResponse list(ListpinsRequest request) throws Exception {
         RequestOperation<ListpinsRequest, ListpinsResponse> operation
-              = new ListpinsOperation(sdkConfiguration);
+              = new Listpins.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -136,7 +134,7 @@ public class Pins {
      */
     public PinResponse create(PinRequest request) throws Exception {
         RequestOperation<PinRequest, PinResponse> operation
-              = new PinOperation(sdkConfiguration);
+              = new Pin.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -162,7 +160,7 @@ public class Pins {
      */
     public UnpinResponse remove(Unpin request) throws Exception {
         RequestOperation<Unpin, UnpinResponse> operation
-              = new UnpinOperation(sdkConfiguration);
+              = new com.glean.api_client.glean_api_client.operations.Unpin.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

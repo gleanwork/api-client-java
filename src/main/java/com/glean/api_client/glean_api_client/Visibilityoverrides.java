@@ -11,8 +11,8 @@ import com.glean.api_client.glean_api_client.models.operations.GetdocvisibilityR
 import com.glean.api_client.glean_api_client.models.operations.GetdocvisibilityResponse;
 import com.glean.api_client.glean_api_client.models.operations.SetdocvisibilityRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.SetdocvisibilityResponse;
-import com.glean.api_client.glean_api_client.operations.GetdocvisibilityOperation;
-import com.glean.api_client.glean_api_client.operations.SetdocvisibilityOperation;
+import com.glean.api_client.glean_api_client.operations.Getdocvisibility;
+import com.glean.api_client.glean_api_client.operations.Setdocvisibility;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.List;
@@ -25,6 +25,7 @@ public class Visibilityoverrides {
     Visibilityoverrides(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Fetches documents visibility
      * 
@@ -64,7 +65,7 @@ public class Visibilityoverrides {
                 .docIds(docIds)
                 .build();
         RequestOperation<GetdocvisibilityRequest, GetdocvisibilityResponse> operation
-              = new GetdocvisibilityOperation(sdkConfiguration);
+              = new Getdocvisibility.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -90,7 +91,7 @@ public class Visibilityoverrides {
      */
     public SetdocvisibilityResponse create(UpdateDocumentVisibilityOverridesRequest request) throws Exception {
         RequestOperation<UpdateDocumentVisibilityOverridesRequest, SetdocvisibilityResponse> operation
-              = new SetdocvisibilityOperation(sdkConfiguration);
+              = new Setdocvisibility.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

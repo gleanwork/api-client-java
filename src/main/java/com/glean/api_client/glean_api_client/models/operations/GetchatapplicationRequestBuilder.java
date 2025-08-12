@@ -7,7 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.GetChatApplicationRequest;
-import com.glean.api_client.glean_api_client.operations.GetchatapplicationOperation;
+import com.glean.api_client.glean_api_client.operations.Getchatapplication;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
@@ -53,7 +53,7 @@ public class GetchatapplicationRequestBuilder {
     public GetchatapplicationResponse call() throws Exception {
         
         RequestOperation<GetchatapplicationRequest, GetchatapplicationResponse> operation
-              = new GetchatapplicationOperation(sdkConfiguration);
+              = new Getchatapplication.Sync(sdkConfiguration);
         GetchatapplicationRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

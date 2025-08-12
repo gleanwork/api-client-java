@@ -96,13 +96,6 @@ public class SearchRequest {
     private Optional<Long> timeoutMillis;
 
     /**
-     * People associated with the search request. Hints to the server to fetch additional information for these people. Note that in this request, an email may be used as a person's obfuscatedId value.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("people")
-    private Optional<? extends List<Person>> people;
-
-    /**
      * Whether or not to disable spellcheck.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -123,7 +116,6 @@ public class SearchRequest {
             @JsonProperty("inputDetails") Optional<? extends SearchRequestInputDetails> inputDetails,
             @JsonProperty("requestOptions") Optional<? extends SearchRequestOptions> requestOptions,
             @JsonProperty("timeoutMillis") Optional<Long> timeoutMillis,
-            @JsonProperty("people") Optional<? extends List<Person>> people,
             @JsonProperty("disableSpellcheck") Optional<Boolean> disableSpellcheck) {
         Utils.checkNotNull(timestamp, "timestamp");
         Utils.checkNotNull(trackingToken, "trackingToken");
@@ -137,7 +129,6 @@ public class SearchRequest {
         Utils.checkNotNull(inputDetails, "inputDetails");
         Utils.checkNotNull(requestOptions, "requestOptions");
         Utils.checkNotNull(timeoutMillis, "timeoutMillis");
-        Utils.checkNotNull(people, "people");
         Utils.checkNotNull(disableSpellcheck, "disableSpellcheck");
         this.timestamp = timestamp;
         this.trackingToken = trackingToken;
@@ -151,7 +142,6 @@ public class SearchRequest {
         this.inputDetails = inputDetails;
         this.requestOptions = requestOptions;
         this.timeoutMillis = timeoutMillis;
-        this.people = people;
         this.disableSpellcheck = disableSpellcheck;
     }
     
@@ -161,7 +151,7 @@ public class SearchRequest {
             Optional.empty(), Optional.empty(), Optional.empty(),
             query, Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty());
     }
 
     /**
@@ -251,15 +241,6 @@ public class SearchRequest {
     @JsonIgnore
     public Optional<Long> timeoutMillis() {
         return timeoutMillis;
-    }
-
-    /**
-     * People associated with the search request. Hints to the server to fetch additional information for these people. Note that in this request, an email may be used as a person's obfuscatedId value.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<List<Person>> people() {
-        return (Optional<List<Person>>) people;
     }
 
     /**
@@ -470,25 +451,6 @@ public class SearchRequest {
     }
 
     /**
-     * People associated with the search request. Hints to the server to fetch additional information for these people. Note that in this request, an email may be used as a person's obfuscatedId value.
-     */
-    public SearchRequest withPeople(List<Person> people) {
-        Utils.checkNotNull(people, "people");
-        this.people = Optional.ofNullable(people);
-        return this;
-    }
-
-
-    /**
-     * People associated with the search request. Hints to the server to fetch additional information for these people. Note that in this request, an email may be used as a person's obfuscatedId value.
-     */
-    public SearchRequest withPeople(Optional<? extends List<Person>> people) {
-        Utils.checkNotNull(people, "people");
-        this.people = people;
-        return this;
-    }
-
-    /**
      * Whether or not to disable spellcheck.
      */
     public SearchRequest withDisableSpellcheck(boolean disableSpellcheck) {
@@ -529,7 +491,6 @@ public class SearchRequest {
             Utils.enhancedDeepEquals(this.inputDetails, other.inputDetails) &&
             Utils.enhancedDeepEquals(this.requestOptions, other.requestOptions) &&
             Utils.enhancedDeepEquals(this.timeoutMillis, other.timeoutMillis) &&
-            Utils.enhancedDeepEquals(this.people, other.people) &&
             Utils.enhancedDeepEquals(this.disableSpellcheck, other.disableSpellcheck);
     }
     
@@ -540,7 +501,7 @@ public class SearchRequest {
             sourceDocument, pageSize, maxSnippetSize,
             query, cursor, resultTabIds,
             inputDetails, requestOptions, timeoutMillis,
-            people, disableSpellcheck);
+            disableSpellcheck);
     }
     
     @Override
@@ -558,7 +519,6 @@ public class SearchRequest {
                 "inputDetails", inputDetails,
                 "requestOptions", requestOptions,
                 "timeoutMillis", timeoutMillis,
-                "people", people,
                 "disableSpellcheck", disableSpellcheck);
     }
 
@@ -588,8 +548,6 @@ public class SearchRequest {
         private Optional<? extends SearchRequestOptions> requestOptions = Optional.empty();
 
         private Optional<Long> timeoutMillis = Optional.empty();
-
-        private Optional<? extends List<Person>> people = Optional.empty();
 
         private Optional<Boolean> disableSpellcheck = Optional.empty();
 
@@ -794,25 +752,6 @@ public class SearchRequest {
 
 
         /**
-         * People associated with the search request. Hints to the server to fetch additional information for these people. Note that in this request, an email may be used as a person's obfuscatedId value.
-         */
-        public Builder people(List<Person> people) {
-            Utils.checkNotNull(people, "people");
-            this.people = Optional.ofNullable(people);
-            return this;
-        }
-
-        /**
-         * People associated with the search request. Hints to the server to fetch additional information for these people. Note that in this request, an email may be used as a person's obfuscatedId value.
-         */
-        public Builder people(Optional<? extends List<Person>> people) {
-            Utils.checkNotNull(people, "people");
-            this.people = people;
-            return this;
-        }
-
-
-        /**
          * Whether or not to disable spellcheck.
          */
         public Builder disableSpellcheck(boolean disableSpellcheck) {
@@ -837,7 +776,7 @@ public class SearchRequest {
                 sourceDocument, pageSize, maxSnippetSize,
                 query, cursor, resultTabIds,
                 inputDetails, requestOptions, timeoutMillis,
-                people, disableSpellcheck);
+                disableSpellcheck);
         }
 
     }

@@ -6,7 +6,7 @@ package com.glean.api_client.glean_api_client.models.operations;
 import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
-import com.glean.api_client.glean_api_client.operations.DeleteallchatsOperation;
+import com.glean.api_client.glean_api_client.operations.Deleteallchats;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
@@ -44,7 +44,7 @@ public class DeleteallchatsRequestBuilder {
     public DeleteallchatsResponse call() throws Exception {
         
         RequestOperation<DeleteallchatsRequest, DeleteallchatsResponse> operation
-              = new DeleteallchatsOperation(sdkConfiguration);
+              = new Deleteallchats.Sync(sdkConfiguration);
         DeleteallchatsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

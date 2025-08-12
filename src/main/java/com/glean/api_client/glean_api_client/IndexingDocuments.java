@@ -37,20 +37,19 @@ import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1Ind
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1IndexdocumentsResponse;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1ProcessalldocumentsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1ProcessalldocumentsResponse;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1BulkindexdocumentsOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1CheckdocumentaccessOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DebugDatasourceDocumentOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DebugDatasourceDocumentsOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DeletedocumentOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1GetdocumentcountOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1GetdocumentstatusOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1IndexdocumentOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1IndexdocumentsOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1ProcessalldocumentsOperation;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Bulkindexdocuments;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Checkdocumentaccess;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DebugDatasourceDocument;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DebugDatasourceDocuments;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Deletedocument;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Getdocumentcount;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Getdocumentstatus;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Indexdocument;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Indexdocuments;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Processalldocuments;
 import java.lang.Deprecated;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -60,6 +59,7 @@ public class IndexingDocuments {
     IndexingDocuments(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Index document
      * 
@@ -82,14 +82,14 @@ public class IndexingDocuments {
      */
     public PostApiIndexV1IndexdocumentResponse addOrUpdate(IndexDocumentRequest request) throws Exception {
         RequestOperation<IndexDocumentRequest, PostApiIndexV1IndexdocumentResponse> operation
-              = new PostApiIndexV1IndexdocumentOperation(sdkConfiguration);
+              = new PostApiIndexV1Indexdocument.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Index documents
      * 
-     * <p>Adds or updates multiple documents in the index. Please refer to the [bulk indexing](https://developers.glean.com/docs/indexing_api_bulk_indexing/#choosing-indexdocuments-vs-bulkindexdocuments) documentation for an explanation of when to use this endpoint.
+     * <p>Adds or updates multiple documents in the index. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-indexing/choosing-indexdocuments-vs-bulkindexdocuments) documentation for an explanation of when to use this endpoint.
      * 
      * @return The call builder
      */
@@ -100,7 +100,7 @@ public class IndexingDocuments {
     /**
      * Index documents
      * 
-     * <p>Adds or updates multiple documents in the index. Please refer to the [bulk indexing](https://developers.glean.com/docs/indexing_api_bulk_indexing/#choosing-indexdocuments-vs-bulkindexdocuments) documentation for an explanation of when to use this endpoint.
+     * <p>Adds or updates multiple documents in the index. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-indexing/choosing-indexdocuments-vs-bulkindexdocuments) documentation for an explanation of when to use this endpoint.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -108,14 +108,14 @@ public class IndexingDocuments {
      */
     public PostApiIndexV1IndexdocumentsResponse index(IndexDocumentsRequest request) throws Exception {
         RequestOperation<IndexDocumentsRequest, PostApiIndexV1IndexdocumentsResponse> operation
-              = new PostApiIndexV1IndexdocumentsOperation(sdkConfiguration);
+              = new PostApiIndexV1Indexdocuments.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
      * Bulk index documents
      * 
-     * <p>Replaces the documents in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/docs/indexing_api_bulk_indexing/#bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces the documents in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
      * 
      * @return The call builder
      */
@@ -126,7 +126,7 @@ public class IndexingDocuments {
     /**
      * Bulk index documents
      * 
-     * <p>Replaces the documents in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/docs/indexing_api_bulk_indexing/#bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces the documents in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -134,7 +134,7 @@ public class IndexingDocuments {
      */
     public PostApiIndexV1BulkindexdocumentsResponse bulkIndex(BulkIndexDocumentsRequest request) throws Exception {
         RequestOperation<BulkIndexDocumentsRequest, PostApiIndexV1BulkindexdocumentsResponse> operation
-              = new PostApiIndexV1BulkindexdocumentsOperation(sdkConfiguration);
+              = new PostApiIndexV1Bulkindexdocuments.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -202,7 +202,7 @@ public class IndexingDocuments {
      */
     public PostApiIndexV1ProcessalldocumentsResponse processAll(Optional<? extends ProcessAllDocumentsRequest> request) throws Exception {
         RequestOperation<Optional<? extends ProcessAllDocumentsRequest>, PostApiIndexV1ProcessalldocumentsResponse> operation
-              = new PostApiIndexV1ProcessalldocumentsOperation(sdkConfiguration);
+              = new PostApiIndexV1Processalldocuments.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -228,7 +228,7 @@ public class IndexingDocuments {
      */
     public PostApiIndexV1DeletedocumentResponse delete(DeleteDocumentRequest request) throws Exception {
         RequestOperation<DeleteDocumentRequest, PostApiIndexV1DeletedocumentResponse> operation
-              = new PostApiIndexV1DeletedocumentOperation(sdkConfiguration);
+              = new PostApiIndexV1Deletedocument.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -237,7 +237,7 @@ public class IndexingDocuments {
      * 
      * <p>Gives various information that would help in debugging related to a particular document. Currently in beta, might undergo breaking changes without prior notice.
      * 
-     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/docs/indexing_api/indexing_api_troubleshooting/) for more information.
+     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
      * 
      * @return The call builder
      */
@@ -250,16 +250,14 @@ public class IndexingDocuments {
      * 
      * <p>Gives various information that would help in debugging related to a particular document. Currently in beta, might undergo breaking changes without prior notice.
      * 
-     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/docs/indexing_api/indexing_api_troubleshooting/) for more information.
+     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
      * 
      * @param datasource The datasource to which the document belongs
      * @param debugDocumentRequest Describes the request body of the /debug/{datasource}/document API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1DebugDatasourceDocumentResponse debug(
-            String datasource,
-            DebugDocumentRequest debugDocumentRequest) throws Exception {
+    public PostApiIndexV1DebugDatasourceDocumentResponse debug(String datasource, DebugDocumentRequest debugDocumentRequest) throws Exception {
         PostApiIndexV1DebugDatasourceDocumentRequest request =
             PostApiIndexV1DebugDatasourceDocumentRequest
                 .builder()
@@ -267,7 +265,7 @@ public class IndexingDocuments {
                 .debugDocumentRequest(debugDocumentRequest)
                 .build();
         RequestOperation<PostApiIndexV1DebugDatasourceDocumentRequest, PostApiIndexV1DebugDatasourceDocumentResponse> operation
-              = new PostApiIndexV1DebugDatasourceDocumentOperation(sdkConfiguration);
+              = new PostApiIndexV1DebugDatasourceDocument.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -276,7 +274,7 @@ public class IndexingDocuments {
      * 
      * <p>Gives various information that would help in debugging related to a batch of documents. Currently in beta, might undergo breaking changes without prior notice.
      * 
-     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/docs/indexing_api/indexing_api_troubleshooting/) for more information.
+     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
      * 
      * @return The call builder
      */
@@ -289,16 +287,14 @@ public class IndexingDocuments {
      * 
      * <p>Gives various information that would help in debugging related to a batch of documents. Currently in beta, might undergo breaking changes without prior notice.
      * 
-     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/docs/indexing_api/indexing_api_troubleshooting/) for more information.
+     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
      * 
      * @param datasource The datasource to which the document belongs
      * @param debugDocumentsRequest Describes the request body of the /debug/{datasource}/documents API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostApiIndexV1DebugDatasourceDocumentsResponse debugMany(
-            String datasource,
-            DebugDocumentsRequest debugDocumentsRequest) throws Exception {
+    public PostApiIndexV1DebugDatasourceDocumentsResponse debugMany(String datasource, DebugDocumentsRequest debugDocumentsRequest) throws Exception {
         PostApiIndexV1DebugDatasourceDocumentsRequest request =
             PostApiIndexV1DebugDatasourceDocumentsRequest
                 .builder()
@@ -306,7 +302,7 @@ public class IndexingDocuments {
                 .debugDocumentsRequest(debugDocumentsRequest)
                 .build();
         RequestOperation<PostApiIndexV1DebugDatasourceDocumentsRequest, PostApiIndexV1DebugDatasourceDocumentsResponse> operation
-              = new PostApiIndexV1DebugDatasourceDocumentsOperation(sdkConfiguration);
+              = new PostApiIndexV1DebugDatasourceDocuments.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -315,7 +311,7 @@ public class IndexingDocuments {
      * 
      * <p>Check if a given user has access to access a document in a custom datasource
      * 
-     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/docs/indexing_api/indexing_api_troubleshooting/) for more information.
+     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
      * 
      * @return The call builder
      */
@@ -328,7 +324,7 @@ public class IndexingDocuments {
      * 
      * <p>Check if a given user has access to access a document in a custom datasource
      * 
-     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/docs/indexing_api/indexing_api_troubleshooting/) for more information.
+     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -336,7 +332,7 @@ public class IndexingDocuments {
      */
     public PostApiIndexV1CheckdocumentaccessResponse checkAccess(CheckDocumentAccessRequest request) throws Exception {
         RequestOperation<CheckDocumentAccessRequest, PostApiIndexV1CheckdocumentaccessResponse> operation
-              = new PostApiIndexV1CheckdocumentaccessOperation(sdkConfiguration);
+              = new PostApiIndexV1Checkdocumentaccess.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -345,7 +341,7 @@ public class IndexingDocuments {
      * 
      * <p>Intended for debugging/validation. Fetches the current upload and indexing status of documents.
      * 
-     * <p>Tip: Use [/debug/{datasource}/document](https://developers.glean.com/docs/indexing_api/indexing_api_troubleshooting/#debug-datasource-document) for richer information.
+     * <p>Tip: Use [/debug/{datasource}/document](https://developers.glean.com/indexing/debugging/datasource-document) for richer information.
      * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -360,7 +356,7 @@ public class IndexingDocuments {
      * 
      * <p>Intended for debugging/validation. Fetches the current upload and indexing status of documents.
      * 
-     * <p>Tip: Use [/debug/{datasource}/document](https://developers.glean.com/docs/indexing_api/indexing_api_troubleshooting/#debug-datasource-document) for richer information.
+     * <p>Tip: Use [/debug/{datasource}/document](https://developers.glean.com/indexing/debugging/datasource-document) for richer information.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -370,7 +366,7 @@ public class IndexingDocuments {
     @Deprecated
     public PostApiIndexV1GetdocumentstatusResponse status(GetDocumentStatusRequest request) throws Exception {
         RequestOperation<GetDocumentStatusRequest, PostApiIndexV1GetdocumentstatusResponse> operation
-              = new PostApiIndexV1GetdocumentstatusOperation(sdkConfiguration);
+              = new PostApiIndexV1Getdocumentstatus.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -379,7 +375,7 @@ public class IndexingDocuments {
      * 
      * <p>Fetches document count for the specified custom datasource.
      * 
-     * <p>Tip: Use [/debug/{datasource}/status](https://developers.glean.com/docs/indexing_api/indexing_api_troubleshooting/#debug-datasource-status) for richer information.
+     * <p>Tip: Use [/debug/{datasource}/status](https://developers.glean.com/indexing/debugging/datasource-status) for richer information.
      * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -394,7 +390,7 @@ public class IndexingDocuments {
      * 
      * <p>Fetches document count for the specified custom datasource.
      * 
-     * <p>Tip: Use [/debug/{datasource}/status](https://developers.glean.com/docs/indexing_api/indexing_api_troubleshooting/#debug-datasource-status) for richer information.
+     * <p>Tip: Use [/debug/{datasource}/status](https://developers.glean.com/indexing/debugging/datasource-status) for richer information.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -404,7 +400,7 @@ public class IndexingDocuments {
     @Deprecated
     public PostApiIndexV1GetdocumentcountResponse count(GetDocumentCountRequest request) throws Exception {
         RequestOperation<GetDocumentCountRequest, PostApiIndexV1GetdocumentcountResponse> operation
-              = new PostApiIndexV1GetdocumentcountOperation(sdkConfiguration);
+              = new PostApiIndexV1Getdocumentcount.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

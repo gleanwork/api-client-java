@@ -11,11 +11,9 @@ import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1Add
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1AdddatasourceResponse;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1GetdatasourceconfigRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1GetdatasourceconfigResponse;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1AdddatasourceOperation;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1GetdatasourceconfigOperation;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Adddatasource;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Getdatasourceconfig;
 import java.lang.Exception;
-import java.util.List;
-import java.util.Optional;
 
 
 public class Datasources {
@@ -24,6 +22,7 @@ public class Datasources {
     Datasources(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Add or update datasource
      * 
@@ -46,7 +45,7 @@ public class Datasources {
      */
     public PostApiIndexV1AdddatasourceResponse add(CustomDatasourceConfig request) throws Exception {
         RequestOperation<CustomDatasourceConfig, PostApiIndexV1AdddatasourceResponse> operation
-              = new PostApiIndexV1AdddatasourceOperation(sdkConfiguration);
+              = new PostApiIndexV1Adddatasource.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -72,7 +71,7 @@ public class Datasources {
      */
     public PostApiIndexV1GetdatasourceconfigResponse retrieveConfig(GetDatasourceConfigRequest request) throws Exception {
         RequestOperation<GetDatasourceConfigRequest, PostApiIndexV1GetdatasourceconfigResponse> operation
-              = new PostApiIndexV1GetdatasourceconfigOperation(sdkConfiguration);
+              = new PostApiIndexV1Getdatasourceconfig.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

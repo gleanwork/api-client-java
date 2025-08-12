@@ -7,7 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.GetDatasourceConfigRequest;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1GetdatasourceconfigOperation;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Getdatasourceconfig;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -29,7 +29,7 @@ public class PostApiIndexV1GetdatasourceconfigRequestBuilder {
     public PostApiIndexV1GetdatasourceconfigResponse call() throws Exception {
         
         RequestOperation<GetDatasourceConfigRequest, PostApiIndexV1GetdatasourceconfigResponse> operation
-              = new PostApiIndexV1GetdatasourceconfigOperation(sdkConfiguration);
+              = new PostApiIndexV1Getdatasourceconfig.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

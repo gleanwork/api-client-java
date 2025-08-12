@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0359d4fe-2923-46fc-aaca-cf70b48dcfa1
 management:
-  docChecksum: bb65a174a6b697994f7bde3845843d9d
+  docChecksum: b0738d0775f5848e1288d7ca6b0400e4
   docVersion: 0.9.0
-  speakeasyVersion: 1.580.2
-  generationVersion: 2.656.5
-  releaseVersion: 0.7.0
-  configChecksum: 5763d80380dc0fbbb84875250841f11a
+  speakeasyVersion: 1.603.0
+  generationVersion: 2.681.1
+  releaseVersion: 0.8.0
+  configChecksum: 9d45cfc637ac0c88f5647f855791005b
   repoURL: https://github.com/gleanwork/api-client-java.git
   published: true
 features:
@@ -14,7 +14,7 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.0.1
     constsAndDefaults: 0.1.1
-    core: 3.44.0
+    core: 3.45.3
     deprecations: 2.81.1
     examples: 2.81.6
     flattening: 2.81.1
@@ -376,6 +376,10 @@ generatedFiles:
   - docs/models/components/ListShortcutsPaginatedResponse.md
   - docs/models/components/ManualFeedbackInfo.md
   - docs/models/components/ManualFeedbackInfoSource.md
+  - docs/models/components/ManualFeedbackInfoVote.md
+  - docs/models/components/ManualFeedbackSideBySideInfo.md
+  - docs/models/components/ManualFeedbackSideBySideInfoSource.md
+  - docs/models/components/ManualFeedbackSideBySideInfoVote.md
   - docs/models/components/Meeting.md
   - docs/models/components/Message.md
   - docs/models/components/MessageTextBlock.md
@@ -442,6 +446,7 @@ generatedFiles:
   - docs/models/components/ReportStatusResponseStatus.md
   - docs/models/components/RequestType.md
   - docs/models/components/ResponseHint.md
+  - docs/models/components/ResponseMetadata.md
   - docs/models/components/ResponseStatus.md
   - docs/models/components/RestrictionFilters.md
   - docs/models/components/ResultDocument.md
@@ -479,6 +484,7 @@ generatedFiles:
   - docs/models/components/ShortcutInsightsResponse.md
   - docs/models/components/ShortcutMutableProperties.md
   - docs/models/components/ShortcutsPaginationMetadata.md
+  - docs/models/components/SideBySideImplementation.md
   - docs/models/components/SocialNetwork.md
   - docs/models/components/SocialNetworkDefinition.md
   - docs/models/components/SortOptions.md
@@ -554,7 +560,6 @@ generatedFiles:
   - docs/models/components/VerifyRequest.md
   - docs/models/components/VerifyRequestAction.md
   - docs/models/components/ViewerInfo.md
-  - docs/models/components/Vote.md
   - docs/models/components/WarningType.md
   - docs/models/components/Workflow.md
   - docs/models/components/WorkflowFeedbackInfo.md
@@ -1116,6 +1121,10 @@ generatedFiles:
   - src/main/java/com/glean/api_client/glean_api_client/models/components/ListShortcutsPaginatedResponse.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/ManualFeedbackInfo.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/ManualFeedbackInfoSource.java
+  - src/main/java/com/glean/api_client/glean_api_client/models/components/ManualFeedbackInfoVote.java
+  - src/main/java/com/glean/api_client/glean_api_client/models/components/ManualFeedbackSideBySideInfo.java
+  - src/main/java/com/glean/api_client/glean_api_client/models/components/ManualFeedbackSideBySideInfoSource.java
+  - src/main/java/com/glean/api_client/glean_api_client/models/components/ManualFeedbackSideBySideInfoVote.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/Meeting.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/Message.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/MessageTextBlock.java
@@ -1182,6 +1191,7 @@ generatedFiles:
   - src/main/java/com/glean/api_client/glean_api_client/models/components/ReportStatusResponseStatus.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/RequestType.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/ResponseHint.java
+  - src/main/java/com/glean/api_client/glean_api_client/models/components/ResponseMetadata.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/ResponseStatus.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/RestrictionFilters.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/ResultDocument.java
@@ -1219,6 +1229,7 @@ generatedFiles:
   - src/main/java/com/glean/api_client/glean_api_client/models/components/ShortcutInsightsResponse.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/ShortcutMutableProperties.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/ShortcutsPaginationMetadata.java
+  - src/main/java/com/glean/api_client/glean_api_client/models/components/SideBySideImplementation.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/SocialNetwork.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/SocialNetworkDefinition.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/SortOptions.java
@@ -1294,7 +1305,6 @@ generatedFiles:
   - src/main/java/com/glean/api_client/glean_api_client/models/components/VerifyRequest.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/VerifyRequestAction.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/ViewerInfo.java
-  - src/main/java/com/glean/api_client/glean_api_client/models/components/Vote.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/WarningType.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/Workflow.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/WorkflowFeedbackInfo.java
@@ -1554,116 +1564,116 @@ generatedFiles:
   - src/main/java/com/glean/api_client/glean_api_client/models/operations/UploadchatfilesResponse.java
   - src/main/java/com/glean/api_client/glean_api_client/models/operations/VerifyRequestBuilder.java
   - src/main/java/com/glean/api_client/glean_api_client/models/operations/VerifyResponse.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/ActivityOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/AddcollectionitemsOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/AddverificationreminderOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/AdminsearchOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/AutocompleteOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/ChatOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/ChatStreamOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/CreateAndStreamRunOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/CreateAndWaitRunOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/CreateannouncementOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/CreateanswerOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/CreateauthtokenOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/CreatecollectionOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/CreatepolicyOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/CreatereportOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/CreateshortcutOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/DeleteallchatsOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/DeleteannouncementOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/DeleteanswerOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/DeletechatfilesOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/DeletechatsOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/DeletecollectionOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/DeletecollectionitemOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/DeleteshortcutOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/DownloadpolicycsvOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/DownloadreportcsvOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/EditanswerOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/EditcollectionOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/EditcollectionitemOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/EditpinOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/FeedOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/FeedbackOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/GetAgentOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/GetAgentSchemasOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/GetRestApiV1ToolsListOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/GetanswerOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/GetchatOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/GetchatapplicationOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/GetchatfilesOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/GetcollectionOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/GetdocpermissionsOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/GetdocumentsOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/GetdocumentsbyfacetsOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/GetdocvisibilityOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/GetpinOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/GetpolicyOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/GetreportstatusOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/GetshortcutOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/InsightsOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/ListanswersOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/ListchatsOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/ListcollectionsOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/ListentitiesOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/ListpinsOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/ListpoliciesOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/ListshortcutsOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/ListverificationsOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/MessagesOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Activity.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Addcollectionitems.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Addverificationreminder.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Adminsearch.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Autocomplete.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Chat.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/ChatStream.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/CreateAndStreamRun.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/CreateAndWaitRun.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Createannouncement.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Createanswer.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Createauthtoken.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Createcollection.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Createpolicy.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Createreport.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Createshortcut.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Deleteallchats.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Deleteannouncement.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Deleteanswer.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Deletechatfiles.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Deletechats.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Deletecollection.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Deletecollectionitem.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Deleteshortcut.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Downloadpolicycsv.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Downloadreportcsv.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Editanswer.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Editcollection.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Editcollectionitem.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Editpin.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Feed.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Feedback.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/GetAgent.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/GetAgentSchemas.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/GetRestApiV1ToolsList.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Getanswer.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Getchat.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Getchatapplication.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Getchatfiles.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Getcollection.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Getdocpermissions.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Getdocuments.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Getdocumentsbyfacets.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Getdocvisibility.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Getpin.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Getpolicy.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Getreportstatus.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Getshortcut.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Insights.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Listanswers.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Listchats.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Listcollections.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Listentities.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Listpins.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Listpolicies.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Listshortcuts.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Listverifications.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Messages.java
   - src/main/java/com/glean/api_client/glean_api_client/operations/Operations.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PeopleOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PinOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1AdddatasourceOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1BetausersOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1BulkindexdocumentsOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1BulkindexemployeesOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1BulkindexgroupsOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1BulkindexmembershipsOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1BulkindexshortcutsOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1BulkindexteamsOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1BulkindexusersOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1CheckdocumentaccessOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1DebugDatasourceDocumentOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1DebugDatasourceDocumentsOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1DebugDatasourceStatusOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1DebugDatasourceUserOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1DeletedocumentOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1DeleteemployeeOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1DeletegroupOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1DeletemembershipOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1DeleteteamOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1DeleteuserOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1GetdatasourceconfigOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1GetdocumentcountOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1GetdocumentstatusOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1GetusercountOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1IndexdocumentOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1IndexdocumentsOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1IndexemployeeOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1IndexgroupOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1IndexmembershipOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1IndexteamOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1IndexuserOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1ProcessalldocumentsOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1ProcessallemployeesandteamsOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1ProcessallmembershipsOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1RotatetokenOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1UpdatepermissionsOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1UploadshortcutsOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/PostRestApiV1ToolsCallOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/RecommendationsOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/SearchAgentsOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/SearchOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/SetdocvisibilityOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/SummarizeOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/UnpinOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/UpdateannouncementOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/UpdatepolicyOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/UpdateshortcutOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/UploadchatfilesOperation.java
-  - src/main/java/com/glean/api_client/glean_api_client/operations/VerifyOperation.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/People.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Pin.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Adddatasource.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Betausers.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Bulkindexdocuments.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Bulkindexemployees.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Bulkindexgroups.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Bulkindexmemberships.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Bulkindexshortcuts.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Bulkindexteams.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Bulkindexusers.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Checkdocumentaccess.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1DebugDatasourceDocument.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1DebugDatasourceDocuments.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1DebugDatasourceStatus.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1DebugDatasourceUser.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Deletedocument.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Deleteemployee.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Deletegroup.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Deletemembership.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Deleteteam.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Deleteuser.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Getdatasourceconfig.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Getdocumentcount.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Getdocumentstatus.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Getusercount.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Indexdocument.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Indexdocuments.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Indexemployee.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Indexgroup.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Indexmembership.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Indexteam.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Indexuser.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Processalldocuments.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Processallemployeesandteams.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Processallmemberships.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Rotatetoken.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Updatepermissions.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostApiIndexV1Uploadshortcuts.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/PostRestApiV1ToolsCall.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Recommendations.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Search.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/SearchAgents.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Setdocvisibility.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Summarize.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Unpin.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Updateannouncement.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Updatepolicy.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Updateshortcut.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Uploadchatfiles.java
+  - src/main/java/com/glean/api_client/glean_api_client/operations/Verify.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/BackoffStrategy.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/BigDecimalString.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/BigIntegerString.java
@@ -1701,6 +1711,7 @@ generatedFiles:
   - src/main/java/com/glean/api_client/glean_api_client/utils/RequestBody.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/RequestMetadata.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/Response.java
+  - src/main/java/com/glean/api_client/glean_api_client/utils/ResponseWithBody.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/Retries.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/RetryConfig.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/Security.java
@@ -2116,6 +2127,7 @@ generatedFiles:
   - tests/mockserver/internal/sdk/models/components/listshortcutspaginatedrequest.go
   - tests/mockserver/internal/sdk/models/components/listshortcutspaginatedresponse.go
   - tests/mockserver/internal/sdk/models/components/manualfeedbackinfo.go
+  - tests/mockserver/internal/sdk/models/components/manualfeedbacksidebysideinfo.go
   - tests/mockserver/internal/sdk/models/components/meeting.go
   - tests/mockserver/internal/sdk/models/components/message.go
   - tests/mockserver/internal/sdk/models/components/messagesrequest.go
@@ -2194,6 +2206,7 @@ generatedFiles:
   - tests/mockserver/internal/sdk/models/components/shortcutinsightsresponse.go
   - tests/mockserver/internal/sdk/models/components/shortcutmutableproperties.go
   - tests/mockserver/internal/sdk/models/components/shortcutspaginationmetadata.go
+  - tests/mockserver/internal/sdk/models/components/sidebysideimplementation.go
   - tests/mockserver/internal/sdk/models/components/socialnetwork.go
   - tests/mockserver/internal/sdk/models/components/socialnetworkdefinition.go
   - tests/mockserver/internal/sdk/models/components/sortoptions.go

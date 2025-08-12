@@ -6,7 +6,7 @@ package com.glean.api_client.glean_api_client.models.operations;
 import static com.glean.api_client.glean_api_client.operations.Operations.RequestlessOperation;
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1ProcessallemployeesandteamsOperation;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Processallemployeesandteams;
 import java.lang.Exception;
 
 public class PostApiIndexV1ProcessallemployeesandteamsRequestBuilder {
@@ -20,7 +20,7 @@ public class PostApiIndexV1ProcessallemployeesandteamsRequestBuilder {
     public PostApiIndexV1ProcessallemployeesandteamsResponse call() throws Exception {
         
         RequestlessOperation<PostApiIndexV1ProcessallemployeesandteamsResponse> operation
-            = new PostApiIndexV1ProcessallemployeesandteamsOperation(sdkConfiguration);
+            = new PostApiIndexV1Processallemployeesandteams.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest());
     }

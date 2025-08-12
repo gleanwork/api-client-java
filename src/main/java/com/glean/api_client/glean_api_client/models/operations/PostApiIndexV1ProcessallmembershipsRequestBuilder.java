@@ -7,7 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.ProcessAllMembershipsRequest;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1ProcessallmembershipsOperation;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Processallmemberships;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -36,7 +36,7 @@ public class PostApiIndexV1ProcessallmembershipsRequestBuilder {
     public PostApiIndexV1ProcessallmembershipsResponse call() throws Exception {
         
         RequestOperation<Optional<? extends ProcessAllMembershipsRequest>, PostApiIndexV1ProcessallmembershipsResponse> operation
-              = new PostApiIndexV1ProcessallmembershipsOperation(sdkConfiguration);
+              = new PostApiIndexV1Processallmemberships.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

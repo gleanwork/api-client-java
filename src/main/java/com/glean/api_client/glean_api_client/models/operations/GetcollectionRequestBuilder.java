@@ -7,7 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.GetCollectionRequest;
-import com.glean.api_client.glean_api_client.operations.GetcollectionOperation;
+import com.glean.api_client.glean_api_client.operations.Getcollection;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -29,7 +29,7 @@ public class GetcollectionRequestBuilder {
     public GetcollectionResponse call() throws Exception {
         
         RequestOperation<GetCollectionRequest, GetcollectionResponse> operation
-              = new GetcollectionOperation(sdkConfiguration);
+              = new Getcollection.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

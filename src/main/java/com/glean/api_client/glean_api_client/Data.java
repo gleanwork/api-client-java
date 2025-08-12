@@ -5,18 +5,21 @@ package com.glean.api_client.glean_api_client;
 
 public class Data {
     private final SDKConfiguration sdkConfiguration;
-private final Policies policies;
-private final Reports reports;
+    private final Policies policies;
+    private final Reports reports;
 
     Data(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.policies = new Policies(this.sdkConfiguration);
         this.reports = new Reports(this.sdkConfiguration);
     }
-public final Policies policies() {
+
+    public final Policies policies() {
         return policies;
     }
-public final Reports reports() {
+
+    public final Reports reports() {
         return reports;
     }
+
 }

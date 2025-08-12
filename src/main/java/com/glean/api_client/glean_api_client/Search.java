@@ -19,14 +19,11 @@ import com.glean.api_client.glean_api_client.models.operations.RecommendationsRe
 import com.glean.api_client.glean_api_client.models.operations.RecommendationsResponse;
 import com.glean.api_client.glean_api_client.models.operations.SearchRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.SearchResponse;
-import com.glean.api_client.glean_api_client.operations.AdminsearchOperation;
-import com.glean.api_client.glean_api_client.operations.AutocompleteOperation;
-import com.glean.api_client.glean_api_client.operations.FeedOperation;
-import com.glean.api_client.glean_api_client.operations.RecommendationsOperation;
-import com.glean.api_client.glean_api_client.operations.SearchOperation;
+import com.glean.api_client.glean_api_client.operations.Adminsearch;
+import com.glean.api_client.glean_api_client.operations.Autocomplete;
+import com.glean.api_client.glean_api_client.operations.Feed;
+import com.glean.api_client.glean_api_client.operations.Recommendations;
 import java.lang.Exception;
-import java.util.List;
-import java.util.Optional;
 
 
 public class Search {
@@ -35,6 +32,7 @@ public class Search {
     Search(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Search the index (admin)
      * 
@@ -57,7 +55,7 @@ public class Search {
      */
     public AdminsearchResponse queryAsAdmin(SearchRequest request) throws Exception {
         RequestOperation<SearchRequest, AdminsearchResponse> operation
-              = new AdminsearchOperation(sdkConfiguration);
+              = new Adminsearch.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -83,7 +81,7 @@ public class Search {
      */
     public AutocompleteResponse autocomplete(AutocompleteRequest request) throws Exception {
         RequestOperation<AutocompleteRequest, AutocompleteResponse> operation
-              = new AutocompleteOperation(sdkConfiguration);
+              = new Autocomplete.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -109,7 +107,7 @@ public class Search {
      */
     public FeedResponse retrieveFeed(FeedRequest request) throws Exception {
         RequestOperation<FeedRequest, FeedResponse> operation
-              = new FeedOperation(sdkConfiguration);
+              = new Feed.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -135,7 +133,7 @@ public class Search {
      */
     public RecommendationsResponse recommendations(RecommendationsRequest request) throws Exception {
         RequestOperation<RecommendationsRequest, RecommendationsResponse> operation
-              = new RecommendationsOperation(sdkConfiguration);
+              = new Recommendations.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -161,7 +159,7 @@ public class Search {
      */
     public SearchResponse query(SearchRequest request) throws Exception {
         RequestOperation<SearchRequest, SearchResponse> operation
-              = new SearchOperation(sdkConfiguration);
+              = new com.glean.api_client.glean_api_client.operations.Search.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest(request));
     }
 

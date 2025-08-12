@@ -14,6 +14,7 @@ Replaces all the currently indexed shortcuts using paginated batch API calls. No
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="post_/api/index/v1/bulkindexshortcuts" method="post" path="/api/index/v1/bulkindexshortcuts" -->
 ```java
 package hello.world;
 
@@ -80,6 +81,7 @@ Creates glean shortcuts for uploaded shortcuts info. Glean would host the shortc
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="post_/api/index/v1/uploadshortcuts" method="post" path="/api/index/v1/uploadshortcuts" -->
 ```java
 package hello.world;
 

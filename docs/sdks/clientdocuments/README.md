@@ -16,6 +16,7 @@ Read the emails of all users who have access to the given document.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="getdocpermissions" method="post" path="/rest/api/v1/getdocpermissions" -->
 ```java
 package hello.world;
 
@@ -68,6 +69,7 @@ Read the documents including metadata (does not include enhanced metadata via `/
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="getdocuments" method="post" path="/rest/api/v1/getdocuments" -->
 ```java
 package hello.world;
 
@@ -115,6 +117,7 @@ Read the documents including metadata (does not include enhanced metadata via `/
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="getdocumentsbyfacets" method="post" path="/rest/api/v1/getdocumentsbyfacets" -->
 ```java
 package hello.world;
 
@@ -199,6 +202,7 @@ Generate an AI summary of the requested documents.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="summarize" method="post" path="/rest/api/v1/summarize" -->
 ```java
 package hello.world;
 

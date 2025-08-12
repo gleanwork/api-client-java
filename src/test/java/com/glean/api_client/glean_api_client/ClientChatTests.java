@@ -1900,6 +1900,7 @@ public class ClientChatTests {
                 .chatRequest(ChatRequest.builder()
                     .messages(List.of(
                         ChatMessage.builder()
+                            .author(Author.USER)
                             .fragments(List.of(
                                 ChatMessageFragment.builder()
                                     .text("What are the company holidays this year?")
@@ -1927,6 +1928,7 @@ public class ClientChatTests {
                 .chatRequest(ChatRequest.builder()
                     .messages(List.of(
                         ChatMessage.builder()
+                            .author(Author.USER)
                             .fragments(List.of(
                                 ChatMessageFragment.builder()
                                     .text("Who was the first person to land on the moon?")
@@ -1979,6 +1981,7 @@ public class ClientChatTests {
                 .chatRequest(ChatRequest.builder()
                     .messages(List.of(
                         ChatMessage.builder()
+                            .author(Author.USER)
                             .citations(List.of(
                                 ChatMessageCitation.builder()
                                     .sourceDocument(Document.builder()
@@ -4048,6 +4051,7 @@ public class ClientChatTests {
                                     .build()))
                             .build(),
                         ChatMessage.builder()
+                            .author(Author.USER)
                             .citations(List.of(
                                 ChatMessageCitation.builder()
                                     .sourceDocument(Document.builder()
@@ -6169,6 +6173,7 @@ public class ClientChatTests {
                 .chatRequest(ChatRequest.builder()
                     .messages(List.of(
                         ChatMessage.builder()
+                            .author(Author.USER)
                             .citations(List.of(
                                 ChatMessageCitation.builder()
                                     .sourceDocument(Document.builder()
@@ -8071,6 +8076,7 @@ public class ClientChatTests {
                                     .build()))
                             .build(),
                         ChatMessage.builder()
+                            .author(Author.USER)
                             .citations(List.of(
                                 ChatMessageCitation.builder()
                                     .sourceDocument(Document.builder()
@@ -9105,6 +9111,7 @@ public class ClientChatTests {
                                     .build()))
                             .build(),
                         ChatMessage.builder()
+                            .author(Author.USER)
                             .citations(List.of(
                                 ChatMessageCitation.builder()
                                     .sourceDocument(Document.builder()

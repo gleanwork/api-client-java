@@ -34,7 +34,7 @@ public class ChatRequest {
     private Optional<String> chatId;
 
     /**
-     * A list of chat messages, from most recent to least recent. It can be assumed that the first chat message in the list is the user's most recent query.
+     * A list of chat messages, from most recent to least recent. At least one message must specify a USER author.
      */
     @JsonProperty("messages")
     private List<ChatMessage> messages;
@@ -151,7 +151,7 @@ public class ChatRequest {
     }
 
     /**
-     * A list of chat messages, from most recent to least recent. It can be assumed that the first chat message in the list is the user's most recent query.
+     * A list of chat messages, from most recent to least recent. At least one message must specify a USER author.
      */
     @JsonIgnore
     public List<ChatMessage> messages() {
@@ -261,7 +261,7 @@ public class ChatRequest {
     }
 
     /**
-     * A list of chat messages, from most recent to least recent. It can be assumed that the first chat message in the list is the user's most recent query.
+     * A list of chat messages, from most recent to least recent. At least one message must specify a USER author.
      */
     public ChatRequest withMessages(List<ChatMessage> messages) {
         Utils.checkNotNull(messages, "messages");
@@ -520,7 +520,7 @@ public class ChatRequest {
 
 
         /**
-         * A list of chat messages, from most recent to least recent. It can be assumed that the first chat message in the list is the user's most recent query.
+         * A list of chat messages, from most recent to least recent. At least one message must specify a USER author.
          */
         public Builder messages(List<ChatMessage> messages) {
             Utils.checkNotNull(messages, "messages");

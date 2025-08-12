@@ -14,6 +14,7 @@ Returns a filtered set of available tools based on optional tool name parameters
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="get_/rest/api/v1/tools/list" method="get" path="/rest/api/v1/tools/list" -->
 ```java
 package hello.world;
 
@@ -61,6 +62,7 @@ Execute the specified tool with provided parameters
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="post_/rest/api/v1/tools/call" method="post" path="/rest/api/v1/tools/call" -->
 ```java
 package hello.world;
 

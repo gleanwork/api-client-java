@@ -7,7 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.UploadChatFilesRequest;
-import com.glean.api_client.glean_api_client.operations.UploadchatfilesOperation;
+import com.glean.api_client.glean_api_client.operations.Uploadchatfiles;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
@@ -53,7 +53,7 @@ public class UploadchatfilesRequestBuilder {
     public UploadchatfilesResponse call() throws Exception {
         
         RequestOperation<UploadchatfilesRequest, UploadchatfilesResponse> operation
-              = new UploadchatfilesOperation(sdkConfiguration);
+              = new Uploadchatfiles.Sync(sdkConfiguration);
         UploadchatfilesRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

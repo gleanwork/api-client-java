@@ -5,13 +5,13 @@ package com.glean.api_client.glean_api_client;
 
 public class Indexing {
     private final SDKConfiguration sdkConfiguration;
-private final IndexingDocuments documents;
-private final Permissions permissions;
-private final Datasource datasource;
-private final People people;
-private final Datasources datasources;
-private final IndexingAuthentication authentication;
-private final IndexingShortcuts shortcuts;
+    private final IndexingDocuments documents;
+    private final Permissions permissions;
+    private final Datasource datasource;
+    private final People people;
+    private final Datasources datasources;
+    private final IndexingAuthentication authentication;
+    private final IndexingShortcuts shortcuts;
 
     Indexing(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -23,25 +23,33 @@ private final IndexingShortcuts shortcuts;
         this.authentication = new IndexingAuthentication(this.sdkConfiguration);
         this.shortcuts = new IndexingShortcuts(this.sdkConfiguration);
     }
-public final IndexingDocuments documents() {
+
+    public final IndexingDocuments documents() {
         return documents;
     }
-public final Permissions permissions() {
+
+    public final Permissions permissions() {
         return permissions;
     }
-public final Datasource datasource() {
+
+    public final Datasource datasource() {
         return datasource;
     }
-public final People people() {
+
+    public final People people() {
         return people;
     }
-public final Datasources datasources() {
+
+    public final Datasources datasources() {
         return datasources;
     }
-public final IndexingAuthentication authentication() {
+
+    public final IndexingAuthentication authentication() {
         return authentication;
     }
-public final IndexingShortcuts shortcuts() {
+
+    public final IndexingShortcuts shortcuts() {
         return shortcuts;
     }
+
 }

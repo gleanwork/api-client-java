@@ -6,7 +6,7 @@ package com.glean.api_client.glean_api_client.models.operations;
 import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
-import com.glean.api_client.glean_api_client.operations.DownloadpolicycsvOperation;
+import com.glean.api_client.glean_api_client.operations.Downloadpolicycsv;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.String;
@@ -37,7 +37,7 @@ public class DownloadpolicycsvRequestBuilder {
     public DownloadpolicycsvResponse call() throws Exception {
         
         RequestOperation<DownloadpolicycsvRequest, DownloadpolicycsvResponse> operation
-              = new DownloadpolicycsvOperation(sdkConfiguration);
+              = new Downloadpolicycsv.Sync(sdkConfiguration);
         DownloadpolicycsvRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

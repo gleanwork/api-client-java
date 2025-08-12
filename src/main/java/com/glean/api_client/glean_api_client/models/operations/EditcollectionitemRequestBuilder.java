@@ -7,7 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.EditCollectionItemRequest;
-import com.glean.api_client.glean_api_client.operations.EditcollectionitemOperation;
+import com.glean.api_client.glean_api_client.operations.Editcollectionitem;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -29,7 +29,7 @@ public class EditcollectionitemRequestBuilder {
     public EditcollectionitemResponse call() throws Exception {
         
         RequestOperation<EditCollectionItemRequest, EditcollectionitemResponse> operation
-              = new EditcollectionitemOperation(sdkConfiguration);
+              = new Editcollectionitem.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

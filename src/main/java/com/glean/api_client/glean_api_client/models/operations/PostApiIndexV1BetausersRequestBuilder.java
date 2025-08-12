@@ -7,7 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.GreenlistUsersRequest;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1BetausersOperation;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Betausers;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -29,7 +29,7 @@ public class PostApiIndexV1BetausersRequestBuilder {
     public PostApiIndexV1BetausersResponse call() throws Exception {
         
         RequestOperation<GreenlistUsersRequest, PostApiIndexV1BetausersResponse> operation
-              = new PostApiIndexV1BetausersOperation(sdkConfiguration);
+              = new PostApiIndexV1Betausers.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

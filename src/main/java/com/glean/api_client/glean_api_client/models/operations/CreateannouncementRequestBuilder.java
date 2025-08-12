@@ -7,7 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.CreateAnnouncementRequest;
-import com.glean.api_client.glean_api_client.operations.CreateannouncementOperation;
+import com.glean.api_client.glean_api_client.operations.Createannouncement;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -29,7 +29,7 @@ public class CreateannouncementRequestBuilder {
     public CreateannouncementResponse call() throws Exception {
         
         RequestOperation<CreateAnnouncementRequest, CreateannouncementResponse> operation
-              = new CreateannouncementOperation(sdkConfiguration);
+              = new Createannouncement.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -7,7 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.ListEntitiesRequest;
-import com.glean.api_client.glean_api_client.operations.ListentitiesOperation;
+import com.glean.api_client.glean_api_client.operations.Listentities;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -29,7 +29,7 @@ public class ListentitiesRequestBuilder {
     public ListentitiesResponse call() throws Exception {
         
         RequestOperation<ListEntitiesRequest, ListentitiesResponse> operation
-              = new ListentitiesOperation(sdkConfiguration);
+              = new Listentities.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest(request));
     }

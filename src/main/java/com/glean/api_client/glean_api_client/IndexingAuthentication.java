@@ -7,10 +7,8 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1RotatetokenRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1RotatetokenResponse;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1RotatetokenOperation;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Rotatetoken;
 import java.lang.Exception;
-import java.util.List;
-import java.util.Optional;
 
 
 public class IndexingAuthentication {
@@ -19,10 +17,11 @@ public class IndexingAuthentication {
     IndexingAuthentication(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Rotate token
      * 
-     * <p>Rotates the secret value inside the Indexing API token and returns the new raw secret. All other properties of the token are unchanged. In order to rotate the secret value, include the token as the bearer token in the `/rotatetoken` request. Please refer to [Token rotation](https://developers.glean.com/docs/indexing_api_token_rotation/) documentation for more information.
+     * <p>Rotates the secret value inside the Indexing API token and returns the new raw secret. All other properties of the token are unchanged. In order to rotate the secret value, include the token as the bearer token in the `/rotatetoken` request. Please refer to [Token rotation](https://developers.glean.com/indexing/authentication/token-rotation) documentation for more information.
      * 
      * @return The call builder
      */
@@ -33,14 +32,14 @@ public class IndexingAuthentication {
     /**
      * Rotate token
      * 
-     * <p>Rotates the secret value inside the Indexing API token and returns the new raw secret. All other properties of the token are unchanged. In order to rotate the secret value, include the token as the bearer token in the `/rotatetoken` request. Please refer to [Token rotation](https://developers.glean.com/docs/indexing_api_token_rotation/) documentation for more information.
+     * <p>Rotates the secret value inside the Indexing API token and returns the new raw secret. All other properties of the token are unchanged. In order to rotate the secret value, include the token as the bearer token in the `/rotatetoken` request. Please refer to [Token rotation](https://developers.glean.com/indexing/authentication/token-rotation) documentation for more information.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public PostApiIndexV1RotatetokenResponse rotateTokenDirect() throws Exception {
         RequestlessOperation<PostApiIndexV1RotatetokenResponse> operation
-            = new PostApiIndexV1RotatetokenOperation(sdkConfiguration);
+            = new PostApiIndexV1Rotatetoken.Sync(sdkConfiguration);
         return operation.handleResponse(operation.doRequest());
     }
 

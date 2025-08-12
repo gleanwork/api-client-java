@@ -6,7 +6,7 @@ package com.glean.api_client.glean_api_client.models.operations;
 import static com.glean.api_client.glean_api_client.operations.Operations.RequestlessOperation;
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
-import com.glean.api_client.glean_api_client.operations.PostApiIndexV1RotatetokenOperation;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Rotatetoken;
 import java.lang.Exception;
 
 public class PostApiIndexV1RotatetokenRequestBuilder {
@@ -20,7 +20,7 @@ public class PostApiIndexV1RotatetokenRequestBuilder {
     public PostApiIndexV1RotatetokenResponse call() throws Exception {
         
         RequestlessOperation<PostApiIndexV1RotatetokenResponse> operation
-            = new PostApiIndexV1RotatetokenOperation(sdkConfiguration);
+            = new PostApiIndexV1Rotatetoken.Sync(sdkConfiguration);
 
         return operation.handleResponse(operation.doRequest());
     }
