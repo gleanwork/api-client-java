@@ -8,14 +8,27 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1RotatetokenRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1RotatetokenResponse;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Rotatetoken;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Exception;
 
 
 public class IndexingAuthentication {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncIndexingAuthentication asyncSDK;
 
     IndexingAuthentication(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncIndexingAuthentication(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncIndexingAuthentication async() {
+        return asyncSDK;
     }
 
     /**
@@ -39,7 +52,7 @@ public class IndexingAuthentication {
      */
     public PostApiIndexV1RotatetokenResponse rotateTokenDirect() throws Exception {
         RequestlessOperation<PostApiIndexV1RotatetokenResponse> operation
-            = new PostApiIndexV1Rotatetoken.Sync(sdkConfiguration);
+            = new PostApiIndexV1Rotatetoken.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 

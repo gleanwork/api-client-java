@@ -8,6 +8,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.GetChatFilesRequest;
 import com.glean.api_client.glean_api_client.operations.Getchatfiles;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
@@ -18,6 +19,7 @@ public class GetchatfilesRequestBuilder {
     private Optional<Long> timezoneOffset = Optional.empty();
     private GetChatFilesRequest getChatFilesRequest;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetchatfilesRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -53,7 +55,7 @@ public class GetchatfilesRequestBuilder {
     public GetchatfilesResponse call() throws Exception {
         
         RequestOperation<GetchatfilesRequest, GetchatfilesResponse> operation
-              = new Getchatfiles.Sync(sdkConfiguration);
+              = new Getchatfiles.Sync(sdkConfiguration, _headers);
         GetchatfilesRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

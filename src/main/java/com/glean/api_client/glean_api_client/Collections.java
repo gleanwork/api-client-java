@@ -37,14 +37,27 @@ import com.glean.api_client.glean_api_client.operations.Editcollection;
 import com.glean.api_client.glean_api_client.operations.Editcollectionitem;
 import com.glean.api_client.glean_api_client.operations.Getcollection;
 import com.glean.api_client.glean_api_client.operations.Listcollections;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Exception;
 
 
 public class Collections {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncCollections asyncSDK;
 
     Collections(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncCollections(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncCollections async() {
+        return asyncSDK;
     }
 
     /**
@@ -69,7 +82,7 @@ public class Collections {
      */
     public AddcollectionitemsResponse addItems(AddCollectionItemsRequest request) throws Exception {
         RequestOperation<AddCollectionItemsRequest, AddcollectionitemsResponse> operation
-              = new Addcollectionitems.Sync(sdkConfiguration);
+              = new Addcollectionitems.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -95,7 +108,7 @@ public class Collections {
      */
     public CreatecollectionResponse create(CreateCollectionRequest request) throws Exception {
         RequestOperation<CreateCollectionRequest, CreatecollectionResponse> operation
-              = new Createcollection.Sync(sdkConfiguration);
+              = new Createcollection.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -121,7 +134,7 @@ public class Collections {
      */
     public DeletecollectionResponse delete(DeleteCollectionRequest request) throws Exception {
         RequestOperation<DeleteCollectionRequest, DeletecollectionResponse> operation
-              = new Deletecollection.Sync(sdkConfiguration);
+              = new Deletecollection.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -147,7 +160,7 @@ public class Collections {
      */
     public DeletecollectionitemResponse deleteItem(DeleteCollectionItemRequest request) throws Exception {
         RequestOperation<DeleteCollectionItemRequest, DeletecollectionitemResponse> operation
-              = new Deletecollectionitem.Sync(sdkConfiguration);
+              = new Deletecollectionitem.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -173,7 +186,7 @@ public class Collections {
      */
     public EditcollectionResponse update(EditCollectionRequest request) throws Exception {
         RequestOperation<EditCollectionRequest, EditcollectionResponse> operation
-              = new Editcollection.Sync(sdkConfiguration);
+              = new Editcollection.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -199,7 +212,7 @@ public class Collections {
      */
     public EditcollectionitemResponse updateItem(EditCollectionItemRequest request) throws Exception {
         RequestOperation<EditCollectionItemRequest, EditcollectionitemResponse> operation
-              = new Editcollectionitem.Sync(sdkConfiguration);
+              = new Editcollectionitem.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -225,7 +238,7 @@ public class Collections {
      */
     public GetcollectionResponse retrieve(GetCollectionRequest request) throws Exception {
         RequestOperation<GetCollectionRequest, GetcollectionResponse> operation
-              = new Getcollection.Sync(sdkConfiguration);
+              = new Getcollection.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -251,7 +264,7 @@ public class Collections {
      */
     public ListcollectionsResponse list(ListCollectionsRequest request) throws Exception {
         RequestOperation<ListCollectionsRequest, ListcollectionsResponse> operation
-              = new Listcollections.Sync(sdkConfiguration);
+              = new Listcollections.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

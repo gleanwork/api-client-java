@@ -50,16 +50,29 @@ import com.glean.api_client.glean_api_client.operations.Getchatapplication;
 import com.glean.api_client.glean_api_client.operations.Getchatfiles;
 import com.glean.api_client.glean_api_client.operations.Listchats;
 import com.glean.api_client.glean_api_client.operations.Uploadchatfiles;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Exception;
 import java.lang.Long;
 import java.util.Optional;
 
 
 public class Chat {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncChat asyncSDK;
 
     Chat(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncChat(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncChat async() {
+        return asyncSDK;
     }
 
     /**
@@ -104,7 +117,7 @@ public class Chat {
                 .chatRequest(chatRequest)
                 .build();
         RequestOperation<com.glean.api_client.glean_api_client.models.operations.ChatRequest, ChatResponse> operation
-              = new com.glean.api_client.glean_api_client.operations.Chat.Sync(sdkConfiguration);
+              = new com.glean.api_client.glean_api_client.operations.Chat.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -147,7 +160,7 @@ public class Chat {
                 .timezoneOffset(timezoneOffset)
                 .build();
         RequestOperation<DeleteallchatsRequest, DeleteallchatsResponse> operation
-              = new Deleteallchats.Sync(sdkConfiguration);
+              = new Deleteallchats.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +206,7 @@ public class Chat {
                 .deleteChatsRequest(deleteChatsRequest)
                 .build();
         RequestOperation<DeletechatsRequest, DeletechatsResponse> operation
-              = new Deletechats.Sync(sdkConfiguration);
+              = new Deletechats.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -239,7 +252,7 @@ public class Chat {
                 .getChatRequest(getChatRequest)
                 .build();
         RequestOperation<GetchatRequest, GetchatResponse> operation
-              = new Getchat.Sync(sdkConfiguration);
+              = new Getchat.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -282,7 +295,7 @@ public class Chat {
                 .timezoneOffset(timezoneOffset)
                 .build();
         RequestOperation<ListchatsRequest, ListchatsResponse> operation
-              = new Listchats.Sync(sdkConfiguration);
+              = new Listchats.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -328,7 +341,7 @@ public class Chat {
                 .getChatApplicationRequest(getChatApplicationRequest)
                 .build();
         RequestOperation<GetchatapplicationRequest, GetchatapplicationResponse> operation
-              = new Getchatapplication.Sync(sdkConfiguration);
+              = new Getchatapplication.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -374,7 +387,7 @@ public class Chat {
                 .uploadChatFilesRequest(uploadChatFilesRequest)
                 .build();
         RequestOperation<UploadchatfilesRequest, UploadchatfilesResponse> operation
-              = new Uploadchatfiles.Sync(sdkConfiguration);
+              = new Uploadchatfiles.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -420,7 +433,7 @@ public class Chat {
                 .getChatFilesRequest(getChatFilesRequest)
                 .build();
         RequestOperation<GetchatfilesRequest, GetchatfilesResponse> operation
-              = new Getchatfiles.Sync(sdkConfiguration);
+              = new Getchatfiles.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -466,7 +479,7 @@ public class Chat {
                 .deleteChatFilesRequest(deleteChatFilesRequest)
                 .build();
         RequestOperation<DeletechatfilesRequest, DeletechatfilesResponse> operation
-              = new Deletechatfiles.Sync(sdkConfiguration);
+              = new Deletechatfiles.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -512,7 +525,7 @@ public class Chat {
                 .chatRequest(chatRequest)
                 .build();
         RequestOperation<ChatStreamRequest, ChatStreamResponse> operation
-              = new ChatStream.Sync(sdkConfiguration);
+              = new ChatStream.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

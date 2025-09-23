@@ -8,6 +8,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.BulkIndexShortcutsRequest;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Bulkindexshortcuts;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -15,6 +16,7 @@ public class PostApiIndexV1BulkindexshortcutsRequestBuilder {
 
     private BulkIndexShortcutsRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public PostApiIndexV1BulkindexshortcutsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -29,7 +31,7 @@ public class PostApiIndexV1BulkindexshortcutsRequestBuilder {
     public PostApiIndexV1BulkindexshortcutsResponse call() throws Exception {
         
         RequestOperation<BulkIndexShortcutsRequest, PostApiIndexV1BulkindexshortcutsResponse> operation
-              = new PostApiIndexV1Bulkindexshortcuts.Sync(sdkConfiguration);
+              = new PostApiIndexV1Bulkindexshortcuts.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

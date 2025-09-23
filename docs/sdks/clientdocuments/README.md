@@ -222,11 +222,16 @@ public class Application {
 
         SummarizeRequest req = SummarizeRequest.builder()
                 .documentSpecs(List.of(
-                    DocumentSpecUnion.of(DocumentSpec1.builder()
+                    DocumentSpecUnion.of(DocumentSpec4.builder()
+                        .ugcType(DocumentSpecUgcType2.CHATS)
+                        .ugcId("<id>")
                         .build()),
-                    DocumentSpecUnion.of(DocumentSpec1.builder()
+                    DocumentSpecUnion.of(DocumentSpec4.builder()
+                        .ugcType(DocumentSpecUgcType2.CHATS)
+                        .ugcId("<id>")
                         .build()),
-                    DocumentSpecUnion.of(DocumentSpec1.builder()
+                    DocumentSpecUnion.of(DocumentSpec2.builder()
+                        .id("<id>")
                         .build())))
                 .build();
 

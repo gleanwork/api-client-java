@@ -8,6 +8,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.CreateShortcutRequest;
 import com.glean.api_client.glean_api_client.operations.Createshortcut;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -15,6 +16,7 @@ public class CreateshortcutRequestBuilder {
 
     private CreateShortcutRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreateshortcutRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -29,7 +31,7 @@ public class CreateshortcutRequestBuilder {
     public CreateshortcutResponse call() throws Exception {
         
         RequestOperation<CreateShortcutRequest, CreateshortcutResponse> operation
-              = new Createshortcut.Sync(sdkConfiguration);
+              = new Createshortcut.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

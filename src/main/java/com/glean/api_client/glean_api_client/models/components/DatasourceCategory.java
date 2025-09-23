@@ -30,7 +30,8 @@ public enum DatasourceCategory {
     KNOWLEDGE_HUB("KNOWLEDGE_HUB"),
     EXTERNAL_SHORTCUT("EXTERNAL_SHORTCUT"),
     ENTITY("ENTITY"),
-    CALENDAR("CALENDAR");
+    CALENDAR("CALENDAR"),
+    AGENTS("AGENTS");
 
     @JsonValue
     private final String value;

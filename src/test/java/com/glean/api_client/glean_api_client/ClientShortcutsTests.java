@@ -624,9 +624,9 @@ public class ClientShortcutsTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            CreateShortcutResponse.builder()
+                CreateShortcutResponse.builder()
             .build(),
-            res.createShortcutResponse().get());
+                res.createShortcutResponse().get());
     }
 
     @Test
@@ -668,9 +668,9 @@ public class ClientShortcutsTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            GetShortcutResponse.builder()
+                GetShortcutResponse.builder()
             .build(),
-            res.getShortcutResponse().get());
+                res.getShortcutResponse().get());
     }
 
     @Test
@@ -710,7 +710,7 @@ public class ClientShortcutsTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            ListShortcutsPaginatedResponse.builder()
+                ListShortcutsPaginatedResponse.builder()
             .shortcuts(List.of(
                 Shortcut.builder()
                     .inputAlias("<value>")
@@ -802,7 +802,7 @@ public class ClientShortcutsTests {
                     .groupName("Service Cloud")
                     .build()))
             .build(),
-            res.listShortcutsPaginatedResponse().get());
+                res.listShortcutsPaginatedResponse().get());
     }
 
     @Test
@@ -1372,8 +1372,8 @@ public class ClientShortcutsTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            UpdateShortcutResponse.builder()
+                UpdateShortcutResponse.builder()
             .build(),
-            res.updateShortcutResponse().get());
+                res.updateShortcutResponse().get());
     }
 }

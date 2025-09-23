@@ -27,8 +27,8 @@ public class IndexingAuthenticationTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            RotateTokenResponse.builder()
+                RotateTokenResponse.builder()
             .build(),
-            res.rotateTokenResponse().get());
+                res.rotateTokenResponse().get());
     }
 }

@@ -77,7 +77,7 @@ public class DatasourcesTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            CustomDatasourceConfig.builder()
+                CustomDatasourceConfig.builder()
             .name("<value>")
             .datasourceCategory(DatasourceCategory.UNCATEGORIZED)
             .urlRegex("https://example-company.datasource.com/.*")
@@ -95,6 +95,6 @@ public class DatasourcesTests {
             .isEntityDatasource(false)
             .isTestDatasource(false)
             .build(),
-            res.customDatasourceConfig().get());
+                res.customDatasourceConfig().get());
     }
 }

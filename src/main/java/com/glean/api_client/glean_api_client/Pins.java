@@ -24,14 +24,27 @@ import com.glean.api_client.glean_api_client.operations.Editpin;
 import com.glean.api_client.glean_api_client.operations.Getpin;
 import com.glean.api_client.glean_api_client.operations.Listpins;
 import com.glean.api_client.glean_api_client.operations.Pin;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Exception;
 
 
 public class Pins {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncPins asyncSDK;
 
     Pins(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncPins(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncPins async() {
+        return asyncSDK;
     }
 
     /**
@@ -56,7 +69,7 @@ public class Pins {
      */
     public EditpinResponse update(EditPinRequest request) throws Exception {
         RequestOperation<EditPinRequest, EditpinResponse> operation
-              = new Editpin.Sync(sdkConfiguration);
+              = new Editpin.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -82,7 +95,7 @@ public class Pins {
      */
     public GetpinResponse retrieve(GetPinRequest request) throws Exception {
         RequestOperation<GetPinRequest, GetpinResponse> operation
-              = new Getpin.Sync(sdkConfiguration);
+              = new Getpin.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -108,7 +121,7 @@ public class Pins {
      */
     public ListpinsResponse list(ListpinsRequest request) throws Exception {
         RequestOperation<ListpinsRequest, ListpinsResponse> operation
-              = new Listpins.Sync(sdkConfiguration);
+              = new Listpins.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -134,7 +147,7 @@ public class Pins {
      */
     public PinResponse create(PinRequest request) throws Exception {
         RequestOperation<PinRequest, PinResponse> operation
-              = new Pin.Sync(sdkConfiguration);
+              = new Pin.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -160,7 +173,7 @@ public class Pins {
      */
     public UnpinResponse remove(Unpin request) throws Exception {
         RequestOperation<Unpin, UnpinResponse> operation
-              = new com.glean.api_client.glean_api_client.operations.Unpin.Sync(sdkConfiguration);
+              = new com.glean.api_client.glean_api_client.operations.Unpin.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -3,8 +3,13 @@
  */
 package com.glean.api_client.glean_api_client;
 
+import com.glean.api_client.glean_api_client.utils.Headers;
+
+
 public class Indexing {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncIndexing asyncSDK;
     private final IndexingDocuments documents;
     private final Permissions permissions;
     private final Datasource datasource;
@@ -22,6 +27,7 @@ public class Indexing {
         this.datasources = new Datasources(this.sdkConfiguration);
         this.authentication = new IndexingAuthentication(this.sdkConfiguration);
         this.shortcuts = new IndexingShortcuts(this.sdkConfiguration);
+        this.asyncSDK = new AsyncIndexing(this, sdkConfiguration);
     }
 
     public final IndexingDocuments documents() {
@@ -50,6 +56,15 @@ public class Indexing {
 
     public final IndexingShortcuts shortcuts() {
         return shortcuts;
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncIndexing async() {
+        return asyncSDK;
     }
 
 }

@@ -17,15 +17,28 @@ import com.glean.api_client.glean_api_client.models.operations.GetreportstatusRe
 import com.glean.api_client.glean_api_client.operations.Createreport;
 import com.glean.api_client.glean_api_client.operations.Downloadreportcsv;
 import com.glean.api_client.glean_api_client.operations.Getreportstatus;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Exception;
 import java.lang.String;
 
 
 public class Reports {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncReports asyncSDK;
 
     Reports(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncReports(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncReports async() {
+        return asyncSDK;
     }
 
     /**
@@ -50,7 +63,7 @@ public class Reports {
      */
     public CreatereportResponse create(UpdateDlpConfigRequest request) throws Exception {
         RequestOperation<UpdateDlpConfigRequest, CreatereportResponse> operation
-              = new Createreport.Sync(sdkConfiguration);
+              = new Createreport.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -81,7 +94,7 @@ public class Reports {
                 .id(id)
                 .build();
         RequestOperation<DownloadreportcsvRequest, DownloadreportcsvResponse> operation
-              = new Downloadreportcsv.Sync(sdkConfiguration);
+              = new Downloadreportcsv.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -112,7 +125,7 @@ public class Reports {
                 .id(id)
                 .build();
         RequestOperation<GetreportstatusRequest, GetreportstatusResponse> operation
-              = new Getreportstatus.Sync(sdkConfiguration);
+              = new Getreportstatus.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

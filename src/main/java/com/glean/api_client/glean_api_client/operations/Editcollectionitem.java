@@ -4,6 +4,7 @@
 package com.glean.api_client.glean_api_client.operations;
 
 import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+import static com.glean.api_client.glean_api_client.operations.Operations.AsyncRequestOperation;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
@@ -12,8 +13,11 @@ import com.glean.api_client.glean_api_client.models.components.EditCollectionIte
 import com.glean.api_client.glean_api_client.models.components.EditCollectionItemResponse;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
 import com.glean.api_client.glean_api_client.models.operations.EditcollectionitemResponse;
+import com.glean.api_client.glean_api_client.utils.Blob;
+import com.glean.api_client.glean_api_client.utils.Exceptions;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
 import com.glean.api_client.glean_api_client.utils.HTTPRequest;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Hook.AfterErrorContextImpl;
 import com.glean.api_client.glean_api_client.utils.Hook.AfterSuccessContextImpl;
 import com.glean.api_client.glean_api_client.utils.Hook.BeforeRequestContextImpl;
@@ -23,11 +27,14 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.io.InputStream;
 import java.lang.Exception;
 import java.lang.Object;
+import java.lang.RuntimeException;
 import java.lang.String;
+import java.lang.Throwable;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Optional;
-
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
 
 
 public class Editcollectionitem {
@@ -37,9 +44,11 @@ public class Editcollectionitem {
         final String baseUrl;
         final SecuritySource securitySource;
         final HTTPClient client;
+        final Headers _headers;
 
-        public Base(SDKConfiguration sdkConfiguration) {
+        public Base(SDKConfiguration sdkConfiguration, Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
+            this._headers =_headers;
             this.baseUrl = Utils.templateUrl(
                     this.sdkConfiguration.serverUrl(), this.sdkConfiguration.getServerVariableDefaults());
             this.securitySource = this.sdkConfiguration.securitySource();
@@ -50,7 +59,33 @@ public class Editcollectionitem {
             return Optional.ofNullable(this.securitySource);
         }
 
-        HttpRequest buildRequest(EditCollectionItemRequest request) throws Exception {
+        BeforeRequestContextImpl createBeforeRequestContext() {
+            return new BeforeRequestContextImpl(
+                    this.sdkConfiguration,
+                    this.baseUrl,
+                    "editcollectionitem",
+                    java.util.Optional.of(java.util.List.of()),
+                    securitySource());
+        }
+
+        AfterSuccessContextImpl createAfterSuccessContext() {
+            return new AfterSuccessContextImpl(
+                    this.sdkConfiguration,
+                    this.baseUrl,
+                    "editcollectionitem",
+                    java.util.Optional.of(java.util.List.of()),
+                    securitySource());
+        }
+
+        AfterErrorContextImpl createAfterErrorContext() {
+            return new AfterErrorContextImpl(
+                    this.sdkConfiguration,
+                    this.baseUrl,
+                    "editcollectionitem",
+                    java.util.Optional.of(java.util.List.of()),
+                    securitySource());
+        }
+        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/rest/api/v1/editcollectionitem");
@@ -58,8 +93,7 @@ public class Editcollectionitem {
             Object convertedRequest = Utils.convertToShape(
                     request,
                     JsonShape.DEFAULT,
-                    new TypeReference<EditCollectionItemRequest>() {
-                    });
+                    typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
                     "request",
@@ -71,53 +105,38 @@ public class Editcollectionitem {
             req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
+            _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
-            return sdkConfiguration.hooks().beforeRequest(
-                    new BeforeRequestContextImpl(
-                            this.sdkConfiguration,
-                            this.baseUrl,
-                            "editcollectionitem",
-                            java.util.Optional.of(java.util.List.of()),
-                            securitySource()),
-                    req.build());
+            return req.build();
         }
     }
 
     public static class Sync extends Base
             implements RequestOperation<EditCollectionItemRequest, EditcollectionitemResponse> {
-        public Sync(SDKConfiguration sdkConfiguration) {
-            super(sdkConfiguration);
+        public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
+            super(sdkConfiguration, _headers);
+        }
+
+        private HttpRequest onBuildRequest(EditCollectionItemRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<EditCollectionItemRequest>() {});
+            return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
         private HttpResponse<InputStream> onError(HttpResponse<InputStream> response, Exception error) throws Exception {
-            return sdkConfiguration.hooks()
-                    .afterError(
-                            new AfterErrorContextImpl(
-                                    this.sdkConfiguration,
-                                    this.baseUrl,
-                                    "editcollectionitem",
-                                    java.util.Optional.of(java.util.List.of()),
-                                    securitySource()),
-                            Optional.ofNullable(response),
-                            Optional.ofNullable(error));
+            return sdkConfiguration.hooks().afterError(
+                    createAfterErrorContext(),
+                    Optional.ofNullable(response),
+                    Optional.ofNullable(error));
         }
 
         private HttpResponse<InputStream> onSuccess(HttpResponse<InputStream> response) throws Exception {
-            return sdkConfiguration.hooks()
-                    .afterSuccess(
-                            new AfterSuccessContextImpl(
-                                    this.sdkConfiguration,
-                                    this.baseUrl,
-                                    "editcollectionitem",
-                                    java.util.Optional.of(java.util.List.of()),
-                                    securitySource()),
-                            response);
+            return sdkConfiguration.hooks().afterSuccess(createAfterSuccessContext(), response);
         }
 
         @Override
         public HttpResponse<InputStream> doRequest(EditCollectionItemRequest request) throws Exception {
-            HttpRequest r = buildRequest(request);
+            HttpRequest r = onBuildRequest(request);
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -189,6 +208,90 @@ public class Editcollectionitem {
                     response.statusCode(),
                     "Unexpected status code received: " + response.statusCode(),
                     Utils.extractByteArrayFromBody(response));
+        }
+    }
+    public static class Async extends Base
+            implements AsyncRequestOperation<EditCollectionItemRequest, com.glean.api_client.glean_api_client.models.operations.async.EditcollectionitemResponse> {
+
+        public Async(SDKConfiguration sdkConfiguration, Headers _headers) {
+            super(sdkConfiguration, _headers);
+        }
+
+        private CompletableFuture<HttpRequest> onBuildRequest(EditCollectionItemRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<EditCollectionItemRequest>() {});
+            return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
+        }
+
+        private CompletableFuture<HttpResponse<Blob>> onError(HttpResponse<Blob> response, Throwable error) {
+            return this.sdkConfiguration.asyncHooks().afterError(createAfterErrorContext(), response, error);
+        }
+
+        private CompletableFuture<HttpResponse<Blob>> onSuccess(HttpResponse<Blob> response) {
+            return this.sdkConfiguration.asyncHooks().afterSuccess(createAfterSuccessContext(), response);
+        }
+
+        @Override
+        public CompletableFuture<HttpResponse<Blob>> doRequest(EditCollectionItemRequest request) {
+            return Exceptions.unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
+                    .handle((resp, err) -> {
+                        if (err != null) {
+                            return onError(null, err);
+                        }
+                        if (Utils.statusCodeMatches(resp.statusCode(), "400", "401", "429", "4XX", "5XX")) {
+                            return onError(resp, null);
+                        }
+                        return CompletableFuture.completedFuture(resp);
+                    })
+                    .thenCompose(Function.identity())
+                    .thenCompose(this::onSuccess);
+        }
+
+        @Override
+        public CompletableFuture<com.glean.api_client.glean_api_client.models.operations.async.EditcollectionitemResponse> handleResponse(
+                HttpResponse<Blob> response) {
+            String contentType = response
+                    .headers()
+                    .firstValue("Content-Type")
+                    .orElse("application/octet-stream");
+            com.glean.api_client.glean_api_client.models.operations.async.EditcollectionitemResponse.Builder resBuilder =
+                    com.glean.api_client.glean_api_client.models.operations.async.EditcollectionitemResponse
+                            .builder()
+                            .contentType(contentType)
+                            .statusCode(response.statusCode())
+                            .rawResponse(response);
+
+            com.glean.api_client.glean_api_client.models.operations.async.EditcollectionitemResponse res = resBuilder.build();
+            
+            if (Utils.statusCodeMatches(response.statusCode(), "200")) {
+                if (Utils.contentTypeMatches(contentType, "application/json")) {
+                    return response.body().toByteArray().thenApply(bodyBytes -> {
+                        try {
+                            EditCollectionItemResponse out = Utils.mapper().readValue(
+                                    bodyBytes,
+                                    new TypeReference<>() {
+                                    });
+                            res.withEditCollectionItemResponse(out);
+                            return res;
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
+                } else {
+                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
+                }
+            }
+            
+            if (Utils.statusCodeMatches(response.statusCode(), "400", "401", "429", "4XX")) {
+                // no content
+                return Utils.createAsyncApiError(response, "API error occurred");
+            }
+            
+            if (Utils.statusCodeMatches(response.statusCode(), "5XX")) {
+                // no content
+                return Utils.createAsyncApiError(response, "API error occurred");
+            }
+            
+            return Utils.createAsyncApiError(response, "Unexpected status code received: " + response.statusCode());
         }
     }
 }

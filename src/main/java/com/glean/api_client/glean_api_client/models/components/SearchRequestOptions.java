@@ -115,7 +115,7 @@ public class SearchRequestOptions {
     private Optional<Boolean> disableQueryAutocorrect;
 
     /**
-     * [beta] Enables expanded content to be returned for LLM usage. The size of content per result returned should be modified using maxSnippetSize. Server may return less or more than what is specified in maxSnippetSize. For more details, https://docs.google.com/document/d/1CTOLSxWWT9WDEnHVLoCUaxbGYyXYP8kctPRF-RluSQY/edit. Requires sufficient permissions.
+     * Enables expanded content to be returned for LLM usage. The size of content per result returned should be modified using maxSnippetSize. Server may return less or more than what is specified in maxSnippetSize. For more details, see https://developers.glean.com/guides/search/llm-content.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("returnLlmContentOverSnippets")
@@ -313,7 +313,7 @@ public class SearchRequestOptions {
     }
 
     /**
-     * [beta] Enables expanded content to be returned for LLM usage. The size of content per result returned should be modified using maxSnippetSize. Server may return less or more than what is specified in maxSnippetSize. For more details, https://docs.google.com/document/d/1CTOLSxWWT9WDEnHVLoCUaxbGYyXYP8kctPRF-RluSQY/edit. Requires sufficient permissions.
+     * Enables expanded content to be returned for LLM usage. The size of content per result returned should be modified using maxSnippetSize. Server may return less or more than what is specified in maxSnippetSize. For more details, see https://developers.glean.com/guides/search/llm-content.
      */
     @JsonIgnore
     public Optional<Boolean> returnLlmContentOverSnippets() {
@@ -588,7 +588,7 @@ public class SearchRequestOptions {
     }
 
     /**
-     * [beta] Enables expanded content to be returned for LLM usage. The size of content per result returned should be modified using maxSnippetSize. Server may return less or more than what is specified in maxSnippetSize. For more details, https://docs.google.com/document/d/1CTOLSxWWT9WDEnHVLoCUaxbGYyXYP8kctPRF-RluSQY/edit. Requires sufficient permissions.
+     * Enables expanded content to be returned for LLM usage. The size of content per result returned should be modified using maxSnippetSize. Server may return less or more than what is specified in maxSnippetSize. For more details, see https://developers.glean.com/guides/search/llm-content.
      */
     public SearchRequestOptions withReturnLlmContentOverSnippets(boolean returnLlmContentOverSnippets) {
         Utils.checkNotNull(returnLlmContentOverSnippets, "returnLlmContentOverSnippets");
@@ -598,7 +598,7 @@ public class SearchRequestOptions {
 
 
     /**
-     * [beta] Enables expanded content to be returned for LLM usage. The size of content per result returned should be modified using maxSnippetSize. Server may return less or more than what is specified in maxSnippetSize. For more details, https://docs.google.com/document/d/1CTOLSxWWT9WDEnHVLoCUaxbGYyXYP8kctPRF-RluSQY/edit. Requires sufficient permissions.
+     * Enables expanded content to be returned for LLM usage. The size of content per result returned should be modified using maxSnippetSize. Server may return less or more than what is specified in maxSnippetSize. For more details, see https://developers.glean.com/guides/search/llm-content.
      */
     public SearchRequestOptions withReturnLlmContentOverSnippets(Optional<Boolean> returnLlmContentOverSnippets) {
         Utils.checkNotNull(returnLlmContentOverSnippets, "returnLlmContentOverSnippets");
@@ -988,7 +988,7 @@ public class SearchRequestOptions {
 
 
         /**
-         * [beta] Enables expanded content to be returned for LLM usage. The size of content per result returned should be modified using maxSnippetSize. Server may return less or more than what is specified in maxSnippetSize. For more details, https://docs.google.com/document/d/1CTOLSxWWT9WDEnHVLoCUaxbGYyXYP8kctPRF-RluSQY/edit. Requires sufficient permissions.
+         * Enables expanded content to be returned for LLM usage. The size of content per result returned should be modified using maxSnippetSize. Server may return less or more than what is specified in maxSnippetSize. For more details, see https://developers.glean.com/guides/search/llm-content.
          */
         public Builder returnLlmContentOverSnippets(boolean returnLlmContentOverSnippets) {
             Utils.checkNotNull(returnLlmContentOverSnippets, "returnLlmContentOverSnippets");
@@ -997,7 +997,7 @@ public class SearchRequestOptions {
         }
 
         /**
-         * [beta] Enables expanded content to be returned for LLM usage. The size of content per result returned should be modified using maxSnippetSize. Server may return less or more than what is specified in maxSnippetSize. For more details, https://docs.google.com/document/d/1CTOLSxWWT9WDEnHVLoCUaxbGYyXYP8kctPRF-RluSQY/edit. Requires sufficient permissions.
+         * Enables expanded content to be returned for LLM usage. The size of content per result returned should be modified using maxSnippetSize. Server may return less or more than what is specified in maxSnippetSize. For more details, see https://developers.glean.com/guides/search/llm-content.
          */
         public Builder returnLlmContentOverSnippets(Optional<Boolean> returnLlmContentOverSnippets) {
             Utils.checkNotNull(returnLlmContentOverSnippets, "returnLlmContentOverSnippets");

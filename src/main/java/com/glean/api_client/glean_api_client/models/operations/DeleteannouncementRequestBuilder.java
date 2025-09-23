@@ -8,6 +8,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.DeleteAnnouncementRequest;
 import com.glean.api_client.glean_api_client.operations.Deleteannouncement;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -15,6 +16,7 @@ public class DeleteannouncementRequestBuilder {
 
     private DeleteAnnouncementRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public DeleteannouncementRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -29,7 +31,7 @@ public class DeleteannouncementRequestBuilder {
     public DeleteannouncementResponse call() throws Exception {
         
         RequestOperation<DeleteAnnouncementRequest, DeleteannouncementResponse> operation
-              = new Deleteannouncement.Sync(sdkConfiguration);
+              = new Deleteannouncement.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

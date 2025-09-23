@@ -33,10 +33,10 @@ public class ClientAuthenticationTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            CreateAuthTokenResponse.builder()
+                CreateAuthTokenResponse.builder()
             .token("<value>")
             .expirationTime(207213L)
             .build(),
-            res.createAuthTokenResponse().get());
+                res.createAuthTokenResponse().get());
     }
 }

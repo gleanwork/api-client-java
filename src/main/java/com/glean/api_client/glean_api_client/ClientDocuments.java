@@ -21,15 +21,28 @@ import com.glean.api_client.glean_api_client.operations.Getdocpermissions;
 import com.glean.api_client.glean_api_client.operations.Getdocuments;
 import com.glean.api_client.glean_api_client.operations.Getdocumentsbyfacets;
 import com.glean.api_client.glean_api_client.operations.Summarize;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class ClientDocuments {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncClientDocuments asyncSDK;
 
     ClientDocuments(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncClientDocuments(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncClientDocuments async() {
+        return asyncSDK;
     }
 
     /**
@@ -54,7 +67,7 @@ public class ClientDocuments {
      */
     public GetdocpermissionsResponse retrievePermissions(GetDocPermissionsRequest request) throws Exception {
         RequestOperation<GetDocPermissionsRequest, GetdocpermissionsResponse> operation
-              = new Getdocpermissions.Sync(sdkConfiguration);
+              = new Getdocpermissions.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -92,7 +105,7 @@ public class ClientDocuments {
      */
     public GetdocumentsResponse retrieve(Optional<? extends GetDocumentsRequest> request) throws Exception {
         RequestOperation<Optional<? extends GetDocumentsRequest>, GetdocumentsResponse> operation
-              = new Getdocuments.Sync(sdkConfiguration);
+              = new Getdocuments.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -130,7 +143,7 @@ public class ClientDocuments {
      */
     public GetdocumentsbyfacetsResponse retrieveByFacets(Optional<? extends GetDocumentsByFacetsRequest> request) throws Exception {
         RequestOperation<Optional<? extends GetDocumentsByFacetsRequest>, GetdocumentsbyfacetsResponse> operation
-              = new Getdocumentsbyfacets.Sync(sdkConfiguration);
+              = new Getdocumentsbyfacets.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -156,7 +169,7 @@ public class ClientDocuments {
      */
     public SummarizeResponse summarize(SummarizeRequest request) throws Exception {
         RequestOperation<SummarizeRequest, SummarizeResponse> operation
-              = new Summarize.Sync(sdkConfiguration);
+              = new Summarize.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

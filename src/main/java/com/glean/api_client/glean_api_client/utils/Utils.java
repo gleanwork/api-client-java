@@ -69,6 +69,9 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.TextNode;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 
+import com.glean.api_client.glean_api_client.models.errors.UncheckedAPIException;
+
+
 public final class Utils {
     
     private Utils() {
@@ -174,6 +177,13 @@ public final class Utils {
                             case OBJECT:
                                 if (!allowIntrospection(value.getClass())) {
                                     pathParams.put(pathParamsMetadata.name, pathEncode(valToString(value), pathParamsMetadata.allowReserved));
+                                    break;
+                                }
+                                Optional<?> openEnumValue = Reflections.getOpenEnumValue(value.getClass(), value);
+                                if (openEnumValue.isPresent()) {
+                                    pathParams.put(pathParamsMetadata.name, pathEncode(
+                                            valToString(openEnumValue.get()),
+                                            pathParamsMetadata.allowReserved));
                                     break;
                                 }
                                 List<String> values = new ArrayList<>();
@@ -356,9 +366,14 @@ public final class Utils {
                 case OBJECT: {
                     if (!allowIntrospection(value.getClass())) {
                         break;
-                    } 
-                    List<String> items = new ArrayList<>();
+                    }
+                    Optional<?> openEnumValue = Reflections.getOpenEnumValue(value.getClass(), value);
+                    if (openEnumValue.isPresent()) {
+                        upsertHeader(result, headerMetadata.name, openEnumValue.get());
+                        break;
+                    }
 
+                    List<String> items = new ArrayList<>();
                     Field[] valueFields = value.getClass().getDeclaredFields();
                     for (Field valueField : valueFields) {
                         valueField.setAccessible(true);
@@ -443,21 +458,21 @@ public final class Utils {
                     break;
                 }
                 default: {
-                    if (!result.containsKey(headerMetadata.name)) {
-                        result.put(headerMetadata.name, new ArrayList<>());
-                    }
-
-                    List<String> values = result.get(headerMetadata.name);
-                    values.add(valToString(value));
+                    upsertHeader(result, headerMetadata.name, value);
                     break;
                 }
             }
         }
-        
+
         // include all global headers in result if not already present
         mergeGlobalHeaders(result, globals);
 
         return result;
+    }
+
+    private static void upsertHeader(Map<String, List<String>> headers, String key, Object val) {
+        headers.computeIfAbsent(key, k -> new ArrayList<>())
+                .add(valToString(val));
     }
 
     private static void mergeGlobalHeaders(Map<String, List<String>> headers, Globals globals) {
@@ -1584,5 +1599,21 @@ public final class Utils {
             // Fallback: treat as double
             return BigDecimal.valueOf(number.doubleValue());
         }
+    }
+
+    /**
+     * Creates a failed CompletableFuture with an async API exception.
+     * Uses the Blob to read the response body asynchronously.
+     */public static <T> CompletableFuture<T> createAsyncApiError(
+            HttpResponse<com.glean.api_client.glean_api_client.utils.Blob> response,
+            String reason) {
+        return response.body().toByteArray()
+                .thenApply(bodyBytes -> {
+                    throw new UncheckedAPIException(
+                            response,
+                            response.statusCode(),
+                            reason,
+                            bodyBytes);
+                });
     }
 }

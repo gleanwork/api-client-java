@@ -5,7 +5,8 @@ package com.glean.api_client.glean_api_client;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.glean.api_client.glean_api_client.models.components.DocumentSpec1;
+import com.glean.api_client.glean_api_client.models.components.DocumentSpec3;
+import com.glean.api_client.glean_api_client.models.components.DocumentSpecUgcType1;
 import com.glean.api_client.glean_api_client.models.components.DocumentSpecUnion;
 import com.glean.api_client.glean_api_client.models.components.SummarizeRequest;
 import com.glean.api_client.glean_api_client.models.operations.SummarizeResponse;
@@ -28,9 +29,13 @@ public class SummarizeTests {
 
         SummarizeRequest req = SummarizeRequest.builder()
                 .documentSpecs(List.of(
-                    DocumentSpecUnion.of(DocumentSpec1.builder()
+                    DocumentSpecUnion.of(DocumentSpec3.builder()
+                        .ugcType(DocumentSpecUgcType1.SHORTCUTS)
+                        .contentId(602763L)
                         .build()),
-                    DocumentSpecUnion.of(DocumentSpec1.builder()
+                    DocumentSpecUnion.of(DocumentSpec3.builder()
+                        .ugcType(DocumentSpecUgcType1.SHORTCUTS)
+                        .contentId(602763L)
                         .build())))
                 .build();
 
@@ -39,8 +44,8 @@ public class SummarizeTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            com.glean.api_client.glean_api_client.models.components.SummarizeResponse.builder()
+                com.glean.api_client.glean_api_client.models.components.SummarizeResponse.builder()
             .build(),
-            res.summarizeResponse().get());
+                res.summarizeResponse().get());
     }
 }

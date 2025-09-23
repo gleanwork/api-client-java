@@ -3,17 +3,32 @@
  */
 package com.glean.api_client.glean_api_client;
 
+import com.glean.api_client.glean_api_client.utils.Headers;
+
+
 public class GovernanceDocuments {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncGovernanceDocuments asyncSDK;
     private final Visibilityoverrides visibilityoverrides;
 
     GovernanceDocuments(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.visibilityoverrides = new Visibilityoverrides(this.sdkConfiguration);
+        this.asyncSDK = new AsyncGovernanceDocuments(this, sdkConfiguration);
     }
 
     public final Visibilityoverrides visibilityoverrides() {
         return visibilityoverrides;
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncGovernanceDocuments async() {
+        return asyncSDK;
     }
 
 }

@@ -1,0 +1,22 @@
+description = 'glean-api-client Spring Boot Starter'
+
+// Publishing configuration overrides
+ext {
+    publishingConfig = [
+        groupId: rootProject.group,
+        artifactId: 'glean-api-client-spring-boot-starter',
+        version: rootProject.version,
+        name: 'Glean Java SDK - Spring Boot Starter',
+        description: 'Spring Boot starter for the Glean Java SDK.',
+    ]
+}
+
+dependencies {
+    api project(':')
+    api project(':glean-api-client-spring-boot-autoconfigure')
+    api "org.springframework.boot:spring-boot-starter:${rootProject.springBootVersion}"
+}
+
+jar {
+    archiveBaseName = 'glean-api-client-spring-boot-starter'
+}

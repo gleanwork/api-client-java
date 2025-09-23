@@ -4,6 +4,7 @@
 package com.glean.api_client.glean_api_client;
 
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Hook.SdkInitData;
 import com.glean.api_client.glean_api_client.utils.RetryConfig;
 import com.glean.api_client.glean_api_client.utils.SpeakeasyHTTPClient;
@@ -32,6 +33,7 @@ import java.util.function.Consumer;
  * <p>These API clients provide type-safe, idiomatic interfaces for working with Glean IndexingAPIs in your language of choice.
  */
 public class Glean {
+    private static final Headers _headers = Headers.EMPTY;
 
 
     /**
@@ -59,6 +61,7 @@ public class Glean {
     }
 
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncGlean asyncSDK;
 
     /**
      * The Builder class allows the configuration of a new instance of the SDK.
@@ -186,7 +189,6 @@ public class Glean {
 
             return this;
         }
-        
         // Visible for testing, may be accessed via reflection in tests
         Builder _hooks(com.glean.api_client.glean_api_client.utils.Hooks hooks) {
             sdkConfiguration.setHooks(hooks);  
@@ -198,7 +200,7 @@ public class Glean {
             consumer.accept(sdkConfiguration.hooks());
             return this;    
         }
-        
+
         /**
          * Builds a new instance of the SDK.
          *
@@ -213,7 +215,7 @@ public class Glean {
             return new Glean(sdkConfiguration);
         }
     }
-    
+
     /**
      * Get a new instance of the SDK builder to configure a new instance of the SDK.
      *
@@ -223,7 +225,7 @@ public class Glean {
         return new Builder();
     }
 
-    private Glean(SDKConfiguration sdkConfiguration) {
+    public Glean(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.sdkConfiguration.initialize();
         this.client = new Client(sdkConfiguration);
@@ -234,5 +236,16 @@ public class Glean {
                         this.sdkConfiguration.client()));
         this.sdkConfiguration.setServerUrl(data.baseUrl());
         this.sdkConfiguration.setClient(data.client());
+        this.asyncSDK = new AsyncGlean(this, sdkConfiguration);
     }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncGlean async() {
+        return asyncSDK;
+    }
+
 }

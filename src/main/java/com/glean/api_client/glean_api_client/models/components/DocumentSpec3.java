@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -20,16 +19,14 @@ public class DocumentSpec3 {
     /**
      * The type of the user generated content (UGC datasource).
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ugcType")
-    private Optional<? extends DocumentSpecUgcType> ugcType;
+    private DocumentSpecUgcType1 ugcType;
 
     /**
-     * The id for user generated content.
+     * The numeric id for user generated content. Used for ANNOUNCEMENTS, ANSWERS, COLLECTIONS, SHORTCUTS.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("contentId")
-    private Optional<Long> contentId;
+    private long contentId;
 
     /**
      * The specific type of the user generated content type.
@@ -40,8 +37,8 @@ public class DocumentSpec3 {
 
     @JsonCreator
     public DocumentSpec3(
-            @JsonProperty("ugcType") Optional<? extends DocumentSpecUgcType> ugcType,
-            @JsonProperty("contentId") Optional<Long> contentId,
+            @JsonProperty("ugcType") DocumentSpecUgcType1 ugcType,
+            @JsonProperty("contentId") long contentId,
             @JsonProperty("docType") Optional<String> docType) {
         Utils.checkNotNull(ugcType, "ugcType");
         Utils.checkNotNull(contentId, "contentId");
@@ -51,24 +48,25 @@ public class DocumentSpec3 {
         this.docType = docType;
     }
     
-    public DocumentSpec3() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+    public DocumentSpec3(
+            DocumentSpecUgcType1 ugcType,
+            long contentId) {
+        this(ugcType, contentId, Optional.empty());
     }
 
     /**
      * The type of the user generated content (UGC datasource).
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<DocumentSpecUgcType> ugcType() {
-        return (Optional<DocumentSpecUgcType>) ugcType;
+    public DocumentSpecUgcType1 ugcType() {
+        return ugcType;
     }
 
     /**
-     * The id for user generated content.
+     * The numeric id for user generated content. Used for ANNOUNCEMENTS, ANSWERS, COLLECTIONS, SHORTCUTS.
      */
     @JsonIgnore
-    public Optional<Long> contentId() {
+    public long contentId() {
         return contentId;
     }
 
@@ -88,36 +86,16 @@ public class DocumentSpec3 {
     /**
      * The type of the user generated content (UGC datasource).
      */
-    public DocumentSpec3 withUgcType(DocumentSpecUgcType ugcType) {
-        Utils.checkNotNull(ugcType, "ugcType");
-        this.ugcType = Optional.ofNullable(ugcType);
-        return this;
-    }
-
-
-    /**
-     * The type of the user generated content (UGC datasource).
-     */
-    public DocumentSpec3 withUgcType(Optional<? extends DocumentSpecUgcType> ugcType) {
+    public DocumentSpec3 withUgcType(DocumentSpecUgcType1 ugcType) {
         Utils.checkNotNull(ugcType, "ugcType");
         this.ugcType = ugcType;
         return this;
     }
 
     /**
-     * The id for user generated content.
+     * The numeric id for user generated content. Used for ANNOUNCEMENTS, ANSWERS, COLLECTIONS, SHORTCUTS.
      */
     public DocumentSpec3 withContentId(long contentId) {
-        Utils.checkNotNull(contentId, "contentId");
-        this.contentId = Optional.ofNullable(contentId);
-        return this;
-    }
-
-
-    /**
-     * The id for user generated content.
-     */
-    public DocumentSpec3 withContentId(Optional<Long> contentId) {
         Utils.checkNotNull(contentId, "contentId");
         this.contentId = contentId;
         return this;
@@ -174,9 +152,9 @@ public class DocumentSpec3 {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends DocumentSpecUgcType> ugcType = Optional.empty();
+        private DocumentSpecUgcType1 ugcType;
 
-        private Optional<Long> contentId = Optional.empty();
+        private Long contentId;
 
         private Optional<String> docType = Optional.empty();
 
@@ -188,16 +166,7 @@ public class DocumentSpec3 {
         /**
          * The type of the user generated content (UGC datasource).
          */
-        public Builder ugcType(DocumentSpecUgcType ugcType) {
-            Utils.checkNotNull(ugcType, "ugcType");
-            this.ugcType = Optional.ofNullable(ugcType);
-            return this;
-        }
-
-        /**
-         * The type of the user generated content (UGC datasource).
-         */
-        public Builder ugcType(Optional<? extends DocumentSpecUgcType> ugcType) {
+        public Builder ugcType(DocumentSpecUgcType1 ugcType) {
             Utils.checkNotNull(ugcType, "ugcType");
             this.ugcType = ugcType;
             return this;
@@ -205,18 +174,9 @@ public class DocumentSpec3 {
 
 
         /**
-         * The id for user generated content.
+         * The numeric id for user generated content. Used for ANNOUNCEMENTS, ANSWERS, COLLECTIONS, SHORTCUTS.
          */
         public Builder contentId(long contentId) {
-            Utils.checkNotNull(contentId, "contentId");
-            this.contentId = Optional.ofNullable(contentId);
-            return this;
-        }
-
-        /**
-         * The id for user generated content.
-         */
-        public Builder contentId(Optional<Long> contentId) {
             Utils.checkNotNull(contentId, "contentId");
             this.contentId = contentId;
             return this;

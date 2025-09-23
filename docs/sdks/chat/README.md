@@ -44,7 +44,6 @@ public class Application {
                 .chatRequest(ChatRequest.builder()
                     .messages(List.of(
                         ChatMessage.builder()
-                            .author(Author.USER)
                             .fragments(List.of(
                                 ChatMessageFragment.builder()
                                     .text("What are the company holidays this year?")
@@ -344,6 +343,7 @@ import com.glean.api_client.glean_api_client.models.components.File;
 import com.glean.api_client.glean_api_client.models.components.UploadChatFilesRequest;
 import com.glean.api_client.glean_api_client.models.operations.UploadchatfilesResponse;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.io.FileInputStream;
 import java.lang.Exception;
 import java.util.List;
 
@@ -360,14 +360,11 @@ public class Application {
                     .files(List.of(
                         File.builder()
                             .fileName("example.file")
-                            .content(Utils.readBytes("example.file"))
+                            .content(Utils.readBytesAndClose(new FileInputStream("example.file")))
                             .build()))
                     .build())
                 .call();
 
-        if (res.uploadChatFilesResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```
@@ -527,7 +524,6 @@ public class Application {
                 .chatRequest(ChatRequest.builder()
                     .messages(List.of(
                         ChatMessage.builder()
-                            .author(Author.USER)
                             .fragments(List.of(
                                 ChatMessageFragment.builder()
                                     .text("What are the company holidays this year?")

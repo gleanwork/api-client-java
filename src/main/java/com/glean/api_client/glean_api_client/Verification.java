@@ -17,16 +17,29 @@ import com.glean.api_client.glean_api_client.models.operations.VerifyResponse;
 import com.glean.api_client.glean_api_client.operations.Addverificationreminder;
 import com.glean.api_client.glean_api_client.operations.Listverifications;
 import com.glean.api_client.glean_api_client.operations.Verify;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Exception;
 import java.lang.Long;
 import java.util.Optional;
 
 
 public class Verification {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncVerification asyncSDK;
 
     Verification(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncVerification(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncVerification async() {
+        return asyncSDK;
     }
 
     /**
@@ -51,7 +64,7 @@ public class Verification {
      */
     public AddverificationreminderResponse addReminder(ReminderRequest request) throws Exception {
         RequestOperation<ReminderRequest, AddverificationreminderResponse> operation
-              = new Addverificationreminder.Sync(sdkConfiguration);
+              = new Addverificationreminder.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -94,7 +107,7 @@ public class Verification {
                 .count(count)
                 .build();
         RequestOperation<ListverificationsRequest, ListverificationsResponse> operation
-              = new Listverifications.Sync(sdkConfiguration);
+              = new Listverifications.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -120,7 +133,7 @@ public class Verification {
      */
     public VerifyResponse verify(VerifyRequest request) throws Exception {
         RequestOperation<VerifyRequest, VerifyResponse> operation
-              = new Verify.Sync(sdkConfiguration);
+              = new Verify.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

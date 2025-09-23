@@ -8,6 +8,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.DeleteMembershipRequest;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Deletemembership;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -15,6 +16,7 @@ public class PostApiIndexV1DeletemembershipRequestBuilder {
 
     private DeleteMembershipRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public PostApiIndexV1DeletemembershipRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -29,7 +31,7 @@ public class PostApiIndexV1DeletemembershipRequestBuilder {
     public PostApiIndexV1DeletemembershipResponse call() throws Exception {
         
         RequestOperation<DeleteMembershipRequest, PostApiIndexV1DeletemembershipResponse> operation
-              = new PostApiIndexV1Deletemembership.Sync(sdkConfiguration);
+              = new PostApiIndexV1Deletemembership.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -13,14 +13,27 @@ import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1Get
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1GetdatasourceconfigResponse;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Adddatasource;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Getdatasourceconfig;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Exception;
 
 
 public class Datasources {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncDatasources asyncSDK;
 
     Datasources(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncDatasources(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncDatasources async() {
+        return asyncSDK;
     }
 
     /**
@@ -45,7 +58,7 @@ public class Datasources {
      */
     public PostApiIndexV1AdddatasourceResponse add(CustomDatasourceConfig request) throws Exception {
         RequestOperation<CustomDatasourceConfig, PostApiIndexV1AdddatasourceResponse> operation
-              = new PostApiIndexV1Adddatasource.Sync(sdkConfiguration);
+              = new PostApiIndexV1Adddatasource.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -71,7 +84,7 @@ public class Datasources {
      */
     public PostApiIndexV1GetdatasourceconfigResponse retrieveConfig(GetDatasourceConfigRequest request) throws Exception {
         RequestOperation<GetDatasourceConfigRequest, PostApiIndexV1GetdatasourceconfigResponse> operation
-              = new PostApiIndexV1Getdatasourceconfig.Sync(sdkConfiguration);
+              = new PostApiIndexV1Getdatasourceconfig.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

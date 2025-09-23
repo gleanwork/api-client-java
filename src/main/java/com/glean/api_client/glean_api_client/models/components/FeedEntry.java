@@ -90,6 +90,11 @@ public class FeedEntry {
 
 
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("digest")
+    private Optional<? extends Digest> digest;
+
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("collection")
     private Optional<? extends Collection> collection;
 
@@ -107,6 +112,11 @@ public class FeedEntry {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("app")
     private Optional<? extends AppResult> app;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("chatSuggestion")
+    private Optional<? extends ChatSuggestion> chatSuggestion;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -144,10 +154,12 @@ public class FeedEntry {
             @JsonProperty("document") Optional<? extends Document> document,
             @JsonProperty("event") Optional<? extends CalendarEvent> event,
             @JsonProperty("announcement") Optional<? extends Announcement> announcement,
+            @JsonProperty("digest") Optional<? extends Digest> digest,
             @JsonProperty("collection") Optional<? extends Collection> collection,
             @JsonProperty("collectionItem") Optional<? extends CollectionItem> collectionItem,
             @JsonProperty("person") Optional<? extends Person> person,
             @JsonProperty("app") Optional<? extends AppResult> app,
+            @JsonProperty("chatSuggestion") Optional<? extends ChatSuggestion> chatSuggestion,
             @JsonProperty("promptTemplate") Optional<? extends PromptTemplateResult> promptTemplate,
             @JsonProperty("workflow") Optional<? extends WorkflowResult> workflow,
             @JsonProperty("activities") Optional<? extends List<UserActivity>> activities,
@@ -164,10 +176,12 @@ public class FeedEntry {
         Utils.checkNotNull(document, "document");
         Utils.checkNotNull(event, "event");
         Utils.checkNotNull(announcement, "announcement");
+        Utils.checkNotNull(digest, "digest");
         Utils.checkNotNull(collection, "collection");
         Utils.checkNotNull(collectionItem, "collectionItem");
         Utils.checkNotNull(person, "person");
         Utils.checkNotNull(app, "app");
+        Utils.checkNotNull(chatSuggestion, "chatSuggestion");
         Utils.checkNotNull(promptTemplate, "promptTemplate");
         Utils.checkNotNull(workflow, "workflow");
         Utils.checkNotNull(activities, "activities");
@@ -184,10 +198,12 @@ public class FeedEntry {
         this.document = document;
         this.event = event;
         this.announcement = announcement;
+        this.digest = digest;
         this.collection = collection;
         this.collectionItem = collectionItem;
         this.person = person;
         this.app = app;
+        this.chatSuggestion = chatSuggestion;
         this.promptTemplate = promptTemplate;
         this.workflow = workflow;
         this.activities = activities;
@@ -202,7 +218,8 @@ public class FeedEntry {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -292,6 +309,12 @@ public class FeedEntry {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
+    public Optional<Digest> digest() {
+        return (Optional<Digest>) digest;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
     public Optional<Collection> collection() {
         return (Optional<Collection>) collection;
     }
@@ -312,6 +335,12 @@ public class FeedEntry {
     @JsonIgnore
     public Optional<AppResult> app() {
         return (Optional<AppResult>) app;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ChatSuggestion> chatSuggestion() {
+        return (Optional<ChatSuggestion>) chatSuggestion;
     }
 
     @SuppressWarnings("unchecked")
@@ -528,6 +557,19 @@ public class FeedEntry {
         return this;
     }
 
+    public FeedEntry withDigest(Digest digest) {
+        Utils.checkNotNull(digest, "digest");
+        this.digest = Optional.ofNullable(digest);
+        return this;
+    }
+
+
+    public FeedEntry withDigest(Optional<? extends Digest> digest) {
+        Utils.checkNotNull(digest, "digest");
+        this.digest = digest;
+        return this;
+    }
+
     public FeedEntry withCollection(Collection collection) {
         Utils.checkNotNull(collection, "collection");
         this.collection = Optional.ofNullable(collection);
@@ -577,6 +619,19 @@ public class FeedEntry {
     public FeedEntry withApp(Optional<? extends AppResult> app) {
         Utils.checkNotNull(app, "app");
         this.app = app;
+        return this;
+    }
+
+    public FeedEntry withChatSuggestion(ChatSuggestion chatSuggestion) {
+        Utils.checkNotNull(chatSuggestion, "chatSuggestion");
+        this.chatSuggestion = Optional.ofNullable(chatSuggestion);
+        return this;
+    }
+
+
+    public FeedEntry withChatSuggestion(Optional<? extends ChatSuggestion> chatSuggestion) {
+        Utils.checkNotNull(chatSuggestion, "chatSuggestion");
+        this.chatSuggestion = chatSuggestion;
         return this;
     }
 
@@ -660,10 +715,12 @@ public class FeedEntry {
             Utils.enhancedDeepEquals(this.document, other.document) &&
             Utils.enhancedDeepEquals(this.event, other.event) &&
             Utils.enhancedDeepEquals(this.announcement, other.announcement) &&
+            Utils.enhancedDeepEquals(this.digest, other.digest) &&
             Utils.enhancedDeepEquals(this.collection, other.collection) &&
             Utils.enhancedDeepEquals(this.collectionItem, other.collectionItem) &&
             Utils.enhancedDeepEquals(this.person, other.person) &&
             Utils.enhancedDeepEquals(this.app, other.app) &&
+            Utils.enhancedDeepEquals(this.chatSuggestion, other.chatSuggestion) &&
             Utils.enhancedDeepEquals(this.promptTemplate, other.promptTemplate) &&
             Utils.enhancedDeepEquals(this.workflow, other.workflow) &&
             Utils.enhancedDeepEquals(this.activities, other.activities) &&
@@ -677,9 +734,10 @@ public class FeedEntry {
             createdBy, uiConfig, justificationType,
             justification, trackingToken, viewUrl,
             document, event, announcement,
-            collection, collectionItem, person,
-            app, promptTemplate, workflow,
-            activities, documentVisitorCount);
+            digest, collection, collectionItem,
+            person, app, chatSuggestion,
+            promptTemplate, workflow, activities,
+            documentVisitorCount);
     }
     
     @Override
@@ -697,10 +755,12 @@ public class FeedEntry {
                 "document", document,
                 "event", event,
                 "announcement", announcement,
+                "digest", digest,
                 "collection", collection,
                 "collectionItem", collectionItem,
                 "person", person,
                 "app", app,
+                "chatSuggestion", chatSuggestion,
                 "promptTemplate", promptTemplate,
                 "workflow", workflow,
                 "activities", activities,
@@ -734,6 +794,8 @@ public class FeedEntry {
 
         private Optional<? extends Announcement> announcement = Optional.empty();
 
+        private Optional<? extends Digest> digest = Optional.empty();
+
         private Optional<? extends Collection> collection = Optional.empty();
 
         private Optional<? extends CollectionItem> collectionItem = Optional.empty();
@@ -741,6 +803,8 @@ public class FeedEntry {
         private Optional<? extends Person> person = Optional.empty();
 
         private Optional<? extends AppResult> app = Optional.empty();
+
+        private Optional<? extends ChatSuggestion> chatSuggestion = Optional.empty();
 
         private Optional<? extends PromptTemplateResult> promptTemplate = Optional.empty();
 
@@ -938,6 +1002,19 @@ public class FeedEntry {
         }
 
 
+        public Builder digest(Digest digest) {
+            Utils.checkNotNull(digest, "digest");
+            this.digest = Optional.ofNullable(digest);
+            return this;
+        }
+
+        public Builder digest(Optional<? extends Digest> digest) {
+            Utils.checkNotNull(digest, "digest");
+            this.digest = digest;
+            return this;
+        }
+
+
         public Builder collection(Collection collection) {
             Utils.checkNotNull(collection, "collection");
             this.collection = Optional.ofNullable(collection);
@@ -986,6 +1063,19 @@ public class FeedEntry {
         public Builder app(Optional<? extends AppResult> app) {
             Utils.checkNotNull(app, "app");
             this.app = app;
+            return this;
+        }
+
+
+        public Builder chatSuggestion(ChatSuggestion chatSuggestion) {
+            Utils.checkNotNull(chatSuggestion, "chatSuggestion");
+            this.chatSuggestion = Optional.ofNullable(chatSuggestion);
+            return this;
+        }
+
+        public Builder chatSuggestion(Optional<? extends ChatSuggestion> chatSuggestion) {
+            Utils.checkNotNull(chatSuggestion, "chatSuggestion");
+            this.chatSuggestion = chatSuggestion;
             return this;
         }
 
@@ -1054,9 +1144,10 @@ public class FeedEntry {
                 createdBy, uiConfig, justificationType,
                 justification, trackingToken, viewUrl,
                 document, event, announcement,
-                collection, collectionItem, person,
-                app, promptTemplate, workflow,
-                activities, documentVisitorCount);
+                digest, collection, collectionItem,
+                person, app, chatSuggestion,
+                promptTemplate, workflow, activities,
+                documentVisitorCount);
         }
 
     }

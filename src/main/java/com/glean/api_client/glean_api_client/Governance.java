@@ -3,8 +3,13 @@
  */
 package com.glean.api_client.glean_api_client;
 
+import com.glean.api_client.glean_api_client.utils.Headers;
+
+
 public class Governance {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncGovernance asyncSDK;
     private final Data data;
     private final GovernanceDocuments documents;
 
@@ -12,6 +17,7 @@ public class Governance {
         this.sdkConfiguration = sdkConfiguration;
         this.data = new Data(this.sdkConfiguration);
         this.documents = new GovernanceDocuments(this.sdkConfiguration);
+        this.asyncSDK = new AsyncGovernance(this, sdkConfiguration);
     }
 
     public final Data data() {
@@ -20,6 +26,15 @@ public class Governance {
 
     public final GovernanceDocuments documents() {
         return documents;
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncGovernance async() {
+        return asyncSDK;
     }
 
 }
