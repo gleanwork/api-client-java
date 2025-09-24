@@ -47,6 +47,7 @@ import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Getdocumen
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Indexdocument;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Indexdocuments;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Processalldocuments;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Deprecated;
 import java.lang.Exception;
 import java.lang.String;
@@ -54,10 +55,22 @@ import java.util.Optional;
 
 
 public class IndexingDocuments {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncIndexingDocuments asyncSDK;
 
     IndexingDocuments(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncIndexingDocuments(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncIndexingDocuments async() {
+        return asyncSDK;
     }
 
     /**
@@ -82,7 +95,7 @@ public class IndexingDocuments {
      */
     public PostApiIndexV1IndexdocumentResponse addOrUpdate(IndexDocumentRequest request) throws Exception {
         RequestOperation<IndexDocumentRequest, PostApiIndexV1IndexdocumentResponse> operation
-              = new PostApiIndexV1Indexdocument.Sync(sdkConfiguration);
+              = new PostApiIndexV1Indexdocument.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -108,7 +121,7 @@ public class IndexingDocuments {
      */
     public PostApiIndexV1IndexdocumentsResponse index(IndexDocumentsRequest request) throws Exception {
         RequestOperation<IndexDocumentsRequest, PostApiIndexV1IndexdocumentsResponse> operation
-              = new PostApiIndexV1Indexdocuments.Sync(sdkConfiguration);
+              = new PostApiIndexV1Indexdocuments.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -134,7 +147,7 @@ public class IndexingDocuments {
      */
     public PostApiIndexV1BulkindexdocumentsResponse bulkIndex(BulkIndexDocumentsRequest request) throws Exception {
         RequestOperation<BulkIndexDocumentsRequest, PostApiIndexV1BulkindexdocumentsResponse> operation
-              = new PostApiIndexV1Bulkindexdocuments.Sync(sdkConfiguration);
+              = new PostApiIndexV1Bulkindexdocuments.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -202,7 +215,7 @@ public class IndexingDocuments {
      */
     public PostApiIndexV1ProcessalldocumentsResponse processAll(Optional<? extends ProcessAllDocumentsRequest> request) throws Exception {
         RequestOperation<Optional<? extends ProcessAllDocumentsRequest>, PostApiIndexV1ProcessalldocumentsResponse> operation
-              = new PostApiIndexV1Processalldocuments.Sync(sdkConfiguration);
+              = new PostApiIndexV1Processalldocuments.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -228,7 +241,7 @@ public class IndexingDocuments {
      */
     public PostApiIndexV1DeletedocumentResponse delete(DeleteDocumentRequest request) throws Exception {
         RequestOperation<DeleteDocumentRequest, PostApiIndexV1DeletedocumentResponse> operation
-              = new PostApiIndexV1Deletedocument.Sync(sdkConfiguration);
+              = new PostApiIndexV1Deletedocument.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -265,7 +278,7 @@ public class IndexingDocuments {
                 .debugDocumentRequest(debugDocumentRequest)
                 .build();
         RequestOperation<PostApiIndexV1DebugDatasourceDocumentRequest, PostApiIndexV1DebugDatasourceDocumentResponse> operation
-              = new PostApiIndexV1DebugDatasourceDocument.Sync(sdkConfiguration);
+              = new PostApiIndexV1DebugDatasourceDocument.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -302,7 +315,7 @@ public class IndexingDocuments {
                 .debugDocumentsRequest(debugDocumentsRequest)
                 .build();
         RequestOperation<PostApiIndexV1DebugDatasourceDocumentsRequest, PostApiIndexV1DebugDatasourceDocumentsResponse> operation
-              = new PostApiIndexV1DebugDatasourceDocuments.Sync(sdkConfiguration);
+              = new PostApiIndexV1DebugDatasourceDocuments.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -332,7 +345,7 @@ public class IndexingDocuments {
      */
     public PostApiIndexV1CheckdocumentaccessResponse checkAccess(CheckDocumentAccessRequest request) throws Exception {
         RequestOperation<CheckDocumentAccessRequest, PostApiIndexV1CheckdocumentaccessResponse> operation
-              = new PostApiIndexV1Checkdocumentaccess.Sync(sdkConfiguration);
+              = new PostApiIndexV1Checkdocumentaccess.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -366,7 +379,7 @@ public class IndexingDocuments {
     @Deprecated
     public PostApiIndexV1GetdocumentstatusResponse status(GetDocumentStatusRequest request) throws Exception {
         RequestOperation<GetDocumentStatusRequest, PostApiIndexV1GetdocumentstatusResponse> operation
-              = new PostApiIndexV1Getdocumentstatus.Sync(sdkConfiguration);
+              = new PostApiIndexV1Getdocumentstatus.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -400,7 +413,7 @@ public class IndexingDocuments {
     @Deprecated
     public PostApiIndexV1GetdocumentcountResponse count(GetDocumentCountRequest request) throws Exception {
         RequestOperation<GetDocumentCountRequest, PostApiIndexV1GetdocumentcountResponse> operation
-              = new PostApiIndexV1Getdocumentcount.Sync(sdkConfiguration);
+              = new PostApiIndexV1Getdocumentcount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

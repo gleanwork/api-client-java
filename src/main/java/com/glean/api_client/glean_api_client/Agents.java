@@ -24,6 +24,7 @@ import com.glean.api_client.glean_api_client.operations.CreateAndWaitRun;
 import com.glean.api_client.glean_api_client.operations.GetAgent;
 import com.glean.api_client.glean_api_client.operations.GetAgentSchemas;
 import com.glean.api_client.glean_api_client.operations.SearchAgents;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
@@ -31,10 +32,22 @@ import java.util.Optional;
 
 
 public class Agents {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncAgents asyncSDK;
 
     Agents(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncAgents(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncAgents async() {
+        return asyncSDK;
     }
 
     /**
@@ -79,7 +92,7 @@ public class Agents {
                 .agentId(agentId)
                 .build();
         RequestOperation<GetAgentRequest, GetAgentResponse> operation
-              = new GetAgent.Sync(sdkConfiguration);
+              = new GetAgent.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -125,7 +138,7 @@ public class Agents {
                 .agentId(agentId)
                 .build();
         RequestOperation<GetAgentSchemasRequest, GetAgentSchemasResponse> operation
-              = new GetAgentSchemas.Sync(sdkConfiguration);
+              = new GetAgentSchemas.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -151,7 +164,7 @@ public class Agents {
      */
     public SearchAgentsResponse list(SearchAgentsRequest request) throws Exception {
         RequestOperation<SearchAgentsRequest, SearchAgentsResponse> operation
-              = new SearchAgents.Sync(sdkConfiguration);
+              = new SearchAgents.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -177,7 +190,7 @@ public class Agents {
      */
     public CreateAndStreamRunResponse runStream(AgentRunCreate request) throws Exception {
         RequestOperation<AgentRunCreate, CreateAndStreamRunResponse> operation
-              = new CreateAndStreamRun.Sync(sdkConfiguration);
+              = new CreateAndStreamRun.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,7 +216,7 @@ public class Agents {
      */
     public CreateAndWaitRunResponse run(AgentRunCreate request) throws Exception {
         RequestOperation<AgentRunCreate, CreateAndWaitRunResponse> operation
-              = new CreateAndWaitRun.Sync(sdkConfiguration);
+              = new CreateAndWaitRun.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -23,14 +23,27 @@ import com.glean.api_client.glean_api_client.operations.Adminsearch;
 import com.glean.api_client.glean_api_client.operations.Autocomplete;
 import com.glean.api_client.glean_api_client.operations.Feed;
 import com.glean.api_client.glean_api_client.operations.Recommendations;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Exception;
 
 
 public class Search {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncSearch asyncSDK;
 
     Search(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncSearch(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncSearch async() {
+        return asyncSDK;
     }
 
     /**
@@ -55,7 +68,7 @@ public class Search {
      */
     public AdminsearchResponse queryAsAdmin(SearchRequest request) throws Exception {
         RequestOperation<SearchRequest, AdminsearchResponse> operation
-              = new Adminsearch.Sync(sdkConfiguration);
+              = new Adminsearch.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -81,7 +94,7 @@ public class Search {
      */
     public AutocompleteResponse autocomplete(AutocompleteRequest request) throws Exception {
         RequestOperation<AutocompleteRequest, AutocompleteResponse> operation
-              = new Autocomplete.Sync(sdkConfiguration);
+              = new Autocomplete.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -107,7 +120,7 @@ public class Search {
      */
     public FeedResponse retrieveFeed(FeedRequest request) throws Exception {
         RequestOperation<FeedRequest, FeedResponse> operation
-              = new Feed.Sync(sdkConfiguration);
+              = new Feed.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -133,7 +146,7 @@ public class Search {
      */
     public RecommendationsResponse recommendations(RecommendationsRequest request) throws Exception {
         RequestOperation<RecommendationsRequest, RecommendationsResponse> operation
-              = new Recommendations.Sync(sdkConfiguration);
+              = new Recommendations.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,7 +172,7 @@ public class Search {
      */
     public SearchResponse query(SearchRequest request) throws Exception {
         RequestOperation<SearchRequest, SearchResponse> operation
-              = new com.glean.api_client.glean_api_client.operations.Search.Sync(sdkConfiguration);
+              = new com.glean.api_client.glean_api_client.operations.Search.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

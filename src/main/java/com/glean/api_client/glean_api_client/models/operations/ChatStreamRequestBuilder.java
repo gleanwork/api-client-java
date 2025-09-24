@@ -8,6 +8,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.ChatRequest;
 import com.glean.api_client.glean_api_client.operations.ChatStream;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
@@ -18,6 +19,7 @@ public class ChatStreamRequestBuilder {
     private Optional<Long> timezoneOffset = Optional.empty();
     private ChatRequest chatRequest;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ChatStreamRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -53,7 +55,7 @@ public class ChatStreamRequestBuilder {
     public ChatStreamResponse call() throws Exception {
         
         RequestOperation<ChatStreamRequest, ChatStreamResponse> operation
-              = new ChatStream.Sync(sdkConfiguration);
+              = new ChatStream.Sync(sdkConfiguration, _headers);
         ChatStreamRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

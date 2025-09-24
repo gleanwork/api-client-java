@@ -103,7 +103,7 @@ public class EntitiesTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            ListEntitiesResponse.builder()
+                ListEntitiesResponse.builder()
             .results(List.of(
                 Person.builder()
                     .name("George Clooney")
@@ -701,7 +701,7 @@ public class EntitiesTests {
                     .groupName("Service Cloud")
                     .build()))
             .build(),
-            res.listEntitiesResponse().get());
+                res.listEntitiesResponse().get());
     }
 
     @Test
@@ -725,7 +725,7 @@ public class EntitiesTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            com.glean.api_client.glean_api_client.models.components.PeopleResponse.builder()
+                com.glean.api_client.glean_api_client.models.components.PeopleResponse.builder()
             .results(List.of(
                 Person.builder()
                     .name("George Clooney")
@@ -2254,7 +2254,7 @@ public class EntitiesTests {
                             .build()))
                     .build()))
             .build(),
-            res.peopleResponse().get());
+                res.peopleResponse().get());
     }
 
     @Test

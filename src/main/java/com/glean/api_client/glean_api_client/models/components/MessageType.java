@@ -21,7 +21,8 @@ public enum MessageType {
     DEBUG_EXTERNAL("DEBUG_EXTERNAL"),
     ERROR("ERROR"),
     HEADING("HEADING"),
-    WARNING("WARNING");
+    WARNING("WARNING"),
+    SERVER_TOOL("SERVER_TOOL");
 
     @JsonValue
     private final String value;

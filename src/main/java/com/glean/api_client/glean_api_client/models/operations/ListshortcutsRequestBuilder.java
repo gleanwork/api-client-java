@@ -8,6 +8,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.ListShortcutsPaginatedRequest;
 import com.glean.api_client.glean_api_client.operations.Listshortcuts;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -15,6 +16,7 @@ public class ListshortcutsRequestBuilder {
 
     private ListShortcutsPaginatedRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListshortcutsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -29,7 +31,7 @@ public class ListshortcutsRequestBuilder {
     public ListshortcutsResponse call() throws Exception {
         
         RequestOperation<ListShortcutsPaginatedRequest, ListshortcutsResponse> operation
-              = new Listshortcuts.Sync(sdkConfiguration);
+              = new Listshortcuts.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

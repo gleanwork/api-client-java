@@ -39,6 +39,11 @@ public class DocumentSpecUnion {
         Utils.checkNotNull(value, "value");
         return new DocumentSpecUnion(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<DocumentSpec3>(){}));
     }
+
+    public static DocumentSpecUnion of(DocumentSpec4 value) {
+        Utils.checkNotNull(value, "value");
+        return new DocumentSpecUnion(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<DocumentSpec4>(){}));
+    }
     
     /**
      * Returns an instance of one of these types:
@@ -46,6 +51,7 @@ public class DocumentSpecUnion {
      * <li>{@code com.glean.api_client.glean_api_client.models.components.DocumentSpec1}</li>
      * <li>{@code com.glean.api_client.glean_api_client.models.components.DocumentSpec2}</li>
      * <li>{@code com.glean.api_client.glean_api_client.models.components.DocumentSpec3}</li>
+     * <li>{@code com.glean.api_client.glean_api_client.models.components.DocumentSpec4}</li>
      * </ul>
      * 
      * <p>Use {@code instanceof} to determine what type is returned. For example:
@@ -85,6 +91,7 @@ public class DocumentSpecUnion {
 
         public _Deserializer() {
             super(DocumentSpecUnion.class, false,
+                  TypeReferenceWithShape.of(new TypeReference<DocumentSpec4>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<DocumentSpec3>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<DocumentSpec2>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<DocumentSpec1>() {}, JsonShape.DEFAULT));

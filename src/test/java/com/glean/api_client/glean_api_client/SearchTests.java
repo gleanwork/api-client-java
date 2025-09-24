@@ -156,7 +156,7 @@ public class SearchTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            SearchResponse.builder()
+                SearchResponse.builder()
             .trackingToken("trackingToken")
             .results(List.of(
                 SearchResult.builder()
@@ -246,7 +246,7 @@ public class SearchTests {
                     .build()))
             .hasMoreResults(true)
             .build(),
-            res.searchResponse().get());
+                res.searchResponse().get());
     }
 
     @Test
@@ -279,7 +279,7 @@ public class SearchTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            com.glean.api_client.glean_api_client.models.components.AutocompleteResponse.builder()
+                com.glean.api_client.glean_api_client.models.components.AutocompleteResponse.builder()
             .trackingToken("trackingToken")
             .results(List.of(
                 AutocompleteResult.builder()
@@ -291,7 +291,7 @@ public class SearchTests {
                     .build()))
             .backendTimeMillis(1100L)
             .build(),
-            res.autocompleteResponse().get());
+                res.autocompleteResponse().get());
     }
 
     @Test
@@ -312,7 +312,7 @@ public class SearchTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            com.glean.api_client.glean_api_client.models.components.FeedResponse.builder()
+                com.glean.api_client.glean_api_client.models.components.FeedResponse.builder()
             .serverTimestamp(152670L)
             .results(List.of(
                 FeedResult.builder()
@@ -2160,7 +2160,7 @@ public class SearchTests {
                         .groupName("Service Cloud")
                         .build()))))
             .build(),
-            res.feedResponse().get());
+                res.feedResponse().get());
     }
 
     @Test
@@ -4021,7 +4021,7 @@ public class SearchTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            ResultsResponse.builder()
+                ResultsResponse.builder()
             .results(List.of(
                 SearchResult.builder()
                     .url("https://example.com/foo/bar")
@@ -9516,7 +9516,7 @@ public class SearchTests {
                 .build())
             .backendTimeMillis(1100L)
             .build(),
-            res.resultsResponse().get());
+                res.resultsResponse().get());
     }
 
     @Test
@@ -9564,7 +9564,7 @@ public class SearchTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            SearchResponse.builder()
+                SearchResponse.builder()
             .trackingToken("trackingToken")
             .results(List.of(
                 SearchResult.builder()
@@ -9654,6 +9654,6 @@ public class SearchTests {
                     .build()))
             .hasMoreResults(true)
             .build(),
-            res.searchResponse().get());
+                res.searchResponse().get());
     }
 }

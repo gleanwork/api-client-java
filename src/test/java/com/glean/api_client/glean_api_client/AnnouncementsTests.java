@@ -1401,7 +1401,7 @@ public class AnnouncementsTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            Announcement.builder()
+                Announcement.builder()
             .body(StructuredText.builder()
                 .text("From https://en.wikipedia.org/wiki/Diffuse_sky_radiation, the sky is blue because blue light is more strongly scattered than longer-wavelength light.")
                 .structuredList(List.of(
@@ -3650,7 +3650,7 @@ public class AnnouncementsTests {
                     .build())
                 .build())
             .build(),
-            res.announcement().get());
+                res.announcement().get());
     }
 
     @Test
@@ -5647,7 +5647,7 @@ public class AnnouncementsTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            Announcement.builder()
+                Announcement.builder()
             .body(StructuredText.builder()
                 .text("From https://en.wikipedia.org/wiki/Diffuse_sky_radiation, the sky is blue because blue light is more strongly scattered than longer-wavelength light.")
                 .structuredList(List.of(
@@ -8117,7 +8117,7 @@ public class AnnouncementsTests {
                     .build())
                 .build())
             .build(),
-            res.announcement().get());
+                res.announcement().get());
     }
 
     @Test

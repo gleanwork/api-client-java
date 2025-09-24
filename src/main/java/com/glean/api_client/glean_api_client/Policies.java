@@ -26,6 +26,7 @@ import com.glean.api_client.glean_api_client.operations.Downloadpolicycsv;
 import com.glean.api_client.glean_api_client.operations.Getpolicy;
 import com.glean.api_client.glean_api_client.operations.Listpolicies;
 import com.glean.api_client.glean_api_client.operations.Updatepolicy;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.Long;
@@ -34,10 +35,22 @@ import java.util.Optional;
 
 
 public class Policies {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncPolicies asyncSDK;
 
     Policies(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncPolicies(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncPolicies async() {
+        return asyncSDK;
     }
 
     /**
@@ -82,7 +95,7 @@ public class Policies {
                 .version(version)
                 .build();
         RequestOperation<GetpolicyRequest, GetpolicyResponse> operation
-              = new Getpolicy.Sync(sdkConfiguration);
+              = new Getpolicy.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,7 +128,7 @@ public class Policies {
                 .updateDlpReportRequest(updateDlpReportRequest)
                 .build();
         RequestOperation<UpdatepolicyRequest, UpdatepolicyResponse> operation
-              = new Updatepolicy.Sync(sdkConfiguration);
+              = new Updatepolicy.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -160,7 +173,7 @@ public class Policies {
                 .frequency(frequency)
                 .build();
         RequestOperation<ListpoliciesRequest, ListpoliciesResponse> operation
-              = new Listpolicies.Sync(sdkConfiguration);
+              = new Listpolicies.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -186,7 +199,7 @@ public class Policies {
      */
     public CreatepolicyResponse create(CreateDlpReportRequest request) throws Exception {
         RequestOperation<CreateDlpReportRequest, CreatepolicyResponse> operation
-              = new Createpolicy.Sync(sdkConfiguration);
+              = new Createpolicy.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -217,7 +230,7 @@ public class Policies {
                 .id(id)
                 .build();
         RequestOperation<DownloadpolicycsvRequest, DownloadpolicycsvResponse> operation
-              = new Downloadpolicycsv.Sync(sdkConfiguration);
+              = new Downloadpolicycsv.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

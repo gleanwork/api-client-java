@@ -25,14 +25,27 @@ import com.glean.api_client.glean_api_client.operations.Deleteanswer;
 import com.glean.api_client.glean_api_client.operations.Editanswer;
 import com.glean.api_client.glean_api_client.operations.Getanswer;
 import com.glean.api_client.glean_api_client.operations.Listanswers;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Exception;
 
 
 public class Answers {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncAnswers asyncSDK;
 
     Answers(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncAnswers(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncAnswers async() {
+        return asyncSDK;
     }
 
     /**
@@ -57,7 +70,7 @@ public class Answers {
      */
     public CreateanswerResponse create(CreateAnswerRequest request) throws Exception {
         RequestOperation<CreateAnswerRequest, CreateanswerResponse> operation
-              = new Createanswer.Sync(sdkConfiguration);
+              = new Createanswer.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -83,7 +96,7 @@ public class Answers {
      */
     public DeleteanswerResponse delete(DeleteAnswerRequest request) throws Exception {
         RequestOperation<DeleteAnswerRequest, DeleteanswerResponse> operation
-              = new Deleteanswer.Sync(sdkConfiguration);
+              = new Deleteanswer.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -109,7 +122,7 @@ public class Answers {
      */
     public EditanswerResponse update(EditAnswerRequest request) throws Exception {
         RequestOperation<EditAnswerRequest, EditanswerResponse> operation
-              = new Editanswer.Sync(sdkConfiguration);
+              = new Editanswer.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -135,7 +148,7 @@ public class Answers {
      */
     public GetanswerResponse retrieve(GetAnswerRequest request) throws Exception {
         RequestOperation<GetAnswerRequest, GetanswerResponse> operation
-              = new Getanswer.Sync(sdkConfiguration);
+              = new Getanswer.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -161,7 +174,7 @@ public class Answers {
      */
     public ListanswersResponse list(ListAnswersRequest request) throws Exception {
         RequestOperation<ListAnswersRequest, ListanswersResponse> operation
-              = new Listanswers.Sync(sdkConfiguration);
+              = new Listanswers.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

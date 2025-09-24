@@ -9,15 +9,28 @@ import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1Deb
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DebugDatasourceStatusRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DebugDatasourceStatusResponse;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DebugDatasourceStatus;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Exception;
 import java.lang.String;
 
 
 public class Datasource {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncDatasource asyncSDK;
 
     Datasource(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncDatasource(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncDatasource async() {
+        return asyncSDK;
     }
 
     /**
@@ -51,7 +64,7 @@ public class Datasource {
                 .datasource(datasource)
                 .build();
         RequestOperation<PostApiIndexV1DebugDatasourceStatusRequest, PostApiIndexV1DebugDatasourceStatusResponse> operation
-              = new PostApiIndexV1DebugDatasourceStatus.Sync(sdkConfiguration);
+              = new PostApiIndexV1DebugDatasourceStatus.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

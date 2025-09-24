@@ -21,9 +21,12 @@ import java.util.Optional;
 public class ManualFeedbackInfo {
     /**
      * The email address of the user who submitted the Feedback.event.MANUAL_FEEDBACK event.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("email")
+    @Deprecated
     private Optional<String> email;
 
     /**
@@ -207,7 +210,10 @@ public class ManualFeedbackInfo {
 
     /**
      * The email address of the user who submitted the Feedback.event.MANUAL_FEEDBACK event.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     @JsonIgnore
     public Optional<String> email() {
         return email;
@@ -358,7 +364,10 @@ public class ManualFeedbackInfo {
 
     /**
      * The email address of the user who submitted the Feedback.event.MANUAL_FEEDBACK event.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public ManualFeedbackInfo withEmail(String email) {
         Utils.checkNotNull(email, "email");
         this.email = Optional.ofNullable(email);
@@ -368,7 +377,10 @@ public class ManualFeedbackInfo {
 
     /**
      * The email address of the user who submitted the Feedback.event.MANUAL_FEEDBACK event.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public ManualFeedbackInfo withEmail(Optional<String> email) {
         Utils.checkNotNull(email, "email");
         this.email = email;
@@ -750,6 +762,7 @@ public class ManualFeedbackInfo {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
+        @Deprecated
         private Optional<String> email = Optional.empty();
 
         private Optional<? extends ManualFeedbackInfoSource> source = Optional.empty();
@@ -792,7 +805,10 @@ public class ManualFeedbackInfo {
 
         /**
          * The email address of the user who submitted the Feedback.event.MANUAL_FEEDBACK event.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder email(String email) {
             Utils.checkNotNull(email, "email");
             this.email = Optional.ofNullable(email);
@@ -801,7 +817,10 @@ public class ManualFeedbackInfo {
 
         /**
          * The email address of the user who submitted the Feedback.event.MANUAL_FEEDBACK event.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder email(Optional<String> email) {
             Utils.checkNotNull(email, "email");
             this.email = email;

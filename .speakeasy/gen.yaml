@@ -16,25 +16,28 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: true
+    hoistGlobalSecurity: true
   tests:
     generateTests: true
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 0.8.0
+  version: 0.9.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: glean-api-client
+  asyncMode: enabled
   baseErrorName: GleanError
   clientServerStatusCodesAsErrors: true
   companyEmail: support@glean.com
   companyName: Glean
   companyURL: https://www.glean.com
   defaultErrorName: APIException
-  enableAsync: false
   enableCustomCodeRegions: false
+  enableStreamingUploads: false
   envVarPrefix: GLEAN
   flattenGlobalSecurity: true
+  generateSpringBootStarter: true
   githubURL: github.com/gleanwork/api-client-java
   groupID: com.glean.api-client
   imports:

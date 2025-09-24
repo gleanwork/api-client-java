@@ -8,6 +8,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.AgentRunCreate;
 import com.glean.api_client.glean_api_client.operations.CreateAndStreamRun;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -15,6 +16,7 @@ public class CreateAndStreamRunRequestBuilder {
 
     private AgentRunCreate request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreateAndStreamRunRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -29,7 +31,7 @@ public class CreateAndStreamRunRequestBuilder {
     public CreateAndStreamRunResponse call() throws Exception {
         
         RequestOperation<AgentRunCreate, CreateAndStreamRunResponse> operation
-              = new CreateAndStreamRun.Sync(sdkConfiguration);
+              = new CreateAndStreamRun.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

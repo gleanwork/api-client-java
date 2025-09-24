@@ -8,6 +8,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.ProcessAllDocumentsRequest;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Processalldocuments;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -16,6 +17,7 @@ public class PostApiIndexV1ProcessalldocumentsRequestBuilder {
 
     private Optional<? extends ProcessAllDocumentsRequest> request = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public PostApiIndexV1ProcessalldocumentsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -36,7 +38,7 @@ public class PostApiIndexV1ProcessalldocumentsRequestBuilder {
     public PostApiIndexV1ProcessalldocumentsResponse call() throws Exception {
         
         RequestOperation<Optional<? extends ProcessAllDocumentsRequest>, PostApiIndexV1ProcessalldocumentsResponse> operation
-              = new PostApiIndexV1Processalldocuments.Sync(sdkConfiguration);
+              = new PostApiIndexV1Processalldocuments.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

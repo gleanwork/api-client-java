@@ -20,7 +20,6 @@ public class Application {
                 .chatRequest(ChatRequest.builder()
                     .messages(List.of(
                         ChatMessage.builder()
-                            .author(Author.USER)
                             .fragments(List.of(
                                 ChatMessageFragment.builder()
                                     .text("What are the company holidays this year?")
@@ -57,7 +56,6 @@ public class Application {
                 .chatRequest(ChatRequest.builder()
                     .messages(List.of(
                         ChatMessage.builder()
-                            .author(Author.USER)
                             .fragments(List.of(
                                 ChatMessageFragment.builder()
                                     .text("What are the company holidays this year?")

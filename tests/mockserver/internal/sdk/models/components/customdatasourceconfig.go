@@ -29,6 +29,7 @@ const (
 	DatasourceCategoryExternalShortcut     DatasourceCategory = "EXTERNAL_SHORTCUT"
 	DatasourceCategoryEntity               DatasourceCategory = "ENTITY"
 	DatasourceCategoryCalendar             DatasourceCategory = "CALENDAR"
+	DatasourceCategoryAgents               DatasourceCategory = "AGENTS"
 )
 
 func (e DatasourceCategory) ToPointer() *DatasourceCategory {
@@ -73,6 +74,8 @@ func (e *DatasourceCategory) UnmarshalJSON(data []byte) error {
 	case "ENTITY":
 		fallthrough
 	case "CALENDAR":
+		fallthrough
+	case "AGENTS":
 		*e = DatasourceCategory(v)
 		return nil
 	default:
@@ -219,7 +222,7 @@ func (c CustomDatasourceConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CustomDatasourceConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"name"}); err != nil {
 		return err
 	}
 	return nil

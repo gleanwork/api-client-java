@@ -42,16 +42,29 @@ import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Getusercou
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Indexemployee;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Indexteam;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Processallemployeesandteams;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Deprecated;
 import java.lang.Exception;
 import java.lang.String;
 
 
 public class People {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncPeople asyncSDK;
 
     People(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncPeople(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncPeople async() {
+        return asyncSDK;
     }
 
     /**
@@ -87,7 +100,7 @@ public class People {
                 .debugUserRequest(debugUserRequest)
                 .build();
         RequestOperation<PostApiIndexV1DebugDatasourceUserRequest, PostApiIndexV1DebugDatasourceUserResponse> operation
-              = new PostApiIndexV1DebugDatasourceUser.Sync(sdkConfiguration);
+              = new PostApiIndexV1DebugDatasourceUser.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -121,7 +134,7 @@ public class People {
     @Deprecated
     public PostApiIndexV1GetusercountResponse count(GetUserCountRequest request) throws Exception {
         RequestOperation<GetUserCountRequest, PostApiIndexV1GetusercountResponse> operation
-              = new PostApiIndexV1Getusercount.Sync(sdkConfiguration);
+              = new PostApiIndexV1Getusercount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -147,7 +160,7 @@ public class People {
      */
     public PostApiIndexV1IndexemployeeResponse index(IndexEmployeeRequest request) throws Exception {
         RequestOperation<IndexEmployeeRequest, PostApiIndexV1IndexemployeeResponse> operation
-              = new PostApiIndexV1Indexemployee.Sync(sdkConfiguration);
+              = new PostApiIndexV1Indexemployee.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -173,7 +186,7 @@ public class People {
      */
     public PostApiIndexV1BulkindexemployeesResponse bulkIndex(BulkIndexEmployeesRequest request) throws Exception {
         RequestOperation<BulkIndexEmployeesRequest, PostApiIndexV1BulkindexemployeesResponse> operation
-              = new PostApiIndexV1Bulkindexemployees.Sync(sdkConfiguration);
+              = new PostApiIndexV1Bulkindexemployees.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -198,7 +211,7 @@ public class People {
      */
     public PostApiIndexV1ProcessallemployeesandteamsResponse processAllEmployeesAndTeamsDirect() throws Exception {
         RequestlessOperation<PostApiIndexV1ProcessallemployeesandteamsResponse> operation
-            = new PostApiIndexV1Processallemployeesandteams.Sync(sdkConfiguration);
+            = new PostApiIndexV1Processallemployeesandteams.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -224,7 +237,7 @@ public class People {
      */
     public PostApiIndexV1DeleteemployeeResponse delete(DeleteEmployeeRequest request) throws Exception {
         RequestOperation<DeleteEmployeeRequest, PostApiIndexV1DeleteemployeeResponse> operation
-              = new PostApiIndexV1Deleteemployee.Sync(sdkConfiguration);
+              = new PostApiIndexV1Deleteemployee.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -250,7 +263,7 @@ public class People {
      */
     public PostApiIndexV1IndexteamResponse indexTeam(IndexTeamRequest request) throws Exception {
         RequestOperation<IndexTeamRequest, PostApiIndexV1IndexteamResponse> operation
-              = new PostApiIndexV1Indexteam.Sync(sdkConfiguration);
+              = new PostApiIndexV1Indexteam.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -276,7 +289,7 @@ public class People {
      */
     public PostApiIndexV1DeleteteamResponse deleteTeam(DeleteTeamRequest request) throws Exception {
         RequestOperation<DeleteTeamRequest, PostApiIndexV1DeleteteamResponse> operation
-              = new PostApiIndexV1Deleteteam.Sync(sdkConfiguration);
+              = new PostApiIndexV1Deleteteam.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -302,7 +315,7 @@ public class People {
      */
     public PostApiIndexV1BulkindexteamsResponse bulkIndexTeams(BulkIndexTeamsRequest request) throws Exception {
         RequestOperation<BulkIndexTeamsRequest, PostApiIndexV1BulkindexteamsResponse> operation
-              = new PostApiIndexV1Bulkindexteams.Sync(sdkConfiguration);
+              = new PostApiIndexV1Bulkindexteams.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

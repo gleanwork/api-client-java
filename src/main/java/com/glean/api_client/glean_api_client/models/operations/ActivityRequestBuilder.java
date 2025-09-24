@@ -7,6 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.Activity;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -14,6 +15,7 @@ public class ActivityRequestBuilder {
 
     private Activity request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ActivityRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,7 +30,7 @@ public class ActivityRequestBuilder {
     public ActivityResponse call() throws Exception {
         
         RequestOperation<Activity, ActivityResponse> operation
-              = new com.glean.api_client.glean_api_client.operations.Activity.Sync(sdkConfiguration);
+              = new com.glean.api_client.glean_api_client.operations.Activity.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -53,15 +53,28 @@ import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Indexmembe
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Indexuser;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Processallmemberships;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Updatepermissions;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class Permissions {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncPermissions asyncSDK;
 
     Permissions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncPermissions(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncPermissions async() {
+        return asyncSDK;
     }
 
     /**
@@ -86,7 +99,7 @@ public class Permissions {
      */
     public PostApiIndexV1UpdatepermissionsResponse updatePermissions(UpdatePermissionsRequest request) throws Exception {
         RequestOperation<UpdatePermissionsRequest, PostApiIndexV1UpdatepermissionsResponse> operation
-              = new PostApiIndexV1Updatepermissions.Sync(sdkConfiguration);
+              = new PostApiIndexV1Updatepermissions.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -112,7 +125,7 @@ public class Permissions {
      */
     public PostApiIndexV1IndexuserResponse indexUser(IndexUserRequest request) throws Exception {
         RequestOperation<IndexUserRequest, PostApiIndexV1IndexuserResponse> operation
-              = new PostApiIndexV1Indexuser.Sync(sdkConfiguration);
+              = new PostApiIndexV1Indexuser.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -138,7 +151,7 @@ public class Permissions {
      */
     public PostApiIndexV1BulkindexusersResponse bulkIndexUsers(BulkIndexUsersRequest request) throws Exception {
         RequestOperation<BulkIndexUsersRequest, PostApiIndexV1BulkindexusersResponse> operation
-              = new PostApiIndexV1Bulkindexusers.Sync(sdkConfiguration);
+              = new PostApiIndexV1Bulkindexusers.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,7 +177,7 @@ public class Permissions {
      */
     public PostApiIndexV1IndexgroupResponse indexGroup(IndexGroupRequest request) throws Exception {
         RequestOperation<IndexGroupRequest, PostApiIndexV1IndexgroupResponse> operation
-              = new PostApiIndexV1Indexgroup.Sync(sdkConfiguration);
+              = new PostApiIndexV1Indexgroup.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -190,7 +203,7 @@ public class Permissions {
      */
     public PostApiIndexV1BulkindexgroupsResponse bulkIndexGroups(BulkIndexGroupsRequest request) throws Exception {
         RequestOperation<BulkIndexGroupsRequest, PostApiIndexV1BulkindexgroupsResponse> operation
-              = new PostApiIndexV1Bulkindexgroups.Sync(sdkConfiguration);
+              = new PostApiIndexV1Bulkindexgroups.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -216,7 +229,7 @@ public class Permissions {
      */
     public PostApiIndexV1IndexmembershipResponse indexMembership(IndexMembershipRequest request) throws Exception {
         RequestOperation<IndexMembershipRequest, PostApiIndexV1IndexmembershipResponse> operation
-              = new PostApiIndexV1Indexmembership.Sync(sdkConfiguration);
+              = new PostApiIndexV1Indexmembership.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -242,7 +255,7 @@ public class Permissions {
      */
     public PostApiIndexV1BulkindexmembershipsResponse bulkIndexMemberships(BulkIndexMembershipsRequest request) throws Exception {
         RequestOperation<BulkIndexMembershipsRequest, PostApiIndexV1BulkindexmembershipsResponse> operation
-              = new PostApiIndexV1Bulkindexmemberships.Sync(sdkConfiguration);
+              = new PostApiIndexV1Bulkindexmemberships.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -280,7 +293,7 @@ public class Permissions {
      */
     public PostApiIndexV1ProcessallmembershipsResponse processMemberships(Optional<? extends ProcessAllMembershipsRequest> request) throws Exception {
         RequestOperation<Optional<? extends ProcessAllMembershipsRequest>, PostApiIndexV1ProcessallmembershipsResponse> operation
-              = new PostApiIndexV1Processallmemberships.Sync(sdkConfiguration);
+              = new PostApiIndexV1Processallmemberships.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -306,7 +319,7 @@ public class Permissions {
      */
     public PostApiIndexV1DeleteuserResponse deleteUser(DeleteUserRequest request) throws Exception {
         RequestOperation<DeleteUserRequest, PostApiIndexV1DeleteuserResponse> operation
-              = new PostApiIndexV1Deleteuser.Sync(sdkConfiguration);
+              = new PostApiIndexV1Deleteuser.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -332,7 +345,7 @@ public class Permissions {
      */
     public PostApiIndexV1DeletegroupResponse deleteGroup(DeleteGroupRequest request) throws Exception {
         RequestOperation<DeleteGroupRequest, PostApiIndexV1DeletegroupResponse> operation
-              = new PostApiIndexV1Deletegroup.Sync(sdkConfiguration);
+              = new PostApiIndexV1Deletegroup.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -358,7 +371,7 @@ public class Permissions {
      */
     public PostApiIndexV1DeletemembershipResponse deleteMembership(DeleteMembershipRequest request) throws Exception {
         RequestOperation<DeleteMembershipRequest, PostApiIndexV1DeletemembershipResponse> operation
-              = new PostApiIndexV1Deletemembership.Sync(sdkConfiguration);
+              = new PostApiIndexV1Deletemembership.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -384,7 +397,7 @@ public class Permissions {
      */
     public PostApiIndexV1BetausersResponse authorizeBetaUsers(GreenlistUsersRequest request) throws Exception {
         RequestOperation<GreenlistUsersRequest, PostApiIndexV1BetausersResponse> operation
-              = new PostApiIndexV1Betausers.Sync(sdkConfiguration);
+              = new PostApiIndexV1Betausers.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

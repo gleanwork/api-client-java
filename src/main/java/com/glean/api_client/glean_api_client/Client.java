@@ -3,8 +3,13 @@
  */
 package com.glean.api_client.glean_api_client;
 
+import com.glean.api_client.glean_api_client.utils.Headers;
+
+
 public class Client {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncClient asyncSDK;
     private final Activity activity;
     private final Announcements announcements;
     private final Answers answers;
@@ -42,6 +47,7 @@ public class Client {
         this.verification = new Verification(this.sdkConfiguration);
         this.tools = new Tools(this.sdkConfiguration);
         this.governance = new Governance(this.sdkConfiguration);
+        this.asyncSDK = new AsyncClient(this, sdkConfiguration);
     }
 
     public final Activity activity() {
@@ -110,6 +116,15 @@ public class Client {
 
     public final Governance governance() {
         return governance;
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncClient async() {
+        return asyncSDK;
     }
 
 }

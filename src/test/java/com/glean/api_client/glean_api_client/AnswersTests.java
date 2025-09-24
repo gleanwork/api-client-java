@@ -775,7 +775,7 @@ public class AnswersTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            Answer.builder()
+                Answer.builder()
             .id(3L)
             .docId("ANSWERS_answer_3")
             .question("Why is the sky blue?")
@@ -2752,7 +2752,7 @@ public class AnswersTests {
                     .build())
                 .build())
             .build(),
-            res.answer().get());
+                res.answer().get());
     }
 
     @Test
@@ -3343,7 +3343,7 @@ public class AnswersTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            Answer.builder()
+                Answer.builder()
             .id(3L)
             .docId("ANSWERS_answer_3")
             .question("Why is the sky blue?")
@@ -5458,7 +5458,7 @@ public class AnswersTests {
                     .build())
                 .build())
             .build(),
-            res.answer().get());
+                res.answer().get());
     }
 
     @Test
@@ -5481,7 +5481,7 @@ public class AnswersTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            GetAnswerResponse.builder()
+                GetAnswerResponse.builder()
             .answerResult(AnswerResult.builder()
                 .answer(Answer.builder()
                     .id(3L)
@@ -8037,7 +8037,7 @@ public class AnswersTests {
                     .build())
                 .build())
             .build(),
-            res.getAnswerResponse().get());
+                res.getAnswerResponse().get());
     }
 
     @Test
@@ -8058,7 +8058,7 @@ public class AnswersTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            ListAnswersResponse.builder()
+                ListAnswersResponse.builder()
             .answerResults(List.of(
                 AnswerResult.builder()
                     .answer(Answer.builder()
@@ -11432,7 +11432,7 @@ public class AnswersTests {
                         .build())
                     .build()))
             .build(),
-            res.listAnswersResponse().get());
+                res.listAnswersResponse().get());
     }
 
     @Test

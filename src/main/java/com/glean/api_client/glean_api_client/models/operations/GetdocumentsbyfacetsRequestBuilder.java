@@ -8,6 +8,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.GetDocumentsByFacetsRequest;
 import com.glean.api_client.glean_api_client.operations.Getdocumentsbyfacets;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.util.Optional;
@@ -16,6 +17,7 @@ public class GetdocumentsbyfacetsRequestBuilder {
 
     private Optional<? extends GetDocumentsByFacetsRequest> request = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetdocumentsbyfacetsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -36,7 +38,7 @@ public class GetdocumentsbyfacetsRequestBuilder {
     public GetdocumentsbyfacetsResponse call() throws Exception {
         
         RequestOperation<Optional<? extends GetDocumentsByFacetsRequest>, GetdocumentsbyfacetsResponse> operation
-              = new Getdocumentsbyfacets.Sync(sdkConfiguration);
+              = new Getdocumentsbyfacets.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

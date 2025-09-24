@@ -8,6 +8,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.DeleteChatsRequest;
 import com.glean.api_client.glean_api_client.operations.Deletechats;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
@@ -18,6 +19,7 @@ public class DeletechatsRequestBuilder {
     private Optional<Long> timezoneOffset = Optional.empty();
     private DeleteChatsRequest deleteChatsRequest;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public DeletechatsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -53,7 +55,7 @@ public class DeletechatsRequestBuilder {
     public DeletechatsResponse call() throws Exception {
         
         RequestOperation<DeletechatsRequest, DeletechatsResponse> operation
-              = new Deletechats.Sync(sdkConfiguration);
+              = new Deletechats.Sync(sdkConfiguration, _headers);
         DeletechatsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

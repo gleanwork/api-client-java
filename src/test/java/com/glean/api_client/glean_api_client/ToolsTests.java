@@ -32,9 +32,9 @@ public class ToolsTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            ToolsListResponse.builder()
+                ToolsListResponse.builder()
             .build(),
-            res.toolsListResponse().get());
+                res.toolsListResponse().get());
     }
 
     @Test
@@ -61,8 +61,8 @@ public class ToolsTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            ToolsCallResponse.builder()
+                ToolsCallResponse.builder()
             .build(),
-            res.toolsCallResponse().get());
+                res.toolsCallResponse().get());
     }
 }

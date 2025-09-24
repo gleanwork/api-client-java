@@ -3,8 +3,13 @@
  */
 package com.glean.api_client.glean_api_client;
 
+import com.glean.api_client.glean_api_client.utils.Headers;
+
+
 public class Data {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncData asyncSDK;
     private final Policies policies;
     private final Reports reports;
 
@@ -12,6 +17,7 @@ public class Data {
         this.sdkConfiguration = sdkConfiguration;
         this.policies = new Policies(this.sdkConfiguration);
         this.reports = new Reports(this.sdkConfiguration);
+        this.asyncSDK = new AsyncData(this, sdkConfiguration);
     }
 
     public final Policies policies() {
@@ -20,6 +26,15 @@ public class Data {
 
     public final Reports reports() {
         return reports;
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncData async() {
+        return asyncSDK;
     }
 
 }

@@ -28,6 +28,13 @@ public class AgentConfig {
     private Optional<? extends AgentEnum> agent;
 
     /**
+     * The types of tools that the agent is allowed to use. Only works with FAST and ADVANCED `agent` values
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("toolSets")
+    private Optional<? extends ToolSets> toolSets;
+
+    /**
      * Top level modes to run GleanChat in.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -37,15 +44,18 @@ public class AgentConfig {
     @JsonCreator
     public AgentConfig(
             @JsonProperty("agent") Optional<? extends AgentEnum> agent,
+            @JsonProperty("toolSets") Optional<? extends ToolSets> toolSets,
             @JsonProperty("mode") Optional<? extends Mode> mode) {
         Utils.checkNotNull(agent, "agent");
+        Utils.checkNotNull(toolSets, "toolSets");
         Utils.checkNotNull(mode, "mode");
         this.agent = agent;
+        this.toolSets = toolSets;
         this.mode = mode;
     }
     
     public AgentConfig() {
-        this(Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -55,6 +65,15 @@ public class AgentConfig {
     @JsonIgnore
     public Optional<AgentEnum> agent() {
         return (Optional<AgentEnum>) agent;
+    }
+
+    /**
+     * The types of tools that the agent is allowed to use. Only works with FAST and ADVANCED `agent` values
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ToolSets> toolSets() {
+        return (Optional<ToolSets>) toolSets;
     }
 
     /**
@@ -91,6 +110,25 @@ public class AgentConfig {
     }
 
     /**
+     * The types of tools that the agent is allowed to use. Only works with FAST and ADVANCED `agent` values
+     */
+    public AgentConfig withToolSets(ToolSets toolSets) {
+        Utils.checkNotNull(toolSets, "toolSets");
+        this.toolSets = Optional.ofNullable(toolSets);
+        return this;
+    }
+
+
+    /**
+     * The types of tools that the agent is allowed to use. Only works with FAST and ADVANCED `agent` values
+     */
+    public AgentConfig withToolSets(Optional<? extends ToolSets> toolSets) {
+        Utils.checkNotNull(toolSets, "toolSets");
+        this.toolSets = toolSets;
+        return this;
+    }
+
+    /**
      * Top level modes to run GleanChat in.
      */
     public AgentConfig withMode(Mode mode) {
@@ -120,19 +158,21 @@ public class AgentConfig {
         AgentConfig other = (AgentConfig) o;
         return 
             Utils.enhancedDeepEquals(this.agent, other.agent) &&
+            Utils.enhancedDeepEquals(this.toolSets, other.toolSets) &&
             Utils.enhancedDeepEquals(this.mode, other.mode);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            agent, mode);
+            agent, toolSets, mode);
     }
     
     @Override
     public String toString() {
         return Utils.toString(AgentConfig.class,
                 "agent", agent,
+                "toolSets", toolSets,
                 "mode", mode);
     }
 
@@ -140,6 +180,8 @@ public class AgentConfig {
     public final static class Builder {
 
         private Optional<? extends AgentEnum> agent = Optional.empty();
+
+        private Optional<? extends ToolSets> toolSets = Optional.empty();
 
         private Optional<? extends Mode> mode = Optional.empty();
 
@@ -168,6 +210,25 @@ public class AgentConfig {
 
 
         /**
+         * The types of tools that the agent is allowed to use. Only works with FAST and ADVANCED `agent` values
+         */
+        public Builder toolSets(ToolSets toolSets) {
+            Utils.checkNotNull(toolSets, "toolSets");
+            this.toolSets = Optional.ofNullable(toolSets);
+            return this;
+        }
+
+        /**
+         * The types of tools that the agent is allowed to use. Only works with FAST and ADVANCED `agent` values
+         */
+        public Builder toolSets(Optional<? extends ToolSets> toolSets) {
+            Utils.checkNotNull(toolSets, "toolSets");
+            this.toolSets = toolSets;
+            return this;
+        }
+
+
+        /**
          * Top level modes to run GleanChat in.
          */
         public Builder mode(Mode mode) {
@@ -188,7 +249,7 @@ public class AgentConfig {
         public AgentConfig build() {
 
             return new AgentConfig(
-                agent, mode);
+                agent, toolSets, mode);
         }
 
     }

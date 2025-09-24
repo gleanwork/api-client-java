@@ -13,6 +13,7 @@ import com.glean.api_client.glean_api_client.models.operations.SetdocvisibilityR
 import com.glean.api_client.glean_api_client.models.operations.SetdocvisibilityResponse;
 import com.glean.api_client.glean_api_client.operations.Getdocvisibility;
 import com.glean.api_client.glean_api_client.operations.Setdocvisibility;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.List;
@@ -20,10 +21,22 @@ import java.util.Optional;
 
 
 public class Visibilityoverrides {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncVisibilityoverrides asyncSDK;
 
     Visibilityoverrides(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncVisibilityoverrides(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncVisibilityoverrides async() {
+        return asyncSDK;
     }
 
     /**
@@ -65,7 +78,7 @@ public class Visibilityoverrides {
                 .docIds(docIds)
                 .build();
         RequestOperation<GetdocvisibilityRequest, GetdocvisibilityResponse> operation
-              = new Getdocvisibility.Sync(sdkConfiguration);
+              = new Getdocvisibility.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -91,7 +104,7 @@ public class Visibilityoverrides {
      */
     public SetdocvisibilityResponse create(UpdateDocumentVisibilityOverridesRequest request) throws Exception {
         RequestOperation<UpdateDocumentVisibilityOverridesRequest, SetdocvisibilityResponse> operation
-              = new Setdocvisibility.Sync(sdkConfiguration);
+              = new Setdocvisibility.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

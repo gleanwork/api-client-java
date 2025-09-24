@@ -25,14 +25,27 @@ import com.glean.api_client.glean_api_client.operations.Deleteshortcut;
 import com.glean.api_client.glean_api_client.operations.Getshortcut;
 import com.glean.api_client.glean_api_client.operations.Listshortcuts;
 import com.glean.api_client.glean_api_client.operations.Updateshortcut;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Exception;
 
 
 public class ClientShortcuts {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncClientShortcuts asyncSDK;
 
     ClientShortcuts(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncClientShortcuts(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncClientShortcuts async() {
+        return asyncSDK;
     }
 
     /**
@@ -57,7 +70,7 @@ public class ClientShortcuts {
      */
     public CreateshortcutResponse create(CreateShortcutRequest request) throws Exception {
         RequestOperation<CreateShortcutRequest, CreateshortcutResponse> operation
-              = new Createshortcut.Sync(sdkConfiguration);
+              = new Createshortcut.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -83,7 +96,7 @@ public class ClientShortcuts {
      */
     public DeleteshortcutResponse delete(DeleteShortcutRequest request) throws Exception {
         RequestOperation<DeleteShortcutRequest, DeleteshortcutResponse> operation
-              = new Deleteshortcut.Sync(sdkConfiguration);
+              = new Deleteshortcut.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -109,7 +122,7 @@ public class ClientShortcuts {
      */
     public GetshortcutResponse retrieve(GetShortcutRequestUnion request) throws Exception {
         RequestOperation<GetShortcutRequestUnion, GetshortcutResponse> operation
-              = new Getshortcut.Sync(sdkConfiguration);
+              = new Getshortcut.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -135,7 +148,7 @@ public class ClientShortcuts {
      */
     public ListshortcutsResponse list(ListShortcutsPaginatedRequest request) throws Exception {
         RequestOperation<ListShortcutsPaginatedRequest, ListshortcutsResponse> operation
-              = new Listshortcuts.Sync(sdkConfiguration);
+              = new Listshortcuts.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -161,7 +174,7 @@ public class ClientShortcuts {
      */
     public UpdateshortcutResponse update(UpdateShortcutRequest request) throws Exception {
         RequestOperation<UpdateShortcutRequest, UpdateshortcutResponse> operation
-              = new Updateshortcut.Sync(sdkConfiguration);
+              = new Updateshortcut.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
