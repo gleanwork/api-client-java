@@ -13,6 +13,7 @@ import com.glean.api_client.glean_api_client.models.operations.PostRestApiV1Tool
 import com.glean.api_client.glean_api_client.models.operations.PostRestApiV1ToolsCallResponse;
 import com.glean.api_client.glean_api_client.operations.GetRestApiV1ToolsList;
 import com.glean.api_client.glean_api_client.operations.PostRestApiV1ToolsCall;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.List;
@@ -20,10 +21,22 @@ import java.util.Optional;
 
 
 public class Tools {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncTools asyncSDK;
 
     Tools(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncTools(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncTools async() {
+        return asyncSDK;
     }
 
     /**
@@ -65,7 +78,7 @@ public class Tools {
                 .toolNames(toolNames)
                 .build();
         RequestOperation<GetRestApiV1ToolsListRequest, GetRestApiV1ToolsListResponse> operation
-              = new GetRestApiV1ToolsList.Sync(sdkConfiguration);
+              = new GetRestApiV1ToolsList.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -91,7 +104,7 @@ public class Tools {
      */
     public PostRestApiV1ToolsCallResponse run(ToolsCallRequest request) throws Exception {
         RequestOperation<ToolsCallRequest, PostRestApiV1ToolsCallResponse> operation
-              = new PostRestApiV1ToolsCall.Sync(sdkConfiguration);
+              = new PostRestApiV1ToolsCall.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

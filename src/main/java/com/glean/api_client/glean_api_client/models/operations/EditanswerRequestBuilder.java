@@ -8,6 +8,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.EditAnswerRequest;
 import com.glean.api_client.glean_api_client.operations.Editanswer;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -15,6 +16,7 @@ public class EditanswerRequestBuilder {
 
     private EditAnswerRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public EditanswerRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -29,7 +31,7 @@ public class EditanswerRequestBuilder {
     public EditanswerResponse call() throws Exception {
         
         RequestOperation<EditAnswerRequest, EditanswerResponse> operation
-              = new Editanswer.Sync(sdkConfiguration);
+              = new Editanswer.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

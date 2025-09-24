@@ -112,7 +112,7 @@ public class MessagesTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            com.glean.api_client.glean_api_client.models.components.MessagesResponse.builder()
+                com.glean.api_client.glean_api_client.models.components.MessagesResponse.builder()
             .hasMore(false)
             .searchResponse(SearchResponse.builder()
                 .trackingToken("trackingToken")
@@ -8603,6 +8603,6 @@ public class MessagesTests {
                     .build())
                 .build())
             .build(),
-            res.messagesResponse().get());
+                res.messagesResponse().get());
     }
 }

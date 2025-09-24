@@ -8,6 +8,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.DeleteAnswerRequest;
 import com.glean.api_client.glean_api_client.operations.Deleteanswer;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -15,6 +16,7 @@ public class DeleteanswerRequestBuilder {
 
     private DeleteAnswerRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public DeleteanswerRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -29,7 +31,7 @@ public class DeleteanswerRequestBuilder {
     public DeleteanswerResponse call() throws Exception {
         
         RequestOperation<DeleteAnswerRequest, DeleteanswerResponse> operation
-              = new Deleteanswer.Sync(sdkConfiguration);
+              = new Deleteanswer.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

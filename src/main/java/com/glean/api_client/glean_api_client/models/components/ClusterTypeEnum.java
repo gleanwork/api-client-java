@@ -22,7 +22,9 @@ public enum ClusterTypeEnum {
     THREAD_REPLY("THREAD_REPLY"),
     THREAD_ROOT("THREAD_ROOT"),
     PREFIX("PREFIX"),
-    SUFFIX("SUFFIX");
+    SUFFIX("SUFFIX"),
+    AUTHOR_PREFIX("AUTHOR_PREFIX"),
+    AUTHOR_SUFFIX("AUTHOR_SUFFIX");
 
     @JsonValue
     private final String value;

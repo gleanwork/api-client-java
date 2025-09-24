@@ -11,16 +11,29 @@ import com.glean.api_client.glean_api_client.models.operations.ActivityResponse;
 import com.glean.api_client.glean_api_client.models.operations.FeedbackRequest;
 import com.glean.api_client.glean_api_client.models.operations.FeedbackRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.FeedbackResponse;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
 
 public class Activity {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncActivity asyncSDK;
 
     Activity(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncActivity(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncActivity async() {
+        return asyncSDK;
     }
 
     /**
@@ -45,7 +58,7 @@ public class Activity {
      */
     public ActivityResponse report(com.glean.api_client.glean_api_client.models.components.Activity request) throws Exception {
         RequestOperation<com.glean.api_client.glean_api_client.models.components.Activity, ActivityResponse> operation
-              = new com.glean.api_client.glean_api_client.operations.Activity.Sync(sdkConfiguration);
+              = new com.glean.api_client.glean_api_client.operations.Activity.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -90,7 +103,7 @@ public class Activity {
                 .feedback1(feedback1)
                 .build();
         RequestOperation<FeedbackRequest, FeedbackResponse> operation
-              = new com.glean.api_client.glean_api_client.operations.Feedback.Sync(sdkConfiguration);
+              = new com.glean.api_client.glean_api_client.operations.Feedback.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

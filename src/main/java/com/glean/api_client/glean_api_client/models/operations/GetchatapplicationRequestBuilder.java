@@ -8,6 +8,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.GetChatApplicationRequest;
 import com.glean.api_client.glean_api_client.operations.Getchatapplication;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
@@ -18,6 +19,7 @@ public class GetchatapplicationRequestBuilder {
     private Optional<Long> timezoneOffset = Optional.empty();
     private GetChatApplicationRequest getChatApplicationRequest;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetchatapplicationRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -53,7 +55,7 @@ public class GetchatapplicationRequestBuilder {
     public GetchatapplicationResponse call() throws Exception {
         
         RequestOperation<GetchatapplicationRequest, GetchatapplicationResponse> operation
-              = new Getchatapplication.Sync(sdkConfiguration);
+              = new Getchatapplication.Sync(sdkConfiguration, _headers);
         GetchatapplicationRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

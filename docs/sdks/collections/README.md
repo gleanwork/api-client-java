@@ -699,7 +699,7 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.createCollectionResponse().isPresent()) {
+        if (res.oneOf().isPresent()) {
             // handle response
         }
     }

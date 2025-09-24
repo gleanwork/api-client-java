@@ -7,6 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.operations.Listchats;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 import java.lang.Long;
@@ -16,6 +17,7 @@ public class ListchatsRequestBuilder {
 
     private Optional<Long> timezoneOffset = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListchatsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -44,7 +46,7 @@ public class ListchatsRequestBuilder {
     public ListchatsResponse call() throws Exception {
         
         RequestOperation<ListchatsRequest, ListchatsResponse> operation
-              = new Listchats.Sync(sdkConfiguration);
+              = new Listchats.Sync(sdkConfiguration, _headers);
         ListchatsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

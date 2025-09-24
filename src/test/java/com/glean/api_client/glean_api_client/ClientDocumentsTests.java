@@ -85,9 +85,9 @@ public class ClientDocumentsTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            GetDocPermissionsResponse.builder()
+                GetDocPermissionsResponse.builder()
             .build(),
-            res.getDocPermissionsResponse().get());
+                res.getDocPermissionsResponse().get());
     }
 
     @Test
@@ -104,7 +104,7 @@ public class ClientDocumentsTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            GetDocumentsResponse.builder()
+                GetDocumentsResponse.builder()
             .documents(Map.ofEntries(
                 Map.entry("key", DocumentOrErrorUnion.of(Document.builder()
                     .build())),
@@ -113,7 +113,7 @@ public class ClientDocumentsTests {
                 Map.entry("key2", DocumentOrErrorUnion.of(Document.builder()
                     .build()))))
             .build(),
-            res.getDocumentsResponse().get());
+                res.getDocumentsResponse().get());
     }
 
     @Test
@@ -165,7 +165,7 @@ public class ClientDocumentsTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            GetDocumentsByFacetsResponse.builder()
+                GetDocumentsByFacetsResponse.builder()
             .documents(List.of(
                 Document.builder()
                     .metadata(DocumentMetadata.builder()
@@ -1393,7 +1393,7 @@ public class ClientDocumentsTests {
                         .build())
                     .build()))
             .build(),
-            res.getDocumentsByFacetsResponse().get());
+                res.getDocumentsByFacetsResponse().get());
     }
 
     @Test

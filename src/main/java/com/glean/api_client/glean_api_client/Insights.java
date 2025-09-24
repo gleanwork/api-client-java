@@ -8,14 +8,27 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.models.components.InsightsRequest;
 import com.glean.api_client.glean_api_client.models.operations.InsightsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.InsightsResponse;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Exception;
 
 
 public class Insights {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncInsights asyncSDK;
 
     Insights(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncInsights(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncInsights async() {
+        return asyncSDK;
     }
 
     /**
@@ -40,7 +53,7 @@ public class Insights {
      */
     public InsightsResponse retrieve(InsightsRequest request) throws Exception {
         RequestOperation<InsightsRequest, InsightsResponse> operation
-              = new com.glean.api_client.glean_api_client.operations.Insights.Sync(sdkConfiguration);
+              = new com.glean.api_client.glean_api_client.operations.Insights.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

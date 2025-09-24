@@ -89,7 +89,7 @@ public class InsightsTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            com.glean.api_client.glean_api_client.models.components.InsightsResponse.builder()
+                com.glean.api_client.glean_api_client.models.components.InsightsResponse.builder()
             .users(UserInsightsResponse.builder()
                 .activityInsights(List.of(
                     UserActivityInsight.builder()
@@ -5230,6 +5230,6 @@ public class InsightsTests {
                         .build()))
                 .build())
             .build(),
-            res.insightsResponse().get());
+                res.insightsResponse().get());
     }
 }

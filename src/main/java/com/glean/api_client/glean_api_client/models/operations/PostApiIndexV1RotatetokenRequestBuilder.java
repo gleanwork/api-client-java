@@ -7,11 +7,13 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Rotatetoken;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Exception;
 
 public class PostApiIndexV1RotatetokenRequestBuilder {
 
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public PostApiIndexV1RotatetokenRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -20,7 +22,7 @@ public class PostApiIndexV1RotatetokenRequestBuilder {
     public PostApiIndexV1RotatetokenResponse call() throws Exception {
         
         RequestlessOperation<PostApiIndexV1RotatetokenResponse> operation
-            = new PostApiIndexV1Rotatetoken.Sync(sdkConfiguration);
+            = new PostApiIndexV1Rotatetoken.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest());
     }

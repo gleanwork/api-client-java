@@ -13,14 +13,27 @@ import com.glean.api_client.glean_api_client.models.operations.PeopleRequestBuil
 import com.glean.api_client.glean_api_client.models.operations.PeopleResponse;
 import com.glean.api_client.glean_api_client.operations.Listentities;
 import com.glean.api_client.glean_api_client.operations.People;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Exception;
 
 
 public class Entities {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncEntities asyncSDK;
 
     Entities(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncEntities(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncEntities async() {
+        return asyncSDK;
     }
 
     /**
@@ -45,7 +58,7 @@ public class Entities {
      */
     public ListentitiesResponse list(ListEntitiesRequest request) throws Exception {
         RequestOperation<ListEntitiesRequest, ListentitiesResponse> operation
-              = new Listentities.Sync(sdkConfiguration);
+              = new Listentities.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -71,7 +84,7 @@ public class Entities {
      */
     public PeopleResponse readPeople(PeopleRequest request) throws Exception {
         RequestOperation<PeopleRequest, PeopleResponse> operation
-              = new People.Sync(sdkConfiguration);
+              = new People.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

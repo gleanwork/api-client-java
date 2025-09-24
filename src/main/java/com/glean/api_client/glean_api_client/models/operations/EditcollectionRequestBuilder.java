@@ -8,6 +8,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.EditCollectionRequest;
 import com.glean.api_client.glean_api_client.operations.Editcollection;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Exception;
 
@@ -15,6 +16,7 @@ public class EditcollectionRequestBuilder {
 
     private EditCollectionRequest request;
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public EditcollectionRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -29,7 +31,7 @@ public class EditcollectionRequestBuilder {
     public EditcollectionResponse call() throws Exception {
         
         RequestOperation<EditCollectionRequest, EditcollectionResponse> operation
-              = new Editcollection.Sync(sdkConfiguration);
+              = new Editcollection.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -17,14 +17,27 @@ import com.glean.api_client.glean_api_client.models.operations.Updateannouncemen
 import com.glean.api_client.glean_api_client.operations.Createannouncement;
 import com.glean.api_client.glean_api_client.operations.Deleteannouncement;
 import com.glean.api_client.glean_api_client.operations.Updateannouncement;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Exception;
 
 
 public class Announcements {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncAnnouncements asyncSDK;
 
     Announcements(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncAnnouncements(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncAnnouncements async() {
+        return asyncSDK;
     }
 
     /**
@@ -49,7 +62,7 @@ public class Announcements {
      */
     public CreateannouncementResponse create(CreateAnnouncementRequest request) throws Exception {
         RequestOperation<CreateAnnouncementRequest, CreateannouncementResponse> operation
-              = new Createannouncement.Sync(sdkConfiguration);
+              = new Createannouncement.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -75,7 +88,7 @@ public class Announcements {
      */
     public DeleteannouncementResponse delete(DeleteAnnouncementRequest request) throws Exception {
         RequestOperation<DeleteAnnouncementRequest, DeleteannouncementResponse> operation
-              = new Deleteannouncement.Sync(sdkConfiguration);
+              = new Deleteannouncement.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -101,7 +114,7 @@ public class Announcements {
      */
     public UpdateannouncementResponse update(UpdateAnnouncementRequest request) throws Exception {
         RequestOperation<UpdateAnnouncementRequest, UpdateannouncementResponse> operation
-              = new Updateannouncement.Sync(sdkConfiguration);
+              = new Updateannouncement.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

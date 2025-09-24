@@ -8,14 +8,27 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.models.components.MessagesRequest;
 import com.glean.api_client.glean_api_client.models.operations.MessagesRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.MessagesResponse;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Exception;
 
 
 public class Messages {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncMessages asyncSDK;
 
     Messages(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncMessages(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncMessages async() {
+        return asyncSDK;
     }
 
     /**
@@ -40,7 +53,7 @@ public class Messages {
      */
     public MessagesResponse retrieve(MessagesRequest request) throws Exception {
         RequestOperation<MessagesRequest, MessagesResponse> operation
-              = new com.glean.api_client.glean_api_client.operations.Messages.Sync(sdkConfiguration);
+              = new com.glean.api_client.glean_api_client.operations.Messages.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

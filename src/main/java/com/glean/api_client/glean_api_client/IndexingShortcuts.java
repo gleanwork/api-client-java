@@ -13,14 +13,27 @@ import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1Upl
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1UploadshortcutsResponse;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Bulkindexshortcuts;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Uploadshortcuts;
+import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Exception;
 
 
 public class IndexingShortcuts {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncIndexingShortcuts asyncSDK;
 
     IndexingShortcuts(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncIndexingShortcuts(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncIndexingShortcuts async() {
+        return asyncSDK;
     }
 
     /**
@@ -45,7 +58,7 @@ public class IndexingShortcuts {
      */
     public PostApiIndexV1BulkindexshortcutsResponse bulkIndex(BulkIndexShortcutsRequest request) throws Exception {
         RequestOperation<BulkIndexShortcutsRequest, PostApiIndexV1BulkindexshortcutsResponse> operation
-              = new PostApiIndexV1Bulkindexshortcuts.Sync(sdkConfiguration);
+              = new PostApiIndexV1Bulkindexshortcuts.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -71,7 +84,7 @@ public class IndexingShortcuts {
      */
     public PostApiIndexV1UploadshortcutsResponse upload(UploadShortcutsRequest request) throws Exception {
         RequestOperation<UploadShortcutsRequest, PostApiIndexV1UploadshortcutsResponse> operation
-              = new PostApiIndexV1Uploadshortcuts.Sync(sdkConfiguration);
+              = new PostApiIndexV1Uploadshortcuts.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

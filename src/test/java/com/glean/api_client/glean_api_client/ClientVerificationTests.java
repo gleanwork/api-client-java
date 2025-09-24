@@ -82,7 +82,7 @@ public class ClientVerificationTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            Verification.builder()
+                Verification.builder()
             .state(State.VERIFIED)
             .metadata(VerificationMetadata.builder()
                 .lastVerifier(Person.builder()
@@ -743,7 +743,7 @@ public class ClientVerificationTests {
                         .build()))
                 .build())
             .build(),
-            res.verification().get());
+                res.verification().get());
     }
 
     @Test
@@ -760,7 +760,7 @@ public class ClientVerificationTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            VerificationFeed.builder()
+                VerificationFeed.builder()
             .documents(List.of(
                 Verification.builder()
                     .state(State.VERIFIED)
@@ -2367,7 +2367,7 @@ public class ClientVerificationTests {
                         .build())
                     .build()))
             .build(),
-            res.verificationFeed().get());
+                res.verificationFeed().get());
     }
 
     @Test
@@ -2389,7 +2389,7 @@ public class ClientVerificationTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            Verification.builder()
+                Verification.builder()
             .state(State.DEPRECATED)
             .metadata(VerificationMetadata.builder()
                 .lastVerifier(Person.builder()
@@ -3194,6 +3194,6 @@ public class ClientVerificationTests {
                         .build()))
                 .build())
             .build(),
-            res.verification().get());
+                res.verification().get());
     }
 }

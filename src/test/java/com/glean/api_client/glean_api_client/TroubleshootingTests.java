@@ -51,9 +51,9 @@ public class TroubleshootingTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            CheckDocumentAccessResponse.builder()
+                CheckDocumentAccessResponse.builder()
             .build(),
-            res.checkDocumentAccessResponse().get());
+                res.checkDocumentAccessResponse().get());
     }
 
     @Test
@@ -77,9 +77,9 @@ public class TroubleshootingTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            GetDocumentStatusResponse.builder()
+                GetDocumentStatusResponse.builder()
             .build(),
-            res.getDocumentStatusResponse().get());
+                res.getDocumentStatusResponse().get());
     }
 
     @Test
@@ -101,9 +101,9 @@ public class TroubleshootingTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            GetDocumentCountResponse.builder()
+                GetDocumentCountResponse.builder()
             .build(),
-            res.getDocumentCountResponse().get());
+                res.getDocumentCountResponse().get());
     }
 
     @Test
@@ -125,8 +125,8 @@ public class TroubleshootingTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            GetUserCountResponse.builder()
+                GetUserCountResponse.builder()
             .build(),
-            res.getUserCountResponse().get());
+                res.getUserCountResponse().get());
     }
 }

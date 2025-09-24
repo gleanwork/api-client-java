@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.Deprecated;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
@@ -18,12 +19,6 @@ import java.util.Optional;
 
 
 public class SearchResultSnippet {
-    /**
-     * A matching snippet from the document. Query term matches are marked by the unicode characters uE006 and uE007.
-     */
-    @JsonProperty("snippet")
-    private String snippet;
-
     /**
      * The mime type of the snippets, currently either text/plain or text/html.
      */
@@ -59,40 +54,41 @@ public class SearchResultSnippet {
     @JsonProperty("url")
     private Optional<String> url;
 
+    /**
+     * A matching snippet from the document. Query term matches are marked by the unicode characters uE006 and uE007. Use 'text' field instead.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @JsonProperty("snippet")
+    @Deprecated
+    private String snippet;
+
     @JsonCreator
     public SearchResultSnippet(
-            @JsonProperty("snippet") String snippet,
             @JsonProperty("mimeType") Optional<String> mimeType,
             @JsonProperty("text") Optional<String> text,
             @JsonProperty("snippetTextOrdering") Optional<Long> snippetTextOrdering,
             @JsonProperty("ranges") Optional<? extends List<TextRange>> ranges,
-            @JsonProperty("url") Optional<String> url) {
-        Utils.checkNotNull(snippet, "snippet");
+            @JsonProperty("url") Optional<String> url,
+            @JsonProperty("snippet") String snippet) {
         Utils.checkNotNull(mimeType, "mimeType");
         Utils.checkNotNull(text, "text");
         Utils.checkNotNull(snippetTextOrdering, "snippetTextOrdering");
         Utils.checkNotNull(ranges, "ranges");
         Utils.checkNotNull(url, "url");
-        this.snippet = snippet;
+        Utils.checkNotNull(snippet, "snippet");
         this.mimeType = mimeType;
         this.text = text;
         this.snippetTextOrdering = snippetTextOrdering;
         this.ranges = ranges;
         this.url = url;
+        this.snippet = snippet;
     }
     
     public SearchResultSnippet(
             String snippet) {
-        this(snippet, Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
-    }
-
-    /**
-     * A matching snippet from the document. Query term matches are marked by the unicode characters uE006 and uE007.
-     */
-    @JsonIgnore
-    public String snippet() {
-        return snippet;
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), snippet);
     }
 
     /**
@@ -136,19 +132,21 @@ public class SearchResultSnippet {
         return url;
     }
 
+    /**
+     * A matching snippet from the document. Query term matches are marked by the unicode characters uE006 and uE007. Use 'text' field instead.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    @JsonIgnore
+    public String snippet() {
+        return snippet;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
 
-
-    /**
-     * A matching snippet from the document. Query term matches are marked by the unicode characters uE006 and uE007.
-     */
-    public SearchResultSnippet withSnippet(String snippet) {
-        Utils.checkNotNull(snippet, "snippet");
-        this.snippet = snippet;
-        return this;
-    }
 
     /**
      * The mime type of the snippets, currently either text/plain or text/html.
@@ -245,6 +243,18 @@ public class SearchResultSnippet {
         return this;
     }
 
+    /**
+     * A matching snippet from the document. Query term matches are marked by the unicode characters uE006 and uE007. Use 'text' field instead.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public SearchResultSnippet withSnippet(String snippet) {
+        Utils.checkNotNull(snippet, "snippet");
+        this.snippet = snippet;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -255,36 +265,34 @@ public class SearchResultSnippet {
         }
         SearchResultSnippet other = (SearchResultSnippet) o;
         return 
-            Utils.enhancedDeepEquals(this.snippet, other.snippet) &&
             Utils.enhancedDeepEquals(this.mimeType, other.mimeType) &&
             Utils.enhancedDeepEquals(this.text, other.text) &&
             Utils.enhancedDeepEquals(this.snippetTextOrdering, other.snippetTextOrdering) &&
             Utils.enhancedDeepEquals(this.ranges, other.ranges) &&
-            Utils.enhancedDeepEquals(this.url, other.url);
+            Utils.enhancedDeepEquals(this.url, other.url) &&
+            Utils.enhancedDeepEquals(this.snippet, other.snippet);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            snippet, mimeType, text,
-            snippetTextOrdering, ranges, url);
+            mimeType, text, snippetTextOrdering,
+            ranges, url, snippet);
     }
     
     @Override
     public String toString() {
         return Utils.toString(SearchResultSnippet.class,
-                "snippet", snippet,
                 "mimeType", mimeType,
                 "text", text,
                 "snippetTextOrdering", snippetTextOrdering,
                 "ranges", ranges,
-                "url", url);
+                "url", url,
+                "snippet", snippet);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private String snippet;
 
         private Optional<String> mimeType = Optional.empty();
 
@@ -296,18 +304,11 @@ public class SearchResultSnippet {
 
         private Optional<String> url = Optional.empty();
 
+        @Deprecated
+        private String snippet;
+
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        /**
-         * A matching snippet from the document. Query term matches are marked by the unicode characters uE006 and uE007.
-         */
-        public Builder snippet(String snippet) {
-            Utils.checkNotNull(snippet, "snippet");
-            this.snippet = snippet;
-            return this;
         }
 
 
@@ -405,11 +406,24 @@ public class SearchResultSnippet {
             return this;
         }
 
+
+        /**
+         * A matching snippet from the document. Query term matches are marked by the unicode characters uE006 and uE007. Use 'text' field instead.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         */
+        @Deprecated
+        public Builder snippet(String snippet) {
+            Utils.checkNotNull(snippet, "snippet");
+            this.snippet = snippet;
+            return this;
+        }
+
         public SearchResultSnippet build() {
 
             return new SearchResultSnippet(
-                snippet, mimeType, text,
-                snippetTextOrdering, ranges, url);
+                mimeType, text, snippetTextOrdering,
+                ranges, url, snippet);
         }
 
     }

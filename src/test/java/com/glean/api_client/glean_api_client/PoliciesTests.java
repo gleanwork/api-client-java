@@ -31,9 +31,9 @@ public class PoliciesTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            GetDlpReportResponse.builder()
+                GetDlpReportResponse.builder()
             .build(),
-            res.getDlpReportResponse().get());
+                res.getDlpReportResponse().get());
     }
 
     @Test
@@ -65,8 +65,8 @@ public class PoliciesTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            ListDlpReportsResponse.builder()
+                ListDlpReportsResponse.builder()
             .build(),
-            res.listDlpReportsResponse().get());
+                res.listDlpReportsResponse().get());
     }
 }

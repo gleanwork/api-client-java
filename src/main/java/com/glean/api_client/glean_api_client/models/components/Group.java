@@ -34,23 +34,44 @@ public class Group {
     @JsonProperty("name")
     private Optional<String> name;
 
+    /**
+     * Datasource instance if the group belongs to one e.g. external groups.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("datasourceInstance")
+    private Optional<String> datasourceInstance;
+
+    /**
+     * identifier for greenlist provisioning, aka sciokey
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("provisioningId")
+    private Optional<String> provisioningId;
+
     @JsonCreator
     public Group(
             @JsonProperty("type") GroupType type,
             @JsonProperty("id") String id,
-            @JsonProperty("name") Optional<String> name) {
+            @JsonProperty("name") Optional<String> name,
+            @JsonProperty("datasourceInstance") Optional<String> datasourceInstance,
+            @JsonProperty("provisioningId") Optional<String> provisioningId) {
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(name, "name");
+        Utils.checkNotNull(datasourceInstance, "datasourceInstance");
+        Utils.checkNotNull(provisioningId, "provisioningId");
         this.type = type;
         this.id = id;
         this.name = name;
+        this.datasourceInstance = datasourceInstance;
+        this.provisioningId = provisioningId;
     }
     
     public Group(
             GroupType type,
             String id) {
-        this(type, id, Optional.empty());
+        this(type, id, Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -75,6 +96,22 @@ public class Group {
     @JsonIgnore
     public Optional<String> name() {
         return name;
+    }
+
+    /**
+     * Datasource instance if the group belongs to one e.g. external groups.
+     */
+    @JsonIgnore
+    public Optional<String> datasourceInstance() {
+        return datasourceInstance;
+    }
+
+    /**
+     * identifier for greenlist provisioning, aka sciokey
+     */
+    @JsonIgnore
+    public Optional<String> provisioningId() {
+        return provisioningId;
     }
 
     public static Builder builder() {
@@ -119,6 +156,44 @@ public class Group {
         return this;
     }
 
+    /**
+     * Datasource instance if the group belongs to one e.g. external groups.
+     */
+    public Group withDatasourceInstance(String datasourceInstance) {
+        Utils.checkNotNull(datasourceInstance, "datasourceInstance");
+        this.datasourceInstance = Optional.ofNullable(datasourceInstance);
+        return this;
+    }
+
+
+    /**
+     * Datasource instance if the group belongs to one e.g. external groups.
+     */
+    public Group withDatasourceInstance(Optional<String> datasourceInstance) {
+        Utils.checkNotNull(datasourceInstance, "datasourceInstance");
+        this.datasourceInstance = datasourceInstance;
+        return this;
+    }
+
+    /**
+     * identifier for greenlist provisioning, aka sciokey
+     */
+    public Group withProvisioningId(String provisioningId) {
+        Utils.checkNotNull(provisioningId, "provisioningId");
+        this.provisioningId = Optional.ofNullable(provisioningId);
+        return this;
+    }
+
+
+    /**
+     * identifier for greenlist provisioning, aka sciokey
+     */
+    public Group withProvisioningId(Optional<String> provisioningId) {
+        Utils.checkNotNull(provisioningId, "provisioningId");
+        this.provisioningId = provisioningId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -131,13 +206,16 @@ public class Group {
         return 
             Utils.enhancedDeepEquals(this.type, other.type) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
-            Utils.enhancedDeepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.datasourceInstance, other.datasourceInstance) &&
+            Utils.enhancedDeepEquals(this.provisioningId, other.provisioningId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type, id, name);
+            type, id, name,
+            datasourceInstance, provisioningId);
     }
     
     @Override
@@ -145,7 +223,9 @@ public class Group {
         return Utils.toString(Group.class,
                 "type", type,
                 "id", id,
-                "name", name);
+                "name", name,
+                "datasourceInstance", datasourceInstance,
+                "provisioningId", provisioningId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -156,6 +236,10 @@ public class Group {
         private String id;
 
         private Optional<String> name = Optional.empty();
+
+        private Optional<String> datasourceInstance = Optional.empty();
+
+        private Optional<String> provisioningId = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -200,10 +284,49 @@ public class Group {
             return this;
         }
 
+
+        /**
+         * Datasource instance if the group belongs to one e.g. external groups.
+         */
+        public Builder datasourceInstance(String datasourceInstance) {
+            Utils.checkNotNull(datasourceInstance, "datasourceInstance");
+            this.datasourceInstance = Optional.ofNullable(datasourceInstance);
+            return this;
+        }
+
+        /**
+         * Datasource instance if the group belongs to one e.g. external groups.
+         */
+        public Builder datasourceInstance(Optional<String> datasourceInstance) {
+            Utils.checkNotNull(datasourceInstance, "datasourceInstance");
+            this.datasourceInstance = datasourceInstance;
+            return this;
+        }
+
+
+        /**
+         * identifier for greenlist provisioning, aka sciokey
+         */
+        public Builder provisioningId(String provisioningId) {
+            Utils.checkNotNull(provisioningId, "provisioningId");
+            this.provisioningId = Optional.ofNullable(provisioningId);
+            return this;
+        }
+
+        /**
+         * identifier for greenlist provisioning, aka sciokey
+         */
+        public Builder provisioningId(Optional<String> provisioningId) {
+            Utils.checkNotNull(provisioningId, "provisioningId");
+            this.provisioningId = provisioningId;
+            return this;
+        }
+
         public Group build() {
 
             return new Group(
-                type, id, name);
+                type, id, name,
+                datasourceInstance, provisioningId);
         }
 
     }

@@ -58,7 +58,7 @@ import com.glean.api_client.glean_api_client.models.components.DocumentContent;
 import com.glean.api_client.glean_api_client.models.components.DocumentInteractions;
 import com.glean.api_client.glean_api_client.models.components.DocumentMetadata;
 import com.glean.api_client.glean_api_client.models.components.DocumentSection;
-import com.glean.api_client.glean_api_client.models.components.DocumentSpec1;
+import com.glean.api_client.glean_api_client.models.components.DocumentSpec2;
 import com.glean.api_client.glean_api_client.models.components.DocumentSpecUnion;
 import com.glean.api_client.glean_api_client.models.components.EntityType;
 import com.glean.api_client.glean_api_client.models.components.ExtractedQnA;
@@ -223,7 +223,7 @@ public class ClientChatTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            GetChatResponse.builder()
+                GetChatResponse.builder()
             .chatResult(ChatResult.builder()
                 .chat(Chat.builder()
                     .id("string")
@@ -745,7 +745,8 @@ public class ClientChatTests {
                                                 .question("<value>")
                                                 .bodyText("<value>")
                                                 .boardId(933583L)
-                                                .sourceDocumentSpec(DocumentSpecUnion.of(DocumentSpec1.builder()
+                                                .sourceDocumentSpec(DocumentSpecUnion.of(DocumentSpec2.builder()
+                                                    .id("<id>")
                                                     .build()))
                                                 .sourceType(AnswerSourceType.ASSISTANT)
                                                 .combinedAnswerText(StructuredText.builder()
@@ -1253,7 +1254,7 @@ public class ClientChatTests {
                 .trackingToken("string")
                 .build())
             .build(),
-            res.getChatResponse().get());
+                res.getChatResponse().get());
     }
 
     @Test
@@ -1270,7 +1271,7 @@ public class ClientChatTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            ListChatsResponse.builder()
+                ListChatsResponse.builder()
             .chatResults(List.of(
                 ChatMetadataResult.builder()
                     .chat(ChatMetadata.builder()
@@ -1802,7 +1803,7 @@ public class ClientChatTests {
                         .build())
                     .build()))
             .build(),
-            res.listChatsResponse().get());
+                res.listChatsResponse().get());
     }
 
     @Test
@@ -1822,9 +1823,9 @@ public class ClientChatTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            GetChatApplicationResponse.builder()
+                GetChatApplicationResponse.builder()
             .build(),
-            res.getChatApplicationResponse().get());
+                res.getChatApplicationResponse().get());
     }
 
     @Test
@@ -1846,7 +1847,7 @@ public class ClientChatTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            GetChatFilesResponse.builder()
+                GetChatFilesResponse.builder()
             .files(Map.ofEntries(
                 Map.entry("key", ChatFile.builder()
                     .id("FILE_1234")
@@ -1864,7 +1865,7 @@ public class ClientChatTests {
                     .name("sample.pdf")
                     .build())))
             .build(),
-            res.getChatFilesResponse().get());
+                res.getChatFilesResponse().get());
     }
 
     @Test
@@ -1900,7 +1901,6 @@ public class ClientChatTests {
                 .chatRequest(ChatRequest.builder()
                     .messages(List.of(
                         ChatMessage.builder()
-                            .author(Author.USER)
                             .fragments(List.of(
                                 ChatMessageFragment.builder()
                                     .text("What are the company holidays this year?")
@@ -1910,8 +1910,8 @@ public class ClientChatTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            "{\"messages\":[{\"author\":\"GLEAN_AI\",\"messageType\":\"CONTENT\",\"hasMoreFragments\":false,\"agentConfig\":{\"agent\":\"DEFAULT\",\"mode\":\"DEFAULT\"},\"fragments\":[{\"text\":\"There are no holidays!\"}]}]}",
-            res.chatRequestStream().get());
+                "{\"messages\":[{\"author\":\"GLEAN_AI\",\"messageType\":\"CONTENT\",\"hasMoreFragments\":false,\"agentConfig\":{\"agent\":\"DEFAULT\",\"mode\":\"DEFAULT\"},\"fragments\":[{\"text\":\"There are no holidays!\"}]}]}",
+                res.chatRequestStream().get());
     }
 
     @Test
@@ -1928,7 +1928,6 @@ public class ClientChatTests {
                 .chatRequest(ChatRequest.builder()
                     .messages(List.of(
                         ChatMessage.builder()
-                            .author(Author.USER)
                             .fragments(List.of(
                                 ChatMessageFragment.builder()
                                     .text("Who was the first person to land on the moon?")
@@ -1941,8 +1940,8 @@ public class ClientChatTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            "<value>",
-            res.chatRequestStream().get());
+                "<value>",
+                res.chatRequestStream().get());
     }
 
     @Test
@@ -1963,8 +1962,8 @@ public class ClientChatTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            "{\"messages\":[{\"author\":\"GLEAN_AI\",\"messageType\":\"CONTENT\",\"agentConfig\":{\"agent\":\"DEFAULT\",\"mode\":\"DEFAULT\",\"hasMoreFragments\":true},\"fragments\":null},{\"author\":\"GLEAN_AI\",\"messageType\":\"CONTENT\",\"agentConfig\":{\"agent\":\"DEFAULT\",\"mode\":\"DEFAULT\",\"hasMoreFragments\":true},\"fragments\":null},{\"author\":\"GLEAN_AI\",\"messageType\":\"CONTENT\",\"agentConfig\":{\"agent\":\"DEFAULT\",\"mode\":\"DEFAULT\",\"hasMoreFragments\":true},\"fragments\":[{\"text\":\"e are\"}]},{\"author\":\"GLEAN_AI\",\"messageType\":\"CONTENT\",\"agentConfig\":{\"agent\":\"DEFAULT\",\"mode\":\"DEFAULT\",\"hasMoreFragments\":true},\"fragments\":[{\"text\":\"no hol\"}]},{\"author\":\"GLEAN_AI\",\"messageType\":\"CONTENT\",\"agentConfig\":{\"agent\":\"DEFAULT\",\"mode\":\"DEFAULT\",\"hasMoreFragments\":false},\"fragments\":[{\"text\":\"idays!\"}]}]}",
-            res.chatRequestStream().get());
+                "{\"messages\":[{\"author\":\"GLEAN_AI\",\"messageType\":\"CONTENT\",\"agentConfig\":{\"agent\":\"DEFAULT\",\"mode\":\"DEFAULT\",\"hasMoreFragments\":true},\"fragments\":null},{\"author\":\"GLEAN_AI\",\"messageType\":\"CONTENT\",\"agentConfig\":{\"agent\":\"DEFAULT\",\"mode\":\"DEFAULT\",\"hasMoreFragments\":true},\"fragments\":null},{\"author\":\"GLEAN_AI\",\"messageType\":\"CONTENT\",\"agentConfig\":{\"agent\":\"DEFAULT\",\"mode\":\"DEFAULT\",\"hasMoreFragments\":true},\"fragments\":[{\"text\":\"e are\"}]},{\"author\":\"GLEAN_AI\",\"messageType\":\"CONTENT\",\"agentConfig\":{\"agent\":\"DEFAULT\",\"mode\":\"DEFAULT\",\"hasMoreFragments\":true},\"fragments\":[{\"text\":\"no hol\"}]},{\"author\":\"GLEAN_AI\",\"messageType\":\"CONTENT\",\"agentConfig\":{\"agent\":\"DEFAULT\",\"mode\":\"DEFAULT\",\"hasMoreFragments\":false},\"fragments\":[{\"text\":\"idays!\"}]}]}",
+                res.chatRequestStream().get());
     }
 
     @Test
@@ -1981,7 +1980,6 @@ public class ClientChatTests {
                 .chatRequest(ChatRequest.builder()
                     .messages(List.of(
                         ChatMessage.builder()
-                            .author(Author.USER)
                             .citations(List.of(
                                 ChatMessageCitation.builder()
                                     .sourceDocument(Document.builder()
@@ -4051,7 +4049,6 @@ public class ClientChatTests {
                                     .build()))
                             .build(),
                         ChatMessage.builder()
-                            .author(Author.USER)
                             .citations(List.of(
                                 ChatMessageCitation.builder()
                                     .sourceDocument(Document.builder()
@@ -6155,8 +6152,8 @@ public class ClientChatTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            "{\"messages\":[{\"author\":\"GLEAN_AI\",\"messageType\":\"UPDATE\",\"agentConfig\":{\"agent\":\"DEFAULT\",\"mode\":\"DEFAULT\"},\"fragments\":[{\"text\":\"**Reading:**\"},{\"structuredResults\":[{\"document\":{\"id\":\"123\",\"title\":\"Company Handbook\"}}]}]}]}",
-            res.chatRequestStream().get());
+                "{\"messages\":[{\"author\":\"GLEAN_AI\",\"messageType\":\"UPDATE\",\"agentConfig\":{\"agent\":\"DEFAULT\",\"mode\":\"DEFAULT\"},\"fragments\":[{\"text\":\"**Reading:**\"},{\"structuredResults\":[{\"document\":{\"id\":\"123\",\"title\":\"Company Handbook\"}}]}]}]}",
+                res.chatRequestStream().get());
     }
 
     @Test
@@ -6173,7 +6170,6 @@ public class ClientChatTests {
                 .chatRequest(ChatRequest.builder()
                     .messages(List.of(
                         ChatMessage.builder()
-                            .author(Author.USER)
                             .citations(List.of(
                                 ChatMessageCitation.builder()
                                     .sourceDocument(Document.builder()
@@ -8076,7 +8072,6 @@ public class ClientChatTests {
                                     .build()))
                             .build(),
                         ChatMessage.builder()
-                            .author(Author.USER)
                             .citations(List.of(
                                 ChatMessageCitation.builder()
                                     .sourceDocument(Document.builder()
@@ -9111,7 +9106,6 @@ public class ClientChatTests {
                                     .build()))
                             .build(),
                         ChatMessage.builder()
-                            .author(Author.USER)
                             .citations(List.of(
                                 ChatMessageCitation.builder()
                                     .sourceDocument(Document.builder()
@@ -11252,7 +11246,7 @@ public class ClientChatTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            "{\"messages\":[{\"author\":\"GLEAN_AI\",\"messageType\":\"CONTENT\",\"agentConfig\":{\"agent\":\"DEFAULT\",\"mode\":\"DEFAULT\"},\"citations\":[{\"sourceDocument\":{\"id\":\"123\",\"title\":\"Company Handbook\",\"referenceRanges\":[{\"textRange\":{\"startIndex\":0,\"endIndex\":12,\"type\":\"CITATION\"}}]}}]}]}",
-            res.chatRequestStream().get());
+                "{\"messages\":[{\"author\":\"GLEAN_AI\",\"messageType\":\"CONTENT\",\"agentConfig\":{\"agent\":\"DEFAULT\",\"mode\":\"DEFAULT\"},\"citations\":[{\"sourceDocument\":{\"id\":\"123\",\"title\":\"Company Handbook\",\"referenceRanges\":[{\"textRange\":{\"startIndex\":0,\"endIndex\":12,\"type\":\"CITATION\"}}]}}]}]}",
+                res.chatRequestStream().get());
     }
 }

@@ -49,13 +49,13 @@ public class AgentsTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            Agent.builder()
+                Agent.builder()
             .agentId("<id>")
             .name("<value>")
             .capabilities(AgentCapabilities.builder()
                 .build())
             .build(),
-            res.agent().get());
+                res.agent().get());
     }
 
     @Test
@@ -73,14 +73,14 @@ public class AgentsTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            AgentSchemas.builder()
+                AgentSchemas.builder()
             .agentId("<id>")
             .inputSchema(InputSchema.builder()
                 .build())
             .outputSchema(OutputSchema.builder()
                 .build())
             .build(),
-            res.agentSchemas().get());
+                res.agentSchemas().get());
     }
 
     @Test

@@ -100,7 +100,7 @@ public class PinsTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            PinDocument.builder()
+                PinDocument.builder()
             .documentId("<id>")
             .audienceFilters(List.of(
                 FacetFilter.builder()
@@ -420,7 +420,7 @@ public class PinsTests {
                     .build())
                 .build())
             .build(),
-            res.pinDocument().get());
+                res.pinDocument().get());
     }
 
     @Test
@@ -441,7 +441,7 @@ public class PinsTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            GetPinResponse.builder()
+                GetPinResponse.builder()
             .pin(PinDocument.builder()
                 .documentId("<id>")
                 .audienceFilters(List.of(
@@ -949,7 +949,7 @@ public class PinsTests {
                     .build())
                 .build())
             .build(),
-            res.getPinResponse().get());
+                res.getPinResponse().get());
     }
 
     @Test
@@ -970,7 +970,7 @@ public class PinsTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            ListPinsResponse.builder()
+                ListPinsResponse.builder()
             .pins(List.of(
                 PinDocument.builder()
                     .documentId("<id>")
@@ -1563,7 +1563,7 @@ public class PinsTests {
                         .build())
                     .build()))
             .build(),
-            res.listPinsResponse().get());
+                res.listPinsResponse().get());
     }
 
     @Test
@@ -1597,7 +1597,7 @@ public class PinsTests {
                 .call();
         assertEquals(200, res.statusCode());
         assertEquals(
-            PinDocument.builder()
+                PinDocument.builder()
             .documentId("<id>")
             .audienceFilters(List.of(
                 FacetFilter.builder()
@@ -2043,7 +2043,7 @@ public class PinsTests {
                     .build())
                 .build())
             .build(),
-            res.pinDocument().get());
+                res.pinDocument().get());
     }
 
     @Test

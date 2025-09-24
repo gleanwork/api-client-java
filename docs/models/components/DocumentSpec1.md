@@ -5,4 +5,4 @@
 
 | Field                    | Type                     | Required                 | Description              |
 | ------------------------ | ------------------------ | ------------------------ | ------------------------ |
-| `url`                    | *Optional\<String>*      | :heavy_minus_sign:       | The URL of the document. |
+| `url`                    | *String*                 | :heavy_check_mark:       | The URL of the document. |

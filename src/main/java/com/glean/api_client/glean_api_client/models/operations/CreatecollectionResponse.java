@@ -5,7 +5,6 @@ package com.glean.api_client.glean_api_client.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.glean.api_client.glean_api_client.models.components.CreateCollectionResponse;
 import com.glean.api_client.glean_api_client.utils.Response;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.io.InputStream;
@@ -36,22 +35,22 @@ public class CreatecollectionResponse implements Response {
     /**
      * OK
      */
-    private Optional<? extends CreateCollectionResponse> createCollectionResponse;
+    private Optional<? extends CreatecollectionResponseBody> oneOf;
 
     @JsonCreator
     public CreatecollectionResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends CreateCollectionResponse> createCollectionResponse) {
+            Optional<? extends CreatecollectionResponseBody> oneOf) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(createCollectionResponse, "createCollectionResponse");
+        Utils.checkNotNull(oneOf, "oneOf");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.createCollectionResponse = createCollectionResponse;
+        this.oneOf = oneOf;
     }
     
     public CreatecollectionResponse(
@@ -91,8 +90,8 @@ public class CreatecollectionResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateCollectionResponse> createCollectionResponse() {
-        return (Optional<CreateCollectionResponse>) createCollectionResponse;
+    public Optional<CreatecollectionResponseBody> oneOf() {
+        return (Optional<CreatecollectionResponseBody>) oneOf;
     }
 
     public static Builder builder() {
@@ -130,9 +129,9 @@ public class CreatecollectionResponse implements Response {
     /**
      * OK
      */
-    public CreatecollectionResponse withCreateCollectionResponse(CreateCollectionResponse createCollectionResponse) {
-        Utils.checkNotNull(createCollectionResponse, "createCollectionResponse");
-        this.createCollectionResponse = Optional.ofNullable(createCollectionResponse);
+    public CreatecollectionResponse withOneOf(CreatecollectionResponseBody oneOf) {
+        Utils.checkNotNull(oneOf, "oneOf");
+        this.oneOf = Optional.ofNullable(oneOf);
         return this;
     }
 
@@ -140,9 +139,9 @@ public class CreatecollectionResponse implements Response {
     /**
      * OK
      */
-    public CreatecollectionResponse withCreateCollectionResponse(Optional<? extends CreateCollectionResponse> createCollectionResponse) {
-        Utils.checkNotNull(createCollectionResponse, "createCollectionResponse");
-        this.createCollectionResponse = createCollectionResponse;
+    public CreatecollectionResponse withOneOf(Optional<? extends CreatecollectionResponseBody> oneOf) {
+        Utils.checkNotNull(oneOf, "oneOf");
+        this.oneOf = oneOf;
         return this;
     }
 
@@ -159,14 +158,14 @@ public class CreatecollectionResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.createCollectionResponse, other.createCollectionResponse);
+            Utils.enhancedDeepEquals(this.oneOf, other.oneOf);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            createCollectionResponse);
+            oneOf);
     }
     
     @Override
@@ -175,7 +174,7 @@ public class CreatecollectionResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "createCollectionResponse", createCollectionResponse);
+                "oneOf", oneOf);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -187,7 +186,7 @@ public class CreatecollectionResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends CreateCollectionResponse> createCollectionResponse = Optional.empty();
+        private Optional<? extends CreatecollectionResponseBody> oneOf = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -227,18 +226,18 @@ public class CreatecollectionResponse implements Response {
         /**
          * OK
          */
-        public Builder createCollectionResponse(CreateCollectionResponse createCollectionResponse) {
-            Utils.checkNotNull(createCollectionResponse, "createCollectionResponse");
-            this.createCollectionResponse = Optional.ofNullable(createCollectionResponse);
+        public Builder oneOf(CreatecollectionResponseBody oneOf) {
+            Utils.checkNotNull(oneOf, "oneOf");
+            this.oneOf = Optional.ofNullable(oneOf);
             return this;
         }
 
         /**
          * OK
          */
-        public Builder createCollectionResponse(Optional<? extends CreateCollectionResponse> createCollectionResponse) {
-            Utils.checkNotNull(createCollectionResponse, "createCollectionResponse");
-            this.createCollectionResponse = createCollectionResponse;
+        public Builder oneOf(Optional<? extends CreatecollectionResponseBody> oneOf) {
+            Utils.checkNotNull(oneOf, "oneOf");
+            this.oneOf = oneOf;
             return this;
         }
 
@@ -246,7 +245,7 @@ public class CreatecollectionResponse implements Response {
 
             return new CreatecollectionResponse(
                 contentType, statusCode, rawResponse,
-                createCollectionResponse);
+                oneOf);
         }
 
     }
