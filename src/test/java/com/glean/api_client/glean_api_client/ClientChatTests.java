@@ -58,7 +58,8 @@ import com.glean.api_client.glean_api_client.models.components.DocumentContent;
 import com.glean.api_client.glean_api_client.models.components.DocumentInteractions;
 import com.glean.api_client.glean_api_client.models.components.DocumentMetadata;
 import com.glean.api_client.glean_api_client.models.components.DocumentSection;
-import com.glean.api_client.glean_api_client.models.components.DocumentSpec2;
+import com.glean.api_client.glean_api_client.models.components.DocumentSpec3;
+import com.glean.api_client.glean_api_client.models.components.DocumentSpecUgcType1;
 import com.glean.api_client.glean_api_client.models.components.DocumentSpecUnion;
 import com.glean.api_client.glean_api_client.models.components.EntityType;
 import com.glean.api_client.glean_api_client.models.components.ExtractedQnA;
@@ -745,8 +746,9 @@ public class ClientChatTests {
                                                 .question("<value>")
                                                 .bodyText("<value>")
                                                 .boardId(933583L)
-                                                .sourceDocumentSpec(DocumentSpecUnion.of(DocumentSpec2.builder()
-                                                    .id("<id>")
+                                                .sourceDocumentSpec(DocumentSpecUnion.of(DocumentSpec3.builder()
+                                                    .ugcType(DocumentSpecUgcType1.SHORTCUTS)
+                                                    .contentId(602763L)
                                                     .build()))
                                                 .sourceType(AnswerSourceType.ASSISTANT)
                                                 .combinedAnswerText(StructuredText.builder()
