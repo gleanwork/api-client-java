@@ -43,6 +43,14 @@ public class DigestSection {
     private Optional<String> channelName;
 
     /**
+     * Channel visibility/type for CHANNEL sections. For Slack this is typically one of
+     * PublicChannel, PrivateChannel. Omit if not applicable or unknown.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("channelType")
+    private Optional<String> channelType;
+
+    /**
      * Instance identifier for the channel or workspace. Used for constructing channel URLs to display in the frontend.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -68,6 +76,7 @@ public class DigestSection {
             @JsonProperty("type") SectionType type,
             @JsonProperty("displayName") Optional<String> displayName,
             @JsonProperty("channelName") Optional<String> channelName,
+            @JsonProperty("channelType") Optional<String> channelType,
             @JsonProperty("instanceId") Optional<String> instanceId,
             @JsonProperty("url") Optional<String> url,
             @JsonProperty("updates") List<DigestUpdate> updates) {
@@ -75,6 +84,7 @@ public class DigestSection {
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(displayName, "displayName");
         Utils.checkNotNull(channelName, "channelName");
+        Utils.checkNotNull(channelType, "channelType");
         Utils.checkNotNull(instanceId, "instanceId");
         Utils.checkNotNull(url, "url");
         Utils.checkNotNull(updates, "updates");
@@ -82,6 +92,7 @@ public class DigestSection {
         this.type = type;
         this.displayName = displayName;
         this.channelName = channelName;
+        this.channelType = channelType;
         this.instanceId = instanceId;
         this.url = url;
         this.updates = updates;
@@ -93,7 +104,7 @@ public class DigestSection {
             List<DigestUpdate> updates) {
         this(id, type, Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            updates);
+            Optional.empty(), updates);
     }
 
     /**
@@ -126,6 +137,15 @@ public class DigestSection {
     @JsonIgnore
     public Optional<String> channelName() {
         return channelName;
+    }
+
+    /**
+     * Channel visibility/type for CHANNEL sections. For Slack this is typically one of
+     * PublicChannel, PrivateChannel. Omit if not applicable or unknown.
+     */
+    @JsonIgnore
+    public Optional<String> channelType() {
+        return channelType;
     }
 
     /**
@@ -214,6 +234,27 @@ public class DigestSection {
     }
 
     /**
+     * Channel visibility/type for CHANNEL sections. For Slack this is typically one of
+     * PublicChannel, PrivateChannel. Omit if not applicable or unknown.
+     */
+    public DigestSection withChannelType(String channelType) {
+        Utils.checkNotNull(channelType, "channelType");
+        this.channelType = Optional.ofNullable(channelType);
+        return this;
+    }
+
+
+    /**
+     * Channel visibility/type for CHANNEL sections. For Slack this is typically one of
+     * PublicChannel, PrivateChannel. Omit if not applicable or unknown.
+     */
+    public DigestSection withChannelType(Optional<String> channelType) {
+        Utils.checkNotNull(channelType, "channelType");
+        this.channelType = channelType;
+        return this;
+    }
+
+    /**
      * Instance identifier for the channel or workspace. Used for constructing channel URLs to display in the frontend.
      */
     public DigestSection withInstanceId(String instanceId) {
@@ -274,6 +315,7 @@ public class DigestSection {
             Utils.enhancedDeepEquals(this.type, other.type) &&
             Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
             Utils.enhancedDeepEquals(this.channelName, other.channelName) &&
+            Utils.enhancedDeepEquals(this.channelType, other.channelType) &&
             Utils.enhancedDeepEquals(this.instanceId, other.instanceId) &&
             Utils.enhancedDeepEquals(this.url, other.url) &&
             Utils.enhancedDeepEquals(this.updates, other.updates);
@@ -283,8 +325,8 @@ public class DigestSection {
     public int hashCode() {
         return Utils.enhancedHash(
             id, type, displayName,
-            channelName, instanceId, url,
-            updates);
+            channelName, channelType, instanceId,
+            url, updates);
     }
     
     @Override
@@ -294,6 +336,7 @@ public class DigestSection {
                 "type", type,
                 "displayName", displayName,
                 "channelName", channelName,
+                "channelType", channelType,
                 "instanceId", instanceId,
                 "url", url,
                 "updates", updates);
@@ -309,6 +352,8 @@ public class DigestSection {
         private Optional<String> displayName = Optional.empty();
 
         private Optional<String> channelName = Optional.empty();
+
+        private Optional<String> channelType = Optional.empty();
 
         private Optional<String> instanceId = Optional.empty();
 
@@ -380,6 +425,27 @@ public class DigestSection {
 
 
         /**
+         * Channel visibility/type for CHANNEL sections. For Slack this is typically one of
+         * PublicChannel, PrivateChannel. Omit if not applicable or unknown.
+         */
+        public Builder channelType(String channelType) {
+            Utils.checkNotNull(channelType, "channelType");
+            this.channelType = Optional.ofNullable(channelType);
+            return this;
+        }
+
+        /**
+         * Channel visibility/type for CHANNEL sections. For Slack this is typically one of
+         * PublicChannel, PrivateChannel. Omit if not applicable or unknown.
+         */
+        public Builder channelType(Optional<String> channelType) {
+            Utils.checkNotNull(channelType, "channelType");
+            this.channelType = channelType;
+            return this;
+        }
+
+
+        /**
          * Instance identifier for the channel or workspace. Used for constructing channel URLs to display in the frontend.
          */
         public Builder instanceId(String instanceId) {
@@ -430,8 +496,8 @@ public class DigestSection {
 
             return new DigestSection(
                 id, type, displayName,
-                channelName, instanceId, url,
-                updates);
+                channelName, channelType, instanceId,
+                url, updates);
         }
 
     }
