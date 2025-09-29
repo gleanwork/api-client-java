@@ -33,9 +33,9 @@ public class AsyncInsights {
 
 
     /**
-     * Read insights
+     * Get insights
      * 
-     * <p>Reads the aggregate information for each user, query, and content.
+     * <p>Gets the aggregate usage insights data displayed in the Insights Dashboards.
      * 
      * @return The async call builder
      */
@@ -44,12 +44,12 @@ public class AsyncInsights {
     }
 
     /**
-     * Read insights
+     * Get insights
      * 
-     * <p>Reads the aggregate information for each user, query, and content.
+     * <p>Gets the aggregate usage insights data displayed in the Insights Dashboards.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;InsightsResponse&gt; - The async response
+     * @return {@code CompletableFuture<InsightsResponse>} - The async response
      */
     public CompletableFuture<InsightsResponse> retrieve(InsightsRequest request) {
         AsyncRequestOperation<InsightsRequest, InsightsResponse> operation

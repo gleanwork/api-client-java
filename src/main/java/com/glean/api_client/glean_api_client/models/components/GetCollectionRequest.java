@@ -24,7 +24,8 @@ public class GetCollectionRequest {
     private long id;
 
     /**
-     * Whether or not to include the Collection Items in this Collection. Only request if absolutely required, as this is expensive.
+     * Whether or not to include the Collection Items in this Collection. Only request if absolutely
+     * required, as this is expensive.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("withItems")
@@ -75,7 +76,8 @@ public class GetCollectionRequest {
     }
 
     /**
-     * Whether or not to include the Collection Items in this Collection. Only request if absolutely required, as this is expensive.
+     * Whether or not to include the Collection Items in this Collection. Only request if absolutely
+     * required, as this is expensive.
      */
     @JsonIgnore
     public Optional<Boolean> withItems() {
@@ -113,7 +115,8 @@ public class GetCollectionRequest {
     }
 
     /**
-     * Whether or not to include the Collection Items in this Collection. Only request if absolutely required, as this is expensive.
+     * Whether or not to include the Collection Items in this Collection. Only request if absolutely
+     * required, as this is expensive.
      */
     public GetCollectionRequest withWithItems(boolean withItems) {
         Utils.checkNotNull(withItems, "withItems");
@@ -123,7 +126,8 @@ public class GetCollectionRequest {
 
 
     /**
-     * Whether or not to include the Collection Items in this Collection. Only request if absolutely required, as this is expensive.
+     * Whether or not to include the Collection Items in this Collection. Only request if absolutely
+     * required, as this is expensive.
      */
     public GetCollectionRequest withWithItems(Optional<Boolean> withItems) {
         Utils.checkNotNull(withItems, "withItems");
@@ -228,7 +232,8 @@ public class GetCollectionRequest {
 
 
         /**
-         * Whether or not to include the Collection Items in this Collection. Only request if absolutely required, as this is expensive.
+         * Whether or not to include the Collection Items in this Collection. Only request if absolutely
+         * required, as this is expensive.
          */
         public Builder withItems(boolean withItems) {
             Utils.checkNotNull(withItems, "withItems");
@@ -237,7 +242,8 @@ public class GetCollectionRequest {
         }
 
         /**
-         * Whether or not to include the Collection Items in this Collection. Only request if absolutely required, as this is expensive.
+         * Whether or not to include the Collection Items in this Collection. Only request if absolutely
+         * required, as this is expensive.
          */
         public Builder withItems(Optional<Boolean> withItems) {
             Utils.checkNotNull(withItems, "withItems");

@@ -27,7 +27,9 @@ public class CustomProperty {
     private Optional<String> name;
 
     /**
-     * Must either be a string or an array of strings. An integer, boolean, etc. is not valid. When OpenAPI Generator supports `oneOf`, we can semantically enforce this.
+     * Must either be a string or an array of strings. An integer, boolean, etc. is not valid.
+     * 
+     * <p>When OpenAPI Generator supports `oneOf`, we can semantically enforce this.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("value")
@@ -53,7 +55,9 @@ public class CustomProperty {
     }
 
     /**
-     * Must either be a string or an array of strings. An integer, boolean, etc. is not valid. When OpenAPI Generator supports `oneOf`, we can semantically enforce this.
+     * Must either be a string or an array of strings. An integer, boolean, etc. is not valid.
+     * 
+     * <p>When OpenAPI Generator supports `oneOf`, we can semantically enforce this.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -80,7 +84,9 @@ public class CustomProperty {
     }
 
     /**
-     * Must either be a string or an array of strings. An integer, boolean, etc. is not valid. When OpenAPI Generator supports `oneOf`, we can semantically enforce this.
+     * Must either be a string or an array of strings. An integer, boolean, etc. is not valid.
+     * 
+     * <p>When OpenAPI Generator supports `oneOf`, we can semantically enforce this.
      */
     public CustomProperty withValue(Object value) {
         Utils.checkNotNull(value, "value");
@@ -90,7 +96,9 @@ public class CustomProperty {
 
 
     /**
-     * Must either be a string or an array of strings. An integer, boolean, etc. is not valid. When OpenAPI Generator supports `oneOf`, we can semantically enforce this.
+     * Must either be a string or an array of strings. An integer, boolean, etc. is not valid.
+     * 
+     * <p>When OpenAPI Generator supports `oneOf`, we can semantically enforce this.
      */
     public CustomProperty withValue(Optional<? extends Object> value) {
         Utils.checkNotNull(value, "value");
@@ -151,7 +159,9 @@ public class CustomProperty {
 
 
         /**
-         * Must either be a string or an array of strings. An integer, boolean, etc. is not valid. When OpenAPI Generator supports `oneOf`, we can semantically enforce this.
+         * Must either be a string or an array of strings. An integer, boolean, etc. is not valid.
+         * 
+         * <p>When OpenAPI Generator supports `oneOf`, we can semantically enforce this.
          */
         public Builder value(Object value) {
             Utils.checkNotNull(value, "value");
@@ -160,7 +170,9 @@ public class CustomProperty {
         }
 
         /**
-         * Must either be a string or an array of strings. An integer, boolean, etc. is not valid. When OpenAPI Generator supports `oneOf`, we can semantically enforce this.
+         * Must either be a string or an array of strings. An integer, boolean, etc. is not valid.
+         * 
+         * <p>When OpenAPI Generator supports `oneOf`, we can semantically enforce this.
          */
         public Builder value(Optional<? extends Object> value) {
             Utils.checkNotNull(value, "value");

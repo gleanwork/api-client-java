@@ -44,8 +44,8 @@ public class Agent {
 
     /**
      * Describes features that the agent supports. example: {
-     *   "ap.io.messages": true,
-     *   "ap.io.streaming": true
+     * "ap.io.messages": true,
+     * "ap.io.streaming": true
      * }
      */
     @JsonProperty("capabilities")
@@ -113,8 +113,8 @@ public class Agent {
 
     /**
      * Describes features that the agent supports. example: {
-     *   "ap.io.messages": true,
-     *   "ap.io.streaming": true
+     * "ap.io.messages": true,
+     * "ap.io.streaming": true
      * }
      */
     @JsonIgnore
@@ -185,8 +185,8 @@ public class Agent {
 
     /**
      * Describes features that the agent supports. example: {
-     *   "ap.io.messages": true,
-     *   "ap.io.streaming": true
+     * "ap.io.messages": true,
+     * "ap.io.streaming": true
      * }
      */
     public Agent withCapabilities(AgentCapabilities capabilities) {
@@ -307,8 +307,8 @@ public class Agent {
 
         /**
          * Describes features that the agent supports. example: {
-         *   "ap.io.messages": true,
-         *   "ap.io.streaming": true
+         * "ap.io.messages": true,
+         * "ap.io.streaming": true
          * }
          */
         public Builder capabilities(AgentCapabilities capabilities) {

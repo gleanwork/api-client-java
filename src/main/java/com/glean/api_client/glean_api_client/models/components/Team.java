@@ -55,7 +55,8 @@ public class Team {
     private Optional<String> description;
 
     /**
-     * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
+     * Typically the highest level organizational unit; generally applies to bigger companies with multiple
+     * distinct businesses.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("businessUnit")
@@ -97,7 +98,8 @@ public class Team {
     private Optional<? extends List<PersonToTeamRelationship>> members;
 
     /**
-     * Number of members on this team (recursive; includes all individuals that belong to this team, and all individuals that belong to a subteam within this team)
+     * Number of members on this team (recursive; includes all individuals that belong to this team, and
+     * all individuals that belong to a subteam within this team)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("memberCount")
@@ -285,7 +287,8 @@ public class Team {
     }
 
     /**
-     * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
+     * Typically the highest level organizational unit; generally applies to bigger companies with multiple
+     * distinct businesses.
      */
     @JsonIgnore
     public Optional<String> businessUnit() {
@@ -334,7 +337,8 @@ public class Team {
     }
 
     /**
-     * Number of members on this team (recursive; includes all individuals that belong to this team, and all individuals that belong to a subteam within this team)
+     * Number of members on this team (recursive; includes all individuals that belong to this team, and
+     * all individuals that belong to a subteam within this team)
      */
     @JsonIgnore
     public Optional<Long> memberCount() {
@@ -492,7 +496,8 @@ public class Team {
     }
 
     /**
-     * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
+     * Typically the highest level organizational unit; generally applies to bigger companies with multiple
+     * distinct businesses.
      */
     public Team withBusinessUnit(String businessUnit) {
         Utils.checkNotNull(businessUnit, "businessUnit");
@@ -502,7 +507,8 @@ public class Team {
 
 
     /**
-     * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
+     * Typically the highest level organizational unit; generally applies to bigger companies with multiple
+     * distinct businesses.
      */
     public Team withBusinessUnit(Optional<String> businessUnit) {
         Utils.checkNotNull(businessUnit, "businessUnit");
@@ -606,7 +612,8 @@ public class Team {
     }
 
     /**
-     * Number of members on this team (recursive; includes all individuals that belong to this team, and all individuals that belong to a subteam within this team)
+     * Number of members on this team (recursive; includes all individuals that belong to this team, and
+     * all individuals that belong to a subteam within this team)
      */
     public Team withMemberCount(long memberCount) {
         Utils.checkNotNull(memberCount, "memberCount");
@@ -616,7 +623,8 @@ public class Team {
 
 
     /**
-     * Number of members on this team (recursive; includes all individuals that belong to this team, and all individuals that belong to a subteam within this team)
+     * Number of members on this team (recursive; includes all individuals that belong to this team, and
+     * all individuals that belong to a subteam within this team)
      */
     public Team withMemberCount(Optional<Long> memberCount) {
         Utils.checkNotNull(memberCount, "memberCount");
@@ -988,7 +996,8 @@ public class Team {
 
 
         /**
-         * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
+         * Typically the highest level organizational unit; generally applies to bigger companies with multiple
+         * distinct businesses.
          */
         public Builder businessUnit(String businessUnit) {
             Utils.checkNotNull(businessUnit, "businessUnit");
@@ -997,7 +1006,8 @@ public class Team {
         }
 
         /**
-         * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
+         * Typically the highest level organizational unit; generally applies to bigger companies with multiple
+         * distinct businesses.
          */
         public Builder businessUnit(Optional<String> businessUnit) {
             Utils.checkNotNull(businessUnit, "businessUnit");
@@ -1102,7 +1112,8 @@ public class Team {
 
 
         /**
-         * Number of members on this team (recursive; includes all individuals that belong to this team, and all individuals that belong to a subteam within this team)
+         * Number of members on this team (recursive; includes all individuals that belong to this team, and
+         * all individuals that belong to a subteam within this team)
          */
         public Builder memberCount(long memberCount) {
             Utils.checkNotNull(memberCount, "memberCount");
@@ -1111,7 +1122,8 @@ public class Team {
         }
 
         /**
-         * Number of members on this team (recursive; includes all individuals that belong to this team, and all individuals that belong to a subteam within this team)
+         * Number of members on this team (recursive; includes all individuals that belong to this team, and
+         * all individuals that belong to a subteam within this team)
          */
         public Builder memberCount(Optional<Long> memberCount) {
             Utils.checkNotNull(memberCount, "memberCount");

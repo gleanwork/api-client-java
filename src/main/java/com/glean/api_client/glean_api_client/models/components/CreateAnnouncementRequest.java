@@ -60,7 +60,8 @@ public class CreateAnnouncementRequest {
     private Optional<? extends Thumbnail> banner;
 
     /**
-     * Filters which restrict who should see the announcement. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see the announcement. Values are taken from the corresponding
+     * filters in people search.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("audienceFilters")
@@ -88,7 +89,8 @@ public class CreateAnnouncementRequest {
     private Optional<? extends CreateAnnouncementRequestChannel> channel;
 
     /**
-     * This determines whether this is an external-link post or a regular announcement post. TEXT - Regular announcement that can contain rich text. LINK - Announcement that is linked to an external site.
+     * This determines whether this is an external-link post or a regular announcement post. TEXT - Regular
+     * announcement that can contain rich text. LINK - Announcement that is linked to an external site.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postType")
@@ -102,7 +104,10 @@ public class CreateAnnouncementRequest {
     private Optional<Boolean> isPrioritized;
 
     /**
-     * URL for viewing the announcement. It will be set to document URL for announcements from other datasources e.g. simpplr. Can only be written when channel="SOCIAL_FEED".
+     * URL for viewing the announcement. It will be set to document URL for announcements from other
+     * datasources e.g. simpplr.
+     * 
+     * <p>Can only be written when channel="SOCIAL_FEED".
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("viewUrl")
@@ -216,7 +221,8 @@ public class CreateAnnouncementRequest {
     }
 
     /**
-     * Filters which restrict who should see the announcement. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see the announcement. Values are taken from the corresponding
+     * filters in people search.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -250,7 +256,8 @@ public class CreateAnnouncementRequest {
     }
 
     /**
-     * This determines whether this is an external-link post or a regular announcement post. TEXT - Regular announcement that can contain rich text. LINK - Announcement that is linked to an external site.
+     * This determines whether this is an external-link post or a regular announcement post. TEXT - Regular
+     * announcement that can contain rich text. LINK - Announcement that is linked to an external site.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -267,7 +274,10 @@ public class CreateAnnouncementRequest {
     }
 
     /**
-     * URL for viewing the announcement. It will be set to document URL for announcements from other datasources e.g. simpplr. Can only be written when channel="SOCIAL_FEED".
+     * URL for viewing the announcement. It will be set to document URL for announcements from other
+     * datasources e.g. simpplr.
+     * 
+     * <p>Can only be written when channel="SOCIAL_FEED".
      */
     @JsonIgnore
     public Optional<String> viewUrl() {
@@ -365,7 +375,8 @@ public class CreateAnnouncementRequest {
     }
 
     /**
-     * Filters which restrict who should see the announcement. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see the announcement. Values are taken from the corresponding
+     * filters in people search.
      */
     public CreateAnnouncementRequest withAudienceFilters(List<FacetFilter> audienceFilters) {
         Utils.checkNotNull(audienceFilters, "audienceFilters");
@@ -375,7 +386,8 @@ public class CreateAnnouncementRequest {
 
 
     /**
-     * Filters which restrict who should see the announcement. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see the announcement. Values are taken from the corresponding
+     * filters in people search.
      */
     public CreateAnnouncementRequest withAudienceFilters(Optional<? extends List<FacetFilter>> audienceFilters) {
         Utils.checkNotNull(audienceFilters, "audienceFilters");
@@ -441,7 +453,8 @@ public class CreateAnnouncementRequest {
     }
 
     /**
-     * This determines whether this is an external-link post or a regular announcement post. TEXT - Regular announcement that can contain rich text. LINK - Announcement that is linked to an external site.
+     * This determines whether this is an external-link post or a regular announcement post. TEXT - Regular
+     * announcement that can contain rich text. LINK - Announcement that is linked to an external site.
      */
     public CreateAnnouncementRequest withPostType(CreateAnnouncementRequestPostType postType) {
         Utils.checkNotNull(postType, "postType");
@@ -451,7 +464,8 @@ public class CreateAnnouncementRequest {
 
 
     /**
-     * This determines whether this is an external-link post or a regular announcement post. TEXT - Regular announcement that can contain rich text. LINK - Announcement that is linked to an external site.
+     * This determines whether this is an external-link post or a regular announcement post. TEXT - Regular
+     * announcement that can contain rich text. LINK - Announcement that is linked to an external site.
      */
     public CreateAnnouncementRequest withPostType(Optional<? extends CreateAnnouncementRequestPostType> postType) {
         Utils.checkNotNull(postType, "postType");
@@ -479,7 +493,10 @@ public class CreateAnnouncementRequest {
     }
 
     /**
-     * URL for viewing the announcement. It will be set to document URL for announcements from other datasources e.g. simpplr. Can only be written when channel="SOCIAL_FEED".
+     * URL for viewing the announcement. It will be set to document URL for announcements from other
+     * datasources e.g. simpplr.
+     * 
+     * <p>Can only be written when channel="SOCIAL_FEED".
      */
     public CreateAnnouncementRequest withViewUrl(String viewUrl) {
         Utils.checkNotNull(viewUrl, "viewUrl");
@@ -489,7 +506,10 @@ public class CreateAnnouncementRequest {
 
 
     /**
-     * URL for viewing the announcement. It will be set to document URL for announcements from other datasources e.g. simpplr. Can only be written when channel="SOCIAL_FEED".
+     * URL for viewing the announcement. It will be set to document URL for announcements from other
+     * datasources e.g. simpplr.
+     * 
+     * <p>Can only be written when channel="SOCIAL_FEED".
      */
     public CreateAnnouncementRequest withViewUrl(Optional<String> viewUrl) {
         Utils.checkNotNull(viewUrl, "viewUrl");
@@ -677,7 +697,8 @@ public class CreateAnnouncementRequest {
 
 
         /**
-         * Filters which restrict who should see the announcement. Values are taken from the corresponding filters in people search.
+         * Filters which restrict who should see the announcement. Values are taken from the corresponding
+         * filters in people search.
          */
         public Builder audienceFilters(List<FacetFilter> audienceFilters) {
             Utils.checkNotNull(audienceFilters, "audienceFilters");
@@ -686,7 +707,8 @@ public class CreateAnnouncementRequest {
         }
 
         /**
-         * Filters which restrict who should see the announcement. Values are taken from the corresponding filters in people search.
+         * Filters which restrict who should see the announcement. Values are taken from the corresponding
+         * filters in people search.
          */
         public Builder audienceFilters(Optional<? extends List<FacetFilter>> audienceFilters) {
             Utils.checkNotNull(audienceFilters, "audienceFilters");
@@ -753,7 +775,8 @@ public class CreateAnnouncementRequest {
 
 
         /**
-         * This determines whether this is an external-link post or a regular announcement post. TEXT - Regular announcement that can contain rich text. LINK - Announcement that is linked to an external site.
+         * This determines whether this is an external-link post or a regular announcement post. TEXT - Regular
+         * announcement that can contain rich text. LINK - Announcement that is linked to an external site.
          */
         public Builder postType(CreateAnnouncementRequestPostType postType) {
             Utils.checkNotNull(postType, "postType");
@@ -762,7 +785,8 @@ public class CreateAnnouncementRequest {
         }
 
         /**
-         * This determines whether this is an external-link post or a regular announcement post. TEXT - Regular announcement that can contain rich text. LINK - Announcement that is linked to an external site.
+         * This determines whether this is an external-link post or a regular announcement post. TEXT - Regular
+         * announcement that can contain rich text. LINK - Announcement that is linked to an external site.
          */
         public Builder postType(Optional<? extends CreateAnnouncementRequestPostType> postType) {
             Utils.checkNotNull(postType, "postType");
@@ -791,7 +815,10 @@ public class CreateAnnouncementRequest {
 
 
         /**
-         * URL for viewing the announcement. It will be set to document URL for announcements from other datasources e.g. simpplr. Can only be written when channel="SOCIAL_FEED".
+         * URL for viewing the announcement. It will be set to document URL for announcements from other
+         * datasources e.g. simpplr.
+         * 
+         * <p>Can only be written when channel="SOCIAL_FEED".
          */
         public Builder viewUrl(String viewUrl) {
             Utils.checkNotNull(viewUrl, "viewUrl");
@@ -800,7 +827,10 @@ public class CreateAnnouncementRequest {
         }
 
         /**
-         * URL for viewing the announcement. It will be set to document URL for announcements from other datasources e.g. simpplr. Can only be written when channel="SOCIAL_FEED".
+         * URL for viewing the announcement. It will be set to document URL for announcements from other
+         * datasources e.g. simpplr.
+         * 
+         * <p>Can only be written when channel="SOCIAL_FEED".
          */
         public Builder viewUrl(Optional<String> viewUrl) {
             Utils.checkNotNull(viewUrl, "viewUrl");

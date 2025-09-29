@@ -49,7 +49,8 @@ public class BulkUploadHistoryEvent {
     private Optional<? extends BulkUploadHistoryEventStatus> status;
 
     /**
-     * The current state of the upload, an enum of UNAVAILABLE, UPLOAD STARTED, UPLOAD IN PROGRESS, UPLOAD COMPLETED, DELETION PAUSED, INDEXING COMPLETED
+     * The current state of the upload, an enum of UNAVAILABLE, UPLOAD STARTED, UPLOAD IN PROGRESS, UPLOAD
+     * COMPLETED, DELETION PAUSED, INDEXING COMPLETED
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("processingState")
@@ -113,7 +114,8 @@ public class BulkUploadHistoryEvent {
     }
 
     /**
-     * The current state of the upload, an enum of UNAVAILABLE, UPLOAD STARTED, UPLOAD IN PROGRESS, UPLOAD COMPLETED, DELETION PAUSED, INDEXING COMPLETED
+     * The current state of the upload, an enum of UNAVAILABLE, UPLOAD STARTED, UPLOAD IN PROGRESS, UPLOAD
+     * COMPLETED, DELETION PAUSED, INDEXING COMPLETED
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -203,7 +205,8 @@ public class BulkUploadHistoryEvent {
     }
 
     /**
-     * The current state of the upload, an enum of UNAVAILABLE, UPLOAD STARTED, UPLOAD IN PROGRESS, UPLOAD COMPLETED, DELETION PAUSED, INDEXING COMPLETED
+     * The current state of the upload, an enum of UNAVAILABLE, UPLOAD STARTED, UPLOAD IN PROGRESS, UPLOAD
+     * COMPLETED, DELETION PAUSED, INDEXING COMPLETED
      */
     public BulkUploadHistoryEvent withProcessingState(ProcessingState processingState) {
         Utils.checkNotNull(processingState, "processingState");
@@ -213,7 +216,8 @@ public class BulkUploadHistoryEvent {
 
 
     /**
-     * The current state of the upload, an enum of UNAVAILABLE, UPLOAD STARTED, UPLOAD IN PROGRESS, UPLOAD COMPLETED, DELETION PAUSED, INDEXING COMPLETED
+     * The current state of the upload, an enum of UNAVAILABLE, UPLOAD STARTED, UPLOAD IN PROGRESS, UPLOAD
+     * COMPLETED, DELETION PAUSED, INDEXING COMPLETED
      */
     public BulkUploadHistoryEvent withProcessingState(Optional<? extends ProcessingState> processingState) {
         Utils.checkNotNull(processingState, "processingState");
@@ -350,7 +354,8 @@ public class BulkUploadHistoryEvent {
 
 
         /**
-         * The current state of the upload, an enum of UNAVAILABLE, UPLOAD STARTED, UPLOAD IN PROGRESS, UPLOAD COMPLETED, DELETION PAUSED, INDEXING COMPLETED
+         * The current state of the upload, an enum of UNAVAILABLE, UPLOAD STARTED, UPLOAD IN PROGRESS, UPLOAD
+         * COMPLETED, DELETION PAUSED, INDEXING COMPLETED
          */
         public Builder processingState(ProcessingState processingState) {
             Utils.checkNotNull(processingState, "processingState");
@@ -359,7 +364,8 @@ public class BulkUploadHistoryEvent {
         }
 
         /**
-         * The current state of the upload, an enum of UNAVAILABLE, UPLOAD STARTED, UPLOAD IN PROGRESS, UPLOAD COMPLETED, DELETION PAUSED, INDEXING COMPLETED
+         * The current state of the upload, an enum of UNAVAILABLE, UPLOAD STARTED, UPLOAD IN PROGRESS, UPLOAD
+         * COMPLETED, DELETION PAUSED, INDEXING COMPLETED
          */
         public Builder processingState(Optional<? extends ProcessingState> processingState) {
             Utils.checkNotNull(processingState, "processingState");

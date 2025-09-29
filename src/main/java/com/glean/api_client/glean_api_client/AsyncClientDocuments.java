@@ -63,7 +63,7 @@ public class AsyncClientDocuments {
      * <p>Read the emails of all users who have access to the given document.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;GetdocpermissionsResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetdocpermissionsResponse>} - The async response
      */
     public CompletableFuture<GetdocpermissionsResponse> retrievePermissions(GetDocPermissionsRequest request) {
         AsyncRequestOperation<GetDocPermissionsRequest, GetdocpermissionsResponse> operation
@@ -76,7 +76,8 @@ public class AsyncClientDocuments {
     /**
      * Read documents
      * 
-     * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`) for the given list of Glean Document IDs or URLs specified in the request.
+     * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`)
+     * for the given list of Glean Document IDs or URLs specified in the request.
      * 
      * @return The async call builder
      */
@@ -87,9 +88,10 @@ public class AsyncClientDocuments {
     /**
      * Read documents
      * 
-     * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`) for the given list of Glean Document IDs or URLs specified in the request.
+     * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`)
+     * for the given list of Glean Document IDs or URLs specified in the request.
      * 
-     * @return CompletableFuture&lt;GetdocumentsResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetdocumentsResponse>} - The async response
      */
     public CompletableFuture<GetdocumentsResponse> retrieveDirect() {
         return retrieve(Optional.empty());
@@ -98,10 +100,11 @@ public class AsyncClientDocuments {
     /**
      * Read documents
      * 
-     * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`) for the given list of Glean Document IDs or URLs specified in the request.
+     * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`)
+     * for the given list of Glean Document IDs or URLs specified in the request.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;GetdocumentsResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetdocumentsResponse>} - The async response
      */
     public CompletableFuture<GetdocumentsResponse> retrieve(Optional<? extends GetDocumentsRequest> request) {
         AsyncRequestOperation<Optional<? extends GetDocumentsRequest>, GetdocumentsResponse> operation
@@ -114,7 +117,8 @@ public class AsyncClientDocuments {
     /**
      * Read documents by facets
      * 
-     * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`) macthing the given facet conditions.
+     * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`)
+     * macthing the given facet conditions.
      * 
      * @return The async call builder
      */
@@ -125,9 +129,10 @@ public class AsyncClientDocuments {
     /**
      * Read documents by facets
      * 
-     * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`) macthing the given facet conditions.
+     * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`)
+     * macthing the given facet conditions.
      * 
-     * @return CompletableFuture&lt;GetdocumentsbyfacetsResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetdocumentsbyfacetsResponse>} - The async response
      */
     public CompletableFuture<GetdocumentsbyfacetsResponse> retrieveByFacetsDirect() {
         return retrieveByFacets(Optional.empty());
@@ -136,10 +141,11 @@ public class AsyncClientDocuments {
     /**
      * Read documents by facets
      * 
-     * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`) macthing the given facet conditions.
+     * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`)
+     * macthing the given facet conditions.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;GetdocumentsbyfacetsResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetdocumentsbyfacetsResponse>} - The async response
      */
     public CompletableFuture<GetdocumentsbyfacetsResponse> retrieveByFacets(Optional<? extends GetDocumentsByFacetsRequest> request) {
         AsyncRequestOperation<Optional<? extends GetDocumentsByFacetsRequest>, GetdocumentsbyfacetsResponse> operation
@@ -166,7 +172,7 @@ public class AsyncClientDocuments {
      * <p>Generate an AI summary of the requested documents.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;SummarizeResponse&gt; - The async response
+     * @return {@code CompletableFuture<SummarizeResponse>} - The async response
      */
     public CompletableFuture<SummarizeResponse> summarize(SummarizeRequest request) {
         AsyncRequestOperation<SummarizeRequest, SummarizeResponse> operation

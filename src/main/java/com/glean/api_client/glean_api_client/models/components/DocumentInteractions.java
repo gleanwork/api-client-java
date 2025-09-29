@@ -34,7 +34,8 @@ public class DocumentInteractions {
     private Optional<Long> numReactions;
 
     /**
-     * To be deprecated in favor of reacts. A (potentially non-exhaustive) list of reactions for the document.
+     * To be deprecated in favor of reacts. A (potentially non-exhaustive) list of reactions for the
+     * document.
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -104,7 +105,8 @@ public class DocumentInteractions {
     }
 
     /**
-     * To be deprecated in favor of reacts. A (potentially non-exhaustive) list of reactions for the document.
+     * To be deprecated in favor of reacts. A (potentially non-exhaustive) list of reactions for the
+     * document.
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -180,7 +182,8 @@ public class DocumentInteractions {
     }
 
     /**
-     * To be deprecated in favor of reacts. A (potentially non-exhaustive) list of reactions for the document.
+     * To be deprecated in favor of reacts. A (potentially non-exhaustive) list of reactions for the
+     * document.
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -193,7 +196,8 @@ public class DocumentInteractions {
 
 
     /**
-     * To be deprecated in favor of reacts. A (potentially non-exhaustive) list of reactions for the document.
+     * To be deprecated in favor of reacts. A (potentially non-exhaustive) list of reactions for the
+     * document.
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -345,7 +349,8 @@ public class DocumentInteractions {
 
 
         /**
-         * To be deprecated in favor of reacts. A (potentially non-exhaustive) list of reactions for the document.
+         * To be deprecated in favor of reacts. A (potentially non-exhaustive) list of reactions for the
+         * document.
          * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
@@ -357,7 +362,8 @@ public class DocumentInteractions {
         }
 
         /**
-         * To be deprecated in favor of reacts. A (potentially non-exhaustive) list of reactions for the document.
+         * To be deprecated in favor of reacts. A (potentially non-exhaustive) list of reactions for the
+         * document.
          * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */

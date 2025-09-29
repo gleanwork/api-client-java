@@ -25,7 +25,8 @@ public class SensitiveExpression {
     private Optional<String> expression;
 
     /**
-     * Zero to three proximate regular expressions necessary to consider an expression as sensitive content.
+     * Zero to three proximate regular expressions necessary to consider an expression as sensitive
+     * content.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("hotwords")
@@ -54,7 +55,8 @@ public class SensitiveExpression {
     }
 
     /**
-     * Zero to three proximate regular expressions necessary to consider an expression as sensitive content.
+     * Zero to three proximate regular expressions necessary to consider an expression as sensitive
+     * content.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -87,7 +89,8 @@ public class SensitiveExpression {
     }
 
     /**
-     * Zero to three proximate regular expressions necessary to consider an expression as sensitive content.
+     * Zero to three proximate regular expressions necessary to consider an expression as sensitive
+     * content.
      */
     public SensitiveExpression withHotwords(List<Hotword> hotwords) {
         Utils.checkNotNull(hotwords, "hotwords");
@@ -97,7 +100,8 @@ public class SensitiveExpression {
 
 
     /**
-     * Zero to three proximate regular expressions necessary to consider an expression as sensitive content.
+     * Zero to three proximate regular expressions necessary to consider an expression as sensitive
+     * content.
      */
     public SensitiveExpression withHotwords(Optional<? extends List<Hotword>> hotwords) {
         Utils.checkNotNull(hotwords, "hotwords");
@@ -164,7 +168,8 @@ public class SensitiveExpression {
 
 
         /**
-         * Zero to three proximate regular expressions necessary to consider an expression as sensitive content.
+         * Zero to three proximate regular expressions necessary to consider an expression as sensitive
+         * content.
          */
         public Builder hotwords(List<Hotword> hotwords) {
             Utils.checkNotNull(hotwords, "hotwords");
@@ -173,7 +178,8 @@ public class SensitiveExpression {
         }
 
         /**
-         * Zero to three proximate regular expressions necessary to consider an expression as sensitive content.
+         * Zero to three proximate regular expressions necessary to consider an expression as sensitive
+         * content.
          */
         public Builder hotwords(Optional<? extends List<Hotword>> hotwords) {
             Utils.checkNotNull(hotwords, "hotwords");

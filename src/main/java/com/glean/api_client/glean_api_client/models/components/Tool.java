@@ -46,7 +46,8 @@ public class Tool {
     private Optional<String> description;
 
     /**
-     * The parameters for the tool. Each key is the name of the parameter and the value is the parameter object.
+     * The parameters for the tool. Each key is the name of the parameter and the value is the parameter
+     * object.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("parameters")
@@ -110,7 +111,8 @@ public class Tool {
     }
 
     /**
-     * The parameters for the tool. Each key is the name of the parameter and the value is the parameter object.
+     * The parameters for the tool. Each key is the name of the parameter and the value is the parameter
+     * object.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -200,7 +202,8 @@ public class Tool {
     }
 
     /**
-     * The parameters for the tool. Each key is the name of the parameter and the value is the parameter object.
+     * The parameters for the tool. Each key is the name of the parameter and the value is the parameter
+     * object.
      */
     public Tool withParameters(Map<String, ToolParameter> parameters) {
         Utils.checkNotNull(parameters, "parameters");
@@ -210,7 +213,8 @@ public class Tool {
 
 
     /**
-     * The parameters for the tool. Each key is the name of the parameter and the value is the parameter object.
+     * The parameters for the tool. Each key is the name of the parameter and the value is the parameter
+     * object.
      */
     public Tool withParameters(Optional<? extends Map<String, ToolParameter>> parameters) {
         Utils.checkNotNull(parameters, "parameters");
@@ -347,7 +351,8 @@ public class Tool {
 
 
         /**
-         * The parameters for the tool. Each key is the name of the parameter and the value is the parameter object.
+         * The parameters for the tool. Each key is the name of the parameter and the value is the parameter
+         * object.
          */
         public Builder parameters(Map<String, ToolParameter> parameters) {
             Utils.checkNotNull(parameters, "parameters");
@@ -356,7 +361,8 @@ public class Tool {
         }
 
         /**
-         * The parameters for the tool. Each key is the name of the parameter and the value is the parameter object.
+         * The parameters for the tool. Each key is the name of the parameter and the value is the parameter
+         * object.
          */
         public Builder parameters(Optional<? extends Map<String, ToolParameter>> parameters) {
             Utils.checkNotNull(parameters, "parameters");

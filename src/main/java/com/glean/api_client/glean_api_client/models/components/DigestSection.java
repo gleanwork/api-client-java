@@ -51,14 +51,16 @@ public class DigestSection {
     private Optional<String> channelType;
 
     /**
-     * Instance identifier for the channel or workspace. Used for constructing channel URLs to display in the frontend.
+     * Instance identifier for the channel or workspace. Used for constructing channel URLs to display in
+     * the frontend.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("instanceId")
     private Optional<String> instanceId;
 
     /**
-     * Optional URL for the digest section. Should be populated only if the section is a CHANNEL type section.
+     * Optional URL for the digest section. Should be populated only if the section is a CHANNEL type
+     * section.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("url")
@@ -149,7 +151,8 @@ public class DigestSection {
     }
 
     /**
-     * Instance identifier for the channel or workspace. Used for constructing channel URLs to display in the frontend.
+     * Instance identifier for the channel or workspace. Used for constructing channel URLs to display in
+     * the frontend.
      */
     @JsonIgnore
     public Optional<String> instanceId() {
@@ -157,7 +160,8 @@ public class DigestSection {
     }
 
     /**
-     * Optional URL for the digest section. Should be populated only if the section is a CHANNEL type section.
+     * Optional URL for the digest section. Should be populated only if the section is a CHANNEL type
+     * section.
      */
     @JsonIgnore
     public Optional<String> url() {
@@ -255,7 +259,8 @@ public class DigestSection {
     }
 
     /**
-     * Instance identifier for the channel or workspace. Used for constructing channel URLs to display in the frontend.
+     * Instance identifier for the channel or workspace. Used for constructing channel URLs to display in
+     * the frontend.
      */
     public DigestSection withInstanceId(String instanceId) {
         Utils.checkNotNull(instanceId, "instanceId");
@@ -265,7 +270,8 @@ public class DigestSection {
 
 
     /**
-     * Instance identifier for the channel or workspace. Used for constructing channel URLs to display in the frontend.
+     * Instance identifier for the channel or workspace. Used for constructing channel URLs to display in
+     * the frontend.
      */
     public DigestSection withInstanceId(Optional<String> instanceId) {
         Utils.checkNotNull(instanceId, "instanceId");
@@ -274,7 +280,8 @@ public class DigestSection {
     }
 
     /**
-     * Optional URL for the digest section. Should be populated only if the section is a CHANNEL type section.
+     * Optional URL for the digest section. Should be populated only if the section is a CHANNEL type
+     * section.
      */
     public DigestSection withUrl(String url) {
         Utils.checkNotNull(url, "url");
@@ -284,7 +291,8 @@ public class DigestSection {
 
 
     /**
-     * Optional URL for the digest section. Should be populated only if the section is a CHANNEL type section.
+     * Optional URL for the digest section. Should be populated only if the section is a CHANNEL type
+     * section.
      */
     public DigestSection withUrl(Optional<String> url) {
         Utils.checkNotNull(url, "url");
@@ -446,7 +454,8 @@ public class DigestSection {
 
 
         /**
-         * Instance identifier for the channel or workspace. Used for constructing channel URLs to display in the frontend.
+         * Instance identifier for the channel or workspace. Used for constructing channel URLs to display in
+         * the frontend.
          */
         public Builder instanceId(String instanceId) {
             Utils.checkNotNull(instanceId, "instanceId");
@@ -455,7 +464,8 @@ public class DigestSection {
         }
 
         /**
-         * Instance identifier for the channel or workspace. Used for constructing channel URLs to display in the frontend.
+         * Instance identifier for the channel or workspace. Used for constructing channel URLs to display in
+         * the frontend.
          */
         public Builder instanceId(Optional<String> instanceId) {
             Utils.checkNotNull(instanceId, "instanceId");
@@ -465,7 +475,8 @@ public class DigestSection {
 
 
         /**
-         * Optional URL for the digest section. Should be populated only if the section is a CHANNEL type section.
+         * Optional URL for the digest section. Should be populated only if the section is a CHANNEL type
+         * section.
          */
         public Builder url(String url) {
             Utils.checkNotNull(url, "url");
@@ -474,7 +485,8 @@ public class DigestSection {
         }
 
         /**
-         * Optional URL for the digest section. Should be populated only if the section is a CHANNEL type section.
+         * Optional URL for the digest section. Should be populated only if the section is a CHANNEL type
+         * section.
          */
         public Builder url(Optional<String> url) {
             Utils.checkNotNull(url, "url");

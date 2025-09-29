@@ -20,14 +20,17 @@ import java.util.Optional;
 
 public class Feedback {
     /**
-     * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest received event of a given UUID is considered valid by the server and subsequent are ignored.
+     * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest
+     * received event of a given UUID is considered valid by the server and subsequent are ignored.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
     private Optional<String> id;
 
     /**
-     * The feature category to which the feedback applies. These should be broad product areas such as Announcements, Answers, Search, etc. rather than specific components or UI treatments within those areas.
+     * The feature category to which the feedback applies. These should be broad product areas such as
+     * Announcements, Answers, Search, etc. rather than specific components or UI treatments within those
+     * areas.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("category")
@@ -40,7 +43,8 @@ public class Feedback {
     private List<String> trackingTokens;
 
     /**
-     * The action the user took within a Glean client with respect to the object referred to by the given `trackingToken`.
+     * The action the user took within a Glean client with respect to the object referred to by the given
+     * `trackingToken`.
      */
     @JsonProperty("event")
     private Event event;
@@ -53,7 +57,9 @@ public class Feedback {
     private Optional<Long> position;
 
     /**
-     * For type MANUAL_FEEDBACK, contains string of user feedback. For autocomplete, partial query string. For feed, string of user feedback in addition to manual feedback signals extracted from all suggested content.
+     * For type MANUAL_FEEDBACK, contains string of user feedback. For autocomplete, partial query string.
+     * For feed, string of user feedback in addition to manual feedback signals extracted from all
+     * suggested content.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payload")
@@ -84,7 +90,8 @@ public class Feedback {
     private Optional<String> pathname;
 
     /**
-     * Where the feedback will be sent, e.g. to Glean, the user's company, or both. If no channels are specified, feedback will go only to Glean.
+     * Where the feedback will be sent, e.g. to Glean, the user's company, or both. If no channels are
+     * specified, feedback will go only to Glean.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("channels")
@@ -230,7 +237,8 @@ public class Feedback {
     }
 
     /**
-     * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest received event of a given UUID is considered valid by the server and subsequent are ignored.
+     * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest
+     * received event of a given UUID is considered valid by the server and subsequent are ignored.
      */
     @JsonIgnore
     public Optional<String> id() {
@@ -238,7 +246,9 @@ public class Feedback {
     }
 
     /**
-     * The feature category to which the feedback applies. These should be broad product areas such as Announcements, Answers, Search, etc. rather than specific components or UI treatments within those areas.
+     * The feature category to which the feedback applies. These should be broad product areas such as
+     * Announcements, Answers, Search, etc. rather than specific components or UI treatments within those
+     * areas.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -255,7 +265,8 @@ public class Feedback {
     }
 
     /**
-     * The action the user took within a Glean client with respect to the object referred to by the given `trackingToken`.
+     * The action the user took within a Glean client with respect to the object referred to by the given
+     * `trackingToken`.
      */
     @JsonIgnore
     public Event event() {
@@ -271,7 +282,9 @@ public class Feedback {
     }
 
     /**
-     * For type MANUAL_FEEDBACK, contains string of user feedback. For autocomplete, partial query string. For feed, string of user feedback in addition to manual feedback signals extracted from all suggested content.
+     * For type MANUAL_FEEDBACK, contains string of user feedback. For autocomplete, partial query string.
+     * For feed, string of user feedback in addition to manual feedback signals extracted from all
+     * suggested content.
      */
     @JsonIgnore
     public Optional<String> payload() {
@@ -307,7 +320,8 @@ public class Feedback {
     }
 
     /**
-     * Where the feedback will be sent, e.g. to Glean, the user's company, or both. If no channels are specified, feedback will go only to Glean.
+     * Where the feedback will be sent, e.g. to Glean, the user's company, or both. If no channels are
+     * specified, feedback will go only to Glean.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -392,7 +406,8 @@ public class Feedback {
 
 
     /**
-     * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest received event of a given UUID is considered valid by the server and subsequent are ignored.
+     * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest
+     * received event of a given UUID is considered valid by the server and subsequent are ignored.
      */
     public Feedback withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -402,7 +417,8 @@ public class Feedback {
 
 
     /**
-     * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest received event of a given UUID is considered valid by the server and subsequent are ignored.
+     * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest
+     * received event of a given UUID is considered valid by the server and subsequent are ignored.
      */
     public Feedback withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
@@ -411,7 +427,9 @@ public class Feedback {
     }
 
     /**
-     * The feature category to which the feedback applies. These should be broad product areas such as Announcements, Answers, Search, etc. rather than specific components or UI treatments within those areas.
+     * The feature category to which the feedback applies. These should be broad product areas such as
+     * Announcements, Answers, Search, etc. rather than specific components or UI treatments within those
+     * areas.
      */
     public Feedback withCategory(FeedbackCategory category) {
         Utils.checkNotNull(category, "category");
@@ -421,7 +439,9 @@ public class Feedback {
 
 
     /**
-     * The feature category to which the feedback applies. These should be broad product areas such as Announcements, Answers, Search, etc. rather than specific components or UI treatments within those areas.
+     * The feature category to which the feedback applies. These should be broad product areas such as
+     * Announcements, Answers, Search, etc. rather than specific components or UI treatments within those
+     * areas.
      */
     public Feedback withCategory(Optional<? extends FeedbackCategory> category) {
         Utils.checkNotNull(category, "category");
@@ -439,7 +459,8 @@ public class Feedback {
     }
 
     /**
-     * The action the user took within a Glean client with respect to the object referred to by the given `trackingToken`.
+     * The action the user took within a Glean client with respect to the object referred to by the given
+     * `trackingToken`.
      */
     public Feedback withEvent(Event event) {
         Utils.checkNotNull(event, "event");
@@ -467,7 +488,9 @@ public class Feedback {
     }
 
     /**
-     * For type MANUAL_FEEDBACK, contains string of user feedback. For autocomplete, partial query string. For feed, string of user feedback in addition to manual feedback signals extracted from all suggested content.
+     * For type MANUAL_FEEDBACK, contains string of user feedback. For autocomplete, partial query string.
+     * For feed, string of user feedback in addition to manual feedback signals extracted from all
+     * suggested content.
      */
     public Feedback withPayload(String payload) {
         Utils.checkNotNull(payload, "payload");
@@ -477,7 +500,9 @@ public class Feedback {
 
 
     /**
-     * For type MANUAL_FEEDBACK, contains string of user feedback. For autocomplete, partial query string. For feed, string of user feedback in addition to manual feedback signals extracted from all suggested content.
+     * For type MANUAL_FEEDBACK, contains string of user feedback. For autocomplete, partial query string.
+     * For feed, string of user feedback in addition to manual feedback signals extracted from all
+     * suggested content.
      */
     public Feedback withPayload(Optional<String> payload) {
         Utils.checkNotNull(payload, "payload");
@@ -550,7 +575,8 @@ public class Feedback {
     }
 
     /**
-     * Where the feedback will be sent, e.g. to Glean, the user's company, or both. If no channels are specified, feedback will go only to Glean.
+     * Where the feedback will be sent, e.g. to Glean, the user's company, or both. If no channels are
+     * specified, feedback will go only to Glean.
      */
     public Feedback withChannels(List<FeedbackChannel> channels) {
         Utils.checkNotNull(channels, "channels");
@@ -560,7 +586,8 @@ public class Feedback {
 
 
     /**
-     * Where the feedback will be sent, e.g. to Glean, the user's company, or both. If no channels are specified, feedback will go only to Glean.
+     * Where the feedback will be sent, e.g. to Glean, the user's company, or both. If no channels are
+     * specified, feedback will go only to Glean.
      */
     public Feedback withChannels(Optional<? extends List<FeedbackChannel>> channels) {
         Utils.checkNotNull(channels, "channels");
@@ -850,7 +877,8 @@ public class Feedback {
 
 
         /**
-         * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest received event of a given UUID is considered valid by the server and subsequent are ignored.
+         * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest
+         * received event of a given UUID is considered valid by the server and subsequent are ignored.
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -859,7 +887,8 @@ public class Feedback {
         }
 
         /**
-         * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest received event of a given UUID is considered valid by the server and subsequent are ignored.
+         * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest
+         * received event of a given UUID is considered valid by the server and subsequent are ignored.
          */
         public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
@@ -869,7 +898,9 @@ public class Feedback {
 
 
         /**
-         * The feature category to which the feedback applies. These should be broad product areas such as Announcements, Answers, Search, etc. rather than specific components or UI treatments within those areas.
+         * The feature category to which the feedback applies. These should be broad product areas such as
+         * Announcements, Answers, Search, etc. rather than specific components or UI treatments within those
+         * areas.
          */
         public Builder category(FeedbackCategory category) {
             Utils.checkNotNull(category, "category");
@@ -878,7 +909,9 @@ public class Feedback {
         }
 
         /**
-         * The feature category to which the feedback applies. These should be broad product areas such as Announcements, Answers, Search, etc. rather than specific components or UI treatments within those areas.
+         * The feature category to which the feedback applies. These should be broad product areas such as
+         * Announcements, Answers, Search, etc. rather than specific components or UI treatments within those
+         * areas.
          */
         public Builder category(Optional<? extends FeedbackCategory> category) {
             Utils.checkNotNull(category, "category");
@@ -898,7 +931,8 @@ public class Feedback {
 
 
         /**
-         * The action the user took within a Glean client with respect to the object referred to by the given `trackingToken`.
+         * The action the user took within a Glean client with respect to the object referred to by the given
+         * `trackingToken`.
          */
         public Builder event(Event event) {
             Utils.checkNotNull(event, "event");
@@ -927,7 +961,9 @@ public class Feedback {
 
 
         /**
-         * For type MANUAL_FEEDBACK, contains string of user feedback. For autocomplete, partial query string. For feed, string of user feedback in addition to manual feedback signals extracted from all suggested content.
+         * For type MANUAL_FEEDBACK, contains string of user feedback. For autocomplete, partial query string.
+         * For feed, string of user feedback in addition to manual feedback signals extracted from all
+         * suggested content.
          */
         public Builder payload(String payload) {
             Utils.checkNotNull(payload, "payload");
@@ -936,7 +972,9 @@ public class Feedback {
         }
 
         /**
-         * For type MANUAL_FEEDBACK, contains string of user feedback. For autocomplete, partial query string. For feed, string of user feedback in addition to manual feedback signals extracted from all suggested content.
+         * For type MANUAL_FEEDBACK, contains string of user feedback. For autocomplete, partial query string.
+         * For feed, string of user feedback in addition to manual feedback signals extracted from all
+         * suggested content.
          */
         public Builder payload(Optional<String> payload) {
             Utils.checkNotNull(payload, "payload");
@@ -1010,7 +1048,8 @@ public class Feedback {
 
 
         /**
-         * Where the feedback will be sent, e.g. to Glean, the user's company, or both. If no channels are specified, feedback will go only to Glean.
+         * Where the feedback will be sent, e.g. to Glean, the user's company, or both. If no channels are
+         * specified, feedback will go only to Glean.
          */
         public Builder channels(List<FeedbackChannel> channels) {
             Utils.checkNotNull(channels, "channels");
@@ -1019,7 +1058,8 @@ public class Feedback {
         }
 
         /**
-         * Where the feedback will be sent, e.g. to Glean, the user's company, or both. If no channels are specified, feedback will go only to Glean.
+         * Where the feedback will be sent, e.g. to Glean, the user's company, or both. If no channels are
+         * specified, feedback will go only to Glean.
          */
         public Builder channels(Optional<? extends List<FeedbackChannel>> channels) {
             Utils.checkNotNull(channels, "channels");

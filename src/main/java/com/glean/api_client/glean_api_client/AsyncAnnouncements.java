@@ -58,7 +58,7 @@ public class AsyncAnnouncements {
      * <p>Create a textual announcement visible to some set of users based on department and location.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CreateannouncementResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateannouncementResponse>} - The async response
      */
     public CompletableFuture<CreateannouncementResponse> create(CreateAnnouncementRequest request) {
         AsyncRequestOperation<CreateAnnouncementRequest, CreateannouncementResponse> operation
@@ -85,7 +85,7 @@ public class AsyncAnnouncements {
      * <p>Delete an existing user-generated announcement.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;DeleteannouncementResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeleteannouncementResponse>} - The async response
      */
     public CompletableFuture<DeleteannouncementResponse> delete(DeleteAnnouncementRequest request) {
         AsyncRequestOperation<DeleteAnnouncementRequest, DeleteannouncementResponse> operation
@@ -112,7 +112,7 @@ public class AsyncAnnouncements {
      * <p>Update a textual announcement visible to some set of users based on department and location.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;UpdateannouncementResponse&gt; - The async response
+     * @return {@code CompletableFuture<UpdateannouncementResponse>} - The async response
      */
     public CompletableFuture<UpdateannouncementResponse> update(UpdateAnnouncementRequest request) {
         AsyncRequestOperation<UpdateAnnouncementRequest, UpdateannouncementResponse> operation

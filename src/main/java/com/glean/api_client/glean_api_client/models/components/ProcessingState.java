@@ -11,7 +11,8 @@ import java.util.Optional;
 /**
  * ProcessingState
  * 
- * <p>The current state of the upload, an enum of UNAVAILABLE, UPLOAD STARTED, UPLOAD IN PROGRESS, UPLOAD COMPLETED, DELETION PAUSED, INDEXING COMPLETED
+ * <p>The current state of the upload, an enum of UNAVAILABLE, UPLOAD STARTED, UPLOAD IN PROGRESS, UPLOAD
+ * COMPLETED, DELETION PAUSED, INDEXING COMPLETED
  */
 public enum ProcessingState {
     UNAVAILABLE("UNAVAILABLE"),

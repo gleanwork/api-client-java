@@ -23,7 +23,8 @@ public class EntityRelationship {
     private String name;
 
     /**
-     * Email of the person with whom the relationship exists. Per the example above, either `B` or `C`'s email depending on the relationship.
+     * Email of the person with whom the relationship exists. Per the example above, either `B` or `C`'s
+     * email depending on the relationship.
      */
     @JsonProperty("email")
     private String email;
@@ -47,7 +48,8 @@ public class EntityRelationship {
     }
 
     /**
-     * Email of the person with whom the relationship exists. Per the example above, either `B` or `C`'s email depending on the relationship.
+     * Email of the person with whom the relationship exists. Per the example above, either `B` or `C`'s
+     * email depending on the relationship.
      */
     @JsonIgnore
     public String email() {
@@ -69,7 +71,8 @@ public class EntityRelationship {
     }
 
     /**
-     * Email of the person with whom the relationship exists. Per the example above, either `B` or `C`'s email depending on the relationship.
+     * Email of the person with whom the relationship exists. Per the example above, either `B` or `C`'s
+     * email depending on the relationship.
      */
     public EntityRelationship withEmail(String email) {
         Utils.checkNotNull(email, "email");
@@ -127,7 +130,8 @@ public class EntityRelationship {
 
 
         /**
-         * Email of the person with whom the relationship exists. Per the example above, either `B` or `C`'s email depending on the relationship.
+         * Email of the person with whom the relationship exists. Per the example above, either `B` or `C`'s
+         * email depending on the relationship.
          */
         public Builder email(String email) {
             Utils.checkNotNull(email, "email");

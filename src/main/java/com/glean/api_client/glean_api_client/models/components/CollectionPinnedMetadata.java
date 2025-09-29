@@ -25,7 +25,9 @@ public class CollectionPinnedMetadata {
     private Optional<? extends List<CollectionPinTarget>> existingPins;
 
     /**
-     * List of targets this Collection can be pinned to, excluding the targets this Collection is already pinned to. We also include Collection ID already is pinned to each eligible target, which will be 0 if the target has no pinned Collection.
+     * List of targets this Collection can be pinned to, excluding the targets this Collection is already
+     * pinned to. We also include Collection ID already is pinned to each eligible target, which will be 0
+     * if the target has no pinned Collection.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("eligiblePins")
@@ -55,7 +57,9 @@ public class CollectionPinnedMetadata {
     }
 
     /**
-     * List of targets this Collection can be pinned to, excluding the targets this Collection is already pinned to. We also include Collection ID already is pinned to each eligible target, which will be 0 if the target has no pinned Collection.
+     * List of targets this Collection can be pinned to, excluding the targets this Collection is already
+     * pinned to. We also include Collection ID already is pinned to each eligible target, which will be 0
+     * if the target has no pinned Collection.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -88,7 +92,9 @@ public class CollectionPinnedMetadata {
     }
 
     /**
-     * List of targets this Collection can be pinned to, excluding the targets this Collection is already pinned to. We also include Collection ID already is pinned to each eligible target, which will be 0 if the target has no pinned Collection.
+     * List of targets this Collection can be pinned to, excluding the targets this Collection is already
+     * pinned to. We also include Collection ID already is pinned to each eligible target, which will be 0
+     * if the target has no pinned Collection.
      */
     public CollectionPinnedMetadata withEligiblePins(List<CollectionPinMetadata> eligiblePins) {
         Utils.checkNotNull(eligiblePins, "eligiblePins");
@@ -98,7 +104,9 @@ public class CollectionPinnedMetadata {
 
 
     /**
-     * List of targets this Collection can be pinned to, excluding the targets this Collection is already pinned to. We also include Collection ID already is pinned to each eligible target, which will be 0 if the target has no pinned Collection.
+     * List of targets this Collection can be pinned to, excluding the targets this Collection is already
+     * pinned to. We also include Collection ID already is pinned to each eligible target, which will be 0
+     * if the target has no pinned Collection.
      */
     public CollectionPinnedMetadata withEligiblePins(Optional<? extends List<CollectionPinMetadata>> eligiblePins) {
         Utils.checkNotNull(eligiblePins, "eligiblePins");
@@ -165,7 +173,9 @@ public class CollectionPinnedMetadata {
 
 
         /**
-         * List of targets this Collection can be pinned to, excluding the targets this Collection is already pinned to. We also include Collection ID already is pinned to each eligible target, which will be 0 if the target has no pinned Collection.
+         * List of targets this Collection can be pinned to, excluding the targets this Collection is already
+         * pinned to. We also include Collection ID already is pinned to each eligible target, which will be 0
+         * if the target has no pinned Collection.
          */
         public Builder eligiblePins(List<CollectionPinMetadata> eligiblePins) {
             Utils.checkNotNull(eligiblePins, "eligiblePins");
@@ -174,7 +184,9 @@ public class CollectionPinnedMetadata {
         }
 
         /**
-         * List of targets this Collection can be pinned to, excluding the targets this Collection is already pinned to. We also include Collection ID already is pinned to each eligible target, which will be 0 if the target has no pinned Collection.
+         * List of targets this Collection can be pinned to, excluding the targets this Collection is already
+         * pinned to. We also include Collection ID already is pinned to each eligible target, which will be 0
+         * if the target has no pinned Collection.
          */
         public Builder eligiblePins(Optional<? extends List<CollectionPinMetadata>> eligiblePins) {
             Utils.checkNotNull(eligiblePins, "eligiblePins");

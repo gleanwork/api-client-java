@@ -47,7 +47,8 @@ public class EditCollectionResponse {
     private Optional<? extends List<UserRoleSpecification>> removedRoles;
 
     /**
-     * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see this Collection. Values are taken from the corresponding
+     * filters in people search.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("audienceFilters")
@@ -118,14 +119,16 @@ public class EditCollectionResponse {
     private Optional<? extends Person> updatedBy;
 
     /**
-     * The number of items currently in the Collection. Separated from the actual items so we can grab the count without items.
+     * The number of items currently in the Collection. Separated from the actual items so we can grab the
+     * count without items.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("itemCount")
     private Optional<Long> itemCount;
 
     /**
-     * The number of children Collections. Separated from the actual children so we can grab the count without children.
+     * The number of children Collections. Separated from the actual children so we can grab the count
+     * without children.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("childCount")
@@ -311,7 +314,8 @@ public class EditCollectionResponse {
     }
 
     /**
-     * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see this Collection. Values are taken from the corresponding
+     * filters in people search.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -394,7 +398,8 @@ public class EditCollectionResponse {
     }
 
     /**
-     * The number of items currently in the Collection. Separated from the actual items so we can grab the count without items.
+     * The number of items currently in the Collection. Separated from the actual items so we can grab the
+     * count without items.
      */
     @JsonIgnore
     public Optional<Long> itemCount() {
@@ -402,7 +407,8 @@ public class EditCollectionResponse {
     }
 
     /**
-     * The number of children Collections. Separated from the actual children so we can grab the count without children.
+     * The number of children Collections. Separated from the actual children so we can grab the count
+     * without children.
      */
     @JsonIgnore
     public Optional<Long> childCount() {
@@ -530,7 +536,8 @@ public class EditCollectionResponse {
     }
 
     /**
-     * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see this Collection. Values are taken from the corresponding
+     * filters in people search.
      */
     public EditCollectionResponse withAudienceFilters(List<FacetFilter> audienceFilters) {
         Utils.checkNotNull(audienceFilters, "audienceFilters");
@@ -540,7 +547,8 @@ public class EditCollectionResponse {
 
 
     /**
-     * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see this Collection. Values are taken from the corresponding
+     * filters in people search.
      */
     public EditCollectionResponse withAudienceFilters(Optional<? extends List<FacetFilter>> audienceFilters) {
         Utils.checkNotNull(audienceFilters, "audienceFilters");
@@ -712,7 +720,8 @@ public class EditCollectionResponse {
     }
 
     /**
-     * The number of items currently in the Collection. Separated from the actual items so we can grab the count without items.
+     * The number of items currently in the Collection. Separated from the actual items so we can grab the
+     * count without items.
      */
     public EditCollectionResponse withItemCount(long itemCount) {
         Utils.checkNotNull(itemCount, "itemCount");
@@ -722,7 +731,8 @@ public class EditCollectionResponse {
 
 
     /**
-     * The number of items currently in the Collection. Separated from the actual items so we can grab the count without items.
+     * The number of items currently in the Collection. Separated from the actual items so we can grab the
+     * count without items.
      */
     public EditCollectionResponse withItemCount(Optional<Long> itemCount) {
         Utils.checkNotNull(itemCount, "itemCount");
@@ -731,7 +741,8 @@ public class EditCollectionResponse {
     }
 
     /**
-     * The number of children Collections. Separated from the actual children so we can grab the count without children.
+     * The number of children Collections. Separated from the actual children so we can grab the count
+     * without children.
      */
     public EditCollectionResponse withChildCount(long childCount) {
         Utils.checkNotNull(childCount, "childCount");
@@ -741,7 +752,8 @@ public class EditCollectionResponse {
 
 
     /**
-     * The number of children Collections. Separated from the actual children so we can grab the count without children.
+     * The number of children Collections. Separated from the actual children so we can grab the count
+     * without children.
      */
     public EditCollectionResponse withChildCount(Optional<Long> childCount) {
         Utils.checkNotNull(childCount, "childCount");
@@ -1072,7 +1084,8 @@ public class EditCollectionResponse {
 
 
         /**
-         * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
+         * Filters which restrict who should see this Collection. Values are taken from the corresponding
+         * filters in people search.
          */
         public Builder audienceFilters(List<FacetFilter> audienceFilters) {
             Utils.checkNotNull(audienceFilters, "audienceFilters");
@@ -1081,7 +1094,8 @@ public class EditCollectionResponse {
         }
 
         /**
-         * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
+         * Filters which restrict who should see this Collection. Values are taken from the corresponding
+         * filters in people search.
          */
         public Builder audienceFilters(Optional<? extends List<FacetFilter>> audienceFilters) {
             Utils.checkNotNull(audienceFilters, "audienceFilters");
@@ -1255,7 +1269,8 @@ public class EditCollectionResponse {
 
 
         /**
-         * The number of items currently in the Collection. Separated from the actual items so we can grab the count without items.
+         * The number of items currently in the Collection. Separated from the actual items so we can grab the
+         * count without items.
          */
         public Builder itemCount(long itemCount) {
             Utils.checkNotNull(itemCount, "itemCount");
@@ -1264,7 +1279,8 @@ public class EditCollectionResponse {
         }
 
         /**
-         * The number of items currently in the Collection. Separated from the actual items so we can grab the count without items.
+         * The number of items currently in the Collection. Separated from the actual items so we can grab the
+         * count without items.
          */
         public Builder itemCount(Optional<Long> itemCount) {
             Utils.checkNotNull(itemCount, "itemCount");
@@ -1274,7 +1290,8 @@ public class EditCollectionResponse {
 
 
         /**
-         * The number of children Collections. Separated from the actual children so we can grab the count without children.
+         * The number of children Collections. Separated from the actual children so we can grab the count
+         * without children.
          */
         public Builder childCount(long childCount) {
             Utils.checkNotNull(childCount, "childCount");
@@ -1283,7 +1300,8 @@ public class EditCollectionResponse {
         }
 
         /**
-         * The number of children Collections. Separated from the actual children so we can grab the count without children.
+         * The number of children Collections. Separated from the actual children so we can grab the count
+         * without children.
          */
         public Builder childCount(Optional<Long> childCount) {
             Utils.checkNotNull(childCount, "childCount");

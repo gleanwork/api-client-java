@@ -39,14 +39,16 @@ public class ActivityEventParams {
     private Optional<String> datasource;
 
     /**
-     * The instance only name of the datasource instance, e.g. 1 for jira_1, inferred from the URL of the event
+     * The instance only name of the datasource instance, e.g. 1 for jira_1, inferred from the URL of the
+     * event
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("instanceOnlyName")
     private Optional<String> instanceOnlyName;
 
     /**
-     * Length in seconds of the activity. For VIEWS, this represents the amount the page was visible in the foreground.
+     * Length in seconds of the activity. For VIEWS, this represents the amount the page was visible in the
+     * foreground.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("duration")
@@ -74,7 +76,8 @@ public class ActivityEventParams {
     private Optional<String> title;
 
     /**
-     * Indicates that the parameters are incomplete and more parameters may be sent with the same action+timestamp+URL in the future. This is used for sending the duration when a `VIEW` is finished.
+     * Indicates that the parameters are incomplete and more parameters may be sent with the same
+     * action+timestamp+URL in the future. This is used for sending the duration when a `VIEW` is finished.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("truncated")
@@ -142,7 +145,8 @@ public class ActivityEventParams {
     }
 
     /**
-     * The instance only name of the datasource instance, e.g. 1 for jira_1, inferred from the URL of the event
+     * The instance only name of the datasource instance, e.g. 1 for jira_1, inferred from the URL of the
+     * event
      */
     @JsonIgnore
     public Optional<String> instanceOnlyName() {
@@ -150,7 +154,8 @@ public class ActivityEventParams {
     }
 
     /**
-     * Length in seconds of the activity. For VIEWS, this represents the amount the page was visible in the foreground.
+     * Length in seconds of the activity. For VIEWS, this represents the amount the page was visible in the
+     * foreground.
      */
     @JsonIgnore
     public Optional<Long> duration() {
@@ -182,7 +187,8 @@ public class ActivityEventParams {
     }
 
     /**
-     * Indicates that the parameters are incomplete and more parameters may be sent with the same action+timestamp+URL in the future. This is used for sending the duration when a `VIEW` is finished.
+     * Indicates that the parameters are incomplete and more parameters may be sent with the same
+     * action+timestamp+URL in the future. This is used for sending the duration when a `VIEW` is finished.
      */
     @JsonIgnore
     public Optional<Boolean> truncated() {
@@ -252,7 +258,8 @@ public class ActivityEventParams {
     }
 
     /**
-     * The instance only name of the datasource instance, e.g. 1 for jira_1, inferred from the URL of the event
+     * The instance only name of the datasource instance, e.g. 1 for jira_1, inferred from the URL of the
+     * event
      */
     public ActivityEventParams withInstanceOnlyName(String instanceOnlyName) {
         Utils.checkNotNull(instanceOnlyName, "instanceOnlyName");
@@ -262,7 +269,8 @@ public class ActivityEventParams {
 
 
     /**
-     * The instance only name of the datasource instance, e.g. 1 for jira_1, inferred from the URL of the event
+     * The instance only name of the datasource instance, e.g. 1 for jira_1, inferred from the URL of the
+     * event
      */
     public ActivityEventParams withInstanceOnlyName(Optional<String> instanceOnlyName) {
         Utils.checkNotNull(instanceOnlyName, "instanceOnlyName");
@@ -271,7 +279,8 @@ public class ActivityEventParams {
     }
 
     /**
-     * Length in seconds of the activity. For VIEWS, this represents the amount the page was visible in the foreground.
+     * Length in seconds of the activity. For VIEWS, this represents the amount the page was visible in the
+     * foreground.
      */
     public ActivityEventParams withDuration(long duration) {
         Utils.checkNotNull(duration, "duration");
@@ -281,7 +290,8 @@ public class ActivityEventParams {
 
 
     /**
-     * Length in seconds of the activity. For VIEWS, this represents the amount the page was visible in the foreground.
+     * Length in seconds of the activity. For VIEWS, this represents the amount the page was visible in the
+     * foreground.
      */
     public ActivityEventParams withDuration(Optional<Long> duration) {
         Utils.checkNotNull(duration, "duration");
@@ -347,7 +357,8 @@ public class ActivityEventParams {
     }
 
     /**
-     * Indicates that the parameters are incomplete and more parameters may be sent with the same action+timestamp+URL in the future. This is used for sending the duration when a `VIEW` is finished.
+     * Indicates that the parameters are incomplete and more parameters may be sent with the same
+     * action+timestamp+URL in the future. This is used for sending the duration when a `VIEW` is finished.
      */
     public ActivityEventParams withTruncated(boolean truncated) {
         Utils.checkNotNull(truncated, "truncated");
@@ -357,7 +368,8 @@ public class ActivityEventParams {
 
 
     /**
-     * Indicates that the parameters are incomplete and more parameters may be sent with the same action+timestamp+URL in the future. This is used for sending the duration when a `VIEW` is finished.
+     * Indicates that the parameters are incomplete and more parameters may be sent with the same
+     * action+timestamp+URL in the future. This is used for sending the duration when a `VIEW` is finished.
      */
     public ActivityEventParams withTruncated(Optional<Boolean> truncated) {
         Utils.checkNotNull(truncated, "truncated");
@@ -492,7 +504,8 @@ public class ActivityEventParams {
 
 
         /**
-         * The instance only name of the datasource instance, e.g. 1 for jira_1, inferred from the URL of the event
+         * The instance only name of the datasource instance, e.g. 1 for jira_1, inferred from the URL of the
+         * event
          */
         public Builder instanceOnlyName(String instanceOnlyName) {
             Utils.checkNotNull(instanceOnlyName, "instanceOnlyName");
@@ -501,7 +514,8 @@ public class ActivityEventParams {
         }
 
         /**
-         * The instance only name of the datasource instance, e.g. 1 for jira_1, inferred from the URL of the event
+         * The instance only name of the datasource instance, e.g. 1 for jira_1, inferred from the URL of the
+         * event
          */
         public Builder instanceOnlyName(Optional<String> instanceOnlyName) {
             Utils.checkNotNull(instanceOnlyName, "instanceOnlyName");
@@ -511,7 +525,8 @@ public class ActivityEventParams {
 
 
         /**
-         * Length in seconds of the activity. For VIEWS, this represents the amount the page was visible in the foreground.
+         * Length in seconds of the activity. For VIEWS, this represents the amount the page was visible in the
+         * foreground.
          */
         public Builder duration(long duration) {
             Utils.checkNotNull(duration, "duration");
@@ -520,7 +535,8 @@ public class ActivityEventParams {
         }
 
         /**
-         * Length in seconds of the activity. For VIEWS, this represents the amount the page was visible in the foreground.
+         * Length in seconds of the activity. For VIEWS, this represents the amount the page was visible in the
+         * foreground.
          */
         public Builder duration(Optional<Long> duration) {
             Utils.checkNotNull(duration, "duration");
@@ -587,7 +603,8 @@ public class ActivityEventParams {
 
 
         /**
-         * Indicates that the parameters are incomplete and more parameters may be sent with the same action+timestamp+URL in the future. This is used for sending the duration when a `VIEW` is finished.
+         * Indicates that the parameters are incomplete and more parameters may be sent with the same
+         * action+timestamp+URL in the future. This is used for sending the duration when a `VIEW` is finished.
          */
         public Builder truncated(boolean truncated) {
             Utils.checkNotNull(truncated, "truncated");
@@ -596,7 +613,8 @@ public class ActivityEventParams {
         }
 
         /**
-         * Indicates that the parameters are incomplete and more parameters may be sent with the same action+timestamp+URL in the future. This is used for sending the duration when a `VIEW` is finished.
+         * Indicates that the parameters are incomplete and more parameters may be sent with the same
+         * action+timestamp+URL in the future. This is used for sending the duration when a `VIEW` is finished.
          */
         public Builder truncated(Optional<Boolean> truncated) {
             Utils.checkNotNull(truncated, "truncated");

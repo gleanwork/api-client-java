@@ -52,7 +52,8 @@ public class CollectionItemDescriptor {
     private Optional<String> documentId;
 
     /**
-     * The (optional) ItemId of the next CollectionItem in sequence. If omitted, will be added to the end of the Collection
+     * The (optional) ItemId of the next CollectionItem in sequence. If omitted, will be added to the end
+     * of the Collection
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("newNextItemId")
@@ -135,7 +136,8 @@ public class CollectionItemDescriptor {
     }
 
     /**
-     * The (optional) ItemId of the next CollectionItem in sequence. If omitted, will be added to the end of the Collection
+     * The (optional) ItemId of the next CollectionItem in sequence. If omitted, will be added to the end
+     * of the Collection
      */
     @JsonIgnore
     public Optional<String> newNextItemId() {
@@ -249,7 +251,8 @@ public class CollectionItemDescriptor {
     }
 
     /**
-     * The (optional) ItemId of the next CollectionItem in sequence. If omitted, will be added to the end of the Collection
+     * The (optional) ItemId of the next CollectionItem in sequence. If omitted, will be added to the end
+     * of the Collection
      */
     public CollectionItemDescriptor withNewNextItemId(String newNextItemId) {
         Utils.checkNotNull(newNextItemId, "newNextItemId");
@@ -259,7 +262,8 @@ public class CollectionItemDescriptor {
 
 
     /**
-     * The (optional) ItemId of the next CollectionItem in sequence. If omitted, will be added to the end of the Collection
+     * The (optional) ItemId of the next CollectionItem in sequence. If omitted, will be added to the end
+     * of the Collection
      */
     public CollectionItemDescriptor withNewNextItemId(Optional<String> newNextItemId) {
         Utils.checkNotNull(newNextItemId, "newNextItemId");
@@ -437,7 +441,8 @@ public class CollectionItemDescriptor {
 
 
         /**
-         * The (optional) ItemId of the next CollectionItem in sequence. If omitted, will be added to the end of the Collection
+         * The (optional) ItemId of the next CollectionItem in sequence. If omitted, will be added to the end
+         * of the Collection
          */
         public Builder newNextItemId(String newNextItemId) {
             Utils.checkNotNull(newNextItemId, "newNextItemId");
@@ -446,7 +451,8 @@ public class CollectionItemDescriptor {
         }
 
         /**
-         * The (optional) ItemId of the next CollectionItem in sequence. If omitted, will be added to the end of the Collection
+         * The (optional) ItemId of the next CollectionItem in sequence. If omitted, will be added to the end
+         * of the Collection
          */
         public Builder newNextItemId(Optional<String> newNextItemId) {
             Utils.checkNotNull(newNextItemId, "newNextItemId");

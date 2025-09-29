@@ -49,7 +49,8 @@ public class Search {
     /**
      * Search the index (admin)
      * 
-     * <p>Retrieves results for search query without respect for permissions. This is available only to privileged users.
+     * <p>Retrieves results for search query without respect for permissions. This is available only to
+     * privileged users.
      * 
      * @return The call builder
      */
@@ -60,7 +61,8 @@ public class Search {
     /**
      * Search the index (admin)
      * 
-     * <p>Retrieves results for search query without respect for permissions. This is available only to privileged users.
+     * <p>Retrieves results for search query without respect for permissions. This is available only to
+     * privileged users.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -101,7 +103,8 @@ public class Search {
     /**
      * Feed of documents and events
      * 
-     * <p>The personalized feed/home includes different types of contents including suggestions, recents, calendar events and many more.
+     * <p>The personalized feed/home includes different types of contents including suggestions, recents,
+     * calendar events and many more.
      * 
      * @return The call builder
      */
@@ -112,7 +115,8 @@ public class Search {
     /**
      * Feed of documents and events
      * 
-     * <p>The personalized feed/home includes different types of contents including suggestions, recents, calendar events and many more.
+     * <p>The personalized feed/home includes different types of contents including suggestions, recents,
+     * calendar events and many more.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call

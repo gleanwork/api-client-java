@@ -21,7 +21,8 @@ import java.util.Optional;
  */
 public class DeleteUserRequest {
     /**
-     * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
+     * Version number for document for optimistic concurrency control. If absent or 0 then no version
+     * checks are done.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("version")
@@ -59,7 +60,8 @@ public class DeleteUserRequest {
     }
 
     /**
-     * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
+     * Version number for document for optimistic concurrency control. If absent or 0 then no version
+     * checks are done.
      */
     @JsonIgnore
     public Optional<Long> version() {
@@ -88,7 +90,8 @@ public class DeleteUserRequest {
 
 
     /**
-     * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
+     * Version number for document for optimistic concurrency control. If absent or 0 then no version
+     * checks are done.
      */
     public DeleteUserRequest withVersion(long version) {
         Utils.checkNotNull(version, "version");
@@ -98,7 +101,8 @@ public class DeleteUserRequest {
 
 
     /**
-     * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
+     * Version number for document for optimistic concurrency control. If absent or 0 then no version
+     * checks are done.
      */
     public DeleteUserRequest withVersion(Optional<Long> version) {
         Utils.checkNotNull(version, "version");
@@ -168,7 +172,8 @@ public class DeleteUserRequest {
 
 
         /**
-         * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
+         * Version number for document for optimistic concurrency control. If absent or 0 then no version
+         * checks are done.
          */
         public Builder version(long version) {
             Utils.checkNotNull(version, "version");
@@ -177,7 +182,8 @@ public class DeleteUserRequest {
         }
 
         /**
-         * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
+         * Version number for document for optimistic concurrency control. If absent or 0 then no version
+         * checks are done.
          */
         public Builder version(Optional<Long> version) {
             Utils.checkNotNull(version, "version");

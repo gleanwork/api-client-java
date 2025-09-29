@@ -20,47 +20,56 @@ import java.util.Optional;
 /**
  * Permissions
  * 
- * <p>Describes the permissions levels that a user has for permissioned features. When the client sends this, Permissions.read and Permissions.write are the additional permissions granted to a user on top of what they have via their roles.
- * When the server sends this, Permissions.read and Permissions.write are the complete (merged) set of permissions the user has, and Permissions.roles is just for display purposes.
+ * <p>Describes the permissions levels that a user has for permissioned features. When the client sends
+ * this, Permissions.read and Permissions.write are the additional permissions granted to a user on top
+ * of what they have via their roles.
+ * When the server sends this, Permissions.read and Permissions.write are the complete (merged) set of
+ * permissions the user has, and Permissions.roles is just for display purposes.
  */
 public class Permissions {
     /**
-     * TODO--deprecate in favor of the read and write properties. True if the user has access to /adminsearch
+     * TODO--deprecate in favor of the read and write properties. True if the user has access to
+     * /adminsearch
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("canAdminSearch")
     private Optional<Boolean> canAdminSearch;
 
     /**
-     * TODO--deprecate in favor of the read and write properties. True if the user can administrate client API tokens with global scope
+     * TODO--deprecate in favor of the read and write properties. True if the user can administrate client
+     * API tokens with global scope
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("canAdminClientApiGlobalTokens")
     private Optional<Boolean> canAdminClientApiGlobalTokens;
 
     /**
-     * TODO--deprecate in favor of the read and write properties. True if the user has access to data loss prevention (DLP) features
+     * TODO--deprecate in favor of the read and write properties. True if the user has access to data loss
+     * prevention (DLP) features
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("canDlp")
     private Optional<Boolean> canDlp;
 
     /**
-     * Describes the read permission levels that a user has for permissioned features. Key must be PermissionedFeatureOrObject
+     * Describes the read permission levels that a user has for permissioned features. Key must be
+     * PermissionedFeatureOrObject
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("read")
     private Optional<? extends Map<String, List<ReadPermission>>> read;
 
     /**
-     * Describes the write permissions levels that a user has for permissioned features. Key must be PermissionedFeatureOrObject
+     * Describes the write permissions levels that a user has for permissioned features. Key must be
+     * PermissionedFeatureOrObject
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("write")
     private Optional<? extends Map<String, List<WritePermission>>> write;
 
     /**
-     * Describes the grant permission levels that a user has for permissioned features. Key must be PermissionedFeatureOrObject
+     * Describes the grant permission levels that a user has for permissioned features. Key must be
+     * PermissionedFeatureOrObject
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("grant")
@@ -115,7 +124,8 @@ public class Permissions {
     }
 
     /**
-     * TODO--deprecate in favor of the read and write properties. True if the user has access to /adminsearch
+     * TODO--deprecate in favor of the read and write properties. True if the user has access to
+     * /adminsearch
      */
     @JsonIgnore
     public Optional<Boolean> canAdminSearch() {
@@ -123,7 +133,8 @@ public class Permissions {
     }
 
     /**
-     * TODO--deprecate in favor of the read and write properties. True if the user can administrate client API tokens with global scope
+     * TODO--deprecate in favor of the read and write properties. True if the user can administrate client
+     * API tokens with global scope
      */
     @JsonIgnore
     public Optional<Boolean> canAdminClientApiGlobalTokens() {
@@ -131,7 +142,8 @@ public class Permissions {
     }
 
     /**
-     * TODO--deprecate in favor of the read and write properties. True if the user has access to data loss prevention (DLP) features
+     * TODO--deprecate in favor of the read and write properties. True if the user has access to data loss
+     * prevention (DLP) features
      */
     @JsonIgnore
     public Optional<Boolean> canDlp() {
@@ -139,7 +151,8 @@ public class Permissions {
     }
 
     /**
-     * Describes the read permission levels that a user has for permissioned features. Key must be PermissionedFeatureOrObject
+     * Describes the read permission levels that a user has for permissioned features. Key must be
+     * PermissionedFeatureOrObject
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -148,7 +161,8 @@ public class Permissions {
     }
 
     /**
-     * Describes the write permissions levels that a user has for permissioned features. Key must be PermissionedFeatureOrObject
+     * Describes the write permissions levels that a user has for permissioned features. Key must be
+     * PermissionedFeatureOrObject
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -157,7 +171,8 @@ public class Permissions {
     }
 
     /**
-     * Describes the grant permission levels that a user has for permissioned features. Key must be PermissionedFeatureOrObject
+     * Describes the grant permission levels that a user has for permissioned features. Key must be
+     * PermissionedFeatureOrObject
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -188,7 +203,8 @@ public class Permissions {
 
 
     /**
-     * TODO--deprecate in favor of the read and write properties. True if the user has access to /adminsearch
+     * TODO--deprecate in favor of the read and write properties. True if the user has access to
+     * /adminsearch
      */
     public Permissions withCanAdminSearch(boolean canAdminSearch) {
         Utils.checkNotNull(canAdminSearch, "canAdminSearch");
@@ -198,7 +214,8 @@ public class Permissions {
 
 
     /**
-     * TODO--deprecate in favor of the read and write properties. True if the user has access to /adminsearch
+     * TODO--deprecate in favor of the read and write properties. True if the user has access to
+     * /adminsearch
      */
     public Permissions withCanAdminSearch(Optional<Boolean> canAdminSearch) {
         Utils.checkNotNull(canAdminSearch, "canAdminSearch");
@@ -207,7 +224,8 @@ public class Permissions {
     }
 
     /**
-     * TODO--deprecate in favor of the read and write properties. True if the user can administrate client API tokens with global scope
+     * TODO--deprecate in favor of the read and write properties. True if the user can administrate client
+     * API tokens with global scope
      */
     public Permissions withCanAdminClientApiGlobalTokens(boolean canAdminClientApiGlobalTokens) {
         Utils.checkNotNull(canAdminClientApiGlobalTokens, "canAdminClientApiGlobalTokens");
@@ -217,7 +235,8 @@ public class Permissions {
 
 
     /**
-     * TODO--deprecate in favor of the read and write properties. True if the user can administrate client API tokens with global scope
+     * TODO--deprecate in favor of the read and write properties. True if the user can administrate client
+     * API tokens with global scope
      */
     public Permissions withCanAdminClientApiGlobalTokens(Optional<Boolean> canAdminClientApiGlobalTokens) {
         Utils.checkNotNull(canAdminClientApiGlobalTokens, "canAdminClientApiGlobalTokens");
@@ -226,7 +245,8 @@ public class Permissions {
     }
 
     /**
-     * TODO--deprecate in favor of the read and write properties. True if the user has access to data loss prevention (DLP) features
+     * TODO--deprecate in favor of the read and write properties. True if the user has access to data loss
+     * prevention (DLP) features
      */
     public Permissions withCanDlp(boolean canDlp) {
         Utils.checkNotNull(canDlp, "canDlp");
@@ -236,7 +256,8 @@ public class Permissions {
 
 
     /**
-     * TODO--deprecate in favor of the read and write properties. True if the user has access to data loss prevention (DLP) features
+     * TODO--deprecate in favor of the read and write properties. True if the user has access to data loss
+     * prevention (DLP) features
      */
     public Permissions withCanDlp(Optional<Boolean> canDlp) {
         Utils.checkNotNull(canDlp, "canDlp");
@@ -245,7 +266,8 @@ public class Permissions {
     }
 
     /**
-     * Describes the read permission levels that a user has for permissioned features. Key must be PermissionedFeatureOrObject
+     * Describes the read permission levels that a user has for permissioned features. Key must be
+     * PermissionedFeatureOrObject
      */
     public Permissions withRead(Map<String, List<ReadPermission>> read) {
         Utils.checkNotNull(read, "read");
@@ -255,7 +277,8 @@ public class Permissions {
 
 
     /**
-     * Describes the read permission levels that a user has for permissioned features. Key must be PermissionedFeatureOrObject
+     * Describes the read permission levels that a user has for permissioned features. Key must be
+     * PermissionedFeatureOrObject
      */
     public Permissions withRead(Optional<? extends Map<String, List<ReadPermission>>> read) {
         Utils.checkNotNull(read, "read");
@@ -264,7 +287,8 @@ public class Permissions {
     }
 
     /**
-     * Describes the write permissions levels that a user has for permissioned features. Key must be PermissionedFeatureOrObject
+     * Describes the write permissions levels that a user has for permissioned features. Key must be
+     * PermissionedFeatureOrObject
      */
     public Permissions withWrite(Map<String, List<WritePermission>> write) {
         Utils.checkNotNull(write, "write");
@@ -274,7 +298,8 @@ public class Permissions {
 
 
     /**
-     * Describes the write permissions levels that a user has for permissioned features. Key must be PermissionedFeatureOrObject
+     * Describes the write permissions levels that a user has for permissioned features. Key must be
+     * PermissionedFeatureOrObject
      */
     public Permissions withWrite(Optional<? extends Map<String, List<WritePermission>>> write) {
         Utils.checkNotNull(write, "write");
@@ -283,7 +308,8 @@ public class Permissions {
     }
 
     /**
-     * Describes the grant permission levels that a user has for permissioned features. Key must be PermissionedFeatureOrObject
+     * Describes the grant permission levels that a user has for permissioned features. Key must be
+     * PermissionedFeatureOrObject
      */
     public Permissions withGrant(Map<String, List<GrantPermission>> grant) {
         Utils.checkNotNull(grant, "grant");
@@ -293,7 +319,8 @@ public class Permissions {
 
 
     /**
-     * Describes the grant permission levels that a user has for permissioned features. Key must be PermissionedFeatureOrObject
+     * Describes the grant permission levels that a user has for permissioned features. Key must be
+     * PermissionedFeatureOrObject
      */
     public Permissions withGrant(Optional<? extends Map<String, List<GrantPermission>>> grant) {
         Utils.checkNotNull(grant, "grant");
@@ -405,7 +432,8 @@ public class Permissions {
 
 
         /**
-         * TODO--deprecate in favor of the read and write properties. True if the user has access to /adminsearch
+         * TODO--deprecate in favor of the read and write properties. True if the user has access to
+         * /adminsearch
          */
         public Builder canAdminSearch(boolean canAdminSearch) {
             Utils.checkNotNull(canAdminSearch, "canAdminSearch");
@@ -414,7 +442,8 @@ public class Permissions {
         }
 
         /**
-         * TODO--deprecate in favor of the read and write properties. True if the user has access to /adminsearch
+         * TODO--deprecate in favor of the read and write properties. True if the user has access to
+         * /adminsearch
          */
         public Builder canAdminSearch(Optional<Boolean> canAdminSearch) {
             Utils.checkNotNull(canAdminSearch, "canAdminSearch");
@@ -424,7 +453,8 @@ public class Permissions {
 
 
         /**
-         * TODO--deprecate in favor of the read and write properties. True if the user can administrate client API tokens with global scope
+         * TODO--deprecate in favor of the read and write properties. True if the user can administrate client
+         * API tokens with global scope
          */
         public Builder canAdminClientApiGlobalTokens(boolean canAdminClientApiGlobalTokens) {
             Utils.checkNotNull(canAdminClientApiGlobalTokens, "canAdminClientApiGlobalTokens");
@@ -433,7 +463,8 @@ public class Permissions {
         }
 
         /**
-         * TODO--deprecate in favor of the read and write properties. True if the user can administrate client API tokens with global scope
+         * TODO--deprecate in favor of the read and write properties. True if the user can administrate client
+         * API tokens with global scope
          */
         public Builder canAdminClientApiGlobalTokens(Optional<Boolean> canAdminClientApiGlobalTokens) {
             Utils.checkNotNull(canAdminClientApiGlobalTokens, "canAdminClientApiGlobalTokens");
@@ -443,7 +474,8 @@ public class Permissions {
 
 
         /**
-         * TODO--deprecate in favor of the read and write properties. True if the user has access to data loss prevention (DLP) features
+         * TODO--deprecate in favor of the read and write properties. True if the user has access to data loss
+         * prevention (DLP) features
          */
         public Builder canDlp(boolean canDlp) {
             Utils.checkNotNull(canDlp, "canDlp");
@@ -452,7 +484,8 @@ public class Permissions {
         }
 
         /**
-         * TODO--deprecate in favor of the read and write properties. True if the user has access to data loss prevention (DLP) features
+         * TODO--deprecate in favor of the read and write properties. True if the user has access to data loss
+         * prevention (DLP) features
          */
         public Builder canDlp(Optional<Boolean> canDlp) {
             Utils.checkNotNull(canDlp, "canDlp");
@@ -462,7 +495,8 @@ public class Permissions {
 
 
         /**
-         * Describes the read permission levels that a user has for permissioned features. Key must be PermissionedFeatureOrObject
+         * Describes the read permission levels that a user has for permissioned features. Key must be
+         * PermissionedFeatureOrObject
          */
         public Builder read(Map<String, List<ReadPermission>> read) {
             Utils.checkNotNull(read, "read");
@@ -471,7 +505,8 @@ public class Permissions {
         }
 
         /**
-         * Describes the read permission levels that a user has for permissioned features. Key must be PermissionedFeatureOrObject
+         * Describes the read permission levels that a user has for permissioned features. Key must be
+         * PermissionedFeatureOrObject
          */
         public Builder read(Optional<? extends Map<String, List<ReadPermission>>> read) {
             Utils.checkNotNull(read, "read");
@@ -481,7 +516,8 @@ public class Permissions {
 
 
         /**
-         * Describes the write permissions levels that a user has for permissioned features. Key must be PermissionedFeatureOrObject
+         * Describes the write permissions levels that a user has for permissioned features. Key must be
+         * PermissionedFeatureOrObject
          */
         public Builder write(Map<String, List<WritePermission>> write) {
             Utils.checkNotNull(write, "write");
@@ -490,7 +526,8 @@ public class Permissions {
         }
 
         /**
-         * Describes the write permissions levels that a user has for permissioned features. Key must be PermissionedFeatureOrObject
+         * Describes the write permissions levels that a user has for permissioned features. Key must be
+         * PermissionedFeatureOrObject
          */
         public Builder write(Optional<? extends Map<String, List<WritePermission>>> write) {
             Utils.checkNotNull(write, "write");
@@ -500,7 +537,8 @@ public class Permissions {
 
 
         /**
-         * Describes the grant permission levels that a user has for permissioned features. Key must be PermissionedFeatureOrObject
+         * Describes the grant permission levels that a user has for permissioned features. Key must be
+         * PermissionedFeatureOrObject
          */
         public Builder grant(Map<String, List<GrantPermission>> grant) {
             Utils.checkNotNull(grant, "grant");
@@ -509,7 +547,8 @@ public class Permissions {
         }
 
         /**
-         * Describes the grant permission levels that a user has for permissioned features. Key must be PermissionedFeatureOrObject
+         * Describes the grant permission levels that a user has for permissioned features. Key must be
+         * PermissionedFeatureOrObject
          */
         public Builder grant(Optional<? extends Map<String, List<GrantPermission>>> grant) {
             Utils.checkNotNull(grant, "grant");

@@ -30,14 +30,16 @@ public class ListShortcutsPaginatedRequest {
     private long pageSize;
 
     /**
-     * A token specifying the position in the overall results to start at. Received from the endpoint and iterated back. Currently being used as page no (as we implement offset pagination)
+     * A token specifying the position in the overall results to start at. Received from the endpoint and
+     * iterated back. Currently being used as page no (as we implement offset pagination)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cursor")
     private Optional<String> cursor;
 
     /**
-     * A list of filters for the query. An AND is assumed between different filters. We support filters on Go Link name, author, department and type.
+     * A list of filters for the query. An AND is assumed between different filters. We support filters on
+     * Go Link name, author, department and type.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("filters")
@@ -49,7 +51,8 @@ public class ListShortcutsPaginatedRequest {
     private Optional<? extends SortOptions> sort;
 
     /**
-     * Search query that should be a substring in atleast one of the fields (alias , inputAlias, destinationUrl, description). Empty query does not filter shortcuts.
+     * Search query that should be a substring in atleast one of the fields (alias , inputAlias,
+     * destinationUrl, description). Empty query does not filter shortcuts.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("query")
@@ -98,7 +101,8 @@ public class ListShortcutsPaginatedRequest {
     }
 
     /**
-     * A token specifying the position in the overall results to start at. Received from the endpoint and iterated back. Currently being used as page no (as we implement offset pagination)
+     * A token specifying the position in the overall results to start at. Received from the endpoint and
+     * iterated back. Currently being used as page no (as we implement offset pagination)
      */
     @JsonIgnore
     public Optional<String> cursor() {
@@ -106,7 +110,8 @@ public class ListShortcutsPaginatedRequest {
     }
 
     /**
-     * A list of filters for the query. An AND is assumed between different filters. We support filters on Go Link name, author, department and type.
+     * A list of filters for the query. An AND is assumed between different filters. We support filters on
+     * Go Link name, author, department and type.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -121,7 +126,8 @@ public class ListShortcutsPaginatedRequest {
     }
 
     /**
-     * Search query that should be a substring in atleast one of the fields (alias , inputAlias, destinationUrl, description). Empty query does not filter shortcuts.
+     * Search query that should be a substring in atleast one of the fields (alias , inputAlias,
+     * destinationUrl, description). Empty query does not filter shortcuts.
      */
     @JsonIgnore
     public Optional<String> query() {
@@ -159,7 +165,8 @@ public class ListShortcutsPaginatedRequest {
     }
 
     /**
-     * A token specifying the position in the overall results to start at. Received from the endpoint and iterated back. Currently being used as page no (as we implement offset pagination)
+     * A token specifying the position in the overall results to start at. Received from the endpoint and
+     * iterated back. Currently being used as page no (as we implement offset pagination)
      */
     public ListShortcutsPaginatedRequest withCursor(String cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -169,7 +176,8 @@ public class ListShortcutsPaginatedRequest {
 
 
     /**
-     * A token specifying the position in the overall results to start at. Received from the endpoint and iterated back. Currently being used as page no (as we implement offset pagination)
+     * A token specifying the position in the overall results to start at. Received from the endpoint and
+     * iterated back. Currently being used as page no (as we implement offset pagination)
      */
     public ListShortcutsPaginatedRequest withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -178,7 +186,8 @@ public class ListShortcutsPaginatedRequest {
     }
 
     /**
-     * A list of filters for the query. An AND is assumed between different filters. We support filters on Go Link name, author, department and type.
+     * A list of filters for the query. An AND is assumed between different filters. We support filters on
+     * Go Link name, author, department and type.
      */
     public ListShortcutsPaginatedRequest withFilters(List<FacetFilter> filters) {
         Utils.checkNotNull(filters, "filters");
@@ -188,7 +197,8 @@ public class ListShortcutsPaginatedRequest {
 
 
     /**
-     * A list of filters for the query. An AND is assumed between different filters. We support filters on Go Link name, author, department and type.
+     * A list of filters for the query. An AND is assumed between different filters. We support filters on
+     * Go Link name, author, department and type.
      */
     public ListShortcutsPaginatedRequest withFilters(Optional<? extends List<FacetFilter>> filters) {
         Utils.checkNotNull(filters, "filters");
@@ -210,7 +220,8 @@ public class ListShortcutsPaginatedRequest {
     }
 
     /**
-     * Search query that should be a substring in atleast one of the fields (alias , inputAlias, destinationUrl, description). Empty query does not filter shortcuts.
+     * Search query that should be a substring in atleast one of the fields (alias , inputAlias,
+     * destinationUrl, description). Empty query does not filter shortcuts.
      */
     public ListShortcutsPaginatedRequest withQuery(String query) {
         Utils.checkNotNull(query, "query");
@@ -220,7 +231,8 @@ public class ListShortcutsPaginatedRequest {
 
 
     /**
-     * Search query that should be a substring in atleast one of the fields (alias , inputAlias, destinationUrl, description). Empty query does not filter shortcuts.
+     * Search query that should be a substring in atleast one of the fields (alias , inputAlias,
+     * destinationUrl, description). Empty query does not filter shortcuts.
      */
     public ListShortcutsPaginatedRequest withQuery(Optional<String> query) {
         Utils.checkNotNull(query, "query");
@@ -311,7 +323,8 @@ public class ListShortcutsPaginatedRequest {
 
 
         /**
-         * A token specifying the position in the overall results to start at. Received from the endpoint and iterated back. Currently being used as page no (as we implement offset pagination)
+         * A token specifying the position in the overall results to start at. Received from the endpoint and
+         * iterated back. Currently being used as page no (as we implement offset pagination)
          */
         public Builder cursor(String cursor) {
             Utils.checkNotNull(cursor, "cursor");
@@ -320,7 +333,8 @@ public class ListShortcutsPaginatedRequest {
         }
 
         /**
-         * A token specifying the position in the overall results to start at. Received from the endpoint and iterated back. Currently being used as page no (as we implement offset pagination)
+         * A token specifying the position in the overall results to start at. Received from the endpoint and
+         * iterated back. Currently being used as page no (as we implement offset pagination)
          */
         public Builder cursor(Optional<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");
@@ -330,7 +344,8 @@ public class ListShortcutsPaginatedRequest {
 
 
         /**
-         * A list of filters for the query. An AND is assumed between different filters. We support filters on Go Link name, author, department and type.
+         * A list of filters for the query. An AND is assumed between different filters. We support filters on
+         * Go Link name, author, department and type.
          */
         public Builder filters(List<FacetFilter> filters) {
             Utils.checkNotNull(filters, "filters");
@@ -339,7 +354,8 @@ public class ListShortcutsPaginatedRequest {
         }
 
         /**
-         * A list of filters for the query. An AND is assumed between different filters. We support filters on Go Link name, author, department and type.
+         * A list of filters for the query. An AND is assumed between different filters. We support filters on
+         * Go Link name, author, department and type.
          */
         public Builder filters(Optional<? extends List<FacetFilter>> filters) {
             Utils.checkNotNull(filters, "filters");
@@ -362,7 +378,8 @@ public class ListShortcutsPaginatedRequest {
 
 
         /**
-         * Search query that should be a substring in atleast one of the fields (alias , inputAlias, destinationUrl, description). Empty query does not filter shortcuts.
+         * Search query that should be a substring in atleast one of the fields (alias , inputAlias,
+         * destinationUrl, description). Empty query does not filter shortcuts.
          */
         public Builder query(String query) {
             Utils.checkNotNull(query, "query");
@@ -371,7 +388,8 @@ public class ListShortcutsPaginatedRequest {
         }
 
         /**
-         * Search query that should be a substring in atleast one of the fields (alias , inputAlias, destinationUrl, description). Empty query does not filter shortcuts.
+         * Search query that should be a substring in atleast one of the fields (alias , inputAlias,
+         * destinationUrl, description). Empty query does not filter shortcuts.
          */
         public Builder query(Optional<String> query) {
             Utils.checkNotNull(query, "query");

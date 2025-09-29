@@ -23,14 +23,18 @@ public class FacetFilter {
     private Optional<String> fieldName;
 
     /**
-     * Within a single FacetFilter, the values are to be treated like an OR. For example, fieldName type with values [EQUALS Presentation, EQUALS Spreadsheet] means we want to show a document if it's a Presentation OR a Spreadsheet.
+     * Within a single FacetFilter, the values are to be treated like an OR. For example, fieldName type
+     * with values [EQUALS Presentation, EQUALS Spreadsheet] means we want to show a document if it's a
+     * Presentation OR a Spreadsheet.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("values")
     private Optional<? extends List<FacetFilterValue>> values;
 
     /**
-     * Indicates the value of a facet, if any, that the given facet is grouped under. This is only used for nested facets, for example, fieldName could be owner and groupName would be Spreadsheet if showing all owners for spreadsheets as a nested facet.
+     * Indicates the value of a facet, if any, that the given facet is grouped under. This is only used for
+     * nested facets, for example, fieldName could be owner and groupName would be Spreadsheet if showing
+     * all owners for spreadsheets as a nested facet.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("groupName")
@@ -59,7 +63,9 @@ public class FacetFilter {
     }
 
     /**
-     * Within a single FacetFilter, the values are to be treated like an OR. For example, fieldName type with values [EQUALS Presentation, EQUALS Spreadsheet] means we want to show a document if it's a Presentation OR a Spreadsheet.
+     * Within a single FacetFilter, the values are to be treated like an OR. For example, fieldName type
+     * with values [EQUALS Presentation, EQUALS Spreadsheet] means we want to show a document if it's a
+     * Presentation OR a Spreadsheet.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -68,7 +74,9 @@ public class FacetFilter {
     }
 
     /**
-     * Indicates the value of a facet, if any, that the given facet is grouped under. This is only used for nested facets, for example, fieldName could be owner and groupName would be Spreadsheet if showing all owners for spreadsheets as a nested facet.
+     * Indicates the value of a facet, if any, that the given facet is grouped under. This is only used for
+     * nested facets, for example, fieldName could be owner and groupName would be Spreadsheet if showing
+     * all owners for spreadsheets as a nested facet.
      */
     @JsonIgnore
     public Optional<String> groupName() {
@@ -94,7 +102,9 @@ public class FacetFilter {
     }
 
     /**
-     * Within a single FacetFilter, the values are to be treated like an OR. For example, fieldName type with values [EQUALS Presentation, EQUALS Spreadsheet] means we want to show a document if it's a Presentation OR a Spreadsheet.
+     * Within a single FacetFilter, the values are to be treated like an OR. For example, fieldName type
+     * with values [EQUALS Presentation, EQUALS Spreadsheet] means we want to show a document if it's a
+     * Presentation OR a Spreadsheet.
      */
     public FacetFilter withValues(List<FacetFilterValue> values) {
         Utils.checkNotNull(values, "values");
@@ -104,7 +114,9 @@ public class FacetFilter {
 
 
     /**
-     * Within a single FacetFilter, the values are to be treated like an OR. For example, fieldName type with values [EQUALS Presentation, EQUALS Spreadsheet] means we want to show a document if it's a Presentation OR a Spreadsheet.
+     * Within a single FacetFilter, the values are to be treated like an OR. For example, fieldName type
+     * with values [EQUALS Presentation, EQUALS Spreadsheet] means we want to show a document if it's a
+     * Presentation OR a Spreadsheet.
      */
     public FacetFilter withValues(Optional<? extends List<FacetFilterValue>> values) {
         Utils.checkNotNull(values, "values");
@@ -113,7 +125,9 @@ public class FacetFilter {
     }
 
     /**
-     * Indicates the value of a facet, if any, that the given facet is grouped under. This is only used for nested facets, for example, fieldName could be owner and groupName would be Spreadsheet if showing all owners for spreadsheets as a nested facet.
+     * Indicates the value of a facet, if any, that the given facet is grouped under. This is only used for
+     * nested facets, for example, fieldName could be owner and groupName would be Spreadsheet if showing
+     * all owners for spreadsheets as a nested facet.
      */
     public FacetFilter withGroupName(String groupName) {
         Utils.checkNotNull(groupName, "groupName");
@@ -123,7 +137,9 @@ public class FacetFilter {
 
 
     /**
-     * Indicates the value of a facet, if any, that the given facet is grouped under. This is only used for nested facets, for example, fieldName could be owner and groupName would be Spreadsheet if showing all owners for spreadsheets as a nested facet.
+     * Indicates the value of a facet, if any, that the given facet is grouped under. This is only used for
+     * nested facets, for example, fieldName could be owner and groupName would be Spreadsheet if showing
+     * all owners for spreadsheets as a nested facet.
      */
     public FacetFilter withGroupName(Optional<String> groupName) {
         Utils.checkNotNull(groupName, "groupName");
@@ -188,7 +204,9 @@ public class FacetFilter {
 
 
         /**
-         * Within a single FacetFilter, the values are to be treated like an OR. For example, fieldName type with values [EQUALS Presentation, EQUALS Spreadsheet] means we want to show a document if it's a Presentation OR a Spreadsheet.
+         * Within a single FacetFilter, the values are to be treated like an OR. For example, fieldName type
+         * with values [EQUALS Presentation, EQUALS Spreadsheet] means we want to show a document if it's a
+         * Presentation OR a Spreadsheet.
          */
         public Builder values(List<FacetFilterValue> values) {
             Utils.checkNotNull(values, "values");
@@ -197,7 +215,9 @@ public class FacetFilter {
         }
 
         /**
-         * Within a single FacetFilter, the values are to be treated like an OR. For example, fieldName type with values [EQUALS Presentation, EQUALS Spreadsheet] means we want to show a document if it's a Presentation OR a Spreadsheet.
+         * Within a single FacetFilter, the values are to be treated like an OR. For example, fieldName type
+         * with values [EQUALS Presentation, EQUALS Spreadsheet] means we want to show a document if it's a
+         * Presentation OR a Spreadsheet.
          */
         public Builder values(Optional<? extends List<FacetFilterValue>> values) {
             Utils.checkNotNull(values, "values");
@@ -207,7 +227,9 @@ public class FacetFilter {
 
 
         /**
-         * Indicates the value of a facet, if any, that the given facet is grouped under. This is only used for nested facets, for example, fieldName could be owner and groupName would be Spreadsheet if showing all owners for spreadsheets as a nested facet.
+         * Indicates the value of a facet, if any, that the given facet is grouped under. This is only used for
+         * nested facets, for example, fieldName could be owner and groupName would be Spreadsheet if showing
+         * all owners for spreadsheets as a nested facet.
          */
         public Builder groupName(String groupName) {
             Utils.checkNotNull(groupName, "groupName");
@@ -216,7 +238,9 @@ public class FacetFilter {
         }
 
         /**
-         * Indicates the value of a facet, if any, that the given facet is grouped under. This is only used for nested facets, for example, fieldName could be owner and groupName would be Spreadsheet if showing all owners for spreadsheets as a nested facet.
+         * Indicates the value of a facet, if any, that the given facet is grouped under. This is only used for
+         * nested facets, for example, fieldName could be owner and groupName would be Spreadsheet if showing
+         * all owners for spreadsheets as a nested facet.
          */
         public Builder groupName(Optional<String> groupName) {
             Utils.checkNotNull(groupName, "groupName");

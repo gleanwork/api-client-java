@@ -19,7 +19,8 @@ import java.util.Optional;
 
 public class PropertyDefinition {
     /**
-     * The name of the property in the `DocumentMetadata` (e.g. 'createTime', 'updateTime', 'author', 'container'). In the future, this will support custom properties too.
+     * The name of the property in the `DocumentMetadata` (e.g. 'createTime', 'updateTime', 'author',
+     * 'container'). In the future, this will support custom properties too.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
@@ -40,7 +41,8 @@ public class PropertyDefinition {
     private Optional<String> displayLabelPlural;
 
     /**
-     * The type of custom property - this governs the search and faceting behavior. Note that MULTIPICKLIST is not yet supported.
+     * The type of custom property - this governs the search and faceting behavior. Note that MULTIPICKLIST
+     * is not yet supported.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("propertyType")
@@ -59,7 +61,11 @@ public class PropertyDefinition {
     private Optional<Boolean> hideUiFacet;
 
     /**
-     * Will be used to set the order of facets in the UI, if present. If set for one facet, must be set for all non-hidden UI facets. Must take on an integer value from 1 (shown at the top) to N (shown last), where N is the number of non-hidden UI facets. These facets will be ordered below the built-in "Type" and "Tag" operators.
+     * Will be used to set the order of facets in the UI, if present. If set for one facet, must be set for
+     * all non-hidden UI facets. Must take on an integer value from 1 (shown at the top) to N (shown last),
+     * where N is the number of non-hidden UI facets.
+     * 
+     * <p>These facets will be ordered below the built-in "Type" and "Tag" operators.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("uiFacetOrder")
@@ -117,7 +123,8 @@ public class PropertyDefinition {
     }
 
     /**
-     * The name of the property in the `DocumentMetadata` (e.g. 'createTime', 'updateTime', 'author', 'container'). In the future, this will support custom properties too.
+     * The name of the property in the `DocumentMetadata` (e.g. 'createTime', 'updateTime', 'author',
+     * 'container'). In the future, this will support custom properties too.
      */
     @JsonIgnore
     public Optional<String> name() {
@@ -141,7 +148,8 @@ public class PropertyDefinition {
     }
 
     /**
-     * The type of custom property - this governs the search and faceting behavior. Note that MULTIPICKLIST is not yet supported.
+     * The type of custom property - this governs the search and faceting behavior. Note that MULTIPICKLIST
+     * is not yet supported.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -164,7 +172,11 @@ public class PropertyDefinition {
     }
 
     /**
-     * Will be used to set the order of facets in the UI, if present. If set for one facet, must be set for all non-hidden UI facets. Must take on an integer value from 1 (shown at the top) to N (shown last), where N is the number of non-hidden UI facets. These facets will be ordered below the built-in "Type" and "Tag" operators.
+     * Will be used to set the order of facets in the UI, if present. If set for one facet, must be set for
+     * all non-hidden UI facets. Must take on an integer value from 1 (shown at the top) to N (shown last),
+     * where N is the number of non-hidden UI facets.
+     * 
+     * <p>These facets will be ordered below the built-in "Type" and "Tag" operators.
      */
     @JsonIgnore
     public Optional<Long> uiFacetOrder() {
@@ -193,7 +205,8 @@ public class PropertyDefinition {
 
 
     /**
-     * The name of the property in the `DocumentMetadata` (e.g. 'createTime', 'updateTime', 'author', 'container'). In the future, this will support custom properties too.
+     * The name of the property in the `DocumentMetadata` (e.g. 'createTime', 'updateTime', 'author',
+     * 'container'). In the future, this will support custom properties too.
      */
     public PropertyDefinition withName(String name) {
         Utils.checkNotNull(name, "name");
@@ -203,7 +216,8 @@ public class PropertyDefinition {
 
 
     /**
-     * The name of the property in the `DocumentMetadata` (e.g. 'createTime', 'updateTime', 'author', 'container'). In the future, this will support custom properties too.
+     * The name of the property in the `DocumentMetadata` (e.g. 'createTime', 'updateTime', 'author',
+     * 'container'). In the future, this will support custom properties too.
      */
     public PropertyDefinition withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
@@ -250,7 +264,8 @@ public class PropertyDefinition {
     }
 
     /**
-     * The type of custom property - this governs the search and faceting behavior. Note that MULTIPICKLIST is not yet supported.
+     * The type of custom property - this governs the search and faceting behavior. Note that MULTIPICKLIST
+     * is not yet supported.
      */
     public PropertyDefinition withPropertyType(PropertyType propertyType) {
         Utils.checkNotNull(propertyType, "propertyType");
@@ -260,7 +275,8 @@ public class PropertyDefinition {
 
 
     /**
-     * The type of custom property - this governs the search and faceting behavior. Note that MULTIPICKLIST is not yet supported.
+     * The type of custom property - this governs the search and faceting behavior. Note that MULTIPICKLIST
+     * is not yet supported.
      */
     public PropertyDefinition withPropertyType(Optional<? extends PropertyType> propertyType) {
         Utils.checkNotNull(propertyType, "propertyType");
@@ -301,7 +317,11 @@ public class PropertyDefinition {
     }
 
     /**
-     * Will be used to set the order of facets in the UI, if present. If set for one facet, must be set for all non-hidden UI facets. Must take on an integer value from 1 (shown at the top) to N (shown last), where N is the number of non-hidden UI facets. These facets will be ordered below the built-in "Type" and "Tag" operators.
+     * Will be used to set the order of facets in the UI, if present. If set for one facet, must be set for
+     * all non-hidden UI facets. Must take on an integer value from 1 (shown at the top) to N (shown last),
+     * where N is the number of non-hidden UI facets.
+     * 
+     * <p>These facets will be ordered below the built-in "Type" and "Tag" operators.
      */
     public PropertyDefinition withUiFacetOrder(long uiFacetOrder) {
         Utils.checkNotNull(uiFacetOrder, "uiFacetOrder");
@@ -311,7 +331,11 @@ public class PropertyDefinition {
 
 
     /**
-     * Will be used to set the order of facets in the UI, if present. If set for one facet, must be set for all non-hidden UI facets. Must take on an integer value from 1 (shown at the top) to N (shown last), where N is the number of non-hidden UI facets. These facets will be ordered below the built-in "Type" and "Tag" operators.
+     * Will be used to set the order of facets in the UI, if present. If set for one facet, must be set for
+     * all non-hidden UI facets. Must take on an integer value from 1 (shown at the top) to N (shown last),
+     * where N is the number of non-hidden UI facets.
+     * 
+     * <p>These facets will be ordered below the built-in "Type" and "Tag" operators.
      */
     public PropertyDefinition withUiFacetOrder(Optional<Long> uiFacetOrder) {
         Utils.checkNotNull(uiFacetOrder, "uiFacetOrder");
@@ -427,7 +451,8 @@ public class PropertyDefinition {
 
 
         /**
-         * The name of the property in the `DocumentMetadata` (e.g. 'createTime', 'updateTime', 'author', 'container'). In the future, this will support custom properties too.
+         * The name of the property in the `DocumentMetadata` (e.g. 'createTime', 'updateTime', 'author',
+         * 'container'). In the future, this will support custom properties too.
          */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
@@ -436,7 +461,8 @@ public class PropertyDefinition {
         }
 
         /**
-         * The name of the property in the `DocumentMetadata` (e.g. 'createTime', 'updateTime', 'author', 'container'). In the future, this will support custom properties too.
+         * The name of the property in the `DocumentMetadata` (e.g. 'createTime', 'updateTime', 'author',
+         * 'container'). In the future, this will support custom properties too.
          */
         public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
@@ -484,7 +510,8 @@ public class PropertyDefinition {
 
 
         /**
-         * The type of custom property - this governs the search and faceting behavior. Note that MULTIPICKLIST is not yet supported.
+         * The type of custom property - this governs the search and faceting behavior. Note that MULTIPICKLIST
+         * is not yet supported.
          */
         public Builder propertyType(PropertyType propertyType) {
             Utils.checkNotNull(propertyType, "propertyType");
@@ -493,7 +520,8 @@ public class PropertyDefinition {
         }
 
         /**
-         * The type of custom property - this governs the search and faceting behavior. Note that MULTIPICKLIST is not yet supported.
+         * The type of custom property - this governs the search and faceting behavior. Note that MULTIPICKLIST
+         * is not yet supported.
          */
         public Builder propertyType(Optional<? extends PropertyType> propertyType) {
             Utils.checkNotNull(propertyType, "propertyType");
@@ -535,7 +563,11 @@ public class PropertyDefinition {
 
 
         /**
-         * Will be used to set the order of facets in the UI, if present. If set for one facet, must be set for all non-hidden UI facets. Must take on an integer value from 1 (shown at the top) to N (shown last), where N is the number of non-hidden UI facets. These facets will be ordered below the built-in "Type" and "Tag" operators.
+         * Will be used to set the order of facets in the UI, if present. If set for one facet, must be set for
+         * all non-hidden UI facets. Must take on an integer value from 1 (shown at the top) to N (shown last),
+         * where N is the number of non-hidden UI facets.
+         * 
+         * <p>These facets will be ordered below the built-in "Type" and "Tag" operators.
          */
         public Builder uiFacetOrder(long uiFacetOrder) {
             Utils.checkNotNull(uiFacetOrder, "uiFacetOrder");
@@ -544,7 +576,11 @@ public class PropertyDefinition {
         }
 
         /**
-         * Will be used to set the order of facets in the UI, if present. If set for one facet, must be set for all non-hidden UI facets. Must take on an integer value from 1 (shown at the top) to N (shown last), where N is the number of non-hidden UI facets. These facets will be ordered below the built-in "Type" and "Tag" operators.
+         * Will be used to set the order of facets in the UI, if present. If set for one facet, must be set for
+         * all non-hidden UI facets. Must take on an integer value from 1 (shown at the top) to N (shown last),
+         * where N is the number of non-hidden UI facets.
+         * 
+         * <p>These facets will be ordered below the built-in "Type" and "Tag" operators.
          */
         public Builder uiFacetOrder(Optional<Long> uiFacetOrder) {
             Utils.checkNotNull(uiFacetOrder, "uiFacetOrder");

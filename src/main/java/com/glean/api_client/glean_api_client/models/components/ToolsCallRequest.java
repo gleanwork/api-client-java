@@ -20,7 +20,8 @@ public class ToolsCallRequest {
     private String name;
 
     /**
-     * The parameters for the tool. Each key is the name of the parameter and the value is the parameter object.
+     * The parameters for the tool. Each key is the name of the parameter and the value is the parameter
+     * object.
      */
     @JsonProperty("parameters")
     private Map<String, ToolsCallParameter> parameters;
@@ -45,7 +46,8 @@ public class ToolsCallRequest {
     }
 
     /**
-     * The parameters for the tool. Each key is the name of the parameter and the value is the parameter object.
+     * The parameters for the tool. Each key is the name of the parameter and the value is the parameter
+     * object.
      */
     @JsonIgnore
     public Map<String, ToolsCallParameter> parameters() {
@@ -67,7 +69,8 @@ public class ToolsCallRequest {
     }
 
     /**
-     * The parameters for the tool. Each key is the name of the parameter and the value is the parameter object.
+     * The parameters for the tool. Each key is the name of the parameter and the value is the parameter
+     * object.
      */
     public ToolsCallRequest withParameters(Map<String, ToolsCallParameter> parameters) {
         Utils.checkNotNull(parameters, "parameters");
@@ -125,7 +128,8 @@ public class ToolsCallRequest {
 
 
         /**
-         * The parameters for the tool. Each key is the name of the parameter and the value is the parameter object.
+         * The parameters for the tool. Each key is the name of the parameter and the value is the parameter
+         * object.
          */
         public Builder parameters(Map<String, ToolsCallParameter> parameters) {
             Utils.checkNotNull(parameters, "parameters");

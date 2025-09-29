@@ -38,21 +38,32 @@ public class CustomDatasourceConfig {
     private Optional<String> displayName;
 
     /**
-     * The type of this datasource. It is an important signal for relevance and must be specified and cannot be UNCATEGORIZED. Please refer to [this](https://developers.glean.com/docs/indexing_api_datasource_category/) for more details.
+     * The type of this datasource. It is an important signal for relevance and must be specified and
+     * cannot be UNCATEGORIZED. Please refer to
+     * [this](https://developers.glean.com/docs/indexing_api_datasource_category/) for more details.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("datasourceCategory")
     private Optional<? extends DatasourceCategory> datasourceCategory;
 
     /**
-     * Regular expression that matches URLs of documents of the datasource instance. The behavior for multiple matches is non-deterministic. **Note: `urlRegex` is a required field for non-entity datasources, but not required if the datasource is used to push custom entities (ie. datasources where isEntityDatasource is false). Please add a regex as specific as possible to this datasource instance.**
+     * Regular expression that matches URLs of documents of the datasource instance. The behavior for
+     * multiple matches is non-deterministic. **Note: `urlRegex` is a required field for non-entity
+     * datasources, but not required if the datasource is used to push custom entities (ie.
+     * 
+     * <p>datasources where isEntityDatasource is false). Please add a regex as specific as possible to this
+     * datasource instance.**
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("urlRegex")
     private Optional<String> urlRegex;
 
     /**
-     * The URL to an image to be displayed as an icon for this datasource instance. Must have a transparency mask. SVG are recommended over PNG. Public, scio-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
+     * The URL to an image to be displayed as an icon for this datasource instance. Must have a
+     * transparency mask. SVG are recommended over PNG.
+     * 
+     * <p>Public, scio-authenticated and Base64 encoded data URLs are all valid (but not
+     * third-party-authenticated URLs).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("iconUrl")
@@ -73,7 +84,8 @@ public class CustomDatasourceConfig {
     private Optional<String> suggestionText;
 
     /**
-     * The URL of the landing page for this datasource instance. Should point to the most useful page for users, not the company marketing page.
+     * The URL of the landing page for this datasource instance. Should point to the most useful page for
+     * users, not the company marketing page.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("homeUrl")
@@ -87,7 +99,11 @@ public class CustomDatasourceConfig {
     private Optional<? extends List<String>> crawlerSeedUrls;
 
     /**
-     * The URL to an image to be displayed as an icon for this datasource instance in dark mode. Must have a transparency mask. SVG are recommended over PNG. Public, scio-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
+     * The URL to an image to be displayed as an icon for this datasource instance in dark mode. Must have
+     * a transparency mask. SVG are recommended over PNG.
+     * 
+     * <p>Public, scio-authenticated and Base64 encoded data URLs are all valid (but not
+     * third-party-authenticated URLs).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("iconDarkUrl")
@@ -101,14 +117,16 @@ public class CustomDatasourceConfig {
     private Optional<? extends List<HideBuiltInFacet>> hideBuiltInFacets;
 
     /**
-     * A list of regular expressions to apply to an arbitrary URL to transform it into a canonical URL for this datasource instance. Regexes are to be applied in the order specified in this list.
+     * A list of regular expressions to apply to an arbitrary URL to transform it into a canonical URL for
+     * this datasource instance. Regexes are to be applied in the order specified in this list.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("canonicalizingURLRegex")
     private Optional<? extends List<CanonicalizingRegexType>> canonicalizingURLRegex;
 
     /**
-     * A list of regular expressions to apply to an arbitrary title to transform it into a title that will be displayed in the search results
+     * A list of regular expressions to apply to an arbitrary title to transform it into a title that will
+     * be displayed in the search results
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("canonicalizingTitleRegex")
@@ -127,14 +145,18 @@ public class CustomDatasourceConfig {
     private Optional<? extends CustomDatasourceConfigConnectorType> connectorType;
 
     /**
-     * List of actions for this datasource instance that will show up in autocomplete and app card, e.g. "Create new issue" for jira
+     * List of actions for this datasource instance that will show up in autocomplete and app card, e.g.
+     * "Create new issue" for jira
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("quicklinks")
     private Optional<? extends List<Quicklink>> quicklinks;
 
     /**
-     * The name of a render config to use for displaying results from this datasource. Any well known datasource name may be used to render the same as that source, e.g. `web` or `gdrive`. Please refer to [this](https://developers.glean.com/docs/rendering_search_results/) for more details
+     * The name of a render config to use for displaying results from this datasource. Any well known
+     * datasource name may be used to render the same as that source, e.g. `web` or `gdrive`.
+     * 
+     * <p>Please refer to [this](https://developers.glean.com/docs/rendering_search_results/) for more details
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("renderConfigPreset")
@@ -155,7 +177,9 @@ public class CustomDatasourceConfig {
     private Optional<Boolean> isOnPrem;
 
     /**
-     * True if browser activity is able to report the correct URL for VIEW events. Set this to true if the URLs reported by Chrome are constant throughout each page load. Set this to false if the page has Javascript that modifies the URL during or after the load.
+     * True if browser activity is able to report the correct URL for VIEW events. Set this to true if the
+     * URLs reported by Chrome are constant throughout each page load. Set this to false if the page has
+     * Javascript that modifies the URL during or after the load.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("trustUrlRegexForViewActivity")
@@ -176,7 +200,8 @@ public class CustomDatasourceConfig {
     private Optional<Boolean> stripFragmentInCanonicalUrl;
 
     /**
-     * If the datasource uses another datasource for identity info, then the name of the datasource. The identity datasource must exist already.
+     * If the datasource uses another datasource for identity info, then the name of the datasource. The
+     * identity datasource must exist already.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("identityDatasourceName")
@@ -204,7 +229,8 @@ public class CustomDatasourceConfig {
     private Optional<Boolean> isEntityDatasource;
 
     /**
-     * True if this datasource will be used for testing purpose only. Documents from such a datasource wouldn't have any effect on search rankings.
+     * True if this datasource will be used for testing purpose only. Documents from such a datasource
+     * wouldn't have any effect on search rankings.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("isTestDatasource")
@@ -325,7 +351,9 @@ public class CustomDatasourceConfig {
     }
 
     /**
-     * The type of this datasource. It is an important signal for relevance and must be specified and cannot be UNCATEGORIZED. Please refer to [this](https://developers.glean.com/docs/indexing_api_datasource_category/) for more details.
+     * The type of this datasource. It is an important signal for relevance and must be specified and
+     * cannot be UNCATEGORIZED. Please refer to
+     * [this](https://developers.glean.com/docs/indexing_api_datasource_category/) for more details.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -334,7 +362,12 @@ public class CustomDatasourceConfig {
     }
 
     /**
-     * Regular expression that matches URLs of documents of the datasource instance. The behavior for multiple matches is non-deterministic. **Note: `urlRegex` is a required field for non-entity datasources, but not required if the datasource is used to push custom entities (ie. datasources where isEntityDatasource is false). Please add a regex as specific as possible to this datasource instance.**
+     * Regular expression that matches URLs of documents of the datasource instance. The behavior for
+     * multiple matches is non-deterministic. **Note: `urlRegex` is a required field for non-entity
+     * datasources, but not required if the datasource is used to push custom entities (ie.
+     * 
+     * <p>datasources where isEntityDatasource is false). Please add a regex as specific as possible to this
+     * datasource instance.**
      */
     @JsonIgnore
     public Optional<String> urlRegex() {
@@ -342,7 +375,11 @@ public class CustomDatasourceConfig {
     }
 
     /**
-     * The URL to an image to be displayed as an icon for this datasource instance. Must have a transparency mask. SVG are recommended over PNG. Public, scio-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
+     * The URL to an image to be displayed as an icon for this datasource instance. Must have a
+     * transparency mask. SVG are recommended over PNG.
+     * 
+     * <p>Public, scio-authenticated and Base64 encoded data URLs are all valid (but not
+     * third-party-authenticated URLs).
      */
     @JsonIgnore
     public Optional<String> iconUrl() {
@@ -367,7 +404,8 @@ public class CustomDatasourceConfig {
     }
 
     /**
-     * The URL of the landing page for this datasource instance. Should point to the most useful page for users, not the company marketing page.
+     * The URL of the landing page for this datasource instance. Should point to the most useful page for
+     * users, not the company marketing page.
      */
     @JsonIgnore
     public Optional<String> homeUrl() {
@@ -384,7 +422,11 @@ public class CustomDatasourceConfig {
     }
 
     /**
-     * The URL to an image to be displayed as an icon for this datasource instance in dark mode. Must have a transparency mask. SVG are recommended over PNG. Public, scio-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
+     * The URL to an image to be displayed as an icon for this datasource instance in dark mode. Must have
+     * a transparency mask. SVG are recommended over PNG.
+     * 
+     * <p>Public, scio-authenticated and Base64 encoded data URLs are all valid (but not
+     * third-party-authenticated URLs).
      */
     @JsonIgnore
     public Optional<String> iconDarkUrl() {
@@ -401,7 +443,8 @@ public class CustomDatasourceConfig {
     }
 
     /**
-     * A list of regular expressions to apply to an arbitrary URL to transform it into a canonical URL for this datasource instance. Regexes are to be applied in the order specified in this list.
+     * A list of regular expressions to apply to an arbitrary URL to transform it into a canonical URL for
+     * this datasource instance. Regexes are to be applied in the order specified in this list.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -410,7 +453,8 @@ public class CustomDatasourceConfig {
     }
 
     /**
-     * A list of regular expressions to apply to an arbitrary title to transform it into a title that will be displayed in the search results
+     * A list of regular expressions to apply to an arbitrary title to transform it into a title that will
+     * be displayed in the search results
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -433,7 +477,8 @@ public class CustomDatasourceConfig {
     }
 
     /**
-     * List of actions for this datasource instance that will show up in autocomplete and app card, e.g. "Create new issue" for jira
+     * List of actions for this datasource instance that will show up in autocomplete and app card, e.g.
+     * "Create new issue" for jira
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -442,7 +487,10 @@ public class CustomDatasourceConfig {
     }
 
     /**
-     * The name of a render config to use for displaying results from this datasource. Any well known datasource name may be used to render the same as that source, e.g. `web` or `gdrive`. Please refer to [this](https://developers.glean.com/docs/rendering_search_results/) for more details
+     * The name of a render config to use for displaying results from this datasource. Any well known
+     * datasource name may be used to render the same as that source, e.g. `web` or `gdrive`.
+     * 
+     * <p>Please refer to [this](https://developers.glean.com/docs/rendering_search_results/) for more details
      */
     @JsonIgnore
     public Optional<String> renderConfigPreset() {
@@ -467,7 +515,9 @@ public class CustomDatasourceConfig {
     }
 
     /**
-     * True if browser activity is able to report the correct URL for VIEW events. Set this to true if the URLs reported by Chrome are constant throughout each page load. Set this to false if the page has Javascript that modifies the URL during or after the load.
+     * True if browser activity is able to report the correct URL for VIEW events. Set this to true if the
+     * URLs reported by Chrome are constant throughout each page load. Set this to false if the page has
+     * Javascript that modifies the URL during or after the load.
      */
     @JsonIgnore
     public Optional<Boolean> trustUrlRegexForViewActivity() {
@@ -491,7 +541,8 @@ public class CustomDatasourceConfig {
     }
 
     /**
-     * If the datasource uses another datasource for identity info, then the name of the datasource. The identity datasource must exist already.
+     * If the datasource uses another datasource for identity info, then the name of the datasource. The
+     * identity datasource must exist already.
      */
     @JsonIgnore
     public Optional<String> identityDatasourceName() {
@@ -523,7 +574,8 @@ public class CustomDatasourceConfig {
     }
 
     /**
-     * True if this datasource will be used for testing purpose only. Documents from such a datasource wouldn't have any effect on search rankings.
+     * True if this datasource will be used for testing purpose only. Documents from such a datasource
+     * wouldn't have any effect on search rankings.
      */
     @JsonIgnore
     public Optional<Boolean> isTestDatasource() {
@@ -564,7 +616,9 @@ public class CustomDatasourceConfig {
     }
 
     /**
-     * The type of this datasource. It is an important signal for relevance and must be specified and cannot be UNCATEGORIZED. Please refer to [this](https://developers.glean.com/docs/indexing_api_datasource_category/) for more details.
+     * The type of this datasource. It is an important signal for relevance and must be specified and
+     * cannot be UNCATEGORIZED. Please refer to
+     * [this](https://developers.glean.com/docs/indexing_api_datasource_category/) for more details.
      */
     public CustomDatasourceConfig withDatasourceCategory(DatasourceCategory datasourceCategory) {
         Utils.checkNotNull(datasourceCategory, "datasourceCategory");
@@ -574,7 +628,9 @@ public class CustomDatasourceConfig {
 
 
     /**
-     * The type of this datasource. It is an important signal for relevance and must be specified and cannot be UNCATEGORIZED. Please refer to [this](https://developers.glean.com/docs/indexing_api_datasource_category/) for more details.
+     * The type of this datasource. It is an important signal for relevance and must be specified and
+     * cannot be UNCATEGORIZED. Please refer to
+     * [this](https://developers.glean.com/docs/indexing_api_datasource_category/) for more details.
      */
     public CustomDatasourceConfig withDatasourceCategory(Optional<? extends DatasourceCategory> datasourceCategory) {
         Utils.checkNotNull(datasourceCategory, "datasourceCategory");
@@ -583,7 +639,12 @@ public class CustomDatasourceConfig {
     }
 
     /**
-     * Regular expression that matches URLs of documents of the datasource instance. The behavior for multiple matches is non-deterministic. **Note: `urlRegex` is a required field for non-entity datasources, but not required if the datasource is used to push custom entities (ie. datasources where isEntityDatasource is false). Please add a regex as specific as possible to this datasource instance.**
+     * Regular expression that matches URLs of documents of the datasource instance. The behavior for
+     * multiple matches is non-deterministic. **Note: `urlRegex` is a required field for non-entity
+     * datasources, but not required if the datasource is used to push custom entities (ie.
+     * 
+     * <p>datasources where isEntityDatasource is false). Please add a regex as specific as possible to this
+     * datasource instance.**
      */
     public CustomDatasourceConfig withUrlRegex(String urlRegex) {
         Utils.checkNotNull(urlRegex, "urlRegex");
@@ -593,7 +654,12 @@ public class CustomDatasourceConfig {
 
 
     /**
-     * Regular expression that matches URLs of documents of the datasource instance. The behavior for multiple matches is non-deterministic. **Note: `urlRegex` is a required field for non-entity datasources, but not required if the datasource is used to push custom entities (ie. datasources where isEntityDatasource is false). Please add a regex as specific as possible to this datasource instance.**
+     * Regular expression that matches URLs of documents of the datasource instance. The behavior for
+     * multiple matches is non-deterministic. **Note: `urlRegex` is a required field for non-entity
+     * datasources, but not required if the datasource is used to push custom entities (ie.
+     * 
+     * <p>datasources where isEntityDatasource is false). Please add a regex as specific as possible to this
+     * datasource instance.**
      */
     public CustomDatasourceConfig withUrlRegex(Optional<String> urlRegex) {
         Utils.checkNotNull(urlRegex, "urlRegex");
@@ -602,7 +668,11 @@ public class CustomDatasourceConfig {
     }
 
     /**
-     * The URL to an image to be displayed as an icon for this datasource instance. Must have a transparency mask. SVG are recommended over PNG. Public, scio-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
+     * The URL to an image to be displayed as an icon for this datasource instance. Must have a
+     * transparency mask. SVG are recommended over PNG.
+     * 
+     * <p>Public, scio-authenticated and Base64 encoded data URLs are all valid (but not
+     * third-party-authenticated URLs).
      */
     public CustomDatasourceConfig withIconUrl(String iconUrl) {
         Utils.checkNotNull(iconUrl, "iconUrl");
@@ -612,7 +682,11 @@ public class CustomDatasourceConfig {
 
 
     /**
-     * The URL to an image to be displayed as an icon for this datasource instance. Must have a transparency mask. SVG are recommended over PNG. Public, scio-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
+     * The URL to an image to be displayed as an icon for this datasource instance. Must have a
+     * transparency mask. SVG are recommended over PNG.
+     * 
+     * <p>Public, scio-authenticated and Base64 encoded data URLs are all valid (but not
+     * third-party-authenticated URLs).
      */
     public CustomDatasourceConfig withIconUrl(Optional<String> iconUrl) {
         Utils.checkNotNull(iconUrl, "iconUrl");
@@ -659,7 +733,8 @@ public class CustomDatasourceConfig {
     }
 
     /**
-     * The URL of the landing page for this datasource instance. Should point to the most useful page for users, not the company marketing page.
+     * The URL of the landing page for this datasource instance. Should point to the most useful page for
+     * users, not the company marketing page.
      */
     public CustomDatasourceConfig withHomeUrl(String homeUrl) {
         Utils.checkNotNull(homeUrl, "homeUrl");
@@ -669,7 +744,8 @@ public class CustomDatasourceConfig {
 
 
     /**
-     * The URL of the landing page for this datasource instance. Should point to the most useful page for users, not the company marketing page.
+     * The URL of the landing page for this datasource instance. Should point to the most useful page for
+     * users, not the company marketing page.
      */
     public CustomDatasourceConfig withHomeUrl(Optional<String> homeUrl) {
         Utils.checkNotNull(homeUrl, "homeUrl");
@@ -697,7 +773,11 @@ public class CustomDatasourceConfig {
     }
 
     /**
-     * The URL to an image to be displayed as an icon for this datasource instance in dark mode. Must have a transparency mask. SVG are recommended over PNG. Public, scio-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
+     * The URL to an image to be displayed as an icon for this datasource instance in dark mode. Must have
+     * a transparency mask. SVG are recommended over PNG.
+     * 
+     * <p>Public, scio-authenticated and Base64 encoded data URLs are all valid (but not
+     * third-party-authenticated URLs).
      */
     public CustomDatasourceConfig withIconDarkUrl(String iconDarkUrl) {
         Utils.checkNotNull(iconDarkUrl, "iconDarkUrl");
@@ -707,7 +787,11 @@ public class CustomDatasourceConfig {
 
 
     /**
-     * The URL to an image to be displayed as an icon for this datasource instance in dark mode. Must have a transparency mask. SVG are recommended over PNG. Public, scio-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
+     * The URL to an image to be displayed as an icon for this datasource instance in dark mode. Must have
+     * a transparency mask. SVG are recommended over PNG.
+     * 
+     * <p>Public, scio-authenticated and Base64 encoded data URLs are all valid (but not
+     * third-party-authenticated URLs).
      */
     public CustomDatasourceConfig withIconDarkUrl(Optional<String> iconDarkUrl) {
         Utils.checkNotNull(iconDarkUrl, "iconDarkUrl");
@@ -735,7 +819,8 @@ public class CustomDatasourceConfig {
     }
 
     /**
-     * A list of regular expressions to apply to an arbitrary URL to transform it into a canonical URL for this datasource instance. Regexes are to be applied in the order specified in this list.
+     * A list of regular expressions to apply to an arbitrary URL to transform it into a canonical URL for
+     * this datasource instance. Regexes are to be applied in the order specified in this list.
      */
     public CustomDatasourceConfig withCanonicalizingURLRegex(List<CanonicalizingRegexType> canonicalizingURLRegex) {
         Utils.checkNotNull(canonicalizingURLRegex, "canonicalizingURLRegex");
@@ -745,7 +830,8 @@ public class CustomDatasourceConfig {
 
 
     /**
-     * A list of regular expressions to apply to an arbitrary URL to transform it into a canonical URL for this datasource instance. Regexes are to be applied in the order specified in this list.
+     * A list of regular expressions to apply to an arbitrary URL to transform it into a canonical URL for
+     * this datasource instance. Regexes are to be applied in the order specified in this list.
      */
     public CustomDatasourceConfig withCanonicalizingURLRegex(Optional<? extends List<CanonicalizingRegexType>> canonicalizingURLRegex) {
         Utils.checkNotNull(canonicalizingURLRegex, "canonicalizingURLRegex");
@@ -754,7 +840,8 @@ public class CustomDatasourceConfig {
     }
 
     /**
-     * A list of regular expressions to apply to an arbitrary title to transform it into a title that will be displayed in the search results
+     * A list of regular expressions to apply to an arbitrary title to transform it into a title that will
+     * be displayed in the search results
      */
     public CustomDatasourceConfig withCanonicalizingTitleRegex(List<CanonicalizingRegexType> canonicalizingTitleRegex) {
         Utils.checkNotNull(canonicalizingTitleRegex, "canonicalizingTitleRegex");
@@ -764,7 +851,8 @@ public class CustomDatasourceConfig {
 
 
     /**
-     * A list of regular expressions to apply to an arbitrary title to transform it into a title that will be displayed in the search results
+     * A list of regular expressions to apply to an arbitrary title to transform it into a title that will
+     * be displayed in the search results
      */
     public CustomDatasourceConfig withCanonicalizingTitleRegex(Optional<? extends List<CanonicalizingRegexType>> canonicalizingTitleRegex) {
         Utils.checkNotNull(canonicalizingTitleRegex, "canonicalizingTitleRegex");
@@ -805,7 +893,8 @@ public class CustomDatasourceConfig {
     }
 
     /**
-     * List of actions for this datasource instance that will show up in autocomplete and app card, e.g. "Create new issue" for jira
+     * List of actions for this datasource instance that will show up in autocomplete and app card, e.g.
+     * "Create new issue" for jira
      */
     public CustomDatasourceConfig withQuicklinks(List<Quicklink> quicklinks) {
         Utils.checkNotNull(quicklinks, "quicklinks");
@@ -815,7 +904,8 @@ public class CustomDatasourceConfig {
 
 
     /**
-     * List of actions for this datasource instance that will show up in autocomplete and app card, e.g. "Create new issue" for jira
+     * List of actions for this datasource instance that will show up in autocomplete and app card, e.g.
+     * "Create new issue" for jira
      */
     public CustomDatasourceConfig withQuicklinks(Optional<? extends List<Quicklink>> quicklinks) {
         Utils.checkNotNull(quicklinks, "quicklinks");
@@ -824,7 +914,10 @@ public class CustomDatasourceConfig {
     }
 
     /**
-     * The name of a render config to use for displaying results from this datasource. Any well known datasource name may be used to render the same as that source, e.g. `web` or `gdrive`. Please refer to [this](https://developers.glean.com/docs/rendering_search_results/) for more details
+     * The name of a render config to use for displaying results from this datasource. Any well known
+     * datasource name may be used to render the same as that source, e.g. `web` or `gdrive`.
+     * 
+     * <p>Please refer to [this](https://developers.glean.com/docs/rendering_search_results/) for more details
      */
     public CustomDatasourceConfig withRenderConfigPreset(String renderConfigPreset) {
         Utils.checkNotNull(renderConfigPreset, "renderConfigPreset");
@@ -834,7 +927,10 @@ public class CustomDatasourceConfig {
 
 
     /**
-     * The name of a render config to use for displaying results from this datasource. Any well known datasource name may be used to render the same as that source, e.g. `web` or `gdrive`. Please refer to [this](https://developers.glean.com/docs/rendering_search_results/) for more details
+     * The name of a render config to use for displaying results from this datasource. Any well known
+     * datasource name may be used to render the same as that source, e.g. `web` or `gdrive`.
+     * 
+     * <p>Please refer to [this](https://developers.glean.com/docs/rendering_search_results/) for more details
      */
     public CustomDatasourceConfig withRenderConfigPreset(Optional<String> renderConfigPreset) {
         Utils.checkNotNull(renderConfigPreset, "renderConfigPreset");
@@ -881,7 +977,9 @@ public class CustomDatasourceConfig {
     }
 
     /**
-     * True if browser activity is able to report the correct URL for VIEW events. Set this to true if the URLs reported by Chrome are constant throughout each page load. Set this to false if the page has Javascript that modifies the URL during or after the load.
+     * True if browser activity is able to report the correct URL for VIEW events. Set this to true if the
+     * URLs reported by Chrome are constant throughout each page load. Set this to false if the page has
+     * Javascript that modifies the URL during or after the load.
      */
     public CustomDatasourceConfig withTrustUrlRegexForViewActivity(boolean trustUrlRegexForViewActivity) {
         Utils.checkNotNull(trustUrlRegexForViewActivity, "trustUrlRegexForViewActivity");
@@ -891,7 +989,9 @@ public class CustomDatasourceConfig {
 
 
     /**
-     * True if browser activity is able to report the correct URL for VIEW events. Set this to true if the URLs reported by Chrome are constant throughout each page load. Set this to false if the page has Javascript that modifies the URL during or after the load.
+     * True if browser activity is able to report the correct URL for VIEW events. Set this to true if the
+     * URLs reported by Chrome are constant throughout each page load. Set this to false if the page has
+     * Javascript that modifies the URL during or after the load.
      */
     public CustomDatasourceConfig withTrustUrlRegexForViewActivity(Optional<Boolean> trustUrlRegexForViewActivity) {
         Utils.checkNotNull(trustUrlRegexForViewActivity, "trustUrlRegexForViewActivity");
@@ -938,7 +1038,8 @@ public class CustomDatasourceConfig {
     }
 
     /**
-     * If the datasource uses another datasource for identity info, then the name of the datasource. The identity datasource must exist already.
+     * If the datasource uses another datasource for identity info, then the name of the datasource. The
+     * identity datasource must exist already.
      */
     public CustomDatasourceConfig withIdentityDatasourceName(String identityDatasourceName) {
         Utils.checkNotNull(identityDatasourceName, "identityDatasourceName");
@@ -948,7 +1049,8 @@ public class CustomDatasourceConfig {
 
 
     /**
-     * If the datasource uses another datasource for identity info, then the name of the datasource. The identity datasource must exist already.
+     * If the datasource uses another datasource for identity info, then the name of the datasource. The
+     * identity datasource must exist already.
      */
     public CustomDatasourceConfig withIdentityDatasourceName(Optional<String> identityDatasourceName) {
         Utils.checkNotNull(identityDatasourceName, "identityDatasourceName");
@@ -1014,7 +1116,8 @@ public class CustomDatasourceConfig {
     }
 
     /**
-     * True if this datasource will be used for testing purpose only. Documents from such a datasource wouldn't have any effect on search rankings.
+     * True if this datasource will be used for testing purpose only. Documents from such a datasource
+     * wouldn't have any effect on search rankings.
      */
     public CustomDatasourceConfig withIsTestDatasource(boolean isTestDatasource) {
         Utils.checkNotNull(isTestDatasource, "isTestDatasource");
@@ -1024,7 +1127,8 @@ public class CustomDatasourceConfig {
 
 
     /**
-     * True if this datasource will be used for testing purpose only. Documents from such a datasource wouldn't have any effect on search rankings.
+     * True if this datasource will be used for testing purpose only. Documents from such a datasource
+     * wouldn't have any effect on search rankings.
      */
     public CustomDatasourceConfig withIsTestDatasource(Optional<Boolean> isTestDatasource) {
         Utils.checkNotNull(isTestDatasource, "isTestDatasource");
@@ -1209,7 +1313,9 @@ public class CustomDatasourceConfig {
 
 
         /**
-         * The type of this datasource. It is an important signal for relevance and must be specified and cannot be UNCATEGORIZED. Please refer to [this](https://developers.glean.com/docs/indexing_api_datasource_category/) for more details.
+         * The type of this datasource. It is an important signal for relevance and must be specified and
+         * cannot be UNCATEGORIZED. Please refer to
+         * [this](https://developers.glean.com/docs/indexing_api_datasource_category/) for more details.
          */
         public Builder datasourceCategory(DatasourceCategory datasourceCategory) {
             Utils.checkNotNull(datasourceCategory, "datasourceCategory");
@@ -1218,7 +1324,9 @@ public class CustomDatasourceConfig {
         }
 
         /**
-         * The type of this datasource. It is an important signal for relevance and must be specified and cannot be UNCATEGORIZED. Please refer to [this](https://developers.glean.com/docs/indexing_api_datasource_category/) for more details.
+         * The type of this datasource. It is an important signal for relevance and must be specified and
+         * cannot be UNCATEGORIZED. Please refer to
+         * [this](https://developers.glean.com/docs/indexing_api_datasource_category/) for more details.
          */
         public Builder datasourceCategory(Optional<? extends DatasourceCategory> datasourceCategory) {
             Utils.checkNotNull(datasourceCategory, "datasourceCategory");
@@ -1228,7 +1336,12 @@ public class CustomDatasourceConfig {
 
 
         /**
-         * Regular expression that matches URLs of documents of the datasource instance. The behavior for multiple matches is non-deterministic. **Note: `urlRegex` is a required field for non-entity datasources, but not required if the datasource is used to push custom entities (ie. datasources where isEntityDatasource is false). Please add a regex as specific as possible to this datasource instance.**
+         * Regular expression that matches URLs of documents of the datasource instance. The behavior for
+         * multiple matches is non-deterministic. **Note: `urlRegex` is a required field for non-entity
+         * datasources, but not required if the datasource is used to push custom entities (ie.
+         * 
+         * <p>datasources where isEntityDatasource is false). Please add a regex as specific as possible to this
+         * datasource instance.**
          */
         public Builder urlRegex(String urlRegex) {
             Utils.checkNotNull(urlRegex, "urlRegex");
@@ -1237,7 +1350,12 @@ public class CustomDatasourceConfig {
         }
 
         /**
-         * Regular expression that matches URLs of documents of the datasource instance. The behavior for multiple matches is non-deterministic. **Note: `urlRegex` is a required field for non-entity datasources, but not required if the datasource is used to push custom entities (ie. datasources where isEntityDatasource is false). Please add a regex as specific as possible to this datasource instance.**
+         * Regular expression that matches URLs of documents of the datasource instance. The behavior for
+         * multiple matches is non-deterministic. **Note: `urlRegex` is a required field for non-entity
+         * datasources, but not required if the datasource is used to push custom entities (ie.
+         * 
+         * <p>datasources where isEntityDatasource is false). Please add a regex as specific as possible to this
+         * datasource instance.**
          */
         public Builder urlRegex(Optional<String> urlRegex) {
             Utils.checkNotNull(urlRegex, "urlRegex");
@@ -1247,7 +1365,11 @@ public class CustomDatasourceConfig {
 
 
         /**
-         * The URL to an image to be displayed as an icon for this datasource instance. Must have a transparency mask. SVG are recommended over PNG. Public, scio-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
+         * The URL to an image to be displayed as an icon for this datasource instance. Must have a
+         * transparency mask. SVG are recommended over PNG.
+         * 
+         * <p>Public, scio-authenticated and Base64 encoded data URLs are all valid (but not
+         * third-party-authenticated URLs).
          */
         public Builder iconUrl(String iconUrl) {
             Utils.checkNotNull(iconUrl, "iconUrl");
@@ -1256,7 +1378,11 @@ public class CustomDatasourceConfig {
         }
 
         /**
-         * The URL to an image to be displayed as an icon for this datasource instance. Must have a transparency mask. SVG are recommended over PNG. Public, scio-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
+         * The URL to an image to be displayed as an icon for this datasource instance. Must have a
+         * transparency mask. SVG are recommended over PNG.
+         * 
+         * <p>Public, scio-authenticated and Base64 encoded data URLs are all valid (but not
+         * third-party-authenticated URLs).
          */
         public Builder iconUrl(Optional<String> iconUrl) {
             Utils.checkNotNull(iconUrl, "iconUrl");
@@ -1304,7 +1430,8 @@ public class CustomDatasourceConfig {
 
 
         /**
-         * The URL of the landing page for this datasource instance. Should point to the most useful page for users, not the company marketing page.
+         * The URL of the landing page for this datasource instance. Should point to the most useful page for
+         * users, not the company marketing page.
          */
         public Builder homeUrl(String homeUrl) {
             Utils.checkNotNull(homeUrl, "homeUrl");
@@ -1313,7 +1440,8 @@ public class CustomDatasourceConfig {
         }
 
         /**
-         * The URL of the landing page for this datasource instance. Should point to the most useful page for users, not the company marketing page.
+         * The URL of the landing page for this datasource instance. Should point to the most useful page for
+         * users, not the company marketing page.
          */
         public Builder homeUrl(Optional<String> homeUrl) {
             Utils.checkNotNull(homeUrl, "homeUrl");
@@ -1342,7 +1470,11 @@ public class CustomDatasourceConfig {
 
 
         /**
-         * The URL to an image to be displayed as an icon for this datasource instance in dark mode. Must have a transparency mask. SVG are recommended over PNG. Public, scio-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
+         * The URL to an image to be displayed as an icon for this datasource instance in dark mode. Must have
+         * a transparency mask. SVG are recommended over PNG.
+         * 
+         * <p>Public, scio-authenticated and Base64 encoded data URLs are all valid (but not
+         * third-party-authenticated URLs).
          */
         public Builder iconDarkUrl(String iconDarkUrl) {
             Utils.checkNotNull(iconDarkUrl, "iconDarkUrl");
@@ -1351,7 +1483,11 @@ public class CustomDatasourceConfig {
         }
 
         /**
-         * The URL to an image to be displayed as an icon for this datasource instance in dark mode. Must have a transparency mask. SVG are recommended over PNG. Public, scio-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
+         * The URL to an image to be displayed as an icon for this datasource instance in dark mode. Must have
+         * a transparency mask. SVG are recommended over PNG.
+         * 
+         * <p>Public, scio-authenticated and Base64 encoded data URLs are all valid (but not
+         * third-party-authenticated URLs).
          */
         public Builder iconDarkUrl(Optional<String> iconDarkUrl) {
             Utils.checkNotNull(iconDarkUrl, "iconDarkUrl");
@@ -1380,7 +1516,8 @@ public class CustomDatasourceConfig {
 
 
         /**
-         * A list of regular expressions to apply to an arbitrary URL to transform it into a canonical URL for this datasource instance. Regexes are to be applied in the order specified in this list.
+         * A list of regular expressions to apply to an arbitrary URL to transform it into a canonical URL for
+         * this datasource instance. Regexes are to be applied in the order specified in this list.
          */
         public Builder canonicalizingURLRegex(List<CanonicalizingRegexType> canonicalizingURLRegex) {
             Utils.checkNotNull(canonicalizingURLRegex, "canonicalizingURLRegex");
@@ -1389,7 +1526,8 @@ public class CustomDatasourceConfig {
         }
 
         /**
-         * A list of regular expressions to apply to an arbitrary URL to transform it into a canonical URL for this datasource instance. Regexes are to be applied in the order specified in this list.
+         * A list of regular expressions to apply to an arbitrary URL to transform it into a canonical URL for
+         * this datasource instance. Regexes are to be applied in the order specified in this list.
          */
         public Builder canonicalizingURLRegex(Optional<? extends List<CanonicalizingRegexType>> canonicalizingURLRegex) {
             Utils.checkNotNull(canonicalizingURLRegex, "canonicalizingURLRegex");
@@ -1399,7 +1537,8 @@ public class CustomDatasourceConfig {
 
 
         /**
-         * A list of regular expressions to apply to an arbitrary title to transform it into a title that will be displayed in the search results
+         * A list of regular expressions to apply to an arbitrary title to transform it into a title that will
+         * be displayed in the search results
          */
         public Builder canonicalizingTitleRegex(List<CanonicalizingRegexType> canonicalizingTitleRegex) {
             Utils.checkNotNull(canonicalizingTitleRegex, "canonicalizingTitleRegex");
@@ -1408,7 +1547,8 @@ public class CustomDatasourceConfig {
         }
 
         /**
-         * A list of regular expressions to apply to an arbitrary title to transform it into a title that will be displayed in the search results
+         * A list of regular expressions to apply to an arbitrary title to transform it into a title that will
+         * be displayed in the search results
          */
         public Builder canonicalizingTitleRegex(Optional<? extends List<CanonicalizingRegexType>> canonicalizingTitleRegex) {
             Utils.checkNotNull(canonicalizingTitleRegex, "canonicalizingTitleRegex");
@@ -1450,7 +1590,8 @@ public class CustomDatasourceConfig {
 
 
         /**
-         * List of actions for this datasource instance that will show up in autocomplete and app card, e.g. "Create new issue" for jira
+         * List of actions for this datasource instance that will show up in autocomplete and app card, e.g.
+         * "Create new issue" for jira
          */
         public Builder quicklinks(List<Quicklink> quicklinks) {
             Utils.checkNotNull(quicklinks, "quicklinks");
@@ -1459,7 +1600,8 @@ public class CustomDatasourceConfig {
         }
 
         /**
-         * List of actions for this datasource instance that will show up in autocomplete and app card, e.g. "Create new issue" for jira
+         * List of actions for this datasource instance that will show up in autocomplete and app card, e.g.
+         * "Create new issue" for jira
          */
         public Builder quicklinks(Optional<? extends List<Quicklink>> quicklinks) {
             Utils.checkNotNull(quicklinks, "quicklinks");
@@ -1469,7 +1611,10 @@ public class CustomDatasourceConfig {
 
 
         /**
-         * The name of a render config to use for displaying results from this datasource. Any well known datasource name may be used to render the same as that source, e.g. `web` or `gdrive`. Please refer to [this](https://developers.glean.com/docs/rendering_search_results/) for more details
+         * The name of a render config to use for displaying results from this datasource. Any well known
+         * datasource name may be used to render the same as that source, e.g. `web` or `gdrive`.
+         * 
+         * <p>Please refer to [this](https://developers.glean.com/docs/rendering_search_results/) for more details
          */
         public Builder renderConfigPreset(String renderConfigPreset) {
             Utils.checkNotNull(renderConfigPreset, "renderConfigPreset");
@@ -1478,7 +1623,10 @@ public class CustomDatasourceConfig {
         }
 
         /**
-         * The name of a render config to use for displaying results from this datasource. Any well known datasource name may be used to render the same as that source, e.g. `web` or `gdrive`. Please refer to [this](https://developers.glean.com/docs/rendering_search_results/) for more details
+         * The name of a render config to use for displaying results from this datasource. Any well known
+         * datasource name may be used to render the same as that source, e.g. `web` or `gdrive`.
+         * 
+         * <p>Please refer to [this](https://developers.glean.com/docs/rendering_search_results/) for more details
          */
         public Builder renderConfigPreset(Optional<String> renderConfigPreset) {
             Utils.checkNotNull(renderConfigPreset, "renderConfigPreset");
@@ -1526,7 +1674,9 @@ public class CustomDatasourceConfig {
 
 
         /**
-         * True if browser activity is able to report the correct URL for VIEW events. Set this to true if the URLs reported by Chrome are constant throughout each page load. Set this to false if the page has Javascript that modifies the URL during or after the load.
+         * True if browser activity is able to report the correct URL for VIEW events. Set this to true if the
+         * URLs reported by Chrome are constant throughout each page load. Set this to false if the page has
+         * Javascript that modifies the URL during or after the load.
          */
         public Builder trustUrlRegexForViewActivity(boolean trustUrlRegexForViewActivity) {
             Utils.checkNotNull(trustUrlRegexForViewActivity, "trustUrlRegexForViewActivity");
@@ -1535,7 +1685,9 @@ public class CustomDatasourceConfig {
         }
 
         /**
-         * True if browser activity is able to report the correct URL for VIEW events. Set this to true if the URLs reported by Chrome are constant throughout each page load. Set this to false if the page has Javascript that modifies the URL during or after the load.
+         * True if browser activity is able to report the correct URL for VIEW events. Set this to true if the
+         * URLs reported by Chrome are constant throughout each page load. Set this to false if the page has
+         * Javascript that modifies the URL during or after the load.
          */
         public Builder trustUrlRegexForViewActivity(Optional<Boolean> trustUrlRegexForViewActivity) {
             Utils.checkNotNull(trustUrlRegexForViewActivity, "trustUrlRegexForViewActivity");
@@ -1583,7 +1735,8 @@ public class CustomDatasourceConfig {
 
 
         /**
-         * If the datasource uses another datasource for identity info, then the name of the datasource. The identity datasource must exist already.
+         * If the datasource uses another datasource for identity info, then the name of the datasource. The
+         * identity datasource must exist already.
          */
         public Builder identityDatasourceName(String identityDatasourceName) {
             Utils.checkNotNull(identityDatasourceName, "identityDatasourceName");
@@ -1592,7 +1745,8 @@ public class CustomDatasourceConfig {
         }
 
         /**
-         * If the datasource uses another datasource for identity info, then the name of the datasource. The identity datasource must exist already.
+         * If the datasource uses another datasource for identity info, then the name of the datasource. The
+         * identity datasource must exist already.
          */
         public Builder identityDatasourceName(Optional<String> identityDatasourceName) {
             Utils.checkNotNull(identityDatasourceName, "identityDatasourceName");
@@ -1659,7 +1813,8 @@ public class CustomDatasourceConfig {
 
 
         /**
-         * True if this datasource will be used for testing purpose only. Documents from such a datasource wouldn't have any effect on search rankings.
+         * True if this datasource will be used for testing purpose only. Documents from such a datasource
+         * wouldn't have any effect on search rankings.
          */
         public Builder isTestDatasource(boolean isTestDatasource) {
             Utils.checkNotNull(isTestDatasource, "isTestDatasource");
@@ -1668,7 +1823,8 @@ public class CustomDatasourceConfig {
         }
 
         /**
-         * True if this datasource will be used for testing purpose only. Documents from such a datasource wouldn't have any effect on search rankings.
+         * True if this datasource will be used for testing purpose only. Documents from such a datasource
+         * wouldn't have any effect on search rankings.
          */
         public Builder isTestDatasource(Optional<Boolean> isTestDatasource) {
             Utils.checkNotNull(isTestDatasource, "isTestDatasource");

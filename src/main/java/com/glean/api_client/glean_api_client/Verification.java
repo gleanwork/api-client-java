@@ -45,7 +45,8 @@ public class Verification {
     /**
      * Create verification
      * 
-     * <p>Creates a verification reminder for the document. Users can create verification reminders from different product surfaces.
+     * <p>Creates a verification reminder for the document. Users can create verification reminders from
+     * different product surfaces.
      * 
      * @return The call builder
      */
@@ -56,7 +57,8 @@ public class Verification {
     /**
      * Create verification
      * 
-     * <p>Creates a verification reminder for the document. Users can create verification reminders from different product surfaces.
+     * <p>Creates a verification reminder for the document. Users can create verification reminders from
+     * different product surfaces.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -71,7 +73,8 @@ public class Verification {
     /**
      * List verifications
      * 
-     * <p>Returns the information to be rendered in verification dashboard. Includes information for each document owned by user regarding their verifications.
+     * <p>Returns the information to be rendered in verification dashboard. Includes information for each
+     * document owned by user regarding their verifications.
      * 
      * @return The call builder
      */
@@ -82,7 +85,8 @@ public class Verification {
     /**
      * List verifications
      * 
-     * <p>Returns the information to be rendered in verification dashboard. Includes information for each document owned by user regarding their verifications.
+     * <p>Returns the information to be rendered in verification dashboard. Includes information for each
+     * document owned by user regarding their verifications.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -94,7 +98,8 @@ public class Verification {
     /**
      * List verifications
      * 
-     * <p>Returns the information to be rendered in verification dashboard. Includes information for each document owned by user regarding their verifications.
+     * <p>Returns the information to be rendered in verification dashboard. Includes information for each
+     * document owned by user regarding their verifications.
      * 
      * @param count Maximum number of documents to return
      * @return The response from the API call

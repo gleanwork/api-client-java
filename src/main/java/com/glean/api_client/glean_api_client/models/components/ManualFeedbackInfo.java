@@ -68,14 +68,16 @@ public class ManualFeedbackInfo {
     private Optional<String> query;
 
     /**
-     * The query associated with the Feedback.event.MANUAL_FEEDBACK event, but obscured such that the vowels are replaced with special characters. For search feedback events only.
+     * The query associated with the Feedback.event.MANUAL_FEEDBACK event, but obscured such that the
+     * vowels are replaced with special characters. For search feedback events only.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("obscuredQuery")
     private Optional<String> obscuredQuery;
 
     /**
-     * Which tabs the user had chosen at the time of the Feedback.event.MANUAL_FEEDBACK event. For search feedback events only.
+     * Which tabs the user had chosen at the time of the Feedback.event.MANUAL_FEEDBACK event. For search
+     * feedback events only.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("activeTab")
@@ -124,7 +126,8 @@ public class ManualFeedbackInfo {
     private Optional<? extends ManualFeedbackInfoVote> vote;
 
     /**
-     * A rating associated with the user feedback. The value will be between one and the maximum given by ratingScale, inclusive.
+     * A rating associated with the user feedback. The value will be between one and the maximum given by
+     * ratingScale, inclusive.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("rating")
@@ -138,7 +141,9 @@ public class ManualFeedbackInfo {
     private Optional<String> ratingKey;
 
     /**
-     * The scale of comparison for a rating associated with the feedback. Rating values start from one and go up to the maximum specified by ratingScale. For example, a five-option satisfaction rating will have a ratingScale of 5 and a thumbs-up/thumbs-down rating will have a ratingScale of 2.
+     * The scale of comparison for a rating associated with the feedback. Rating values start from one and
+     * go up to the maximum specified by ratingScale. For example, a five-option satisfaction rating will
+     * have a ratingScale of 5 and a thumbs-up/thumbs-down rating will have a ratingScale of 2.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ratingScale")
@@ -266,7 +271,8 @@ public class ManualFeedbackInfo {
     }
 
     /**
-     * The query associated with the Feedback.event.MANUAL_FEEDBACK event, but obscured such that the vowels are replaced with special characters. For search feedback events only.
+     * The query associated with the Feedback.event.MANUAL_FEEDBACK event, but obscured such that the
+     * vowels are replaced with special characters. For search feedback events only.
      */
     @JsonIgnore
     public Optional<String> obscuredQuery() {
@@ -274,7 +280,8 @@ public class ManualFeedbackInfo {
     }
 
     /**
-     * Which tabs the user had chosen at the time of the Feedback.event.MANUAL_FEEDBACK event. For search feedback events only.
+     * Which tabs the user had chosen at the time of the Feedback.event.MANUAL_FEEDBACK event. For search
+     * feedback events only.
      */
     @JsonIgnore
     public Optional<String> activeTab() {
@@ -334,7 +341,8 @@ public class ManualFeedbackInfo {
     }
 
     /**
-     * A rating associated with the user feedback. The value will be between one and the maximum given by ratingScale, inclusive.
+     * A rating associated with the user feedback. The value will be between one and the maximum given by
+     * ratingScale, inclusive.
      */
     @JsonIgnore
     public Optional<Long> rating() {
@@ -350,7 +358,9 @@ public class ManualFeedbackInfo {
     }
 
     /**
-     * The scale of comparison for a rating associated with the feedback. Rating values start from one and go up to the maximum specified by ratingScale. For example, a five-option satisfaction rating will have a ratingScale of 5 and a thumbs-up/thumbs-down rating will have a ratingScale of 2.
+     * The scale of comparison for a rating associated with the feedback. Rating values start from one and
+     * go up to the maximum specified by ratingScale. For example, a five-option satisfaction rating will
+     * have a ratingScale of 5 and a thumbs-up/thumbs-down rating will have a ratingScale of 2.
      */
     @JsonIgnore
     public Optional<Long> ratingScale() {
@@ -489,7 +499,8 @@ public class ManualFeedbackInfo {
     }
 
     /**
-     * The query associated with the Feedback.event.MANUAL_FEEDBACK event, but obscured such that the vowels are replaced with special characters. For search feedback events only.
+     * The query associated with the Feedback.event.MANUAL_FEEDBACK event, but obscured such that the
+     * vowels are replaced with special characters. For search feedback events only.
      */
     public ManualFeedbackInfo withObscuredQuery(String obscuredQuery) {
         Utils.checkNotNull(obscuredQuery, "obscuredQuery");
@@ -499,7 +510,8 @@ public class ManualFeedbackInfo {
 
 
     /**
-     * The query associated with the Feedback.event.MANUAL_FEEDBACK event, but obscured such that the vowels are replaced with special characters. For search feedback events only.
+     * The query associated with the Feedback.event.MANUAL_FEEDBACK event, but obscured such that the
+     * vowels are replaced with special characters. For search feedback events only.
      */
     public ManualFeedbackInfo withObscuredQuery(Optional<String> obscuredQuery) {
         Utils.checkNotNull(obscuredQuery, "obscuredQuery");
@@ -508,7 +520,8 @@ public class ManualFeedbackInfo {
     }
 
     /**
-     * Which tabs the user had chosen at the time of the Feedback.event.MANUAL_FEEDBACK event. For search feedback events only.
+     * Which tabs the user had chosen at the time of the Feedback.event.MANUAL_FEEDBACK event. For search
+     * feedback events only.
      */
     public ManualFeedbackInfo withActiveTab(String activeTab) {
         Utils.checkNotNull(activeTab, "activeTab");
@@ -518,7 +531,8 @@ public class ManualFeedbackInfo {
 
 
     /**
-     * Which tabs the user had chosen at the time of the Feedback.event.MANUAL_FEEDBACK event. For search feedback events only.
+     * Which tabs the user had chosen at the time of the Feedback.event.MANUAL_FEEDBACK event. For search
+     * feedback events only.
      */
     public ManualFeedbackInfo withActiveTab(Optional<String> activeTab) {
         Utils.checkNotNull(activeTab, "activeTab");
@@ -641,7 +655,8 @@ public class ManualFeedbackInfo {
     }
 
     /**
-     * A rating associated with the user feedback. The value will be between one and the maximum given by ratingScale, inclusive.
+     * A rating associated with the user feedback. The value will be between one and the maximum given by
+     * ratingScale, inclusive.
      */
     public ManualFeedbackInfo withRating(long rating) {
         Utils.checkNotNull(rating, "rating");
@@ -651,7 +666,8 @@ public class ManualFeedbackInfo {
 
 
     /**
-     * A rating associated with the user feedback. The value will be between one and the maximum given by ratingScale, inclusive.
+     * A rating associated with the user feedback. The value will be between one and the maximum given by
+     * ratingScale, inclusive.
      */
     public ManualFeedbackInfo withRating(Optional<Long> rating) {
         Utils.checkNotNull(rating, "rating");
@@ -679,7 +695,9 @@ public class ManualFeedbackInfo {
     }
 
     /**
-     * The scale of comparison for a rating associated with the feedback. Rating values start from one and go up to the maximum specified by ratingScale. For example, a five-option satisfaction rating will have a ratingScale of 5 and a thumbs-up/thumbs-down rating will have a ratingScale of 2.
+     * The scale of comparison for a rating associated with the feedback. Rating values start from one and
+     * go up to the maximum specified by ratingScale. For example, a five-option satisfaction rating will
+     * have a ratingScale of 5 and a thumbs-up/thumbs-down rating will have a ratingScale of 2.
      */
     public ManualFeedbackInfo withRatingScale(long ratingScale) {
         Utils.checkNotNull(ratingScale, "ratingScale");
@@ -689,7 +707,9 @@ public class ManualFeedbackInfo {
 
 
     /**
-     * The scale of comparison for a rating associated with the feedback. Rating values start from one and go up to the maximum specified by ratingScale. For example, a five-option satisfaction rating will have a ratingScale of 5 and a thumbs-up/thumbs-down rating will have a ratingScale of 2.
+     * The scale of comparison for a rating associated with the feedback. Rating values start from one and
+     * go up to the maximum specified by ratingScale. For example, a five-option satisfaction rating will
+     * have a ratingScale of 5 and a thumbs-up/thumbs-down rating will have a ratingScale of 2.
      */
     public ManualFeedbackInfo withRatingScale(Optional<Long> ratingScale) {
         Utils.checkNotNull(ratingScale, "ratingScale");
@@ -930,7 +950,8 @@ public class ManualFeedbackInfo {
 
 
         /**
-         * The query associated with the Feedback.event.MANUAL_FEEDBACK event, but obscured such that the vowels are replaced with special characters. For search feedback events only.
+         * The query associated with the Feedback.event.MANUAL_FEEDBACK event, but obscured such that the
+         * vowels are replaced with special characters. For search feedback events only.
          */
         public Builder obscuredQuery(String obscuredQuery) {
             Utils.checkNotNull(obscuredQuery, "obscuredQuery");
@@ -939,7 +960,8 @@ public class ManualFeedbackInfo {
         }
 
         /**
-         * The query associated with the Feedback.event.MANUAL_FEEDBACK event, but obscured such that the vowels are replaced with special characters. For search feedback events only.
+         * The query associated with the Feedback.event.MANUAL_FEEDBACK event, but obscured such that the
+         * vowels are replaced with special characters. For search feedback events only.
          */
         public Builder obscuredQuery(Optional<String> obscuredQuery) {
             Utils.checkNotNull(obscuredQuery, "obscuredQuery");
@@ -949,7 +971,8 @@ public class ManualFeedbackInfo {
 
 
         /**
-         * Which tabs the user had chosen at the time of the Feedback.event.MANUAL_FEEDBACK event. For search feedback events only.
+         * Which tabs the user had chosen at the time of the Feedback.event.MANUAL_FEEDBACK event. For search
+         * feedback events only.
          */
         public Builder activeTab(String activeTab) {
             Utils.checkNotNull(activeTab, "activeTab");
@@ -958,7 +981,8 @@ public class ManualFeedbackInfo {
         }
 
         /**
-         * Which tabs the user had chosen at the time of the Feedback.event.MANUAL_FEEDBACK event. For search feedback events only.
+         * Which tabs the user had chosen at the time of the Feedback.event.MANUAL_FEEDBACK event. For search
+         * feedback events only.
          */
         public Builder activeTab(Optional<String> activeTab) {
             Utils.checkNotNull(activeTab, "activeTab");
@@ -1082,7 +1106,8 @@ public class ManualFeedbackInfo {
 
 
         /**
-         * A rating associated with the user feedback. The value will be between one and the maximum given by ratingScale, inclusive.
+         * A rating associated with the user feedback. The value will be between one and the maximum given by
+         * ratingScale, inclusive.
          */
         public Builder rating(long rating) {
             Utils.checkNotNull(rating, "rating");
@@ -1091,7 +1116,8 @@ public class ManualFeedbackInfo {
         }
 
         /**
-         * A rating associated with the user feedback. The value will be between one and the maximum given by ratingScale, inclusive.
+         * A rating associated with the user feedback. The value will be between one and the maximum given by
+         * ratingScale, inclusive.
          */
         public Builder rating(Optional<Long> rating) {
             Utils.checkNotNull(rating, "rating");
@@ -1120,7 +1146,9 @@ public class ManualFeedbackInfo {
 
 
         /**
-         * The scale of comparison for a rating associated with the feedback. Rating values start from one and go up to the maximum specified by ratingScale. For example, a five-option satisfaction rating will have a ratingScale of 5 and a thumbs-up/thumbs-down rating will have a ratingScale of 2.
+         * The scale of comparison for a rating associated with the feedback. Rating values start from one and
+         * go up to the maximum specified by ratingScale. For example, a five-option satisfaction rating will
+         * have a ratingScale of 5 and a thumbs-up/thumbs-down rating will have a ratingScale of 2.
          */
         public Builder ratingScale(long ratingScale) {
             Utils.checkNotNull(ratingScale, "ratingScale");
@@ -1129,7 +1157,9 @@ public class ManualFeedbackInfo {
         }
 
         /**
-         * The scale of comparison for a rating associated with the feedback. Rating values start from one and go up to the maximum specified by ratingScale. For example, a five-option satisfaction rating will have a ratingScale of 5 and a thumbs-up/thumbs-down rating will have a ratingScale of 2.
+         * The scale of comparison for a rating associated with the feedback. Rating values start from one and
+         * go up to the maximum specified by ratingScale. For example, a five-option satisfaction rating will
+         * have a ratingScale of 5 and a thumbs-up/thumbs-down rating will have a ratingScale of 2.
          */
         public Builder ratingScale(Optional<Long> ratingScale) {
             Utils.checkNotNull(ratingScale, "ratingScale");

@@ -22,7 +22,8 @@ import java.util.Optional;
  */
 public class ChatMessageCitation {
     /**
-     * An opaque token that represents this particular result in this particular ChatMessage. To be used for /feedback reporting.
+     * An opaque token that represents this particular result in this particular ChatMessage. To be used
+     * for /feedback reporting.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("trackingToken")
@@ -77,7 +78,8 @@ public class ChatMessageCitation {
     }
 
     /**
-     * An opaque token that represents this particular result in this particular ChatMessage. To be used for /feedback reporting.
+     * An opaque token that represents this particular result in this particular ChatMessage. To be used
+     * for /feedback reporting.
      */
     @JsonIgnore
     public Optional<String> trackingToken() {
@@ -120,7 +122,8 @@ public class ChatMessageCitation {
 
 
     /**
-     * An opaque token that represents this particular result in this particular ChatMessage. To be used for /feedback reporting.
+     * An opaque token that represents this particular result in this particular ChatMessage. To be used
+     * for /feedback reporting.
      */
     public ChatMessageCitation withTrackingToken(String trackingToken) {
         Utils.checkNotNull(trackingToken, "trackingToken");
@@ -130,7 +133,8 @@ public class ChatMessageCitation {
 
 
     /**
-     * An opaque token that represents this particular result in this particular ChatMessage. To be used for /feedback reporting.
+     * An opaque token that represents this particular result in this particular ChatMessage. To be used
+     * for /feedback reporting.
      */
     public ChatMessageCitation withTrackingToken(Optional<String> trackingToken) {
         Utils.checkNotNull(trackingToken, "trackingToken");
@@ -255,7 +259,8 @@ public class ChatMessageCitation {
 
 
         /**
-         * An opaque token that represents this particular result in this particular ChatMessage. To be used for /feedback reporting.
+         * An opaque token that represents this particular result in this particular ChatMessage. To be used
+         * for /feedback reporting.
          */
         public Builder trackingToken(String trackingToken) {
             Utils.checkNotNull(trackingToken, "trackingToken");
@@ -264,7 +269,8 @@ public class ChatMessageCitation {
         }
 
         /**
-         * An opaque token that represents this particular result in this particular ChatMessage. To be used for /feedback reporting.
+         * An opaque token that represents this particular result in this particular ChatMessage. To be used
+         * for /feedback reporting.
          */
         public Builder trackingToken(Optional<String> trackingToken) {
             Utils.checkNotNull(trackingToken, "trackingToken");

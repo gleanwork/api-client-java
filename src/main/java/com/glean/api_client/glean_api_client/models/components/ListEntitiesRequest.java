@@ -45,7 +45,8 @@ public class ListEntitiesRequest {
     private Optional<String> datasource;
 
     /**
-     * A query string to search for entities that each entity in the response must conform to. An empty query does not filter any entities.
+     * A query string to search for entities that each entity in the response must conform to. An empty
+     * query does not filter any entities.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("query")
@@ -66,7 +67,8 @@ public class ListEntitiesRequest {
     private Optional<Long> pageSize;
 
     /**
-     * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
+     * Pagination cursor. A previously received opaque token representing the position in the overall
+     * results at which to start.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cursor")
@@ -157,7 +159,8 @@ public class ListEntitiesRequest {
     }
 
     /**
-     * A query string to search for entities that each entity in the response must conform to. An empty query does not filter any entities.
+     * A query string to search for entities that each entity in the response must conform to. An empty
+     * query does not filter any entities.
      */
     @JsonIgnore
     public Optional<String> query() {
@@ -182,7 +185,8 @@ public class ListEntitiesRequest {
     }
 
     /**
-     * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
+     * Pagination cursor. A previously received opaque token representing the position in the overall
+     * results at which to start.
      */
     @JsonIgnore
     public Optional<String> cursor() {
@@ -276,7 +280,8 @@ public class ListEntitiesRequest {
     }
 
     /**
-     * A query string to search for entities that each entity in the response must conform to. An empty query does not filter any entities.
+     * A query string to search for entities that each entity in the response must conform to. An empty
+     * query does not filter any entities.
      */
     public ListEntitiesRequest withQuery(String query) {
         Utils.checkNotNull(query, "query");
@@ -286,7 +291,8 @@ public class ListEntitiesRequest {
 
 
     /**
-     * A query string to search for entities that each entity in the response must conform to. An empty query does not filter any entities.
+     * A query string to search for entities that each entity in the response must conform to. An empty
+     * query does not filter any entities.
      */
     public ListEntitiesRequest withQuery(Optional<String> query) {
         Utils.checkNotNull(query, "query");
@@ -333,7 +339,8 @@ public class ListEntitiesRequest {
     }
 
     /**
-     * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
+     * Pagination cursor. A previously received opaque token representing the position in the overall
+     * results at which to start.
      */
     public ListEntitiesRequest withCursor(String cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -343,7 +350,8 @@ public class ListEntitiesRequest {
 
 
     /**
-     * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
+     * Pagination cursor. A previously received opaque token representing the position in the overall
+     * results at which to start.
      */
     public ListEntitiesRequest withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -528,7 +536,8 @@ public class ListEntitiesRequest {
 
 
         /**
-         * A query string to search for entities that each entity in the response must conform to. An empty query does not filter any entities.
+         * A query string to search for entities that each entity in the response must conform to. An empty
+         * query does not filter any entities.
          */
         public Builder query(String query) {
             Utils.checkNotNull(query, "query");
@@ -537,7 +546,8 @@ public class ListEntitiesRequest {
         }
 
         /**
-         * A query string to search for entities that each entity in the response must conform to. An empty query does not filter any entities.
+         * A query string to search for entities that each entity in the response must conform to. An empty
+         * query does not filter any entities.
          */
         public Builder query(Optional<String> query) {
             Utils.checkNotNull(query, "query");
@@ -585,7 +595,8 @@ public class ListEntitiesRequest {
 
 
         /**
-         * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
+         * Pagination cursor. A previously received opaque token representing the position in the overall
+         * results at which to start.
          */
         public Builder cursor(String cursor) {
             Utils.checkNotNull(cursor, "cursor");
@@ -594,7 +605,8 @@ public class ListEntitiesRequest {
         }
 
         /**
-         * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
+         * Pagination cursor. A previously received opaque token representing the position in the overall
+         * results at which to start.
          */
         public Builder cursor(Optional<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");

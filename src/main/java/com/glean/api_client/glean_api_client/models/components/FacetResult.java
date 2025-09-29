@@ -40,14 +40,17 @@ public class FacetResult {
     private Optional<? extends List<FacetBucket>> buckets;
 
     /**
-     * Returns true if more buckets exist than those returned. Additional buckets can be retrieve by requesting again with a higher facetBucketSize.
+     * Returns true if more buckets exist than those returned. Additional buckets can be retrieve by
+     * requesting again with a higher facetBucketSize.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("hasMoreBuckets")
     private Optional<Boolean> hasMoreBuckets;
 
     /**
-     * For most facets this will be the empty string, meaning the facet is high-level and applies to all documents for the datasource. When non-empty, this is used to group facets together (i.e. group facets for each doctype for a certain datasource)
+     * For most facets this will be the empty string, meaning the facet is high-level and applies to all
+     * documents for the datasource. When non-empty, this is used to group facets together (i.e. group
+     * facets for each doctype for a certain datasource)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("groupName")
@@ -103,7 +106,8 @@ public class FacetResult {
     }
 
     /**
-     * Returns true if more buckets exist than those returned. Additional buckets can be retrieve by requesting again with a higher facetBucketSize.
+     * Returns true if more buckets exist than those returned. Additional buckets can be retrieve by
+     * requesting again with a higher facetBucketSize.
      */
     @JsonIgnore
     public Optional<Boolean> hasMoreBuckets() {
@@ -111,7 +115,9 @@ public class FacetResult {
     }
 
     /**
-     * For most facets this will be the empty string, meaning the facet is high-level and applies to all documents for the datasource. When non-empty, this is used to group facets together (i.e. group facets for each doctype for a certain datasource)
+     * For most facets this will be the empty string, meaning the facet is high-level and applies to all
+     * documents for the datasource. When non-empty, this is used to group facets together (i.e. group
+     * facets for each doctype for a certain datasource)
      */
     @JsonIgnore
     public Optional<String> groupName() {
@@ -181,7 +187,8 @@ public class FacetResult {
     }
 
     /**
-     * Returns true if more buckets exist than those returned. Additional buckets can be retrieve by requesting again with a higher facetBucketSize.
+     * Returns true if more buckets exist than those returned. Additional buckets can be retrieve by
+     * requesting again with a higher facetBucketSize.
      */
     public FacetResult withHasMoreBuckets(boolean hasMoreBuckets) {
         Utils.checkNotNull(hasMoreBuckets, "hasMoreBuckets");
@@ -191,7 +198,8 @@ public class FacetResult {
 
 
     /**
-     * Returns true if more buckets exist than those returned. Additional buckets can be retrieve by requesting again with a higher facetBucketSize.
+     * Returns true if more buckets exist than those returned. Additional buckets can be retrieve by
+     * requesting again with a higher facetBucketSize.
      */
     public FacetResult withHasMoreBuckets(Optional<Boolean> hasMoreBuckets) {
         Utils.checkNotNull(hasMoreBuckets, "hasMoreBuckets");
@@ -200,7 +208,9 @@ public class FacetResult {
     }
 
     /**
-     * For most facets this will be the empty string, meaning the facet is high-level and applies to all documents for the datasource. When non-empty, this is used to group facets together (i.e. group facets for each doctype for a certain datasource)
+     * For most facets this will be the empty string, meaning the facet is high-level and applies to all
+     * documents for the datasource. When non-empty, this is used to group facets together (i.e. group
+     * facets for each doctype for a certain datasource)
      */
     public FacetResult withGroupName(String groupName) {
         Utils.checkNotNull(groupName, "groupName");
@@ -210,7 +220,9 @@ public class FacetResult {
 
 
     /**
-     * For most facets this will be the empty string, meaning the facet is high-level and applies to all documents for the datasource. When non-empty, this is used to group facets together (i.e. group facets for each doctype for a certain datasource)
+     * For most facets this will be the empty string, meaning the facet is high-level and applies to all
+     * documents for the datasource. When non-empty, this is used to group facets together (i.e. group
+     * facets for each doctype for a certain datasource)
      */
     public FacetResult withGroupName(Optional<String> groupName) {
         Utils.checkNotNull(groupName, "groupName");
@@ -328,7 +340,8 @@ public class FacetResult {
 
 
         /**
-         * Returns true if more buckets exist than those returned. Additional buckets can be retrieve by requesting again with a higher facetBucketSize.
+         * Returns true if more buckets exist than those returned. Additional buckets can be retrieve by
+         * requesting again with a higher facetBucketSize.
          */
         public Builder hasMoreBuckets(boolean hasMoreBuckets) {
             Utils.checkNotNull(hasMoreBuckets, "hasMoreBuckets");
@@ -337,7 +350,8 @@ public class FacetResult {
         }
 
         /**
-         * Returns true if more buckets exist than those returned. Additional buckets can be retrieve by requesting again with a higher facetBucketSize.
+         * Returns true if more buckets exist than those returned. Additional buckets can be retrieve by
+         * requesting again with a higher facetBucketSize.
          */
         public Builder hasMoreBuckets(Optional<Boolean> hasMoreBuckets) {
             Utils.checkNotNull(hasMoreBuckets, "hasMoreBuckets");
@@ -347,7 +361,9 @@ public class FacetResult {
 
 
         /**
-         * For most facets this will be the empty string, meaning the facet is high-level and applies to all documents for the datasource. When non-empty, this is used to group facets together (i.e. group facets for each doctype for a certain datasource)
+         * For most facets this will be the empty string, meaning the facet is high-level and applies to all
+         * documents for the datasource. When non-empty, this is used to group facets together (i.e. group
+         * facets for each doctype for a certain datasource)
          */
         public Builder groupName(String groupName) {
             Utils.checkNotNull(groupName, "groupName");
@@ -356,7 +372,9 @@ public class FacetResult {
         }
 
         /**
-         * For most facets this will be the empty string, meaning the facet is high-level and applies to all documents for the datasource. When non-empty, this is used to group facets together (i.e. group facets for each doctype for a certain datasource)
+         * For most facets this will be the empty string, meaning the facet is high-level and applies to all
+         * documents for the datasource. When non-empty, this is used to group facets together (i.e. group
+         * facets for each doctype for a certain datasource)
          */
         public Builder groupName(Optional<String> groupName) {
             Utils.checkNotNull(groupName, "groupName");

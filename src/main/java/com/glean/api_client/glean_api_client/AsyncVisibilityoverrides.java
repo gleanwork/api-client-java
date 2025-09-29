@@ -56,7 +56,7 @@ public class AsyncVisibilityoverrides {
      * 
      * <p>Fetches the visibility override status of the documents passed.
      * 
-     * @return CompletableFuture&lt;GetdocvisibilityResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetdocvisibilityResponse>} - The async response
      */
     public CompletableFuture<GetdocvisibilityResponse> listDirect() {
         return list(Optional.empty());
@@ -68,7 +68,7 @@ public class AsyncVisibilityoverrides {
      * <p>Fetches the visibility override status of the documents passed.
      * 
      * @param docIds List of doc-ids which will have their hide status fetched.
-     * @return CompletableFuture&lt;GetdocvisibilityResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetdocvisibilityResponse>} - The async response
      */
     public CompletableFuture<GetdocvisibilityResponse> list(Optional<? extends List<String>> docIds) {
         GetdocvisibilityRequest request =
@@ -86,7 +86,8 @@ public class AsyncVisibilityoverrides {
     /**
      * Hide or unhide docs
      * 
-     * <p>Sets the visibility-override state of the documents specified, effectively hiding or un-hiding documents.
+     * <p>Sets the visibility-override state of the documents specified, effectively hiding or un-hiding
+     * documents.
      * 
      * @return The async call builder
      */
@@ -97,10 +98,11 @@ public class AsyncVisibilityoverrides {
     /**
      * Hide or unhide docs
      * 
-     * <p>Sets the visibility-override state of the documents specified, effectively hiding or un-hiding documents.
+     * <p>Sets the visibility-override state of the documents specified, effectively hiding or un-hiding
+     * documents.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;SetdocvisibilityResponse&gt; - The async response
+     * @return {@code CompletableFuture<SetdocvisibilityResponse>} - The async response
      */
     public CompletableFuture<SetdocvisibilityResponse> create(UpdateDocumentVisibilityOverridesRequest request) {
         AsyncRequestOperation<UpdateDocumentVisibilityOverridesRequest, SetdocvisibilityResponse> operation

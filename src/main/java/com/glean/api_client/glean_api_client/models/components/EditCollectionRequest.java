@@ -47,7 +47,8 @@ public class EditCollectionRequest {
     private Optional<? extends List<UserRoleSpecification>> removedRoles;
 
     /**
-     * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see this Collection. Values are taken from the corresponding
+     * filters in people search.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("audienceFilters")
@@ -173,7 +174,8 @@ public class EditCollectionRequest {
     }
 
     /**
-     * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see this Collection. Values are taken from the corresponding
+     * filters in people search.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -299,7 +301,8 @@ public class EditCollectionRequest {
     }
 
     /**
-     * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see this Collection. Values are taken from the corresponding
+     * filters in people search.
      */
     public EditCollectionRequest withAudienceFilters(List<FacetFilter> audienceFilters) {
         Utils.checkNotNull(audienceFilters, "audienceFilters");
@@ -309,7 +312,8 @@ public class EditCollectionRequest {
 
 
     /**
-     * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see this Collection. Values are taken from the corresponding
+     * filters in people search.
      */
     public EditCollectionRequest withAudienceFilters(Optional<? extends List<FacetFilter>> audienceFilters) {
         Utils.checkNotNull(audienceFilters, "audienceFilters");
@@ -561,7 +565,8 @@ public class EditCollectionRequest {
 
 
         /**
-         * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
+         * Filters which restrict who should see this Collection. Values are taken from the corresponding
+         * filters in people search.
          */
         public Builder audienceFilters(List<FacetFilter> audienceFilters) {
             Utils.checkNotNull(audienceFilters, "audienceFilters");
@@ -570,7 +575,8 @@ public class EditCollectionRequest {
         }
 
         /**
-         * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
+         * Filters which restrict who should see this Collection. Values are taken from the corresponding
+         * filters in people search.
          */
         public Builder audienceFilters(Optional<? extends List<FacetFilter>> audienceFilters) {
             Utils.checkNotNull(audienceFilters, "audienceFilters");

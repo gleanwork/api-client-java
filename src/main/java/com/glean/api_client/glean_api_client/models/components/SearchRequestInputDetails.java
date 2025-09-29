@@ -17,7 +17,9 @@ import java.util.Optional;
 
 public class SearchRequestInputDetails {
     /**
-     * Whether the associated query was at least partially copy-pasted.  If subsequent requests are issued after a copy-pasted query is constructed (e.g. with facet modifications), this bit should continue to be set for those requests.
+     * Whether the associated query was at least partially copy-pasted. If subsequent requests are issued
+     * after a copy-pasted query is constructed (e.g. with facet modifications), this bit should continue
+     * to be set for those requests.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("hasCopyPaste")
@@ -35,7 +37,9 @@ public class SearchRequestInputDetails {
     }
 
     /**
-     * Whether the associated query was at least partially copy-pasted.  If subsequent requests are issued after a copy-pasted query is constructed (e.g. with facet modifications), this bit should continue to be set for those requests.
+     * Whether the associated query was at least partially copy-pasted. If subsequent requests are issued
+     * after a copy-pasted query is constructed (e.g. with facet modifications), this bit should continue
+     * to be set for those requests.
      */
     @JsonIgnore
     public Optional<Boolean> hasCopyPaste() {
@@ -48,7 +52,9 @@ public class SearchRequestInputDetails {
 
 
     /**
-     * Whether the associated query was at least partially copy-pasted.  If subsequent requests are issued after a copy-pasted query is constructed (e.g. with facet modifications), this bit should continue to be set for those requests.
+     * Whether the associated query was at least partially copy-pasted. If subsequent requests are issued
+     * after a copy-pasted query is constructed (e.g. with facet modifications), this bit should continue
+     * to be set for those requests.
      */
     public SearchRequestInputDetails withHasCopyPaste(boolean hasCopyPaste) {
         Utils.checkNotNull(hasCopyPaste, "hasCopyPaste");
@@ -58,7 +64,9 @@ public class SearchRequestInputDetails {
 
 
     /**
-     * Whether the associated query was at least partially copy-pasted.  If subsequent requests are issued after a copy-pasted query is constructed (e.g. with facet modifications), this bit should continue to be set for those requests.
+     * Whether the associated query was at least partially copy-pasted. If subsequent requests are issued
+     * after a copy-pasted query is constructed (e.g. with facet modifications), this bit should continue
+     * to be set for those requests.
      */
     public SearchRequestInputDetails withHasCopyPaste(Optional<Boolean> hasCopyPaste) {
         Utils.checkNotNull(hasCopyPaste, "hasCopyPaste");
@@ -102,7 +110,9 @@ public class SearchRequestInputDetails {
 
 
         /**
-         * Whether the associated query was at least partially copy-pasted.  If subsequent requests are issued after a copy-pasted query is constructed (e.g. with facet modifications), this bit should continue to be set for those requests.
+         * Whether the associated query was at least partially copy-pasted. If subsequent requests are issued
+         * after a copy-pasted query is constructed (e.g. with facet modifications), this bit should continue
+         * to be set for those requests.
          */
         public Builder hasCopyPaste(boolean hasCopyPaste) {
             Utils.checkNotNull(hasCopyPaste, "hasCopyPaste");
@@ -111,7 +121,9 @@ public class SearchRequestInputDetails {
         }
 
         /**
-         * Whether the associated query was at least partially copy-pasted.  If subsequent requests are issued after a copy-pasted query is constructed (e.g. with facet modifications), this bit should continue to be set for those requests.
+         * Whether the associated query was at least partially copy-pasted. If subsequent requests are issued
+         * after a copy-pasted query is constructed (e.g. with facet modifications), this bit should continue
+         * to be set for those requests.
          */
         public Builder hasCopyPaste(Optional<Boolean> hasCopyPaste) {
             Utils.checkNotNull(hasCopyPaste, "hasCopyPaste");

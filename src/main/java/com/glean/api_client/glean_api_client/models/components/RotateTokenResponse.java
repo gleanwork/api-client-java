@@ -28,14 +28,21 @@ public class RotateTokenResponse {
     private Optional<String> rawSecret;
 
     /**
-     * Unix timestamp in seconds when the new secret value is assigned to the token. The token needs to be rotated before `rotationPeriodMinutes` past the createdAt timestamp otherwise it would be rendered unusable.
+     * Unix timestamp in seconds when the new secret value is assigned to the token. The token needs to be
+     * rotated before `rotationPeriodMinutes` past the createdAt timestamp otherwise it would be rendered
+     * unusable.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
     private Optional<Long> createdAt;
 
     /**
-     * Refers to the time period in minutes before which this token needs to be rotated. It is required to rotate the token within the specified `rotationPeriodMinutes` after each `/rotatetoken` call, otherwise the tokens would expire. Note that the token would still expire at `expiresAt` timestamp provided during token creation even if the token is being regularly rotated. `rotationPeriodMinutes` property is inherited from the parent token being rotated
+     * Refers to the time period in minutes before which this token needs to be rotated. It is required to
+     * rotate the token within the specified `rotationPeriodMinutes` after each `/rotatetoken` call,
+     * otherwise the tokens would expire. Note that the token would still expire at `expiresAt` timestamp
+     * provided during token creation even if the token is being regularly rotated.
+     * 
+     * <p>`rotationPeriodMinutes` property is inherited from the parent token being rotated
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("rotationPeriodMinutes")
@@ -67,7 +74,9 @@ public class RotateTokenResponse {
     }
 
     /**
-     * Unix timestamp in seconds when the new secret value is assigned to the token. The token needs to be rotated before `rotationPeriodMinutes` past the createdAt timestamp otherwise it would be rendered unusable.
+     * Unix timestamp in seconds when the new secret value is assigned to the token. The token needs to be
+     * rotated before `rotationPeriodMinutes` past the createdAt timestamp otherwise it would be rendered
+     * unusable.
      */
     @JsonIgnore
     public Optional<Long> createdAt() {
@@ -75,7 +84,12 @@ public class RotateTokenResponse {
     }
 
     /**
-     * Refers to the time period in minutes before which this token needs to be rotated. It is required to rotate the token within the specified `rotationPeriodMinutes` after each `/rotatetoken` call, otherwise the tokens would expire. Note that the token would still expire at `expiresAt` timestamp provided during token creation even if the token is being regularly rotated. `rotationPeriodMinutes` property is inherited from the parent token being rotated
+     * Refers to the time period in minutes before which this token needs to be rotated. It is required to
+     * rotate the token within the specified `rotationPeriodMinutes` after each `/rotatetoken` call,
+     * otherwise the tokens would expire. Note that the token would still expire at `expiresAt` timestamp
+     * provided during token creation even if the token is being regularly rotated.
+     * 
+     * <p>`rotationPeriodMinutes` property is inherited from the parent token being rotated
      */
     @JsonIgnore
     public Optional<Long> rotationPeriodMinutes() {
@@ -107,7 +121,9 @@ public class RotateTokenResponse {
     }
 
     /**
-     * Unix timestamp in seconds when the new secret value is assigned to the token. The token needs to be rotated before `rotationPeriodMinutes` past the createdAt timestamp otherwise it would be rendered unusable.
+     * Unix timestamp in seconds when the new secret value is assigned to the token. The token needs to be
+     * rotated before `rotationPeriodMinutes` past the createdAt timestamp otherwise it would be rendered
+     * unusable.
      */
     public RotateTokenResponse withCreatedAt(long createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -117,7 +133,9 @@ public class RotateTokenResponse {
 
 
     /**
-     * Unix timestamp in seconds when the new secret value is assigned to the token. The token needs to be rotated before `rotationPeriodMinutes` past the createdAt timestamp otherwise it would be rendered unusable.
+     * Unix timestamp in seconds when the new secret value is assigned to the token. The token needs to be
+     * rotated before `rotationPeriodMinutes` past the createdAt timestamp otherwise it would be rendered
+     * unusable.
      */
     public RotateTokenResponse withCreatedAt(Optional<Long> createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -126,7 +144,12 @@ public class RotateTokenResponse {
     }
 
     /**
-     * Refers to the time period in minutes before which this token needs to be rotated. It is required to rotate the token within the specified `rotationPeriodMinutes` after each `/rotatetoken` call, otherwise the tokens would expire. Note that the token would still expire at `expiresAt` timestamp provided during token creation even if the token is being regularly rotated. `rotationPeriodMinutes` property is inherited from the parent token being rotated
+     * Refers to the time period in minutes before which this token needs to be rotated. It is required to
+     * rotate the token within the specified `rotationPeriodMinutes` after each `/rotatetoken` call,
+     * otherwise the tokens would expire. Note that the token would still expire at `expiresAt` timestamp
+     * provided during token creation even if the token is being regularly rotated.
+     * 
+     * <p>`rotationPeriodMinutes` property is inherited from the parent token being rotated
      */
     public RotateTokenResponse withRotationPeriodMinutes(long rotationPeriodMinutes) {
         Utils.checkNotNull(rotationPeriodMinutes, "rotationPeriodMinutes");
@@ -136,7 +159,12 @@ public class RotateTokenResponse {
 
 
     /**
-     * Refers to the time period in minutes before which this token needs to be rotated. It is required to rotate the token within the specified `rotationPeriodMinutes` after each `/rotatetoken` call, otherwise the tokens would expire. Note that the token would still expire at `expiresAt` timestamp provided during token creation even if the token is being regularly rotated. `rotationPeriodMinutes` property is inherited from the parent token being rotated
+     * Refers to the time period in minutes before which this token needs to be rotated. It is required to
+     * rotate the token within the specified `rotationPeriodMinutes` after each `/rotatetoken` call,
+     * otherwise the tokens would expire. Note that the token would still expire at `expiresAt` timestamp
+     * provided during token creation even if the token is being regularly rotated.
+     * 
+     * <p>`rotationPeriodMinutes` property is inherited from the parent token being rotated
      */
     public RotateTokenResponse withRotationPeriodMinutes(Optional<Long> rotationPeriodMinutes) {
         Utils.checkNotNull(rotationPeriodMinutes, "rotationPeriodMinutes");
@@ -207,7 +235,9 @@ public class RotateTokenResponse {
 
 
         /**
-         * Unix timestamp in seconds when the new secret value is assigned to the token. The token needs to be rotated before `rotationPeriodMinutes` past the createdAt timestamp otherwise it would be rendered unusable.
+         * Unix timestamp in seconds when the new secret value is assigned to the token. The token needs to be
+         * rotated before `rotationPeriodMinutes` past the createdAt timestamp otherwise it would be rendered
+         * unusable.
          */
         public Builder createdAt(long createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -216,7 +246,9 @@ public class RotateTokenResponse {
         }
 
         /**
-         * Unix timestamp in seconds when the new secret value is assigned to the token. The token needs to be rotated before `rotationPeriodMinutes` past the createdAt timestamp otherwise it would be rendered unusable.
+         * Unix timestamp in seconds when the new secret value is assigned to the token. The token needs to be
+         * rotated before `rotationPeriodMinutes` past the createdAt timestamp otherwise it would be rendered
+         * unusable.
          */
         public Builder createdAt(Optional<Long> createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -226,7 +258,12 @@ public class RotateTokenResponse {
 
 
         /**
-         * Refers to the time period in minutes before which this token needs to be rotated. It is required to rotate the token within the specified `rotationPeriodMinutes` after each `/rotatetoken` call, otherwise the tokens would expire. Note that the token would still expire at `expiresAt` timestamp provided during token creation even if the token is being regularly rotated. `rotationPeriodMinutes` property is inherited from the parent token being rotated
+         * Refers to the time period in minutes before which this token needs to be rotated. It is required to
+         * rotate the token within the specified `rotationPeriodMinutes` after each `/rotatetoken` call,
+         * otherwise the tokens would expire. Note that the token would still expire at `expiresAt` timestamp
+         * provided during token creation even if the token is being regularly rotated.
+         * 
+         * <p>`rotationPeriodMinutes` property is inherited from the parent token being rotated
          */
         public Builder rotationPeriodMinutes(long rotationPeriodMinutes) {
             Utils.checkNotNull(rotationPeriodMinutes, "rotationPeriodMinutes");
@@ -235,7 +272,12 @@ public class RotateTokenResponse {
         }
 
         /**
-         * Refers to the time period in minutes before which this token needs to be rotated. It is required to rotate the token within the specified `rotationPeriodMinutes` after each `/rotatetoken` call, otherwise the tokens would expire. Note that the token would still expire at `expiresAt` timestamp provided during token creation even if the token is being regularly rotated. `rotationPeriodMinutes` property is inherited from the parent token being rotated
+         * Refers to the time period in minutes before which this token needs to be rotated. It is required to
+         * rotate the token within the specified `rotationPeriodMinutes` after each `/rotatetoken` call,
+         * otherwise the tokens would expire. Note that the token would still expire at `expiresAt` timestamp
+         * provided during token creation even if the token is being regularly rotated.
+         * 
+         * <p>`rotationPeriodMinutes` property is inherited from the parent token being rotated
          */
         public Builder rotationPeriodMinutes(Optional<Long> rotationPeriodMinutes) {
             Utils.checkNotNull(rotationPeriodMinutes, "rotationPeriodMinutes");

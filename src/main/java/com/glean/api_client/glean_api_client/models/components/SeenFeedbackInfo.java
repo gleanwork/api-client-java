@@ -17,7 +17,8 @@ import java.util.Optional;
 
 public class SeenFeedbackInfo {
     /**
-     * The confidence of the user seeing the object is high because they explicitly interacted with it e.g. answer impression in SERP with additional user interaction.
+     * The confidence of the user seeing the object is high because they explicitly interacted with it e.g.
+     * answer impression in SERP with additional user interaction.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("isExplicit")
@@ -35,7 +36,8 @@ public class SeenFeedbackInfo {
     }
 
     /**
-     * The confidence of the user seeing the object is high because they explicitly interacted with it e.g. answer impression in SERP with additional user interaction.
+     * The confidence of the user seeing the object is high because they explicitly interacted with it e.g.
+     * answer impression in SERP with additional user interaction.
      */
     @JsonIgnore
     public Optional<Boolean> isExplicit() {
@@ -48,7 +50,8 @@ public class SeenFeedbackInfo {
 
 
     /**
-     * The confidence of the user seeing the object is high because they explicitly interacted with it e.g. answer impression in SERP with additional user interaction.
+     * The confidence of the user seeing the object is high because they explicitly interacted with it e.g.
+     * answer impression in SERP with additional user interaction.
      */
     public SeenFeedbackInfo withIsExplicit(boolean isExplicit) {
         Utils.checkNotNull(isExplicit, "isExplicit");
@@ -58,7 +61,8 @@ public class SeenFeedbackInfo {
 
 
     /**
-     * The confidence of the user seeing the object is high because they explicitly interacted with it e.g. answer impression in SERP with additional user interaction.
+     * The confidence of the user seeing the object is high because they explicitly interacted with it e.g.
+     * answer impression in SERP with additional user interaction.
      */
     public SeenFeedbackInfo withIsExplicit(Optional<Boolean> isExplicit) {
         Utils.checkNotNull(isExplicit, "isExplicit");
@@ -102,7 +106,8 @@ public class SeenFeedbackInfo {
 
 
         /**
-         * The confidence of the user seeing the object is high because they explicitly interacted with it e.g. answer impression in SERP with additional user interaction.
+         * The confidence of the user seeing the object is high because they explicitly interacted with it e.g.
+         * answer impression in SERP with additional user interaction.
          */
         public Builder isExplicit(boolean isExplicit) {
             Utils.checkNotNull(isExplicit, "isExplicit");
@@ -111,7 +116,8 @@ public class SeenFeedbackInfo {
         }
 
         /**
-         * The confidence of the user seeing the object is high because they explicitly interacted with it e.g. answer impression in SERP with additional user interaction.
+         * The confidence of the user seeing the object is high because they explicitly interacted with it e.g.
+         * answer impression in SERP with additional user interaction.
          */
         public Builder isExplicit(Optional<Boolean> isExplicit) {
             Utils.checkNotNull(isExplicit, "isExplicit");

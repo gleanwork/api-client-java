@@ -259,7 +259,8 @@ public class Chat {
     /**
      * Retrieves all saved Chats
      * 
-     * <p>Retrieves all the saved Chats between Glean Assistant and the user. The returned Chats contain only metadata and no conversational content.
+     * <p>Retrieves all the saved Chats between Glean Assistant and the user. The returned Chats contain only
+     * metadata and no conversational content.
      * 
      * @return The call builder
      */
@@ -270,7 +271,8 @@ public class Chat {
     /**
      * Retrieves all saved Chats
      * 
-     * <p>Retrieves all the saved Chats between Glean Assistant and the user. The returned Chats contain only metadata and no conversational content.
+     * <p>Retrieves all the saved Chats between Glean Assistant and the user. The returned Chats contain only
+     * metadata and no conversational content.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -282,7 +284,8 @@ public class Chat {
     /**
      * Retrieves all saved Chats
      * 
-     * <p>Retrieves all the saved Chats between Glean Assistant and the user. The returned Chats contain only metadata and no conversational content.
+     * <p>Retrieves all the saved Chats between Glean Assistant and the user. The returned Chats contain only
+     * metadata and no conversational content.
      * 
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @return The response from the API call

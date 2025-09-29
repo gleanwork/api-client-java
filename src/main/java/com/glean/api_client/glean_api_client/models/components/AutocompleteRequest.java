@@ -36,7 +36,8 @@ public class AutocompleteRequest {
     private Optional<String> query;
 
     /**
-     * Filter results to only those relevant to one or more datasources (e.g. jira, gdrive). Results are unfiltered if missing.
+     * Filter results to only those relevant to one or more datasources (e.g. jira, gdrive). Results are
+     * unfiltered if missing.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("datasourcesFilter")
@@ -124,7 +125,8 @@ public class AutocompleteRequest {
     }
 
     /**
-     * Filter results to only those relevant to one or more datasources (e.g. jira, gdrive). Results are unfiltered if missing.
+     * Filter results to only those relevant to one or more datasources (e.g. jira, gdrive). Results are
+     * unfiltered if missing.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -217,7 +219,8 @@ public class AutocompleteRequest {
     }
 
     /**
-     * Filter results to only those relevant to one or more datasources (e.g. jira, gdrive). Results are unfiltered if missing.
+     * Filter results to only those relevant to one or more datasources (e.g. jira, gdrive). Results are
+     * unfiltered if missing.
      */
     public AutocompleteRequest withDatasourcesFilter(List<String> datasourcesFilter) {
         Utils.checkNotNull(datasourcesFilter, "datasourcesFilter");
@@ -227,7 +230,8 @@ public class AutocompleteRequest {
 
 
     /**
-     * Filter results to only those relevant to one or more datasources (e.g. jira, gdrive). Results are unfiltered if missing.
+     * Filter results to only those relevant to one or more datasources (e.g. jira, gdrive). Results are
+     * unfiltered if missing.
      */
     public AutocompleteRequest withDatasourcesFilter(Optional<? extends List<String>> datasourcesFilter) {
         Utils.checkNotNull(datasourcesFilter, "datasourcesFilter");
@@ -422,7 +426,8 @@ public class AutocompleteRequest {
 
 
         /**
-         * Filter results to only those relevant to one or more datasources (e.g. jira, gdrive). Results are unfiltered if missing.
+         * Filter results to only those relevant to one or more datasources (e.g. jira, gdrive). Results are
+         * unfiltered if missing.
          */
         public Builder datasourcesFilter(List<String> datasourcesFilter) {
             Utils.checkNotNull(datasourcesFilter, "datasourcesFilter");
@@ -431,7 +436,8 @@ public class AutocompleteRequest {
         }
 
         /**
-         * Filter results to only those relevant to one or more datasources (e.g. jira, gdrive). Results are unfiltered if missing.
+         * Filter results to only those relevant to one or more datasources (e.g. jira, gdrive). Results are
+         * unfiltered if missing.
          */
         public Builder datasourcesFilter(Optional<? extends List<String>> datasourcesFilter) {
             Utils.checkNotNull(datasourcesFilter, "datasourcesFilter");

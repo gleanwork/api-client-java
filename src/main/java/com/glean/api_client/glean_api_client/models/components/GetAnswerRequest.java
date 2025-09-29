@@ -24,7 +24,8 @@ public class GetAnswerRequest {
     private Optional<Long> id;
 
     /**
-     * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID isn't available. If both are available, using the Answer ID is preferred.
+     * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID
+     * isn't available. If both are available, using the Answer ID is preferred.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("docId")
@@ -53,7 +54,8 @@ public class GetAnswerRequest {
     }
 
     /**
-     * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID isn't available. If both are available, using the Answer ID is preferred.
+     * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID
+     * isn't available. If both are available, using the Answer ID is preferred.
      */
     @JsonIgnore
     public Optional<String> docId() {
@@ -85,7 +87,8 @@ public class GetAnswerRequest {
     }
 
     /**
-     * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID isn't available. If both are available, using the Answer ID is preferred.
+     * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID
+     * isn't available. If both are available, using the Answer ID is preferred.
      */
     public GetAnswerRequest withDocId(String docId) {
         Utils.checkNotNull(docId, "docId");
@@ -95,7 +98,8 @@ public class GetAnswerRequest {
 
 
     /**
-     * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID isn't available. If both are available, using the Answer ID is preferred.
+     * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID
+     * isn't available. If both are available, using the Answer ID is preferred.
      */
     public GetAnswerRequest withDocId(Optional<String> docId) {
         Utils.checkNotNull(docId, "docId");
@@ -162,7 +166,8 @@ public class GetAnswerRequest {
 
 
         /**
-         * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID isn't available. If both are available, using the Answer ID is preferred.
+         * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID
+         * isn't available. If both are available, using the Answer ID is preferred.
          */
         public Builder docId(String docId) {
             Utils.checkNotNull(docId, "docId");
@@ -171,7 +176,8 @@ public class GetAnswerRequest {
         }
 
         /**
-         * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID isn't available. If both are available, using the Answer ID is preferred.
+         * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID
+         * isn't available. If both are available, using the Answer ID is preferred.
          */
         public Builder docId(Optional<String> docId) {
             Utils.checkNotNull(docId, "docId");

@@ -34,7 +34,13 @@ public class IndexingAuthentication {
     /**
      * Rotate token
      * 
-     * <p>Rotates the secret value inside the Indexing API token and returns the new raw secret. All other properties of the token are unchanged. In order to rotate the secret value, include the token as the bearer token in the `/rotatetoken` request. Please refer to [Token rotation](https://developers.glean.com/indexing/authentication/token-rotation) documentation for more information.
+     * <p>Rotates the secret value inside the Indexing API token and returns the new raw secret. All other
+     * properties of the token are unchanged. In order to rotate the secret value, include the token as the
+     * bearer token in the `/rotatetoken` request.
+     * 
+     * <p>Please refer to [Token
+     * rotation](https://developers.glean.com/indexing/authentication/token-rotation) documentation for
+     * more information.
      * 
      * @return The call builder
      */
@@ -45,7 +51,13 @@ public class IndexingAuthentication {
     /**
      * Rotate token
      * 
-     * <p>Rotates the secret value inside the Indexing API token and returns the new raw secret. All other properties of the token are unchanged. In order to rotate the secret value, include the token as the bearer token in the `/rotatetoken` request. Please refer to [Token rotation](https://developers.glean.com/indexing/authentication/token-rotation) documentation for more information.
+     * <p>Rotates the secret value inside the Indexing API token and returns the new raw secret. All other
+     * properties of the token are unchanged. In order to rotate the secret value, include the token as the
+     * bearer token in the `/rotatetoken` request.
+     * 
+     * <p>Please refer to [Token
+     * rotation](https://developers.glean.com/indexing/authentication/token-rotation) documentation for
+     * more information.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails

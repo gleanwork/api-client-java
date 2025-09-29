@@ -20,7 +20,8 @@ import java.util.Optional;
 
 public class SearchResponse {
     /**
-     * A token that should be passed for additional requests related to this request (such as more results requests).
+     * A token that should be passed for additional requests related to this request (such as more results
+     * requests).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("trackingToken")
@@ -83,7 +84,8 @@ public class SearchResponse {
     private Optional<? extends List<FacetResult>> facetResults;
 
     /**
-     * All result tabs available for the current query. Populated if QUERY_METADATA is specified in the request.
+     * All result tabs available for the current query. Populated if QUERY_METADATA is specified in the
+     * request.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resultTabs")
@@ -102,14 +104,16 @@ public class SearchResponse {
     private Optional<? extends ResultsDescription> resultsDescription;
 
     /**
-     * The actual applied facet filters based on the operators and facetFilters in the query. Useful for mapping typed operators to visual facets.
+     * The actual applied facet filters based on the operators and facetFilters in the query. Useful for
+     * mapping typed operators to visual facets.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("rewrittenFacetFilters")
     private Optional<? extends List<FacetFilter>> rewrittenFacetFilters;
 
     /**
-     * Cursor that indicates the start of the next page of results. To be passed in "more" requests for this query.
+     * Cursor that indicates the start of the next page of results. To be passed in "more" requests for
+     * this query.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cursor")
@@ -187,7 +191,8 @@ public class SearchResponse {
     }
 
     /**
-     * A token that should be passed for additional requests related to this request (such as more results requests).
+     * A token that should be passed for additional requests related to this request (such as more results
+     * requests).
      */
     @JsonIgnore
     public Optional<String> trackingToken() {
@@ -262,7 +267,8 @@ public class SearchResponse {
     }
 
     /**
-     * All result tabs available for the current query. Populated if QUERY_METADATA is specified in the request.
+     * All result tabs available for the current query. Populated if QUERY_METADATA is specified in the
+     * request.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -286,7 +292,8 @@ public class SearchResponse {
     }
 
     /**
-     * The actual applied facet filters based on the operators and facetFilters in the query. Useful for mapping typed operators to visual facets.
+     * The actual applied facet filters based on the operators and facetFilters in the query. Useful for
+     * mapping typed operators to visual facets.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -295,7 +302,8 @@ public class SearchResponse {
     }
 
     /**
-     * Cursor that indicates the start of the next page of results. To be passed in "more" requests for this query.
+     * Cursor that indicates the start of the next page of results. To be passed in "more" requests for
+     * this query.
      */
     @JsonIgnore
     public Optional<String> cursor() {
@@ -316,7 +324,8 @@ public class SearchResponse {
 
 
     /**
-     * A token that should be passed for additional requests related to this request (such as more results requests).
+     * A token that should be passed for additional requests related to this request (such as more results
+     * requests).
      */
     public SearchResponse withTrackingToken(String trackingToken) {
         Utils.checkNotNull(trackingToken, "trackingToken");
@@ -326,7 +335,8 @@ public class SearchResponse {
 
 
     /**
-     * A token that should be passed for additional requests related to this request (such as more results requests).
+     * A token that should be passed for additional requests related to this request (such as more results
+     * requests).
      */
     public SearchResponse withTrackingToken(Optional<String> trackingToken) {
         Utils.checkNotNull(trackingToken, "trackingToken");
@@ -483,7 +493,8 @@ public class SearchResponse {
     }
 
     /**
-     * All result tabs available for the current query. Populated if QUERY_METADATA is specified in the request.
+     * All result tabs available for the current query. Populated if QUERY_METADATA is specified in the
+     * request.
      */
     public SearchResponse withResultTabs(List<ResultTab> resultTabs) {
         Utils.checkNotNull(resultTabs, "resultTabs");
@@ -493,7 +504,8 @@ public class SearchResponse {
 
 
     /**
-     * All result tabs available for the current query. Populated if QUERY_METADATA is specified in the request.
+     * All result tabs available for the current query. Populated if QUERY_METADATA is specified in the
+     * request.
      */
     public SearchResponse withResultTabs(Optional<? extends List<ResultTab>> resultTabs) {
         Utils.checkNotNull(resultTabs, "resultTabs");
@@ -534,7 +546,8 @@ public class SearchResponse {
     }
 
     /**
-     * The actual applied facet filters based on the operators and facetFilters in the query. Useful for mapping typed operators to visual facets.
+     * The actual applied facet filters based on the operators and facetFilters in the query. Useful for
+     * mapping typed operators to visual facets.
      */
     public SearchResponse withRewrittenFacetFilters(List<FacetFilter> rewrittenFacetFilters) {
         Utils.checkNotNull(rewrittenFacetFilters, "rewrittenFacetFilters");
@@ -544,7 +557,8 @@ public class SearchResponse {
 
 
     /**
-     * The actual applied facet filters based on the operators and facetFilters in the query. Useful for mapping typed operators to visual facets.
+     * The actual applied facet filters based on the operators and facetFilters in the query. Useful for
+     * mapping typed operators to visual facets.
      */
     public SearchResponse withRewrittenFacetFilters(Optional<? extends List<FacetFilter>> rewrittenFacetFilters) {
         Utils.checkNotNull(rewrittenFacetFilters, "rewrittenFacetFilters");
@@ -553,7 +567,8 @@ public class SearchResponse {
     }
 
     /**
-     * Cursor that indicates the start of the next page of results. To be passed in "more" requests for this query.
+     * Cursor that indicates the start of the next page of results. To be passed in "more" requests for
+     * this query.
      */
     public SearchResponse withCursor(String cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -563,7 +578,8 @@ public class SearchResponse {
 
 
     /**
-     * Cursor that indicates the start of the next page of results. To be passed in "more" requests for this query.
+     * Cursor that indicates the start of the next page of results. To be passed in "more" requests for
+     * this query.
      */
     public SearchResponse withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -695,7 +711,8 @@ public class SearchResponse {
 
 
         /**
-         * A token that should be passed for additional requests related to this request (such as more results requests).
+         * A token that should be passed for additional requests related to this request (such as more results
+         * requests).
          */
         public Builder trackingToken(String trackingToken) {
             Utils.checkNotNull(trackingToken, "trackingToken");
@@ -704,7 +721,8 @@ public class SearchResponse {
         }
 
         /**
-         * A token that should be passed for additional requests related to this request (such as more results requests).
+         * A token that should be passed for additional requests related to this request (such as more results
+         * requests).
          */
         public Builder trackingToken(Optional<String> trackingToken) {
             Utils.checkNotNull(trackingToken, "trackingToken");
@@ -862,7 +880,8 @@ public class SearchResponse {
 
 
         /**
-         * All result tabs available for the current query. Populated if QUERY_METADATA is specified in the request.
+         * All result tabs available for the current query. Populated if QUERY_METADATA is specified in the
+         * request.
          */
         public Builder resultTabs(List<ResultTab> resultTabs) {
             Utils.checkNotNull(resultTabs, "resultTabs");
@@ -871,7 +890,8 @@ public class SearchResponse {
         }
 
         /**
-         * All result tabs available for the current query. Populated if QUERY_METADATA is specified in the request.
+         * All result tabs available for the current query. Populated if QUERY_METADATA is specified in the
+         * request.
          */
         public Builder resultTabs(Optional<? extends List<ResultTab>> resultTabs) {
             Utils.checkNotNull(resultTabs, "resultTabs");
@@ -913,7 +933,8 @@ public class SearchResponse {
 
 
         /**
-         * The actual applied facet filters based on the operators and facetFilters in the query. Useful for mapping typed operators to visual facets.
+         * The actual applied facet filters based on the operators and facetFilters in the query. Useful for
+         * mapping typed operators to visual facets.
          */
         public Builder rewrittenFacetFilters(List<FacetFilter> rewrittenFacetFilters) {
             Utils.checkNotNull(rewrittenFacetFilters, "rewrittenFacetFilters");
@@ -922,7 +943,8 @@ public class SearchResponse {
         }
 
         /**
-         * The actual applied facet filters based on the operators and facetFilters in the query. Useful for mapping typed operators to visual facets.
+         * The actual applied facet filters based on the operators and facetFilters in the query. Useful for
+         * mapping typed operators to visual facets.
          */
         public Builder rewrittenFacetFilters(Optional<? extends List<FacetFilter>> rewrittenFacetFilters) {
             Utils.checkNotNull(rewrittenFacetFilters, "rewrittenFacetFilters");
@@ -932,7 +954,8 @@ public class SearchResponse {
 
 
         /**
-         * Cursor that indicates the start of the next page of results. To be passed in "more" requests for this query.
+         * Cursor that indicates the start of the next page of results. To be passed in "more" requests for
+         * this query.
          */
         public Builder cursor(String cursor) {
             Utils.checkNotNull(cursor, "cursor");
@@ -941,7 +964,8 @@ public class SearchResponse {
         }
 
         /**
-         * Cursor that indicates the start of the next page of results. To be passed in "more" requests for this query.
+         * Cursor that indicates the start of the next page of results. To be passed in "more" requests for
+         * this query.
          */
         public Builder cursor(Optional<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");

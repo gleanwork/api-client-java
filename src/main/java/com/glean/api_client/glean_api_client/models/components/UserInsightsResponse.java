@@ -33,7 +33,8 @@ public class UserInsightsResponse {
     private Optional<? extends List<UserActivityInsight>> activityInsights;
 
     /**
-     * Insights for all in inactive users with respect to set of actions and time period. Activity count will be set to 0.
+     * Insights for all in inactive users with respect to set of actions and time period. Activity count
+     * will be set to 0.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("inactiveInsights")
@@ -105,7 +106,8 @@ public class UserInsightsResponse {
     }
 
     /**
-     * Insights for all in inactive users with respect to set of actions and time period. Activity count will be set to 0.
+     * Insights for all in inactive users with respect to set of actions and time period. Activity count
+     * will be set to 0.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -182,7 +184,8 @@ public class UserInsightsResponse {
     }
 
     /**
-     * Insights for all in inactive users with respect to set of actions and time period. Activity count will be set to 0.
+     * Insights for all in inactive users with respect to set of actions and time period. Activity count
+     * will be set to 0.
      */
     public UserInsightsResponse withInactiveInsights(List<UserActivityInsight> inactiveInsights) {
         Utils.checkNotNull(inactiveInsights, "inactiveInsights");
@@ -192,7 +195,8 @@ public class UserInsightsResponse {
 
 
     /**
-     * Insights for all in inactive users with respect to set of actions and time period. Activity count will be set to 0.
+     * Insights for all in inactive users with respect to set of actions and time period. Activity count
+     * will be set to 0.
      */
     public UserInsightsResponse withInactiveInsights(Optional<? extends List<UserActivityInsight>> inactiveInsights) {
         Utils.checkNotNull(inactiveInsights, "inactiveInsights");
@@ -352,7 +356,8 @@ public class UserInsightsResponse {
 
 
         /**
-         * Insights for all in inactive users with respect to set of actions and time period. Activity count will be set to 0.
+         * Insights for all in inactive users with respect to set of actions and time period. Activity count
+         * will be set to 0.
          */
         public Builder inactiveInsights(List<UserActivityInsight> inactiveInsights) {
             Utils.checkNotNull(inactiveInsights, "inactiveInsights");
@@ -361,7 +366,8 @@ public class UserInsightsResponse {
         }
 
         /**
-         * Insights for all in inactive users with respect to set of actions and time period. Activity count will be set to 0.
+         * Insights for all in inactive users with respect to set of actions and time period. Activity count
+         * will be set to 0.
          */
         public Builder inactiveInsights(Optional<? extends List<UserActivityInsight>> inactiveInsights) {
             Utils.checkNotNull(inactiveInsights, "inactiveInsights");

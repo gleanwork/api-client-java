@@ -11,7 +11,8 @@ import java.lang.String;
 /**
  * Value
  * 
- * <p>Either a string or HypertextField. When OpenAPI Generator supports oneOf, we can semantically enforce this in the docs.
+ * <p>Either a string or HypertextField. When OpenAPI Generator supports oneOf, we can semantically
+ * enforce this in the docs.
  */
 public class Value {
     @JsonCreator

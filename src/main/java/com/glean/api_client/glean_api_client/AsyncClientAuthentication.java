@@ -56,7 +56,7 @@ public class AsyncClientAuthentication {
      * <p>Note: The tokens generated from this endpoint are **not** valid tokens
      * for use with the Client API (e.g. `/rest/api/v1/*`).
      * 
-     * @return CompletableFuture&lt;CreateauthtokenResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateauthtokenResponse>} - The async response
      */
     public CompletableFuture<CreateauthtokenResponse> createTokenDirect() {
         AsyncRequestlessOperation<CreateauthtokenResponse> operation

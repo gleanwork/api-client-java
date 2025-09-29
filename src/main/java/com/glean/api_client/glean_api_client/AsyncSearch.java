@@ -50,7 +50,8 @@ public class AsyncSearch {
     /**
      * Search the index (admin)
      * 
-     * <p>Retrieves results for search query without respect for permissions. This is available only to privileged users.
+     * <p>Retrieves results for search query without respect for permissions. This is available only to
+     * privileged users.
      * 
      * @return The async call builder
      */
@@ -61,10 +62,11 @@ public class AsyncSearch {
     /**
      * Search the index (admin)
      * 
-     * <p>Retrieves results for search query without respect for permissions. This is available only to privileged users.
+     * <p>Retrieves results for search query without respect for permissions. This is available only to
+     * privileged users.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AdminsearchResponse&gt; - The async response
+     * @return {@code CompletableFuture<AdminsearchResponse>} - The async response
      */
     public CompletableFuture<AdminsearchResponse> queryAsAdmin(SearchRequest request) {
         AsyncRequestOperation<SearchRequest, AdminsearchResponse> operation
@@ -91,7 +93,7 @@ public class AsyncSearch {
      * <p>Retrieve query suggestions, operators and documents for the given partially typed query.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AutocompleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AutocompleteResponse>} - The async response
      */
     public CompletableFuture<AutocompleteResponse> autocomplete(AutocompleteRequest request) {
         AsyncRequestOperation<AutocompleteRequest, AutocompleteResponse> operation
@@ -104,7 +106,8 @@ public class AsyncSearch {
     /**
      * Feed of documents and events
      * 
-     * <p>The personalized feed/home includes different types of contents including suggestions, recents, calendar events and many more.
+     * <p>The personalized feed/home includes different types of contents including suggestions, recents,
+     * calendar events and many more.
      * 
      * @return The async call builder
      */
@@ -115,10 +118,11 @@ public class AsyncSearch {
     /**
      * Feed of documents and events
      * 
-     * <p>The personalized feed/home includes different types of contents including suggestions, recents, calendar events and many more.
+     * <p>The personalized feed/home includes different types of contents including suggestions, recents,
+     * calendar events and many more.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;FeedResponse&gt; - The async response
+     * @return {@code CompletableFuture<FeedResponse>} - The async response
      */
     public CompletableFuture<FeedResponse> retrieveFeed(FeedRequest request) {
         AsyncRequestOperation<FeedRequest, FeedResponse> operation
@@ -145,7 +149,7 @@ public class AsyncSearch {
      * <p>Retrieve recommended documents for the given URL or Glean Document ID.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;RecommendationsResponse&gt; - The async response
+     * @return {@code CompletableFuture<RecommendationsResponse>} - The async response
      */
     public CompletableFuture<RecommendationsResponse> recommendations(RecommendationsRequest request) {
         AsyncRequestOperation<RecommendationsRequest, RecommendationsResponse> operation
@@ -172,7 +176,7 @@ public class AsyncSearch {
      * <p>Retrieve results from the index for the given query and filters.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;SearchResponse&gt; - The async response
+     * @return {@code CompletableFuture<SearchResponse>} - The async response
      */
     public CompletableFuture<SearchResponse> query(SearchRequest request) {
         AsyncRequestOperation<SearchRequest, SearchResponse> operation

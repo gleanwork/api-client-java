@@ -20,7 +20,8 @@ import java.util.Optional;
 /**
  * PersonTeam
  * 
- * <p>Use `id` if you index teams via Glean, and use `name` and `externalLink` if you want to use your own team pages
+ * <p>Use `id` if you index teams via Glean, and use `name` and `externalLink` if you want to use your own
+ * team pages
  */
 public class PersonTeam {
     /**

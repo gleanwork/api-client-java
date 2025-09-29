@@ -26,7 +26,8 @@ public class RelatedDocuments {
     private Optional<? extends Relation> relation;
 
     /**
-     * Which entity in the response that this entity relates to. Relevant when there are multiple entities associated with the response (such as merged customers)
+     * Which entity in the response that this entity relates to. Relevant when there are multiple entities
+     * associated with the response (such as merged customers)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("associatedEntityId")
@@ -48,7 +49,8 @@ public class RelatedDocuments {
     private Optional<? extends List<Document>> documents;
 
     /**
-     * A truncated list of documents associated with this relation. To be used in favor of `documents` because it contains a trackingToken.
+     * A truncated list of documents associated with this relation. To be used in favor of `documents`
+     * because it contains a trackingToken.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("results")
@@ -88,7 +90,8 @@ public class RelatedDocuments {
     }
 
     /**
-     * Which entity in the response that this entity relates to. Relevant when there are multiple entities associated with the response (such as merged customers)
+     * Which entity in the response that this entity relates to. Relevant when there are multiple entities
+     * associated with the response (such as merged customers)
      */
     @JsonIgnore
     public Optional<String> associatedEntityId() {
@@ -114,7 +117,8 @@ public class RelatedDocuments {
     }
 
     /**
-     * A truncated list of documents associated with this relation. To be used in favor of `documents` because it contains a trackingToken.
+     * A truncated list of documents associated with this relation. To be used in favor of `documents`
+     * because it contains a trackingToken.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -147,7 +151,8 @@ public class RelatedDocuments {
     }
 
     /**
-     * Which entity in the response that this entity relates to. Relevant when there are multiple entities associated with the response (such as merged customers)
+     * Which entity in the response that this entity relates to. Relevant when there are multiple entities
+     * associated with the response (such as merged customers)
      */
     public RelatedDocuments withAssociatedEntityId(String associatedEntityId) {
         Utils.checkNotNull(associatedEntityId, "associatedEntityId");
@@ -157,7 +162,8 @@ public class RelatedDocuments {
 
 
     /**
-     * Which entity in the response that this entity relates to. Relevant when there are multiple entities associated with the response (such as merged customers)
+     * Which entity in the response that this entity relates to. Relevant when there are multiple entities
+     * associated with the response (such as merged customers)
      */
     public RelatedDocuments withAssociatedEntityId(Optional<String> associatedEntityId) {
         Utils.checkNotNull(associatedEntityId, "associatedEntityId");
@@ -204,7 +210,8 @@ public class RelatedDocuments {
     }
 
     /**
-     * A truncated list of documents associated with this relation. To be used in favor of `documents` because it contains a trackingToken.
+     * A truncated list of documents associated with this relation. To be used in favor of `documents`
+     * because it contains a trackingToken.
      */
     public RelatedDocuments withResults(List<SearchResult> results) {
         Utils.checkNotNull(results, "results");
@@ -214,7 +221,8 @@ public class RelatedDocuments {
 
 
     /**
-     * A truncated list of documents associated with this relation. To be used in favor of `documents` because it contains a trackingToken.
+     * A truncated list of documents associated with this relation. To be used in favor of `documents`
+     * because it contains a trackingToken.
      */
     public RelatedDocuments withResults(Optional<? extends List<SearchResult>> results) {
         Utils.checkNotNull(results, "results");
@@ -295,7 +303,8 @@ public class RelatedDocuments {
 
 
         /**
-         * Which entity in the response that this entity relates to. Relevant when there are multiple entities associated with the response (such as merged customers)
+         * Which entity in the response that this entity relates to. Relevant when there are multiple entities
+         * associated with the response (such as merged customers)
          */
         public Builder associatedEntityId(String associatedEntityId) {
             Utils.checkNotNull(associatedEntityId, "associatedEntityId");
@@ -304,7 +313,8 @@ public class RelatedDocuments {
         }
 
         /**
-         * Which entity in the response that this entity relates to. Relevant when there are multiple entities associated with the response (such as merged customers)
+         * Which entity in the response that this entity relates to. Relevant when there are multiple entities
+         * associated with the response (such as merged customers)
          */
         public Builder associatedEntityId(Optional<String> associatedEntityId) {
             Utils.checkNotNull(associatedEntityId, "associatedEntityId");
@@ -352,7 +362,8 @@ public class RelatedDocuments {
 
 
         /**
-         * A truncated list of documents associated with this relation. To be used in favor of `documents` because it contains a trackingToken.
+         * A truncated list of documents associated with this relation. To be used in favor of `documents`
+         * because it contains a trackingToken.
          */
         public Builder results(List<SearchResult> results) {
             Utils.checkNotNull(results, "results");
@@ -361,7 +372,8 @@ public class RelatedDocuments {
         }
 
         /**
-         * A truncated list of documents associated with this relation. To be used in favor of `documents` because it contains a trackingToken.
+         * A truncated list of documents associated with this relation. To be used in favor of `documents`
+         * because it contains a trackingToken.
          */
         public Builder results(Optional<? extends List<SearchResult>> results) {
             Utils.checkNotNull(results, "results");

@@ -28,7 +28,8 @@ public class SearchRequest {
     private Optional<OffsetDateTime> timestamp;
 
     /**
-     * A previously received trackingToken for a search associated with the same query. Useful for more requests and requests for other tabs.
+     * A previously received trackingToken for a search associated with the same query. Useful for more
+     * requests and requests for other tabs.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("trackingToken")
@@ -45,7 +46,8 @@ public class SearchRequest {
     private Optional<? extends Document> sourceDocument;
 
     /**
-     * Hint to the server about how many results to send back. Server may return less or more. Structured results and clustered results don't count towards pageSize.
+     * Hint to the server about how many results to send back. Server may return less or more. Structured
+     * results and clustered results don't count towards pageSize.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pageSize")
@@ -65,14 +67,16 @@ public class SearchRequest {
     private String query;
 
     /**
-     * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
+     * Pagination cursor. A previously received opaque token representing the position in the overall
+     * results at which to start.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cursor")
     private Optional<String> cursor;
 
     /**
-     * The unique IDs of the result tabs for which to fetch results. This will have precedence over datasource filters if both are specified and in conflict.
+     * The unique IDs of the result tabs for which to fetch results. This will have precedence over
+     * datasource filters if both are specified and in conflict.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resultTabIds")
@@ -89,7 +93,8 @@ public class SearchRequest {
     private Optional<? extends SearchRequestOptions> requestOptions;
 
     /**
-     * Timeout in milliseconds for the request. A `408` error will be returned if handling the request takes longer.
+     * Timeout in milliseconds for the request. A `408` error will be returned if handling the request
+     * takes longer.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timeoutMillis")
@@ -163,7 +168,8 @@ public class SearchRequest {
     }
 
     /**
-     * A previously received trackingToken for a search associated with the same query. Useful for more requests and requests for other tabs.
+     * A previously received trackingToken for a search associated with the same query. Useful for more
+     * requests and requests for other tabs.
      */
     @JsonIgnore
     public Optional<String> trackingToken() {
@@ -183,7 +189,8 @@ public class SearchRequest {
     }
 
     /**
-     * Hint to the server about how many results to send back. Server may return less or more. Structured results and clustered results don't count towards pageSize.
+     * Hint to the server about how many results to send back. Server may return less or more. Structured
+     * results and clustered results don't count towards pageSize.
      */
     @JsonIgnore
     public Optional<Long> pageSize() {
@@ -207,7 +214,8 @@ public class SearchRequest {
     }
 
     /**
-     * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
+     * Pagination cursor. A previously received opaque token representing the position in the overall
+     * results at which to start.
      */
     @JsonIgnore
     public Optional<String> cursor() {
@@ -215,7 +223,8 @@ public class SearchRequest {
     }
 
     /**
-     * The unique IDs of the result tabs for which to fetch results. This will have precedence over datasource filters if both are specified and in conflict.
+     * The unique IDs of the result tabs for which to fetch results. This will have precedence over
+     * datasource filters if both are specified and in conflict.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -236,7 +245,8 @@ public class SearchRequest {
     }
 
     /**
-     * Timeout in milliseconds for the request. A `408` error will be returned if handling the request takes longer.
+     * Timeout in milliseconds for the request. A `408` error will be returned if handling the request
+     * takes longer.
      */
     @JsonIgnore
     public Optional<Long> timeoutMillis() {
@@ -276,7 +286,8 @@ public class SearchRequest {
     }
 
     /**
-     * A previously received trackingToken for a search associated with the same query. Useful for more requests and requests for other tabs.
+     * A previously received trackingToken for a search associated with the same query. Useful for more
+     * requests and requests for other tabs.
      */
     public SearchRequest withTrackingToken(String trackingToken) {
         Utils.checkNotNull(trackingToken, "trackingToken");
@@ -286,7 +297,8 @@ public class SearchRequest {
 
 
     /**
-     * A previously received trackingToken for a search associated with the same query. Useful for more requests and requests for other tabs.
+     * A previously received trackingToken for a search associated with the same query. Useful for more
+     * requests and requests for other tabs.
      */
     public SearchRequest withTrackingToken(Optional<String> trackingToken) {
         Utils.checkNotNull(trackingToken, "trackingToken");
@@ -321,7 +333,8 @@ public class SearchRequest {
     }
 
     /**
-     * Hint to the server about how many results to send back. Server may return less or more. Structured results and clustered results don't count towards pageSize.
+     * Hint to the server about how many results to send back. Server may return less or more. Structured
+     * results and clustered results don't count towards pageSize.
      */
     public SearchRequest withPageSize(long pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
@@ -331,7 +344,8 @@ public class SearchRequest {
 
 
     /**
-     * Hint to the server about how many results to send back. Server may return less or more. Structured results and clustered results don't count towards pageSize.
+     * Hint to the server about how many results to send back. Server may return less or more. Structured
+     * results and clustered results don't count towards pageSize.
      */
     public SearchRequest withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
@@ -368,7 +382,8 @@ public class SearchRequest {
     }
 
     /**
-     * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
+     * Pagination cursor. A previously received opaque token representing the position in the overall
+     * results at which to start.
      */
     public SearchRequest withCursor(String cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -378,7 +393,8 @@ public class SearchRequest {
 
 
     /**
-     * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
+     * Pagination cursor. A previously received opaque token representing the position in the overall
+     * results at which to start.
      */
     public SearchRequest withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -387,7 +403,8 @@ public class SearchRequest {
     }
 
     /**
-     * The unique IDs of the result tabs for which to fetch results. This will have precedence over datasource filters if both are specified and in conflict.
+     * The unique IDs of the result tabs for which to fetch results. This will have precedence over
+     * datasource filters if both are specified and in conflict.
      */
     public SearchRequest withResultTabIds(List<String> resultTabIds) {
         Utils.checkNotNull(resultTabIds, "resultTabIds");
@@ -397,7 +414,8 @@ public class SearchRequest {
 
 
     /**
-     * The unique IDs of the result tabs for which to fetch results. This will have precedence over datasource filters if both are specified and in conflict.
+     * The unique IDs of the result tabs for which to fetch results. This will have precedence over
+     * datasource filters if both are specified and in conflict.
      */
     public SearchRequest withResultTabIds(Optional<? extends List<String>> resultTabIds) {
         Utils.checkNotNull(resultTabIds, "resultTabIds");
@@ -432,7 +450,8 @@ public class SearchRequest {
     }
 
     /**
-     * Timeout in milliseconds for the request. A `408` error will be returned if handling the request takes longer.
+     * Timeout in milliseconds for the request. A `408` error will be returned if handling the request
+     * takes longer.
      */
     public SearchRequest withTimeoutMillis(long timeoutMillis) {
         Utils.checkNotNull(timeoutMillis, "timeoutMillis");
@@ -442,7 +461,8 @@ public class SearchRequest {
 
 
     /**
-     * Timeout in milliseconds for the request. A `408` error will be returned if handling the request takes longer.
+     * Timeout in milliseconds for the request. A `408` error will be returned if handling the request
+     * takes longer.
      */
     public SearchRequest withTimeoutMillis(Optional<Long> timeoutMillis) {
         Utils.checkNotNull(timeoutMillis, "timeoutMillis");
@@ -576,7 +596,8 @@ public class SearchRequest {
 
 
         /**
-         * A previously received trackingToken for a search associated with the same query. Useful for more requests and requests for other tabs.
+         * A previously received trackingToken for a search associated with the same query. Useful for more
+         * requests and requests for other tabs.
          */
         public Builder trackingToken(String trackingToken) {
             Utils.checkNotNull(trackingToken, "trackingToken");
@@ -585,7 +606,8 @@ public class SearchRequest {
         }
 
         /**
-         * A previously received trackingToken for a search associated with the same query. Useful for more requests and requests for other tabs.
+         * A previously received trackingToken for a search associated with the same query. Useful for more
+         * requests and requests for other tabs.
          */
         public Builder trackingToken(Optional<String> trackingToken) {
             Utils.checkNotNull(trackingToken, "trackingToken");
@@ -621,7 +643,8 @@ public class SearchRequest {
 
 
         /**
-         * Hint to the server about how many results to send back. Server may return less or more. Structured results and clustered results don't count towards pageSize.
+         * Hint to the server about how many results to send back. Server may return less or more. Structured
+         * results and clustered results don't count towards pageSize.
          */
         public Builder pageSize(long pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
@@ -630,7 +653,8 @@ public class SearchRequest {
         }
 
         /**
-         * Hint to the server about how many results to send back. Server may return less or more. Structured results and clustered results don't count towards pageSize.
+         * Hint to the server about how many results to send back. Server may return less or more. Structured
+         * results and clustered results don't count towards pageSize.
          */
         public Builder pageSize(Optional<Long> pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
@@ -669,7 +693,8 @@ public class SearchRequest {
 
 
         /**
-         * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
+         * Pagination cursor. A previously received opaque token representing the position in the overall
+         * results at which to start.
          */
         public Builder cursor(String cursor) {
             Utils.checkNotNull(cursor, "cursor");
@@ -678,7 +703,8 @@ public class SearchRequest {
         }
 
         /**
-         * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
+         * Pagination cursor. A previously received opaque token representing the position in the overall
+         * results at which to start.
          */
         public Builder cursor(Optional<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");
@@ -688,7 +714,8 @@ public class SearchRequest {
 
 
         /**
-         * The unique IDs of the result tabs for which to fetch results. This will have precedence over datasource filters if both are specified and in conflict.
+         * The unique IDs of the result tabs for which to fetch results. This will have precedence over
+         * datasource filters if both are specified and in conflict.
          */
         public Builder resultTabIds(List<String> resultTabIds) {
             Utils.checkNotNull(resultTabIds, "resultTabIds");
@@ -697,7 +724,8 @@ public class SearchRequest {
         }
 
         /**
-         * The unique IDs of the result tabs for which to fetch results. This will have precedence over datasource filters if both are specified and in conflict.
+         * The unique IDs of the result tabs for which to fetch results. This will have precedence over
+         * datasource filters if both are specified and in conflict.
          */
         public Builder resultTabIds(Optional<? extends List<String>> resultTabIds) {
             Utils.checkNotNull(resultTabIds, "resultTabIds");
@@ -733,7 +761,8 @@ public class SearchRequest {
 
 
         /**
-         * Timeout in milliseconds for the request. A `408` error will be returned if handling the request takes longer.
+         * Timeout in milliseconds for the request. A `408` error will be returned if handling the request
+         * takes longer.
          */
         public Builder timeoutMillis(long timeoutMillis) {
             Utils.checkNotNull(timeoutMillis, "timeoutMillis");
@@ -742,7 +771,8 @@ public class SearchRequest {
         }
 
         /**
-         * Timeout in milliseconds for the request. A `408` error will be returned if handling the request takes longer.
+         * Timeout in milliseconds for the request. A `408` error will be returned if handling the request
+         * takes longer.
          */
         public Builder timeoutMillis(Optional<Long> timeoutMillis) {
             Utils.checkNotNull(timeoutMillis, "timeoutMillis");

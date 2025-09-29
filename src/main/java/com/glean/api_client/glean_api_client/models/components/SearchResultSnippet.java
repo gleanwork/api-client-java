@@ -48,14 +48,16 @@ public class SearchResultSnippet {
     private Optional<? extends List<TextRange>> ranges;
 
     /**
-     * A URL, generated based on availability, that links to the position of the snippet text or to the nearest header above the snippet text.
+     * A URL, generated based on availability, that links to the position of the snippet text or to the
+     * nearest header above the snippet text.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("url")
     private Optional<String> url;
 
     /**
-     * A matching snippet from the document. Query term matches are marked by the unicode characters uE006 and uE007. Use 'text' field instead.
+     * A matching snippet from the document. Query term matches are marked by the unicode characters uE006
+     * and uE007. Use 'text' field instead.
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -125,7 +127,8 @@ public class SearchResultSnippet {
     }
 
     /**
-     * A URL, generated based on availability, that links to the position of the snippet text or to the nearest header above the snippet text.
+     * A URL, generated based on availability, that links to the position of the snippet text or to the
+     * nearest header above the snippet text.
      */
     @JsonIgnore
     public Optional<String> url() {
@@ -133,7 +136,8 @@ public class SearchResultSnippet {
     }
 
     /**
-     * A matching snippet from the document. Query term matches are marked by the unicode characters uE006 and uE007. Use 'text' field instead.
+     * A matching snippet from the document. Query term matches are marked by the unicode characters uE006
+     * and uE007. Use 'text' field instead.
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -225,7 +229,8 @@ public class SearchResultSnippet {
     }
 
     /**
-     * A URL, generated based on availability, that links to the position of the snippet text or to the nearest header above the snippet text.
+     * A URL, generated based on availability, that links to the position of the snippet text or to the
+     * nearest header above the snippet text.
      */
     public SearchResultSnippet withUrl(String url) {
         Utils.checkNotNull(url, "url");
@@ -235,7 +240,8 @@ public class SearchResultSnippet {
 
 
     /**
-     * A URL, generated based on availability, that links to the position of the snippet text or to the nearest header above the snippet text.
+     * A URL, generated based on availability, that links to the position of the snippet text or to the
+     * nearest header above the snippet text.
      */
     public SearchResultSnippet withUrl(Optional<String> url) {
         Utils.checkNotNull(url, "url");
@@ -244,7 +250,8 @@ public class SearchResultSnippet {
     }
 
     /**
-     * A matching snippet from the document. Query term matches are marked by the unicode characters uE006 and uE007. Use 'text' field instead.
+     * A matching snippet from the document. Query term matches are marked by the unicode characters uE006
+     * and uE007. Use 'text' field instead.
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -389,7 +396,8 @@ public class SearchResultSnippet {
 
 
         /**
-         * A URL, generated based on availability, that links to the position of the snippet text or to the nearest header above the snippet text.
+         * A URL, generated based on availability, that links to the position of the snippet text or to the
+         * nearest header above the snippet text.
          */
         public Builder url(String url) {
             Utils.checkNotNull(url, "url");
@@ -398,7 +406,8 @@ public class SearchResultSnippet {
         }
 
         /**
-         * A URL, generated based on availability, that links to the position of the snippet text or to the nearest header above the snippet text.
+         * A URL, generated based on availability, that links to the position of the snippet text or to the
+         * nearest header above the snippet text.
          */
         public Builder url(Optional<String> url) {
             Utils.checkNotNull(url, "url");
@@ -408,7 +417,8 @@ public class SearchResultSnippet {
 
 
         /**
-         * A matching snippet from the document. Query term matches are marked by the unicode characters uE006 and uE007. Use 'text' field instead.
+         * A matching snippet from the document. Query term matches are marked by the unicode characters uE006
+         * and uE007. Use 'text' field instead.
          * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */

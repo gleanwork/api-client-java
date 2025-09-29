@@ -25,7 +25,8 @@ public class MessagesRequest {
     private IdType idType;
 
     /**
-     * ID corresponding to the requested idType. Note that channel and threads are represented by the underlying datasource's ID and conversations are represented by their document's ID.
+     * ID corresponding to the requested idType. Note that channel and threads are represented by the
+     * underlying datasource's ID and conversations are represented by their document's ID.
      */
     @JsonProperty("id")
     private String id;
@@ -38,7 +39,8 @@ public class MessagesRequest {
     private Optional<String> workspaceId;
 
     /**
-     * The direction of the results asked with respect to the reference timestamp. Missing field defaults to OLDER. Only applicable when using a message_id.
+     * The direction of the results asked with respect to the reference timestamp. Missing field defaults
+     * to OLDER. Only applicable when using a message_id.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("direction")
@@ -66,7 +68,8 @@ public class MessagesRequest {
     private Optional<? extends Datasource> datasource;
 
     /**
-     * The datasource instance display name from which the document was extracted. This is used for appinstance facet filter for datasources that support multiple instances.
+     * The datasource instance display name from which the document was extracted. This is used for
+     * appinstance facet filter for datasources that support multiple instances.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("datasourceInstanceDisplayName")
@@ -117,7 +120,8 @@ public class MessagesRequest {
     }
 
     /**
-     * ID corresponding to the requested idType. Note that channel and threads are represented by the underlying datasource's ID and conversations are represented by their document's ID.
+     * ID corresponding to the requested idType. Note that channel and threads are represented by the
+     * underlying datasource's ID and conversations are represented by their document's ID.
      */
     @JsonIgnore
     public String id() {
@@ -133,7 +137,8 @@ public class MessagesRequest {
     }
 
     /**
-     * The direction of the results asked with respect to the reference timestamp. Missing field defaults to OLDER. Only applicable when using a message_id.
+     * The direction of the results asked with respect to the reference timestamp. Missing field defaults
+     * to OLDER. Only applicable when using a message_id.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -167,7 +172,8 @@ public class MessagesRequest {
     }
 
     /**
-     * The datasource instance display name from which the document was extracted. This is used for appinstance facet filter for datasources that support multiple instances.
+     * The datasource instance display name from which the document was extracted. This is used for
+     * appinstance facet filter for datasources that support multiple instances.
      */
     @JsonIgnore
     public Optional<String> datasourceInstanceDisplayName() {
@@ -189,7 +195,8 @@ public class MessagesRequest {
     }
 
     /**
-     * ID corresponding to the requested idType. Note that channel and threads are represented by the underlying datasource's ID and conversations are represented by their document's ID.
+     * ID corresponding to the requested idType. Note that channel and threads are represented by the
+     * underlying datasource's ID and conversations are represented by their document's ID.
      */
     public MessagesRequest withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -217,7 +224,8 @@ public class MessagesRequest {
     }
 
     /**
-     * The direction of the results asked with respect to the reference timestamp. Missing field defaults to OLDER. Only applicable when using a message_id.
+     * The direction of the results asked with respect to the reference timestamp. Missing field defaults
+     * to OLDER. Only applicable when using a message_id.
      */
     public MessagesRequest withDirection(Direction direction) {
         Utils.checkNotNull(direction, "direction");
@@ -227,7 +235,8 @@ public class MessagesRequest {
 
 
     /**
-     * The direction of the results asked with respect to the reference timestamp. Missing field defaults to OLDER. Only applicable when using a message_id.
+     * The direction of the results asked with respect to the reference timestamp. Missing field defaults
+     * to OLDER. Only applicable when using a message_id.
      */
     public MessagesRequest withDirection(Optional<? extends Direction> direction) {
         Utils.checkNotNull(direction, "direction");
@@ -293,7 +302,8 @@ public class MessagesRequest {
     }
 
     /**
-     * The datasource instance display name from which the document was extracted. This is used for appinstance facet filter for datasources that support multiple instances.
+     * The datasource instance display name from which the document was extracted. This is used for
+     * appinstance facet filter for datasources that support multiple instances.
      */
     public MessagesRequest withDatasourceInstanceDisplayName(String datasourceInstanceDisplayName) {
         Utils.checkNotNull(datasourceInstanceDisplayName, "datasourceInstanceDisplayName");
@@ -303,7 +313,8 @@ public class MessagesRequest {
 
 
     /**
-     * The datasource instance display name from which the document was extracted. This is used for appinstance facet filter for datasources that support multiple instances.
+     * The datasource instance display name from which the document was extracted. This is used for
+     * appinstance facet filter for datasources that support multiple instances.
      */
     public MessagesRequest withDatasourceInstanceDisplayName(Optional<String> datasourceInstanceDisplayName) {
         Utils.checkNotNull(datasourceInstanceDisplayName, "datasourceInstanceDisplayName");
@@ -387,7 +398,8 @@ public class MessagesRequest {
 
 
         /**
-         * ID corresponding to the requested idType. Note that channel and threads are represented by the underlying datasource's ID and conversations are represented by their document's ID.
+         * ID corresponding to the requested idType. Note that channel and threads are represented by the
+         * underlying datasource's ID and conversations are represented by their document's ID.
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -416,7 +428,8 @@ public class MessagesRequest {
 
 
         /**
-         * The direction of the results asked with respect to the reference timestamp. Missing field defaults to OLDER. Only applicable when using a message_id.
+         * The direction of the results asked with respect to the reference timestamp. Missing field defaults
+         * to OLDER. Only applicable when using a message_id.
          */
         public Builder direction(Direction direction) {
             Utils.checkNotNull(direction, "direction");
@@ -425,7 +438,8 @@ public class MessagesRequest {
         }
 
         /**
-         * The direction of the results asked with respect to the reference timestamp. Missing field defaults to OLDER. Only applicable when using a message_id.
+         * The direction of the results asked with respect to the reference timestamp. Missing field defaults
+         * to OLDER. Only applicable when using a message_id.
          */
         public Builder direction(Optional<? extends Direction> direction) {
             Utils.checkNotNull(direction, "direction");
@@ -492,7 +506,8 @@ public class MessagesRequest {
 
 
         /**
-         * The datasource instance display name from which the document was extracted. This is used for appinstance facet filter for datasources that support multiple instances.
+         * The datasource instance display name from which the document was extracted. This is used for
+         * appinstance facet filter for datasources that support multiple instances.
          */
         public Builder datasourceInstanceDisplayName(String datasourceInstanceDisplayName) {
             Utils.checkNotNull(datasourceInstanceDisplayName, "datasourceInstanceDisplayName");
@@ -501,7 +516,8 @@ public class MessagesRequest {
         }
 
         /**
-         * The datasource instance display name from which the document was extracted. This is used for appinstance facet filter for datasources that support multiple instances.
+         * The datasource instance display name from which the document was extracted. This is used for
+         * appinstance facet filter for datasources that support multiple instances.
          */
         public Builder datasourceInstanceDisplayName(Optional<String> datasourceInstanceDisplayName) {
             Utils.checkNotNull(datasourceInstanceDisplayName, "datasourceInstanceDisplayName");

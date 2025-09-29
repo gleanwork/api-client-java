@@ -19,7 +19,8 @@ import java.util.Optional;
 
 public class PeopleRequest {
     /**
-     * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours
+     * behind UTC.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timezoneOffset")
@@ -88,7 +89,8 @@ public class PeopleRequest {
     }
 
     /**
-     * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours
+     * behind UTC.
      */
     @JsonIgnore
     public Optional<Long> timezoneOffset() {
@@ -145,7 +147,8 @@ public class PeopleRequest {
 
 
     /**
-     * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours
+     * behind UTC.
      */
     public PeopleRequest withTimezoneOffset(long timezoneOffset) {
         Utils.checkNotNull(timezoneOffset, "timezoneOffset");
@@ -155,7 +158,8 @@ public class PeopleRequest {
 
 
     /**
-     * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours
+     * behind UTC.
      */
     public PeopleRequest withTimezoneOffset(Optional<Long> timezoneOffset) {
         Utils.checkNotNull(timezoneOffset, "timezoneOffset");
@@ -315,7 +319,8 @@ public class PeopleRequest {
 
 
         /**
-         * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+         * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours
+         * behind UTC.
          */
         public Builder timezoneOffset(long timezoneOffset) {
             Utils.checkNotNull(timezoneOffset, "timezoneOffset");
@@ -324,7 +329,8 @@ public class PeopleRequest {
         }
 
         /**
-         * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+         * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours
+         * behind UTC.
          */
         public Builder timezoneOffset(Optional<Long> timezoneOffset) {
             Utils.checkNotNull(timezoneOffset, "timezoneOffset");

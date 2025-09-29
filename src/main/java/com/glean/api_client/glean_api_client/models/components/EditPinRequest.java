@@ -25,7 +25,8 @@ public class EditPinRequest {
     private Optional<? extends List<String>> queries;
 
     /**
-     * Filters which restrict who should see the pinned document. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see the pinned document. Values are taken from the corresponding
+     * filters in people search.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("audienceFilters")
@@ -65,7 +66,8 @@ public class EditPinRequest {
     }
 
     /**
-     * Filters which restrict who should see the pinned document. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see the pinned document. Values are taken from the corresponding
+     * filters in people search.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -106,7 +108,8 @@ public class EditPinRequest {
     }
 
     /**
-     * Filters which restrict who should see the pinned document. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see the pinned document. Values are taken from the corresponding
+     * filters in people search.
      */
     public EditPinRequest withAudienceFilters(List<FacetFilter> audienceFilters) {
         Utils.checkNotNull(audienceFilters, "audienceFilters");
@@ -116,7 +119,8 @@ public class EditPinRequest {
 
 
     /**
-     * Filters which restrict who should see the pinned document. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see the pinned document. Values are taken from the corresponding
+     * filters in people search.
      */
     public EditPinRequest withAudienceFilters(Optional<? extends List<FacetFilter>> audienceFilters) {
         Utils.checkNotNull(audienceFilters, "audienceFilters");
@@ -206,7 +210,8 @@ public class EditPinRequest {
 
 
         /**
-         * Filters which restrict who should see the pinned document. Values are taken from the corresponding filters in people search.
+         * Filters which restrict who should see the pinned document. Values are taken from the corresponding
+         * filters in people search.
          */
         public Builder audienceFilters(List<FacetFilter> audienceFilters) {
             Utils.checkNotNull(audienceFilters, "audienceFilters");
@@ -215,7 +220,8 @@ public class EditPinRequest {
         }
 
         /**
-         * Filters which restrict who should see the pinned document. Values are taken from the corresponding filters in people search.
+         * Filters which restrict who should see the pinned document. Values are taken from the corresponding
+         * filters in people search.
          */
         public Builder audienceFilters(Optional<? extends List<FacetFilter>> audienceFilters) {
             Utils.checkNotNull(audienceFilters, "audienceFilters");

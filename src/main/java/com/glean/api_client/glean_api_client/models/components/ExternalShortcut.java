@@ -18,7 +18,8 @@ import java.util.Optional;
 
 public class ExternalShortcut {
     /**
-     * link text following the viewPrefix as entered by the user. For example, if the view prefix is `go/` and the shortened URL is `go/abc`, then `abc` is the inputAlias.
+     * link text following the viewPrefix as entered by the user. For example, if the view prefix is `go/`
+     * and the shortened URL is `go/abc`, then `abc` is the inputAlias.
      */
     @JsonProperty("inputAlias")
     private String inputAlias;
@@ -139,7 +140,8 @@ public class ExternalShortcut {
     }
 
     /**
-     * link text following the viewPrefix as entered by the user. For example, if the view prefix is `go/` and the shortened URL is `go/abc`, then `abc` is the inputAlias.
+     * link text following the viewPrefix as entered by the user. For example, if the view prefix is `go/`
+     * and the shortened URL is `go/abc`, then `abc` is the inputAlias.
      */
     @JsonIgnore
     public String inputAlias() {
@@ -232,7 +234,8 @@ public class ExternalShortcut {
 
 
     /**
-     * link text following the viewPrefix as entered by the user. For example, if the view prefix is `go/` and the shortened URL is `go/abc`, then `abc` is the inputAlias.
+     * link text following the viewPrefix as entered by the user. For example, if the view prefix is `go/`
+     * and the shortened URL is `go/abc`, then `abc` is the inputAlias.
      */
     public ExternalShortcut withInputAlias(String inputAlias) {
         Utils.checkNotNull(inputAlias, "inputAlias");
@@ -479,7 +482,8 @@ public class ExternalShortcut {
 
 
         /**
-         * link text following the viewPrefix as entered by the user. For example, if the view prefix is `go/` and the shortened URL is `go/abc`, then `abc` is the inputAlias.
+         * link text following the viewPrefix as entered by the user. For example, if the view prefix is `go/`
+         * and the shortened URL is `go/abc`, then `abc` is the inputAlias.
          */
         public Builder inputAlias(String inputAlias) {
             Utils.checkNotNull(inputAlias, "inputAlias");

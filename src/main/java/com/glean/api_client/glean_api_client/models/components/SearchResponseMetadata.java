@@ -19,7 +19,8 @@ import java.util.Optional;
 
 public class SearchResponseMetadata {
     /**
-     * A cleaned up or updated version of the query to be displayed in the query box. Useful for mapping visual facets to search operators.
+     * A cleaned up or updated version of the query to be displayed in the query box. Useful for mapping
+     * visual facets to search operators.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("rewrittenQuery")
@@ -78,7 +79,8 @@ public class SearchResponseMetadata {
     private Optional<Boolean> modifiedQueryWasUsed;
 
     /**
-     * No results were found for the original query. The usage of this bit in conjunction with modifiedQueryWasUsed will dictate whether the full page replacement is 0-result or few-result based.
+     * No results were found for the original query. The usage of this bit in conjunction with
+     * modifiedQueryWasUsed will dictate whether the full page replacement is 0-result or few-result based.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("originalQueryHadNoResults")
@@ -155,7 +157,8 @@ public class SearchResponseMetadata {
     }
 
     /**
-     * A cleaned up or updated version of the query to be displayed in the query box. Useful for mapping visual facets to search operators.
+     * A cleaned up or updated version of the query to be displayed in the query box. Useful for mapping
+     * visual facets to search operators.
      */
     @JsonIgnore
     public Optional<String> rewrittenQuery() {
@@ -225,7 +228,8 @@ public class SearchResponseMetadata {
     }
 
     /**
-     * No results were found for the original query. The usage of this bit in conjunction with modifiedQueryWasUsed will dictate whether the full page replacement is 0-result or few-result based.
+     * No results were found for the original query. The usage of this bit in conjunction with
+     * modifiedQueryWasUsed will dictate whether the full page replacement is 0-result or few-result based.
      */
     @JsonIgnore
     public Optional<Boolean> originalQueryHadNoResults() {
@@ -260,7 +264,8 @@ public class SearchResponseMetadata {
 
 
     /**
-     * A cleaned up or updated version of the query to be displayed in the query box. Useful for mapping visual facets to search operators.
+     * A cleaned up or updated version of the query to be displayed in the query box. Useful for mapping
+     * visual facets to search operators.
      */
     public SearchResponseMetadata withRewrittenQuery(String rewrittenQuery) {
         Utils.checkNotNull(rewrittenQuery, "rewrittenQuery");
@@ -270,7 +275,8 @@ public class SearchResponseMetadata {
 
 
     /**
-     * A cleaned up or updated version of the query to be displayed in the query box. Useful for mapping visual facets to search operators.
+     * A cleaned up or updated version of the query to be displayed in the query box. Useful for mapping
+     * visual facets to search operators.
      */
     public SearchResponseMetadata withRewrittenQuery(Optional<String> rewrittenQuery) {
         Utils.checkNotNull(rewrittenQuery, "rewrittenQuery");
@@ -419,7 +425,8 @@ public class SearchResponseMetadata {
     }
 
     /**
-     * No results were found for the original query. The usage of this bit in conjunction with modifiedQueryWasUsed will dictate whether the full page replacement is 0-result or few-result based.
+     * No results were found for the original query. The usage of this bit in conjunction with
+     * modifiedQueryWasUsed will dictate whether the full page replacement is 0-result or few-result based.
      */
     public SearchResponseMetadata withOriginalQueryHadNoResults(boolean originalQueryHadNoResults) {
         Utils.checkNotNull(originalQueryHadNoResults, "originalQueryHadNoResults");
@@ -429,7 +436,8 @@ public class SearchResponseMetadata {
 
 
     /**
-     * No results were found for the original query. The usage of this bit in conjunction with modifiedQueryWasUsed will dictate whether the full page replacement is 0-result or few-result based.
+     * No results were found for the original query. The usage of this bit in conjunction with
+     * modifiedQueryWasUsed will dictate whether the full page replacement is 0-result or few-result based.
      */
     public SearchResponseMetadata withOriginalQueryHadNoResults(Optional<Boolean> originalQueryHadNoResults) {
         Utils.checkNotNull(originalQueryHadNoResults, "originalQueryHadNoResults");
@@ -576,7 +584,8 @@ public class SearchResponseMetadata {
 
 
         /**
-         * A cleaned up or updated version of the query to be displayed in the query box. Useful for mapping visual facets to search operators.
+         * A cleaned up or updated version of the query to be displayed in the query box. Useful for mapping
+         * visual facets to search operators.
          */
         public Builder rewrittenQuery(String rewrittenQuery) {
             Utils.checkNotNull(rewrittenQuery, "rewrittenQuery");
@@ -585,7 +594,8 @@ public class SearchResponseMetadata {
         }
 
         /**
-         * A cleaned up or updated version of the query to be displayed in the query box. Useful for mapping visual facets to search operators.
+         * A cleaned up or updated version of the query to be displayed in the query box. Useful for mapping
+         * visual facets to search operators.
          */
         public Builder rewrittenQuery(Optional<String> rewrittenQuery) {
             Utils.checkNotNull(rewrittenQuery, "rewrittenQuery");
@@ -735,7 +745,8 @@ public class SearchResponseMetadata {
 
 
         /**
-         * No results were found for the original query. The usage of this bit in conjunction with modifiedQueryWasUsed will dictate whether the full page replacement is 0-result or few-result based.
+         * No results were found for the original query. The usage of this bit in conjunction with
+         * modifiedQueryWasUsed will dictate whether the full page replacement is 0-result or few-result based.
          */
         public Builder originalQueryHadNoResults(boolean originalQueryHadNoResults) {
             Utils.checkNotNull(originalQueryHadNoResults, "originalQueryHadNoResults");
@@ -744,7 +755,8 @@ public class SearchResponseMetadata {
         }
 
         /**
-         * No results were found for the original query. The usage of this bit in conjunction with modifiedQueryWasUsed will dictate whether the full page replacement is 0-result or few-result based.
+         * No results were found for the original query. The usage of this bit in conjunction with
+         * modifiedQueryWasUsed will dictate whether the full page replacement is 0-result or few-result based.
          */
         public Builder originalQueryHadNoResults(Optional<Boolean> originalQueryHadNoResults) {
             Utils.checkNotNull(originalQueryHadNoResults, "originalQueryHadNoResults");

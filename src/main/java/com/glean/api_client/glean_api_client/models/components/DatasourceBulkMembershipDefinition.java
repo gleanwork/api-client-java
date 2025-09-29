@@ -16,7 +16,8 @@ import java.util.Optional;
 /**
  * DatasourceBulkMembershipDefinition
  * 
- * <p>describes the membership row of a group in the bulk uploaded. Only one of memberUserId and memberGroupName can be specified.
+ * <p>describes the membership row of a group in the bulk uploaded. Only one of memberUserId and
+ * memberGroupName can be specified.
  */
 public class DatasourceBulkMembershipDefinition {
     /**

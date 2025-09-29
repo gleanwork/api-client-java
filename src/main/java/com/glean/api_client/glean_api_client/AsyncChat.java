@@ -93,7 +93,7 @@ public class AsyncChat {
      * <p>Have a conversation with Glean AI.
      * 
      * @param chatRequest 
-     * @return CompletableFuture&lt;ChatResponse&gt; - The async response
+     * @return {@code CompletableFuture<ChatResponse>} - The async response
      */
     public CompletableFuture<ChatResponse> create(ChatRequest chatRequest) {
         return create(Optional.empty(), chatRequest);
@@ -106,7 +106,7 @@ public class AsyncChat {
      * 
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param chatRequest 
-     * @return CompletableFuture&lt;ChatResponse&gt; - The async response
+     * @return {@code CompletableFuture<ChatResponse>} - The async response
      */
     public CompletableFuture<ChatResponse> create(Optional<Long> timezoneOffset, ChatRequest chatRequest) {
         com.glean.api_client.glean_api_client.models.operations.ChatRequest request =
@@ -138,7 +138,7 @@ public class AsyncChat {
      * 
      * <p>Deletes all saved Chats a user has had and all their contained conversational content.
      * 
-     * @return CompletableFuture&lt;DeleteallchatsResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeleteallchatsResponse>} - The async response
      */
     public CompletableFuture<DeleteallchatsResponse> deleteAllDirect() {
         return deleteAll(Optional.empty());
@@ -150,7 +150,7 @@ public class AsyncChat {
      * <p>Deletes all saved Chats a user has had and all their contained conversational content.
      * 
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
-     * @return CompletableFuture&lt;DeleteallchatsResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeleteallchatsResponse>} - The async response
      */
     public CompletableFuture<DeleteallchatsResponse> deleteAll(Optional<Long> timezoneOffset) {
         DeleteallchatsRequest request =
@@ -182,7 +182,7 @@ public class AsyncChat {
      * <p>Deletes saved Chats and all their contained conversational content.
      * 
      * @param deleteChatsRequest 
-     * @return CompletableFuture&lt;DeletechatsResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeletechatsResponse>} - The async response
      */
     public CompletableFuture<DeletechatsResponse> delete(DeleteChatsRequest deleteChatsRequest) {
         return delete(Optional.empty(), deleteChatsRequest);
@@ -195,7 +195,7 @@ public class AsyncChat {
      * 
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param deleteChatsRequest 
-     * @return CompletableFuture&lt;DeletechatsResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeletechatsResponse>} - The async response
      */
     public CompletableFuture<DeletechatsResponse> delete(Optional<Long> timezoneOffset, DeleteChatsRequest deleteChatsRequest) {
         DeletechatsRequest request =
@@ -228,7 +228,7 @@ public class AsyncChat {
      * <p>Retrieves the chat history between Glean Assistant and the user for a given Chat.
      * 
      * @param getChatRequest 
-     * @return CompletableFuture&lt;GetchatResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetchatResponse>} - The async response
      */
     public CompletableFuture<GetchatResponse> retrieve(GetChatRequest getChatRequest) {
         return retrieve(Optional.empty(), getChatRequest);
@@ -241,7 +241,7 @@ public class AsyncChat {
      * 
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param getChatRequest 
-     * @return CompletableFuture&lt;GetchatResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetchatResponse>} - The async response
      */
     public CompletableFuture<GetchatResponse> retrieve(Optional<Long> timezoneOffset, GetChatRequest getChatRequest) {
         GetchatRequest request =
@@ -260,7 +260,8 @@ public class AsyncChat {
     /**
      * Retrieves all saved Chats
      * 
-     * <p>Retrieves all the saved Chats between Glean Assistant and the user. The returned Chats contain only metadata and no conversational content.
+     * <p>Retrieves all the saved Chats between Glean Assistant and the user. The returned Chats contain only
+     * metadata and no conversational content.
      * 
      * @return The async call builder
      */
@@ -271,9 +272,10 @@ public class AsyncChat {
     /**
      * Retrieves all saved Chats
      * 
-     * <p>Retrieves all the saved Chats between Glean Assistant and the user. The returned Chats contain only metadata and no conversational content.
+     * <p>Retrieves all the saved Chats between Glean Assistant and the user. The returned Chats contain only
+     * metadata and no conversational content.
      * 
-     * @return CompletableFuture&lt;ListchatsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListchatsResponse>} - The async response
      */
     public CompletableFuture<ListchatsResponse> listDirect() {
         return list(Optional.empty());
@@ -282,10 +284,11 @@ public class AsyncChat {
     /**
      * Retrieves all saved Chats
      * 
-     * <p>Retrieves all the saved Chats between Glean Assistant and the user. The returned Chats contain only metadata and no conversational content.
+     * <p>Retrieves all the saved Chats between Glean Assistant and the user. The returned Chats contain only
+     * metadata and no conversational content.
      * 
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
-     * @return CompletableFuture&lt;ListchatsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListchatsResponse>} - The async response
      */
     public CompletableFuture<ListchatsResponse> list(Optional<Long> timezoneOffset) {
         ListchatsRequest request =
@@ -317,7 +320,7 @@ public class AsyncChat {
      * <p>Gets the Chat application details for the specified application ID.
      * 
      * @param getChatApplicationRequest 
-     * @return CompletableFuture&lt;GetchatapplicationResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetchatapplicationResponse>} - The async response
      */
     public CompletableFuture<GetchatapplicationResponse> retrieveApplication(GetChatApplicationRequest getChatApplicationRequest) {
         return retrieveApplication(Optional.empty(), getChatApplicationRequest);
@@ -330,7 +333,7 @@ public class AsyncChat {
      * 
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param getChatApplicationRequest 
-     * @return CompletableFuture&lt;GetchatapplicationResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetchatapplicationResponse>} - The async response
      */
     public CompletableFuture<GetchatapplicationResponse> retrieveApplication(Optional<Long> timezoneOffset, GetChatApplicationRequest getChatApplicationRequest) {
         GetchatapplicationRequest request =
@@ -363,7 +366,7 @@ public class AsyncChat {
      * <p>Upload files for Chat.
      * 
      * @param uploadChatFilesRequest 
-     * @return CompletableFuture&lt;UploadchatfilesResponse&gt; - The async response
+     * @return {@code CompletableFuture<UploadchatfilesResponse>} - The async response
      */
     public CompletableFuture<UploadchatfilesResponse> uploadFiles(UploadChatFilesRequest uploadChatFilesRequest) {
         return uploadFiles(Optional.empty(), uploadChatFilesRequest);
@@ -376,7 +379,7 @@ public class AsyncChat {
      * 
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param uploadChatFilesRequest 
-     * @return CompletableFuture&lt;UploadchatfilesResponse&gt; - The async response
+     * @return {@code CompletableFuture<UploadchatfilesResponse>} - The async response
      */
     public CompletableFuture<UploadchatfilesResponse> uploadFiles(Optional<Long> timezoneOffset, UploadChatFilesRequest uploadChatFilesRequest) {
         UploadchatfilesRequest request =
@@ -409,7 +412,7 @@ public class AsyncChat {
      * <p>Get files uploaded by a user for Chat.
      * 
      * @param getChatFilesRequest 
-     * @return CompletableFuture&lt;GetchatfilesResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetchatfilesResponse>} - The async response
      */
     public CompletableFuture<GetchatfilesResponse> retrieveFiles(GetChatFilesRequest getChatFilesRequest) {
         return retrieveFiles(Optional.empty(), getChatFilesRequest);
@@ -422,7 +425,7 @@ public class AsyncChat {
      * 
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param getChatFilesRequest 
-     * @return CompletableFuture&lt;GetchatfilesResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetchatfilesResponse>} - The async response
      */
     public CompletableFuture<GetchatfilesResponse> retrieveFiles(Optional<Long> timezoneOffset, GetChatFilesRequest getChatFilesRequest) {
         GetchatfilesRequest request =
@@ -455,7 +458,7 @@ public class AsyncChat {
      * <p>Delete files uploaded by a user for Chat.
      * 
      * @param deleteChatFilesRequest 
-     * @return CompletableFuture&lt;DeletechatfilesResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeletechatfilesResponse>} - The async response
      */
     public CompletableFuture<DeletechatfilesResponse> deleteFiles(DeleteChatFilesRequest deleteChatFilesRequest) {
         return deleteFiles(Optional.empty(), deleteChatFilesRequest);
@@ -468,7 +471,7 @@ public class AsyncChat {
      * 
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param deleteChatFilesRequest 
-     * @return CompletableFuture&lt;DeletechatfilesResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeletechatfilesResponse>} - The async response
      */
     public CompletableFuture<DeletechatfilesResponse> deleteFiles(Optional<Long> timezoneOffset, DeleteChatFilesRequest deleteChatFilesRequest) {
         DeletechatfilesRequest request =
@@ -501,7 +504,7 @@ public class AsyncChat {
      * <p>Have a conversation with Glean AI.
      * 
      * @param chatRequest 
-     * @return CompletableFuture&lt;ChatStreamResponse&gt; - The async response
+     * @return {@code CompletableFuture<ChatStreamResponse>} - The async response
      */
     public CompletableFuture<ChatStreamResponse> createStream(ChatRequest chatRequest) {
         return createStream(Optional.empty(), chatRequest);
@@ -514,7 +517,7 @@ public class AsyncChat {
      * 
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param chatRequest 
-     * @return CompletableFuture&lt;ChatStreamResponse&gt; - The async response
+     * @return {@code CompletableFuture<ChatStreamResponse>} - The async response
      */
     public CompletableFuture<ChatStreamResponse> createStream(Optional<Long> timezoneOffset, ChatRequest chatRequest) {
         ChatStreamRequest request =

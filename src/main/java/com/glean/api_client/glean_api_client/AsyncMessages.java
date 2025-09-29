@@ -49,7 +49,7 @@ public class AsyncMessages {
      * <p>Retrieves list of messages from messaging/chat datasources (e.g. Slack, Teams).
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;MessagesResponse&gt; - The async response
+     * @return {@code CompletableFuture<MessagesResponse>} - The async response
      */
     public CompletableFuture<MessagesResponse> retrieve(MessagesRequest request) {
         AsyncRequestOperation<MessagesRequest, MessagesResponse> operation

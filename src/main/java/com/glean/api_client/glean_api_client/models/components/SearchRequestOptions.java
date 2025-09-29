@@ -34,21 +34,25 @@ public class SearchRequestOptions {
     private Optional<? extends List<String>> datasourcesFilter;
 
     /**
-     * If true, the operators in the query are taken to override any operators in facetFilters in the case of conflict. This is used to correctly set rewrittenFacetFilters and rewrittenQuery.
+     * If true, the operators in the query are taken to override any operators in facetFilters in the case
+     * of conflict. This is used to correctly set rewrittenFacetFilters and rewrittenQuery.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("queryOverridesFacetFilters")
     private Optional<Boolean> queryOverridesFacetFilters;
 
     /**
-     * A list of filters for the query. An AND is assumed between different facetFilters. For example, owner Sumeet and type Spreadsheet shows documents that are by Sumeet AND are Spreadsheets.
+     * A list of filters for the query. An AND is assumed between different facetFilters. For example,
+     * owner Sumeet and type Spreadsheet shows documents that are by Sumeet AND are Spreadsheets.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("facetFilters")
     private Optional<? extends List<FacetFilter>> facetFilters;
 
     /**
-     * A list of facet filter sets that will be OR'ed together. SearchRequestOptions where both facetFilterSets and facetFilters set are considered as bad request. Callers should set only one of these fields.
+     * A list of facet filter sets that will be OR'ed together. SearchRequestOptions where both
+     * facetFilterSets and facetFilters set are considered as bad request. Callers should set only one of
+     * these fields.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("facetFilterSets")
@@ -66,7 +70,10 @@ public class SearchRequestOptions {
     private long facetBucketSize;
 
     /**
-     * Facets for which FacetResults should be fetched and that don't apply to a particular datasource. If specified, these values will replace the standard default facets (last_updated_at, from, etc.). The requested facets will be returned alongside datasource-specific facets if searching a single datasource.
+     * Facets for which FacetResults should be fetched and that don't apply to a particular datasource. If
+     * specified, these values will replace the standard default facets (last_updated_at, from, etc.). The
+     * requested facets will be returned alongside datasource-specific facets if searching a single
+     * datasource.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("defaultFacets")
@@ -80,7 +87,8 @@ public class SearchRequestOptions {
     private Optional<? extends List<AuthToken>> authTokens;
 
     /**
-     * Hints that the QE should return result counts (via the datasource facet result) for all supported datasources, rather than just those specified in the datasource[s]Filter
+     * Hints that the QE should return result counts (via the datasource facet result) for all supported
+     * datasources, rather than just those specified in the datasource[s]Filter
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("fetchAllDatasourceCounts")
@@ -94,7 +102,8 @@ public class SearchRequestOptions {
     private Optional<? extends List<ResponseHint>> responseHints;
 
     /**
-     * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours
+     * behind UTC.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timezoneOffset")
@@ -115,7 +124,11 @@ public class SearchRequestOptions {
     private Optional<Boolean> disableQueryAutocorrect;
 
     /**
-     * Enables expanded content to be returned for LLM usage. The size of content per result returned should be modified using maxSnippetSize. Server may return less or more than what is specified in maxSnippetSize. For more details, see https://developers.glean.com/guides/search/llm-content.
+     * Enables expanded content to be returned for LLM usage. The size of content per result returned
+     * should be modified using maxSnippetSize. Server may return less or more than what is specified in
+     * maxSnippetSize.
+     * 
+     * <p>For more details, see https://developers.glean.com/guides/search/llm-content.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("returnLlmContentOverSnippets")
@@ -214,7 +227,8 @@ public class SearchRequestOptions {
     }
 
     /**
-     * If true, the operators in the query are taken to override any operators in facetFilters in the case of conflict. This is used to correctly set rewrittenFacetFilters and rewrittenQuery.
+     * If true, the operators in the query are taken to override any operators in facetFilters in the case
+     * of conflict. This is used to correctly set rewrittenFacetFilters and rewrittenQuery.
      */
     @JsonIgnore
     public Optional<Boolean> queryOverridesFacetFilters() {
@@ -222,7 +236,8 @@ public class SearchRequestOptions {
     }
 
     /**
-     * A list of filters for the query. An AND is assumed between different facetFilters. For example, owner Sumeet and type Spreadsheet shows documents that are by Sumeet AND are Spreadsheets.
+     * A list of filters for the query. An AND is assumed between different facetFilters. For example,
+     * owner Sumeet and type Spreadsheet shows documents that are by Sumeet AND are Spreadsheets.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -231,7 +246,9 @@ public class SearchRequestOptions {
     }
 
     /**
-     * A list of facet filter sets that will be OR'ed together. SearchRequestOptions where both facetFilterSets and facetFilters set are considered as bad request. Callers should set only one of these fields.
+     * A list of facet filter sets that will be OR'ed together. SearchRequestOptions where both
+     * facetFilterSets and facetFilters set are considered as bad request. Callers should set only one of
+     * these fields.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -254,7 +271,10 @@ public class SearchRequestOptions {
     }
 
     /**
-     * Facets for which FacetResults should be fetched and that don't apply to a particular datasource. If specified, these values will replace the standard default facets (last_updated_at, from, etc.). The requested facets will be returned alongside datasource-specific facets if searching a single datasource.
+     * Facets for which FacetResults should be fetched and that don't apply to a particular datasource. If
+     * specified, these values will replace the standard default facets (last_updated_at, from, etc.). The
+     * requested facets will be returned alongside datasource-specific facets if searching a single
+     * datasource.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -272,7 +292,8 @@ public class SearchRequestOptions {
     }
 
     /**
-     * Hints that the QE should return result counts (via the datasource facet result) for all supported datasources, rather than just those specified in the datasource[s]Filter
+     * Hints that the QE should return result counts (via the datasource facet result) for all supported
+     * datasources, rather than just those specified in the datasource[s]Filter
      */
     @JsonIgnore
     public Optional<Boolean> fetchAllDatasourceCounts() {
@@ -289,7 +310,8 @@ public class SearchRequestOptions {
     }
 
     /**
-     * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours
+     * behind UTC.
      */
     @JsonIgnore
     public Optional<Long> timezoneOffset() {
@@ -313,7 +335,11 @@ public class SearchRequestOptions {
     }
 
     /**
-     * Enables expanded content to be returned for LLM usage. The size of content per result returned should be modified using maxSnippetSize. Server may return less or more than what is specified in maxSnippetSize. For more details, see https://developers.glean.com/guides/search/llm-content.
+     * Enables expanded content to be returned for LLM usage. The size of content per result returned
+     * should be modified using maxSnippetSize. Server may return less or more than what is specified in
+     * maxSnippetSize.
+     * 
+     * <p>For more details, see https://developers.glean.com/guides/search/llm-content.
      */
     @JsonIgnore
     public Optional<Boolean> returnLlmContentOverSnippets() {
@@ -376,7 +402,8 @@ public class SearchRequestOptions {
     }
 
     /**
-     * If true, the operators in the query are taken to override any operators in facetFilters in the case of conflict. This is used to correctly set rewrittenFacetFilters and rewrittenQuery.
+     * If true, the operators in the query are taken to override any operators in facetFilters in the case
+     * of conflict. This is used to correctly set rewrittenFacetFilters and rewrittenQuery.
      */
     public SearchRequestOptions withQueryOverridesFacetFilters(boolean queryOverridesFacetFilters) {
         Utils.checkNotNull(queryOverridesFacetFilters, "queryOverridesFacetFilters");
@@ -386,7 +413,8 @@ public class SearchRequestOptions {
 
 
     /**
-     * If true, the operators in the query are taken to override any operators in facetFilters in the case of conflict. This is used to correctly set rewrittenFacetFilters and rewrittenQuery.
+     * If true, the operators in the query are taken to override any operators in facetFilters in the case
+     * of conflict. This is used to correctly set rewrittenFacetFilters and rewrittenQuery.
      */
     public SearchRequestOptions withQueryOverridesFacetFilters(Optional<Boolean> queryOverridesFacetFilters) {
         Utils.checkNotNull(queryOverridesFacetFilters, "queryOverridesFacetFilters");
@@ -395,7 +423,8 @@ public class SearchRequestOptions {
     }
 
     /**
-     * A list of filters for the query. An AND is assumed between different facetFilters. For example, owner Sumeet and type Spreadsheet shows documents that are by Sumeet AND are Spreadsheets.
+     * A list of filters for the query. An AND is assumed between different facetFilters. For example,
+     * owner Sumeet and type Spreadsheet shows documents that are by Sumeet AND are Spreadsheets.
      */
     public SearchRequestOptions withFacetFilters(List<FacetFilter> facetFilters) {
         Utils.checkNotNull(facetFilters, "facetFilters");
@@ -405,7 +434,8 @@ public class SearchRequestOptions {
 
 
     /**
-     * A list of filters for the query. An AND is assumed between different facetFilters. For example, owner Sumeet and type Spreadsheet shows documents that are by Sumeet AND are Spreadsheets.
+     * A list of filters for the query. An AND is assumed between different facetFilters. For example,
+     * owner Sumeet and type Spreadsheet shows documents that are by Sumeet AND are Spreadsheets.
      */
     public SearchRequestOptions withFacetFilters(Optional<? extends List<FacetFilter>> facetFilters) {
         Utils.checkNotNull(facetFilters, "facetFilters");
@@ -414,7 +444,9 @@ public class SearchRequestOptions {
     }
 
     /**
-     * A list of facet filter sets that will be OR'ed together. SearchRequestOptions where both facetFilterSets and facetFilters set are considered as bad request. Callers should set only one of these fields.
+     * A list of facet filter sets that will be OR'ed together. SearchRequestOptions where both
+     * facetFilterSets and facetFilters set are considered as bad request. Callers should set only one of
+     * these fields.
      */
     public SearchRequestOptions withFacetFilterSets(List<FacetFilterSet> facetFilterSets) {
         Utils.checkNotNull(facetFilterSets, "facetFilterSets");
@@ -424,7 +456,9 @@ public class SearchRequestOptions {
 
 
     /**
-     * A list of facet filter sets that will be OR'ed together. SearchRequestOptions where both facetFilterSets and facetFilters set are considered as bad request. Callers should set only one of these fields.
+     * A list of facet filter sets that will be OR'ed together. SearchRequestOptions where both
+     * facetFilterSets and facetFilters set are considered as bad request. Callers should set only one of
+     * these fields.
      */
     public SearchRequestOptions withFacetFilterSets(Optional<? extends List<FacetFilterSet>> facetFilterSets) {
         Utils.checkNotNull(facetFilterSets, "facetFilterSets");
@@ -455,7 +489,10 @@ public class SearchRequestOptions {
     }
 
     /**
-     * Facets for which FacetResults should be fetched and that don't apply to a particular datasource. If specified, these values will replace the standard default facets (last_updated_at, from, etc.). The requested facets will be returned alongside datasource-specific facets if searching a single datasource.
+     * Facets for which FacetResults should be fetched and that don't apply to a particular datasource. If
+     * specified, these values will replace the standard default facets (last_updated_at, from, etc.). The
+     * requested facets will be returned alongside datasource-specific facets if searching a single
+     * datasource.
      */
     public SearchRequestOptions withDefaultFacets(List<String> defaultFacets) {
         Utils.checkNotNull(defaultFacets, "defaultFacets");
@@ -465,7 +502,10 @@ public class SearchRequestOptions {
 
 
     /**
-     * Facets for which FacetResults should be fetched and that don't apply to a particular datasource. If specified, these values will replace the standard default facets (last_updated_at, from, etc.). The requested facets will be returned alongside datasource-specific facets if searching a single datasource.
+     * Facets for which FacetResults should be fetched and that don't apply to a particular datasource. If
+     * specified, these values will replace the standard default facets (last_updated_at, from, etc.). The
+     * requested facets will be returned alongside datasource-specific facets if searching a single
+     * datasource.
      */
     public SearchRequestOptions withDefaultFacets(Optional<? extends List<String>> defaultFacets) {
         Utils.checkNotNull(defaultFacets, "defaultFacets");
@@ -493,7 +533,8 @@ public class SearchRequestOptions {
     }
 
     /**
-     * Hints that the QE should return result counts (via the datasource facet result) for all supported datasources, rather than just those specified in the datasource[s]Filter
+     * Hints that the QE should return result counts (via the datasource facet result) for all supported
+     * datasources, rather than just those specified in the datasource[s]Filter
      */
     public SearchRequestOptions withFetchAllDatasourceCounts(boolean fetchAllDatasourceCounts) {
         Utils.checkNotNull(fetchAllDatasourceCounts, "fetchAllDatasourceCounts");
@@ -503,7 +544,8 @@ public class SearchRequestOptions {
 
 
     /**
-     * Hints that the QE should return result counts (via the datasource facet result) for all supported datasources, rather than just those specified in the datasource[s]Filter
+     * Hints that the QE should return result counts (via the datasource facet result) for all supported
+     * datasources, rather than just those specified in the datasource[s]Filter
      */
     public SearchRequestOptions withFetchAllDatasourceCounts(Optional<Boolean> fetchAllDatasourceCounts) {
         Utils.checkNotNull(fetchAllDatasourceCounts, "fetchAllDatasourceCounts");
@@ -531,7 +573,8 @@ public class SearchRequestOptions {
     }
 
     /**
-     * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours
+     * behind UTC.
      */
     public SearchRequestOptions withTimezoneOffset(long timezoneOffset) {
         Utils.checkNotNull(timezoneOffset, "timezoneOffset");
@@ -541,7 +584,8 @@ public class SearchRequestOptions {
 
 
     /**
-     * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours
+     * behind UTC.
      */
     public SearchRequestOptions withTimezoneOffset(Optional<Long> timezoneOffset) {
         Utils.checkNotNull(timezoneOffset, "timezoneOffset");
@@ -588,7 +632,11 @@ public class SearchRequestOptions {
     }
 
     /**
-     * Enables expanded content to be returned for LLM usage. The size of content per result returned should be modified using maxSnippetSize. Server may return less or more than what is specified in maxSnippetSize. For more details, see https://developers.glean.com/guides/search/llm-content.
+     * Enables expanded content to be returned for LLM usage. The size of content per result returned
+     * should be modified using maxSnippetSize. Server may return less or more than what is specified in
+     * maxSnippetSize.
+     * 
+     * <p>For more details, see https://developers.glean.com/guides/search/llm-content.
      */
     public SearchRequestOptions withReturnLlmContentOverSnippets(boolean returnLlmContentOverSnippets) {
         Utils.checkNotNull(returnLlmContentOverSnippets, "returnLlmContentOverSnippets");
@@ -598,7 +646,11 @@ public class SearchRequestOptions {
 
 
     /**
-     * Enables expanded content to be returned for LLM usage. The size of content per result returned should be modified using maxSnippetSize. Server may return less or more than what is specified in maxSnippetSize. For more details, see https://developers.glean.com/guides/search/llm-content.
+     * Enables expanded content to be returned for LLM usage. The size of content per result returned
+     * should be modified using maxSnippetSize. Server may return less or more than what is specified in
+     * maxSnippetSize.
+     * 
+     * <p>For more details, see https://developers.glean.com/guides/search/llm-content.
      */
     public SearchRequestOptions withReturnLlmContentOverSnippets(Optional<Boolean> returnLlmContentOverSnippets) {
         Utils.checkNotNull(returnLlmContentOverSnippets, "returnLlmContentOverSnippets");
@@ -775,7 +827,8 @@ public class SearchRequestOptions {
 
 
         /**
-         * If true, the operators in the query are taken to override any operators in facetFilters in the case of conflict. This is used to correctly set rewrittenFacetFilters and rewrittenQuery.
+         * If true, the operators in the query are taken to override any operators in facetFilters in the case
+         * of conflict. This is used to correctly set rewrittenFacetFilters and rewrittenQuery.
          */
         public Builder queryOverridesFacetFilters(boolean queryOverridesFacetFilters) {
             Utils.checkNotNull(queryOverridesFacetFilters, "queryOverridesFacetFilters");
@@ -784,7 +837,8 @@ public class SearchRequestOptions {
         }
 
         /**
-         * If true, the operators in the query are taken to override any operators in facetFilters in the case of conflict. This is used to correctly set rewrittenFacetFilters and rewrittenQuery.
+         * If true, the operators in the query are taken to override any operators in facetFilters in the case
+         * of conflict. This is used to correctly set rewrittenFacetFilters and rewrittenQuery.
          */
         public Builder queryOverridesFacetFilters(Optional<Boolean> queryOverridesFacetFilters) {
             Utils.checkNotNull(queryOverridesFacetFilters, "queryOverridesFacetFilters");
@@ -794,7 +848,8 @@ public class SearchRequestOptions {
 
 
         /**
-         * A list of filters for the query. An AND is assumed between different facetFilters. For example, owner Sumeet and type Spreadsheet shows documents that are by Sumeet AND are Spreadsheets.
+         * A list of filters for the query. An AND is assumed between different facetFilters. For example,
+         * owner Sumeet and type Spreadsheet shows documents that are by Sumeet AND are Spreadsheets.
          */
         public Builder facetFilters(List<FacetFilter> facetFilters) {
             Utils.checkNotNull(facetFilters, "facetFilters");
@@ -803,7 +858,8 @@ public class SearchRequestOptions {
         }
 
         /**
-         * A list of filters for the query. An AND is assumed between different facetFilters. For example, owner Sumeet and type Spreadsheet shows documents that are by Sumeet AND are Spreadsheets.
+         * A list of filters for the query. An AND is assumed between different facetFilters. For example,
+         * owner Sumeet and type Spreadsheet shows documents that are by Sumeet AND are Spreadsheets.
          */
         public Builder facetFilters(Optional<? extends List<FacetFilter>> facetFilters) {
             Utils.checkNotNull(facetFilters, "facetFilters");
@@ -813,7 +869,9 @@ public class SearchRequestOptions {
 
 
         /**
-         * A list of facet filter sets that will be OR'ed together. SearchRequestOptions where both facetFilterSets and facetFilters set are considered as bad request. Callers should set only one of these fields.
+         * A list of facet filter sets that will be OR'ed together. SearchRequestOptions where both
+         * facetFilterSets and facetFilters set are considered as bad request. Callers should set only one of
+         * these fields.
          */
         public Builder facetFilterSets(List<FacetFilterSet> facetFilterSets) {
             Utils.checkNotNull(facetFilterSets, "facetFilterSets");
@@ -822,7 +880,9 @@ public class SearchRequestOptions {
         }
 
         /**
-         * A list of facet filter sets that will be OR'ed together. SearchRequestOptions where both facetFilterSets and facetFilters set are considered as bad request. Callers should set only one of these fields.
+         * A list of facet filter sets that will be OR'ed together. SearchRequestOptions where both
+         * facetFilterSets and facetFilters set are considered as bad request. Callers should set only one of
+         * these fields.
          */
         public Builder facetFilterSets(Optional<? extends List<FacetFilterSet>> facetFilterSets) {
             Utils.checkNotNull(facetFilterSets, "facetFilterSets");
@@ -855,7 +915,10 @@ public class SearchRequestOptions {
 
 
         /**
-         * Facets for which FacetResults should be fetched and that don't apply to a particular datasource. If specified, these values will replace the standard default facets (last_updated_at, from, etc.). The requested facets will be returned alongside datasource-specific facets if searching a single datasource.
+         * Facets for which FacetResults should be fetched and that don't apply to a particular datasource. If
+         * specified, these values will replace the standard default facets (last_updated_at, from, etc.). The
+         * requested facets will be returned alongside datasource-specific facets if searching a single
+         * datasource.
          */
         public Builder defaultFacets(List<String> defaultFacets) {
             Utils.checkNotNull(defaultFacets, "defaultFacets");
@@ -864,7 +927,10 @@ public class SearchRequestOptions {
         }
 
         /**
-         * Facets for which FacetResults should be fetched and that don't apply to a particular datasource. If specified, these values will replace the standard default facets (last_updated_at, from, etc.). The requested facets will be returned alongside datasource-specific facets if searching a single datasource.
+         * Facets for which FacetResults should be fetched and that don't apply to a particular datasource. If
+         * specified, these values will replace the standard default facets (last_updated_at, from, etc.). The
+         * requested facets will be returned alongside datasource-specific facets if searching a single
+         * datasource.
          */
         public Builder defaultFacets(Optional<? extends List<String>> defaultFacets) {
             Utils.checkNotNull(defaultFacets, "defaultFacets");
@@ -893,7 +959,8 @@ public class SearchRequestOptions {
 
 
         /**
-         * Hints that the QE should return result counts (via the datasource facet result) for all supported datasources, rather than just those specified in the datasource[s]Filter
+         * Hints that the QE should return result counts (via the datasource facet result) for all supported
+         * datasources, rather than just those specified in the datasource[s]Filter
          */
         public Builder fetchAllDatasourceCounts(boolean fetchAllDatasourceCounts) {
             Utils.checkNotNull(fetchAllDatasourceCounts, "fetchAllDatasourceCounts");
@@ -902,7 +969,8 @@ public class SearchRequestOptions {
         }
 
         /**
-         * Hints that the QE should return result counts (via the datasource facet result) for all supported datasources, rather than just those specified in the datasource[s]Filter
+         * Hints that the QE should return result counts (via the datasource facet result) for all supported
+         * datasources, rather than just those specified in the datasource[s]Filter
          */
         public Builder fetchAllDatasourceCounts(Optional<Boolean> fetchAllDatasourceCounts) {
             Utils.checkNotNull(fetchAllDatasourceCounts, "fetchAllDatasourceCounts");
@@ -931,7 +999,8 @@ public class SearchRequestOptions {
 
 
         /**
-         * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+         * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours
+         * behind UTC.
          */
         public Builder timezoneOffset(long timezoneOffset) {
             Utils.checkNotNull(timezoneOffset, "timezoneOffset");
@@ -940,7 +1009,8 @@ public class SearchRequestOptions {
         }
 
         /**
-         * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+         * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours
+         * behind UTC.
          */
         public Builder timezoneOffset(Optional<Long> timezoneOffset) {
             Utils.checkNotNull(timezoneOffset, "timezoneOffset");
@@ -988,7 +1058,11 @@ public class SearchRequestOptions {
 
 
         /**
-         * Enables expanded content to be returned for LLM usage. The size of content per result returned should be modified using maxSnippetSize. Server may return less or more than what is specified in maxSnippetSize. For more details, see https://developers.glean.com/guides/search/llm-content.
+         * Enables expanded content to be returned for LLM usage. The size of content per result returned
+         * should be modified using maxSnippetSize. Server may return less or more than what is specified in
+         * maxSnippetSize.
+         * 
+         * <p>For more details, see https://developers.glean.com/guides/search/llm-content.
          */
         public Builder returnLlmContentOverSnippets(boolean returnLlmContentOverSnippets) {
             Utils.checkNotNull(returnLlmContentOverSnippets, "returnLlmContentOverSnippets");
@@ -997,7 +1071,11 @@ public class SearchRequestOptions {
         }
 
         /**
-         * Enables expanded content to be returned for LLM usage. The size of content per result returned should be modified using maxSnippetSize. Server may return less or more than what is specified in maxSnippetSize. For more details, see https://developers.glean.com/guides/search/llm-content.
+         * Enables expanded content to be returned for LLM usage. The size of content per result returned
+         * should be modified using maxSnippetSize. Server may return less or more than what is specified in
+         * maxSnippetSize.
+         * 
+         * <p>For more details, see https://developers.glean.com/guides/search/llm-content.
          */
         public Builder returnLlmContentOverSnippets(Optional<Boolean> returnLlmContentOverSnippets) {
             Utils.checkNotNull(returnLlmContentOverSnippets, "returnLlmContentOverSnippets");

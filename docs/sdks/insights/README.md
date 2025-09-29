@@ -5,11 +5,11 @@
 
 ### Available Operations
 
-* [retrieve](#retrieve) - Read insights
+* [retrieve](#retrieve) - Get insights
 
 ## retrieve
 
-Reads the aggregate information for each user, query, and content.
+Gets the aggregate usage insights data displayed in the Insights Dashboards.
 
 ### Example Usage
 
@@ -19,10 +19,8 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.InsightsRequest;
-import com.glean.api_client.glean_api_client.models.components.InsightsRequestCategory;
 import com.glean.api_client.glean_api_client.models.operations.InsightsResponse;
 import java.lang.Exception;
-import java.util.List;
 
 public class Application {
 
@@ -33,10 +31,6 @@ public class Application {
             .build();
 
         InsightsRequest req = InsightsRequest.builder()
-                .categories(List.of(
-                    InsightsRequestCategory.COLLECTIONS,
-                    InsightsRequestCategory.SHORTCUTS,
-                    InsightsRequestCategory.ANNOUNCEMENTS))
                 .build();
 
         InsightsResponse res = sdk.client().insights().retrieve()

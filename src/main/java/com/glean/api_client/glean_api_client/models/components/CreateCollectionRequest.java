@@ -47,7 +47,8 @@ public class CreateCollectionRequest {
     private Optional<? extends List<UserRoleSpecification>> removedRoles;
 
     /**
-     * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see this Collection. Values are taken from the corresponding
+     * filters in people search.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("audienceFilters")
@@ -87,7 +88,8 @@ public class CreateCollectionRequest {
     private Optional<String> allowedDatasource;
 
     /**
-     * The (optional) ItemId of the next CollectionItem in sequence. If omitted, will be added to the end of the Collection. Only used if parentId is specified.
+     * The (optional) ItemId of the next CollectionItem in sequence. If omitted, will be added to the end
+     * of the Collection. Only used if parentId is specified.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("newNextItemId")
@@ -173,7 +175,8 @@ public class CreateCollectionRequest {
     }
 
     /**
-     * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see this Collection. Values are taken from the corresponding
+     * filters in people search.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -220,7 +223,8 @@ public class CreateCollectionRequest {
     }
 
     /**
-     * The (optional) ItemId of the next CollectionItem in sequence. If omitted, will be added to the end of the Collection. Only used if parentId is specified.
+     * The (optional) ItemId of the next CollectionItem in sequence. If omitted, will be added to the end
+     * of the Collection. Only used if parentId is specified.
      */
     @JsonIgnore
     public Optional<String> newNextItemId() {
@@ -299,7 +303,8 @@ public class CreateCollectionRequest {
     }
 
     /**
-     * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see this Collection. Values are taken from the corresponding
+     * filters in people search.
      */
     public CreateCollectionRequest withAudienceFilters(List<FacetFilter> audienceFilters) {
         Utils.checkNotNull(audienceFilters, "audienceFilters");
@@ -309,7 +314,8 @@ public class CreateCollectionRequest {
 
 
     /**
-     * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see this Collection. Values are taken from the corresponding
+     * filters in people search.
      */
     public CreateCollectionRequest withAudienceFilters(Optional<? extends List<FacetFilter>> audienceFilters) {
         Utils.checkNotNull(audienceFilters, "audienceFilters");
@@ -407,7 +413,8 @@ public class CreateCollectionRequest {
     }
 
     /**
-     * The (optional) ItemId of the next CollectionItem in sequence. If omitted, will be added to the end of the Collection. Only used if parentId is specified.
+     * The (optional) ItemId of the next CollectionItem in sequence. If omitted, will be added to the end
+     * of the Collection. Only used if parentId is specified.
      */
     public CreateCollectionRequest withNewNextItemId(String newNextItemId) {
         Utils.checkNotNull(newNextItemId, "newNextItemId");
@@ -417,7 +424,8 @@ public class CreateCollectionRequest {
 
 
     /**
-     * The (optional) ItemId of the next CollectionItem in sequence. If omitted, will be added to the end of the Collection. Only used if parentId is specified.
+     * The (optional) ItemId of the next CollectionItem in sequence. If omitted, will be added to the end
+     * of the Collection. Only used if parentId is specified.
      */
     public CreateCollectionRequest withNewNextItemId(Optional<String> newNextItemId) {
         Utils.checkNotNull(newNextItemId, "newNextItemId");
@@ -571,7 +579,8 @@ public class CreateCollectionRequest {
 
 
         /**
-         * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
+         * Filters which restrict who should see this Collection. Values are taken from the corresponding
+         * filters in people search.
          */
         public Builder audienceFilters(List<FacetFilter> audienceFilters) {
             Utils.checkNotNull(audienceFilters, "audienceFilters");
@@ -580,7 +589,8 @@ public class CreateCollectionRequest {
         }
 
         /**
-         * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
+         * Filters which restrict who should see this Collection. Values are taken from the corresponding
+         * filters in people search.
          */
         public Builder audienceFilters(Optional<? extends List<FacetFilter>> audienceFilters) {
             Utils.checkNotNull(audienceFilters, "audienceFilters");
@@ -679,7 +689,8 @@ public class CreateCollectionRequest {
 
 
         /**
-         * The (optional) ItemId of the next CollectionItem in sequence. If omitted, will be added to the end of the Collection. Only used if parentId is specified.
+         * The (optional) ItemId of the next CollectionItem in sequence. If omitted, will be added to the end
+         * of the Collection. Only used if parentId is specified.
          */
         public Builder newNextItemId(String newNextItemId) {
             Utils.checkNotNull(newNextItemId, "newNextItemId");
@@ -688,7 +699,8 @@ public class CreateCollectionRequest {
         }
 
         /**
-         * The (optional) ItemId of the next CollectionItem in sequence. If omitted, will be added to the end of the Collection. Only used if parentId is specified.
+         * The (optional) ItemId of the next CollectionItem in sequence. If omitted, will be added to the end
+         * of the Collection. Only used if parentId is specified.
          */
         public Builder newNextItemId(Optional<String> newNextItemId) {
             Utils.checkNotNull(newNextItemId, "newNextItemId");

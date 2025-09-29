@@ -16,7 +16,8 @@ import java.util.Optional;
 
 public class User {
     /**
-     * An opaque user ID for the claimed authority (i.e., the actas param, or the origid if actas is not specified).
+     * An opaque user ID for the claimed authority (i.e., the actas param, or the origid if actas is not
+     * specified).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("userID")
@@ -44,7 +45,8 @@ public class User {
     }
 
     /**
-     * An opaque user ID for the claimed authority (i.e., the actas param, or the origid if actas is not specified).
+     * An opaque user ID for the claimed authority (i.e., the actas param, or the origid if actas is not
+     * specified).
      */
     @JsonIgnore
     public Optional<String> userID() {
@@ -65,7 +67,8 @@ public class User {
 
 
     /**
-     * An opaque user ID for the claimed authority (i.e., the actas param, or the origid if actas is not specified).
+     * An opaque user ID for the claimed authority (i.e., the actas param, or the origid if actas is not
+     * specified).
      */
     public User withUserID(String userID) {
         Utils.checkNotNull(userID, "userID");
@@ -75,7 +78,8 @@ public class User {
 
 
     /**
-     * An opaque user ID for the claimed authority (i.e., the actas param, or the origid if actas is not specified).
+     * An opaque user ID for the claimed authority (i.e., the actas param, or the origid if actas is not
+     * specified).
      */
     public User withUserID(Optional<String> userID) {
         Utils.checkNotNull(userID, "userID");
@@ -142,7 +146,8 @@ public class User {
 
 
         /**
-         * An opaque user ID for the claimed authority (i.e., the actas param, or the origid if actas is not specified).
+         * An opaque user ID for the claimed authority (i.e., the actas param, or the origid if actas is not
+         * specified).
          */
         public Builder userID(String userID) {
             Utils.checkNotNull(userID, "userID");
@@ -151,7 +156,8 @@ public class User {
         }
 
         /**
-         * An opaque user ID for the claimed authority (i.e., the actas param, or the origid if actas is not specified).
+         * An opaque user ID for the claimed authority (i.e., the actas param, or the origid if actas is not
+         * specified).
          */
         public Builder userID(Optional<String> userID) {
             Utils.checkNotNull(userID, "userID");

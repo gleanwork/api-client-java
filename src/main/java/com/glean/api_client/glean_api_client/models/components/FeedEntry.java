@@ -60,7 +60,8 @@ public class FeedEntry {
     private Optional<String> justification;
 
     /**
-     * An opaque token that represents this particular feed entry in this particular response. To be used for /feedback reporting.
+     * An opaque token that represents this particular feed entry in this particular response. To be used
+     * for /feedback reporting.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("trackingToken")
@@ -274,7 +275,8 @@ public class FeedEntry {
     }
 
     /**
-     * An opaque token that represents this particular feed entry in this particular response. To be used for /feedback reporting.
+     * An opaque token that represents this particular feed entry in this particular response. To be used
+     * for /feedback reporting.
      */
     @JsonIgnore
     public Optional<String> trackingToken() {
@@ -481,7 +483,8 @@ public class FeedEntry {
     }
 
     /**
-     * An opaque token that represents this particular feed entry in this particular response. To be used for /feedback reporting.
+     * An opaque token that represents this particular feed entry in this particular response. To be used
+     * for /feedback reporting.
      */
     public FeedEntry withTrackingToken(String trackingToken) {
         Utils.checkNotNull(trackingToken, "trackingToken");
@@ -491,7 +494,8 @@ public class FeedEntry {
 
 
     /**
-     * An opaque token that represents this particular feed entry in this particular response. To be used for /feedback reporting.
+     * An opaque token that represents this particular feed entry in this particular response. To be used
+     * for /feedback reporting.
      */
     public FeedEntry withTrackingToken(Optional<String> trackingToken) {
         Utils.checkNotNull(trackingToken, "trackingToken");
@@ -926,7 +930,8 @@ public class FeedEntry {
 
 
         /**
-         * An opaque token that represents this particular feed entry in this particular response. To be used for /feedback reporting.
+         * An opaque token that represents this particular feed entry in this particular response. To be used
+         * for /feedback reporting.
          */
         public Builder trackingToken(String trackingToken) {
             Utils.checkNotNull(trackingToken, "trackingToken");
@@ -935,7 +940,8 @@ public class FeedEntry {
         }
 
         /**
-         * An opaque token that represents this particular feed entry in this particular response. To be used for /feedback reporting.
+         * An opaque token that represents this particular feed entry in this particular response. To be used
+         * for /feedback reporting.
          */
         public Builder trackingToken(Optional<String> trackingToken) {
             Utils.checkNotNull(trackingToken, "trackingToken");

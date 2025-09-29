@@ -52,7 +52,8 @@ public class ChatMessage {
     private Optional<? extends List<String>> uploadedFileIds;
 
     /**
-     * A list of rich data used to represent the response or formulate a request. These are linearly stitched together to support richer data formats beyond simple text.
+     * A list of rich data used to represent the response or formulate a request. These are linearly
+     * stitched together to support richer data formats beyond simple text.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("fragments")
@@ -66,7 +67,8 @@ public class ChatMessage {
     private Optional<String> ts;
 
     /**
-     * A unique server-side generated ID used to identify a message, automatically populated for any USER authored messages.
+     * A unique server-side generated ID used to identify a message, automatically populated for any USER
+     * authored messages.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("messageId")
@@ -80,7 +82,8 @@ public class ChatMessage {
     private Optional<String> messageTrackingToken;
 
     /**
-     * Semantically groups content of a certain type. It can be used for purposes such as differential UI treatment. USER authored messages should be of type CONTENT and do not need `messageType` specified.
+     * Semantically groups content of a certain type. It can be used for purposes such as differential UI
+     * treatment. USER authored messages should be of type CONTENT and do not need `messageType` specified.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("messageType")
@@ -171,7 +174,8 @@ public class ChatMessage {
     }
 
     /**
-     * A list of rich data used to represent the response or formulate a request. These are linearly stitched together to support richer data formats beyond simple text.
+     * A list of rich data used to represent the response or formulate a request. These are linearly
+     * stitched together to support richer data formats beyond simple text.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -188,7 +192,8 @@ public class ChatMessage {
     }
 
     /**
-     * A unique server-side generated ID used to identify a message, automatically populated for any USER authored messages.
+     * A unique server-side generated ID used to identify a message, automatically populated for any USER
+     * authored messages.
      */
     @JsonIgnore
     public Optional<String> messageId() {
@@ -204,7 +209,8 @@ public class ChatMessage {
     }
 
     /**
-     * Semantically groups content of a certain type. It can be used for purposes such as differential UI treatment. USER authored messages should be of type CONTENT and do not need `messageType` specified.
+     * Semantically groups content of a certain type. It can be used for purposes such as differential UI
+     * treatment. USER authored messages should be of type CONTENT and do not need `messageType` specified.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -299,7 +305,8 @@ public class ChatMessage {
     }
 
     /**
-     * A list of rich data used to represent the response or formulate a request. These are linearly stitched together to support richer data formats beyond simple text.
+     * A list of rich data used to represent the response or formulate a request. These are linearly
+     * stitched together to support richer data formats beyond simple text.
      */
     public ChatMessage withFragments(List<ChatMessageFragment> fragments) {
         Utils.checkNotNull(fragments, "fragments");
@@ -309,7 +316,8 @@ public class ChatMessage {
 
 
     /**
-     * A list of rich data used to represent the response or formulate a request. These are linearly stitched together to support richer data formats beyond simple text.
+     * A list of rich data used to represent the response or formulate a request. These are linearly
+     * stitched together to support richer data formats beyond simple text.
      */
     public ChatMessage withFragments(Optional<? extends List<ChatMessageFragment>> fragments) {
         Utils.checkNotNull(fragments, "fragments");
@@ -337,7 +345,8 @@ public class ChatMessage {
     }
 
     /**
-     * A unique server-side generated ID used to identify a message, automatically populated for any USER authored messages.
+     * A unique server-side generated ID used to identify a message, automatically populated for any USER
+     * authored messages.
      */
     public ChatMessage withMessageId(String messageId) {
         Utils.checkNotNull(messageId, "messageId");
@@ -347,7 +356,8 @@ public class ChatMessage {
 
 
     /**
-     * A unique server-side generated ID used to identify a message, automatically populated for any USER authored messages.
+     * A unique server-side generated ID used to identify a message, automatically populated for any USER
+     * authored messages.
      */
     public ChatMessage withMessageId(Optional<String> messageId) {
         Utils.checkNotNull(messageId, "messageId");
@@ -375,7 +385,8 @@ public class ChatMessage {
     }
 
     /**
-     * Semantically groups content of a certain type. It can be used for purposes such as differential UI treatment. USER authored messages should be of type CONTENT and do not need `messageType` specified.
+     * Semantically groups content of a certain type. It can be used for purposes such as differential UI
+     * treatment. USER authored messages should be of type CONTENT and do not need `messageType` specified.
      */
     public ChatMessage withMessageType(MessageType messageType) {
         Utils.checkNotNull(messageType, "messageType");
@@ -385,7 +396,8 @@ public class ChatMessage {
 
 
     /**
-     * Semantically groups content of a certain type. It can be used for purposes such as differential UI treatment. USER authored messages should be of type CONTENT and do not need `messageType` specified.
+     * Semantically groups content of a certain type. It can be used for purposes such as differential UI
+     * treatment. USER authored messages should be of type CONTENT and do not need `messageType` specified.
      */
     public ChatMessage withMessageType(Optional<? extends MessageType> messageType) {
         Utils.checkNotNull(messageType, "messageType");
@@ -564,7 +576,8 @@ public class ChatMessage {
 
 
         /**
-         * A list of rich data used to represent the response or formulate a request. These are linearly stitched together to support richer data formats beyond simple text.
+         * A list of rich data used to represent the response or formulate a request. These are linearly
+         * stitched together to support richer data formats beyond simple text.
          */
         public Builder fragments(List<ChatMessageFragment> fragments) {
             Utils.checkNotNull(fragments, "fragments");
@@ -573,7 +586,8 @@ public class ChatMessage {
         }
 
         /**
-         * A list of rich data used to represent the response or formulate a request. These are linearly stitched together to support richer data formats beyond simple text.
+         * A list of rich data used to represent the response or formulate a request. These are linearly
+         * stitched together to support richer data formats beyond simple text.
          */
         public Builder fragments(Optional<? extends List<ChatMessageFragment>> fragments) {
             Utils.checkNotNull(fragments, "fragments");
@@ -602,7 +616,8 @@ public class ChatMessage {
 
 
         /**
-         * A unique server-side generated ID used to identify a message, automatically populated for any USER authored messages.
+         * A unique server-side generated ID used to identify a message, automatically populated for any USER
+         * authored messages.
          */
         public Builder messageId(String messageId) {
             Utils.checkNotNull(messageId, "messageId");
@@ -611,7 +626,8 @@ public class ChatMessage {
         }
 
         /**
-         * A unique server-side generated ID used to identify a message, automatically populated for any USER authored messages.
+         * A unique server-side generated ID used to identify a message, automatically populated for any USER
+         * authored messages.
          */
         public Builder messageId(Optional<String> messageId) {
             Utils.checkNotNull(messageId, "messageId");
@@ -640,7 +656,8 @@ public class ChatMessage {
 
 
         /**
-         * Semantically groups content of a certain type. It can be used for purposes such as differential UI treatment. USER authored messages should be of type CONTENT and do not need `messageType` specified.
+         * Semantically groups content of a certain type. It can be used for purposes such as differential UI
+         * treatment. USER authored messages should be of type CONTENT and do not need `messageType` specified.
          */
         public Builder messageType(MessageType messageType) {
             Utils.checkNotNull(messageType, "messageType");
@@ -649,7 +666,8 @@ public class ChatMessage {
         }
 
         /**
-         * Semantically groups content of a certain type. It can be used for purposes such as differential UI treatment. USER authored messages should be of type CONTENT and do not need `messageType` specified.
+         * Semantically groups content of a certain type. It can be used for purposes such as differential UI
+         * treatment. USER authored messages should be of type CONTENT and do not need `messageType` specified.
          */
         public Builder messageType(Optional<? extends MessageType> messageType) {
             Utils.checkNotNull(messageType, "messageType");

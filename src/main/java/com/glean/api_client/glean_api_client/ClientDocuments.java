@@ -74,7 +74,8 @@ public class ClientDocuments {
     /**
      * Read documents
      * 
-     * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`) for the given list of Glean Document IDs or URLs specified in the request.
+     * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`)
+     * for the given list of Glean Document IDs or URLs specified in the request.
      * 
      * @return The call builder
      */
@@ -85,7 +86,8 @@ public class ClientDocuments {
     /**
      * Read documents
      * 
-     * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`) for the given list of Glean Document IDs or URLs specified in the request.
+     * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`)
+     * for the given list of Glean Document IDs or URLs specified in the request.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -97,7 +99,8 @@ public class ClientDocuments {
     /**
      * Read documents
      * 
-     * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`) for the given list of Glean Document IDs or URLs specified in the request.
+     * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`)
+     * for the given list of Glean Document IDs or URLs specified in the request.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -112,7 +115,8 @@ public class ClientDocuments {
     /**
      * Read documents by facets
      * 
-     * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`) macthing the given facet conditions.
+     * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`)
+     * macthing the given facet conditions.
      * 
      * @return The call builder
      */
@@ -123,7 +127,8 @@ public class ClientDocuments {
     /**
      * Read documents by facets
      * 
-     * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`) macthing the given facet conditions.
+     * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`)
+     * macthing the given facet conditions.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -135,7 +140,8 @@ public class ClientDocuments {
     /**
      * Read documents by facets
      * 
-     * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`) macthing the given facet conditions.
+     * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`)
+     * macthing the given facet conditions.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call

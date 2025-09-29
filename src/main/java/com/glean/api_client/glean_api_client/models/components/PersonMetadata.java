@@ -50,7 +50,8 @@ public class PersonMetadata {
     private Optional<String> title;
 
     /**
-     * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
+     * Typically the highest level organizational unit; generally applies to bigger companies with multiple
+     * distinct businesses.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("businessUnit")
@@ -118,7 +119,8 @@ public class PersonMetadata {
     private Optional<? extends Person> manager;
 
     /**
-     * The chain of reporting in the company as far up as it goes. The last entry is this person's direct manager.
+     * The chain of reporting in the company as far up as it goes. The last entry is this person's direct
+     * manager.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("managementChain")
@@ -146,7 +148,8 @@ public class PersonMetadata {
     private Optional<Long> timezoneOffset;
 
     /**
-     * The URL of the person's avatar. Public, glean-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
+     * The URL of the person's avatar. Public, glean-authenticated and Base64 encoded data URLs are all
+     * valid (but not third-party-authenticated URLs).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("photoUrl")
@@ -268,8 +271,11 @@ public class PersonMetadata {
     private Optional<OffsetDateTime> lastExtensionUse;
 
     /**
-     * Describes the permissions levels that a user has for permissioned features. When the client sends this, Permissions.read and Permissions.write are the additional permissions granted to a user on top of what they have via their roles.
-     * When the server sends this, Permissions.read and Permissions.write are the complete (merged) set of permissions the user has, and Permissions.roles is just for display purposes.
+     * Describes the permissions levels that a user has for permissioned features. When the client sends
+     * this, Permissions.read and Permissions.write are the additional permissions granted to a user on top
+     * of what they have via their roles.
+     * When the server sends this, Permissions.read and Permissions.write are the complete (merged) set of
+     * permissions the user has, and Permissions.roles is just for display purposes.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("permissions")
@@ -509,7 +515,8 @@ public class PersonMetadata {
     }
 
     /**
-     * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
+     * Typically the highest level organizational unit; generally applies to bigger companies with multiple
+     * distinct businesses.
      */
     @JsonIgnore
     public Optional<String> businessUnit() {
@@ -590,7 +597,8 @@ public class PersonMetadata {
     }
 
     /**
-     * The chain of reporting in the company as far up as it goes. The last entry is this person's direct manager.
+     * The chain of reporting in the company as far up as it goes. The last entry is this person's direct
+     * manager.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -623,7 +631,8 @@ public class PersonMetadata {
     }
 
     /**
-     * The URL of the person's avatar. Public, glean-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
+     * The URL of the person's avatar. Public, glean-authenticated and Base64 encoded data URLs are all
+     * valid (but not third-party-authenticated URLs).
      */
     @JsonIgnore
     public Optional<String> photoUrl() {
@@ -767,8 +776,11 @@ public class PersonMetadata {
     }
 
     /**
-     * Describes the permissions levels that a user has for permissioned features. When the client sends this, Permissions.read and Permissions.write are the additional permissions granted to a user on top of what they have via their roles.
-     * When the server sends this, Permissions.read and Permissions.write are the complete (merged) set of permissions the user has, and Permissions.roles is just for display purposes.
+     * Describes the permissions levels that a user has for permissioned features. When the client sends
+     * this, Permissions.read and Permissions.write are the additional permissions granted to a user on top
+     * of what they have via their roles.
+     * When the server sends this, Permissions.read and Permissions.write are the complete (merged) set of
+     * permissions the user has, and Permissions.roles is just for display purposes.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -912,7 +924,8 @@ public class PersonMetadata {
     }
 
     /**
-     * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
+     * Typically the highest level organizational unit; generally applies to bigger companies with multiple
+     * distinct businesses.
      */
     public PersonMetadata withBusinessUnit(String businessUnit) {
         Utils.checkNotNull(businessUnit, "businessUnit");
@@ -922,7 +935,8 @@ public class PersonMetadata {
 
 
     /**
-     * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
+     * Typically the highest level organizational unit; generally applies to bigger companies with multiple
+     * distinct businesses.
      */
     public PersonMetadata withBusinessUnit(Optional<String> businessUnit) {
         Utils.checkNotNull(businessUnit, "businessUnit");
@@ -1096,7 +1110,8 @@ public class PersonMetadata {
     }
 
     /**
-     * The chain of reporting in the company as far up as it goes. The last entry is this person's direct manager.
+     * The chain of reporting in the company as far up as it goes. The last entry is this person's direct
+     * manager.
      */
     public PersonMetadata withManagementChain(List<Person> managementChain) {
         Utils.checkNotNull(managementChain, "managementChain");
@@ -1106,7 +1121,8 @@ public class PersonMetadata {
 
 
     /**
-     * The chain of reporting in the company as far up as it goes. The last entry is this person's direct manager.
+     * The chain of reporting in the company as far up as it goes. The last entry is this person's direct
+     * manager.
      */
     public PersonMetadata withManagementChain(Optional<? extends List<Person>> managementChain) {
         Utils.checkNotNull(managementChain, "managementChain");
@@ -1172,7 +1188,8 @@ public class PersonMetadata {
     }
 
     /**
-     * The URL of the person's avatar. Public, glean-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
+     * The URL of the person's avatar. Public, glean-authenticated and Base64 encoded data URLs are all
+     * valid (but not third-party-authenticated URLs).
      */
     public PersonMetadata withPhotoUrl(String photoUrl) {
         Utils.checkNotNull(photoUrl, "photoUrl");
@@ -1182,7 +1199,8 @@ public class PersonMetadata {
 
 
     /**
-     * The URL of the person's avatar. Public, glean-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
+     * The URL of the person's avatar. Public, glean-authenticated and Base64 encoded data URLs are all
+     * valid (but not third-party-authenticated URLs).
      */
     public PersonMetadata withPhotoUrl(Optional<String> photoUrl) {
         Utils.checkNotNull(photoUrl, "photoUrl");
@@ -1502,8 +1520,11 @@ public class PersonMetadata {
     }
 
     /**
-     * Describes the permissions levels that a user has for permissioned features. When the client sends this, Permissions.read and Permissions.write are the additional permissions granted to a user on top of what they have via their roles.
-     * When the server sends this, Permissions.read and Permissions.write are the complete (merged) set of permissions the user has, and Permissions.roles is just for display purposes.
+     * Describes the permissions levels that a user has for permissioned features. When the client sends
+     * this, Permissions.read and Permissions.write are the additional permissions granted to a user on top
+     * of what they have via their roles.
+     * When the server sends this, Permissions.read and Permissions.write are the complete (merged) set of
+     * permissions the user has, and Permissions.roles is just for display purposes.
      */
     public PersonMetadata withPermissions(Permissions permissions) {
         Utils.checkNotNull(permissions, "permissions");
@@ -1513,8 +1534,11 @@ public class PersonMetadata {
 
 
     /**
-     * Describes the permissions levels that a user has for permissioned features. When the client sends this, Permissions.read and Permissions.write are the additional permissions granted to a user on top of what they have via their roles.
-     * When the server sends this, Permissions.read and Permissions.write are the complete (merged) set of permissions the user has, and Permissions.roles is just for display purposes.
+     * Describes the permissions levels that a user has for permissioned features. When the client sends
+     * this, Permissions.read and Permissions.write are the additional permissions granted to a user on top
+     * of what they have via their roles.
+     * When the server sends this, Permissions.read and Permissions.write are the complete (merged) set of
+     * permissions the user has, and Permissions.roles is just for display purposes.
      */
     public PersonMetadata withPermissions(Optional<? extends Permissions> permissions) {
         Utils.checkNotNull(permissions, "permissions");
@@ -1947,7 +1971,8 @@ public class PersonMetadata {
 
 
         /**
-         * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
+         * Typically the highest level organizational unit; generally applies to bigger companies with multiple
+         * distinct businesses.
          */
         public Builder businessUnit(String businessUnit) {
             Utils.checkNotNull(businessUnit, "businessUnit");
@@ -1956,7 +1981,8 @@ public class PersonMetadata {
         }
 
         /**
-         * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
+         * Typically the highest level organizational unit; generally applies to bigger companies with multiple
+         * distinct businesses.
          */
         public Builder businessUnit(Optional<String> businessUnit) {
             Utils.checkNotNull(businessUnit, "businessUnit");
@@ -2131,7 +2157,8 @@ public class PersonMetadata {
 
 
         /**
-         * The chain of reporting in the company as far up as it goes. The last entry is this person's direct manager.
+         * The chain of reporting in the company as far up as it goes. The last entry is this person's direct
+         * manager.
          */
         public Builder managementChain(List<Person> managementChain) {
             Utils.checkNotNull(managementChain, "managementChain");
@@ -2140,7 +2167,8 @@ public class PersonMetadata {
         }
 
         /**
-         * The chain of reporting in the company as far up as it goes. The last entry is this person's direct manager.
+         * The chain of reporting in the company as far up as it goes. The last entry is this person's direct
+         * manager.
          */
         public Builder managementChain(Optional<? extends List<Person>> managementChain) {
             Utils.checkNotNull(managementChain, "managementChain");
@@ -2207,7 +2235,8 @@ public class PersonMetadata {
 
 
         /**
-         * The URL of the person's avatar. Public, glean-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
+         * The URL of the person's avatar. Public, glean-authenticated and Base64 encoded data URLs are all
+         * valid (but not third-party-authenticated URLs).
          */
         public Builder photoUrl(String photoUrl) {
             Utils.checkNotNull(photoUrl, "photoUrl");
@@ -2216,7 +2245,8 @@ public class PersonMetadata {
         }
 
         /**
-         * The URL of the person's avatar. Public, glean-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
+         * The URL of the person's avatar. Public, glean-authenticated and Base64 encoded data URLs are all
+         * valid (but not third-party-authenticated URLs).
          */
         public Builder photoUrl(Optional<String> photoUrl) {
             Utils.checkNotNull(photoUrl, "photoUrl");
@@ -2537,8 +2567,11 @@ public class PersonMetadata {
 
 
         /**
-         * Describes the permissions levels that a user has for permissioned features. When the client sends this, Permissions.read and Permissions.write are the additional permissions granted to a user on top of what they have via their roles.
-         * When the server sends this, Permissions.read and Permissions.write are the complete (merged) set of permissions the user has, and Permissions.roles is just for display purposes.
+         * Describes the permissions levels that a user has for permissioned features. When the client sends
+         * this, Permissions.read and Permissions.write are the additional permissions granted to a user on top
+         * of what they have via their roles.
+         * When the server sends this, Permissions.read and Permissions.write are the complete (merged) set of
+         * permissions the user has, and Permissions.roles is just for display purposes.
          */
         public Builder permissions(Permissions permissions) {
             Utils.checkNotNull(permissions, "permissions");
@@ -2547,8 +2580,11 @@ public class PersonMetadata {
         }
 
         /**
-         * Describes the permissions levels that a user has for permissioned features. When the client sends this, Permissions.read and Permissions.write are the additional permissions granted to a user on top of what they have via their roles.
-         * When the server sends this, Permissions.read and Permissions.write are the complete (merged) set of permissions the user has, and Permissions.roles is just for display purposes.
+         * Describes the permissions levels that a user has for permissioned features. When the client sends
+         * this, Permissions.read and Permissions.write are the additional permissions granted to a user on top
+         * of what they have via their roles.
+         * When the server sends this, Permissions.read and Permissions.write are the complete (merged) set of
+         * permissions the user has, and Permissions.roles is just for display purposes.
          */
         public Builder permissions(Optional<? extends Permissions> permissions) {
             Utils.checkNotNull(permissions, "permissions");

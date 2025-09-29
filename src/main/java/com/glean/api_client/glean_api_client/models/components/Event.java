@@ -11,7 +11,8 @@ import java.util.Optional;
 /**
  * Event
  * 
- * <p>The action the user took within a Glean client with respect to the object referred to by the given `trackingToken`.
+ * <p>The action the user took within a Glean client with respect to the object referred to by the given
+ * `trackingToken`.
  */
 public enum Event {
     CLICK("CLICK"),

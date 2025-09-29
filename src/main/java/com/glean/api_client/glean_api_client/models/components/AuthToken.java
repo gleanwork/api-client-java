@@ -35,7 +35,8 @@ public class AuthToken {
     private Optional<String> tokenType;
 
     /**
-     * Used by Google to indicate the index of the logged in user. Useful for generating hyperlinks that support multilogin.
+     * Used by Google to indicate the index of the logged in user. Useful for generating hyperlinks that
+     * support multilogin.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("authUser")
@@ -98,7 +99,8 @@ public class AuthToken {
     }
 
     /**
-     * Used by Google to indicate the index of the logged in user. Useful for generating hyperlinks that support multilogin.
+     * Used by Google to indicate the index of the logged in user. Useful for generating hyperlinks that
+     * support multilogin.
      */
     @JsonIgnore
     public Optional<String> authUser() {
@@ -157,7 +159,8 @@ public class AuthToken {
     }
 
     /**
-     * Used by Google to indicate the index of the logged in user. Useful for generating hyperlinks that support multilogin.
+     * Used by Google to indicate the index of the logged in user. Useful for generating hyperlinks that
+     * support multilogin.
      */
     public AuthToken withAuthUser(String authUser) {
         Utils.checkNotNull(authUser, "authUser");
@@ -167,7 +170,8 @@ public class AuthToken {
 
 
     /**
-     * Used by Google to indicate the index of the logged in user. Useful for generating hyperlinks that support multilogin.
+     * Used by Google to indicate the index of the logged in user. Useful for generating hyperlinks that
+     * support multilogin.
      */
     public AuthToken withAuthUser(Optional<String> authUser) {
         Utils.checkNotNull(authUser, "authUser");
@@ -291,7 +295,8 @@ public class AuthToken {
 
 
         /**
-         * Used by Google to indicate the index of the logged in user. Useful for generating hyperlinks that support multilogin.
+         * Used by Google to indicate the index of the logged in user. Useful for generating hyperlinks that
+         * support multilogin.
          */
         public Builder authUser(String authUser) {
             Utils.checkNotNull(authUser, "authUser");
@@ -300,7 +305,8 @@ public class AuthToken {
         }
 
         /**
-         * Used by Google to indicate the index of the logged in user. Useful for generating hyperlinks that support multilogin.
+         * Used by Google to indicate the index of the logged in user. Useful for generating hyperlinks that
+         * support multilogin.
          */
         public Builder authUser(Optional<String> authUser) {
             Utils.checkNotNull(authUser, "authUser");

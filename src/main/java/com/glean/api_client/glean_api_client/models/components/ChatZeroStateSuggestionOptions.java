@@ -16,7 +16,8 @@ import java.util.Optional;
 
 public class ChatZeroStateSuggestionOptions {
     /**
-     * The Chat Application ID this feed request should be scoped to. Empty means there is no Chat Application ID..
+     * The Chat Application ID this feed request should be scoped to. Empty means there is no Chat
+     * Application ID..
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("applicationId")
@@ -34,7 +35,8 @@ public class ChatZeroStateSuggestionOptions {
     }
 
     /**
-     * The Chat Application ID this feed request should be scoped to. Empty means there is no Chat Application ID..
+     * The Chat Application ID this feed request should be scoped to. Empty means there is no Chat
+     * Application ID..
      */
     @JsonIgnore
     public Optional<String> applicationId() {
@@ -47,7 +49,8 @@ public class ChatZeroStateSuggestionOptions {
 
 
     /**
-     * The Chat Application ID this feed request should be scoped to. Empty means there is no Chat Application ID..
+     * The Chat Application ID this feed request should be scoped to. Empty means there is no Chat
+     * Application ID..
      */
     public ChatZeroStateSuggestionOptions withApplicationId(String applicationId) {
         Utils.checkNotNull(applicationId, "applicationId");
@@ -57,7 +60,8 @@ public class ChatZeroStateSuggestionOptions {
 
 
     /**
-     * The Chat Application ID this feed request should be scoped to. Empty means there is no Chat Application ID..
+     * The Chat Application ID this feed request should be scoped to. Empty means there is no Chat
+     * Application ID..
      */
     public ChatZeroStateSuggestionOptions withApplicationId(Optional<String> applicationId) {
         Utils.checkNotNull(applicationId, "applicationId");
@@ -101,7 +105,8 @@ public class ChatZeroStateSuggestionOptions {
 
 
         /**
-         * The Chat Application ID this feed request should be scoped to. Empty means there is no Chat Application ID..
+         * The Chat Application ID this feed request should be scoped to. Empty means there is no Chat
+         * Application ID..
          */
         public Builder applicationId(String applicationId) {
             Utils.checkNotNull(applicationId, "applicationId");
@@ -110,7 +115,8 @@ public class ChatZeroStateSuggestionOptions {
         }
 
         /**
-         * The Chat Application ID this feed request should be scoped to. Empty means there is no Chat Application ID..
+         * The Chat Application ID this feed request should be scoped to. Empty means there is no Chat
+         * Application ID..
          */
         public Builder applicationId(Optional<String> applicationId) {
             Utils.checkNotNull(applicationId, "applicationId");

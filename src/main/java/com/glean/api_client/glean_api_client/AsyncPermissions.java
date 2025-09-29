@@ -95,7 +95,7 @@ public class AsyncPermissions {
      * <p>Updates the permissions for a given document without modifying document content.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostApiIndexV1UpdatepermissionsResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1UpdatepermissionsResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1UpdatepermissionsResponse> updatePermissions(UpdatePermissionsRequest request) {
         AsyncRequestOperation<UpdatePermissionsRequest, PostApiIndexV1UpdatepermissionsResponse> operation
@@ -122,7 +122,7 @@ public class AsyncPermissions {
      * <p>Adds a datasource user or updates an existing user.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostApiIndexV1IndexuserResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1IndexuserResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1IndexuserResponse> indexUser(IndexUserRequest request) {
         AsyncRequestOperation<IndexUserRequest, PostApiIndexV1IndexuserResponse> operation
@@ -135,7 +135,9 @@ public class AsyncPermissions {
     /**
      * Bulk index users
      * 
-     * <p>Replaces the users in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces the users in a datasource using paginated batch API calls. Please refer to the [bulk
+     * indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an
+     * explanation of how to use bulk endpoints.
      * 
      * @return The async call builder
      */
@@ -146,10 +148,12 @@ public class AsyncPermissions {
     /**
      * Bulk index users
      * 
-     * <p>Replaces the users in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces the users in a datasource using paginated batch API calls. Please refer to the [bulk
+     * indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an
+     * explanation of how to use bulk endpoints.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostApiIndexV1BulkindexusersResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1BulkindexusersResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1BulkindexusersResponse> bulkIndexUsers(BulkIndexUsersRequest request) {
         AsyncRequestOperation<BulkIndexUsersRequest, PostApiIndexV1BulkindexusersResponse> operation
@@ -176,7 +180,7 @@ public class AsyncPermissions {
      * <p>Add or update a group in the datasource.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostApiIndexV1IndexgroupResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1IndexgroupResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1IndexgroupResponse> indexGroup(IndexGroupRequest request) {
         AsyncRequestOperation<IndexGroupRequest, PostApiIndexV1IndexgroupResponse> operation
@@ -189,7 +193,9 @@ public class AsyncPermissions {
     /**
      * Bulk index groups
      * 
-     * <p>Replaces the groups in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces the groups in a datasource using paginated batch API calls. Please refer to the [bulk
+     * indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an
+     * explanation of how to use bulk endpoints.
      * 
      * @return The async call builder
      */
@@ -200,10 +206,12 @@ public class AsyncPermissions {
     /**
      * Bulk index groups
      * 
-     * <p>Replaces the groups in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces the groups in a datasource using paginated batch API calls. Please refer to the [bulk
+     * indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an
+     * explanation of how to use bulk endpoints.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostApiIndexV1BulkindexgroupsResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1BulkindexgroupsResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1BulkindexgroupsResponse> bulkIndexGroups(BulkIndexGroupsRequest request) {
         AsyncRequestOperation<BulkIndexGroupsRequest, PostApiIndexV1BulkindexgroupsResponse> operation
@@ -230,7 +238,7 @@ public class AsyncPermissions {
      * <p>Add the memberships of a group in the datasource.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostApiIndexV1IndexmembershipResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1IndexmembershipResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1IndexmembershipResponse> indexMembership(IndexMembershipRequest request) {
         AsyncRequestOperation<IndexMembershipRequest, PostApiIndexV1IndexmembershipResponse> operation
@@ -243,7 +251,9 @@ public class AsyncPermissions {
     /**
      * Bulk index memberships for a group
      * 
-     * <p>Replaces the memberships for a group in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces the memberships for a group in a datasource using paginated batch API calls. Please refer
+     * to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model)
+     * documentation for an explanation of how to use bulk endpoints.
      * 
      * @return The async call builder
      */
@@ -254,10 +264,12 @@ public class AsyncPermissions {
     /**
      * Bulk index memberships for a group
      * 
-     * <p>Replaces the memberships for a group in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces the memberships for a group in a datasource using paginated batch API calls. Please refer
+     * to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model)
+     * documentation for an explanation of how to use bulk endpoints.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostApiIndexV1BulkindexmembershipsResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1BulkindexmembershipsResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1BulkindexmembershipsResponse> bulkIndexMemberships(BulkIndexMembershipsRequest request) {
         AsyncRequestOperation<BulkIndexMembershipsRequest, PostApiIndexV1BulkindexmembershipsResponse> operation
@@ -270,7 +282,9 @@ public class AsyncPermissions {
     /**
      * Schedules the processing of group memberships
      * 
-     * <p>Schedules the immediate processing of all group memberships uploaded through the indexing API. By default the uploaded group memberships will be processed asynchronously but this API can be used to schedule processing of all memberships on demand.
+     * <p>Schedules the immediate processing of all group memberships uploaded through the indexing API. By
+     * default the uploaded group memberships will be processed asynchronously but this API can be used to
+     * schedule processing of all memberships on demand.
      * 
      * @return The async call builder
      */
@@ -281,9 +295,11 @@ public class AsyncPermissions {
     /**
      * Schedules the processing of group memberships
      * 
-     * <p>Schedules the immediate processing of all group memberships uploaded through the indexing API. By default the uploaded group memberships will be processed asynchronously but this API can be used to schedule processing of all memberships on demand.
+     * <p>Schedules the immediate processing of all group memberships uploaded through the indexing API. By
+     * default the uploaded group memberships will be processed asynchronously but this API can be used to
+     * schedule processing of all memberships on demand.
      * 
-     * @return CompletableFuture&lt;PostApiIndexV1ProcessallmembershipsResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1ProcessallmembershipsResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1ProcessallmembershipsResponse> processMembershipsDirect() {
         return processMemberships(Optional.empty());
@@ -292,10 +308,12 @@ public class AsyncPermissions {
     /**
      * Schedules the processing of group memberships
      * 
-     * <p>Schedules the immediate processing of all group memberships uploaded through the indexing API. By default the uploaded group memberships will be processed asynchronously but this API can be used to schedule processing of all memberships on demand.
+     * <p>Schedules the immediate processing of all group memberships uploaded through the indexing API. By
+     * default the uploaded group memberships will be processed asynchronously but this API can be used to
+     * schedule processing of all memberships on demand.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostApiIndexV1ProcessallmembershipsResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1ProcessallmembershipsResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1ProcessallmembershipsResponse> processMemberships(Optional<? extends ProcessAllMembershipsRequest> request) {
         AsyncRequestOperation<Optional<? extends ProcessAllMembershipsRequest>, PostApiIndexV1ProcessallmembershipsResponse> operation
@@ -322,7 +340,7 @@ public class AsyncPermissions {
      * <p>Delete the user from the datasource. Silently succeeds if user is not present.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostApiIndexV1DeleteuserResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1DeleteuserResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1DeleteuserResponse> deleteUser(DeleteUserRequest request) {
         AsyncRequestOperation<DeleteUserRequest, PostApiIndexV1DeleteuserResponse> operation
@@ -349,7 +367,7 @@ public class AsyncPermissions {
      * <p>Delete group from the datasource. Silently succeeds if group is not present.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostApiIndexV1DeletegroupResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1DeletegroupResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1DeletegroupResponse> deleteGroup(DeleteGroupRequest request) {
         AsyncRequestOperation<DeleteGroupRequest, PostApiIndexV1DeletegroupResponse> operation
@@ -362,7 +380,8 @@ public class AsyncPermissions {
     /**
      * Delete membership
      * 
-     * <p>Delete membership to a group in the specified datasource. Silently succeeds if membership is not present.
+     * <p>Delete membership to a group in the specified datasource. Silently succeeds if membership is not
+     * present.
      * 
      * @return The async call builder
      */
@@ -373,10 +392,11 @@ public class AsyncPermissions {
     /**
      * Delete membership
      * 
-     * <p>Delete membership to a group in the specified datasource. Silently succeeds if membership is not present.
+     * <p>Delete membership to a group in the specified datasource. Silently succeeds if membership is not
+     * present.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostApiIndexV1DeletemembershipResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1DeletemembershipResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1DeletemembershipResponse> deleteMembership(DeleteMembershipRequest request) {
         AsyncRequestOperation<DeleteMembershipRequest, PostApiIndexV1DeletemembershipResponse> operation
@@ -389,7 +409,8 @@ public class AsyncPermissions {
     /**
      * Beta users
      * 
-     * <p>Allow the datasource be visible to the specified beta users. The default behaviour is datasource being visible to all users if it is enabled and not visible to any user if it is not enabled.
+     * <p>Allow the datasource be visible to the specified beta users. The default behaviour is datasource
+     * being visible to all users if it is enabled and not visible to any user if it is not enabled.
      * 
      * @return The async call builder
      */
@@ -400,10 +421,11 @@ public class AsyncPermissions {
     /**
      * Beta users
      * 
-     * <p>Allow the datasource be visible to the specified beta users. The default behaviour is datasource being visible to all users if it is enabled and not visible to any user if it is not enabled.
+     * <p>Allow the datasource be visible to the specified beta users. The default behaviour is datasource
+     * being visible to all users if it is enabled and not visible to any user if it is not enabled.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostApiIndexV1BetausersResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1BetausersResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1BetausersResponse> authorizeBetaUsers(GreenlistUsersRequest request) {
         AsyncRequestOperation<GreenlistUsersRequest, PostApiIndexV1BetausersResponse> operation

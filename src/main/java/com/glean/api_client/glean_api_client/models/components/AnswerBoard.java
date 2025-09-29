@@ -46,7 +46,8 @@ public class AnswerBoard {
     private Optional<? extends List<UserRoleSpecification>> removedRoles;
 
     /**
-     * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see this Collection. Values are taken from the corresponding
+     * filters in people search.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("audienceFilters")
@@ -84,7 +85,8 @@ public class AnswerBoard {
     private Optional<? extends Person> updatedBy;
 
     /**
-     * The number of items currently in the Answer Board. Separated from the actual items so we can grab the count without items.
+     * The number of items currently in the Answer Board. Separated from the actual items so we can grab
+     * the count without items.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("itemCount")
@@ -186,7 +188,8 @@ public class AnswerBoard {
     }
 
     /**
-     * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see this Collection. Values are taken from the corresponding
+     * filters in people search.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -231,7 +234,8 @@ public class AnswerBoard {
     }
 
     /**
-     * The number of items currently in the Answer Board. Separated from the actual items so we can grab the count without items.
+     * The number of items currently in the Answer Board. Separated from the actual items so we can grab
+     * the count without items.
      */
     @JsonIgnore
     public Optional<Long> itemCount() {
@@ -309,7 +313,8 @@ public class AnswerBoard {
     }
 
     /**
-     * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see this Collection. Values are taken from the corresponding
+     * filters in people search.
      */
     public AnswerBoard withAudienceFilters(List<FacetFilter> audienceFilters) {
         Utils.checkNotNull(audienceFilters, "audienceFilters");
@@ -319,7 +324,8 @@ public class AnswerBoard {
 
 
     /**
-     * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see this Collection. Values are taken from the corresponding
+     * filters in people search.
      */
     public AnswerBoard withAudienceFilters(Optional<? extends List<FacetFilter>> audienceFilters) {
         Utils.checkNotNull(audienceFilters, "audienceFilters");
@@ -402,7 +408,8 @@ public class AnswerBoard {
     }
 
     /**
-     * The number of items currently in the Answer Board. Separated from the actual items so we can grab the count without items.
+     * The number of items currently in the Answer Board. Separated from the actual items so we can grab
+     * the count without items.
      */
     public AnswerBoard withItemCount(long itemCount) {
         Utils.checkNotNull(itemCount, "itemCount");
@@ -412,7 +419,8 @@ public class AnswerBoard {
 
 
     /**
-     * The number of items currently in the Answer Board. Separated from the actual items so we can grab the count without items.
+     * The number of items currently in the Answer Board. Separated from the actual items so we can grab
+     * the count without items.
      */
     public AnswerBoard withItemCount(Optional<Long> itemCount) {
         Utils.checkNotNull(itemCount, "itemCount");
@@ -585,7 +593,8 @@ public class AnswerBoard {
 
 
         /**
-         * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
+         * Filters which restrict who should see this Collection. Values are taken from the corresponding
+         * filters in people search.
          */
         public Builder audienceFilters(List<FacetFilter> audienceFilters) {
             Utils.checkNotNull(audienceFilters, "audienceFilters");
@@ -594,7 +603,8 @@ public class AnswerBoard {
         }
 
         /**
-         * Filters which restrict who should see this Collection. Values are taken from the corresponding filters in people search.
+         * Filters which restrict who should see this Collection. Values are taken from the corresponding
+         * filters in people search.
          */
         public Builder audienceFilters(Optional<? extends List<FacetFilter>> audienceFilters) {
             Utils.checkNotNull(audienceFilters, "audienceFilters");
@@ -679,7 +689,8 @@ public class AnswerBoard {
 
 
         /**
-         * The number of items currently in the Answer Board. Separated from the actual items so we can grab the count without items.
+         * The number of items currently in the Answer Board. Separated from the actual items so we can grab
+         * the count without items.
          */
         public Builder itemCount(long itemCount) {
             Utils.checkNotNull(itemCount, "itemCount");
@@ -688,7 +699,8 @@ public class AnswerBoard {
         }
 
         /**
-         * The number of items currently in the Answer Board. Separated from the actual items so we can grab the count without items.
+         * The number of items currently in the Answer Board. Separated from the actual items so we can grab
+         * the count without items.
          */
         public Builder itemCount(Optional<Long> itemCount) {
             Utils.checkNotNull(itemCount, "itemCount");

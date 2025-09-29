@@ -38,7 +38,8 @@ public class SearchWarning {
     private Optional<String> quotesIgnoredQuery;
 
     /**
-     * A list of query terms that were ignored when generating search results, if any. For example, terms containing invalid filters such as "updated:invalid_date" will be ignored.
+     * A list of query terms that were ignored when generating search results, if any. For example, terms
+     * containing invalid filters such as "updated:invalid_date" will be ignored.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ignoredTerms")
@@ -91,7 +92,8 @@ public class SearchWarning {
     }
 
     /**
-     * A list of query terms that were ignored when generating search results, if any. For example, terms containing invalid filters such as "updated:invalid_date" will be ignored.
+     * A list of query terms that were ignored when generating search results, if any. For example, terms
+     * containing invalid filters such as "updated:invalid_date" will be ignored.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -152,7 +154,8 @@ public class SearchWarning {
     }
 
     /**
-     * A list of query terms that were ignored when generating search results, if any. For example, terms containing invalid filters such as "updated:invalid_date" will be ignored.
+     * A list of query terms that were ignored when generating search results, if any. For example, terms
+     * containing invalid filters such as "updated:invalid_date" will be ignored.
      */
     public SearchWarning withIgnoredTerms(List<String> ignoredTerms) {
         Utils.checkNotNull(ignoredTerms, "ignoredTerms");
@@ -162,7 +165,8 @@ public class SearchWarning {
 
 
     /**
-     * A list of query terms that were ignored when generating search results, if any. For example, terms containing invalid filters such as "updated:invalid_date" will be ignored.
+     * A list of query terms that were ignored when generating search results, if any. For example, terms
+     * containing invalid filters such as "updated:invalid_date" will be ignored.
      */
     public SearchWarning withIgnoredTerms(Optional<? extends List<String>> ignoredTerms) {
         Utils.checkNotNull(ignoredTerms, "ignoredTerms");
@@ -267,7 +271,8 @@ public class SearchWarning {
 
 
         /**
-         * A list of query terms that were ignored when generating search results, if any. For example, terms containing invalid filters such as "updated:invalid_date" will be ignored.
+         * A list of query terms that were ignored when generating search results, if any. For example, terms
+         * containing invalid filters such as "updated:invalid_date" will be ignored.
          */
         public Builder ignoredTerms(List<String> ignoredTerms) {
             Utils.checkNotNull(ignoredTerms, "ignoredTerms");
@@ -276,7 +281,8 @@ public class SearchWarning {
         }
 
         /**
-         * A list of query terms that were ignored when generating search results, if any. For example, terms containing invalid filters such as "updated:invalid_date" will be ignored.
+         * A list of query terms that were ignored when generating search results, if any. For example, terms
+         * containing invalid filters such as "updated:invalid_date" will be ignored.
          */
         public Builder ignoredTerms(Optional<? extends List<String>> ignoredTerms) {
             Utils.checkNotNull(ignoredTerms, "ignoredTerms");

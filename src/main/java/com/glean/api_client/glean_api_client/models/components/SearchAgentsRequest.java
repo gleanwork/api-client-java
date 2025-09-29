@@ -16,7 +16,8 @@ import java.util.Optional;
 
 public class SearchAgentsRequest {
     /**
-     * Filters on the name of the agent. The keyword search is case-insensitive. If search string is ommited or empty, acts as no filter.
+     * Filters on the name of the agent. The keyword search is case-insensitive. If search string is
+     * ommited or empty, acts as no filter.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
@@ -34,7 +35,8 @@ public class SearchAgentsRequest {
     }
 
     /**
-     * Filters on the name of the agent. The keyword search is case-insensitive. If search string is ommited or empty, acts as no filter.
+     * Filters on the name of the agent. The keyword search is case-insensitive. If search string is
+     * ommited or empty, acts as no filter.
      */
     @JsonIgnore
     public Optional<String> name() {
@@ -47,7 +49,8 @@ public class SearchAgentsRequest {
 
 
     /**
-     * Filters on the name of the agent. The keyword search is case-insensitive. If search string is ommited or empty, acts as no filter.
+     * Filters on the name of the agent. The keyword search is case-insensitive. If search string is
+     * ommited or empty, acts as no filter.
      */
     public SearchAgentsRequest withName(String name) {
         Utils.checkNotNull(name, "name");
@@ -57,7 +60,8 @@ public class SearchAgentsRequest {
 
 
     /**
-     * Filters on the name of the agent. The keyword search is case-insensitive. If search string is ommited or empty, acts as no filter.
+     * Filters on the name of the agent. The keyword search is case-insensitive. If search string is
+     * ommited or empty, acts as no filter.
      */
     public SearchAgentsRequest withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
@@ -101,7 +105,8 @@ public class SearchAgentsRequest {
 
 
         /**
-         * Filters on the name of the agent. The keyword search is case-insensitive. If search string is ommited or empty, acts as no filter.
+         * Filters on the name of the agent. The keyword search is case-insensitive. If search string is
+         * ommited or empty, acts as no filter.
          */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
@@ -110,7 +115,8 @@ public class SearchAgentsRequest {
         }
 
         /**
-         * Filters on the name of the agent. The keyword search is case-insensitive. If search string is ommited or empty, acts as no filter.
+         * Filters on the name of the agent. The keyword search is case-insensitive. If search string is
+         * ommited or empty, acts as no filter.
          */
         public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");

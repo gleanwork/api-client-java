@@ -30,7 +30,8 @@ public class SearchProviderInfo {
     private Optional<String> logoUrl;
 
     /**
-     * URL template that can be used to perform the suggested search by replacing the {query} placeholder with the query suggestion.
+     * URL template that can be used to perform the suggested search by replacing the {query} placeholder
+     * with the query suggestion.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("searchLinkUrlTemplate")
@@ -70,7 +71,8 @@ public class SearchProviderInfo {
     }
 
     /**
-     * URL template that can be used to perform the suggested search by replacing the {query} placeholder with the query suggestion.
+     * URL template that can be used to perform the suggested search by replacing the {query} placeholder
+     * with the query suggestion.
      */
     @JsonIgnore
     public Optional<String> searchLinkUrlTemplate() {
@@ -121,7 +123,8 @@ public class SearchProviderInfo {
     }
 
     /**
-     * URL template that can be used to perform the suggested search by replacing the {query} placeholder with the query suggestion.
+     * URL template that can be used to perform the suggested search by replacing the {query} placeholder
+     * with the query suggestion.
      */
     public SearchProviderInfo withSearchLinkUrlTemplate(String searchLinkUrlTemplate) {
         Utils.checkNotNull(searchLinkUrlTemplate, "searchLinkUrlTemplate");
@@ -131,7 +134,8 @@ public class SearchProviderInfo {
 
 
     /**
-     * URL template that can be used to perform the suggested search by replacing the {query} placeholder with the query suggestion.
+     * URL template that can be used to perform the suggested search by replacing the {query} placeholder
+     * with the query suggestion.
      */
     public SearchProviderInfo withSearchLinkUrlTemplate(Optional<String> searchLinkUrlTemplate) {
         Utils.checkNotNull(searchLinkUrlTemplate, "searchLinkUrlTemplate");
@@ -221,7 +225,8 @@ public class SearchProviderInfo {
 
 
         /**
-         * URL template that can be used to perform the suggested search by replacing the {query} placeholder with the query suggestion.
+         * URL template that can be used to perform the suggested search by replacing the {query} placeholder
+         * with the query suggestion.
          */
         public Builder searchLinkUrlTemplate(String searchLinkUrlTemplate) {
             Utils.checkNotNull(searchLinkUrlTemplate, "searchLinkUrlTemplate");
@@ -230,7 +235,8 @@ public class SearchProviderInfo {
         }
 
         /**
-         * URL template that can be used to perform the suggested search by replacing the {query} placeholder with the query suggestion.
+         * URL template that can be used to perform the suggested search by replacing the {query} placeholder
+         * with the query suggestion.
          */
         public Builder searchLinkUrlTemplate(Optional<String> searchLinkUrlTemplate) {
             Utils.checkNotNull(searchLinkUrlTemplate, "searchLinkUrlTemplate");

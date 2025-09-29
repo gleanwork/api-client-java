@@ -117,14 +117,18 @@ public class Shortcut {
     private Optional<? extends Document> destinationDocument;
 
     /**
-     * The URL from which the user is then redirected to the destination URL. Full replacement for https://go/&lt;inputAlias&gt;.
+     * The URL from which the user is then redirected to the destination URL. Full replacement for
+     * https://go/<inputAlias>.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("intermediateUrl")
     private Optional<String> intermediateUrl;
 
     /**
-     * The part of the shortcut preceding the input alias when used for showing shortcuts to users. Should end with "/". e.g. "go/" for native shortcuts.
+     * The part of the shortcut preceding the input alias when used for showing shortcuts to users. Should
+     * end with "/". e.g.
+     * 
+     * <p>"go/" for native shortcuts.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("viewPrefix")
@@ -362,7 +366,8 @@ public class Shortcut {
     }
 
     /**
-     * The URL from which the user is then redirected to the destination URL. Full replacement for https://go/&lt;inputAlias&gt;.
+     * The URL from which the user is then redirected to the destination URL. Full replacement for
+     * https://go/<inputAlias>.
      */
     @JsonIgnore
     public Optional<String> intermediateUrl() {
@@ -370,7 +375,10 @@ public class Shortcut {
     }
 
     /**
-     * The part of the shortcut preceding the input alias when used for showing shortcuts to users. Should end with "/". e.g. "go/" for native shortcuts.
+     * The part of the shortcut preceding the input alias when used for showing shortcuts to users. Should
+     * end with "/". e.g.
+     * 
+     * <p>"go/" for native shortcuts.
      */
     @JsonIgnore
     public Optional<String> viewPrefix() {
@@ -675,7 +683,8 @@ public class Shortcut {
     }
 
     /**
-     * The URL from which the user is then redirected to the destination URL. Full replacement for https://go/&lt;inputAlias&gt;.
+     * The URL from which the user is then redirected to the destination URL. Full replacement for
+     * https://go/<inputAlias>.
      */
     public Shortcut withIntermediateUrl(String intermediateUrl) {
         Utils.checkNotNull(intermediateUrl, "intermediateUrl");
@@ -685,7 +694,8 @@ public class Shortcut {
 
 
     /**
-     * The URL from which the user is then redirected to the destination URL. Full replacement for https://go/&lt;inputAlias&gt;.
+     * The URL from which the user is then redirected to the destination URL. Full replacement for
+     * https://go/<inputAlias>.
      */
     public Shortcut withIntermediateUrl(Optional<String> intermediateUrl) {
         Utils.checkNotNull(intermediateUrl, "intermediateUrl");
@@ -694,7 +704,10 @@ public class Shortcut {
     }
 
     /**
-     * The part of the shortcut preceding the input alias when used for showing shortcuts to users. Should end with "/". e.g. "go/" for native shortcuts.
+     * The part of the shortcut preceding the input alias when used for showing shortcuts to users. Should
+     * end with "/". e.g.
+     * 
+     * <p>"go/" for native shortcuts.
      */
     public Shortcut withViewPrefix(String viewPrefix) {
         Utils.checkNotNull(viewPrefix, "viewPrefix");
@@ -704,7 +717,10 @@ public class Shortcut {
 
 
     /**
-     * The part of the shortcut preceding the input alias when used for showing shortcuts to users. Should end with "/". e.g. "go/" for native shortcuts.
+     * The part of the shortcut preceding the input alias when used for showing shortcuts to users. Should
+     * end with "/". e.g.
+     * 
+     * <p>"go/" for native shortcuts.
      */
     public Shortcut withViewPrefix(Optional<String> viewPrefix) {
         Utils.checkNotNull(viewPrefix, "viewPrefix");
@@ -1186,7 +1202,8 @@ public class Shortcut {
 
 
         /**
-         * The URL from which the user is then redirected to the destination URL. Full replacement for https://go/&lt;inputAlias&gt;.
+         * The URL from which the user is then redirected to the destination URL. Full replacement for
+         * https://go/<inputAlias>.
          */
         public Builder intermediateUrl(String intermediateUrl) {
             Utils.checkNotNull(intermediateUrl, "intermediateUrl");
@@ -1195,7 +1212,8 @@ public class Shortcut {
         }
 
         /**
-         * The URL from which the user is then redirected to the destination URL. Full replacement for https://go/&lt;inputAlias&gt;.
+         * The URL from which the user is then redirected to the destination URL. Full replacement for
+         * https://go/<inputAlias>.
          */
         public Builder intermediateUrl(Optional<String> intermediateUrl) {
             Utils.checkNotNull(intermediateUrl, "intermediateUrl");
@@ -1205,7 +1223,10 @@ public class Shortcut {
 
 
         /**
-         * The part of the shortcut preceding the input alias when used for showing shortcuts to users. Should end with "/". e.g. "go/" for native shortcuts.
+         * The part of the shortcut preceding the input alias when used for showing shortcuts to users. Should
+         * end with "/". e.g.
+         * 
+         * <p>"go/" for native shortcuts.
          */
         public Builder viewPrefix(String viewPrefix) {
             Utils.checkNotNull(viewPrefix, "viewPrefix");
@@ -1214,7 +1235,10 @@ public class Shortcut {
         }
 
         /**
-         * The part of the shortcut preceding the input alias when used for showing shortcuts to users. Should end with "/". e.g. "go/" for native shortcuts.
+         * The part of the shortcut preceding the input alias when used for showing shortcuts to users. Should
+         * end with "/". e.g.
+         * 
+         * <p>"go/" for native shortcuts.
          */
         public Builder viewPrefix(Optional<String> viewPrefix) {
             Utils.checkNotNull(viewPrefix, "viewPrefix");

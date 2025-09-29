@@ -47,7 +47,8 @@ public class AutocompleteResult {
     private Optional<? extends OperatorMetadata> operatorMetadata;
 
     /**
-     * An action for a specific datasource that will show up in autocomplete and app card, e.g. "Create new issue" for jira.
+     * An action for a specific datasource that will show up in autocomplete and app card, e.g. "Create new
+     * issue" for jira.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("quicklink")
@@ -64,7 +65,8 @@ public class AutocompleteResult {
     private Optional<String> url;
 
     /**
-     * A single object that can support any object in the work graph. Only a single object will be populated.
+     * A single object that can support any object in the work graph. Only a single object will be
+     * populated.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("structuredResult")
@@ -164,7 +166,8 @@ public class AutocompleteResult {
     }
 
     /**
-     * An action for a specific datasource that will show up in autocomplete and app card, e.g. "Create new issue" for jira.
+     * An action for a specific datasource that will show up in autocomplete and app card, e.g. "Create new
+     * issue" for jira.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -184,7 +187,8 @@ public class AutocompleteResult {
     }
 
     /**
-     * A single object that can support any object in the work graph. Only a single object will be populated.
+     * A single object that can support any object in the work graph. Only a single object will be
+     * populated.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -285,7 +289,8 @@ public class AutocompleteResult {
     }
 
     /**
-     * An action for a specific datasource that will show up in autocomplete and app card, e.g. "Create new issue" for jira.
+     * An action for a specific datasource that will show up in autocomplete and app card, e.g. "Create new
+     * issue" for jira.
      */
     public AutocompleteResult withQuicklink(Quicklink quicklink) {
         Utils.checkNotNull(quicklink, "quicklink");
@@ -295,7 +300,8 @@ public class AutocompleteResult {
 
 
     /**
-     * An action for a specific datasource that will show up in autocomplete and app card, e.g. "Create new issue" for jira.
+     * An action for a specific datasource that will show up in autocomplete and app card, e.g. "Create new
+     * issue" for jira.
      */
     public AutocompleteResult withQuicklink(Optional<? extends Quicklink> quicklink) {
         Utils.checkNotNull(quicklink, "quicklink");
@@ -330,7 +336,8 @@ public class AutocompleteResult {
     }
 
     /**
-     * A single object that can support any object in the work graph. Only a single object will be populated.
+     * A single object that can support any object in the work graph. Only a single object will be
+     * populated.
      */
     public AutocompleteResult withStructuredResult(StructuredResult structuredResult) {
         Utils.checkNotNull(structuredResult, "structuredResult");
@@ -340,7 +347,8 @@ public class AutocompleteResult {
 
 
     /**
-     * A single object that can support any object in the work graph. Only a single object will be populated.
+     * A single object that can support any object in the work graph. Only a single object will be
+     * populated.
      */
     public AutocompleteResult withStructuredResult(Optional<? extends StructuredResult> structuredResult) {
         Utils.checkNotNull(structuredResult, "structuredResult");
@@ -536,7 +544,8 @@ public class AutocompleteResult {
 
 
         /**
-         * An action for a specific datasource that will show up in autocomplete and app card, e.g. "Create new issue" for jira.
+         * An action for a specific datasource that will show up in autocomplete and app card, e.g. "Create new
+         * issue" for jira.
          */
         public Builder quicklink(Quicklink quicklink) {
             Utils.checkNotNull(quicklink, "quicklink");
@@ -545,7 +554,8 @@ public class AutocompleteResult {
         }
 
         /**
-         * An action for a specific datasource that will show up in autocomplete and app card, e.g. "Create new issue" for jira.
+         * An action for a specific datasource that will show up in autocomplete and app card, e.g. "Create new
+         * issue" for jira.
          */
         public Builder quicklink(Optional<? extends Quicklink> quicklink) {
             Utils.checkNotNull(quicklink, "quicklink");
@@ -581,7 +591,8 @@ public class AutocompleteResult {
 
 
         /**
-         * A single object that can support any object in the work graph. Only a single object will be populated.
+         * A single object that can support any object in the work graph. Only a single object will be
+         * populated.
          */
         public Builder structuredResult(StructuredResult structuredResult) {
             Utils.checkNotNull(structuredResult, "structuredResult");
@@ -590,7 +601,8 @@ public class AutocompleteResult {
         }
 
         /**
-         * A single object that can support any object in the work graph. Only a single object will be populated.
+         * A single object that can support any object in the work graph. Only a single object will be
+         * populated.
          */
         public Builder structuredResult(Optional<? extends StructuredResult> structuredResult) {
             Utils.checkNotNull(structuredResult, "structuredResult");

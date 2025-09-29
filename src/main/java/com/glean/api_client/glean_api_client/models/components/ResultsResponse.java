@@ -19,7 +19,8 @@ import java.util.Optional;
 
 public class ResultsResponse {
     /**
-     * A token that should be passed for additional requests related to this request (such as more results requests).
+     * A token that should be passed for additional requests related to this request (such as more results
+     * requests).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("trackingToken")
@@ -99,7 +100,8 @@ public class ResultsResponse {
     }
 
     /**
-     * A token that should be passed for additional requests related to this request (such as more results requests).
+     * A token that should be passed for additional requests related to this request (such as more results
+     * requests).
      */
     @JsonIgnore
     public Optional<String> trackingToken() {
@@ -158,7 +160,8 @@ public class ResultsResponse {
 
 
     /**
-     * A token that should be passed for additional requests related to this request (such as more results requests).
+     * A token that should be passed for additional requests related to this request (such as more results
+     * requests).
      */
     public ResultsResponse withTrackingToken(String trackingToken) {
         Utils.checkNotNull(trackingToken, "trackingToken");
@@ -168,7 +171,8 @@ public class ResultsResponse {
 
 
     /**
-     * A token that should be passed for additional requests related to this request (such as more results requests).
+     * A token that should be passed for additional requests related to this request (such as more results
+     * requests).
      */
     public ResultsResponse withTrackingToken(Optional<String> trackingToken) {
         Utils.checkNotNull(trackingToken, "trackingToken");
@@ -345,7 +349,8 @@ public class ResultsResponse {
 
 
         /**
-         * A token that should be passed for additional requests related to this request (such as more results requests).
+         * A token that should be passed for additional requests related to this request (such as more results
+         * requests).
          */
         public Builder trackingToken(String trackingToken) {
             Utils.checkNotNull(trackingToken, "trackingToken");
@@ -354,7 +359,8 @@ public class ResultsResponse {
         }
 
         /**
-         * A token that should be passed for additional requests related to this request (such as more results requests).
+         * A token that should be passed for additional requests related to this request (such as more results
+         * requests).
          */
         public Builder trackingToken(Optional<String> trackingToken) {
             Utils.checkNotNull(trackingToken, "trackingToken");

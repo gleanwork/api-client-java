@@ -11,7 +11,8 @@ import java.util.Optional;
 /**
  * MessageType
  * 
- * <p>Semantically groups content of a certain type. It can be used for purposes such as differential UI treatment. USER authored messages should be of type CONTENT and do not need `messageType` specified.
+ * <p>Semantically groups content of a certain type. It can be used for purposes such as differential UI
+ * treatment. USER authored messages should be of type CONTENT and do not need `messageType` specified.
  */
 public enum MessageType {
     UPDATE("UPDATE"),

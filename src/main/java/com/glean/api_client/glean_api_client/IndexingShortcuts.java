@@ -39,7 +39,12 @@ public class IndexingShortcuts {
     /**
      * Bulk index external shortcuts
      * 
-     * <p>Replaces all the currently indexed shortcuts using paginated batch API calls. Note that this endpoint is used for indexing shortcuts not hosted by Glean. If you want to upload shortcuts that would be hosted by Glean, please use the `/uploadshortcuts` endpoint. For information on what you can do with Golinks, which are Glean-hosted shortcuts, please refer to [this](https://help.glean.com/en/articles/5628838-how-go-links-work) page.
+     * <p>Replaces all the currently indexed shortcuts using paginated batch API calls. Note that this
+     * endpoint is used for indexing shortcuts not hosted by Glean. If you want to upload shortcuts that
+     * would be hosted by Glean, please use the `/uploadshortcuts` endpoint.
+     * 
+     * <p>For information on what you can do with Golinks, which are Glean-hosted shortcuts, please refer to
+     * [this](https://help.glean.com/en/articles/5628838-how-go-links-work) page.
      * 
      * @return The call builder
      */
@@ -50,7 +55,12 @@ public class IndexingShortcuts {
     /**
      * Bulk index external shortcuts
      * 
-     * <p>Replaces all the currently indexed shortcuts using paginated batch API calls. Note that this endpoint is used for indexing shortcuts not hosted by Glean. If you want to upload shortcuts that would be hosted by Glean, please use the `/uploadshortcuts` endpoint. For information on what you can do with Golinks, which are Glean-hosted shortcuts, please refer to [this](https://help.glean.com/en/articles/5628838-how-go-links-work) page.
+     * <p>Replaces all the currently indexed shortcuts using paginated batch API calls. Note that this
+     * endpoint is used for indexing shortcuts not hosted by Glean. If you want to upload shortcuts that
+     * would be hosted by Glean, please use the `/uploadshortcuts` endpoint.
+     * 
+     * <p>For information on what you can do with Golinks, which are Glean-hosted shortcuts, please refer to
+     * [this](https://help.glean.com/en/articles/5628838-how-go-links-work) page.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -65,7 +75,8 @@ public class IndexingShortcuts {
     /**
      * Upload shortcuts
      * 
-     * <p>Creates glean shortcuts for uploaded shortcuts info. Glean would host the shortcuts, and they can be managed in the knowledge tab once uploaded.
+     * <p>Creates glean shortcuts for uploaded shortcuts info. Glean would host the shortcuts, and they can be
+     * managed in the knowledge tab once uploaded.
      * 
      * @return The call builder
      */
@@ -76,7 +87,8 @@ public class IndexingShortcuts {
     /**
      * Upload shortcuts
      * 
-     * <p>Creates glean shortcuts for uploaded shortcuts info. Glean would host the shortcuts, and they can be managed in the knowledge tab once uploaded.
+     * <p>Creates glean shortcuts for uploaded shortcuts info. Glean would host the shortcuts, and they can be
+     * managed in the knowledge tab once uploaded.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call

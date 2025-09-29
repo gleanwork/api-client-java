@@ -41,7 +41,8 @@ public class TeamInfoDefinition {
     private Optional<String> description;
 
     /**
-     * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
+     * Typically the highest level organizational unit; generally applies to bigger companies with multiple
+     * distinct businesses.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("businessUnit")
@@ -167,7 +168,8 @@ public class TeamInfoDefinition {
     }
 
     /**
-     * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
+     * Typically the highest level organizational unit; generally applies to bigger companies with multiple
+     * distinct businesses.
      */
     @JsonIgnore
     public Optional<String> businessUnit() {
@@ -276,7 +278,8 @@ public class TeamInfoDefinition {
     }
 
     /**
-     * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
+     * Typically the highest level organizational unit; generally applies to bigger companies with multiple
+     * distinct businesses.
      */
     public TeamInfoDefinition withBusinessUnit(String businessUnit) {
         Utils.checkNotNull(businessUnit, "businessUnit");
@@ -286,7 +289,8 @@ public class TeamInfoDefinition {
 
 
     /**
-     * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
+     * Typically the highest level organizational unit; generally applies to bigger companies with multiple
+     * distinct businesses.
      */
     public TeamInfoDefinition withBusinessUnit(Optional<String> businessUnit) {
         Utils.checkNotNull(businessUnit, "businessUnit");
@@ -535,7 +539,8 @@ public class TeamInfoDefinition {
 
 
         /**
-         * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
+         * Typically the highest level organizational unit; generally applies to bigger companies with multiple
+         * distinct businesses.
          */
         public Builder businessUnit(String businessUnit) {
             Utils.checkNotNull(businessUnit, "businessUnit");
@@ -544,7 +549,8 @@ public class TeamInfoDefinition {
         }
 
         /**
-         * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
+         * Typically the highest level organizational unit; generally applies to bigger companies with multiple
+         * distinct businesses.
          */
         public Builder businessUnit(Optional<String> businessUnit) {
             Utils.checkNotNull(businessUnit, "businessUnit");

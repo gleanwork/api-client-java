@@ -20,7 +20,8 @@ import java.util.Optional;
  */
 public class ProcessAllMembershipsRequest {
     /**
-     * If provided, process group memberships only for this custom datasource. Otherwise all uploaded memberships are processed.
+     * If provided, process group memberships only for this custom datasource. Otherwise all uploaded
+     * memberships are processed.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("datasource")
@@ -38,7 +39,8 @@ public class ProcessAllMembershipsRequest {
     }
 
     /**
-     * If provided, process group memberships only for this custom datasource. Otherwise all uploaded memberships are processed.
+     * If provided, process group memberships only for this custom datasource. Otherwise all uploaded
+     * memberships are processed.
      */
     @JsonIgnore
     public Optional<String> datasource() {
@@ -51,7 +53,8 @@ public class ProcessAllMembershipsRequest {
 
 
     /**
-     * If provided, process group memberships only for this custom datasource. Otherwise all uploaded memberships are processed.
+     * If provided, process group memberships only for this custom datasource. Otherwise all uploaded
+     * memberships are processed.
      */
     public ProcessAllMembershipsRequest withDatasource(String datasource) {
         Utils.checkNotNull(datasource, "datasource");
@@ -61,7 +64,8 @@ public class ProcessAllMembershipsRequest {
 
 
     /**
-     * If provided, process group memberships only for this custom datasource. Otherwise all uploaded memberships are processed.
+     * If provided, process group memberships only for this custom datasource. Otherwise all uploaded
+     * memberships are processed.
      */
     public ProcessAllMembershipsRequest withDatasource(Optional<String> datasource) {
         Utils.checkNotNull(datasource, "datasource");
@@ -105,7 +109,8 @@ public class ProcessAllMembershipsRequest {
 
 
         /**
-         * If provided, process group memberships only for this custom datasource. Otherwise all uploaded memberships are processed.
+         * If provided, process group memberships only for this custom datasource. Otherwise all uploaded
+         * memberships are processed.
          */
         public Builder datasource(String datasource) {
             Utils.checkNotNull(datasource, "datasource");
@@ -114,7 +119,8 @@ public class ProcessAllMembershipsRequest {
         }
 
         /**
-         * If provided, process group memberships only for this custom datasource. Otherwise all uploaded memberships are processed.
+         * If provided, process group memberships only for this custom datasource. Otherwise all uploaded
+         * memberships are processed.
          */
         public Builder datasource(Optional<String> datasource) {
             Utils.checkNotNull(datasource, "datasource");

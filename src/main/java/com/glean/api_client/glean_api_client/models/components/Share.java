@@ -18,7 +18,8 @@ import java.util.Optional;
 /**
  * Share
  * 
- * <p>Search endpoint will only fill out numDays ago since that's all we need to display shared badge; docmetadata endpoint will fill out all the fields so that we can display shared badge tooltip
+ * <p>Search endpoint will only fill out numDays ago since that's all we need to display shared badge;
+ * docmetadata endpoint will fill out all the fields so that we can display shared badge tooltip
  */
 public class Share {
     /**

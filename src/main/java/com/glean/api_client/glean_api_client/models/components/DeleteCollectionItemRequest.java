@@ -29,7 +29,8 @@ public class DeleteCollectionItemRequest {
     private String itemId;
 
     /**
-     * The (optional) Glean Document ID of the CollectionItem to remove from this Collection if this is an indexed document.
+     * The (optional) Glean Document ID of the CollectionItem to remove from this Collection if this is an
+     * indexed document.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentId")
@@ -71,7 +72,8 @@ public class DeleteCollectionItemRequest {
     }
 
     /**
-     * The (optional) Glean Document ID of the CollectionItem to remove from this Collection if this is an indexed document.
+     * The (optional) Glean Document ID of the CollectionItem to remove from this Collection if this is an
+     * indexed document.
      */
     @JsonIgnore
     public Optional<String> documentId() {
@@ -102,7 +104,8 @@ public class DeleteCollectionItemRequest {
     }
 
     /**
-     * The (optional) Glean Document ID of the CollectionItem to remove from this Collection if this is an indexed document.
+     * The (optional) Glean Document ID of the CollectionItem to remove from this Collection if this is an
+     * indexed document.
      */
     public DeleteCollectionItemRequest withDocumentId(String documentId) {
         Utils.checkNotNull(documentId, "documentId");
@@ -112,7 +115,8 @@ public class DeleteCollectionItemRequest {
 
 
     /**
-     * The (optional) Glean Document ID of the CollectionItem to remove from this Collection if this is an indexed document.
+     * The (optional) Glean Document ID of the CollectionItem to remove from this Collection if this is an
+     * indexed document.
      */
     public DeleteCollectionItemRequest withDocumentId(Optional<String> documentId) {
         Utils.checkNotNull(documentId, "documentId");
@@ -184,7 +188,8 @@ public class DeleteCollectionItemRequest {
 
 
         /**
-         * The (optional) Glean Document ID of the CollectionItem to remove from this Collection if this is an indexed document.
+         * The (optional) Glean Document ID of the CollectionItem to remove from this Collection if this is an
+         * indexed document.
          */
         public Builder documentId(String documentId) {
             Utils.checkNotNull(documentId, "documentId");
@@ -193,7 +198,8 @@ public class DeleteCollectionItemRequest {
         }
 
         /**
-         * The (optional) Glean Document ID of the CollectionItem to remove from this Collection if this is an indexed document.
+         * The (optional) Glean Document ID of the CollectionItem to remove from this Collection if this is an
+         * indexed document.
          */
         public Builder documentId(Optional<String> documentId) {
             Utils.checkNotNull(documentId, "documentId");

@@ -37,7 +37,8 @@ public class DocumentPermissionsDefinition {
     private Optional<? extends List<String>> allowedGroups;
 
     /**
-     * List of allowed group intersections. This describes a permissions constraint of the form ((GroupA AND GroupB AND GroupC) OR (GroupX AND GroupY) OR ...
+     * List of allowed group intersections. This describes a permissions constraint of the form ((GroupA
+     * AND GroupB AND GroupC) OR (GroupX AND GroupY) OR...
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("allowedGroupIntersections")
@@ -100,7 +101,8 @@ public class DocumentPermissionsDefinition {
     }
 
     /**
-     * List of allowed group intersections. This describes a permissions constraint of the form ((GroupA AND GroupB AND GroupC) OR (GroupX AND GroupY) OR ...
+     * List of allowed group intersections. This describes a permissions constraint of the form ((GroupA
+     * AND GroupB AND GroupC) OR (GroupX AND GroupY) OR...
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -168,7 +170,8 @@ public class DocumentPermissionsDefinition {
     }
 
     /**
-     * List of allowed group intersections. This describes a permissions constraint of the form ((GroupA AND GroupB AND GroupC) OR (GroupX AND GroupY) OR ...
+     * List of allowed group intersections. This describes a permissions constraint of the form ((GroupA
+     * AND GroupB AND GroupC) OR (GroupX AND GroupY) OR...
      */
     public DocumentPermissionsDefinition withAllowedGroupIntersections(List<PermissionsGroupIntersectionDefinition> allowedGroupIntersections) {
         Utils.checkNotNull(allowedGroupIntersections, "allowedGroupIntersections");
@@ -178,7 +181,8 @@ public class DocumentPermissionsDefinition {
 
 
     /**
-     * List of allowed group intersections. This describes a permissions constraint of the form ((GroupA AND GroupB AND GroupC) OR (GroupX AND GroupY) OR ...
+     * List of allowed group intersections. This describes a permissions constraint of the form ((GroupA
+     * AND GroupB AND GroupC) OR (GroupX AND GroupY) OR...
      */
     public DocumentPermissionsDefinition withAllowedGroupIntersections(Optional<? extends List<PermissionsGroupIntersectionDefinition>> allowedGroupIntersections) {
         Utils.checkNotNull(allowedGroupIntersections, "allowedGroupIntersections");
@@ -315,7 +319,8 @@ public class DocumentPermissionsDefinition {
 
 
         /**
-         * List of allowed group intersections. This describes a permissions constraint of the form ((GroupA AND GroupB AND GroupC) OR (GroupX AND GroupY) OR ...
+         * List of allowed group intersections. This describes a permissions constraint of the form ((GroupA
+         * AND GroupB AND GroupC) OR (GroupX AND GroupY) OR...
          */
         public Builder allowedGroupIntersections(List<PermissionsGroupIntersectionDefinition> allowedGroupIntersections) {
             Utils.checkNotNull(allowedGroupIntersections, "allowedGroupIntersections");
@@ -324,7 +329,8 @@ public class DocumentPermissionsDefinition {
         }
 
         /**
-         * List of allowed group intersections. This describes a permissions constraint of the form ((GroupA AND GroupB AND GroupC) OR (GroupX AND GroupY) OR ...
+         * List of allowed group intersections. This describes a permissions constraint of the form ((GroupA
+         * AND GroupB AND GroupC) OR (GroupX AND GroupY) OR...
          */
         public Builder allowedGroupIntersections(Optional<? extends List<PermissionsGroupIntersectionDefinition>> allowedGroupIntersections) {
             Utils.checkNotNull(allowedGroupIntersections, "allowedGroupIntersections");

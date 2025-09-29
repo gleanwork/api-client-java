@@ -23,14 +23,17 @@ import java.util.Optional;
  */
 public class DocumentDefinition {
     /**
-     * Document title, in plain text, if present. If not present, the title would be attempted to be extracted from the content.
+     * Document title, in plain text, if present. If not present, the title would be attempted to be
+     * extracted from the content.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("title")
     private Optional<String> title;
 
     /**
-     * Source filename, in plain text, for the document. May be used as a fallback title for the document, if the title is not provided and cannot be extracted from the content. Populate this if there is no explicit title for the document and the content is sourced from a file.
+     * Source filename, in plain text, for the document. May be used as a fallback title for the document,
+     * if the title is not provided and cannot be extracted from the content. Populate this if there is no
+     * explicit title for the document and the content is sourced from a file.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("filename")
@@ -62,21 +65,25 @@ public class DocumentDefinition {
     private String datasource;
 
     /**
-     * The type of the document (Case, KnowledgeArticle for Salesforce for example). It cannot have spaces or _
+     * The type of the document (Case, KnowledgeArticle for Salesforce for example). It cannot have spaces
+     * or _
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("objectType")
     private Optional<String> objectType;
 
     /**
-     * The permalink for viewing the document. **Note: viewURL is a required field for non-entity datasources, but not required if the datasource is used to push custom entities (ie. datasources where isEntityDatasource is false).**'
+     * The permalink for viewing the document. **Note: viewURL is a required field for non-entity
+     * datasources, but not required if the datasource is used to push custom entities (ie. datasources
+     * where isEntityDatasource is false).**'
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("viewURL")
     private Optional<String> viewURL;
 
     /**
-     * The datasource specific id for the document. This field is case insensitive and should not be more than 200 characters in length.
+     * The datasource specific id for the document. This field is case insensitive and should not be more
+     * than 200 characters in length.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
@@ -97,14 +104,16 @@ public class DocumentDefinition {
     private Optional<? extends ContentDefinition> body;
 
     /**
-     * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+     * Describes how a user is referenced in a document. The user can be referenced by email or by a
+     * datasource specific id.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("author")
     private Optional<? extends UserReferenceDefinition> author;
 
     /**
-     * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+     * Describes how a user is referenced in a document. The user can be referenced by email or by a
+     * datasource specific id.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("owner")
@@ -132,7 +141,8 @@ public class DocumentDefinition {
     private Optional<Long> updatedAt;
 
     /**
-     * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+     * Describes how a user is referenced in a document. The user can be referenced by email or by a
+     * datasource specific id.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("updatedBy")
@@ -172,7 +182,8 @@ public class DocumentDefinition {
     private Optional<? extends List<CommentDefinition>> comments;
 
     /**
-     * Additional metadata properties of the document. These can surface as [facets and operators](https://developers.glean.com/indexing/datasource/custom-properties/operators_and_facets).
+     * Additional metadata properties of the document. These can surface as [facets and
+     * operators](https://developers.glean.com/indexing/datasource/custom-properties/operators_and_facets).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("customProperties")
@@ -264,7 +275,8 @@ public class DocumentDefinition {
     }
 
     /**
-     * Document title, in plain text, if present. If not present, the title would be attempted to be extracted from the content.
+     * Document title, in plain text, if present. If not present, the title would be attempted to be
+     * extracted from the content.
      */
     @JsonIgnore
     public Optional<String> title() {
@@ -272,7 +284,9 @@ public class DocumentDefinition {
     }
 
     /**
-     * Source filename, in plain text, for the document. May be used as a fallback title for the document, if the title is not provided and cannot be extracted from the content. Populate this if there is no explicit title for the document and the content is sourced from a file.
+     * Source filename, in plain text, for the document. May be used as a fallback title for the document,
+     * if the title is not provided and cannot be extracted from the content. Populate this if there is no
+     * explicit title for the document and the content is sourced from a file.
      */
     @JsonIgnore
     public Optional<String> filename() {
@@ -309,7 +323,8 @@ public class DocumentDefinition {
     }
 
     /**
-     * The type of the document (Case, KnowledgeArticle for Salesforce for example). It cannot have spaces or _
+     * The type of the document (Case, KnowledgeArticle for Salesforce for example). It cannot have spaces
+     * or _
      */
     @JsonIgnore
     public Optional<String> objectType() {
@@ -317,7 +332,9 @@ public class DocumentDefinition {
     }
 
     /**
-     * The permalink for viewing the document. **Note: viewURL is a required field for non-entity datasources, but not required if the datasource is used to push custom entities (ie. datasources where isEntityDatasource is false).**'
+     * The permalink for viewing the document. **Note: viewURL is a required field for non-entity
+     * datasources, but not required if the datasource is used to push custom entities (ie. datasources
+     * where isEntityDatasource is false).**'
      */
     @JsonIgnore
     public Optional<String> viewURL() {
@@ -325,7 +342,8 @@ public class DocumentDefinition {
     }
 
     /**
-     * The datasource specific id for the document. This field is case insensitive and should not be more than 200 characters in length.
+     * The datasource specific id for the document. This field is case insensitive and should not be more
+     * than 200 characters in length.
      */
     @JsonIgnore
     public Optional<String> id() {
@@ -351,7 +369,8 @@ public class DocumentDefinition {
     }
 
     /**
-     * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+     * Describes how a user is referenced in a document. The user can be referenced by email or by a
+     * datasource specific id.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -360,7 +379,8 @@ public class DocumentDefinition {
     }
 
     /**
-     * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+     * Describes how a user is referenced in a document. The user can be referenced by email or by a
+     * datasource specific id.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -394,7 +414,8 @@ public class DocumentDefinition {
     }
 
     /**
-     * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+     * Describes how a user is referenced in a document. The user can be referenced by email or by a
+     * datasource specific id.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -444,7 +465,8 @@ public class DocumentDefinition {
     }
 
     /**
-     * Additional metadata properties of the document. These can surface as [facets and operators](https://developers.glean.com/indexing/datasource/custom-properties/operators_and_facets).
+     * Additional metadata properties of the document. These can surface as [facets and
+     * operators](https://developers.glean.com/indexing/datasource/custom-properties/operators_and_facets).
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -458,7 +480,8 @@ public class DocumentDefinition {
 
 
     /**
-     * Document title, in plain text, if present. If not present, the title would be attempted to be extracted from the content.
+     * Document title, in plain text, if present. If not present, the title would be attempted to be
+     * extracted from the content.
      */
     public DocumentDefinition withTitle(String title) {
         Utils.checkNotNull(title, "title");
@@ -468,7 +491,8 @@ public class DocumentDefinition {
 
 
     /**
-     * Document title, in plain text, if present. If not present, the title would be attempted to be extracted from the content.
+     * Document title, in plain text, if present. If not present, the title would be attempted to be
+     * extracted from the content.
      */
     public DocumentDefinition withTitle(Optional<String> title) {
         Utils.checkNotNull(title, "title");
@@ -477,7 +501,9 @@ public class DocumentDefinition {
     }
 
     /**
-     * Source filename, in plain text, for the document. May be used as a fallback title for the document, if the title is not provided and cannot be extracted from the content. Populate this if there is no explicit title for the document and the content is sourced from a file.
+     * Source filename, in plain text, for the document. May be used as a fallback title for the document,
+     * if the title is not provided and cannot be extracted from the content. Populate this if there is no
+     * explicit title for the document and the content is sourced from a file.
      */
     public DocumentDefinition withFilename(String filename) {
         Utils.checkNotNull(filename, "filename");
@@ -487,7 +513,9 @@ public class DocumentDefinition {
 
 
     /**
-     * Source filename, in plain text, for the document. May be used as a fallback title for the document, if the title is not provided and cannot be extracted from the content. Populate this if there is no explicit title for the document and the content is sourced from a file.
+     * Source filename, in plain text, for the document. May be used as a fallback title for the document,
+     * if the title is not provided and cannot be extracted from the content. Populate this if there is no
+     * explicit title for the document and the content is sourced from a file.
      */
     public DocumentDefinition withFilename(Optional<String> filename) {
         Utils.checkNotNull(filename, "filename");
@@ -559,7 +587,8 @@ public class DocumentDefinition {
     }
 
     /**
-     * The type of the document (Case, KnowledgeArticle for Salesforce for example). It cannot have spaces or _
+     * The type of the document (Case, KnowledgeArticle for Salesforce for example). It cannot have spaces
+     * or _
      */
     public DocumentDefinition withObjectType(String objectType) {
         Utils.checkNotNull(objectType, "objectType");
@@ -569,7 +598,8 @@ public class DocumentDefinition {
 
 
     /**
-     * The type of the document (Case, KnowledgeArticle for Salesforce for example). It cannot have spaces or _
+     * The type of the document (Case, KnowledgeArticle for Salesforce for example). It cannot have spaces
+     * or _
      */
     public DocumentDefinition withObjectType(Optional<String> objectType) {
         Utils.checkNotNull(objectType, "objectType");
@@ -578,7 +608,9 @@ public class DocumentDefinition {
     }
 
     /**
-     * The permalink for viewing the document. **Note: viewURL is a required field for non-entity datasources, but not required if the datasource is used to push custom entities (ie. datasources where isEntityDatasource is false).**'
+     * The permalink for viewing the document. **Note: viewURL is a required field for non-entity
+     * datasources, but not required if the datasource is used to push custom entities (ie. datasources
+     * where isEntityDatasource is false).**'
      */
     public DocumentDefinition withViewURL(String viewURL) {
         Utils.checkNotNull(viewURL, "viewURL");
@@ -588,7 +620,9 @@ public class DocumentDefinition {
 
 
     /**
-     * The permalink for viewing the document. **Note: viewURL is a required field for non-entity datasources, but not required if the datasource is used to push custom entities (ie. datasources where isEntityDatasource is false).**'
+     * The permalink for viewing the document. **Note: viewURL is a required field for non-entity
+     * datasources, but not required if the datasource is used to push custom entities (ie. datasources
+     * where isEntityDatasource is false).**'
      */
     public DocumentDefinition withViewURL(Optional<String> viewURL) {
         Utils.checkNotNull(viewURL, "viewURL");
@@ -597,7 +631,8 @@ public class DocumentDefinition {
     }
 
     /**
-     * The datasource specific id for the document. This field is case insensitive and should not be more than 200 characters in length.
+     * The datasource specific id for the document. This field is case insensitive and should not be more
+     * than 200 characters in length.
      */
     public DocumentDefinition withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -607,7 +642,8 @@ public class DocumentDefinition {
 
 
     /**
-     * The datasource specific id for the document. This field is case insensitive and should not be more than 200 characters in length.
+     * The datasource specific id for the document. This field is case insensitive and should not be more
+     * than 200 characters in length.
      */
     public DocumentDefinition withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
@@ -654,7 +690,8 @@ public class DocumentDefinition {
     }
 
     /**
-     * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+     * Describes how a user is referenced in a document. The user can be referenced by email or by a
+     * datasource specific id.
      */
     public DocumentDefinition withAuthor(UserReferenceDefinition author) {
         Utils.checkNotNull(author, "author");
@@ -664,7 +701,8 @@ public class DocumentDefinition {
 
 
     /**
-     * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+     * Describes how a user is referenced in a document. The user can be referenced by email or by a
+     * datasource specific id.
      */
     public DocumentDefinition withAuthor(Optional<? extends UserReferenceDefinition> author) {
         Utils.checkNotNull(author, "author");
@@ -673,7 +711,8 @@ public class DocumentDefinition {
     }
 
     /**
-     * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+     * Describes how a user is referenced in a document. The user can be referenced by email or by a
+     * datasource specific id.
      */
     public DocumentDefinition withOwner(UserReferenceDefinition owner) {
         Utils.checkNotNull(owner, "owner");
@@ -683,7 +722,8 @@ public class DocumentDefinition {
 
 
     /**
-     * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+     * Describes how a user is referenced in a document. The user can be referenced by email or by a
+     * datasource specific id.
      */
     public DocumentDefinition withOwner(Optional<? extends UserReferenceDefinition> owner) {
         Utils.checkNotNull(owner, "owner");
@@ -749,7 +789,8 @@ public class DocumentDefinition {
     }
 
     /**
-     * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+     * Describes how a user is referenced in a document. The user can be referenced by email or by a
+     * datasource specific id.
      */
     public DocumentDefinition withUpdatedBy(UserReferenceDefinition updatedBy) {
         Utils.checkNotNull(updatedBy, "updatedBy");
@@ -759,7 +800,8 @@ public class DocumentDefinition {
 
 
     /**
-     * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+     * Describes how a user is referenced in a document. The user can be referenced by email or by a
+     * datasource specific id.
      */
     public DocumentDefinition withUpdatedBy(Optional<? extends UserReferenceDefinition> updatedBy) {
         Utils.checkNotNull(updatedBy, "updatedBy");
@@ -857,7 +899,8 @@ public class DocumentDefinition {
     }
 
     /**
-     * Additional metadata properties of the document. These can surface as [facets and operators](https://developers.glean.com/indexing/datasource/custom-properties/operators_and_facets).
+     * Additional metadata properties of the document. These can surface as [facets and
+     * operators](https://developers.glean.com/indexing/datasource/custom-properties/operators_and_facets).
      */
     public DocumentDefinition withCustomProperties(List<CustomProperty> customProperties) {
         Utils.checkNotNull(customProperties, "customProperties");
@@ -867,7 +910,8 @@ public class DocumentDefinition {
 
 
     /**
-     * Additional metadata properties of the document. These can surface as [facets and operators](https://developers.glean.com/indexing/datasource/custom-properties/operators_and_facets).
+     * Additional metadata properties of the document. These can surface as [facets and
+     * operators](https://developers.glean.com/indexing/datasource/custom-properties/operators_and_facets).
      */
     public DocumentDefinition withCustomProperties(Optional<? extends List<CustomProperty>> customProperties) {
         Utils.checkNotNull(customProperties, "customProperties");
@@ -1006,7 +1050,8 @@ public class DocumentDefinition {
 
 
         /**
-         * Document title, in plain text, if present. If not present, the title would be attempted to be extracted from the content.
+         * Document title, in plain text, if present. If not present, the title would be attempted to be
+         * extracted from the content.
          */
         public Builder title(String title) {
             Utils.checkNotNull(title, "title");
@@ -1015,7 +1060,8 @@ public class DocumentDefinition {
         }
 
         /**
-         * Document title, in plain text, if present. If not present, the title would be attempted to be extracted from the content.
+         * Document title, in plain text, if present. If not present, the title would be attempted to be
+         * extracted from the content.
          */
         public Builder title(Optional<String> title) {
             Utils.checkNotNull(title, "title");
@@ -1025,7 +1071,9 @@ public class DocumentDefinition {
 
 
         /**
-         * Source filename, in plain text, for the document. May be used as a fallback title for the document, if the title is not provided and cannot be extracted from the content. Populate this if there is no explicit title for the document and the content is sourced from a file.
+         * Source filename, in plain text, for the document. May be used as a fallback title for the document,
+         * if the title is not provided and cannot be extracted from the content. Populate this if there is no
+         * explicit title for the document and the content is sourced from a file.
          */
         public Builder filename(String filename) {
             Utils.checkNotNull(filename, "filename");
@@ -1034,7 +1082,9 @@ public class DocumentDefinition {
         }
 
         /**
-         * Source filename, in plain text, for the document. May be used as a fallback title for the document, if the title is not provided and cannot be extracted from the content. Populate this if there is no explicit title for the document and the content is sourced from a file.
+         * Source filename, in plain text, for the document. May be used as a fallback title for the document,
+         * if the title is not provided and cannot be extracted from the content. Populate this if there is no
+         * explicit title for the document and the content is sourced from a file.
          */
         public Builder filename(Optional<String> filename) {
             Utils.checkNotNull(filename, "filename");
@@ -1108,7 +1158,8 @@ public class DocumentDefinition {
 
 
         /**
-         * The type of the document (Case, KnowledgeArticle for Salesforce for example). It cannot have spaces or _
+         * The type of the document (Case, KnowledgeArticle for Salesforce for example). It cannot have spaces
+         * or _
          */
         public Builder objectType(String objectType) {
             Utils.checkNotNull(objectType, "objectType");
@@ -1117,7 +1168,8 @@ public class DocumentDefinition {
         }
 
         /**
-         * The type of the document (Case, KnowledgeArticle for Salesforce for example). It cannot have spaces or _
+         * The type of the document (Case, KnowledgeArticle for Salesforce for example). It cannot have spaces
+         * or _
          */
         public Builder objectType(Optional<String> objectType) {
             Utils.checkNotNull(objectType, "objectType");
@@ -1127,7 +1179,9 @@ public class DocumentDefinition {
 
 
         /**
-         * The permalink for viewing the document. **Note: viewURL is a required field for non-entity datasources, but not required if the datasource is used to push custom entities (ie. datasources where isEntityDatasource is false).**'
+         * The permalink for viewing the document. **Note: viewURL is a required field for non-entity
+         * datasources, but not required if the datasource is used to push custom entities (ie. datasources
+         * where isEntityDatasource is false).**'
          */
         public Builder viewURL(String viewURL) {
             Utils.checkNotNull(viewURL, "viewURL");
@@ -1136,7 +1190,9 @@ public class DocumentDefinition {
         }
 
         /**
-         * The permalink for viewing the document. **Note: viewURL is a required field for non-entity datasources, but not required if the datasource is used to push custom entities (ie. datasources where isEntityDatasource is false).**'
+         * The permalink for viewing the document. **Note: viewURL is a required field for non-entity
+         * datasources, but not required if the datasource is used to push custom entities (ie. datasources
+         * where isEntityDatasource is false).**'
          */
         public Builder viewURL(Optional<String> viewURL) {
             Utils.checkNotNull(viewURL, "viewURL");
@@ -1146,7 +1202,8 @@ public class DocumentDefinition {
 
 
         /**
-         * The datasource specific id for the document. This field is case insensitive and should not be more than 200 characters in length.
+         * The datasource specific id for the document. This field is case insensitive and should not be more
+         * than 200 characters in length.
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -1155,7 +1212,8 @@ public class DocumentDefinition {
         }
 
         /**
-         * The datasource specific id for the document. This field is case insensitive and should not be more than 200 characters in length.
+         * The datasource specific id for the document. This field is case insensitive and should not be more
+         * than 200 characters in length.
          */
         public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
@@ -1203,7 +1261,8 @@ public class DocumentDefinition {
 
 
         /**
-         * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+         * Describes how a user is referenced in a document. The user can be referenced by email or by a
+         * datasource specific id.
          */
         public Builder author(UserReferenceDefinition author) {
             Utils.checkNotNull(author, "author");
@@ -1212,7 +1271,8 @@ public class DocumentDefinition {
         }
 
         /**
-         * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+         * Describes how a user is referenced in a document. The user can be referenced by email or by a
+         * datasource specific id.
          */
         public Builder author(Optional<? extends UserReferenceDefinition> author) {
             Utils.checkNotNull(author, "author");
@@ -1222,7 +1282,8 @@ public class DocumentDefinition {
 
 
         /**
-         * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+         * Describes how a user is referenced in a document. The user can be referenced by email or by a
+         * datasource specific id.
          */
         public Builder owner(UserReferenceDefinition owner) {
             Utils.checkNotNull(owner, "owner");
@@ -1231,7 +1292,8 @@ public class DocumentDefinition {
         }
 
         /**
-         * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+         * Describes how a user is referenced in a document. The user can be referenced by email or by a
+         * datasource specific id.
          */
         public Builder owner(Optional<? extends UserReferenceDefinition> owner) {
             Utils.checkNotNull(owner, "owner");
@@ -1298,7 +1360,8 @@ public class DocumentDefinition {
 
 
         /**
-         * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+         * Describes how a user is referenced in a document. The user can be referenced by email or by a
+         * datasource specific id.
          */
         public Builder updatedBy(UserReferenceDefinition updatedBy) {
             Utils.checkNotNull(updatedBy, "updatedBy");
@@ -1307,7 +1370,8 @@ public class DocumentDefinition {
         }
 
         /**
-         * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+         * Describes how a user is referenced in a document. The user can be referenced by email or by a
+         * datasource specific id.
          */
         public Builder updatedBy(Optional<? extends UserReferenceDefinition> updatedBy) {
             Utils.checkNotNull(updatedBy, "updatedBy");
@@ -1406,7 +1470,8 @@ public class DocumentDefinition {
 
 
         /**
-         * Additional metadata properties of the document. These can surface as [facets and operators](https://developers.glean.com/indexing/datasource/custom-properties/operators_and_facets).
+         * Additional metadata properties of the document. These can surface as [facets and
+         * operators](https://developers.glean.com/indexing/datasource/custom-properties/operators_and_facets).
          */
         public Builder customProperties(List<CustomProperty> customProperties) {
             Utils.checkNotNull(customProperties, "customProperties");
@@ -1415,7 +1480,8 @@ public class DocumentDefinition {
         }
 
         /**
-         * Additional metadata properties of the document. These can surface as [facets and operators](https://developers.glean.com/indexing/datasource/custom-properties/operators_and_facets).
+         * Additional metadata properties of the document. These can surface as [facets and
+         * operators](https://developers.glean.com/indexing/datasource/custom-properties/operators_and_facets).
          */
         public Builder customProperties(Optional<? extends List<CustomProperty>> customProperties) {
             Utils.checkNotNull(customProperties, "customProperties");
