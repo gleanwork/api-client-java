@@ -27,14 +27,16 @@ public class ChatRequest {
     private Optional<Boolean> saveChat;
 
     /**
-     * The id of the Chat that context should be retrieved from and messages added to. An empty id starts a new Chat, and the Chat is saved if saveChat is true.
+     * The id of the Chat that context should be retrieved from and messages added to. An empty id starts a
+     * new Chat, and the Chat is saved if saveChat is true.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("chatId")
     private Optional<String> chatId;
 
     /**
-     * A list of chat messages, from most recent to least recent. At least one message must specify a USER author.
+     * A list of chat messages, from most recent to least recent. At least one message must specify a USER
+     * author.
      */
     @JsonProperty("messages")
     private List<ChatMessage> messages;
@@ -57,7 +59,8 @@ public class ChatRequest {
     private Optional<? extends ChatRestrictionFilters> exclusions;
 
     /**
-     * Timeout in milliseconds for the request. A `408` error will be returned if handling the request takes longer.
+     * Timeout in milliseconds for the request. A `408` error will be returned if handling the request
+     * takes longer.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timeoutMillis")
@@ -69,21 +72,30 @@ public class ChatRequest {
     private Optional<? extends SessionInfo> sessionInfo;
 
     /**
-     * The ID of the application this request originates from, used to determine the configuration of underlying chat processes. This should correspond to the ID set during admin setup. If not specified, the default chat experience will be used.
+     * The ID of the application this request originates from, used to determine the configuration of
+     * underlying chat processes. This should correspond to the ID set during admin setup. If not
+     * specified, the default chat experience will be used.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("applicationId")
     private Optional<String> applicationId;
 
     /**
-     * The ID of the Agent that should process this chat request. Only Agents with trigger set to 'User chat message' are invokable through this API. If not specified, the default chat experience will be used.
+     * The ID of the Agent that should process this chat request. Only Agents with trigger set to 'User
+     * chat message' are invokable through this API. If not specified, the default chat experience will be
+     * used.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("agentId")
     private Optional<String> agentId;
 
     /**
-     * If set, response lines will be streamed one-by-one as they become available. Each will be a ChatResponse, formatted as JSON, and separated by a new line. If false, the entire response will be returned at once. Note that if this is set and the model being used does not support streaming, the model's response will not be streamed, but other messages from the endpoint still will be.
+     * If set, response lines will be streamed one-by-one as they become available. Each will be a
+     * ChatResponse, formatted as JSON, and separated by a new line. If false, the entire response will be
+     * returned at once.
+     * 
+     * <p>Note that if this is set and the model being used does not support streaming, the model's response
+     * will not be streamed, but other messages from the endpoint still will be.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("stream")
@@ -143,7 +155,8 @@ public class ChatRequest {
     }
 
     /**
-     * The id of the Chat that context should be retrieved from and messages added to. An empty id starts a new Chat, and the Chat is saved if saveChat is true.
+     * The id of the Chat that context should be retrieved from and messages added to. An empty id starts a
+     * new Chat, and the Chat is saved if saveChat is true.
      */
     @JsonIgnore
     public Optional<String> chatId() {
@@ -151,7 +164,8 @@ public class ChatRequest {
     }
 
     /**
-     * A list of chat messages, from most recent to least recent. At least one message must specify a USER author.
+     * A list of chat messages, from most recent to least recent. At least one message must specify a USER
+     * author.
      */
     @JsonIgnore
     public List<ChatMessage> messages() {
@@ -180,7 +194,8 @@ public class ChatRequest {
     }
 
     /**
-     * Timeout in milliseconds for the request. A `408` error will be returned if handling the request takes longer.
+     * Timeout in milliseconds for the request. A `408` error will be returned if handling the request
+     * takes longer.
      */
     @JsonIgnore
     public Optional<Long> timeoutMillis() {
@@ -194,7 +209,9 @@ public class ChatRequest {
     }
 
     /**
-     * The ID of the application this request originates from, used to determine the configuration of underlying chat processes. This should correspond to the ID set during admin setup. If not specified, the default chat experience will be used.
+     * The ID of the application this request originates from, used to determine the configuration of
+     * underlying chat processes. This should correspond to the ID set during admin setup. If not
+     * specified, the default chat experience will be used.
      */
     @JsonIgnore
     public Optional<String> applicationId() {
@@ -202,7 +219,9 @@ public class ChatRequest {
     }
 
     /**
-     * The ID of the Agent that should process this chat request. Only Agents with trigger set to 'User chat message' are invokable through this API. If not specified, the default chat experience will be used.
+     * The ID of the Agent that should process this chat request. Only Agents with trigger set to 'User
+     * chat message' are invokable through this API. If not specified, the default chat experience will be
+     * used.
      */
     @JsonIgnore
     public Optional<String> agentId() {
@@ -210,7 +229,12 @@ public class ChatRequest {
     }
 
     /**
-     * If set, response lines will be streamed one-by-one as they become available. Each will be a ChatResponse, formatted as JSON, and separated by a new line. If false, the entire response will be returned at once. Note that if this is set and the model being used does not support streaming, the model's response will not be streamed, but other messages from the endpoint still will be.
+     * If set, response lines will be streamed one-by-one as they become available. Each will be a
+     * ChatResponse, formatted as JSON, and separated by a new line. If false, the entire response will be
+     * returned at once.
+     * 
+     * <p>Note that if this is set and the model being used does not support streaming, the model's response
+     * will not be streamed, but other messages from the endpoint still will be.
      */
     @JsonIgnore
     public Optional<Boolean> stream() {
@@ -242,7 +266,8 @@ public class ChatRequest {
     }
 
     /**
-     * The id of the Chat that context should be retrieved from and messages added to. An empty id starts a new Chat, and the Chat is saved if saveChat is true.
+     * The id of the Chat that context should be retrieved from and messages added to. An empty id starts a
+     * new Chat, and the Chat is saved if saveChat is true.
      */
     public ChatRequest withChatId(String chatId) {
         Utils.checkNotNull(chatId, "chatId");
@@ -252,7 +277,8 @@ public class ChatRequest {
 
 
     /**
-     * The id of the Chat that context should be retrieved from and messages added to. An empty id starts a new Chat, and the Chat is saved if saveChat is true.
+     * The id of the Chat that context should be retrieved from and messages added to. An empty id starts a
+     * new Chat, and the Chat is saved if saveChat is true.
      */
     public ChatRequest withChatId(Optional<String> chatId) {
         Utils.checkNotNull(chatId, "chatId");
@@ -261,7 +287,8 @@ public class ChatRequest {
     }
 
     /**
-     * A list of chat messages, from most recent to least recent. At least one message must specify a USER author.
+     * A list of chat messages, from most recent to least recent. At least one message must specify a USER
+     * author.
      */
     public ChatRequest withMessages(List<ChatMessage> messages) {
         Utils.checkNotNull(messages, "messages");
@@ -315,7 +342,8 @@ public class ChatRequest {
     }
 
     /**
-     * Timeout in milliseconds for the request. A `408` error will be returned if handling the request takes longer.
+     * Timeout in milliseconds for the request. A `408` error will be returned if handling the request
+     * takes longer.
      */
     public ChatRequest withTimeoutMillis(long timeoutMillis) {
         Utils.checkNotNull(timeoutMillis, "timeoutMillis");
@@ -325,7 +353,8 @@ public class ChatRequest {
 
 
     /**
-     * Timeout in milliseconds for the request. A `408` error will be returned if handling the request takes longer.
+     * Timeout in milliseconds for the request. A `408` error will be returned if handling the request
+     * takes longer.
      */
     public ChatRequest withTimeoutMillis(Optional<Long> timeoutMillis) {
         Utils.checkNotNull(timeoutMillis, "timeoutMillis");
@@ -347,7 +376,9 @@ public class ChatRequest {
     }
 
     /**
-     * The ID of the application this request originates from, used to determine the configuration of underlying chat processes. This should correspond to the ID set during admin setup. If not specified, the default chat experience will be used.
+     * The ID of the application this request originates from, used to determine the configuration of
+     * underlying chat processes. This should correspond to the ID set during admin setup. If not
+     * specified, the default chat experience will be used.
      */
     public ChatRequest withApplicationId(String applicationId) {
         Utils.checkNotNull(applicationId, "applicationId");
@@ -357,7 +388,9 @@ public class ChatRequest {
 
 
     /**
-     * The ID of the application this request originates from, used to determine the configuration of underlying chat processes. This should correspond to the ID set during admin setup. If not specified, the default chat experience will be used.
+     * The ID of the application this request originates from, used to determine the configuration of
+     * underlying chat processes. This should correspond to the ID set during admin setup. If not
+     * specified, the default chat experience will be used.
      */
     public ChatRequest withApplicationId(Optional<String> applicationId) {
         Utils.checkNotNull(applicationId, "applicationId");
@@ -366,7 +399,9 @@ public class ChatRequest {
     }
 
     /**
-     * The ID of the Agent that should process this chat request. Only Agents with trigger set to 'User chat message' are invokable through this API. If not specified, the default chat experience will be used.
+     * The ID of the Agent that should process this chat request. Only Agents with trigger set to 'User
+     * chat message' are invokable through this API. If not specified, the default chat experience will be
+     * used.
      */
     public ChatRequest withAgentId(String agentId) {
         Utils.checkNotNull(agentId, "agentId");
@@ -376,7 +411,9 @@ public class ChatRequest {
 
 
     /**
-     * The ID of the Agent that should process this chat request. Only Agents with trigger set to 'User chat message' are invokable through this API. If not specified, the default chat experience will be used.
+     * The ID of the Agent that should process this chat request. Only Agents with trigger set to 'User
+     * chat message' are invokable through this API. If not specified, the default chat experience will be
+     * used.
      */
     public ChatRequest withAgentId(Optional<String> agentId) {
         Utils.checkNotNull(agentId, "agentId");
@@ -385,7 +422,12 @@ public class ChatRequest {
     }
 
     /**
-     * If set, response lines will be streamed one-by-one as they become available. Each will be a ChatResponse, formatted as JSON, and separated by a new line. If false, the entire response will be returned at once. Note that if this is set and the model being used does not support streaming, the model's response will not be streamed, but other messages from the endpoint still will be.
+     * If set, response lines will be streamed one-by-one as they become available. Each will be a
+     * ChatResponse, formatted as JSON, and separated by a new line. If false, the entire response will be
+     * returned at once.
+     * 
+     * <p>Note that if this is set and the model being used does not support streaming, the model's response
+     * will not be streamed, but other messages from the endpoint still will be.
      */
     public ChatRequest withStream(boolean stream) {
         Utils.checkNotNull(stream, "stream");
@@ -395,7 +437,12 @@ public class ChatRequest {
 
 
     /**
-     * If set, response lines will be streamed one-by-one as they become available. Each will be a ChatResponse, formatted as JSON, and separated by a new line. If false, the entire response will be returned at once. Note that if this is set and the model being used does not support streaming, the model's response will not be streamed, but other messages from the endpoint still will be.
+     * If set, response lines will be streamed one-by-one as they become available. Each will be a
+     * ChatResponse, formatted as JSON, and separated by a new line. If false, the entire response will be
+     * returned at once.
+     * 
+     * <p>Note that if this is set and the model being used does not support streaming, the model's response
+     * will not be streamed, but other messages from the endpoint still will be.
      */
     public ChatRequest withStream(Optional<Boolean> stream) {
         Utils.checkNotNull(stream, "stream");
@@ -501,7 +548,8 @@ public class ChatRequest {
 
 
         /**
-         * The id of the Chat that context should be retrieved from and messages added to. An empty id starts a new Chat, and the Chat is saved if saveChat is true.
+         * The id of the Chat that context should be retrieved from and messages added to. An empty id starts a
+         * new Chat, and the Chat is saved if saveChat is true.
          */
         public Builder chatId(String chatId) {
             Utils.checkNotNull(chatId, "chatId");
@@ -510,7 +558,8 @@ public class ChatRequest {
         }
 
         /**
-         * The id of the Chat that context should be retrieved from and messages added to. An empty id starts a new Chat, and the Chat is saved if saveChat is true.
+         * The id of the Chat that context should be retrieved from and messages added to. An empty id starts a
+         * new Chat, and the Chat is saved if saveChat is true.
          */
         public Builder chatId(Optional<String> chatId) {
             Utils.checkNotNull(chatId, "chatId");
@@ -520,7 +569,8 @@ public class ChatRequest {
 
 
         /**
-         * A list of chat messages, from most recent to least recent. At least one message must specify a USER author.
+         * A list of chat messages, from most recent to least recent. At least one message must specify a USER
+         * author.
          */
         public Builder messages(List<ChatMessage> messages) {
             Utils.checkNotNull(messages, "messages");
@@ -575,7 +625,8 @@ public class ChatRequest {
 
 
         /**
-         * Timeout in milliseconds for the request. A `408` error will be returned if handling the request takes longer.
+         * Timeout in milliseconds for the request. A `408` error will be returned if handling the request
+         * takes longer.
          */
         public Builder timeoutMillis(long timeoutMillis) {
             Utils.checkNotNull(timeoutMillis, "timeoutMillis");
@@ -584,7 +635,8 @@ public class ChatRequest {
         }
 
         /**
-         * Timeout in milliseconds for the request. A `408` error will be returned if handling the request takes longer.
+         * Timeout in milliseconds for the request. A `408` error will be returned if handling the request
+         * takes longer.
          */
         public Builder timeoutMillis(Optional<Long> timeoutMillis) {
             Utils.checkNotNull(timeoutMillis, "timeoutMillis");
@@ -607,7 +659,9 @@ public class ChatRequest {
 
 
         /**
-         * The ID of the application this request originates from, used to determine the configuration of underlying chat processes. This should correspond to the ID set during admin setup. If not specified, the default chat experience will be used.
+         * The ID of the application this request originates from, used to determine the configuration of
+         * underlying chat processes. This should correspond to the ID set during admin setup. If not
+         * specified, the default chat experience will be used.
          */
         public Builder applicationId(String applicationId) {
             Utils.checkNotNull(applicationId, "applicationId");
@@ -616,7 +670,9 @@ public class ChatRequest {
         }
 
         /**
-         * The ID of the application this request originates from, used to determine the configuration of underlying chat processes. This should correspond to the ID set during admin setup. If not specified, the default chat experience will be used.
+         * The ID of the application this request originates from, used to determine the configuration of
+         * underlying chat processes. This should correspond to the ID set during admin setup. If not
+         * specified, the default chat experience will be used.
          */
         public Builder applicationId(Optional<String> applicationId) {
             Utils.checkNotNull(applicationId, "applicationId");
@@ -626,7 +682,9 @@ public class ChatRequest {
 
 
         /**
-         * The ID of the Agent that should process this chat request. Only Agents with trigger set to 'User chat message' are invokable through this API. If not specified, the default chat experience will be used.
+         * The ID of the Agent that should process this chat request. Only Agents with trigger set to 'User
+         * chat message' are invokable through this API. If not specified, the default chat experience will be
+         * used.
          */
         public Builder agentId(String agentId) {
             Utils.checkNotNull(agentId, "agentId");
@@ -635,7 +693,9 @@ public class ChatRequest {
         }
 
         /**
-         * The ID of the Agent that should process this chat request. Only Agents with trigger set to 'User chat message' are invokable through this API. If not specified, the default chat experience will be used.
+         * The ID of the Agent that should process this chat request. Only Agents with trigger set to 'User
+         * chat message' are invokable through this API. If not specified, the default chat experience will be
+         * used.
          */
         public Builder agentId(Optional<String> agentId) {
             Utils.checkNotNull(agentId, "agentId");
@@ -645,7 +705,12 @@ public class ChatRequest {
 
 
         /**
-         * If set, response lines will be streamed one-by-one as they become available. Each will be a ChatResponse, formatted as JSON, and separated by a new line. If false, the entire response will be returned at once. Note that if this is set and the model being used does not support streaming, the model's response will not be streamed, but other messages from the endpoint still will be.
+         * If set, response lines will be streamed one-by-one as they become available. Each will be a
+         * ChatResponse, formatted as JSON, and separated by a new line. If false, the entire response will be
+         * returned at once.
+         * 
+         * <p>Note that if this is set and the model being used does not support streaming, the model's response
+         * will not be streamed, but other messages from the endpoint still will be.
          */
         public Builder stream(boolean stream) {
             Utils.checkNotNull(stream, "stream");
@@ -654,7 +719,12 @@ public class ChatRequest {
         }
 
         /**
-         * If set, response lines will be streamed one-by-one as they become available. Each will be a ChatResponse, formatted as JSON, and separated by a new line. If false, the entire response will be returned at once. Note that if this is set and the model being used does not support streaming, the model's response will not be streamed, but other messages from the endpoint still will be.
+         * If set, response lines will be streamed one-by-one as they become available. Each will be a
+         * ChatResponse, formatted as JSON, and separated by a new line. If false, the entire response will be
+         * returned at once.
+         * 
+         * <p>Note that if this is set and the model being used does not support streaming, the model's response
+         * will not be streamed, but other messages from the endpoint still will be.
          */
         public Builder stream(Optional<Boolean> stream) {
             Utils.checkNotNull(stream, "stream");

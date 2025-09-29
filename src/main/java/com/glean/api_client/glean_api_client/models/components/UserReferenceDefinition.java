@@ -16,7 +16,8 @@ import java.util.Optional;
 /**
  * UserReferenceDefinition
  * 
- * <p>Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+ * <p>Describes how a user is referenced in a document. The user can be referenced by email or by a
+ * datasource specific id.
  */
 public class UserReferenceDefinition {
 

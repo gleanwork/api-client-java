@@ -17,7 +17,8 @@ import java.util.Optional;
 
 public class ResultsDescription {
     /**
-     * Textual description of the results. Can be shown at the top of SERP, e.g. 'People who write about this topic' for experts in people tab.
+     * Textual description of the results. Can be shown at the top of SERP, e.g. 'People who write about
+     * this topic' for experts in people tab.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("text")
@@ -45,7 +46,8 @@ public class ResultsDescription {
     }
 
     /**
-     * Textual description of the results. Can be shown at the top of SERP, e.g. 'People who write about this topic' for experts in people tab.
+     * Textual description of the results. Can be shown at the top of SERP, e.g. 'People who write about
+     * this topic' for experts in people tab.
      */
     @JsonIgnore
     public Optional<String> text() {
@@ -67,7 +69,8 @@ public class ResultsDescription {
 
 
     /**
-     * Textual description of the results. Can be shown at the top of SERP, e.g. 'People who write about this topic' for experts in people tab.
+     * Textual description of the results. Can be shown at the top of SERP, e.g. 'People who write about
+     * this topic' for experts in people tab.
      */
     public ResultsDescription withText(String text) {
         Utils.checkNotNull(text, "text");
@@ -77,7 +80,8 @@ public class ResultsDescription {
 
 
     /**
-     * Textual description of the results. Can be shown at the top of SERP, e.g. 'People who write about this topic' for experts in people tab.
+     * Textual description of the results. Can be shown at the top of SERP, e.g. 'People who write about
+     * this topic' for experts in people tab.
      */
     public ResultsDescription withText(Optional<String> text) {
         Utils.checkNotNull(text, "text");
@@ -144,7 +148,8 @@ public class ResultsDescription {
 
 
         /**
-         * Textual description of the results. Can be shown at the top of SERP, e.g. 'People who write about this topic' for experts in people tab.
+         * Textual description of the results. Can be shown at the top of SERP, e.g. 'People who write about
+         * this topic' for experts in people tab.
          */
         public Builder text(String text) {
             Utils.checkNotNull(text, "text");
@@ -153,7 +158,8 @@ public class ResultsDescription {
         }
 
         /**
-         * Textual description of the results. Can be shown at the top of SERP, e.g. 'People who write about this topic' for experts in people tab.
+         * Textual description of the results. Can be shown at the top of SERP, e.g. 'People who write about
+         * this topic' for experts in people tab.
          */
         public Builder text(Optional<String> text) {
             Utils.checkNotNull(text, "text");

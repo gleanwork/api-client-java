@@ -11,7 +11,8 @@ import java.util.Optional;
 /**
  * UpdateAnnouncementRequestPostType
  * 
- * <p>This determines whether this is an external-link post or a regular announcement post. TEXT - Regular announcement that can contain rich text. LINK - Announcement that is linked to an external site.
+ * <p>This determines whether this is an external-link post or a regular announcement post. TEXT - Regular
+ * announcement that can contain rich text. LINK - Announcement that is linked to an external site.
  */
 public enum UpdateAnnouncementRequestPostType {
     TEXT("TEXT"),

@@ -11,7 +11,10 @@ import java.util.Optional;
 /**
  * WriteActionType
  * 
- * <p>Valid only for write actions. Represents the type of write action. REDIRECT - The client renders the URL which contains information for carrying out the action. EXECUTION - Send a request to an external server and execute the action.
+ * <p>Valid only for write actions. Represents the type of write action. REDIRECT - The client renders the
+ * URL which contains information for carrying out the action.
+ * 
+ * <p>EXECUTION - Send a request to an external server and execute the action.
  */
 public enum WriteActionType {
     REDIRECT("REDIRECT"),

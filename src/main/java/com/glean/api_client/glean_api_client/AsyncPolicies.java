@@ -71,7 +71,7 @@ public class AsyncPolicies {
      * <p>Fetches the specified policy version, or the latest if no version is provided.
      * 
      * @param id The id of the policy to fetch.
-     * @return CompletableFuture&lt;GetpolicyResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetpolicyResponse>} - The async response
      */
     public CompletableFuture<GetpolicyResponse> retrieve(String id) {
         return retrieve(id, Optional.empty());
@@ -84,7 +84,7 @@ public class AsyncPolicies {
      * 
      * @param id The id of the policy to fetch.
      * @param version The version of the policy to fetch. Each time a policy is updated, the older version is still stored. If this is left empty, the latest policy is fetched.
-     * @return CompletableFuture&lt;GetpolicyResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetpolicyResponse>} - The async response
      */
     public CompletableFuture<GetpolicyResponse> retrieve(String id, Optional<Long> version) {
         GetpolicyRequest request =
@@ -118,7 +118,7 @@ public class AsyncPolicies {
      * 
      * @param id The id of the policy to fetch.
      * @param updateDlpReportRequest 
-     * @return CompletableFuture&lt;UpdatepolicyResponse&gt; - The async response
+     * @return {@code CompletableFuture<UpdatepolicyResponse>} - The async response
      */
     public CompletableFuture<UpdatepolicyResponse> update(String id, UpdateDlpReportRequest updateDlpReportRequest) {
         UpdatepolicyRequest request =
@@ -150,7 +150,7 @@ public class AsyncPolicies {
      * 
      * <p>Lists policies with filtering.
      * 
-     * @return CompletableFuture&lt;ListpoliciesResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListpoliciesResponse>} - The async response
      */
     public CompletableFuture<ListpoliciesResponse> listDirect() {
         return list(Optional.empty(), Optional.empty());
@@ -163,7 +163,7 @@ public class AsyncPolicies {
      * 
      * @param autoHide Filter to return reports with a given value of auto-hide.
      * @param frequency Filter to return reports with a given frequency.
-     * @return CompletableFuture&lt;ListpoliciesResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListpoliciesResponse>} - The async response
      */
     public CompletableFuture<ListpoliciesResponse> list(Optional<Boolean> autoHide, Optional<String> frequency) {
         ListpoliciesRequest request =
@@ -196,7 +196,7 @@ public class AsyncPolicies {
      * <p>Creates a new policy with specified specifications and returns its id.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CreatepolicyResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreatepolicyResponse>} - The async response
      */
     public CompletableFuture<CreatepolicyResponse> create(CreateDlpReportRequest request) {
         AsyncRequestOperation<CreateDlpReportRequest, CreatepolicyResponse> operation
@@ -223,7 +223,7 @@ public class AsyncPolicies {
      * <p>Downloads CSV violations report for a specific policy id. This does not support continuous policies.
      * 
      * @param id The id of the policy to download violations for.
-     * @return CompletableFuture&lt;DownloadpolicycsvResponse&gt; - The async response
+     * @return {@code CompletableFuture<DownloadpolicycsvResponse>} - The async response
      */
     public CompletableFuture<DownloadpolicycsvResponse> download(String id) {
         DownloadpolicycsvRequest request =

@@ -32,9 +32,9 @@ public class Insights {
     }
 
     /**
-     * Read insights
+     * Get insights
      * 
-     * <p>Reads the aggregate information for each user, query, and content.
+     * <p>Gets the aggregate usage insights data displayed in the Insights Dashboards.
      * 
      * @return The call builder
      */
@@ -43,9 +43,9 @@ public class Insights {
     }
 
     /**
-     * Read insights
+     * Get insights
      * 
-     * <p>Reads the aggregate information for each user, query, and content.
+     * <p>Gets the aggregate usage insights data displayed in the Insights Dashboards.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call

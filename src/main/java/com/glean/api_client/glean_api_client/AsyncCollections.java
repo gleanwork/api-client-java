@@ -78,7 +78,7 @@ public class AsyncCollections {
      * <p>Add items to a Collection.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AddcollectionitemsResponse&gt; - The async response
+     * @return {@code CompletableFuture<AddcollectionitemsResponse>} - The async response
      */
     public CompletableFuture<AddcollectionitemsResponse> addItems(AddCollectionItemsRequest request) {
         AsyncRequestOperation<AddCollectionItemsRequest, AddcollectionitemsResponse> operation
@@ -105,7 +105,7 @@ public class AsyncCollections {
      * <p>Create a publicly visible (empty) Collection of documents.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CreatecollectionResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreatecollectionResponse>} - The async response
      */
     public CompletableFuture<CreatecollectionResponse> create(CreateCollectionRequest request) {
         AsyncRequestOperation<CreateCollectionRequest, CreatecollectionResponse> operation
@@ -132,7 +132,7 @@ public class AsyncCollections {
      * <p>Delete a Collection given the Collection's ID.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;DeletecollectionResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeletecollectionResponse>} - The async response
      */
     public CompletableFuture<DeletecollectionResponse> delete(DeleteCollectionRequest request) {
         AsyncRequestOperation<DeleteCollectionRequest, DeletecollectionResponse> operation
@@ -159,7 +159,7 @@ public class AsyncCollections {
      * <p>Delete a single item from a Collection.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;DeletecollectionitemResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeletecollectionitemResponse>} - The async response
      */
     public CompletableFuture<DeletecollectionitemResponse> deleteItem(DeleteCollectionItemRequest request) {
         AsyncRequestOperation<DeleteCollectionItemRequest, DeletecollectionitemResponse> operation
@@ -186,7 +186,7 @@ public class AsyncCollections {
      * <p>Update the properties of an existing Collection.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;EditcollectionResponse&gt; - The async response
+     * @return {@code CompletableFuture<EditcollectionResponse>} - The async response
      */
     public CompletableFuture<EditcollectionResponse> update(EditCollectionRequest request) {
         AsyncRequestOperation<EditCollectionRequest, EditcollectionResponse> operation
@@ -213,7 +213,7 @@ public class AsyncCollections {
      * <p>Update the URL, Glean Document ID, description of an item within a Collection given its ID.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;EditcollectionitemResponse&gt; - The async response
+     * @return {@code CompletableFuture<EditcollectionitemResponse>} - The async response
      */
     public CompletableFuture<EditcollectionitemResponse> updateItem(EditCollectionItemRequest request) {
         AsyncRequestOperation<EditCollectionItemRequest, EditcollectionitemResponse> operation
@@ -240,7 +240,7 @@ public class AsyncCollections {
      * <p>Read the details of a Collection given its ID. Does not fetch items in this Collection.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;GetcollectionResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetcollectionResponse>} - The async response
      */
     public CompletableFuture<GetcollectionResponse> retrieve(GetCollectionRequest request) {
         AsyncRequestOperation<GetCollectionRequest, GetcollectionResponse> operation
@@ -267,7 +267,7 @@ public class AsyncCollections {
      * <p>List all existing Collections.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListcollectionsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListcollectionsResponse>} - The async response
      */
     public CompletableFuture<ListcollectionsResponse> list(ListCollectionsRequest request) {
         AsyncRequestOperation<ListCollectionsRequest, ListcollectionsResponse> operation

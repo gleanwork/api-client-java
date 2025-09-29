@@ -132,7 +132,9 @@ public class Permissions {
     /**
      * Bulk index users
      * 
-     * <p>Replaces the users in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces the users in a datasource using paginated batch API calls. Please refer to the [bulk
+     * indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an
+     * explanation of how to use bulk endpoints.
      * 
      * @return The call builder
      */
@@ -143,7 +145,9 @@ public class Permissions {
     /**
      * Bulk index users
      * 
-     * <p>Replaces the users in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces the users in a datasource using paginated batch API calls. Please refer to the [bulk
+     * indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an
+     * explanation of how to use bulk endpoints.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -184,7 +188,9 @@ public class Permissions {
     /**
      * Bulk index groups
      * 
-     * <p>Replaces the groups in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces the groups in a datasource using paginated batch API calls. Please refer to the [bulk
+     * indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an
+     * explanation of how to use bulk endpoints.
      * 
      * @return The call builder
      */
@@ -195,7 +201,9 @@ public class Permissions {
     /**
      * Bulk index groups
      * 
-     * <p>Replaces the groups in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces the groups in a datasource using paginated batch API calls. Please refer to the [bulk
+     * indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an
+     * explanation of how to use bulk endpoints.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -236,7 +244,9 @@ public class Permissions {
     /**
      * Bulk index memberships for a group
      * 
-     * <p>Replaces the memberships for a group in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces the memberships for a group in a datasource using paginated batch API calls. Please refer
+     * to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model)
+     * documentation for an explanation of how to use bulk endpoints.
      * 
      * @return The call builder
      */
@@ -247,7 +257,9 @@ public class Permissions {
     /**
      * Bulk index memberships for a group
      * 
-     * <p>Replaces the memberships for a group in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces the memberships for a group in a datasource using paginated batch API calls. Please refer
+     * to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model)
+     * documentation for an explanation of how to use bulk endpoints.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -262,7 +274,9 @@ public class Permissions {
     /**
      * Schedules the processing of group memberships
      * 
-     * <p>Schedules the immediate processing of all group memberships uploaded through the indexing API. By default the uploaded group memberships will be processed asynchronously but this API can be used to schedule processing of all memberships on demand.
+     * <p>Schedules the immediate processing of all group memberships uploaded through the indexing API. By
+     * default the uploaded group memberships will be processed asynchronously but this API can be used to
+     * schedule processing of all memberships on demand.
      * 
      * @return The call builder
      */
@@ -273,7 +287,9 @@ public class Permissions {
     /**
      * Schedules the processing of group memberships
      * 
-     * <p>Schedules the immediate processing of all group memberships uploaded through the indexing API. By default the uploaded group memberships will be processed asynchronously but this API can be used to schedule processing of all memberships on demand.
+     * <p>Schedules the immediate processing of all group memberships uploaded through the indexing API. By
+     * default the uploaded group memberships will be processed asynchronously but this API can be used to
+     * schedule processing of all memberships on demand.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -285,7 +301,9 @@ public class Permissions {
     /**
      * Schedules the processing of group memberships
      * 
-     * <p>Schedules the immediate processing of all group memberships uploaded through the indexing API. By default the uploaded group memberships will be processed asynchronously but this API can be used to schedule processing of all memberships on demand.
+     * <p>Schedules the immediate processing of all group memberships uploaded through the indexing API. By
+     * default the uploaded group memberships will be processed asynchronously but this API can be used to
+     * schedule processing of all memberships on demand.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -352,7 +370,8 @@ public class Permissions {
     /**
      * Delete membership
      * 
-     * <p>Delete membership to a group in the specified datasource. Silently succeeds if membership is not present.
+     * <p>Delete membership to a group in the specified datasource. Silently succeeds if membership is not
+     * present.
      * 
      * @return The call builder
      */
@@ -363,7 +382,8 @@ public class Permissions {
     /**
      * Delete membership
      * 
-     * <p>Delete membership to a group in the specified datasource. Silently succeeds if membership is not present.
+     * <p>Delete membership to a group in the specified datasource. Silently succeeds if membership is not
+     * present.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -378,7 +398,8 @@ public class Permissions {
     /**
      * Beta users
      * 
-     * <p>Allow the datasource be visible to the specified beta users. The default behaviour is datasource being visible to all users if it is enabled and not visible to any user if it is not enabled.
+     * <p>Allow the datasource be visible to the specified beta users. The default behaviour is datasource
+     * being visible to all users if it is enabled and not visible to any user if it is not enabled.
      * 
      * @return The call builder
      */
@@ -389,7 +410,8 @@ public class Permissions {
     /**
      * Beta users
      * 
-     * <p>Allow the datasource be visible to the specified beta users. The default behaviour is datasource being visible to all users if it is enabled and not visible to any user if it is not enabled.
+     * <p>Allow the datasource be visible to the specified beta users. The default behaviour is datasource
+     * being visible to all users if it is enabled and not visible to any user if it is not enabled.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call

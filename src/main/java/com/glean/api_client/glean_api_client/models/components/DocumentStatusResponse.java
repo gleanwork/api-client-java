@@ -48,7 +48,8 @@ public class DocumentStatusResponse {
     private Optional<String> lastIndexedAt;
 
     /**
-     * Permission identity status, enum of NOT_UPLOADED, UPLOADED, STATUS_UNKNOWN (Always unknown if `identityDatasourceName` is set). Document visibility may be affected status is `NOT_UPLOADED`.
+     * Permission identity status, enum of NOT_UPLOADED, UPLOADED, STATUS_UNKNOWN (Always unknown if
+     * `identityDatasourceName` is set). Document visibility may be affected status is `NOT_UPLOADED`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("permissionIdentityStatus")
@@ -111,7 +112,8 @@ public class DocumentStatusResponse {
     }
 
     /**
-     * Permission identity status, enum of NOT_UPLOADED, UPLOADED, STATUS_UNKNOWN (Always unknown if `identityDatasourceName` is set). Document visibility may be affected status is `NOT_UPLOADED`.
+     * Permission identity status, enum of NOT_UPLOADED, UPLOADED, STATUS_UNKNOWN (Always unknown if
+     * `identityDatasourceName` is set). Document visibility may be affected status is `NOT_UPLOADED`.
      */
     @JsonIgnore
     public Optional<String> permissionIdentityStatus() {
@@ -200,7 +202,8 @@ public class DocumentStatusResponse {
     }
 
     /**
-     * Permission identity status, enum of NOT_UPLOADED, UPLOADED, STATUS_UNKNOWN (Always unknown if `identityDatasourceName` is set). Document visibility may be affected status is `NOT_UPLOADED`.
+     * Permission identity status, enum of NOT_UPLOADED, UPLOADED, STATUS_UNKNOWN (Always unknown if
+     * `identityDatasourceName` is set). Document visibility may be affected status is `NOT_UPLOADED`.
      */
     public DocumentStatusResponse withPermissionIdentityStatus(String permissionIdentityStatus) {
         Utils.checkNotNull(permissionIdentityStatus, "permissionIdentityStatus");
@@ -210,7 +213,8 @@ public class DocumentStatusResponse {
 
 
     /**
-     * Permission identity status, enum of NOT_UPLOADED, UPLOADED, STATUS_UNKNOWN (Always unknown if `identityDatasourceName` is set). Document visibility may be affected status is `NOT_UPLOADED`.
+     * Permission identity status, enum of NOT_UPLOADED, UPLOADED, STATUS_UNKNOWN (Always unknown if
+     * `identityDatasourceName` is set). Document visibility may be affected status is `NOT_UPLOADED`.
      */
     public DocumentStatusResponse withPermissionIdentityStatus(Optional<String> permissionIdentityStatus) {
         Utils.checkNotNull(permissionIdentityStatus, "permissionIdentityStatus");
@@ -347,7 +351,8 @@ public class DocumentStatusResponse {
 
 
         /**
-         * Permission identity status, enum of NOT_UPLOADED, UPLOADED, STATUS_UNKNOWN (Always unknown if `identityDatasourceName` is set). Document visibility may be affected status is `NOT_UPLOADED`.
+         * Permission identity status, enum of NOT_UPLOADED, UPLOADED, STATUS_UNKNOWN (Always unknown if
+         * `identityDatasourceName` is set). Document visibility may be affected status is `NOT_UPLOADED`.
          */
         public Builder permissionIdentityStatus(String permissionIdentityStatus) {
             Utils.checkNotNull(permissionIdentityStatus, "permissionIdentityStatus");
@@ -356,7 +361,8 @@ public class DocumentStatusResponse {
         }
 
         /**
-         * Permission identity status, enum of NOT_UPLOADED, UPLOADED, STATUS_UNKNOWN (Always unknown if `identityDatasourceName` is set). Document visibility may be affected status is `NOT_UPLOADED`.
+         * Permission identity status, enum of NOT_UPLOADED, UPLOADED, STATUS_UNKNOWN (Always unknown if
+         * `identityDatasourceName` is set). Document visibility may be affected status is `NOT_UPLOADED`.
          */
         public Builder permissionIdentityStatus(Optional<String> permissionIdentityStatus) {
             Utils.checkNotNull(permissionIdentityStatus, "permissionIdentityStatus");

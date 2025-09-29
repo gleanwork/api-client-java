@@ -66,7 +66,7 @@ public class AsyncClientShortcuts {
      * <p>Create a user-generated shortcut that contains an alias and destination URL.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CreateshortcutResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateshortcutResponse>} - The async response
      */
     public CompletableFuture<CreateshortcutResponse> create(CreateShortcutRequest request) {
         AsyncRequestOperation<CreateShortcutRequest, CreateshortcutResponse> operation
@@ -93,7 +93,7 @@ public class AsyncClientShortcuts {
      * <p>Delete an existing user-generated shortcut.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;DeleteshortcutResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeleteshortcutResponse>} - The async response
      */
     public CompletableFuture<DeleteshortcutResponse> delete(DeleteShortcutRequest request) {
         AsyncRequestOperation<DeleteShortcutRequest, DeleteshortcutResponse> operation
@@ -120,7 +120,7 @@ public class AsyncClientShortcuts {
      * <p>Read a particular shortcut's details given its ID.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;GetshortcutResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetshortcutResponse>} - The async response
      */
     public CompletableFuture<GetshortcutResponse> retrieve(GetShortcutRequestUnion request) {
         AsyncRequestOperation<GetShortcutRequestUnion, GetshortcutResponse> operation
@@ -147,7 +147,7 @@ public class AsyncClientShortcuts {
      * <p>List shortcuts editable/owned by the currently authenticated user.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListshortcutsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListshortcutsResponse>} - The async response
      */
     public CompletableFuture<ListshortcutsResponse> list(ListShortcutsPaginatedRequest request) {
         AsyncRequestOperation<ListShortcutsPaginatedRequest, ListshortcutsResponse> operation
@@ -174,7 +174,7 @@ public class AsyncClientShortcuts {
      * <p>Updates the shortcut with the given ID.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;UpdateshortcutResponse&gt; - The async response
+     * @return {@code CompletableFuture<UpdateshortcutResponse>} - The async response
      */
     public CompletableFuture<UpdateshortcutResponse> update(UpdateShortcutRequest request) {
         AsyncRequestOperation<UpdateShortcutRequest, UpdateshortcutResponse> operation

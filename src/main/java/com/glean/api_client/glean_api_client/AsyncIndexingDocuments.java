@@ -91,7 +91,7 @@ public class AsyncIndexingDocuments {
      * <p>Adds a document to the index or updates an existing document.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostApiIndexV1IndexdocumentResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1IndexdocumentResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1IndexdocumentResponse> addOrUpdate(IndexDocumentRequest request) {
         AsyncRequestOperation<IndexDocumentRequest, PostApiIndexV1IndexdocumentResponse> operation
@@ -104,7 +104,9 @@ public class AsyncIndexingDocuments {
     /**
      * Index documents
      * 
-     * <p>Adds or updates multiple documents in the index. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-indexing/choosing-indexdocuments-vs-bulkindexdocuments) documentation for an explanation of when to use this endpoint.
+     * <p>Adds or updates multiple documents in the index. Please refer to the [bulk
+     * indexing](https://developers.glean.com/indexing/documents/bulk-indexing/choosing-indexdocuments-vs-bulkindexdocuments)
+     * documentation for an explanation of when to use this endpoint.
      * 
      * @return The async call builder
      */
@@ -115,10 +117,12 @@ public class AsyncIndexingDocuments {
     /**
      * Index documents
      * 
-     * <p>Adds or updates multiple documents in the index. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-indexing/choosing-indexdocuments-vs-bulkindexdocuments) documentation for an explanation of when to use this endpoint.
+     * <p>Adds or updates multiple documents in the index. Please refer to the [bulk
+     * indexing](https://developers.glean.com/indexing/documents/bulk-indexing/choosing-indexdocuments-vs-bulkindexdocuments)
+     * documentation for an explanation of when to use this endpoint.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostApiIndexV1IndexdocumentsResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1IndexdocumentsResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1IndexdocumentsResponse> index(IndexDocumentsRequest request) {
         AsyncRequestOperation<IndexDocumentsRequest, PostApiIndexV1IndexdocumentsResponse> operation
@@ -131,7 +135,9 @@ public class AsyncIndexingDocuments {
     /**
      * Bulk index documents
      * 
-     * <p>Replaces the documents in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces the documents in a datasource using paginated batch API calls. Please refer to the [bulk
+     * indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an
+     * explanation of how to use bulk endpoints.
      * 
      * @return The async call builder
      */
@@ -142,10 +148,12 @@ public class AsyncIndexingDocuments {
     /**
      * Bulk index documents
      * 
-     * <p>Replaces the documents in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces the documents in a datasource using paginated batch API calls. Please refer to the [bulk
+     * indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an
+     * explanation of how to use bulk endpoints.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostApiIndexV1BulkindexdocumentsResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1BulkindexdocumentsResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1BulkindexdocumentsResponse> bulkIndex(BulkIndexDocumentsRequest request) {
         AsyncRequestOperation<BulkIndexDocumentsRequest, PostApiIndexV1BulkindexdocumentsResponse> operation
@@ -158,15 +166,20 @@ public class AsyncIndexingDocuments {
     /**
      * Schedules the processing of uploaded documents
      * 
-     * <p>Schedules the immediate processing of documents uploaded through the indexing API. By default the uploaded documents will be processed asynchronously but this API can be used to schedule processing of all documents on demand.
+     * <p>Schedules the immediate processing of documents uploaded through the indexing API. By default the
+     * uploaded documents will be processed asynchronously but this API can be used to schedule processing
+     * of all documents on demand.
      * 
-     * <p>If a `datasource` parameter is specified, processing is limited to that custom datasource. Without it, processing applies to all documents across all custom datasources.
+     * <p>If a `datasource` parameter is specified, processing is limited to that custom datasource. Without
+     * it, processing applies to all documents across all custom datasources.
      * #### Rate Limits
-     * This endpoint is rate-limited to one usage every 3 hours. Exceeding this limit results in a 429 response code. Here's how the rate limit works:
+     * This endpoint is rate-limited to one usage every 3 hours. Exceeding this limit results in a 429
+     * response code. Here's how the rate limit works:
      * 1. Calling `/processalldocuments` for datasource `foo` prevents another call for `foo` for 3 hours.
      * 2. Calling `/processalldocuments` for datasource `foo` doesn't affect immediate calls for `bar`.
      * 3. Calling `/processalldocuments` for all datasources prevents any datasource calls for 3 hours.
-     * 4. Calling `/processalldocuments` for datasource `foo` doesn't affect immediate calls for all datasources.
+     * 4. Calling `/processalldocuments` for datasource `foo` doesn't affect immediate calls for all
+     * datasources.
      * 
      * <p>For more frequent document processing, contact Glean support.
      * 
@@ -179,19 +192,24 @@ public class AsyncIndexingDocuments {
     /**
      * Schedules the processing of uploaded documents
      * 
-     * <p>Schedules the immediate processing of documents uploaded through the indexing API. By default the uploaded documents will be processed asynchronously but this API can be used to schedule processing of all documents on demand.
+     * <p>Schedules the immediate processing of documents uploaded through the indexing API. By default the
+     * uploaded documents will be processed asynchronously but this API can be used to schedule processing
+     * of all documents on demand.
      * 
-     * <p>If a `datasource` parameter is specified, processing is limited to that custom datasource. Without it, processing applies to all documents across all custom datasources.
+     * <p>If a `datasource` parameter is specified, processing is limited to that custom datasource. Without
+     * it, processing applies to all documents across all custom datasources.
      * #### Rate Limits
-     * This endpoint is rate-limited to one usage every 3 hours. Exceeding this limit results in a 429 response code. Here's how the rate limit works:
+     * This endpoint is rate-limited to one usage every 3 hours. Exceeding this limit results in a 429
+     * response code. Here's how the rate limit works:
      * 1. Calling `/processalldocuments` for datasource `foo` prevents another call for `foo` for 3 hours.
      * 2. Calling `/processalldocuments` for datasource `foo` doesn't affect immediate calls for `bar`.
      * 3. Calling `/processalldocuments` for all datasources prevents any datasource calls for 3 hours.
-     * 4. Calling `/processalldocuments` for datasource `foo` doesn't affect immediate calls for all datasources.
+     * 4. Calling `/processalldocuments` for datasource `foo` doesn't affect immediate calls for all
+     * datasources.
      * 
      * <p>For more frequent document processing, contact Glean support.
      * 
-     * @return CompletableFuture&lt;PostApiIndexV1ProcessalldocumentsResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1ProcessalldocumentsResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1ProcessalldocumentsResponse> processAllDirect() {
         return processAll(Optional.empty());
@@ -200,20 +218,25 @@ public class AsyncIndexingDocuments {
     /**
      * Schedules the processing of uploaded documents
      * 
-     * <p>Schedules the immediate processing of documents uploaded through the indexing API. By default the uploaded documents will be processed asynchronously but this API can be used to schedule processing of all documents on demand.
+     * <p>Schedules the immediate processing of documents uploaded through the indexing API. By default the
+     * uploaded documents will be processed asynchronously but this API can be used to schedule processing
+     * of all documents on demand.
      * 
-     * <p>If a `datasource` parameter is specified, processing is limited to that custom datasource. Without it, processing applies to all documents across all custom datasources.
+     * <p>If a `datasource` parameter is specified, processing is limited to that custom datasource. Without
+     * it, processing applies to all documents across all custom datasources.
      * #### Rate Limits
-     * This endpoint is rate-limited to one usage every 3 hours. Exceeding this limit results in a 429 response code. Here's how the rate limit works:
+     * This endpoint is rate-limited to one usage every 3 hours. Exceeding this limit results in a 429
+     * response code. Here's how the rate limit works:
      * 1. Calling `/processalldocuments` for datasource `foo` prevents another call for `foo` for 3 hours.
      * 2. Calling `/processalldocuments` for datasource `foo` doesn't affect immediate calls for `bar`.
      * 3. Calling `/processalldocuments` for all datasources prevents any datasource calls for 3 hours.
-     * 4. Calling `/processalldocuments` for datasource `foo` doesn't affect immediate calls for all datasources.
+     * 4. Calling `/processalldocuments` for datasource `foo` doesn't affect immediate calls for all
+     * datasources.
      * 
      * <p>For more frequent document processing, contact Glean support.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostApiIndexV1ProcessalldocumentsResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1ProcessalldocumentsResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1ProcessalldocumentsResponse> processAll(Optional<? extends ProcessAllDocumentsRequest> request) {
         AsyncRequestOperation<Optional<? extends ProcessAllDocumentsRequest>, PostApiIndexV1ProcessalldocumentsResponse> operation
@@ -240,7 +263,7 @@ public class AsyncIndexingDocuments {
      * <p>Deletes the specified document from the index. Succeeds if document is not present.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostApiIndexV1DeletedocumentResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1DeletedocumentResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1DeletedocumentResponse> delete(DeleteDocumentRequest request) {
         AsyncRequestOperation<DeleteDocumentRequest, PostApiIndexV1DeletedocumentResponse> operation
@@ -253,9 +276,11 @@ public class AsyncIndexingDocuments {
     /**
      * Beta: Get document information
      * 
-     * <p>Gives various information that would help in debugging related to a particular document. Currently in beta, might undergo breaking changes without prior notice.
+     * <p>Gives various information that would help in debugging related to a particular document. Currently
+     * in beta, might undergo breaking changes without prior notice.
      * 
-     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
+     * <p>Tip: Refer to the [Troubleshooting
+     * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
      * 
      * @return The async call builder
      */
@@ -266,13 +291,15 @@ public class AsyncIndexingDocuments {
     /**
      * Beta: Get document information
      * 
-     * <p>Gives various information that would help in debugging related to a particular document. Currently in beta, might undergo breaking changes without prior notice.
+     * <p>Gives various information that would help in debugging related to a particular document. Currently
+     * in beta, might undergo breaking changes without prior notice.
      * 
-     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
+     * <p>Tip: Refer to the [Troubleshooting
+     * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
      * 
      * @param datasource The datasource to which the document belongs
      * @param debugDocumentRequest Describes the request body of the /debug/{datasource}/document API call.
-     * @return CompletableFuture&lt;PostApiIndexV1DebugDatasourceDocumentResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1DebugDatasourceDocumentResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1DebugDatasourceDocumentResponse> debug(String datasource, DebugDocumentRequest debugDocumentRequest) {
         PostApiIndexV1DebugDatasourceDocumentRequest request =
@@ -291,9 +318,11 @@ public class AsyncIndexingDocuments {
     /**
      * Beta: Get information of a batch of documents
      * 
-     * <p>Gives various information that would help in debugging related to a batch of documents. Currently in beta, might undergo breaking changes without prior notice.
+     * <p>Gives various information that would help in debugging related to a batch of documents. Currently in
+     * beta, might undergo breaking changes without prior notice.
      * 
-     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
+     * <p>Tip: Refer to the [Troubleshooting
+     * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
      * 
      * @return The async call builder
      */
@@ -304,13 +333,15 @@ public class AsyncIndexingDocuments {
     /**
      * Beta: Get information of a batch of documents
      * 
-     * <p>Gives various information that would help in debugging related to a batch of documents. Currently in beta, might undergo breaking changes without prior notice.
+     * <p>Gives various information that would help in debugging related to a batch of documents. Currently in
+     * beta, might undergo breaking changes without prior notice.
      * 
-     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
+     * <p>Tip: Refer to the [Troubleshooting
+     * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
      * 
      * @param datasource The datasource to which the document belongs
      * @param debugDocumentsRequest Describes the request body of the /debug/{datasource}/documents API call.
-     * @return CompletableFuture&lt;PostApiIndexV1DebugDatasourceDocumentsResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1DebugDatasourceDocumentsResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1DebugDatasourceDocumentsResponse> debugMany(String datasource, DebugDocumentsRequest debugDocumentsRequest) {
         PostApiIndexV1DebugDatasourceDocumentsRequest request =
@@ -331,7 +362,8 @@ public class AsyncIndexingDocuments {
      * 
      * <p>Check if a given user has access to access a document in a custom datasource
      * 
-     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
+     * <p>Tip: Refer to the [Troubleshooting
+     * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
      * 
      * @return The async call builder
      */
@@ -344,10 +376,11 @@ public class AsyncIndexingDocuments {
      * 
      * <p>Check if a given user has access to access a document in a custom datasource
      * 
-     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
+     * <p>Tip: Refer to the [Troubleshooting
+     * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostApiIndexV1CheckdocumentaccessResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1CheckdocumentaccessResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1CheckdocumentaccessResponse> checkAccess(CheckDocumentAccessRequest request) {
         AsyncRequestOperation<CheckDocumentAccessRequest, PostApiIndexV1CheckdocumentaccessResponse> operation
@@ -362,7 +395,9 @@ public class AsyncIndexingDocuments {
      * 
      * <p>Intended for debugging/validation. Fetches the current upload and indexing status of documents.
      * 
-     * <p>Tip: Use [/debug/{datasource}/document](https://developers.glean.com/indexing/debugging/datasource-document) for richer information.
+     * <p>Tip: Use
+     * [/debug/{datasource}/document](https://developers.glean.com/indexing/debugging/datasource-document)
+     * for richer information.
      * 
      * @return The async call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -377,10 +412,12 @@ public class AsyncIndexingDocuments {
      * 
      * <p>Intended for debugging/validation. Fetches the current upload and indexing status of documents.
      * 
-     * <p>Tip: Use [/debug/{datasource}/document](https://developers.glean.com/indexing/debugging/datasource-document) for richer information.
+     * <p>Tip: Use
+     * [/debug/{datasource}/document](https://developers.glean.com/indexing/debugging/datasource-document)
+     * for richer information.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostApiIndexV1GetdocumentstatusResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1GetdocumentstatusResponse>} - The async response
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -397,7 +434,9 @@ public class AsyncIndexingDocuments {
      * 
      * <p>Fetches document count for the specified custom datasource.
      * 
-     * <p>Tip: Use [/debug/{datasource}/status](https://developers.glean.com/indexing/debugging/datasource-status) for richer information.
+     * <p>Tip: Use
+     * [/debug/{datasource}/status](https://developers.glean.com/indexing/debugging/datasource-status) for
+     * richer information.
      * 
      * @return The async call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -412,10 +451,12 @@ public class AsyncIndexingDocuments {
      * 
      * <p>Fetches document count for the specified custom datasource.
      * 
-     * <p>Tip: Use [/debug/{datasource}/status](https://developers.glean.com/indexing/debugging/datasource-status) for richer information.
+     * <p>Tip: Use
+     * [/debug/{datasource}/status](https://developers.glean.com/indexing/debugging/datasource-status) for
+     * richer information.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostApiIndexV1GetdocumentcountResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1GetdocumentcountResponse>} - The async response
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated

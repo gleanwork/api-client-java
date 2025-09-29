@@ -21,7 +21,8 @@ public class GetpolicyRequest {
     private String id;
 
     /**
-     * The version of the policy to fetch. Each time a policy is updated, the older version is still stored. If this is left empty, the latest policy is fetched.
+     * The version of the policy to fetch. Each time a policy is updated, the older version is still
+     * stored. If this is left empty, the latest policy is fetched.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=version")
     private Optional<Long> version;
@@ -50,7 +51,8 @@ public class GetpolicyRequest {
     }
 
     /**
-     * The version of the policy to fetch. Each time a policy is updated, the older version is still stored. If this is left empty, the latest policy is fetched.
+     * The version of the policy to fetch. Each time a policy is updated, the older version is still
+     * stored. If this is left empty, the latest policy is fetched.
      */
     @JsonIgnore
     public Optional<Long> version() {
@@ -72,7 +74,8 @@ public class GetpolicyRequest {
     }
 
     /**
-     * The version of the policy to fetch. Each time a policy is updated, the older version is still stored. If this is left empty, the latest policy is fetched.
+     * The version of the policy to fetch. Each time a policy is updated, the older version is still
+     * stored. If this is left empty, the latest policy is fetched.
      */
     public GetpolicyRequest withVersion(long version) {
         Utils.checkNotNull(version, "version");
@@ -82,7 +85,8 @@ public class GetpolicyRequest {
 
 
     /**
-     * The version of the policy to fetch. Each time a policy is updated, the older version is still stored. If this is left empty, the latest policy is fetched.
+     * The version of the policy to fetch. Each time a policy is updated, the older version is still
+     * stored. If this is left empty, the latest policy is fetched.
      */
     public GetpolicyRequest withVersion(Optional<Long> version) {
         Utils.checkNotNull(version, "version");
@@ -140,7 +144,8 @@ public class GetpolicyRequest {
 
 
         /**
-         * The version of the policy to fetch. Each time a policy is updated, the older version is still stored. If this is left empty, the latest policy is fetched.
+         * The version of the policy to fetch. Each time a policy is updated, the older version is still
+         * stored. If this is left empty, the latest policy is fetched.
          */
         public Builder version(long version) {
             Utils.checkNotNull(version, "version");
@@ -149,7 +154,8 @@ public class GetpolicyRequest {
         }
 
         /**
-         * The version of the policy to fetch. Each time a policy is updated, the older version is still stored. If this is left empty, the latest policy is fetched.
+         * The version of the policy to fetch. Each time a policy is updated, the older version is still
+         * stored. If this is left empty, the latest policy is fetched.
          */
         public Builder version(Optional<Long> version) {
             Utils.checkNotNull(version, "version");

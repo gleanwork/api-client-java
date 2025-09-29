@@ -29,7 +29,8 @@ public class ToolMetadata {
     private ToolMetadataType type;
 
     /**
-     * Unique identifier for the tool. Name should be understandable by the LLM, and will be used to invoke a tool.
+     * Unique identifier for the tool. Name should be understandable by the LLM, and will be used to invoke
+     * a tool.
      */
     @JsonProperty("name")
     private String name;
@@ -61,7 +62,8 @@ public class ToolMetadata {
     private Optional<String> logoUrl;
 
     /**
-     * Name of the generated object. This will be used to indicate to the end user what the generated object contains.
+     * Name of the generated object. This will be used to indicate to the end user what the generated
+     * object contains.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("objectName")
@@ -99,7 +101,10 @@ public class ToolMetadata {
     private Optional<OffsetDateTime> lastUpdatedAt;
 
     /**
-     * Valid only for write actions. Represents the type of write action. REDIRECT - The client renders the URL which contains information for carrying out the action. EXECUTION - Send a request to an external server and execute the action.
+     * Valid only for write actions. Represents the type of write action. REDIRECT - The client renders the
+     * URL which contains information for carrying out the action.
+     * 
+     * <p>EXECUTION - Send a request to an external server and execute the action.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("writeActionType")
@@ -107,7 +112,8 @@ public class ToolMetadata {
 
     /**
      * The type of authentication being used.
-     * Use 'OAUTH_*' when Glean calls an external API (e.g., Jira) on behalf of a user to obtain an OAuth token.
+     * Use 'OAUTH_*' when Glean calls an external API (e.g., Jira) on behalf of a user to obtain an OAuth
+     * token.
      * 'OAUTH_ADMIN' utilizes an admin token for external API calls on behalf all users.
      * 'OAUTH_USER' uses individual user tokens for external API calls.
      * 'DWD' refers to domain wide delegation.
@@ -222,7 +228,8 @@ public class ToolMetadata {
     }
 
     /**
-     * Unique identifier for the tool. Name should be understandable by the LLM, and will be used to invoke a tool.
+     * Unique identifier for the tool. Name should be understandable by the LLM, and will be used to invoke
+     * a tool.
      */
     @JsonIgnore
     public String name() {
@@ -262,7 +269,8 @@ public class ToolMetadata {
     }
 
     /**
-     * Name of the generated object. This will be used to indicate to the end user what the generated object contains.
+     * Name of the generated object. This will be used to indicate to the end user what the generated
+     * object contains.
      */
     @JsonIgnore
     public Optional<String> objectName() {
@@ -307,7 +315,10 @@ public class ToolMetadata {
     }
 
     /**
-     * Valid only for write actions. Represents the type of write action. REDIRECT - The client renders the URL which contains information for carrying out the action. EXECUTION - Send a request to an external server and execute the action.
+     * Valid only for write actions. Represents the type of write action. REDIRECT - The client renders the
+     * URL which contains information for carrying out the action.
+     * 
+     * <p>EXECUTION - Send a request to an external server and execute the action.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -317,7 +328,8 @@ public class ToolMetadata {
 
     /**
      * The type of authentication being used.
-     * Use 'OAUTH_*' when Glean calls an external API (e.g., Jira) on behalf of a user to obtain an OAuth token.
+     * Use 'OAUTH_*' when Glean calls an external API (e.g., Jira) on behalf of a user to obtain an OAuth
+     * token.
      * 'OAUTH_ADMIN' utilizes an admin token for external API calls on behalf all users.
      * 'OAUTH_USER' uses individual user tokens for external API calls.
      * 'DWD' refers to domain wide delegation.
@@ -374,7 +386,8 @@ public class ToolMetadata {
     }
 
     /**
-     * Unique identifier for the tool. Name should be understandable by the LLM, and will be used to invoke a tool.
+     * Unique identifier for the tool. Name should be understandable by the LLM, and will be used to invoke
+     * a tool.
      */
     public ToolMetadata withName(String name) {
         Utils.checkNotNull(name, "name");
@@ -439,7 +452,8 @@ public class ToolMetadata {
     }
 
     /**
-     * Name of the generated object. This will be used to indicate to the end user what the generated object contains.
+     * Name of the generated object. This will be used to indicate to the end user what the generated
+     * object contains.
      */
     public ToolMetadata withObjectName(String objectName) {
         Utils.checkNotNull(objectName, "objectName");
@@ -449,7 +463,8 @@ public class ToolMetadata {
 
 
     /**
-     * Name of the generated object. This will be used to indicate to the end user what the generated object contains.
+     * Name of the generated object. This will be used to indicate to the end user what the generated
+     * object contains.
      */
     public ToolMetadata withObjectName(Optional<String> objectName) {
         Utils.checkNotNull(objectName, "objectName");
@@ -541,7 +556,10 @@ public class ToolMetadata {
     }
 
     /**
-     * Valid only for write actions. Represents the type of write action. REDIRECT - The client renders the URL which contains information for carrying out the action. EXECUTION - Send a request to an external server and execute the action.
+     * Valid only for write actions. Represents the type of write action. REDIRECT - The client renders the
+     * URL which contains information for carrying out the action.
+     * 
+     * <p>EXECUTION - Send a request to an external server and execute the action.
      */
     public ToolMetadata withWriteActionType(WriteActionType writeActionType) {
         Utils.checkNotNull(writeActionType, "writeActionType");
@@ -551,7 +569,10 @@ public class ToolMetadata {
 
 
     /**
-     * Valid only for write actions. Represents the type of write action. REDIRECT - The client renders the URL which contains information for carrying out the action. EXECUTION - Send a request to an external server and execute the action.
+     * Valid only for write actions. Represents the type of write action. REDIRECT - The client renders the
+     * URL which contains information for carrying out the action.
+     * 
+     * <p>EXECUTION - Send a request to an external server and execute the action.
      */
     public ToolMetadata withWriteActionType(Optional<? extends WriteActionType> writeActionType) {
         Utils.checkNotNull(writeActionType, "writeActionType");
@@ -561,7 +582,8 @@ public class ToolMetadata {
 
     /**
      * The type of authentication being used.
-     * Use 'OAUTH_*' when Glean calls an external API (e.g., Jira) on behalf of a user to obtain an OAuth token.
+     * Use 'OAUTH_*' when Glean calls an external API (e.g., Jira) on behalf of a user to obtain an OAuth
+     * token.
      * 'OAUTH_ADMIN' utilizes an admin token for external API calls on behalf all users.
      * 'OAUTH_USER' uses individual user tokens for external API calls.
      * 'DWD' refers to domain wide delegation.
@@ -575,7 +597,8 @@ public class ToolMetadata {
 
     /**
      * The type of authentication being used.
-     * Use 'OAUTH_*' when Glean calls an external API (e.g., Jira) on behalf of a user to obtain an OAuth token.
+     * Use 'OAUTH_*' when Glean calls an external API (e.g., Jira) on behalf of a user to obtain an OAuth
+     * token.
      * 'OAUTH_ADMIN' utilizes an admin token for external API calls on behalf all users.
      * 'OAUTH_USER' uses individual user tokens for external API calls.
      * 'DWD' refers to domain wide delegation.
@@ -775,7 +798,8 @@ public class ToolMetadata {
 
 
         /**
-         * Unique identifier for the tool. Name should be understandable by the LLM, and will be used to invoke a tool.
+         * Unique identifier for the tool. Name should be understandable by the LLM, and will be used to invoke
+         * a tool.
          */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
@@ -843,7 +867,8 @@ public class ToolMetadata {
 
 
         /**
-         * Name of the generated object. This will be used to indicate to the end user what the generated object contains.
+         * Name of the generated object. This will be used to indicate to the end user what the generated
+         * object contains.
          */
         public Builder objectName(String objectName) {
             Utils.checkNotNull(objectName, "objectName");
@@ -852,7 +877,8 @@ public class ToolMetadata {
         }
 
         /**
-         * Name of the generated object. This will be used to indicate to the end user what the generated object contains.
+         * Name of the generated object. This will be used to indicate to the end user what the generated
+         * object contains.
          */
         public Builder objectName(Optional<String> objectName) {
             Utils.checkNotNull(objectName, "objectName");
@@ -945,7 +971,10 @@ public class ToolMetadata {
 
 
         /**
-         * Valid only for write actions. Represents the type of write action. REDIRECT - The client renders the URL which contains information for carrying out the action. EXECUTION - Send a request to an external server and execute the action.
+         * Valid only for write actions. Represents the type of write action. REDIRECT - The client renders the
+         * URL which contains information for carrying out the action.
+         * 
+         * <p>EXECUTION - Send a request to an external server and execute the action.
          */
         public Builder writeActionType(WriteActionType writeActionType) {
             Utils.checkNotNull(writeActionType, "writeActionType");
@@ -954,7 +983,10 @@ public class ToolMetadata {
         }
 
         /**
-         * Valid only for write actions. Represents the type of write action. REDIRECT - The client renders the URL which contains information for carrying out the action. EXECUTION - Send a request to an external server and execute the action.
+         * Valid only for write actions. Represents the type of write action. REDIRECT - The client renders the
+         * URL which contains information for carrying out the action.
+         * 
+         * <p>EXECUTION - Send a request to an external server and execute the action.
          */
         public Builder writeActionType(Optional<? extends WriteActionType> writeActionType) {
             Utils.checkNotNull(writeActionType, "writeActionType");
@@ -965,7 +997,8 @@ public class ToolMetadata {
 
         /**
          * The type of authentication being used.
-         * Use 'OAUTH_*' when Glean calls an external API (e.g., Jira) on behalf of a user to obtain an OAuth token.
+         * Use 'OAUTH_*' when Glean calls an external API (e.g., Jira) on behalf of a user to obtain an OAuth
+         * token.
          * 'OAUTH_ADMIN' utilizes an admin token for external API calls on behalf all users.
          * 'OAUTH_USER' uses individual user tokens for external API calls.
          * 'DWD' refers to domain wide delegation.
@@ -978,7 +1011,8 @@ public class ToolMetadata {
 
         /**
          * The type of authentication being used.
-         * Use 'OAUTH_*' when Glean calls an external API (e.g., Jira) on behalf of a user to obtain an OAuth token.
+         * Use 'OAUTH_*' when Glean calls an external API (e.g., Jira) on behalf of a user to obtain an OAuth
+         * token.
          * 'OAUTH_ADMIN' utilizes an admin token for external API calls on behalf all users.
          * 'OAUTH_USER' uses individual user tokens for external API calls.
          * 'DWD' refers to domain wide delegation.

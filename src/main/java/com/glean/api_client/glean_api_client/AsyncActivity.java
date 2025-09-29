@@ -40,7 +40,8 @@ public class AsyncActivity {
     /**
      * Report document activity
      * 
-     * <p>Report user activity that occurs on indexed documents such as viewing or editing. This signal improves search quality.
+     * <p>Report user activity that occurs on indexed documents such as viewing or editing. This signal
+     * improves search quality.
      * 
      * @return The async call builder
      */
@@ -51,10 +52,11 @@ public class AsyncActivity {
     /**
      * Report document activity
      * 
-     * <p>Report user activity that occurs on indexed documents such as viewing or editing. This signal improves search quality.
+     * <p>Report user activity that occurs on indexed documents such as viewing or editing. This signal
+     * improves search quality.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ActivityResponse&gt; - The async response
+     * @return {@code CompletableFuture<ActivityResponse>} - The async response
      */
     public CompletableFuture<ActivityResponse> report(com.glean.api_client.glean_api_client.models.components.Activity request) {
         AsyncRequestOperation<com.glean.api_client.glean_api_client.models.components.Activity, ActivityResponse> operation
@@ -67,7 +69,8 @@ public class AsyncActivity {
     /**
      * Report client activity
      * 
-     * <p>Report events that happen to results within a Glean client UI, such as search result views and clicks.  This signal improves search quality.
+     * <p>Report events that happen to results within a Glean client UI, such as search result views and
+     * clicks. This signal improves search quality.
      * 
      * @return The async call builder
      */
@@ -78,9 +81,10 @@ public class AsyncActivity {
     /**
      * Report client activity
      * 
-     * <p>Report events that happen to results within a Glean client UI, such as search result views and clicks.  This signal improves search quality.
+     * <p>Report events that happen to results within a Glean client UI, such as search result views and
+     * clicks. This signal improves search quality.
      * 
-     * @return CompletableFuture&lt;FeedbackResponse&gt; - The async response
+     * @return {@code CompletableFuture<FeedbackResponse>} - The async response
      */
     public CompletableFuture<FeedbackResponse> feedbackDirect() {
         return feedback(Optional.empty(), Optional.empty());
@@ -89,11 +93,12 @@ public class AsyncActivity {
     /**
      * Report client activity
      * 
-     * <p>Report events that happen to results within a Glean client UI, such as search result views and clicks.  This signal improves search quality.
+     * <p>Report events that happen to results within a Glean client UI, such as search result views and
+     * clicks. This signal improves search quality.
      * 
      * @param feedbackQueryParameter A URL encoded versions of Feedback. This is useful for requests.
      * @param feedback1 
-     * @return CompletableFuture&lt;FeedbackResponse&gt; - The async response
+     * @return {@code CompletableFuture<FeedbackResponse>} - The async response
      */
     public CompletableFuture<FeedbackResponse> feedback(Optional<String> feedbackQueryParameter, Optional<? extends Feedback> feedback1) {
         FeedbackRequest request =

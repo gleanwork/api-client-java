@@ -26,7 +26,8 @@ public class SearchResult {
     private Optional<? extends List<StructuredResult>> structuredResults;
 
     /**
-     * An opaque token that represents this particular result in this particular query. To be used for /feedback reporting.
+     * An opaque token that represents this particular result in this particular query. To be used for
+     * /feedback reporting.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("trackingToken")
@@ -47,7 +48,8 @@ public class SearchResult {
     private String url;
 
     /**
-     * A deep link, if available, into the datasource's native application for the user's platform (e.g. slack://...).
+     * A deep link, if available, into the datasource's native application for the user's platform (e.g.
+     * slack://...).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("nativeAppUrl")
@@ -61,21 +63,25 @@ public class SearchResult {
     private Optional<? extends List<SearchResultSnippet>> snippets;
 
     /**
-     * The full body text of the result if not already contained in the snippets. Only populated for conversation results (e.g. results from a messaging app such as Slack).
+     * The full body text of the result if not already contained in the snippets. Only populated for
+     * conversation results (e.g. results from a messaging app such as Slack).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("fullText")
     private Optional<String> fullText;
 
     /**
-     * The full body text of the result if not already contained in the snippets; each item in the array represents a separate line in the original text. Only populated for conversation results (e.g. results from a messaging app such as Slack).
+     * The full body text of the result if not already contained in the snippets; each item in the array
+     * represents a separate line in the original text. Only populated for conversation results (e.g.
+     * results from a messaging app such as Slack).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("fullTextList")
     private Optional<? extends List<String>> fullTextList;
 
     /**
-     * A list of results related to this search result. Eg. for conversation results it contains individual messages from the conversation document which will be shown on SERP.
+     * A list of results related to this search result. Eg. for conversation results it contains individual
+     * messages from the conversation document which will be shown on SERP.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("relatedResults")
@@ -110,7 +116,8 @@ public class SearchResult {
     private Optional<? extends List<SearchResult>> attachments;
 
     /**
-     * A list of results that should be displayed as backlinks of this result in reverse chronological order.
+     * A list of results that should be displayed as backlinks of this result in reverse chronological
+     * order.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("backlinkResults")
@@ -242,7 +249,8 @@ public class SearchResult {
     }
 
     /**
-     * An opaque token that represents this particular result in this particular query. To be used for /feedback reporting.
+     * An opaque token that represents this particular result in this particular query. To be used for
+     * /feedback reporting.
      */
     @JsonIgnore
     public Optional<String> trackingToken() {
@@ -266,7 +274,8 @@ public class SearchResult {
     }
 
     /**
-     * A deep link, if available, into the datasource's native application for the user's platform (e.g. slack://...).
+     * A deep link, if available, into the datasource's native application for the user's platform (e.g.
+     * slack://...).
      */
     @JsonIgnore
     public Optional<String> nativeAppUrl() {
@@ -283,7 +292,8 @@ public class SearchResult {
     }
 
     /**
-     * The full body text of the result if not already contained in the snippets. Only populated for conversation results (e.g. results from a messaging app such as Slack).
+     * The full body text of the result if not already contained in the snippets. Only populated for
+     * conversation results (e.g. results from a messaging app such as Slack).
      */
     @JsonIgnore
     public Optional<String> fullText() {
@@ -291,7 +301,9 @@ public class SearchResult {
     }
 
     /**
-     * The full body text of the result if not already contained in the snippets; each item in the array represents a separate line in the original text. Only populated for conversation results (e.g. results from a messaging app such as Slack).
+     * The full body text of the result if not already contained in the snippets; each item in the array
+     * represents a separate line in the original text. Only populated for conversation results (e.g.
+     * results from a messaging app such as Slack).
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -300,7 +312,8 @@ public class SearchResult {
     }
 
     /**
-     * A list of results related to this search result. Eg. for conversation results it contains individual messages from the conversation document which will be shown on SERP.
+     * A list of results related to this search result. Eg. for conversation results it contains individual
+     * messages from the conversation document which will be shown on SERP.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -344,7 +357,8 @@ public class SearchResult {
     }
 
     /**
-     * A list of results that should be displayed as backlinks of this result in reverse chronological order.
+     * A list of results that should be displayed as backlinks of this result in reverse chronological
+     * order.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -424,7 +438,8 @@ public class SearchResult {
     }
 
     /**
-     * An opaque token that represents this particular result in this particular query. To be used for /feedback reporting.
+     * An opaque token that represents this particular result in this particular query. To be used for
+     * /feedback reporting.
      */
     public SearchResult withTrackingToken(String trackingToken) {
         Utils.checkNotNull(trackingToken, "trackingToken");
@@ -434,7 +449,8 @@ public class SearchResult {
 
 
     /**
-     * An opaque token that represents this particular result in this particular query. To be used for /feedback reporting.
+     * An opaque token that represents this particular result in this particular query. To be used for
+     * /feedback reporting.
      */
     public SearchResult withTrackingToken(Optional<String> trackingToken) {
         Utils.checkNotNull(trackingToken, "trackingToken");
@@ -475,7 +491,8 @@ public class SearchResult {
     }
 
     /**
-     * A deep link, if available, into the datasource's native application for the user's platform (e.g. slack://...).
+     * A deep link, if available, into the datasource's native application for the user's platform (e.g.
+     * slack://...).
      */
     public SearchResult withNativeAppUrl(String nativeAppUrl) {
         Utils.checkNotNull(nativeAppUrl, "nativeAppUrl");
@@ -485,7 +502,8 @@ public class SearchResult {
 
 
     /**
-     * A deep link, if available, into the datasource's native application for the user's platform (e.g. slack://...).
+     * A deep link, if available, into the datasource's native application for the user's platform (e.g.
+     * slack://...).
      */
     public SearchResult withNativeAppUrl(Optional<String> nativeAppUrl) {
         Utils.checkNotNull(nativeAppUrl, "nativeAppUrl");
@@ -513,7 +531,8 @@ public class SearchResult {
     }
 
     /**
-     * The full body text of the result if not already contained in the snippets. Only populated for conversation results (e.g. results from a messaging app such as Slack).
+     * The full body text of the result if not already contained in the snippets. Only populated for
+     * conversation results (e.g. results from a messaging app such as Slack).
      */
     public SearchResult withFullText(String fullText) {
         Utils.checkNotNull(fullText, "fullText");
@@ -523,7 +542,8 @@ public class SearchResult {
 
 
     /**
-     * The full body text of the result if not already contained in the snippets. Only populated for conversation results (e.g. results from a messaging app such as Slack).
+     * The full body text of the result if not already contained in the snippets. Only populated for
+     * conversation results (e.g. results from a messaging app such as Slack).
      */
     public SearchResult withFullText(Optional<String> fullText) {
         Utils.checkNotNull(fullText, "fullText");
@@ -532,7 +552,9 @@ public class SearchResult {
     }
 
     /**
-     * The full body text of the result if not already contained in the snippets; each item in the array represents a separate line in the original text. Only populated for conversation results (e.g. results from a messaging app such as Slack).
+     * The full body text of the result if not already contained in the snippets; each item in the array
+     * represents a separate line in the original text. Only populated for conversation results (e.g.
+     * results from a messaging app such as Slack).
      */
     public SearchResult withFullTextList(List<String> fullTextList) {
         Utils.checkNotNull(fullTextList, "fullTextList");
@@ -542,7 +564,9 @@ public class SearchResult {
 
 
     /**
-     * The full body text of the result if not already contained in the snippets; each item in the array represents a separate line in the original text. Only populated for conversation results (e.g. results from a messaging app such as Slack).
+     * The full body text of the result if not already contained in the snippets; each item in the array
+     * represents a separate line in the original text. Only populated for conversation results (e.g.
+     * results from a messaging app such as Slack).
      */
     public SearchResult withFullTextList(Optional<? extends List<String>> fullTextList) {
         Utils.checkNotNull(fullTextList, "fullTextList");
@@ -551,7 +575,8 @@ public class SearchResult {
     }
 
     /**
-     * A list of results related to this search result. Eg. for conversation results it contains individual messages from the conversation document which will be shown on SERP.
+     * A list of results related to this search result. Eg. for conversation results it contains individual
+     * messages from the conversation document which will be shown on SERP.
      */
     public SearchResult withRelatedResults(List<RelatedDocuments> relatedResults) {
         Utils.checkNotNull(relatedResults, "relatedResults");
@@ -561,7 +586,8 @@ public class SearchResult {
 
 
     /**
-     * A list of results related to this search result. Eg. for conversation results it contains individual messages from the conversation document which will be shown on SERP.
+     * A list of results related to this search result. Eg. for conversation results it contains individual
+     * messages from the conversation document which will be shown on SERP.
      */
     public SearchResult withRelatedResults(Optional<? extends List<RelatedDocuments>> relatedResults) {
         Utils.checkNotNull(relatedResults, "relatedResults");
@@ -646,7 +672,8 @@ public class SearchResult {
     }
 
     /**
-     * A list of results that should be displayed as backlinks of this result in reverse chronological order.
+     * A list of results that should be displayed as backlinks of this result in reverse chronological
+     * order.
      */
     public SearchResult withBacklinkResults(List<SearchResult> backlinkResults) {
         Utils.checkNotNull(backlinkResults, "backlinkResults");
@@ -656,7 +683,8 @@ public class SearchResult {
 
 
     /**
-     * A list of results that should be displayed as backlinks of this result in reverse chronological order.
+     * A list of results that should be displayed as backlinks of this result in reverse chronological
+     * order.
      */
     public SearchResult withBacklinkResults(Optional<? extends List<SearchResult>> backlinkResults) {
         Utils.checkNotNull(backlinkResults, "backlinkResults");
@@ -907,7 +935,8 @@ public class SearchResult {
 
 
         /**
-         * An opaque token that represents this particular result in this particular query. To be used for /feedback reporting.
+         * An opaque token that represents this particular result in this particular query. To be used for
+         * /feedback reporting.
          */
         public Builder trackingToken(String trackingToken) {
             Utils.checkNotNull(trackingToken, "trackingToken");
@@ -916,7 +945,8 @@ public class SearchResult {
         }
 
         /**
-         * An opaque token that represents this particular result in this particular query. To be used for /feedback reporting.
+         * An opaque token that represents this particular result in this particular query. To be used for
+         * /feedback reporting.
          */
         public Builder trackingToken(Optional<String> trackingToken) {
             Utils.checkNotNull(trackingToken, "trackingToken");
@@ -959,7 +989,8 @@ public class SearchResult {
 
 
         /**
-         * A deep link, if available, into the datasource's native application for the user's platform (e.g. slack://...).
+         * A deep link, if available, into the datasource's native application for the user's platform (e.g.
+         * slack://...).
          */
         public Builder nativeAppUrl(String nativeAppUrl) {
             Utils.checkNotNull(nativeAppUrl, "nativeAppUrl");
@@ -968,7 +999,8 @@ public class SearchResult {
         }
 
         /**
-         * A deep link, if available, into the datasource's native application for the user's platform (e.g. slack://...).
+         * A deep link, if available, into the datasource's native application for the user's platform (e.g.
+         * slack://...).
          */
         public Builder nativeAppUrl(Optional<String> nativeAppUrl) {
             Utils.checkNotNull(nativeAppUrl, "nativeAppUrl");
@@ -997,7 +1029,8 @@ public class SearchResult {
 
 
         /**
-         * The full body text of the result if not already contained in the snippets. Only populated for conversation results (e.g. results from a messaging app such as Slack).
+         * The full body text of the result if not already contained in the snippets. Only populated for
+         * conversation results (e.g. results from a messaging app such as Slack).
          */
         public Builder fullText(String fullText) {
             Utils.checkNotNull(fullText, "fullText");
@@ -1006,7 +1039,8 @@ public class SearchResult {
         }
 
         /**
-         * The full body text of the result if not already contained in the snippets. Only populated for conversation results (e.g. results from a messaging app such as Slack).
+         * The full body text of the result if not already contained in the snippets. Only populated for
+         * conversation results (e.g. results from a messaging app such as Slack).
          */
         public Builder fullText(Optional<String> fullText) {
             Utils.checkNotNull(fullText, "fullText");
@@ -1016,7 +1050,9 @@ public class SearchResult {
 
 
         /**
-         * The full body text of the result if not already contained in the snippets; each item in the array represents a separate line in the original text. Only populated for conversation results (e.g. results from a messaging app such as Slack).
+         * The full body text of the result if not already contained in the snippets; each item in the array
+         * represents a separate line in the original text. Only populated for conversation results (e.g.
+         * results from a messaging app such as Slack).
          */
         public Builder fullTextList(List<String> fullTextList) {
             Utils.checkNotNull(fullTextList, "fullTextList");
@@ -1025,7 +1061,9 @@ public class SearchResult {
         }
 
         /**
-         * The full body text of the result if not already contained in the snippets; each item in the array represents a separate line in the original text. Only populated for conversation results (e.g. results from a messaging app such as Slack).
+         * The full body text of the result if not already contained in the snippets; each item in the array
+         * represents a separate line in the original text. Only populated for conversation results (e.g.
+         * results from a messaging app such as Slack).
          */
         public Builder fullTextList(Optional<? extends List<String>> fullTextList) {
             Utils.checkNotNull(fullTextList, "fullTextList");
@@ -1035,7 +1073,8 @@ public class SearchResult {
 
 
         /**
-         * A list of results related to this search result. Eg. for conversation results it contains individual messages from the conversation document which will be shown on SERP.
+         * A list of results related to this search result. Eg. for conversation results it contains individual
+         * messages from the conversation document which will be shown on SERP.
          */
         public Builder relatedResults(List<RelatedDocuments> relatedResults) {
             Utils.checkNotNull(relatedResults, "relatedResults");
@@ -1044,7 +1083,8 @@ public class SearchResult {
         }
 
         /**
-         * A list of results related to this search result. Eg. for conversation results it contains individual messages from the conversation document which will be shown on SERP.
+         * A list of results related to this search result. Eg. for conversation results it contains individual
+         * messages from the conversation document which will be shown on SERP.
          */
         public Builder relatedResults(Optional<? extends List<RelatedDocuments>> relatedResults) {
             Utils.checkNotNull(relatedResults, "relatedResults");
@@ -1130,7 +1170,8 @@ public class SearchResult {
 
 
         /**
-         * A list of results that should be displayed as backlinks of this result in reverse chronological order.
+         * A list of results that should be displayed as backlinks of this result in reverse chronological
+         * order.
          */
         public Builder backlinkResults(List<SearchResult> backlinkResults) {
             Utils.checkNotNull(backlinkResults, "backlinkResults");
@@ -1139,7 +1180,8 @@ public class SearchResult {
         }
 
         /**
-         * A list of results that should be displayed as backlinks of this result in reverse chronological order.
+         * A list of results that should be displayed as backlinks of this result in reverse chronological
+         * order.
          */
         public Builder backlinkResults(Optional<? extends List<SearchResult>> backlinkResults) {
             Utils.checkNotNull(backlinkResults, "backlinkResults");

@@ -18,7 +18,8 @@ import java.util.Optional;
 /**
  * Quicklink
  * 
- * <p>An action for a specific datasource that will show up in autocomplete and app card, e.g. "Create new issue" for jira.
+ * <p>An action for a specific datasource that will show up in autocomplete and app card, e.g. "Create new
+ * issue" for jira.
  */
 public class Quicklink {
     /**

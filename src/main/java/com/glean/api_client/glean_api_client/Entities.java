@@ -39,7 +39,10 @@ public class Entities {
     /**
      * List entities
      * 
-     * <p>List some set of details for all entities that fit the given criteria and return in the requested order. Does not support negation in filters, assumes relation type EQUALS. There is a limit of 10000 entities that can be retrieved via this endpoint, except when using FULL_DIRECTORY request type for people entities.
+     * <p>List some set of details for all entities that fit the given criteria and return in the requested
+     * order. Does not support negation in filters, assumes relation type EQUALS. There is a limit of 10000
+     * entities that can be retrieved via this endpoint, except when using FULL_DIRECTORY request type for
+     * people entities.
      * 
      * @return The call builder
      */
@@ -50,7 +53,10 @@ public class Entities {
     /**
      * List entities
      * 
-     * <p>List some set of details for all entities that fit the given criteria and return in the requested order. Does not support negation in filters, assumes relation type EQUALS. There is a limit of 10000 entities that can be retrieved via this endpoint, except when using FULL_DIRECTORY request type for people entities.
+     * <p>List some set of details for all entities that fit the given criteria and return in the requested
+     * order. Does not support negation in filters, assumes relation type EQUALS. There is a limit of 10000
+     * entities that can be retrieved via this endpoint, except when using FULL_DIRECTORY request type for
+     * people entities.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call

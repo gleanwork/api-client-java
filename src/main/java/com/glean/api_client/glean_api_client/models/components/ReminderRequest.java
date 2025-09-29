@@ -37,7 +37,8 @@ public class ReminderRequest {
     private Optional<Long> remindInDays;
 
     /**
-     * An optional free-text reason for the reminder. This is particularly useful when a reminder is used to ask for verification from another user (for example, "Duplicate", "Incomplete", "Incorrect").
+     * An optional free-text reason for the reminder. This is particularly useful when a reminder is used
+     * to ask for verification from another user (for example, "Duplicate", "Incomplete", "Incorrect").
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reason")
@@ -90,7 +91,8 @@ public class ReminderRequest {
     }
 
     /**
-     * An optional free-text reason for the reminder. This is particularly useful when a reminder is used to ask for verification from another user (for example, "Duplicate", "Incomplete", "Incorrect").
+     * An optional free-text reason for the reminder. This is particularly useful when a reminder is used
+     * to ask for verification from another user (for example, "Duplicate", "Incomplete", "Incorrect").
      */
     @JsonIgnore
     public Optional<String> reason() {
@@ -150,7 +152,8 @@ public class ReminderRequest {
     }
 
     /**
-     * An optional free-text reason for the reminder. This is particularly useful when a reminder is used to ask for verification from another user (for example, "Duplicate", "Incomplete", "Incorrect").
+     * An optional free-text reason for the reminder. This is particularly useful when a reminder is used
+     * to ask for verification from another user (for example, "Duplicate", "Incomplete", "Incorrect").
      */
     public ReminderRequest withReason(String reason) {
         Utils.checkNotNull(reason, "reason");
@@ -160,7 +163,8 @@ public class ReminderRequest {
 
 
     /**
-     * An optional free-text reason for the reminder. This is particularly useful when a reminder is used to ask for verification from another user (for example, "Duplicate", "Incomplete", "Incorrect").
+     * An optional free-text reason for the reminder. This is particularly useful when a reminder is used
+     * to ask for verification from another user (for example, "Duplicate", "Incomplete", "Incorrect").
      */
     public ReminderRequest withReason(Optional<String> reason) {
         Utils.checkNotNull(reason, "reason");
@@ -265,7 +269,8 @@ public class ReminderRequest {
 
 
         /**
-         * An optional free-text reason for the reminder. This is particularly useful when a reminder is used to ask for verification from another user (for example, "Duplicate", "Incomplete", "Incorrect").
+         * An optional free-text reason for the reminder. This is particularly useful when a reminder is used
+         * to ask for verification from another user (for example, "Duplicate", "Incomplete", "Incorrect").
          */
         public Builder reason(String reason) {
             Utils.checkNotNull(reason, "reason");
@@ -274,7 +279,8 @@ public class ReminderRequest {
         }
 
         /**
-         * An optional free-text reason for the reminder. This is particularly useful when a reminder is used to ask for verification from another user (for example, "Duplicate", "Incomplete", "Incorrect").
+         * An optional free-text reason for the reminder. This is particularly useful when a reminder is used
+         * to ask for verification from another user (for example, "Duplicate", "Incomplete", "Incorrect").
          */
         public Builder reason(Optional<String> reason) {
             Utils.checkNotNull(reason, "reason");

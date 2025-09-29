@@ -54,7 +54,8 @@ public class AsyncAgents {
     /**
      * Retrieve an agent
      * 
-     * <p>Returns details of an [agent](https://developers.glean.com/agents/agents-api) created in the Agent Builder.
+     * <p>Returns details of an [agent](https://developers.glean.com/agents/agents-api) created in the Agent
+     * Builder.
      * 
      * @return The async call builder
      */
@@ -65,10 +66,11 @@ public class AsyncAgents {
     /**
      * Retrieve an agent
      * 
-     * <p>Returns details of an [agent](https://developers.glean.com/agents/agents-api) created in the Agent Builder.
+     * <p>Returns details of an [agent](https://developers.glean.com/agents/agents-api) created in the Agent
+     * Builder.
      * 
      * @param agentId The ID of the agent.
-     * @return CompletableFuture&lt;GetAgentResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetAgentResponse>} - The async response
      */
     public CompletableFuture<GetAgentResponse> retrieve(String agentId) {
         return retrieve(Optional.empty(), agentId);
@@ -77,11 +79,12 @@ public class AsyncAgents {
     /**
      * Retrieve an agent
      * 
-     * <p>Returns details of an [agent](https://developers.glean.com/agents/agents-api) created in the Agent Builder.
+     * <p>Returns details of an [agent](https://developers.glean.com/agents/agents-api) created in the Agent
+     * Builder.
      * 
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param agentId The ID of the agent.
-     * @return CompletableFuture&lt;GetAgentResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetAgentResponse>} - The async response
      */
     public CompletableFuture<GetAgentResponse> retrieve(Optional<Long> timezoneOffset, String agentId) {
         GetAgentRequest request =
@@ -100,7 +103,8 @@ public class AsyncAgents {
     /**
      * List an agent's schemas
      * 
-     * <p>Return [agent](https://developers.glean.com/agents/agents-api)'s input and output schemas. You can use these schemas to detect changes to an agent's input or output structure.
+     * <p>Return [agent](https://developers.glean.com/agents/agents-api)'s input and output schemas. You can
+     * use these schemas to detect changes to an agent's input or output structure.
      * 
      * @return The async call builder
      */
@@ -111,10 +115,11 @@ public class AsyncAgents {
     /**
      * List an agent's schemas
      * 
-     * <p>Return [agent](https://developers.glean.com/agents/agents-api)'s input and output schemas. You can use these schemas to detect changes to an agent's input or output structure.
+     * <p>Return [agent](https://developers.glean.com/agents/agents-api)'s input and output schemas. You can
+     * use these schemas to detect changes to an agent's input or output structure.
      * 
      * @param agentId The ID of the agent.
-     * @return CompletableFuture&lt;GetAgentSchemasResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetAgentSchemasResponse>} - The async response
      */
     public CompletableFuture<GetAgentSchemasResponse> retrieveSchemas(String agentId) {
         return retrieveSchemas(Optional.empty(), agentId);
@@ -123,11 +128,12 @@ public class AsyncAgents {
     /**
      * List an agent's schemas
      * 
-     * <p>Return [agent](https://developers.glean.com/agents/agents-api)'s input and output schemas. You can use these schemas to detect changes to an agent's input or output structure.
+     * <p>Return [agent](https://developers.glean.com/agents/agents-api)'s input and output schemas. You can
+     * use these schemas to detect changes to an agent's input or output structure.
      * 
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param agentId The ID of the agent.
-     * @return CompletableFuture&lt;GetAgentSchemasResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetAgentSchemasResponse>} - The async response
      */
     public CompletableFuture<GetAgentSchemasResponse> retrieveSchemas(Optional<Long> timezoneOffset, String agentId) {
         GetAgentSchemasRequest request =
@@ -160,7 +166,7 @@ public class AsyncAgents {
      * <p>Search for [agents](https://developers.glean.com/agents/agents-api) by agent name.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;SearchAgentsResponse&gt; - The async response
+     * @return {@code CompletableFuture<SearchAgentsResponse>} - The async response
      */
     public CompletableFuture<SearchAgentsResponse> list(SearchAgentsRequest request) {
         AsyncRequestOperation<SearchAgentsRequest, SearchAgentsResponse> operation
@@ -173,7 +179,8 @@ public class AsyncAgents {
     /**
      * Create an agent run and stream the response
      * 
-     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the result as a stream of server-sent events (SSE).
+     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the result as a
+     * stream of server-sent events (SSE).
      * 
      * @return The async call builder
      */
@@ -184,10 +191,11 @@ public class AsyncAgents {
     /**
      * Create an agent run and stream the response
      * 
-     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the result as a stream of server-sent events (SSE).
+     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the result as a
+     * stream of server-sent events (SSE).
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CreateAndStreamRunResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateAndStreamRunResponse>} - The async response
      */
     public CompletableFuture<CreateAndStreamRunResponse> runStream(AgentRunCreate request) {
         AsyncRequestOperation<AgentRunCreate, CreateAndStreamRunResponse> operation
@@ -200,7 +208,8 @@ public class AsyncAgents {
     /**
      * Create an agent run and wait for the response
      * 
-     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the final response.
+     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the final
+     * response.
      * 
      * @return The async call builder
      */
@@ -211,10 +220,11 @@ public class AsyncAgents {
     /**
      * Create an agent run and wait for the response
      * 
-     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the final response.
+     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the final
+     * response.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CreateAndWaitRunResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateAndWaitRunResponse>} - The async response
      */
     public CompletableFuture<CreateAndWaitRunResponse> run(AgentRunCreate request) {
         AsyncRequestOperation<AgentRunCreate, CreateAndWaitRunResponse> operation

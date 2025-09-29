@@ -10,6 +10,9 @@ import java.util.Optional;
 
 public enum InsightsRequestCategory {
     AGENTS("AGENTS"),
+    AGENT_USERS("AGENT_USERS"),
+    TOP_AGENTS("TOP_AGENTS"),
+    AGENTS_USAGE_BY_DEPARTMENT("AGENTS_USAGE_BY_DEPARTMENT"),
     AI("AI"),
     AI_APPS("AI_APPS"),
     ANNOUNCEMENTS("ANNOUNCEMENTS"),

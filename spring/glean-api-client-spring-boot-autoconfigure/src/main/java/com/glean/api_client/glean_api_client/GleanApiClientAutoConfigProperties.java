@@ -457,7 +457,8 @@ public class GleanApiClientAutoConfigProperties {
         }
 
         /**
-         * The instance name (typically the email domain without the TLD) that determines the deployment backend.
+         * The instance name (typically the email domain without the TLD) that determines the deployment
+         * backend.
          */
         private String instance = "instance-name";
 

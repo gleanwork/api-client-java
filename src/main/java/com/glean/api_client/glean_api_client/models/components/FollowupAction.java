@@ -17,7 +17,8 @@ import java.util.Optional;
 /**
  * FollowupAction
  * 
- * <p>A follow-up action that can be invoked by the user after a response. The action parameters are not included and need to be predicted/filled separately.
+ * <p>A follow-up action that can be invoked by the user after a response. The action parameters are not
+ * included and need to be predicted/filled separately.
  */
 public class FollowupAction {
     /**

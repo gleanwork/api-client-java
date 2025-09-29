@@ -22,13 +22,15 @@ import java.util.Optional;
  */
 public class CommentDefinition {
     /**
-     * The document specific id for the comment. This field is case insensitive and should not be more than 200 characters in length.
+     * The document specific id for the comment. This field is case insensitive and should not be more than
+     * 200 characters in length.
      */
     @JsonProperty("id")
     private String id;
 
     /**
-     * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+     * Describes how a user is referenced in a document. The user can be referenced by email or by a
+     * datasource specific id.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("author")
@@ -56,7 +58,8 @@ public class CommentDefinition {
     private Optional<Long> updatedAt;
 
     /**
-     * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+     * Describes how a user is referenced in a document. The user can be referenced by email or by a
+     * datasource specific id.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("updatedBy")
@@ -91,7 +94,8 @@ public class CommentDefinition {
     }
 
     /**
-     * The document specific id for the comment. This field is case insensitive and should not be more than 200 characters in length.
+     * The document specific id for the comment. This field is case insensitive and should not be more than
+     * 200 characters in length.
      */
     @JsonIgnore
     public String id() {
@@ -99,7 +103,8 @@ public class CommentDefinition {
     }
 
     /**
-     * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+     * Describes how a user is referenced in a document. The user can be referenced by email or by a
+     * datasource specific id.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -133,7 +138,8 @@ public class CommentDefinition {
     }
 
     /**
-     * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+     * Describes how a user is referenced in a document. The user can be referenced by email or by a
+     * datasource specific id.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -147,7 +153,8 @@ public class CommentDefinition {
 
 
     /**
-     * The document specific id for the comment. This field is case insensitive and should not be more than 200 characters in length.
+     * The document specific id for the comment. This field is case insensitive and should not be more than
+     * 200 characters in length.
      */
     public CommentDefinition withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -156,7 +163,8 @@ public class CommentDefinition {
     }
 
     /**
-     * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+     * Describes how a user is referenced in a document. The user can be referenced by email or by a
+     * datasource specific id.
      */
     public CommentDefinition withAuthor(UserReferenceDefinition author) {
         Utils.checkNotNull(author, "author");
@@ -166,7 +174,8 @@ public class CommentDefinition {
 
 
     /**
-     * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+     * Describes how a user is referenced in a document. The user can be referenced by email or by a
+     * datasource specific id.
      */
     public CommentDefinition withAuthor(Optional<? extends UserReferenceDefinition> author) {
         Utils.checkNotNull(author, "author");
@@ -232,7 +241,8 @@ public class CommentDefinition {
     }
 
     /**
-     * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+     * Describes how a user is referenced in a document. The user can be referenced by email or by a
+     * datasource specific id.
      */
     public CommentDefinition withUpdatedBy(UserReferenceDefinition updatedBy) {
         Utils.checkNotNull(updatedBy, "updatedBy");
@@ -242,7 +252,8 @@ public class CommentDefinition {
 
 
     /**
-     * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+     * Describes how a user is referenced in a document. The user can be referenced by email or by a
+     * datasource specific id.
      */
     public CommentDefinition withUpdatedBy(Optional<? extends UserReferenceDefinition> updatedBy) {
         Utils.checkNotNull(updatedBy, "updatedBy");
@@ -307,7 +318,8 @@ public class CommentDefinition {
 
 
         /**
-         * The document specific id for the comment. This field is case insensitive and should not be more than 200 characters in length.
+         * The document specific id for the comment. This field is case insensitive and should not be more than
+         * 200 characters in length.
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -317,7 +329,8 @@ public class CommentDefinition {
 
 
         /**
-         * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+         * Describes how a user is referenced in a document. The user can be referenced by email or by a
+         * datasource specific id.
          */
         public Builder author(UserReferenceDefinition author) {
             Utils.checkNotNull(author, "author");
@@ -326,7 +339,8 @@ public class CommentDefinition {
         }
 
         /**
-         * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+         * Describes how a user is referenced in a document. The user can be referenced by email or by a
+         * datasource specific id.
          */
         public Builder author(Optional<? extends UserReferenceDefinition> author) {
             Utils.checkNotNull(author, "author");
@@ -393,7 +407,8 @@ public class CommentDefinition {
 
 
         /**
-         * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+         * Describes how a user is referenced in a document. The user can be referenced by email or by a
+         * datasource specific id.
          */
         public Builder updatedBy(UserReferenceDefinition updatedBy) {
             Utils.checkNotNull(updatedBy, "updatedBy");
@@ -402,7 +417,8 @@ public class CommentDefinition {
         }
 
         /**
-         * Describes how a user is referenced in a document. The user can be referenced by email or by a datasource specific id.
+         * Describes how a user is referenced in a document. The user can be referenced by email or by a
+         * datasource specific id.
          */
         public Builder updatedBy(Optional<? extends UserReferenceDefinition> updatedBy) {
             Utils.checkNotNull(updatedBy, "updatedBy");

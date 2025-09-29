@@ -33,7 +33,8 @@ public class GetDocumentsByFacetsResponse {
     private Optional<Boolean> hasMoreResults;
 
     /**
-     * Cursor that indicates the start of the next page of results. To be passed in "more" requests for this query.
+     * Cursor that indicates the start of the next page of results. To be passed in "more" requests for
+     * this query.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cursor")
@@ -74,7 +75,8 @@ public class GetDocumentsByFacetsResponse {
     }
 
     /**
-     * Cursor that indicates the start of the next page of results. To be passed in "more" requests for this query.
+     * Cursor that indicates the start of the next page of results. To be passed in "more" requests for
+     * this query.
      */
     @JsonIgnore
     public Optional<String> cursor() {
@@ -125,7 +127,8 @@ public class GetDocumentsByFacetsResponse {
     }
 
     /**
-     * Cursor that indicates the start of the next page of results. To be passed in "more" requests for this query.
+     * Cursor that indicates the start of the next page of results. To be passed in "more" requests for
+     * this query.
      */
     public GetDocumentsByFacetsResponse withCursor(String cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -135,7 +138,8 @@ public class GetDocumentsByFacetsResponse {
 
 
     /**
-     * Cursor that indicates the start of the next page of results. To be passed in "more" requests for this query.
+     * Cursor that indicates the start of the next page of results. To be passed in "more" requests for
+     * this query.
      */
     public GetDocumentsByFacetsResponse withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -225,7 +229,8 @@ public class GetDocumentsByFacetsResponse {
 
 
         /**
-         * Cursor that indicates the start of the next page of results. To be passed in "more" requests for this query.
+         * Cursor that indicates the start of the next page of results. To be passed in "more" requests for
+         * this query.
          */
         public Builder cursor(String cursor) {
             Utils.checkNotNull(cursor, "cursor");
@@ -234,7 +239,8 @@ public class GetDocumentsByFacetsResponse {
         }
 
         /**
-         * Cursor that indicates the start of the next page of results. To be passed in "more" requests for this query.
+         * Cursor that indicates the start of the next page of results. To be passed in "more" requests for
+         * this query.
          */
         public Builder cursor(Optional<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");

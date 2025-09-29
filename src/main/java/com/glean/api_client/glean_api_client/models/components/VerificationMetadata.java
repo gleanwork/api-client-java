@@ -62,7 +62,8 @@ public class VerificationMetadata {
     private Optional<? extends List<CountInfo>> visitorCount;
 
     /**
-     * List of potential verifiers for the document e.g. old verifiers and/or users with view/edit permissions.
+     * List of potential verifiers for the document e.g. old verifiers and/or users with view/edit
+     * permissions.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("candidateVerifiers")
@@ -155,7 +156,8 @@ public class VerificationMetadata {
     }
 
     /**
-     * List of potential verifiers for the document e.g. old verifiers and/or users with view/edit permissions.
+     * List of potential verifiers for the document e.g. old verifiers and/or users with view/edit
+     * permissions.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -284,7 +286,8 @@ public class VerificationMetadata {
     }
 
     /**
-     * List of potential verifiers for the document e.g. old verifiers and/or users with view/edit permissions.
+     * List of potential verifiers for the document e.g. old verifiers and/or users with view/edit
+     * permissions.
      */
     public VerificationMetadata withCandidateVerifiers(List<Person> candidateVerifiers) {
         Utils.checkNotNull(candidateVerifiers, "candidateVerifiers");
@@ -294,7 +297,8 @@ public class VerificationMetadata {
 
 
     /**
-     * List of potential verifiers for the document e.g. old verifiers and/or users with view/edit permissions.
+     * List of potential verifiers for the document e.g. old verifiers and/or users with view/edit
+     * permissions.
      */
     public VerificationMetadata withCandidateVerifiers(Optional<? extends List<Person>> candidateVerifiers) {
         Utils.checkNotNull(candidateVerifiers, "candidateVerifiers");
@@ -483,7 +487,8 @@ public class VerificationMetadata {
 
 
         /**
-         * List of potential verifiers for the document e.g. old verifiers and/or users with view/edit permissions.
+         * List of potential verifiers for the document e.g. old verifiers and/or users with view/edit
+         * permissions.
          */
         public Builder candidateVerifiers(List<Person> candidateVerifiers) {
             Utils.checkNotNull(candidateVerifiers, "candidateVerifiers");
@@ -492,7 +497,8 @@ public class VerificationMetadata {
         }
 
         /**
-         * List of potential verifiers for the document e.g. old verifiers and/or users with view/edit permissions.
+         * List of potential verifiers for the document e.g. old verifiers and/or users with view/edit
+         * permissions.
          */
         public Builder candidateVerifiers(Optional<? extends List<Person>> candidateVerifiers) {
             Utils.checkNotNull(candidateVerifiers, "candidateVerifiers");

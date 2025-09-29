@@ -11,7 +11,9 @@ import java.util.Optional;
 /**
  * FeedbackCategory
  * 
- * <p>The feature category to which the feedback applies. These should be broad product areas such as Announcements, Answers, Search, etc. rather than specific components or UI treatments within those areas.
+ * <p>The feature category to which the feedback applies. These should be broad product areas such as
+ * Announcements, Answers, Search, etc. rather than specific components or UI treatments within those
+ * areas.
  */
 public enum FeedbackCategory {
     ANNOUNCEMENT("ANNOUNCEMENT"),

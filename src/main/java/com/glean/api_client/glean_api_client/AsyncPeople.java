@@ -71,9 +71,11 @@ public class AsyncPeople {
     /**
      * Beta: Get user information
      * 
-     * <p>Gives various information that would help in debugging related to a particular user. Currently in beta, might undergo breaking changes without prior notice.
+     * <p>Gives various information that would help in debugging related to a particular user. Currently in
+     * beta, might undergo breaking changes without prior notice.
      * 
-     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
+     * <p>Tip: Refer to the [Troubleshooting
+     * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
      * 
      * @return The async call builder
      */
@@ -84,13 +86,15 @@ public class AsyncPeople {
     /**
      * Beta: Get user information
      * 
-     * <p>Gives various information that would help in debugging related to a particular user. Currently in beta, might undergo breaking changes without prior notice.
+     * <p>Gives various information that would help in debugging related to a particular user. Currently in
+     * beta, might undergo breaking changes without prior notice.
      * 
-     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
+     * <p>Tip: Refer to the [Troubleshooting
+     * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
      * 
      * @param datasource The datasource to which the user belongs
      * @param debugUserRequest Describes the request body of the /debug/{datasource}/user API call
-     * @return CompletableFuture&lt;PostApiIndexV1DebugDatasourceUserResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1DebugDatasourceUserResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1DebugDatasourceUserResponse> debug(String datasource, DebugUserRequest debugUserRequest) {
         PostApiIndexV1DebugDatasourceUserRequest request =
@@ -111,7 +115,9 @@ public class AsyncPeople {
      * 
      * <p>Fetches user count for the specified custom datasource.
      * 
-     * <p>Tip: Use [/debug/{datasource}/status](https://developers.glean.com/indexing/debugging/datasource-status) for richer information.
+     * <p>Tip: Use
+     * [/debug/{datasource}/status](https://developers.glean.com/indexing/debugging/datasource-status) for
+     * richer information.
      * 
      * @return The async call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -126,10 +132,12 @@ public class AsyncPeople {
      * 
      * <p>Fetches user count for the specified custom datasource.
      * 
-     * <p>Tip: Use [/debug/{datasource}/status](https://developers.glean.com/indexing/debugging/datasource-status) for richer information.
+     * <p>Tip: Use
+     * [/debug/{datasource}/status](https://developers.glean.com/indexing/debugging/datasource-status) for
+     * richer information.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostApiIndexV1GetusercountResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1GetusercountResponse>} - The async response
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
@@ -158,7 +166,7 @@ public class AsyncPeople {
      * <p>Adds an employee or updates information about an employee
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostApiIndexV1IndexemployeeResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1IndexemployeeResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1IndexemployeeResponse> index(IndexEmployeeRequest request) {
         AsyncRequestOperation<IndexEmployeeRequest, PostApiIndexV1IndexemployeeResponse> operation
@@ -171,7 +179,9 @@ public class AsyncPeople {
     /**
      * Bulk index employees
      * 
-     * <p>Replaces all the currently indexed employees using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces all the currently indexed employees using paginated batch API calls. Please refer to the
+     * [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for
+     * an explanation of how to use bulk endpoints.
      * 
      * @return The async call builder
      */
@@ -182,10 +192,12 @@ public class AsyncPeople {
     /**
      * Bulk index employees
      * 
-     * <p>Replaces all the currently indexed employees using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces all the currently indexed employees using paginated batch API calls. Please refer to the
+     * [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for
+     * an explanation of how to use bulk endpoints.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostApiIndexV1BulkindexemployeesResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1BulkindexemployeesResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1BulkindexemployeesResponse> bulkIndex(BulkIndexEmployeesRequest request) {
         AsyncRequestOperation<BulkIndexEmployeesRequest, PostApiIndexV1BulkindexemployeesResponse> operation
@@ -198,7 +210,9 @@ public class AsyncPeople {
     /**
      * Schedules the processing of uploaded employees and teams
      * 
-     * <p>Schedules the immediate processing of employees and teams uploaded through the indexing API. By default all uploaded people data will be processed asynchronously but this API can be used to schedule its processing on demand.
+     * <p>Schedules the immediate processing of employees and teams uploaded through the indexing API. By
+     * default all uploaded people data will be processed asynchronously but this API can be used to
+     * schedule its processing on demand.
      * 
      * @return The async call builder
      */
@@ -209,9 +223,11 @@ public class AsyncPeople {
     /**
      * Schedules the processing of uploaded employees and teams
      * 
-     * <p>Schedules the immediate processing of employees and teams uploaded through the indexing API. By default all uploaded people data will be processed asynchronously but this API can be used to schedule its processing on demand.
+     * <p>Schedules the immediate processing of employees and teams uploaded through the indexing API. By
+     * default all uploaded people data will be processed asynchronously but this API can be used to
+     * schedule its processing on demand.
      * 
-     * @return CompletableFuture&lt;PostApiIndexV1ProcessallemployeesandteamsResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1ProcessallemployeesandteamsResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1ProcessallemployeesandteamsResponse> processAllEmployeesAndTeamsDirect() {
         AsyncRequestlessOperation<PostApiIndexV1ProcessallemployeesandteamsResponse> operation
@@ -238,7 +254,7 @@ public class AsyncPeople {
      * <p>Delete an employee. Silently succeeds if employee is not present.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostApiIndexV1DeleteemployeeResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1DeleteemployeeResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1DeleteemployeeResponse> delete(DeleteEmployeeRequest request) {
         AsyncRequestOperation<DeleteEmployeeRequest, PostApiIndexV1DeleteemployeeResponse> operation
@@ -265,7 +281,7 @@ public class AsyncPeople {
      * <p>Adds a team or updates information about a team
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostApiIndexV1IndexteamResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1IndexteamResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1IndexteamResponse> indexTeam(IndexTeamRequest request) {
         AsyncRequestOperation<IndexTeamRequest, PostApiIndexV1IndexteamResponse> operation
@@ -292,7 +308,7 @@ public class AsyncPeople {
      * <p>Delete a team based on provided id.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostApiIndexV1DeleteteamResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1DeleteteamResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1DeleteteamResponse> deleteTeam(DeleteTeamRequest request) {
         AsyncRequestOperation<DeleteTeamRequest, PostApiIndexV1DeleteteamResponse> operation
@@ -305,7 +321,9 @@ public class AsyncPeople {
     /**
      * Bulk index teams
      * 
-     * <p>Replaces all the currently indexed teams using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces all the currently indexed teams using paginated batch API calls. Please refer to the [bulk
+     * indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an
+     * explanation of how to use bulk endpoints.
      * 
      * @return The async call builder
      */
@@ -316,10 +334,12 @@ public class AsyncPeople {
     /**
      * Bulk index teams
      * 
-     * <p>Replaces all the currently indexed teams using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces all the currently indexed teams using paginated batch API calls. Please refer to the [bulk
+     * indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an
+     * explanation of how to use bulk endpoints.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostApiIndexV1BulkindexteamsResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1BulkindexteamsResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1BulkindexteamsResponse> bulkIndexTeams(BulkIndexTeamsRequest request) {
         AsyncRequestOperation<BulkIndexTeamsRequest, PostApiIndexV1BulkindexteamsResponse> operation

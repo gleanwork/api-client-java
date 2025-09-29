@@ -43,7 +43,8 @@ public class AsyncTools {
     /**
      * List available tools
      * 
-     * <p>Returns a filtered set of available tools based on optional tool name parameters. If no filters are provided, all available tools are returned.
+     * <p>Returns a filtered set of available tools based on optional tool name parameters. If no filters are
+     * provided, all available tools are returned.
      * 
      * @return The async call builder
      */
@@ -54,9 +55,10 @@ public class AsyncTools {
     /**
      * List available tools
      * 
-     * <p>Returns a filtered set of available tools based on optional tool name parameters. If no filters are provided, all available tools are returned.
+     * <p>Returns a filtered set of available tools based on optional tool name parameters. If no filters are
+     * provided, all available tools are returned.
      * 
-     * @return CompletableFuture&lt;GetRestApiV1ToolsListResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetRestApiV1ToolsListResponse>} - The async response
      */
     public CompletableFuture<GetRestApiV1ToolsListResponse> listDirect() {
         return list(Optional.empty());
@@ -65,10 +67,11 @@ public class AsyncTools {
     /**
      * List available tools
      * 
-     * <p>Returns a filtered set of available tools based on optional tool name parameters. If no filters are provided, all available tools are returned.
+     * <p>Returns a filtered set of available tools based on optional tool name parameters. If no filters are
+     * provided, all available tools are returned.
      * 
      * @param toolNames Optional array of tool names to filter by
-     * @return CompletableFuture&lt;GetRestApiV1ToolsListResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetRestApiV1ToolsListResponse>} - The async response
      */
     public CompletableFuture<GetRestApiV1ToolsListResponse> list(Optional<? extends List<String>> toolNames) {
         GetRestApiV1ToolsListRequest request =
@@ -100,7 +103,7 @@ public class AsyncTools {
      * <p>Execute the specified tool with provided parameters
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostRestApiV1ToolsCallResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostRestApiV1ToolsCallResponse>} - The async response
      */
     public CompletableFuture<PostRestApiV1ToolsCallResponse> run(ToolsCallRequest request) {
         AsyncRequestOperation<ToolsCallRequest, PostRestApiV1ToolsCallResponse> operation

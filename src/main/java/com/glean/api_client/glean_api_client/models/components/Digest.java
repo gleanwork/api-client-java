@@ -33,7 +33,8 @@ public class Digest {
     private Optional<Float> podcastDuration;
 
     /**
-     * The date this digest covers, in YYYY-MM-DD format. Represents the specific day for which the digest content and updates were compiled. This can be empty if the digest is not yet available.
+     * The date this digest covers, in YYYY-MM-DD format. Represents the specific day for which the digest
+     * content and updates were compiled. This can be empty if the digest is not yet available.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("digestDate")
@@ -84,7 +85,8 @@ public class Digest {
     }
 
     /**
-     * The date this digest covers, in YYYY-MM-DD format. Represents the specific day for which the digest content and updates were compiled. This can be empty if the digest is not yet available.
+     * The date this digest covers, in YYYY-MM-DD format. Represents the specific day for which the digest
+     * content and updates were compiled. This can be empty if the digest is not yet available.
      */
     @JsonIgnore
     public Optional<String> digestDate() {
@@ -144,7 +146,8 @@ public class Digest {
     }
 
     /**
-     * The date this digest covers, in YYYY-MM-DD format. Represents the specific day for which the digest content and updates were compiled. This can be empty if the digest is not yet available.
+     * The date this digest covers, in YYYY-MM-DD format. Represents the specific day for which the digest
+     * content and updates were compiled. This can be empty if the digest is not yet available.
      */
     public Digest withDigestDate(String digestDate) {
         Utils.checkNotNull(digestDate, "digestDate");
@@ -154,7 +157,8 @@ public class Digest {
 
 
     /**
-     * The date this digest covers, in YYYY-MM-DD format. Represents the specific day for which the digest content and updates were compiled. This can be empty if the digest is not yet available.
+     * The date this digest covers, in YYYY-MM-DD format. Represents the specific day for which the digest
+     * content and updates were compiled. This can be empty if the digest is not yet available.
      */
     public Digest withDigestDate(Optional<String> digestDate) {
         Utils.checkNotNull(digestDate, "digestDate");
@@ -268,7 +272,8 @@ public class Digest {
 
 
         /**
-         * The date this digest covers, in YYYY-MM-DD format. Represents the specific day for which the digest content and updates were compiled. This can be empty if the digest is not yet available.
+         * The date this digest covers, in YYYY-MM-DD format. Represents the specific day for which the digest
+         * content and updates were compiled. This can be empty if the digest is not yet available.
          */
         public Builder digestDate(String digestDate) {
             Utils.checkNotNull(digestDate, "digestDate");
@@ -277,7 +282,8 @@ public class Digest {
         }
 
         /**
-         * The date this digest covers, in YYYY-MM-DD format. Represents the specific day for which the digest content and updates were compiled. This can be empty if the digest is not yet available.
+         * The date this digest covers, in YYYY-MM-DD format. Represents the specific day for which the digest
+         * content and updates were compiled. This can be empty if the digest is not yet available.
          */
         public Builder digestDate(Optional<String> digestDate) {
             Utils.checkNotNull(digestDate, "digestDate");

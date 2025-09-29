@@ -64,7 +64,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.glean.api-client:glean-api-client:0.9.1'
+implementation 'com.glean.api-client:glean-api-client:0.10.0'
 ```
 
 Maven:
@@ -72,7 +72,7 @@ Maven:
 <dependency>
     <groupId>com.glean.api-client</groupId>
     <artifactId>glean-api-client</artifactId>
-    <version>0.9.1</version>
+    <version>0.10.0</version>
 </dependency>
 ```
 
@@ -487,7 +487,7 @@ For more information on obtaining the appropriate token type, please contact you
 
 #### [client().insights()](docs/sdks/insights/README.md)
 
-* [retrieve](docs/sdks/insights/README.md#retrieve) - Read insights
+* [retrieve](docs/sdks/insights/README.md#retrieve) - Get insights
 
 #### [client().messages()](docs/sdks/messages/README.md)
 

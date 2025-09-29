@@ -27,7 +27,8 @@ public class Answer {
     private long id;
 
     /**
-     * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID isn't available. If both are available, using the Answer ID is preferred.
+     * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID
+     * isn't available. If both are available, using the Answer ID is preferred.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("docId")
@@ -53,7 +54,8 @@ public class Answer {
     private Optional<String> bodyText;
 
     /**
-     * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+     * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards
+     * is no longer permitted.
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -63,7 +65,8 @@ public class Answer {
     private Optional<Long> boardId;
 
     /**
-     * Filters which restrict who should see the answer. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see the answer. Values are taken from the corresponding filters in
+     * people search.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("audienceFilters")
@@ -265,7 +268,8 @@ public class Answer {
     }
 
     /**
-     * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID isn't available. If both are available, using the Answer ID is preferred.
+     * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID
+     * isn't available. If both are available, using the Answer ID is preferred.
      */
     @JsonIgnore
     public Optional<String> docId() {
@@ -295,7 +299,8 @@ public class Answer {
     }
 
     /**
-     * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+     * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards
+     * is no longer permitted.
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -306,7 +311,8 @@ public class Answer {
     }
 
     /**
-     * Filters which restrict who should see the answer. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see the answer. Values are taken from the corresponding filters in
+     * people search.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -449,7 +455,8 @@ public class Answer {
     }
 
     /**
-     * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID isn't available. If both are available, using the Answer ID is preferred.
+     * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID
+     * isn't available. If both are available, using the Answer ID is preferred.
      */
     public Answer withDocId(String docId) {
         Utils.checkNotNull(docId, "docId");
@@ -459,7 +466,8 @@ public class Answer {
 
 
     /**
-     * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID isn't available. If both are available, using the Answer ID is preferred.
+     * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID
+     * isn't available. If both are available, using the Answer ID is preferred.
      */
     public Answer withDocId(Optional<String> docId) {
         Utils.checkNotNull(docId, "docId");
@@ -519,7 +527,8 @@ public class Answer {
     }
 
     /**
-     * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+     * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards
+     * is no longer permitted.
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -532,7 +541,8 @@ public class Answer {
 
 
     /**
-     * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+     * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards
+     * is no longer permitted.
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -544,7 +554,8 @@ public class Answer {
     }
 
     /**
-     * Filters which restrict who should see the answer. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see the answer. Values are taken from the corresponding filters in
+     * people search.
      */
     public Answer withAudienceFilters(List<FacetFilter> audienceFilters) {
         Utils.checkNotNull(audienceFilters, "audienceFilters");
@@ -554,7 +565,8 @@ public class Answer {
 
 
     /**
-     * Filters which restrict who should see the answer. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see the answer. Values are taken from the corresponding filters in
+     * people search.
      */
     public Answer withAudienceFilters(Optional<? extends List<FacetFilter>> audienceFilters) {
         Utils.checkNotNull(audienceFilters, "audienceFilters");
@@ -971,7 +983,8 @@ public class Answer {
 
 
         /**
-         * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID isn't available. If both are available, using the Answer ID is preferred.
+         * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID
+         * isn't available. If both are available, using the Answer ID is preferred.
          */
         public Builder docId(String docId) {
             Utils.checkNotNull(docId, "docId");
@@ -980,7 +993,8 @@ public class Answer {
         }
 
         /**
-         * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID isn't available. If both are available, using the Answer ID is preferred.
+         * Glean Document ID of the Answer. The Glean Document ID is supported for cases where the Answer ID
+         * isn't available. If both are available, using the Answer ID is preferred.
          */
         public Builder docId(Optional<String> docId) {
             Utils.checkNotNull(docId, "docId");
@@ -1041,7 +1055,8 @@ public class Answer {
 
 
         /**
-         * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+         * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards
+         * is no longer permitted.
          * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
@@ -1053,7 +1068,8 @@ public class Answer {
         }
 
         /**
-         * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+         * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards
+         * is no longer permitted.
          * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
@@ -1066,7 +1082,8 @@ public class Answer {
 
 
         /**
-         * Filters which restrict who should see the answer. Values are taken from the corresponding filters in people search.
+         * Filters which restrict who should see the answer. Values are taken from the corresponding filters in
+         * people search.
          */
         public Builder audienceFilters(List<FacetFilter> audienceFilters) {
             Utils.checkNotNull(audienceFilters, "audienceFilters");
@@ -1075,7 +1092,8 @@ public class Answer {
         }
 
         /**
-         * Filters which restrict who should see the answer. Values are taken from the corresponding filters in people search.
+         * Filters which restrict who should see the answer. Values are taken from the corresponding filters in
+         * people search.
          */
         public Builder audienceFilters(Optional<? extends List<FacetFilter>> audienceFilters) {
             Utils.checkNotNull(audienceFilters, "audienceFilters");

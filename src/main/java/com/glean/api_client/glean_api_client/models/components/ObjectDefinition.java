@@ -23,7 +23,8 @@ import java.util.Optional;
  */
 public class ObjectDefinition {
     /**
-     * Unique identifier for this `DocumentMetadata.objectType`. If omitted, this definition is used as a default for all unmatched `DocumentMetadata.objectType`s in this datasource.
+     * Unique identifier for this `DocumentMetadata.objectType`. If omitted, this definition is used as a
+     * default for all unmatched `DocumentMetadata.objectType`s in this datasource.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
@@ -49,7 +50,8 @@ public class ObjectDefinition {
     private Optional<? extends List<PropertyDefinition>> propertyDefinitions;
 
     /**
-     * A list of `PropertyGroup`s belonging to this object type, which will group properties to be displayed together in the UI.
+     * A list of `PropertyGroup`s belonging to this object type, which will group properties to be
+     * displayed together in the UI.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("propertyGroups")
@@ -90,7 +92,8 @@ public class ObjectDefinition {
     }
 
     /**
-     * Unique identifier for this `DocumentMetadata.objectType`. If omitted, this definition is used as a default for all unmatched `DocumentMetadata.objectType`s in this datasource.
+     * Unique identifier for this `DocumentMetadata.objectType`. If omitted, this definition is used as a
+     * default for all unmatched `DocumentMetadata.objectType`s in this datasource.
      */
     @JsonIgnore
     public Optional<String> name() {
@@ -121,7 +124,8 @@ public class ObjectDefinition {
     }
 
     /**
-     * A list of `PropertyGroup`s belonging to this object type, which will group properties to be displayed together in the UI.
+     * A list of `PropertyGroup`s belonging to this object type, which will group properties to be
+     * displayed together in the UI.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -143,7 +147,8 @@ public class ObjectDefinition {
 
 
     /**
-     * Unique identifier for this `DocumentMetadata.objectType`. If omitted, this definition is used as a default for all unmatched `DocumentMetadata.objectType`s in this datasource.
+     * Unique identifier for this `DocumentMetadata.objectType`. If omitted, this definition is used as a
+     * default for all unmatched `DocumentMetadata.objectType`s in this datasource.
      */
     public ObjectDefinition withName(String name) {
         Utils.checkNotNull(name, "name");
@@ -153,7 +158,8 @@ public class ObjectDefinition {
 
 
     /**
-     * Unique identifier for this `DocumentMetadata.objectType`. If omitted, this definition is used as a default for all unmatched `DocumentMetadata.objectType`s in this datasource.
+     * Unique identifier for this `DocumentMetadata.objectType`. If omitted, this definition is used as a
+     * default for all unmatched `DocumentMetadata.objectType`s in this datasource.
      */
     public ObjectDefinition withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
@@ -213,7 +219,8 @@ public class ObjectDefinition {
     }
 
     /**
-     * A list of `PropertyGroup`s belonging to this object type, which will group properties to be displayed together in the UI.
+     * A list of `PropertyGroup`s belonging to this object type, which will group properties to be
+     * displayed together in the UI.
      */
     public ObjectDefinition withPropertyGroups(List<PropertyGroup> propertyGroups) {
         Utils.checkNotNull(propertyGroups, "propertyGroups");
@@ -223,7 +230,8 @@ public class ObjectDefinition {
 
 
     /**
-     * A list of `PropertyGroup`s belonging to this object type, which will group properties to be displayed together in the UI.
+     * A list of `PropertyGroup`s belonging to this object type, which will group properties to be
+     * displayed together in the UI.
      */
     public ObjectDefinition withPropertyGroups(Optional<? extends List<PropertyGroup>> propertyGroups) {
         Utils.checkNotNull(propertyGroups, "propertyGroups");
@@ -307,7 +315,8 @@ public class ObjectDefinition {
 
 
         /**
-         * Unique identifier for this `DocumentMetadata.objectType`. If omitted, this definition is used as a default for all unmatched `DocumentMetadata.objectType`s in this datasource.
+         * Unique identifier for this `DocumentMetadata.objectType`. If omitted, this definition is used as a
+         * default for all unmatched `DocumentMetadata.objectType`s in this datasource.
          */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
@@ -316,7 +325,8 @@ public class ObjectDefinition {
         }
 
         /**
-         * Unique identifier for this `DocumentMetadata.objectType`. If omitted, this definition is used as a default for all unmatched `DocumentMetadata.objectType`s in this datasource.
+         * Unique identifier for this `DocumentMetadata.objectType`. If omitted, this definition is used as a
+         * default for all unmatched `DocumentMetadata.objectType`s in this datasource.
          */
         public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
@@ -377,7 +387,8 @@ public class ObjectDefinition {
 
 
         /**
-         * A list of `PropertyGroup`s belonging to this object type, which will group properties to be displayed together in the UI.
+         * A list of `PropertyGroup`s belonging to this object type, which will group properties to be
+         * displayed together in the UI.
          */
         public Builder propertyGroups(List<PropertyGroup> propertyGroups) {
             Utils.checkNotNull(propertyGroups, "propertyGroups");
@@ -386,7 +397,8 @@ public class ObjectDefinition {
         }
 
         /**
-         * A list of `PropertyGroup`s belonging to this object type, which will group properties to be displayed together in the UI.
+         * A list of `PropertyGroup`s belonging to this object type, which will group properties to be
+         * displayed together in the UI.
          */
         public Builder propertyGroups(Optional<? extends List<PropertyGroup>> propertyGroups) {
             Utils.checkNotNull(propertyGroups, "propertyGroups");

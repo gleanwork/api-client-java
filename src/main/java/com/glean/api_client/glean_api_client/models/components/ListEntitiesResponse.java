@@ -40,7 +40,8 @@ public class ListEntitiesResponse {
     private Optional<? extends List<FacetResult>> facetResults;
 
     /**
-     * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
+     * Pagination cursor. A previously received opaque token representing the position in the overall
+     * results at which to start.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cursor")
@@ -136,7 +137,8 @@ public class ListEntitiesResponse {
     }
 
     /**
-     * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
+     * Pagination cursor. A previously received opaque token representing the position in the overall
+     * results at which to start.
      */
     @JsonIgnore
     public Optional<String> cursor() {
@@ -235,7 +237,8 @@ public class ListEntitiesResponse {
     }
 
     /**
-     * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
+     * Pagination cursor. A previously received opaque token representing the position in the overall
+     * results at which to start.
      */
     public ListEntitiesResponse withCursor(String cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -245,7 +248,8 @@ public class ListEntitiesResponse {
 
 
     /**
-     * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
+     * Pagination cursor. A previously received opaque token representing the position in the overall
+     * results at which to start.
      */
     public ListEntitiesResponse withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -451,7 +455,8 @@ public class ListEntitiesResponse {
 
 
         /**
-         * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
+         * Pagination cursor. A previously received opaque token representing the position in the overall
+         * results at which to start.
          */
         public Builder cursor(String cursor) {
             Utils.checkNotNull(cursor, "cursor");
@@ -460,7 +465,8 @@ public class ListEntitiesResponse {
         }
 
         /**
-         * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
+         * Pagination cursor. A previously received opaque token representing the position in the overall
+         * results at which to start.
          */
         public Builder cursor(Optional<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");

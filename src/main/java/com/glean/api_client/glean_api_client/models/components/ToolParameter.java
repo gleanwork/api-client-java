@@ -48,7 +48,8 @@ public class ToolParameter {
     private Optional<Boolean> isRequired;
 
     /**
-     * The possible values for the parameter. Can contain only primitive values or arrays of primitive values.
+     * The possible values for the parameter. Can contain only primitive values or arrays of primitive
+     * values.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("possibleValues")
@@ -131,7 +132,8 @@ public class ToolParameter {
     }
 
     /**
-     * The possible values for the parameter. Can contain only primitive values or arrays of primitive values.
+     * The possible values for the parameter. Can contain only primitive values or arrays of primitive
+     * values.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -236,7 +238,8 @@ public class ToolParameter {
     }
 
     /**
-     * The possible values for the parameter. Can contain only primitive values or arrays of primitive values.
+     * The possible values for the parameter. Can contain only primitive values or arrays of primitive
+     * values.
      */
     public ToolParameter withPossibleValues(List<String> possibleValues) {
         Utils.checkNotNull(possibleValues, "possibleValues");
@@ -246,7 +249,8 @@ public class ToolParameter {
 
 
     /**
-     * The possible values for the parameter. Can contain only primitive values or arrays of primitive values.
+     * The possible values for the parameter. Can contain only primitive values or arrays of primitive
+     * values.
      */
     public ToolParameter withPossibleValues(Optional<? extends List<String>> possibleValues) {
         Utils.checkNotNull(possibleValues, "possibleValues");
@@ -424,7 +428,8 @@ public class ToolParameter {
 
 
         /**
-         * The possible values for the parameter. Can contain only primitive values or arrays of primitive values.
+         * The possible values for the parameter. Can contain only primitive values or arrays of primitive
+         * values.
          */
         public Builder possibleValues(List<String> possibleValues) {
             Utils.checkNotNull(possibleValues, "possibleValues");
@@ -433,7 +438,8 @@ public class ToolParameter {
         }
 
         /**
-         * The possible values for the parameter. Can contain only primitive values or arrays of primitive values.
+         * The possible values for the parameter. Can contain only primitive values or arrays of primitive
+         * values.
          */
         public Builder possibleValues(Optional<? extends List<String>> possibleValues) {
             Utils.checkNotNull(possibleValues, "possibleValues");

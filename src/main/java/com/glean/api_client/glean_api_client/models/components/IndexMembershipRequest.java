@@ -21,7 +21,8 @@ import java.util.Optional;
  */
 public class IndexMembershipRequest {
     /**
-     * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
+     * Version number for document for optimistic concurrency control. If absent or 0 then no version
+     * checks are done.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("version")
@@ -34,7 +35,8 @@ public class IndexMembershipRequest {
     private String datasource;
 
     /**
-     * describes the membership row of a group. Only one of memberUserId and memberGroupName can be specified.
+     * describes the membership row of a group. Only one of memberUserId and memberGroupName can be
+     * specified.
      */
     @JsonProperty("membership")
     private DatasourceMembershipDefinition membership;
@@ -59,7 +61,8 @@ public class IndexMembershipRequest {
     }
 
     /**
-     * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
+     * Version number for document for optimistic concurrency control. If absent or 0 then no version
+     * checks are done.
      */
     @JsonIgnore
     public Optional<Long> version() {
@@ -75,7 +78,8 @@ public class IndexMembershipRequest {
     }
 
     /**
-     * describes the membership row of a group. Only one of memberUserId and memberGroupName can be specified.
+     * describes the membership row of a group. Only one of memberUserId and memberGroupName can be
+     * specified.
      */
     @JsonIgnore
     public DatasourceMembershipDefinition membership() {
@@ -88,7 +92,8 @@ public class IndexMembershipRequest {
 
 
     /**
-     * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
+     * Version number for document for optimistic concurrency control. If absent or 0 then no version
+     * checks are done.
      */
     public IndexMembershipRequest withVersion(long version) {
         Utils.checkNotNull(version, "version");
@@ -98,7 +103,8 @@ public class IndexMembershipRequest {
 
 
     /**
-     * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
+     * Version number for document for optimistic concurrency control. If absent or 0 then no version
+     * checks are done.
      */
     public IndexMembershipRequest withVersion(Optional<Long> version) {
         Utils.checkNotNull(version, "version");
@@ -116,7 +122,8 @@ public class IndexMembershipRequest {
     }
 
     /**
-     * describes the membership row of a group. Only one of memberUserId and memberGroupName can be specified.
+     * describes the membership row of a group. Only one of memberUserId and memberGroupName can be
+     * specified.
      */
     public IndexMembershipRequest withMembership(DatasourceMembershipDefinition membership) {
         Utils.checkNotNull(membership, "membership");
@@ -168,7 +175,8 @@ public class IndexMembershipRequest {
 
 
         /**
-         * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
+         * Version number for document for optimistic concurrency control. If absent or 0 then no version
+         * checks are done.
          */
         public Builder version(long version) {
             Utils.checkNotNull(version, "version");
@@ -177,7 +185,8 @@ public class IndexMembershipRequest {
         }
 
         /**
-         * Version number for document for optimistic concurrency control. If absent or 0 then no version checks are done.
+         * Version number for document for optimistic concurrency control. If absent or 0 then no version
+         * checks are done.
          */
         public Builder version(Optional<Long> version) {
             Utils.checkNotNull(version, "version");
@@ -197,7 +206,8 @@ public class IndexMembershipRequest {
 
 
         /**
-         * describes the membership row of a group. Only one of memberUserId and memberGroupName can be specified.
+         * describes the membership row of a group. Only one of memberUserId and memberGroupName can be
+         * specified.
          */
         public Builder membership(DatasourceMembershipDefinition membership) {
             Utils.checkNotNull(membership, "membership");

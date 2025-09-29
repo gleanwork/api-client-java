@@ -26,7 +26,8 @@ public class RecommendationsRequest {
     private Optional<OffsetDateTime> timestamp;
 
     /**
-     * A previously received trackingToken for a search associated with the same query. Useful for more requests and requests for other tabs.
+     * A previously received trackingToken for a search associated with the same query. Useful for more
+     * requests and requests for other tabs.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("trackingToken")
@@ -43,7 +44,8 @@ public class RecommendationsRequest {
     private Optional<? extends Document> sourceDocument;
 
     /**
-     * Hint to the server about how many results to send back. Server may return less or more. Structured results and clustered results don't count towards pageSize.
+     * Hint to the server about how many results to send back. Server may return less or more. Structured
+     * results and clustered results don't count towards pageSize.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pageSize")
@@ -109,7 +111,8 @@ public class RecommendationsRequest {
     }
 
     /**
-     * A previously received trackingToken for a search associated with the same query. Useful for more requests and requests for other tabs.
+     * A previously received trackingToken for a search associated with the same query. Useful for more
+     * requests and requests for other tabs.
      */
     @JsonIgnore
     public Optional<String> trackingToken() {
@@ -129,7 +132,8 @@ public class RecommendationsRequest {
     }
 
     /**
-     * Hint to the server about how many results to send back. Server may return less or more. Structured results and clustered results don't count towards pageSize.
+     * Hint to the server about how many results to send back. Server may return less or more. Structured
+     * results and clustered results don't count towards pageSize.
      */
     @JsonIgnore
     public Optional<Long> pageSize() {
@@ -181,7 +185,8 @@ public class RecommendationsRequest {
     }
 
     /**
-     * A previously received trackingToken for a search associated with the same query. Useful for more requests and requests for other tabs.
+     * A previously received trackingToken for a search associated with the same query. Useful for more
+     * requests and requests for other tabs.
      */
     public RecommendationsRequest withTrackingToken(String trackingToken) {
         Utils.checkNotNull(trackingToken, "trackingToken");
@@ -191,7 +196,8 @@ public class RecommendationsRequest {
 
 
     /**
-     * A previously received trackingToken for a search associated with the same query. Useful for more requests and requests for other tabs.
+     * A previously received trackingToken for a search associated with the same query. Useful for more
+     * requests and requests for other tabs.
      */
     public RecommendationsRequest withTrackingToken(Optional<String> trackingToken) {
         Utils.checkNotNull(trackingToken, "trackingToken");
@@ -226,7 +232,8 @@ public class RecommendationsRequest {
     }
 
     /**
-     * Hint to the server about how many results to send back. Server may return less or more. Structured results and clustered results don't count towards pageSize.
+     * Hint to the server about how many results to send back. Server may return less or more. Structured
+     * results and clustered results don't count towards pageSize.
      */
     public RecommendationsRequest withPageSize(long pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
@@ -236,7 +243,8 @@ public class RecommendationsRequest {
 
 
     /**
-     * Hint to the server about how many results to send back. Server may return less or more. Structured results and clustered results don't count towards pageSize.
+     * Hint to the server about how many results to send back. Server may return less or more. Structured
+     * results and clustered results don't count towards pageSize.
      */
     public RecommendationsRequest withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
@@ -374,7 +382,8 @@ public class RecommendationsRequest {
 
 
         /**
-         * A previously received trackingToken for a search associated with the same query. Useful for more requests and requests for other tabs.
+         * A previously received trackingToken for a search associated with the same query. Useful for more
+         * requests and requests for other tabs.
          */
         public Builder trackingToken(String trackingToken) {
             Utils.checkNotNull(trackingToken, "trackingToken");
@@ -383,7 +392,8 @@ public class RecommendationsRequest {
         }
 
         /**
-         * A previously received trackingToken for a search associated with the same query. Useful for more requests and requests for other tabs.
+         * A previously received trackingToken for a search associated with the same query. Useful for more
+         * requests and requests for other tabs.
          */
         public Builder trackingToken(Optional<String> trackingToken) {
             Utils.checkNotNull(trackingToken, "trackingToken");
@@ -419,7 +429,8 @@ public class RecommendationsRequest {
 
 
         /**
-         * Hint to the server about how many results to send back. Server may return less or more. Structured results and clustered results don't count towards pageSize.
+         * Hint to the server about how many results to send back. Server may return less or more. Structured
+         * results and clustered results don't count towards pageSize.
          */
         public Builder pageSize(long pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
@@ -428,7 +439,8 @@ public class RecommendationsRequest {
         }
 
         /**
-         * Hint to the server about how many results to send back. Server may return less or more. Structured results and clustered results don't count towards pageSize.
+         * Hint to the server about how many results to send back. Server may return less or more. Structured
+         * results and clustered results don't count towards pageSize.
          */
         public Builder pageSize(Optional<Long> pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");

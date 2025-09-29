@@ -23,7 +23,8 @@ public class OperatorMetadata {
     private String name;
 
     /**
-     * Whether this operator is supported by default or something that was created within a workplace app (e.g. custom jira field).
+     * Whether this operator is supported by default or something that was created within a workplace app
+     * (e.g. custom jira field).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("isCustom")
@@ -52,7 +53,8 @@ public class OperatorMetadata {
     private Optional<String> value;
 
     /**
-     * Human readable value of the operator that can be shown to the user. Only applies when result is an operator value.
+     * Human readable value of the operator that can be shown to the user. Only applies when result is an
+     * operator value.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("displayValue")
@@ -96,7 +98,8 @@ public class OperatorMetadata {
     }
 
     /**
-     * Whether this operator is supported by default or something that was created within a workplace app (e.g. custom jira field).
+     * Whether this operator is supported by default or something that was created within a workplace app
+     * (e.g. custom jira field).
      */
     @JsonIgnore
     public Optional<Boolean> isCustom() {
@@ -129,7 +132,8 @@ public class OperatorMetadata {
     }
 
     /**
-     * Human readable value of the operator that can be shown to the user. Only applies when result is an operator value.
+     * Human readable value of the operator that can be shown to the user. Only applies when result is an
+     * operator value.
      */
     @JsonIgnore
     public Optional<String> displayValue() {
@@ -148,7 +152,8 @@ public class OperatorMetadata {
     }
 
     /**
-     * Whether this operator is supported by default or something that was created within a workplace app (e.g. custom jira field).
+     * Whether this operator is supported by default or something that was created within a workplace app
+     * (e.g. custom jira field).
      */
     public OperatorMetadata withIsCustom(boolean isCustom) {
         Utils.checkNotNull(isCustom, "isCustom");
@@ -158,7 +163,8 @@ public class OperatorMetadata {
 
 
     /**
-     * Whether this operator is supported by default or something that was created within a workplace app (e.g. custom jira field).
+     * Whether this operator is supported by default or something that was created within a workplace app
+     * (e.g. custom jira field).
      */
     public OperatorMetadata withIsCustom(Optional<Boolean> isCustom) {
         Utils.checkNotNull(isCustom, "isCustom");
@@ -225,7 +231,8 @@ public class OperatorMetadata {
     }
 
     /**
-     * Human readable value of the operator that can be shown to the user. Only applies when result is an operator value.
+     * Human readable value of the operator that can be shown to the user. Only applies when result is an
+     * operator value.
      */
     public OperatorMetadata withDisplayValue(String displayValue) {
         Utils.checkNotNull(displayValue, "displayValue");
@@ -235,7 +242,8 @@ public class OperatorMetadata {
 
 
     /**
-     * Human readable value of the operator that can be shown to the user. Only applies when result is an operator value.
+     * Human readable value of the operator that can be shown to the user. Only applies when result is an
+     * operator value.
      */
     public OperatorMetadata withDisplayValue(Optional<String> displayValue) {
         Utils.checkNotNull(displayValue, "displayValue");
@@ -312,7 +320,8 @@ public class OperatorMetadata {
 
 
         /**
-         * Whether this operator is supported by default or something that was created within a workplace app (e.g. custom jira field).
+         * Whether this operator is supported by default or something that was created within a workplace app
+         * (e.g. custom jira field).
          */
         public Builder isCustom(boolean isCustom) {
             Utils.checkNotNull(isCustom, "isCustom");
@@ -321,7 +330,8 @@ public class OperatorMetadata {
         }
 
         /**
-         * Whether this operator is supported by default or something that was created within a workplace app (e.g. custom jira field).
+         * Whether this operator is supported by default or something that was created within a workplace app
+         * (e.g. custom jira field).
          */
         public Builder isCustom(Optional<Boolean> isCustom) {
             Utils.checkNotNull(isCustom, "isCustom");
@@ -389,7 +399,8 @@ public class OperatorMetadata {
 
 
         /**
-         * Human readable value of the operator that can be shown to the user. Only applies when result is an operator value.
+         * Human readable value of the operator that can be shown to the user. Only applies when result is an
+         * operator value.
          */
         public Builder displayValue(String displayValue) {
             Utils.checkNotNull(displayValue, "displayValue");
@@ -398,7 +409,8 @@ public class OperatorMetadata {
         }
 
         /**
-         * Human readable value of the operator that can be shown to the user. Only applies when result is an operator value.
+         * Human readable value of the operator that can be shown to the user. Only applies when result is an
+         * operator value.
          */
         public Builder displayValue(Optional<String> displayValue) {
             Utils.checkNotNull(displayValue, "displayValue");

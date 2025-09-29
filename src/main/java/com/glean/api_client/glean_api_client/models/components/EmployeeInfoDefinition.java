@@ -53,7 +53,8 @@ public class EmployeeInfoDefinition {
     private Optional<String> preferredName;
 
     /**
-     * **[Advanced]** A unique universal internal identifier for the employee. This is solely used for understanding manager relationships along with `managerId`.
+     * **[Advanced]** A unique universal internal identifier for the employee. This is solely used for
+     * understanding manager relationships along with `managerId`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
@@ -98,7 +99,8 @@ public class EmployeeInfoDefinition {
     private Optional<String> photoUrl;
 
     /**
-     * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
+     * Typically the highest level organizational unit; generally applies to bigger companies with multiple
+     * distinct businesses.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("businessUnit")
@@ -181,7 +183,8 @@ public class EmployeeInfoDefinition {
     private Optional<String> managerEmail;
 
     /**
-     * **[Advanced]** A unique universal internal identifier for the employee's manager. This is solely used in conjunction with `id`.
+     * **[Advanced]** A unique universal internal identifier for the employee's manager. This is solely
+     * used in conjunction with `id`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("managerId")
@@ -195,7 +198,11 @@ public class EmployeeInfoDefinition {
     private Optional<String> type;
 
     /**
-     * List of unidirectional relationships with other employees. E.g. this employee (`A`) is a CHIEF_OF_STAFF to another employee (`B`); or this employee (`A`) is an EXECUTIVE_ASSISTANT of another employee (`C`). The mapping should be attached to `A`'s profile.
+     * List of unidirectional relationships with other employees. E.g. this employee (`A`) is a
+     * CHIEF_OF_STAFF to another employee (`B`); or this employee (`A`) is an EXECUTIVE_ASSISTANT of
+     * another employee (`C`).
+     * 
+     * <p>The mapping should be attached to `A`'s profile.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("relationships")
@@ -347,7 +354,8 @@ public class EmployeeInfoDefinition {
     }
 
     /**
-     * **[Advanced]** A unique universal internal identifier for the employee. This is solely used for understanding manager relationships along with `managerId`.
+     * **[Advanced]** A unique universal internal identifier for the employee. This is solely used for
+     * understanding manager relationships along with `managerId`.
      */
     @JsonIgnore
     public Optional<String> id() {
@@ -399,7 +407,8 @@ public class EmployeeInfoDefinition {
     }
 
     /**
-     * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
+     * Typically the highest level organizational unit; generally applies to bigger companies with multiple
+     * distinct businesses.
      */
     @JsonIgnore
     public Optional<String> businessUnit() {
@@ -499,7 +508,8 @@ public class EmployeeInfoDefinition {
     }
 
     /**
-     * **[Advanced]** A unique universal internal identifier for the employee's manager. This is solely used in conjunction with `id`.
+     * **[Advanced]** A unique universal internal identifier for the employee's manager. This is solely
+     * used in conjunction with `id`.
      */
     @JsonIgnore
     public Optional<String> managerId() {
@@ -515,7 +525,11 @@ public class EmployeeInfoDefinition {
     }
 
     /**
-     * List of unidirectional relationships with other employees. E.g. this employee (`A`) is a CHIEF_OF_STAFF to another employee (`B`); or this employee (`A`) is an EXECUTIVE_ASSISTANT of another employee (`C`). The mapping should be attached to `A`'s profile.
+     * List of unidirectional relationships with other employees. E.g. this employee (`A`) is a
+     * CHIEF_OF_STAFF to another employee (`B`); or this employee (`A`) is an EXECUTIVE_ASSISTANT of
+     * another employee (`C`).
+     * 
+     * <p>The mapping should be attached to `A`'s profile.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -612,7 +626,8 @@ public class EmployeeInfoDefinition {
     }
 
     /**
-     * **[Advanced]** A unique universal internal identifier for the employee. This is solely used for understanding manager relationships along with `managerId`.
+     * **[Advanced]** A unique universal internal identifier for the employee. This is solely used for
+     * understanding manager relationships along with `managerId`.
      */
     public EmployeeInfoDefinition withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -622,7 +637,8 @@ public class EmployeeInfoDefinition {
 
 
     /**
-     * **[Advanced]** A unique universal internal identifier for the employee. This is solely used for understanding manager relationships along with `managerId`.
+     * **[Advanced]** A unique universal internal identifier for the employee. This is solely used for
+     * understanding manager relationships along with `managerId`.
      */
     public EmployeeInfoDefinition withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
@@ -732,7 +748,8 @@ public class EmployeeInfoDefinition {
     }
 
     /**
-     * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
+     * Typically the highest level organizational unit; generally applies to bigger companies with multiple
+     * distinct businesses.
      */
     public EmployeeInfoDefinition withBusinessUnit(String businessUnit) {
         Utils.checkNotNull(businessUnit, "businessUnit");
@@ -742,7 +759,8 @@ public class EmployeeInfoDefinition {
 
 
     /**
-     * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
+     * Typically the highest level organizational unit; generally applies to bigger companies with multiple
+     * distinct businesses.
      */
     public EmployeeInfoDefinition withBusinessUnit(Optional<String> businessUnit) {
         Utils.checkNotNull(businessUnit, "businessUnit");
@@ -950,7 +968,8 @@ public class EmployeeInfoDefinition {
     }
 
     /**
-     * **[Advanced]** A unique universal internal identifier for the employee's manager. This is solely used in conjunction with `id`.
+     * **[Advanced]** A unique universal internal identifier for the employee's manager. This is solely
+     * used in conjunction with `id`.
      */
     public EmployeeInfoDefinition withManagerId(String managerId) {
         Utils.checkNotNull(managerId, "managerId");
@@ -960,7 +979,8 @@ public class EmployeeInfoDefinition {
 
 
     /**
-     * **[Advanced]** A unique universal internal identifier for the employee's manager. This is solely used in conjunction with `id`.
+     * **[Advanced]** A unique universal internal identifier for the employee's manager. This is solely
+     * used in conjunction with `id`.
      */
     public EmployeeInfoDefinition withManagerId(Optional<String> managerId) {
         Utils.checkNotNull(managerId, "managerId");
@@ -988,7 +1008,11 @@ public class EmployeeInfoDefinition {
     }
 
     /**
-     * List of unidirectional relationships with other employees. E.g. this employee (`A`) is a CHIEF_OF_STAFF to another employee (`B`); or this employee (`A`) is an EXECUTIVE_ASSISTANT of another employee (`C`). The mapping should be attached to `A`'s profile.
+     * List of unidirectional relationships with other employees. E.g. this employee (`A`) is a
+     * CHIEF_OF_STAFF to another employee (`B`); or this employee (`A`) is an EXECUTIVE_ASSISTANT of
+     * another employee (`C`).
+     * 
+     * <p>The mapping should be attached to `A`'s profile.
      */
     public EmployeeInfoDefinition withRelationships(List<EntityRelationship> relationships) {
         Utils.checkNotNull(relationships, "relationships");
@@ -998,7 +1022,11 @@ public class EmployeeInfoDefinition {
 
 
     /**
-     * List of unidirectional relationships with other employees. E.g. this employee (`A`) is a CHIEF_OF_STAFF to another employee (`B`); or this employee (`A`) is an EXECUTIVE_ASSISTANT of another employee (`C`). The mapping should be attached to `A`'s profile.
+     * List of unidirectional relationships with other employees. E.g. this employee (`A`) is a
+     * CHIEF_OF_STAFF to another employee (`B`); or this employee (`A`) is an EXECUTIVE_ASSISTANT of
+     * another employee (`C`).
+     * 
+     * <p>The mapping should be attached to `A`'s profile.
      */
     public EmployeeInfoDefinition withRelationships(Optional<? extends List<EntityRelationship>> relationships) {
         Utils.checkNotNull(relationships, "relationships");
@@ -1260,7 +1288,8 @@ public class EmployeeInfoDefinition {
 
 
         /**
-         * **[Advanced]** A unique universal internal identifier for the employee. This is solely used for understanding manager relationships along with `managerId`.
+         * **[Advanced]** A unique universal internal identifier for the employee. This is solely used for
+         * understanding manager relationships along with `managerId`.
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -1269,7 +1298,8 @@ public class EmployeeInfoDefinition {
         }
 
         /**
-         * **[Advanced]** A unique universal internal identifier for the employee. This is solely used for understanding manager relationships along with `managerId`.
+         * **[Advanced]** A unique universal internal identifier for the employee. This is solely used for
+         * understanding manager relationships along with `managerId`.
          */
         public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
@@ -1380,7 +1410,8 @@ public class EmployeeInfoDefinition {
 
 
         /**
-         * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
+         * Typically the highest level organizational unit; generally applies to bigger companies with multiple
+         * distinct businesses.
          */
         public Builder businessUnit(String businessUnit) {
             Utils.checkNotNull(businessUnit, "businessUnit");
@@ -1389,7 +1420,8 @@ public class EmployeeInfoDefinition {
         }
 
         /**
-         * Typically the highest level organizational unit; generally applies to bigger companies with multiple distinct businesses.
+         * Typically the highest level organizational unit; generally applies to bigger companies with multiple
+         * distinct businesses.
          */
         public Builder businessUnit(Optional<String> businessUnit) {
             Utils.checkNotNull(businessUnit, "businessUnit");
@@ -1599,7 +1631,8 @@ public class EmployeeInfoDefinition {
 
 
         /**
-         * **[Advanced]** A unique universal internal identifier for the employee's manager. This is solely used in conjunction with `id`.
+         * **[Advanced]** A unique universal internal identifier for the employee's manager. This is solely
+         * used in conjunction with `id`.
          */
         public Builder managerId(String managerId) {
             Utils.checkNotNull(managerId, "managerId");
@@ -1608,7 +1641,8 @@ public class EmployeeInfoDefinition {
         }
 
         /**
-         * **[Advanced]** A unique universal internal identifier for the employee's manager. This is solely used in conjunction with `id`.
+         * **[Advanced]** A unique universal internal identifier for the employee's manager. This is solely
+         * used in conjunction with `id`.
          */
         public Builder managerId(Optional<String> managerId) {
             Utils.checkNotNull(managerId, "managerId");
@@ -1637,7 +1671,11 @@ public class EmployeeInfoDefinition {
 
 
         /**
-         * List of unidirectional relationships with other employees. E.g. this employee (`A`) is a CHIEF_OF_STAFF to another employee (`B`); or this employee (`A`) is an EXECUTIVE_ASSISTANT of another employee (`C`). The mapping should be attached to `A`'s profile.
+         * List of unidirectional relationships with other employees. E.g. this employee (`A`) is a
+         * CHIEF_OF_STAFF to another employee (`B`); or this employee (`A`) is an EXECUTIVE_ASSISTANT of
+         * another employee (`C`).
+         * 
+         * <p>The mapping should be attached to `A`'s profile.
          */
         public Builder relationships(List<EntityRelationship> relationships) {
             Utils.checkNotNull(relationships, "relationships");
@@ -1646,7 +1684,11 @@ public class EmployeeInfoDefinition {
         }
 
         /**
-         * List of unidirectional relationships with other employees. E.g. this employee (`A`) is a CHIEF_OF_STAFF to another employee (`B`); or this employee (`A`) is an EXECUTIVE_ASSISTANT of another employee (`C`). The mapping should be attached to `A`'s profile.
+         * List of unidirectional relationships with other employees. E.g. this employee (`A`) is a
+         * CHIEF_OF_STAFF to another employee (`B`); or this employee (`A`) is an EXECUTIVE_ASSISTANT of
+         * another employee (`C`).
+         * 
+         * <p>The mapping should be attached to `A`'s profile.
          */
         public Builder relationships(Optional<? extends List<EntityRelationship>> relationships) {
             Utils.checkNotNull(relationships, "relationships");

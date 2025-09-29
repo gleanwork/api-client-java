@@ -102,7 +102,9 @@ public class IndexingDocuments {
     /**
      * Index documents
      * 
-     * <p>Adds or updates multiple documents in the index. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-indexing/choosing-indexdocuments-vs-bulkindexdocuments) documentation for an explanation of when to use this endpoint.
+     * <p>Adds or updates multiple documents in the index. Please refer to the [bulk
+     * indexing](https://developers.glean.com/indexing/documents/bulk-indexing/choosing-indexdocuments-vs-bulkindexdocuments)
+     * documentation for an explanation of when to use this endpoint.
      * 
      * @return The call builder
      */
@@ -113,7 +115,9 @@ public class IndexingDocuments {
     /**
      * Index documents
      * 
-     * <p>Adds or updates multiple documents in the index. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-indexing/choosing-indexdocuments-vs-bulkindexdocuments) documentation for an explanation of when to use this endpoint.
+     * <p>Adds or updates multiple documents in the index. Please refer to the [bulk
+     * indexing](https://developers.glean.com/indexing/documents/bulk-indexing/choosing-indexdocuments-vs-bulkindexdocuments)
+     * documentation for an explanation of when to use this endpoint.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -128,7 +132,9 @@ public class IndexingDocuments {
     /**
      * Bulk index documents
      * 
-     * <p>Replaces the documents in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces the documents in a datasource using paginated batch API calls. Please refer to the [bulk
+     * indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an
+     * explanation of how to use bulk endpoints.
      * 
      * @return The call builder
      */
@@ -139,7 +145,9 @@ public class IndexingDocuments {
     /**
      * Bulk index documents
      * 
-     * <p>Replaces the documents in a datasource using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces the documents in a datasource using paginated batch API calls. Please refer to the [bulk
+     * indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an
+     * explanation of how to use bulk endpoints.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -154,15 +162,20 @@ public class IndexingDocuments {
     /**
      * Schedules the processing of uploaded documents
      * 
-     * <p>Schedules the immediate processing of documents uploaded through the indexing API. By default the uploaded documents will be processed asynchronously but this API can be used to schedule processing of all documents on demand.
+     * <p>Schedules the immediate processing of documents uploaded through the indexing API. By default the
+     * uploaded documents will be processed asynchronously but this API can be used to schedule processing
+     * of all documents on demand.
      * 
-     * <p>If a `datasource` parameter is specified, processing is limited to that custom datasource. Without it, processing applies to all documents across all custom datasources.
+     * <p>If a `datasource` parameter is specified, processing is limited to that custom datasource. Without
+     * it, processing applies to all documents across all custom datasources.
      * #### Rate Limits
-     * This endpoint is rate-limited to one usage every 3 hours. Exceeding this limit results in a 429 response code. Here's how the rate limit works:
+     * This endpoint is rate-limited to one usage every 3 hours. Exceeding this limit results in a 429
+     * response code. Here's how the rate limit works:
      * 1. Calling `/processalldocuments` for datasource `foo` prevents another call for `foo` for 3 hours.
      * 2. Calling `/processalldocuments` for datasource `foo` doesn't affect immediate calls for `bar`.
      * 3. Calling `/processalldocuments` for all datasources prevents any datasource calls for 3 hours.
-     * 4. Calling `/processalldocuments` for datasource `foo` doesn't affect immediate calls for all datasources.
+     * 4. Calling `/processalldocuments` for datasource `foo` doesn't affect immediate calls for all
+     * datasources.
      * 
      * <p>For more frequent document processing, contact Glean support.
      * 
@@ -175,15 +188,20 @@ public class IndexingDocuments {
     /**
      * Schedules the processing of uploaded documents
      * 
-     * <p>Schedules the immediate processing of documents uploaded through the indexing API. By default the uploaded documents will be processed asynchronously but this API can be used to schedule processing of all documents on demand.
+     * <p>Schedules the immediate processing of documents uploaded through the indexing API. By default the
+     * uploaded documents will be processed asynchronously but this API can be used to schedule processing
+     * of all documents on demand.
      * 
-     * <p>If a `datasource` parameter is specified, processing is limited to that custom datasource. Without it, processing applies to all documents across all custom datasources.
+     * <p>If a `datasource` parameter is specified, processing is limited to that custom datasource. Without
+     * it, processing applies to all documents across all custom datasources.
      * #### Rate Limits
-     * This endpoint is rate-limited to one usage every 3 hours. Exceeding this limit results in a 429 response code. Here's how the rate limit works:
+     * This endpoint is rate-limited to one usage every 3 hours. Exceeding this limit results in a 429
+     * response code. Here's how the rate limit works:
      * 1. Calling `/processalldocuments` for datasource `foo` prevents another call for `foo` for 3 hours.
      * 2. Calling `/processalldocuments` for datasource `foo` doesn't affect immediate calls for `bar`.
      * 3. Calling `/processalldocuments` for all datasources prevents any datasource calls for 3 hours.
-     * 4. Calling `/processalldocuments` for datasource `foo` doesn't affect immediate calls for all datasources.
+     * 4. Calling `/processalldocuments` for datasource `foo` doesn't affect immediate calls for all
+     * datasources.
      * 
      * <p>For more frequent document processing, contact Glean support.
      * 
@@ -197,15 +215,20 @@ public class IndexingDocuments {
     /**
      * Schedules the processing of uploaded documents
      * 
-     * <p>Schedules the immediate processing of documents uploaded through the indexing API. By default the uploaded documents will be processed asynchronously but this API can be used to schedule processing of all documents on demand.
+     * <p>Schedules the immediate processing of documents uploaded through the indexing API. By default the
+     * uploaded documents will be processed asynchronously but this API can be used to schedule processing
+     * of all documents on demand.
      * 
-     * <p>If a `datasource` parameter is specified, processing is limited to that custom datasource. Without it, processing applies to all documents across all custom datasources.
+     * <p>If a `datasource` parameter is specified, processing is limited to that custom datasource. Without
+     * it, processing applies to all documents across all custom datasources.
      * #### Rate Limits
-     * This endpoint is rate-limited to one usage every 3 hours. Exceeding this limit results in a 429 response code. Here's how the rate limit works:
+     * This endpoint is rate-limited to one usage every 3 hours. Exceeding this limit results in a 429
+     * response code. Here's how the rate limit works:
      * 1. Calling `/processalldocuments` for datasource `foo` prevents another call for `foo` for 3 hours.
      * 2. Calling `/processalldocuments` for datasource `foo` doesn't affect immediate calls for `bar`.
      * 3. Calling `/processalldocuments` for all datasources prevents any datasource calls for 3 hours.
-     * 4. Calling `/processalldocuments` for datasource `foo` doesn't affect immediate calls for all datasources.
+     * 4. Calling `/processalldocuments` for datasource `foo` doesn't affect immediate calls for all
+     * datasources.
      * 
      * <p>For more frequent document processing, contact Glean support.
      * 
@@ -248,9 +271,11 @@ public class IndexingDocuments {
     /**
      * Beta: Get document information
      * 
-     * <p>Gives various information that would help in debugging related to a particular document. Currently in beta, might undergo breaking changes without prior notice.
+     * <p>Gives various information that would help in debugging related to a particular document. Currently
+     * in beta, might undergo breaking changes without prior notice.
      * 
-     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
+     * <p>Tip: Refer to the [Troubleshooting
+     * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
      * 
      * @return The call builder
      */
@@ -261,9 +286,11 @@ public class IndexingDocuments {
     /**
      * Beta: Get document information
      * 
-     * <p>Gives various information that would help in debugging related to a particular document. Currently in beta, might undergo breaking changes without prior notice.
+     * <p>Gives various information that would help in debugging related to a particular document. Currently
+     * in beta, might undergo breaking changes without prior notice.
      * 
-     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
+     * <p>Tip: Refer to the [Troubleshooting
+     * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
      * 
      * @param datasource The datasource to which the document belongs
      * @param debugDocumentRequest Describes the request body of the /debug/{datasource}/document API call.
@@ -285,9 +312,11 @@ public class IndexingDocuments {
     /**
      * Beta: Get information of a batch of documents
      * 
-     * <p>Gives various information that would help in debugging related to a batch of documents. Currently in beta, might undergo breaking changes without prior notice.
+     * <p>Gives various information that would help in debugging related to a batch of documents. Currently in
+     * beta, might undergo breaking changes without prior notice.
      * 
-     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
+     * <p>Tip: Refer to the [Troubleshooting
+     * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
      * 
      * @return The call builder
      */
@@ -298,9 +327,11 @@ public class IndexingDocuments {
     /**
      * Beta: Get information of a batch of documents
      * 
-     * <p>Gives various information that would help in debugging related to a batch of documents. Currently in beta, might undergo breaking changes without prior notice.
+     * <p>Gives various information that would help in debugging related to a batch of documents. Currently in
+     * beta, might undergo breaking changes without prior notice.
      * 
-     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
+     * <p>Tip: Refer to the [Troubleshooting
+     * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
      * 
      * @param datasource The datasource to which the document belongs
      * @param debugDocumentsRequest Describes the request body of the /debug/{datasource}/documents API call.
@@ -324,7 +355,8 @@ public class IndexingDocuments {
      * 
      * <p>Check if a given user has access to access a document in a custom datasource
      * 
-     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
+     * <p>Tip: Refer to the [Troubleshooting
+     * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
      * 
      * @return The call builder
      */
@@ -337,7 +369,8 @@ public class IndexingDocuments {
      * 
      * <p>Check if a given user has access to access a document in a custom datasource
      * 
-     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
+     * <p>Tip: Refer to the [Troubleshooting
+     * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -354,7 +387,9 @@ public class IndexingDocuments {
      * 
      * <p>Intended for debugging/validation. Fetches the current upload and indexing status of documents.
      * 
-     * <p>Tip: Use [/debug/{datasource}/document](https://developers.glean.com/indexing/debugging/datasource-document) for richer information.
+     * <p>Tip: Use
+     * [/debug/{datasource}/document](https://developers.glean.com/indexing/debugging/datasource-document)
+     * for richer information.
      * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -369,7 +404,9 @@ public class IndexingDocuments {
      * 
      * <p>Intended for debugging/validation. Fetches the current upload and indexing status of documents.
      * 
-     * <p>Tip: Use [/debug/{datasource}/document](https://developers.glean.com/indexing/debugging/datasource-document) for richer information.
+     * <p>Tip: Use
+     * [/debug/{datasource}/document](https://developers.glean.com/indexing/debugging/datasource-document)
+     * for richer information.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -388,7 +425,9 @@ public class IndexingDocuments {
      * 
      * <p>Fetches document count for the specified custom datasource.
      * 
-     * <p>Tip: Use [/debug/{datasource}/status](https://developers.glean.com/indexing/debugging/datasource-status) for richer information.
+     * <p>Tip: Use
+     * [/debug/{datasource}/status](https://developers.glean.com/indexing/debugging/datasource-status) for
+     * richer information.
      * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -403,7 +442,9 @@ public class IndexingDocuments {
      * 
      * <p>Fetches document count for the specified custom datasource.
      * 
-     * <p>Tip: Use [/debug/{datasource}/status](https://developers.glean.com/indexing/debugging/datasource-status) for richer information.
+     * <p>Tip: Use
+     * [/debug/{datasource}/status](https://developers.glean.com/indexing/debugging/datasource-status) for
+     * richer information.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call

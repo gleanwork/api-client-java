@@ -11,7 +11,8 @@ import java.util.Optional;
 /**
  * Direction
  * 
- * <p>The direction of the results asked with respect to the reference timestamp. Missing field defaults to OLDER. Only applicable when using a message_id.
+ * <p>The direction of the results asked with respect to the reference timestamp. Missing field defaults
+ * to OLDER. Only applicable when using a message_id.
  */
 public enum Direction {
     OLDER("OLDER"),

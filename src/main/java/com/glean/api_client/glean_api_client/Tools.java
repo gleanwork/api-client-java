@@ -42,7 +42,8 @@ public class Tools {
     /**
      * List available tools
      * 
-     * <p>Returns a filtered set of available tools based on optional tool name parameters. If no filters are provided, all available tools are returned.
+     * <p>Returns a filtered set of available tools based on optional tool name parameters. If no filters are
+     * provided, all available tools are returned.
      * 
      * @return The call builder
      */
@@ -53,7 +54,8 @@ public class Tools {
     /**
      * List available tools
      * 
-     * <p>Returns a filtered set of available tools based on optional tool name parameters. If no filters are provided, all available tools are returned.
+     * <p>Returns a filtered set of available tools based on optional tool name parameters. If no filters are
+     * provided, all available tools are returned.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -65,7 +67,8 @@ public class Tools {
     /**
      * List available tools
      * 
-     * <p>Returns a filtered set of available tools based on optional tool name parameters. If no filters are provided, all available tools are returned.
+     * <p>Returns a filtered set of available tools based on optional tool name parameters. If no filters are
+     * provided, all available tools are returned.
      * 
      * @param toolNames Optional array of tool names to filter by
      * @return The response from the API call

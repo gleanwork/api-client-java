@@ -39,7 +39,8 @@ public class Document {
     private Optional<? extends ConnectorType> connectorType;
 
     /**
-     * The datasource-specific type of the document (e.g. for Jira issues, this is the issue type such as Bug or Feature Request).
+     * The datasource-specific type of the document (e.g. for Jira issues, this is the issue type such as
+     * Bug or Feature Request).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("docType")
@@ -80,7 +81,8 @@ public class Document {
     private Optional<? extends DocumentMetadata> metadata;
 
     /**
-     * A list of content sub-sections in the document, e.g. text blocks with different headings in a Drive doc or Confluence page.
+     * A list of content sub-sections in the document, e.g. text blocks with different headings in a Drive
+     * doc or Confluence page.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sections")
@@ -156,7 +158,8 @@ public class Document {
     }
 
     /**
-     * The datasource-specific type of the document (e.g. for Jira issues, this is the issue type such as Bug or Feature Request).
+     * The datasource-specific type of the document (e.g. for Jira issues, this is the issue type such as
+     * Bug or Feature Request).
      */
     @JsonIgnore
     public Optional<String> docType() {
@@ -204,7 +207,8 @@ public class Document {
     }
 
     /**
-     * A list of content sub-sections in the document, e.g. text blocks with different headings in a Drive doc or Confluence page.
+     * A list of content sub-sections in the document, e.g. text blocks with different headings in a Drive
+     * doc or Confluence page.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -275,7 +279,8 @@ public class Document {
     }
 
     /**
-     * The datasource-specific type of the document (e.g. for Jira issues, this is the issue type such as Bug or Feature Request).
+     * The datasource-specific type of the document (e.g. for Jira issues, this is the issue type such as
+     * Bug or Feature Request).
      */
     public Document withDocType(String docType) {
         Utils.checkNotNull(docType, "docType");
@@ -285,7 +290,8 @@ public class Document {
 
 
     /**
-     * The datasource-specific type of the document (e.g. for Jira issues, this is the issue type such as Bug or Feature Request).
+     * The datasource-specific type of the document (e.g. for Jira issues, this is the issue type such as
+     * Bug or Feature Request).
      */
     public Document withDocType(Optional<String> docType) {
         Utils.checkNotNull(docType, "docType");
@@ -384,7 +390,8 @@ public class Document {
     }
 
     /**
-     * A list of content sub-sections in the document, e.g. text blocks with different headings in a Drive doc or Confluence page.
+     * A list of content sub-sections in the document, e.g. text blocks with different headings in a Drive
+     * doc or Confluence page.
      */
     public Document withSections(List<DocumentSection> sections) {
         Utils.checkNotNull(sections, "sections");
@@ -394,7 +401,8 @@ public class Document {
 
 
     /**
-     * A list of content sub-sections in the document, e.g. text blocks with different headings in a Drive doc or Confluence page.
+     * A list of content sub-sections in the document, e.g. text blocks with different headings in a Drive
+     * doc or Confluence page.
      */
     public Document withSections(Optional<? extends List<DocumentSection>> sections) {
         Utils.checkNotNull(sections, "sections");
@@ -538,7 +546,8 @@ public class Document {
 
 
         /**
-         * The datasource-specific type of the document (e.g. for Jira issues, this is the issue type such as Bug or Feature Request).
+         * The datasource-specific type of the document (e.g. for Jira issues, this is the issue type such as
+         * Bug or Feature Request).
          */
         public Builder docType(String docType) {
             Utils.checkNotNull(docType, "docType");
@@ -547,7 +556,8 @@ public class Document {
         }
 
         /**
-         * The datasource-specific type of the document (e.g. for Jira issues, this is the issue type such as Bug or Feature Request).
+         * The datasource-specific type of the document (e.g. for Jira issues, this is the issue type such as
+         * Bug or Feature Request).
          */
         public Builder docType(Optional<String> docType) {
             Utils.checkNotNull(docType, "docType");
@@ -647,7 +657,8 @@ public class Document {
 
 
         /**
-         * A list of content sub-sections in the document, e.g. text blocks with different headings in a Drive doc or Confluence page.
+         * A list of content sub-sections in the document, e.g. text blocks with different headings in a Drive
+         * doc or Confluence page.
          */
         public Builder sections(List<DocumentSection> sections) {
             Utils.checkNotNull(sections, "sections");
@@ -656,7 +667,8 @@ public class Document {
         }
 
         /**
-         * A list of content sub-sections in the document, e.g. text blocks with different headings in a Drive doc or Confluence page.
+         * A list of content sub-sections in the document, e.g. text blocks with different headings in a Drive
+         * doc or Confluence page.
          */
         public Builder sections(Optional<? extends List<DocumentSection>> sections) {
             Utils.checkNotNull(sections, "sections");

@@ -53,7 +53,8 @@ public class Agents {
     /**
      * Retrieve an agent
      * 
-     * <p>Returns details of an [agent](https://developers.glean.com/agents/agents-api) created in the Agent Builder.
+     * <p>Returns details of an [agent](https://developers.glean.com/agents/agents-api) created in the Agent
+     * Builder.
      * 
      * @return The call builder
      */
@@ -64,7 +65,8 @@ public class Agents {
     /**
      * Retrieve an agent
      * 
-     * <p>Returns details of an [agent](https://developers.glean.com/agents/agents-api) created in the Agent Builder.
+     * <p>Returns details of an [agent](https://developers.glean.com/agents/agents-api) created in the Agent
+     * Builder.
      * 
      * @param agentId The ID of the agent.
      * @return The response from the API call
@@ -77,7 +79,8 @@ public class Agents {
     /**
      * Retrieve an agent
      * 
-     * <p>Returns details of an [agent](https://developers.glean.com/agents/agents-api) created in the Agent Builder.
+     * <p>Returns details of an [agent](https://developers.glean.com/agents/agents-api) created in the Agent
+     * Builder.
      * 
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param agentId The ID of the agent.
@@ -99,7 +102,8 @@ public class Agents {
     /**
      * List an agent's schemas
      * 
-     * <p>Return [agent](https://developers.glean.com/agents/agents-api)'s input and output schemas. You can use these schemas to detect changes to an agent's input or output structure.
+     * <p>Return [agent](https://developers.glean.com/agents/agents-api)'s input and output schemas. You can
+     * use these schemas to detect changes to an agent's input or output structure.
      * 
      * @return The call builder
      */
@@ -110,7 +114,8 @@ public class Agents {
     /**
      * List an agent's schemas
      * 
-     * <p>Return [agent](https://developers.glean.com/agents/agents-api)'s input and output schemas. You can use these schemas to detect changes to an agent's input or output structure.
+     * <p>Return [agent](https://developers.glean.com/agents/agents-api)'s input and output schemas. You can
+     * use these schemas to detect changes to an agent's input or output structure.
      * 
      * @param agentId The ID of the agent.
      * @return The response from the API call
@@ -123,7 +128,8 @@ public class Agents {
     /**
      * List an agent's schemas
      * 
-     * <p>Return [agent](https://developers.glean.com/agents/agents-api)'s input and output schemas. You can use these schemas to detect changes to an agent's input or output structure.
+     * <p>Return [agent](https://developers.glean.com/agents/agents-api)'s input and output schemas. You can
+     * use these schemas to detect changes to an agent's input or output structure.
      * 
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param agentId The ID of the agent.
@@ -171,7 +177,8 @@ public class Agents {
     /**
      * Create an agent run and stream the response
      * 
-     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the result as a stream of server-sent events (SSE).
+     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the result as a
+     * stream of server-sent events (SSE).
      * 
      * @return The call builder
      */
@@ -182,7 +189,8 @@ public class Agents {
     /**
      * Create an agent run and stream the response
      * 
-     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the result as a stream of server-sent events (SSE).
+     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the result as a
+     * stream of server-sent events (SSE).
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -197,7 +205,8 @@ public class Agents {
     /**
      * Create an agent run and wait for the response
      * 
-     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the final response.
+     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the final
+     * response.
      * 
      * @return The call builder
      */
@@ -208,7 +217,8 @@ public class Agents {
     /**
      * Create an agent run and wait for the response
      * 
-     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the final response.
+     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the final
+     * response.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call

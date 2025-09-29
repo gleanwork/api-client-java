@@ -39,7 +39,8 @@ public class Activity {
     /**
      * Report document activity
      * 
-     * <p>Report user activity that occurs on indexed documents such as viewing or editing. This signal improves search quality.
+     * <p>Report user activity that occurs on indexed documents such as viewing or editing. This signal
+     * improves search quality.
      * 
      * @return The call builder
      */
@@ -50,7 +51,8 @@ public class Activity {
     /**
      * Report document activity
      * 
-     * <p>Report user activity that occurs on indexed documents such as viewing or editing. This signal improves search quality.
+     * <p>Report user activity that occurs on indexed documents such as viewing or editing. This signal
+     * improves search quality.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -65,7 +67,8 @@ public class Activity {
     /**
      * Report client activity
      * 
-     * <p>Report events that happen to results within a Glean client UI, such as search result views and clicks.  This signal improves search quality.
+     * <p>Report events that happen to results within a Glean client UI, such as search result views and
+     * clicks. This signal improves search quality.
      * 
      * @return The call builder
      */
@@ -76,7 +79,8 @@ public class Activity {
     /**
      * Report client activity
      * 
-     * <p>Report events that happen to results within a Glean client UI, such as search result views and clicks.  This signal improves search quality.
+     * <p>Report events that happen to results within a Glean client UI, such as search result views and
+     * clicks. This signal improves search quality.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -88,7 +92,8 @@ public class Activity {
     /**
      * Report client activity
      * 
-     * <p>Report events that happen to results within a Glean client UI, such as search result views and clicks.  This signal improves search quality.
+     * <p>Report events that happen to results within a Glean client UI, such as search result views and
+     * clicks. This signal improves search quality.
      * 
      * @param feedbackQueryParameter A URL encoded versions of Feedback. This is useful for requests.
      * @param feedback1 

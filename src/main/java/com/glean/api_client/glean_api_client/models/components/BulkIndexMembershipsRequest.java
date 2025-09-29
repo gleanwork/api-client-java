@@ -42,7 +42,8 @@ public class BulkIndexMembershipsRequest {
     private Optional<Boolean> isLastPage;
 
     /**
-     * Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true
+     * Flag to discard previous upload attempts and start from scratch. Must be specified with
+     * isFirstPage=true
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("forceRestartUpload")
@@ -126,7 +127,8 @@ public class BulkIndexMembershipsRequest {
     }
 
     /**
-     * Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true
+     * Flag to discard previous upload attempts and start from scratch. Must be specified with
+     * isFirstPage=true
      */
     @JsonIgnore
     public Optional<Boolean> forceRestartUpload() {
@@ -210,7 +212,8 @@ public class BulkIndexMembershipsRequest {
     }
 
     /**
-     * Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true
+     * Flag to discard previous upload attempts and start from scratch. Must be specified with
+     * isFirstPage=true
      */
     public BulkIndexMembershipsRequest withForceRestartUpload(boolean forceRestartUpload) {
         Utils.checkNotNull(forceRestartUpload, "forceRestartUpload");
@@ -220,7 +223,8 @@ public class BulkIndexMembershipsRequest {
 
 
     /**
-     * Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true
+     * Flag to discard previous upload attempts and start from scratch. Must be specified with
+     * isFirstPage=true
      */
     public BulkIndexMembershipsRequest withForceRestartUpload(Optional<Boolean> forceRestartUpload) {
         Utils.checkNotNull(forceRestartUpload, "forceRestartUpload");
@@ -375,7 +379,8 @@ public class BulkIndexMembershipsRequest {
 
 
         /**
-         * Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true
+         * Flag to discard previous upload attempts and start from scratch. Must be specified with
+         * isFirstPage=true
          */
         public Builder forceRestartUpload(boolean forceRestartUpload) {
             Utils.checkNotNull(forceRestartUpload, "forceRestartUpload");
@@ -384,7 +389,8 @@ public class BulkIndexMembershipsRequest {
         }
 
         /**
-         * Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true
+         * Flag to discard previous upload attempts and start from scratch. Must be specified with
+         * isFirstPage=true
          */
         public Builder forceRestartUpload(Optional<Boolean> forceRestartUpload) {
             Utils.checkNotNull(forceRestartUpload, "forceRestartUpload");

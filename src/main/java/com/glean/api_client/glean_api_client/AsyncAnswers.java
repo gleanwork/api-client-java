@@ -66,7 +66,7 @@ public class AsyncAnswers {
      * <p>Create a user-generated Answer that contains a question and answer.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CreateanswerResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateanswerResponse>} - The async response
      */
     public CompletableFuture<CreateanswerResponse> create(CreateAnswerRequest request) {
         AsyncRequestOperation<CreateAnswerRequest, CreateanswerResponse> operation
@@ -93,7 +93,7 @@ public class AsyncAnswers {
      * <p>Delete an existing user-generated Answer.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;DeleteanswerResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeleteanswerResponse>} - The async response
      */
     public CompletableFuture<DeleteanswerResponse> delete(DeleteAnswerRequest request) {
         AsyncRequestOperation<DeleteAnswerRequest, DeleteanswerResponse> operation
@@ -120,7 +120,7 @@ public class AsyncAnswers {
      * <p>Update an existing user-generated Answer.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;EditanswerResponse&gt; - The async response
+     * @return {@code CompletableFuture<EditanswerResponse>} - The async response
      */
     public CompletableFuture<EditanswerResponse> update(EditAnswerRequest request) {
         AsyncRequestOperation<EditAnswerRequest, EditanswerResponse> operation
@@ -147,7 +147,7 @@ public class AsyncAnswers {
      * <p>Read the details of a particular Answer given its ID.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;GetanswerResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetanswerResponse>} - The async response
      */
     public CompletableFuture<GetanswerResponse> retrieve(GetAnswerRequest request) {
         AsyncRequestOperation<GetAnswerRequest, GetanswerResponse> operation
@@ -174,7 +174,7 @@ public class AsyncAnswers {
      * <p>List Answers created by the current user.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListanswersResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListanswersResponse>} - The async response
      */
     public CompletableFuture<ListanswersResponse> list(ListAnswersRequest request) {
         AsyncRequestOperation<ListAnswersRequest, ListanswersResponse> operation

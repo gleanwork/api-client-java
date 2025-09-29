@@ -23,7 +23,8 @@ public class CollectionPinTarget {
     private CollectionPinnableCategories category;
 
     /**
-     * Optional. If category supports values, then the additional value for the category e.g. department name for DEPARTMENT_RESOURCE, team name/id for TEAM_RESOURCE and so on.
+     * Optional. If category supports values, then the additional value for the category e.g. department
+     * name for DEPARTMENT_RESOURCE, team name/id for TEAM_RESOURCE and so on.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("value")
@@ -63,7 +64,8 @@ public class CollectionPinTarget {
     }
 
     /**
-     * Optional. If category supports values, then the additional value for the category e.g. department name for DEPARTMENT_RESOURCE, team name/id for TEAM_RESOURCE and so on.
+     * Optional. If category supports values, then the additional value for the category e.g. department
+     * name for DEPARTMENT_RESOURCE, team name/id for TEAM_RESOURCE and so on.
      */
     @JsonIgnore
     public Optional<String> value() {
@@ -94,7 +96,8 @@ public class CollectionPinTarget {
     }
 
     /**
-     * Optional. If category supports values, then the additional value for the category e.g. department name for DEPARTMENT_RESOURCE, team name/id for TEAM_RESOURCE and so on.
+     * Optional. If category supports values, then the additional value for the category e.g. department
+     * name for DEPARTMENT_RESOURCE, team name/id for TEAM_RESOURCE and so on.
      */
     public CollectionPinTarget withValue(String value) {
         Utils.checkNotNull(value, "value");
@@ -104,7 +107,8 @@ public class CollectionPinTarget {
 
 
     /**
-     * Optional. If category supports values, then the additional value for the category e.g. department name for DEPARTMENT_RESOURCE, team name/id for TEAM_RESOURCE and so on.
+     * Optional. If category supports values, then the additional value for the category e.g. department
+     * name for DEPARTMENT_RESOURCE, team name/id for TEAM_RESOURCE and so on.
      */
     public CollectionPinTarget withValue(Optional<String> value) {
         Utils.checkNotNull(value, "value");
@@ -185,7 +189,8 @@ public class CollectionPinTarget {
 
 
         /**
-         * Optional. If category supports values, then the additional value for the category e.g. department name for DEPARTMENT_RESOURCE, team name/id for TEAM_RESOURCE and so on.
+         * Optional. If category supports values, then the additional value for the category e.g. department
+         * name for DEPARTMENT_RESOURCE, team name/id for TEAM_RESOURCE and so on.
          */
         public Builder value(String value) {
             Utils.checkNotNull(value, "value");
@@ -194,7 +199,8 @@ public class CollectionPinTarget {
         }
 
         /**
-         * Optional. If category supports values, then the additional value for the category e.g. department name for DEPARTMENT_RESOURCE, team name/id for TEAM_RESOURCE and so on.
+         * Optional. If category supports values, then the additional value for the category e.g. department
+         * name for DEPARTMENT_RESOURCE, team name/id for TEAM_RESOURCE and so on.
          */
         public Builder value(Optional<String> value) {
             Utils.checkNotNull(value, "value");

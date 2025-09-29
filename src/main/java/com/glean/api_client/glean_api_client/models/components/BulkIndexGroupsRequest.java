@@ -42,7 +42,8 @@ public class BulkIndexGroupsRequest {
     private Optional<Boolean> isLastPage;
 
     /**
-     * Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true
+     * Flag to discard previous upload attempts and start from scratch. Must be specified with
+     * isFirstPage=true
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("forceRestartUpload")
@@ -61,7 +62,9 @@ public class BulkIndexGroupsRequest {
     private List<DatasourceGroupDefinition> groups;
 
     /**
-     * True if older group data needs to be force deleted after the upload completes. Defaults to older data being deleted only if the percentage of data being deleted is less than a reasonable threshold. This must only be set when `isLastPage = true`
+     * True if older group data needs to be force deleted after the upload completes. Defaults to older
+     * data being deleted only if the percentage of data being deleted is less than a reasonable threshold.
+     * This must only be set when `isLastPage = true`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("disableStaleDataDeletionCheck")
@@ -126,7 +129,8 @@ public class BulkIndexGroupsRequest {
     }
 
     /**
-     * Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true
+     * Flag to discard previous upload attempts and start from scratch. Must be specified with
+     * isFirstPage=true
      */
     @JsonIgnore
     public Optional<Boolean> forceRestartUpload() {
@@ -150,7 +154,9 @@ public class BulkIndexGroupsRequest {
     }
 
     /**
-     * True if older group data needs to be force deleted after the upload completes. Defaults to older data being deleted only if the percentage of data being deleted is less than a reasonable threshold. This must only be set when `isLastPage = true`
+     * True if older group data needs to be force deleted after the upload completes. Defaults to older
+     * data being deleted only if the percentage of data being deleted is less than a reasonable threshold.
+     * This must only be set when `isLastPage = true`
      */
     @JsonIgnore
     public Optional<Boolean> disableStaleDataDeletionCheck() {
@@ -210,7 +216,8 @@ public class BulkIndexGroupsRequest {
     }
 
     /**
-     * Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true
+     * Flag to discard previous upload attempts and start from scratch. Must be specified with
+     * isFirstPage=true
      */
     public BulkIndexGroupsRequest withForceRestartUpload(boolean forceRestartUpload) {
         Utils.checkNotNull(forceRestartUpload, "forceRestartUpload");
@@ -220,7 +227,8 @@ public class BulkIndexGroupsRequest {
 
 
     /**
-     * Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true
+     * Flag to discard previous upload attempts and start from scratch. Must be specified with
+     * isFirstPage=true
      */
     public BulkIndexGroupsRequest withForceRestartUpload(Optional<Boolean> forceRestartUpload) {
         Utils.checkNotNull(forceRestartUpload, "forceRestartUpload");
@@ -247,7 +255,9 @@ public class BulkIndexGroupsRequest {
     }
 
     /**
-     * True if older group data needs to be force deleted after the upload completes. Defaults to older data being deleted only if the percentage of data being deleted is less than a reasonable threshold. This must only be set when `isLastPage = true`
+     * True if older group data needs to be force deleted after the upload completes. Defaults to older
+     * data being deleted only if the percentage of data being deleted is less than a reasonable threshold.
+     * This must only be set when `isLastPage = true`
      */
     public BulkIndexGroupsRequest withDisableStaleDataDeletionCheck(boolean disableStaleDataDeletionCheck) {
         Utils.checkNotNull(disableStaleDataDeletionCheck, "disableStaleDataDeletionCheck");
@@ -257,7 +267,9 @@ public class BulkIndexGroupsRequest {
 
 
     /**
-     * True if older group data needs to be force deleted after the upload completes. Defaults to older data being deleted only if the percentage of data being deleted is less than a reasonable threshold. This must only be set when `isLastPage = true`
+     * True if older group data needs to be force deleted after the upload completes. Defaults to older
+     * data being deleted only if the percentage of data being deleted is less than a reasonable threshold.
+     * This must only be set when `isLastPage = true`
      */
     public BulkIndexGroupsRequest withDisableStaleDataDeletionCheck(Optional<Boolean> disableStaleDataDeletionCheck) {
         Utils.checkNotNull(disableStaleDataDeletionCheck, "disableStaleDataDeletionCheck");
@@ -375,7 +387,8 @@ public class BulkIndexGroupsRequest {
 
 
         /**
-         * Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true
+         * Flag to discard previous upload attempts and start from scratch. Must be specified with
+         * isFirstPage=true
          */
         public Builder forceRestartUpload(boolean forceRestartUpload) {
             Utils.checkNotNull(forceRestartUpload, "forceRestartUpload");
@@ -384,7 +397,8 @@ public class BulkIndexGroupsRequest {
         }
 
         /**
-         * Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true
+         * Flag to discard previous upload attempts and start from scratch. Must be specified with
+         * isFirstPage=true
          */
         public Builder forceRestartUpload(Optional<Boolean> forceRestartUpload) {
             Utils.checkNotNull(forceRestartUpload, "forceRestartUpload");
@@ -414,7 +428,9 @@ public class BulkIndexGroupsRequest {
 
 
         /**
-         * True if older group data needs to be force deleted after the upload completes. Defaults to older data being deleted only if the percentage of data being deleted is less than a reasonable threshold. This must only be set when `isLastPage = true`
+         * True if older group data needs to be force deleted after the upload completes. Defaults to older
+         * data being deleted only if the percentage of data being deleted is less than a reasonable threshold.
+         * This must only be set when `isLastPage = true`
          */
         public Builder disableStaleDataDeletionCheck(boolean disableStaleDataDeletionCheck) {
             Utils.checkNotNull(disableStaleDataDeletionCheck, "disableStaleDataDeletionCheck");
@@ -423,7 +439,9 @@ public class BulkIndexGroupsRequest {
         }
 
         /**
-         * True if older group data needs to be force deleted after the upload completes. Defaults to older data being deleted only if the percentage of data being deleted is less than a reasonable threshold. This must only be set when `isLastPage = true`
+         * True if older group data needs to be force deleted after the upload completes. Defaults to older
+         * data being deleted only if the percentage of data being deleted is less than a reasonable threshold.
+         * This must only be set when `isLastPage = true`
          */
         public Builder disableStaleDataDeletionCheck(Optional<Boolean> disableStaleDataDeletionCheck) {
             Utils.checkNotNull(disableStaleDataDeletionCheck, "disableStaleDataDeletionCheck");

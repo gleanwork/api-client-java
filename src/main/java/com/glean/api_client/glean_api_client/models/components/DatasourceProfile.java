@@ -36,14 +36,16 @@ public class DatasourceProfile {
     private Optional<String> url;
 
     /**
-     * A deep link, if available, into the datasource's native application for the entity's platform (i.e. slack://...).
+     * A deep link, if available, into the datasource's native application for the entity's platform (i.e.
+     * slack://...).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("nativeAppUrl")
     private Optional<String> nativeAppUrl;
 
     /**
-     * For internal use only. True iff the data source profile was manually added by a user from within Glean (aka not from the original data source)
+     * For internal use only. True iff the data source profile was manually added by a user from within
+     * Glean (aka not from the original data source)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("isUserGenerated")
@@ -100,7 +102,8 @@ public class DatasourceProfile {
     }
 
     /**
-     * A deep link, if available, into the datasource's native application for the entity's platform (i.e. slack://...).
+     * A deep link, if available, into the datasource's native application for the entity's platform (i.e.
+     * slack://...).
      */
     @JsonIgnore
     public Optional<String> nativeAppUrl() {
@@ -108,7 +111,8 @@ public class DatasourceProfile {
     }
 
     /**
-     * For internal use only. True iff the data source profile was manually added by a user from within Glean (aka not from the original data source)
+     * For internal use only. True iff the data source profile was manually added by a user from within
+     * Glean (aka not from the original data source)
      */
     @JsonIgnore
     public Optional<Boolean> isUserGenerated() {
@@ -158,7 +162,8 @@ public class DatasourceProfile {
     }
 
     /**
-     * A deep link, if available, into the datasource's native application for the entity's platform (i.e. slack://...).
+     * A deep link, if available, into the datasource's native application for the entity's platform (i.e.
+     * slack://...).
      */
     public DatasourceProfile withNativeAppUrl(String nativeAppUrl) {
         Utils.checkNotNull(nativeAppUrl, "nativeAppUrl");
@@ -168,7 +173,8 @@ public class DatasourceProfile {
 
 
     /**
-     * A deep link, if available, into the datasource's native application for the entity's platform (i.e. slack://...).
+     * A deep link, if available, into the datasource's native application for the entity's platform (i.e.
+     * slack://...).
      */
     public DatasourceProfile withNativeAppUrl(Optional<String> nativeAppUrl) {
         Utils.checkNotNull(nativeAppUrl, "nativeAppUrl");
@@ -177,7 +183,8 @@ public class DatasourceProfile {
     }
 
     /**
-     * For internal use only. True iff the data source profile was manually added by a user from within Glean (aka not from the original data source)
+     * For internal use only. True iff the data source profile was manually added by a user from within
+     * Glean (aka not from the original data source)
      */
     public DatasourceProfile withIsUserGenerated(boolean isUserGenerated) {
         Utils.checkNotNull(isUserGenerated, "isUserGenerated");
@@ -187,7 +194,8 @@ public class DatasourceProfile {
 
 
     /**
-     * For internal use only. True iff the data source profile was manually added by a user from within Glean (aka not from the original data source)
+     * For internal use only. True iff the data source profile was manually added by a user from within
+     * Glean (aka not from the original data source)
      */
     public DatasourceProfile withIsUserGenerated(Optional<Boolean> isUserGenerated) {
         Utils.checkNotNull(isUserGenerated, "isUserGenerated");
@@ -287,7 +295,8 @@ public class DatasourceProfile {
 
 
         /**
-         * A deep link, if available, into the datasource's native application for the entity's platform (i.e. slack://...).
+         * A deep link, if available, into the datasource's native application for the entity's platform (i.e.
+         * slack://...).
          */
         public Builder nativeAppUrl(String nativeAppUrl) {
             Utils.checkNotNull(nativeAppUrl, "nativeAppUrl");
@@ -296,7 +305,8 @@ public class DatasourceProfile {
         }
 
         /**
-         * A deep link, if available, into the datasource's native application for the entity's platform (i.e. slack://...).
+         * A deep link, if available, into the datasource's native application for the entity's platform (i.e.
+         * slack://...).
          */
         public Builder nativeAppUrl(Optional<String> nativeAppUrl) {
             Utils.checkNotNull(nativeAppUrl, "nativeAppUrl");
@@ -306,7 +316,8 @@ public class DatasourceProfile {
 
 
         /**
-         * For internal use only. True iff the data source profile was manually added by a user from within Glean (aka not from the original data source)
+         * For internal use only. True iff the data source profile was manually added by a user from within
+         * Glean (aka not from the original data source)
          */
         public Builder isUserGenerated(boolean isUserGenerated) {
             Utils.checkNotNull(isUserGenerated, "isUserGenerated");
@@ -315,7 +326,8 @@ public class DatasourceProfile {
         }
 
         /**
-         * For internal use only. True iff the data source profile was manually added by a user from within Glean (aka not from the original data source)
+         * For internal use only. True iff the data source profile was manually added by a user from within
+         * Glean (aka not from the original data source)
          */
         public Builder isUserGenerated(Optional<Boolean> isUserGenerated) {
             Utils.checkNotNull(isUserGenerated, "isUserGenerated");

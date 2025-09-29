@@ -85,7 +85,8 @@ public class Visibilityoverrides {
     /**
      * Hide or unhide docs
      * 
-     * <p>Sets the visibility-override state of the documents specified, effectively hiding or un-hiding documents.
+     * <p>Sets the visibility-override state of the documents specified, effectively hiding or un-hiding
+     * documents.
      * 
      * @return The call builder
      */
@@ -96,7 +97,8 @@ public class Visibilityoverrides {
     /**
      * Hide or unhide docs
      * 
-     * <p>Sets the visibility-override state of the documents specified, effectively hiding or un-hiding documents.
+     * <p>Sets the visibility-override state of the documents specified, effectively hiding or un-hiding
+     * documents.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call

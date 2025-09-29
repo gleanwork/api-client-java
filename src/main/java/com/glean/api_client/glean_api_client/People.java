@@ -70,9 +70,11 @@ public class People {
     /**
      * Beta: Get user information
      * 
-     * <p>Gives various information that would help in debugging related to a particular user. Currently in beta, might undergo breaking changes without prior notice.
+     * <p>Gives various information that would help in debugging related to a particular user. Currently in
+     * beta, might undergo breaking changes without prior notice.
      * 
-     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
+     * <p>Tip: Refer to the [Troubleshooting
+     * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
      * 
      * @return The call builder
      */
@@ -83,9 +85,11 @@ public class People {
     /**
      * Beta: Get user information
      * 
-     * <p>Gives various information that would help in debugging related to a particular user. Currently in beta, might undergo breaking changes without prior notice.
+     * <p>Gives various information that would help in debugging related to a particular user. Currently in
+     * beta, might undergo breaking changes without prior notice.
      * 
-     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
+     * <p>Tip: Refer to the [Troubleshooting
+     * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
      * 
      * @param datasource The datasource to which the user belongs
      * @param debugUserRequest Describes the request body of the /debug/{datasource}/user API call
@@ -109,7 +113,9 @@ public class People {
      * 
      * <p>Fetches user count for the specified custom datasource.
      * 
-     * <p>Tip: Use [/debug/{datasource}/status](https://developers.glean.com/indexing/debugging/datasource-status) for richer information.
+     * <p>Tip: Use
+     * [/debug/{datasource}/status](https://developers.glean.com/indexing/debugging/datasource-status) for
+     * richer information.
      * 
      * @return The call builder
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -124,7 +130,9 @@ public class People {
      * 
      * <p>Fetches user count for the specified custom datasource.
      * 
-     * <p>Tip: Use [/debug/{datasource}/status](https://developers.glean.com/indexing/debugging/datasource-status) for richer information.
+     * <p>Tip: Use
+     * [/debug/{datasource}/status](https://developers.glean.com/indexing/debugging/datasource-status) for
+     * richer information.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -167,7 +175,9 @@ public class People {
     /**
      * Bulk index employees
      * 
-     * <p>Replaces all the currently indexed employees using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces all the currently indexed employees using paginated batch API calls. Please refer to the
+     * [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for
+     * an explanation of how to use bulk endpoints.
      * 
      * @return The call builder
      */
@@ -178,7 +188,9 @@ public class People {
     /**
      * Bulk index employees
      * 
-     * <p>Replaces all the currently indexed employees using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces all the currently indexed employees using paginated batch API calls. Please refer to the
+     * [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for
+     * an explanation of how to use bulk endpoints.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -193,7 +205,9 @@ public class People {
     /**
      * Schedules the processing of uploaded employees and teams
      * 
-     * <p>Schedules the immediate processing of employees and teams uploaded through the indexing API. By default all uploaded people data will be processed asynchronously but this API can be used to schedule its processing on demand.
+     * <p>Schedules the immediate processing of employees and teams uploaded through the indexing API. By
+     * default all uploaded people data will be processed asynchronously but this API can be used to
+     * schedule its processing on demand.
      * 
      * @return The call builder
      */
@@ -204,7 +218,9 @@ public class People {
     /**
      * Schedules the processing of uploaded employees and teams
      * 
-     * <p>Schedules the immediate processing of employees and teams uploaded through the indexing API. By default all uploaded people data will be processed asynchronously but this API can be used to schedule its processing on demand.
+     * <p>Schedules the immediate processing of employees and teams uploaded through the indexing API. By
+     * default all uploaded people data will be processed asynchronously but this API can be used to
+     * schedule its processing on demand.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -296,7 +312,9 @@ public class People {
     /**
      * Bulk index teams
      * 
-     * <p>Replaces all the currently indexed teams using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces all the currently indexed teams using paginated batch API calls. Please refer to the [bulk
+     * indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an
+     * explanation of how to use bulk endpoints.
      * 
      * @return The call builder
      */
@@ -307,7 +325,9 @@ public class People {
     /**
      * Bulk index teams
      * 
-     * <p>Replaces all the currently indexed teams using paginated batch API calls. Please refer to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an explanation of how to use bulk endpoints.
+     * <p>Replaces all the currently indexed teams using paginated batch API calls. Please refer to the [bulk
+     * indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an
+     * explanation of how to use bulk endpoints.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call

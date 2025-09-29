@@ -22,14 +22,16 @@ public class AppResult {
     private String datasource;
 
     /**
-     * The datasource-specific type of the document (e.g. for Jira issues, this is the issue type such as Bug or Feature Request).
+     * The datasource-specific type of the document (e.g. for Jira issues, this is the issue type such as
+     * Bug or Feature Request).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("docType")
     private Optional<String> docType;
 
     /**
-     * Mimetype is used to differentiate between sub applications from a datasource (e.g. Sheets, Docs from Gdrive)
+     * Mimetype is used to differentiate between sub applications from a datasource (e.g. Sheets, Docs from
+     * Gdrive)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mimeType")
@@ -73,7 +75,8 @@ public class AppResult {
     }
 
     /**
-     * The datasource-specific type of the document (e.g. for Jira issues, this is the issue type such as Bug or Feature Request).
+     * The datasource-specific type of the document (e.g. for Jira issues, this is the issue type such as
+     * Bug or Feature Request).
      */
     @JsonIgnore
     public Optional<String> docType() {
@@ -81,7 +84,8 @@ public class AppResult {
     }
 
     /**
-     * Mimetype is used to differentiate between sub applications from a datasource (e.g. Sheets, Docs from Gdrive)
+     * Mimetype is used to differentiate between sub applications from a datasource (e.g. Sheets, Docs from
+     * Gdrive)
      */
     @JsonIgnore
     public Optional<String> mimeType() {
@@ -111,7 +115,8 @@ public class AppResult {
     }
 
     /**
-     * The datasource-specific type of the document (e.g. for Jira issues, this is the issue type such as Bug or Feature Request).
+     * The datasource-specific type of the document (e.g. for Jira issues, this is the issue type such as
+     * Bug or Feature Request).
      */
     public AppResult withDocType(String docType) {
         Utils.checkNotNull(docType, "docType");
@@ -121,7 +126,8 @@ public class AppResult {
 
 
     /**
-     * The datasource-specific type of the document (e.g. for Jira issues, this is the issue type such as Bug or Feature Request).
+     * The datasource-specific type of the document (e.g. for Jira issues, this is the issue type such as
+     * Bug or Feature Request).
      */
     public AppResult withDocType(Optional<String> docType) {
         Utils.checkNotNull(docType, "docType");
@@ -130,7 +136,8 @@ public class AppResult {
     }
 
     /**
-     * Mimetype is used to differentiate between sub applications from a datasource (e.g. Sheets, Docs from Gdrive)
+     * Mimetype is used to differentiate between sub applications from a datasource (e.g. Sheets, Docs from
+     * Gdrive)
      */
     public AppResult withMimeType(String mimeType) {
         Utils.checkNotNull(mimeType, "mimeType");
@@ -140,7 +147,8 @@ public class AppResult {
 
 
     /**
-     * Mimetype is used to differentiate between sub applications from a datasource (e.g. Sheets, Docs from Gdrive)
+     * Mimetype is used to differentiate between sub applications from a datasource (e.g. Sheets, Docs from
+     * Gdrive)
      */
     public AppResult withMimeType(Optional<String> mimeType) {
         Utils.checkNotNull(mimeType, "mimeType");
@@ -226,7 +234,8 @@ public class AppResult {
 
 
         /**
-         * The datasource-specific type of the document (e.g. for Jira issues, this is the issue type such as Bug or Feature Request).
+         * The datasource-specific type of the document (e.g. for Jira issues, this is the issue type such as
+         * Bug or Feature Request).
          */
         public Builder docType(String docType) {
             Utils.checkNotNull(docType, "docType");
@@ -235,7 +244,8 @@ public class AppResult {
         }
 
         /**
-         * The datasource-specific type of the document (e.g. for Jira issues, this is the issue type such as Bug or Feature Request).
+         * The datasource-specific type of the document (e.g. for Jira issues, this is the issue type such as
+         * Bug or Feature Request).
          */
         public Builder docType(Optional<String> docType) {
             Utils.checkNotNull(docType, "docType");
@@ -245,7 +255,8 @@ public class AppResult {
 
 
         /**
-         * Mimetype is used to differentiate between sub applications from a datasource (e.g. Sheets, Docs from Gdrive)
+         * Mimetype is used to differentiate between sub applications from a datasource (e.g. Sheets, Docs from
+         * Gdrive)
          */
         public Builder mimeType(String mimeType) {
             Utils.checkNotNull(mimeType, "mimeType");
@@ -254,7 +265,8 @@ public class AppResult {
         }
 
         /**
-         * Mimetype is used to differentiate between sub applications from a datasource (e.g. Sheets, Docs from Gdrive)
+         * Mimetype is used to differentiate between sub applications from a datasource (e.g. Sheets, Docs from
+         * Gdrive)
          */
         public Builder mimeType(Optional<String> mimeType) {
             Utils.checkNotNull(mimeType, "mimeType");

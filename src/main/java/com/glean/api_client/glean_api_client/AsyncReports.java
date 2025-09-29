@@ -59,7 +59,7 @@ public class AsyncReports {
      * <p>Creates a new one-time report and executes its batch job.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CreatereportResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreatereportResponse>} - The async response
      */
     public CompletableFuture<CreatereportResponse> create(UpdateDlpConfigRequest request) {
         AsyncRequestOperation<UpdateDlpConfigRequest, CreatereportResponse> operation
@@ -86,7 +86,7 @@ public class AsyncReports {
      * <p>Downloads CSV violations report for a specific report id.
      * 
      * @param id The id of the report to download violations for.
-     * @return CompletableFuture&lt;DownloadreportcsvResponse&gt; - The async response
+     * @return {@code CompletableFuture<DownloadreportcsvResponse>} - The async response
      */
     public CompletableFuture<DownloadreportcsvResponse> download(String id) {
         DownloadreportcsvRequest request =
@@ -118,7 +118,7 @@ public class AsyncReports {
      * <p>Fetches the status of the run corresponding to the report-id.
      * 
      * @param id The id of the report to get run status for.
-     * @return CompletableFuture&lt;GetreportstatusResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetreportstatusResponse>} - The async response
      */
     public CompletableFuture<GetreportstatusResponse> status(String id) {
         GetreportstatusRequest request =

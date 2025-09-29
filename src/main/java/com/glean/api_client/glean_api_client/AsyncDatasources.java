@@ -54,7 +54,7 @@ public class AsyncDatasources {
      * <p>Add or update a custom datasource and its schema.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostApiIndexV1AdddatasourceResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1AdddatasourceResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1AdddatasourceResponse> add(CustomDatasourceConfig request) {
         AsyncRequestOperation<CustomDatasourceConfig, PostApiIndexV1AdddatasourceResponse> operation
@@ -81,7 +81,7 @@ public class AsyncDatasources {
      * <p>Fetches the datasource config for the specified custom datasource.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PostApiIndexV1GetdatasourceconfigResponse&gt; - The async response
+     * @return {@code CompletableFuture<PostApiIndexV1GetdatasourceconfigResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1GetdatasourceconfigResponse> retrieveConfig(GetDatasourceConfigRequest request) {
         AsyncRequestOperation<GetDatasourceConfigRequest, PostApiIndexV1GetdatasourceconfigResponse> operation

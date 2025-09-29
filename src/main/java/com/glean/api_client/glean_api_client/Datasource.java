@@ -36,9 +36,11 @@ public class Datasource {
     /**
      * Beta: Get datasource status
      * 
-     * <p>Gather information about the datasource's overall status. Currently in beta, might undergo breaking changes without prior notice.
+     * <p>Gather information about the datasource's overall status. Currently in beta, might undergo breaking
+     * changes without prior notice.
      * 
-     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
+     * <p>Tip: Refer to the [Troubleshooting
+     * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
      * 
      * @return The call builder
      */
@@ -49,9 +51,11 @@ public class Datasource {
     /**
      * Beta: Get datasource status
      * 
-     * <p>Gather information about the datasource's overall status. Currently in beta, might undergo breaking changes without prior notice.
+     * <p>Gather information about the datasource's overall status. Currently in beta, might undergo breaking
+     * changes without prior notice.
      * 
-     * <p>Tip: Refer to the [Troubleshooting tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
+     * <p>Tip: Refer to the [Troubleshooting
+     * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
      * 
      * @param datasource The datasource to get debug status for.
      * @return The response from the API call

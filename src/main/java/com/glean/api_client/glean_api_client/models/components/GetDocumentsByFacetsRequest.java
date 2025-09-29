@@ -25,13 +25,15 @@ public class GetDocumentsByFacetsRequest {
     private Optional<? extends List<String>> datasourcesFilter;
 
     /**
-     * A list of facet filter sets that will be OR'ed together. An AND is assumed between different filters in each set.
+     * A list of facet filter sets that will be OR'ed together. An AND is assumed between different filters
+     * in each set.
      */
     @JsonProperty("filterSets")
     private List<FacetFilterSet> filterSets;
 
     /**
-     * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
+     * Pagination cursor. A previously received opaque token representing the position in the overall
+     * results at which to start.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cursor")
@@ -65,7 +67,8 @@ public class GetDocumentsByFacetsRequest {
     }
 
     /**
-     * A list of facet filter sets that will be OR'ed together. An AND is assumed between different filters in each set.
+     * A list of facet filter sets that will be OR'ed together. An AND is assumed between different filters
+     * in each set.
      */
     @JsonIgnore
     public List<FacetFilterSet> filterSets() {
@@ -73,7 +76,8 @@ public class GetDocumentsByFacetsRequest {
     }
 
     /**
-     * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
+     * Pagination cursor. A previously received opaque token representing the position in the overall
+     * results at which to start.
      */
     @JsonIgnore
     public Optional<String> cursor() {
@@ -105,7 +109,8 @@ public class GetDocumentsByFacetsRequest {
     }
 
     /**
-     * A list of facet filter sets that will be OR'ed together. An AND is assumed between different filters in each set.
+     * A list of facet filter sets that will be OR'ed together. An AND is assumed between different filters
+     * in each set.
      */
     public GetDocumentsByFacetsRequest withFilterSets(List<FacetFilterSet> filterSets) {
         Utils.checkNotNull(filterSets, "filterSets");
@@ -114,7 +119,8 @@ public class GetDocumentsByFacetsRequest {
     }
 
     /**
-     * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
+     * Pagination cursor. A previously received opaque token representing the position in the overall
+     * results at which to start.
      */
     public GetDocumentsByFacetsRequest withCursor(String cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -124,7 +130,8 @@ public class GetDocumentsByFacetsRequest {
 
 
     /**
-     * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
+     * Pagination cursor. A previously received opaque token representing the position in the overall
+     * results at which to start.
      */
     public GetDocumentsByFacetsRequest withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -195,7 +202,8 @@ public class GetDocumentsByFacetsRequest {
 
 
         /**
-         * A list of facet filter sets that will be OR'ed together. An AND is assumed between different filters in each set.
+         * A list of facet filter sets that will be OR'ed together. An AND is assumed between different filters
+         * in each set.
          */
         public Builder filterSets(List<FacetFilterSet> filterSets) {
             Utils.checkNotNull(filterSets, "filterSets");
@@ -205,7 +213,8 @@ public class GetDocumentsByFacetsRequest {
 
 
         /**
-         * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
+         * Pagination cursor. A previously received opaque token representing the position in the overall
+         * results at which to start.
          */
         public Builder cursor(String cursor) {
             Utils.checkNotNull(cursor, "cursor");
@@ -214,7 +223,8 @@ public class GetDocumentsByFacetsRequest {
         }
 
         /**
-         * Pagination cursor. A previously received opaque token representing the position in the overall results at which to start.
+         * Pagination cursor. A previously received opaque token representing the position in the overall
+         * results at which to start.
          */
         public Builder cursor(Optional<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");

@@ -18,7 +18,8 @@ import java.util.Optional;
 
 public class GetDocPermissionsResponse {
     /**
-     * A list of emails of users who have access to the document. If the document is visible to all Glean users, a list with only a single value of 'VISIBLE_TO_ALL'.
+     * A list of emails of users who have access to the document. If the document is visible to all Glean
+     * users, a list with only a single value of 'VISIBLE_TO_ALL'.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("allowedUserEmails")
@@ -36,7 +37,8 @@ public class GetDocPermissionsResponse {
     }
 
     /**
-     * A list of emails of users who have access to the document. If the document is visible to all Glean users, a list with only a single value of 'VISIBLE_TO_ALL'.
+     * A list of emails of users who have access to the document. If the document is visible to all Glean
+     * users, a list with only a single value of 'VISIBLE_TO_ALL'.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -50,7 +52,8 @@ public class GetDocPermissionsResponse {
 
 
     /**
-     * A list of emails of users who have access to the document. If the document is visible to all Glean users, a list with only a single value of 'VISIBLE_TO_ALL'.
+     * A list of emails of users who have access to the document. If the document is visible to all Glean
+     * users, a list with only a single value of 'VISIBLE_TO_ALL'.
      */
     public GetDocPermissionsResponse withAllowedUserEmails(List<String> allowedUserEmails) {
         Utils.checkNotNull(allowedUserEmails, "allowedUserEmails");
@@ -60,7 +63,8 @@ public class GetDocPermissionsResponse {
 
 
     /**
-     * A list of emails of users who have access to the document. If the document is visible to all Glean users, a list with only a single value of 'VISIBLE_TO_ALL'.
+     * A list of emails of users who have access to the document. If the document is visible to all Glean
+     * users, a list with only a single value of 'VISIBLE_TO_ALL'.
      */
     public GetDocPermissionsResponse withAllowedUserEmails(Optional<? extends List<String>> allowedUserEmails) {
         Utils.checkNotNull(allowedUserEmails, "allowedUserEmails");
@@ -104,7 +108,8 @@ public class GetDocPermissionsResponse {
 
 
         /**
-         * A list of emails of users who have access to the document. If the document is visible to all Glean users, a list with only a single value of 'VISIBLE_TO_ALL'.
+         * A list of emails of users who have access to the document. If the document is visible to all Glean
+         * users, a list with only a single value of 'VISIBLE_TO_ALL'.
          */
         public Builder allowedUserEmails(List<String> allowedUserEmails) {
             Utils.checkNotNull(allowedUserEmails, "allowedUserEmails");
@@ -113,7 +118,8 @@ public class GetDocPermissionsResponse {
         }
 
         /**
-         * A list of emails of users who have access to the document. If the document is visible to all Glean users, a list with only a single value of 'VISIBLE_TO_ALL'.
+         * A list of emails of users who have access to the document. If the document is visible to all Glean
+         * users, a list with only a single value of 'VISIBLE_TO_ALL'.
          */
         public Builder allowedUserEmails(Optional<? extends List<String>> allowedUserEmails) {
             Utils.checkNotNull(allowedUserEmails, "allowedUserEmails");

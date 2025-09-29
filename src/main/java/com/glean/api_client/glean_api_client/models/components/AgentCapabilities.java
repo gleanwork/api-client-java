@@ -23,20 +23,22 @@ import java.util.Optional;
  * AgentCapabilities
  * 
  * <p>Describes features that the agent supports. example: {
- *   "ap.io.messages": true,
- *   "ap.io.streaming": true
+ * "ap.io.messages": true,
+ * "ap.io.streaming": true
  * }
  */
 public class AgentCapabilities {
     /**
-     * Whether the agent supports messages as an input. If true, you'll pass `messages` as an input when running the agent.
+     * Whether the agent supports messages as an input. If true, you'll pass `messages` as an input when
+     * running the agent.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ap.io.messages")
     private Optional<Boolean> apIoMessages;
 
     /**
-     * Whether the agent supports streaming output. If true, you you can stream agent ouput. All agents currently support streaming.
+     * Whether the agent supports streaming output. If true, you you can stream agent ouput. All agents
+     * currently support streaming.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ap.io.streaming")
@@ -62,7 +64,8 @@ public class AgentCapabilities {
     }
 
     /**
-     * Whether the agent supports messages as an input. If true, you'll pass `messages` as an input when running the agent.
+     * Whether the agent supports messages as an input. If true, you'll pass `messages` as an input when
+     * running the agent.
      */
     @JsonIgnore
     public Optional<Boolean> apIoMessages() {
@@ -70,7 +73,8 @@ public class AgentCapabilities {
     }
 
     /**
-     * Whether the agent supports streaming output. If true, you you can stream agent ouput. All agents currently support streaming.
+     * Whether the agent supports streaming output. If true, you you can stream agent ouput. All agents
+     * currently support streaming.
      */
     @JsonIgnore
     public Optional<Boolean> apIoStreaming() {
@@ -88,7 +92,8 @@ public class AgentCapabilities {
 
 
     /**
-     * Whether the agent supports messages as an input. If true, you'll pass `messages` as an input when running the agent.
+     * Whether the agent supports messages as an input. If true, you'll pass `messages` as an input when
+     * running the agent.
      */
     public AgentCapabilities withApIoMessages(boolean apIoMessages) {
         Utils.checkNotNull(apIoMessages, "apIoMessages");
@@ -98,7 +103,8 @@ public class AgentCapabilities {
 
 
     /**
-     * Whether the agent supports messages as an input. If true, you'll pass `messages` as an input when running the agent.
+     * Whether the agent supports messages as an input. If true, you'll pass `messages` as an input when
+     * running the agent.
      */
     public AgentCapabilities withApIoMessages(Optional<Boolean> apIoMessages) {
         Utils.checkNotNull(apIoMessages, "apIoMessages");
@@ -107,7 +113,8 @@ public class AgentCapabilities {
     }
 
     /**
-     * Whether the agent supports streaming output. If true, you you can stream agent ouput. All agents currently support streaming.
+     * Whether the agent supports streaming output. If true, you you can stream agent ouput. All agents
+     * currently support streaming.
      */
     public AgentCapabilities withApIoStreaming(boolean apIoStreaming) {
         Utils.checkNotNull(apIoStreaming, "apIoStreaming");
@@ -117,7 +124,8 @@ public class AgentCapabilities {
 
 
     /**
-     * Whether the agent supports streaming output. If true, you you can stream agent ouput. All agents currently support streaming.
+     * Whether the agent supports streaming output. If true, you you can stream agent ouput. All agents
+     * currently support streaming.
      */
     public AgentCapabilities withApIoStreaming(Optional<Boolean> apIoStreaming) {
         Utils.checkNotNull(apIoStreaming, "apIoStreaming");
@@ -182,7 +190,8 @@ public class AgentCapabilities {
 
 
         /**
-         * Whether the agent supports messages as an input. If true, you'll pass `messages` as an input when running the agent.
+         * Whether the agent supports messages as an input. If true, you'll pass `messages` as an input when
+         * running the agent.
          */
         public Builder apIoMessages(boolean apIoMessages) {
             Utils.checkNotNull(apIoMessages, "apIoMessages");
@@ -191,7 +200,8 @@ public class AgentCapabilities {
         }
 
         /**
-         * Whether the agent supports messages as an input. If true, you'll pass `messages` as an input when running the agent.
+         * Whether the agent supports messages as an input. If true, you'll pass `messages` as an input when
+         * running the agent.
          */
         public Builder apIoMessages(Optional<Boolean> apIoMessages) {
             Utils.checkNotNull(apIoMessages, "apIoMessages");
@@ -201,7 +211,8 @@ public class AgentCapabilities {
 
 
         /**
-         * Whether the agent supports streaming output. If true, you you can stream agent ouput. All agents currently support streaming.
+         * Whether the agent supports streaming output. If true, you you can stream agent ouput. All agents
+         * currently support streaming.
          */
         public Builder apIoStreaming(boolean apIoStreaming) {
             Utils.checkNotNull(apIoStreaming, "apIoStreaming");
@@ -210,7 +221,8 @@ public class AgentCapabilities {
         }
 
         /**
-         * Whether the agent supports streaming output. If true, you you can stream agent ouput. All agents currently support streaming.
+         * Whether the agent supports streaming output. If true, you you can stream agent ouput. All agents
+         * currently support streaming.
          */
         public Builder apIoStreaming(Optional<Boolean> apIoStreaming) {
             Utils.checkNotNull(apIoStreaming, "apIoStreaming");

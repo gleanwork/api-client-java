@@ -17,7 +17,8 @@ import java.util.Optional;
 /**
  * ToolSets
  * 
- * <p>The types of tools that the agent is allowed to use. Only works with FAST and ADVANCED `agent` values
+ * <p>The types of tools that the agent is allowed to use. Only works with FAST and ADVANCED `agent`
+ * values
  */
 public class ToolSets {
     /**

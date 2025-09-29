@@ -28,7 +28,8 @@ public class AgentConfig {
     private Optional<? extends AgentEnum> agent;
 
     /**
-     * The types of tools that the agent is allowed to use. Only works with FAST and ADVANCED `agent` values
+     * The types of tools that the agent is allowed to use. Only works with FAST and ADVANCED `agent`
+     * values
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("toolSets")
@@ -68,7 +69,8 @@ public class AgentConfig {
     }
 
     /**
-     * The types of tools that the agent is allowed to use. Only works with FAST and ADVANCED `agent` values
+     * The types of tools that the agent is allowed to use. Only works with FAST and ADVANCED `agent`
+     * values
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -110,7 +112,8 @@ public class AgentConfig {
     }
 
     /**
-     * The types of tools that the agent is allowed to use. Only works with FAST and ADVANCED `agent` values
+     * The types of tools that the agent is allowed to use. Only works with FAST and ADVANCED `agent`
+     * values
      */
     public AgentConfig withToolSets(ToolSets toolSets) {
         Utils.checkNotNull(toolSets, "toolSets");
@@ -120,7 +123,8 @@ public class AgentConfig {
 
 
     /**
-     * The types of tools that the agent is allowed to use. Only works with FAST and ADVANCED `agent` values
+     * The types of tools that the agent is allowed to use. Only works with FAST and ADVANCED `agent`
+     * values
      */
     public AgentConfig withToolSets(Optional<? extends ToolSets> toolSets) {
         Utils.checkNotNull(toolSets, "toolSets");
@@ -210,7 +214,8 @@ public class AgentConfig {
 
 
         /**
-         * The types of tools that the agent is allowed to use. Only works with FAST and ADVANCED `agent` values
+         * The types of tools that the agent is allowed to use. Only works with FAST and ADVANCED `agent`
+         * values
          */
         public Builder toolSets(ToolSets toolSets) {
             Utils.checkNotNull(toolSets, "toolSets");
@@ -219,7 +224,8 @@ public class AgentConfig {
         }
 
         /**
-         * The types of tools that the agent is allowed to use. Only works with FAST and ADVANCED `agent` values
+         * The types of tools that the agent is allowed to use. Only works with FAST and ADVANCED `agent`
+         * values
          */
         public Builder toolSets(Optional<? extends ToolSets> toolSets) {
             Utils.checkNotNull(toolSets, "toolSets");

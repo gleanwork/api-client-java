@@ -40,7 +40,10 @@ public class AsyncEntities {
     /**
      * List entities
      * 
-     * <p>List some set of details for all entities that fit the given criteria and return in the requested order. Does not support negation in filters, assumes relation type EQUALS. There is a limit of 10000 entities that can be retrieved via this endpoint, except when using FULL_DIRECTORY request type for people entities.
+     * <p>List some set of details for all entities that fit the given criteria and return in the requested
+     * order. Does not support negation in filters, assumes relation type EQUALS. There is a limit of 10000
+     * entities that can be retrieved via this endpoint, except when using FULL_DIRECTORY request type for
+     * people entities.
      * 
      * @return The async call builder
      */
@@ -51,10 +54,13 @@ public class AsyncEntities {
     /**
      * List entities
      * 
-     * <p>List some set of details for all entities that fit the given criteria and return in the requested order. Does not support negation in filters, assumes relation type EQUALS. There is a limit of 10000 entities that can be retrieved via this endpoint, except when using FULL_DIRECTORY request type for people entities.
+     * <p>List some set of details for all entities that fit the given criteria and return in the requested
+     * order. Does not support negation in filters, assumes relation type EQUALS. There is a limit of 10000
+     * entities that can be retrieved via this endpoint, except when using FULL_DIRECTORY request type for
+     * people entities.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListentitiesResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListentitiesResponse>} - The async response
      */
     public CompletableFuture<ListentitiesResponse> list(ListEntitiesRequest request) {
         AsyncRequestOperation<ListEntitiesRequest, ListentitiesResponse> operation
@@ -81,7 +87,7 @@ public class AsyncEntities {
      * <p>Read people details for the given IDs.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PeopleResponse&gt; - The async response
+     * @return {@code CompletableFuture<PeopleResponse>} - The async response
      */
     public CompletableFuture<PeopleResponse> readPeople(PeopleRequest request) {
         AsyncRequestOperation<PeopleRequest, PeopleResponse> operation

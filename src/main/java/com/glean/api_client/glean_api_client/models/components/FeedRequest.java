@@ -19,7 +19,8 @@ import java.util.Optional;
 
 public class FeedRequest {
     /**
-     * Categories of content requested. An allowlist gives flexibility to request content separately or together.
+     * Categories of content requested. An allowlist gives flexibility to request content separately or
+     * together.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("categories")
@@ -31,7 +32,8 @@ public class FeedRequest {
     private Optional<? extends FeedRequestOptions> requestOptions;
 
     /**
-     * Timeout in milliseconds for the request. A `408` error will be returned if handling the request takes longer.
+     * Timeout in milliseconds for the request. A `408` error will be returned if handling the request
+     * takes longer.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timeoutMillis")
@@ -64,7 +66,8 @@ public class FeedRequest {
     }
 
     /**
-     * Categories of content requested. An allowlist gives flexibility to request content separately or together.
+     * Categories of content requested. An allowlist gives flexibility to request content separately or
+     * together.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -79,7 +82,8 @@ public class FeedRequest {
     }
 
     /**
-     * Timeout in milliseconds for the request. A `408` error will be returned if handling the request takes longer.
+     * Timeout in milliseconds for the request. A `408` error will be returned if handling the request
+     * takes longer.
      */
     @JsonIgnore
     public Optional<Long> timeoutMillis() {
@@ -98,7 +102,8 @@ public class FeedRequest {
 
 
     /**
-     * Categories of content requested. An allowlist gives flexibility to request content separately or together.
+     * Categories of content requested. An allowlist gives flexibility to request content separately or
+     * together.
      */
     public FeedRequest withCategories(List<FeedRequestCategory> categories) {
         Utils.checkNotNull(categories, "categories");
@@ -108,7 +113,8 @@ public class FeedRequest {
 
 
     /**
-     * Categories of content requested. An allowlist gives flexibility to request content separately or together.
+     * Categories of content requested. An allowlist gives flexibility to request content separately or
+     * together.
      */
     public FeedRequest withCategories(Optional<? extends List<FeedRequestCategory>> categories) {
         Utils.checkNotNull(categories, "categories");
@@ -130,7 +136,8 @@ public class FeedRequest {
     }
 
     /**
-     * Timeout in milliseconds for the request. A `408` error will be returned if handling the request takes longer.
+     * Timeout in milliseconds for the request. A `408` error will be returned if handling the request
+     * takes longer.
      */
     public FeedRequest withTimeoutMillis(long timeoutMillis) {
         Utils.checkNotNull(timeoutMillis, "timeoutMillis");
@@ -140,7 +147,8 @@ public class FeedRequest {
 
 
     /**
-     * Timeout in milliseconds for the request. A `408` error will be returned if handling the request takes longer.
+     * Timeout in milliseconds for the request. A `408` error will be returned if handling the request
+     * takes longer.
      */
     public FeedRequest withTimeoutMillis(Optional<Long> timeoutMillis) {
         Utils.checkNotNull(timeoutMillis, "timeoutMillis");
@@ -210,7 +218,8 @@ public class FeedRequest {
 
 
         /**
-         * Categories of content requested. An allowlist gives flexibility to request content separately or together.
+         * Categories of content requested. An allowlist gives flexibility to request content separately or
+         * together.
          */
         public Builder categories(List<FeedRequestCategory> categories) {
             Utils.checkNotNull(categories, "categories");
@@ -219,7 +228,8 @@ public class FeedRequest {
         }
 
         /**
-         * Categories of content requested. An allowlist gives flexibility to request content separately or together.
+         * Categories of content requested. An allowlist gives flexibility to request content separately or
+         * together.
          */
         public Builder categories(Optional<? extends List<FeedRequestCategory>> categories) {
             Utils.checkNotNull(categories, "categories");
@@ -242,7 +252,8 @@ public class FeedRequest {
 
 
         /**
-         * Timeout in milliseconds for the request. A `408` error will be returned if handling the request takes longer.
+         * Timeout in milliseconds for the request. A `408` error will be returned if handling the request
+         * takes longer.
          */
         public Builder timeoutMillis(long timeoutMillis) {
             Utils.checkNotNull(timeoutMillis, "timeoutMillis");
@@ -251,7 +262,8 @@ public class FeedRequest {
         }
 
         /**
-         * Timeout in milliseconds for the request. A `408` error will be returned if handling the request takes longer.
+         * Timeout in milliseconds for the request. A `408` error will be returned if handling the request
+         * takes longer.
          */
         public Builder timeoutMillis(Optional<Long> timeoutMillis) {
             Utils.checkNotNull(timeoutMillis, "timeoutMillis");

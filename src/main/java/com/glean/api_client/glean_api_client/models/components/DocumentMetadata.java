@@ -32,14 +32,19 @@ public class DocumentMetadata {
     private Optional<String> datasourceInstance;
 
     /**
-     * The type of the result. Interpretation is specific to each datasource. (e.g. for Jira issues, this is the issue type such as Bug or Feature Request).
+     * The type of the result. Interpretation is specific to each datasource. (e.g.
+     * 
+     * <p>for Jira issues, this is the issue type such as Bug or Feature Request).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("objectType")
     private Optional<String> objectType;
 
     /**
-     * The name of the container (higher level parent, not direct parent) of the result. Interpretation is specific to each datasource (e.g. Channels for Slack, Project for Jira). cf. parentId
+     * The name of the container (higher level parent, not direct parent) of the result. Interpretation is
+     * specific to each datasource (e.g. Channels for Slack, Project for Jira).
+     * 
+     * <p>cf. parentId
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("container")
@@ -53,14 +58,19 @@ public class DocumentMetadata {
     private Optional<String> containerId;
 
     /**
-     * The Glean Document ID of the super container. Super container represents a broader abstraction that contains many containers. For example, whereas container might refer to a folder, super container would refer to a drive.
+     * The Glean Document ID of the super container. Super container represents a broader abstraction that
+     * contains many containers. For example, whereas container might refer to a folder, super container
+     * would refer to a drive.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("superContainerId")
     private Optional<String> superContainerId;
 
     /**
-     * The id of the direct parent of the result. Interpretation is specific to each datasource (e.g. parent issue for Jira). cf. container
+     * The id of the direct parent of the result. Interpretation is specific to each datasource (e.g.
+     * parent issue for Jira).
+     * 
+     * <p>cf. container
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("parentId")
@@ -79,7 +89,8 @@ public class DocumentMetadata {
     private Optional<String> documentId;
 
     /**
-     * A unique identifier used to represent the document in any logging or feedback requests in place of documentId.
+     * A unique identifier used to represent the document in any logging or feedback requests in place of
+     * documentId.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("loggingId")
@@ -127,28 +138,35 @@ public class DocumentMetadata {
     private Optional<? extends DocumentVisibility> visibility;
 
     /**
-     * A list of components this result is associated with. Interpretation is specific to each datasource. (e.g. for Jira issues, these are [components](https://confluence.atlassian.com/jirasoftwarecloud/organizing-work-with-components-764478279.html).)
+     * A list of components this result is associated with. Interpretation is specific to each datasource.
+     * (e.g.
+     * 
+     * <p>for Jira issues, these are
+     * [components](https://confluence.atlassian.com/jirasoftwarecloud/organizing-work-with-components-764478279.html).)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("components")
     private Optional<? extends List<String>> components;
 
     /**
-     * The status or disposition of the result. Interpretation is specific to each datasource. (e.g. for Jira issues, this is the issue status such as Done, In Progress or Will Not Fix).
+     * The status or disposition of the result. Interpretation is specific to each datasource. (e.g.
+     * 
+     * <p>for Jira issues, this is the issue status such as Done, In Progress or Will Not Fix).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
     private Optional<String> status;
 
     /**
-     * The status category of the result. Meant to be more general than status. Interpretation is specific to each datasource.
+     * The status category of the result. Meant to be more general than status. Interpretation is specific
+     * to each datasource.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("statusCategory")
     private Optional<String> statusCategory;
 
     /**
-     * A list of stars associated with this result.  "Pin" is an older name.
+     * A list of stars associated with this result. "Pin" is an older name.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pins")
@@ -261,7 +279,9 @@ public class DocumentMetadata {
     private Optional<? extends IndexStatus> indexStatus;
 
     /**
-     * A list of documents that are ancestors of this document in the hierarchy of the document's datasource, for example parent folders or containers. Ancestors can be of different types and some may not be indexed. Higher level ancestors appear earlier in the list.
+     * A list of documents that are ancestors of this document in the hierarchy of the document's
+     * datasource, for example parent folders or containers. Ancestors can be of different types and some
+     * may not be indexed. Higher level ancestors appear earlier in the list.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ancestors")
@@ -422,7 +442,9 @@ public class DocumentMetadata {
     }
 
     /**
-     * The type of the result. Interpretation is specific to each datasource. (e.g. for Jira issues, this is the issue type such as Bug or Feature Request).
+     * The type of the result. Interpretation is specific to each datasource. (e.g.
+     * 
+     * <p>for Jira issues, this is the issue type such as Bug or Feature Request).
      */
     @JsonIgnore
     public Optional<String> objectType() {
@@ -430,7 +452,10 @@ public class DocumentMetadata {
     }
 
     /**
-     * The name of the container (higher level parent, not direct parent) of the result. Interpretation is specific to each datasource (e.g. Channels for Slack, Project for Jira). cf. parentId
+     * The name of the container (higher level parent, not direct parent) of the result. Interpretation is
+     * specific to each datasource (e.g. Channels for Slack, Project for Jira).
+     * 
+     * <p>cf. parentId
      */
     @JsonIgnore
     public Optional<String> container() {
@@ -446,7 +471,9 @@ public class DocumentMetadata {
     }
 
     /**
-     * The Glean Document ID of the super container. Super container represents a broader abstraction that contains many containers. For example, whereas container might refer to a folder, super container would refer to a drive.
+     * The Glean Document ID of the super container. Super container represents a broader abstraction that
+     * contains many containers. For example, whereas container might refer to a folder, super container
+     * would refer to a drive.
      */
     @JsonIgnore
     public Optional<String> superContainerId() {
@@ -454,7 +481,10 @@ public class DocumentMetadata {
     }
 
     /**
-     * The id of the direct parent of the result. Interpretation is specific to each datasource (e.g. parent issue for Jira). cf. container
+     * The id of the direct parent of the result. Interpretation is specific to each datasource (e.g.
+     * parent issue for Jira).
+     * 
+     * <p>cf. container
      */
     @JsonIgnore
     public Optional<String> parentId() {
@@ -475,7 +505,8 @@ public class DocumentMetadata {
     }
 
     /**
-     * A unique identifier used to represent the document in any logging or feedback requests in place of documentId.
+     * A unique identifier used to represent the document in any logging or feedback requests in place of
+     * documentId.
      */
     @JsonIgnore
     public Optional<String> loggingId() {
@@ -531,7 +562,11 @@ public class DocumentMetadata {
     }
 
     /**
-     * A list of components this result is associated with. Interpretation is specific to each datasource. (e.g. for Jira issues, these are [components](https://confluence.atlassian.com/jirasoftwarecloud/organizing-work-with-components-764478279.html).)
+     * A list of components this result is associated with. Interpretation is specific to each datasource.
+     * (e.g.
+     * 
+     * <p>for Jira issues, these are
+     * [components](https://confluence.atlassian.com/jirasoftwarecloud/organizing-work-with-components-764478279.html).)
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -540,7 +575,9 @@ public class DocumentMetadata {
     }
 
     /**
-     * The status or disposition of the result. Interpretation is specific to each datasource. (e.g. for Jira issues, this is the issue status such as Done, In Progress or Will Not Fix).
+     * The status or disposition of the result. Interpretation is specific to each datasource. (e.g.
+     * 
+     * <p>for Jira issues, this is the issue status such as Done, In Progress or Will Not Fix).
      */
     @JsonIgnore
     public Optional<String> status() {
@@ -548,7 +585,8 @@ public class DocumentMetadata {
     }
 
     /**
-     * The status category of the result. Meant to be more general than status. Interpretation is specific to each datasource.
+     * The status category of the result. Meant to be more general than status. Interpretation is specific
+     * to each datasource.
      */
     @JsonIgnore
     public Optional<String> statusCategory() {
@@ -556,7 +594,7 @@ public class DocumentMetadata {
     }
 
     /**
-     * A list of stars associated with this result.  "Pin" is an older name.
+     * A list of stars associated with this result. "Pin" is an older name.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -693,7 +731,9 @@ public class DocumentMetadata {
     }
 
     /**
-     * A list of documents that are ancestors of this document in the hierarchy of the document's datasource, for example parent folders or containers. Ancestors can be of different types and some may not be indexed. Higher level ancestors appear earlier in the list.
+     * A list of documents that are ancestors of this document in the hierarchy of the document's
+     * datasource, for example parent folders or containers. Ancestors can be of different types and some
+     * may not be indexed. Higher level ancestors appear earlier in the list.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -739,7 +779,9 @@ public class DocumentMetadata {
     }
 
     /**
-     * The type of the result. Interpretation is specific to each datasource. (e.g. for Jira issues, this is the issue type such as Bug or Feature Request).
+     * The type of the result. Interpretation is specific to each datasource. (e.g.
+     * 
+     * <p>for Jira issues, this is the issue type such as Bug or Feature Request).
      */
     public DocumentMetadata withObjectType(String objectType) {
         Utils.checkNotNull(objectType, "objectType");
@@ -749,7 +791,9 @@ public class DocumentMetadata {
 
 
     /**
-     * The type of the result. Interpretation is specific to each datasource. (e.g. for Jira issues, this is the issue type such as Bug or Feature Request).
+     * The type of the result. Interpretation is specific to each datasource. (e.g.
+     * 
+     * <p>for Jira issues, this is the issue type such as Bug or Feature Request).
      */
     public DocumentMetadata withObjectType(Optional<String> objectType) {
         Utils.checkNotNull(objectType, "objectType");
@@ -758,7 +802,10 @@ public class DocumentMetadata {
     }
 
     /**
-     * The name of the container (higher level parent, not direct parent) of the result. Interpretation is specific to each datasource (e.g. Channels for Slack, Project for Jira). cf. parentId
+     * The name of the container (higher level parent, not direct parent) of the result. Interpretation is
+     * specific to each datasource (e.g. Channels for Slack, Project for Jira).
+     * 
+     * <p>cf. parentId
      */
     public DocumentMetadata withContainer(String container) {
         Utils.checkNotNull(container, "container");
@@ -768,7 +815,10 @@ public class DocumentMetadata {
 
 
     /**
-     * The name of the container (higher level parent, not direct parent) of the result. Interpretation is specific to each datasource (e.g. Channels for Slack, Project for Jira). cf. parentId
+     * The name of the container (higher level parent, not direct parent) of the result. Interpretation is
+     * specific to each datasource (e.g. Channels for Slack, Project for Jira).
+     * 
+     * <p>cf. parentId
      */
     public DocumentMetadata withContainer(Optional<String> container) {
         Utils.checkNotNull(container, "container");
@@ -796,7 +846,9 @@ public class DocumentMetadata {
     }
 
     /**
-     * The Glean Document ID of the super container. Super container represents a broader abstraction that contains many containers. For example, whereas container might refer to a folder, super container would refer to a drive.
+     * The Glean Document ID of the super container. Super container represents a broader abstraction that
+     * contains many containers. For example, whereas container might refer to a folder, super container
+     * would refer to a drive.
      */
     public DocumentMetadata withSuperContainerId(String superContainerId) {
         Utils.checkNotNull(superContainerId, "superContainerId");
@@ -806,7 +858,9 @@ public class DocumentMetadata {
 
 
     /**
-     * The Glean Document ID of the super container. Super container represents a broader abstraction that contains many containers. For example, whereas container might refer to a folder, super container would refer to a drive.
+     * The Glean Document ID of the super container. Super container represents a broader abstraction that
+     * contains many containers. For example, whereas container might refer to a folder, super container
+     * would refer to a drive.
      */
     public DocumentMetadata withSuperContainerId(Optional<String> superContainerId) {
         Utils.checkNotNull(superContainerId, "superContainerId");
@@ -815,7 +869,10 @@ public class DocumentMetadata {
     }
 
     /**
-     * The id of the direct parent of the result. Interpretation is specific to each datasource (e.g. parent issue for Jira). cf. container
+     * The id of the direct parent of the result. Interpretation is specific to each datasource (e.g.
+     * parent issue for Jira).
+     * 
+     * <p>cf. container
      */
     public DocumentMetadata withParentId(String parentId) {
         Utils.checkNotNull(parentId, "parentId");
@@ -825,7 +882,10 @@ public class DocumentMetadata {
 
 
     /**
-     * The id of the direct parent of the result. Interpretation is specific to each datasource (e.g. parent issue for Jira). cf. container
+     * The id of the direct parent of the result. Interpretation is specific to each datasource (e.g.
+     * parent issue for Jira).
+     * 
+     * <p>cf. container
      */
     public DocumentMetadata withParentId(Optional<String> parentId) {
         Utils.checkNotNull(parentId, "parentId");
@@ -866,7 +926,8 @@ public class DocumentMetadata {
     }
 
     /**
-     * A unique identifier used to represent the document in any logging or feedback requests in place of documentId.
+     * A unique identifier used to represent the document in any logging or feedback requests in place of
+     * documentId.
      */
     public DocumentMetadata withLoggingId(String loggingId) {
         Utils.checkNotNull(loggingId, "loggingId");
@@ -876,7 +937,8 @@ public class DocumentMetadata {
 
 
     /**
-     * A unique identifier used to represent the document in any logging or feedback requests in place of documentId.
+     * A unique identifier used to represent the document in any logging or feedback requests in place of
+     * documentId.
      */
     public DocumentMetadata withLoggingId(Optional<String> loggingId) {
         Utils.checkNotNull(loggingId, "loggingId");
@@ -994,7 +1056,11 @@ public class DocumentMetadata {
     }
 
     /**
-     * A list of components this result is associated with. Interpretation is specific to each datasource. (e.g. for Jira issues, these are [components](https://confluence.atlassian.com/jirasoftwarecloud/organizing-work-with-components-764478279.html).)
+     * A list of components this result is associated with. Interpretation is specific to each datasource.
+     * (e.g.
+     * 
+     * <p>for Jira issues, these are
+     * [components](https://confluence.atlassian.com/jirasoftwarecloud/organizing-work-with-components-764478279.html).)
      */
     public DocumentMetadata withComponents(List<String> components) {
         Utils.checkNotNull(components, "components");
@@ -1004,7 +1070,11 @@ public class DocumentMetadata {
 
 
     /**
-     * A list of components this result is associated with. Interpretation is specific to each datasource. (e.g. for Jira issues, these are [components](https://confluence.atlassian.com/jirasoftwarecloud/organizing-work-with-components-764478279.html).)
+     * A list of components this result is associated with. Interpretation is specific to each datasource.
+     * (e.g.
+     * 
+     * <p>for Jira issues, these are
+     * [components](https://confluence.atlassian.com/jirasoftwarecloud/organizing-work-with-components-764478279.html).)
      */
     public DocumentMetadata withComponents(Optional<? extends List<String>> components) {
         Utils.checkNotNull(components, "components");
@@ -1013,7 +1083,9 @@ public class DocumentMetadata {
     }
 
     /**
-     * The status or disposition of the result. Interpretation is specific to each datasource. (e.g. for Jira issues, this is the issue status such as Done, In Progress or Will Not Fix).
+     * The status or disposition of the result. Interpretation is specific to each datasource. (e.g.
+     * 
+     * <p>for Jira issues, this is the issue status such as Done, In Progress or Will Not Fix).
      */
     public DocumentMetadata withStatus(String status) {
         Utils.checkNotNull(status, "status");
@@ -1023,7 +1095,9 @@ public class DocumentMetadata {
 
 
     /**
-     * The status or disposition of the result. Interpretation is specific to each datasource. (e.g. for Jira issues, this is the issue status such as Done, In Progress or Will Not Fix).
+     * The status or disposition of the result. Interpretation is specific to each datasource. (e.g.
+     * 
+     * <p>for Jira issues, this is the issue status such as Done, In Progress or Will Not Fix).
      */
     public DocumentMetadata withStatus(Optional<String> status) {
         Utils.checkNotNull(status, "status");
@@ -1032,7 +1106,8 @@ public class DocumentMetadata {
     }
 
     /**
-     * The status category of the result. Meant to be more general than status. Interpretation is specific to each datasource.
+     * The status category of the result. Meant to be more general than status. Interpretation is specific
+     * to each datasource.
      */
     public DocumentMetadata withStatusCategory(String statusCategory) {
         Utils.checkNotNull(statusCategory, "statusCategory");
@@ -1042,7 +1117,8 @@ public class DocumentMetadata {
 
 
     /**
-     * The status category of the result. Meant to be more general than status. Interpretation is specific to each datasource.
+     * The status category of the result. Meant to be more general than status. Interpretation is specific
+     * to each datasource.
      */
     public DocumentMetadata withStatusCategory(Optional<String> statusCategory) {
         Utils.checkNotNull(statusCategory, "statusCategory");
@@ -1051,7 +1127,7 @@ public class DocumentMetadata {
     }
 
     /**
-     * A list of stars associated with this result.  "Pin" is an older name.
+     * A list of stars associated with this result. "Pin" is an older name.
      */
     public DocumentMetadata withPins(List<PinDocument> pins) {
         Utils.checkNotNull(pins, "pins");
@@ -1061,7 +1137,7 @@ public class DocumentMetadata {
 
 
     /**
-     * A list of stars associated with this result.  "Pin" is an older name.
+     * A list of stars associated with this result. "Pin" is an older name.
      */
     public DocumentMetadata withPins(Optional<? extends List<PinDocument>> pins) {
         Utils.checkNotNull(pins, "pins");
@@ -1352,7 +1428,9 @@ public class DocumentMetadata {
     }
 
     /**
-     * A list of documents that are ancestors of this document in the hierarchy of the document's datasource, for example parent folders or containers. Ancestors can be of different types and some may not be indexed. Higher level ancestors appear earlier in the list.
+     * A list of documents that are ancestors of this document in the hierarchy of the document's
+     * datasource, for example parent folders or containers. Ancestors can be of different types and some
+     * may not be indexed. Higher level ancestors appear earlier in the list.
      */
     public DocumentMetadata withAncestors(List<Document> ancestors) {
         Utils.checkNotNull(ancestors, "ancestors");
@@ -1362,7 +1440,9 @@ public class DocumentMetadata {
 
 
     /**
-     * A list of documents that are ancestors of this document in the hierarchy of the document's datasource, for example parent folders or containers. Ancestors can be of different types and some may not be indexed. Higher level ancestors appear earlier in the list.
+     * A list of documents that are ancestors of this document in the hierarchy of the document's
+     * datasource, for example parent folders or containers. Ancestors can be of different types and some
+     * may not be indexed. Higher level ancestors appear earlier in the list.
      */
     public DocumentMetadata withAncestors(Optional<? extends List<Document>> ancestors) {
         Utils.checkNotNull(ancestors, "ancestors");
@@ -1607,7 +1687,9 @@ public class DocumentMetadata {
 
 
         /**
-         * The type of the result. Interpretation is specific to each datasource. (e.g. for Jira issues, this is the issue type such as Bug or Feature Request).
+         * The type of the result. Interpretation is specific to each datasource. (e.g.
+         * 
+         * <p>for Jira issues, this is the issue type such as Bug or Feature Request).
          */
         public Builder objectType(String objectType) {
             Utils.checkNotNull(objectType, "objectType");
@@ -1616,7 +1698,9 @@ public class DocumentMetadata {
         }
 
         /**
-         * The type of the result. Interpretation is specific to each datasource. (e.g. for Jira issues, this is the issue type such as Bug or Feature Request).
+         * The type of the result. Interpretation is specific to each datasource. (e.g.
+         * 
+         * <p>for Jira issues, this is the issue type such as Bug or Feature Request).
          */
         public Builder objectType(Optional<String> objectType) {
             Utils.checkNotNull(objectType, "objectType");
@@ -1626,7 +1710,10 @@ public class DocumentMetadata {
 
 
         /**
-         * The name of the container (higher level parent, not direct parent) of the result. Interpretation is specific to each datasource (e.g. Channels for Slack, Project for Jira). cf. parentId
+         * The name of the container (higher level parent, not direct parent) of the result. Interpretation is
+         * specific to each datasource (e.g. Channels for Slack, Project for Jira).
+         * 
+         * <p>cf. parentId
          */
         public Builder container(String container) {
             Utils.checkNotNull(container, "container");
@@ -1635,7 +1722,10 @@ public class DocumentMetadata {
         }
 
         /**
-         * The name of the container (higher level parent, not direct parent) of the result. Interpretation is specific to each datasource (e.g. Channels for Slack, Project for Jira). cf. parentId
+         * The name of the container (higher level parent, not direct parent) of the result. Interpretation is
+         * specific to each datasource (e.g. Channels for Slack, Project for Jira).
+         * 
+         * <p>cf. parentId
          */
         public Builder container(Optional<String> container) {
             Utils.checkNotNull(container, "container");
@@ -1664,7 +1754,9 @@ public class DocumentMetadata {
 
 
         /**
-         * The Glean Document ID of the super container. Super container represents a broader abstraction that contains many containers. For example, whereas container might refer to a folder, super container would refer to a drive.
+         * The Glean Document ID of the super container. Super container represents a broader abstraction that
+         * contains many containers. For example, whereas container might refer to a folder, super container
+         * would refer to a drive.
          */
         public Builder superContainerId(String superContainerId) {
             Utils.checkNotNull(superContainerId, "superContainerId");
@@ -1673,7 +1765,9 @@ public class DocumentMetadata {
         }
 
         /**
-         * The Glean Document ID of the super container. Super container represents a broader abstraction that contains many containers. For example, whereas container might refer to a folder, super container would refer to a drive.
+         * The Glean Document ID of the super container. Super container represents a broader abstraction that
+         * contains many containers. For example, whereas container might refer to a folder, super container
+         * would refer to a drive.
          */
         public Builder superContainerId(Optional<String> superContainerId) {
             Utils.checkNotNull(superContainerId, "superContainerId");
@@ -1683,7 +1777,10 @@ public class DocumentMetadata {
 
 
         /**
-         * The id of the direct parent of the result. Interpretation is specific to each datasource (e.g. parent issue for Jira). cf. container
+         * The id of the direct parent of the result. Interpretation is specific to each datasource (e.g.
+         * parent issue for Jira).
+         * 
+         * <p>cf. container
          */
         public Builder parentId(String parentId) {
             Utils.checkNotNull(parentId, "parentId");
@@ -1692,7 +1789,10 @@ public class DocumentMetadata {
         }
 
         /**
-         * The id of the direct parent of the result. Interpretation is specific to each datasource (e.g. parent issue for Jira). cf. container
+         * The id of the direct parent of the result. Interpretation is specific to each datasource (e.g.
+         * parent issue for Jira).
+         * 
+         * <p>cf. container
          */
         public Builder parentId(Optional<String> parentId) {
             Utils.checkNotNull(parentId, "parentId");
@@ -1734,7 +1834,8 @@ public class DocumentMetadata {
 
 
         /**
-         * A unique identifier used to represent the document in any logging or feedback requests in place of documentId.
+         * A unique identifier used to represent the document in any logging or feedback requests in place of
+         * documentId.
          */
         public Builder loggingId(String loggingId) {
             Utils.checkNotNull(loggingId, "loggingId");
@@ -1743,7 +1844,8 @@ public class DocumentMetadata {
         }
 
         /**
-         * A unique identifier used to represent the document in any logging or feedback requests in place of documentId.
+         * A unique identifier used to represent the document in any logging or feedback requests in place of
+         * documentId.
          */
         public Builder loggingId(Optional<String> loggingId) {
             Utils.checkNotNull(loggingId, "loggingId");
@@ -1862,7 +1964,11 @@ public class DocumentMetadata {
 
 
         /**
-         * A list of components this result is associated with. Interpretation is specific to each datasource. (e.g. for Jira issues, these are [components](https://confluence.atlassian.com/jirasoftwarecloud/organizing-work-with-components-764478279.html).)
+         * A list of components this result is associated with. Interpretation is specific to each datasource.
+         * (e.g.
+         * 
+         * <p>for Jira issues, these are
+         * [components](https://confluence.atlassian.com/jirasoftwarecloud/organizing-work-with-components-764478279.html).)
          */
         public Builder components(List<String> components) {
             Utils.checkNotNull(components, "components");
@@ -1871,7 +1977,11 @@ public class DocumentMetadata {
         }
 
         /**
-         * A list of components this result is associated with. Interpretation is specific to each datasource. (e.g. for Jira issues, these are [components](https://confluence.atlassian.com/jirasoftwarecloud/organizing-work-with-components-764478279.html).)
+         * A list of components this result is associated with. Interpretation is specific to each datasource.
+         * (e.g.
+         * 
+         * <p>for Jira issues, these are
+         * [components](https://confluence.atlassian.com/jirasoftwarecloud/organizing-work-with-components-764478279.html).)
          */
         public Builder components(Optional<? extends List<String>> components) {
             Utils.checkNotNull(components, "components");
@@ -1881,7 +1991,9 @@ public class DocumentMetadata {
 
 
         /**
-         * The status or disposition of the result. Interpretation is specific to each datasource. (e.g. for Jira issues, this is the issue status such as Done, In Progress or Will Not Fix).
+         * The status or disposition of the result. Interpretation is specific to each datasource. (e.g.
+         * 
+         * <p>for Jira issues, this is the issue status such as Done, In Progress or Will Not Fix).
          */
         public Builder status(String status) {
             Utils.checkNotNull(status, "status");
@@ -1890,7 +2002,9 @@ public class DocumentMetadata {
         }
 
         /**
-         * The status or disposition of the result. Interpretation is specific to each datasource. (e.g. for Jira issues, this is the issue status such as Done, In Progress or Will Not Fix).
+         * The status or disposition of the result. Interpretation is specific to each datasource. (e.g.
+         * 
+         * <p>for Jira issues, this is the issue status such as Done, In Progress or Will Not Fix).
          */
         public Builder status(Optional<String> status) {
             Utils.checkNotNull(status, "status");
@@ -1900,7 +2014,8 @@ public class DocumentMetadata {
 
 
         /**
-         * The status category of the result. Meant to be more general than status. Interpretation is specific to each datasource.
+         * The status category of the result. Meant to be more general than status. Interpretation is specific
+         * to each datasource.
          */
         public Builder statusCategory(String statusCategory) {
             Utils.checkNotNull(statusCategory, "statusCategory");
@@ -1909,7 +2024,8 @@ public class DocumentMetadata {
         }
 
         /**
-         * The status category of the result. Meant to be more general than status. Interpretation is specific to each datasource.
+         * The status category of the result. Meant to be more general than status. Interpretation is specific
+         * to each datasource.
          */
         public Builder statusCategory(Optional<String> statusCategory) {
             Utils.checkNotNull(statusCategory, "statusCategory");
@@ -1919,7 +2035,7 @@ public class DocumentMetadata {
 
 
         /**
-         * A list of stars associated with this result.  "Pin" is an older name.
+         * A list of stars associated with this result. "Pin" is an older name.
          */
         public Builder pins(List<PinDocument> pins) {
             Utils.checkNotNull(pins, "pins");
@@ -1928,7 +2044,7 @@ public class DocumentMetadata {
         }
 
         /**
-         * A list of stars associated with this result.  "Pin" is an older name.
+         * A list of stars associated with this result. "Pin" is an older name.
          */
         public Builder pins(Optional<? extends List<PinDocument>> pins) {
             Utils.checkNotNull(pins, "pins");
@@ -2220,7 +2336,9 @@ public class DocumentMetadata {
 
 
         /**
-         * A list of documents that are ancestors of this document in the hierarchy of the document's datasource, for example parent folders or containers. Ancestors can be of different types and some may not be indexed. Higher level ancestors appear earlier in the list.
+         * A list of documents that are ancestors of this document in the hierarchy of the document's
+         * datasource, for example parent folders or containers. Ancestors can be of different types and some
+         * may not be indexed. Higher level ancestors appear earlier in the list.
          */
         public Builder ancestors(List<Document> ancestors) {
             Utils.checkNotNull(ancestors, "ancestors");
@@ -2229,7 +2347,9 @@ public class DocumentMetadata {
         }
 
         /**
-         * A list of documents that are ancestors of this document in the hierarchy of the document's datasource, for example parent folders or containers. Ancestors can be of different types and some may not be indexed. Higher level ancestors appear earlier in the list.
+         * A list of documents that are ancestors of this document in the hierarchy of the document's
+         * datasource, for example parent folders or containers. Ancestors can be of different types and some
+         * may not be indexed. Higher level ancestors appear earlier in the list.
          */
         public Builder ancestors(Optional<? extends List<Document>> ancestors) {
             Utils.checkNotNull(ancestors, "ancestors");

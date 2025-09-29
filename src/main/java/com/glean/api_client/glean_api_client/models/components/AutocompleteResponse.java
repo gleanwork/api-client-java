@@ -26,7 +26,8 @@ public class AutocompleteResponse {
     private Optional<? extends List<Long>> experimentIds;
 
     /**
-     * An opaque token that represents this particular set of autocomplete results. To be used for /feedback reporting.
+     * An opaque token that represents this particular set of autocomplete results. To be used for
+     * /feedback reporting.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("trackingToken")
@@ -102,7 +103,8 @@ public class AutocompleteResponse {
     }
 
     /**
-     * An opaque token that represents this particular set of autocomplete results. To be used for /feedback reporting.
+     * An opaque token that represents this particular set of autocomplete results. To be used for
+     * /feedback reporting.
      */
     @JsonIgnore
     public Optional<String> trackingToken() {
@@ -169,7 +171,8 @@ public class AutocompleteResponse {
     }
 
     /**
-     * An opaque token that represents this particular set of autocomplete results. To be used for /feedback reporting.
+     * An opaque token that represents this particular set of autocomplete results. To be used for
+     * /feedback reporting.
      */
     public AutocompleteResponse withTrackingToken(String trackingToken) {
         Utils.checkNotNull(trackingToken, "trackingToken");
@@ -179,7 +182,8 @@ public class AutocompleteResponse {
 
 
     /**
-     * An opaque token that represents this particular set of autocomplete results. To be used for /feedback reporting.
+     * An opaque token that represents this particular set of autocomplete results. To be used for
+     * /feedback reporting.
      */
     public AutocompleteResponse withTrackingToken(Optional<String> trackingToken) {
         Utils.checkNotNull(trackingToken, "trackingToken");
@@ -345,7 +349,8 @@ public class AutocompleteResponse {
 
 
         /**
-         * An opaque token that represents this particular set of autocomplete results. To be used for /feedback reporting.
+         * An opaque token that represents this particular set of autocomplete results. To be used for
+         * /feedback reporting.
          */
         public Builder trackingToken(String trackingToken) {
             Utils.checkNotNull(trackingToken, "trackingToken");
@@ -354,7 +359,8 @@ public class AutocompleteResponse {
         }
 
         /**
-         * An opaque token that represents this particular set of autocomplete results. To be used for /feedback reporting.
+         * An opaque token that represents this particular set of autocomplete results. To be used for
+         * /feedback reporting.
          */
         public Builder trackingToken(Optional<String> trackingToken) {
             Utils.checkNotNull(trackingToken, "trackingToken");

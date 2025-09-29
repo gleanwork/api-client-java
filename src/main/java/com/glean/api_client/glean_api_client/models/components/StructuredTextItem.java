@@ -32,7 +32,8 @@ public class StructuredTextItem {
     private Optional<String> text;
 
     /**
-     * A single object that can support any object in the work graph. Only a single object will be populated.
+     * A single object that can support any object in the work graph. Only a single object will be
+     * populated.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("structuredResult")
@@ -76,7 +77,8 @@ public class StructuredTextItem {
     }
 
     /**
-     * A single object that can support any object in the work graph. Only a single object will be populated.
+     * A single object that can support any object in the work graph. Only a single object will be
+     * populated.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -129,7 +131,8 @@ public class StructuredTextItem {
     }
 
     /**
-     * A single object that can support any object in the work graph. Only a single object will be populated.
+     * A single object that can support any object in the work graph. Only a single object will be
+     * populated.
      */
     public StructuredTextItem withStructuredResult(StructuredResult structuredResult) {
         Utils.checkNotNull(structuredResult, "structuredResult");
@@ -139,7 +142,8 @@ public class StructuredTextItem {
 
 
     /**
-     * A single object that can support any object in the work graph. Only a single object will be populated.
+     * A single object that can support any object in the work graph. Only a single object will be
+     * populated.
      */
     public StructuredTextItem withStructuredResult(Optional<? extends StructuredResult> structuredResult) {
         Utils.checkNotNull(structuredResult, "structuredResult");
@@ -235,7 +239,8 @@ public class StructuredTextItem {
 
 
         /**
-         * A single object that can support any object in the work graph. Only a single object will be populated.
+         * A single object that can support any object in the work graph. Only a single object will be
+         * populated.
          */
         public Builder structuredResult(StructuredResult structuredResult) {
             Utils.checkNotNull(structuredResult, "structuredResult");
@@ -244,7 +249,8 @@ public class StructuredTextItem {
         }
 
         /**
-         * A single object that can support any object in the work graph. Only a single object will be populated.
+         * A single object that can support any object in the work graph. Only a single object will be
+         * populated.
          */
         public Builder structuredResult(Optional<? extends StructuredResult> structuredResult) {
             Utils.checkNotNull(structuredResult, "structuredResult");

@@ -11,7 +11,9 @@ import java.util.Optional;
 /**
  * DatasourceCategory
  * 
- * <p>The type of this datasource. It is an important signal for relevance and must be specified and cannot be UNCATEGORIZED. Please refer to [this](https://developers.glean.com/docs/indexing_api_datasource_category/) for more details.
+ * <p>The type of this datasource. It is an important signal for relevance and must be specified and
+ * cannot be UNCATEGORIZED. Please refer to
+ * [this](https://developers.glean.com/docs/indexing_api_datasource_category/) for more details.
  */
 public enum DatasourceCategory {
     UNCATEGORIZED("UNCATEGORIZED"),

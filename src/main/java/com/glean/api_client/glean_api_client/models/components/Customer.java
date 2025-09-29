@@ -39,7 +39,8 @@ public class Customer {
     private Company company;
 
     /**
-     * A map of {string, int} pairs representing counts of each document type associated with this customer.
+     * A map of {string, int} pairs representing counts of each document type associated with this
+     * customer.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentCounts")
@@ -151,7 +152,8 @@ public class Customer {
     }
 
     /**
-     * A map of {string, int} pairs representing counts of each document type associated with this customer.
+     * A map of {string, int} pairs representing counts of each document type associated with this
+     * customer.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -247,7 +249,8 @@ public class Customer {
     }
 
     /**
-     * A map of {string, int} pairs representing counts of each document type associated with this customer.
+     * A map of {string, int} pairs representing counts of each document type associated with this
+     * customer.
      */
     public Customer withDocumentCounts(Map<String, Long> documentCounts) {
         Utils.checkNotNull(documentCounts, "documentCounts");
@@ -257,7 +260,8 @@ public class Customer {
 
 
     /**
-     * A map of {string, int} pairs representing counts of each document type associated with this customer.
+     * A map of {string, int} pairs representing counts of each document type associated with this
+     * customer.
      */
     public Customer withDocumentCounts(Optional<? extends Map<String, Long>> documentCounts) {
         Utils.checkNotNull(documentCounts, "documentCounts");
@@ -484,7 +488,8 @@ public class Customer {
 
 
         /**
-         * A map of {string, int} pairs representing counts of each document type associated with this customer.
+         * A map of {string, int} pairs representing counts of each document type associated with this
+         * customer.
          */
         public Builder documentCounts(Map<String, Long> documentCounts) {
             Utils.checkNotNull(documentCounts, "documentCounts");
@@ -493,7 +498,8 @@ public class Customer {
         }
 
         /**
-         * A map of {string, int} pairs representing counts of each document type associated with this customer.
+         * A map of {string, int} pairs representing counts of each document type associated with this
+         * customer.
          */
         public Builder documentCounts(Optional<? extends Map<String, Long>> documentCounts) {
             Utils.checkNotNull(documentCounts, "documentCounts");

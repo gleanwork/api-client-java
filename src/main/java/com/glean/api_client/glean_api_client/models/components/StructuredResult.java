@@ -18,7 +18,8 @@ import java.util.Optional;
 /**
  * StructuredResult
  * 
- * <p>A single object that can support any object in the work graph. Only a single object will be populated.
+ * <p>A single object that can support any object in the work graph. Only a single object will be
+ * populated.
  */
 public class StructuredResult {
 
@@ -123,7 +124,8 @@ public class StructuredResult {
     private Optional<? extends List<SearchResultSnippet>> snippets;
 
     /**
-     * An opaque token that represents this particular result in this particular query. To be used for /feedback reporting.
+     * An opaque token that represents this particular result in this particular query. To be used for
+     * /feedback reporting.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("trackingToken")
@@ -348,7 +350,8 @@ public class StructuredResult {
     }
 
     /**
-     * An opaque token that represents this particular result in this particular query. To be used for /feedback reporting.
+     * An opaque token that represents this particular result in this particular query. To be used for
+     * /feedback reporting.
      */
     @JsonIgnore
     public Optional<String> trackingToken() {
@@ -644,7 +647,8 @@ public class StructuredResult {
     }
 
     /**
-     * An opaque token that represents this particular result in this particular query. To be used for /feedback reporting.
+     * An opaque token that represents this particular result in this particular query. To be used for
+     * /feedback reporting.
      */
     public StructuredResult withTrackingToken(String trackingToken) {
         Utils.checkNotNull(trackingToken, "trackingToken");
@@ -654,7 +658,8 @@ public class StructuredResult {
 
 
     /**
-     * An opaque token that represents this particular result in this particular query. To be used for /feedback reporting.
+     * An opaque token that represents this particular result in this particular query. To be used for
+     * /feedback reporting.
      */
     public StructuredResult withTrackingToken(Optional<String> trackingToken) {
         Utils.checkNotNull(trackingToken, "trackingToken");
@@ -1092,7 +1097,8 @@ public class StructuredResult {
 
 
         /**
-         * An opaque token that represents this particular result in this particular query. To be used for /feedback reporting.
+         * An opaque token that represents this particular result in this particular query. To be used for
+         * /feedback reporting.
          */
         public Builder trackingToken(String trackingToken) {
             Utils.checkNotNull(trackingToken, "trackingToken");
@@ -1101,7 +1107,8 @@ public class StructuredResult {
         }
 
         /**
-         * An opaque token that represents this particular result in this particular query. To be used for /feedback reporting.
+         * An opaque token that represents this particular result in this particular query. To be used for
+         * /feedback reporting.
          */
         public Builder trackingToken(Optional<String> trackingToken) {
             Utils.checkNotNull(trackingToken, "trackingToken");

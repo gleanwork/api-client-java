@@ -16,7 +16,8 @@ import java.util.Optional;
 /**
  * DatasourceMembershipDefinition
  * 
- * <p>describes the membership row of a group. Only one of memberUserId and memberGroupName can be specified.
+ * <p>describes the membership row of a group. Only one of memberUserId and memberGroupName can be
+ * specified.
  */
 public class DatasourceMembershipDefinition {
     /**

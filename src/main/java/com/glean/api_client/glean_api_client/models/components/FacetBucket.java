@@ -25,7 +25,8 @@ public class FacetBucket {
     private Optional<Long> count;
 
     /**
-     * The datasource the value belongs to. This will be used by the all tab to show types across all datasources.
+     * The datasource the value belongs to. This will be used by the all tab to show types across all
+     * datasources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("datasource")
@@ -73,7 +74,8 @@ public class FacetBucket {
     }
 
     /**
-     * The datasource the value belongs to. This will be used by the all tab to show types across all datasources.
+     * The datasource the value belongs to. This will be used by the all tab to show types across all
+     * datasources.
      */
     @JsonIgnore
     public Optional<String> datasource() {
@@ -119,7 +121,8 @@ public class FacetBucket {
     }
 
     /**
-     * The datasource the value belongs to. This will be used by the all tab to show types across all datasources.
+     * The datasource the value belongs to. This will be used by the all tab to show types across all
+     * datasources.
      */
     public FacetBucket withDatasource(String datasource) {
         Utils.checkNotNull(datasource, "datasource");
@@ -129,7 +132,8 @@ public class FacetBucket {
 
 
     /**
-     * The datasource the value belongs to. This will be used by the all tab to show types across all datasources.
+     * The datasource the value belongs to. This will be used by the all tab to show types across all
+     * datasources.
      */
     public FacetBucket withDatasource(Optional<String> datasource) {
         Utils.checkNotNull(datasource, "datasource");
@@ -237,7 +241,8 @@ public class FacetBucket {
 
 
         /**
-         * The datasource the value belongs to. This will be used by the all tab to show types across all datasources.
+         * The datasource the value belongs to. This will be used by the all tab to show types across all
+         * datasources.
          */
         public Builder datasource(String datasource) {
             Utils.checkNotNull(datasource, "datasource");
@@ -246,7 +251,8 @@ public class FacetBucket {
         }
 
         /**
-         * The datasource the value belongs to. This will be used by the all tab to show types across all datasources.
+         * The datasource the value belongs to. This will be used by the all tab to show types across all
+         * datasources.
          */
         public Builder datasource(Optional<String> datasource) {
             Utils.checkNotNull(datasource, "datasource");

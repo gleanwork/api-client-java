@@ -29,7 +29,8 @@ public class TeamMember {
     private String email;
 
     /**
-     * The member's relationship to the team, an enum of `MEMBER`, `MANAGER`, `LEAD`, `POINT_OF_CONTACT`, `OTHER`
+     * The member's relationship to the team, an enum of `MEMBER`, `MANAGER`, `LEAD`, `POINT_OF_CONTACT`,
+     * `OTHER`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("relationship")
@@ -69,7 +70,8 @@ public class TeamMember {
     }
 
     /**
-     * The member's relationship to the team, an enum of `MEMBER`, `MANAGER`, `LEAD`, `POINT_OF_CONTACT`, `OTHER`
+     * The member's relationship to the team, an enum of `MEMBER`, `MANAGER`, `LEAD`, `POINT_OF_CONTACT`,
+     * `OTHER`
      */
     @JsonIgnore
     public Optional<String> relationship() {
@@ -99,7 +101,8 @@ public class TeamMember {
     }
 
     /**
-     * The member's relationship to the team, an enum of `MEMBER`, `MANAGER`, `LEAD`, `POINT_OF_CONTACT`, `OTHER`
+     * The member's relationship to the team, an enum of `MEMBER`, `MANAGER`, `LEAD`, `POINT_OF_CONTACT`,
+     * `OTHER`
      */
     public TeamMember withRelationship(String relationship) {
         Utils.checkNotNull(relationship, "relationship");
@@ -109,7 +112,8 @@ public class TeamMember {
 
 
     /**
-     * The member's relationship to the team, an enum of `MEMBER`, `MANAGER`, `LEAD`, `POINT_OF_CONTACT`, `OTHER`
+     * The member's relationship to the team, an enum of `MEMBER`, `MANAGER`, `LEAD`, `POINT_OF_CONTACT`,
+     * `OTHER`
      */
     public TeamMember withRelationship(Optional<String> relationship) {
         Utils.checkNotNull(relationship, "relationship");
@@ -190,7 +194,8 @@ public class TeamMember {
 
 
         /**
-         * The member's relationship to the team, an enum of `MEMBER`, `MANAGER`, `LEAD`, `POINT_OF_CONTACT`, `OTHER`
+         * The member's relationship to the team, an enum of `MEMBER`, `MANAGER`, `LEAD`, `POINT_OF_CONTACT`,
+         * `OTHER`
          */
         public Builder relationship(String relationship) {
             Utils.checkNotNull(relationship, "relationship");
@@ -199,7 +204,8 @@ public class TeamMember {
         }
 
         /**
-         * The member's relationship to the team, an enum of `MEMBER`, `MANAGER`, `LEAD`, `POINT_OF_CONTACT`, `OTHER`
+         * The member's relationship to the team, an enum of `MEMBER`, `MANAGER`, `LEAD`, `POINT_OF_CONTACT`,
+         * `OTHER`
          */
         public Builder relationship(Optional<String> relationship) {
             Utils.checkNotNull(relationship, "relationship");

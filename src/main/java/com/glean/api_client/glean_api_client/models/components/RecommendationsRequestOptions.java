@@ -25,7 +25,8 @@ public class RecommendationsRequestOptions {
     private Optional<String> datasourceFilter;
 
     /**
-     * Filter results to only those relevant to one or more datasources (e.g. jira, gdrive). All results are returned if missing.
+     * Filter results to only those relevant to one or more datasources (e.g. jira, gdrive). All results
+     * are returned if missing.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("datasourcesFilter")
@@ -83,7 +84,8 @@ public class RecommendationsRequestOptions {
     }
 
     /**
-     * Filter results to only those relevant to one or more datasources (e.g. jira, gdrive). All results are returned if missing.
+     * Filter results to only those relevant to one or more datasources (e.g. jira, gdrive). All results
+     * are returned if missing.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -140,7 +142,8 @@ public class RecommendationsRequestOptions {
     }
 
     /**
-     * Filter results to only those relevant to one or more datasources (e.g. jira, gdrive). All results are returned if missing.
+     * Filter results to only those relevant to one or more datasources (e.g. jira, gdrive). All results
+     * are returned if missing.
      */
     public RecommendationsRequestOptions withDatasourcesFilter(List<String> datasourcesFilter) {
         Utils.checkNotNull(datasourcesFilter, "datasourcesFilter");
@@ -150,7 +153,8 @@ public class RecommendationsRequestOptions {
 
 
     /**
-     * Filter results to only those relevant to one or more datasources (e.g. jira, gdrive). All results are returned if missing.
+     * Filter results to only those relevant to one or more datasources (e.g. jira, gdrive). All results
+     * are returned if missing.
      */
     public RecommendationsRequestOptions withDatasourcesFilter(Optional<? extends List<String>> datasourcesFilter) {
         Utils.checkNotNull(datasourcesFilter, "datasourcesFilter");
@@ -281,7 +285,8 @@ public class RecommendationsRequestOptions {
 
 
         /**
-         * Filter results to only those relevant to one or more datasources (e.g. jira, gdrive). All results are returned if missing.
+         * Filter results to only those relevant to one or more datasources (e.g. jira, gdrive). All results
+         * are returned if missing.
          */
         public Builder datasourcesFilter(List<String> datasourcesFilter) {
             Utils.checkNotNull(datasourcesFilter, "datasourcesFilter");
@@ -290,7 +295,8 @@ public class RecommendationsRequestOptions {
         }
 
         /**
-         * Filter results to only those relevant to one or more datasources (e.g. jira, gdrive). All results are returned if missing.
+         * Filter results to only those relevant to one or more datasources (e.g. jira, gdrive). All results
+         * are returned if missing.
          */
         public Builder datasourcesFilter(Optional<? extends List<String>> datasourcesFilter) {
             Utils.checkNotNull(datasourcesFilter, "datasourcesFilter");

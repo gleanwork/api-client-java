@@ -26,7 +26,8 @@ public class CalendarAttendee {
     private Optional<Boolean> isOrganizer;
 
     /**
-     * Whether or not this attendee is in a group. Needed temporarily at least to support both flat attendees and tree for compatibility.
+     * Whether or not this attendee is in a group. Needed temporarily at least to support both flat
+     * attendees and tree for compatibility.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("isInGroup")
@@ -82,7 +83,8 @@ public class CalendarAttendee {
     }
 
     /**
-     * Whether or not this attendee is in a group. Needed temporarily at least to support both flat attendees and tree for compatibility.
+     * Whether or not this attendee is in a group. Needed temporarily at least to support both flat
+     * attendees and tree for compatibility.
      */
     @JsonIgnore
     public Optional<Boolean> isInGroup() {
@@ -134,7 +136,8 @@ public class CalendarAttendee {
     }
 
     /**
-     * Whether or not this attendee is in a group. Needed temporarily at least to support both flat attendees and tree for compatibility.
+     * Whether or not this attendee is in a group. Needed temporarily at least to support both flat
+     * attendees and tree for compatibility.
      */
     public CalendarAttendee withIsInGroup(boolean isInGroup) {
         Utils.checkNotNull(isInGroup, "isInGroup");
@@ -144,7 +147,8 @@ public class CalendarAttendee {
 
 
     /**
-     * Whether or not this attendee is in a group. Needed temporarily at least to support both flat attendees and tree for compatibility.
+     * Whether or not this attendee is in a group. Needed temporarily at least to support both flat
+     * attendees and tree for compatibility.
      */
     public CalendarAttendee withIsInGroup(Optional<Boolean> isInGroup) {
         Utils.checkNotNull(isInGroup, "isInGroup");
@@ -262,7 +266,8 @@ public class CalendarAttendee {
 
 
         /**
-         * Whether or not this attendee is in a group. Needed temporarily at least to support both flat attendees and tree for compatibility.
+         * Whether or not this attendee is in a group. Needed temporarily at least to support both flat
+         * attendees and tree for compatibility.
          */
         public Builder isInGroup(boolean isInGroup) {
             Utils.checkNotNull(isInGroup, "isInGroup");
@@ -271,7 +276,8 @@ public class CalendarAttendee {
         }
 
         /**
-         * Whether or not this attendee is in a group. Needed temporarily at least to support both flat attendees and tree for compatibility.
+         * Whether or not this attendee is in a group. Needed temporarily at least to support both flat
+         * attendees and tree for compatibility.
          */
         public Builder isInGroup(Optional<Boolean> isInGroup) {
             Utils.checkNotNull(isInGroup, "isInGroup");

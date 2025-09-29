@@ -18,7 +18,8 @@ import java.util.Optional;
 /**
  * AllowlistOptions
  * 
- * <p>Terms that are allow-listed during the scans. If any finding picked up by a rule exactly matches a term in the allow-list, it will not be counted as a violation.
+ * <p>Terms that are allow-listed during the scans. If any finding picked up by a rule exactly matches a
+ * term in the allow-list, it will not be counted as a violation.
  */
 public class AllowlistOptions {
     /**

@@ -18,7 +18,8 @@ import java.util.Optional;
 
 public class ActivityEvent {
     /**
-     * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest received event of a given UUID is considered valid by the server and subsequent are ignored.
+     * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest
+     * received event of a given UUID is considered valid by the server and subsequent are ignored.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
@@ -75,7 +76,8 @@ public class ActivityEvent {
     }
 
     /**
-     * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest received event of a given UUID is considered valid by the server and subsequent are ignored.
+     * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest
+     * received event of a given UUID is considered valid by the server and subsequent are ignored.
      */
     @JsonIgnore
     public Optional<String> id() {
@@ -118,7 +120,8 @@ public class ActivityEvent {
 
 
     /**
-     * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest received event of a given UUID is considered valid by the server and subsequent are ignored.
+     * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest
+     * received event of a given UUID is considered valid by the server and subsequent are ignored.
      */
     public ActivityEvent withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -128,7 +131,8 @@ public class ActivityEvent {
 
 
     /**
-     * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest received event of a given UUID is considered valid by the server and subsequent are ignored.
+     * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest
+     * received event of a given UUID is considered valid by the server and subsequent are ignored.
      */
     public ActivityEvent withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
@@ -229,7 +233,8 @@ public class ActivityEvent {
 
 
         /**
-         * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest received event of a given UUID is considered valid by the server and subsequent are ignored.
+         * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest
+         * received event of a given UUID is considered valid by the server and subsequent are ignored.
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -238,7 +243,8 @@ public class ActivityEvent {
         }
 
         /**
-         * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest received event of a given UUID is considered valid by the server and subsequent are ignored.
+         * Universally unique identifier of the event. To allow for reliable retransmission, only the earliest
+         * received event of a given UUID is considered valid by the server and subsequent are ignored.
          */
         public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");

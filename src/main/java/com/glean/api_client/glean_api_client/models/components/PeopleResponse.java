@@ -25,7 +25,8 @@ public class PeopleResponse {
     private Optional<? extends List<Person>> results;
 
     /**
-     * A list of documents related to this people response. This is only included if DOCUMENT_ACTIVITY is requested and only 1 person is included in the request.
+     * A list of documents related to this people response. This is only included if DOCUMENT_ACTIVITY is
+     * requested and only 1 person is included in the request.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("relatedDocuments")
@@ -65,7 +66,8 @@ public class PeopleResponse {
     }
 
     /**
-     * A list of documents related to this people response. This is only included if DOCUMENT_ACTIVITY is requested and only 1 person is included in the request.
+     * A list of documents related to this people response. This is only included if DOCUMENT_ACTIVITY is
+     * requested and only 1 person is included in the request.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -107,7 +109,8 @@ public class PeopleResponse {
     }
 
     /**
-     * A list of documents related to this people response. This is only included if DOCUMENT_ACTIVITY is requested and only 1 person is included in the request.
+     * A list of documents related to this people response. This is only included if DOCUMENT_ACTIVITY is
+     * requested and only 1 person is included in the request.
      */
     public PeopleResponse withRelatedDocuments(List<RelatedDocuments> relatedDocuments) {
         Utils.checkNotNull(relatedDocuments, "relatedDocuments");
@@ -117,7 +120,8 @@ public class PeopleResponse {
 
 
     /**
-     * A list of documents related to this people response. This is only included if DOCUMENT_ACTIVITY is requested and only 1 person is included in the request.
+     * A list of documents related to this people response. This is only included if DOCUMENT_ACTIVITY is
+     * requested and only 1 person is included in the request.
      */
     public PeopleResponse withRelatedDocuments(Optional<? extends List<RelatedDocuments>> relatedDocuments) {
         Utils.checkNotNull(relatedDocuments, "relatedDocuments");
@@ -207,7 +211,8 @@ public class PeopleResponse {
 
 
         /**
-         * A list of documents related to this people response. This is only included if DOCUMENT_ACTIVITY is requested and only 1 person is included in the request.
+         * A list of documents related to this people response. This is only included if DOCUMENT_ACTIVITY is
+         * requested and only 1 person is included in the request.
          */
         public Builder relatedDocuments(List<RelatedDocuments> relatedDocuments) {
             Utils.checkNotNull(relatedDocuments, "relatedDocuments");
@@ -216,7 +221,8 @@ public class PeopleResponse {
         }
 
         /**
-         * A list of documents related to this people response. This is only included if DOCUMENT_ACTIVITY is requested and only 1 person is included in the request.
+         * A list of documents related to this people response. This is only included if DOCUMENT_ACTIVITY is
+         * requested and only 1 person is included in the request.
          */
         public Builder relatedDocuments(Optional<? extends List<RelatedDocuments>> relatedDocuments) {
             Utils.checkNotNull(relatedDocuments, "relatedDocuments");

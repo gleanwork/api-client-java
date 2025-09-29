@@ -65,7 +65,7 @@ public class AsyncPins {
      * <p>Update an existing user-generated pin.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;EditpinResponse&gt; - The async response
+     * @return {@code CompletableFuture<EditpinResponse>} - The async response
      */
     public CompletableFuture<EditpinResponse> update(EditPinRequest request) {
         AsyncRequestOperation<EditPinRequest, EditpinResponse> operation
@@ -92,7 +92,7 @@ public class AsyncPins {
      * <p>Read pin details given its ID.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;GetpinResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetpinResponse>} - The async response
      */
     public CompletableFuture<GetpinResponse> retrieve(GetPinRequest request) {
         AsyncRequestOperation<GetPinRequest, GetpinResponse> operation
@@ -119,7 +119,7 @@ public class AsyncPins {
      * <p>Lists all pins.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListpinsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListpinsResponse>} - The async response
      */
     public CompletableFuture<ListpinsResponse> list(ListpinsRequest request) {
         AsyncRequestOperation<ListpinsRequest, ListpinsResponse> operation
@@ -146,7 +146,7 @@ public class AsyncPins {
      * <p>Pin a document as a result for a given search query.Pin results that are known to be a good match.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;PinResponse&gt; - The async response
+     * @return {@code CompletableFuture<PinResponse>} - The async response
      */
     public CompletableFuture<PinResponse> create(PinRequest request) {
         AsyncRequestOperation<PinRequest, PinResponse> operation
@@ -173,7 +173,7 @@ public class AsyncPins {
      * <p>Unpin a previously pinned result.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;UnpinResponse&gt; - The async response
+     * @return {@code CompletableFuture<UnpinResponse>} - The async response
      */
     public CompletableFuture<UnpinResponse> remove(Unpin request) {
         AsyncRequestOperation<Unpin, UnpinResponse> operation

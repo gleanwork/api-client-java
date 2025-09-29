@@ -22,7 +22,8 @@ import java.util.Optional;
  */
 public class SensitiveContentOptions {
     /**
-     * Predefined categories of terms to consider as sensitive content. See https://cloud.google.com/dlp/docs/infotypes-reference for available types.
+     * Predefined categories of terms to consider as sensitive content. See
+     * https://cloud.google.com/dlp/docs/infotypes-reference for available types.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sensitiveInfoTypes")
@@ -60,7 +61,8 @@ public class SensitiveContentOptions {
     }
 
     /**
-     * Predefined categories of terms to consider as sensitive content. See https://cloud.google.com/dlp/docs/infotypes-reference for available types.
+     * Predefined categories of terms to consider as sensitive content. See
+     * https://cloud.google.com/dlp/docs/infotypes-reference for available types.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -92,7 +94,8 @@ public class SensitiveContentOptions {
 
 
     /**
-     * Predefined categories of terms to consider as sensitive content. See https://cloud.google.com/dlp/docs/infotypes-reference for available types.
+     * Predefined categories of terms to consider as sensitive content. See
+     * https://cloud.google.com/dlp/docs/infotypes-reference for available types.
      */
     public SensitiveContentOptions withSensitiveInfoTypes(List<SensitiveInfoType> sensitiveInfoTypes) {
         Utils.checkNotNull(sensitiveInfoTypes, "sensitiveInfoTypes");
@@ -102,7 +105,8 @@ public class SensitiveContentOptions {
 
 
     /**
-     * Predefined categories of terms to consider as sensitive content. See https://cloud.google.com/dlp/docs/infotypes-reference for available types.
+     * Predefined categories of terms to consider as sensitive content. See
+     * https://cloud.google.com/dlp/docs/infotypes-reference for available types.
      */
     public SensitiveContentOptions withSensitiveInfoTypes(Optional<? extends List<SensitiveInfoType>> sensitiveInfoTypes) {
         Utils.checkNotNull(sensitiveInfoTypes, "sensitiveInfoTypes");
@@ -192,7 +196,8 @@ public class SensitiveContentOptions {
 
 
         /**
-         * Predefined categories of terms to consider as sensitive content. See https://cloud.google.com/dlp/docs/infotypes-reference for available types.
+         * Predefined categories of terms to consider as sensitive content. See
+         * https://cloud.google.com/dlp/docs/infotypes-reference for available types.
          */
         public Builder sensitiveInfoTypes(List<SensitiveInfoType> sensitiveInfoTypes) {
             Utils.checkNotNull(sensitiveInfoTypes, "sensitiveInfoTypes");
@@ -201,7 +206,8 @@ public class SensitiveContentOptions {
         }
 
         /**
-         * Predefined categories of terms to consider as sensitive content. See https://cloud.google.com/dlp/docs/infotypes-reference for available types.
+         * Predefined categories of terms to consider as sensitive content. See
+         * https://cloud.google.com/dlp/docs/infotypes-reference for available types.
          */
         public Builder sensitiveInfoTypes(Optional<? extends List<SensitiveInfoType>> sensitiveInfoTypes) {
             Utils.checkNotNull(sensitiveInfoTypes, "sensitiveInfoTypes");

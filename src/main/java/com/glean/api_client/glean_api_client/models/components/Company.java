@@ -41,7 +41,8 @@ public class Company {
     private Optional<? extends List<String>> websiteUrls;
 
     /**
-     * The URL of the company's logo. Public, Glean-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
+     * The URL of the company's logo. Public, Glean-authenticated and Base64 encoded data URLs are all
+     * valid (but not third-party-authenticated URLs).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("logoUrl")
@@ -188,7 +189,8 @@ public class Company {
     }
 
     /**
-     * The URL of the company's logo. Public, Glean-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
+     * The URL of the company's logo. Public, Glean-authenticated and Base64 encoded data URLs are all
+     * valid (but not third-party-authenticated URLs).
      */
     @JsonIgnore
     public Optional<String> logoUrl() {
@@ -320,7 +322,8 @@ public class Company {
     }
 
     /**
-     * The URL of the company's logo. Public, Glean-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
+     * The URL of the company's logo. Public, Glean-authenticated and Base64 encoded data URLs are all
+     * valid (but not third-party-authenticated URLs).
      */
     public Company withLogoUrl(String logoUrl) {
         Utils.checkNotNull(logoUrl, "logoUrl");
@@ -330,7 +333,8 @@ public class Company {
 
 
     /**
-     * The URL of the company's logo. Public, Glean-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
+     * The URL of the company's logo. Public, Glean-authenticated and Base64 encoded data URLs are all
+     * valid (but not third-party-authenticated URLs).
      */
     public Company withLogoUrl(Optional<String> logoUrl) {
         Utils.checkNotNull(logoUrl, "logoUrl");
@@ -645,7 +649,8 @@ public class Company {
 
 
         /**
-         * The URL of the company's logo. Public, Glean-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
+         * The URL of the company's logo. Public, Glean-authenticated and Base64 encoded data URLs are all
+         * valid (but not third-party-authenticated URLs).
          */
         public Builder logoUrl(String logoUrl) {
             Utils.checkNotNull(logoUrl, "logoUrl");
@@ -654,7 +659,8 @@ public class Company {
         }
 
         /**
-         * The URL of the company's logo. Public, Glean-authenticated and Base64 encoded data URLs are all valid (but not third-party-authenticated URLs).
+         * The URL of the company's logo. Public, Glean-authenticated and Base64 encoded data URLs are all
+         * valid (but not third-party-authenticated URLs).
          */
         public Builder logoUrl(Optional<String> logoUrl) {
             Utils.checkNotNull(logoUrl, "logoUrl");

@@ -24,21 +24,24 @@ public class UpdatePermissionsRequest {
     private String datasource;
 
     /**
-     * The type of the document (Case, KnowledgeArticle for Salesforce for example). It cannot have spaces or _
+     * The type of the document (Case, KnowledgeArticle for Salesforce for example). It cannot have spaces
+     * or _
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("objectType")
     private Optional<String> objectType;
 
     /**
-     * The datasource specific id for the document. This field is case insensitive and should not be more than 200 characters in length.
+     * The datasource specific id for the document. This field is case insensitive and should not be more
+     * than 200 characters in length.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
     private Optional<String> id;
 
     /**
-     * The permalink for viewing the document. **Note: viewURL is a required field if id was not set when uploading the document.**'
+     * The permalink for viewing the document. **Note: viewURL is a required field if id was not set when
+     * uploading the document.**'
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("viewURL")
@@ -82,7 +85,8 @@ public class UpdatePermissionsRequest {
     }
 
     /**
-     * The type of the document (Case, KnowledgeArticle for Salesforce for example). It cannot have spaces or _
+     * The type of the document (Case, KnowledgeArticle for Salesforce for example). It cannot have spaces
+     * or _
      */
     @JsonIgnore
     public Optional<String> objectType() {
@@ -90,7 +94,8 @@ public class UpdatePermissionsRequest {
     }
 
     /**
-     * The datasource specific id for the document. This field is case insensitive and should not be more than 200 characters in length.
+     * The datasource specific id for the document. This field is case insensitive and should not be more
+     * than 200 characters in length.
      */
     @JsonIgnore
     public Optional<String> id() {
@@ -98,7 +103,8 @@ public class UpdatePermissionsRequest {
     }
 
     /**
-     * The permalink for viewing the document. **Note: viewURL is a required field if id was not set when uploading the document.**'
+     * The permalink for viewing the document. **Note: viewURL is a required field if id was not set when
+     * uploading the document.**'
      */
     @JsonIgnore
     public Optional<String> viewURL() {
@@ -125,7 +131,8 @@ public class UpdatePermissionsRequest {
     }
 
     /**
-     * The type of the document (Case, KnowledgeArticle for Salesforce for example). It cannot have spaces or _
+     * The type of the document (Case, KnowledgeArticle for Salesforce for example). It cannot have spaces
+     * or _
      */
     public UpdatePermissionsRequest withObjectType(String objectType) {
         Utils.checkNotNull(objectType, "objectType");
@@ -135,7 +142,8 @@ public class UpdatePermissionsRequest {
 
 
     /**
-     * The type of the document (Case, KnowledgeArticle for Salesforce for example). It cannot have spaces or _
+     * The type of the document (Case, KnowledgeArticle for Salesforce for example). It cannot have spaces
+     * or _
      */
     public UpdatePermissionsRequest withObjectType(Optional<String> objectType) {
         Utils.checkNotNull(objectType, "objectType");
@@ -144,7 +152,8 @@ public class UpdatePermissionsRequest {
     }
 
     /**
-     * The datasource specific id for the document. This field is case insensitive and should not be more than 200 characters in length.
+     * The datasource specific id for the document. This field is case insensitive and should not be more
+     * than 200 characters in length.
      */
     public UpdatePermissionsRequest withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -154,7 +163,8 @@ public class UpdatePermissionsRequest {
 
 
     /**
-     * The datasource specific id for the document. This field is case insensitive and should not be more than 200 characters in length.
+     * The datasource specific id for the document. This field is case insensitive and should not be more
+     * than 200 characters in length.
      */
     public UpdatePermissionsRequest withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
@@ -163,7 +173,8 @@ public class UpdatePermissionsRequest {
     }
 
     /**
-     * The permalink for viewing the document. **Note: viewURL is a required field if id was not set when uploading the document.**'
+     * The permalink for viewing the document. **Note: viewURL is a required field if id was not set when
+     * uploading the document.**'
      */
     public UpdatePermissionsRequest withViewURL(String viewURL) {
         Utils.checkNotNull(viewURL, "viewURL");
@@ -173,7 +184,8 @@ public class UpdatePermissionsRequest {
 
 
     /**
-     * The permalink for viewing the document. **Note: viewURL is a required field if id was not set when uploading the document.**'
+     * The permalink for viewing the document. **Note: viewURL is a required field if id was not set when
+     * uploading the document.**'
      */
     public UpdatePermissionsRequest withViewURL(Optional<String> viewURL) {
         Utils.checkNotNull(viewURL, "viewURL");
@@ -250,7 +262,8 @@ public class UpdatePermissionsRequest {
 
 
         /**
-         * The type of the document (Case, KnowledgeArticle for Salesforce for example). It cannot have spaces or _
+         * The type of the document (Case, KnowledgeArticle for Salesforce for example). It cannot have spaces
+         * or _
          */
         public Builder objectType(String objectType) {
             Utils.checkNotNull(objectType, "objectType");
@@ -259,7 +272,8 @@ public class UpdatePermissionsRequest {
         }
 
         /**
-         * The type of the document (Case, KnowledgeArticle for Salesforce for example). It cannot have spaces or _
+         * The type of the document (Case, KnowledgeArticle for Salesforce for example). It cannot have spaces
+         * or _
          */
         public Builder objectType(Optional<String> objectType) {
             Utils.checkNotNull(objectType, "objectType");
@@ -269,7 +283,8 @@ public class UpdatePermissionsRequest {
 
 
         /**
-         * The datasource specific id for the document. This field is case insensitive and should not be more than 200 characters in length.
+         * The datasource specific id for the document. This field is case insensitive and should not be more
+         * than 200 characters in length.
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -278,7 +293,8 @@ public class UpdatePermissionsRequest {
         }
 
         /**
-         * The datasource specific id for the document. This field is case insensitive and should not be more than 200 characters in length.
+         * The datasource specific id for the document. This field is case insensitive and should not be more
+         * than 200 characters in length.
          */
         public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
@@ -288,7 +304,8 @@ public class UpdatePermissionsRequest {
 
 
         /**
-         * The permalink for viewing the document. **Note: viewURL is a required field if id was not set when uploading the document.**'
+         * The permalink for viewing the document. **Note: viewURL is a required field if id was not set when
+         * uploading the document.**'
          */
         public Builder viewURL(String viewURL) {
             Utils.checkNotNull(viewURL, "viewURL");
@@ -297,7 +314,8 @@ public class UpdatePermissionsRequest {
         }
 
         /**
-         * The permalink for viewing the document. **Note: viewURL is a required field if id was not set when uploading the document.**'
+         * The permalink for viewing the document. **Note: viewURL is a required field if id was not set when
+         * uploading the document.**'
          */
         public Builder viewURL(Optional<String> viewURL) {
             Utils.checkNotNull(viewURL, "viewURL");

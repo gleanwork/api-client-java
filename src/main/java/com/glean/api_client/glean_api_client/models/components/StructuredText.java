@@ -22,7 +22,8 @@ public class StructuredText {
     private String text;
 
     /**
-     * An array of objects each of which contains either a string or a link which optionally corresponds to a document.
+     * An array of objects each of which contains either a string or a link which optionally corresponds to
+     * a document.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("structuredList")
@@ -49,7 +50,8 @@ public class StructuredText {
     }
 
     /**
-     * An array of objects each of which contains either a string or a link which optionally corresponds to a document.
+     * An array of objects each of which contains either a string or a link which optionally corresponds to
+     * a document.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -69,7 +71,8 @@ public class StructuredText {
     }
 
     /**
-     * An array of objects each of which contains either a string or a link which optionally corresponds to a document.
+     * An array of objects each of which contains either a string or a link which optionally corresponds to
+     * a document.
      */
     public StructuredText withStructuredList(List<StructuredTextItem> structuredList) {
         Utils.checkNotNull(structuredList, "structuredList");
@@ -79,7 +82,8 @@ public class StructuredText {
 
 
     /**
-     * An array of objects each of which contains either a string or a link which optionally corresponds to a document.
+     * An array of objects each of which contains either a string or a link which optionally corresponds to
+     * a document.
      */
     public StructuredText withStructuredList(Optional<? extends List<StructuredTextItem>> structuredList) {
         Utils.checkNotNull(structuredList, "structuredList");
@@ -134,7 +138,8 @@ public class StructuredText {
 
 
         /**
-         * An array of objects each of which contains either a string or a link which optionally corresponds to a document.
+         * An array of objects each of which contains either a string or a link which optionally corresponds to
+         * a document.
          */
         public Builder structuredList(List<StructuredTextItem> structuredList) {
             Utils.checkNotNull(structuredList, "structuredList");
@@ -143,7 +148,8 @@ public class StructuredText {
         }
 
         /**
-         * An array of objects each of which contains either a string or a link which optionally corresponds to a document.
+         * An array of objects each of which contains either a string or a link which optionally corresponds to
+         * a document.
          */
         public Builder structuredList(Optional<? extends List<StructuredTextItem>> structuredList) {
             Utils.checkNotNull(structuredList, "structuredList");

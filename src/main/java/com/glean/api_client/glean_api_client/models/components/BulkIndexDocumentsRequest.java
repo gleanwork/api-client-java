@@ -42,7 +42,8 @@ public class BulkIndexDocumentsRequest {
     private Optional<Boolean> isLastPage;
 
     /**
-     * Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true
+     * Flag to discard previous upload attempts and start from scratch. Must be specified with
+     * isFirstPage=true
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("forceRestartUpload")
@@ -61,7 +62,8 @@ public class BulkIndexDocumentsRequest {
     private List<DocumentDefinition> documents;
 
     /**
-     * True if older documents need to be force deleted after the upload completes. Defaults to older documents being deleted asynchronously. This must only be set when `isLastPage = true`
+     * True if older documents need to be force deleted after the upload completes. Defaults to older
+     * documents being deleted asynchronously. This must only be set when `isLastPage = true`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("disableStaleDocumentDeletionCheck")
@@ -126,7 +128,8 @@ public class BulkIndexDocumentsRequest {
     }
 
     /**
-     * Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true
+     * Flag to discard previous upload attempts and start from scratch. Must be specified with
+     * isFirstPage=true
      */
     @JsonIgnore
     public Optional<Boolean> forceRestartUpload() {
@@ -150,7 +153,8 @@ public class BulkIndexDocumentsRequest {
     }
 
     /**
-     * True if older documents need to be force deleted after the upload completes. Defaults to older documents being deleted asynchronously. This must only be set when `isLastPage = true`
+     * True if older documents need to be force deleted after the upload completes. Defaults to older
+     * documents being deleted asynchronously. This must only be set when `isLastPage = true`
      */
     @JsonIgnore
     public Optional<Boolean> disableStaleDocumentDeletionCheck() {
@@ -210,7 +214,8 @@ public class BulkIndexDocumentsRequest {
     }
 
     /**
-     * Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true
+     * Flag to discard previous upload attempts and start from scratch. Must be specified with
+     * isFirstPage=true
      */
     public BulkIndexDocumentsRequest withForceRestartUpload(boolean forceRestartUpload) {
         Utils.checkNotNull(forceRestartUpload, "forceRestartUpload");
@@ -220,7 +225,8 @@ public class BulkIndexDocumentsRequest {
 
 
     /**
-     * Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true
+     * Flag to discard previous upload attempts and start from scratch. Must be specified with
+     * isFirstPage=true
      */
     public BulkIndexDocumentsRequest withForceRestartUpload(Optional<Boolean> forceRestartUpload) {
         Utils.checkNotNull(forceRestartUpload, "forceRestartUpload");
@@ -247,7 +253,8 @@ public class BulkIndexDocumentsRequest {
     }
 
     /**
-     * True if older documents need to be force deleted after the upload completes. Defaults to older documents being deleted asynchronously. This must only be set when `isLastPage = true`
+     * True if older documents need to be force deleted after the upload completes. Defaults to older
+     * documents being deleted asynchronously. This must only be set when `isLastPage = true`
      */
     public BulkIndexDocumentsRequest withDisableStaleDocumentDeletionCheck(boolean disableStaleDocumentDeletionCheck) {
         Utils.checkNotNull(disableStaleDocumentDeletionCheck, "disableStaleDocumentDeletionCheck");
@@ -257,7 +264,8 @@ public class BulkIndexDocumentsRequest {
 
 
     /**
-     * True if older documents need to be force deleted after the upload completes. Defaults to older documents being deleted asynchronously. This must only be set when `isLastPage = true`
+     * True if older documents need to be force deleted after the upload completes. Defaults to older
+     * documents being deleted asynchronously. This must only be set when `isLastPage = true`
      */
     public BulkIndexDocumentsRequest withDisableStaleDocumentDeletionCheck(Optional<Boolean> disableStaleDocumentDeletionCheck) {
         Utils.checkNotNull(disableStaleDocumentDeletionCheck, "disableStaleDocumentDeletionCheck");
@@ -375,7 +383,8 @@ public class BulkIndexDocumentsRequest {
 
 
         /**
-         * Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true
+         * Flag to discard previous upload attempts and start from scratch. Must be specified with
+         * isFirstPage=true
          */
         public Builder forceRestartUpload(boolean forceRestartUpload) {
             Utils.checkNotNull(forceRestartUpload, "forceRestartUpload");
@@ -384,7 +393,8 @@ public class BulkIndexDocumentsRequest {
         }
 
         /**
-         * Flag to discard previous upload attempts and start from scratch. Must be specified with isFirstPage=true
+         * Flag to discard previous upload attempts and start from scratch. Must be specified with
+         * isFirstPage=true
          */
         public Builder forceRestartUpload(Optional<Boolean> forceRestartUpload) {
             Utils.checkNotNull(forceRestartUpload, "forceRestartUpload");
@@ -414,7 +424,8 @@ public class BulkIndexDocumentsRequest {
 
 
         /**
-         * True if older documents need to be force deleted after the upload completes. Defaults to older documents being deleted asynchronously. This must only be set when `isLastPage = true`
+         * True if older documents need to be force deleted after the upload completes. Defaults to older
+         * documents being deleted asynchronously. This must only be set when `isLastPage = true`
          */
         public Builder disableStaleDocumentDeletionCheck(boolean disableStaleDocumentDeletionCheck) {
             Utils.checkNotNull(disableStaleDocumentDeletionCheck, "disableStaleDocumentDeletionCheck");
@@ -423,7 +434,8 @@ public class BulkIndexDocumentsRequest {
         }
 
         /**
-         * True if older documents need to be force deleted after the upload completes. Defaults to older documents being deleted asynchronously. This must only be set when `isLastPage = true`
+         * True if older documents need to be force deleted after the upload completes. Defaults to older
+         * documents being deleted asynchronously. This must only be set when `isLastPage = true`
          */
         public Builder disableStaleDocumentDeletionCheck(Optional<Boolean> disableStaleDocumentDeletionCheck) {
             Utils.checkNotNull(disableStaleDocumentDeletionCheck, "disableStaleDocumentDeletionCheck");

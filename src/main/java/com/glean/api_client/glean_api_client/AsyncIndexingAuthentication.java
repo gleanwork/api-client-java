@@ -35,7 +35,13 @@ public class AsyncIndexingAuthentication {
     /**
      * Rotate token
      * 
-     * <p>Rotates the secret value inside the Indexing API token and returns the new raw secret. All other properties of the token are unchanged. In order to rotate the secret value, include the token as the bearer token in the `/rotatetoken` request. Please refer to [Token rotation](https://developers.glean.com/indexing/authentication/token-rotation) documentation for more information.
+     * <p>Rotates the secret value inside the Indexing API token and returns the new raw secret. All other
+     * properties of the token are unchanged. In order to rotate the secret value, include the token as the
+     * bearer token in the `/rotatetoken` request.
+     * 
+     * <p>Please refer to [Token
+     * rotation](https://developers.glean.com/indexing/authentication/token-rotation) documentation for
+     * more information.
      * 
      * @return The async call builder
      */
@@ -46,9 +52,15 @@ public class AsyncIndexingAuthentication {
     /**
      * Rotate token
      * 
-     * <p>Rotates the secret value inside the Indexing API token and returns the new raw secret. All other properties of the token are unchanged. In order to rotate the secret value, include the token as the bearer token in the `/rotatetoken` request. Please refer to [Token rotation](https://developers.glean.com/indexing/authentication/token-rotation) documentation for more information.
+     * <p>Rotates the secret value inside the Indexing API token and returns the new raw secret. All other
+     * properties of the token are unchanged. In order to rotate the secret value, include the token as the
+     * bearer token in the `/rotatetoken` request.
      * 
-     * @return CompletableFuture&lt;PostApiIndexV1RotatetokenResponse&gt; - The async response
+     * <p>Please refer to [Token
+     * rotation](https://developers.glean.com/indexing/authentication/token-rotation) documentation for
+     * more information.
+     * 
+     * @return {@code CompletableFuture<PostApiIndexV1RotatetokenResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1RotatetokenResponse> rotateTokenDirect() {
         AsyncRequestlessOperation<PostApiIndexV1RotatetokenResponse> operation

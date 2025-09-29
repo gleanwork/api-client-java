@@ -18,7 +18,11 @@ import java.util.Optional;
 
 public class RestrictionFilters {
     /**
-     * Specifications for containers that should be used as part of the restriction (include/exclude). Memberships are recursively defined for a subset of datasources (currently: SharePoint, OneDrive, Google Drive, and Confluence). Please contact the Glean team to enable this for more datasources. Recursive memberships do not apply for Collections.
+     * Specifications for containers that should be used as part of the restriction (include/exclude).
+     * Memberships are recursively defined for a subset of datasources (currently: SharePoint, OneDrive,
+     * Google Drive, and Confluence). Please contact the Glean team to enable this for more datasources.
+     * 
+     * <p>Recursive memberships do not apply for Collections.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("containerSpecs")
@@ -36,7 +40,11 @@ public class RestrictionFilters {
     }
 
     /**
-     * Specifications for containers that should be used as part of the restriction (include/exclude). Memberships are recursively defined for a subset of datasources (currently: SharePoint, OneDrive, Google Drive, and Confluence). Please contact the Glean team to enable this for more datasources. Recursive memberships do not apply for Collections.
+     * Specifications for containers that should be used as part of the restriction (include/exclude).
+     * Memberships are recursively defined for a subset of datasources (currently: SharePoint, OneDrive,
+     * Google Drive, and Confluence). Please contact the Glean team to enable this for more datasources.
+     * 
+     * <p>Recursive memberships do not apply for Collections.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -50,7 +58,11 @@ public class RestrictionFilters {
 
 
     /**
-     * Specifications for containers that should be used as part of the restriction (include/exclude). Memberships are recursively defined for a subset of datasources (currently: SharePoint, OneDrive, Google Drive, and Confluence). Please contact the Glean team to enable this for more datasources. Recursive memberships do not apply for Collections.
+     * Specifications for containers that should be used as part of the restriction (include/exclude).
+     * Memberships are recursively defined for a subset of datasources (currently: SharePoint, OneDrive,
+     * Google Drive, and Confluence). Please contact the Glean team to enable this for more datasources.
+     * 
+     * <p>Recursive memberships do not apply for Collections.
      */
     public RestrictionFilters withContainerSpecs(List<DocumentSpecUnion> containerSpecs) {
         Utils.checkNotNull(containerSpecs, "containerSpecs");
@@ -60,7 +72,11 @@ public class RestrictionFilters {
 
 
     /**
-     * Specifications for containers that should be used as part of the restriction (include/exclude). Memberships are recursively defined for a subset of datasources (currently: SharePoint, OneDrive, Google Drive, and Confluence). Please contact the Glean team to enable this for more datasources. Recursive memberships do not apply for Collections.
+     * Specifications for containers that should be used as part of the restriction (include/exclude).
+     * Memberships are recursively defined for a subset of datasources (currently: SharePoint, OneDrive,
+     * Google Drive, and Confluence). Please contact the Glean team to enable this for more datasources.
+     * 
+     * <p>Recursive memberships do not apply for Collections.
      */
     public RestrictionFilters withContainerSpecs(Optional<? extends List<DocumentSpecUnion>> containerSpecs) {
         Utils.checkNotNull(containerSpecs, "containerSpecs");
@@ -104,7 +120,11 @@ public class RestrictionFilters {
 
 
         /**
-         * Specifications for containers that should be used as part of the restriction (include/exclude). Memberships are recursively defined for a subset of datasources (currently: SharePoint, OneDrive, Google Drive, and Confluence). Please contact the Glean team to enable this for more datasources. Recursive memberships do not apply for Collections.
+         * Specifications for containers that should be used as part of the restriction (include/exclude).
+         * Memberships are recursively defined for a subset of datasources (currently: SharePoint, OneDrive,
+         * Google Drive, and Confluence). Please contact the Glean team to enable this for more datasources.
+         * 
+         * <p>Recursive memberships do not apply for Collections.
          */
         public Builder containerSpecs(List<DocumentSpecUnion> containerSpecs) {
             Utils.checkNotNull(containerSpecs, "containerSpecs");
@@ -113,7 +133,11 @@ public class RestrictionFilters {
         }
 
         /**
-         * Specifications for containers that should be used as part of the restriction (include/exclude). Memberships are recursively defined for a subset of datasources (currently: SharePoint, OneDrive, Google Drive, and Confluence). Please contact the Glean team to enable this for more datasources. Recursive memberships do not apply for Collections.
+         * Specifications for containers that should be used as part of the restriction (include/exclude).
+         * Memberships are recursively defined for a subset of datasources (currently: SharePoint, OneDrive,
+         * Google Drive, and Confluence). Please contact the Glean team to enable this for more datasources.
+         * 
+         * <p>Recursive memberships do not apply for Collections.
          */
         public Builder containerSpecs(Optional<? extends List<DocumentSpecUnion>> containerSpecs) {
             Utils.checkNotNull(containerSpecs, "containerSpecs");

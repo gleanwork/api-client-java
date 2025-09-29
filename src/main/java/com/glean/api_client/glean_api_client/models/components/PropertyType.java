@@ -11,7 +11,8 @@ import java.util.Optional;
 /**
  * PropertyType
  * 
- * <p>The type of custom property - this governs the search and faceting behavior. Note that MULTIPICKLIST is not yet supported.
+ * <p>The type of custom property - this governs the search and faceting behavior. Note that MULTIPICKLIST
+ * is not yet supported.
  */
 public enum PropertyType {
     TEXT("TEXT"),

@@ -39,7 +39,8 @@ public class AnswerCreationData {
     private Optional<String> bodyText;
 
     /**
-     * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+     * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards
+     * is no longer permitted.
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -49,7 +50,8 @@ public class AnswerCreationData {
     private Optional<Long> boardId;
 
     /**
-     * Filters which restrict who should see the answer. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see the answer. Values are taken from the corresponding filters in
+     * people search.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("audienceFilters")
@@ -168,7 +170,8 @@ public class AnswerCreationData {
     }
 
     /**
-     * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+     * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards
+     * is no longer permitted.
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -179,7 +182,8 @@ public class AnswerCreationData {
     }
 
     /**
-     * Filters which restrict who should see the answer. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see the answer. Values are taken from the corresponding filters in
+     * people search.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -298,7 +302,8 @@ public class AnswerCreationData {
     }
 
     /**
-     * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+     * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards
+     * is no longer permitted.
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -311,7 +316,8 @@ public class AnswerCreationData {
 
 
     /**
-     * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+     * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards
+     * is no longer permitted.
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -323,7 +329,8 @@ public class AnswerCreationData {
     }
 
     /**
-     * Filters which restrict who should see the answer. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see the answer. Values are taken from the corresponding filters in
+     * people search.
      */
     public AnswerCreationData withAudienceFilters(List<FacetFilter> audienceFilters) {
         Utils.checkNotNull(audienceFilters, "audienceFilters");
@@ -333,7 +340,8 @@ public class AnswerCreationData {
 
 
     /**
-     * Filters which restrict who should see the answer. Values are taken from the corresponding filters in people search.
+     * Filters which restrict who should see the answer. Values are taken from the corresponding filters in
+     * people search.
      */
     public AnswerCreationData withAudienceFilters(Optional<? extends List<FacetFilter>> audienceFilters) {
         Utils.checkNotNull(audienceFilters, "audienceFilters");
@@ -591,7 +599,8 @@ public class AnswerCreationData {
 
 
         /**
-         * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+         * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards
+         * is no longer permitted.
          * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
@@ -603,7 +612,8 @@ public class AnswerCreationData {
         }
 
         /**
-         * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards is no longer permitted.
+         * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards
+         * is no longer permitted.
          * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
@@ -616,7 +626,8 @@ public class AnswerCreationData {
 
 
         /**
-         * Filters which restrict who should see the answer. Values are taken from the corresponding filters in people search.
+         * Filters which restrict who should see the answer. Values are taken from the corresponding filters in
+         * people search.
          */
         public Builder audienceFilters(List<FacetFilter> audienceFilters) {
             Utils.checkNotNull(audienceFilters, "audienceFilters");
@@ -625,7 +636,8 @@ public class AnswerCreationData {
         }
 
         /**
-         * Filters which restrict who should see the answer. Values are taken from the corresponding filters in people search.
+         * Filters which restrict who should see the answer. Values are taken from the corresponding filters in
+         * people search.
          */
         public Builder audienceFilters(Optional<? extends List<FacetFilter>> audienceFilters) {
             Utils.checkNotNull(audienceFilters, "audienceFilters");

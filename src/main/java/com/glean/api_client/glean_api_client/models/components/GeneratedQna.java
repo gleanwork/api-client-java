@@ -67,7 +67,8 @@ public class GeneratedQna {
     private Optional<String> cursor;
 
     /**
-     * An opaque token that represents this particular result in this particular query. To be used for /feedback reporting.
+     * An opaque token that represents this particular result in this particular query. To be used for
+     * /feedback reporting.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("trackingToken")
@@ -168,7 +169,8 @@ public class GeneratedQna {
     }
 
     /**
-     * An opaque token that represents this particular result in this particular query. To be used for /feedback reporting.
+     * An opaque token that represents this particular result in this particular query. To be used for
+     * /feedback reporting.
      */
     @JsonIgnore
     public Optional<String> trackingToken() {
@@ -314,7 +316,8 @@ public class GeneratedQna {
     }
 
     /**
-     * An opaque token that represents this particular result in this particular query. To be used for /feedback reporting.
+     * An opaque token that represents this particular result in this particular query. To be used for
+     * /feedback reporting.
      */
     public GeneratedQna withTrackingToken(String trackingToken) {
         Utils.checkNotNull(trackingToken, "trackingToken");
@@ -324,7 +327,8 @@ public class GeneratedQna {
 
 
     /**
-     * An opaque token that represents this particular result in this particular query. To be used for /feedback reporting.
+     * An opaque token that represents this particular result in this particular query. To be used for
+     * /feedback reporting.
      */
     public GeneratedQna withTrackingToken(Optional<String> trackingToken) {
         Utils.checkNotNull(trackingToken, "trackingToken");
@@ -531,7 +535,8 @@ public class GeneratedQna {
 
 
         /**
-         * An opaque token that represents this particular result in this particular query. To be used for /feedback reporting.
+         * An opaque token that represents this particular result in this particular query. To be used for
+         * /feedback reporting.
          */
         public Builder trackingToken(String trackingToken) {
             Utils.checkNotNull(trackingToken, "trackingToken");
@@ -540,7 +545,8 @@ public class GeneratedQna {
         }
 
         /**
-         * An opaque token that represents this particular result in this particular query. To be used for /feedback reporting.
+         * An opaque token that represents this particular result in this particular query. To be used for
+         * /feedback reporting.
          */
         public Builder trackingToken(Optional<String> trackingToken) {
             Utils.checkNotNull(trackingToken, "trackingToken");

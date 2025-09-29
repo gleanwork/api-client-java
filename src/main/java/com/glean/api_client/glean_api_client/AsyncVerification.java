@@ -46,7 +46,8 @@ public class AsyncVerification {
     /**
      * Create verification
      * 
-     * <p>Creates a verification reminder for the document. Users can create verification reminders from different product surfaces.
+     * <p>Creates a verification reminder for the document. Users can create verification reminders from
+     * different product surfaces.
      * 
      * @return The async call builder
      */
@@ -57,10 +58,11 @@ public class AsyncVerification {
     /**
      * Create verification
      * 
-     * <p>Creates a verification reminder for the document. Users can create verification reminders from different product surfaces.
+     * <p>Creates a verification reminder for the document. Users can create verification reminders from
+     * different product surfaces.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AddverificationreminderResponse&gt; - The async response
+     * @return {@code CompletableFuture<AddverificationreminderResponse>} - The async response
      */
     public CompletableFuture<AddverificationreminderResponse> addReminder(ReminderRequest request) {
         AsyncRequestOperation<ReminderRequest, AddverificationreminderResponse> operation
@@ -73,7 +75,8 @@ public class AsyncVerification {
     /**
      * List verifications
      * 
-     * <p>Returns the information to be rendered in verification dashboard. Includes information for each document owned by user regarding their verifications.
+     * <p>Returns the information to be rendered in verification dashboard. Includes information for each
+     * document owned by user regarding their verifications.
      * 
      * @return The async call builder
      */
@@ -84,9 +87,10 @@ public class AsyncVerification {
     /**
      * List verifications
      * 
-     * <p>Returns the information to be rendered in verification dashboard. Includes information for each document owned by user regarding their verifications.
+     * <p>Returns the information to be rendered in verification dashboard. Includes information for each
+     * document owned by user regarding their verifications.
      * 
-     * @return CompletableFuture&lt;ListverificationsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListverificationsResponse>} - The async response
      */
     public CompletableFuture<ListverificationsResponse> listDirect() {
         return list(Optional.empty());
@@ -95,10 +99,11 @@ public class AsyncVerification {
     /**
      * List verifications
      * 
-     * <p>Returns the information to be rendered in verification dashboard. Includes information for each document owned by user regarding their verifications.
+     * <p>Returns the information to be rendered in verification dashboard. Includes information for each
+     * document owned by user regarding their verifications.
      * 
      * @param count Maximum number of documents to return
-     * @return CompletableFuture&lt;ListverificationsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListverificationsResponse>} - The async response
      */
     public CompletableFuture<ListverificationsResponse> list(Optional<Long> count) {
         ListverificationsRequest request =
@@ -130,7 +135,7 @@ public class AsyncVerification {
      * <p>Verify documents to keep the knowledge up to date within customer corpus.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;VerifyResponse&gt; - The async response
+     * @return {@code CompletableFuture<VerifyResponse>} - The async response
      */
     public CompletableFuture<VerifyResponse> verify(VerifyRequest request) {
         AsyncRequestOperation<VerifyRequest, VerifyResponse> operation
