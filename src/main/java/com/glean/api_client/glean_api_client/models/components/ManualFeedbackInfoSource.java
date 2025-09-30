@@ -32,7 +32,8 @@ public enum ManualFeedbackInfoSource {
     SCIOBOT("SCIOBOT"),
     SEARCH("SEARCH"),
     SIDEBAR("SIDEBAR"),
-    SUMMARY("SUMMARY");
+    SUMMARY("SUMMARY"),
+    TASKS("TASKS");
 
     @JsonValue
     private final String value;
