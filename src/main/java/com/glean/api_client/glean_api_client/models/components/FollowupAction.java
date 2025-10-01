@@ -12,6 +12,8 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -43,6 +45,13 @@ public class FollowupAction {
     private Optional<String> actionId;
 
     /**
+     * Map of assistant predicted parameters and their corresponding values.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("parameters")
+    private Optional<? extends Map<String, String>> parameters;
+
+    /**
      * Text to be displayed to the user when recommending the action instance.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -68,18 +77,21 @@ public class FollowupAction {
             @JsonProperty("actionRunId") Optional<String> actionRunId,
             @JsonProperty("actionInstanceId") Optional<String> actionInstanceId,
             @JsonProperty("actionId") Optional<String> actionId,
+            @JsonProperty("parameters") Optional<? extends Map<String, String>> parameters,
             @JsonProperty("recommendationText") Optional<String> recommendationText,
             @JsonProperty("actionLabel") Optional<String> actionLabel,
             @JsonProperty("userConfirmationRequired") Optional<Boolean> userConfirmationRequired) {
         Utils.checkNotNull(actionRunId, "actionRunId");
         Utils.checkNotNull(actionInstanceId, "actionInstanceId");
         Utils.checkNotNull(actionId, "actionId");
+        Utils.checkNotNull(parameters, "parameters");
         Utils.checkNotNull(recommendationText, "recommendationText");
         Utils.checkNotNull(actionLabel, "actionLabel");
         Utils.checkNotNull(userConfirmationRequired, "userConfirmationRequired");
         this.actionRunId = actionRunId;
         this.actionInstanceId = actionInstanceId;
         this.actionId = actionId;
+        this.parameters = parameters;
         this.recommendationText = recommendationText;
         this.actionLabel = actionLabel;
         this.userConfirmationRequired = userConfirmationRequired;
@@ -87,7 +99,8 @@ public class FollowupAction {
     
     public FollowupAction() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -112,6 +125,15 @@ public class FollowupAction {
     @JsonIgnore
     public Optional<String> actionId() {
         return actionId;
+    }
+
+    /**
+     * Map of assistant predicted parameters and their corresponding values.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, String>> parameters() {
+        return (Optional<Map<String, String>>) parameters;
     }
 
     /**
@@ -201,6 +223,25 @@ public class FollowupAction {
     }
 
     /**
+     * Map of assistant predicted parameters and their corresponding values.
+     */
+    public FollowupAction withParameters(Map<String, String> parameters) {
+        Utils.checkNotNull(parameters, "parameters");
+        this.parameters = Optional.ofNullable(parameters);
+        return this;
+    }
+
+
+    /**
+     * Map of assistant predicted parameters and their corresponding values.
+     */
+    public FollowupAction withParameters(Optional<? extends Map<String, String>> parameters) {
+        Utils.checkNotNull(parameters, "parameters");
+        this.parameters = parameters;
+        return this;
+    }
+
+    /**
      * Text to be displayed to the user when recommending the action instance.
      */
     public FollowupAction withRecommendationText(String recommendationText) {
@@ -270,6 +311,7 @@ public class FollowupAction {
             Utils.enhancedDeepEquals(this.actionRunId, other.actionRunId) &&
             Utils.enhancedDeepEquals(this.actionInstanceId, other.actionInstanceId) &&
             Utils.enhancedDeepEquals(this.actionId, other.actionId) &&
+            Utils.enhancedDeepEquals(this.parameters, other.parameters) &&
             Utils.enhancedDeepEquals(this.recommendationText, other.recommendationText) &&
             Utils.enhancedDeepEquals(this.actionLabel, other.actionLabel) &&
             Utils.enhancedDeepEquals(this.userConfirmationRequired, other.userConfirmationRequired);
@@ -279,7 +321,8 @@ public class FollowupAction {
     public int hashCode() {
         return Utils.enhancedHash(
             actionRunId, actionInstanceId, actionId,
-            recommendationText, actionLabel, userConfirmationRequired);
+            parameters, recommendationText, actionLabel,
+            userConfirmationRequired);
     }
     
     @Override
@@ -288,6 +331,7 @@ public class FollowupAction {
                 "actionRunId", actionRunId,
                 "actionInstanceId", actionInstanceId,
                 "actionId", actionId,
+                "parameters", parameters,
                 "recommendationText", recommendationText,
                 "actionLabel", actionLabel,
                 "userConfirmationRequired", userConfirmationRequired);
@@ -301,6 +345,8 @@ public class FollowupAction {
         private Optional<String> actionInstanceId = Optional.empty();
 
         private Optional<String> actionId = Optional.empty();
+
+        private Optional<? extends Map<String, String>> parameters = Optional.empty();
 
         private Optional<String> recommendationText = Optional.empty();
 
@@ -371,6 +417,25 @@ public class FollowupAction {
 
 
         /**
+         * Map of assistant predicted parameters and their corresponding values.
+         */
+        public Builder parameters(Map<String, String> parameters) {
+            Utils.checkNotNull(parameters, "parameters");
+            this.parameters = Optional.ofNullable(parameters);
+            return this;
+        }
+
+        /**
+         * Map of assistant predicted parameters and their corresponding values.
+         */
+        public Builder parameters(Optional<? extends Map<String, String>> parameters) {
+            Utils.checkNotNull(parameters, "parameters");
+            this.parameters = parameters;
+            return this;
+        }
+
+
+        /**
          * Text to be displayed to the user when recommending the action instance.
          */
         public Builder recommendationText(String recommendationText) {
@@ -430,7 +495,8 @@ public class FollowupAction {
 
             return new FollowupAction(
                 actionRunId, actionInstanceId, actionId,
-                recommendationText, actionLabel, userConfirmationRequired);
+                parameters, recommendationText, actionLabel,
+                userConfirmationRequired);
         }
 
     }
