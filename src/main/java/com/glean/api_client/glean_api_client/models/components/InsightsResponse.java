@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -19,9 +20,12 @@ import java.util.Optional;
 public class InsightsResponse {
     /**
      * List of timeseries to make charts (if applicable).
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timeseries")
+    @Deprecated
     private Optional<? extends List<LabeledCountInfo>> timeseries;
 
 
@@ -81,10 +85,28 @@ public class InsightsResponse {
 
     /**
      * list of all departments.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("departments")
+    @Deprecated
     private Optional<? extends List<String>> departments;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("overviewResponse")
+    private Optional<? extends InsightsOverviewResponse> overviewResponse;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("assistantResponse")
+    private Optional<? extends AssistantInsightsResponse> assistantResponse;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("agentsResponse")
+    private Optional<? extends AgentsInsightsV2Response> agentsResponse;
 
     @JsonCreator
     public InsightsResponse(
@@ -100,7 +122,10 @@ public class InsightsResponse {
             @JsonProperty("ai") Optional<? extends AiInsightsResponse> ai,
             @JsonProperty("aiApps") Optional<? extends AiAppsInsightsResponse> aiApps,
             @JsonProperty("gleanAssist") Optional<? extends GleanAssistInsightsResponse> gleanAssist,
-            @JsonProperty("departments") Optional<? extends List<String>> departments) {
+            @JsonProperty("departments") Optional<? extends List<String>> departments,
+            @JsonProperty("overviewResponse") Optional<? extends InsightsOverviewResponse> overviewResponse,
+            @JsonProperty("assistantResponse") Optional<? extends AssistantInsightsResponse> assistantResponse,
+            @JsonProperty("agentsResponse") Optional<? extends AgentsInsightsV2Response> agentsResponse) {
         Utils.checkNotNull(timeseries, "timeseries");
         Utils.checkNotNull(users, "users");
         Utils.checkNotNull(content, "content");
@@ -114,6 +139,9 @@ public class InsightsResponse {
         Utils.checkNotNull(aiApps, "aiApps");
         Utils.checkNotNull(gleanAssist, "gleanAssist");
         Utils.checkNotNull(departments, "departments");
+        Utils.checkNotNull(overviewResponse, "overviewResponse");
+        Utils.checkNotNull(assistantResponse, "assistantResponse");
+        Utils.checkNotNull(agentsResponse, "agentsResponse");
         this.timeseries = timeseries;
         this.users = users;
         this.content = content;
@@ -127,10 +155,14 @@ public class InsightsResponse {
         this.aiApps = aiApps;
         this.gleanAssist = gleanAssist;
         this.departments = departments;
+        this.overviewResponse = overviewResponse;
+        this.assistantResponse = assistantResponse;
+        this.agentsResponse = agentsResponse;
     }
     
     public InsightsResponse() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
@@ -139,7 +171,10 @@ public class InsightsResponse {
 
     /**
      * List of timeseries to make charts (if applicable).
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<LabeledCountInfo>> timeseries() {
@@ -214,11 +249,32 @@ public class InsightsResponse {
 
     /**
      * list of all departments.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<String>> departments() {
         return (Optional<List<String>>) departments;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<InsightsOverviewResponse> overviewResponse() {
+        return (Optional<InsightsOverviewResponse>) overviewResponse;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<AssistantInsightsResponse> assistantResponse() {
+        return (Optional<AssistantInsightsResponse>) assistantResponse;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<AgentsInsightsV2Response> agentsResponse() {
+        return (Optional<AgentsInsightsV2Response>) agentsResponse;
     }
 
     public static Builder builder() {
@@ -228,7 +284,10 @@ public class InsightsResponse {
 
     /**
      * List of timeseries to make charts (if applicable).
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public InsightsResponse withTimeseries(List<LabeledCountInfo> timeseries) {
         Utils.checkNotNull(timeseries, "timeseries");
         this.timeseries = Optional.ofNullable(timeseries);
@@ -238,7 +297,10 @@ public class InsightsResponse {
 
     /**
      * List of timeseries to make charts (if applicable).
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public InsightsResponse withTimeseries(Optional<? extends List<LabeledCountInfo>> timeseries) {
         Utils.checkNotNull(timeseries, "timeseries");
         this.timeseries = timeseries;
@@ -390,7 +452,10 @@ public class InsightsResponse {
 
     /**
      * list of all departments.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public InsightsResponse withDepartments(List<String> departments) {
         Utils.checkNotNull(departments, "departments");
         this.departments = Optional.ofNullable(departments);
@@ -400,10 +465,52 @@ public class InsightsResponse {
 
     /**
      * list of all departments.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public InsightsResponse withDepartments(Optional<? extends List<String>> departments) {
         Utils.checkNotNull(departments, "departments");
         this.departments = departments;
+        return this;
+    }
+
+    public InsightsResponse withOverviewResponse(InsightsOverviewResponse overviewResponse) {
+        Utils.checkNotNull(overviewResponse, "overviewResponse");
+        this.overviewResponse = Optional.ofNullable(overviewResponse);
+        return this;
+    }
+
+
+    public InsightsResponse withOverviewResponse(Optional<? extends InsightsOverviewResponse> overviewResponse) {
+        Utils.checkNotNull(overviewResponse, "overviewResponse");
+        this.overviewResponse = overviewResponse;
+        return this;
+    }
+
+    public InsightsResponse withAssistantResponse(AssistantInsightsResponse assistantResponse) {
+        Utils.checkNotNull(assistantResponse, "assistantResponse");
+        this.assistantResponse = Optional.ofNullable(assistantResponse);
+        return this;
+    }
+
+
+    public InsightsResponse withAssistantResponse(Optional<? extends AssistantInsightsResponse> assistantResponse) {
+        Utils.checkNotNull(assistantResponse, "assistantResponse");
+        this.assistantResponse = assistantResponse;
+        return this;
+    }
+
+    public InsightsResponse withAgentsResponse(AgentsInsightsV2Response agentsResponse) {
+        Utils.checkNotNull(agentsResponse, "agentsResponse");
+        this.agentsResponse = Optional.ofNullable(agentsResponse);
+        return this;
+    }
+
+
+    public InsightsResponse withAgentsResponse(Optional<? extends AgentsInsightsV2Response> agentsResponse) {
+        Utils.checkNotNull(agentsResponse, "agentsResponse");
+        this.agentsResponse = agentsResponse;
         return this;
     }
 
@@ -429,7 +536,10 @@ public class InsightsResponse {
             Utils.enhancedDeepEquals(this.ai, other.ai) &&
             Utils.enhancedDeepEquals(this.aiApps, other.aiApps) &&
             Utils.enhancedDeepEquals(this.gleanAssist, other.gleanAssist) &&
-            Utils.enhancedDeepEquals(this.departments, other.departments);
+            Utils.enhancedDeepEquals(this.departments, other.departments) &&
+            Utils.enhancedDeepEquals(this.overviewResponse, other.overviewResponse) &&
+            Utils.enhancedDeepEquals(this.assistantResponse, other.assistantResponse) &&
+            Utils.enhancedDeepEquals(this.agentsResponse, other.agentsResponse);
     }
     
     @Override
@@ -439,7 +549,8 @@ public class InsightsResponse {
             queries, collections, collectionsV2,
             shortcuts, announcements, answers,
             ai, aiApps, gleanAssist,
-            departments);
+            departments, overviewResponse, assistantResponse,
+            agentsResponse);
     }
     
     @Override
@@ -457,12 +568,16 @@ public class InsightsResponse {
                 "ai", ai,
                 "aiApps", aiApps,
                 "gleanAssist", gleanAssist,
-                "departments", departments);
+                "departments", departments,
+                "overviewResponse", overviewResponse,
+                "assistantResponse", assistantResponse,
+                "agentsResponse", agentsResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
+        @Deprecated
         private Optional<? extends List<LabeledCountInfo>> timeseries = Optional.empty();
 
         private Optional<? extends UserInsightsResponse> users = Optional.empty();
@@ -487,7 +602,14 @@ public class InsightsResponse {
 
         private Optional<? extends GleanAssistInsightsResponse> gleanAssist = Optional.empty();
 
+        @Deprecated
         private Optional<? extends List<String>> departments = Optional.empty();
+
+        private Optional<? extends InsightsOverviewResponse> overviewResponse = Optional.empty();
+
+        private Optional<? extends AssistantInsightsResponse> assistantResponse = Optional.empty();
+
+        private Optional<? extends AgentsInsightsV2Response> agentsResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -496,7 +618,10 @@ public class InsightsResponse {
 
         /**
          * List of timeseries to make charts (if applicable).
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder timeseries(List<LabeledCountInfo> timeseries) {
             Utils.checkNotNull(timeseries, "timeseries");
             this.timeseries = Optional.ofNullable(timeseries);
@@ -505,7 +630,10 @@ public class InsightsResponse {
 
         /**
          * List of timeseries to make charts (if applicable).
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder timeseries(Optional<? extends List<LabeledCountInfo>> timeseries) {
             Utils.checkNotNull(timeseries, "timeseries");
             this.timeseries = timeseries;
@@ -658,7 +786,10 @@ public class InsightsResponse {
 
         /**
          * list of all departments.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder departments(List<String> departments) {
             Utils.checkNotNull(departments, "departments");
             this.departments = Optional.ofNullable(departments);
@@ -667,10 +798,52 @@ public class InsightsResponse {
 
         /**
          * list of all departments.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder departments(Optional<? extends List<String>> departments) {
             Utils.checkNotNull(departments, "departments");
             this.departments = departments;
+            return this;
+        }
+
+
+        public Builder overviewResponse(InsightsOverviewResponse overviewResponse) {
+            Utils.checkNotNull(overviewResponse, "overviewResponse");
+            this.overviewResponse = Optional.ofNullable(overviewResponse);
+            return this;
+        }
+
+        public Builder overviewResponse(Optional<? extends InsightsOverviewResponse> overviewResponse) {
+            Utils.checkNotNull(overviewResponse, "overviewResponse");
+            this.overviewResponse = overviewResponse;
+            return this;
+        }
+
+
+        public Builder assistantResponse(AssistantInsightsResponse assistantResponse) {
+            Utils.checkNotNull(assistantResponse, "assistantResponse");
+            this.assistantResponse = Optional.ofNullable(assistantResponse);
+            return this;
+        }
+
+        public Builder assistantResponse(Optional<? extends AssistantInsightsResponse> assistantResponse) {
+            Utils.checkNotNull(assistantResponse, "assistantResponse");
+            this.assistantResponse = assistantResponse;
+            return this;
+        }
+
+
+        public Builder agentsResponse(AgentsInsightsV2Response agentsResponse) {
+            Utils.checkNotNull(agentsResponse, "agentsResponse");
+            this.agentsResponse = Optional.ofNullable(agentsResponse);
+            return this;
+        }
+
+        public Builder agentsResponse(Optional<? extends AgentsInsightsV2Response> agentsResponse) {
+            Utils.checkNotNull(agentsResponse, "agentsResponse");
+            this.agentsResponse = agentsResponse;
             return this;
         }
 
@@ -681,7 +854,8 @@ public class InsightsResponse {
                 queries, collections, collectionsV2,
                 shortcuts, announcements, answers,
                 ai, aiApps, gleanAssist,
-                departments);
+                departments, overviewResponse, assistantResponse,
+                agentsResponse);
         }
 
     }
