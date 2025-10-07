@@ -64,7 +64,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.glean.api-client:glean-api-client:0.10.3'
+implementation 'com.glean.api-client:glean-api-client:0.10.4'
 ```
 
 Maven:
@@ -72,7 +72,7 @@ Maven:
 <dependency>
     <groupId>com.glean.api-client</groupId>
     <artifactId>glean-api-client</artifactId>
-    <version>0.10.3</version>
+    <version>0.10.4</version>
 </dependency>
 ```
 
@@ -396,9 +396,6 @@ For more information on obtaining the appropriate token type, please contact you
 <details open>
 <summary>Available methods</summary>
 
-### [client()](docs/sdks/client/README.md)
-
-
 #### [client().activity()](docs/sdks/activity/README.md)
 
 * [report](docs/sdks/activity/README.md#report) - Report document activity
@@ -527,10 +524,6 @@ For more information on obtaining the appropriate token type, please contact you
 * [addReminder](docs/sdks/verification/README.md#addreminder) - Create verification
 * [list](docs/sdks/verification/README.md#list) - List verifications
 * [verify](docs/sdks/verification/README.md#verify) - Update verification
-
-
-### [indexing()](docs/sdks/indexing/README.md)
-
 
 #### [indexing().authentication()](docs/sdks/indexingauthentication/README.md)
 

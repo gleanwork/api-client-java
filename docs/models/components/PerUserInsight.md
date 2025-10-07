@@ -1,0 +1,10 @@
+# PerUserInsight
+
+
+## Fields
+
+| Field                                                                 | Type                                                                  | Required                                                              | Description                                                           | Example                                                               |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `person`                                                              | [Optional\<Person>](../../models/components/Person.md)                | :heavy_minus_sign:                                                    | N/A                                                                   | {<br/>"name": "George Clooney",<br/>"obfuscatedId": "abc123"<br/>}    |
+| `numSearches`                                                         | *Optional\<Long>*                                                     | :heavy_minus_sign:                                                    | Total number of searches by this user over the specified time period. |                                                                       |
+| `numChats`                                                            | *Optional\<Long>*                                                     | :heavy_minus_sign:                                                    | Total number of chats by this user over the specified time period.    |                                                                       |
