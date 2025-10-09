@@ -57,7 +57,7 @@ public class PostApiIndexV1Processallemployeesandteams {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "post_/api/index/v1/processallemployeesandteams",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -66,7 +66,7 @@ public class PostApiIndexV1Processallemployeesandteams {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "post_/api/index/v1/processallemployeesandteams",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -75,7 +75,7 @@ public class PostApiIndexV1Processallemployeesandteams {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "post_/api/index/v1/processallemployeesandteams",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
         HttpRequest buildRequest() throws Exception {

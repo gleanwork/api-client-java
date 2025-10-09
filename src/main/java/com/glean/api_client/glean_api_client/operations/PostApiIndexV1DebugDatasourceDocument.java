@@ -64,7 +64,7 @@ public class PostApiIndexV1DebugDatasourceDocument {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "post_/api/index/v1/debug/{datasource}/document",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -73,7 +73,7 @@ public class PostApiIndexV1DebugDatasourceDocument {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "post_/api/index/v1/debug/{datasource}/document",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -82,7 +82,7 @@ public class PostApiIndexV1DebugDatasourceDocument {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "post_/api/index/v1/debug/{datasource}/document",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
         <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {

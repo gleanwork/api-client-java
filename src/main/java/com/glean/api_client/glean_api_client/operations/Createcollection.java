@@ -65,7 +65,7 @@ public class Createcollection {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "createcollection",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -74,7 +74,7 @@ public class Createcollection {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "createcollection",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -83,7 +83,7 @@ public class Createcollection {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "createcollection",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
         <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {

@@ -12,6 +12,7 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -31,6 +32,13 @@ public class PerAgentInsight {
     private Optional<String> agentName;
 
     /**
+     * Defines how to render an icon
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("icon")
+    private Optional<? extends IconConfig> icon;
+
+    /**
      * Total number of users for this agent over the specified time period.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -48,21 +56,24 @@ public class PerAgentInsight {
     public PerAgentInsight(
             @JsonProperty("agentId") Optional<String> agentId,
             @JsonProperty("agentName") Optional<String> agentName,
+            @JsonProperty("icon") Optional<? extends IconConfig> icon,
             @JsonProperty("userCount") Optional<Long> userCount,
             @JsonProperty("runCount") Optional<Long> runCount) {
         Utils.checkNotNull(agentId, "agentId");
         Utils.checkNotNull(agentName, "agentName");
+        Utils.checkNotNull(icon, "icon");
         Utils.checkNotNull(userCount, "userCount");
         Utils.checkNotNull(runCount, "runCount");
         this.agentId = agentId;
         this.agentName = agentName;
+        this.icon = icon;
         this.userCount = userCount;
         this.runCount = runCount;
     }
     
     public PerAgentInsight() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -79,6 +90,15 @@ public class PerAgentInsight {
     @JsonIgnore
     public Optional<String> agentName() {
         return agentName;
+    }
+
+    /**
+     * Defines how to render an icon
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<IconConfig> icon() {
+        return (Optional<IconConfig>) icon;
     }
 
     /**
@@ -141,6 +161,25 @@ public class PerAgentInsight {
     }
 
     /**
+     * Defines how to render an icon
+     */
+    public PerAgentInsight withIcon(IconConfig icon) {
+        Utils.checkNotNull(icon, "icon");
+        this.icon = Optional.ofNullable(icon);
+        return this;
+    }
+
+
+    /**
+     * Defines how to render an icon
+     */
+    public PerAgentInsight withIcon(Optional<? extends IconConfig> icon) {
+        Utils.checkNotNull(icon, "icon");
+        this.icon = icon;
+        return this;
+    }
+
+    /**
      * Total number of users for this agent over the specified time period.
      */
     public PerAgentInsight withUserCount(long userCount) {
@@ -190,6 +229,7 @@ public class PerAgentInsight {
         return 
             Utils.enhancedDeepEquals(this.agentId, other.agentId) &&
             Utils.enhancedDeepEquals(this.agentName, other.agentName) &&
+            Utils.enhancedDeepEquals(this.icon, other.icon) &&
             Utils.enhancedDeepEquals(this.userCount, other.userCount) &&
             Utils.enhancedDeepEquals(this.runCount, other.runCount);
     }
@@ -197,8 +237,8 @@ public class PerAgentInsight {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            agentId, agentName, userCount,
-            runCount);
+            agentId, agentName, icon,
+            userCount, runCount);
     }
     
     @Override
@@ -206,6 +246,7 @@ public class PerAgentInsight {
         return Utils.toString(PerAgentInsight.class,
                 "agentId", agentId,
                 "agentName", agentName,
+                "icon", icon,
                 "userCount", userCount,
                 "runCount", runCount);
     }
@@ -216,6 +257,8 @@ public class PerAgentInsight {
         private Optional<String> agentId = Optional.empty();
 
         private Optional<String> agentName = Optional.empty();
+
+        private Optional<? extends IconConfig> icon = Optional.empty();
 
         private Optional<Long> userCount = Optional.empty();
 
@@ -265,6 +308,25 @@ public class PerAgentInsight {
 
 
         /**
+         * Defines how to render an icon
+         */
+        public Builder icon(IconConfig icon) {
+            Utils.checkNotNull(icon, "icon");
+            this.icon = Optional.ofNullable(icon);
+            return this;
+        }
+
+        /**
+         * Defines how to render an icon
+         */
+        public Builder icon(Optional<? extends IconConfig> icon) {
+            Utils.checkNotNull(icon, "icon");
+            this.icon = icon;
+            return this;
+        }
+
+
+        /**
          * Total number of users for this agent over the specified time period.
          */
         public Builder userCount(long userCount) {
@@ -304,8 +366,8 @@ public class PerAgentInsight {
         public PerAgentInsight build() {
 
             return new PerAgentInsight(
-                agentId, agentName, userCount,
-                runCount);
+                agentId, agentName, icon,
+                userCount, runCount);
         }
 
     }

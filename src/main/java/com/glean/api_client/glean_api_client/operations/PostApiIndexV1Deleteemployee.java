@@ -62,7 +62,7 @@ public class PostApiIndexV1Deleteemployee {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "post_/api/index/v1/deleteemployee",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -71,7 +71,7 @@ public class PostApiIndexV1Deleteemployee {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "post_/api/index/v1/deleteemployee",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -80,7 +80,7 @@ public class PostApiIndexV1Deleteemployee {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "post_/api/index/v1/deleteemployee",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
         <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
