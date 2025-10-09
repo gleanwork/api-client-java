@@ -63,7 +63,7 @@ public class People {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "people",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -72,7 +72,7 @@ public class People {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "people",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -81,7 +81,7 @@ public class People {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "people",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
         <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {

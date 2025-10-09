@@ -60,7 +60,7 @@ public class PostApiIndexV1Rotatetoken {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "post_/api/index/v1/rotatetoken",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -69,7 +69,7 @@ public class PostApiIndexV1Rotatetoken {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "post_/api/index/v1/rotatetoken",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -78,7 +78,7 @@ public class PostApiIndexV1Rotatetoken {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "post_/api/index/v1/rotatetoken",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
         HttpRequest buildRequest() throws Exception {

@@ -63,7 +63,7 @@ public class Autocomplete {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "autocomplete",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -72,7 +72,7 @@ public class Autocomplete {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "autocomplete",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -81,7 +81,7 @@ public class Autocomplete {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "autocomplete",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
         <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
