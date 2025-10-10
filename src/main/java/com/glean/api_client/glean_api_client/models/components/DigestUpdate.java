@@ -12,10 +12,18 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.List;
 import java.util.Optional;
 
 
 public class DigestUpdate {
+    /**
+     * List of URLs for similar updates that are grouped together and rendered as a single update.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("urls")
+    private Optional<? extends List<String>> urls;
+
     /**
      * URL link to the content or document.
      */
@@ -53,16 +61,19 @@ public class DigestUpdate {
 
     @JsonCreator
     public DigestUpdate(
+            @JsonProperty("urls") Optional<? extends List<String>> urls,
             @JsonProperty("url") Optional<String> url,
             @JsonProperty("title") Optional<String> title,
             @JsonProperty("datasource") Optional<String> datasource,
             @JsonProperty("summary") Optional<String> summary,
             @JsonProperty("type") Optional<? extends UpdateType> type) {
+        Utils.checkNotNull(urls, "urls");
         Utils.checkNotNull(url, "url");
         Utils.checkNotNull(title, "title");
         Utils.checkNotNull(datasource, "datasource");
         Utils.checkNotNull(summary, "summary");
         Utils.checkNotNull(type, "type");
+        this.urls = urls;
         this.url = url;
         this.title = title;
         this.datasource = datasource;
@@ -72,7 +83,16 @@ public class DigestUpdate {
     
     public DigestUpdate() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * List of URLs for similar updates that are grouped together and rendered as a single update.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<String>> urls() {
+        return (Optional<List<String>>) urls;
     }
 
     /**
@@ -120,6 +140,25 @@ public class DigestUpdate {
         return new Builder();
     }
 
+
+    /**
+     * List of URLs for similar updates that are grouped together and rendered as a single update.
+     */
+    public DigestUpdate withUrls(List<String> urls) {
+        Utils.checkNotNull(urls, "urls");
+        this.urls = Optional.ofNullable(urls);
+        return this;
+    }
+
+
+    /**
+     * List of URLs for similar updates that are grouped together and rendered as a single update.
+     */
+    public DigestUpdate withUrls(Optional<? extends List<String>> urls) {
+        Utils.checkNotNull(urls, "urls");
+        this.urls = urls;
+        return this;
+    }
 
     /**
      * URL link to the content or document.
@@ -226,6 +265,7 @@ public class DigestUpdate {
         }
         DigestUpdate other = (DigestUpdate) o;
         return 
+            Utils.enhancedDeepEquals(this.urls, other.urls) &&
             Utils.enhancedDeepEquals(this.url, other.url) &&
             Utils.enhancedDeepEquals(this.title, other.title) &&
             Utils.enhancedDeepEquals(this.datasource, other.datasource) &&
@@ -236,13 +276,14 @@ public class DigestUpdate {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            url, title, datasource,
-            summary, type);
+            urls, url, title,
+            datasource, summary, type);
     }
     
     @Override
     public String toString() {
         return Utils.toString(DigestUpdate.class,
+                "urls", urls,
                 "url", url,
                 "title", title,
                 "datasource", datasource,
@@ -252,6 +293,8 @@ public class DigestUpdate {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private Optional<? extends List<String>> urls = Optional.empty();
 
         private Optional<String> url = Optional.empty();
 
@@ -265,6 +308,25 @@ public class DigestUpdate {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * List of URLs for similar updates that are grouped together and rendered as a single update.
+         */
+        public Builder urls(List<String> urls) {
+            Utils.checkNotNull(urls, "urls");
+            this.urls = Optional.ofNullable(urls);
+            return this;
+        }
+
+        /**
+         * List of URLs for similar updates that are grouped together and rendered as a single update.
+         */
+        public Builder urls(Optional<? extends List<String>> urls) {
+            Utils.checkNotNull(urls, "urls");
+            this.urls = urls;
+            return this;
         }
 
 
@@ -365,8 +427,8 @@ public class DigestUpdate {
         public DigestUpdate build() {
 
             return new DigestUpdate(
-                url, title, datasource,
-                summary, type);
+                urls, url, title,
+                datasource, summary, type);
         }
 
     }
