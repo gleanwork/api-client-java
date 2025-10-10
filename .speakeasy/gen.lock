@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0359d4fe-2923-46fc-aaca-cf70b48dcfa1
 management:
-  docChecksum: f83688cf1540bc7d583e1661684632b8
+  docChecksum: ef00a2f5125097d9f584f0bbb5436f00
   docVersion: 0.9.0
-  speakeasyVersion: 1.636.2
-  generationVersion: 2.723.8
-  releaseVersion: 0.10.5
-  configChecksum: 9736136d989532650d8337310e8f8bab
+  speakeasyVersion: 1.636.3
+  generationVersion: 2.723.11
+  releaseVersion: 0.10.6
+  configChecksum: f8f30b23cd06d0c4f3fa8d2faa9636cb
   repoURL: https://github.com/gleanwork/api-client-java.git
   published: true
 features:
@@ -2900,4 +2900,4 @@ generatedTests:
   listpolicies: "2025-06-09T18:03:44Z"
 releaseNotes: |
   ## Java SDK Changes Detected:
-  * `glean.client.insights.retrieve()`:  `response.agentsresponse.topAgentsInsights.[].icon` **Added**
+  * `glean.client.search.retrieveFeed()`:  `response.results.[].primaryEntry.digest.sections.[].updates.[].urls` **Added**
