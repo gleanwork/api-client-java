@@ -61,11 +61,10 @@ public class MessagesRequest {
     private Optional<Boolean> includeRootMessage;
 
     /**
-     * The type of the data source. Missing field defaults to SLACK.
+     * The type of the data source.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("datasource")
-    private Optional<? extends Datasource> datasource;
+    private Datasource datasource;
 
     /**
      * The datasource instance display name from which the document was extracted. This is used for
@@ -83,7 +82,7 @@ public class MessagesRequest {
             @JsonProperty("direction") Optional<? extends Direction> direction,
             @JsonProperty("timestampMillis") Optional<Long> timestampMillis,
             @JsonProperty("includeRootMessage") Optional<Boolean> includeRootMessage,
-            @JsonProperty("datasource") Optional<? extends Datasource> datasource,
+            @JsonProperty("datasource") Datasource datasource,
             @JsonProperty("datasourceInstanceDisplayName") Optional<String> datasourceInstanceDisplayName) {
         Utils.checkNotNull(idType, "idType");
         Utils.checkNotNull(id, "id");
@@ -105,10 +104,11 @@ public class MessagesRequest {
     
     public MessagesRequest(
             IdType idType,
-            String id) {
+            String id,
+            Datasource datasource) {
         this(idType, id, Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            datasource, Optional.empty());
     }
 
     /**
@@ -163,12 +163,11 @@ public class MessagesRequest {
     }
 
     /**
-     * The type of the data source. Missing field defaults to SLACK.
+     * The type of the data source.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Datasource> datasource() {
-        return (Optional<Datasource>) datasource;
+    public Datasource datasource() {
+        return datasource;
     }
 
     /**
@@ -283,19 +282,9 @@ public class MessagesRequest {
     }
 
     /**
-     * The type of the data source. Missing field defaults to SLACK.
+     * The type of the data source.
      */
     public MessagesRequest withDatasource(Datasource datasource) {
-        Utils.checkNotNull(datasource, "datasource");
-        this.datasource = Optional.ofNullable(datasource);
-        return this;
-    }
-
-
-    /**
-     * The type of the data source. Missing field defaults to SLACK.
-     */
-    public MessagesRequest withDatasource(Optional<? extends Datasource> datasource) {
         Utils.checkNotNull(datasource, "datasource");
         this.datasource = datasource;
         return this;
@@ -378,7 +367,7 @@ public class MessagesRequest {
 
         private Optional<Boolean> includeRootMessage = Optional.empty();
 
-        private Optional<? extends Datasource> datasource = Optional.empty();
+        private Datasource datasource;
 
         private Optional<String> datasourceInstanceDisplayName = Optional.empty();
 
@@ -487,18 +476,9 @@ public class MessagesRequest {
 
 
         /**
-         * The type of the data source. Missing field defaults to SLACK.
+         * The type of the data source.
          */
         public Builder datasource(Datasource datasource) {
-            Utils.checkNotNull(datasource, "datasource");
-            this.datasource = Optional.ofNullable(datasource);
-            return this;
-        }
-
-        /**
-         * The type of the data source. Missing field defaults to SLACK.
-         */
-        public Builder datasource(Optional<? extends Datasource> datasource) {
             Utils.checkNotNull(datasource, "datasource");
             this.datasource = datasource;
             return this;

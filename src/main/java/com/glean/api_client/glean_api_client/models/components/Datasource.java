@@ -11,11 +11,13 @@ import java.util.Optional;
 /**
  * Datasource
  * 
- * <p>The type of the data source. Missing field defaults to SLACK.
+ * <p>The type of the data source.
  */
 public enum Datasource {
     SLACK("SLACK"),
+    SLACKENTGRID("SLACKENTGRID"),
     MICROSOFTTEAMS("MICROSOFTTEAMS"),
+    GCHAT("GCHAT"),
     FACEBOOKWORKPLACE("FACEBOOKWORKPLACE");
 
     @JsonValue
