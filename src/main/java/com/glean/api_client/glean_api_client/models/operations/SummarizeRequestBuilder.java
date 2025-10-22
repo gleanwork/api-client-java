@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.SummarizeRequest;
 import com.glean.api_client.glean_api_client.operations.Summarize;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class SummarizeRequestBuilder {
 
@@ -28,7 +27,7 @@ public class SummarizeRequestBuilder {
         return this;
     }
 
-    public SummarizeResponse call() throws Exception {
+    public SummarizeResponse call() {
         
         RequestOperation<SummarizeRequest, SummarizeResponse> operation
               = new Summarize.Sync(sdkConfiguration, _headers);

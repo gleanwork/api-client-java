@@ -25,7 +25,6 @@ import com.glean.api_client.glean_api_client.operations.Getpin;
 import com.glean.api_client.glean_api_client.operations.Listpins;
 import com.glean.api_client.glean_api_client.operations.Pin;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.Exception;
 
 
 public class Pins {
@@ -65,9 +64,9 @@ public class Pins {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public EditpinResponse update(EditPinRequest request) throws Exception {
+    public EditpinResponse update(EditPinRequest request) {
         RequestOperation<EditPinRequest, EditpinResponse> operation
               = new Editpin.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -91,9 +90,9 @@ public class Pins {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetpinResponse retrieve(GetPinRequest request) throws Exception {
+    public GetpinResponse retrieve(GetPinRequest request) {
         RequestOperation<GetPinRequest, GetpinResponse> operation
               = new Getpin.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -117,9 +116,9 @@ public class Pins {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListpinsResponse list(ListpinsRequest request) throws Exception {
+    public ListpinsResponse list(ListpinsRequest request) {
         RequestOperation<ListpinsRequest, ListpinsResponse> operation
               = new Listpins.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -143,9 +142,9 @@ public class Pins {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PinResponse create(PinRequest request) throws Exception {
+    public PinResponse create(PinRequest request) {
         RequestOperation<PinRequest, PinResponse> operation
               = new Pin.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -169,9 +168,9 @@ public class Pins {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UnpinResponse remove(Unpin request) throws Exception {
+    public UnpinResponse remove(Unpin request) {
         RequestOperation<Unpin, UnpinResponse> operation
               = new com.glean.api_client.glean_api_client.operations.Unpin.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));

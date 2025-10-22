@@ -24,7 +24,6 @@ import com.glean.api_client.glean_api_client.operations.Autocomplete;
 import com.glean.api_client.glean_api_client.operations.Feed;
 import com.glean.api_client.glean_api_client.operations.Recommendations;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.Exception;
 
 
 public class Search {
@@ -66,9 +65,9 @@ public class Search {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AdminsearchResponse queryAsAdmin(SearchRequest request) throws Exception {
+    public AdminsearchResponse queryAsAdmin(SearchRequest request) {
         RequestOperation<SearchRequest, AdminsearchResponse> operation
               = new Adminsearch.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -92,9 +91,9 @@ public class Search {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AutocompleteResponse autocomplete(AutocompleteRequest request) throws Exception {
+    public AutocompleteResponse autocomplete(AutocompleteRequest request) {
         RequestOperation<AutocompleteRequest, AutocompleteResponse> operation
               = new Autocomplete.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -120,9 +119,9 @@ public class Search {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FeedResponse retrieveFeed(FeedRequest request) throws Exception {
+    public FeedResponse retrieveFeed(FeedRequest request) {
         RequestOperation<FeedRequest, FeedResponse> operation
               = new Feed.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -146,9 +145,9 @@ public class Search {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public RecommendationsResponse recommendations(RecommendationsRequest request) throws Exception {
+    public RecommendationsResponse recommendations(RecommendationsRequest request) {
         RequestOperation<RecommendationsRequest, RecommendationsResponse> operation
               = new Recommendations.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -172,9 +171,9 @@ public class Search {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public SearchResponse query(SearchRequest request) throws Exception {
+    public SearchResponse query(SearchRequest request) {
         RequestOperation<SearchRequest, SearchResponse> operation
               = new com.glean.api_client.glean_api_client.operations.Search.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));

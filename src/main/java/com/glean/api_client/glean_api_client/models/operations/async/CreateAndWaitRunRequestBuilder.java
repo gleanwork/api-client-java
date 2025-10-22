@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.AgentRunCreate;
 import com.glean.api_client.glean_api_client.operations.CreateAndWaitRun;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class CreateAndWaitRunRequestBuilder {
@@ -29,7 +28,7 @@ public class CreateAndWaitRunRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<CreateAndWaitRunResponse> call() throws Exception {
+    public CompletableFuture<CreateAndWaitRunResponse> call() {
         
         AsyncRequestOperation<AgentRunCreate, CreateAndWaitRunResponse> operation
               = new CreateAndWaitRun.Async(sdkConfiguration, _headers);

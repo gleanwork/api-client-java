@@ -11,7 +11,6 @@ import com.glean.api_client.glean_api_client.models.operations.UploadchatfilesRe
 import com.glean.api_client.glean_api_client.operations.Uploadchatfiles;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.lang.Long;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -54,7 +53,7 @@ public class UploadchatfilesRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<UploadchatfilesResponse> call() throws Exception {
+    public CompletableFuture<UploadchatfilesResponse> call() {
         
         AsyncRequestOperation<UploadchatfilesRequest, UploadchatfilesResponse> operation
               = new Uploadchatfiles.Async(sdkConfiguration, _headers);

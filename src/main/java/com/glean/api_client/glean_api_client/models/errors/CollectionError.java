@@ -6,90 +6,188 @@ package com.glean.api_client.glean_api_client.models.errors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.glean.api_client.glean_api_client.utils.Blob;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
+import java.io.InputStream;
+import java.lang.Deprecated;
+import java.lang.Exception;
 import java.lang.Override;
-import java.lang.RuntimeException;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-
+import java.lang.Throwable;
+import java.net.http.HttpResponse;
+import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 @SuppressWarnings("serial")
-public class CollectionError extends RuntimeException {
+public class CollectionError extends GleanError {
 
-    @JsonProperty("errorCode")
-    private ErrorCode errorCode;
+    @Nullable
+    private final Data data;
 
-    @JsonCreator
+    @Nullable
+    private final Throwable deserializationException;
+
     public CollectionError(
-            @JsonProperty("errorCode") ErrorCode errorCode) {
-        super("API error occurred");
-        Utils.checkNotNull(errorCode, "errorCode");
-        this.errorCode = errorCode;
+                int code,
+                byte[] body,
+                HttpResponse<?> rawResponse,
+                @Nullable Data data,
+                @Nullable Throwable deserializationException) {
+        super("API error occurred", code, body, rawResponse, null);
+        this.data = data;
+        this.deserializationException = deserializationException;
     }
 
-    @JsonIgnore
-    public ErrorCode errorCode() {
-        return errorCode;
-    }
-
-    public static Builder builder() {
-        return new Builder();
-    }
-
-
-    public CollectionError withErrorCode(ErrorCode errorCode) {
-        Utils.checkNotNull(errorCode, "errorCode");
-        this.errorCode = errorCode;
-        return this;
-    }
-
-    @Override
-    public boolean equals(java.lang.Object o) {
-        if (this == o) {
-            return true;
+    /**
+    * Parse a response into an instance of CollectionError. If deserialization of the response body fails,
+    * the resulting CollectionError instance will have a null data() value and a non-null deserializationException().
+    */
+    public static CollectionError from(HttpResponse<InputStream> response) {
+        try {
+            byte[] bytes = Utils.extractByteArrayFromBody(response);
+            Data data = Utils.mapper().readValue(bytes, Data.class);
+            return new CollectionError(response.statusCode(), bytes, response, data, null);
+        } catch (Exception e) {
+            return new CollectionError(response.statusCode(), null, response, null, e);
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        CollectionError other = (CollectionError) o;
-        return 
-            Utils.enhancedDeepEquals(this.errorCode, other.errorCode);
-    }
-    
-    @Override
-    public int hashCode() {
-        return Utils.enhancedHash(
-            errorCode);
-    }
-    
-    @Override
-    public String toString() {
-        return Utils.toString(CollectionError.class,
-                "errorCode", errorCode);
     }
 
-    @SuppressWarnings("UnusedReturnValue")
-    public final static class Builder {
+    /**
+    * Parse a response into an instance of CollectionError asynchronously. If deserialization of the response body fails,
+    * the resulting CollectionError instance will have a null data() value and a non-null deserializationException().
+    */
+    public static CompletableFuture<CollectionError> fromAsync(HttpResponse<Blob> response) {
+        return response.body()
+                .toByteArray()
+                .handle((bytes, err) -> {
+                    // if a body read error occurs, we want to transform the exception
+                    if (err != null) {
+                        throw new AsyncAPIException(
+                                "Error reading response body: " + err.getMessage(),
+                                response.statusCode(),
+                                null,
+                                response,
+                                err);
+                    }
 
+                    try {
+                        return new CollectionError(
+                                response.statusCode(),
+                                bytes,
+                                response,
+                                Utils.mapper().readValue(
+                                        bytes,
+                                        new TypeReference<Data>() {
+                                        }),
+                                null);
+                    } catch (Exception e) {
+                        return new CollectionError(
+                                response.statusCode(),
+                                bytes,
+                                response,
+                                null,
+                                e);
+                    }
+                });
+    }
+
+    @Deprecated
+    public Optional<ErrorCode> errorCode() {
+        return data().map(Data::errorCode);
+    }
+
+    public Optional<Data> data() {
+        return Optional.ofNullable(data);
+    }
+
+    /**
+     * Returns the exception if an error occurs while deserializing the response body.
+     */
+    public Optional<Throwable> deserializationException() {
+        return Optional.ofNullable(deserializationException);
+    }
+
+    public static class Data {
+
+        @JsonProperty("errorCode")
         private ErrorCode errorCode;
 
-        private Builder() {
-          // force use of static builder() method
+        @JsonCreator
+        public Data(
+                @JsonProperty("errorCode") ErrorCode errorCode) {
+            Utils.checkNotNull(errorCode, "errorCode");
+            this.errorCode = errorCode;
+        }
+
+        @JsonIgnore
+        public ErrorCode errorCode() {
+            return errorCode;
+        }
+
+        public static Builder builder() {
+            return new Builder();
         }
 
 
-        public Builder errorCode(ErrorCode errorCode) {
+        public Data withErrorCode(ErrorCode errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
             this.errorCode = errorCode;
             return this;
         }
 
-        public CollectionError build() {
-
-            return new CollectionError(
+        @Override
+        public boolean equals(java.lang.Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            Data other = (Data) o;
+            return 
+                Utils.enhancedDeepEquals(this.errorCode, other.errorCode);
+        }
+        
+        @Override
+        public int hashCode() {
+            return Utils.enhancedHash(
                 errorCode);
         }
+        
+        @Override
+        public String toString() {
+            return Utils.toString(Data.class,
+                    "errorCode", errorCode);
+        }
 
+        @SuppressWarnings("UnusedReturnValue")
+        public final static class Builder {
+
+            private ErrorCode errorCode;
+
+            private Builder() {
+              // force use of static builder() method
+            }
+
+
+            public Builder errorCode(ErrorCode errorCode) {
+                Utils.checkNotNull(errorCode, "errorCode");
+                this.errorCode = errorCode;
+                return this;
+            }
+
+            public Data build() {
+
+                return new Data(
+                    errorCode);
+            }
+
+        }
     }
+
 }
 

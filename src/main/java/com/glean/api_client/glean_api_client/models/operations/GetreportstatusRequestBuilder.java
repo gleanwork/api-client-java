@@ -9,7 +9,6 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.operations.Getreportstatus;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 
 public class GetreportstatusRequestBuilder {
@@ -36,7 +35,7 @@ public class GetreportstatusRequestBuilder {
         return request;
     }
 
-    public GetreportstatusResponse call() throws Exception {
+    public GetreportstatusResponse call() {
         
         RequestOperation<GetreportstatusRequest, GetreportstatusResponse> operation
               = new Getreportstatus.Sync(sdkConfiguration, _headers);

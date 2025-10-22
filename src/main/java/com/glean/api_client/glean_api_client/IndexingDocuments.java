@@ -49,7 +49,6 @@ import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Indexdocum
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Processalldocuments;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Deprecated;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -91,9 +90,9 @@ public class IndexingDocuments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1IndexdocumentResponse addOrUpdate(IndexDocumentRequest request) throws Exception {
+    public PostApiIndexV1IndexdocumentResponse addOrUpdate(IndexDocumentRequest request) {
         RequestOperation<IndexDocumentRequest, PostApiIndexV1IndexdocumentResponse> operation
               = new PostApiIndexV1Indexdocument.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -121,9 +120,9 @@ public class IndexingDocuments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1IndexdocumentsResponse index(IndexDocumentsRequest request) throws Exception {
+    public PostApiIndexV1IndexdocumentsResponse index(IndexDocumentsRequest request) {
         RequestOperation<IndexDocumentsRequest, PostApiIndexV1IndexdocumentsResponse> operation
               = new PostApiIndexV1Indexdocuments.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -151,9 +150,9 @@ public class IndexingDocuments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1BulkindexdocumentsResponse bulkIndex(BulkIndexDocumentsRequest request) throws Exception {
+    public PostApiIndexV1BulkindexdocumentsResponse bulkIndex(BulkIndexDocumentsRequest request) {
         RequestOperation<BulkIndexDocumentsRequest, PostApiIndexV1BulkindexdocumentsResponse> operation
               = new PostApiIndexV1Bulkindexdocuments.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -206,9 +205,9 @@ public class IndexingDocuments {
      * <p>For more frequent document processing, contact Glean support.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1ProcessalldocumentsResponse processAllDirect() throws Exception {
+    public PostApiIndexV1ProcessalldocumentsResponse processAllDirect() {
         return processAll(Optional.empty());
     }
 
@@ -234,9 +233,9 @@ public class IndexingDocuments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1ProcessalldocumentsResponse processAll(Optional<? extends ProcessAllDocumentsRequest> request) throws Exception {
+    public PostApiIndexV1ProcessalldocumentsResponse processAll(Optional<? extends ProcessAllDocumentsRequest> request) {
         RequestOperation<Optional<? extends ProcessAllDocumentsRequest>, PostApiIndexV1ProcessalldocumentsResponse> operation
               = new PostApiIndexV1Processalldocuments.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -260,9 +259,9 @@ public class IndexingDocuments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1DeletedocumentResponse delete(DeleteDocumentRequest request) throws Exception {
+    public PostApiIndexV1DeletedocumentResponse delete(DeleteDocumentRequest request) {
         RequestOperation<DeleteDocumentRequest, PostApiIndexV1DeletedocumentResponse> operation
               = new PostApiIndexV1Deletedocument.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -295,9 +294,9 @@ public class IndexingDocuments {
      * @param datasource The datasource to which the document belongs
      * @param debugDocumentRequest Describes the request body of the /debug/{datasource}/document API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1DebugDatasourceDocumentResponse debug(String datasource, DebugDocumentRequest debugDocumentRequest) throws Exception {
+    public PostApiIndexV1DebugDatasourceDocumentResponse debug(String datasource, DebugDocumentRequest debugDocumentRequest) {
         PostApiIndexV1DebugDatasourceDocumentRequest request =
             PostApiIndexV1DebugDatasourceDocumentRequest
                 .builder()
@@ -336,9 +335,9 @@ public class IndexingDocuments {
      * @param datasource The datasource to which the document belongs
      * @param debugDocumentsRequest Describes the request body of the /debug/{datasource}/documents API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1DebugDatasourceDocumentsResponse debugMany(String datasource, DebugDocumentsRequest debugDocumentsRequest) throws Exception {
+    public PostApiIndexV1DebugDatasourceDocumentsResponse debugMany(String datasource, DebugDocumentsRequest debugDocumentsRequest) {
         PostApiIndexV1DebugDatasourceDocumentsRequest request =
             PostApiIndexV1DebugDatasourceDocumentsRequest
                 .builder()
@@ -374,9 +373,9 @@ public class IndexingDocuments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1CheckdocumentaccessResponse checkAccess(CheckDocumentAccessRequest request) throws Exception {
+    public PostApiIndexV1CheckdocumentaccessResponse checkAccess(CheckDocumentAccessRequest request) {
         RequestOperation<CheckDocumentAccessRequest, PostApiIndexV1CheckdocumentaccessResponse> operation
               = new PostApiIndexV1Checkdocumentaccess.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -410,11 +409,11 @@ public class IndexingDocuments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public PostApiIndexV1GetdocumentstatusResponse status(GetDocumentStatusRequest request) throws Exception {
+    public PostApiIndexV1GetdocumentstatusResponse status(GetDocumentStatusRequest request) {
         RequestOperation<GetDocumentStatusRequest, PostApiIndexV1GetdocumentstatusResponse> operation
               = new PostApiIndexV1Getdocumentstatus.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -448,11 +447,11 @@ public class IndexingDocuments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public PostApiIndexV1GetdocumentcountResponse count(GetDocumentCountRequest request) throws Exception {
+    public PostApiIndexV1GetdocumentcountResponse count(GetDocumentCountRequest request) {
         RequestOperation<GetDocumentCountRequest, PostApiIndexV1GetdocumentcountResponse> operation
               = new PostApiIndexV1Getdocumentcount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));

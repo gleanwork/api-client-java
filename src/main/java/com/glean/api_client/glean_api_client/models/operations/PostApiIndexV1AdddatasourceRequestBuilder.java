@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.CustomDatasourceC
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Adddatasource;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class PostApiIndexV1AdddatasourceRequestBuilder {
 
@@ -28,7 +27,7 @@ public class PostApiIndexV1AdddatasourceRequestBuilder {
         return this;
     }
 
-    public PostApiIndexV1AdddatasourceResponse call() throws Exception {
+    public PostApiIndexV1AdddatasourceResponse call() {
         
         RequestOperation<CustomDatasourceConfig, PostApiIndexV1AdddatasourceResponse> operation
               = new PostApiIndexV1Adddatasource.Sync(sdkConfiguration, _headers);

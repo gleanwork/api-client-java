@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.IndexMembershipRe
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Indexmembership;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class PostApiIndexV1IndexmembershipRequestBuilder {
@@ -29,7 +28,7 @@ public class PostApiIndexV1IndexmembershipRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<PostApiIndexV1IndexmembershipResponse> call() throws Exception {
+    public CompletableFuture<PostApiIndexV1IndexmembershipResponse> call() {
         
         AsyncRequestOperation<IndexMembershipRequest, PostApiIndexV1IndexmembershipResponse> operation
               = new PostApiIndexV1Indexmembership.Async(sdkConfiguration, _headers);

@@ -8,7 +8,6 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Rotatetoken;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class PostApiIndexV1RotatetokenRequestBuilder {
@@ -20,7 +19,7 @@ public class PostApiIndexV1RotatetokenRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public CompletableFuture<PostApiIndexV1RotatetokenResponse> call() throws Exception {
+    public CompletableFuture<PostApiIndexV1RotatetokenResponse> call() {
         
         AsyncRequestlessOperation<PostApiIndexV1RotatetokenResponse> operation
             = new PostApiIndexV1Rotatetoken.Async(sdkConfiguration, _headers);

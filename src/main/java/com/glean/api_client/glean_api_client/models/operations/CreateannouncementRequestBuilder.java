@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.CreateAnnouncemen
 import com.glean.api_client.glean_api_client.operations.Createannouncement;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class CreateannouncementRequestBuilder {
 
@@ -28,7 +27,7 @@ public class CreateannouncementRequestBuilder {
         return this;
     }
 
-    public CreateannouncementResponse call() throws Exception {
+    public CreateannouncementResponse call() {
         
         RequestOperation<CreateAnnouncementRequest, CreateannouncementResponse> operation
               = new Createannouncement.Sync(sdkConfiguration, _headers);

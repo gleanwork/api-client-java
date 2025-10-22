@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.ListEntitiesReque
 import com.glean.api_client.glean_api_client.operations.Listentities;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class ListentitiesRequestBuilder {
@@ -29,7 +28,7 @@ public class ListentitiesRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<ListentitiesResponse> call() throws Exception {
+    public CompletableFuture<ListentitiesResponse> call() {
         
         AsyncRequestOperation<ListEntitiesRequest, ListentitiesResponse> operation
               = new Listentities.Async(sdkConfiguration, _headers);

@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.DeleteChatsReques
 import com.glean.api_client.glean_api_client.operations.Deletechats;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.lang.Long;
 import java.util.Optional;
 
@@ -52,7 +51,7 @@ public class DeletechatsRequestBuilder {
         return request;
     }
 
-    public DeletechatsResponse call() throws Exception {
+    public DeletechatsResponse call() {
         
         RequestOperation<DeletechatsRequest, DeletechatsResponse> operation
               = new Deletechats.Sync(sdkConfiguration, _headers);

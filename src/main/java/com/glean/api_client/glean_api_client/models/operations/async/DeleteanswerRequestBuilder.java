@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.DeleteAnswerReque
 import com.glean.api_client.glean_api_client.operations.Deleteanswer;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class DeleteanswerRequestBuilder {
@@ -29,7 +28,7 @@ public class DeleteanswerRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<DeleteanswerResponse> call() throws Exception {
+    public CompletableFuture<DeleteanswerResponse> call() {
         
         AsyncRequestOperation<DeleteAnswerRequest, DeleteanswerResponse> operation
               = new Deleteanswer.Async(sdkConfiguration, _headers);

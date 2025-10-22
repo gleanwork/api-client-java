@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -42,21 +43,32 @@ public class AgentConfig {
     @JsonProperty("mode")
     private Optional<? extends Mode> mode;
 
+    /**
+     * Whether the agent should create an image.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("useImageGeneration")
+    private Optional<Boolean> useImageGeneration;
+
     @JsonCreator
     public AgentConfig(
             @JsonProperty("agent") Optional<? extends AgentEnum> agent,
             @JsonProperty("toolSets") Optional<? extends ToolSets> toolSets,
-            @JsonProperty("mode") Optional<? extends Mode> mode) {
+            @JsonProperty("mode") Optional<? extends Mode> mode,
+            @JsonProperty("useImageGeneration") Optional<Boolean> useImageGeneration) {
         Utils.checkNotNull(agent, "agent");
         Utils.checkNotNull(toolSets, "toolSets");
         Utils.checkNotNull(mode, "mode");
+        Utils.checkNotNull(useImageGeneration, "useImageGeneration");
         this.agent = agent;
         this.toolSets = toolSets;
         this.mode = mode;
+        this.useImageGeneration = useImageGeneration;
     }
     
     public AgentConfig() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -85,6 +97,14 @@ public class AgentConfig {
     @JsonIgnore
     public Optional<Mode> mode() {
         return (Optional<Mode>) mode;
+    }
+
+    /**
+     * Whether the agent should create an image.
+     */
+    @JsonIgnore
+    public Optional<Boolean> useImageGeneration() {
+        return useImageGeneration;
     }
 
     public static Builder builder() {
@@ -151,6 +171,25 @@ public class AgentConfig {
         return this;
     }
 
+    /**
+     * Whether the agent should create an image.
+     */
+    public AgentConfig withUseImageGeneration(boolean useImageGeneration) {
+        Utils.checkNotNull(useImageGeneration, "useImageGeneration");
+        this.useImageGeneration = Optional.ofNullable(useImageGeneration);
+        return this;
+    }
+
+
+    /**
+     * Whether the agent should create an image.
+     */
+    public AgentConfig withUseImageGeneration(Optional<Boolean> useImageGeneration) {
+        Utils.checkNotNull(useImageGeneration, "useImageGeneration");
+        this.useImageGeneration = useImageGeneration;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -163,13 +202,15 @@ public class AgentConfig {
         return 
             Utils.enhancedDeepEquals(this.agent, other.agent) &&
             Utils.enhancedDeepEquals(this.toolSets, other.toolSets) &&
-            Utils.enhancedDeepEquals(this.mode, other.mode);
+            Utils.enhancedDeepEquals(this.mode, other.mode) &&
+            Utils.enhancedDeepEquals(this.useImageGeneration, other.useImageGeneration);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            agent, toolSets, mode);
+            agent, toolSets, mode,
+            useImageGeneration);
     }
     
     @Override
@@ -177,7 +218,8 @@ public class AgentConfig {
         return Utils.toString(AgentConfig.class,
                 "agent", agent,
                 "toolSets", toolSets,
-                "mode", mode);
+                "mode", mode,
+                "useImageGeneration", useImageGeneration);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -188,6 +230,8 @@ public class AgentConfig {
         private Optional<? extends ToolSets> toolSets = Optional.empty();
 
         private Optional<? extends Mode> mode = Optional.empty();
+
+        private Optional<Boolean> useImageGeneration = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -252,10 +296,30 @@ public class AgentConfig {
             return this;
         }
 
+
+        /**
+         * Whether the agent should create an image.
+         */
+        public Builder useImageGeneration(boolean useImageGeneration) {
+            Utils.checkNotNull(useImageGeneration, "useImageGeneration");
+            this.useImageGeneration = Optional.ofNullable(useImageGeneration);
+            return this;
+        }
+
+        /**
+         * Whether the agent should create an image.
+         */
+        public Builder useImageGeneration(Optional<Boolean> useImageGeneration) {
+            Utils.checkNotNull(useImageGeneration, "useImageGeneration");
+            this.useImageGeneration = useImageGeneration;
+            return this;
+        }
+
         public AgentConfig build() {
 
             return new AgentConfig(
-                agent, toolSets, mode);
+                agent, toolSets, mode,
+                useImageGeneration);
         }
 
     }

@@ -8,7 +8,6 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.operations.Createauthtoken;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class CreateauthtokenRequestBuilder {
@@ -20,7 +19,7 @@ public class CreateauthtokenRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public CompletableFuture<CreateauthtokenResponse> call() throws Exception {
+    public CompletableFuture<CreateauthtokenResponse> call() {
         
         AsyncRequestlessOperation<CreateauthtokenResponse> operation
             = new Createauthtoken.Async(sdkConfiguration, _headers);

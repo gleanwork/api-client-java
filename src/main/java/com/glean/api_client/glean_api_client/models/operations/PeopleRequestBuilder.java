@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.PeopleRequest;
 import com.glean.api_client.glean_api_client.operations.People;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class PeopleRequestBuilder {
 
@@ -28,7 +27,7 @@ public class PeopleRequestBuilder {
         return this;
     }
 
-    public PeopleResponse call() throws Exception {
+    public PeopleResponse call() {
         
         RequestOperation<PeopleRequest, PeopleResponse> operation
               = new People.Sync(sdkConfiguration, _headers);

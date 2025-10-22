@@ -9,7 +9,6 @@ import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1Rot
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1RotatetokenResponse;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Rotatetoken;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.Exception;
 
 
 public class IndexingAuthentication {
@@ -60,9 +59,9 @@ public class IndexingAuthentication {
      * more information.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1RotatetokenResponse rotateTokenDirect() throws Exception {
+    public PostApiIndexV1RotatetokenResponse rotateTokenDirect() {
         RequestlessOperation<PostApiIndexV1RotatetokenResponse> operation
             = new PostApiIndexV1Rotatetoken.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());

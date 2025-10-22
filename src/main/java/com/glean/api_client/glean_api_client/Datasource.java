@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1Deb
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DebugDatasourceStatusResponse;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DebugDatasourceStatus;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.Exception;
 import java.lang.String;
 
 
@@ -59,9 +58,9 @@ public class Datasource {
      * 
      * @param datasource The datasource to get debug status for.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1DebugDatasourceStatusResponse status(String datasource) throws Exception {
+    public PostApiIndexV1DebugDatasourceStatusResponse status(String datasource) {
         PostApiIndexV1DebugDatasourceStatusRequest request =
             PostApiIndexV1DebugDatasourceStatusRequest
                 .builder()

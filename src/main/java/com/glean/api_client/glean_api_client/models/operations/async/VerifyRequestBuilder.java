@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.VerifyRequest;
 import com.glean.api_client.glean_api_client.operations.Verify;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class VerifyRequestBuilder {
@@ -29,7 +28,7 @@ public class VerifyRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<VerifyResponse> call() throws Exception {
+    public CompletableFuture<VerifyResponse> call() {
         
         AsyncRequestOperation<VerifyRequest, VerifyResponse> operation
               = new Verify.Async(sdkConfiguration, _headers);

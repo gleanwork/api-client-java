@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.GetDocumentsByFac
 import com.glean.api_client.glean_api_client.operations.Getdocumentsbyfacets;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -36,7 +35,7 @@ public class GetdocumentsbyfacetsRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<GetdocumentsbyfacetsResponse> call() throws Exception {
+    public CompletableFuture<GetdocumentsbyfacetsResponse> call() {
         
         AsyncRequestOperation<Optional<? extends GetDocumentsByFacetsRequest>, GetdocumentsbyfacetsResponse> operation
               = new Getdocumentsbyfacets.Async(sdkConfiguration, _headers);

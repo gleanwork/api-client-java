@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.GreenlistUsersReq
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Betausers;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class PostApiIndexV1BetausersRequestBuilder {
 
@@ -28,7 +27,7 @@ public class PostApiIndexV1BetausersRequestBuilder {
         return this;
     }
 
-    public PostApiIndexV1BetausersResponse call() throws Exception {
+    public PostApiIndexV1BetausersResponse call() {
         
         RequestOperation<GreenlistUsersRequest, PostApiIndexV1BetausersResponse> operation
               = new PostApiIndexV1Betausers.Sync(sdkConfiguration, _headers);

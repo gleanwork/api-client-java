@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.BulkIndexShortcut
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Bulkindexshortcuts;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class PostApiIndexV1BulkindexshortcutsRequestBuilder {
@@ -29,7 +28,7 @@ public class PostApiIndexV1BulkindexshortcutsRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<PostApiIndexV1BulkindexshortcutsResponse> call() throws Exception {
+    public CompletableFuture<PostApiIndexV1BulkindexshortcutsResponse> call() {
         
         AsyncRequestOperation<BulkIndexShortcutsRequest, PostApiIndexV1BulkindexshortcutsResponse> operation
               = new PostApiIndexV1Bulkindexshortcuts.Async(sdkConfiguration, _headers);

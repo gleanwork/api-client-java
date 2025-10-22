@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.GetDocumentsReque
 import com.glean.api_client.glean_api_client.operations.Getdocuments;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -36,7 +35,7 @@ public class GetdocumentsRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<GetdocumentsResponse> call() throws Exception {
+    public CompletableFuture<GetdocumentsResponse> call() {
         
         AsyncRequestOperation<Optional<? extends GetDocumentsRequest>, GetdocumentsResponse> operation
               = new Getdocuments.Async(sdkConfiguration, _headers);

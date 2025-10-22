@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.UpdateDocumentVis
 import com.glean.api_client.glean_api_client.operations.Setdocvisibility;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class SetdocvisibilityRequestBuilder {
 
@@ -28,7 +27,7 @@ public class SetdocvisibilityRequestBuilder {
         return this;
     }
 
-    public SetdocvisibilityResponse call() throws Exception {
+    public SetdocvisibilityResponse call() {
         
         RequestOperation<UpdateDocumentVisibilityOverridesRequest, SetdocvisibilityResponse> operation
               = new Setdocvisibility.Sync(sdkConfiguration, _headers);

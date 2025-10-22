@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.GetDocPermissions
 import com.glean.api_client.glean_api_client.operations.Getdocpermissions;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class GetdocpermissionsRequestBuilder {
 
@@ -28,7 +27,7 @@ public class GetdocpermissionsRequestBuilder {
         return this;
     }
 
-    public GetdocpermissionsResponse call() throws Exception {
+    public GetdocpermissionsResponse call() {
         
         RequestOperation<GetDocPermissionsRequest, GetdocpermissionsResponse> operation
               = new Getdocpermissions.Sync(sdkConfiguration, _headers);

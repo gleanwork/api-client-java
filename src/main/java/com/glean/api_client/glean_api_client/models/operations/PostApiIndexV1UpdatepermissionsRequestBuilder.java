@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.UpdatePermissions
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Updatepermissions;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class PostApiIndexV1UpdatepermissionsRequestBuilder {
 
@@ -28,7 +27,7 @@ public class PostApiIndexV1UpdatepermissionsRequestBuilder {
         return this;
     }
 
-    public PostApiIndexV1UpdatepermissionsResponse call() throws Exception {
+    public PostApiIndexV1UpdatepermissionsResponse call() {
         
         RequestOperation<UpdatePermissionsRequest, PostApiIndexV1UpdatepermissionsResponse> operation
               = new PostApiIndexV1Updatepermissions.Sync(sdkConfiguration, _headers);

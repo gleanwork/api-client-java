@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.operations.GetpolicyRequest;
 import com.glean.api_client.glean_api_client.operations.Getpolicy;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
@@ -54,7 +53,7 @@ public class GetpolicyRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<GetpolicyResponse> call() throws Exception {
+    public CompletableFuture<GetpolicyResponse> call() {
         
         AsyncRequestOperation<GetpolicyRequest, GetpolicyResponse> operation
               = new Getpolicy.Async(sdkConfiguration, _headers);

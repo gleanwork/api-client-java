@@ -12,7 +12,6 @@ import com.glean.api_client.glean_api_client.models.operations.FeedbackRequest;
 import com.glean.api_client.glean_api_client.models.operations.FeedbackRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.FeedbackResponse;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -56,9 +55,9 @@ public class Activity {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ActivityResponse report(com.glean.api_client.glean_api_client.models.components.Activity request) throws Exception {
+    public ActivityResponse report(com.glean.api_client.glean_api_client.models.components.Activity request) {
         RequestOperation<com.glean.api_client.glean_api_client.models.components.Activity, ActivityResponse> operation
               = new com.glean.api_client.glean_api_client.operations.Activity.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -83,9 +82,9 @@ public class Activity {
      * clicks. This signal improves search quality.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FeedbackResponse feedbackDirect() throws Exception {
+    public FeedbackResponse feedbackDirect() {
         return feedback(Optional.empty(), Optional.empty());
     }
 
@@ -98,9 +97,9 @@ public class Activity {
      * @param feedbackQueryParameter A URL encoded versions of Feedback. This is useful for requests.
      * @param feedback1 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FeedbackResponse feedback(Optional<String> feedbackQueryParameter, Optional<? extends Feedback> feedback1) throws Exception {
+    public FeedbackResponse feedback(Optional<String> feedbackQueryParameter, Optional<? extends Feedback> feedback1) {
         FeedbackRequest request =
             FeedbackRequest
                 .builder()

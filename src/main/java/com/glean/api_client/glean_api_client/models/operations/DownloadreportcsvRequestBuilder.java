@@ -9,7 +9,6 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.operations.Downloadreportcsv;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 
 public class DownloadreportcsvRequestBuilder {
@@ -36,7 +35,7 @@ public class DownloadreportcsvRequestBuilder {
         return request;
     }
 
-    public DownloadreportcsvResponse call() throws Exception {
+    public DownloadreportcsvResponse call() {
         
         RequestOperation<DownloadreportcsvRequest, DownloadreportcsvResponse> operation
               = new Downloadreportcsv.Sync(sdkConfiguration, _headers);

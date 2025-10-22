@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.ListShortcutsPagi
 import com.glean.api_client.glean_api_client.operations.Listshortcuts;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class ListshortcutsRequestBuilder {
@@ -29,7 +28,7 @@ public class ListshortcutsRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<ListshortcutsResponse> call() throws Exception {
+    public CompletableFuture<ListshortcutsResponse> call() {
         
         AsyncRequestOperation<ListShortcutsPaginatedRequest, ListshortcutsResponse> operation
               = new Listshortcuts.Async(sdkConfiguration, _headers);

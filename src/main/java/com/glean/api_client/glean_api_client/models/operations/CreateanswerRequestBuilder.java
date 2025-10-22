@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.CreateAnswerReque
 import com.glean.api_client.glean_api_client.operations.Createanswer;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class CreateanswerRequestBuilder {
 
@@ -28,7 +27,7 @@ public class CreateanswerRequestBuilder {
         return this;
     }
 
-    public CreateanswerResponse call() throws Exception {
+    public CreateanswerResponse call() {
         
         RequestOperation<CreateAnswerRequest, CreateanswerResponse> operation
               = new Createanswer.Sync(sdkConfiguration, _headers);

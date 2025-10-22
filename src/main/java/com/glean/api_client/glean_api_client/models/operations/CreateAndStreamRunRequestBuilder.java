@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.AgentRunCreate;
 import com.glean.api_client.glean_api_client.operations.CreateAndStreamRun;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class CreateAndStreamRunRequestBuilder {
 
@@ -28,7 +27,7 @@ public class CreateAndStreamRunRequestBuilder {
         return this;
     }
 
-    public CreateAndStreamRunResponse call() throws Exception {
+    public CreateAndStreamRunResponse call() {
         
         RequestOperation<AgentRunCreate, CreateAndStreamRunResponse> operation
               = new CreateAndStreamRun.Sync(sdkConfiguration, _headers);

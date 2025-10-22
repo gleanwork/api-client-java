@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.CreateAnnouncemen
 import com.glean.api_client.glean_api_client.operations.Createannouncement;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class CreateannouncementRequestBuilder {
@@ -29,7 +28,7 @@ public class CreateannouncementRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<CreateannouncementResponse> call() throws Exception {
+    public CompletableFuture<CreateannouncementResponse> call() {
         
         AsyncRequestOperation<CreateAnnouncementRequest, CreateannouncementResponse> operation
               = new Createannouncement.Async(sdkConfiguration, _headers);

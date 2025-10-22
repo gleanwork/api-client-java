@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.ListAnswersReques
 import com.glean.api_client.glean_api_client.operations.Listanswers;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class ListanswersRequestBuilder {
 
@@ -28,7 +27,7 @@ public class ListanswersRequestBuilder {
         return this;
     }
 
-    public ListanswersResponse call() throws Exception {
+    public ListanswersResponse call() {
         
         RequestOperation<ListAnswersRequest, ListanswersResponse> operation
               = new Listanswers.Sync(sdkConfiguration, _headers);

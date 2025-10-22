@@ -9,7 +9,6 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.operations.Listverifications;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.lang.Long;
 import java.util.Optional;
 
@@ -43,7 +42,7 @@ public class ListverificationsRequestBuilder {
         return request;
     }
 
-    public ListverificationsResponse call() throws Exception {
+    public ListverificationsResponse call() {
         
         RequestOperation<ListverificationsRequest, ListverificationsResponse> operation
               = new Listverifications.Sync(sdkConfiguration, _headers);

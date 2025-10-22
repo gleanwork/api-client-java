@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.IndexEmployeeRequ
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Indexemployee;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class PostApiIndexV1IndexemployeeRequestBuilder {
@@ -29,7 +28,7 @@ public class PostApiIndexV1IndexemployeeRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<PostApiIndexV1IndexemployeeResponse> call() throws Exception {
+    public CompletableFuture<PostApiIndexV1IndexemployeeResponse> call() {
         
         AsyncRequestOperation<IndexEmployeeRequest, PostApiIndexV1IndexemployeeResponse> operation
               = new PostApiIndexV1Indexemployee.Async(sdkConfiguration, _headers);

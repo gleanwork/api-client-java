@@ -25,7 +25,6 @@ import com.glean.api_client.glean_api_client.operations.GetAgent;
 import com.glean.api_client.glean_api_client.operations.GetAgentSchemas;
 import com.glean.api_client.glean_api_client.operations.SearchAgents;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
@@ -70,9 +69,9 @@ public class Agents {
      * 
      * @param agentId The ID of the agent.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetAgentResponse retrieve(String agentId) throws Exception {
+    public GetAgentResponse retrieve(String agentId) {
         return retrieve(Optional.empty(), agentId);
     }
 
@@ -85,9 +84,9 @@ public class Agents {
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param agentId The ID of the agent.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetAgentResponse retrieve(Optional<Long> timezoneOffset, String agentId) throws Exception {
+    public GetAgentResponse retrieve(Optional<Long> timezoneOffset, String agentId) {
         GetAgentRequest request =
             GetAgentRequest
                 .builder()
@@ -119,9 +118,9 @@ public class Agents {
      * 
      * @param agentId The ID of the agent.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetAgentSchemasResponse retrieveSchemas(String agentId) throws Exception {
+    public GetAgentSchemasResponse retrieveSchemas(String agentId) {
         return retrieveSchemas(Optional.empty(), agentId);
     }
 
@@ -134,9 +133,9 @@ public class Agents {
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param agentId The ID of the agent.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetAgentSchemasResponse retrieveSchemas(Optional<Long> timezoneOffset, String agentId) throws Exception {
+    public GetAgentSchemasResponse retrieveSchemas(Optional<Long> timezoneOffset, String agentId) {
         GetAgentSchemasRequest request =
             GetAgentSchemasRequest
                 .builder()
@@ -166,9 +165,9 @@ public class Agents {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public SearchAgentsResponse list(SearchAgentsRequest request) throws Exception {
+    public SearchAgentsResponse list(SearchAgentsRequest request) {
         RequestOperation<SearchAgentsRequest, SearchAgentsResponse> operation
               = new SearchAgents.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -194,9 +193,9 @@ public class Agents {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateAndStreamRunResponse runStream(AgentRunCreate request) throws Exception {
+    public CreateAndStreamRunResponse runStream(AgentRunCreate request) {
         RequestOperation<AgentRunCreate, CreateAndStreamRunResponse> operation
               = new CreateAndStreamRun.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -222,9 +221,9 @@ public class Agents {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateAndWaitRunResponse run(AgentRunCreate request) throws Exception {
+    public CreateAndWaitRunResponse run(AgentRunCreate request) {
         RequestOperation<AgentRunCreate, CreateAndWaitRunResponse> operation
               = new CreateAndWaitRun.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));

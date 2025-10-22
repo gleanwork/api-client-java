@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.operations.GetdocvisibilityR
 import com.glean.api_client.glean_api_client.operations.Getdocvisibility;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -46,7 +45,7 @@ public class GetdocvisibilityRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<GetdocvisibilityResponse> call() throws Exception {
+    public CompletableFuture<GetdocvisibilityResponse> call() {
         
         AsyncRequestOperation<GetdocvisibilityRequest, GetdocvisibilityResponse> operation
               = new Getdocvisibility.Async(sdkConfiguration, _headers);

@@ -51,7 +51,6 @@ import com.glean.api_client.glean_api_client.operations.Getchatfiles;
 import com.glean.api_client.glean_api_client.operations.Listchats;
 import com.glean.api_client.glean_api_client.operations.Uploadchatfiles;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.Exception;
 import java.lang.Long;
 import java.util.Optional;
 
@@ -91,11 +90,11 @@ public class Chat {
      * 
      * <p>Have a conversation with Glean AI.
      * 
-     * @param chatRequest 
+     * @param chatRequest The minimal set of fields that form a chat request.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ChatResponse create(ChatRequest chatRequest) throws Exception {
+    public ChatResponse create(ChatRequest chatRequest) {
         return create(Optional.empty(), chatRequest);
     }
 
@@ -105,11 +104,11 @@ public class Chat {
      * <p>Have a conversation with Glean AI.
      * 
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
-     * @param chatRequest 
+     * @param chatRequest The minimal set of fields that form a chat request.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ChatResponse create(Optional<Long> timezoneOffset, ChatRequest chatRequest) throws Exception {
+    public ChatResponse create(Optional<Long> timezoneOffset, ChatRequest chatRequest) {
         com.glean.api_client.glean_api_client.models.operations.ChatRequest request =
             com.glean.api_client.glean_api_client.models.operations.ChatRequest
                 .builder()
@@ -138,9 +137,9 @@ public class Chat {
      * <p>Deletes all saved Chats a user has had and all their contained conversational content.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteallchatsResponse deleteAllDirect() throws Exception {
+    public DeleteallchatsResponse deleteAllDirect() {
         return deleteAll(Optional.empty());
     }
 
@@ -151,9 +150,9 @@ public class Chat {
      * 
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteallchatsResponse deleteAll(Optional<Long> timezoneOffset) throws Exception {
+    public DeleteallchatsResponse deleteAll(Optional<Long> timezoneOffset) {
         DeleteallchatsRequest request =
             DeleteallchatsRequest
                 .builder()
@@ -182,9 +181,9 @@ public class Chat {
      * 
      * @param deleteChatsRequest 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeletechatsResponse delete(DeleteChatsRequest deleteChatsRequest) throws Exception {
+    public DeletechatsResponse delete(DeleteChatsRequest deleteChatsRequest) {
         return delete(Optional.empty(), deleteChatsRequest);
     }
 
@@ -196,9 +195,9 @@ public class Chat {
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param deleteChatsRequest 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeletechatsResponse delete(Optional<Long> timezoneOffset, DeleteChatsRequest deleteChatsRequest) throws Exception {
+    public DeletechatsResponse delete(Optional<Long> timezoneOffset, DeleteChatsRequest deleteChatsRequest) {
         DeletechatsRequest request =
             DeletechatsRequest
                 .builder()
@@ -228,9 +227,9 @@ public class Chat {
      * 
      * @param getChatRequest 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetchatResponse retrieve(GetChatRequest getChatRequest) throws Exception {
+    public GetchatResponse retrieve(GetChatRequest getChatRequest) {
         return retrieve(Optional.empty(), getChatRequest);
     }
 
@@ -242,9 +241,9 @@ public class Chat {
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param getChatRequest 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetchatResponse retrieve(Optional<Long> timezoneOffset, GetChatRequest getChatRequest) throws Exception {
+    public GetchatResponse retrieve(Optional<Long> timezoneOffset, GetChatRequest getChatRequest) {
         GetchatRequest request =
             GetchatRequest
                 .builder()
@@ -275,9 +274,9 @@ public class Chat {
      * metadata and no conversational content.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListchatsResponse listDirect() throws Exception {
+    public ListchatsResponse listDirect() {
         return list(Optional.empty());
     }
 
@@ -289,9 +288,9 @@ public class Chat {
      * 
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListchatsResponse list(Optional<Long> timezoneOffset) throws Exception {
+    public ListchatsResponse list(Optional<Long> timezoneOffset) {
         ListchatsRequest request =
             ListchatsRequest
                 .builder()
@@ -320,9 +319,9 @@ public class Chat {
      * 
      * @param getChatApplicationRequest 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetchatapplicationResponse retrieveApplication(GetChatApplicationRequest getChatApplicationRequest) throws Exception {
+    public GetchatapplicationResponse retrieveApplication(GetChatApplicationRequest getChatApplicationRequest) {
         return retrieveApplication(Optional.empty(), getChatApplicationRequest);
     }
 
@@ -334,9 +333,9 @@ public class Chat {
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param getChatApplicationRequest 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetchatapplicationResponse retrieveApplication(Optional<Long> timezoneOffset, GetChatApplicationRequest getChatApplicationRequest) throws Exception {
+    public GetchatapplicationResponse retrieveApplication(Optional<Long> timezoneOffset, GetChatApplicationRequest getChatApplicationRequest) {
         GetchatapplicationRequest request =
             GetchatapplicationRequest
                 .builder()
@@ -366,9 +365,9 @@ public class Chat {
      * 
      * @param uploadChatFilesRequest 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UploadchatfilesResponse uploadFiles(UploadChatFilesRequest uploadChatFilesRequest) throws Exception {
+    public UploadchatfilesResponse uploadFiles(UploadChatFilesRequest uploadChatFilesRequest) {
         return uploadFiles(Optional.empty(), uploadChatFilesRequest);
     }
 
@@ -380,9 +379,9 @@ public class Chat {
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param uploadChatFilesRequest 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UploadchatfilesResponse uploadFiles(Optional<Long> timezoneOffset, UploadChatFilesRequest uploadChatFilesRequest) throws Exception {
+    public UploadchatfilesResponse uploadFiles(Optional<Long> timezoneOffset, UploadChatFilesRequest uploadChatFilesRequest) {
         UploadchatfilesRequest request =
             UploadchatfilesRequest
                 .builder()
@@ -412,9 +411,9 @@ public class Chat {
      * 
      * @param getChatFilesRequest 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetchatfilesResponse retrieveFiles(GetChatFilesRequest getChatFilesRequest) throws Exception {
+    public GetchatfilesResponse retrieveFiles(GetChatFilesRequest getChatFilesRequest) {
         return retrieveFiles(Optional.empty(), getChatFilesRequest);
     }
 
@@ -426,9 +425,9 @@ public class Chat {
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param getChatFilesRequest 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetchatfilesResponse retrieveFiles(Optional<Long> timezoneOffset, GetChatFilesRequest getChatFilesRequest) throws Exception {
+    public GetchatfilesResponse retrieveFiles(Optional<Long> timezoneOffset, GetChatFilesRequest getChatFilesRequest) {
         GetchatfilesRequest request =
             GetchatfilesRequest
                 .builder()
@@ -458,9 +457,9 @@ public class Chat {
      * 
      * @param deleteChatFilesRequest 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeletechatfilesResponse deleteFiles(DeleteChatFilesRequest deleteChatFilesRequest) throws Exception {
+    public DeletechatfilesResponse deleteFiles(DeleteChatFilesRequest deleteChatFilesRequest) {
         return deleteFiles(Optional.empty(), deleteChatFilesRequest);
     }
 
@@ -472,9 +471,9 @@ public class Chat {
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param deleteChatFilesRequest 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeletechatfilesResponse deleteFiles(Optional<Long> timezoneOffset, DeleteChatFilesRequest deleteChatFilesRequest) throws Exception {
+    public DeletechatfilesResponse deleteFiles(Optional<Long> timezoneOffset, DeleteChatFilesRequest deleteChatFilesRequest) {
         DeletechatfilesRequest request =
             DeletechatfilesRequest
                 .builder()
@@ -502,11 +501,11 @@ public class Chat {
      * 
      * <p>Have a conversation with Glean AI.
      * 
-     * @param chatRequest 
+     * @param chatRequest The minimal set of fields that form a chat request.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ChatStreamResponse createStream(ChatRequest chatRequest) throws Exception {
+    public ChatStreamResponse createStream(ChatRequest chatRequest) {
         return createStream(Optional.empty(), chatRequest);
     }
 
@@ -516,11 +515,11 @@ public class Chat {
      * <p>Have a conversation with Glean AI.
      * 
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
-     * @param chatRequest 
+     * @param chatRequest The minimal set of fields that form a chat request.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ChatStreamResponse createStream(Optional<Long> timezoneOffset, ChatRequest chatRequest) throws Exception {
+    public ChatStreamResponse createStream(Optional<Long> timezoneOffset, ChatRequest chatRequest) {
         ChatStreamRequest request =
             ChatStreamRequest
                 .builder()

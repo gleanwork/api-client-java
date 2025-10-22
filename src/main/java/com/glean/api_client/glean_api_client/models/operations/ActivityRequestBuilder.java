@@ -9,7 +9,6 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.Activity;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class ActivityRequestBuilder {
 
@@ -27,7 +26,7 @@ public class ActivityRequestBuilder {
         return this;
     }
 
-    public ActivityResponse call() throws Exception {
+    public ActivityResponse call() {
         
         RequestOperation<Activity, ActivityResponse> operation
               = new com.glean.api_client.glean_api_client.operations.Activity.Sync(sdkConfiguration, _headers);

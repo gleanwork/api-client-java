@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.SummarizeRequest;
 import com.glean.api_client.glean_api_client.operations.Summarize;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class SummarizeRequestBuilder {
@@ -29,7 +28,7 @@ public class SummarizeRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<SummarizeResponse> call() throws Exception {
+    public CompletableFuture<SummarizeResponse> call() {
         
         AsyncRequestOperation<SummarizeRequest, SummarizeResponse> operation
               = new Summarize.Async(sdkConfiguration, _headers);

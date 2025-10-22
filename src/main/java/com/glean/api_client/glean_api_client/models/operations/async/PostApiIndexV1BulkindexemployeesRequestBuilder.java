@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.BulkIndexEmployee
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Bulkindexemployees;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class PostApiIndexV1BulkindexemployeesRequestBuilder {
@@ -29,7 +28,7 @@ public class PostApiIndexV1BulkindexemployeesRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<PostApiIndexV1BulkindexemployeesResponse> call() throws Exception {
+    public CompletableFuture<PostApiIndexV1BulkindexemployeesResponse> call() {
         
         AsyncRequestOperation<BulkIndexEmployeesRequest, PostApiIndexV1BulkindexemployeesResponse> operation
               = new PostApiIndexV1Bulkindexemployees.Async(sdkConfiguration, _headers);

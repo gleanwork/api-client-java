@@ -17,8 +17,24 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * ChatRequest
+ * 
+ * <p>The minimal set of fields that form a chat request.
+ */
 public class ChatRequest {
+    /**
+     * A list of chat messages, from most recent to least recent. At least one message must specify a USER
+     * author.
+     */
+    @JsonProperty("messages")
+    private List<ChatMessage> messages;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("sessionInfo")
+    private Optional<? extends SessionInfo> sessionInfo;
+
     /**
      * Save the current interaction as a Chat for the user to access and potentially continue later.
      */
@@ -33,13 +49,6 @@ public class ChatRequest {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("chatId")
     private Optional<String> chatId;
-
-    /**
-     * A list of chat messages, from most recent to least recent. At least one message must specify a USER
-     * author.
-     */
-    @JsonProperty("messages")
-    private List<ChatMessage> messages;
 
     /**
      * Describes the agent that executes the request.
@@ -65,11 +74,6 @@ public class ChatRequest {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timeoutMillis")
     private Optional<Long> timeoutMillis;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("sessionInfo")
-    private Optional<? extends SessionInfo> sessionInfo;
 
     /**
      * The ID of the application this request originates from, used to determine the configuration of
@@ -103,36 +107,36 @@ public class ChatRequest {
 
     @JsonCreator
     public ChatRequest(
+            @JsonProperty("messages") List<ChatMessage> messages,
+            @JsonProperty("sessionInfo") Optional<? extends SessionInfo> sessionInfo,
             @JsonProperty("saveChat") Optional<Boolean> saveChat,
             @JsonProperty("chatId") Optional<String> chatId,
-            @JsonProperty("messages") List<ChatMessage> messages,
             @JsonProperty("agentConfig") Optional<? extends AgentConfig> agentConfig,
             @JsonProperty("inclusions") Optional<? extends ChatRestrictionFilters> inclusions,
             @JsonProperty("exclusions") Optional<? extends ChatRestrictionFilters> exclusions,
             @JsonProperty("timeoutMillis") Optional<Long> timeoutMillis,
-            @JsonProperty("sessionInfo") Optional<? extends SessionInfo> sessionInfo,
             @JsonProperty("applicationId") Optional<String> applicationId,
             @JsonProperty("agentId") Optional<String> agentId,
             @JsonProperty("stream") Optional<Boolean> stream) {
+        Utils.checkNotNull(messages, "messages");
+        Utils.checkNotNull(sessionInfo, "sessionInfo");
         Utils.checkNotNull(saveChat, "saveChat");
         Utils.checkNotNull(chatId, "chatId");
-        Utils.checkNotNull(messages, "messages");
         Utils.checkNotNull(agentConfig, "agentConfig");
         Utils.checkNotNull(inclusions, "inclusions");
         Utils.checkNotNull(exclusions, "exclusions");
         Utils.checkNotNull(timeoutMillis, "timeoutMillis");
-        Utils.checkNotNull(sessionInfo, "sessionInfo");
         Utils.checkNotNull(applicationId, "applicationId");
         Utils.checkNotNull(agentId, "agentId");
         Utils.checkNotNull(stream, "stream");
+        this.messages = messages;
+        this.sessionInfo = sessionInfo;
         this.saveChat = saveChat;
         this.chatId = chatId;
-        this.messages = messages;
         this.agentConfig = agentConfig;
         this.inclusions = inclusions;
         this.exclusions = exclusions;
         this.timeoutMillis = timeoutMillis;
-        this.sessionInfo = sessionInfo;
         this.applicationId = applicationId;
         this.agentId = agentId;
         this.stream = stream;
@@ -140,10 +144,25 @@ public class ChatRequest {
     
     public ChatRequest(
             List<ChatMessage> messages) {
-        this(Optional.empty(), Optional.empty(), messages,
+        this(messages, Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * A list of chat messages, from most recent to least recent. At least one message must specify a USER
+     * author.
+     */
+    @JsonIgnore
+    public List<ChatMessage> messages() {
+        return messages;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<SessionInfo> sessionInfo() {
+        return (Optional<SessionInfo>) sessionInfo;
     }
 
     /**
@@ -161,15 +180,6 @@ public class ChatRequest {
     @JsonIgnore
     public Optional<String> chatId() {
         return chatId;
-    }
-
-    /**
-     * A list of chat messages, from most recent to least recent. At least one message must specify a USER
-     * author.
-     */
-    @JsonIgnore
-    public List<ChatMessage> messages() {
-        return messages;
     }
 
     /**
@@ -200,12 +210,6 @@ public class ChatRequest {
     @JsonIgnore
     public Optional<Long> timeoutMillis() {
         return timeoutMillis;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<SessionInfo> sessionInfo() {
-        return (Optional<SessionInfo>) sessionInfo;
     }
 
     /**
@@ -247,6 +251,29 @@ public class ChatRequest {
 
 
     /**
+     * A list of chat messages, from most recent to least recent. At least one message must specify a USER
+     * author.
+     */
+    public ChatRequest withMessages(List<ChatMessage> messages) {
+        Utils.checkNotNull(messages, "messages");
+        this.messages = messages;
+        return this;
+    }
+
+    public ChatRequest withSessionInfo(SessionInfo sessionInfo) {
+        Utils.checkNotNull(sessionInfo, "sessionInfo");
+        this.sessionInfo = Optional.ofNullable(sessionInfo);
+        return this;
+    }
+
+
+    public ChatRequest withSessionInfo(Optional<? extends SessionInfo> sessionInfo) {
+        Utils.checkNotNull(sessionInfo, "sessionInfo");
+        this.sessionInfo = sessionInfo;
+        return this;
+    }
+
+    /**
      * Save the current interaction as a Chat for the user to access and potentially continue later.
      */
     public ChatRequest withSaveChat(boolean saveChat) {
@@ -283,16 +310,6 @@ public class ChatRequest {
     public ChatRequest withChatId(Optional<String> chatId) {
         Utils.checkNotNull(chatId, "chatId");
         this.chatId = chatId;
-        return this;
-    }
-
-    /**
-     * A list of chat messages, from most recent to least recent. At least one message must specify a USER
-     * author.
-     */
-    public ChatRequest withMessages(List<ChatMessage> messages) {
-        Utils.checkNotNull(messages, "messages");
-        this.messages = messages;
         return this;
     }
 
@@ -359,19 +376,6 @@ public class ChatRequest {
     public ChatRequest withTimeoutMillis(Optional<Long> timeoutMillis) {
         Utils.checkNotNull(timeoutMillis, "timeoutMillis");
         this.timeoutMillis = timeoutMillis;
-        return this;
-    }
-
-    public ChatRequest withSessionInfo(SessionInfo sessionInfo) {
-        Utils.checkNotNull(sessionInfo, "sessionInfo");
-        this.sessionInfo = Optional.ofNullable(sessionInfo);
-        return this;
-    }
-
-
-    public ChatRequest withSessionInfo(Optional<? extends SessionInfo> sessionInfo) {
-        Utils.checkNotNull(sessionInfo, "sessionInfo");
-        this.sessionInfo = sessionInfo;
         return this;
     }
 
@@ -460,14 +464,14 @@ public class ChatRequest {
         }
         ChatRequest other = (ChatRequest) o;
         return 
+            Utils.enhancedDeepEquals(this.messages, other.messages) &&
+            Utils.enhancedDeepEquals(this.sessionInfo, other.sessionInfo) &&
             Utils.enhancedDeepEquals(this.saveChat, other.saveChat) &&
             Utils.enhancedDeepEquals(this.chatId, other.chatId) &&
-            Utils.enhancedDeepEquals(this.messages, other.messages) &&
             Utils.enhancedDeepEquals(this.agentConfig, other.agentConfig) &&
             Utils.enhancedDeepEquals(this.inclusions, other.inclusions) &&
             Utils.enhancedDeepEquals(this.exclusions, other.exclusions) &&
             Utils.enhancedDeepEquals(this.timeoutMillis, other.timeoutMillis) &&
-            Utils.enhancedDeepEquals(this.sessionInfo, other.sessionInfo) &&
             Utils.enhancedDeepEquals(this.applicationId, other.applicationId) &&
             Utils.enhancedDeepEquals(this.agentId, other.agentId) &&
             Utils.enhancedDeepEquals(this.stream, other.stream);
@@ -476,23 +480,23 @@ public class ChatRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            saveChat, chatId, messages,
-            agentConfig, inclusions, exclusions,
-            timeoutMillis, sessionInfo, applicationId,
+            messages, sessionInfo, saveChat,
+            chatId, agentConfig, inclusions,
+            exclusions, timeoutMillis, applicationId,
             agentId, stream);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ChatRequest.class,
+                "messages", messages,
+                "sessionInfo", sessionInfo,
                 "saveChat", saveChat,
                 "chatId", chatId,
-                "messages", messages,
                 "agentConfig", agentConfig,
                 "inclusions", inclusions,
                 "exclusions", exclusions,
                 "timeoutMillis", timeoutMillis,
-                "sessionInfo", sessionInfo,
                 "applicationId", applicationId,
                 "agentId", agentId,
                 "stream", stream);
@@ -501,11 +505,13 @@ public class ChatRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
+        private List<ChatMessage> messages;
+
+        private Optional<? extends SessionInfo> sessionInfo = Optional.empty();
+
         private Optional<Boolean> saveChat = Optional.empty();
 
         private Optional<String> chatId = Optional.empty();
-
-        private List<ChatMessage> messages;
 
         private Optional<? extends AgentConfig> agentConfig = Optional.empty();
 
@@ -515,8 +521,6 @@ public class ChatRequest {
 
         private Optional<Long> timeoutMillis = Optional.empty();
 
-        private Optional<? extends SessionInfo> sessionInfo = Optional.empty();
-
         private Optional<String> applicationId = Optional.empty();
 
         private Optional<String> agentId = Optional.empty();
@@ -525,6 +529,30 @@ public class ChatRequest {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * A list of chat messages, from most recent to least recent. At least one message must specify a USER
+         * author.
+         */
+        public Builder messages(List<ChatMessage> messages) {
+            Utils.checkNotNull(messages, "messages");
+            this.messages = messages;
+            return this;
+        }
+
+
+        public Builder sessionInfo(SessionInfo sessionInfo) {
+            Utils.checkNotNull(sessionInfo, "sessionInfo");
+            this.sessionInfo = Optional.ofNullable(sessionInfo);
+            return this;
+        }
+
+        public Builder sessionInfo(Optional<? extends SessionInfo> sessionInfo) {
+            Utils.checkNotNull(sessionInfo, "sessionInfo");
+            this.sessionInfo = sessionInfo;
+            return this;
         }
 
 
@@ -564,17 +592,6 @@ public class ChatRequest {
         public Builder chatId(Optional<String> chatId) {
             Utils.checkNotNull(chatId, "chatId");
             this.chatId = chatId;
-            return this;
-        }
-
-
-        /**
-         * A list of chat messages, from most recent to least recent. At least one message must specify a USER
-         * author.
-         */
-        public Builder messages(List<ChatMessage> messages) {
-            Utils.checkNotNull(messages, "messages");
-            this.messages = messages;
             return this;
         }
 
@@ -641,19 +658,6 @@ public class ChatRequest {
         public Builder timeoutMillis(Optional<Long> timeoutMillis) {
             Utils.checkNotNull(timeoutMillis, "timeoutMillis");
             this.timeoutMillis = timeoutMillis;
-            return this;
-        }
-
-
-        public Builder sessionInfo(SessionInfo sessionInfo) {
-            Utils.checkNotNull(sessionInfo, "sessionInfo");
-            this.sessionInfo = Optional.ofNullable(sessionInfo);
-            return this;
-        }
-
-        public Builder sessionInfo(Optional<? extends SessionInfo> sessionInfo) {
-            Utils.checkNotNull(sessionInfo, "sessionInfo");
-            this.sessionInfo = sessionInfo;
             return this;
         }
 
@@ -735,9 +739,9 @@ public class ChatRequest {
         public ChatRequest build() {
 
             return new ChatRequest(
-                saveChat, chatId, messages,
-                agentConfig, inclusions, exclusions,
-                timeoutMillis, sessionInfo, applicationId,
+                messages, sessionInfo, saveChat,
+                chatId, agentConfig, inclusions,
+                exclusions, timeoutMillis, applicationId,
                 agentId, stream);
         }
 

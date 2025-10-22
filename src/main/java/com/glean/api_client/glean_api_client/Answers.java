@@ -26,7 +26,6 @@ import com.glean.api_client.glean_api_client.operations.Editanswer;
 import com.glean.api_client.glean_api_client.operations.Getanswer;
 import com.glean.api_client.glean_api_client.operations.Listanswers;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.Exception;
 
 
 public class Answers {
@@ -66,9 +65,9 @@ public class Answers {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateanswerResponse create(CreateAnswerRequest request) throws Exception {
+    public CreateanswerResponse create(CreateAnswerRequest request) {
         RequestOperation<CreateAnswerRequest, CreateanswerResponse> operation
               = new Createanswer.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -92,9 +91,9 @@ public class Answers {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteanswerResponse delete(DeleteAnswerRequest request) throws Exception {
+    public DeleteanswerResponse delete(DeleteAnswerRequest request) {
         RequestOperation<DeleteAnswerRequest, DeleteanswerResponse> operation
               = new Deleteanswer.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -118,9 +117,9 @@ public class Answers {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public EditanswerResponse update(EditAnswerRequest request) throws Exception {
+    public EditanswerResponse update(EditAnswerRequest request) {
         RequestOperation<EditAnswerRequest, EditanswerResponse> operation
               = new Editanswer.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -144,9 +143,9 @@ public class Answers {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetanswerResponse retrieve(GetAnswerRequest request) throws Exception {
+    public GetanswerResponse retrieve(GetAnswerRequest request) {
         RequestOperation<GetAnswerRequest, GetanswerResponse> operation
               = new Getanswer.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -170,9 +169,9 @@ public class Answers {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListanswersResponse list(ListAnswersRequest request) throws Exception {
+    public ListanswersResponse list(ListAnswersRequest request) {
         RequestOperation<ListAnswersRequest, ListanswersResponse> operation
               = new Listanswers.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));

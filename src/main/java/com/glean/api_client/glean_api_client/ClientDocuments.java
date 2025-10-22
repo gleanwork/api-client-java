@@ -22,7 +22,6 @@ import com.glean.api_client.glean_api_client.operations.Getdocuments;
 import com.glean.api_client.glean_api_client.operations.Getdocumentsbyfacets;
 import com.glean.api_client.glean_api_client.operations.Summarize;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -63,9 +62,9 @@ public class ClientDocuments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetdocpermissionsResponse retrievePermissions(GetDocPermissionsRequest request) throws Exception {
+    public GetdocpermissionsResponse retrievePermissions(GetDocPermissionsRequest request) {
         RequestOperation<GetDocPermissionsRequest, GetdocpermissionsResponse> operation
               = new Getdocpermissions.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -90,9 +89,9 @@ public class ClientDocuments {
      * for the given list of Glean Document IDs or URLs specified in the request.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetdocumentsResponse retrieveDirect() throws Exception {
+    public GetdocumentsResponse retrieveDirect() {
         return retrieve(Optional.empty());
     }
 
@@ -104,9 +103,9 @@ public class ClientDocuments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetdocumentsResponse retrieve(Optional<? extends GetDocumentsRequest> request) throws Exception {
+    public GetdocumentsResponse retrieve(Optional<? extends GetDocumentsRequest> request) {
         RequestOperation<Optional<? extends GetDocumentsRequest>, GetdocumentsResponse> operation
               = new Getdocuments.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -131,9 +130,9 @@ public class ClientDocuments {
      * macthing the given facet conditions.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetdocumentsbyfacetsResponse retrieveByFacetsDirect() throws Exception {
+    public GetdocumentsbyfacetsResponse retrieveByFacetsDirect() {
         return retrieveByFacets(Optional.empty());
     }
 
@@ -145,9 +144,9 @@ public class ClientDocuments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetdocumentsbyfacetsResponse retrieveByFacets(Optional<? extends GetDocumentsByFacetsRequest> request) throws Exception {
+    public GetdocumentsbyfacetsResponse retrieveByFacets(Optional<? extends GetDocumentsByFacetsRequest> request) {
         RequestOperation<Optional<? extends GetDocumentsByFacetsRequest>, GetdocumentsbyfacetsResponse> operation
               = new Getdocumentsbyfacets.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -171,9 +170,9 @@ public class ClientDocuments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public SummarizeResponse summarize(SummarizeRequest request) throws Exception {
+    public SummarizeResponse summarize(SummarizeRequest request) {
         RequestOperation<SummarizeRequest, SummarizeResponse> operation
               = new Summarize.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));

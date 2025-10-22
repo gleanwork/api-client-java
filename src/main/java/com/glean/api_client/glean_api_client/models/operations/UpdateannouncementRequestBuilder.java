@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.UpdateAnnouncemen
 import com.glean.api_client.glean_api_client.operations.Updateannouncement;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class UpdateannouncementRequestBuilder {
 
@@ -28,7 +27,7 @@ public class UpdateannouncementRequestBuilder {
         return this;
     }
 
-    public UpdateannouncementResponse call() throws Exception {
+    public UpdateannouncementResponse call() {
         
         RequestOperation<UpdateAnnouncementRequest, UpdateannouncementResponse> operation
               = new Updateannouncement.Sync(sdkConfiguration, _headers);

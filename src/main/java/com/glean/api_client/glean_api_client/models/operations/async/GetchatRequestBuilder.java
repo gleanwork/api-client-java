@@ -11,7 +11,6 @@ import com.glean.api_client.glean_api_client.models.operations.GetchatRequest;
 import com.glean.api_client.glean_api_client.operations.Getchat;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.lang.Long;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -54,7 +53,7 @@ public class GetchatRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<GetchatResponse> call() throws Exception {
+    public CompletableFuture<GetchatResponse> call() {
         
         AsyncRequestOperation<GetchatRequest, GetchatResponse> operation
               = new Getchat.Async(sdkConfiguration, _headers);

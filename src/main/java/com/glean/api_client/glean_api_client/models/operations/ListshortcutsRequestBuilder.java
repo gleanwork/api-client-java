@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.ListShortcutsPagi
 import com.glean.api_client.glean_api_client.operations.Listshortcuts;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class ListshortcutsRequestBuilder {
 
@@ -28,7 +27,7 @@ public class ListshortcutsRequestBuilder {
         return this;
     }
 
-    public ListshortcutsResponse call() throws Exception {
+    public ListshortcutsResponse call() {
         
         RequestOperation<ListShortcutsPaginatedRequest, ListshortcutsResponse> operation
               = new Listshortcuts.Sync(sdkConfiguration, _headers);

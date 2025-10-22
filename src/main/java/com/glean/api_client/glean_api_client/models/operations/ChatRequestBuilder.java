@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.ChatRequest;
 import com.glean.api_client.glean_api_client.operations.Chat;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.lang.Long;
 import java.util.Optional;
 
@@ -52,7 +51,7 @@ public class ChatRequestBuilder {
         return request;
     }
 
-    public ChatResponse call() throws Exception {
+    public ChatResponse call() {
         
         RequestOperation<com.glean.api_client.glean_api_client.models.operations.ChatRequest, ChatResponse> operation
               = new Chat.Sync(sdkConfiguration, _headers);

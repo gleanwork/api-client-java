@@ -92,7 +92,7 @@ public class AsyncChat {
      * 
      * <p>Have a conversation with Glean AI.
      * 
-     * @param chatRequest 
+     * @param chatRequest The minimal set of fields that form a chat request.
      * @return {@code CompletableFuture<ChatResponse>} - The async response
      */
     public CompletableFuture<ChatResponse> create(ChatRequest chatRequest) {
@@ -105,7 +105,7 @@ public class AsyncChat {
      * <p>Have a conversation with Glean AI.
      * 
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
-     * @param chatRequest 
+     * @param chatRequest The minimal set of fields that form a chat request.
      * @return {@code CompletableFuture<ChatResponse>} - The async response
      */
     public CompletableFuture<ChatResponse> create(Optional<Long> timezoneOffset, ChatRequest chatRequest) {
@@ -503,7 +503,7 @@ public class AsyncChat {
      * 
      * <p>Have a conversation with Glean AI.
      * 
-     * @param chatRequest 
+     * @param chatRequest The minimal set of fields that form a chat request.
      * @return {@code CompletableFuture<ChatStreamResponse>} - The async response
      */
     public CompletableFuture<ChatStreamResponse> createStream(ChatRequest chatRequest) {
@@ -516,7 +516,7 @@ public class AsyncChat {
      * <p>Have a conversation with Glean AI.
      * 
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
-     * @param chatRequest 
+     * @param chatRequest The minimal set of fields that form a chat request.
      * @return {@code CompletableFuture<ChatStreamResponse>} - The async response
      */
     public CompletableFuture<ChatStreamResponse> createStream(Optional<Long> timezoneOffset, ChatRequest chatRequest) {

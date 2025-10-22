@@ -54,7 +54,6 @@ import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Indexuser;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Processallmemberships;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Updatepermissions;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -95,9 +94,9 @@ public class Permissions {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1UpdatepermissionsResponse updatePermissions(UpdatePermissionsRequest request) throws Exception {
+    public PostApiIndexV1UpdatepermissionsResponse updatePermissions(UpdatePermissionsRequest request) {
         RequestOperation<UpdatePermissionsRequest, PostApiIndexV1UpdatepermissionsResponse> operation
               = new PostApiIndexV1Updatepermissions.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -121,9 +120,9 @@ public class Permissions {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1IndexuserResponse indexUser(IndexUserRequest request) throws Exception {
+    public PostApiIndexV1IndexuserResponse indexUser(IndexUserRequest request) {
         RequestOperation<IndexUserRequest, PostApiIndexV1IndexuserResponse> operation
               = new PostApiIndexV1Indexuser.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -151,9 +150,9 @@ public class Permissions {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1BulkindexusersResponse bulkIndexUsers(BulkIndexUsersRequest request) throws Exception {
+    public PostApiIndexV1BulkindexusersResponse bulkIndexUsers(BulkIndexUsersRequest request) {
         RequestOperation<BulkIndexUsersRequest, PostApiIndexV1BulkindexusersResponse> operation
               = new PostApiIndexV1Bulkindexusers.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -177,9 +176,9 @@ public class Permissions {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1IndexgroupResponse indexGroup(IndexGroupRequest request) throws Exception {
+    public PostApiIndexV1IndexgroupResponse indexGroup(IndexGroupRequest request) {
         RequestOperation<IndexGroupRequest, PostApiIndexV1IndexgroupResponse> operation
               = new PostApiIndexV1Indexgroup.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -207,9 +206,9 @@ public class Permissions {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1BulkindexgroupsResponse bulkIndexGroups(BulkIndexGroupsRequest request) throws Exception {
+    public PostApiIndexV1BulkindexgroupsResponse bulkIndexGroups(BulkIndexGroupsRequest request) {
         RequestOperation<BulkIndexGroupsRequest, PostApiIndexV1BulkindexgroupsResponse> operation
               = new PostApiIndexV1Bulkindexgroups.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -233,9 +232,9 @@ public class Permissions {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1IndexmembershipResponse indexMembership(IndexMembershipRequest request) throws Exception {
+    public PostApiIndexV1IndexmembershipResponse indexMembership(IndexMembershipRequest request) {
         RequestOperation<IndexMembershipRequest, PostApiIndexV1IndexmembershipResponse> operation
               = new PostApiIndexV1Indexmembership.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -263,9 +262,9 @@ public class Permissions {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1BulkindexmembershipsResponse bulkIndexMemberships(BulkIndexMembershipsRequest request) throws Exception {
+    public PostApiIndexV1BulkindexmembershipsResponse bulkIndexMemberships(BulkIndexMembershipsRequest request) {
         RequestOperation<BulkIndexMembershipsRequest, PostApiIndexV1BulkindexmembershipsResponse> operation
               = new PostApiIndexV1Bulkindexmemberships.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -292,9 +291,9 @@ public class Permissions {
      * schedule processing of all memberships on demand.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1ProcessallmembershipsResponse processMembershipsDirect() throws Exception {
+    public PostApiIndexV1ProcessallmembershipsResponse processMembershipsDirect() {
         return processMemberships(Optional.empty());
     }
 
@@ -307,9 +306,9 @@ public class Permissions {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1ProcessallmembershipsResponse processMemberships(Optional<? extends ProcessAllMembershipsRequest> request) throws Exception {
+    public PostApiIndexV1ProcessallmembershipsResponse processMemberships(Optional<? extends ProcessAllMembershipsRequest> request) {
         RequestOperation<Optional<? extends ProcessAllMembershipsRequest>, PostApiIndexV1ProcessallmembershipsResponse> operation
               = new PostApiIndexV1Processallmemberships.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -333,9 +332,9 @@ public class Permissions {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1DeleteuserResponse deleteUser(DeleteUserRequest request) throws Exception {
+    public PostApiIndexV1DeleteuserResponse deleteUser(DeleteUserRequest request) {
         RequestOperation<DeleteUserRequest, PostApiIndexV1DeleteuserResponse> operation
               = new PostApiIndexV1Deleteuser.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -359,9 +358,9 @@ public class Permissions {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1DeletegroupResponse deleteGroup(DeleteGroupRequest request) throws Exception {
+    public PostApiIndexV1DeletegroupResponse deleteGroup(DeleteGroupRequest request) {
         RequestOperation<DeleteGroupRequest, PostApiIndexV1DeletegroupResponse> operation
               = new PostApiIndexV1Deletegroup.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -387,9 +386,9 @@ public class Permissions {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1DeletemembershipResponse deleteMembership(DeleteMembershipRequest request) throws Exception {
+    public PostApiIndexV1DeletemembershipResponse deleteMembership(DeleteMembershipRequest request) {
         RequestOperation<DeleteMembershipRequest, PostApiIndexV1DeletemembershipResponse> operation
               = new PostApiIndexV1Deletemembership.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -415,9 +414,9 @@ public class Permissions {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1BetausersResponse authorizeBetaUsers(GreenlistUsersRequest request) throws Exception {
+    public PostApiIndexV1BetausersResponse authorizeBetaUsers(GreenlistUsersRequest request) {
         RequestOperation<GreenlistUsersRequest, PostApiIndexV1BetausersResponse> operation
               = new PostApiIndexV1Betausers.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));

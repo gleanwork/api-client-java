@@ -9,7 +9,6 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.operations.Listpins;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class ListpinsRequestBuilder {
 
@@ -27,7 +26,7 @@ public class ListpinsRequestBuilder {
         return this;
     }
 
-    public ListpinsResponse call() throws Exception {
+    public ListpinsResponse call() {
         
         RequestOperation<ListpinsRequest, ListpinsResponse> operation
               = new Listpins.Sync(sdkConfiguration, _headers);

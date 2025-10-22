@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.operations.GetAgentRequest;
 import com.glean.api_client.glean_api_client.operations.GetAgent;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
@@ -54,7 +53,7 @@ public class GetAgentRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<GetAgentResponse> call() throws Exception {
+    public CompletableFuture<GetAgentResponse> call() {
         
         AsyncRequestOperation<GetAgentRequest, GetAgentResponse> operation
               = new GetAgent.Async(sdkConfiguration, _headers);

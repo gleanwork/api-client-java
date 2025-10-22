@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.operations.ListchatsRequest;
 import com.glean.api_client.glean_api_client.operations.Listchats;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.lang.Long;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -45,7 +44,7 @@ public class ListchatsRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<ListchatsResponse> call() throws Exception {
+    public CompletableFuture<ListchatsResponse> call() {
         
         AsyncRequestOperation<ListchatsRequest, ListchatsResponse> operation
               = new Listchats.Async(sdkConfiguration, _headers);

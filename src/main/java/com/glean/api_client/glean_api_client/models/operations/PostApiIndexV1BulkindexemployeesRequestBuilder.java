@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.BulkIndexEmployee
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Bulkindexemployees;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class PostApiIndexV1BulkindexemployeesRequestBuilder {
 
@@ -28,7 +27,7 @@ public class PostApiIndexV1BulkindexemployeesRequestBuilder {
         return this;
     }
 
-    public PostApiIndexV1BulkindexemployeesResponse call() throws Exception {
+    public PostApiIndexV1BulkindexemployeesResponse call() {
         
         RequestOperation<BulkIndexEmployeesRequest, PostApiIndexV1BulkindexemployeesResponse> operation
               = new PostApiIndexV1Bulkindexemployees.Sync(sdkConfiguration, _headers);

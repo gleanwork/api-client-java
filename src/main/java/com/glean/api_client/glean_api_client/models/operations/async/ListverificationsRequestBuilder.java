@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.operations.Listverifications
 import com.glean.api_client.glean_api_client.operations.Listverifications;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.lang.Long;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -45,7 +44,7 @@ public class ListverificationsRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<ListverificationsResponse> call() throws Exception {
+    public CompletableFuture<ListverificationsResponse> call() {
         
         AsyncRequestOperation<ListverificationsRequest, ListverificationsResponse> operation
               = new Listverifications.Async(sdkConfiguration, _headers);

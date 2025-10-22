@@ -9,7 +9,6 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.operations.GetRestApiV1ToolsList;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -44,7 +43,7 @@ public class GetRestApiV1ToolsListRequestBuilder {
         return request;
     }
 
-    public GetRestApiV1ToolsListResponse call() throws Exception {
+    public GetRestApiV1ToolsListResponse call() {
         
         RequestOperation<GetRestApiV1ToolsListRequest, GetRestApiV1ToolsListResponse> operation
               = new GetRestApiV1ToolsList.Sync(sdkConfiguration, _headers);

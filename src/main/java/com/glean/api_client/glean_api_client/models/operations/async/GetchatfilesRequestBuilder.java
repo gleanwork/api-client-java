@@ -11,7 +11,6 @@ import com.glean.api_client.glean_api_client.models.operations.GetchatfilesReque
 import com.glean.api_client.glean_api_client.operations.Getchatfiles;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.lang.Long;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -54,7 +53,7 @@ public class GetchatfilesRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<GetchatfilesResponse> call() throws Exception {
+    public CompletableFuture<GetchatfilesResponse> call() {
         
         AsyncRequestOperation<GetchatfilesRequest, GetchatfilesResponse> operation
               = new Getchatfiles.Async(sdkConfiguration, _headers);

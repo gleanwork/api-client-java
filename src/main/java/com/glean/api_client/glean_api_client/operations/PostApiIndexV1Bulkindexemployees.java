@@ -4,6 +4,7 @@
 package com.glean.api_client.glean_api_client.operations;
 
 import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
+import static com.glean.api_client.glean_api_client.utils.Exceptions.unchecked;
 import static com.glean.api_client.glean_api_client.operations.Operations.AsyncRequestOperation;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -13,7 +14,6 @@ import com.glean.api_client.glean_api_client.models.components.BulkIndexEmployee
 import com.glean.api_client.glean_api_client.models.errors.APIException;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1BulkindexemployeesResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
-import com.glean.api_client.glean_api_client.utils.Exceptions;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
 import com.glean.api_client.glean_api_client.utils.HTTPRequest;
 import com.glean.api_client.glean_api_client.utils.Headers;
@@ -25,6 +25,7 @@ import com.glean.api_client.glean_api_client.utils.Utils.JsonShape;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.io.InputStream;
 import java.lang.Exception;
+import java.lang.IllegalArgumentException;
 import java.lang.Object;
 import java.lang.String;
 import java.lang.Throwable;
@@ -98,7 +99,7 @@ public class PostApiIndexV1Bulkindexemployees {
                     "json",
                     false);
             if (serializedRequestBody == null) {
-                throw new Exception("Request body is required");
+                throw new IllegalArgumentException("Request body is required");
             }
             req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "*/*")
@@ -133,8 +134,8 @@ public class PostApiIndexV1Bulkindexemployees {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(BulkIndexEmployeesRequest request) throws Exception {
-            HttpRequest r = onBuildRequest(request);
+        public HttpResponse<InputStream> doRequest(BulkIndexEmployeesRequest request) {
+            HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -144,7 +145,7 @@ public class PostApiIndexV1Bulkindexemployees {
                     httpRes = onSuccess(httpRes);
                 }
             } catch (Exception e) {
-                httpRes = onError(null, e);
+                httpRes = unchecked(() -> onError(null, e)).get();
             }
 
             return httpRes;
@@ -152,7 +153,7 @@ public class PostApiIndexV1Bulkindexemployees {
 
 
         @Override
-        public PostApiIndexV1BulkindexemployeesResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public PostApiIndexV1BulkindexemployeesResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -170,30 +171,15 @@ public class PostApiIndexV1Bulkindexemployees {
                 // no content
                 return res;
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "400", "401", "409", "4XX")) {
                 // no content
-                throw new APIException(
-                        response,
-                        response.statusCode(),
-                        "API error occurred",
-                        Utils.extractByteArrayFromBody(response));
+                throw APIException.from("API error occurred", response);
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "5XX")) {
                 // no content
-                throw new APIException(
-                        response,
-                        response.statusCode(),
-                        "API error occurred",
-                        Utils.extractByteArrayFromBody(response));
+                throw APIException.from("API error occurred", response);
             }
-            
-            throw new APIException(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            throw APIException.from("Unexpected status code received: " + response.statusCode(), response);
         }
     }
     public static class Async extends Base
@@ -218,7 +204,7 @@ public class PostApiIndexV1Bulkindexemployees {
 
         @Override
         public CompletableFuture<HttpResponse<Blob>> doRequest(BulkIndexEmployeesRequest request) {
-            return Exceptions.unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
+            return unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
                     .handle((resp, err) -> {
                         if (err != null) {
                             return onError(null, err);
@@ -252,17 +238,14 @@ public class PostApiIndexV1Bulkindexemployees {
                 // no content
                 return CompletableFuture.completedFuture(res);
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "400", "401", "409", "4XX")) {
                 // no content
                 return Utils.createAsyncApiError(response, "API error occurred");
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "5XX")) {
                 // no content
                 return Utils.createAsyncApiError(response, "API error occurred");
             }
-            
             return Utils.createAsyncApiError(response, "Unexpected status code received: " + response.statusCode());
         }
     }

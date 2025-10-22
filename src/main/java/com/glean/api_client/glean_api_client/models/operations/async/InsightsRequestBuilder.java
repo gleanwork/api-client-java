@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.InsightsRequest;
 import com.glean.api_client.glean_api_client.operations.Insights;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class InsightsRequestBuilder {
@@ -29,7 +28,7 @@ public class InsightsRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<InsightsResponse> call() throws Exception {
+    public CompletableFuture<InsightsResponse> call() {
         
         AsyncRequestOperation<InsightsRequest, InsightsResponse> operation
               = new Insights.Async(sdkConfiguration, _headers);

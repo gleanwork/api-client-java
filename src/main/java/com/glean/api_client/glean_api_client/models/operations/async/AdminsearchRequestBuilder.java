@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.SearchRequest;
 import com.glean.api_client.glean_api_client.operations.Adminsearch;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class AdminsearchRequestBuilder {
@@ -29,7 +28,7 @@ public class AdminsearchRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<AdminsearchResponse> call() throws Exception {
+    public CompletableFuture<AdminsearchResponse> call() {
         
         AsyncRequestOperation<SearchRequest, AdminsearchResponse> operation
               = new Adminsearch.Async(sdkConfiguration, _headers);

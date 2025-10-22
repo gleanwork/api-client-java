@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.DeleteGroupReques
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Deletegroup;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class PostApiIndexV1DeletegroupRequestBuilder {
 
@@ -28,7 +27,7 @@ public class PostApiIndexV1DeletegroupRequestBuilder {
         return this;
     }
 
-    public PostApiIndexV1DeletegroupResponse call() throws Exception {
+    public PostApiIndexV1DeletegroupResponse call() {
         
         RequestOperation<DeleteGroupRequest, PostApiIndexV1DeletegroupResponse> operation
               = new PostApiIndexV1Deletegroup.Sync(sdkConfiguration, _headers);

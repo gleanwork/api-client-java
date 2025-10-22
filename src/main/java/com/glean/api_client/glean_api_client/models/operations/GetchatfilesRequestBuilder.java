@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.GetChatFilesReque
 import com.glean.api_client.glean_api_client.operations.Getchatfiles;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.lang.Long;
 import java.util.Optional;
 
@@ -52,7 +51,7 @@ public class GetchatfilesRequestBuilder {
         return request;
     }
 
-    public GetchatfilesResponse call() throws Exception {
+    public GetchatfilesResponse call() {
         
         RequestOperation<GetchatfilesRequest, GetchatfilesResponse> operation
               = new Getchatfiles.Sync(sdkConfiguration, _headers);

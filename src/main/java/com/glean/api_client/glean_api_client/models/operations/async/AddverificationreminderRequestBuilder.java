@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.ReminderRequest;
 import com.glean.api_client.glean_api_client.operations.Addverificationreminder;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class AddverificationreminderRequestBuilder {
@@ -29,7 +28,7 @@ public class AddverificationreminderRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<AddverificationreminderResponse> call() throws Exception {
+    public CompletableFuture<AddverificationreminderResponse> call() {
         
         AsyncRequestOperation<ReminderRequest, AddverificationreminderResponse> operation
               = new Addverificationreminder.Async(sdkConfiguration, _headers);

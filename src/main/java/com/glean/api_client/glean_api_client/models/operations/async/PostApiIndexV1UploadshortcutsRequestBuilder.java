@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.UploadShortcutsRe
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Uploadshortcuts;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class PostApiIndexV1UploadshortcutsRequestBuilder {
@@ -29,7 +28,7 @@ public class PostApiIndexV1UploadshortcutsRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<PostApiIndexV1UploadshortcutsResponse> call() throws Exception {
+    public CompletableFuture<PostApiIndexV1UploadshortcutsResponse> call() {
         
         AsyncRequestOperation<UploadShortcutsRequest, PostApiIndexV1UploadshortcutsResponse> operation
               = new PostApiIndexV1Uploadshortcuts.Async(sdkConfiguration, _headers);

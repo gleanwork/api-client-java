@@ -9,7 +9,6 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.operations.GetAgent;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
@@ -52,7 +51,7 @@ public class GetAgentRequestBuilder {
         return request;
     }
 
-    public GetAgentResponse call() throws Exception {
+    public GetAgentResponse call() {
         
         RequestOperation<GetAgentRequest, GetAgentResponse> operation
               = new GetAgent.Sync(sdkConfiguration, _headers);

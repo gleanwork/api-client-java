@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.UpdateShortcutReq
 import com.glean.api_client.glean_api_client.operations.Updateshortcut;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class UpdateshortcutRequestBuilder {
 
@@ -28,7 +27,7 @@ public class UpdateshortcutRequestBuilder {
         return this;
     }
 
-    public UpdateshortcutResponse call() throws Exception {
+    public UpdateshortcutResponse call() {
         
         RequestOperation<UpdateShortcutRequest, UpdateshortcutResponse> operation
               = new Updateshortcut.Sync(sdkConfiguration, _headers);

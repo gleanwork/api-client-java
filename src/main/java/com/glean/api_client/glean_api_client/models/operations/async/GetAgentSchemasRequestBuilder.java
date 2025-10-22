@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.operations.GetAgentSchemasRe
 import com.glean.api_client.glean_api_client.operations.GetAgentSchemas;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
@@ -54,7 +53,7 @@ public class GetAgentSchemasRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<GetAgentSchemasResponse> call() throws Exception {
+    public CompletableFuture<GetAgentSchemasResponse> call() {
         
         AsyncRequestOperation<GetAgentSchemasRequest, GetAgentSchemasResponse> operation
               = new GetAgentSchemas.Async(sdkConfiguration, _headers);

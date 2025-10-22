@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.SearchRequest;
 import com.glean.api_client.glean_api_client.operations.Search;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class SearchRequestBuilder {
 
@@ -28,7 +27,7 @@ public class SearchRequestBuilder {
         return this;
     }
 
-    public SearchResponse call() throws Exception {
+    public SearchResponse call() {
         
         RequestOperation<SearchRequest, SearchResponse> operation
               = new Search.Sync(sdkConfiguration, _headers);

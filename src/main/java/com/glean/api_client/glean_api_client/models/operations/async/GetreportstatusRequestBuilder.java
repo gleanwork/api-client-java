@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.operations.GetreportstatusRe
 import com.glean.api_client.glean_api_client.operations.Getreportstatus;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 
@@ -38,7 +37,7 @@ public class GetreportstatusRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<GetreportstatusResponse> call() throws Exception {
+    public CompletableFuture<GetreportstatusResponse> call() {
         
         AsyncRequestOperation<GetreportstatusRequest, GetreportstatusResponse> operation
               = new Getreportstatus.Async(sdkConfiguration, _headers);

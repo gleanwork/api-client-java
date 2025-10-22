@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.ListEntitiesReque
 import com.glean.api_client.glean_api_client.operations.Listentities;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class ListentitiesRequestBuilder {
 
@@ -28,7 +27,7 @@ public class ListentitiesRequestBuilder {
         return this;
     }
 
-    public ListentitiesResponse call() throws Exception {
+    public ListentitiesResponse call() {
         
         RequestOperation<ListEntitiesRequest, ListentitiesResponse> operation
               = new Listentities.Sync(sdkConfiguration, _headers);

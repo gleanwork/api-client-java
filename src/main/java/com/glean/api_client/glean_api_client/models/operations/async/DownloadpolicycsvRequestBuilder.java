@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.operations.Downloadpolicycsv
 import com.glean.api_client.glean_api_client.operations.Downloadpolicycsv;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 
@@ -38,7 +37,7 @@ public class DownloadpolicycsvRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<DownloadpolicycsvResponse> call() throws Exception {
+    public CompletableFuture<DownloadpolicycsvResponse> call() {
         
         AsyncRequestOperation<DownloadpolicycsvRequest, DownloadpolicycsvResponse> operation
               = new Downloadpolicycsv.Async(sdkConfiguration, _headers);

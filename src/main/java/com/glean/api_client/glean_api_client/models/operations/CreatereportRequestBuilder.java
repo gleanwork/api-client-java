@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.UpdateDlpConfigRe
 import com.glean.api_client.glean_api_client.operations.Createreport;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class CreatereportRequestBuilder {
 
@@ -28,7 +27,7 @@ public class CreatereportRequestBuilder {
         return this;
     }
 
-    public CreatereportResponse call() throws Exception {
+    public CreatereportResponse call() {
         
         RequestOperation<UpdateDlpConfigRequest, CreatereportResponse> operation
               = new Createreport.Sync(sdkConfiguration, _headers);

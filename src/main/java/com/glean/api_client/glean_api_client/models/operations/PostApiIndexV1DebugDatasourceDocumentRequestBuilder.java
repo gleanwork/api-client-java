@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.DebugDocumentRequ
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DebugDatasourceDocument;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 
 public class PostApiIndexV1DebugDatasourceDocumentRequestBuilder {
@@ -45,7 +44,7 @@ public class PostApiIndexV1DebugDatasourceDocumentRequestBuilder {
         return request;
     }
 
-    public PostApiIndexV1DebugDatasourceDocumentResponse call() throws Exception {
+    public PostApiIndexV1DebugDatasourceDocumentResponse call() {
         
         RequestOperation<PostApiIndexV1DebugDatasourceDocumentRequest, PostApiIndexV1DebugDatasourceDocumentResponse> operation
               = new PostApiIndexV1DebugDatasourceDocument.Sync(sdkConfiguration, _headers);

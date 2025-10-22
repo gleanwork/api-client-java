@@ -18,7 +18,6 @@ import com.glean.api_client.glean_api_client.operations.Createannouncement;
 import com.glean.api_client.glean_api_client.operations.Deleteannouncement;
 import com.glean.api_client.glean_api_client.operations.Updateannouncement;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.Exception;
 
 
 public class Announcements {
@@ -58,9 +57,9 @@ public class Announcements {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateannouncementResponse create(CreateAnnouncementRequest request) throws Exception {
+    public CreateannouncementResponse create(CreateAnnouncementRequest request) {
         RequestOperation<CreateAnnouncementRequest, CreateannouncementResponse> operation
               = new Createannouncement.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -84,9 +83,9 @@ public class Announcements {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteannouncementResponse delete(DeleteAnnouncementRequest request) throws Exception {
+    public DeleteannouncementResponse delete(DeleteAnnouncementRequest request) {
         RequestOperation<DeleteAnnouncementRequest, DeleteannouncementResponse> operation
               = new Deleteannouncement.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -110,9 +109,9 @@ public class Announcements {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateannouncementResponse update(UpdateAnnouncementRequest request) throws Exception {
+    public UpdateannouncementResponse update(UpdateAnnouncementRequest request) {
         RequestOperation<UpdateAnnouncementRequest, UpdateannouncementResponse> operation
               = new Updateannouncement.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));

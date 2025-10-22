@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.GetDocumentCountR
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Getdocumentcount;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class PostApiIndexV1GetdocumentcountRequestBuilder {
@@ -29,7 +28,7 @@ public class PostApiIndexV1GetdocumentcountRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<PostApiIndexV1GetdocumentcountResponse> call() throws Exception {
+    public CompletableFuture<PostApiIndexV1GetdocumentcountResponse> call() {
         
         AsyncRequestOperation<GetDocumentCountRequest, PostApiIndexV1GetdocumentcountResponse> operation
               = new PostApiIndexV1Getdocumentcount.Async(sdkConfiguration, _headers);

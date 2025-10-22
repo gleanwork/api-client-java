@@ -11,7 +11,6 @@ import com.glean.api_client.glean_api_client.operations.Listpolicies;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Boolean;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -60,7 +59,7 @@ public class ListpoliciesRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<ListpoliciesResponse> call() throws Exception {
+    public CompletableFuture<ListpoliciesResponse> call() {
         
         AsyncRequestOperation<ListpoliciesRequest, ListpoliciesResponse> operation
               = new Listpolicies.Async(sdkConfiguration, _headers);

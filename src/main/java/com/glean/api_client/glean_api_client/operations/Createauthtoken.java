@@ -4,6 +4,7 @@
 package com.glean.api_client.glean_api_client.operations;
 
 import static com.glean.api_client.glean_api_client.operations.Operations.RequestlessOperation;
+import static com.glean.api_client.glean_api_client.utils.Exceptions.unchecked;
 import static com.glean.api_client.glean_api_client.operations.Operations.AsyncRequestlessOperation;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -13,7 +14,6 @@ import com.glean.api_client.glean_api_client.models.components.CreateAuthTokenRe
 import com.glean.api_client.glean_api_client.models.errors.APIException;
 import com.glean.api_client.glean_api_client.models.operations.CreateauthtokenResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
-import com.glean.api_client.glean_api_client.utils.Exceptions;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
 import com.glean.api_client.glean_api_client.utils.HTTPRequest;
 import com.glean.api_client.glean_api_client.utils.Headers;
@@ -23,7 +23,6 @@ import com.glean.api_client.glean_api_client.utils.Hook.BeforeRequestContextImpl
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.io.InputStream;
 import java.lang.Exception;
-import java.lang.RuntimeException;
 import java.lang.String;
 import java.lang.Throwable;
 import java.net.http.HttpRequest;
@@ -118,8 +117,8 @@ public class Createauthtoken {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest() throws Exception {
-            HttpRequest r = onBuildRequest();
+        public HttpResponse<InputStream> doRequest() {
+            HttpRequest r = unchecked(() -> onBuildRequest()).get();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -129,7 +128,7 @@ public class Createauthtoken {
                     httpRes = onSuccess(httpRes);
                 }
             } catch (Exception e) {
-                httpRes = onError(null, e);
+                httpRes = unchecked(() -> onError(null, e)).get();
             }
 
             return httpRes;
@@ -137,7 +136,7 @@ public class Createauthtoken {
 
 
         @Override
-        public CreateauthtokenResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public CreateauthtokenResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -153,44 +152,20 @@ public class Createauthtoken {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    CreateAuthTokenResponse out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    res.withCreateAuthTokenResponse(out);
-                    return res;
+                    return res.withCreateAuthTokenResponse(Utils.unmarshal(response, new TypeReference<CreateAuthTokenResponse>() {}));
                 } else {
-                    throw new APIException(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "400", "401", "429", "4XX")) {
                 // no content
-                throw new APIException(
-                        response,
-                        response.statusCode(),
-                        "API error occurred",
-                        Utils.extractByteArrayFromBody(response));
+                throw APIException.from("API error occurred", response);
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "5XX")) {
                 // no content
-                throw new APIException(
-                        response,
-                        response.statusCode(),
-                        "API error occurred",
-                        Utils.extractByteArrayFromBody(response));
+                throw APIException.from("API error occurred", response);
             }
-            
-            throw new APIException(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            throw APIException.from("Unexpected status code received: " + response.statusCode(), response);
         }
     }
     public static class Async extends Base
@@ -215,7 +190,7 @@ public class Createauthtoken {
 
         @Override
         public CompletableFuture<HttpResponse<Blob>> doRequest() {
-            return Exceptions.unchecked(() -> onBuildRequest()).get().thenCompose(client::sendAsync)
+            return unchecked(() -> onBuildRequest()).get().thenCompose(client::sendAsync)
                     .handle((resp, err) -> {
                         if (err != null) {
                             return onError(null, err);
@@ -247,33 +222,20 @@ public class Createauthtoken {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    return response.body().toByteArray().thenApply(bodyBytes -> {
-                        try {
-                            CreateAuthTokenResponse out = Utils.mapper().readValue(
-                                    bodyBytes,
-                                    new TypeReference<>() {
-                                    });
-                            res.withCreateAuthTokenResponse(out);
-                            return res;
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
-                        }
-                    });
+                    return Utils.unmarshalAsync(response, new TypeReference<CreateAuthTokenResponse>() {})
+                            .thenApply(res::withCreateAuthTokenResponse);
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "400", "401", "429", "4XX")) {
                 // no content
                 return Utils.createAsyncApiError(response, "API error occurred");
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "5XX")) {
                 // no content
                 return Utils.createAsyncApiError(response, "API error occurred");
             }
-            
             return Utils.createAsyncApiError(response, "Unexpected status code received: " + response.statusCode());
         }
     }
