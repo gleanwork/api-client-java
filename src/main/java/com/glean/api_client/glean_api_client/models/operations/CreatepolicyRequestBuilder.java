@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.CreateDlpReportRe
 import com.glean.api_client.glean_api_client.operations.Createpolicy;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class CreatepolicyRequestBuilder {
 
@@ -28,7 +27,7 @@ public class CreatepolicyRequestBuilder {
         return this;
     }
 
-    public CreatepolicyResponse call() throws Exception {
+    public CreatepolicyResponse call() {
         
         RequestOperation<CreateDlpReportRequest, CreatepolicyResponse> operation
               = new Createpolicy.Sync(sdkConfiguration, _headers);

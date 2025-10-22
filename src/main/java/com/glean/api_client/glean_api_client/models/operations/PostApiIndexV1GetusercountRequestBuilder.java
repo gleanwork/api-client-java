@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.GetUserCountReque
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Getusercount;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class PostApiIndexV1GetusercountRequestBuilder {
 
@@ -28,7 +27,7 @@ public class PostApiIndexV1GetusercountRequestBuilder {
         return this;
     }
 
-    public PostApiIndexV1GetusercountResponse call() throws Exception {
+    public PostApiIndexV1GetusercountResponse call() {
         
         RequestOperation<GetUserCountRequest, PostApiIndexV1GetusercountResponse> operation
               = new PostApiIndexV1Getusercount.Sync(sdkConfiguration, _headers);

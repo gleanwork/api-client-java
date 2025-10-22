@@ -9,7 +9,6 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.Feedback;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -57,7 +56,7 @@ public class FeedbackRequestBuilder {
         return request;
     }
 
-    public FeedbackResponse call() throws Exception {
+    public FeedbackResponse call() {
         
         RequestOperation<FeedbackRequest, FeedbackResponse> operation
               = new com.glean.api_client.glean_api_client.operations.Feedback.Sync(sdkConfiguration, _headers);

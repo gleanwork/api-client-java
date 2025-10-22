@@ -9,7 +9,6 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.operations.Getdocvisibility;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -44,7 +43,7 @@ public class GetdocvisibilityRequestBuilder {
         return request;
     }
 
-    public GetdocvisibilityResponse call() throws Exception {
+    public GetdocvisibilityResponse call() {
         
         RequestOperation<GetdocvisibilityRequest, GetdocvisibilityResponse> operation
               = new Getdocvisibility.Sync(sdkConfiguration, _headers);

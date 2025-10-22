@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.RecommendationsRe
 import com.glean.api_client.glean_api_client.operations.Recommendations;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class RecommendationsRequestBuilder {
 
@@ -28,7 +27,7 @@ public class RecommendationsRequestBuilder {
         return this;
     }
 
-    public RecommendationsResponse call() throws Exception {
+    public RecommendationsResponse call() {
         
         RequestOperation<RecommendationsRequest, RecommendationsResponse> operation
               = new Recommendations.Sync(sdkConfiguration, _headers);

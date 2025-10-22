@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.SearchAgentsReque
 import com.glean.api_client.glean_api_client.operations.SearchAgents;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class SearchAgentsRequestBuilder {
@@ -29,7 +28,7 @@ public class SearchAgentsRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<SearchAgentsResponse> call() throws Exception {
+    public CompletableFuture<SearchAgentsResponse> call() {
         
         AsyncRequestOperation<SearchAgentsRequest, SearchAgentsResponse> operation
               = new SearchAgents.Async(sdkConfiguration, _headers);

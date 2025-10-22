@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.DeleteAnnouncemen
 import com.glean.api_client.glean_api_client.operations.Deleteannouncement;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class DeleteannouncementRequestBuilder {
 
@@ -28,7 +27,7 @@ public class DeleteannouncementRequestBuilder {
         return this;
     }
 
-    public DeleteannouncementResponse call() throws Exception {
+    public DeleteannouncementResponse call() {
         
         RequestOperation<DeleteAnnouncementRequest, DeleteannouncementResponse> operation
               = new Deleteannouncement.Sync(sdkConfiguration, _headers);

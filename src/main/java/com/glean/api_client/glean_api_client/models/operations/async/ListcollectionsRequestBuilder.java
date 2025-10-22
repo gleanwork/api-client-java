@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.ListCollectionsRe
 import com.glean.api_client.glean_api_client.operations.Listcollections;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class ListcollectionsRequestBuilder {
@@ -29,7 +28,7 @@ public class ListcollectionsRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<ListcollectionsResponse> call() throws Exception {
+    public CompletableFuture<ListcollectionsResponse> call() {
         
         AsyncRequestOperation<ListCollectionsRequest, ListcollectionsResponse> operation
               = new Listcollections.Async(sdkConfiguration, _headers);

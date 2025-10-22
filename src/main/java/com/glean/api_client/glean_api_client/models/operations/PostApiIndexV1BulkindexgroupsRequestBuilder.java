@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.BulkIndexGroupsRe
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Bulkindexgroups;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class PostApiIndexV1BulkindexgroupsRequestBuilder {
 
@@ -28,7 +27,7 @@ public class PostApiIndexV1BulkindexgroupsRequestBuilder {
         return this;
     }
 
-    public PostApiIndexV1BulkindexgroupsResponse call() throws Exception {
+    public PostApiIndexV1BulkindexgroupsResponse call() {
         
         RequestOperation<BulkIndexGroupsRequest, PostApiIndexV1BulkindexgroupsResponse> operation
               = new PostApiIndexV1Bulkindexgroups.Sync(sdkConfiguration, _headers);

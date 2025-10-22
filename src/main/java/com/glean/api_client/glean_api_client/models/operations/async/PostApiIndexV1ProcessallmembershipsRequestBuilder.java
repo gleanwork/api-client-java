@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.ProcessAllMembers
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Processallmemberships;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -36,7 +35,7 @@ public class PostApiIndexV1ProcessallmembershipsRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<PostApiIndexV1ProcessallmembershipsResponse> call() throws Exception {
+    public CompletableFuture<PostApiIndexV1ProcessallmembershipsResponse> call() {
         
         AsyncRequestOperation<Optional<? extends ProcessAllMembershipsRequest>, PostApiIndexV1ProcessallmembershipsResponse> operation
               = new PostApiIndexV1Processallmemberships.Async(sdkConfiguration, _headers);

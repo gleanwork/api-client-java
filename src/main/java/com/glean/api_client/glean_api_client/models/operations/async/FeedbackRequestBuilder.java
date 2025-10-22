@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.Feedback;
 import com.glean.api_client.glean_api_client.models.operations.FeedbackRequest;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -59,7 +58,7 @@ public class FeedbackRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<FeedbackResponse> call() throws Exception {
+    public CompletableFuture<FeedbackResponse> call() {
         
         AsyncRequestOperation<FeedbackRequest, FeedbackResponse> operation
               = new com.glean.api_client.glean_api_client.operations.Feedback.Async(sdkConfiguration, _headers);

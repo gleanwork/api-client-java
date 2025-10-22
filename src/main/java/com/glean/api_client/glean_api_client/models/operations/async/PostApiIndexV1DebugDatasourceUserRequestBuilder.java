@@ -11,7 +11,6 @@ import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1Deb
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DebugDatasourceUser;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 
@@ -47,7 +46,7 @@ public class PostApiIndexV1DebugDatasourceUserRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<PostApiIndexV1DebugDatasourceUserResponse> call() throws Exception {
+    public CompletableFuture<PostApiIndexV1DebugDatasourceUserResponse> call() {
         
         AsyncRequestOperation<PostApiIndexV1DebugDatasourceUserRequest, PostApiIndexV1DebugDatasourceUserResponse> operation
               = new PostApiIndexV1DebugDatasourceUser.Async(sdkConfiguration, _headers);

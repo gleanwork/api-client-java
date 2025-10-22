@@ -38,7 +38,6 @@ import com.glean.api_client.glean_api_client.operations.Editcollectionitem;
 import com.glean.api_client.glean_api_client.operations.Getcollection;
 import com.glean.api_client.glean_api_client.operations.Listcollections;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.Exception;
 
 
 public class Collections {
@@ -78,9 +77,9 @@ public class Collections {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AddcollectionitemsResponse addItems(AddCollectionItemsRequest request) throws Exception {
+    public AddcollectionitemsResponse addItems(AddCollectionItemsRequest request) {
         RequestOperation<AddCollectionItemsRequest, AddcollectionitemsResponse> operation
               = new Addcollectionitems.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -104,9 +103,9 @@ public class Collections {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreatecollectionResponse create(CreateCollectionRequest request) throws Exception {
+    public CreatecollectionResponse create(CreateCollectionRequest request) {
         RequestOperation<CreateCollectionRequest, CreatecollectionResponse> operation
               = new Createcollection.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -130,9 +129,9 @@ public class Collections {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeletecollectionResponse delete(DeleteCollectionRequest request) throws Exception {
+    public DeletecollectionResponse delete(DeleteCollectionRequest request) {
         RequestOperation<DeleteCollectionRequest, DeletecollectionResponse> operation
               = new Deletecollection.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -156,9 +155,9 @@ public class Collections {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeletecollectionitemResponse deleteItem(DeleteCollectionItemRequest request) throws Exception {
+    public DeletecollectionitemResponse deleteItem(DeleteCollectionItemRequest request) {
         RequestOperation<DeleteCollectionItemRequest, DeletecollectionitemResponse> operation
               = new Deletecollectionitem.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -182,9 +181,9 @@ public class Collections {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public EditcollectionResponse update(EditCollectionRequest request) throws Exception {
+    public EditcollectionResponse update(EditCollectionRequest request) {
         RequestOperation<EditCollectionRequest, EditcollectionResponse> operation
               = new Editcollection.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -208,9 +207,9 @@ public class Collections {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public EditcollectionitemResponse updateItem(EditCollectionItemRequest request) throws Exception {
+    public EditcollectionitemResponse updateItem(EditCollectionItemRequest request) {
         RequestOperation<EditCollectionItemRequest, EditcollectionitemResponse> operation
               = new Editcollectionitem.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -234,9 +233,9 @@ public class Collections {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetcollectionResponse retrieve(GetCollectionRequest request) throws Exception {
+    public GetcollectionResponse retrieve(GetCollectionRequest request) {
         RequestOperation<GetCollectionRequest, GetcollectionResponse> operation
               = new Getcollection.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -260,9 +259,9 @@ public class Collections {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListcollectionsResponse list(ListCollectionsRequest request) throws Exception {
+    public ListcollectionsResponse list(ListCollectionsRequest request) {
         RequestOperation<ListCollectionsRequest, ListcollectionsResponse> operation
               = new Listcollections.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));

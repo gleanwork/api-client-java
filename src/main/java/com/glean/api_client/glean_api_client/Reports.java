@@ -18,7 +18,6 @@ import com.glean.api_client.glean_api_client.operations.Createreport;
 import com.glean.api_client.glean_api_client.operations.Downloadreportcsv;
 import com.glean.api_client.glean_api_client.operations.Getreportstatus;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.Exception;
 import java.lang.String;
 
 
@@ -59,9 +58,9 @@ public class Reports {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreatereportResponse create(UpdateDlpConfigRequest request) throws Exception {
+    public CreatereportResponse create(UpdateDlpConfigRequest request) {
         RequestOperation<UpdateDlpConfigRequest, CreatereportResponse> operation
               = new Createreport.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -85,9 +84,9 @@ public class Reports {
      * 
      * @param id The id of the report to download violations for.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DownloadreportcsvResponse download(String id) throws Exception {
+    public DownloadreportcsvResponse download(String id) {
         DownloadreportcsvRequest request =
             DownloadreportcsvRequest
                 .builder()
@@ -116,9 +115,9 @@ public class Reports {
      * 
      * @param id The id of the report to get run status for.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetreportstatusResponse status(String id) throws Exception {
+    public GetreportstatusResponse status(String id) {
         GetreportstatusRequest request =
             GetreportstatusRequest
                 .builder()

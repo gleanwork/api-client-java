@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.UpdateDlpReportRe
 import com.glean.api_client.glean_api_client.operations.Updatepolicy;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 
 public class UpdatepolicyRequestBuilder {
@@ -45,7 +44,7 @@ public class UpdatepolicyRequestBuilder {
         return request;
     }
 
-    public UpdatepolicyResponse call() throws Exception {
+    public UpdatepolicyResponse call() {
         
         RequestOperation<UpdatepolicyRequest, UpdatepolicyResponse> operation
               = new Updatepolicy.Sync(sdkConfiguration, _headers);

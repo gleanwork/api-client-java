@@ -14,7 +14,6 @@ import com.glean.api_client.glean_api_client.models.operations.PeopleResponse;
 import com.glean.api_client.glean_api_client.operations.Listentities;
 import com.glean.api_client.glean_api_client.operations.People;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.Exception;
 
 
 public class Entities {
@@ -60,9 +59,9 @@ public class Entities {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListentitiesResponse list(ListEntitiesRequest request) throws Exception {
+    public ListentitiesResponse list(ListEntitiesRequest request) {
         RequestOperation<ListEntitiesRequest, ListentitiesResponse> operation
               = new Listentities.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -86,9 +85,9 @@ public class Entities {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PeopleResponse readPeople(PeopleRequest request) throws Exception {
+    public PeopleResponse readPeople(PeopleRequest request) {
         RequestOperation<PeopleRequest, PeopleResponse> operation
               = new People.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));

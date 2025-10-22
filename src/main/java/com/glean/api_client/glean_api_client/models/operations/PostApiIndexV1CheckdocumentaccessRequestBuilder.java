@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.CheckDocumentAcce
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Checkdocumentaccess;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class PostApiIndexV1CheckdocumentaccessRequestBuilder {
 
@@ -28,7 +27,7 @@ public class PostApiIndexV1CheckdocumentaccessRequestBuilder {
         return this;
     }
 
-    public PostApiIndexV1CheckdocumentaccessResponse call() throws Exception {
+    public PostApiIndexV1CheckdocumentaccessResponse call() {
         
         RequestOperation<CheckDocumentAccessRequest, PostApiIndexV1CheckdocumentaccessResponse> operation
               = new PostApiIndexV1Checkdocumentaccess.Sync(sdkConfiguration, _headers);

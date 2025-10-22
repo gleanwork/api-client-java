@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.DeleteMembershipR
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Deletemembership;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class PostApiIndexV1DeletemembershipRequestBuilder {
 
@@ -28,7 +27,7 @@ public class PostApiIndexV1DeletemembershipRequestBuilder {
         return this;
     }
 
-    public PostApiIndexV1DeletemembershipResponse call() throws Exception {
+    public PostApiIndexV1DeletemembershipResponse call() {
         
         RequestOperation<DeleteMembershipRequest, PostApiIndexV1DeletemembershipResponse> operation
               = new PostApiIndexV1Deletemembership.Sync(sdkConfiguration, _headers);

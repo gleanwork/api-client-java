@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.FeedRequest;
 import com.glean.api_client.glean_api_client.operations.Feed;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class FeedRequestBuilder {
@@ -29,7 +28,7 @@ public class FeedRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<FeedResponse> call() throws Exception {
+    public CompletableFuture<FeedResponse> call() {
         
         AsyncRequestOperation<FeedRequest, FeedResponse> operation
               = new Feed.Async(sdkConfiguration, _headers);

@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.GetAnswerRequest;
 import com.glean.api_client.glean_api_client.operations.Getanswer;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class GetanswerRequestBuilder {
@@ -29,7 +28,7 @@ public class GetanswerRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<GetanswerResponse> call() throws Exception {
+    public CompletableFuture<GetanswerResponse> call() {
         
         AsyncRequestOperation<GetAnswerRequest, GetanswerResponse> operation
               = new Getanswer.Async(sdkConfiguration, _headers);

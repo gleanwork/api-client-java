@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.DeleteEmployeeReq
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Deleteemployee;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class PostApiIndexV1DeleteemployeeRequestBuilder {
@@ -29,7 +28,7 @@ public class PostApiIndexV1DeleteemployeeRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<PostApiIndexV1DeleteemployeeResponse> call() throws Exception {
+    public CompletableFuture<PostApiIndexV1DeleteemployeeResponse> call() {
         
         AsyncRequestOperation<DeleteEmployeeRequest, PostApiIndexV1DeleteemployeeResponse> operation
               = new PostApiIndexV1Deleteemployee.Async(sdkConfiguration, _headers);

@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.ToolsCallRequest;
 import com.glean.api_client.glean_api_client.operations.PostRestApiV1ToolsCall;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class PostRestApiV1ToolsCallRequestBuilder {
 
@@ -28,7 +27,7 @@ public class PostRestApiV1ToolsCallRequestBuilder {
         return this;
     }
 
-    public PostRestApiV1ToolsCallResponse call() throws Exception {
+    public PostRestApiV1ToolsCallResponse call() {
         
         RequestOperation<ToolsCallRequest, PostRestApiV1ToolsCallResponse> operation
               = new PostRestApiV1ToolsCall.Sync(sdkConfiguration, _headers);

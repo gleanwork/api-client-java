@@ -8,298 +8,418 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.models.components.ErrorMessage;
 import com.glean.api_client.glean_api_client.models.components.InvalidOperatorValueError;
+import com.glean.api_client.glean_api_client.utils.Blob;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import jakarta.annotation.Nullable;
+import java.io.InputStream;
 import java.lang.Boolean;
+import java.lang.Deprecated;
+import java.lang.Exception;
 import java.lang.Override;
-import java.lang.RuntimeException;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.lang.Throwable;
+import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
-
+import java.util.concurrent.CompletableFuture;
 
 @SuppressWarnings("serial")
-public class GleanDataError extends RuntimeException {
-    /**
-     * Indicates the gmail results could not be fetched due to bad token.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("badGmailToken")
-    private Optional<Boolean> badGmailToken;
+public class GleanDataError extends GleanError {
 
-    /**
-     * Indicates the outlook results could not be fetched due to bad token.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("badOutlookToken")
-    private Optional<Boolean> badOutlookToken;
+    @Nullable
+    private final Data data;
 
-    /**
-     * Indicates results could not be fetched due to invalid operators in the query.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("invalidOperators")
-    private Optional<? extends List<InvalidOperatorValueError>> invalidOperators;
+    @Nullable
+    private final Throwable deserializationException;
 
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("errorMessages")
-    private Optional<? extends List<ErrorMessage>> errorMessages;
-
-    @JsonCreator
     public GleanDataError(
-            @JsonProperty("badGmailToken") Optional<Boolean> badGmailToken,
-            @JsonProperty("badOutlookToken") Optional<Boolean> badOutlookToken,
-            @JsonProperty("invalidOperators") Optional<? extends List<InvalidOperatorValueError>> invalidOperators,
-            @JsonProperty("errorMessages") Optional<? extends List<ErrorMessage>> errorMessages) {
-        super("API error occurred");
-        Utils.checkNotNull(badGmailToken, "badGmailToken");
-        Utils.checkNotNull(badOutlookToken, "badOutlookToken");
-        Utils.checkNotNull(invalidOperators, "invalidOperators");
-        Utils.checkNotNull(errorMessages, "errorMessages");
-        this.badGmailToken = badGmailToken;
-        this.badOutlookToken = badOutlookToken;
-        this.invalidOperators = invalidOperators;
-        this.errorMessages = errorMessages;
+                int code,
+                byte[] body,
+                HttpResponse<?> rawResponse,
+                @Nullable Data data,
+                @Nullable Throwable deserializationException) {
+        super("API error occurred", code, body, rawResponse, null);
+        this.data = data;
+        this.deserializationException = deserializationException;
     }
-    
-    public GleanDataError() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+
+    /**
+    * Parse a response into an instance of GleanDataError. If deserialization of the response body fails,
+    * the resulting GleanDataError instance will have a null data() value and a non-null deserializationException().
+    */
+    public static GleanDataError from(HttpResponse<InputStream> response) {
+        try {
+            byte[] bytes = Utils.extractByteArrayFromBody(response);
+            Data data = Utils.mapper().readValue(bytes, Data.class);
+            return new GleanDataError(response.statusCode(), bytes, response, data, null);
+        } catch (Exception e) {
+            return new GleanDataError(response.statusCode(), null, response, null, e);
+        }
+    }
+
+    /**
+    * Parse a response into an instance of GleanDataError asynchronously. If deserialization of the response body fails,
+    * the resulting GleanDataError instance will have a null data() value and a non-null deserializationException().
+    */
+    public static CompletableFuture<GleanDataError> fromAsync(HttpResponse<Blob> response) {
+        return response.body()
+                .toByteArray()
+                .handle((bytes, err) -> {
+                    // if a body read error occurs, we want to transform the exception
+                    if (err != null) {
+                        throw new AsyncAPIException(
+                                "Error reading response body: " + err.getMessage(),
+                                response.statusCode(),
+                                null,
+                                response,
+                                err);
+                    }
+
+                    try {
+                        return new GleanDataError(
+                                response.statusCode(),
+                                bytes,
+                                response,
+                                Utils.mapper().readValue(
+                                        bytes,
+                                        new TypeReference<Data>() {
+                                        }),
+                                null);
+                    } catch (Exception e) {
+                        return new GleanDataError(
+                                response.statusCode(),
+                                bytes,
+                                response,
+                                null,
+                                e);
+                    }
+                });
     }
 
     /**
      * Indicates the gmail results could not be fetched due to bad token.
      */
-    @JsonIgnore
+    @Deprecated
     public Optional<Boolean> badGmailToken() {
-        return badGmailToken;
+        return data().flatMap(Data::badGmailToken);
     }
 
     /**
      * Indicates the outlook results could not be fetched due to bad token.
      */
-    @JsonIgnore
+    @Deprecated
     public Optional<Boolean> badOutlookToken() {
-        return badOutlookToken;
+        return data().flatMap(Data::badOutlookToken);
     }
 
     /**
      * Indicates results could not be fetched due to invalid operators in the query.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
+    @Deprecated
     public Optional<List<InvalidOperatorValueError>> invalidOperators() {
-        return (Optional<List<InvalidOperatorValueError>>) invalidOperators;
+        return data().flatMap(Data::invalidOperators);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
+    @Deprecated
     public Optional<List<ErrorMessage>> errorMessages() {
-        return (Optional<List<ErrorMessage>>) errorMessages;
+        return data().flatMap(Data::errorMessages);
     }
 
-    public static Builder builder() {
-        return new Builder();
-    }
-
-
-    /**
-     * Indicates the gmail results could not be fetched due to bad token.
-     */
-    public GleanDataError withBadGmailToken(boolean badGmailToken) {
-        Utils.checkNotNull(badGmailToken, "badGmailToken");
-        this.badGmailToken = Optional.ofNullable(badGmailToken);
-        return this;
-    }
-
-
-    /**
-     * Indicates the gmail results could not be fetched due to bad token.
-     */
-    public GleanDataError withBadGmailToken(Optional<Boolean> badGmailToken) {
-        Utils.checkNotNull(badGmailToken, "badGmailToken");
-        this.badGmailToken = badGmailToken;
-        return this;
+    public Optional<Data> data() {
+        return Optional.ofNullable(data);
     }
 
     /**
-     * Indicates the outlook results could not be fetched due to bad token.
+     * Returns the exception if an error occurs while deserializing the response body.
      */
-    public GleanDataError withBadOutlookToken(boolean badOutlookToken) {
-        Utils.checkNotNull(badOutlookToken, "badOutlookToken");
-        this.badOutlookToken = Optional.ofNullable(badOutlookToken);
-        return this;
+    public Optional<Throwable> deserializationException() {
+        return Optional.ofNullable(deserializationException);
     }
 
+    public static class Data {
+        /**
+         * Indicates the gmail results could not be fetched due to bad token.
+         */
+        @JsonInclude(Include.NON_ABSENT)
+        @JsonProperty("badGmailToken")
+        private Optional<Boolean> badGmailToken;
 
-    /**
-     * Indicates the outlook results could not be fetched due to bad token.
-     */
-    public GleanDataError withBadOutlookToken(Optional<Boolean> badOutlookToken) {
-        Utils.checkNotNull(badOutlookToken, "badOutlookToken");
-        this.badOutlookToken = badOutlookToken;
-        return this;
-    }
+        /**
+         * Indicates the outlook results could not be fetched due to bad token.
+         */
+        @JsonInclude(Include.NON_ABSENT)
+        @JsonProperty("badOutlookToken")
+        private Optional<Boolean> badOutlookToken;
 
-    /**
-     * Indicates results could not be fetched due to invalid operators in the query.
-     */
-    public GleanDataError withInvalidOperators(List<InvalidOperatorValueError> invalidOperators) {
-        Utils.checkNotNull(invalidOperators, "invalidOperators");
-        this.invalidOperators = Optional.ofNullable(invalidOperators);
-        return this;
-    }
-
-
-    /**
-     * Indicates results could not be fetched due to invalid operators in the query.
-     */
-    public GleanDataError withInvalidOperators(Optional<? extends List<InvalidOperatorValueError>> invalidOperators) {
-        Utils.checkNotNull(invalidOperators, "invalidOperators");
-        this.invalidOperators = invalidOperators;
-        return this;
-    }
-
-    public GleanDataError withErrorMessages(List<ErrorMessage> errorMessages) {
-        Utils.checkNotNull(errorMessages, "errorMessages");
-        this.errorMessages = Optional.ofNullable(errorMessages);
-        return this;
-    }
+        /**
+         * Indicates results could not be fetched due to invalid operators in the query.
+         */
+        @JsonInclude(Include.NON_ABSENT)
+        @JsonProperty("invalidOperators")
+        private Optional<? extends List<InvalidOperatorValueError>> invalidOperators;
 
 
-    public GleanDataError withErrorMessages(Optional<? extends List<ErrorMessage>> errorMessages) {
-        Utils.checkNotNull(errorMessages, "errorMessages");
-        this.errorMessages = errorMessages;
-        return this;
-    }
+        @JsonInclude(Include.NON_ABSENT)
+        @JsonProperty("errorMessages")
+        private Optional<? extends List<ErrorMessage>> errorMessages;
 
-    @Override
-    public boolean equals(java.lang.Object o) {
-        if (this == o) {
-            return true;
+        @JsonCreator
+        public Data(
+                @JsonProperty("badGmailToken") Optional<Boolean> badGmailToken,
+                @JsonProperty("badOutlookToken") Optional<Boolean> badOutlookToken,
+                @JsonProperty("invalidOperators") Optional<? extends List<InvalidOperatorValueError>> invalidOperators,
+                @JsonProperty("errorMessages") Optional<? extends List<ErrorMessage>> errorMessages) {
+            Utils.checkNotNull(badGmailToken, "badGmailToken");
+            Utils.checkNotNull(badOutlookToken, "badOutlookToken");
+            Utils.checkNotNull(invalidOperators, "invalidOperators");
+            Utils.checkNotNull(errorMessages, "errorMessages");
+            this.badGmailToken = badGmailToken;
+            this.badOutlookToken = badOutlookToken;
+            this.invalidOperators = invalidOperators;
+            this.errorMessages = errorMessages;
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
+        
+        public Data() {
+            this(Optional.empty(), Optional.empty(), Optional.empty(),
+                Optional.empty());
         }
-        GleanDataError other = (GleanDataError) o;
-        return 
-            Utils.enhancedDeepEquals(this.badGmailToken, other.badGmailToken) &&
-            Utils.enhancedDeepEquals(this.badOutlookToken, other.badOutlookToken) &&
-            Utils.enhancedDeepEquals(this.invalidOperators, other.invalidOperators) &&
-            Utils.enhancedDeepEquals(this.errorMessages, other.errorMessages);
-    }
-    
-    @Override
-    public int hashCode() {
-        return Utils.enhancedHash(
-            badGmailToken, badOutlookToken, invalidOperators,
-            errorMessages);
-    }
-    
-    @Override
-    public String toString() {
-        return Utils.toString(GleanDataError.class,
-                "badGmailToken", badGmailToken,
-                "badOutlookToken", badOutlookToken,
-                "invalidOperators", invalidOperators,
-                "errorMessages", errorMessages);
-    }
 
-    @SuppressWarnings("UnusedReturnValue")
-    public final static class Builder {
+        /**
+         * Indicates the gmail results could not be fetched due to bad token.
+         */
+        @JsonIgnore
+        public Optional<Boolean> badGmailToken() {
+            return badGmailToken;
+        }
 
-        private Optional<Boolean> badGmailToken = Optional.empty();
+        /**
+         * Indicates the outlook results could not be fetched due to bad token.
+         */
+        @JsonIgnore
+        public Optional<Boolean> badOutlookToken() {
+            return badOutlookToken;
+        }
 
-        private Optional<Boolean> badOutlookToken = Optional.empty();
+        /**
+         * Indicates results could not be fetched due to invalid operators in the query.
+         */
+        @SuppressWarnings("unchecked")
+        @JsonIgnore
+        public Optional<List<InvalidOperatorValueError>> invalidOperators() {
+            return (Optional<List<InvalidOperatorValueError>>) invalidOperators;
+        }
 
-        private Optional<? extends List<InvalidOperatorValueError>> invalidOperators = Optional.empty();
+        @SuppressWarnings("unchecked")
+        @JsonIgnore
+        public Optional<List<ErrorMessage>> errorMessages() {
+            return (Optional<List<ErrorMessage>>) errorMessages;
+        }
 
-        private Optional<? extends List<ErrorMessage>> errorMessages = Optional.empty();
-
-        private Builder() {
-          // force use of static builder() method
+        public static Builder builder() {
+            return new Builder();
         }
 
 
         /**
          * Indicates the gmail results could not be fetched due to bad token.
          */
-        public Builder badGmailToken(boolean badGmailToken) {
+        public Data withBadGmailToken(boolean badGmailToken) {
             Utils.checkNotNull(badGmailToken, "badGmailToken");
             this.badGmailToken = Optional.ofNullable(badGmailToken);
             return this;
         }
 
+
         /**
          * Indicates the gmail results could not be fetched due to bad token.
          */
-        public Builder badGmailToken(Optional<Boolean> badGmailToken) {
+        public Data withBadGmailToken(Optional<Boolean> badGmailToken) {
             Utils.checkNotNull(badGmailToken, "badGmailToken");
             this.badGmailToken = badGmailToken;
             return this;
         }
 
-
         /**
          * Indicates the outlook results could not be fetched due to bad token.
          */
-        public Builder badOutlookToken(boolean badOutlookToken) {
+        public Data withBadOutlookToken(boolean badOutlookToken) {
             Utils.checkNotNull(badOutlookToken, "badOutlookToken");
             this.badOutlookToken = Optional.ofNullable(badOutlookToken);
             return this;
         }
 
+
         /**
          * Indicates the outlook results could not be fetched due to bad token.
          */
-        public Builder badOutlookToken(Optional<Boolean> badOutlookToken) {
+        public Data withBadOutlookToken(Optional<Boolean> badOutlookToken) {
             Utils.checkNotNull(badOutlookToken, "badOutlookToken");
             this.badOutlookToken = badOutlookToken;
             return this;
         }
 
-
         /**
          * Indicates results could not be fetched due to invalid operators in the query.
          */
-        public Builder invalidOperators(List<InvalidOperatorValueError> invalidOperators) {
+        public Data withInvalidOperators(List<InvalidOperatorValueError> invalidOperators) {
             Utils.checkNotNull(invalidOperators, "invalidOperators");
             this.invalidOperators = Optional.ofNullable(invalidOperators);
             return this;
         }
 
+
         /**
          * Indicates results could not be fetched due to invalid operators in the query.
          */
-        public Builder invalidOperators(Optional<? extends List<InvalidOperatorValueError>> invalidOperators) {
+        public Data withInvalidOperators(Optional<? extends List<InvalidOperatorValueError>> invalidOperators) {
             Utils.checkNotNull(invalidOperators, "invalidOperators");
             this.invalidOperators = invalidOperators;
             return this;
         }
 
-
-        public Builder errorMessages(List<ErrorMessage> errorMessages) {
+        public Data withErrorMessages(List<ErrorMessage> errorMessages) {
             Utils.checkNotNull(errorMessages, "errorMessages");
             this.errorMessages = Optional.ofNullable(errorMessages);
             return this;
         }
 
-        public Builder errorMessages(Optional<? extends List<ErrorMessage>> errorMessages) {
+
+        public Data withErrorMessages(Optional<? extends List<ErrorMessage>> errorMessages) {
             Utils.checkNotNull(errorMessages, "errorMessages");
             this.errorMessages = errorMessages;
             return this;
         }
 
-        public GleanDataError build() {
-
-            return new GleanDataError(
+        @Override
+        public boolean equals(java.lang.Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            Data other = (Data) o;
+            return 
+                Utils.enhancedDeepEquals(this.badGmailToken, other.badGmailToken) &&
+                Utils.enhancedDeepEquals(this.badOutlookToken, other.badOutlookToken) &&
+                Utils.enhancedDeepEquals(this.invalidOperators, other.invalidOperators) &&
+                Utils.enhancedDeepEquals(this.errorMessages, other.errorMessages);
+        }
+        
+        @Override
+        public int hashCode() {
+            return Utils.enhancedHash(
                 badGmailToken, badOutlookToken, invalidOperators,
                 errorMessages);
         }
+        
+        @Override
+        public String toString() {
+            return Utils.toString(Data.class,
+                    "badGmailToken", badGmailToken,
+                    "badOutlookToken", badOutlookToken,
+                    "invalidOperators", invalidOperators,
+                    "errorMessages", errorMessages);
+        }
 
+        @SuppressWarnings("UnusedReturnValue")
+        public final static class Builder {
+
+            private Optional<Boolean> badGmailToken = Optional.empty();
+
+            private Optional<Boolean> badOutlookToken = Optional.empty();
+
+            private Optional<? extends List<InvalidOperatorValueError>> invalidOperators = Optional.empty();
+
+            private Optional<? extends List<ErrorMessage>> errorMessages = Optional.empty();
+
+            private Builder() {
+              // force use of static builder() method
+            }
+
+
+            /**
+             * Indicates the gmail results could not be fetched due to bad token.
+             */
+            public Builder badGmailToken(boolean badGmailToken) {
+                Utils.checkNotNull(badGmailToken, "badGmailToken");
+                this.badGmailToken = Optional.ofNullable(badGmailToken);
+                return this;
+            }
+
+            /**
+             * Indicates the gmail results could not be fetched due to bad token.
+             */
+            public Builder badGmailToken(Optional<Boolean> badGmailToken) {
+                Utils.checkNotNull(badGmailToken, "badGmailToken");
+                this.badGmailToken = badGmailToken;
+                return this;
+            }
+
+
+            /**
+             * Indicates the outlook results could not be fetched due to bad token.
+             */
+            public Builder badOutlookToken(boolean badOutlookToken) {
+                Utils.checkNotNull(badOutlookToken, "badOutlookToken");
+                this.badOutlookToken = Optional.ofNullable(badOutlookToken);
+                return this;
+            }
+
+            /**
+             * Indicates the outlook results could not be fetched due to bad token.
+             */
+            public Builder badOutlookToken(Optional<Boolean> badOutlookToken) {
+                Utils.checkNotNull(badOutlookToken, "badOutlookToken");
+                this.badOutlookToken = badOutlookToken;
+                return this;
+            }
+
+
+            /**
+             * Indicates results could not be fetched due to invalid operators in the query.
+             */
+            public Builder invalidOperators(List<InvalidOperatorValueError> invalidOperators) {
+                Utils.checkNotNull(invalidOperators, "invalidOperators");
+                this.invalidOperators = Optional.ofNullable(invalidOperators);
+                return this;
+            }
+
+            /**
+             * Indicates results could not be fetched due to invalid operators in the query.
+             */
+            public Builder invalidOperators(Optional<? extends List<InvalidOperatorValueError>> invalidOperators) {
+                Utils.checkNotNull(invalidOperators, "invalidOperators");
+                this.invalidOperators = invalidOperators;
+                return this;
+            }
+
+
+            public Builder errorMessages(List<ErrorMessage> errorMessages) {
+                Utils.checkNotNull(errorMessages, "errorMessages");
+                this.errorMessages = Optional.ofNullable(errorMessages);
+                return this;
+            }
+
+            public Builder errorMessages(Optional<? extends List<ErrorMessage>> errorMessages) {
+                Utils.checkNotNull(errorMessages, "errorMessages");
+                this.errorMessages = errorMessages;
+                return this;
+            }
+
+            public Data build() {
+
+                return new Data(
+                    badGmailToken, badOutlookToken, invalidOperators,
+                    errorMessages);
+            }
+
+        }
     }
+
 }
 

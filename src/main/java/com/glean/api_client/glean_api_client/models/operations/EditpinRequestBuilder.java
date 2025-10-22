@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.EditPinRequest;
 import com.glean.api_client.glean_api_client.operations.Editpin;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class EditpinRequestBuilder {
 
@@ -28,7 +27,7 @@ public class EditpinRequestBuilder {
         return this;
     }
 
-    public EditpinResponse call() throws Exception {
+    public EditpinResponse call() {
         
         RequestOperation<EditPinRequest, EditpinResponse> operation
               = new Editpin.Sync(sdkConfiguration, _headers);

@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.GetPinRequest;
 import com.glean.api_client.glean_api_client.operations.Getpin;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class GetpinRequestBuilder {
@@ -29,7 +28,7 @@ public class GetpinRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<GetpinResponse> call() throws Exception {
+    public CompletableFuture<GetpinResponse> call() {
         
         AsyncRequestOperation<GetPinRequest, GetpinResponse> operation
               = new Getpin.Async(sdkConfiguration, _headers);

@@ -9,7 +9,6 @@ import com.glean.api_client.glean_api_client.models.components.InsightsRequest;
 import com.glean.api_client.glean_api_client.models.operations.InsightsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.InsightsResponse;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.Exception;
 
 
 public class Insights {
@@ -49,9 +48,9 @@ public class Insights {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public InsightsResponse retrieve(InsightsRequest request) throws Exception {
+    public InsightsResponse retrieve(InsightsRequest request) {
         RequestOperation<InsightsRequest, InsightsResponse> operation
               = new com.glean.api_client.glean_api_client.operations.Insights.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));

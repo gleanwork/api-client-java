@@ -26,7 +26,6 @@ import com.glean.api_client.glean_api_client.operations.Getshortcut;
 import com.glean.api_client.glean_api_client.operations.Listshortcuts;
 import com.glean.api_client.glean_api_client.operations.Updateshortcut;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.Exception;
 
 
 public class ClientShortcuts {
@@ -66,9 +65,9 @@ public class ClientShortcuts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateshortcutResponse create(CreateShortcutRequest request) throws Exception {
+    public CreateshortcutResponse create(CreateShortcutRequest request) {
         RequestOperation<CreateShortcutRequest, CreateshortcutResponse> operation
               = new Createshortcut.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -92,9 +91,9 @@ public class ClientShortcuts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteshortcutResponse delete(DeleteShortcutRequest request) throws Exception {
+    public DeleteshortcutResponse delete(DeleteShortcutRequest request) {
         RequestOperation<DeleteShortcutRequest, DeleteshortcutResponse> operation
               = new Deleteshortcut.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -118,9 +117,9 @@ public class ClientShortcuts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetshortcutResponse retrieve(GetShortcutRequestUnion request) throws Exception {
+    public GetshortcutResponse retrieve(GetShortcutRequestUnion request) {
         RequestOperation<GetShortcutRequestUnion, GetshortcutResponse> operation
               = new Getshortcut.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -144,9 +143,9 @@ public class ClientShortcuts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListshortcutsResponse list(ListShortcutsPaginatedRequest request) throws Exception {
+    public ListshortcutsResponse list(ListShortcutsPaginatedRequest request) {
         RequestOperation<ListShortcutsPaginatedRequest, ListshortcutsResponse> operation
               = new Listshortcuts.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -170,9 +169,9 @@ public class ClientShortcuts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateshortcutResponse update(UpdateShortcutRequest request) throws Exception {
+    public UpdateshortcutResponse update(UpdateShortcutRequest request) {
         RequestOperation<UpdateShortcutRequest, UpdateshortcutResponse> operation
               = new Updateshortcut.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));

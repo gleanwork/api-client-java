@@ -18,7 +18,6 @@ import com.glean.api_client.glean_api_client.operations.Addverificationreminder;
 import com.glean.api_client.glean_api_client.operations.Listverifications;
 import com.glean.api_client.glean_api_client.operations.Verify;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.Exception;
 import java.lang.Long;
 import java.util.Optional;
 
@@ -62,9 +61,9 @@ public class Verification {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AddverificationreminderResponse addReminder(ReminderRequest request) throws Exception {
+    public AddverificationreminderResponse addReminder(ReminderRequest request) {
         RequestOperation<ReminderRequest, AddverificationreminderResponse> operation
               = new Addverificationreminder.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -89,9 +88,9 @@ public class Verification {
      * document owned by user regarding their verifications.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListverificationsResponse listDirect() throws Exception {
+    public ListverificationsResponse listDirect() {
         return list(Optional.empty());
     }
 
@@ -103,9 +102,9 @@ public class Verification {
      * 
      * @param count Maximum number of documents to return
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListverificationsResponse list(Optional<Long> count) throws Exception {
+    public ListverificationsResponse list(Optional<Long> count) {
         ListverificationsRequest request =
             ListverificationsRequest
                 .builder()
@@ -134,9 +133,9 @@ public class Verification {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public VerifyResponse verify(VerifyRequest request) throws Exception {
+    public VerifyResponse verify(VerifyRequest request) {
         RequestOperation<VerifyRequest, VerifyResponse> operation
               = new Verify.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));

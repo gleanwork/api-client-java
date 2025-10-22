@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.SearchAgentsReque
 import com.glean.api_client.glean_api_client.operations.SearchAgents;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class SearchAgentsRequestBuilder {
 
@@ -28,7 +27,7 @@ public class SearchAgentsRequestBuilder {
         return this;
     }
 
-    public SearchAgentsResponse call() throws Exception {
+    public SearchAgentsResponse call() {
         
         RequestOperation<SearchAgentsRequest, SearchAgentsResponse> operation
               = new SearchAgents.Sync(sdkConfiguration, _headers);

@@ -8,7 +8,6 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Processallemployeesandteams;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.Exception;
 
 public class PostApiIndexV1ProcessallemployeesandteamsRequestBuilder {
 
@@ -19,7 +18,7 @@ public class PostApiIndexV1ProcessallemployeesandteamsRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public PostApiIndexV1ProcessallemployeesandteamsResponse call() throws Exception {
+    public PostApiIndexV1ProcessallemployeesandteamsResponse call() {
         
         RequestlessOperation<PostApiIndexV1ProcessallemployeesandteamsResponse> operation
             = new PostApiIndexV1Processallemployeesandteams.Sync(sdkConfiguration, _headers);

@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.InsightsRequest;
 import com.glean.api_client.glean_api_client.operations.Insights;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class InsightsRequestBuilder {
 
@@ -28,7 +27,7 @@ public class InsightsRequestBuilder {
         return this;
     }
 
-    public InsightsResponse call() throws Exception {
+    public InsightsResponse call() {
         
         RequestOperation<InsightsRequest, InsightsResponse> operation
               = new Insights.Sync(sdkConfiguration, _headers);

@@ -9,7 +9,6 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.Unpin;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class UnpinRequestBuilder {
@@ -28,7 +27,7 @@ public class UnpinRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<UnpinResponse> call() throws Exception {
+    public CompletableFuture<UnpinResponse> call() {
         
         AsyncRequestOperation<Unpin, UnpinResponse> operation
               = new com.glean.api_client.glean_api_client.operations.Unpin.Async(sdkConfiguration, _headers);

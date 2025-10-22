@@ -9,7 +9,6 @@ import com.glean.api_client.glean_api_client.models.operations.CreateauthtokenRe
 import com.glean.api_client.glean_api_client.models.operations.CreateauthtokenResponse;
 import com.glean.api_client.glean_api_client.operations.Createauthtoken;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.Exception;
 
 
 public class ClientAuthentication {
@@ -56,9 +55,9 @@ public class ClientAuthentication {
      * for use with the Client API (e.g. `/rest/api/v1/*`).
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateauthtokenResponse createTokenDirect() throws Exception {
+    public CreateauthtokenResponse createTokenDirect() {
         RequestlessOperation<CreateauthtokenResponse> operation
             = new Createauthtoken.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());

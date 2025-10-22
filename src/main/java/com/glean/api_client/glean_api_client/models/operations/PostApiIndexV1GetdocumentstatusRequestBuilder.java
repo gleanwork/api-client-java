@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.GetDocumentStatus
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Getdocumentstatus;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class PostApiIndexV1GetdocumentstatusRequestBuilder {
 
@@ -28,7 +27,7 @@ public class PostApiIndexV1GetdocumentstatusRequestBuilder {
         return this;
     }
 
-    public PostApiIndexV1GetdocumentstatusResponse call() throws Exception {
+    public PostApiIndexV1GetdocumentstatusResponse call() {
         
         RequestOperation<GetDocumentStatusRequest, PostApiIndexV1GetdocumentstatusResponse> operation
               = new PostApiIndexV1Getdocumentstatus.Sync(sdkConfiguration, _headers);

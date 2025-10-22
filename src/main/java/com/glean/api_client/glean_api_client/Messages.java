@@ -9,7 +9,6 @@ import com.glean.api_client.glean_api_client.models.components.MessagesRequest;
 import com.glean.api_client.glean_api_client.models.operations.MessagesRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.MessagesResponse;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.Exception;
 
 
 public class Messages {
@@ -49,9 +48,9 @@ public class Messages {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public MessagesResponse retrieve(MessagesRequest request) throws Exception {
+    public MessagesResponse retrieve(MessagesRequest request) {
         RequestOperation<MessagesRequest, MessagesResponse> operation
               = new com.glean.api_client.glean_api_client.operations.Messages.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));

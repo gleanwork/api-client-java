@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.DeleteCollectionR
 import com.glean.api_client.glean_api_client.operations.Deletecollection;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class DeletecollectionRequestBuilder {
@@ -29,7 +28,7 @@ public class DeletecollectionRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<DeletecollectionResponse> call() throws Exception {
+    public CompletableFuture<DeletecollectionResponse> call() {
         
         AsyncRequestOperation<DeleteCollectionRequest, DeletecollectionResponse> operation
               = new Deletecollection.Async(sdkConfiguration, _headers);

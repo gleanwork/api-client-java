@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.EditCollectionReq
 import com.glean.api_client.glean_api_client.operations.Editcollection;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class EditcollectionRequestBuilder {
@@ -29,7 +28,7 @@ public class EditcollectionRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<EditcollectionResponse> call() throws Exception {
+    public CompletableFuture<EditcollectionResponse> call() {
         
         AsyncRequestOperation<EditCollectionRequest, EditcollectionResponse> operation
               = new Editcollection.Async(sdkConfiguration, _headers);

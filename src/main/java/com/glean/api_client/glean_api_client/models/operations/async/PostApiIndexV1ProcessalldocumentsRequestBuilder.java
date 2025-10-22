@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.ProcessAllDocumen
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Processalldocuments;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -36,7 +35,7 @@ public class PostApiIndexV1ProcessalldocumentsRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<PostApiIndexV1ProcessalldocumentsResponse> call() throws Exception {
+    public CompletableFuture<PostApiIndexV1ProcessalldocumentsResponse> call() {
         
         AsyncRequestOperation<Optional<? extends ProcessAllDocumentsRequest>, PostApiIndexV1ProcessalldocumentsResponse> operation
               = new PostApiIndexV1Processalldocuments.Async(sdkConfiguration, _headers);

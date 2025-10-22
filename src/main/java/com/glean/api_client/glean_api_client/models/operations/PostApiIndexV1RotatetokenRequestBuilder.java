@@ -8,7 +8,6 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Rotatetoken;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.Exception;
 
 public class PostApiIndexV1RotatetokenRequestBuilder {
 
@@ -19,7 +18,7 @@ public class PostApiIndexV1RotatetokenRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public PostApiIndexV1RotatetokenResponse call() throws Exception {
+    public PostApiIndexV1RotatetokenResponse call() {
         
         RequestlessOperation<PostApiIndexV1RotatetokenResponse> operation
             = new PostApiIndexV1Rotatetoken.Sync(sdkConfiguration, _headers);

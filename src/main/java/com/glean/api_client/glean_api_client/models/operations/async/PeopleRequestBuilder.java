@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.PeopleRequest;
 import com.glean.api_client.glean_api_client.operations.People;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class PeopleRequestBuilder {
@@ -29,7 +28,7 @@ public class PeopleRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<PeopleResponse> call() throws Exception {
+    public CompletableFuture<PeopleResponse> call() {
         
         AsyncRequestOperation<PeopleRequest, PeopleResponse> operation
               = new People.Async(sdkConfiguration, _headers);

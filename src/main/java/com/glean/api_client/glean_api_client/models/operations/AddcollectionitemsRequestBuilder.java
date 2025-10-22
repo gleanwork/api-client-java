@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.AddCollectionItem
 import com.glean.api_client.glean_api_client.operations.Addcollectionitems;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class AddcollectionitemsRequestBuilder {
 
@@ -28,7 +27,7 @@ public class AddcollectionitemsRequestBuilder {
         return this;
     }
 
-    public AddcollectionitemsResponse call() throws Exception {
+    public AddcollectionitemsResponse call() {
         
         RequestOperation<AddCollectionItemsRequest, AddcollectionitemsResponse> operation
               = new Addcollectionitems.Sync(sdkConfiguration, _headers);

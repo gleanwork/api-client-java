@@ -44,7 +44,6 @@ import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Indexteam;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Processallemployeesandteams;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Deprecated;
-import java.lang.Exception;
 import java.lang.String;
 
 
@@ -94,9 +93,9 @@ public class People {
      * @param datasource The datasource to which the user belongs
      * @param debugUserRequest Describes the request body of the /debug/{datasource}/user API call
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1DebugDatasourceUserResponse debug(String datasource, DebugUserRequest debugUserRequest) throws Exception {
+    public PostApiIndexV1DebugDatasourceUserResponse debug(String datasource, DebugUserRequest debugUserRequest) {
         PostApiIndexV1DebugDatasourceUserRequest request =
             PostApiIndexV1DebugDatasourceUserRequest
                 .builder()
@@ -136,11 +135,11 @@ public class People {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public PostApiIndexV1GetusercountResponse count(GetUserCountRequest request) throws Exception {
+    public PostApiIndexV1GetusercountResponse count(GetUserCountRequest request) {
         RequestOperation<GetUserCountRequest, PostApiIndexV1GetusercountResponse> operation
               = new PostApiIndexV1Getusercount.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -164,9 +163,9 @@ public class People {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1IndexemployeeResponse index(IndexEmployeeRequest request) throws Exception {
+    public PostApiIndexV1IndexemployeeResponse index(IndexEmployeeRequest request) {
         RequestOperation<IndexEmployeeRequest, PostApiIndexV1IndexemployeeResponse> operation
               = new PostApiIndexV1Indexemployee.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -194,9 +193,9 @@ public class People {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1BulkindexemployeesResponse bulkIndex(BulkIndexEmployeesRequest request) throws Exception {
+    public PostApiIndexV1BulkindexemployeesResponse bulkIndex(BulkIndexEmployeesRequest request) {
         RequestOperation<BulkIndexEmployeesRequest, PostApiIndexV1BulkindexemployeesResponse> operation
               = new PostApiIndexV1Bulkindexemployees.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -223,9 +222,9 @@ public class People {
      * schedule its processing on demand.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1ProcessallemployeesandteamsResponse processAllEmployeesAndTeamsDirect() throws Exception {
+    public PostApiIndexV1ProcessallemployeesandteamsResponse processAllEmployeesAndTeamsDirect() {
         RequestlessOperation<PostApiIndexV1ProcessallemployeesandteamsResponse> operation
             = new PostApiIndexV1Processallemployeesandteams.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest());
@@ -249,9 +248,9 @@ public class People {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1DeleteemployeeResponse delete(DeleteEmployeeRequest request) throws Exception {
+    public PostApiIndexV1DeleteemployeeResponse delete(DeleteEmployeeRequest request) {
         RequestOperation<DeleteEmployeeRequest, PostApiIndexV1DeleteemployeeResponse> operation
               = new PostApiIndexV1Deleteemployee.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -275,9 +274,9 @@ public class People {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1IndexteamResponse indexTeam(IndexTeamRequest request) throws Exception {
+    public PostApiIndexV1IndexteamResponse indexTeam(IndexTeamRequest request) {
         RequestOperation<IndexTeamRequest, PostApiIndexV1IndexteamResponse> operation
               = new PostApiIndexV1Indexteam.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -301,9 +300,9 @@ public class People {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1DeleteteamResponse deleteTeam(DeleteTeamRequest request) throws Exception {
+    public PostApiIndexV1DeleteteamResponse deleteTeam(DeleteTeamRequest request) {
         RequestOperation<DeleteTeamRequest, PostApiIndexV1DeleteteamResponse> operation
               = new PostApiIndexV1Deleteteam.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -331,9 +330,9 @@ public class People {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1BulkindexteamsResponse bulkIndexTeams(BulkIndexTeamsRequest request) throws Exception {
+    public PostApiIndexV1BulkindexteamsResponse bulkIndexTeams(BulkIndexTeamsRequest request) {
         RequestOperation<BulkIndexTeamsRequest, PostApiIndexV1BulkindexteamsResponse> operation
               = new PostApiIndexV1Bulkindexteams.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));

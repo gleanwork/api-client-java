@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.MessagesRequest;
 import com.glean.api_client.glean_api_client.operations.Messages;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class MessagesRequestBuilder {
 
@@ -28,7 +27,7 @@ public class MessagesRequestBuilder {
         return this;
     }
 
-    public MessagesResponse call() throws Exception {
+    public MessagesResponse call() {
         
         RequestOperation<MessagesRequest, MessagesResponse> operation
               = new Messages.Sync(sdkConfiguration, _headers);

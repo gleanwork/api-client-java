@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.GetCollectionRequ
 import com.glean.api_client.glean_api_client.operations.Getcollection;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class GetcollectionRequestBuilder {
 
@@ -28,7 +27,7 @@ public class GetcollectionRequestBuilder {
         return this;
     }
 
-    public GetcollectionResponse call() throws Exception {
+    public GetcollectionResponse call() {
         
         RequestOperation<GetCollectionRequest, GetcollectionResponse> operation
               = new Getcollection.Sync(sdkConfiguration, _headers);

@@ -28,7 +28,6 @@ import com.glean.api_client.glean_api_client.operations.Listpolicies;
 import com.glean.api_client.glean_api_client.operations.Updatepolicy;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Boolean;
-import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
@@ -71,9 +70,9 @@ public class Policies {
      * 
      * @param id The id of the policy to fetch.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetpolicyResponse retrieve(String id) throws Exception {
+    public GetpolicyResponse retrieve(String id) {
         return retrieve(id, Optional.empty());
     }
 
@@ -85,9 +84,9 @@ public class Policies {
      * @param id The id of the policy to fetch.
      * @param version The version of the policy to fetch. Each time a policy is updated, the older version is still stored. If this is left empty, the latest policy is fetched.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetpolicyResponse retrieve(String id, Optional<Long> version) throws Exception {
+    public GetpolicyResponse retrieve(String id, Optional<Long> version) {
         GetpolicyRequest request =
             GetpolicyRequest
                 .builder()
@@ -118,9 +117,9 @@ public class Policies {
      * @param id The id of the policy to fetch.
      * @param updateDlpReportRequest 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdatepolicyResponse update(String id, UpdateDlpReportRequest updateDlpReportRequest) throws Exception {
+    public UpdatepolicyResponse update(String id, UpdateDlpReportRequest updateDlpReportRequest) {
         UpdatepolicyRequest request =
             UpdatepolicyRequest
                 .builder()
@@ -149,9 +148,9 @@ public class Policies {
      * <p>Lists policies with filtering.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListpoliciesResponse listDirect() throws Exception {
+    public ListpoliciesResponse listDirect() {
         return list(Optional.empty(), Optional.empty());
     }
 
@@ -163,9 +162,9 @@ public class Policies {
      * @param autoHide Filter to return reports with a given value of auto-hide.
      * @param frequency Filter to return reports with a given frequency.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListpoliciesResponse list(Optional<Boolean> autoHide, Optional<String> frequency) throws Exception {
+    public ListpoliciesResponse list(Optional<Boolean> autoHide, Optional<String> frequency) {
         ListpoliciesRequest request =
             ListpoliciesRequest
                 .builder()
@@ -195,9 +194,9 @@ public class Policies {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreatepolicyResponse create(CreateDlpReportRequest request) throws Exception {
+    public CreatepolicyResponse create(CreateDlpReportRequest request) {
         RequestOperation<CreateDlpReportRequest, CreatepolicyResponse> operation
               = new Createpolicy.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -221,9 +220,9 @@ public class Policies {
      * 
      * @param id The id of the policy to download violations for.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DownloadpolicycsvResponse download(String id) throws Exception {
+    public DownloadpolicycsvResponse download(String id) {
         DownloadpolicycsvRequest request =
             DownloadpolicycsvRequest
                 .builder()

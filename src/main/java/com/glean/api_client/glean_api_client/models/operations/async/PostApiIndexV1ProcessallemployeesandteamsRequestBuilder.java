@@ -8,7 +8,6 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Processallemployeesandteams;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class PostApiIndexV1ProcessallemployeesandteamsRequestBuilder {
@@ -20,7 +19,7 @@ public class PostApiIndexV1ProcessallemployeesandteamsRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public CompletableFuture<PostApiIndexV1ProcessallemployeesandteamsResponse> call() throws Exception {
+    public CompletableFuture<PostApiIndexV1ProcessallemployeesandteamsResponse> call() {
         
         AsyncRequestlessOperation<PostApiIndexV1ProcessallemployeesandteamsResponse> operation
             = new PostApiIndexV1Processallemployeesandteams.Async(sdkConfiguration, _headers);

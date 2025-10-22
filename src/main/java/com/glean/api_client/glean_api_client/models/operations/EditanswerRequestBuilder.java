@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.EditAnswerRequest
 import com.glean.api_client.glean_api_client.operations.Editanswer;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class EditanswerRequestBuilder {
 
@@ -28,7 +27,7 @@ public class EditanswerRequestBuilder {
         return this;
     }
 
-    public EditanswerResponse call() throws Exception {
+    public EditanswerResponse call() {
         
         RequestOperation<EditAnswerRequest, EditanswerResponse> operation
               = new Editanswer.Sync(sdkConfiguration, _headers);

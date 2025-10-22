@@ -4,6 +4,7 @@
 package com.glean.api_client.glean_api_client.operations;
 
 import static com.glean.api_client.glean_api_client.operations.Operations.RequestlessOperation;
+import static com.glean.api_client.glean_api_client.utils.Exceptions.unchecked;
 import static com.glean.api_client.glean_api_client.operations.Operations.AsyncRequestlessOperation;
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
@@ -11,7 +12,6 @@ import com.glean.api_client.glean_api_client.SecuritySource;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1ProcessallemployeesandteamsResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
-import com.glean.api_client.glean_api_client.utils.Exceptions;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
 import com.glean.api_client.glean_api_client.utils.HTTPRequest;
 import com.glean.api_client.glean_api_client.utils.Headers;
@@ -115,8 +115,8 @@ public class PostApiIndexV1Processallemployeesandteams {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest() throws Exception {
-            HttpRequest r = onBuildRequest();
+        public HttpResponse<InputStream> doRequest() {
+            HttpRequest r = unchecked(() -> onBuildRequest()).get();
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
@@ -126,7 +126,7 @@ public class PostApiIndexV1Processallemployeesandteams {
                     httpRes = onSuccess(httpRes);
                 }
             } catch (Exception e) {
-                httpRes = onError(null, e);
+                httpRes = unchecked(() -> onError(null, e)).get();
             }
 
             return httpRes;
@@ -134,7 +134,7 @@ public class PostApiIndexV1Processallemployeesandteams {
 
 
         @Override
-        public PostApiIndexV1ProcessallemployeesandteamsResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public PostApiIndexV1ProcessallemployeesandteamsResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -152,30 +152,15 @@ public class PostApiIndexV1Processallemployeesandteams {
                 // no content
                 return res;
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "400", "401", "429", "4XX")) {
                 // no content
-                throw new APIException(
-                        response,
-                        response.statusCode(),
-                        "API error occurred",
-                        Utils.extractByteArrayFromBody(response));
+                throw APIException.from("API error occurred", response);
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "5XX")) {
                 // no content
-                throw new APIException(
-                        response,
-                        response.statusCode(),
-                        "API error occurred",
-                        Utils.extractByteArrayFromBody(response));
+                throw APIException.from("API error occurred", response);
             }
-            
-            throw new APIException(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            throw APIException.from("Unexpected status code received: " + response.statusCode(), response);
         }
     }
     public static class Async extends Base
@@ -200,7 +185,7 @@ public class PostApiIndexV1Processallemployeesandteams {
 
         @Override
         public CompletableFuture<HttpResponse<Blob>> doRequest() {
-            return Exceptions.unchecked(() -> onBuildRequest()).get().thenCompose(client::sendAsync)
+            return unchecked(() -> onBuildRequest()).get().thenCompose(client::sendAsync)
                     .handle((resp, err) -> {
                         if (err != null) {
                             return onError(null, err);
@@ -234,17 +219,14 @@ public class PostApiIndexV1Processallemployeesandteams {
                 // no content
                 return CompletableFuture.completedFuture(res);
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "400", "401", "429", "4XX")) {
                 // no content
                 return Utils.createAsyncApiError(response, "API error occurred");
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "5XX")) {
                 // no content
                 return Utils.createAsyncApiError(response, "API error occurred");
             }
-            
             return Utils.createAsyncApiError(response, "Unexpected status code received: " + response.statusCode());
         }
     }

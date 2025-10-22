@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.DeleteDocumentReq
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Deletedocument;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class PostApiIndexV1DeletedocumentRequestBuilder {
@@ -29,7 +28,7 @@ public class PostApiIndexV1DeletedocumentRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<PostApiIndexV1DeletedocumentResponse> call() throws Exception {
+    public CompletableFuture<PostApiIndexV1DeletedocumentResponse> call() {
         
         AsyncRequestOperation<DeleteDocumentRequest, PostApiIndexV1DeletedocumentResponse> operation
               = new PostApiIndexV1Deletedocument.Async(sdkConfiguration, _headers);

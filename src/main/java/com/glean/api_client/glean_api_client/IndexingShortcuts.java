@@ -14,7 +14,6 @@ import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1Upl
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Bulkindexshortcuts;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Uploadshortcuts;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.Exception;
 
 
 public class IndexingShortcuts {
@@ -64,9 +63,9 @@ public class IndexingShortcuts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1BulkindexshortcutsResponse bulkIndex(BulkIndexShortcutsRequest request) throws Exception {
+    public PostApiIndexV1BulkindexshortcutsResponse bulkIndex(BulkIndexShortcutsRequest request) {
         RequestOperation<BulkIndexShortcutsRequest, PostApiIndexV1BulkindexshortcutsResponse> operation
               = new PostApiIndexV1Bulkindexshortcuts.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -92,9 +91,9 @@ public class IndexingShortcuts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1UploadshortcutsResponse upload(UploadShortcutsRequest request) throws Exception {
+    public PostApiIndexV1UploadshortcutsResponse upload(UploadShortcutsRequest request) {
         RequestOperation<UploadShortcutsRequest, PostApiIndexV1UploadshortcutsResponse> operation
               = new PostApiIndexV1Uploadshortcuts.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));

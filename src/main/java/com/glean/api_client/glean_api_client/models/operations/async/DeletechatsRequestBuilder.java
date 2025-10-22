@@ -11,7 +11,6 @@ import com.glean.api_client.glean_api_client.models.operations.DeletechatsReques
 import com.glean.api_client.glean_api_client.operations.Deletechats;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.lang.Long;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -54,7 +53,7 @@ public class DeletechatsRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<DeletechatsResponse> call() throws Exception {
+    public CompletableFuture<DeletechatsResponse> call() {
         
         AsyncRequestOperation<DeletechatsRequest, DeletechatsResponse> operation
               = new Deletechats.Async(sdkConfiguration, _headers);

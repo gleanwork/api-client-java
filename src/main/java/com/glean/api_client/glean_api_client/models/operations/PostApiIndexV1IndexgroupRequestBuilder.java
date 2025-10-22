@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.IndexGroupRequest
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Indexgroup;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class PostApiIndexV1IndexgroupRequestBuilder {
 
@@ -28,7 +27,7 @@ public class PostApiIndexV1IndexgroupRequestBuilder {
         return this;
     }
 
-    public PostApiIndexV1IndexgroupResponse call() throws Exception {
+    public PostApiIndexV1IndexgroupResponse call() {
         
         RequestOperation<IndexGroupRequest, PostApiIndexV1IndexgroupResponse> operation
               = new PostApiIndexV1Indexgroup.Sync(sdkConfiguration, _headers);

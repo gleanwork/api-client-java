@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0359d4fe-2923-46fc-aaca-cf70b48dcfa1
 management:
-  docChecksum: 5a4cd8de1e6ca5f701ac27e244d09799
+  docChecksum: 30752ad325475357749711c885ecb81f
   docVersion: 0.9.0
-  speakeasyVersion: 1.636.3
-  generationVersion: 2.723.11
-  releaseVersion: 0.10.7
-  configChecksum: 72d9151877c585b3c754e083d3c839ed
+  speakeasyVersion: 1.638.0
+  generationVersion: 2.728.0
+  releaseVersion: 0.11.0
+  configChecksum: d157cb95dffa505a3cbd4f357c97d5f3
   repoURL: https://github.com/gleanwork/api-client-java.git
   published: true
 features:
@@ -14,7 +14,7 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.0.1
     constsAndDefaults: 0.1.1
-    core: 3.52.3
+    core: 3.53.0
     deprecations: 2.81.1
     examples: 2.81.6
     flattening: 2.81.1
@@ -1399,13 +1399,12 @@ generatedFiles:
   - src/main/java/com/glean/api_client/glean_api_client/models/components/WriteActionType.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/WritePermission.java
   - src/main/java/com/glean/api_client/glean_api_client/models/errors/APIException.java
+  - src/main/java/com/glean/api_client/glean_api_client/models/errors/AsyncAPIException.java
   - src/main/java/com/glean/api_client/glean_api_client/models/errors/AuthException.java
   - src/main/java/com/glean/api_client/glean_api_client/models/errors/CollectionError.java
   - src/main/java/com/glean/api_client/glean_api_client/models/errors/ErrorCode.java
   - src/main/java/com/glean/api_client/glean_api_client/models/errors/GleanDataError.java
-  - src/main/java/com/glean/api_client/glean_api_client/models/errors/UncheckedAPIException.java
-  - src/main/java/com/glean/api_client/glean_api_client/models/errors/async/CollectionError.java
-  - src/main/java/com/glean/api_client/glean_api_client/models/errors/async/GleanDataError.java
+  - src/main/java/com/glean/api_client/glean_api_client/models/errors/GleanError.java
   - src/main/java/com/glean/api_client/glean_api_client/models/operations//async/ActivityRequestBuilder.java
   - src/main/java/com/glean/api_client/glean_api_client/models/operations//async/AddcollectionitemsRequestBuilder.java
   - src/main/java/com/glean/api_client/glean_api_client/models/operations//async/AddverificationreminderRequestBuilder.java
@@ -2898,4 +2897,4 @@ generatedTests:
   get_/rest/api/v1/tools/list: "2025-06-09T18:03:44Z"
   post_/rest/api/v1/tools/call: "2025-06-09T18:03:44Z"
   listpolicies: "2025-06-09T18:03:44Z"
-releaseNotes: "## Java SDK Changes Detected:\n* `glean.client.messages.retrieve()`: \n  *  `request.datasource` **Changed** **Breaking** :warning:\n"
+releaseNotes: "## Java SDK Changes Detected:\n* `glean.client.chat.create()`: \n  *  `request.chatrequest.messages.[].agentConfig.useImageGeneration` **Added**\n  *  `response.messages.[].agentConfig.useImageGeneration` **Added**\n* `glean.client.chat.retrieve()`:  `response.chatresult.chat.messages.[].agentConfig.useImageGeneration` **Added**\n* `glean.client.chat.createStream()`: \n  *  `request.chatrequest.messages.[].agentConfig.useImageGeneration` **Added**\n"

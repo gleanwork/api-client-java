@@ -14,7 +14,6 @@ import com.glean.api_client.glean_api_client.models.operations.SetdocvisibilityR
 import com.glean.api_client.glean_api_client.operations.Getdocvisibility;
 import com.glean.api_client.glean_api_client.operations.Setdocvisibility;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -56,9 +55,9 @@ public class Visibilityoverrides {
      * <p>Fetches the visibility override status of the documents passed.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetdocvisibilityResponse listDirect() throws Exception {
+    public GetdocvisibilityResponse listDirect() {
         return list(Optional.empty());
     }
 
@@ -69,9 +68,9 @@ public class Visibilityoverrides {
      * 
      * @param docIds List of doc-ids which will have their hide status fetched.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetdocvisibilityResponse list(Optional<? extends List<String>> docIds) throws Exception {
+    public GetdocvisibilityResponse list(Optional<? extends List<String>> docIds) {
         GetdocvisibilityRequest request =
             GetdocvisibilityRequest
                 .builder()
@@ -102,9 +101,9 @@ public class Visibilityoverrides {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public SetdocvisibilityResponse create(UpdateDocumentVisibilityOverridesRequest request) throws Exception {
+    public SetdocvisibilityResponse create(UpdateDocumentVisibilityOverridesRequest request) {
         RequestOperation<UpdateDocumentVisibilityOverridesRequest, SetdocvisibilityResponse> operation
               = new Setdocvisibility.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));

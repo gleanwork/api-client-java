@@ -9,7 +9,6 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.Activity;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class ActivityRequestBuilder {
@@ -28,7 +27,7 @@ public class ActivityRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<ActivityResponse> call() throws Exception {
+    public CompletableFuture<ActivityResponse> call() {
         
         AsyncRequestOperation<Activity, ActivityResponse> operation
               = new com.glean.api_client.glean_api_client.operations.Activity.Async(sdkConfiguration, _headers);

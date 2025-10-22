@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.DeleteTeamRequest
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Deleteteam;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class PostApiIndexV1DeleteteamRequestBuilder {
 
@@ -28,7 +27,7 @@ public class PostApiIndexV1DeleteteamRequestBuilder {
         return this;
     }
 
-    public PostApiIndexV1DeleteteamResponse call() throws Exception {
+    public PostApiIndexV1DeleteteamResponse call() {
         
         RequestOperation<DeleteTeamRequest, PostApiIndexV1DeleteteamResponse> operation
               = new PostApiIndexV1Deleteteam.Sync(sdkConfiguration, _headers);

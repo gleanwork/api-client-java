@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.EditCollectionReq
 import com.glean.api_client.glean_api_client.operations.Editcollection;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class EditcollectionRequestBuilder {
 
@@ -28,7 +27,7 @@ public class EditcollectionRequestBuilder {
         return this;
     }
 
-    public EditcollectionResponse call() throws Exception {
+    public EditcollectionResponse call() {
         
         RequestOperation<EditCollectionRequest, EditcollectionResponse> operation
               = new Editcollection.Sync(sdkConfiguration, _headers);

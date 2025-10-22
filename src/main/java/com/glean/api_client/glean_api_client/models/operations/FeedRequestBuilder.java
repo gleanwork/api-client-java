@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.FeedRequest;
 import com.glean.api_client.glean_api_client.operations.Feed;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class FeedRequestBuilder {
 
@@ -28,7 +27,7 @@ public class FeedRequestBuilder {
         return this;
     }
 
-    public FeedResponse call() throws Exception {
+    public FeedResponse call() {
         
         RequestOperation<FeedRequest, FeedResponse> operation
               = new Feed.Sync(sdkConfiguration, _headers);

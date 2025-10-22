@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.GetDatasourceConf
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Getdatasourceconfig;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class PostApiIndexV1GetdatasourceconfigRequestBuilder {
@@ -29,7 +28,7 @@ public class PostApiIndexV1GetdatasourceconfigRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<PostApiIndexV1GetdatasourceconfigResponse> call() throws Exception {
+    public CompletableFuture<PostApiIndexV1GetdatasourceconfigResponse> call() {
         
         AsyncRequestOperation<GetDatasourceConfigRequest, PostApiIndexV1GetdatasourceconfigResponse> operation
               = new PostApiIndexV1Getdatasourceconfig.Async(sdkConfiguration, _headers);

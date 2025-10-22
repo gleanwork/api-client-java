@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.AutocompleteReque
 import com.glean.api_client.glean_api_client.operations.Autocomplete;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class AutocompleteRequestBuilder {
@@ -29,7 +28,7 @@ public class AutocompleteRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<AutocompleteResponse> call() throws Exception {
+    public CompletableFuture<AutocompleteResponse> call() {
         
         AsyncRequestOperation<AutocompleteRequest, AutocompleteResponse> operation
               = new Autocomplete.Async(sdkConfiguration, _headers);

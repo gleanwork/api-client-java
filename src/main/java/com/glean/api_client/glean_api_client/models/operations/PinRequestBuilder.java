@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.PinRequest;
 import com.glean.api_client.glean_api_client.operations.Pin;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class PinRequestBuilder {
 
@@ -28,7 +27,7 @@ public class PinRequestBuilder {
         return this;
     }
 
-    public PinResponse call() throws Exception {
+    public PinResponse call() {
         
         RequestOperation<PinRequest, PinResponse> operation
               = new Pin.Sync(sdkConfiguration, _headers);

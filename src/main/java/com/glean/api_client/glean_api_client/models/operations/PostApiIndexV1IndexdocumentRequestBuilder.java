@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.IndexDocumentRequ
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Indexdocument;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class PostApiIndexV1IndexdocumentRequestBuilder {
 
@@ -28,7 +27,7 @@ public class PostApiIndexV1IndexdocumentRequestBuilder {
         return this;
     }
 
-    public PostApiIndexV1IndexdocumentResponse call() throws Exception {
+    public PostApiIndexV1IndexdocumentResponse call() {
         
         RequestOperation<IndexDocumentRequest, PostApiIndexV1IndexdocumentResponse> operation
               = new PostApiIndexV1Indexdocument.Sync(sdkConfiguration, _headers);

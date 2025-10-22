@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.EditAnswerRequest
 import com.glean.api_client.glean_api_client.operations.Editanswer;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class EditanswerRequestBuilder {
@@ -29,7 +28,7 @@ public class EditanswerRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<EditanswerResponse> call() throws Exception {
+    public CompletableFuture<EditanswerResponse> call() {
         
         AsyncRequestOperation<EditAnswerRequest, EditanswerResponse> operation
               = new Editanswer.Async(sdkConfiguration, _headers);

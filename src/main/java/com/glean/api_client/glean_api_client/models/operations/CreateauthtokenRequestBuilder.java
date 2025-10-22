@@ -8,7 +8,6 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.operations.Createauthtoken;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.Exception;
 
 public class CreateauthtokenRequestBuilder {
 
@@ -19,7 +18,7 @@ public class CreateauthtokenRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public CreateauthtokenResponse call() throws Exception {
+    public CreateauthtokenResponse call() {
         
         RequestlessOperation<CreateauthtokenResponse> operation
             = new Createauthtoken.Sync(sdkConfiguration, _headers);

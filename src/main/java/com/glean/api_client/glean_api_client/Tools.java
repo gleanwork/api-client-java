@@ -14,7 +14,6 @@ import com.glean.api_client.glean_api_client.models.operations.PostRestApiV1Tool
 import com.glean.api_client.glean_api_client.operations.GetRestApiV1ToolsList;
 import com.glean.api_client.glean_api_client.operations.PostRestApiV1ToolsCall;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -58,9 +57,9 @@ public class Tools {
      * provided, all available tools are returned.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetRestApiV1ToolsListResponse listDirect() throws Exception {
+    public GetRestApiV1ToolsListResponse listDirect() {
         return list(Optional.empty());
     }
 
@@ -72,9 +71,9 @@ public class Tools {
      * 
      * @param toolNames Optional array of tool names to filter by
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetRestApiV1ToolsListResponse list(Optional<? extends List<String>> toolNames) throws Exception {
+    public GetRestApiV1ToolsListResponse list(Optional<? extends List<String>> toolNames) {
         GetRestApiV1ToolsListRequest request =
             GetRestApiV1ToolsListRequest
                 .builder()
@@ -103,9 +102,9 @@ public class Tools {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostRestApiV1ToolsCallResponse run(ToolsCallRequest request) throws Exception {
+    public PostRestApiV1ToolsCallResponse run(ToolsCallRequest request) {
         RequestOperation<ToolsCallRequest, PostRestApiV1ToolsCallResponse> operation
               = new PostRestApiV1ToolsCall.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));

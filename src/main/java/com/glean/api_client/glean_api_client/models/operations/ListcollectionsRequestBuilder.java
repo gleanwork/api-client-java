@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.ListCollectionsRe
 import com.glean.api_client.glean_api_client.operations.Listcollections;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class ListcollectionsRequestBuilder {
 
@@ -28,7 +27,7 @@ public class ListcollectionsRequestBuilder {
         return this;
     }
 
-    public ListcollectionsResponse call() throws Exception {
+    public ListcollectionsResponse call() {
         
         RequestOperation<ListCollectionsRequest, ListcollectionsResponse> operation
               = new Listcollections.Sync(sdkConfiguration, _headers);

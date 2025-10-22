@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.DeleteShortcutReq
 import com.glean.api_client.glean_api_client.operations.Deleteshortcut;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class DeleteshortcutRequestBuilder {
 
@@ -28,7 +27,7 @@ public class DeleteshortcutRequestBuilder {
         return this;
     }
 
-    public DeleteshortcutResponse call() throws Exception {
+    public DeleteshortcutResponse call() {
         
         RequestOperation<DeleteShortcutRequest, DeleteshortcutResponse> operation
               = new Deleteshortcut.Sync(sdkConfiguration, _headers);

@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.EditPinRequest;
 import com.glean.api_client.glean_api_client.operations.Editpin;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class EditpinRequestBuilder {
@@ -29,7 +28,7 @@ public class EditpinRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<EditpinResponse> call() throws Exception {
+    public CompletableFuture<EditpinResponse> call() {
         
         AsyncRequestOperation<EditPinRequest, EditpinResponse> operation
               = new Editpin.Async(sdkConfiguration, _headers);

@@ -11,7 +11,6 @@ import com.glean.api_client.glean_api_client.models.operations.UpdatepolicyReque
 import com.glean.api_client.glean_api_client.operations.Updatepolicy;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 
@@ -47,7 +46,7 @@ public class UpdatepolicyRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<UpdatepolicyResponse> call() throws Exception {
+    public CompletableFuture<UpdatepolicyResponse> call() {
         
         AsyncRequestOperation<UpdatepolicyRequest, UpdatepolicyResponse> operation
               = new Updatepolicy.Async(sdkConfiguration, _headers);

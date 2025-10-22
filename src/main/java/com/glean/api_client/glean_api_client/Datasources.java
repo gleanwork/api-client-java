@@ -14,7 +14,6 @@ import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1Get
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Adddatasource;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Getdatasourceconfig;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.Exception;
 
 
 public class Datasources {
@@ -54,9 +53,9 @@ public class Datasources {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1AdddatasourceResponse add(CustomDatasourceConfig request) throws Exception {
+    public PostApiIndexV1AdddatasourceResponse add(CustomDatasourceConfig request) {
         RequestOperation<CustomDatasourceConfig, PostApiIndexV1AdddatasourceResponse> operation
               = new PostApiIndexV1Adddatasource.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -80,9 +79,9 @@ public class Datasources {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PostApiIndexV1GetdatasourceconfigResponse retrieveConfig(GetDatasourceConfigRequest request) throws Exception {
+    public PostApiIndexV1GetdatasourceconfigResponse retrieveConfig(GetDatasourceConfigRequest request) {
         RequestOperation<GetDatasourceConfigRequest, PostApiIndexV1GetdatasourceconfigResponse> operation
               = new PostApiIndexV1Getdatasourceconfig.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));

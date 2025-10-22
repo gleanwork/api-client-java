@@ -11,7 +11,6 @@ import com.glean.api_client.glean_api_client.models.operations.ChatStreamRequest
 import com.glean.api_client.glean_api_client.operations.ChatStream;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.lang.Long;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -54,7 +53,7 @@ public class ChatStreamRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<ChatStreamResponse> call() throws Exception {
+    public CompletableFuture<ChatStreamResponse> call() {
         
         AsyncRequestOperation<ChatStreamRequest, ChatStreamResponse> operation
               = new ChatStream.Async(sdkConfiguration, _headers);

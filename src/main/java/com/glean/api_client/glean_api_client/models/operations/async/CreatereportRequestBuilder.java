@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.UpdateDlpConfigRe
 import com.glean.api_client.glean_api_client.operations.Createreport;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class CreatereportRequestBuilder {
@@ -29,7 +28,7 @@ public class CreatereportRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<CreatereportResponse> call() throws Exception {
+    public CompletableFuture<CreatereportResponse> call() {
         
         AsyncRequestOperation<UpdateDlpConfigRequest, CreatereportResponse> operation
               = new Createreport.Async(sdkConfiguration, _headers);

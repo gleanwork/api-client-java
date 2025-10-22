@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.operations.ListpinsRequest;
 import com.glean.api_client.glean_api_client.operations.Listpins;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class ListpinsRequestBuilder {
@@ -29,7 +28,7 @@ public class ListpinsRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<ListpinsResponse> call() throws Exception {
+    public CompletableFuture<ListpinsResponse> call() {
         
         AsyncRequestOperation<ListpinsRequest, ListpinsResponse> operation
               = new Listpins.Async(sdkConfiguration, _headers);

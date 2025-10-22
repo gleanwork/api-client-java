@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.BulkIndexDocument
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Bulkindexdocuments;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class PostApiIndexV1BulkindexdocumentsRequestBuilder {
 
@@ -28,7 +27,7 @@ public class PostApiIndexV1BulkindexdocumentsRequestBuilder {
         return this;
     }
 
-    public PostApiIndexV1BulkindexdocumentsResponse call() throws Exception {
+    public PostApiIndexV1BulkindexdocumentsResponse call() {
         
         RequestOperation<BulkIndexDocumentsRequest, PostApiIndexV1BulkindexdocumentsResponse> operation
               = new PostApiIndexV1Bulkindexdocuments.Sync(sdkConfiguration, _headers);

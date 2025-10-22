@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.ListAnswersReques
 import com.glean.api_client.glean_api_client.operations.Listanswers;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class ListanswersRequestBuilder {
@@ -29,7 +28,7 @@ public class ListanswersRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<ListanswersResponse> call() throws Exception {
+    public CompletableFuture<ListanswersResponse> call() {
         
         AsyncRequestOperation<ListAnswersRequest, ListanswersResponse> operation
               = new Listanswers.Async(sdkConfiguration, _headers);

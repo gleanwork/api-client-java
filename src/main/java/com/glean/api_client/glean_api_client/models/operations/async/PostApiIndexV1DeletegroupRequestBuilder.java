@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.DeleteGroupReques
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Deletegroup;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 import java.util.concurrent.CompletableFuture;
 
 public class PostApiIndexV1DeletegroupRequestBuilder {
@@ -29,7 +28,7 @@ public class PostApiIndexV1DeletegroupRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<PostApiIndexV1DeletegroupResponse> call() throws Exception {
+    public CompletableFuture<PostApiIndexV1DeletegroupResponse> call() {
         
         AsyncRequestOperation<DeleteGroupRequest, PostApiIndexV1DeletegroupResponse> operation
               = new PostApiIndexV1Deletegroup.Async(sdkConfiguration, _headers);

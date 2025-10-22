@@ -10,7 +10,6 @@ import com.glean.api_client.glean_api_client.models.components.SearchRequest;
 import com.glean.api_client.glean_api_client.operations.Adminsearch;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Exception;
 
 public class AdminsearchRequestBuilder {
 
@@ -28,7 +27,7 @@ public class AdminsearchRequestBuilder {
         return this;
     }
 
-    public AdminsearchResponse call() throws Exception {
+    public AdminsearchResponse call() {
         
         RequestOperation<SearchRequest, AdminsearchResponse> operation
               = new Adminsearch.Sync(sdkConfiguration, _headers);
