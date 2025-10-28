@@ -5,39 +5,31 @@ package com.glean.api_client.glean_api_client.models.components;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Optional;
 
 
 public class DocumentOrError {
     /**
      * The text for error, reason.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
-    private Optional<String> error;
+    private String error;
 
     @JsonCreator
     public DocumentOrError(
-            @JsonProperty("error") Optional<String> error) {
+            @JsonProperty("error") String error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
-    }
-    
-    public DocumentOrError() {
-        this(Optional.empty());
     }
 
     /**
      * The text for error, reason.
      */
     @JsonIgnore
-    public Optional<String> error() {
+    public String error() {
         return error;
     }
 
@@ -50,16 +42,6 @@ public class DocumentOrError {
      * The text for error, reason.
      */
     public DocumentOrError withError(String error) {
-        Utils.checkNotNull(error, "error");
-        this.error = Optional.ofNullable(error);
-        return this;
-    }
-
-
-    /**
-     * The text for error, reason.
-     */
-    public DocumentOrError withError(Optional<String> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
@@ -93,7 +75,7 @@ public class DocumentOrError {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> error = Optional.empty();
+        private String error;
 
         private Builder() {
           // force use of static builder() method
@@ -104,15 +86,6 @@ public class DocumentOrError {
          * The text for error, reason.
          */
         public Builder error(String error) {
-            Utils.checkNotNull(error, "error");
-            this.error = Optional.ofNullable(error);
-            return this;
-        }
-
-        /**
-         * The text for error, reason.
-         */
-        public Builder error(Optional<String> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
             return this;
