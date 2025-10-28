@@ -98,6 +98,13 @@ public class StructuredResult {
     private Optional<? extends QuerySuggestionList> querySuggestions;
 
     /**
+     * Metadata of a Chat a user had with Glean Assistant. This contains no actual conversational content.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("chat")
+    private Optional<? extends ChatMetadata> chat;
+
+    /**
      * A list of documents related to this structured result.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -162,6 +169,7 @@ public class StructuredResult {
             @JsonProperty("code") Optional<? extends Code> code,
             @JsonProperty("shortcut") Optional<? extends Shortcut> shortcut,
             @JsonProperty("querySuggestions") Optional<? extends QuerySuggestionList> querySuggestions,
+            @JsonProperty("chat") Optional<? extends ChatMetadata> chat,
             @JsonProperty("relatedDocuments") Optional<? extends List<RelatedDocuments>> relatedDocuments,
             @JsonProperty("relatedQuestion") Optional<? extends RelatedQuestion> relatedQuestion,
             @JsonProperty("disambiguation") Optional<? extends Disambiguation> disambiguation,
@@ -184,6 +192,7 @@ public class StructuredResult {
         Utils.checkNotNull(code, "code");
         Utils.checkNotNull(shortcut, "shortcut");
         Utils.checkNotNull(querySuggestions, "querySuggestions");
+        Utils.checkNotNull(chat, "chat");
         Utils.checkNotNull(relatedDocuments, "relatedDocuments");
         Utils.checkNotNull(relatedQuestion, "relatedQuestion");
         Utils.checkNotNull(disambiguation, "disambiguation");
@@ -206,6 +215,7 @@ public class StructuredResult {
         this.code = code;
         this.shortcut = shortcut;
         this.querySuggestions = querySuggestions;
+        this.chat = chat;
         this.relatedDocuments = relatedDocuments;
         this.relatedQuestion = relatedQuestion;
         this.disambiguation = disambiguation;
@@ -223,7 +233,7 @@ public class StructuredResult {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -314,6 +324,15 @@ public class StructuredResult {
     @JsonIgnore
     public Optional<QuerySuggestionList> querySuggestions() {
         return (Optional<QuerySuggestionList>) querySuggestions;
+    }
+
+    /**
+     * Metadata of a Chat a user had with Glean Assistant. This contains no actual conversational content.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ChatMetadata> chat() {
+        return (Optional<ChatMetadata>) chat;
     }
 
     /**
@@ -577,6 +596,25 @@ public class StructuredResult {
     }
 
     /**
+     * Metadata of a Chat a user had with Glean Assistant. This contains no actual conversational content.
+     */
+    public StructuredResult withChat(ChatMetadata chat) {
+        Utils.checkNotNull(chat, "chat");
+        this.chat = Optional.ofNullable(chat);
+        return this;
+    }
+
+
+    /**
+     * Metadata of a Chat a user had with Glean Assistant. This contains no actual conversational content.
+     */
+    public StructuredResult withChat(Optional<? extends ChatMetadata> chat) {
+        Utils.checkNotNull(chat, "chat");
+        this.chat = chat;
+        return this;
+    }
+
+    /**
      * A list of documents related to this structured result.
      */
     public StructuredResult withRelatedDocuments(List<RelatedDocuments> relatedDocuments) {
@@ -730,6 +768,7 @@ public class StructuredResult {
             Utils.enhancedDeepEquals(this.code, other.code) &&
             Utils.enhancedDeepEquals(this.shortcut, other.shortcut) &&
             Utils.enhancedDeepEquals(this.querySuggestions, other.querySuggestions) &&
+            Utils.enhancedDeepEquals(this.chat, other.chat) &&
             Utils.enhancedDeepEquals(this.relatedDocuments, other.relatedDocuments) &&
             Utils.enhancedDeepEquals(this.relatedQuestion, other.relatedQuestion) &&
             Utils.enhancedDeepEquals(this.disambiguation, other.disambiguation) &&
@@ -747,9 +786,9 @@ public class StructuredResult {
             generatedQna, extractedQnA, meeting,
             app, collection, answerBoard,
             code, shortcut, querySuggestions,
-            relatedDocuments, relatedQuestion, disambiguation,
-            snippets, trackingToken, prominence,
-            source);
+            chat, relatedDocuments, relatedQuestion,
+            disambiguation, snippets, trackingToken,
+            prominence, source);
     }
     
     @Override
@@ -770,6 +809,7 @@ public class StructuredResult {
                 "code", code,
                 "shortcut", shortcut,
                 "querySuggestions", querySuggestions,
+                "chat", chat,
                 "relatedDocuments", relatedDocuments,
                 "relatedQuestion", relatedQuestion,
                 "disambiguation", disambiguation,
@@ -811,6 +851,8 @@ public class StructuredResult {
         private Optional<? extends Shortcut> shortcut = Optional.empty();
 
         private Optional<? extends QuerySuggestionList> querySuggestions = Optional.empty();
+
+        private Optional<? extends ChatMetadata> chat = Optional.empty();
 
         private Optional<? extends List<RelatedDocuments>> relatedDocuments = Optional.empty();
 
@@ -1027,6 +1069,25 @@ public class StructuredResult {
 
 
         /**
+         * Metadata of a Chat a user had with Glean Assistant. This contains no actual conversational content.
+         */
+        public Builder chat(ChatMetadata chat) {
+            Utils.checkNotNull(chat, "chat");
+            this.chat = Optional.ofNullable(chat);
+            return this;
+        }
+
+        /**
+         * Metadata of a Chat a user had with Glean Assistant. This contains no actual conversational content.
+         */
+        public Builder chat(Optional<? extends ChatMetadata> chat) {
+            Utils.checkNotNull(chat, "chat");
+            this.chat = chat;
+            return this;
+        }
+
+
+        /**
          * A list of documents related to this structured result.
          */
         public Builder relatedDocuments(List<RelatedDocuments> relatedDocuments) {
@@ -1162,9 +1223,9 @@ public class StructuredResult {
                 generatedQna, extractedQnA, meeting,
                 app, collection, answerBoard,
                 code, shortcut, querySuggestions,
-                relatedDocuments, relatedQuestion, disambiguation,
-                snippets, trackingToken, prominence,
-                source);
+                chat, relatedDocuments, relatedQuestion,
+                disambiguation, snippets, trackingToken,
+                prominence, source);
         }
 
     }

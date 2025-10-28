@@ -26,6 +26,7 @@ public enum FeedbackCategory {
     WORKFLOWS("WORKFLOWS"),
     SUMMARY("SUMMARY"),
     GENERAL("GENERAL"),
+    PRISM("PRISM"),
     PROMPTS("PROMPTS");
 
     @JsonValue
