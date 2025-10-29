@@ -52,28 +52,49 @@ public class PerAgentInsight {
     @JsonProperty("runCount")
     private Optional<Long> runCount;
 
+    /**
+     * Total number of upvotes for this agent over the specified time period.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("upvoteCount")
+    private Optional<Long> upvoteCount;
+
+    /**
+     * Total number of downvotes for this agent over the specified time period.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("downvoteCount")
+    private Optional<Long> downvoteCount;
+
     @JsonCreator
     public PerAgentInsight(
             @JsonProperty("agentId") Optional<String> agentId,
             @JsonProperty("agentName") Optional<String> agentName,
             @JsonProperty("icon") Optional<? extends IconConfig> icon,
             @JsonProperty("userCount") Optional<Long> userCount,
-            @JsonProperty("runCount") Optional<Long> runCount) {
+            @JsonProperty("runCount") Optional<Long> runCount,
+            @JsonProperty("upvoteCount") Optional<Long> upvoteCount,
+            @JsonProperty("downvoteCount") Optional<Long> downvoteCount) {
         Utils.checkNotNull(agentId, "agentId");
         Utils.checkNotNull(agentName, "agentName");
         Utils.checkNotNull(icon, "icon");
         Utils.checkNotNull(userCount, "userCount");
         Utils.checkNotNull(runCount, "runCount");
+        Utils.checkNotNull(upvoteCount, "upvoteCount");
+        Utils.checkNotNull(downvoteCount, "downvoteCount");
         this.agentId = agentId;
         this.agentName = agentName;
         this.icon = icon;
         this.userCount = userCount;
         this.runCount = runCount;
+        this.upvoteCount = upvoteCount;
+        this.downvoteCount = downvoteCount;
     }
     
     public PerAgentInsight() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -115,6 +136,22 @@ public class PerAgentInsight {
     @JsonIgnore
     public Optional<Long> runCount() {
         return runCount;
+    }
+
+    /**
+     * Total number of upvotes for this agent over the specified time period.
+     */
+    @JsonIgnore
+    public Optional<Long> upvoteCount() {
+        return upvoteCount;
+    }
+
+    /**
+     * Total number of downvotes for this agent over the specified time period.
+     */
+    @JsonIgnore
+    public Optional<Long> downvoteCount() {
+        return downvoteCount;
     }
 
     public static Builder builder() {
@@ -217,6 +254,44 @@ public class PerAgentInsight {
         return this;
     }
 
+    /**
+     * Total number of upvotes for this agent over the specified time period.
+     */
+    public PerAgentInsight withUpvoteCount(long upvoteCount) {
+        Utils.checkNotNull(upvoteCount, "upvoteCount");
+        this.upvoteCount = Optional.ofNullable(upvoteCount);
+        return this;
+    }
+
+
+    /**
+     * Total number of upvotes for this agent over the specified time period.
+     */
+    public PerAgentInsight withUpvoteCount(Optional<Long> upvoteCount) {
+        Utils.checkNotNull(upvoteCount, "upvoteCount");
+        this.upvoteCount = upvoteCount;
+        return this;
+    }
+
+    /**
+     * Total number of downvotes for this agent over the specified time period.
+     */
+    public PerAgentInsight withDownvoteCount(long downvoteCount) {
+        Utils.checkNotNull(downvoteCount, "downvoteCount");
+        this.downvoteCount = Optional.ofNullable(downvoteCount);
+        return this;
+    }
+
+
+    /**
+     * Total number of downvotes for this agent over the specified time period.
+     */
+    public PerAgentInsight withDownvoteCount(Optional<Long> downvoteCount) {
+        Utils.checkNotNull(downvoteCount, "downvoteCount");
+        this.downvoteCount = downvoteCount;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -231,14 +306,17 @@ public class PerAgentInsight {
             Utils.enhancedDeepEquals(this.agentName, other.agentName) &&
             Utils.enhancedDeepEquals(this.icon, other.icon) &&
             Utils.enhancedDeepEquals(this.userCount, other.userCount) &&
-            Utils.enhancedDeepEquals(this.runCount, other.runCount);
+            Utils.enhancedDeepEquals(this.runCount, other.runCount) &&
+            Utils.enhancedDeepEquals(this.upvoteCount, other.upvoteCount) &&
+            Utils.enhancedDeepEquals(this.downvoteCount, other.downvoteCount);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             agentId, agentName, icon,
-            userCount, runCount);
+            userCount, runCount, upvoteCount,
+            downvoteCount);
     }
     
     @Override
@@ -248,7 +326,9 @@ public class PerAgentInsight {
                 "agentName", agentName,
                 "icon", icon,
                 "userCount", userCount,
-                "runCount", runCount);
+                "runCount", runCount,
+                "upvoteCount", upvoteCount,
+                "downvoteCount", downvoteCount);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -263,6 +343,10 @@ public class PerAgentInsight {
         private Optional<Long> userCount = Optional.empty();
 
         private Optional<Long> runCount = Optional.empty();
+
+        private Optional<Long> upvoteCount = Optional.empty();
+
+        private Optional<Long> downvoteCount = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -363,11 +447,50 @@ public class PerAgentInsight {
             return this;
         }
 
+
+        /**
+         * Total number of upvotes for this agent over the specified time period.
+         */
+        public Builder upvoteCount(long upvoteCount) {
+            Utils.checkNotNull(upvoteCount, "upvoteCount");
+            this.upvoteCount = Optional.ofNullable(upvoteCount);
+            return this;
+        }
+
+        /**
+         * Total number of upvotes for this agent over the specified time period.
+         */
+        public Builder upvoteCount(Optional<Long> upvoteCount) {
+            Utils.checkNotNull(upvoteCount, "upvoteCount");
+            this.upvoteCount = upvoteCount;
+            return this;
+        }
+
+
+        /**
+         * Total number of downvotes for this agent over the specified time period.
+         */
+        public Builder downvoteCount(long downvoteCount) {
+            Utils.checkNotNull(downvoteCount, "downvoteCount");
+            this.downvoteCount = Optional.ofNullable(downvoteCount);
+            return this;
+        }
+
+        /**
+         * Total number of downvotes for this agent over the specified time period.
+         */
+        public Builder downvoteCount(Optional<Long> downvoteCount) {
+            Utils.checkNotNull(downvoteCount, "downvoteCount");
+            this.downvoteCount = downvoteCount;
+            return this;
+        }
+
         public PerAgentInsight build() {
 
             return new PerAgentInsight(
                 agentId, agentName, icon,
-                userCount, runCount);
+                userCount, runCount, upvoteCount,
+                downvoteCount);
         }
 
     }
