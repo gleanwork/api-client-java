@@ -74,6 +74,16 @@ public class AgentsInsightsV2Response {
     @JsonProperty("dailyAgentRunsTimeseries")
     private Optional<? extends LabeledCountInfo> dailyAgentRunsTimeseries;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("upvotesTimeseries")
+    private Optional<? extends LabeledCountInfo> upvotesTimeseries;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("downvotesTimeseries")
+    private Optional<? extends LabeledCountInfo> downvotesTimeseries;
+
     @JsonCreator
     public AgentsInsightsV2Response(
             @JsonProperty("monthlyActiveUsers") Optional<Long> monthlyActiveUsers,
@@ -85,7 +95,9 @@ public class AgentsInsightsV2Response {
             @JsonProperty("topAgentsInsights") Optional<? extends List<PerAgentInsight>> topAgentsInsights,
             @JsonProperty("agentsUsageByDepartmentInsights") Optional<? extends List<AgentsUsageByDepartmentInsight>> agentsUsageByDepartmentInsights,
             @JsonProperty("agentUsersInsights") Optional<? extends List<AgentUsersInsight>> agentUsersInsights,
-            @JsonProperty("dailyAgentRunsTimeseries") Optional<? extends LabeledCountInfo> dailyAgentRunsTimeseries) {
+            @JsonProperty("dailyAgentRunsTimeseries") Optional<? extends LabeledCountInfo> dailyAgentRunsTimeseries,
+            @JsonProperty("upvotesTimeseries") Optional<? extends LabeledCountInfo> upvotesTimeseries,
+            @JsonProperty("downvotesTimeseries") Optional<? extends LabeledCountInfo> downvotesTimeseries) {
         Utils.checkNotNull(monthlyActiveUsers, "monthlyActiveUsers");
         Utils.checkNotNull(weeklyActiveUsers, "weeklyActiveUsers");
         Utils.checkNotNull(monthlyActiveUserTimeseries, "monthlyActiveUserTimeseries");
@@ -96,6 +108,8 @@ public class AgentsInsightsV2Response {
         Utils.checkNotNull(agentsUsageByDepartmentInsights, "agentsUsageByDepartmentInsights");
         Utils.checkNotNull(agentUsersInsights, "agentUsersInsights");
         Utils.checkNotNull(dailyAgentRunsTimeseries, "dailyAgentRunsTimeseries");
+        Utils.checkNotNull(upvotesTimeseries, "upvotesTimeseries");
+        Utils.checkNotNull(downvotesTimeseries, "downvotesTimeseries");
         this.monthlyActiveUsers = monthlyActiveUsers;
         this.weeklyActiveUsers = weeklyActiveUsers;
         this.monthlyActiveUserTimeseries = monthlyActiveUserTimeseries;
@@ -106,13 +120,15 @@ public class AgentsInsightsV2Response {
         this.agentsUsageByDepartmentInsights = agentsUsageByDepartmentInsights;
         this.agentUsersInsights = agentUsersInsights;
         this.dailyAgentRunsTimeseries = dailyAgentRunsTimeseries;
+        this.upvotesTimeseries = upvotesTimeseries;
+        this.downvotesTimeseries = downvotesTimeseries;
     }
     
     public AgentsInsightsV2Response() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -179,6 +195,18 @@ public class AgentsInsightsV2Response {
     @JsonIgnore
     public Optional<LabeledCountInfo> dailyAgentRunsTimeseries() {
         return (Optional<LabeledCountInfo>) dailyAgentRunsTimeseries;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<LabeledCountInfo> upvotesTimeseries() {
+        return (Optional<LabeledCountInfo>) upvotesTimeseries;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<LabeledCountInfo> downvotesTimeseries() {
+        return (Optional<LabeledCountInfo>) downvotesTimeseries;
     }
 
     public static Builder builder() {
@@ -334,6 +362,32 @@ public class AgentsInsightsV2Response {
         return this;
     }
 
+    public AgentsInsightsV2Response withUpvotesTimeseries(LabeledCountInfo upvotesTimeseries) {
+        Utils.checkNotNull(upvotesTimeseries, "upvotesTimeseries");
+        this.upvotesTimeseries = Optional.ofNullable(upvotesTimeseries);
+        return this;
+    }
+
+
+    public AgentsInsightsV2Response withUpvotesTimeseries(Optional<? extends LabeledCountInfo> upvotesTimeseries) {
+        Utils.checkNotNull(upvotesTimeseries, "upvotesTimeseries");
+        this.upvotesTimeseries = upvotesTimeseries;
+        return this;
+    }
+
+    public AgentsInsightsV2Response withDownvotesTimeseries(LabeledCountInfo downvotesTimeseries) {
+        Utils.checkNotNull(downvotesTimeseries, "downvotesTimeseries");
+        this.downvotesTimeseries = Optional.ofNullable(downvotesTimeseries);
+        return this;
+    }
+
+
+    public AgentsInsightsV2Response withDownvotesTimeseries(Optional<? extends LabeledCountInfo> downvotesTimeseries) {
+        Utils.checkNotNull(downvotesTimeseries, "downvotesTimeseries");
+        this.downvotesTimeseries = downvotesTimeseries;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -353,7 +407,9 @@ public class AgentsInsightsV2Response {
             Utils.enhancedDeepEquals(this.topAgentsInsights, other.topAgentsInsights) &&
             Utils.enhancedDeepEquals(this.agentsUsageByDepartmentInsights, other.agentsUsageByDepartmentInsights) &&
             Utils.enhancedDeepEquals(this.agentUsersInsights, other.agentUsersInsights) &&
-            Utils.enhancedDeepEquals(this.dailyAgentRunsTimeseries, other.dailyAgentRunsTimeseries);
+            Utils.enhancedDeepEquals(this.dailyAgentRunsTimeseries, other.dailyAgentRunsTimeseries) &&
+            Utils.enhancedDeepEquals(this.upvotesTimeseries, other.upvotesTimeseries) &&
+            Utils.enhancedDeepEquals(this.downvotesTimeseries, other.downvotesTimeseries);
     }
     
     @Override
@@ -362,7 +418,7 @@ public class AgentsInsightsV2Response {
             monthlyActiveUsers, weeklyActiveUsers, monthlyActiveUserTimeseries,
             weeklyActiveUserTimeseries, dailyActiveUserTimeseries, sharedAgentsCount,
             topAgentsInsights, agentsUsageByDepartmentInsights, agentUsersInsights,
-            dailyAgentRunsTimeseries);
+            dailyAgentRunsTimeseries, upvotesTimeseries, downvotesTimeseries);
     }
     
     @Override
@@ -377,7 +433,9 @@ public class AgentsInsightsV2Response {
                 "topAgentsInsights", topAgentsInsights,
                 "agentsUsageByDepartmentInsights", agentsUsageByDepartmentInsights,
                 "agentUsersInsights", agentUsersInsights,
-                "dailyAgentRunsTimeseries", dailyAgentRunsTimeseries);
+                "dailyAgentRunsTimeseries", dailyAgentRunsTimeseries,
+                "upvotesTimeseries", upvotesTimeseries,
+                "downvotesTimeseries", downvotesTimeseries);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -402,6 +460,10 @@ public class AgentsInsightsV2Response {
         private Optional<? extends List<AgentUsersInsight>> agentUsersInsights = Optional.empty();
 
         private Optional<? extends LabeledCountInfo> dailyAgentRunsTimeseries = Optional.empty();
+
+        private Optional<? extends LabeledCountInfo> upvotesTimeseries = Optional.empty();
+
+        private Optional<? extends LabeledCountInfo> downvotesTimeseries = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -555,13 +617,39 @@ public class AgentsInsightsV2Response {
             return this;
         }
 
+
+        public Builder upvotesTimeseries(LabeledCountInfo upvotesTimeseries) {
+            Utils.checkNotNull(upvotesTimeseries, "upvotesTimeseries");
+            this.upvotesTimeseries = Optional.ofNullable(upvotesTimeseries);
+            return this;
+        }
+
+        public Builder upvotesTimeseries(Optional<? extends LabeledCountInfo> upvotesTimeseries) {
+            Utils.checkNotNull(upvotesTimeseries, "upvotesTimeseries");
+            this.upvotesTimeseries = upvotesTimeseries;
+            return this;
+        }
+
+
+        public Builder downvotesTimeseries(LabeledCountInfo downvotesTimeseries) {
+            Utils.checkNotNull(downvotesTimeseries, "downvotesTimeseries");
+            this.downvotesTimeseries = Optional.ofNullable(downvotesTimeseries);
+            return this;
+        }
+
+        public Builder downvotesTimeseries(Optional<? extends LabeledCountInfo> downvotesTimeseries) {
+            Utils.checkNotNull(downvotesTimeseries, "downvotesTimeseries");
+            this.downvotesTimeseries = downvotesTimeseries;
+            return this;
+        }
+
         public AgentsInsightsV2Response build() {
 
             return new AgentsInsightsV2Response(
                 monthlyActiveUsers, weeklyActiveUsers, monthlyActiveUserTimeseries,
                 weeklyActiveUserTimeseries, dailyActiveUserTimeseries, sharedAgentsCount,
                 topAgentsInsights, agentsUsageByDepartmentInsights, agentUsersInsights,
-                dailyAgentRunsTimeseries);
+                dailyAgentRunsTimeseries, upvotesTimeseries, downvotesTimeseries);
         }
 
     }
