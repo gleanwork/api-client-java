@@ -18,7 +18,8 @@ import java.util.Optional;
 
 public class DebugDatasourceStatusResponseCounts {
     /**
-     * A list of object types and corresponding upload counts
+     * A list of object types and corresponding upload counts. Note: This data may be cached and could be
+     * up to 3 hours stale.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("uploaded")
@@ -46,7 +47,8 @@ public class DebugDatasourceStatusResponseCounts {
     }
 
     /**
-     * A list of object types and corresponding upload counts
+     * A list of object types and corresponding upload counts. Note: This data may be cached and could be
+     * up to 3 hours stale.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -69,7 +71,8 @@ public class DebugDatasourceStatusResponseCounts {
 
 
     /**
-     * A list of object types and corresponding upload counts
+     * A list of object types and corresponding upload counts. Note: This data may be cached and could be
+     * up to 3 hours stale.
      */
     public DebugDatasourceStatusResponseCounts withUploaded(List<DatasourceObjectTypeDocumentCountEntry> uploaded) {
         Utils.checkNotNull(uploaded, "uploaded");
@@ -79,7 +82,8 @@ public class DebugDatasourceStatusResponseCounts {
 
 
     /**
-     * A list of object types and corresponding upload counts
+     * A list of object types and corresponding upload counts. Note: This data may be cached and could be
+     * up to 3 hours stale.
      */
     public DebugDatasourceStatusResponseCounts withUploaded(Optional<? extends List<DatasourceObjectTypeDocumentCountEntry>> uploaded) {
         Utils.checkNotNull(uploaded, "uploaded");
@@ -146,7 +150,8 @@ public class DebugDatasourceStatusResponseCounts {
 
 
         /**
-         * A list of object types and corresponding upload counts
+         * A list of object types and corresponding upload counts. Note: This data may be cached and could be
+         * up to 3 hours stale.
          */
         public Builder uploaded(List<DatasourceObjectTypeDocumentCountEntry> uploaded) {
             Utils.checkNotNull(uploaded, "uploaded");
@@ -155,7 +160,8 @@ public class DebugDatasourceStatusResponseCounts {
         }
 
         /**
-         * A list of object types and corresponding upload counts
+         * A list of object types and corresponding upload counts. Note: This data may be cached and could be
+         * up to 3 hours stale.
          */
         public Builder uploaded(Optional<? extends List<DatasourceObjectTypeDocumentCountEntry>> uploaded) {
             Utils.checkNotNull(uploaded, "uploaded");
