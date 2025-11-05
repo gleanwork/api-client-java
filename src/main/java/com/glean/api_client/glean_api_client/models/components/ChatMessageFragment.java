@@ -24,7 +24,7 @@ import java.util.Optional;
  * information, and more.
  * 
  * <p>Also, each ChatMessageFragment should only have one of structuredResults, querySuggestion,
- * writeAction, followupAction, agentRecommendation or file.
+ * writeAction, followupAction, agentRecommendation, followupRoutingSuggestion or file.
  */
 public class ChatMessageFragment {
     /**
