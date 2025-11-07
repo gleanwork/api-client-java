@@ -201,7 +201,8 @@ public class CustomDatasourceConfig {
 
     /**
      * If the datasource uses another datasource for identity info, then the name of the datasource. The
-     * identity datasource must exist already.
+     * identity datasource must exist already and the datasource with identity info should have its
+     * visibility enabled for search results.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("identityDatasourceName")
@@ -542,7 +543,8 @@ public class CustomDatasourceConfig {
 
     /**
      * If the datasource uses another datasource for identity info, then the name of the datasource. The
-     * identity datasource must exist already.
+     * identity datasource must exist already and the datasource with identity info should have its
+     * visibility enabled for search results.
      */
     @JsonIgnore
     public Optional<String> identityDatasourceName() {
@@ -1039,7 +1041,8 @@ public class CustomDatasourceConfig {
 
     /**
      * If the datasource uses another datasource for identity info, then the name of the datasource. The
-     * identity datasource must exist already.
+     * identity datasource must exist already and the datasource with identity info should have its
+     * visibility enabled for search results.
      */
     public CustomDatasourceConfig withIdentityDatasourceName(String identityDatasourceName) {
         Utils.checkNotNull(identityDatasourceName, "identityDatasourceName");
@@ -1050,7 +1053,8 @@ public class CustomDatasourceConfig {
 
     /**
      * If the datasource uses another datasource for identity info, then the name of the datasource. The
-     * identity datasource must exist already.
+     * identity datasource must exist already and the datasource with identity info should have its
+     * visibility enabled for search results.
      */
     public CustomDatasourceConfig withIdentityDatasourceName(Optional<String> identityDatasourceName) {
         Utils.checkNotNull(identityDatasourceName, "identityDatasourceName");
@@ -1736,7 +1740,8 @@ public class CustomDatasourceConfig {
 
         /**
          * If the datasource uses another datasource for identity info, then the name of the datasource. The
-         * identity datasource must exist already.
+         * identity datasource must exist already and the datasource with identity info should have its
+         * visibility enabled for search results.
          */
         public Builder identityDatasourceName(String identityDatasourceName) {
             Utils.checkNotNull(identityDatasourceName, "identityDatasourceName");
@@ -1746,7 +1751,8 @@ public class CustomDatasourceConfig {
 
         /**
          * If the datasource uses another datasource for identity info, then the name of the datasource. The
-         * identity datasource must exist already.
+         * identity datasource must exist already and the datasource with identity info should have its
+         * visibility enabled for search results.
          */
         public Builder identityDatasourceName(Optional<String> identityDatasourceName) {
             Utils.checkNotNull(identityDatasourceName, "identityDatasourceName");

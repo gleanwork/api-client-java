@@ -40,6 +40,7 @@ public enum Event {
     RIGHT_CLICK("RIGHT_CLICK"),
     SECTION_CLICK("SECTION_CLICK"),
     SEEN("SEEN"),
+    SELECT("SELECT"),
     SHARE("SHARE"),
     SHOW_MORE("SHOW_MORE"),
     UPVOTE("UPVOTE"),
