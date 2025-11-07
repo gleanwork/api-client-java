@@ -134,6 +134,8 @@ public class Permissions {
      * <p>Replaces the users in a datasource using paginated batch API calls. Please refer to the [bulk
      * indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an
      * explanation of how to use bulk endpoints.
+     * Note: Any users deleted from the existing set will have their associated memberships deleted as
+     * well.
      * 
      * @return The call builder
      */
@@ -147,6 +149,8 @@ public class Permissions {
      * <p>Replaces the users in a datasource using paginated batch API calls. Please refer to the [bulk
      * indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an
      * explanation of how to use bulk endpoints.
+     * Note: Any users deleted from the existing set will have their associated memberships deleted as
+     * well.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -190,6 +194,8 @@ public class Permissions {
      * <p>Replaces the groups in a datasource using paginated batch API calls. Please refer to the [bulk
      * indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an
      * explanation of how to use bulk endpoints.
+     * Note: Any groups deleted from the existing set will have their associated memberships deleted as
+     * well.
      * 
      * @return The call builder
      */
@@ -203,6 +209,8 @@ public class Permissions {
      * <p>Replaces the groups in a datasource using paginated batch API calls. Please refer to the [bulk
      * indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an
      * explanation of how to use bulk endpoints.
+     * Note: Any groups deleted from the existing set will have their associated memberships deleted as
+     * well.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -318,6 +326,7 @@ public class Permissions {
      * Delete user
      * 
      * <p>Delete the user from the datasource. Silently succeeds if user is not present.
+     * Note: All memberships associated with the deleted user will also be deleted.
      * 
      * @return The call builder
      */
@@ -329,6 +338,7 @@ public class Permissions {
      * Delete user
      * 
      * <p>Delete the user from the datasource. Silently succeeds if user is not present.
+     * Note: All memberships associated with the deleted user will also be deleted.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -344,6 +354,7 @@ public class Permissions {
      * Delete group
      * 
      * <p>Delete group from the datasource. Silently succeeds if group is not present.
+     * Note: All memberships associated with the deleted group will also be deleted.
      * 
      * @return The call builder
      */
@@ -355,6 +366,7 @@ public class Permissions {
      * Delete group
      * 
      * <p>Delete group from the datasource. Silently succeeds if group is not present.
+     * Note: All memberships associated with the deleted group will also be deleted.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call

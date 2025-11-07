@@ -138,6 +138,8 @@ public class AsyncPermissions {
      * <p>Replaces the users in a datasource using paginated batch API calls. Please refer to the [bulk
      * indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an
      * explanation of how to use bulk endpoints.
+     * Note: Any users deleted from the existing set will have their associated memberships deleted as
+     * well.
      * 
      * @return The async call builder
      */
@@ -151,6 +153,8 @@ public class AsyncPermissions {
      * <p>Replaces the users in a datasource using paginated batch API calls. Please refer to the [bulk
      * indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an
      * explanation of how to use bulk endpoints.
+     * Note: Any users deleted from the existing set will have their associated memberships deleted as
+     * well.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<PostApiIndexV1BulkindexusersResponse>} - The async response
@@ -196,6 +200,8 @@ public class AsyncPermissions {
      * <p>Replaces the groups in a datasource using paginated batch API calls. Please refer to the [bulk
      * indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an
      * explanation of how to use bulk endpoints.
+     * Note: Any groups deleted from the existing set will have their associated memberships deleted as
+     * well.
      * 
      * @return The async call builder
      */
@@ -209,6 +215,8 @@ public class AsyncPermissions {
      * <p>Replaces the groups in a datasource using paginated batch API calls. Please refer to the [bulk
      * indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an
      * explanation of how to use bulk endpoints.
+     * Note: Any groups deleted from the existing set will have their associated memberships deleted as
+     * well.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<PostApiIndexV1BulkindexgroupsResponse>} - The async response
@@ -327,6 +335,7 @@ public class AsyncPermissions {
      * Delete user
      * 
      * <p>Delete the user from the datasource. Silently succeeds if user is not present.
+     * Note: All memberships associated with the deleted user will also be deleted.
      * 
      * @return The async call builder
      */
@@ -338,6 +347,7 @@ public class AsyncPermissions {
      * Delete user
      * 
      * <p>Delete the user from the datasource. Silently succeeds if user is not present.
+     * Note: All memberships associated with the deleted user will also be deleted.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<PostApiIndexV1DeleteuserResponse>} - The async response
@@ -354,6 +364,7 @@ public class AsyncPermissions {
      * Delete group
      * 
      * <p>Delete group from the datasource. Silently succeeds if group is not present.
+     * Note: All memberships associated with the deleted group will also be deleted.
      * 
      * @return The async call builder
      */
@@ -365,6 +376,7 @@ public class AsyncPermissions {
      * Delete group
      * 
      * <p>Delete group from the datasource. Silently succeeds if group is not present.
+     * Note: All memberships associated with the deleted group will also be deleted.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<PostApiIndexV1DeletegroupResponse>} - The async response
