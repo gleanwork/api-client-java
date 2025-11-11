@@ -19,7 +19,7 @@ import java.lang.SuppressWarnings;
 public class GetShortcutRequestUnion {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private GetShortcutRequestUnion(TypedObject value) {
         this.value = value;
@@ -27,12 +27,12 @@ public class GetShortcutRequestUnion {
 
     public static GetShortcutRequestUnion of(UserGeneratedContentId value) {
         Utils.checkNotNull(value, "value");
-        return new GetShortcutRequestUnion(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<UserGeneratedContentId>(){}));
+        return new GetShortcutRequestUnion(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static GetShortcutRequestUnion of(GetShortcutRequest value) {
         Utils.checkNotNull(value, "value");
-        return new GetShortcutRequestUnion(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<GetShortcutRequest>(){}));
+        return new GetShortcutRequestUnion(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -55,7 +55,7 @@ public class GetShortcutRequestUnion {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -66,7 +66,7 @@ public class GetShortcutRequestUnion {
             return false;
         }
         GetShortcutRequestUnion other = (GetShortcutRequestUnion) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -89,6 +89,6 @@ public class GetShortcutRequestUnion {
         return Utils.toString(GetShortcutRequestUnion.class,
                 "value", value);
     }
- 
+
 }
 

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0359d4fe-2923-46fc-aaca-cf70b48dcfa1
 management:
-  docChecksum: dcd614b69cdc88d754706e156a66d71b
+  docChecksum: ff202e1733a6de1617f8ea51b32caeee
   docVersion: 0.9.0
-  speakeasyVersion: 1.650.0
-  generationVersion: 2.743.2
-  releaseVersion: 0.11.4
-  configChecksum: 3581cb68b1dca76940f49cb8c18f24d9
+  speakeasyVersion: 1.653.0
+  generationVersion: 2.748.0
+  releaseVersion: 0.12.0
+  configChecksum: ca8da680a6948ba6da29ac839bade538
   repoURL: https://github.com/gleanwork/api-client-java.git
   published: true
 features:
@@ -25,7 +25,7 @@ features:
     groups: 2.81.3
     nameOverrides: 2.81.3
     sdkHooks: 1.1.0
-    unions: 0.0.6
+    unions: 0.3.0
     uploadStreams: 0.1.0
 generatedFiles:
   - .gitattributes
@@ -1998,6 +1998,7 @@ generatedFiles:
   - src/main/java/com/glean/api_client/glean_api_client/utils/EventStreamMessage.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/Exceptions.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/FormMetadata.java
+  - src/main/java/com/glean/api_client/glean_api_client/utils/GenericTypeIdResolver.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/Globals.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/HTTPClient.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/HTTPRequest.java
@@ -2040,6 +2041,7 @@ generatedFiles:
   - src/main/java/com/glean/api_client/glean_api_client/utils/StreamingParser.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/TypedObject.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/Types.java
+  - src/main/java/com/glean/api_client/glean_api_client/utils/UnknownType.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/Utf8UrlEncoder.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/Utils.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/reactive/EventStream.java

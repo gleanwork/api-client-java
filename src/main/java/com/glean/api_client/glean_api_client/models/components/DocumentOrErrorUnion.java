@@ -19,7 +19,7 @@ import java.lang.SuppressWarnings;
 public class DocumentOrErrorUnion {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private DocumentOrErrorUnion(TypedObject value) {
         this.value = value;
@@ -27,12 +27,12 @@ public class DocumentOrErrorUnion {
 
     public static DocumentOrErrorUnion of(Document value) {
         Utils.checkNotNull(value, "value");
-        return new DocumentOrErrorUnion(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Document>(){}));
+        return new DocumentOrErrorUnion(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static DocumentOrErrorUnion of(DocumentOrError value) {
         Utils.checkNotNull(value, "value");
-        return new DocumentOrErrorUnion(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<DocumentOrError>(){}));
+        return new DocumentOrErrorUnion(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -55,7 +55,7 @@ public class DocumentOrErrorUnion {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -66,7 +66,7 @@ public class DocumentOrErrorUnion {
             return false;
         }
         DocumentOrErrorUnion other = (DocumentOrErrorUnion) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -89,6 +89,6 @@ public class DocumentOrErrorUnion {
         return Utils.toString(DocumentOrErrorUnion.class,
                 "value", value);
     }
- 
+
 }
 
