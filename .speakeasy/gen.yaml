@@ -25,7 +25,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 0.11.4
+  version: 0.12.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: glean-api-client
@@ -38,8 +38,10 @@ java:
   defaultErrorName: APIException
   enableCustomCodeRegions: false
   enableStreamingUploads: false
+  enhancedUnionMemberResolution: true
   envVarPrefix: GLEAN
   flattenGlobalSecurity: true
+  generateOptionalUnionAccessors: false
   generateSpringBootStarter: true
   githubURL: github.com/gleanwork/api-client-java
   groupID: com.glean.api-client
@@ -59,6 +61,7 @@ java:
     url: https://mit-license.org/
   maxMethodParams: 4
   nullFriendlyParameters: false
+  openUnions: true
   outputModelSuffix: output
   projectName: glean-api-client
   templateVersion: v2

@@ -19,7 +19,7 @@ import java.lang.SuppressWarnings;
 public class CustomFieldValue {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private CustomFieldValue(TypedObject value) {
         this.value = value;
@@ -27,17 +27,17 @@ public class CustomFieldValue {
 
     public static CustomFieldValue of(CustomFieldValueStr value) {
         Utils.checkNotNull(value, "value");
-        return new CustomFieldValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<CustomFieldValueStr>(){}));
+        return new CustomFieldValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static CustomFieldValue of(CustomFieldValueHyperlink value) {
         Utils.checkNotNull(value, "value");
-        return new CustomFieldValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<CustomFieldValueHyperlink>(){}));
+        return new CustomFieldValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static CustomFieldValue of(CustomFieldValuePerson value) {
         Utils.checkNotNull(value, "value");
-        return new CustomFieldValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<CustomFieldValuePerson>(){}));
+        return new CustomFieldValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -61,7 +61,7 @@ public class CustomFieldValue {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -72,7 +72,7 @@ public class CustomFieldValue {
             return false;
         }
         CustomFieldValue other = (CustomFieldValue) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -96,6 +96,6 @@ public class CustomFieldValue {
         return Utils.toString(CustomFieldValue.class,
                 "value", value);
     }
- 
+
 }
 

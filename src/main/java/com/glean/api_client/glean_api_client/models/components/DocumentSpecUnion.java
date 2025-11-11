@@ -19,7 +19,7 @@ import java.lang.SuppressWarnings;
 public class DocumentSpecUnion {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private DocumentSpecUnion(TypedObject value) {
         this.value = value;
@@ -27,22 +27,22 @@ public class DocumentSpecUnion {
 
     public static DocumentSpecUnion of(DocumentSpec1 value) {
         Utils.checkNotNull(value, "value");
-        return new DocumentSpecUnion(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<DocumentSpec1>(){}));
+        return new DocumentSpecUnion(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static DocumentSpecUnion of(DocumentSpec2 value) {
         Utils.checkNotNull(value, "value");
-        return new DocumentSpecUnion(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<DocumentSpec2>(){}));
+        return new DocumentSpecUnion(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static DocumentSpecUnion of(DocumentSpec3 value) {
         Utils.checkNotNull(value, "value");
-        return new DocumentSpecUnion(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<DocumentSpec3>(){}));
+        return new DocumentSpecUnion(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static DocumentSpecUnion of(DocumentSpec4 value) {
         Utils.checkNotNull(value, "value");
-        return new DocumentSpecUnion(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<DocumentSpec4>(){}));
+        return new DocumentSpecUnion(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -67,7 +67,7 @@ public class DocumentSpecUnion {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -78,7 +78,7 @@ public class DocumentSpecUnion {
             return false;
         }
         DocumentSpecUnion other = (DocumentSpecUnion) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -103,6 +103,6 @@ public class DocumentSpecUnion {
         return Utils.toString(DocumentSpecUnion.class,
                 "value", value);
     }
- 
+
 }
 

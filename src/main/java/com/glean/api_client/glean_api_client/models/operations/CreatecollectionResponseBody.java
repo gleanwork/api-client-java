@@ -24,7 +24,7 @@ import java.lang.SuppressWarnings;
 public class CreatecollectionResponseBody {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private CreatecollectionResponseBody(TypedObject value) {
         this.value = value;
@@ -32,12 +32,12 @@ public class CreatecollectionResponseBody {
 
     public static CreatecollectionResponseBody of(ResponseBody1 value) {
         Utils.checkNotNull(value, "value");
-        return new CreatecollectionResponseBody(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<ResponseBody1>(){}));
+        return new CreatecollectionResponseBody(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static CreatecollectionResponseBody of(ResponseBody2 value) {
         Utils.checkNotNull(value, "value");
-        return new CreatecollectionResponseBody(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<ResponseBody2>(){}));
+        return new CreatecollectionResponseBody(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -60,7 +60,7 @@ public class CreatecollectionResponseBody {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -71,7 +71,7 @@ public class CreatecollectionResponseBody {
             return false;
         }
         CreatecollectionResponseBody other = (CreatecollectionResponseBody) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -94,6 +94,6 @@ public class CreatecollectionResponseBody {
         return Utils.toString(CreatecollectionResponseBody.class,
                 "value", value);
     }
- 
+
 }
 
