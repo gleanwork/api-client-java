@@ -104,7 +104,8 @@ public class ToolMetadata {
      * Valid only for write actions. Represents the type of write action. REDIRECT - The client renders the
      * URL which contains information for carrying out the action.
      * 
-     * <p>EXECUTION - Send a request to an external server and execute the action.
+     * <p>EXECUTION - Send a request to an external server and execute the action. MCP - Send a tools/call
+     * request to an MCP server to execute the action.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("writeActionType")
@@ -318,7 +319,8 @@ public class ToolMetadata {
      * Valid only for write actions. Represents the type of write action. REDIRECT - The client renders the
      * URL which contains information for carrying out the action.
      * 
-     * <p>EXECUTION - Send a request to an external server and execute the action.
+     * <p>EXECUTION - Send a request to an external server and execute the action. MCP - Send a tools/call
+     * request to an MCP server to execute the action.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -559,7 +561,8 @@ public class ToolMetadata {
      * Valid only for write actions. Represents the type of write action. REDIRECT - The client renders the
      * URL which contains information for carrying out the action.
      * 
-     * <p>EXECUTION - Send a request to an external server and execute the action.
+     * <p>EXECUTION - Send a request to an external server and execute the action. MCP - Send a tools/call
+     * request to an MCP server to execute the action.
      */
     public ToolMetadata withWriteActionType(WriteActionType writeActionType) {
         Utils.checkNotNull(writeActionType, "writeActionType");
@@ -572,7 +575,8 @@ public class ToolMetadata {
      * Valid only for write actions. Represents the type of write action. REDIRECT - The client renders the
      * URL which contains information for carrying out the action.
      * 
-     * <p>EXECUTION - Send a request to an external server and execute the action.
+     * <p>EXECUTION - Send a request to an external server and execute the action. MCP - Send a tools/call
+     * request to an MCP server to execute the action.
      */
     public ToolMetadata withWriteActionType(Optional<? extends WriteActionType> writeActionType) {
         Utils.checkNotNull(writeActionType, "writeActionType");
@@ -974,7 +978,8 @@ public class ToolMetadata {
          * Valid only for write actions. Represents the type of write action. REDIRECT - The client renders the
          * URL which contains information for carrying out the action.
          * 
-         * <p>EXECUTION - Send a request to an external server and execute the action.
+         * <p>EXECUTION - Send a request to an external server and execute the action. MCP - Send a tools/call
+         * request to an MCP server to execute the action.
          */
         public Builder writeActionType(WriteActionType writeActionType) {
             Utils.checkNotNull(writeActionType, "writeActionType");
@@ -986,7 +991,8 @@ public class ToolMetadata {
          * Valid only for write actions. Represents the type of write action. REDIRECT - The client renders the
          * URL which contains information for carrying out the action.
          * 
-         * <p>EXECUTION - Send a request to an external server and execute the action.
+         * <p>EXECUTION - Send a request to an external server and execute the action. MCP - Send a tools/call
+         * request to an MCP server to execute the action.
          */
         public Builder writeActionType(Optional<? extends WriteActionType> writeActionType) {
             Utils.checkNotNull(writeActionType, "writeActionType");

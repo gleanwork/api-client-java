@@ -14,7 +14,13 @@ import java.util.Optional;
  * <p>Optional type classification for the update.
  */
 public enum UpdateType {
+    /**
+     * Updates that require user attention or action
+     */
     ACTIONABLE("ACTIONABLE"),
+    /**
+     * Updates that are purely informational
+     */
     INFORMATIVE("INFORMATIVE");
 
     @JsonValue

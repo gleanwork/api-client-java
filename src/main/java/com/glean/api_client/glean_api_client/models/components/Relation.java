@@ -15,6 +15,9 @@ import java.util.Optional;
  */
 public enum Relation {
     ATTACHMENT("ATTACHMENT"),
+    /**
+     * Canonical documents for the entity, such as overview docs, architecture docs elastic.
+     */
     CANONICAL("CANONICAL"),
     CASE("CASE"),
     CONTACT_LOWER("contact"),
