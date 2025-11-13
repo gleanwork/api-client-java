@@ -14,8 +14,17 @@ import java.util.Optional;
  * <p>The level of visual distinction that should be given to a result.
  */
 public enum Prominence {
+    /**
+     * A high-confidence result that should feature prominently on the page.
+     */
     HERO("HERO"),
+    /**
+     * May not be the best result but should be given additional visual distinction.
+     */
     PROMOTED("PROMOTED"),
+    /**
+     * Should not be distinct from any other results.
+     */
     STANDARD("STANDARD");
 
     @JsonValue

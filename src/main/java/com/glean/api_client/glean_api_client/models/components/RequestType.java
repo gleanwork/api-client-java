@@ -14,7 +14,13 @@ import java.util.Optional;
  * <p>The type of request being made.
  */
 public enum RequestType {
+    /**
+     * Used by default for all requests and satisfies all standard use cases for list requests. Limited to 10000 entities.
+     */
     STANDARD("STANDARD"),
+    /**
+     * Used exclusively to return a comprehensive list of all people entities in the organization, typically for audit like purposes. The recommended approach is to sort by FIRST_NAME or LAST_NAME, and use pagination for large organizations.
+     */
     FULL_DIRECTORY("FULL_DIRECTORY");
 
     @JsonValue

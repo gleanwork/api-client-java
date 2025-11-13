@@ -14,7 +14,13 @@ import java.util.Optional;
  * <p>Top level modes to run GleanChat in.
  */
 public enum Mode {
+    /**
+     * Used if no mode supplied.
+     */
     DEFAULT("DEFAULT"),
+    /**
+     * Deprecated.
+     */
     QUICK("QUICK");
 
     @JsonValue

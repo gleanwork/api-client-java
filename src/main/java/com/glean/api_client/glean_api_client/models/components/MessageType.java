@@ -15,14 +15,41 @@ import java.util.Optional;
  * treatment. USER authored messages should be of type CONTENT and do not need `messageType` specified.
  */
 public enum MessageType {
+    /**
+     * An intermediate state message for progress updates.
+     */
     UPDATE("UPDATE"),
+    /**
+     * A user query or response message.
+     */
     CONTENT("CONTENT"),
+    /**
+     * A message providing context in addition to the user query.
+     */
     CONTEXT("CONTEXT"),
+    /**
+     * A debug message. Strictly used internally.
+     */
     DEBUG("DEBUG"),
+    /**
+     * A debug message to be used while debugging Action creation.
+     */
     DEBUG_EXTERNAL("DEBUG_EXTERNAL"),
+    /**
+     * A message that describes an error while processing the request.
+     */
     ERROR("ERROR"),
+    /**
+     * A heading message used to distinguish different sections of the holistic response.
+     */
     HEADING("HEADING"),
+    /**
+     * A warning message to be shown to the user.
+     */
     WARNING("WARNING"),
+    /**
+     * A message used to for server-side tool auth/use, for request and response.
+     */
     SERVER_TOOL("SERVER_TOOL");
 
     @JsonValue

@@ -14,11 +14,13 @@ import java.util.Optional;
  * <p>Valid only for write actions. Represents the type of write action. REDIRECT - The client renders the
  * URL which contains information for carrying out the action.
  * 
- * <p>EXECUTION - Send a request to an external server and execute the action.
+ * <p>EXECUTION - Send a request to an external server and execute the action. MCP - Send a tools/call
+ * request to an MCP server to execute the action.
  */
 public enum WriteActionType {
     REDIRECT("REDIRECT"),
-    EXECUTION("EXECUTION");
+    EXECUTION("EXECUTION"),
+    MCP("MCP");
 
     @JsonValue
     private final String value;
