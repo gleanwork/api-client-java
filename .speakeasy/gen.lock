@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0359d4fe-2923-46fc-aaca-cf70b48dcfa1
 management:
-  docChecksum: 0ac885f7072adae50d62b33db76f5bb4
+  docChecksum: 09ae73bbaebb3968dc7590f295580164
   docVersion: 0.9.0
-  speakeasyVersion: 1.656.1
-  generationVersion: 2.753.1
-  releaseVersion: 0.12.1
-  configChecksum: 5fb4642218f210542574e65733871f8f
+  speakeasyVersion: 1.656.2
+  generationVersion: 2.753.6
+  releaseVersion: 0.12.2
+  configChecksum: c554502f383c4dcd58b7f6d0ae43ac1b
   repoURL: https://github.com/gleanwork/api-client-java.git
   published: true
 features:
@@ -2899,3 +2899,4 @@ generatedTests:
   get_/rest/api/v1/tools/list: "2025-06-09T18:03:44Z"
   post_/rest/api/v1/tools/call: "2025-06-09T18:03:44Z"
   listpolicies: "2025-06-09T18:03:44Z"
+releaseNotes: "## Java SDK Changes Detected:\n* `glean.client.chat.retrieveFiles()`: \n  *  `request.getchatfilesrequest.chatId` **Removed** **Breaking** :warning:\n"
