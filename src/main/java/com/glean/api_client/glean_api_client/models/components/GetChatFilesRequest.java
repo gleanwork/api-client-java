@@ -5,14 +5,11 @@ package com.glean.api_client.glean_api_client.models.components;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Optional;
 
 
 public class GetChatFilesRequest {
@@ -22,26 +19,11 @@ public class GetChatFilesRequest {
     @JsonProperty("fileIds")
     private List<String> fileIds;
 
-    /**
-     * The ID of the chat that contains the chat file.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("chatId")
-    private Optional<String> chatId;
-
     @JsonCreator
     public GetChatFilesRequest(
-            @JsonProperty("fileIds") List<String> fileIds,
-            @JsonProperty("chatId") Optional<String> chatId) {
+            @JsonProperty("fileIds") List<String> fileIds) {
         Utils.checkNotNull(fileIds, "fileIds");
-        Utils.checkNotNull(chatId, "chatId");
         this.fileIds = fileIds;
-        this.chatId = chatId;
-    }
-    
-    public GetChatFilesRequest(
-            List<String> fileIds) {
-        this(fileIds, Optional.empty());
     }
 
     /**
@@ -50,14 +32,6 @@ public class GetChatFilesRequest {
     @JsonIgnore
     public List<String> fileIds() {
         return fileIds;
-    }
-
-    /**
-     * The ID of the chat that contains the chat file.
-     */
-    @JsonIgnore
-    public Optional<String> chatId() {
-        return chatId;
     }
 
     public static Builder builder() {
@@ -74,25 +48,6 @@ public class GetChatFilesRequest {
         return this;
     }
 
-    /**
-     * The ID of the chat that contains the chat file.
-     */
-    public GetChatFilesRequest withChatId(String chatId) {
-        Utils.checkNotNull(chatId, "chatId");
-        this.chatId = Optional.ofNullable(chatId);
-        return this;
-    }
-
-
-    /**
-     * The ID of the chat that contains the chat file.
-     */
-    public GetChatFilesRequest withChatId(Optional<String> chatId) {
-        Utils.checkNotNull(chatId, "chatId");
-        this.chatId = chatId;
-        return this;
-    }
-
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -103,29 +58,25 @@ public class GetChatFilesRequest {
         }
         GetChatFilesRequest other = (GetChatFilesRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.fileIds, other.fileIds) &&
-            Utils.enhancedDeepEquals(this.chatId, other.chatId);
+            Utils.enhancedDeepEquals(this.fileIds, other.fileIds);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            fileIds, chatId);
+            fileIds);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetChatFilesRequest.class,
-                "fileIds", fileIds,
-                "chatId", chatId);
+                "fileIds", fileIds);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
         private List<String> fileIds;
-
-        private Optional<String> chatId = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -141,29 +92,10 @@ public class GetChatFilesRequest {
             return this;
         }
 
-
-        /**
-         * The ID of the chat that contains the chat file.
-         */
-        public Builder chatId(String chatId) {
-            Utils.checkNotNull(chatId, "chatId");
-            this.chatId = Optional.ofNullable(chatId);
-            return this;
-        }
-
-        /**
-         * The ID of the chat that contains the chat file.
-         */
-        public Builder chatId(Optional<String> chatId) {
-            Utils.checkNotNull(chatId, "chatId");
-            this.chatId = chatId;
-            return this;
-        }
-
         public GetChatFilesRequest build() {
 
             return new GetChatFilesRequest(
-                fileIds, chatId);
+                fileIds);
         }
 
     }
