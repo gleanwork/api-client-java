@@ -83,7 +83,8 @@ public class DocumentDefinition {
 
     /**
      * The datasource specific id for the document. This field is case insensitive and should not be more
-     * than 200 characters in length.
+     * than 200 characters in length. Note: id is a required field for datasources created after 1st March
+     * 2025
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
@@ -343,7 +344,8 @@ public class DocumentDefinition {
 
     /**
      * The datasource specific id for the document. This field is case insensitive and should not be more
-     * than 200 characters in length.
+     * than 200 characters in length. Note: id is a required field for datasources created after 1st March
+     * 2025
      */
     @JsonIgnore
     public Optional<String> id() {
@@ -632,7 +634,8 @@ public class DocumentDefinition {
 
     /**
      * The datasource specific id for the document. This field is case insensitive and should not be more
-     * than 200 characters in length.
+     * than 200 characters in length. Note: id is a required field for datasources created after 1st March
+     * 2025
      */
     public DocumentDefinition withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -643,7 +646,8 @@ public class DocumentDefinition {
 
     /**
      * The datasource specific id for the document. This field is case insensitive and should not be more
-     * than 200 characters in length.
+     * than 200 characters in length. Note: id is a required field for datasources created after 1st March
+     * 2025
      */
     public DocumentDefinition withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
@@ -1203,7 +1207,8 @@ public class DocumentDefinition {
 
         /**
          * The datasource specific id for the document. This field is case insensitive and should not be more
-         * than 200 characters in length.
+         * than 200 characters in length. Note: id is a required field for datasources created after 1st March
+         * 2025
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -1213,7 +1218,8 @@ public class DocumentDefinition {
 
         /**
          * The datasource specific id for the document. This field is case insensitive and should not be more
-         * than 200 characters in length.
+         * than 200 characters in length. Note: id is a required field for datasources created after 1st March
+         * 2025
          */
         public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
