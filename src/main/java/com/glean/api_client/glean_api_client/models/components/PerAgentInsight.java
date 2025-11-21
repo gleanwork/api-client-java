@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
@@ -37,6 +38,13 @@ public class PerAgentInsight {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("icon")
     private Optional<? extends IconConfig> icon;
+
+    /**
+     * Indicates whether the agent has been deleted
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("isDeleted")
+    private Optional<Boolean> isDeleted;
 
     /**
      * Total number of users for this agent over the specified time period.
@@ -71,6 +79,7 @@ public class PerAgentInsight {
             @JsonProperty("agentId") Optional<String> agentId,
             @JsonProperty("agentName") Optional<String> agentName,
             @JsonProperty("icon") Optional<? extends IconConfig> icon,
+            @JsonProperty("isDeleted") Optional<Boolean> isDeleted,
             @JsonProperty("userCount") Optional<Long> userCount,
             @JsonProperty("runCount") Optional<Long> runCount,
             @JsonProperty("upvoteCount") Optional<Long> upvoteCount,
@@ -78,6 +87,7 @@ public class PerAgentInsight {
         Utils.checkNotNull(agentId, "agentId");
         Utils.checkNotNull(agentName, "agentName");
         Utils.checkNotNull(icon, "icon");
+        Utils.checkNotNull(isDeleted, "isDeleted");
         Utils.checkNotNull(userCount, "userCount");
         Utils.checkNotNull(runCount, "runCount");
         Utils.checkNotNull(upvoteCount, "upvoteCount");
@@ -85,6 +95,7 @@ public class PerAgentInsight {
         this.agentId = agentId;
         this.agentName = agentName;
         this.icon = icon;
+        this.isDeleted = isDeleted;
         this.userCount = userCount;
         this.runCount = runCount;
         this.upvoteCount = upvoteCount;
@@ -94,7 +105,7 @@ public class PerAgentInsight {
     public PerAgentInsight() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -120,6 +131,14 @@ public class PerAgentInsight {
     @JsonIgnore
     public Optional<IconConfig> icon() {
         return (Optional<IconConfig>) icon;
+    }
+
+    /**
+     * Indicates whether the agent has been deleted
+     */
+    @JsonIgnore
+    public Optional<Boolean> isDeleted() {
+        return isDeleted;
     }
 
     /**
@@ -217,6 +236,25 @@ public class PerAgentInsight {
     }
 
     /**
+     * Indicates whether the agent has been deleted
+     */
+    public PerAgentInsight withIsDeleted(boolean isDeleted) {
+        Utils.checkNotNull(isDeleted, "isDeleted");
+        this.isDeleted = Optional.ofNullable(isDeleted);
+        return this;
+    }
+
+
+    /**
+     * Indicates whether the agent has been deleted
+     */
+    public PerAgentInsight withIsDeleted(Optional<Boolean> isDeleted) {
+        Utils.checkNotNull(isDeleted, "isDeleted");
+        this.isDeleted = isDeleted;
+        return this;
+    }
+
+    /**
      * Total number of users for this agent over the specified time period.
      */
     public PerAgentInsight withUserCount(long userCount) {
@@ -305,6 +343,7 @@ public class PerAgentInsight {
             Utils.enhancedDeepEquals(this.agentId, other.agentId) &&
             Utils.enhancedDeepEquals(this.agentName, other.agentName) &&
             Utils.enhancedDeepEquals(this.icon, other.icon) &&
+            Utils.enhancedDeepEquals(this.isDeleted, other.isDeleted) &&
             Utils.enhancedDeepEquals(this.userCount, other.userCount) &&
             Utils.enhancedDeepEquals(this.runCount, other.runCount) &&
             Utils.enhancedDeepEquals(this.upvoteCount, other.upvoteCount) &&
@@ -315,8 +354,8 @@ public class PerAgentInsight {
     public int hashCode() {
         return Utils.enhancedHash(
             agentId, agentName, icon,
-            userCount, runCount, upvoteCount,
-            downvoteCount);
+            isDeleted, userCount, runCount,
+            upvoteCount, downvoteCount);
     }
     
     @Override
@@ -325,6 +364,7 @@ public class PerAgentInsight {
                 "agentId", agentId,
                 "agentName", agentName,
                 "icon", icon,
+                "isDeleted", isDeleted,
                 "userCount", userCount,
                 "runCount", runCount,
                 "upvoteCount", upvoteCount,
@@ -339,6 +379,8 @@ public class PerAgentInsight {
         private Optional<String> agentName = Optional.empty();
 
         private Optional<? extends IconConfig> icon = Optional.empty();
+
+        private Optional<Boolean> isDeleted = Optional.empty();
 
         private Optional<Long> userCount = Optional.empty();
 
@@ -406,6 +448,25 @@ public class PerAgentInsight {
         public Builder icon(Optional<? extends IconConfig> icon) {
             Utils.checkNotNull(icon, "icon");
             this.icon = icon;
+            return this;
+        }
+
+
+        /**
+         * Indicates whether the agent has been deleted
+         */
+        public Builder isDeleted(boolean isDeleted) {
+            Utils.checkNotNull(isDeleted, "isDeleted");
+            this.isDeleted = Optional.ofNullable(isDeleted);
+            return this;
+        }
+
+        /**
+         * Indicates whether the agent has been deleted
+         */
+        public Builder isDeleted(Optional<Boolean> isDeleted) {
+            Utils.checkNotNull(isDeleted, "isDeleted");
+            this.isDeleted = isDeleted;
             return this;
         }
 
@@ -489,8 +550,8 @@ public class PerAgentInsight {
 
             return new PerAgentInsight(
                 agentId, agentName, icon,
-                userCount, runCount, upvoteCount,
-                downvoteCount);
+                isDeleted, userCount, runCount,
+                upvoteCount, downvoteCount);
         }
 
     }

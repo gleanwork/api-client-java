@@ -36,21 +36,52 @@ public class PerUserInsight {
     @JsonProperty("numChats")
     private Optional<Long> numChats;
 
+    /**
+     * Total number of active sessions by this user in a Glean client over the specified time period.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("numActiveSessions")
+    private Optional<Long> numActiveSessions;
+
+    /**
+     * Total number of Gleanbot responses marked useful by this user over the specified time period.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("numGleanbotUsefulResponses")
+    private Optional<Long> numGleanbotUsefulResponses;
+
+    /**
+     * Total number of days this user was an Active User over the specified time period.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("numDaysActive")
+    private Optional<Long> numDaysActive;
+
     @JsonCreator
     public PerUserInsight(
             @JsonProperty("person") Optional<? extends Person> person,
             @JsonProperty("numSearches") Optional<Long> numSearches,
-            @JsonProperty("numChats") Optional<Long> numChats) {
+            @JsonProperty("numChats") Optional<Long> numChats,
+            @JsonProperty("numActiveSessions") Optional<Long> numActiveSessions,
+            @JsonProperty("numGleanbotUsefulResponses") Optional<Long> numGleanbotUsefulResponses,
+            @JsonProperty("numDaysActive") Optional<Long> numDaysActive) {
         Utils.checkNotNull(person, "person");
         Utils.checkNotNull(numSearches, "numSearches");
         Utils.checkNotNull(numChats, "numChats");
+        Utils.checkNotNull(numActiveSessions, "numActiveSessions");
+        Utils.checkNotNull(numGleanbotUsefulResponses, "numGleanbotUsefulResponses");
+        Utils.checkNotNull(numDaysActive, "numDaysActive");
         this.person = person;
         this.numSearches = numSearches;
         this.numChats = numChats;
+        this.numActiveSessions = numActiveSessions;
+        this.numGleanbotUsefulResponses = numGleanbotUsefulResponses;
+        this.numDaysActive = numDaysActive;
     }
     
     public PerUserInsight() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -73,6 +104,30 @@ public class PerUserInsight {
     @JsonIgnore
     public Optional<Long> numChats() {
         return numChats;
+    }
+
+    /**
+     * Total number of active sessions by this user in a Glean client over the specified time period.
+     */
+    @JsonIgnore
+    public Optional<Long> numActiveSessions() {
+        return numActiveSessions;
+    }
+
+    /**
+     * Total number of Gleanbot responses marked useful by this user over the specified time period.
+     */
+    @JsonIgnore
+    public Optional<Long> numGleanbotUsefulResponses() {
+        return numGleanbotUsefulResponses;
+    }
+
+    /**
+     * Total number of days this user was an Active User over the specified time period.
+     */
+    @JsonIgnore
+    public Optional<Long> numDaysActive() {
+        return numDaysActive;
     }
 
     public static Builder builder() {
@@ -131,6 +186,63 @@ public class PerUserInsight {
         return this;
     }
 
+    /**
+     * Total number of active sessions by this user in a Glean client over the specified time period.
+     */
+    public PerUserInsight withNumActiveSessions(long numActiveSessions) {
+        Utils.checkNotNull(numActiveSessions, "numActiveSessions");
+        this.numActiveSessions = Optional.ofNullable(numActiveSessions);
+        return this;
+    }
+
+
+    /**
+     * Total number of active sessions by this user in a Glean client over the specified time period.
+     */
+    public PerUserInsight withNumActiveSessions(Optional<Long> numActiveSessions) {
+        Utils.checkNotNull(numActiveSessions, "numActiveSessions");
+        this.numActiveSessions = numActiveSessions;
+        return this;
+    }
+
+    /**
+     * Total number of Gleanbot responses marked useful by this user over the specified time period.
+     */
+    public PerUserInsight withNumGleanbotUsefulResponses(long numGleanbotUsefulResponses) {
+        Utils.checkNotNull(numGleanbotUsefulResponses, "numGleanbotUsefulResponses");
+        this.numGleanbotUsefulResponses = Optional.ofNullable(numGleanbotUsefulResponses);
+        return this;
+    }
+
+
+    /**
+     * Total number of Gleanbot responses marked useful by this user over the specified time period.
+     */
+    public PerUserInsight withNumGleanbotUsefulResponses(Optional<Long> numGleanbotUsefulResponses) {
+        Utils.checkNotNull(numGleanbotUsefulResponses, "numGleanbotUsefulResponses");
+        this.numGleanbotUsefulResponses = numGleanbotUsefulResponses;
+        return this;
+    }
+
+    /**
+     * Total number of days this user was an Active User over the specified time period.
+     */
+    public PerUserInsight withNumDaysActive(long numDaysActive) {
+        Utils.checkNotNull(numDaysActive, "numDaysActive");
+        this.numDaysActive = Optional.ofNullable(numDaysActive);
+        return this;
+    }
+
+
+    /**
+     * Total number of days this user was an Active User over the specified time period.
+     */
+    public PerUserInsight withNumDaysActive(Optional<Long> numDaysActive) {
+        Utils.checkNotNull(numDaysActive, "numDaysActive");
+        this.numDaysActive = numDaysActive;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -143,13 +255,17 @@ public class PerUserInsight {
         return 
             Utils.enhancedDeepEquals(this.person, other.person) &&
             Utils.enhancedDeepEquals(this.numSearches, other.numSearches) &&
-            Utils.enhancedDeepEquals(this.numChats, other.numChats);
+            Utils.enhancedDeepEquals(this.numChats, other.numChats) &&
+            Utils.enhancedDeepEquals(this.numActiveSessions, other.numActiveSessions) &&
+            Utils.enhancedDeepEquals(this.numGleanbotUsefulResponses, other.numGleanbotUsefulResponses) &&
+            Utils.enhancedDeepEquals(this.numDaysActive, other.numDaysActive);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            person, numSearches, numChats);
+            person, numSearches, numChats,
+            numActiveSessions, numGleanbotUsefulResponses, numDaysActive);
     }
     
     @Override
@@ -157,7 +273,10 @@ public class PerUserInsight {
         return Utils.toString(PerUserInsight.class,
                 "person", person,
                 "numSearches", numSearches,
-                "numChats", numChats);
+                "numChats", numChats,
+                "numActiveSessions", numActiveSessions,
+                "numGleanbotUsefulResponses", numGleanbotUsefulResponses,
+                "numDaysActive", numDaysActive);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -168,6 +287,12 @@ public class PerUserInsight {
         private Optional<Long> numSearches = Optional.empty();
 
         private Optional<Long> numChats = Optional.empty();
+
+        private Optional<Long> numActiveSessions = Optional.empty();
+
+        private Optional<Long> numGleanbotUsefulResponses = Optional.empty();
+
+        private Optional<Long> numDaysActive = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -224,10 +349,68 @@ public class PerUserInsight {
             return this;
         }
 
+
+        /**
+         * Total number of active sessions by this user in a Glean client over the specified time period.
+         */
+        public Builder numActiveSessions(long numActiveSessions) {
+            Utils.checkNotNull(numActiveSessions, "numActiveSessions");
+            this.numActiveSessions = Optional.ofNullable(numActiveSessions);
+            return this;
+        }
+
+        /**
+         * Total number of active sessions by this user in a Glean client over the specified time period.
+         */
+        public Builder numActiveSessions(Optional<Long> numActiveSessions) {
+            Utils.checkNotNull(numActiveSessions, "numActiveSessions");
+            this.numActiveSessions = numActiveSessions;
+            return this;
+        }
+
+
+        /**
+         * Total number of Gleanbot responses marked useful by this user over the specified time period.
+         */
+        public Builder numGleanbotUsefulResponses(long numGleanbotUsefulResponses) {
+            Utils.checkNotNull(numGleanbotUsefulResponses, "numGleanbotUsefulResponses");
+            this.numGleanbotUsefulResponses = Optional.ofNullable(numGleanbotUsefulResponses);
+            return this;
+        }
+
+        /**
+         * Total number of Gleanbot responses marked useful by this user over the specified time period.
+         */
+        public Builder numGleanbotUsefulResponses(Optional<Long> numGleanbotUsefulResponses) {
+            Utils.checkNotNull(numGleanbotUsefulResponses, "numGleanbotUsefulResponses");
+            this.numGleanbotUsefulResponses = numGleanbotUsefulResponses;
+            return this;
+        }
+
+
+        /**
+         * Total number of days this user was an Active User over the specified time period.
+         */
+        public Builder numDaysActive(long numDaysActive) {
+            Utils.checkNotNull(numDaysActive, "numDaysActive");
+            this.numDaysActive = Optional.ofNullable(numDaysActive);
+            return this;
+        }
+
+        /**
+         * Total number of days this user was an Active User over the specified time period.
+         */
+        public Builder numDaysActive(Optional<Long> numDaysActive) {
+            Utils.checkNotNull(numDaysActive, "numDaysActive");
+            this.numDaysActive = numDaysActive;
+            return this;
+        }
+
         public PerUserInsight build() {
 
             return new PerUserInsight(
-                person, numSearches, numChats);
+                person, numSearches, numChats,
+                numActiveSessions, numGleanbotUsefulResponses, numDaysActive);
         }
 
     }

@@ -121,16 +121,12 @@ public class InsightsOverviewResponse {
     private Optional<? extends Map<String, Long>> chatDatasourceCounts;
 
     /**
-     * Top power users, over the specified time period in the specified departments.
+     * Per-user insights, over the specified time period in the specified departments. All current users in
+     * the organization who have signed into Glean at least once are included.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("perUserInsights")
     private Optional<? extends List<PerUserInsight>> perUserInsights;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("engagementBreakdown")
-    private Optional<? extends EngagementBreakdown> engagementBreakdown;
 
     @JsonCreator
     public InsightsOverviewResponse(
@@ -150,8 +146,7 @@ public class InsightsOverviewResponse {
             @JsonProperty("dailyActiveUserTimeseries") Optional<? extends LabeledCountInfo> dailyActiveUserTimeseries,
             @JsonProperty("searchDatasourceCounts") Optional<? extends Map<String, Long>> searchDatasourceCounts,
             @JsonProperty("chatDatasourceCounts") Optional<? extends Map<String, Long>> chatDatasourceCounts,
-            @JsonProperty("perUserInsights") Optional<? extends List<PerUserInsight>> perUserInsights,
-            @JsonProperty("engagementBreakdown") Optional<? extends EngagementBreakdown> engagementBreakdown) {
+            @JsonProperty("perUserInsights") Optional<? extends List<PerUserInsight>> perUserInsights) {
         Utils.checkNotNull(monthlyActiveUsers, "monthlyActiveUsers");
         Utils.checkNotNull(weeklyActiveUsers, "weeklyActiveUsers");
         Utils.checkNotNull(departments, "departments");
@@ -169,7 +164,6 @@ public class InsightsOverviewResponse {
         Utils.checkNotNull(searchDatasourceCounts, "searchDatasourceCounts");
         Utils.checkNotNull(chatDatasourceCounts, "chatDatasourceCounts");
         Utils.checkNotNull(perUserInsights, "perUserInsights");
-        Utils.checkNotNull(engagementBreakdown, "engagementBreakdown");
         this.monthlyActiveUsers = monthlyActiveUsers;
         this.weeklyActiveUsers = weeklyActiveUsers;
         this.departments = departments;
@@ -187,7 +181,6 @@ public class InsightsOverviewResponse {
         this.searchDatasourceCounts = searchDatasourceCounts;
         this.chatDatasourceCounts = chatDatasourceCounts;
         this.perUserInsights = perUserInsights;
-        this.engagementBreakdown = engagementBreakdown;
     }
     
     public InsightsOverviewResponse() {
@@ -196,7 +189,7 @@ public class InsightsOverviewResponse {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -319,18 +312,13 @@ public class InsightsOverviewResponse {
     }
 
     /**
-     * Top power users, over the specified time period in the specified departments.
+     * Per-user insights, over the specified time period in the specified departments. All current users in
+     * the organization who have signed into Glean at least once are included.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<PerUserInsight>> perUserInsights() {
         return (Optional<List<PerUserInsight>>) perUserInsights;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<EngagementBreakdown> engagementBreakdown() {
-        return (Optional<EngagementBreakdown>) engagementBreakdown;
     }
 
     public static Builder builder() {
@@ -605,7 +593,8 @@ public class InsightsOverviewResponse {
     }
 
     /**
-     * Top power users, over the specified time period in the specified departments.
+     * Per-user insights, over the specified time period in the specified departments. All current users in
+     * the organization who have signed into Glean at least once are included.
      */
     public InsightsOverviewResponse withPerUserInsights(List<PerUserInsight> perUserInsights) {
         Utils.checkNotNull(perUserInsights, "perUserInsights");
@@ -615,24 +604,12 @@ public class InsightsOverviewResponse {
 
 
     /**
-     * Top power users, over the specified time period in the specified departments.
+     * Per-user insights, over the specified time period in the specified departments. All current users in
+     * the organization who have signed into Glean at least once are included.
      */
     public InsightsOverviewResponse withPerUserInsights(Optional<? extends List<PerUserInsight>> perUserInsights) {
         Utils.checkNotNull(perUserInsights, "perUserInsights");
         this.perUserInsights = perUserInsights;
-        return this;
-    }
-
-    public InsightsOverviewResponse withEngagementBreakdown(EngagementBreakdown engagementBreakdown) {
-        Utils.checkNotNull(engagementBreakdown, "engagementBreakdown");
-        this.engagementBreakdown = Optional.ofNullable(engagementBreakdown);
-        return this;
-    }
-
-
-    public InsightsOverviewResponse withEngagementBreakdown(Optional<? extends EngagementBreakdown> engagementBreakdown) {
-        Utils.checkNotNull(engagementBreakdown, "engagementBreakdown");
-        this.engagementBreakdown = engagementBreakdown;
         return this;
     }
 
@@ -662,8 +639,7 @@ public class InsightsOverviewResponse {
             Utils.enhancedDeepEquals(this.dailyActiveUserTimeseries, other.dailyActiveUserTimeseries) &&
             Utils.enhancedDeepEquals(this.searchDatasourceCounts, other.searchDatasourceCounts) &&
             Utils.enhancedDeepEquals(this.chatDatasourceCounts, other.chatDatasourceCounts) &&
-            Utils.enhancedDeepEquals(this.perUserInsights, other.perUserInsights) &&
-            Utils.enhancedDeepEquals(this.engagementBreakdown, other.engagementBreakdown);
+            Utils.enhancedDeepEquals(this.perUserInsights, other.perUserInsights);
     }
     
     @Override
@@ -674,7 +650,7 @@ public class InsightsOverviewResponse {
             chatSummary, extensionSummary, ugcSummary,
             lastUpdatedTs, searchSessionSatisfaction, monthlyActiveUserTimeseries,
             weeklyActiveUserTimeseries, dailyActiveUserTimeseries, searchDatasourceCounts,
-            chatDatasourceCounts, perUserInsights, engagementBreakdown);
+            chatDatasourceCounts, perUserInsights);
     }
     
     @Override
@@ -696,8 +672,7 @@ public class InsightsOverviewResponse {
                 "dailyActiveUserTimeseries", dailyActiveUserTimeseries,
                 "searchDatasourceCounts", searchDatasourceCounts,
                 "chatDatasourceCounts", chatDatasourceCounts,
-                "perUserInsights", perUserInsights,
-                "engagementBreakdown", engagementBreakdown);
+                "perUserInsights", perUserInsights);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -736,8 +711,6 @@ public class InsightsOverviewResponse {
         private Optional<? extends Map<String, Long>> chatDatasourceCounts = Optional.empty();
 
         private Optional<? extends List<PerUserInsight>> perUserInsights = Optional.empty();
-
-        private Optional<? extends EngagementBreakdown> engagementBreakdown = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -1011,7 +984,8 @@ public class InsightsOverviewResponse {
 
 
         /**
-         * Top power users, over the specified time period in the specified departments.
+         * Per-user insights, over the specified time period in the specified departments. All current users in
+         * the organization who have signed into Glean at least once are included.
          */
         public Builder perUserInsights(List<PerUserInsight> perUserInsights) {
             Utils.checkNotNull(perUserInsights, "perUserInsights");
@@ -1020,24 +994,12 @@ public class InsightsOverviewResponse {
         }
 
         /**
-         * Top power users, over the specified time period in the specified departments.
+         * Per-user insights, over the specified time period in the specified departments. All current users in
+         * the organization who have signed into Glean at least once are included.
          */
         public Builder perUserInsights(Optional<? extends List<PerUserInsight>> perUserInsights) {
             Utils.checkNotNull(perUserInsights, "perUserInsights");
             this.perUserInsights = perUserInsights;
-            return this;
-        }
-
-
-        public Builder engagementBreakdown(EngagementBreakdown engagementBreakdown) {
-            Utils.checkNotNull(engagementBreakdown, "engagementBreakdown");
-            this.engagementBreakdown = Optional.ofNullable(engagementBreakdown);
-            return this;
-        }
-
-        public Builder engagementBreakdown(Optional<? extends EngagementBreakdown> engagementBreakdown) {
-            Utils.checkNotNull(engagementBreakdown, "engagementBreakdown");
-            this.engagementBreakdown = engagementBreakdown;
             return this;
         }
 
@@ -1049,7 +1011,7 @@ public class InsightsOverviewResponse {
                 chatSummary, extensionSummary, ugcSummary,
                 lastUpdatedTs, searchSessionSatisfaction, monthlyActiveUserTimeseries,
                 weeklyActiveUserTimeseries, dailyActiveUserTimeseries, searchDatasourceCounts,
-                chatDatasourceCounts, perUserInsights, engagementBreakdown);
+                chatDatasourceCounts, perUserInsights);
         }
 
     }
