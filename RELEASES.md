@@ -409,3 +409,13 @@ Based on:
 - [java v0.12.6] .
 ### Releases
 - [Maven Central v0.12.6] https://central.sonatype.com/artifact/com.glean.api-client/glean-api-client/0.12.6 - .
+
+## 2025-11-21 22:05:12
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.660.0 (2.760.2) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v0.12.7] .
+### Releases
+- [Maven Central v0.12.7] https://central.sonatype.com/artifact/com.glean.api-client/glean-api-client/0.12.7 - .

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0359d4fe-2923-46fc-aaca-cf70b48dcfa1
 management:
-  docChecksum: 41ef1db10b9ee826f7c797f827bf843b
+  docChecksum: 28febb154706da5ab79a118f8ad703da
   docVersion: 0.9.0
   speakeasyVersion: 1.660.0
   generationVersion: 2.760.2
-  releaseVersion: 0.12.6
-  configChecksum: 1e696eaf665ff4cedc7707af622795d5
+  releaseVersion: 0.12.7
+  configChecksum: 0a2990e02e6bdf0efa00a7f3d1568c6b
   repoURL: https://github.com/gleanwork/api-client-java.git
   published: true
 features:
