@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0359d4fe-2923-46fc-aaca-cf70b48dcfa1
 management:
-  docChecksum: 3e5657019a4816420ae24bbe0aa55deb
+  docChecksum: 41ef1db10b9ee826f7c797f827bf843b
   docVersion: 0.9.0
-  speakeasyVersion: 1.659.0
-  generationVersion: 2.755.9
-  releaseVersion: 0.12.5
-  configChecksum: e8a09cf1b489e694a4b1e3d39c5baf5a
+  speakeasyVersion: 1.660.0
+  generationVersion: 2.760.2
+  releaseVersion: 0.12.6
+  configChecksum: 1e696eaf665ff4cedc7707af622795d5
   repoURL: https://github.com/gleanwork/api-client-java.git
   published: true
 features:
@@ -14,7 +14,7 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.0.1
     constsAndDefaults: 0.1.1
-    core: 3.55.2
+    core: 3.55.3
     deprecations: 2.81.1
     examples: 2.81.6
     flattening: 2.81.1
@@ -2035,6 +2035,7 @@ generatedFiles:
   - src/main/java/com/glean/api_client/glean_api_client/utils/SerializedBody.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/SessionManager.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/SpeakeasyHTTPClient.java
+  - src/main/java/com/glean/api_client/glean_api_client/utils/SpeakeasyLogger.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/SpeakeasyMetadata.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/StreamingParser.java
   - src/main/java/com/glean/api_client/glean_api_client/utils/TypedObject.java
@@ -2897,6 +2898,3 @@ generatedTests:
   get_/rest/api/v1/tools/list: "2025-06-09T18:03:44Z"
   post_/rest/api/v1/tools/call: "2025-06-09T18:03:44Z"
   listpolicies: "2025-06-09T18:03:44Z"
-releaseNotes: |
-  ## Java SDK Changes Detected:
-  * `glean.client.insights.retrieve()`:  `response` **Changed** **Breaking** :warning:
