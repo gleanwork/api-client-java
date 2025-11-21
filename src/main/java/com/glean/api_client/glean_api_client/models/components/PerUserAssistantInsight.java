@@ -44,14 +44,14 @@ public class PerUserAssistantInsight {
     private Optional<Long> numAiAnswers;
 
     /**
-     * Total number of Gleanbot interacted with by this user over the specified time period.
+     * Total number of Gleanbot responses marked useful by this user over the specified time period.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("numGleanbotInteractions")
     private Optional<Long> numGleanbotInteractions;
 
     /**
-     * Total number of days this user was active over the specified time period.
+     * Total number of days this user was active on the Assistant over the specified time period.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("numDaysActive")
@@ -115,7 +115,7 @@ public class PerUserAssistantInsight {
     }
 
     /**
-     * Total number of Gleanbot interacted with by this user over the specified time period.
+     * Total number of Gleanbot responses marked useful by this user over the specified time period.
      */
     @JsonIgnore
     public Optional<Long> numGleanbotInteractions() {
@@ -123,7 +123,7 @@ public class PerUserAssistantInsight {
     }
 
     /**
-     * Total number of days this user was active over the specified time period.
+     * Total number of days this user was active on the Assistant over the specified time period.
      */
     @JsonIgnore
     public Optional<Long> numDaysActive() {
@@ -206,7 +206,7 @@ public class PerUserAssistantInsight {
     }
 
     /**
-     * Total number of Gleanbot interacted with by this user over the specified time period.
+     * Total number of Gleanbot responses marked useful by this user over the specified time period.
      */
     public PerUserAssistantInsight withNumGleanbotInteractions(long numGleanbotInteractions) {
         Utils.checkNotNull(numGleanbotInteractions, "numGleanbotInteractions");
@@ -216,7 +216,7 @@ public class PerUserAssistantInsight {
 
 
     /**
-     * Total number of Gleanbot interacted with by this user over the specified time period.
+     * Total number of Gleanbot responses marked useful by this user over the specified time period.
      */
     public PerUserAssistantInsight withNumGleanbotInteractions(Optional<Long> numGleanbotInteractions) {
         Utils.checkNotNull(numGleanbotInteractions, "numGleanbotInteractions");
@@ -225,7 +225,7 @@ public class PerUserAssistantInsight {
     }
 
     /**
-     * Total number of days this user was active over the specified time period.
+     * Total number of days this user was active on the Assistant over the specified time period.
      */
     public PerUserAssistantInsight withNumDaysActive(long numDaysActive) {
         Utils.checkNotNull(numDaysActive, "numDaysActive");
@@ -235,7 +235,7 @@ public class PerUserAssistantInsight {
 
 
     /**
-     * Total number of days this user was active over the specified time period.
+     * Total number of days this user was active on the Assistant over the specified time period.
      */
     public PerUserAssistantInsight withNumDaysActive(Optional<Long> numDaysActive) {
         Utils.checkNotNull(numDaysActive, "numDaysActive");
@@ -370,7 +370,7 @@ public class PerUserAssistantInsight {
 
 
         /**
-         * Total number of Gleanbot interacted with by this user over the specified time period.
+         * Total number of Gleanbot responses marked useful by this user over the specified time period.
          */
         public Builder numGleanbotInteractions(long numGleanbotInteractions) {
             Utils.checkNotNull(numGleanbotInteractions, "numGleanbotInteractions");
@@ -379,7 +379,7 @@ public class PerUserAssistantInsight {
         }
 
         /**
-         * Total number of Gleanbot interacted with by this user over the specified time period.
+         * Total number of Gleanbot responses marked useful by this user over the specified time period.
          */
         public Builder numGleanbotInteractions(Optional<Long> numGleanbotInteractions) {
             Utils.checkNotNull(numGleanbotInteractions, "numGleanbotInteractions");
@@ -389,7 +389,7 @@ public class PerUserAssistantInsight {
 
 
         /**
-         * Total number of days this user was active over the specified time period.
+         * Total number of days this user was active on the Assistant over the specified time period.
          */
         public Builder numDaysActive(long numDaysActive) {
             Utils.checkNotNull(numDaysActive, "numDaysActive");
@@ -398,7 +398,7 @@ public class PerUserAssistantInsight {
         }
 
         /**
-         * Total number of days this user was active over the specified time period.
+         * Total number of days this user was active on the Assistant over the specified time period.
          */
         public Builder numDaysActive(Optional<Long> numDaysActive) {
             Utils.checkNotNull(numDaysActive, "numDaysActive");

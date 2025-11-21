@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 0359d4fe-2923-46fc-aaca-cf70b48dcfa1
 management:
-  docChecksum: 648d674fdd05aad794f8dd9965d820b5
+  docChecksum: 3e5657019a4816420ae24bbe0aa55deb
   docVersion: 0.9.0
-  speakeasyVersion: 1.658.1
-  generationVersion: 2.755.6
-  releaseVersion: 0.12.4
-  configChecksum: 1ac0890dc2b893f3b27af300186dea88
+  speakeasyVersion: 1.659.0
+  generationVersion: 2.755.9
+  releaseVersion: 0.12.5
+  configChecksum: e8a09cf1b489e694a4b1e3d39c5baf5a
   repoURL: https://github.com/gleanwork/api-client-java.git
   published: true
 features:
@@ -259,7 +259,6 @@ generatedFiles:
   - docs/models/components/EditPinRequest.md
   - docs/models/components/EmployeeInfoDefinition.md
   - docs/models/components/EmployeeTeamInfo.md
-  - docs/models/components/EngagementBreakdown.md
   - docs/models/components/EntitiesSortOrder.md
   - docs/models/components/EntityRelationship.md
   - docs/models/components/EntityType.md
@@ -1067,7 +1066,6 @@ generatedFiles:
   - src/main/java/com/glean/api_client/glean_api_client/models/components/EditPinRequest.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/EmployeeInfoDefinition.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/EmployeeTeamInfo.java
-  - src/main/java/com/glean/api_client/glean_api_client/models/components/EngagementBreakdown.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/EntitiesSortOrder.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/EntityRelationship.java
   - src/main/java/com/glean/api_client/glean_api_client/models/components/EntityType.java
@@ -2899,3 +2897,6 @@ generatedTests:
   get_/rest/api/v1/tools/list: "2025-06-09T18:03:44Z"
   post_/rest/api/v1/tools/call: "2025-06-09T18:03:44Z"
   listpolicies: "2025-06-09T18:03:44Z"
+releaseNotes: |
+  ## Java SDK Changes Detected:
+  * `glean.client.insights.retrieve()`:  `response` **Changed** **Breaking** :warning:
