@@ -13,24 +13,18 @@ public final class SDKHooks {
     }
 
     public static void initialize(com.glean.api_client.glean_api_client.utils.Hooks hooks) {
-        // register synchronous hooks here
-        // hooks.registerBeforeRequest(...);
-        // hooks.registerAfterSuccess(...);
-        // hooks.registerAfterError(...);
+        hooks.registerAfterError(AgentFileUploadErrorHook.createSyncHook());
 
         // for more information see
         // https://www.speakeasy.com/docs/additional-features/sdk-hooks
     }
 
     public static void initialize(com.glean.api_client.glean_api_client.utils.AsyncHooks asyncHooks) {
-        // register async hooks here
-        // asyncHooks.registerBeforeRequest(...);
-        // asyncHooks.registerAfterSuccess(...);
-        // asyncHooks.registerAfterError(...);
-        
+        asyncHooks.registerAfterError(AgentFileUploadErrorHook.createAsyncHook());
+
         // NOTE: If you have existing synchronous hooks, you can adapt them using HookAdapters:
         // asyncHooks.registerAfterError(com.glean.api_client.glean_api_client.utils.HookAdapters.adapt(mySyncHook));
-        
+
         // PERFORMANCE TIP: For better performance, implement async hooks directly using
         // non-blocking I/O (NIO) APIs instead of adapting synchronous hooks, as adapters
         // offload execution to the ForkJoinPool which can introduce overhead.
