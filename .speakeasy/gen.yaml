@@ -25,7 +25,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 0.12.5
+  version: 0.12.6
   additionalDependencies: []
   additionalPlugins: []
   artifactID: glean-api-client
@@ -37,8 +37,8 @@ java:
   companyURL: https://www.glean.com
   defaultErrorName: APIException
   enableCustomCodeRegions: false
+  enableSlf4jLogging: false
   enableStreamingUploads: false
-  enhancedUnionMemberResolution: true
   envVarPrefix: GLEAN
   flattenGlobalSecurity: true
   generateOptionalUnionAccessors: false
@@ -62,6 +62,8 @@ java:
   maxMethodParams: 4
   nullFriendlyParameters: false
   openUnions: true
+  operationScopedParams: true
   outputModelSuffix: output
   projectName: glean-api-client
   templateVersion: v2
+  unionStrategy: populated-fields
