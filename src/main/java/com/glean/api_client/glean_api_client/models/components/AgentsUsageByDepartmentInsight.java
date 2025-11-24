@@ -9,10 +9,12 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Float;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -60,6 +62,20 @@ public class AgentsUsageByDepartmentInsight {
     @JsonProperty("agentName")
     private Optional<String> agentName;
 
+    /**
+     * Defines how to render an icon
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("icon")
+    private Optional<? extends IconConfig> icon;
+
+    /**
+     * Indicates whether the agent has been deleted
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("isDeleted")
+    private Optional<Boolean> isDeleted;
+
     @JsonCreator
     public AgentsUsageByDepartmentInsight(
             @JsonProperty("department") Optional<String> department,
@@ -67,24 +83,31 @@ public class AgentsUsageByDepartmentInsight {
             @JsonProperty("userCount") Optional<Long> userCount,
             @JsonProperty("runCount") Optional<Long> runCount,
             @JsonProperty("agentId") Optional<String> agentId,
-            @JsonProperty("agentName") Optional<String> agentName) {
+            @JsonProperty("agentName") Optional<String> agentName,
+            @JsonProperty("icon") Optional<? extends IconConfig> icon,
+            @JsonProperty("isDeleted") Optional<Boolean> isDeleted) {
         Utils.checkNotNull(department, "department");
         Utils.checkNotNull(agentAdoptionRate, "agentAdoptionRate");
         Utils.checkNotNull(userCount, "userCount");
         Utils.checkNotNull(runCount, "runCount");
         Utils.checkNotNull(agentId, "agentId");
         Utils.checkNotNull(agentName, "agentName");
+        Utils.checkNotNull(icon, "icon");
+        Utils.checkNotNull(isDeleted, "isDeleted");
         this.department = department;
         this.agentAdoptionRate = agentAdoptionRate;
         this.userCount = userCount;
         this.runCount = runCount;
         this.agentId = agentId;
         this.agentName = agentName;
+        this.icon = icon;
+        this.isDeleted = isDeleted;
     }
     
     public AgentsUsageByDepartmentInsight() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -134,6 +157,23 @@ public class AgentsUsageByDepartmentInsight {
     @JsonIgnore
     public Optional<String> agentName() {
         return agentName;
+    }
+
+    /**
+     * Defines how to render an icon
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<IconConfig> icon() {
+        return (Optional<IconConfig>) icon;
+    }
+
+    /**
+     * Indicates whether the agent has been deleted
+     */
+    @JsonIgnore
+    public Optional<Boolean> isDeleted() {
+        return isDeleted;
     }
 
     public static Builder builder() {
@@ -257,6 +297,44 @@ public class AgentsUsageByDepartmentInsight {
         return this;
     }
 
+    /**
+     * Defines how to render an icon
+     */
+    public AgentsUsageByDepartmentInsight withIcon(IconConfig icon) {
+        Utils.checkNotNull(icon, "icon");
+        this.icon = Optional.ofNullable(icon);
+        return this;
+    }
+
+
+    /**
+     * Defines how to render an icon
+     */
+    public AgentsUsageByDepartmentInsight withIcon(Optional<? extends IconConfig> icon) {
+        Utils.checkNotNull(icon, "icon");
+        this.icon = icon;
+        return this;
+    }
+
+    /**
+     * Indicates whether the agent has been deleted
+     */
+    public AgentsUsageByDepartmentInsight withIsDeleted(boolean isDeleted) {
+        Utils.checkNotNull(isDeleted, "isDeleted");
+        this.isDeleted = Optional.ofNullable(isDeleted);
+        return this;
+    }
+
+
+    /**
+     * Indicates whether the agent has been deleted
+     */
+    public AgentsUsageByDepartmentInsight withIsDeleted(Optional<Boolean> isDeleted) {
+        Utils.checkNotNull(isDeleted, "isDeleted");
+        this.isDeleted = isDeleted;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -272,14 +350,17 @@ public class AgentsUsageByDepartmentInsight {
             Utils.enhancedDeepEquals(this.userCount, other.userCount) &&
             Utils.enhancedDeepEquals(this.runCount, other.runCount) &&
             Utils.enhancedDeepEquals(this.agentId, other.agentId) &&
-            Utils.enhancedDeepEquals(this.agentName, other.agentName);
+            Utils.enhancedDeepEquals(this.agentName, other.agentName) &&
+            Utils.enhancedDeepEquals(this.icon, other.icon) &&
+            Utils.enhancedDeepEquals(this.isDeleted, other.isDeleted);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             department, agentAdoptionRate, userCount,
-            runCount, agentId, agentName);
+            runCount, agentId, agentName,
+            icon, isDeleted);
     }
     
     @Override
@@ -290,7 +371,9 @@ public class AgentsUsageByDepartmentInsight {
                 "userCount", userCount,
                 "runCount", runCount,
                 "agentId", agentId,
-                "agentName", agentName);
+                "agentName", agentName,
+                "icon", icon,
+                "isDeleted", isDeleted);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -307,6 +390,10 @@ public class AgentsUsageByDepartmentInsight {
         private Optional<String> agentId = Optional.empty();
 
         private Optional<String> agentName = Optional.empty();
+
+        private Optional<? extends IconConfig> icon = Optional.empty();
+
+        private Optional<Boolean> isDeleted = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -428,11 +515,50 @@ public class AgentsUsageByDepartmentInsight {
             return this;
         }
 
+
+        /**
+         * Defines how to render an icon
+         */
+        public Builder icon(IconConfig icon) {
+            Utils.checkNotNull(icon, "icon");
+            this.icon = Optional.ofNullable(icon);
+            return this;
+        }
+
+        /**
+         * Defines how to render an icon
+         */
+        public Builder icon(Optional<? extends IconConfig> icon) {
+            Utils.checkNotNull(icon, "icon");
+            this.icon = icon;
+            return this;
+        }
+
+
+        /**
+         * Indicates whether the agent has been deleted
+         */
+        public Builder isDeleted(boolean isDeleted) {
+            Utils.checkNotNull(isDeleted, "isDeleted");
+            this.isDeleted = Optional.ofNullable(isDeleted);
+            return this;
+        }
+
+        /**
+         * Indicates whether the agent has been deleted
+         */
+        public Builder isDeleted(Optional<Boolean> isDeleted) {
+            Utils.checkNotNull(isDeleted, "isDeleted");
+            this.isDeleted = isDeleted;
+            return this;
+        }
+
         public AgentsUsageByDepartmentInsight build() {
 
             return new AgentsUsageByDepartmentInsight(
                 department, agentAdoptionRate, userCount,
-                runCount, agentId, agentName);
+                runCount, agentId, agentName,
+                icon, isDeleted);
         }
 
     }

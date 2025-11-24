@@ -17,7 +17,10 @@ import java.util.Optional;
 @Deprecated
 public enum LikelihoodThreshold {
     LIKELY("LIKELY"),
-    VERY_LIKELY("VERY_LIKELY");
+    VERY_LIKELY("VERY_LIKELY"),
+    POSSIBLE("POSSIBLE"),
+    UNLIKELY("UNLIKELY"),
+    VERY_UNLIKELY("VERY_UNLIKELY");
 
     @JsonValue
     private final String value;
