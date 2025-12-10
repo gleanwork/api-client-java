@@ -137,7 +137,7 @@ public final class RequestBody {
                     // Handle file arrays
                     List<?> arr = Utils.toList(val);
                     for (Object item : arr) {
-                        serializeMultipartFile(metadata.name + "[]", builder, item);
+                        serializeMultipartFile(metadata.name, builder, item);
                     }
                 } else {
                     // Handle single file
@@ -151,7 +151,7 @@ public final class RequestBody {
                 if (val instanceof List || val.getClass().isArray()) {
                     List<?> arr = Utils.toList(val);
                     for (Object item : arr) {
-                        builder.addPart(metadata.name + "[]", Utils.valToString(item));
+                        builder.addPart(metadata.name, Utils.valToString(item));
                     }
                 } else {
                     builder.addPart(metadata.name, Utils.valToString(val));
