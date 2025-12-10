@@ -25,7 +25,7 @@ public class AsyncClient {
     private final AsyncClientShortcuts shortcuts;
     private final AsyncVerification verification;
     private final AsyncTools tools;
-    private final AsyncGovernance governance;
+    private final AsyncClientGovernance governance;
     private final Client syncSDK;
 
     AsyncClient(Client syncSDK, SDKConfiguration sdkConfiguration) {
@@ -46,7 +46,7 @@ public class AsyncClient {
         this.shortcuts = new AsyncClientShortcuts(syncSDK.shortcuts(), this.sdkConfiguration);
         this.verification = new AsyncVerification(syncSDK.verification(), this.sdkConfiguration);
         this.tools = new AsyncTools(syncSDK.tools(), this.sdkConfiguration);
-        this.governance = new AsyncGovernance(syncSDK.governance(), this.sdkConfiguration);
+        this.governance = new AsyncClientGovernance(syncSDK.governance(), this.sdkConfiguration);
         this.syncSDK = syncSDK;
     }
 
@@ -114,7 +114,7 @@ public class AsyncClient {
         return tools;
     }
 
-    public final AsyncGovernance governance() {
+    public final AsyncClientGovernance governance() {
         return governance;
     }
 

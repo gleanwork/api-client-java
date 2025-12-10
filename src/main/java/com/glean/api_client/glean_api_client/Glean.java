@@ -60,6 +60,9 @@ public class Glean {
     private final Indexing indexing;
 
 
+    private final Governance governance;
+
+
     public Client client() {
         return client;
     }
@@ -67,6 +70,11 @@ public class Glean {
 
     public Indexing indexing() {
         return indexing;
+    }
+
+
+    public Governance governance() {
+        return governance;
     }
     private final AsyncGlean asyncSDK;
 
@@ -236,6 +244,7 @@ public class Glean {
         sdkConfiguration.initialize();
         this.client = new Client(sdkConfiguration);
         this.indexing = new Indexing(sdkConfiguration);
+        this.governance = new Governance(sdkConfiguration);
         SdkInitData data = sdkConfiguration.hooks().sdkInit(
                 new SdkInitData(
                         sdkConfiguration.resolvedServerUrl(), 

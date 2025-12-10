@@ -57,6 +57,27 @@ public class PerUserInsight {
     @JsonProperty("numDaysActive")
     private Optional<Long> numDaysActive;
 
+    /**
+     * Total number of summarized items by this user over the specified time period.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("numSummarizations")
+    private Optional<Long> numSummarizations;
+
+    /**
+     * Total number of AI Answers interacted with by this user over the specified time period.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("numAiAnswers")
+    private Optional<Long> numAiAnswers;
+
+    /**
+     * Total number of agent runs for this user over the specified time period.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("numAgentRuns")
+    private Optional<Long> numAgentRuns;
+
     @JsonCreator
     public PerUserInsight(
             @JsonProperty("person") Optional<? extends Person> person,
@@ -64,23 +85,33 @@ public class PerUserInsight {
             @JsonProperty("numChats") Optional<Long> numChats,
             @JsonProperty("numActiveSessions") Optional<Long> numActiveSessions,
             @JsonProperty("numGleanbotUsefulResponses") Optional<Long> numGleanbotUsefulResponses,
-            @JsonProperty("numDaysActive") Optional<Long> numDaysActive) {
+            @JsonProperty("numDaysActive") Optional<Long> numDaysActive,
+            @JsonProperty("numSummarizations") Optional<Long> numSummarizations,
+            @JsonProperty("numAiAnswers") Optional<Long> numAiAnswers,
+            @JsonProperty("numAgentRuns") Optional<Long> numAgentRuns) {
         Utils.checkNotNull(person, "person");
         Utils.checkNotNull(numSearches, "numSearches");
         Utils.checkNotNull(numChats, "numChats");
         Utils.checkNotNull(numActiveSessions, "numActiveSessions");
         Utils.checkNotNull(numGleanbotUsefulResponses, "numGleanbotUsefulResponses");
         Utils.checkNotNull(numDaysActive, "numDaysActive");
+        Utils.checkNotNull(numSummarizations, "numSummarizations");
+        Utils.checkNotNull(numAiAnswers, "numAiAnswers");
+        Utils.checkNotNull(numAgentRuns, "numAgentRuns");
         this.person = person;
         this.numSearches = numSearches;
         this.numChats = numChats;
         this.numActiveSessions = numActiveSessions;
         this.numGleanbotUsefulResponses = numGleanbotUsefulResponses;
         this.numDaysActive = numDaysActive;
+        this.numSummarizations = numSummarizations;
+        this.numAiAnswers = numAiAnswers;
+        this.numAgentRuns = numAgentRuns;
     }
     
     public PerUserInsight() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty());
     }
 
@@ -128,6 +159,30 @@ public class PerUserInsight {
     @JsonIgnore
     public Optional<Long> numDaysActive() {
         return numDaysActive;
+    }
+
+    /**
+     * Total number of summarized items by this user over the specified time period.
+     */
+    @JsonIgnore
+    public Optional<Long> numSummarizations() {
+        return numSummarizations;
+    }
+
+    /**
+     * Total number of AI Answers interacted with by this user over the specified time period.
+     */
+    @JsonIgnore
+    public Optional<Long> numAiAnswers() {
+        return numAiAnswers;
+    }
+
+    /**
+     * Total number of agent runs for this user over the specified time period.
+     */
+    @JsonIgnore
+    public Optional<Long> numAgentRuns() {
+        return numAgentRuns;
     }
 
     public static Builder builder() {
@@ -243,6 +298,63 @@ public class PerUserInsight {
         return this;
     }
 
+    /**
+     * Total number of summarized items by this user over the specified time period.
+     */
+    public PerUserInsight withNumSummarizations(long numSummarizations) {
+        Utils.checkNotNull(numSummarizations, "numSummarizations");
+        this.numSummarizations = Optional.ofNullable(numSummarizations);
+        return this;
+    }
+
+
+    /**
+     * Total number of summarized items by this user over the specified time period.
+     */
+    public PerUserInsight withNumSummarizations(Optional<Long> numSummarizations) {
+        Utils.checkNotNull(numSummarizations, "numSummarizations");
+        this.numSummarizations = numSummarizations;
+        return this;
+    }
+
+    /**
+     * Total number of AI Answers interacted with by this user over the specified time period.
+     */
+    public PerUserInsight withNumAiAnswers(long numAiAnswers) {
+        Utils.checkNotNull(numAiAnswers, "numAiAnswers");
+        this.numAiAnswers = Optional.ofNullable(numAiAnswers);
+        return this;
+    }
+
+
+    /**
+     * Total number of AI Answers interacted with by this user over the specified time period.
+     */
+    public PerUserInsight withNumAiAnswers(Optional<Long> numAiAnswers) {
+        Utils.checkNotNull(numAiAnswers, "numAiAnswers");
+        this.numAiAnswers = numAiAnswers;
+        return this;
+    }
+
+    /**
+     * Total number of agent runs for this user over the specified time period.
+     */
+    public PerUserInsight withNumAgentRuns(long numAgentRuns) {
+        Utils.checkNotNull(numAgentRuns, "numAgentRuns");
+        this.numAgentRuns = Optional.ofNullable(numAgentRuns);
+        return this;
+    }
+
+
+    /**
+     * Total number of agent runs for this user over the specified time period.
+     */
+    public PerUserInsight withNumAgentRuns(Optional<Long> numAgentRuns) {
+        Utils.checkNotNull(numAgentRuns, "numAgentRuns");
+        this.numAgentRuns = numAgentRuns;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -258,14 +370,18 @@ public class PerUserInsight {
             Utils.enhancedDeepEquals(this.numChats, other.numChats) &&
             Utils.enhancedDeepEquals(this.numActiveSessions, other.numActiveSessions) &&
             Utils.enhancedDeepEquals(this.numGleanbotUsefulResponses, other.numGleanbotUsefulResponses) &&
-            Utils.enhancedDeepEquals(this.numDaysActive, other.numDaysActive);
+            Utils.enhancedDeepEquals(this.numDaysActive, other.numDaysActive) &&
+            Utils.enhancedDeepEquals(this.numSummarizations, other.numSummarizations) &&
+            Utils.enhancedDeepEquals(this.numAiAnswers, other.numAiAnswers) &&
+            Utils.enhancedDeepEquals(this.numAgentRuns, other.numAgentRuns);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             person, numSearches, numChats,
-            numActiveSessions, numGleanbotUsefulResponses, numDaysActive);
+            numActiveSessions, numGleanbotUsefulResponses, numDaysActive,
+            numSummarizations, numAiAnswers, numAgentRuns);
     }
     
     @Override
@@ -276,7 +392,10 @@ public class PerUserInsight {
                 "numChats", numChats,
                 "numActiveSessions", numActiveSessions,
                 "numGleanbotUsefulResponses", numGleanbotUsefulResponses,
-                "numDaysActive", numDaysActive);
+                "numDaysActive", numDaysActive,
+                "numSummarizations", numSummarizations,
+                "numAiAnswers", numAiAnswers,
+                "numAgentRuns", numAgentRuns);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -293,6 +412,12 @@ public class PerUserInsight {
         private Optional<Long> numGleanbotUsefulResponses = Optional.empty();
 
         private Optional<Long> numDaysActive = Optional.empty();
+
+        private Optional<Long> numSummarizations = Optional.empty();
+
+        private Optional<Long> numAiAnswers = Optional.empty();
+
+        private Optional<Long> numAgentRuns = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -406,11 +531,69 @@ public class PerUserInsight {
             return this;
         }
 
+
+        /**
+         * Total number of summarized items by this user over the specified time period.
+         */
+        public Builder numSummarizations(long numSummarizations) {
+            Utils.checkNotNull(numSummarizations, "numSummarizations");
+            this.numSummarizations = Optional.ofNullable(numSummarizations);
+            return this;
+        }
+
+        /**
+         * Total number of summarized items by this user over the specified time period.
+         */
+        public Builder numSummarizations(Optional<Long> numSummarizations) {
+            Utils.checkNotNull(numSummarizations, "numSummarizations");
+            this.numSummarizations = numSummarizations;
+            return this;
+        }
+
+
+        /**
+         * Total number of AI Answers interacted with by this user over the specified time period.
+         */
+        public Builder numAiAnswers(long numAiAnswers) {
+            Utils.checkNotNull(numAiAnswers, "numAiAnswers");
+            this.numAiAnswers = Optional.ofNullable(numAiAnswers);
+            return this;
+        }
+
+        /**
+         * Total number of AI Answers interacted with by this user over the specified time period.
+         */
+        public Builder numAiAnswers(Optional<Long> numAiAnswers) {
+            Utils.checkNotNull(numAiAnswers, "numAiAnswers");
+            this.numAiAnswers = numAiAnswers;
+            return this;
+        }
+
+
+        /**
+         * Total number of agent runs for this user over the specified time period.
+         */
+        public Builder numAgentRuns(long numAgentRuns) {
+            Utils.checkNotNull(numAgentRuns, "numAgentRuns");
+            this.numAgentRuns = Optional.ofNullable(numAgentRuns);
+            return this;
+        }
+
+        /**
+         * Total number of agent runs for this user over the specified time period.
+         */
+        public Builder numAgentRuns(Optional<Long> numAgentRuns) {
+            Utils.checkNotNull(numAgentRuns, "numAgentRuns");
+            this.numAgentRuns = numAgentRuns;
+            return this;
+        }
+
         public PerUserInsight build() {
 
             return new PerUserInsight(
                 person, numSearches, numChats,
-                numActiveSessions, numGleanbotUsefulResponses, numDaysActive);
+                numActiveSessions, numGleanbotUsefulResponses, numDaysActive,
+                numSummarizations, numAiAnswers, numAgentRuns);
         }
 
     }

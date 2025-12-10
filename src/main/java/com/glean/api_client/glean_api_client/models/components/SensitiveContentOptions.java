@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -22,48 +23,69 @@ import java.util.Optional;
  */
 public class SensitiveContentOptions {
     /**
-     * Predefined categories of terms to consider as sensitive content. See
-     * https://cloud.google.com/dlp/docs/infotypes-reference for available types.
+     * DEPRECATED - use 'customSensitiveExpressions' instead.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sensitiveInfoTypes")
+    @Deprecated
     private Optional<? extends List<SensitiveInfoType>> sensitiveInfoTypes;
 
     /**
-     * list of words and phrases to consider as sensitive content
+     * DEPRECATED - use 'customSensitiveExpressions' instead.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sensitiveTerms")
+    @Deprecated
     private Optional<? extends List<SensitiveExpression>> sensitiveTerms;
 
     /**
-     * list of regular expressions to consider as sensitive content
+     * DEPRECATED - use 'customSensitiveExpressions' instead.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sensitiveRegexes")
+    @Deprecated
     private Optional<? extends List<SensitiveExpression>> sensitiveRegexes;
+
+    /**
+     * list of custom sensitive expressions to consider as sensitive content
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("customSensitiveExpressions")
+    private Optional<? extends List<CustomSensitiveExpression>> customSensitiveExpressions;
 
     @JsonCreator
     public SensitiveContentOptions(
             @JsonProperty("sensitiveInfoTypes") Optional<? extends List<SensitiveInfoType>> sensitiveInfoTypes,
             @JsonProperty("sensitiveTerms") Optional<? extends List<SensitiveExpression>> sensitiveTerms,
-            @JsonProperty("sensitiveRegexes") Optional<? extends List<SensitiveExpression>> sensitiveRegexes) {
+            @JsonProperty("sensitiveRegexes") Optional<? extends List<SensitiveExpression>> sensitiveRegexes,
+            @JsonProperty("customSensitiveExpressions") Optional<? extends List<CustomSensitiveExpression>> customSensitiveExpressions) {
         Utils.checkNotNull(sensitiveInfoTypes, "sensitiveInfoTypes");
         Utils.checkNotNull(sensitiveTerms, "sensitiveTerms");
         Utils.checkNotNull(sensitiveRegexes, "sensitiveRegexes");
+        Utils.checkNotNull(customSensitiveExpressions, "customSensitiveExpressions");
         this.sensitiveInfoTypes = sensitiveInfoTypes;
         this.sensitiveTerms = sensitiveTerms;
         this.sensitiveRegexes = sensitiveRegexes;
+        this.customSensitiveExpressions = customSensitiveExpressions;
     }
     
     public SensitiveContentOptions() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
-     * Predefined categories of terms to consider as sensitive content. See
-     * https://cloud.google.com/dlp/docs/infotypes-reference for available types.
+     * DEPRECATED - use 'customSensitiveExpressions' instead.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<SensitiveInfoType>> sensitiveInfoTypes() {
@@ -71,8 +93,11 @@ public class SensitiveContentOptions {
     }
 
     /**
-     * list of words and phrases to consider as sensitive content
+     * DEPRECATED - use 'customSensitiveExpressions' instead.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<SensitiveExpression>> sensitiveTerms() {
@@ -80,12 +105,24 @@ public class SensitiveContentOptions {
     }
 
     /**
-     * list of regular expressions to consider as sensitive content
+     * DEPRECATED - use 'customSensitiveExpressions' instead.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<SensitiveExpression>> sensitiveRegexes() {
         return (Optional<List<SensitiveExpression>>) sensitiveRegexes;
+    }
+
+    /**
+     * list of custom sensitive expressions to consider as sensitive content
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<CustomSensitiveExpression>> customSensitiveExpressions() {
+        return (Optional<List<CustomSensitiveExpression>>) customSensitiveExpressions;
     }
 
     public static Builder builder() {
@@ -94,9 +131,11 @@ public class SensitiveContentOptions {
 
 
     /**
-     * Predefined categories of terms to consider as sensitive content. See
-     * https://cloud.google.com/dlp/docs/infotypes-reference for available types.
+     * DEPRECATED - use 'customSensitiveExpressions' instead.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public SensitiveContentOptions withSensitiveInfoTypes(List<SensitiveInfoType> sensitiveInfoTypes) {
         Utils.checkNotNull(sensitiveInfoTypes, "sensitiveInfoTypes");
         this.sensitiveInfoTypes = Optional.ofNullable(sensitiveInfoTypes);
@@ -105,9 +144,11 @@ public class SensitiveContentOptions {
 
 
     /**
-     * Predefined categories of terms to consider as sensitive content. See
-     * https://cloud.google.com/dlp/docs/infotypes-reference for available types.
+     * DEPRECATED - use 'customSensitiveExpressions' instead.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public SensitiveContentOptions withSensitiveInfoTypes(Optional<? extends List<SensitiveInfoType>> sensitiveInfoTypes) {
         Utils.checkNotNull(sensitiveInfoTypes, "sensitiveInfoTypes");
         this.sensitiveInfoTypes = sensitiveInfoTypes;
@@ -115,8 +156,11 @@ public class SensitiveContentOptions {
     }
 
     /**
-     * list of words and phrases to consider as sensitive content
+     * DEPRECATED - use 'customSensitiveExpressions' instead.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public SensitiveContentOptions withSensitiveTerms(List<SensitiveExpression> sensitiveTerms) {
         Utils.checkNotNull(sensitiveTerms, "sensitiveTerms");
         this.sensitiveTerms = Optional.ofNullable(sensitiveTerms);
@@ -125,8 +169,11 @@ public class SensitiveContentOptions {
 
 
     /**
-     * list of words and phrases to consider as sensitive content
+     * DEPRECATED - use 'customSensitiveExpressions' instead.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public SensitiveContentOptions withSensitiveTerms(Optional<? extends List<SensitiveExpression>> sensitiveTerms) {
         Utils.checkNotNull(sensitiveTerms, "sensitiveTerms");
         this.sensitiveTerms = sensitiveTerms;
@@ -134,8 +181,11 @@ public class SensitiveContentOptions {
     }
 
     /**
-     * list of regular expressions to consider as sensitive content
+     * DEPRECATED - use 'customSensitiveExpressions' instead.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public SensitiveContentOptions withSensitiveRegexes(List<SensitiveExpression> sensitiveRegexes) {
         Utils.checkNotNull(sensitiveRegexes, "sensitiveRegexes");
         this.sensitiveRegexes = Optional.ofNullable(sensitiveRegexes);
@@ -144,11 +194,33 @@ public class SensitiveContentOptions {
 
 
     /**
-     * list of regular expressions to consider as sensitive content
+     * DEPRECATED - use 'customSensitiveExpressions' instead.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public SensitiveContentOptions withSensitiveRegexes(Optional<? extends List<SensitiveExpression>> sensitiveRegexes) {
         Utils.checkNotNull(sensitiveRegexes, "sensitiveRegexes");
         this.sensitiveRegexes = sensitiveRegexes;
+        return this;
+    }
+
+    /**
+     * list of custom sensitive expressions to consider as sensitive content
+     */
+    public SensitiveContentOptions withCustomSensitiveExpressions(List<CustomSensitiveExpression> customSensitiveExpressions) {
+        Utils.checkNotNull(customSensitiveExpressions, "customSensitiveExpressions");
+        this.customSensitiveExpressions = Optional.ofNullable(customSensitiveExpressions);
+        return this;
+    }
+
+
+    /**
+     * list of custom sensitive expressions to consider as sensitive content
+     */
+    public SensitiveContentOptions withCustomSensitiveExpressions(Optional<? extends List<CustomSensitiveExpression>> customSensitiveExpressions) {
+        Utils.checkNotNull(customSensitiveExpressions, "customSensitiveExpressions");
+        this.customSensitiveExpressions = customSensitiveExpressions;
         return this;
     }
 
@@ -164,13 +236,15 @@ public class SensitiveContentOptions {
         return 
             Utils.enhancedDeepEquals(this.sensitiveInfoTypes, other.sensitiveInfoTypes) &&
             Utils.enhancedDeepEquals(this.sensitiveTerms, other.sensitiveTerms) &&
-            Utils.enhancedDeepEquals(this.sensitiveRegexes, other.sensitiveRegexes);
+            Utils.enhancedDeepEquals(this.sensitiveRegexes, other.sensitiveRegexes) &&
+            Utils.enhancedDeepEquals(this.customSensitiveExpressions, other.customSensitiveExpressions);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            sensitiveInfoTypes, sensitiveTerms, sensitiveRegexes);
+            sensitiveInfoTypes, sensitiveTerms, sensitiveRegexes,
+            customSensitiveExpressions);
     }
     
     @Override
@@ -178,17 +252,23 @@ public class SensitiveContentOptions {
         return Utils.toString(SensitiveContentOptions.class,
                 "sensitiveInfoTypes", sensitiveInfoTypes,
                 "sensitiveTerms", sensitiveTerms,
-                "sensitiveRegexes", sensitiveRegexes);
+                "sensitiveRegexes", sensitiveRegexes,
+                "customSensitiveExpressions", customSensitiveExpressions);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
+        @Deprecated
         private Optional<? extends List<SensitiveInfoType>> sensitiveInfoTypes = Optional.empty();
 
+        @Deprecated
         private Optional<? extends List<SensitiveExpression>> sensitiveTerms = Optional.empty();
 
+        @Deprecated
         private Optional<? extends List<SensitiveExpression>> sensitiveRegexes = Optional.empty();
+
+        private Optional<? extends List<CustomSensitiveExpression>> customSensitiveExpressions = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -196,9 +276,11 @@ public class SensitiveContentOptions {
 
 
         /**
-         * Predefined categories of terms to consider as sensitive content. See
-         * https://cloud.google.com/dlp/docs/infotypes-reference for available types.
+         * DEPRECATED - use 'customSensitiveExpressions' instead.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder sensitiveInfoTypes(List<SensitiveInfoType> sensitiveInfoTypes) {
             Utils.checkNotNull(sensitiveInfoTypes, "sensitiveInfoTypes");
             this.sensitiveInfoTypes = Optional.ofNullable(sensitiveInfoTypes);
@@ -206,9 +288,11 @@ public class SensitiveContentOptions {
         }
 
         /**
-         * Predefined categories of terms to consider as sensitive content. See
-         * https://cloud.google.com/dlp/docs/infotypes-reference for available types.
+         * DEPRECATED - use 'customSensitiveExpressions' instead.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder sensitiveInfoTypes(Optional<? extends List<SensitiveInfoType>> sensitiveInfoTypes) {
             Utils.checkNotNull(sensitiveInfoTypes, "sensitiveInfoTypes");
             this.sensitiveInfoTypes = sensitiveInfoTypes;
@@ -217,8 +301,11 @@ public class SensitiveContentOptions {
 
 
         /**
-         * list of words and phrases to consider as sensitive content
+         * DEPRECATED - use 'customSensitiveExpressions' instead.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder sensitiveTerms(List<SensitiveExpression> sensitiveTerms) {
             Utils.checkNotNull(sensitiveTerms, "sensitiveTerms");
             this.sensitiveTerms = Optional.ofNullable(sensitiveTerms);
@@ -226,8 +313,11 @@ public class SensitiveContentOptions {
         }
 
         /**
-         * list of words and phrases to consider as sensitive content
+         * DEPRECATED - use 'customSensitiveExpressions' instead.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder sensitiveTerms(Optional<? extends List<SensitiveExpression>> sensitiveTerms) {
             Utils.checkNotNull(sensitiveTerms, "sensitiveTerms");
             this.sensitiveTerms = sensitiveTerms;
@@ -236,8 +326,11 @@ public class SensitiveContentOptions {
 
 
         /**
-         * list of regular expressions to consider as sensitive content
+         * DEPRECATED - use 'customSensitiveExpressions' instead.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder sensitiveRegexes(List<SensitiveExpression> sensitiveRegexes) {
             Utils.checkNotNull(sensitiveRegexes, "sensitiveRegexes");
             this.sensitiveRegexes = Optional.ofNullable(sensitiveRegexes);
@@ -245,18 +338,41 @@ public class SensitiveContentOptions {
         }
 
         /**
-         * list of regular expressions to consider as sensitive content
+         * DEPRECATED - use 'customSensitiveExpressions' instead.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder sensitiveRegexes(Optional<? extends List<SensitiveExpression>> sensitiveRegexes) {
             Utils.checkNotNull(sensitiveRegexes, "sensitiveRegexes");
             this.sensitiveRegexes = sensitiveRegexes;
             return this;
         }
 
+
+        /**
+         * list of custom sensitive expressions to consider as sensitive content
+         */
+        public Builder customSensitiveExpressions(List<CustomSensitiveExpression> customSensitiveExpressions) {
+            Utils.checkNotNull(customSensitiveExpressions, "customSensitiveExpressions");
+            this.customSensitiveExpressions = Optional.ofNullable(customSensitiveExpressions);
+            return this;
+        }
+
+        /**
+         * list of custom sensitive expressions to consider as sensitive content
+         */
+        public Builder customSensitiveExpressions(Optional<? extends List<CustomSensitiveExpression>> customSensitiveExpressions) {
+            Utils.checkNotNull(customSensitiveExpressions, "customSensitiveExpressions");
+            this.customSensitiveExpressions = customSensitiveExpressions;
+            return this;
+        }
+
         public SensitiveContentOptions build() {
 
             return new SensitiveContentOptions(
-                sensitiveInfoTypes, sensitiveTerms, sensitiveRegexes);
+                sensitiveInfoTypes, sensitiveTerms, sensitiveRegexes,
+                customSensitiveExpressions);
         }
 
     }

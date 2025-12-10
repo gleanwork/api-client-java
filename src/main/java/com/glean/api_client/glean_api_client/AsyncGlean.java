@@ -37,12 +37,18 @@ public class AsyncGlean {
 
     private final AsyncIndexing indexing;
 
+    private final AsyncGovernance governance;
+
     public AsyncClient client() {
         return client;
     }
 
     public AsyncIndexing indexing() {
         return indexing;
+    }
+
+    public AsyncGovernance governance() {
+        return governance;
     }
 
     private final SDKConfiguration sdkConfiguration;
@@ -53,6 +59,7 @@ public class AsyncGlean {
         this.sdkConfiguration = sdkConfiguration;
         this.client = new AsyncClient(syncSDK.client(), sdkConfiguration);
         this.indexing = new AsyncIndexing(syncSDK.indexing(), sdkConfiguration);
+        this.governance = new AsyncGovernance(syncSDK.governance(), sdkConfiguration);
     }
 
     /**

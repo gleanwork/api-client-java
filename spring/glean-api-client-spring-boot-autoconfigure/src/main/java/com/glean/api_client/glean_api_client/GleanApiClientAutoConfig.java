@@ -242,6 +242,17 @@ public class GleanApiClientAutoConfig {
     public Indexing indexing(Glean glean) {
         return glean.indexing();
     }
+    /**
+     * Creates a Governance sub-SDK bean if none exists.
+     *
+     * @param glean the main SDK instance
+     * @return A configured Governance instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public Governance governance(Glean glean) {
+        return glean.governance();
+    }
 
     /**
      * Creates the async SDK bean if none exists.
@@ -276,5 +287,16 @@ public class GleanApiClientAutoConfig {
     @ConditionalOnMissingBean
     public AsyncIndexing asyncIndexing(AsyncGlean asyncGlean) {
         return asyncGlean.indexing();
+    }
+    /**
+     * Creates an AsyncGovernance sub-SDK bean if none exists.
+     *
+     * @param asyncGlean the async SDK instance
+     * @return A configured AsyncGovernance instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public AsyncGovernance asyncGovernance(AsyncGlean asyncGlean) {
+        return asyncGlean.governance();
     }
 }

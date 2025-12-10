@@ -148,6 +148,13 @@ public class PersonMetadata {
     private Optional<Long> timezoneOffset;
 
     /**
+     * The IANA timezone identifier, e.g. "America/Los_Angeles".
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("timezoneIANA")
+    private Optional<String> timezoneIANA;
+
+    /**
      * The URL of the person's avatar. Public, glean-authenticated and Base64 encoded data URLs are all
      * valid (but not third-party-authenticated URLs).
      */
@@ -350,6 +357,7 @@ public class PersonMetadata {
             @JsonProperty("phone") Optional<String> phone,
             @JsonProperty("timezone") Optional<String> timezone,
             @JsonProperty("timezoneOffset") Optional<Long> timezoneOffset,
+            @JsonProperty("timezoneIANA") Optional<String> timezoneIANA,
             @JsonProperty("photoUrl") Optional<String> photoUrl,
             @JsonProperty("uneditedPhotoUrl") Optional<String> uneditedPhotoUrl,
             @JsonProperty("bannerUrl") Optional<String> bannerUrl,
@@ -394,6 +402,7 @@ public class PersonMetadata {
         Utils.checkNotNull(phone, "phone");
         Utils.checkNotNull(timezone, "timezone");
         Utils.checkNotNull(timezoneOffset, "timezoneOffset");
+        Utils.checkNotNull(timezoneIANA, "timezoneIANA");
         Utils.checkNotNull(photoUrl, "photoUrl");
         Utils.checkNotNull(uneditedPhotoUrl, "uneditedPhotoUrl");
         Utils.checkNotNull(bannerUrl, "bannerUrl");
@@ -438,6 +447,7 @@ public class PersonMetadata {
         this.phone = phone;
         this.timezone = timezone;
         this.timezoneOffset = timezoneOffset;
+        this.timezoneIANA = timezoneIANA;
         this.photoUrl = photoUrl;
         this.uneditedPhotoUrl = uneditedPhotoUrl;
         this.bannerUrl = bannerUrl;
@@ -481,7 +491,7 @@ public class PersonMetadata {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -628,6 +638,14 @@ public class PersonMetadata {
     @JsonIgnore
     public Optional<Long> timezoneOffset() {
         return timezoneOffset;
+    }
+
+    /**
+     * The IANA timezone identifier, e.g. "America/Los_Angeles".
+     */
+    @JsonIgnore
+    public Optional<String> timezoneIANA() {
+        return timezoneIANA;
     }
 
     /**
@@ -1188,6 +1206,25 @@ public class PersonMetadata {
     }
 
     /**
+     * The IANA timezone identifier, e.g. "America/Los_Angeles".
+     */
+    public PersonMetadata withTimezoneIANA(String timezoneIANA) {
+        Utils.checkNotNull(timezoneIANA, "timezoneIANA");
+        this.timezoneIANA = Optional.ofNullable(timezoneIANA);
+        return this;
+    }
+
+
+    /**
+     * The IANA timezone identifier, e.g. "America/Los_Angeles".
+     */
+    public PersonMetadata withTimezoneIANA(Optional<String> timezoneIANA) {
+        Utils.checkNotNull(timezoneIANA, "timezoneIANA");
+        this.timezoneIANA = timezoneIANA;
+        return this;
+    }
+
+    /**
      * The URL of the person's avatar. Public, glean-authenticated and Base64 encoded data URLs are all
      * valid (but not third-party-authenticated URLs).
      */
@@ -1707,6 +1744,7 @@ public class PersonMetadata {
             Utils.enhancedDeepEquals(this.phone, other.phone) &&
             Utils.enhancedDeepEquals(this.timezone, other.timezone) &&
             Utils.enhancedDeepEquals(this.timezoneOffset, other.timezoneOffset) &&
+            Utils.enhancedDeepEquals(this.timezoneIANA, other.timezoneIANA) &&
             Utils.enhancedDeepEquals(this.photoUrl, other.photoUrl) &&
             Utils.enhancedDeepEquals(this.uneditedPhotoUrl, other.uneditedPhotoUrl) &&
             Utils.enhancedDeepEquals(this.bannerUrl, other.bannerUrl) &&
@@ -1744,15 +1782,15 @@ public class PersonMetadata {
             aliasEmails, location, structuredLocation,
             externalProfileLink, manager, managementChain,
             phone, timezone, timezoneOffset,
-            photoUrl, uneditedPhotoUrl, bannerUrl,
-            reports, startDate, endDate,
-            bio, pronoun, orgSizeCount,
-            directReportsCount, preferredName, socialNetwork,
-            datasourceProfile, querySuggestions, peopleDistance,
-            inviteInfo, isSignedUp, lastExtensionUse,
-            permissions, customFields, loggingId,
-            startDatePercentile, busyEvents, profileBoolSettings,
-            badges, isOrgRoot);
+            timezoneIANA, photoUrl, uneditedPhotoUrl,
+            bannerUrl, reports, startDate,
+            endDate, bio, pronoun,
+            orgSizeCount, directReportsCount, preferredName,
+            socialNetwork, datasourceProfile, querySuggestions,
+            peopleDistance, inviteInfo, isSignedUp,
+            lastExtensionUse, permissions, customFields,
+            loggingId, startDatePercentile, busyEvents,
+            profileBoolSettings, badges, isOrgRoot);
     }
     
     @Override
@@ -1776,6 +1814,7 @@ public class PersonMetadata {
                 "phone", phone,
                 "timezone", timezone,
                 "timezoneOffset", timezoneOffset,
+                "timezoneIANA", timezoneIANA,
                 "photoUrl", photoUrl,
                 "uneditedPhotoUrl", uneditedPhotoUrl,
                 "bannerUrl", bannerUrl,
@@ -1842,6 +1881,8 @@ public class PersonMetadata {
         private Optional<String> timezone = Optional.empty();
 
         private Optional<Long> timezoneOffset = Optional.empty();
+
+        private Optional<String> timezoneIANA = Optional.empty();
 
         private Optional<String> photoUrl = Optional.empty();
 
@@ -2230,6 +2271,25 @@ public class PersonMetadata {
         public Builder timezoneOffset(Optional<Long> timezoneOffset) {
             Utils.checkNotNull(timezoneOffset, "timezoneOffset");
             this.timezoneOffset = timezoneOffset;
+            return this;
+        }
+
+
+        /**
+         * The IANA timezone identifier, e.g. "America/Los_Angeles".
+         */
+        public Builder timezoneIANA(String timezoneIANA) {
+            Utils.checkNotNull(timezoneIANA, "timezoneIANA");
+            this.timezoneIANA = Optional.ofNullable(timezoneIANA);
+            return this;
+        }
+
+        /**
+         * The IANA timezone identifier, e.g. "America/Los_Angeles".
+         */
+        public Builder timezoneIANA(Optional<String> timezoneIANA) {
+            Utils.checkNotNull(timezoneIANA, "timezoneIANA");
+            this.timezoneIANA = timezoneIANA;
             return this;
         }
 
@@ -2734,15 +2794,15 @@ public class PersonMetadata {
                 aliasEmails, location, structuredLocation,
                 externalProfileLink, manager, managementChain,
                 phone, timezone, timezoneOffset,
-                photoUrl, uneditedPhotoUrl, bannerUrl,
-                reports, startDate, endDate,
-                bio, pronoun, orgSizeCount,
-                directReportsCount, preferredName, socialNetwork,
-                datasourceProfile, querySuggestions, peopleDistance,
-                inviteInfo, isSignedUp, lastExtensionUse,
-                permissions, customFields, loggingId,
-                startDatePercentile, busyEvents, profileBoolSettings,
-                badges, isOrgRoot);
+                timezoneIANA, photoUrl, uneditedPhotoUrl,
+                bannerUrl, reports, startDate,
+                endDate, bio, pronoun,
+                orgSizeCount, directReportsCount, preferredName,
+                socialNetwork, datasourceProfile, querySuggestions,
+                peopleDistance, inviteInfo, isSignedUp,
+                lastExtensionUse, permissions, customFields,
+                loggingId, startDatePercentile, busyEvents,
+                profileBoolSettings, badges, isOrgRoot);
         }
 
     }

@@ -26,7 +26,7 @@ public class Client {
     private final ClientShortcuts shortcuts;
     private final Verification verification;
     private final Tools tools;
-    private final Governance governance;
+    private final ClientGovernance governance;
 
     Client(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -46,7 +46,7 @@ public class Client {
         this.shortcuts = new ClientShortcuts(this.sdkConfiguration);
         this.verification = new Verification(this.sdkConfiguration);
         this.tools = new Tools(this.sdkConfiguration);
-        this.governance = new Governance(this.sdkConfiguration);
+        this.governance = new ClientGovernance(this.sdkConfiguration);
         this.asyncSDK = new AsyncClient(this, sdkConfiguration);
     }
 
@@ -114,7 +114,7 @@ public class Client {
         return tools;
     }
 
-    public final Governance governance() {
+    public final ClientGovernance governance() {
         return governance;
     }
 
