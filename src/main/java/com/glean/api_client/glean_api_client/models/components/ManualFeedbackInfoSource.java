@@ -34,7 +34,8 @@ public enum ManualFeedbackInfoSource {
     SEARCH("SEARCH"),
     SIDEBAR("SIDEBAR"),
     SUMMARY("SUMMARY"),
-    TASKS("TASKS");
+    TASKS("TASKS"),
+    TASK_EXECUTION("TASK_EXECUTION");
 
     @JsonValue
     private final String value;

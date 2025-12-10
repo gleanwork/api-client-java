@@ -61,7 +61,7 @@ public class InputOptions {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timePeriodType")
-    private Optional<? extends TimePeriodType> timePeriodType;
+    private Optional<? extends InputOptionsTimePeriodType> timePeriodType;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -74,7 +74,7 @@ public class InputOptions {
             @JsonProperty("datasourcesType") Optional<? extends DatasourcesType> datasourcesType,
             @JsonProperty("datasources") Optional<? extends List<String>> datasources,
             @JsonProperty("datasourceInstances") Optional<? extends List<String>> datasourceInstances,
-            @JsonProperty("timePeriodType") Optional<? extends TimePeriodType> timePeriodType,
+            @JsonProperty("timePeriodType") Optional<? extends InputOptionsTimePeriodType> timePeriodType,
             @JsonProperty("customTimeRange") Optional<? extends TimeRange> customTimeRange) {
         Utils.checkNotNull(urlGreenlist, "urlGreenlist");
         Utils.checkNotNull(datasourcesType, "datasourcesType");
@@ -142,8 +142,8 @@ public class InputOptions {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<TimePeriodType> timePeriodType() {
-        return (Optional<TimePeriodType>) timePeriodType;
+    public Optional<InputOptionsTimePeriodType> timePeriodType() {
+        return (Optional<InputOptionsTimePeriodType>) timePeriodType;
     }
 
     @SuppressWarnings("unchecked")
@@ -248,7 +248,7 @@ public class InputOptions {
     /**
      * Type of time period for which to run the report/policy. PAST_DAY is deprecated.
      */
-    public InputOptions withTimePeriodType(TimePeriodType timePeriodType) {
+    public InputOptions withTimePeriodType(InputOptionsTimePeriodType timePeriodType) {
         Utils.checkNotNull(timePeriodType, "timePeriodType");
         this.timePeriodType = Optional.ofNullable(timePeriodType);
         return this;
@@ -258,7 +258,7 @@ public class InputOptions {
     /**
      * Type of time period for which to run the report/policy. PAST_DAY is deprecated.
      */
-    public InputOptions withTimePeriodType(Optional<? extends TimePeriodType> timePeriodType) {
+    public InputOptions withTimePeriodType(Optional<? extends InputOptionsTimePeriodType> timePeriodType) {
         Utils.checkNotNull(timePeriodType, "timePeriodType");
         this.timePeriodType = timePeriodType;
         return this;
@@ -326,7 +326,7 @@ public class InputOptions {
 
         private Optional<? extends List<String>> datasourceInstances = Optional.empty();
 
-        private Optional<? extends TimePeriodType> timePeriodType = Optional.empty();
+        private Optional<? extends InputOptionsTimePeriodType> timePeriodType = Optional.empty();
 
         private Optional<? extends TimeRange> customTimeRange = Optional.empty();
 
@@ -426,7 +426,7 @@ public class InputOptions {
         /**
          * Type of time period for which to run the report/policy. PAST_DAY is deprecated.
          */
-        public Builder timePeriodType(TimePeriodType timePeriodType) {
+        public Builder timePeriodType(InputOptionsTimePeriodType timePeriodType) {
             Utils.checkNotNull(timePeriodType, "timePeriodType");
             this.timePeriodType = Optional.ofNullable(timePeriodType);
             return this;
@@ -435,7 +435,7 @@ public class InputOptions {
         /**
          * Type of time period for which to run the report/policy. PAST_DAY is deprecated.
          */
-        public Builder timePeriodType(Optional<? extends TimePeriodType> timePeriodType) {
+        public Builder timePeriodType(Optional<? extends InputOptionsTimePeriodType> timePeriodType) {
             Utils.checkNotNull(timePeriodType, "timePeriodType");
             this.timePeriodType = timePeriodType;
             return this;

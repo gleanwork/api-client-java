@@ -51,6 +51,11 @@ public class QuerySuggestion {
 
 
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("resultTab")
+    private Optional<? extends ResultTab> resultTab;
+
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("requestOptions")
     private Optional<? extends SearchRequestOptions> requestOptions;
 
@@ -73,6 +78,7 @@ public class QuerySuggestion {
             @JsonProperty("searchProviderInfo") Optional<? extends SearchProviderInfo> searchProviderInfo,
             @JsonProperty("label") Optional<String> label,
             @JsonProperty("datasource") Optional<String> datasource,
+            @JsonProperty("resultTab") Optional<? extends ResultTab> resultTab,
             @JsonProperty("requestOptions") Optional<? extends SearchRequestOptions> requestOptions,
             @JsonProperty("ranges") Optional<? extends List<TextRange>> ranges,
             @JsonProperty("inputDetails") Optional<? extends SearchRequestInputDetails> inputDetails) {
@@ -81,6 +87,7 @@ public class QuerySuggestion {
         Utils.checkNotNull(searchProviderInfo, "searchProviderInfo");
         Utils.checkNotNull(label, "label");
         Utils.checkNotNull(datasource, "datasource");
+        Utils.checkNotNull(resultTab, "resultTab");
         Utils.checkNotNull(requestOptions, "requestOptions");
         Utils.checkNotNull(ranges, "ranges");
         Utils.checkNotNull(inputDetails, "inputDetails");
@@ -89,6 +96,7 @@ public class QuerySuggestion {
         this.searchProviderInfo = searchProviderInfo;
         this.label = label;
         this.datasource = datasource;
+        this.resultTab = resultTab;
         this.requestOptions = requestOptions;
         this.ranges = ranges;
         this.inputDetails = inputDetails;
@@ -98,7 +106,7 @@ public class QuerySuggestion {
             String query) {
         this(Optional.empty(), query, Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -137,6 +145,12 @@ public class QuerySuggestion {
     @JsonIgnore
     public Optional<String> datasource() {
         return datasource;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ResultTab> resultTab() {
+        return (Optional<ResultTab>) resultTab;
     }
 
     @SuppressWarnings("unchecked")
@@ -244,6 +258,19 @@ public class QuerySuggestion {
         return this;
     }
 
+    public QuerySuggestion withResultTab(ResultTab resultTab) {
+        Utils.checkNotNull(resultTab, "resultTab");
+        this.resultTab = Optional.ofNullable(resultTab);
+        return this;
+    }
+
+
+    public QuerySuggestion withResultTab(Optional<? extends ResultTab> resultTab) {
+        Utils.checkNotNull(resultTab, "resultTab");
+        this.resultTab = resultTab;
+        return this;
+    }
+
     public QuerySuggestion withRequestOptions(SearchRequestOptions requestOptions) {
         Utils.checkNotNull(requestOptions, "requestOptions");
         this.requestOptions = Optional.ofNullable(requestOptions);
@@ -304,6 +331,7 @@ public class QuerySuggestion {
             Utils.enhancedDeepEquals(this.searchProviderInfo, other.searchProviderInfo) &&
             Utils.enhancedDeepEquals(this.label, other.label) &&
             Utils.enhancedDeepEquals(this.datasource, other.datasource) &&
+            Utils.enhancedDeepEquals(this.resultTab, other.resultTab) &&
             Utils.enhancedDeepEquals(this.requestOptions, other.requestOptions) &&
             Utils.enhancedDeepEquals(this.ranges, other.ranges) &&
             Utils.enhancedDeepEquals(this.inputDetails, other.inputDetails);
@@ -313,8 +341,8 @@ public class QuerySuggestion {
     public int hashCode() {
         return Utils.enhancedHash(
             missingTerm, query, searchProviderInfo,
-            label, datasource, requestOptions,
-            ranges, inputDetails);
+            label, datasource, resultTab,
+            requestOptions, ranges, inputDetails);
     }
     
     @Override
@@ -325,6 +353,7 @@ public class QuerySuggestion {
                 "searchProviderInfo", searchProviderInfo,
                 "label", label,
                 "datasource", datasource,
+                "resultTab", resultTab,
                 "requestOptions", requestOptions,
                 "ranges", ranges,
                 "inputDetails", inputDetails);
@@ -342,6 +371,8 @@ public class QuerySuggestion {
         private Optional<String> label = Optional.empty();
 
         private Optional<String> datasource = Optional.empty();
+
+        private Optional<? extends ResultTab> resultTab = Optional.empty();
 
         private Optional<? extends SearchRequestOptions> requestOptions = Optional.empty();
 
@@ -434,6 +465,19 @@ public class QuerySuggestion {
         }
 
 
+        public Builder resultTab(ResultTab resultTab) {
+            Utils.checkNotNull(resultTab, "resultTab");
+            this.resultTab = Optional.ofNullable(resultTab);
+            return this;
+        }
+
+        public Builder resultTab(Optional<? extends ResultTab> resultTab) {
+            Utils.checkNotNull(resultTab, "resultTab");
+            this.resultTab = resultTab;
+            return this;
+        }
+
+
         public Builder requestOptions(SearchRequestOptions requestOptions) {
             Utils.checkNotNull(requestOptions, "requestOptions");
             this.requestOptions = Optional.ofNullable(requestOptions);
@@ -482,8 +526,8 @@ public class QuerySuggestion {
 
             return new QuerySuggestion(
                 missingTerm, query, searchProviderInfo,
-                label, datasource, requestOptions,
-                ranges, inputDetails);
+                label, datasource, resultTab,
+                requestOptions, ranges, inputDetails);
         }
 
     }

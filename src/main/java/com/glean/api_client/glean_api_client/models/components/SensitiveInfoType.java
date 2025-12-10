@@ -24,7 +24,7 @@ public class SensitiveInfoType {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("likelihoodThreshold")
     @Deprecated
-    private Optional<? extends LikelihoodThreshold> likelihoodThreshold;
+    private Optional<? extends SensitiveInfoTypeLikelihoodThreshold> likelihoodThreshold;
 
     /**
      * Text representation of an info-type to scan for.
@@ -35,7 +35,7 @@ public class SensitiveInfoType {
 
     @JsonCreator
     public SensitiveInfoType(
-            @JsonProperty("likelihoodThreshold") Optional<? extends LikelihoodThreshold> likelihoodThreshold,
+            @JsonProperty("likelihoodThreshold") Optional<? extends SensitiveInfoTypeLikelihoodThreshold> likelihoodThreshold,
             @JsonProperty("infoType") Optional<String> infoType) {
         Utils.checkNotNull(likelihoodThreshold, "likelihoodThreshold");
         Utils.checkNotNull(infoType, "infoType");
@@ -54,8 +54,8 @@ public class SensitiveInfoType {
     @Deprecated
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<LikelihoodThreshold> likelihoodThreshold() {
-        return (Optional<LikelihoodThreshold>) likelihoodThreshold;
+    public Optional<SensitiveInfoTypeLikelihoodThreshold> likelihoodThreshold() {
+        return (Optional<SensitiveInfoTypeLikelihoodThreshold>) likelihoodThreshold;
     }
 
     /**
@@ -76,7 +76,7 @@ public class SensitiveInfoType {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public SensitiveInfoType withLikelihoodThreshold(LikelihoodThreshold likelihoodThreshold) {
+    public SensitiveInfoType withLikelihoodThreshold(SensitiveInfoTypeLikelihoodThreshold likelihoodThreshold) {
         Utils.checkNotNull(likelihoodThreshold, "likelihoodThreshold");
         this.likelihoodThreshold = Optional.ofNullable(likelihoodThreshold);
         return this;
@@ -88,7 +88,7 @@ public class SensitiveInfoType {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public SensitiveInfoType withLikelihoodThreshold(Optional<? extends LikelihoodThreshold> likelihoodThreshold) {
+    public SensitiveInfoType withLikelihoodThreshold(Optional<? extends SensitiveInfoTypeLikelihoodThreshold> likelihoodThreshold) {
         Utils.checkNotNull(likelihoodThreshold, "likelihoodThreshold");
         this.likelihoodThreshold = likelihoodThreshold;
         return this;
@@ -144,7 +144,7 @@ public class SensitiveInfoType {
     public final static class Builder {
 
         @Deprecated
-        private Optional<? extends LikelihoodThreshold> likelihoodThreshold = Optional.empty();
+        private Optional<? extends SensitiveInfoTypeLikelihoodThreshold> likelihoodThreshold = Optional.empty();
 
         private Optional<String> infoType = Optional.empty();
 
@@ -158,7 +158,7 @@ public class SensitiveInfoType {
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
-        public Builder likelihoodThreshold(LikelihoodThreshold likelihoodThreshold) {
+        public Builder likelihoodThreshold(SensitiveInfoTypeLikelihoodThreshold likelihoodThreshold) {
             Utils.checkNotNull(likelihoodThreshold, "likelihoodThreshold");
             this.likelihoodThreshold = Optional.ofNullable(likelihoodThreshold);
             return this;
@@ -169,7 +169,7 @@ public class SensitiveInfoType {
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
-        public Builder likelihoodThreshold(Optional<? extends LikelihoodThreshold> likelihoodThreshold) {
+        public Builder likelihoodThreshold(Optional<? extends SensitiveInfoTypeLikelihoodThreshold> likelihoodThreshold) {
             Utils.checkNotNull(likelihoodThreshold, "likelihoodThreshold");
             this.likelihoodThreshold = likelihoodThreshold;
             return this;
