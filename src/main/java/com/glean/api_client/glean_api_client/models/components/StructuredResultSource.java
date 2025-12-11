@@ -15,7 +15,9 @@ import java.util.Optional;
  */
 public enum StructuredResultSource {
     EXPERT_DETECTION("EXPERT_DETECTION"),
-    ENTITY_NLQ("ENTITY_NLQ");
+    ENTITY_NLQ("ENTITY_NLQ"),
+    CALENDAR_EVENT("CALENDAR_EVENT"),
+    AGENT("AGENT");
 
     @JsonValue
     private final String value;
