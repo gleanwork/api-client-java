@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -63,6 +64,13 @@ public class ExportInfo {
     @JsonProperty("status")
     private Optional<? extends ExportInfoStatus> status;
 
+    /**
+     * The size of the exported file in bytes
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("exportSize")
+    private Optional<Long> exportSize;
+
     @JsonCreator
     public ExportInfo(
             @JsonProperty("createdBy") Optional<? extends DlpPerson> createdBy,
@@ -71,7 +79,8 @@ public class ExportInfo {
             @JsonProperty("exportId") Optional<String> exportId,
             @JsonProperty("fileName") Optional<String> fileName,
             @JsonProperty("filter") Optional<? extends DlpFindingFilter> filter,
-            @JsonProperty("status") Optional<? extends ExportInfoStatus> status) {
+            @JsonProperty("status") Optional<? extends ExportInfoStatus> status,
+            @JsonProperty("exportSize") Optional<Long> exportSize) {
         Utils.checkNotNull(createdBy, "createdBy");
         Utils.checkNotNull(startTime, "startTime");
         Utils.checkNotNull(endTime, "endTime");
@@ -79,6 +88,7 @@ public class ExportInfo {
         Utils.checkNotNull(fileName, "fileName");
         Utils.checkNotNull(filter, "filter");
         Utils.checkNotNull(status, "status");
+        Utils.checkNotNull(exportSize, "exportSize");
         this.createdBy = createdBy;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -86,12 +96,13 @@ public class ExportInfo {
         this.fileName = fileName;
         this.filter = filter;
         this.status = status;
+        this.exportSize = exportSize;
     }
     
     public ExportInfo() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -148,6 +159,14 @@ public class ExportInfo {
     @JsonIgnore
     public Optional<ExportInfoStatus> status() {
         return (Optional<ExportInfoStatus>) status;
+    }
+
+    /**
+     * The size of the exported file in bytes
+     */
+    @JsonIgnore
+    public Optional<Long> exportSize() {
+        return exportSize;
     }
 
     public static Builder builder() {
@@ -282,6 +301,25 @@ public class ExportInfo {
         return this;
     }
 
+    /**
+     * The size of the exported file in bytes
+     */
+    public ExportInfo withExportSize(long exportSize) {
+        Utils.checkNotNull(exportSize, "exportSize");
+        this.exportSize = Optional.ofNullable(exportSize);
+        return this;
+    }
+
+
+    /**
+     * The size of the exported file in bytes
+     */
+    public ExportInfo withExportSize(Optional<Long> exportSize) {
+        Utils.checkNotNull(exportSize, "exportSize");
+        this.exportSize = exportSize;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -298,7 +336,8 @@ public class ExportInfo {
             Utils.enhancedDeepEquals(this.exportId, other.exportId) &&
             Utils.enhancedDeepEquals(this.fileName, other.fileName) &&
             Utils.enhancedDeepEquals(this.filter, other.filter) &&
-            Utils.enhancedDeepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.exportSize, other.exportSize);
     }
     
     @Override
@@ -306,7 +345,7 @@ public class ExportInfo {
         return Utils.enhancedHash(
             createdBy, startTime, endTime,
             exportId, fileName, filter,
-            status);
+            status, exportSize);
     }
     
     @Override
@@ -318,7 +357,8 @@ public class ExportInfo {
                 "exportId", exportId,
                 "fileName", fileName,
                 "filter", filter,
-                "status", status);
+                "status", status,
+                "exportSize", exportSize);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -337,6 +377,8 @@ public class ExportInfo {
         private Optional<? extends DlpFindingFilter> filter = Optional.empty();
 
         private Optional<? extends ExportInfoStatus> status = Optional.empty();
+
+        private Optional<Long> exportSize = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -469,12 +511,31 @@ public class ExportInfo {
             return this;
         }
 
+
+        /**
+         * The size of the exported file in bytes
+         */
+        public Builder exportSize(long exportSize) {
+            Utils.checkNotNull(exportSize, "exportSize");
+            this.exportSize = Optional.ofNullable(exportSize);
+            return this;
+        }
+
+        /**
+         * The size of the exported file in bytes
+         */
+        public Builder exportSize(Optional<Long> exportSize) {
+            Utils.checkNotNull(exportSize, "exportSize");
+            this.exportSize = exportSize;
+            return this;
+        }
+
         public ExportInfo build() {
 
             return new ExportInfo(
                 createdBy, startTime, endTime,
                 exportId, fileName, filter,
-                status);
+                status, exportSize);
         }
 
     }
