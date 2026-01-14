@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -52,6 +53,41 @@ public class Meeting {
     @JsonProperty("attendees")
     private Optional<? extends CalendarAttendees> attendees;
 
+    /**
+     * Whether the meeting has been cancelled
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("isCancelled")
+    private Optional<Boolean> isCancelled;
+
+    /**
+     * The location/venue of the meeting
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("location")
+    private Optional<String> location;
+
+    /**
+     * The current user's response status (accepted, declined, tentativelyAccepted, none)
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("responseStatus")
+    private Optional<String> responseStatus;
+
+    /**
+     * The meeting join link (Teams, Zoom, etc.)
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("conferenceUri")
+    private Optional<String> conferenceUri;
+
+    /**
+     * The conference provider (e.g., "Microsoft Teams", "Zoom")
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("conferenceProvider")
+    private Optional<String> conferenceProvider;
+
     @JsonCreator
     public Meeting(
             @JsonProperty("id") Optional<String> id,
@@ -60,7 +96,12 @@ public class Meeting {
             @JsonProperty("url") Optional<String> url,
             @JsonProperty("startTime") Optional<OffsetDateTime> startTime,
             @JsonProperty("endTime") Optional<OffsetDateTime> endTime,
-            @JsonProperty("attendees") Optional<? extends CalendarAttendees> attendees) {
+            @JsonProperty("attendees") Optional<? extends CalendarAttendees> attendees,
+            @JsonProperty("isCancelled") Optional<Boolean> isCancelled,
+            @JsonProperty("location") Optional<String> location,
+            @JsonProperty("responseStatus") Optional<String> responseStatus,
+            @JsonProperty("conferenceUri") Optional<String> conferenceUri,
+            @JsonProperty("conferenceProvider") Optional<String> conferenceProvider) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(title, "title");
         Utils.checkNotNull(description, "description");
@@ -68,6 +109,11 @@ public class Meeting {
         Utils.checkNotNull(startTime, "startTime");
         Utils.checkNotNull(endTime, "endTime");
         Utils.checkNotNull(attendees, "attendees");
+        Utils.checkNotNull(isCancelled, "isCancelled");
+        Utils.checkNotNull(location, "location");
+        Utils.checkNotNull(responseStatus, "responseStatus");
+        Utils.checkNotNull(conferenceUri, "conferenceUri");
+        Utils.checkNotNull(conferenceProvider, "conferenceProvider");
         this.id = id;
         this.title = title;
         this.description = description;
@@ -75,12 +121,18 @@ public class Meeting {
         this.startTime = startTime;
         this.endTime = endTime;
         this.attendees = attendees;
+        this.isCancelled = isCancelled;
+        this.location = location;
+        this.responseStatus = responseStatus;
+        this.conferenceUri = conferenceUri;
+        this.conferenceProvider = conferenceProvider;
     }
     
     public Meeting() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -117,6 +169,46 @@ public class Meeting {
     @JsonIgnore
     public Optional<CalendarAttendees> attendees() {
         return (Optional<CalendarAttendees>) attendees;
+    }
+
+    /**
+     * Whether the meeting has been cancelled
+     */
+    @JsonIgnore
+    public Optional<Boolean> isCancelled() {
+        return isCancelled;
+    }
+
+    /**
+     * The location/venue of the meeting
+     */
+    @JsonIgnore
+    public Optional<String> location() {
+        return location;
+    }
+
+    /**
+     * The current user's response status (accepted, declined, tentativelyAccepted, none)
+     */
+    @JsonIgnore
+    public Optional<String> responseStatus() {
+        return responseStatus;
+    }
+
+    /**
+     * The meeting join link (Teams, Zoom, etc.)
+     */
+    @JsonIgnore
+    public Optional<String> conferenceUri() {
+        return conferenceUri;
+    }
+
+    /**
+     * The conference provider (e.g., "Microsoft Teams", "Zoom")
+     */
+    @JsonIgnore
+    public Optional<String> conferenceProvider() {
+        return conferenceProvider;
     }
 
     public static Builder builder() {
@@ -215,6 +307,101 @@ public class Meeting {
         return this;
     }
 
+    /**
+     * Whether the meeting has been cancelled
+     */
+    public Meeting withIsCancelled(boolean isCancelled) {
+        Utils.checkNotNull(isCancelled, "isCancelled");
+        this.isCancelled = Optional.ofNullable(isCancelled);
+        return this;
+    }
+
+
+    /**
+     * Whether the meeting has been cancelled
+     */
+    public Meeting withIsCancelled(Optional<Boolean> isCancelled) {
+        Utils.checkNotNull(isCancelled, "isCancelled");
+        this.isCancelled = isCancelled;
+        return this;
+    }
+
+    /**
+     * The location/venue of the meeting
+     */
+    public Meeting withLocation(String location) {
+        Utils.checkNotNull(location, "location");
+        this.location = Optional.ofNullable(location);
+        return this;
+    }
+
+
+    /**
+     * The location/venue of the meeting
+     */
+    public Meeting withLocation(Optional<String> location) {
+        Utils.checkNotNull(location, "location");
+        this.location = location;
+        return this;
+    }
+
+    /**
+     * The current user's response status (accepted, declined, tentativelyAccepted, none)
+     */
+    public Meeting withResponseStatus(String responseStatus) {
+        Utils.checkNotNull(responseStatus, "responseStatus");
+        this.responseStatus = Optional.ofNullable(responseStatus);
+        return this;
+    }
+
+
+    /**
+     * The current user's response status (accepted, declined, tentativelyAccepted, none)
+     */
+    public Meeting withResponseStatus(Optional<String> responseStatus) {
+        Utils.checkNotNull(responseStatus, "responseStatus");
+        this.responseStatus = responseStatus;
+        return this;
+    }
+
+    /**
+     * The meeting join link (Teams, Zoom, etc.)
+     */
+    public Meeting withConferenceUri(String conferenceUri) {
+        Utils.checkNotNull(conferenceUri, "conferenceUri");
+        this.conferenceUri = Optional.ofNullable(conferenceUri);
+        return this;
+    }
+
+
+    /**
+     * The meeting join link (Teams, Zoom, etc.)
+     */
+    public Meeting withConferenceUri(Optional<String> conferenceUri) {
+        Utils.checkNotNull(conferenceUri, "conferenceUri");
+        this.conferenceUri = conferenceUri;
+        return this;
+    }
+
+    /**
+     * The conference provider (e.g., "Microsoft Teams", "Zoom")
+     */
+    public Meeting withConferenceProvider(String conferenceProvider) {
+        Utils.checkNotNull(conferenceProvider, "conferenceProvider");
+        this.conferenceProvider = Optional.ofNullable(conferenceProvider);
+        return this;
+    }
+
+
+    /**
+     * The conference provider (e.g., "Microsoft Teams", "Zoom")
+     */
+    public Meeting withConferenceProvider(Optional<String> conferenceProvider) {
+        Utils.checkNotNull(conferenceProvider, "conferenceProvider");
+        this.conferenceProvider = conferenceProvider;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -231,7 +418,12 @@ public class Meeting {
             Utils.enhancedDeepEquals(this.url, other.url) &&
             Utils.enhancedDeepEquals(this.startTime, other.startTime) &&
             Utils.enhancedDeepEquals(this.endTime, other.endTime) &&
-            Utils.enhancedDeepEquals(this.attendees, other.attendees);
+            Utils.enhancedDeepEquals(this.attendees, other.attendees) &&
+            Utils.enhancedDeepEquals(this.isCancelled, other.isCancelled) &&
+            Utils.enhancedDeepEquals(this.location, other.location) &&
+            Utils.enhancedDeepEquals(this.responseStatus, other.responseStatus) &&
+            Utils.enhancedDeepEquals(this.conferenceUri, other.conferenceUri) &&
+            Utils.enhancedDeepEquals(this.conferenceProvider, other.conferenceProvider);
     }
     
     @Override
@@ -239,7 +431,8 @@ public class Meeting {
         return Utils.enhancedHash(
             id, title, description,
             url, startTime, endTime,
-            attendees);
+            attendees, isCancelled, location,
+            responseStatus, conferenceUri, conferenceProvider);
     }
     
     @Override
@@ -251,7 +444,12 @@ public class Meeting {
                 "url", url,
                 "startTime", startTime,
                 "endTime", endTime,
-                "attendees", attendees);
+                "attendees", attendees,
+                "isCancelled", isCancelled,
+                "location", location,
+                "responseStatus", responseStatus,
+                "conferenceUri", conferenceUri,
+                "conferenceProvider", conferenceProvider);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -270,6 +468,16 @@ public class Meeting {
         private Optional<OffsetDateTime> endTime = Optional.empty();
 
         private Optional<? extends CalendarAttendees> attendees = Optional.empty();
+
+        private Optional<Boolean> isCancelled = Optional.empty();
+
+        private Optional<String> location = Optional.empty();
+
+        private Optional<String> responseStatus = Optional.empty();
+
+        private Optional<String> conferenceUri = Optional.empty();
+
+        private Optional<String> conferenceProvider = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -366,12 +574,108 @@ public class Meeting {
             return this;
         }
 
+
+        /**
+         * Whether the meeting has been cancelled
+         */
+        public Builder isCancelled(boolean isCancelled) {
+            Utils.checkNotNull(isCancelled, "isCancelled");
+            this.isCancelled = Optional.ofNullable(isCancelled);
+            return this;
+        }
+
+        /**
+         * Whether the meeting has been cancelled
+         */
+        public Builder isCancelled(Optional<Boolean> isCancelled) {
+            Utils.checkNotNull(isCancelled, "isCancelled");
+            this.isCancelled = isCancelled;
+            return this;
+        }
+
+
+        /**
+         * The location/venue of the meeting
+         */
+        public Builder location(String location) {
+            Utils.checkNotNull(location, "location");
+            this.location = Optional.ofNullable(location);
+            return this;
+        }
+
+        /**
+         * The location/venue of the meeting
+         */
+        public Builder location(Optional<String> location) {
+            Utils.checkNotNull(location, "location");
+            this.location = location;
+            return this;
+        }
+
+
+        /**
+         * The current user's response status (accepted, declined, tentativelyAccepted, none)
+         */
+        public Builder responseStatus(String responseStatus) {
+            Utils.checkNotNull(responseStatus, "responseStatus");
+            this.responseStatus = Optional.ofNullable(responseStatus);
+            return this;
+        }
+
+        /**
+         * The current user's response status (accepted, declined, tentativelyAccepted, none)
+         */
+        public Builder responseStatus(Optional<String> responseStatus) {
+            Utils.checkNotNull(responseStatus, "responseStatus");
+            this.responseStatus = responseStatus;
+            return this;
+        }
+
+
+        /**
+         * The meeting join link (Teams, Zoom, etc.)
+         */
+        public Builder conferenceUri(String conferenceUri) {
+            Utils.checkNotNull(conferenceUri, "conferenceUri");
+            this.conferenceUri = Optional.ofNullable(conferenceUri);
+            return this;
+        }
+
+        /**
+         * The meeting join link (Teams, Zoom, etc.)
+         */
+        public Builder conferenceUri(Optional<String> conferenceUri) {
+            Utils.checkNotNull(conferenceUri, "conferenceUri");
+            this.conferenceUri = conferenceUri;
+            return this;
+        }
+
+
+        /**
+         * The conference provider (e.g., "Microsoft Teams", "Zoom")
+         */
+        public Builder conferenceProvider(String conferenceProvider) {
+            Utils.checkNotNull(conferenceProvider, "conferenceProvider");
+            this.conferenceProvider = Optional.ofNullable(conferenceProvider);
+            return this;
+        }
+
+        /**
+         * The conference provider (e.g., "Microsoft Teams", "Zoom")
+         */
+        public Builder conferenceProvider(Optional<String> conferenceProvider) {
+            Utils.checkNotNull(conferenceProvider, "conferenceProvider");
+            this.conferenceProvider = conferenceProvider;
+            return this;
+        }
+
         public Meeting build() {
 
             return new Meeting(
                 id, title, description,
                 url, startTime, endTime,
-                attendees);
+                attendees, isCancelled, location,
+                responseStatus, conferenceUri, conferenceProvider);
         }
 
     }

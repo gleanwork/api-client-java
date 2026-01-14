@@ -91,10 +91,10 @@ public class DocumentSpecUnion {
 
         public _Deserializer() {
             super(DocumentSpecUnion.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<DocumentSpec4>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<DocumentSpec3>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<DocumentSpec1>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<DocumentSpec2>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<DocumentSpec1>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<DocumentSpec3>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<DocumentSpec4>() {}, JsonShape.DEFAULT));
         }
     }
     

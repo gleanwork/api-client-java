@@ -84,8 +84,8 @@ public class CreatecollectionResponseBody {
 
         public _Deserializer() {
             super(CreatecollectionResponseBody.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<ResponseBody2>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<ResponseBody1>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<ResponseBody1>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<ResponseBody2>() {}, JsonShape.DEFAULT));
         }
     }
     

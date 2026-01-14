@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -64,6 +65,11 @@ public class DlpFindingFilter {
     @JsonProperty("timeRange")
     private Optional<? extends TimeRangeFilter> timeRange;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("archived")
+    private Optional<Boolean> archived;
+
     @JsonCreator
     public DlpFindingFilter(
             @JsonProperty("infoType") Optional<String> infoType,
@@ -74,7 +80,8 @@ public class DlpFindingFilter {
             @JsonProperty("documentIds") Optional<? extends List<String>> documentIds,
             @JsonProperty("severity") Optional<? extends DlpSeverity> severity,
             @JsonProperty("documentSeverity") Optional<? extends List<DlpSeverity>> documentSeverity,
-            @JsonProperty("timeRange") Optional<? extends TimeRangeFilter> timeRange) {
+            @JsonProperty("timeRange") Optional<? extends TimeRangeFilter> timeRange,
+            @JsonProperty("archived") Optional<Boolean> archived) {
         Utils.checkNotNull(infoType, "infoType");
         Utils.checkNotNull(regexId, "regexId");
         Utils.checkNotNull(reportId, "reportId");
@@ -84,6 +91,7 @@ public class DlpFindingFilter {
         Utils.checkNotNull(severity, "severity");
         Utils.checkNotNull(documentSeverity, "documentSeverity");
         Utils.checkNotNull(timeRange, "timeRange");
+        Utils.checkNotNull(archived, "archived");
         this.infoType = infoType;
         this.regexId = regexId;
         this.reportId = reportId;
@@ -93,12 +101,14 @@ public class DlpFindingFilter {
         this.severity = severity;
         this.documentSeverity = documentSeverity;
         this.timeRange = timeRange;
+        this.archived = archived;
     }
     
     public DlpFindingFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -151,6 +161,11 @@ public class DlpFindingFilter {
     @JsonIgnore
     public Optional<TimeRangeFilter> timeRange() {
         return (Optional<TimeRangeFilter>) timeRange;
+    }
+
+    @JsonIgnore
+    public Optional<Boolean> archived() {
+        return archived;
     }
 
     public static Builder builder() {
@@ -281,6 +296,19 @@ public class DlpFindingFilter {
         return this;
     }
 
+    public DlpFindingFilter withArchived(boolean archived) {
+        Utils.checkNotNull(archived, "archived");
+        this.archived = Optional.ofNullable(archived);
+        return this;
+    }
+
+
+    public DlpFindingFilter withArchived(Optional<Boolean> archived) {
+        Utils.checkNotNull(archived, "archived");
+        this.archived = archived;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -299,7 +327,8 @@ public class DlpFindingFilter {
             Utils.enhancedDeepEquals(this.documentIds, other.documentIds) &&
             Utils.enhancedDeepEquals(this.severity, other.severity) &&
             Utils.enhancedDeepEquals(this.documentSeverity, other.documentSeverity) &&
-            Utils.enhancedDeepEquals(this.timeRange, other.timeRange);
+            Utils.enhancedDeepEquals(this.timeRange, other.timeRange) &&
+            Utils.enhancedDeepEquals(this.archived, other.archived);
     }
     
     @Override
@@ -307,7 +336,8 @@ public class DlpFindingFilter {
         return Utils.enhancedHash(
             infoType, regexId, reportId,
             datasource, visibility, documentIds,
-            severity, documentSeverity, timeRange);
+            severity, documentSeverity, timeRange,
+            archived);
     }
     
     @Override
@@ -321,7 +351,8 @@ public class DlpFindingFilter {
                 "documentIds", documentIds,
                 "severity", severity,
                 "documentSeverity", documentSeverity,
-                "timeRange", timeRange);
+                "timeRange", timeRange,
+                "archived", archived);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -344,6 +375,8 @@ public class DlpFindingFilter {
         private Optional<? extends List<DlpSeverity>> documentSeverity = Optional.empty();
 
         private Optional<? extends TimeRangeFilter> timeRange = Optional.empty();
+
+        private Optional<Boolean> archived = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -472,12 +505,26 @@ public class DlpFindingFilter {
             return this;
         }
 
+
+        public Builder archived(boolean archived) {
+            Utils.checkNotNull(archived, "archived");
+            this.archived = Optional.ofNullable(archived);
+            return this;
+        }
+
+        public Builder archived(Optional<Boolean> archived) {
+            Utils.checkNotNull(archived, "archived");
+            this.archived = archived;
+            return this;
+        }
+
         public DlpFindingFilter build() {
 
             return new DlpFindingFilter(
                 infoType, regexId, reportId,
                 datasource, visibility, documentIds,
-                severity, documentSeverity, timeRange);
+                severity, documentSeverity, timeRange,
+                archived);
         }
 
     }

@@ -125,7 +125,7 @@ public class Downloadpolicycsv {
             HttpResponse<InputStream> httpRes;
             try {
                 httpRes = client.send(r);
-                if (Utils.statusCodeMatches(httpRes.statusCode(), "403", "4XX", "500", "5XX")) {
+                if (Utils.statusCodeMatches(httpRes.statusCode(), "400", "403", "4XX", "500", "5XX")) {
                     httpRes = onError(httpRes, null);
                 } else {
                     httpRes = onSuccess(httpRes);
@@ -162,7 +162,7 @@ public class Downloadpolicycsv {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            if (Utils.statusCodeMatches(response.statusCode(), "403", "4XX")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "400", "403", "4XX")) {
                 // no content
                 throw APIException.from("API error occurred", response);
             }
@@ -200,7 +200,7 @@ public class Downloadpolicycsv {
                         if (err != null) {
                             return onError(null, err);
                         }
-                        if (Utils.statusCodeMatches(resp.statusCode(), "403", "4XX", "500", "5XX")) {
+                        if (Utils.statusCodeMatches(resp.statusCode(), "400", "403", "4XX", "500", "5XX")) {
                             return onError(resp, null);
                         }
                         return CompletableFuture.completedFuture(resp);
@@ -240,7 +240,7 @@ public class Downloadpolicycsv {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }
             }
-            if (Utils.statusCodeMatches(response.statusCode(), "403", "4XX")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "400", "403", "4XX")) {
                 // no content
                 return Utils.createAsyncApiError(response, "API error occurred");
             }

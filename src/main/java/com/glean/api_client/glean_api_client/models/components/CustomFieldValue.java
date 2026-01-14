@@ -85,9 +85,9 @@ public class CustomFieldValue {
 
         public _Deserializer() {
             super(CustomFieldValue.class, false,
+                  TypeReferenceWithShape.of(new TypeReference<CustomFieldValueStr>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<CustomFieldValueHyperlink>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<CustomFieldValuePerson>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<CustomFieldValueStr>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<CustomFieldValuePerson>() {}, JsonShape.DEFAULT));
         }
     }
     

@@ -79,8 +79,8 @@ public class GetShortcutRequestUnion {
 
         public _Deserializer() {
             super(GetShortcutRequestUnion.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<GetShortcutRequest>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<UserGeneratedContentId>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<UserGeneratedContentId>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<GetShortcutRequest>() {}, JsonShape.DEFAULT));
         }
     }
     

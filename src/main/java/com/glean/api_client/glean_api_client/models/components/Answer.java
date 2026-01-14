@@ -147,11 +147,6 @@ public class Answer {
     @JsonProperty("verification")
     private Optional<? extends Verification> verification;
 
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("board")
-    private Optional<? extends AnswerBoard> board;
-
     /**
      * The collections to which the answer belongs.
      */
@@ -193,7 +188,6 @@ public class Answer {
             @JsonProperty("updateTime") Optional<OffsetDateTime> updateTime,
             @JsonProperty("updatedBy") Optional<? extends Person> updatedBy,
             @JsonProperty("verification") Optional<? extends Verification> verification,
-            @JsonProperty("board") Optional<? extends AnswerBoard> board,
             @JsonProperty("collections") Optional<? extends List<Collection>> collections,
             @JsonProperty("documentCategory") Optional<String> documentCategory,
             @JsonProperty("sourceDocument") Optional<? extends Document> sourceDocument) {
@@ -217,7 +211,6 @@ public class Answer {
         Utils.checkNotNull(updateTime, "updateTime");
         Utils.checkNotNull(updatedBy, "updatedBy");
         Utils.checkNotNull(verification, "verification");
-        Utils.checkNotNull(board, "board");
         Utils.checkNotNull(collections, "collections");
         Utils.checkNotNull(documentCategory, "documentCategory");
         Utils.checkNotNull(sourceDocument, "sourceDocument");
@@ -241,7 +234,6 @@ public class Answer {
         this.updateTime = updateTime;
         this.updatedBy = updatedBy;
         this.verification = verification;
-        this.board = board;
         this.collections = collections;
         this.documentCategory = documentCategory;
         this.sourceDocument = sourceDocument;
@@ -256,7 +248,7 @@ public class Answer {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -409,12 +401,6 @@ public class Answer {
     @JsonIgnore
     public Optional<Verification> verification() {
         return (Optional<Verification>) verification;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<AnswerBoard> board() {
-        return (Optional<AnswerBoard>) board;
     }
 
     /**
@@ -773,19 +759,6 @@ public class Answer {
         return this;
     }
 
-    public Answer withBoard(AnswerBoard board) {
-        Utils.checkNotNull(board, "board");
-        this.board = Optional.ofNullable(board);
-        return this;
-    }
-
-
-    public Answer withBoard(Optional<? extends AnswerBoard> board) {
-        Utils.checkNotNull(board, "board");
-        this.board = board;
-        return this;
-    }
-
     /**
      * The collections to which the answer belongs.
      */
@@ -867,7 +840,6 @@ public class Answer {
             Utils.enhancedDeepEquals(this.updateTime, other.updateTime) &&
             Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
             Utils.enhancedDeepEquals(this.verification, other.verification) &&
-            Utils.enhancedDeepEquals(this.board, other.board) &&
             Utils.enhancedDeepEquals(this.collections, other.collections) &&
             Utils.enhancedDeepEquals(this.documentCategory, other.documentCategory) &&
             Utils.enhancedDeepEquals(this.sourceDocument, other.sourceDocument);
@@ -882,8 +854,8 @@ public class Answer {
             roles, sourceDocumentSpec, sourceType,
             permissions, combinedAnswerText, likes,
             author, createTime, updateTime,
-            updatedBy, verification, board,
-            collections, documentCategory, sourceDocument);
+            updatedBy, verification, collections,
+            documentCategory, sourceDocument);
     }
     
     @Override
@@ -909,7 +881,6 @@ public class Answer {
                 "updateTime", updateTime,
                 "updatedBy", updatedBy,
                 "verification", verification,
-                "board", board,
                 "collections", collections,
                 "documentCategory", documentCategory,
                 "sourceDocument", sourceDocument);
@@ -958,8 +929,6 @@ public class Answer {
         private Optional<? extends Person> updatedBy = Optional.empty();
 
         private Optional<? extends Verification> verification = Optional.empty();
-
-        private Optional<? extends AnswerBoard> board = Optional.empty();
 
         private Optional<? extends List<Collection>> collections = Optional.empty();
 
@@ -1301,19 +1270,6 @@ public class Answer {
         }
 
 
-        public Builder board(AnswerBoard board) {
-            Utils.checkNotNull(board, "board");
-            this.board = Optional.ofNullable(board);
-            return this;
-        }
-
-        public Builder board(Optional<? extends AnswerBoard> board) {
-            Utils.checkNotNull(board, "board");
-            this.board = board;
-            return this;
-        }
-
-
         /**
          * The collections to which the answer belongs.
          */
@@ -1373,8 +1329,8 @@ public class Answer {
                 roles, sourceDocumentSpec, sourceType,
                 permissions, combinedAnswerText, likes,
                 author, createTime, updateTime,
-                updatedBy, verification, board,
-                collections, documentCategory, sourceDocument);
+                updatedBy, verification, collections,
+                documentCategory, sourceDocument);
         }
 
     }
