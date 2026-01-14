@@ -76,10 +76,10 @@ public final class RequestBody {
 
     private static SerializedBody serializeContentType(String fieldName, String contentType, Object value)
             throws IllegalArgumentException, IllegalAccessException, UnsupportedOperationException, IOException {
-        Pattern jsonPattern = Pattern.compile("(application|text)\\/.*?\\+*json.*");
-        Pattern multipartPattern = Pattern.compile("multipart\\/.*");
-        Pattern formPattern = Pattern.compile("application\\/x-www-form-urlencoded.*");
-        Pattern textPattern = Pattern.compile("text\\/plain");
+        Pattern jsonPattern = Pattern.compile("^(application|text)\\/([^+]+\\+)*json.*");
+        Pattern multipartPattern = Pattern.compile("^multipart\\/.*");
+        Pattern formPattern = Pattern.compile("^application\\/x-www-form-urlencoded.*");
+        Pattern textPattern = Pattern.compile("^text\\/plain");
 
         final SerializedBody body;
 
@@ -254,6 +254,13 @@ public final class RequestBody {
                 } else {
                     switch (Types.getType(val.getClass())) {
                     case OBJECT: {
+                        // Check if it's an enum wrapper first
+                        Optional<?> unwrappedEnumValue = Reflections.getUnwrappedEnumValue(val.getClass(), val);
+                        if (unwrappedEnumValue.isPresent()) {
+                            params.add(new NameValue(metadata.name, Utils.valToString(unwrappedEnumValue.get())));
+                            break;
+                        }
+                        
                         if (!Utils.allowIntrospection(val.getClass())) {
                             params.add(new NameValue(metadata.name, String.valueOf(val)));
                         } else {

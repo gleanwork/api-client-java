@@ -26,6 +26,7 @@ import com.glean.api_client.glean_api_client.operations.Editanswer;
 import com.glean.api_client.glean_api_client.operations.Getanswer;
 import com.glean.api_client.glean_api_client.operations.Listanswers;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import java.lang.Deprecated;
 import java.util.concurrent.CompletableFuture;
 
 
@@ -163,7 +164,9 @@ public class AsyncAnswers {
      * <p>List Answers created by the current user.
      * 
      * @return The async call builder
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public ListanswersRequestBuilder list() {
         return new ListanswersRequestBuilder(sdkConfiguration);
     }
@@ -175,7 +178,9 @@ public class AsyncAnswers {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<ListanswersResponse>} - The async response
+     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public CompletableFuture<ListanswersResponse> list(ListAnswersRequest request) {
         AsyncRequestOperation<ListAnswersRequest, ListanswersResponse> operation
               = new Listanswers.Async(sdkConfiguration, _headers);

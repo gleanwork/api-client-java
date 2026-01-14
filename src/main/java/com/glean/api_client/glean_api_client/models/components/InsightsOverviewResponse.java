@@ -104,6 +104,66 @@ public class InsightsOverviewResponse {
     @JsonProperty("dailyActiveUserTimeseries")
     private Optional<? extends LabeledCountInfo> dailyActiveUserTimeseries;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("searchMonthlyActiveUserTimeseries")
+    private Optional<? extends LabeledCountInfo> searchMonthlyActiveUserTimeseries;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("searchWeeklyActiveUserTimeseries")
+    private Optional<? extends LabeledCountInfo> searchWeeklyActiveUserTimeseries;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("searchDailyActiveUserTimeseries")
+    private Optional<? extends LabeledCountInfo> searchDailyActiveUserTimeseries;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("assistantMonthlyActiveUserTimeseries")
+    private Optional<? extends LabeledCountInfo> assistantMonthlyActiveUserTimeseries;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("assistantWeeklyActiveUserTimeseries")
+    private Optional<? extends LabeledCountInfo> assistantWeeklyActiveUserTimeseries;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("assistantDailyActiveUserTimeseries")
+    private Optional<? extends LabeledCountInfo> assistantDailyActiveUserTimeseries;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("agentsMonthlyActiveUserTimeseries")
+    private Optional<? extends LabeledCountInfo> agentsMonthlyActiveUserTimeseries;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("agentsWeeklyActiveUserTimeseries")
+    private Optional<? extends LabeledCountInfo> agentsWeeklyActiveUserTimeseries;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("agentsDailyActiveUserTimeseries")
+    private Optional<? extends LabeledCountInfo> agentsDailyActiveUserTimeseries;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("searchesTimeseries")
+    private Optional<? extends LabeledCountInfo> searchesTimeseries;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("assistantInteractionsTimeseries")
+    private Optional<? extends LabeledCountInfo> assistantInteractionsTimeseries;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("agentRunsTimeseries")
+    private Optional<? extends LabeledCountInfo> agentRunsTimeseries;
+
     /**
      * Counts of search result clicks, by datasource, over the specified time period in the specified
      * departments.
@@ -144,6 +204,18 @@ public class InsightsOverviewResponse {
             @JsonProperty("monthlyActiveUserTimeseries") Optional<? extends LabeledCountInfo> monthlyActiveUserTimeseries,
             @JsonProperty("weeklyActiveUserTimeseries") Optional<? extends LabeledCountInfo> weeklyActiveUserTimeseries,
             @JsonProperty("dailyActiveUserTimeseries") Optional<? extends LabeledCountInfo> dailyActiveUserTimeseries,
+            @JsonProperty("searchMonthlyActiveUserTimeseries") Optional<? extends LabeledCountInfo> searchMonthlyActiveUserTimeseries,
+            @JsonProperty("searchWeeklyActiveUserTimeseries") Optional<? extends LabeledCountInfo> searchWeeklyActiveUserTimeseries,
+            @JsonProperty("searchDailyActiveUserTimeseries") Optional<? extends LabeledCountInfo> searchDailyActiveUserTimeseries,
+            @JsonProperty("assistantMonthlyActiveUserTimeseries") Optional<? extends LabeledCountInfo> assistantMonthlyActiveUserTimeseries,
+            @JsonProperty("assistantWeeklyActiveUserTimeseries") Optional<? extends LabeledCountInfo> assistantWeeklyActiveUserTimeseries,
+            @JsonProperty("assistantDailyActiveUserTimeseries") Optional<? extends LabeledCountInfo> assistantDailyActiveUserTimeseries,
+            @JsonProperty("agentsMonthlyActiveUserTimeseries") Optional<? extends LabeledCountInfo> agentsMonthlyActiveUserTimeseries,
+            @JsonProperty("agentsWeeklyActiveUserTimeseries") Optional<? extends LabeledCountInfo> agentsWeeklyActiveUserTimeseries,
+            @JsonProperty("agentsDailyActiveUserTimeseries") Optional<? extends LabeledCountInfo> agentsDailyActiveUserTimeseries,
+            @JsonProperty("searchesTimeseries") Optional<? extends LabeledCountInfo> searchesTimeseries,
+            @JsonProperty("assistantInteractionsTimeseries") Optional<? extends LabeledCountInfo> assistantInteractionsTimeseries,
+            @JsonProperty("agentRunsTimeseries") Optional<? extends LabeledCountInfo> agentRunsTimeseries,
             @JsonProperty("searchDatasourceCounts") Optional<? extends Map<String, Long>> searchDatasourceCounts,
             @JsonProperty("chatDatasourceCounts") Optional<? extends Map<String, Long>> chatDatasourceCounts,
             @JsonProperty("perUserInsights") Optional<? extends List<PerUserInsight>> perUserInsights) {
@@ -161,6 +233,18 @@ public class InsightsOverviewResponse {
         Utils.checkNotNull(monthlyActiveUserTimeseries, "monthlyActiveUserTimeseries");
         Utils.checkNotNull(weeklyActiveUserTimeseries, "weeklyActiveUserTimeseries");
         Utils.checkNotNull(dailyActiveUserTimeseries, "dailyActiveUserTimeseries");
+        Utils.checkNotNull(searchMonthlyActiveUserTimeseries, "searchMonthlyActiveUserTimeseries");
+        Utils.checkNotNull(searchWeeklyActiveUserTimeseries, "searchWeeklyActiveUserTimeseries");
+        Utils.checkNotNull(searchDailyActiveUserTimeseries, "searchDailyActiveUserTimeseries");
+        Utils.checkNotNull(assistantMonthlyActiveUserTimeseries, "assistantMonthlyActiveUserTimeseries");
+        Utils.checkNotNull(assistantWeeklyActiveUserTimeseries, "assistantWeeklyActiveUserTimeseries");
+        Utils.checkNotNull(assistantDailyActiveUserTimeseries, "assistantDailyActiveUserTimeseries");
+        Utils.checkNotNull(agentsMonthlyActiveUserTimeseries, "agentsMonthlyActiveUserTimeseries");
+        Utils.checkNotNull(agentsWeeklyActiveUserTimeseries, "agentsWeeklyActiveUserTimeseries");
+        Utils.checkNotNull(agentsDailyActiveUserTimeseries, "agentsDailyActiveUserTimeseries");
+        Utils.checkNotNull(searchesTimeseries, "searchesTimeseries");
+        Utils.checkNotNull(assistantInteractionsTimeseries, "assistantInteractionsTimeseries");
+        Utils.checkNotNull(agentRunsTimeseries, "agentRunsTimeseries");
         Utils.checkNotNull(searchDatasourceCounts, "searchDatasourceCounts");
         Utils.checkNotNull(chatDatasourceCounts, "chatDatasourceCounts");
         Utils.checkNotNull(perUserInsights, "perUserInsights");
@@ -178,6 +262,18 @@ public class InsightsOverviewResponse {
         this.monthlyActiveUserTimeseries = monthlyActiveUserTimeseries;
         this.weeklyActiveUserTimeseries = weeklyActiveUserTimeseries;
         this.dailyActiveUserTimeseries = dailyActiveUserTimeseries;
+        this.searchMonthlyActiveUserTimeseries = searchMonthlyActiveUserTimeseries;
+        this.searchWeeklyActiveUserTimeseries = searchWeeklyActiveUserTimeseries;
+        this.searchDailyActiveUserTimeseries = searchDailyActiveUserTimeseries;
+        this.assistantMonthlyActiveUserTimeseries = assistantMonthlyActiveUserTimeseries;
+        this.assistantWeeklyActiveUserTimeseries = assistantWeeklyActiveUserTimeseries;
+        this.assistantDailyActiveUserTimeseries = assistantDailyActiveUserTimeseries;
+        this.agentsMonthlyActiveUserTimeseries = agentsMonthlyActiveUserTimeseries;
+        this.agentsWeeklyActiveUserTimeseries = agentsWeeklyActiveUserTimeseries;
+        this.agentsDailyActiveUserTimeseries = agentsDailyActiveUserTimeseries;
+        this.searchesTimeseries = searchesTimeseries;
+        this.assistantInteractionsTimeseries = assistantInteractionsTimeseries;
+        this.agentRunsTimeseries = agentRunsTimeseries;
         this.searchDatasourceCounts = searchDatasourceCounts;
         this.chatDatasourceCounts = chatDatasourceCounts;
         this.perUserInsights = perUserInsights;
@@ -185,6 +281,10 @@ public class InsightsOverviewResponse {
     
     public InsightsOverviewResponse() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
@@ -289,6 +389,78 @@ public class InsightsOverviewResponse {
     @JsonIgnore
     public Optional<LabeledCountInfo> dailyActiveUserTimeseries() {
         return (Optional<LabeledCountInfo>) dailyActiveUserTimeseries;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<LabeledCountInfo> searchMonthlyActiveUserTimeseries() {
+        return (Optional<LabeledCountInfo>) searchMonthlyActiveUserTimeseries;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<LabeledCountInfo> searchWeeklyActiveUserTimeseries() {
+        return (Optional<LabeledCountInfo>) searchWeeklyActiveUserTimeseries;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<LabeledCountInfo> searchDailyActiveUserTimeseries() {
+        return (Optional<LabeledCountInfo>) searchDailyActiveUserTimeseries;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<LabeledCountInfo> assistantMonthlyActiveUserTimeseries() {
+        return (Optional<LabeledCountInfo>) assistantMonthlyActiveUserTimeseries;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<LabeledCountInfo> assistantWeeklyActiveUserTimeseries() {
+        return (Optional<LabeledCountInfo>) assistantWeeklyActiveUserTimeseries;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<LabeledCountInfo> assistantDailyActiveUserTimeseries() {
+        return (Optional<LabeledCountInfo>) assistantDailyActiveUserTimeseries;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<LabeledCountInfo> agentsMonthlyActiveUserTimeseries() {
+        return (Optional<LabeledCountInfo>) agentsMonthlyActiveUserTimeseries;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<LabeledCountInfo> agentsWeeklyActiveUserTimeseries() {
+        return (Optional<LabeledCountInfo>) agentsWeeklyActiveUserTimeseries;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<LabeledCountInfo> agentsDailyActiveUserTimeseries() {
+        return (Optional<LabeledCountInfo>) agentsDailyActiveUserTimeseries;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<LabeledCountInfo> searchesTimeseries() {
+        return (Optional<LabeledCountInfo>) searchesTimeseries;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<LabeledCountInfo> assistantInteractionsTimeseries() {
+        return (Optional<LabeledCountInfo>) assistantInteractionsTimeseries;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<LabeledCountInfo> agentRunsTimeseries() {
+        return (Optional<LabeledCountInfo>) agentRunsTimeseries;
     }
 
     /**
@@ -550,6 +722,162 @@ public class InsightsOverviewResponse {
         return this;
     }
 
+    public InsightsOverviewResponse withSearchMonthlyActiveUserTimeseries(LabeledCountInfo searchMonthlyActiveUserTimeseries) {
+        Utils.checkNotNull(searchMonthlyActiveUserTimeseries, "searchMonthlyActiveUserTimeseries");
+        this.searchMonthlyActiveUserTimeseries = Optional.ofNullable(searchMonthlyActiveUserTimeseries);
+        return this;
+    }
+
+
+    public InsightsOverviewResponse withSearchMonthlyActiveUserTimeseries(Optional<? extends LabeledCountInfo> searchMonthlyActiveUserTimeseries) {
+        Utils.checkNotNull(searchMonthlyActiveUserTimeseries, "searchMonthlyActiveUserTimeseries");
+        this.searchMonthlyActiveUserTimeseries = searchMonthlyActiveUserTimeseries;
+        return this;
+    }
+
+    public InsightsOverviewResponse withSearchWeeklyActiveUserTimeseries(LabeledCountInfo searchWeeklyActiveUserTimeseries) {
+        Utils.checkNotNull(searchWeeklyActiveUserTimeseries, "searchWeeklyActiveUserTimeseries");
+        this.searchWeeklyActiveUserTimeseries = Optional.ofNullable(searchWeeklyActiveUserTimeseries);
+        return this;
+    }
+
+
+    public InsightsOverviewResponse withSearchWeeklyActiveUserTimeseries(Optional<? extends LabeledCountInfo> searchWeeklyActiveUserTimeseries) {
+        Utils.checkNotNull(searchWeeklyActiveUserTimeseries, "searchWeeklyActiveUserTimeseries");
+        this.searchWeeklyActiveUserTimeseries = searchWeeklyActiveUserTimeseries;
+        return this;
+    }
+
+    public InsightsOverviewResponse withSearchDailyActiveUserTimeseries(LabeledCountInfo searchDailyActiveUserTimeseries) {
+        Utils.checkNotNull(searchDailyActiveUserTimeseries, "searchDailyActiveUserTimeseries");
+        this.searchDailyActiveUserTimeseries = Optional.ofNullable(searchDailyActiveUserTimeseries);
+        return this;
+    }
+
+
+    public InsightsOverviewResponse withSearchDailyActiveUserTimeseries(Optional<? extends LabeledCountInfo> searchDailyActiveUserTimeseries) {
+        Utils.checkNotNull(searchDailyActiveUserTimeseries, "searchDailyActiveUserTimeseries");
+        this.searchDailyActiveUserTimeseries = searchDailyActiveUserTimeseries;
+        return this;
+    }
+
+    public InsightsOverviewResponse withAssistantMonthlyActiveUserTimeseries(LabeledCountInfo assistantMonthlyActiveUserTimeseries) {
+        Utils.checkNotNull(assistantMonthlyActiveUserTimeseries, "assistantMonthlyActiveUserTimeseries");
+        this.assistantMonthlyActiveUserTimeseries = Optional.ofNullable(assistantMonthlyActiveUserTimeseries);
+        return this;
+    }
+
+
+    public InsightsOverviewResponse withAssistantMonthlyActiveUserTimeseries(Optional<? extends LabeledCountInfo> assistantMonthlyActiveUserTimeseries) {
+        Utils.checkNotNull(assistantMonthlyActiveUserTimeseries, "assistantMonthlyActiveUserTimeseries");
+        this.assistantMonthlyActiveUserTimeseries = assistantMonthlyActiveUserTimeseries;
+        return this;
+    }
+
+    public InsightsOverviewResponse withAssistantWeeklyActiveUserTimeseries(LabeledCountInfo assistantWeeklyActiveUserTimeseries) {
+        Utils.checkNotNull(assistantWeeklyActiveUserTimeseries, "assistantWeeklyActiveUserTimeseries");
+        this.assistantWeeklyActiveUserTimeseries = Optional.ofNullable(assistantWeeklyActiveUserTimeseries);
+        return this;
+    }
+
+
+    public InsightsOverviewResponse withAssistantWeeklyActiveUserTimeseries(Optional<? extends LabeledCountInfo> assistantWeeklyActiveUserTimeseries) {
+        Utils.checkNotNull(assistantWeeklyActiveUserTimeseries, "assistantWeeklyActiveUserTimeseries");
+        this.assistantWeeklyActiveUserTimeseries = assistantWeeklyActiveUserTimeseries;
+        return this;
+    }
+
+    public InsightsOverviewResponse withAssistantDailyActiveUserTimeseries(LabeledCountInfo assistantDailyActiveUserTimeseries) {
+        Utils.checkNotNull(assistantDailyActiveUserTimeseries, "assistantDailyActiveUserTimeseries");
+        this.assistantDailyActiveUserTimeseries = Optional.ofNullable(assistantDailyActiveUserTimeseries);
+        return this;
+    }
+
+
+    public InsightsOverviewResponse withAssistantDailyActiveUserTimeseries(Optional<? extends LabeledCountInfo> assistantDailyActiveUserTimeseries) {
+        Utils.checkNotNull(assistantDailyActiveUserTimeseries, "assistantDailyActiveUserTimeseries");
+        this.assistantDailyActiveUserTimeseries = assistantDailyActiveUserTimeseries;
+        return this;
+    }
+
+    public InsightsOverviewResponse withAgentsMonthlyActiveUserTimeseries(LabeledCountInfo agentsMonthlyActiveUserTimeseries) {
+        Utils.checkNotNull(agentsMonthlyActiveUserTimeseries, "agentsMonthlyActiveUserTimeseries");
+        this.agentsMonthlyActiveUserTimeseries = Optional.ofNullable(agentsMonthlyActiveUserTimeseries);
+        return this;
+    }
+
+
+    public InsightsOverviewResponse withAgentsMonthlyActiveUserTimeseries(Optional<? extends LabeledCountInfo> agentsMonthlyActiveUserTimeseries) {
+        Utils.checkNotNull(agentsMonthlyActiveUserTimeseries, "agentsMonthlyActiveUserTimeseries");
+        this.agentsMonthlyActiveUserTimeseries = agentsMonthlyActiveUserTimeseries;
+        return this;
+    }
+
+    public InsightsOverviewResponse withAgentsWeeklyActiveUserTimeseries(LabeledCountInfo agentsWeeklyActiveUserTimeseries) {
+        Utils.checkNotNull(agentsWeeklyActiveUserTimeseries, "agentsWeeklyActiveUserTimeseries");
+        this.agentsWeeklyActiveUserTimeseries = Optional.ofNullable(agentsWeeklyActiveUserTimeseries);
+        return this;
+    }
+
+
+    public InsightsOverviewResponse withAgentsWeeklyActiveUserTimeseries(Optional<? extends LabeledCountInfo> agentsWeeklyActiveUserTimeseries) {
+        Utils.checkNotNull(agentsWeeklyActiveUserTimeseries, "agentsWeeklyActiveUserTimeseries");
+        this.agentsWeeklyActiveUserTimeseries = agentsWeeklyActiveUserTimeseries;
+        return this;
+    }
+
+    public InsightsOverviewResponse withAgentsDailyActiveUserTimeseries(LabeledCountInfo agentsDailyActiveUserTimeseries) {
+        Utils.checkNotNull(agentsDailyActiveUserTimeseries, "agentsDailyActiveUserTimeseries");
+        this.agentsDailyActiveUserTimeseries = Optional.ofNullable(agentsDailyActiveUserTimeseries);
+        return this;
+    }
+
+
+    public InsightsOverviewResponse withAgentsDailyActiveUserTimeseries(Optional<? extends LabeledCountInfo> agentsDailyActiveUserTimeseries) {
+        Utils.checkNotNull(agentsDailyActiveUserTimeseries, "agentsDailyActiveUserTimeseries");
+        this.agentsDailyActiveUserTimeseries = agentsDailyActiveUserTimeseries;
+        return this;
+    }
+
+    public InsightsOverviewResponse withSearchesTimeseries(LabeledCountInfo searchesTimeseries) {
+        Utils.checkNotNull(searchesTimeseries, "searchesTimeseries");
+        this.searchesTimeseries = Optional.ofNullable(searchesTimeseries);
+        return this;
+    }
+
+
+    public InsightsOverviewResponse withSearchesTimeseries(Optional<? extends LabeledCountInfo> searchesTimeseries) {
+        Utils.checkNotNull(searchesTimeseries, "searchesTimeseries");
+        this.searchesTimeseries = searchesTimeseries;
+        return this;
+    }
+
+    public InsightsOverviewResponse withAssistantInteractionsTimeseries(LabeledCountInfo assistantInteractionsTimeseries) {
+        Utils.checkNotNull(assistantInteractionsTimeseries, "assistantInteractionsTimeseries");
+        this.assistantInteractionsTimeseries = Optional.ofNullable(assistantInteractionsTimeseries);
+        return this;
+    }
+
+
+    public InsightsOverviewResponse withAssistantInteractionsTimeseries(Optional<? extends LabeledCountInfo> assistantInteractionsTimeseries) {
+        Utils.checkNotNull(assistantInteractionsTimeseries, "assistantInteractionsTimeseries");
+        this.assistantInteractionsTimeseries = assistantInteractionsTimeseries;
+        return this;
+    }
+
+    public InsightsOverviewResponse withAgentRunsTimeseries(LabeledCountInfo agentRunsTimeseries) {
+        Utils.checkNotNull(agentRunsTimeseries, "agentRunsTimeseries");
+        this.agentRunsTimeseries = Optional.ofNullable(agentRunsTimeseries);
+        return this;
+    }
+
+
+    public InsightsOverviewResponse withAgentRunsTimeseries(Optional<? extends LabeledCountInfo> agentRunsTimeseries) {
+        Utils.checkNotNull(agentRunsTimeseries, "agentRunsTimeseries");
+        this.agentRunsTimeseries = agentRunsTimeseries;
+        return this;
+    }
+
     /**
      * Counts of search result clicks, by datasource, over the specified time period in the specified
      * departments.
@@ -637,6 +965,18 @@ public class InsightsOverviewResponse {
             Utils.enhancedDeepEquals(this.monthlyActiveUserTimeseries, other.monthlyActiveUserTimeseries) &&
             Utils.enhancedDeepEquals(this.weeklyActiveUserTimeseries, other.weeklyActiveUserTimeseries) &&
             Utils.enhancedDeepEquals(this.dailyActiveUserTimeseries, other.dailyActiveUserTimeseries) &&
+            Utils.enhancedDeepEquals(this.searchMonthlyActiveUserTimeseries, other.searchMonthlyActiveUserTimeseries) &&
+            Utils.enhancedDeepEquals(this.searchWeeklyActiveUserTimeseries, other.searchWeeklyActiveUserTimeseries) &&
+            Utils.enhancedDeepEquals(this.searchDailyActiveUserTimeseries, other.searchDailyActiveUserTimeseries) &&
+            Utils.enhancedDeepEquals(this.assistantMonthlyActiveUserTimeseries, other.assistantMonthlyActiveUserTimeseries) &&
+            Utils.enhancedDeepEquals(this.assistantWeeklyActiveUserTimeseries, other.assistantWeeklyActiveUserTimeseries) &&
+            Utils.enhancedDeepEquals(this.assistantDailyActiveUserTimeseries, other.assistantDailyActiveUserTimeseries) &&
+            Utils.enhancedDeepEquals(this.agentsMonthlyActiveUserTimeseries, other.agentsMonthlyActiveUserTimeseries) &&
+            Utils.enhancedDeepEquals(this.agentsWeeklyActiveUserTimeseries, other.agentsWeeklyActiveUserTimeseries) &&
+            Utils.enhancedDeepEquals(this.agentsDailyActiveUserTimeseries, other.agentsDailyActiveUserTimeseries) &&
+            Utils.enhancedDeepEquals(this.searchesTimeseries, other.searchesTimeseries) &&
+            Utils.enhancedDeepEquals(this.assistantInteractionsTimeseries, other.assistantInteractionsTimeseries) &&
+            Utils.enhancedDeepEquals(this.agentRunsTimeseries, other.agentRunsTimeseries) &&
             Utils.enhancedDeepEquals(this.searchDatasourceCounts, other.searchDatasourceCounts) &&
             Utils.enhancedDeepEquals(this.chatDatasourceCounts, other.chatDatasourceCounts) &&
             Utils.enhancedDeepEquals(this.perUserInsights, other.perUserInsights);
@@ -649,7 +989,11 @@ public class InsightsOverviewResponse {
             employeeCount, totalSignups, searchSummary,
             chatSummary, extensionSummary, ugcSummary,
             lastUpdatedTs, searchSessionSatisfaction, monthlyActiveUserTimeseries,
-            weeklyActiveUserTimeseries, dailyActiveUserTimeseries, searchDatasourceCounts,
+            weeklyActiveUserTimeseries, dailyActiveUserTimeseries, searchMonthlyActiveUserTimeseries,
+            searchWeeklyActiveUserTimeseries, searchDailyActiveUserTimeseries, assistantMonthlyActiveUserTimeseries,
+            assistantWeeklyActiveUserTimeseries, assistantDailyActiveUserTimeseries, agentsMonthlyActiveUserTimeseries,
+            agentsWeeklyActiveUserTimeseries, agentsDailyActiveUserTimeseries, searchesTimeseries,
+            assistantInteractionsTimeseries, agentRunsTimeseries, searchDatasourceCounts,
             chatDatasourceCounts, perUserInsights);
     }
     
@@ -670,6 +1014,18 @@ public class InsightsOverviewResponse {
                 "monthlyActiveUserTimeseries", monthlyActiveUserTimeseries,
                 "weeklyActiveUserTimeseries", weeklyActiveUserTimeseries,
                 "dailyActiveUserTimeseries", dailyActiveUserTimeseries,
+                "searchMonthlyActiveUserTimeseries", searchMonthlyActiveUserTimeseries,
+                "searchWeeklyActiveUserTimeseries", searchWeeklyActiveUserTimeseries,
+                "searchDailyActiveUserTimeseries", searchDailyActiveUserTimeseries,
+                "assistantMonthlyActiveUserTimeseries", assistantMonthlyActiveUserTimeseries,
+                "assistantWeeklyActiveUserTimeseries", assistantWeeklyActiveUserTimeseries,
+                "assistantDailyActiveUserTimeseries", assistantDailyActiveUserTimeseries,
+                "agentsMonthlyActiveUserTimeseries", agentsMonthlyActiveUserTimeseries,
+                "agentsWeeklyActiveUserTimeseries", agentsWeeklyActiveUserTimeseries,
+                "agentsDailyActiveUserTimeseries", agentsDailyActiveUserTimeseries,
+                "searchesTimeseries", searchesTimeseries,
+                "assistantInteractionsTimeseries", assistantInteractionsTimeseries,
+                "agentRunsTimeseries", agentRunsTimeseries,
                 "searchDatasourceCounts", searchDatasourceCounts,
                 "chatDatasourceCounts", chatDatasourceCounts,
                 "perUserInsights", perUserInsights);
@@ -705,6 +1061,30 @@ public class InsightsOverviewResponse {
         private Optional<? extends LabeledCountInfo> weeklyActiveUserTimeseries = Optional.empty();
 
         private Optional<? extends LabeledCountInfo> dailyActiveUserTimeseries = Optional.empty();
+
+        private Optional<? extends LabeledCountInfo> searchMonthlyActiveUserTimeseries = Optional.empty();
+
+        private Optional<? extends LabeledCountInfo> searchWeeklyActiveUserTimeseries = Optional.empty();
+
+        private Optional<? extends LabeledCountInfo> searchDailyActiveUserTimeseries = Optional.empty();
+
+        private Optional<? extends LabeledCountInfo> assistantMonthlyActiveUserTimeseries = Optional.empty();
+
+        private Optional<? extends LabeledCountInfo> assistantWeeklyActiveUserTimeseries = Optional.empty();
+
+        private Optional<? extends LabeledCountInfo> assistantDailyActiveUserTimeseries = Optional.empty();
+
+        private Optional<? extends LabeledCountInfo> agentsMonthlyActiveUserTimeseries = Optional.empty();
+
+        private Optional<? extends LabeledCountInfo> agentsWeeklyActiveUserTimeseries = Optional.empty();
+
+        private Optional<? extends LabeledCountInfo> agentsDailyActiveUserTimeseries = Optional.empty();
+
+        private Optional<? extends LabeledCountInfo> searchesTimeseries = Optional.empty();
+
+        private Optional<? extends LabeledCountInfo> assistantInteractionsTimeseries = Optional.empty();
+
+        private Optional<? extends LabeledCountInfo> agentRunsTimeseries = Optional.empty();
 
         private Optional<? extends Map<String, Long>> searchDatasourceCounts = Optional.empty();
 
@@ -941,6 +1321,162 @@ public class InsightsOverviewResponse {
         }
 
 
+        public Builder searchMonthlyActiveUserTimeseries(LabeledCountInfo searchMonthlyActiveUserTimeseries) {
+            Utils.checkNotNull(searchMonthlyActiveUserTimeseries, "searchMonthlyActiveUserTimeseries");
+            this.searchMonthlyActiveUserTimeseries = Optional.ofNullable(searchMonthlyActiveUserTimeseries);
+            return this;
+        }
+
+        public Builder searchMonthlyActiveUserTimeseries(Optional<? extends LabeledCountInfo> searchMonthlyActiveUserTimeseries) {
+            Utils.checkNotNull(searchMonthlyActiveUserTimeseries, "searchMonthlyActiveUserTimeseries");
+            this.searchMonthlyActiveUserTimeseries = searchMonthlyActiveUserTimeseries;
+            return this;
+        }
+
+
+        public Builder searchWeeklyActiveUserTimeseries(LabeledCountInfo searchWeeklyActiveUserTimeseries) {
+            Utils.checkNotNull(searchWeeklyActiveUserTimeseries, "searchWeeklyActiveUserTimeseries");
+            this.searchWeeklyActiveUserTimeseries = Optional.ofNullable(searchWeeklyActiveUserTimeseries);
+            return this;
+        }
+
+        public Builder searchWeeklyActiveUserTimeseries(Optional<? extends LabeledCountInfo> searchWeeklyActiveUserTimeseries) {
+            Utils.checkNotNull(searchWeeklyActiveUserTimeseries, "searchWeeklyActiveUserTimeseries");
+            this.searchWeeklyActiveUserTimeseries = searchWeeklyActiveUserTimeseries;
+            return this;
+        }
+
+
+        public Builder searchDailyActiveUserTimeseries(LabeledCountInfo searchDailyActiveUserTimeseries) {
+            Utils.checkNotNull(searchDailyActiveUserTimeseries, "searchDailyActiveUserTimeseries");
+            this.searchDailyActiveUserTimeseries = Optional.ofNullable(searchDailyActiveUserTimeseries);
+            return this;
+        }
+
+        public Builder searchDailyActiveUserTimeseries(Optional<? extends LabeledCountInfo> searchDailyActiveUserTimeseries) {
+            Utils.checkNotNull(searchDailyActiveUserTimeseries, "searchDailyActiveUserTimeseries");
+            this.searchDailyActiveUserTimeseries = searchDailyActiveUserTimeseries;
+            return this;
+        }
+
+
+        public Builder assistantMonthlyActiveUserTimeseries(LabeledCountInfo assistantMonthlyActiveUserTimeseries) {
+            Utils.checkNotNull(assistantMonthlyActiveUserTimeseries, "assistantMonthlyActiveUserTimeseries");
+            this.assistantMonthlyActiveUserTimeseries = Optional.ofNullable(assistantMonthlyActiveUserTimeseries);
+            return this;
+        }
+
+        public Builder assistantMonthlyActiveUserTimeseries(Optional<? extends LabeledCountInfo> assistantMonthlyActiveUserTimeseries) {
+            Utils.checkNotNull(assistantMonthlyActiveUserTimeseries, "assistantMonthlyActiveUserTimeseries");
+            this.assistantMonthlyActiveUserTimeseries = assistantMonthlyActiveUserTimeseries;
+            return this;
+        }
+
+
+        public Builder assistantWeeklyActiveUserTimeseries(LabeledCountInfo assistantWeeklyActiveUserTimeseries) {
+            Utils.checkNotNull(assistantWeeklyActiveUserTimeseries, "assistantWeeklyActiveUserTimeseries");
+            this.assistantWeeklyActiveUserTimeseries = Optional.ofNullable(assistantWeeklyActiveUserTimeseries);
+            return this;
+        }
+
+        public Builder assistantWeeklyActiveUserTimeseries(Optional<? extends LabeledCountInfo> assistantWeeklyActiveUserTimeseries) {
+            Utils.checkNotNull(assistantWeeklyActiveUserTimeseries, "assistantWeeklyActiveUserTimeseries");
+            this.assistantWeeklyActiveUserTimeseries = assistantWeeklyActiveUserTimeseries;
+            return this;
+        }
+
+
+        public Builder assistantDailyActiveUserTimeseries(LabeledCountInfo assistantDailyActiveUserTimeseries) {
+            Utils.checkNotNull(assistantDailyActiveUserTimeseries, "assistantDailyActiveUserTimeseries");
+            this.assistantDailyActiveUserTimeseries = Optional.ofNullable(assistantDailyActiveUserTimeseries);
+            return this;
+        }
+
+        public Builder assistantDailyActiveUserTimeseries(Optional<? extends LabeledCountInfo> assistantDailyActiveUserTimeseries) {
+            Utils.checkNotNull(assistantDailyActiveUserTimeseries, "assistantDailyActiveUserTimeseries");
+            this.assistantDailyActiveUserTimeseries = assistantDailyActiveUserTimeseries;
+            return this;
+        }
+
+
+        public Builder agentsMonthlyActiveUserTimeseries(LabeledCountInfo agentsMonthlyActiveUserTimeseries) {
+            Utils.checkNotNull(agentsMonthlyActiveUserTimeseries, "agentsMonthlyActiveUserTimeseries");
+            this.agentsMonthlyActiveUserTimeseries = Optional.ofNullable(agentsMonthlyActiveUserTimeseries);
+            return this;
+        }
+
+        public Builder agentsMonthlyActiveUserTimeseries(Optional<? extends LabeledCountInfo> agentsMonthlyActiveUserTimeseries) {
+            Utils.checkNotNull(agentsMonthlyActiveUserTimeseries, "agentsMonthlyActiveUserTimeseries");
+            this.agentsMonthlyActiveUserTimeseries = agentsMonthlyActiveUserTimeseries;
+            return this;
+        }
+
+
+        public Builder agentsWeeklyActiveUserTimeseries(LabeledCountInfo agentsWeeklyActiveUserTimeseries) {
+            Utils.checkNotNull(agentsWeeklyActiveUserTimeseries, "agentsWeeklyActiveUserTimeseries");
+            this.agentsWeeklyActiveUserTimeseries = Optional.ofNullable(agentsWeeklyActiveUserTimeseries);
+            return this;
+        }
+
+        public Builder agentsWeeklyActiveUserTimeseries(Optional<? extends LabeledCountInfo> agentsWeeklyActiveUserTimeseries) {
+            Utils.checkNotNull(agentsWeeklyActiveUserTimeseries, "agentsWeeklyActiveUserTimeseries");
+            this.agentsWeeklyActiveUserTimeseries = agentsWeeklyActiveUserTimeseries;
+            return this;
+        }
+
+
+        public Builder agentsDailyActiveUserTimeseries(LabeledCountInfo agentsDailyActiveUserTimeseries) {
+            Utils.checkNotNull(agentsDailyActiveUserTimeseries, "agentsDailyActiveUserTimeseries");
+            this.agentsDailyActiveUserTimeseries = Optional.ofNullable(agentsDailyActiveUserTimeseries);
+            return this;
+        }
+
+        public Builder agentsDailyActiveUserTimeseries(Optional<? extends LabeledCountInfo> agentsDailyActiveUserTimeseries) {
+            Utils.checkNotNull(agentsDailyActiveUserTimeseries, "agentsDailyActiveUserTimeseries");
+            this.agentsDailyActiveUserTimeseries = agentsDailyActiveUserTimeseries;
+            return this;
+        }
+
+
+        public Builder searchesTimeseries(LabeledCountInfo searchesTimeseries) {
+            Utils.checkNotNull(searchesTimeseries, "searchesTimeseries");
+            this.searchesTimeseries = Optional.ofNullable(searchesTimeseries);
+            return this;
+        }
+
+        public Builder searchesTimeseries(Optional<? extends LabeledCountInfo> searchesTimeseries) {
+            Utils.checkNotNull(searchesTimeseries, "searchesTimeseries");
+            this.searchesTimeseries = searchesTimeseries;
+            return this;
+        }
+
+
+        public Builder assistantInteractionsTimeseries(LabeledCountInfo assistantInteractionsTimeseries) {
+            Utils.checkNotNull(assistantInteractionsTimeseries, "assistantInteractionsTimeseries");
+            this.assistantInteractionsTimeseries = Optional.ofNullable(assistantInteractionsTimeseries);
+            return this;
+        }
+
+        public Builder assistantInteractionsTimeseries(Optional<? extends LabeledCountInfo> assistantInteractionsTimeseries) {
+            Utils.checkNotNull(assistantInteractionsTimeseries, "assistantInteractionsTimeseries");
+            this.assistantInteractionsTimeseries = assistantInteractionsTimeseries;
+            return this;
+        }
+
+
+        public Builder agentRunsTimeseries(LabeledCountInfo agentRunsTimeseries) {
+            Utils.checkNotNull(agentRunsTimeseries, "agentRunsTimeseries");
+            this.agentRunsTimeseries = Optional.ofNullable(agentRunsTimeseries);
+            return this;
+        }
+
+        public Builder agentRunsTimeseries(Optional<? extends LabeledCountInfo> agentRunsTimeseries) {
+            Utils.checkNotNull(agentRunsTimeseries, "agentRunsTimeseries");
+            this.agentRunsTimeseries = agentRunsTimeseries;
+            return this;
+        }
+
+
         /**
          * Counts of search result clicks, by datasource, over the specified time period in the specified
          * departments.
@@ -1010,7 +1546,11 @@ public class InsightsOverviewResponse {
                 employeeCount, totalSignups, searchSummary,
                 chatSummary, extensionSummary, ugcSummary,
                 lastUpdatedTs, searchSessionSatisfaction, monthlyActiveUserTimeseries,
-                weeklyActiveUserTimeseries, dailyActiveUserTimeseries, searchDatasourceCounts,
+                weeklyActiveUserTimeseries, dailyActiveUserTimeseries, searchMonthlyActiveUserTimeseries,
+                searchWeeklyActiveUserTimeseries, searchDailyActiveUserTimeseries, assistantMonthlyActiveUserTimeseries,
+                assistantWeeklyActiveUserTimeseries, assistantDailyActiveUserTimeseries, agentsMonthlyActiveUserTimeseries,
+                agentsWeeklyActiveUserTimeseries, agentsDailyActiveUserTimeseries, searchesTimeseries,
+                assistantInteractionsTimeseries, agentRunsTimeseries, searchDatasourceCounts,
                 chatDatasourceCounts, perUserInsights);
         }
 

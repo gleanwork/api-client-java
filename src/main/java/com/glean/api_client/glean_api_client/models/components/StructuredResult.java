@@ -79,11 +79,6 @@ public class StructuredResult {
 
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("answerBoard")
-    private Optional<? extends AnswerBoard> answerBoard;
-
-
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("code")
     private Optional<? extends Code> code;
 
@@ -165,7 +160,6 @@ public class StructuredResult {
             @JsonProperty("meeting") Optional<? extends Meeting> meeting,
             @JsonProperty("app") Optional<? extends AppResult> app,
             @JsonProperty("collection") Optional<? extends Collection> collection,
-            @JsonProperty("answerBoard") Optional<? extends AnswerBoard> answerBoard,
             @JsonProperty("code") Optional<? extends Code> code,
             @JsonProperty("shortcut") Optional<? extends Shortcut> shortcut,
             @JsonProperty("querySuggestions") Optional<? extends QuerySuggestionList> querySuggestions,
@@ -188,7 +182,6 @@ public class StructuredResult {
         Utils.checkNotNull(meeting, "meeting");
         Utils.checkNotNull(app, "app");
         Utils.checkNotNull(collection, "collection");
-        Utils.checkNotNull(answerBoard, "answerBoard");
         Utils.checkNotNull(code, "code");
         Utils.checkNotNull(shortcut, "shortcut");
         Utils.checkNotNull(querySuggestions, "querySuggestions");
@@ -211,7 +204,6 @@ public class StructuredResult {
         this.meeting = meeting;
         this.app = app;
         this.collection = collection;
-        this.answerBoard = answerBoard;
         this.code = code;
         this.shortcut = shortcut;
         this.querySuggestions = querySuggestions;
@@ -233,7 +225,7 @@ public class StructuredResult {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -300,12 +292,6 @@ public class StructuredResult {
     @JsonIgnore
     public Optional<Collection> collection() {
         return (Optional<Collection>) collection;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<AnswerBoard> answerBoard() {
-        return (Optional<AnswerBoard>) answerBoard;
     }
 
     @SuppressWarnings("unchecked")
@@ -543,19 +529,6 @@ public class StructuredResult {
         return this;
     }
 
-    public StructuredResult withAnswerBoard(AnswerBoard answerBoard) {
-        Utils.checkNotNull(answerBoard, "answerBoard");
-        this.answerBoard = Optional.ofNullable(answerBoard);
-        return this;
-    }
-
-
-    public StructuredResult withAnswerBoard(Optional<? extends AnswerBoard> answerBoard) {
-        Utils.checkNotNull(answerBoard, "answerBoard");
-        this.answerBoard = answerBoard;
-        return this;
-    }
-
     public StructuredResult withCode(Code code) {
         Utils.checkNotNull(code, "code");
         this.code = Optional.ofNullable(code);
@@ -764,7 +737,6 @@ public class StructuredResult {
             Utils.enhancedDeepEquals(this.meeting, other.meeting) &&
             Utils.enhancedDeepEquals(this.app, other.app) &&
             Utils.enhancedDeepEquals(this.collection, other.collection) &&
-            Utils.enhancedDeepEquals(this.answerBoard, other.answerBoard) &&
             Utils.enhancedDeepEquals(this.code, other.code) &&
             Utils.enhancedDeepEquals(this.shortcut, other.shortcut) &&
             Utils.enhancedDeepEquals(this.querySuggestions, other.querySuggestions) &&
@@ -784,11 +756,11 @@ public class StructuredResult {
             document, person, customer,
             team, customEntity, answer,
             generatedQna, extractedQnA, meeting,
-            app, collection, answerBoard,
-            code, shortcut, querySuggestions,
-            chat, relatedDocuments, relatedQuestion,
-            disambiguation, snippets, trackingToken,
-            prominence, source);
+            app, collection, code,
+            shortcut, querySuggestions, chat,
+            relatedDocuments, relatedQuestion, disambiguation,
+            snippets, trackingToken, prominence,
+            source);
     }
     
     @Override
@@ -805,7 +777,6 @@ public class StructuredResult {
                 "meeting", meeting,
                 "app", app,
                 "collection", collection,
-                "answerBoard", answerBoard,
                 "code", code,
                 "shortcut", shortcut,
                 "querySuggestions", querySuggestions,
@@ -843,8 +814,6 @@ public class StructuredResult {
         private Optional<? extends AppResult> app = Optional.empty();
 
         private Optional<? extends Collection> collection = Optional.empty();
-
-        private Optional<? extends AnswerBoard> answerBoard = Optional.empty();
 
         private Optional<? extends Code> code = Optional.empty();
 
@@ -1012,19 +981,6 @@ public class StructuredResult {
         public Builder collection(Optional<? extends Collection> collection) {
             Utils.checkNotNull(collection, "collection");
             this.collection = collection;
-            return this;
-        }
-
-
-        public Builder answerBoard(AnswerBoard answerBoard) {
-            Utils.checkNotNull(answerBoard, "answerBoard");
-            this.answerBoard = Optional.ofNullable(answerBoard);
-            return this;
-        }
-
-        public Builder answerBoard(Optional<? extends AnswerBoard> answerBoard) {
-            Utils.checkNotNull(answerBoard, "answerBoard");
-            this.answerBoard = answerBoard;
             return this;
         }
 
@@ -1221,11 +1177,11 @@ public class StructuredResult {
                 document, person, customer,
                 team, customEntity, answer,
                 generatedQna, extractedQnA, meeting,
-                app, collection, answerBoard,
-                code, shortcut, querySuggestions,
-                chat, relatedDocuments, relatedQuestion,
-                disambiguation, snippets, trackingToken,
-                prominence, source);
+                app, collection, code,
+                shortcut, querySuggestions, chat,
+                relatedDocuments, relatedQuestion, disambiguation,
+                snippets, trackingToken, prominence,
+                source);
         }
 
     }

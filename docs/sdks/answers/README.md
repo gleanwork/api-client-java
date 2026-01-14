@@ -8,7 +8,7 @@
 * [delete](#delete) - Delete Answer
 * [update](#update) - Update Answer
 * [retrieve](#retrieve) - Read Answer
-* [list](#list) - List Answers
+* [~~list~~](#list) - List Answers :warning: **Deprecated**
 
 ## create
 
@@ -2310,9 +2310,11 @@ public class Application {
 | -------------------------- | -------------------------- | -------------------------- |
 | models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
 
-## list
+## ~~list~~
 
 List Answers created by the current user.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
