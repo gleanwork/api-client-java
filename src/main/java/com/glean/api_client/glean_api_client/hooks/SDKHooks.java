@@ -15,12 +15,18 @@ public final class SDKHooks {
     public static void initialize(com.glean.api_client.glean_api_client.utils.Hooks hooks) {
         hooks.registerAfterError(AgentFileUploadErrorHook.createSyncHook());
 
+        // Register the X-Glean header hook for experimental features and deprecation testing
+        hooks.registerBeforeRequest(XGleanHeadersHook.createSyncHook());
+
         // for more information see
         // https://www.speakeasy.com/docs/additional-features/sdk-hooks
     }
 
     public static void initialize(com.glean.api_client.glean_api_client.utils.AsyncHooks asyncHooks) {
         asyncHooks.registerAfterError(AgentFileUploadErrorHook.createAsyncHook());
+
+        // Register the X-Glean header hook for experimental features and deprecation testing
+        asyncHooks.registerBeforeRequest(XGleanHeadersHook.createAsyncHook());
 
         // NOTE: If you have existing synchronous hooks, you can adapt them using HookAdapters:
         // asyncHooks.registerAfterError(com.glean.api_client.glean_api_client.utils.HookAdapters.adapt(mySyncHook));
