@@ -128,7 +128,7 @@ public class SDKConfiguration {
          return serverVariables.get(this.serverIdx);
      }
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    
+
     public Optional<RetryConfig> retryConfig() {
         return retryConfig;
     }
@@ -136,6 +136,50 @@ public class SDKConfiguration {
     public void setRetryConfig(Optional<RetryConfig> retryConfig) {
         Utils.checkNotNull(retryConfig, "retryConfig");
         this.retryConfig = retryConfig;
+    }
+
+    private Optional<String> excludeDeprecatedAfter = Optional.empty();
+
+    /**
+     * Gets the date after which deprecated API endpoints should be excluded.
+     *
+     * @return Optional containing the date string (YYYY-MM-DD format) if set
+     */
+    public Optional<String> excludeDeprecatedAfter() {
+        return excludeDeprecatedAfter;
+    }
+
+    /**
+     * Sets the date after which deprecated API endpoints should be excluded.
+     * Use this to test your integration against upcoming deprecations.
+     *
+     * @param excludeDeprecatedAfter date string in YYYY-MM-DD format
+     */
+    public void setExcludeDeprecatedAfter(Optional<String> excludeDeprecatedAfter) {
+        Utils.checkNotNull(excludeDeprecatedAfter, "excludeDeprecatedAfter");
+        this.excludeDeprecatedAfter = excludeDeprecatedAfter;
+    }
+
+    private Optional<Boolean> includeExperimental = Optional.empty();
+
+    /**
+     * Gets whether experimental API features should be enabled.
+     *
+     * @return Optional containing the boolean value if set
+     */
+    public Optional<Boolean> includeExperimental() {
+        return includeExperimental;
+    }
+
+    /**
+     * Sets whether experimental API features should be enabled.
+     * When true, enables experimental API features that are not yet generally available.
+     *
+     * @param includeExperimental whether to include experimental features
+     */
+    public void setIncludeExperimental(Optional<Boolean> includeExperimental) {
+        Utils.checkNotNull(includeExperimental, "includeExperimental");
+        this.includeExperimental = includeExperimental;
     }
     private ScheduledExecutorService retryScheduler = Executors.newSingleThreadScheduledExecutor();
     

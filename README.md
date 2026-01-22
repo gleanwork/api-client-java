@@ -48,6 +48,7 @@ Remember that each namespace requires its own authentication token type as descr
   * [Server Selection](#server-selection)
   * [Custom HTTP Client](#custom-http-client)
   * [Debugging](#debugging)
+  * [Experimental Features and Deprecation Testing](#experimental-features-and-deprecation-testing)
 * [Development](#development)
   * [Maturity](#maturity)
   * [Contributions](#contributions)
@@ -1597,6 +1598,55 @@ __NOTE__: This is a convenience method that calls `HTTPClient.enableDebugLogging
 
 Another option is to set the System property `-Djdk.httpclient.HttpClient.log=all`. However, this second option does not log bodies.
 <!-- End Debugging [debug] -->
+
+## Experimental Features and Deprecation Testing
+
+The SDK provides options to test upcoming API changes before they become the default behavior. This is useful for:
+
+- **Testing experimental features** before they are generally available
+- **Preparing for deprecations** by excluding deprecated endpoints ahead of their removal
+
+### Configuration Options
+
+You can configure these options either via environment variables or SDK constructor options:
+
+#### Using Environment Variables
+
+```bash
+# Set environment variables before running your application
+export X_GLEAN_EXCLUDE_DEPRECATED_AFTER="2026-10-15"
+export X_GLEAN_INCLUDE_EXPERIMENTAL="true"
+```
+
+```java
+// Environment variables are automatically read by the SDK
+Glean glean = Glean.builder()
+        .apiToken(System.getenv("GLEAN_API_TOKEN"))
+        .instance("instance-name")
+        .build();
+```
+
+#### Using SDK Constructor Options
+
+```java
+Glean glean = Glean.builder()
+        .apiToken(System.getenv("GLEAN_API_TOKEN"))
+        .instance("instance-name")
+        .excludeDeprecatedAfter("2026-10-15")
+        .includeExperimental(true)
+        .build();
+```
+
+### Option Reference
+
+| Option | Environment Variable | Type | Description |
+| ------ | -------------------- | ---- | ----------- |
+| `excludeDeprecatedAfter` | `X_GLEAN_EXCLUDE_DEPRECATED_AFTER` | `String` (date) | Exclude API endpoints that will be deprecated after this date (format: `YYYY-MM-DD`). Use this to test your integration against upcoming deprecations. |
+| `includeExperimental` | `X_GLEAN_INCLUDE_EXPERIMENTAL` | `boolean` | When `true`, enables experimental API features that are not yet generally available. Use this to preview and test new functionality. |
+
+> **Note:** Environment variables take precedence over SDK constructor options when both are set.
+
+> **Warning:** Experimental features may change or be removed without notice. Do not rely on experimental features in production environments.
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 
