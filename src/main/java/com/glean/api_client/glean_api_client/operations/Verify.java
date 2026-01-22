@@ -11,8 +11,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
 import com.glean.api_client.glean_api_client.models.components.Verification;
-import com.glean.api_client.glean_api_client.models.components.VerifyRequest;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
+import com.glean.api_client.glean_api_client.models.operations.VerifyRequest;
 import com.glean.api_client.glean_api_client.models.operations.VerifyResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
@@ -85,7 +85,7 @@ public class Verify {
                     java.util.Optional.empty(),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/rest/api/v1/verify");
@@ -96,7 +96,7 @@ public class Verify {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "verifyRequest",
                     "json",
                     false);
             if (serializedRequestBody == null) {
@@ -106,6 +106,11 @@ public class Verify {
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
+
+            req.addQueryParams(Utils.getQueryParams(
+                    klass,
+                    request,
+                    null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -119,7 +124,7 @@ public class Verify {
         }
 
         private HttpRequest onBuildRequest(VerifyRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<VerifyRequest>() {});
+            HttpRequest req = buildRequest(request, VerifyRequest.class, new TypeReference<VerifyRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -194,7 +199,7 @@ public class Verify {
         }
 
         private CompletableFuture<HttpRequest> onBuildRequest(VerifyRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<VerifyRequest>() {});
+            HttpRequest req = buildRequest(request, VerifyRequest.class, new TypeReference<VerifyRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

@@ -10,14 +10,19 @@ import com.glean.api_client.glean_api_client.models.components.DeleteShortcutReq
 import com.glean.api_client.glean_api_client.models.components.GetShortcutRequestUnion;
 import com.glean.api_client.glean_api_client.models.components.ListShortcutsPaginatedRequest;
 import com.glean.api_client.glean_api_client.models.components.UpdateShortcutRequest;
+import com.glean.api_client.glean_api_client.models.operations.CreateshortcutRequest;
 import com.glean.api_client.glean_api_client.models.operations.CreateshortcutRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.CreateshortcutResponse;
+import com.glean.api_client.glean_api_client.models.operations.DeleteshortcutRequest;
 import com.glean.api_client.glean_api_client.models.operations.DeleteshortcutRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.DeleteshortcutResponse;
+import com.glean.api_client.glean_api_client.models.operations.GetshortcutRequest;
 import com.glean.api_client.glean_api_client.models.operations.GetshortcutRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.GetshortcutResponse;
+import com.glean.api_client.glean_api_client.models.operations.ListshortcutsRequest;
 import com.glean.api_client.glean_api_client.models.operations.ListshortcutsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.ListshortcutsResponse;
+import com.glean.api_client.glean_api_client.models.operations.UpdateshortcutRequest;
 import com.glean.api_client.glean_api_client.models.operations.UpdateshortcutRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.UpdateshortcutResponse;
 import com.glean.api_client.glean_api_client.operations.Createshortcut;
@@ -26,6 +31,8 @@ import com.glean.api_client.glean_api_client.operations.Getshortcut;
 import com.glean.api_client.glean_api_client.operations.Listshortcuts;
 import com.glean.api_client.glean_api_client.operations.Updateshortcut;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import java.lang.String;
+import java.util.Optional;
 
 
 public class ClientShortcuts {
@@ -63,12 +70,32 @@ public class ClientShortcuts {
      * 
      * <p>Create a user-generated shortcut that contains an alias and destination URL.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param createShortcutRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public CreateshortcutResponse create(CreateShortcutRequest request) {
-        RequestOperation<CreateShortcutRequest, CreateshortcutResponse> operation
+    public CreateshortcutResponse create(CreateShortcutRequest createShortcutRequest) {
+        return create(Optional.empty(), createShortcutRequest);
+    }
+
+    /**
+     * Create shortcut
+     * 
+     * <p>Create a user-generated shortcut that contains an alias and destination URL.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param createShortcutRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateshortcutResponse create(Optional<String> locale, CreateShortcutRequest createShortcutRequest) {
+        CreateshortcutRequest request =
+            CreateshortcutRequest
+                .builder()
+                .locale(locale)
+                .createShortcutRequest(createShortcutRequest)
+                .build();
+        RequestOperation<CreateshortcutRequest, CreateshortcutResponse> operation
               = new Createshortcut.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -89,12 +116,32 @@ public class ClientShortcuts {
      * 
      * <p>Delete an existing user-generated shortcut.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param deleteShortcutRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteshortcutResponse delete(DeleteShortcutRequest request) {
-        RequestOperation<DeleteShortcutRequest, DeleteshortcutResponse> operation
+    public DeleteshortcutResponse delete(DeleteShortcutRequest deleteShortcutRequest) {
+        return delete(Optional.empty(), deleteShortcutRequest);
+    }
+
+    /**
+     * Delete shortcut
+     * 
+     * <p>Delete an existing user-generated shortcut.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param deleteShortcutRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeleteshortcutResponse delete(Optional<String> locale, DeleteShortcutRequest deleteShortcutRequest) {
+        DeleteshortcutRequest request =
+            DeleteshortcutRequest
+                .builder()
+                .locale(locale)
+                .deleteShortcutRequest(deleteShortcutRequest)
+                .build();
+        RequestOperation<DeleteshortcutRequest, DeleteshortcutResponse> operation
               = new Deleteshortcut.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -115,12 +162,32 @@ public class ClientShortcuts {
      * 
      * <p>Read a particular shortcut's details given its ID.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param getShortcutRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetshortcutResponse retrieve(GetShortcutRequestUnion request) {
-        RequestOperation<GetShortcutRequestUnion, GetshortcutResponse> operation
+    public GetshortcutResponse retrieve(GetShortcutRequestUnion getShortcutRequest) {
+        return retrieve(Optional.empty(), getShortcutRequest);
+    }
+
+    /**
+     * Read shortcut
+     * 
+     * <p>Read a particular shortcut's details given its ID.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param getShortcutRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetshortcutResponse retrieve(Optional<String> locale, GetShortcutRequestUnion getShortcutRequest) {
+        GetshortcutRequest request =
+            GetshortcutRequest
+                .builder()
+                .locale(locale)
+                .getShortcutRequest(getShortcutRequest)
+                .build();
+        RequestOperation<GetshortcutRequest, GetshortcutResponse> operation
               = new Getshortcut.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -141,12 +208,32 @@ public class ClientShortcuts {
      * 
      * <p>List shortcuts editable/owned by the currently authenticated user.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param listShortcutsPaginatedRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public ListshortcutsResponse list(ListShortcutsPaginatedRequest request) {
-        RequestOperation<ListShortcutsPaginatedRequest, ListshortcutsResponse> operation
+    public ListshortcutsResponse list(ListShortcutsPaginatedRequest listShortcutsPaginatedRequest) {
+        return list(Optional.empty(), listShortcutsPaginatedRequest);
+    }
+
+    /**
+     * List shortcuts
+     * 
+     * <p>List shortcuts editable/owned by the currently authenticated user.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param listShortcutsPaginatedRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListshortcutsResponse list(Optional<String> locale, ListShortcutsPaginatedRequest listShortcutsPaginatedRequest) {
+        ListshortcutsRequest request =
+            ListshortcutsRequest
+                .builder()
+                .locale(locale)
+                .listShortcutsPaginatedRequest(listShortcutsPaginatedRequest)
+                .build();
+        RequestOperation<ListshortcutsRequest, ListshortcutsResponse> operation
               = new Listshortcuts.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -167,12 +254,32 @@ public class ClientShortcuts {
      * 
      * <p>Updates the shortcut with the given ID.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param updateShortcutRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateshortcutResponse update(UpdateShortcutRequest request) {
-        RequestOperation<UpdateShortcutRequest, UpdateshortcutResponse> operation
+    public UpdateshortcutResponse update(UpdateShortcutRequest updateShortcutRequest) {
+        return update(Optional.empty(), updateShortcutRequest);
+    }
+
+    /**
+     * Update shortcut
+     * 
+     * <p>Updates the shortcut with the given ID.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param updateShortcutRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UpdateshortcutResponse update(Optional<String> locale, UpdateShortcutRequest updateShortcutRequest) {
+        UpdateshortcutRequest request =
+            UpdateshortcutRequest
+                .builder()
+                .locale(locale)
+                .updateShortcutRequest(updateShortcutRequest)
+                .build();
+        RequestOperation<UpdateshortcutRequest, UpdateshortcutResponse> operation
               = new Updateshortcut.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }

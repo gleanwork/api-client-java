@@ -10,28 +10,53 @@ import com.glean.api_client.glean_api_client.models.components.InsightsRequest;
 import com.glean.api_client.glean_api_client.operations.Insights;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class InsightsRequestBuilder {
 
-    private InsightsRequest request;
+    private Optional<String> locale = Optional.empty();
+    private InsightsRequest insightsRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public InsightsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public InsightsRequestBuilder request(InsightsRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public InsightsRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public InsightsRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public InsightsRequestBuilder insightsRequest(InsightsRequest insightsRequest) {
+        Utils.checkNotNull(insightsRequest, "insightsRequest");
+        this.insightsRequest = insightsRequest;
+        return this;
+    }
+
+
+    private com.glean.api_client.glean_api_client.models.operations.InsightsRequest buildRequest() {
+
+        com.glean.api_client.glean_api_client.models.operations.InsightsRequest request = new com.glean.api_client.glean_api_client.models.operations.InsightsRequest(locale,
+            insightsRequest);
+
+        return request;
     }
 
     public CompletableFuture<InsightsResponse> call() {
         
-        AsyncRequestOperation<InsightsRequest, InsightsResponse> operation
+        AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.InsightsRequest, InsightsResponse> operation
               = new Insights.Async(sdkConfiguration, _headers);
+        com.glean.api_client.glean_api_client.models.operations.InsightsRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

@@ -31,25 +31,23 @@ public class Application {
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        ListEntitiesRequest req = ListEntitiesRequest.builder()
-                .filter(List.of(
-                    FacetFilter.builder()
-                        .fieldName("type")
-                        .values(List.of(
-                            FacetFilterValue.builder()
-                                .value("Spreadsheet")
-                                .relationType(RelationType.EQUALS)
-                                .build(),
-                            FacetFilterValue.builder()
-                                .value("Presentation")
-                                .relationType(RelationType.EQUALS)
-                                .build()))
-                        .build()))
-                .pageSize(100L)
-                .build();
-
         ListentitiesResponse res = sdk.client().entities().list()
-                .request(req)
+                .listEntitiesRequest(ListEntitiesRequest.builder()
+                    .filter(List.of(
+                        FacetFilter.builder()
+                            .fieldName("type")
+                            .values(List.of(
+                                FacetFilterValue.builder()
+                                    .value("Spreadsheet")
+                                    .relationType(RelationType.EQUALS)
+                                    .build(),
+                                FacetFilterValue.builder()
+                                    .value("Presentation")
+                                    .relationType(RelationType.EQUALS)
+                                    .build()))
+                            .build()))
+                    .pageSize(100L)
+                    .build())
                 .call();
 
         if (res.listEntitiesResponse().isPresent()) {
@@ -61,9 +59,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `request`                                                         | [ListEntitiesRequest](../../models/shared/ListEntitiesRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+| Parameter                                                                                                                                                                                           | Type                                                                                                                                                                                                | Required                                                                                                                                                                                            | Description                                                                                                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `locale`                                                                                                                                                                                            | *Optional\<String>*                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                  | The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`. |
+| `listEntitiesRequest`                                                                                                                                                                               | [ListEntitiesRequest](../../models/components/ListEntitiesRequest.md)                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                  | List people request                                                                                                                                                                                 |
 
 ### Response
 
@@ -99,14 +98,12 @@ public class Application {
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        PeopleRequest req = PeopleRequest.builder()
-                .obfuscatedIds(List.of(
-                    "abc123",
-                    "abc456"))
-                .build();
-
         PeopleResponse res = sdk.client().entities().readPeople()
-                .request(req)
+                .peopleRequest(PeopleRequest.builder()
+                    .obfuscatedIds(List.of(
+                        "abc123",
+                        "abc456"))
+                    .build())
                 .call();
 
         if (res.peopleResponse().isPresent()) {
@@ -118,9 +115,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `request`                                             | [PeopleRequest](../../models/shared/PeopleRequest.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
+| Parameter                                                                                                                                                                                           | Type                                                                                                                                                                                                | Required                                                                                                                                                                                            | Description                                                                                                                                                                                         | Example                                                                                                                                                                                             |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `locale`                                                                                                                                                                                            | *Optional\<String>*                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                  | The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`. |                                                                                                                                                                                                     |
+| `peopleRequest`                                                                                                                                                                                     | [PeopleRequest](../../models/components/PeopleRequest.md)                                                                                                                                           | :heavy_check_mark:                                                                                                                                                                                  | People request                                                                                                                                                                                      | {<br/>"obfuscatedIds": [<br/>"abc123",<br/>"abc456"<br/>]<br/>}                                                                                                                                     |
 
 ### Response
 

@@ -10,8 +10,8 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
-import com.glean.api_client.glean_api_client.models.components.DeleteShortcutRequest;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
+import com.glean.api_client.glean_api_client.models.operations.DeleteshortcutRequest;
 import com.glean.api_client.glean_api_client.models.operations.DeleteshortcutResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
@@ -84,7 +84,7 @@ public class Deleteshortcut {
                     java.util.Optional.empty(),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/rest/api/v1/deleteshortcut");
@@ -95,7 +95,7 @@ public class Deleteshortcut {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "deleteShortcutRequest",
                     "json",
                     false);
             if (serializedRequestBody == null) {
@@ -105,6 +105,11 @@ public class Deleteshortcut {
             req.addHeader("Accept", "*/*")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
+
+            req.addQueryParams(Utils.getQueryParams(
+                    klass,
+                    request,
+                    null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -112,13 +117,13 @@ public class Deleteshortcut {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<DeleteShortcutRequest, DeleteshortcutResponse> {
+            implements RequestOperation<DeleteshortcutRequest, DeleteshortcutResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private HttpRequest onBuildRequest(DeleteShortcutRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<DeleteShortcutRequest>() {});
+        private HttpRequest onBuildRequest(DeleteshortcutRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, DeleteshortcutRequest.class, new TypeReference<DeleteshortcutRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -134,7 +139,7 @@ public class Deleteshortcut {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(DeleteShortcutRequest request) {
+        public HttpResponse<InputStream> doRequest(DeleteshortcutRequest request) {
             HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
@@ -183,14 +188,14 @@ public class Deleteshortcut {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<DeleteShortcutRequest, com.glean.api_client.glean_api_client.models.operations.async.DeleteshortcutResponse> {
+            implements AsyncRequestOperation<DeleteshortcutRequest, com.glean.api_client.glean_api_client.models.operations.async.DeleteshortcutResponse> {
 
         public Async(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(DeleteShortcutRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<DeleteShortcutRequest>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(DeleteshortcutRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, DeleteshortcutRequest.class, new TypeReference<DeleteshortcutRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -203,7 +208,7 @@ public class Deleteshortcut {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(DeleteShortcutRequest request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(DeleteshortcutRequest request) {
             return unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
                     .handle((resp, err) -> {
                         if (err != null) {

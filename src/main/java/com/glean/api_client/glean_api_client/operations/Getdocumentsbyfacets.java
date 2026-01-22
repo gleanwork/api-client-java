@@ -10,9 +10,9 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
-import com.glean.api_client.glean_api_client.models.components.GetDocumentsByFacetsRequest;
 import com.glean.api_client.glean_api_client.models.components.GetDocumentsByFacetsResponse;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
+import com.glean.api_client.glean_api_client.models.operations.GetdocumentsbyfacetsRequest;
 import com.glean.api_client.glean_api_client.models.operations.GetdocumentsbyfacetsResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
@@ -84,7 +84,7 @@ public class Getdocumentsbyfacets {
                     java.util.Optional.empty(),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/rest/api/v1/getdocumentsbyfacets");
@@ -95,13 +95,18 @@ public class Getdocumentsbyfacets {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "getDocumentsByFacetsRequest",
                     "json",
                     false);
             req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
+
+            req.addQueryParams(Utils.getQueryParams(
+                    klass,
+                    request,
+                    null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -109,13 +114,13 @@ public class Getdocumentsbyfacets {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<Optional<? extends GetDocumentsByFacetsRequest>, GetdocumentsbyfacetsResponse> {
+            implements RequestOperation<GetdocumentsbyfacetsRequest, GetdocumentsbyfacetsResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private HttpRequest onBuildRequest(Optional<? extends GetDocumentsByFacetsRequest> request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends GetDocumentsByFacetsRequest>>() {});
+        private HttpRequest onBuildRequest(GetdocumentsbyfacetsRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, GetdocumentsbyfacetsRequest.class, new TypeReference<GetdocumentsbyfacetsRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -131,7 +136,7 @@ public class Getdocumentsbyfacets {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(Optional<? extends GetDocumentsByFacetsRequest> request) {
+        public HttpResponse<InputStream> doRequest(GetdocumentsbyfacetsRequest request) {
             HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
@@ -183,14 +188,14 @@ public class Getdocumentsbyfacets {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<Optional<? extends GetDocumentsByFacetsRequest>, com.glean.api_client.glean_api_client.models.operations.async.GetdocumentsbyfacetsResponse> {
+            implements AsyncRequestOperation<GetdocumentsbyfacetsRequest, com.glean.api_client.glean_api_client.models.operations.async.GetdocumentsbyfacetsResponse> {
 
         public Async(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(Optional<? extends GetDocumentsByFacetsRequest> request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends GetDocumentsByFacetsRequest>>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(GetdocumentsbyfacetsRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, GetdocumentsbyfacetsRequest.class, new TypeReference<GetdocumentsbyfacetsRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -203,7 +208,7 @@ public class Getdocumentsbyfacets {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(Optional<? extends GetDocumentsByFacetsRequest> request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(GetdocumentsbyfacetsRequest request) {
             return unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
                     .handle((resp, err) -> {
                         if (err != null) {

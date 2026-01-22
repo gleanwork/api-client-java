@@ -11,10 +11,12 @@ import com.glean.api_client.glean_api_client.operations.Deletechatfiles;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
+import java.lang.String;
 import java.util.Optional;
 
 public class DeletechatfilesRequestBuilder {
 
+    private Optional<String> locale = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private DeleteChatFilesRequest deleteChatFilesRequest;
     private final SDKConfiguration sdkConfiguration;
@@ -22,6 +24,18 @@ public class DeletechatfilesRequestBuilder {
 
     public DeletechatfilesRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+    }
+                
+    public DeletechatfilesRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
+        return this;
+    }
+
+    public DeletechatfilesRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
     }
                 
     public DeletechatfilesRequestBuilder timezoneOffset(long timezoneOffset) {
@@ -45,7 +59,8 @@ public class DeletechatfilesRequestBuilder {
 
     private DeletechatfilesRequest buildRequest() {
 
-        DeletechatfilesRequest request = new DeletechatfilesRequest(timezoneOffset,
+        DeletechatfilesRequest request = new DeletechatfilesRequest(locale,
+            timezoneOffset,
             deleteChatFilesRequest);
 
         return request;

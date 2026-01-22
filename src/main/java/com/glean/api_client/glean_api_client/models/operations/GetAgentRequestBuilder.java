@@ -15,6 +15,7 @@ import java.util.Optional;
 
 public class GetAgentRequestBuilder {
 
+    private Optional<String> locale = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private String agentId;
     private final SDKConfiguration sdkConfiguration;
@@ -22,6 +23,18 @@ public class GetAgentRequestBuilder {
 
     public GetAgentRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+    }
+                
+    public GetAgentRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
+        return this;
+    }
+
+    public GetAgentRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
     }
                 
     public GetAgentRequestBuilder timezoneOffset(long timezoneOffset) {
@@ -45,7 +58,8 @@ public class GetAgentRequestBuilder {
 
     private GetAgentRequest buildRequest() {
 
-        GetAgentRequest request = new GetAgentRequest(timezoneOffset,
+        GetAgentRequest request = new GetAgentRequest(locale,
+            timezoneOffset,
             agentId);
 
         return request;

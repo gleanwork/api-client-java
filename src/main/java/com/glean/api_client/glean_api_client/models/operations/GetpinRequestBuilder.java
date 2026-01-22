@@ -10,27 +10,52 @@ import com.glean.api_client.glean_api_client.models.components.GetPinRequest;
 import com.glean.api_client.glean_api_client.operations.Getpin;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class GetpinRequestBuilder {
 
-    private GetPinRequest request;
+    private Optional<String> locale = Optional.empty();
+    private GetPinRequest getPinRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public GetpinRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public GetpinRequestBuilder request(GetPinRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public GetpinRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public GetpinRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public GetpinRequestBuilder getPinRequest(GetPinRequest getPinRequest) {
+        Utils.checkNotNull(getPinRequest, "getPinRequest");
+        this.getPinRequest = getPinRequest;
+        return this;
+    }
+
+
+    private GetpinRequest buildRequest() {
+
+        GetpinRequest request = new GetpinRequest(locale,
+            getPinRequest);
+
+        return request;
     }
 
     public GetpinResponse call() {
         
-        RequestOperation<GetPinRequest, GetpinResponse> operation
+        RequestOperation<GetpinRequest, GetpinResponse> operation
               = new Getpin.Sync(sdkConfiguration, _headers);
+        GetpinRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

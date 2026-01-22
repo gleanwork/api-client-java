@@ -35,38 +35,36 @@ public class Application {
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        SearchRequest req = SearchRequest.builder()
-                .query("vacation policy")
-                .trackingToken("trackingToken")
-                .pageSize(10L)
-                .requestOptions(SearchRequestOptions.builder()
-                    .facetBucketSize(421489L)
-                    .facetFilters(List.of(
-                        FacetFilter.builder()
-                            .fieldName("type")
-                            .values(List.of(
-                                FacetFilterValue.builder()
-                                    .value("article")
-                                    .relationType(RelationType.EQUALS)
-                                    .build(),
-                                FacetFilterValue.builder()
-                                    .value("document")
-                                    .relationType(RelationType.EQUALS)
-                                    .build()))
-                            .build(),
-                        FacetFilter.builder()
-                            .fieldName("department")
-                            .values(List.of(
-                                FacetFilterValue.builder()
-                                    .value("engineering")
-                                    .relationType(RelationType.EQUALS)
-                                    .build()))
-                            .build()))
-                    .build())
-                .build();
-
         AdminsearchResponse res = sdk.client().search().queryAsAdmin()
-                .request(req)
+                .searchRequest(SearchRequest.builder()
+                    .query("vacation policy")
+                    .trackingToken("trackingToken")
+                    .pageSize(10L)
+                    .requestOptions(SearchRequestOptions.builder()
+                        .facetBucketSize(421489L)
+                        .facetFilters(List.of(
+                            FacetFilter.builder()
+                                .fieldName("type")
+                                .values(List.of(
+                                    FacetFilterValue.builder()
+                                        .value("article")
+                                        .relationType(RelationType.EQUALS)
+                                        .build(),
+                                    FacetFilterValue.builder()
+                                        .value("document")
+                                        .relationType(RelationType.EQUALS)
+                                        .build()))
+                                .build(),
+                            FacetFilter.builder()
+                                .fieldName("department")
+                                .values(List.of(
+                                    FacetFilterValue.builder()
+                                        .value("engineering")
+                                        .relationType(RelationType.EQUALS)
+                                        .build()))
+                                .build()))
+                        .build())
+                    .build())
                 .call();
 
         if (res.searchResponse().isPresent()) {
@@ -78,9 +76,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `request`                                             | [SearchRequest](../../models/shared/SearchRequest.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
+| Parameter                                                                                                                                                                                                                                                                                                                                                                 | Type                                                                                                                                                                                                                                                                                                                                                                      | Required                                                                                                                                                                                                                                                                                                                                                                  | Description                                                                                                                                                                                                                                                                                                                                                               | Example                                                                                                                                                                                                                                                                                                                                                                   |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `locale`                                                                                                                                                                                                                                                                                                                                                                  | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                        | The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.                                                                                                                                                                       |                                                                                                                                                                                                                                                                                                                                                                           |
+| `searchRequest`                                                                                                                                                                                                                                                                                                                                                           | [SearchRequest](../../models/components/SearchRequest.md)                                                                                                                                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                        | Admin search request                                                                                                                                                                                                                                                                                                                                                      | {<br/>"trackingToken": "trackingToken",<br/>"query": "vacation policy",<br/>"pageSize": 10,<br/>"requestOptions": {<br/>"facetFilters": [<br/>{<br/>"fieldName": "type",<br/>"values": [<br/>{<br/>"value": "article",<br/>"relationType": "EQUALS"<br/>},<br/>{<br/>"value": "document",<br/>"relationType": "EQUALS"<br/>}<br/>]<br/>},<br/>{<br/>"fieldName": "department",<br/>"values": [<br/>{<br/>"value": "engineering",<br/>"relationType": "EQUALS"<br/>}<br/>]<br/>}<br/>]<br/>}<br/>} |
 
 ### Response
 
@@ -116,15 +115,13 @@ public class Application {
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        AutocompleteRequest req = AutocompleteRequest.builder()
-                .trackingToken("trackingToken")
-                .query("what is a que")
-                .datasource("GDRIVE")
-                .resultSize(10L)
-                .build();
-
         AutocompleteResponse res = sdk.client().search().autocomplete()
-                .request(req)
+                .autocompleteRequest(AutocompleteRequest.builder()
+                    .trackingToken("trackingToken")
+                    .query("what is a que")
+                    .datasource("GDRIVE")
+                    .resultSize(10L)
+                    .build())
                 .call();
 
         if (res.autocompleteResponse().isPresent()) {
@@ -136,9 +133,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `request`                                                         | [AutocompleteRequest](../../models/shared/AutocompleteRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+| Parameter                                                                                                                                                                                           | Type                                                                                                                                                                                                | Required                                                                                                                                                                                            | Description                                                                                                                                                                                         | Example                                                                                                                                                                                             |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `locale`                                                                                                                                                                                            | *Optional\<String>*                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                  | The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`. |                                                                                                                                                                                                     |
+| `autocompleteRequest`                                                                                                                                                                               | [AutocompleteRequest](../../models/components/AutocompleteRequest.md)                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                  | Autocomplete request                                                                                                                                                                                | {<br/>"trackingToken": "trackingToken",<br/>"query": "what is a que",<br/>"datasource": "GDRIVE",<br/>"resultSize": 10<br/>}                                                                        |
 
 ### Response
 
@@ -173,12 +171,10 @@ public class Application {
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        FeedRequest req = FeedRequest.builder()
-                .timeoutMillis(5000L)
-                .build();
-
         FeedResponse res = sdk.client().search().retrieveFeed()
-                .request(req)
+                .feedRequest(FeedRequest.builder()
+                    .timeoutMillis(5000L)
+                    .build())
                 .call();
 
         if (res.feedResponse().isPresent()) {
@@ -190,9 +186,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                         | Type                                              | Required                                          | Description                                       |
-| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| `request`                                         | [FeedRequest](../../models/shared/FeedRequest.md) | :heavy_check_mark:                                | The request object to use for the request.        |
+| Parameter                                                                                                                                                                                           | Type                                                                                                                                                                                                | Required                                                                                                                                                                                            | Description                                                                                                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `locale`                                                                                                                                                                                            | *Optional\<String>*                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                  | The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`. |
+| `feedRequest`                                                                                                                                                                                       | [FeedRequest](../../models/components/FeedRequest.md)                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                  | Includes request params, client data and more for making user's feed.                                                                                                                               |
 
 ### Response
 
@@ -230,126 +227,9 @@ public class Application {
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        RecommendationsRequest req = RecommendationsRequest.builder()
-                .sourceDocument(Document.builder()
-                    .containerDocument(Document.builder()
-                        .metadata(DocumentMetadata.builder()
-                            .datasource("datasource")
-                            .objectType("Feature Request")
-                            .container("container")
-                            .parentId("JIRA_EN-1337")
-                            .mimeType("mimeType")
-                            .documentId("documentId")
-                            .createTime(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
-                            .updateTime(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
-                            .author(Person.builder()
-                                .name("name")
-                                .obfuscatedId("<id>")
-                                .build())
-                            .components(List.of(
-                                "Backend",
-                                "Networking"))
-                            .status("[\"Done\"]")
-                            .customData(Map.ofEntries(
-                                Map.entry("someCustomField", CustomDataValue.builder()
-                                    .build())))
-                            .build())
-                        .build())
-                    .parentDocument(Document.builder()
-                        .metadata(DocumentMetadata.builder()
-                            .datasource("datasource")
-                            .objectType("Feature Request")
-                            .container("container")
-                            .parentId("JIRA_EN-1337")
-                            .mimeType("mimeType")
-                            .documentId("documentId")
-                            .createTime(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
-                            .updateTime(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
-                            .author(Person.builder()
-                                .name("name")
-                                .obfuscatedId("<id>")
-                                .build())
-                            .components(List.of(
-                                "Backend",
-                                "Networking"))
-                            .status("[\"Done\"]")
-                            .customData(Map.ofEntries(
-                                Map.entry("someCustomField", CustomDataValue.builder()
-                                    .build())))
-                            .build())
-                        .build())
-                    .metadata(DocumentMetadata.builder()
-                        .datasource("datasource")
-                        .objectType("Feature Request")
-                        .container("container")
-                        .parentId("JIRA_EN-1337")
-                        .mimeType("mimeType")
-                        .documentId("documentId")
-                        .createTime(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
-                        .updateTime(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
-                        .author(Person.builder()
-                            .name("name")
-                            .obfuscatedId("abc123")
-                            .build())
-                        .components(List.of(
-                            "Backend",
-                            "Networking"))
-                        .status("[\"Done\"]")
-                        .customData(Map.ofEntries(
-                            Map.entry("someCustomField", CustomDataValue.builder()
-                                .build())))
-                        .build())
-                    .build())
-                .pageSize(100L)
-                .maxSnippetSize(400L)
-                .requestOptions(RecommendationsRequestOptions.builder()
-                    .facetFilterSets(List.of(
-                        FacetFilterSet.builder()
-                            .filters(List.of(
-                                FacetFilter.builder()
-                                    .fieldName("type")
-                                    .values(List.of(
-                                        FacetFilterValue.builder()
-                                            .value("Spreadsheet")
-                                            .relationType(RelationType.EQUALS)
-                                            .build(),
-                                        FacetFilterValue.builder()
-                                            .value("Presentation")
-                                            .relationType(RelationType.EQUALS)
-                                            .build()))
-                                    .build()))
-                            .build(),
-                        FacetFilterSet.builder()
-                            .filters(List.of(
-                                FacetFilter.builder()
-                                    .fieldName("type")
-                                    .values(List.of(
-                                        FacetFilterValue.builder()
-                                            .value("Spreadsheet")
-                                            .relationType(RelationType.EQUALS)
-                                            .build(),
-                                        FacetFilterValue.builder()
-                                            .value("Presentation")
-                                            .relationType(RelationType.EQUALS)
-                                            .build()))
-                                    .build()))
-                            .build(),
-                        FacetFilterSet.builder()
-                            .filters(List.of(
-                                FacetFilter.builder()
-                                    .fieldName("type")
-                                    .values(List.of(
-                                        FacetFilterValue.builder()
-                                            .value("Spreadsheet")
-                                            .relationType(RelationType.EQUALS)
-                                            .build(),
-                                        FacetFilterValue.builder()
-                                            .value("Presentation")
-                                            .relationType(RelationType.EQUALS)
-                                            .build()))
-                                    .build()))
-                            .build()))
-                    .context(Document.builder()
+        RecommendationsResponse res = sdk.client().search().recommendations()
+                .recommendationsRequest(RecommendationsRequest.builder()
+                    .sourceDocument(Document.builder()
                         .containerDocument(Document.builder()
                             .metadata(DocumentMetadata.builder()
                                 .datasource("datasource")
@@ -418,11 +298,126 @@ public class Application {
                                     .build())))
                             .build())
                         .build())
+                    .pageSize(100L)
+                    .maxSnippetSize(400L)
+                    .requestOptions(RecommendationsRequestOptions.builder()
+                        .facetFilterSets(List.of(
+                            FacetFilterSet.builder()
+                                .filters(List.of(
+                                    FacetFilter.builder()
+                                        .fieldName("type")
+                                        .values(List.of(
+                                            FacetFilterValue.builder()
+                                                .value("Spreadsheet")
+                                                .relationType(RelationType.EQUALS)
+                                                .build(),
+                                            FacetFilterValue.builder()
+                                                .value("Presentation")
+                                                .relationType(RelationType.EQUALS)
+                                                .build()))
+                                        .build()))
+                                .build(),
+                            FacetFilterSet.builder()
+                                .filters(List.of(
+                                    FacetFilter.builder()
+                                        .fieldName("type")
+                                        .values(List.of(
+                                            FacetFilterValue.builder()
+                                                .value("Spreadsheet")
+                                                .relationType(RelationType.EQUALS)
+                                                .build(),
+                                            FacetFilterValue.builder()
+                                                .value("Presentation")
+                                                .relationType(RelationType.EQUALS)
+                                                .build()))
+                                        .build()))
+                                .build(),
+                            FacetFilterSet.builder()
+                                .filters(List.of(
+                                    FacetFilter.builder()
+                                        .fieldName("type")
+                                        .values(List.of(
+                                            FacetFilterValue.builder()
+                                                .value("Spreadsheet")
+                                                .relationType(RelationType.EQUALS)
+                                                .build(),
+                                            FacetFilterValue.builder()
+                                                .value("Presentation")
+                                                .relationType(RelationType.EQUALS)
+                                                .build()))
+                                        .build()))
+                                .build()))
+                        .context(Document.builder()
+                            .containerDocument(Document.builder()
+                                .metadata(DocumentMetadata.builder()
+                                    .datasource("datasource")
+                                    .objectType("Feature Request")
+                                    .container("container")
+                                    .parentId("JIRA_EN-1337")
+                                    .mimeType("mimeType")
+                                    .documentId("documentId")
+                                    .createTime(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
+                                    .updateTime(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
+                                    .author(Person.builder()
+                                        .name("name")
+                                        .obfuscatedId("<id>")
+                                        .build())
+                                    .components(List.of(
+                                        "Backend",
+                                        "Networking"))
+                                    .status("[\"Done\"]")
+                                    .customData(Map.ofEntries(
+                                        Map.entry("someCustomField", CustomDataValue.builder()
+                                            .build())))
+                                    .build())
+                                .build())
+                            .parentDocument(Document.builder()
+                                .metadata(DocumentMetadata.builder()
+                                    .datasource("datasource")
+                                    .objectType("Feature Request")
+                                    .container("container")
+                                    .parentId("JIRA_EN-1337")
+                                    .mimeType("mimeType")
+                                    .documentId("documentId")
+                                    .createTime(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
+                                    .updateTime(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
+                                    .author(Person.builder()
+                                        .name("name")
+                                        .obfuscatedId("<id>")
+                                        .build())
+                                    .components(List.of(
+                                        "Backend",
+                                        "Networking"))
+                                    .status("[\"Done\"]")
+                                    .customData(Map.ofEntries(
+                                        Map.entry("someCustomField", CustomDataValue.builder()
+                                            .build())))
+                                    .build())
+                                .build())
+                            .metadata(DocumentMetadata.builder()
+                                .datasource("datasource")
+                                .objectType("Feature Request")
+                                .container("container")
+                                .parentId("JIRA_EN-1337")
+                                .mimeType("mimeType")
+                                .documentId("documentId")
+                                .createTime(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
+                                .updateTime(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
+                                .author(Person.builder()
+                                    .name("name")
+                                    .obfuscatedId("abc123")
+                                    .build())
+                                .components(List.of(
+                                    "Backend",
+                                    "Networking"))
+                                .status("[\"Done\"]")
+                                .customData(Map.ofEntries(
+                                    Map.entry("someCustomField", CustomDataValue.builder()
+                                        .build())))
+                                .build())
+                            .build())
+                        .build())
                     .build())
-                .build();
-
-        RecommendationsResponse res = sdk.client().search().recommendations()
-                .request(req)
                 .call();
 
         if (res.resultsResponse().isPresent()) {
@@ -434,9 +429,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
-| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `request`                                                               | [RecommendationsRequest](../../models/shared/RecommendationsRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+| Parameter                                                                                                                                                                                           | Type                                                                                                                                                                                                | Required                                                                                                                                                                                            | Description                                                                                                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `locale`                                                                                                                                                                                            | *Optional\<String>*                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                  | The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`. |
+| `recommendationsRequest`                                                                                                                                                                            | [RecommendationsRequest](../../models/components/RecommendationsRequest.md)                                                                                                                         | :heavy_check_mark:                                                                                                                                                                                  | Recommendations request                                                                                                                                                                             |
 
 ### Response
 
@@ -473,38 +469,36 @@ public class Application {
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        SearchRequest req = SearchRequest.builder()
-                .query("vacation policy")
-                .trackingToken("trackingToken")
-                .pageSize(10L)
-                .requestOptions(SearchRequestOptions.builder()
-                    .facetBucketSize(400611L)
-                    .facetFilters(List.of(
-                        FacetFilter.builder()
-                            .fieldName("type")
-                            .values(List.of(
-                                FacetFilterValue.builder()
-                                    .value("article")
-                                    .relationType(RelationType.EQUALS)
-                                    .build(),
-                                FacetFilterValue.builder()
-                                    .value("document")
-                                    .relationType(RelationType.EQUALS)
-                                    .build()))
-                            .build(),
-                        FacetFilter.builder()
-                            .fieldName("department")
-                            .values(List.of(
-                                FacetFilterValue.builder()
-                                    .value("engineering")
-                                    .relationType(RelationType.EQUALS)
-                                    .build()))
-                            .build()))
-                    .build())
-                .build();
-
         SearchResponse res = sdk.client().search().query()
-                .request(req)
+                .searchRequest(SearchRequest.builder()
+                    .query("vacation policy")
+                    .trackingToken("trackingToken")
+                    .pageSize(10L)
+                    .requestOptions(SearchRequestOptions.builder()
+                        .facetBucketSize(400611L)
+                        .facetFilters(List.of(
+                            FacetFilter.builder()
+                                .fieldName("type")
+                                .values(List.of(
+                                    FacetFilterValue.builder()
+                                        .value("article")
+                                        .relationType(RelationType.EQUALS)
+                                        .build(),
+                                    FacetFilterValue.builder()
+                                        .value("document")
+                                        .relationType(RelationType.EQUALS)
+                                        .build()))
+                                .build(),
+                            FacetFilter.builder()
+                                .fieldName("department")
+                                .values(List.of(
+                                    FacetFilterValue.builder()
+                                        .value("engineering")
+                                        .relationType(RelationType.EQUALS)
+                                        .build()))
+                                .build()))
+                        .build())
+                    .build())
                 .call();
 
         if (res.searchResponse().isPresent()) {
@@ -516,9 +510,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `request`                                             | [SearchRequest](../../models/shared/SearchRequest.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
+| Parameter                                                                                                                                                                                                                                                                                                                                                                 | Type                                                                                                                                                                                                                                                                                                                                                                      | Required                                                                                                                                                                                                                                                                                                                                                                  | Description                                                                                                                                                                                                                                                                                                                                                               | Example                                                                                                                                                                                                                                                                                                                                                                   |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `locale`                                                                                                                                                                                                                                                                                                                                                                  | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                        | The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.                                                                                                                                                                       |                                                                                                                                                                                                                                                                                                                                                                           |
+| `searchRequest`                                                                                                                                                                                                                                                                                                                                                           | [SearchRequest](../../models/components/SearchRequest.md)                                                                                                                                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                        | Search request                                                                                                                                                                                                                                                                                                                                                            | {<br/>"trackingToken": "trackingToken",<br/>"query": "vacation policy",<br/>"pageSize": 10,<br/>"requestOptions": {<br/>"facetFilters": [<br/>{<br/>"fieldName": "type",<br/>"values": [<br/>{<br/>"value": "article",<br/>"relationType": "EQUALS"<br/>},<br/>{<br/>"value": "document",<br/>"relationType": "EQUALS"<br/>}<br/>]<br/>},<br/>{<br/>"fieldName": "department",<br/>"values": [<br/>{<br/>"value": "engineering",<br/>"relationType": "EQUALS"<br/>}<br/>]<br/>}<br/>]<br/>}<br/>} |
 
 ### Response
 

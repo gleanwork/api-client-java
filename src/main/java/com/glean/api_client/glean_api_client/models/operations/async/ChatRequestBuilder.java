@@ -11,11 +11,13 @@ import com.glean.api_client.glean_api_client.operations.Chat;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
+import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class ChatRequestBuilder {
 
+    private Optional<String> locale = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private ChatRequest chatRequest;
     private final SDKConfiguration sdkConfiguration;
@@ -23,6 +25,18 @@ public class ChatRequestBuilder {
 
     public ChatRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+    }
+                
+    public ChatRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
+        return this;
+    }
+
+    public ChatRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
     }
                 
     public ChatRequestBuilder timezoneOffset(long timezoneOffset) {
@@ -46,7 +60,8 @@ public class ChatRequestBuilder {
 
     private com.glean.api_client.glean_api_client.models.operations.ChatRequest buildRequest() {
 
-        com.glean.api_client.glean_api_client.models.operations.ChatRequest request = new com.glean.api_client.glean_api_client.models.operations.ChatRequest(timezoneOffset,
+        com.glean.api_client.glean_api_client.models.operations.ChatRequest request = new com.glean.api_client.glean_api_client.models.operations.ChatRequest(locale,
+            timezoneOffset,
             chatRequest);
 
         return request;

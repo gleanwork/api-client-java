@@ -9,6 +9,8 @@ import com.glean.api_client.glean_api_client.models.components.MessagesRequest;
 import com.glean.api_client.glean_api_client.models.operations.async.MessagesRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.MessagesResponse;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
@@ -48,11 +50,30 @@ public class AsyncMessages {
      * 
      * <p>Retrieves list of messages from messaging/chat datasources (e.g. Slack, Teams).
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param messagesRequest 
      * @return {@code CompletableFuture<MessagesResponse>} - The async response
      */
-    public CompletableFuture<MessagesResponse> retrieve(MessagesRequest request) {
-        AsyncRequestOperation<MessagesRequest, MessagesResponse> operation
+    public CompletableFuture<MessagesResponse> retrieve(MessagesRequest messagesRequest) {
+        return retrieve(Optional.empty(), messagesRequest);
+    }
+
+    /**
+     * Read messages
+     * 
+     * <p>Retrieves list of messages from messaging/chat datasources (e.g. Slack, Teams).
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param messagesRequest 
+     * @return {@code CompletableFuture<MessagesResponse>} - The async response
+     */
+    public CompletableFuture<MessagesResponse> retrieve(Optional<String> locale, MessagesRequest messagesRequest) {
+        com.glean.api_client.glean_api_client.models.operations.MessagesRequest request =
+            com.glean.api_client.glean_api_client.models.operations.MessagesRequest
+                .builder()
+                .locale(locale)
+                .messagesRequest(messagesRequest)
+                .build();
+        AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.MessagesRequest, MessagesResponse> operation
               = new com.glean.api_client.glean_api_client.operations.Messages.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

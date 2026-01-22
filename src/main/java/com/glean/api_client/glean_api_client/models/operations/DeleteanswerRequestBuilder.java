@@ -10,27 +10,52 @@ import com.glean.api_client.glean_api_client.models.components.DeleteAnswerReque
 import com.glean.api_client.glean_api_client.operations.Deleteanswer;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class DeleteanswerRequestBuilder {
 
-    private DeleteAnswerRequest request;
+    private Optional<String> locale = Optional.empty();
+    private DeleteAnswerRequest deleteAnswerRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public DeleteanswerRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public DeleteanswerRequestBuilder request(DeleteAnswerRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public DeleteanswerRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public DeleteanswerRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public DeleteanswerRequestBuilder deleteAnswerRequest(DeleteAnswerRequest deleteAnswerRequest) {
+        Utils.checkNotNull(deleteAnswerRequest, "deleteAnswerRequest");
+        this.deleteAnswerRequest = deleteAnswerRequest;
+        return this;
+    }
+
+
+    private DeleteanswerRequest buildRequest() {
+
+        DeleteanswerRequest request = new DeleteanswerRequest(locale,
+            deleteAnswerRequest);
+
+        return request;
     }
 
     public DeleteanswerResponse call() {
         
-        RequestOperation<DeleteAnswerRequest, DeleteanswerResponse> operation
+        RequestOperation<DeleteanswerRequest, DeleteanswerResponse> operation
               = new Deleteanswer.Sync(sdkConfiguration, _headers);
+        DeleteanswerRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

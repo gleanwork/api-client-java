@@ -16,6 +16,15 @@ import java.util.Optional;
 
 public class GetchatfilesRequest {
     /**
+     * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+     * `Accept-Language` will be used.
+     * 
+     * <p>If not present or not supported, defaults to the closest match or `en`.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=locale")
+    private Optional<String> locale;
+
+    /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours
      * behind UTC.
      */
@@ -28,17 +37,31 @@ public class GetchatfilesRequest {
 
     @JsonCreator
     public GetchatfilesRequest(
+            Optional<String> locale,
             Optional<Long> timezoneOffset,
             GetChatFilesRequest getChatFilesRequest) {
+        Utils.checkNotNull(locale, "locale");
         Utils.checkNotNull(timezoneOffset, "timezoneOffset");
         Utils.checkNotNull(getChatFilesRequest, "getChatFilesRequest");
+        this.locale = locale;
         this.timezoneOffset = timezoneOffset;
         this.getChatFilesRequest = getChatFilesRequest;
     }
     
     public GetchatfilesRequest(
             GetChatFilesRequest getChatFilesRequest) {
-        this(Optional.empty(), getChatFilesRequest);
+        this(Optional.empty(), Optional.empty(), getChatFilesRequest);
+    }
+
+    /**
+     * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+     * `Accept-Language` will be used.
+     * 
+     * <p>If not present or not supported, defaults to the closest match or `en`.
+     */
+    @JsonIgnore
+    public Optional<String> locale() {
+        return locale;
     }
 
     /**
@@ -59,6 +82,31 @@ public class GetchatfilesRequest {
         return new Builder();
     }
 
+
+    /**
+     * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+     * `Accept-Language` will be used.
+     * 
+     * <p>If not present or not supported, defaults to the closest match or `en`.
+     */
+    public GetchatfilesRequest withLocale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.ofNullable(locale);
+        return this;
+    }
+
+
+    /**
+     * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+     * `Accept-Language` will be used.
+     * 
+     * <p>If not present or not supported, defaults to the closest match or `en`.
+     */
+    public GetchatfilesRequest withLocale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
 
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours
@@ -97,6 +145,7 @@ public class GetchatfilesRequest {
         }
         GetchatfilesRequest other = (GetchatfilesRequest) o;
         return 
+            Utils.enhancedDeepEquals(this.locale, other.locale) &&
             Utils.enhancedDeepEquals(this.timezoneOffset, other.timezoneOffset) &&
             Utils.enhancedDeepEquals(this.getChatFilesRequest, other.getChatFilesRequest);
     }
@@ -104,12 +153,13 @@ public class GetchatfilesRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            timezoneOffset, getChatFilesRequest);
+            locale, timezoneOffset, getChatFilesRequest);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetchatfilesRequest.class,
+                "locale", locale,
                 "timezoneOffset", timezoneOffset,
                 "getChatFilesRequest", getChatFilesRequest);
     }
@@ -117,12 +167,39 @@ public class GetchatfilesRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
+        private Optional<String> locale = Optional.empty();
+
         private Optional<Long> timezoneOffset = Optional.empty();
 
         private GetChatFilesRequest getChatFilesRequest;
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+         * `Accept-Language` will be used.
+         * 
+         * <p>If not present or not supported, defaults to the closest match or `en`.
+         */
+        public Builder locale(String locale) {
+            Utils.checkNotNull(locale, "locale");
+            this.locale = Optional.ofNullable(locale);
+            return this;
+        }
+
+        /**
+         * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+         * `Accept-Language` will be used.
+         * 
+         * <p>If not present or not supported, defaults to the closest match or `en`.
+         */
+        public Builder locale(Optional<String> locale) {
+            Utils.checkNotNull(locale, "locale");
+            this.locale = locale;
+            return this;
         }
 
 
@@ -156,7 +233,7 @@ public class GetchatfilesRequest {
         public GetchatfilesRequest build() {
 
             return new GetchatfilesRequest(
-                timezoneOffset, getChatFilesRequest);
+                locale, timezoneOffset, getChatFilesRequest);
         }
 
     }

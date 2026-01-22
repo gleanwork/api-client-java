@@ -10,16 +10,30 @@ import com.glean.api_client.glean_api_client.operations.Deleteallchats;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
+import java.lang.String;
 import java.util.Optional;
 
 public class DeleteallchatsRequestBuilder {
 
+    private Optional<String> locale = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public DeleteallchatsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+    }
+                
+    public DeleteallchatsRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
+        return this;
+    }
+
+    public DeleteallchatsRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
     }
                 
     public DeleteallchatsRequestBuilder timezoneOffset(long timezoneOffset) {
@@ -37,7 +51,8 @@ public class DeleteallchatsRequestBuilder {
 
     private DeleteallchatsRequest buildRequest() {
 
-        DeleteallchatsRequest request = new DeleteallchatsRequest(timezoneOffset);
+        DeleteallchatsRequest request = new DeleteallchatsRequest(locale,
+            timezoneOffset);
 
         return request;
     }

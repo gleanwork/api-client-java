@@ -32,11 +32,9 @@ public class Application {
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        GetDocPermissionsRequest req = GetDocPermissionsRequest.builder()
-                .build();
-
         GetdocpermissionsResponse res = sdk.client().documents().retrievePermissions()
-                .request(req)
+                .getDocPermissionsRequest(GetDocPermissionsRequest.builder()
+                    .build())
                 .call();
 
         if (res.getDocPermissionsResponse().isPresent()) {
@@ -48,9 +46,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
-| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `request`                                                                   | [GetDocPermissionsRequest](../../models/shared/GetDocPermissionsRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+| Parameter                                                                                                                                                                                           | Type                                                                                                                                                                                                | Required                                                                                                                                                                                            | Description                                                                                                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `locale`                                                                                                                                                                                            | *Optional\<String>*                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                  | The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`. |
+| `getDocPermissionsRequest`                                                                                                                                                                          | [GetDocPermissionsRequest](../../models/components/GetDocPermissionsRequest.md)                                                                                                                     | :heavy_check_mark:                                                                                                                                                                                  | Document permissions request                                                                                                                                                                        |
 
 ### Response
 
@@ -96,9 +95,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `request`                                                         | [GetDocumentsRequest](../../models/shared/GetDocumentsRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
+| Parameter                                                                                                                                                                                           | Type                                                                                                                                                                                                | Required                                                                                                                                                                                            | Description                                                                                                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `locale`                                                                                                                                                                                            | *Optional\<String>*                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                  | The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`. |
+| `getDocumentsRequest`                                                                                                                                                                               | [Optional\<GetDocumentsRequest>](../../models/components/GetDocumentsRequest.md)                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                                  | Information about documents requested.                                                                                                                                                              |
 
 ### Response
 
@@ -134,42 +134,40 @@ public class Application {
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        GetDocumentsByFacetsRequest req = GetDocumentsByFacetsRequest.builder()
-                .filterSets(List.of(
-                    FacetFilterSet.builder()
-                        .filters(List.of(
-                            FacetFilter.builder()
-                                .fieldName("type")
-                                .values(List.of(
-                                    FacetFilterValue.builder()
-                                        .value("Spreadsheet")
-                                        .relationType(RelationType.EQUALS)
-                                        .build(),
-                                    FacetFilterValue.builder()
-                                        .value("Presentation")
-                                        .relationType(RelationType.EQUALS)
-                                        .build()))
-                                .build()))
-                        .build(),
-                    FacetFilterSet.builder()
-                        .filters(List.of(
-                            FacetFilter.builder()
-                                .fieldName("type")
-                                .values(List.of(
-                                    FacetFilterValue.builder()
-                                        .value("Spreadsheet")
-                                        .relationType(RelationType.EQUALS)
-                                        .build(),
-                                    FacetFilterValue.builder()
-                                        .value("Presentation")
-                                        .relationType(RelationType.EQUALS)
-                                        .build()))
-                                .build()))
-                        .build()))
-                .build();
-
         GetdocumentsbyfacetsResponse res = sdk.client().documents().retrieveByFacets()
-                .request(req)
+                .getDocumentsByFacetsRequest(GetDocumentsByFacetsRequest.builder()
+                    .filterSets(List.of(
+                        FacetFilterSet.builder()
+                            .filters(List.of(
+                                FacetFilter.builder()
+                                    .fieldName("type")
+                                    .values(List.of(
+                                        FacetFilterValue.builder()
+                                            .value("Spreadsheet")
+                                            .relationType(RelationType.EQUALS)
+                                            .build(),
+                                        FacetFilterValue.builder()
+                                            .value("Presentation")
+                                            .relationType(RelationType.EQUALS)
+                                            .build()))
+                                    .build()))
+                            .build(),
+                        FacetFilterSet.builder()
+                            .filters(List.of(
+                                FacetFilter.builder()
+                                    .fieldName("type")
+                                    .values(List.of(
+                                        FacetFilterValue.builder()
+                                            .value("Spreadsheet")
+                                            .relationType(RelationType.EQUALS)
+                                            .build(),
+                                        FacetFilterValue.builder()
+                                            .value("Presentation")
+                                            .relationType(RelationType.EQUALS)
+                                            .build()))
+                                    .build()))
+                            .build()))
+                    .build())
                 .call();
 
         if (res.getDocumentsByFacetsResponse().isPresent()) {
@@ -181,9 +179,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
-| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `request`                                                                         | [GetDocumentsByFacetsRequest](../../models/shared/GetDocumentsByFacetsRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+| Parameter                                                                                                                                                                                           | Type                                                                                                                                                                                                | Required                                                                                                                                                                                            | Description                                                                                                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `locale`                                                                                                                                                                                            | *Optional\<String>*                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                  | The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`. |
+| `getDocumentsByFacetsRequest`                                                                                                                                                                       | [Optional\<GetDocumentsByFacetsRequest>](../../models/components/GetDocumentsByFacetsRequest.md)                                                                                                    | :heavy_minus_sign:                                                                                                                                                                                  | Information about facet conditions for documents to be retrieved.                                                                                                                                   |
 
 ### Response
 
@@ -219,23 +218,21 @@ public class Application {
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        SummarizeRequest req = SummarizeRequest.builder()
-                .documentSpecs(List.of(
-                    DocumentSpecUnion.of(DocumentSpec4.builder()
-                        .ugcType(DocumentSpecUgcType2.CHATS)
-                        .ugcId("<id>")
-                        .build()),
-                    DocumentSpecUnion.of(DocumentSpec4.builder()
-                        .ugcType(DocumentSpecUgcType2.CHATS)
-                        .ugcId("<id>")
-                        .build()),
-                    DocumentSpecUnion.of(DocumentSpec2.builder()
-                        .id("<id>")
-                        .build())))
-                .build();
-
         SummarizeResponse res = sdk.client().documents().summarize()
-                .request(req)
+                .summarizeRequest(SummarizeRequest.builder()
+                    .documentSpecs(List.of(
+                        DocumentSpecUnion.of(DocumentSpec4.builder()
+                            .ugcType(DocumentSpecUgcType2.CHATS)
+                            .ugcId("<id>")
+                            .build()),
+                        DocumentSpecUnion.of(DocumentSpec4.builder()
+                            .ugcType(DocumentSpecUgcType2.CHATS)
+                            .ugcId("<id>")
+                            .build()),
+                        DocumentSpecUnion.of(DocumentSpec2.builder()
+                            .id("<id>")
+                            .build())))
+                    .build())
                 .call();
 
         if (res.summarizeResponse().isPresent()) {
@@ -247,9 +244,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
-| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| `request`                                                   | [SummarizeRequest](../../models/shared/SummarizeRequest.md) | :heavy_check_mark:                                          | The request object to use for the request.                  |
+| Parameter                                                                                                                                                                                           | Type                                                                                                                                                                                                | Required                                                                                                                                                                                            | Description                                                                                                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `locale`                                                                                                                                                                                            | *Optional\<String>*                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                  | The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`. |
+| `summarizeRequest`                                                                                                                                                                                  | [SummarizeRequest](../../models/components/SummarizeRequest.md)                                                                                                                                     | :heavy_check_mark:                                                                                                                                                                                  | Includes request params such as the query and specs of the documents to summarize.                                                                                                                  |
 
 ### Response
 

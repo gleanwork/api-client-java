@@ -10,28 +10,53 @@ import com.glean.api_client.glean_api_client.models.components.MessagesRequest;
 import com.glean.api_client.glean_api_client.operations.Messages;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class MessagesRequestBuilder {
 
-    private MessagesRequest request;
+    private Optional<String> locale = Optional.empty();
+    private MessagesRequest messagesRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public MessagesRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public MessagesRequestBuilder request(MessagesRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public MessagesRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public MessagesRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public MessagesRequestBuilder messagesRequest(MessagesRequest messagesRequest) {
+        Utils.checkNotNull(messagesRequest, "messagesRequest");
+        this.messagesRequest = messagesRequest;
+        return this;
+    }
+
+
+    private com.glean.api_client.glean_api_client.models.operations.MessagesRequest buildRequest() {
+
+        com.glean.api_client.glean_api_client.models.operations.MessagesRequest request = new com.glean.api_client.glean_api_client.models.operations.MessagesRequest(locale,
+            messagesRequest);
+
+        return request;
     }
 
     public CompletableFuture<MessagesResponse> call() {
         
-        AsyncRequestOperation<MessagesRequest, MessagesResponse> operation
+        AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.MessagesRequest, MessagesResponse> operation
               = new Messages.Async(sdkConfiguration, _headers);
+        com.glean.api_client.glean_api_client.models.operations.MessagesRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

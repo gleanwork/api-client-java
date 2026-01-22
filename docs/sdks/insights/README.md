@@ -29,11 +29,9 @@ public class Application {
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        InsightsRequest req = InsightsRequest.builder()
-                .build();
-
         InsightsResponse res = sdk.client().insights().retrieve()
-                .request(req)
+                .insightsRequest(InsightsRequest.builder()
+                    .build())
                 .call();
 
         if (res.insightsResponse().isPresent()) {
@@ -45,9 +43,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                 | Type                                                      | Required                                                  | Description                                               |
-| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| `request`                                                 | [InsightsRequest](../../models/shared/InsightsRequest.md) | :heavy_check_mark:                                        | The request object to use for the request.                |
+| Parameter                                                                                                                                                                                           | Type                                                                                                                                                                                                | Required                                                                                                                                                                                            | Description                                                                                                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `locale`                                                                                                                                                                                            | *Optional\<String>*                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                  | The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`. |
+| `insightsRequest`                                                                                                                                                                                   | [InsightsRequest](../../models/components/InsightsRequest.md)                                                                                                                                       | :heavy_check_mark:                                                                                                                                                                                  | Includes request parameters for insights requests.                                                                                                                                                  |
 
 ### Response
 

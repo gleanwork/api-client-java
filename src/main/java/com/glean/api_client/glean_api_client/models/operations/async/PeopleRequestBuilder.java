@@ -10,28 +10,53 @@ import com.glean.api_client.glean_api_client.models.components.PeopleRequest;
 import com.glean.api_client.glean_api_client.operations.People;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class PeopleRequestBuilder {
 
-    private PeopleRequest request;
+    private Optional<String> locale = Optional.empty();
+    private PeopleRequest peopleRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public PeopleRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public PeopleRequestBuilder request(PeopleRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public PeopleRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public PeopleRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public PeopleRequestBuilder peopleRequest(PeopleRequest peopleRequest) {
+        Utils.checkNotNull(peopleRequest, "peopleRequest");
+        this.peopleRequest = peopleRequest;
+        return this;
+    }
+
+
+    private com.glean.api_client.glean_api_client.models.operations.PeopleRequest buildRequest() {
+
+        com.glean.api_client.glean_api_client.models.operations.PeopleRequest request = new com.glean.api_client.glean_api_client.models.operations.PeopleRequest(locale,
+            peopleRequest);
+
+        return request;
     }
 
     public CompletableFuture<PeopleResponse> call() {
         
-        AsyncRequestOperation<PeopleRequest, PeopleResponse> operation
+        AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.PeopleRequest, PeopleResponse> operation
               = new People.Async(sdkConfiguration, _headers);
+        com.glean.api_client.glean_api_client.models.operations.PeopleRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

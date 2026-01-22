@@ -15,6 +15,15 @@ import java.util.Optional;
 
 public class ChatRequest {
     /**
+     * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+     * `Accept-Language` will be used.
+     * 
+     * <p>If not present or not supported, defaults to the closest match or `en`.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=locale")
+    private Optional<String> locale;
+
+    /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours
      * behind UTC.
      */
@@ -29,17 +38,31 @@ public class ChatRequest {
 
     @JsonCreator
     public ChatRequest(
+            Optional<String> locale,
             Optional<Long> timezoneOffset,
             com.glean.api_client.glean_api_client.models.components.ChatRequest chatRequest) {
+        Utils.checkNotNull(locale, "locale");
         Utils.checkNotNull(timezoneOffset, "timezoneOffset");
         Utils.checkNotNull(chatRequest, "chatRequest");
+        this.locale = locale;
         this.timezoneOffset = timezoneOffset;
         this.chatRequest = chatRequest;
     }
     
     public ChatRequest(
             com.glean.api_client.glean_api_client.models.components.ChatRequest chatRequest) {
-        this(Optional.empty(), chatRequest);
+        this(Optional.empty(), Optional.empty(), chatRequest);
+    }
+
+    /**
+     * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+     * `Accept-Language` will be used.
+     * 
+     * <p>If not present or not supported, defaults to the closest match or `en`.
+     */
+    @JsonIgnore
+    public Optional<String> locale() {
+        return locale;
     }
 
     /**
@@ -63,6 +86,31 @@ public class ChatRequest {
         return new Builder();
     }
 
+
+    /**
+     * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+     * `Accept-Language` will be used.
+     * 
+     * <p>If not present or not supported, defaults to the closest match or `en`.
+     */
+    public ChatRequest withLocale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.ofNullable(locale);
+        return this;
+    }
+
+
+    /**
+     * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+     * `Accept-Language` will be used.
+     * 
+     * <p>If not present or not supported, defaults to the closest match or `en`.
+     */
+    public ChatRequest withLocale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
 
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours
@@ -104,6 +152,7 @@ public class ChatRequest {
         }
         ChatRequest other = (ChatRequest) o;
         return 
+            Utils.enhancedDeepEquals(this.locale, other.locale) &&
             Utils.enhancedDeepEquals(this.timezoneOffset, other.timezoneOffset) &&
             Utils.enhancedDeepEquals(this.chatRequest, other.chatRequest);
     }
@@ -111,12 +160,13 @@ public class ChatRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            timezoneOffset, chatRequest);
+            locale, timezoneOffset, chatRequest);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ChatRequest.class,
+                "locale", locale,
                 "timezoneOffset", timezoneOffset,
                 "chatRequest", chatRequest);
     }
@@ -124,12 +174,39 @@ public class ChatRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
+        private Optional<String> locale = Optional.empty();
+
         private Optional<Long> timezoneOffset = Optional.empty();
 
         private com.glean.api_client.glean_api_client.models.components.ChatRequest chatRequest;
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+         * `Accept-Language` will be used.
+         * 
+         * <p>If not present or not supported, defaults to the closest match or `en`.
+         */
+        public Builder locale(String locale) {
+            Utils.checkNotNull(locale, "locale");
+            this.locale = Optional.ofNullable(locale);
+            return this;
+        }
+
+        /**
+         * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+         * `Accept-Language` will be used.
+         * 
+         * <p>If not present or not supported, defaults to the closest match or `en`.
+         */
+        public Builder locale(Optional<String> locale) {
+            Utils.checkNotNull(locale, "locale");
+            this.locale = locale;
+            return this;
         }
 
 
@@ -166,7 +243,7 @@ public class ChatRequest {
         public ChatRequest build() {
 
             return new ChatRequest(
-                timezoneOffset, chatRequest);
+                locale, timezoneOffset, chatRequest);
         }
 
     }

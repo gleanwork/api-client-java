@@ -10,27 +10,52 @@ import com.glean.api_client.glean_api_client.models.components.CreateAnswerReque
 import com.glean.api_client.glean_api_client.operations.Createanswer;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class CreateanswerRequestBuilder {
 
-    private CreateAnswerRequest request;
+    private Optional<String> locale = Optional.empty();
+    private CreateAnswerRequest createAnswerRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public CreateanswerRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public CreateanswerRequestBuilder request(CreateAnswerRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public CreateanswerRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public CreateanswerRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public CreateanswerRequestBuilder createAnswerRequest(CreateAnswerRequest createAnswerRequest) {
+        Utils.checkNotNull(createAnswerRequest, "createAnswerRequest");
+        this.createAnswerRequest = createAnswerRequest;
+        return this;
+    }
+
+
+    private CreateanswerRequest buildRequest() {
+
+        CreateanswerRequest request = new CreateanswerRequest(locale,
+            createAnswerRequest);
+
+        return request;
     }
 
     public CreateanswerResponse call() {
         
-        RequestOperation<CreateAnswerRequest, CreateanswerResponse> operation
+        RequestOperation<CreateanswerRequest, CreateanswerResponse> operation
               = new Createanswer.Sync(sdkConfiguration, _headers);
+        CreateanswerRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

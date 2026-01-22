@@ -9,6 +9,7 @@ import com.glean.api_client.glean_api_client.models.components.AutocompleteReque
 import com.glean.api_client.glean_api_client.models.components.FeedRequest;
 import com.glean.api_client.glean_api_client.models.components.RecommendationsRequest;
 import com.glean.api_client.glean_api_client.models.components.SearchRequest;
+import com.glean.api_client.glean_api_client.models.operations.AdminsearchRequest;
 import com.glean.api_client.glean_api_client.models.operations.AdminsearchRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.AdminsearchResponse;
 import com.glean.api_client.glean_api_client.models.operations.AutocompleteRequestBuilder;
@@ -24,6 +25,8 @@ import com.glean.api_client.glean_api_client.operations.Autocomplete;
 import com.glean.api_client.glean_api_client.operations.Feed;
 import com.glean.api_client.glean_api_client.operations.Recommendations;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import java.lang.String;
+import java.util.Optional;
 
 
 public class Search {
@@ -63,12 +66,33 @@ public class Search {
      * <p>Retrieves results for search query without respect for permissions. This is available only to
      * privileged users.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param searchRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public AdminsearchResponse queryAsAdmin(SearchRequest request) {
-        RequestOperation<SearchRequest, AdminsearchResponse> operation
+    public AdminsearchResponse queryAsAdmin(SearchRequest searchRequest) {
+        return queryAsAdmin(Optional.empty(), searchRequest);
+    }
+
+    /**
+     * Search the index (admin)
+     * 
+     * <p>Retrieves results for search query without respect for permissions. This is available only to
+     * privileged users.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param searchRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AdminsearchResponse queryAsAdmin(Optional<String> locale, SearchRequest searchRequest) {
+        AdminsearchRequest request =
+            AdminsearchRequest
+                .builder()
+                .locale(locale)
+                .searchRequest(searchRequest)
+                .build();
+        RequestOperation<AdminsearchRequest, AdminsearchResponse> operation
               = new Adminsearch.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -89,12 +113,32 @@ public class Search {
      * 
      * <p>Retrieve query suggestions, operators and documents for the given partially typed query.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param autocompleteRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public AutocompleteResponse autocomplete(AutocompleteRequest request) {
-        RequestOperation<AutocompleteRequest, AutocompleteResponse> operation
+    public AutocompleteResponse autocomplete(AutocompleteRequest autocompleteRequest) {
+        return autocomplete(Optional.empty(), autocompleteRequest);
+    }
+
+    /**
+     * Autocomplete
+     * 
+     * <p>Retrieve query suggestions, operators and documents for the given partially typed query.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param autocompleteRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AutocompleteResponse autocomplete(Optional<String> locale, AutocompleteRequest autocompleteRequest) {
+        com.glean.api_client.glean_api_client.models.operations.AutocompleteRequest request =
+            com.glean.api_client.glean_api_client.models.operations.AutocompleteRequest
+                .builder()
+                .locale(locale)
+                .autocompleteRequest(autocompleteRequest)
+                .build();
+        RequestOperation<com.glean.api_client.glean_api_client.models.operations.AutocompleteRequest, AutocompleteResponse> operation
               = new Autocomplete.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -117,12 +161,33 @@ public class Search {
      * <p>The personalized feed/home includes different types of contents including suggestions, recents,
      * calendar events and many more.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param feedRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public FeedResponse retrieveFeed(FeedRequest request) {
-        RequestOperation<FeedRequest, FeedResponse> operation
+    public FeedResponse retrieveFeed(FeedRequest feedRequest) {
+        return retrieveFeed(Optional.empty(), feedRequest);
+    }
+
+    /**
+     * Feed of documents and events
+     * 
+     * <p>The personalized feed/home includes different types of contents including suggestions, recents,
+     * calendar events and many more.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param feedRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public FeedResponse retrieveFeed(Optional<String> locale, FeedRequest feedRequest) {
+        com.glean.api_client.glean_api_client.models.operations.FeedRequest request =
+            com.glean.api_client.glean_api_client.models.operations.FeedRequest
+                .builder()
+                .locale(locale)
+                .feedRequest(feedRequest)
+                .build();
+        RequestOperation<com.glean.api_client.glean_api_client.models.operations.FeedRequest, FeedResponse> operation
               = new Feed.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -143,12 +208,32 @@ public class Search {
      * 
      * <p>Retrieve recommended documents for the given URL or Glean Document ID.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param recommendationsRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public RecommendationsResponse recommendations(RecommendationsRequest request) {
-        RequestOperation<RecommendationsRequest, RecommendationsResponse> operation
+    public RecommendationsResponse recommendations(RecommendationsRequest recommendationsRequest) {
+        return recommendations(Optional.empty(), recommendationsRequest);
+    }
+
+    /**
+     * Recommend documents
+     * 
+     * <p>Retrieve recommended documents for the given URL or Glean Document ID.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param recommendationsRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public RecommendationsResponse recommendations(Optional<String> locale, RecommendationsRequest recommendationsRequest) {
+        com.glean.api_client.glean_api_client.models.operations.RecommendationsRequest request =
+            com.glean.api_client.glean_api_client.models.operations.RecommendationsRequest
+                .builder()
+                .locale(locale)
+                .recommendationsRequest(recommendationsRequest)
+                .build();
+        RequestOperation<com.glean.api_client.glean_api_client.models.operations.RecommendationsRequest, RecommendationsResponse> operation
               = new Recommendations.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -169,12 +254,32 @@ public class Search {
      * 
      * <p>Retrieve results from the index for the given query and filters.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param searchRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public SearchResponse query(SearchRequest request) {
-        RequestOperation<SearchRequest, SearchResponse> operation
+    public SearchResponse query(SearchRequest searchRequest) {
+        return query(Optional.empty(), searchRequest);
+    }
+
+    /**
+     * Search
+     * 
+     * <p>Retrieve results from the index for the given query and filters.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param searchRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public SearchResponse query(Optional<String> locale, SearchRequest searchRequest) {
+        com.glean.api_client.glean_api_client.models.operations.SearchRequest request =
+            com.glean.api_client.glean_api_client.models.operations.SearchRequest
+                .builder()
+                .locale(locale)
+                .searchRequest(searchRequest)
+                .build();
+        RequestOperation<com.glean.api_client.glean_api_client.models.operations.SearchRequest, SearchResponse> operation
               = new com.glean.api_client.glean_api_client.operations.Search.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }

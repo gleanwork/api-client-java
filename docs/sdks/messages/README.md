@@ -29,14 +29,12 @@ public class Application {
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        MessagesRequest req = MessagesRequest.builder()
-                .idType(IdType.CONVERSATION_ID)
-                .id("<id>")
-                .datasource(Datasource.GCHAT)
-                .build();
-
         MessagesResponse res = sdk.client().messages().retrieve()
-                .request(req)
+                .messagesRequest(MessagesRequest.builder()
+                    .idType(IdType.CONVERSATION_ID)
+                    .id("<id>")
+                    .datasource(Datasource.GCHAT)
+                    .build())
                 .call();
 
         if (res.messagesResponse().isPresent()) {
@@ -48,9 +46,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                 | Type                                                      | Required                                                  | Description                                               |
-| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| `request`                                                 | [MessagesRequest](../../models/shared/MessagesRequest.md) | :heavy_check_mark:                                        | The request object to use for the request.                |
+| Parameter                                                                                                                                                                                           | Type                                                                                                                                                                                                | Required                                                                                                                                                                                            | Description                                                                                                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `locale`                                                                                                                                                                                            | *Optional\<String>*                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                  | The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`. |
+| `messagesRequest`                                                                                                                                                                                   | [MessagesRequest](../../models/components/MessagesRequest.md)                                                                                                                                       | :heavy_check_mark:                                                                                                                                                                                  | Includes request params such as the id for channel/message and direction.                                                                                                                           |
 
 ### Response
 

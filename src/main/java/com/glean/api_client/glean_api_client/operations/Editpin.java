@@ -10,9 +10,9 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
-import com.glean.api_client.glean_api_client.models.components.EditPinRequest;
 import com.glean.api_client.glean_api_client.models.components.PinDocument;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
+import com.glean.api_client.glean_api_client.models.operations.EditpinRequest;
 import com.glean.api_client.glean_api_client.models.operations.EditpinResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
@@ -85,7 +85,7 @@ public class Editpin {
                     java.util.Optional.empty(),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/rest/api/v1/editpin");
@@ -96,7 +96,7 @@ public class Editpin {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "editPinRequest",
                     "json",
                     false);
             if (serializedRequestBody == null) {
@@ -106,6 +106,11 @@ public class Editpin {
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
+
+            req.addQueryParams(Utils.getQueryParams(
+                    klass,
+                    request,
+                    null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -113,13 +118,13 @@ public class Editpin {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<EditPinRequest, EditpinResponse> {
+            implements RequestOperation<EditpinRequest, EditpinResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private HttpRequest onBuildRequest(EditPinRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<EditPinRequest>() {});
+        private HttpRequest onBuildRequest(EditpinRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, EditpinRequest.class, new TypeReference<EditpinRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -135,7 +140,7 @@ public class Editpin {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(EditPinRequest request) {
+        public HttpResponse<InputStream> doRequest(EditpinRequest request) {
             HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
@@ -187,14 +192,14 @@ public class Editpin {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<EditPinRequest, com.glean.api_client.glean_api_client.models.operations.async.EditpinResponse> {
+            implements AsyncRequestOperation<EditpinRequest, com.glean.api_client.glean_api_client.models.operations.async.EditpinResponse> {
 
         public Async(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(EditPinRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<EditPinRequest>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(EditpinRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, EditpinRequest.class, new TypeReference<EditpinRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -207,7 +212,7 @@ public class Editpin {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(EditPinRequest request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(EditpinRequest request) {
             return unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
                     .handle((resp, err) -> {
                         if (err != null) {
