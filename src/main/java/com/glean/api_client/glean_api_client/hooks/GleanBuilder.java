@@ -1,10 +1,12 @@
 package com.glean.api_client.glean_api_client.hooks;
 
 import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
 import com.glean.api_client.glean_api_client.utils.RetryConfig;
 
+import java.lang.reflect.Field;
 import java.util.Map;
 import java.util.Optional;
 
@@ -27,6 +29,9 @@ import java.util.Optional;
 public final class GleanBuilder {
 
     private final Glean.Builder delegate;
+
+    private Optional<String> excludeDeprecatedAfter = Optional.empty();
+    private Optional<Boolean> includeExperimental = Optional.empty();
 
     private GleanBuilder() {
         this.delegate = Glean.builder();
@@ -151,7 +156,7 @@ public final class GleanBuilder {
      * @return This builder instance.
      */
     public GleanBuilder excludeDeprecatedAfter(String excludeDeprecatedAfter) {
-        GleanCustomConfig.getInstance().setExcludeDeprecatedAfter(Optional.ofNullable(excludeDeprecatedAfter));
+        this.excludeDeprecatedAfter = Optional.ofNullable(excludeDeprecatedAfter);
         return this;
     }
 
@@ -166,7 +171,7 @@ public final class GleanBuilder {
      * @return This builder instance.
      */
     public GleanBuilder includeExperimental(boolean includeExperimental) {
-        GleanCustomConfig.getInstance().setIncludeExperimental(Optional.of(includeExperimental));
+        this.includeExperimental = Optional.of(includeExperimental);
         return this;
     }
 
@@ -176,6 +181,67 @@ public final class GleanBuilder {
      * @return The configured Glean instance.
      */
     public Glean build() {
-        return delegate.build();
+        Glean sdk = delegate.build();
+        SDKConfiguration sdkConfiguration = extractSdkConfiguration(sdk);
+        if (sdkConfiguration != null) {
+            GleanCustomConfigRegistry.put(
+                    sdkConfiguration,
+                    new GleanCustomConfig(excludeDeprecatedAfter, includeExperimental)
+            );
+        }
+        return sdk;
+    }
+
+    private static SDKConfiguration extractSdkConfiguration(Glean sdk) {
+        if (sdk == null) {
+            return null;
+        }
+
+        try {
+            // Preferred: reflectively access Glean.client -> Client.sdkConfiguration
+            Object client = readFieldValue(sdk, "client");
+            if (client != null) {
+                Object cfg = readFieldValue(client, "sdkConfiguration");
+                if (cfg instanceof SDKConfiguration) {
+                    return (SDKConfiguration) cfg;
+                }
+            }
+        } catch (RuntimeException e) {
+            // Best-effort: fall through to generic field scan
+        }
+
+        // Fallback: scan first-level fields for an SDKConfiguration
+        for (Field f : sdk.getClass().getDeclaredFields()) {
+            if (!SDKConfiguration.class.isAssignableFrom(f.getType())) {
+                continue;
+            }
+            try {
+                f.setAccessible(true);
+                Object cfg = f.get(sdk);
+                if (cfg instanceof SDKConfiguration) {
+                    return (SDKConfiguration) cfg;
+                }
+            } catch (IllegalAccessException e) {
+                // ignore
+            }
+        }
+
+        return null;
+    }
+
+    private static Object readFieldValue(Object target, String fieldName) {
+        Class<?> c = target.getClass();
+        while (c != null) {
+            try {
+                Field f = c.getDeclaredField(fieldName);
+                f.setAccessible(true);
+                return f.get(target);
+            } catch (NoSuchFieldException e) {
+                c = c.getSuperclass();
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return null;
     }
 }

@@ -1,9 +1,11 @@
 package com.glean.api_client.glean_api_client.hooks;
 
+import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.utils.AsyncHook;
 import com.glean.api_client.glean_api_client.utils.Helpers;
 import com.glean.api_client.glean_api_client.utils.Hook;
 
+import java.lang.reflect.Method;
 import java.net.http.HttpRequest;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -55,7 +57,7 @@ public final class XGleanHeadersHook {
     static Hook.BeforeRequest createSyncHook(Function<String, String> envProvider) {
         return (context, request) -> {
             HttpRequest.Builder builder = Helpers.copy(request);
-            addHeaders(builder, envProvider);
+            addHeaders(builder, context.sdkConfiguration(), envProvider);
             return builder.build();
         };
     }
@@ -79,19 +81,21 @@ public final class XGleanHeadersHook {
     static AsyncHook.BeforeRequest createAsyncHook(Function<String, String> envProvider) {
         return (context, request) -> {
             HttpRequest.Builder builder = Helpers.copy(request);
-            addHeaders(builder, envProvider);
+            addHeaders(builder, context.sdkConfiguration(), envProvider);
             return CompletableFuture.completedFuture(builder.build());
         };
     }
 
     private static void addHeaders(HttpRequest.Builder builder,
+                                   SDKConfiguration sdkConfiguration,
                                    Function<String, String> envProvider) {
-        GleanCustomConfig customConfig = GleanCustomConfig.getInstance();
+        Optional<GleanCustomConfig> customConfig = GleanCustomConfigRegistry.get(sdkConfiguration);
 
         // Get deprecated after value - environment variable takes precedence
         Optional<String> deprecatedAfterValue = getFirstNonEmpty(
                 getEnv(ENV_EXCLUDE_DEPRECATED_AFTER, envProvider),
-                customConfig.excludeDeprecatedAfter()
+                customConfig.flatMap(GleanCustomConfig::excludeDeprecatedAfter),
+                getSdkConfigurationExcludeDeprecatedAfter(sdkConfiguration)
         );
 
         deprecatedAfterValue.ifPresent(value ->
@@ -101,7 +105,8 @@ public final class XGleanHeadersHook {
         // Get experimental value - environment variable takes precedence
         Optional<String> experimentalValue = getFirstNonEmpty(
                 getEnvAsBoolean(ENV_INCLUDE_EXPERIMENTAL, envProvider),
-                customConfig.includeExperimental().filter(b -> b).map(b -> "true")
+                customConfig.flatMap(GleanCustomConfig::includeExperimental).filter(b -> b).map(b -> "true"),
+                getSdkConfigurationIncludeExperimental(sdkConfiguration).filter(b -> b).map(b -> "true")
         );
 
         experimentalValue.ifPresent(value ->
@@ -124,17 +129,71 @@ public final class XGleanHeadersHook {
 
     private static Optional<String> getEnv(String name, Function<String, String> envProvider) {
         String value = envProvider.apply(name);
-        if (value != null && !value.isEmpty()) {
-            return Optional.of(value);
+        if (value != null) {
+            value = value.trim();
+            if (!value.isEmpty()) {
+                return Optional.of(value);
+            }
         }
         return Optional.empty();
     }
 
     private static Optional<String> getEnvAsBoolean(String name, Function<String, String> envProvider) {
         String value = envProvider.apply(name);
-        if ("true".equalsIgnoreCase(value)) {
+        if (value != null && "true".equalsIgnoreCase(value.trim())) {
             return Optional.of("true");
         }
+        return Optional.empty();
+    }
+
+    private static Optional<String> getSdkConfigurationExcludeDeprecatedAfter(SDKConfiguration sdkConfiguration) {
+        if (sdkConfiguration == null) {
+            return Optional.empty();
+        }
+
+        // Use reflection to avoid a compile-time dependency on generated methods.
+        try {
+            Method m = sdkConfiguration.getClass().getMethod("excludeDeprecatedAfter");
+            Object result = m.invoke(sdkConfiguration);
+            if (result instanceof Optional) {
+                Optional<?> opt = (Optional<?>) result;
+                Object v = opt.orElse(null);
+                if (v instanceof String) {
+                    String s = ((String) v).trim();
+                    return s.isEmpty() ? Optional.empty() : Optional.of(s);
+                }
+            }
+        } catch (NoSuchMethodException e) {
+            return Optional.empty();
+        } catch (Exception e) {
+            return Optional.empty();
+        }
+
+        return Optional.empty();
+    }
+
+    private static Optional<Boolean> getSdkConfigurationIncludeExperimental(SDKConfiguration sdkConfiguration) {
+        if (sdkConfiguration == null) {
+            return Optional.empty();
+        }
+
+        // Use reflection to avoid a compile-time dependency on generated methods.
+        try {
+            Method m = sdkConfiguration.getClass().getMethod("includeExperimental");
+            Object result = m.invoke(sdkConfiguration);
+            if (result instanceof Optional) {
+                Optional<?> opt = (Optional<?>) result;
+                Object v = opt.orElse(null);
+                if (v instanceof Boolean) {
+                    return Optional.of((Boolean) v);
+                }
+            }
+        } catch (NoSuchMethodException e) {
+            return Optional.empty();
+        } catch (Exception e) {
+            return Optional.empty();
+        }
+
         return Optional.empty();
     }
 }
