@@ -4,6 +4,7 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
 import com.glean.api_client.glean_api_client.utils.Hook;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +21,12 @@ class XGleanHeadersHookTest {
 
     private static final String HEADER_EXCLUDE_DEPRECATED_AFTER = XGleanHeadersHook.HEADER_EXCLUDE_DEPRECATED_AFTER;
     private static final String HEADER_EXPERIMENTAL = XGleanHeadersHook.HEADER_EXPERIMENTAL;
+
+    @BeforeEach
+    void setUp() {
+        // Reset the singleton config before each test
+        GleanCustomConfig.getInstance().reset();
+    }
 
     private HttpRequest createMockRequest() {
         return HttpRequest.newBuilder()
@@ -39,14 +46,16 @@ class XGleanHeadersHookTest {
     }
 
     private SDKConfiguration createConfig(String excludeDeprecatedAfter, Boolean includeExperimental) {
-        SDKConfiguration config = new SDKConfiguration();
+        // Configure the GleanCustomConfig singleton (used by the hook)
+        GleanCustomConfig customConfig = GleanCustomConfig.getInstance();
         if (excludeDeprecatedAfter != null) {
-            config.setExcludeDeprecatedAfter(Optional.of(excludeDeprecatedAfter));
+            customConfig.setExcludeDeprecatedAfter(Optional.of(excludeDeprecatedAfter));
         }
         if (includeExperimental != null) {
-            config.setIncludeExperimental(Optional.of(includeExperimental));
+            customConfig.setIncludeExperimental(Optional.of(includeExperimental));
         }
-        return config;
+        // Return a plain SDKConfiguration (not used for the custom fields anymore)
+        return new SDKConfiguration();
     }
 
     /**

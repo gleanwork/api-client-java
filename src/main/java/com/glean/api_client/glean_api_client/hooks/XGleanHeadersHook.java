@@ -1,6 +1,5 @@
 package com.glean.api_client.glean_api_client.hooks;
 
-import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.utils.AsyncHook;
 import com.glean.api_client.glean_api_client.utils.Helpers;
 import com.glean.api_client.glean_api_client.utils.Hook;
@@ -56,7 +55,7 @@ public final class XGleanHeadersHook {
     static Hook.BeforeRequest createSyncHook(Function<String, String> envProvider) {
         return (context, request) -> {
             HttpRequest.Builder builder = Helpers.copy(request);
-            addHeaders(builder, context.sdkConfiguration(), envProvider);
+            addHeaders(builder, envProvider);
             return builder.build();
         };
     }
@@ -80,17 +79,19 @@ public final class XGleanHeadersHook {
     static AsyncHook.BeforeRequest createAsyncHook(Function<String, String> envProvider) {
         return (context, request) -> {
             HttpRequest.Builder builder = Helpers.copy(request);
-            addHeaders(builder, context.sdkConfiguration(), envProvider);
+            addHeaders(builder, envProvider);
             return CompletableFuture.completedFuture(builder.build());
         };
     }
 
-    private static void addHeaders(HttpRequest.Builder builder, SDKConfiguration config,
+    private static void addHeaders(HttpRequest.Builder builder,
                                    Function<String, String> envProvider) {
+        GleanCustomConfig customConfig = GleanCustomConfig.getInstance();
+
         // Get deprecated after value - environment variable takes precedence
         Optional<String> deprecatedAfterValue = getFirstNonEmpty(
                 getEnv(ENV_EXCLUDE_DEPRECATED_AFTER, envProvider),
-                config.excludeDeprecatedAfter()
+                customConfig.excludeDeprecatedAfter()
         );
 
         deprecatedAfterValue.ifPresent(value ->
@@ -100,7 +101,7 @@ public final class XGleanHeadersHook {
         // Get experimental value - environment variable takes precedence
         Optional<String> experimentalValue = getFirstNonEmpty(
                 getEnvAsBoolean(ENV_INCLUDE_EXPERIMENTAL, envProvider),
-                config.includeExperimental().filter(b -> b).map(b -> "true")
+                customConfig.includeExperimental().filter(b -> b).map(b -> "true")
         );
 
         experimentalValue.ifPresent(value ->
