@@ -1626,16 +1626,20 @@ Glean glean = Glean.builder()
         .build();
 ```
 
-#### Using SDK Constructor Options
+#### Using GleanBuilder (regen-safe)
 
 ```java
-Glean glean = Glean.builder()
+import com.glean.api_client.glean_api_client.hooks.GleanBuilder;
+
+Glean glean = GleanBuilder.create()
         .apiToken(System.getenv("GLEAN_API_TOKEN"))
         .instance("instance-name")
         .excludeDeprecatedAfter("2026-10-15")
         .includeExperimental(true)
         .build();
 ```
+
+> **Note:** `GleanBuilder` is preserved across SDK regenerations. Generated builder options may change or be removed by regeneration.
 
 ### Option Reference
 

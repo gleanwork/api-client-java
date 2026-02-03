@@ -4,14 +4,17 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
 import com.glean.api_client.glean_api_client.utils.Hook;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.net.URI;
 import java.net.http.HttpRequest;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,6 +23,11 @@ class XGleanHeadersHookTest {
 
     private static final String HEADER_EXCLUDE_DEPRECATED_AFTER = XGleanHeadersHook.HEADER_EXCLUDE_DEPRECATED_AFTER;
     private static final String HEADER_EXPERIMENTAL = XGleanHeadersHook.HEADER_EXPERIMENTAL;
+
+    @BeforeEach
+    void setUp() {
+        GleanCustomConfigRegistry.clearForTests();
+    }
 
     private HttpRequest createMockRequest() {
         return HttpRequest.newBuilder()
@@ -40,11 +48,11 @@ class XGleanHeadersHookTest {
 
     private SDKConfiguration createConfig(String excludeDeprecatedAfter, Boolean includeExperimental) {
         SDKConfiguration config = new SDKConfiguration();
-        if (excludeDeprecatedAfter != null) {
-            config.setExcludeDeprecatedAfter(Optional.of(excludeDeprecatedAfter));
-        }
-        if (includeExperimental != null) {
-            config.setIncludeExperimental(Optional.of(includeExperimental));
+        if (excludeDeprecatedAfter != null || includeExperimental != null) {
+            GleanCustomConfigRegistry.put(
+                    config,
+                    new GleanCustomConfig(Optional.ofNullable(excludeDeprecatedAfter), Optional.ofNullable(includeExperimental))
+            );
         }
         return config;
     }
@@ -247,6 +255,85 @@ class XGleanHeadersHookTest {
 
             assertEquals("2028-01-01", result.headers().firstValue(HEADER_EXCLUDE_DEPRECATED_AFTER).orElse(null));
             assertEquals("true", result.headers().firstValue(HEADER_EXPERIMENTAL).orElse(null));
+        }
+    }
+
+    @Nested
+    class WhenMultipleSDKInstancesExist {
+
+        @Test
+        void shouldNotLeakConfigBetweenSDKConfigurations() throws Exception {
+            Hook.BeforeRequest hook = XGleanHeadersHook.createSyncHook(emptyEnvProvider());
+            HttpRequest request = createMockRequest();
+
+            SDKConfiguration configA = createConfig("2026-10-15", true);
+            SDKConfiguration configB = createConfig("2027-01-01", false);
+
+            HttpRequest resA = hook.beforeRequest(createMockContext(configA), request);
+            HttpRequest resB = hook.beforeRequest(createMockContext(configB), request);
+
+            assertEquals("2026-10-15", resA.headers().firstValue(HEADER_EXCLUDE_DEPRECATED_AFTER).orElse(null));
+            assertEquals("true", resA.headers().firstValue(HEADER_EXPERIMENTAL).orElse(null));
+
+            assertEquals("2027-01-01", resB.headers().firstValue(HEADER_EXCLUDE_DEPRECATED_AFTER).orElse(null));
+            assertFalse(resB.headers().firstValue(HEADER_EXPERIMENTAL).isPresent());
+        }
+    }
+
+    @Nested
+    class AsyncHookParity {
+
+        @Test
+        void shouldApplySameHeadersInAsyncHook() {
+            var hook = XGleanHeadersHook.createAsyncHook(emptyEnvProvider());
+            HttpRequest request = createMockRequest();
+            SDKConfiguration config = createConfig("2026-10-15", true);
+
+            CompletableFuture<HttpRequest> fut = hook.beforeRequest(createMockContext(config), request);
+            HttpRequest result = fut.join();
+
+            assertEquals("2026-10-15", result.headers().firstValue(HEADER_EXCLUDE_DEPRECATED_AFTER).orElse(null));
+            assertEquals("true", result.headers().firstValue(HEADER_EXPERIMENTAL).orElse(null));
+        }
+    }
+
+    @Nested
+    class BackwardCompatibilityWithGeneratedSDKConfiguration {
+
+        @Test
+        void shouldFallBackToSDKConfigurationWhenRegistryIsEmpty() throws Exception {
+            Hook.BeforeRequest hook = XGleanHeadersHook.createSyncHook(emptyEnvProvider());
+            HttpRequest request = createMockRequest();
+            SDKConfiguration config = new SDKConfiguration();
+
+            boolean setDeprecatedAfter = tryInvokeOptionalSetter(config, "setExcludeDeprecatedAfter", Optional.of("2029-12-31"));
+            boolean setExperimental = tryInvokeOptionalSetter(config, "setIncludeExperimental", Optional.of(true));
+
+            HttpRequest result = hook.beforeRequest(createMockContext(config), request);
+
+            if (setDeprecatedAfter) {
+                assertEquals("2029-12-31", result.headers().firstValue(HEADER_EXCLUDE_DEPRECATED_AFTER).orElse(null));
+            } else {
+                assertFalse(result.headers().firstValue(HEADER_EXCLUDE_DEPRECATED_AFTER).isPresent());
+            }
+
+            if (setExperimental) {
+                assertEquals("true", result.headers().firstValue(HEADER_EXPERIMENTAL).orElse(null));
+            } else {
+                assertFalse(result.headers().firstValue(HEADER_EXPERIMENTAL).isPresent());
+            }
+        }
+    }
+
+    private static boolean tryInvokeOptionalSetter(Object target, String methodName, Optional<?> value) {
+        try {
+            Method m = target.getClass().getMethod(methodName, Optional.class);
+            m.invoke(target, value);
+            return true;
+        } catch (NoSuchMethodException e) {
+            return false;
+        } catch (Exception e) {
+            return false;
         }
     }
 }
