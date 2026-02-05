@@ -11,8 +11,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
 import com.glean.api_client.glean_api_client.models.components.PinDocument;
-import com.glean.api_client.glean_api_client.models.components.PinRequest;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
+import com.glean.api_client.glean_api_client.models.operations.PinRequest;
 import com.glean.api_client.glean_api_client.models.operations.PinResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
@@ -85,7 +85,7 @@ public class Pin {
                     java.util.Optional.empty(),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/rest/api/v1/pin");
@@ -96,7 +96,7 @@ public class Pin {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "pinRequest",
                     "json",
                     false);
             if (serializedRequestBody == null) {
@@ -106,6 +106,11 @@ public class Pin {
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
+
+            req.addQueryParams(Utils.getQueryParams(
+                    klass,
+                    request,
+                    null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -119,7 +124,7 @@ public class Pin {
         }
 
         private HttpRequest onBuildRequest(PinRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<PinRequest>() {});
+            HttpRequest req = buildRequest(request, PinRequest.class, new TypeReference<PinRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -194,7 +199,7 @@ public class Pin {
         }
 
         private CompletableFuture<HttpRequest> onBuildRequest(PinRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<PinRequest>() {});
+            HttpRequest req = buildRequest(request, PinRequest.class, new TypeReference<PinRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

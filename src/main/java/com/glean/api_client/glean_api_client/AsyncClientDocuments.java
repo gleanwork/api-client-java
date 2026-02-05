@@ -9,6 +9,9 @@ import com.glean.api_client.glean_api_client.models.components.GetDocPermissions
 import com.glean.api_client.glean_api_client.models.components.GetDocumentsByFacetsRequest;
 import com.glean.api_client.glean_api_client.models.components.GetDocumentsRequest;
 import com.glean.api_client.glean_api_client.models.components.SummarizeRequest;
+import com.glean.api_client.glean_api_client.models.operations.GetdocpermissionsRequest;
+import com.glean.api_client.glean_api_client.models.operations.GetdocumentsRequest;
+import com.glean.api_client.glean_api_client.models.operations.GetdocumentsbyfacetsRequest;
 import com.glean.api_client.glean_api_client.models.operations.async.GetdocpermissionsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.GetdocpermissionsResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.GetdocumentsRequestBuilder;
@@ -22,6 +25,7 @@ import com.glean.api_client.glean_api_client.operations.Getdocuments;
 import com.glean.api_client.glean_api_client.operations.Getdocumentsbyfacets;
 import com.glean.api_client.glean_api_client.operations.Summarize;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -62,11 +66,30 @@ public class AsyncClientDocuments {
      * 
      * <p>Read the emails of all users who have access to the given document.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param getDocPermissionsRequest 
      * @return {@code CompletableFuture<GetdocpermissionsResponse>} - The async response
      */
-    public CompletableFuture<GetdocpermissionsResponse> retrievePermissions(GetDocPermissionsRequest request) {
-        AsyncRequestOperation<GetDocPermissionsRequest, GetdocpermissionsResponse> operation
+    public CompletableFuture<GetdocpermissionsResponse> retrievePermissions(GetDocPermissionsRequest getDocPermissionsRequest) {
+        return retrievePermissions(Optional.empty(), getDocPermissionsRequest);
+    }
+
+    /**
+     * Read document permissions
+     * 
+     * <p>Read the emails of all users who have access to the given document.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param getDocPermissionsRequest 
+     * @return {@code CompletableFuture<GetdocpermissionsResponse>} - The async response
+     */
+    public CompletableFuture<GetdocpermissionsResponse> retrievePermissions(Optional<String> locale, GetDocPermissionsRequest getDocPermissionsRequest) {
+        GetdocpermissionsRequest request =
+            GetdocpermissionsRequest
+                .builder()
+                .locale(locale)
+                .getDocPermissionsRequest(getDocPermissionsRequest)
+                .build();
+        AsyncRequestOperation<GetdocpermissionsRequest, GetdocpermissionsResponse> operation
               = new Getdocpermissions.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
@@ -94,7 +117,7 @@ public class AsyncClientDocuments {
      * @return {@code CompletableFuture<GetdocumentsResponse>} - The async response
      */
     public CompletableFuture<GetdocumentsResponse> retrieveDirect() {
-        return retrieve(Optional.empty());
+        return retrieve(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -103,11 +126,18 @@ public class AsyncClientDocuments {
      * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`)
      * for the given list of Glean Document IDs or URLs specified in the request.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param getDocumentsRequest 
      * @return {@code CompletableFuture<GetdocumentsResponse>} - The async response
      */
-    public CompletableFuture<GetdocumentsResponse> retrieve(Optional<? extends GetDocumentsRequest> request) {
-        AsyncRequestOperation<Optional<? extends GetDocumentsRequest>, GetdocumentsResponse> operation
+    public CompletableFuture<GetdocumentsResponse> retrieve(Optional<String> locale, Optional<? extends GetDocumentsRequest> getDocumentsRequest) {
+        GetdocumentsRequest request =
+            GetdocumentsRequest
+                .builder()
+                .locale(locale)
+                .getDocumentsRequest(getDocumentsRequest)
+                .build();
+        AsyncRequestOperation<GetdocumentsRequest, GetdocumentsResponse> operation
               = new Getdocuments.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
@@ -135,7 +165,7 @@ public class AsyncClientDocuments {
      * @return {@code CompletableFuture<GetdocumentsbyfacetsResponse>} - The async response
      */
     public CompletableFuture<GetdocumentsbyfacetsResponse> retrieveByFacetsDirect() {
-        return retrieveByFacets(Optional.empty());
+        return retrieveByFacets(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -144,11 +174,18 @@ public class AsyncClientDocuments {
      * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`)
      * macthing the given facet conditions.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param getDocumentsByFacetsRequest 
      * @return {@code CompletableFuture<GetdocumentsbyfacetsResponse>} - The async response
      */
-    public CompletableFuture<GetdocumentsbyfacetsResponse> retrieveByFacets(Optional<? extends GetDocumentsByFacetsRequest> request) {
-        AsyncRequestOperation<Optional<? extends GetDocumentsByFacetsRequest>, GetdocumentsbyfacetsResponse> operation
+    public CompletableFuture<GetdocumentsbyfacetsResponse> retrieveByFacets(Optional<String> locale, Optional<? extends GetDocumentsByFacetsRequest> getDocumentsByFacetsRequest) {
+        GetdocumentsbyfacetsRequest request =
+            GetdocumentsbyfacetsRequest
+                .builder()
+                .locale(locale)
+                .getDocumentsByFacetsRequest(getDocumentsByFacetsRequest)
+                .build();
+        AsyncRequestOperation<GetdocumentsbyfacetsRequest, GetdocumentsbyfacetsResponse> operation
               = new Getdocumentsbyfacets.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
@@ -171,11 +208,30 @@ public class AsyncClientDocuments {
      * 
      * <p>Generate an AI summary of the requested documents.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param summarizeRequest Summary of the document
      * @return {@code CompletableFuture<SummarizeResponse>} - The async response
      */
-    public CompletableFuture<SummarizeResponse> summarize(SummarizeRequest request) {
-        AsyncRequestOperation<SummarizeRequest, SummarizeResponse> operation
+    public CompletableFuture<SummarizeResponse> summarize(SummarizeRequest summarizeRequest) {
+        return summarize(Optional.empty(), summarizeRequest);
+    }
+
+    /**
+     * Summarize documents
+     * 
+     * <p>Generate an AI summary of the requested documents.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param summarizeRequest Summary of the document
+     * @return {@code CompletableFuture<SummarizeResponse>} - The async response
+     */
+    public CompletableFuture<SummarizeResponse> summarize(Optional<String> locale, SummarizeRequest summarizeRequest) {
+        com.glean.api_client.glean_api_client.models.operations.SummarizeRequest request =
+            com.glean.api_client.glean_api_client.models.operations.SummarizeRequest
+                .builder()
+                .locale(locale)
+                .summarizeRequest(summarizeRequest)
+                .build();
+        AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.SummarizeRequest, SummarizeResponse> operation
               = new Summarize.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

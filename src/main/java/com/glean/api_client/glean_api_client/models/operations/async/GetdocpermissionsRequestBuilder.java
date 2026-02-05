@@ -7,31 +7,57 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.GetDocPermissionsRequest;
+import com.glean.api_client.glean_api_client.models.operations.GetdocpermissionsRequest;
 import com.glean.api_client.glean_api_client.operations.Getdocpermissions;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class GetdocpermissionsRequestBuilder {
 
-    private GetDocPermissionsRequest request;
+    private Optional<String> locale = Optional.empty();
+    private GetDocPermissionsRequest getDocPermissionsRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public GetdocpermissionsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public GetdocpermissionsRequestBuilder request(GetDocPermissionsRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public GetdocpermissionsRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public GetdocpermissionsRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public GetdocpermissionsRequestBuilder getDocPermissionsRequest(GetDocPermissionsRequest getDocPermissionsRequest) {
+        Utils.checkNotNull(getDocPermissionsRequest, "getDocPermissionsRequest");
+        this.getDocPermissionsRequest = getDocPermissionsRequest;
+        return this;
+    }
+
+
+    private GetdocpermissionsRequest buildRequest() {
+
+        GetdocpermissionsRequest request = new GetdocpermissionsRequest(locale,
+            getDocPermissionsRequest);
+
+        return request;
     }
 
     public CompletableFuture<GetdocpermissionsResponse> call() {
         
-        AsyncRequestOperation<GetDocPermissionsRequest, GetdocpermissionsResponse> operation
+        AsyncRequestOperation<GetdocpermissionsRequest, GetdocpermissionsResponse> operation
               = new Getdocpermissions.Async(sdkConfiguration, _headers);
+        GetdocpermissionsRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

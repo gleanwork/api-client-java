@@ -7,6 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 
 import com.glean.api_client.glean_api_client.models.components.ListEntitiesRequest;
 import com.glean.api_client.glean_api_client.models.components.PeopleRequest;
+import com.glean.api_client.glean_api_client.models.operations.ListentitiesRequest;
 import com.glean.api_client.glean_api_client.models.operations.async.ListentitiesRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.ListentitiesResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.PeopleRequestBuilder;
@@ -14,6 +15,8 @@ import com.glean.api_client.glean_api_client.models.operations.async.PeopleRespo
 import com.glean.api_client.glean_api_client.operations.Listentities;
 import com.glean.api_client.glean_api_client.operations.People;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
@@ -59,11 +62,33 @@ public class AsyncEntities {
      * entities that can be retrieved via this endpoint, except when using FULL_DIRECTORY request type for
      * people entities.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param listEntitiesRequest 
      * @return {@code CompletableFuture<ListentitiesResponse>} - The async response
      */
-    public CompletableFuture<ListentitiesResponse> list(ListEntitiesRequest request) {
-        AsyncRequestOperation<ListEntitiesRequest, ListentitiesResponse> operation
+    public CompletableFuture<ListentitiesResponse> list(ListEntitiesRequest listEntitiesRequest) {
+        return list(Optional.empty(), listEntitiesRequest);
+    }
+
+    /**
+     * List entities
+     * 
+     * <p>List some set of details for all entities that fit the given criteria and return in the requested
+     * order. Does not support negation in filters, assumes relation type EQUALS. There is a limit of 10000
+     * entities that can be retrieved via this endpoint, except when using FULL_DIRECTORY request type for
+     * people entities.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param listEntitiesRequest 
+     * @return {@code CompletableFuture<ListentitiesResponse>} - The async response
+     */
+    public CompletableFuture<ListentitiesResponse> list(Optional<String> locale, ListEntitiesRequest listEntitiesRequest) {
+        ListentitiesRequest request =
+            ListentitiesRequest
+                .builder()
+                .locale(locale)
+                .listEntitiesRequest(listEntitiesRequest)
+                .build();
+        AsyncRequestOperation<ListentitiesRequest, ListentitiesResponse> operation
               = new Listentities.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
@@ -86,11 +111,30 @@ public class AsyncEntities {
      * 
      * <p>Read people details for the given IDs.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param peopleRequest 
      * @return {@code CompletableFuture<PeopleResponse>} - The async response
      */
-    public CompletableFuture<PeopleResponse> readPeople(PeopleRequest request) {
-        AsyncRequestOperation<PeopleRequest, PeopleResponse> operation
+    public CompletableFuture<PeopleResponse> readPeople(PeopleRequest peopleRequest) {
+        return readPeople(Optional.empty(), peopleRequest);
+    }
+
+    /**
+     * Read people
+     * 
+     * <p>Read people details for the given IDs.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param peopleRequest 
+     * @return {@code CompletableFuture<PeopleResponse>} - The async response
+     */
+    public CompletableFuture<PeopleResponse> readPeople(Optional<String> locale, PeopleRequest peopleRequest) {
+        com.glean.api_client.glean_api_client.models.operations.PeopleRequest request =
+            com.glean.api_client.glean_api_client.models.operations.PeopleRequest
+                .builder()
+                .locale(locale)
+                .peopleRequest(peopleRequest)
+                .build();
+        AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.PeopleRequest, PeopleResponse> operation
               = new People.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

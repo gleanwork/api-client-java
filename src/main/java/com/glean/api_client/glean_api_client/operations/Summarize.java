@@ -10,8 +10,8 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
-import com.glean.api_client.glean_api_client.models.components.SummarizeRequest;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
+import com.glean.api_client.glean_api_client.models.operations.SummarizeRequest;
 import com.glean.api_client.glean_api_client.models.operations.SummarizeResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
@@ -84,7 +84,7 @@ public class Summarize {
                     java.util.Optional.empty(),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/rest/api/v1/summarize");
@@ -95,7 +95,7 @@ public class Summarize {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "summarizeRequest",
                     "json",
                     false);
             if (serializedRequestBody == null) {
@@ -105,6 +105,11 @@ public class Summarize {
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
+
+            req.addQueryParams(Utils.getQueryParams(
+                    klass,
+                    request,
+                    null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -118,7 +123,7 @@ public class Summarize {
         }
 
         private HttpRequest onBuildRequest(SummarizeRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<SummarizeRequest>() {});
+            HttpRequest req = buildRequest(request, SummarizeRequest.class, new TypeReference<SummarizeRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -193,7 +198,7 @@ public class Summarize {
         }
 
         private CompletableFuture<HttpRequest> onBuildRequest(SummarizeRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<SummarizeRequest>() {});
+            HttpRequest req = buildRequest(request, SummarizeRequest.class, new TypeReference<SummarizeRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

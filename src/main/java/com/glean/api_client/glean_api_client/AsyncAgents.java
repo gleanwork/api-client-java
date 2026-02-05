@@ -73,7 +73,7 @@ public class AsyncAgents {
      * @return {@code CompletableFuture<GetAgentResponse>} - The async response
      */
     public CompletableFuture<GetAgentResponse> retrieve(String agentId) {
-        return retrieve(Optional.empty(), agentId);
+        return retrieve(Optional.empty(), Optional.empty(), agentId);
     }
 
     /**
@@ -82,14 +82,18 @@ public class AsyncAgents {
      * <p>Returns details of an [agent](https://developers.glean.com/agents/agents-api) created in the Agent
      * Builder.
      * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param agentId The ID of the agent.
      * @return {@code CompletableFuture<GetAgentResponse>} - The async response
      */
-    public CompletableFuture<GetAgentResponse> retrieve(Optional<Long> timezoneOffset, String agentId) {
+    public CompletableFuture<GetAgentResponse> retrieve(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            String agentId) {
         GetAgentRequest request =
             GetAgentRequest
                 .builder()
+                .locale(locale)
                 .timezoneOffset(timezoneOffset)
                 .agentId(agentId)
                 .build();
@@ -122,7 +126,7 @@ public class AsyncAgents {
      * @return {@code CompletableFuture<GetAgentSchemasResponse>} - The async response
      */
     public CompletableFuture<GetAgentSchemasResponse> retrieveSchemas(String agentId) {
-        return retrieveSchemas(Optional.empty(), agentId);
+        return retrieveSchemas(Optional.empty(), Optional.empty(), agentId);
     }
 
     /**
@@ -131,14 +135,18 @@ public class AsyncAgents {
      * <p>Return [agent](https://developers.glean.com/agents/agents-api)'s input and output schemas. You can
      * use these schemas to detect changes to an agent's input or output structure.
      * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param agentId The ID of the agent.
      * @return {@code CompletableFuture<GetAgentSchemasResponse>} - The async response
      */
-    public CompletableFuture<GetAgentSchemasResponse> retrieveSchemas(Optional<Long> timezoneOffset, String agentId) {
+    public CompletableFuture<GetAgentSchemasResponse> retrieveSchemas(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            String agentId) {
         GetAgentSchemasRequest request =
             GetAgentSchemasRequest
                 .builder()
+                .locale(locale)
                 .timezoneOffset(timezoneOffset)
                 .agentId(agentId)
                 .build();

@@ -10,8 +10,8 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
-import com.glean.api_client.glean_api_client.models.components.DeleteAnnouncementRequest;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
+import com.glean.api_client.glean_api_client.models.operations.DeleteannouncementRequest;
 import com.glean.api_client.glean_api_client.models.operations.DeleteannouncementResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
@@ -84,7 +84,7 @@ public class Deleteannouncement {
                     java.util.Optional.empty(),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/rest/api/v1/deleteannouncement");
@@ -95,7 +95,7 @@ public class Deleteannouncement {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "deleteAnnouncementRequest",
                     "json",
                     false);
             if (serializedRequestBody == null) {
@@ -105,6 +105,11 @@ public class Deleteannouncement {
             req.addHeader("Accept", "*/*")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
+
+            req.addQueryParams(Utils.getQueryParams(
+                    klass,
+                    request,
+                    null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -112,13 +117,13 @@ public class Deleteannouncement {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<DeleteAnnouncementRequest, DeleteannouncementResponse> {
+            implements RequestOperation<DeleteannouncementRequest, DeleteannouncementResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private HttpRequest onBuildRequest(DeleteAnnouncementRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<DeleteAnnouncementRequest>() {});
+        private HttpRequest onBuildRequest(DeleteannouncementRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, DeleteannouncementRequest.class, new TypeReference<DeleteannouncementRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -134,7 +139,7 @@ public class Deleteannouncement {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(DeleteAnnouncementRequest request) {
+        public HttpResponse<InputStream> doRequest(DeleteannouncementRequest request) {
             HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
@@ -183,14 +188,14 @@ public class Deleteannouncement {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<DeleteAnnouncementRequest, com.glean.api_client.glean_api_client.models.operations.async.DeleteannouncementResponse> {
+            implements AsyncRequestOperation<DeleteannouncementRequest, com.glean.api_client.glean_api_client.models.operations.async.DeleteannouncementResponse> {
 
         public Async(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(DeleteAnnouncementRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<DeleteAnnouncementRequest>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(DeleteannouncementRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, DeleteannouncementRequest.class, new TypeReference<DeleteannouncementRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -203,7 +208,7 @@ public class Deleteannouncement {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(DeleteAnnouncementRequest request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(DeleteannouncementRequest request) {
             return unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
                     .handle((resp, err) -> {
                         if (err != null) {

@@ -9,15 +9,19 @@ import com.glean.api_client.glean_api_client.models.components.EditPinRequest;
 import com.glean.api_client.glean_api_client.models.components.GetPinRequest;
 import com.glean.api_client.glean_api_client.models.components.PinRequest;
 import com.glean.api_client.glean_api_client.models.components.Unpin;
+import com.glean.api_client.glean_api_client.models.operations.EditpinRequest;
 import com.glean.api_client.glean_api_client.models.operations.EditpinRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.EditpinResponse;
+import com.glean.api_client.glean_api_client.models.operations.GetpinRequest;
 import com.glean.api_client.glean_api_client.models.operations.GetpinRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.GetpinResponse;
 import com.glean.api_client.glean_api_client.models.operations.ListpinsRequest;
+import com.glean.api_client.glean_api_client.models.operations.ListpinsRequestBody;
 import com.glean.api_client.glean_api_client.models.operations.ListpinsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.ListpinsResponse;
 import com.glean.api_client.glean_api_client.models.operations.PinRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PinResponse;
+import com.glean.api_client.glean_api_client.models.operations.UnpinRequest;
 import com.glean.api_client.glean_api_client.models.operations.UnpinRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.UnpinResponse;
 import com.glean.api_client.glean_api_client.operations.Editpin;
@@ -25,6 +29,8 @@ import com.glean.api_client.glean_api_client.operations.Getpin;
 import com.glean.api_client.glean_api_client.operations.Listpins;
 import com.glean.api_client.glean_api_client.operations.Pin;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import java.lang.String;
+import java.util.Optional;
 
 
 public class Pins {
@@ -62,12 +68,32 @@ public class Pins {
      * 
      * <p>Update an existing user-generated pin.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param editPinRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public EditpinResponse update(EditPinRequest request) {
-        RequestOperation<EditPinRequest, EditpinResponse> operation
+    public EditpinResponse update(EditPinRequest editPinRequest) {
+        return update(Optional.empty(), editPinRequest);
+    }
+
+    /**
+     * Update pin
+     * 
+     * <p>Update an existing user-generated pin.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param editPinRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public EditpinResponse update(Optional<String> locale, EditPinRequest editPinRequest) {
+        EditpinRequest request =
+            EditpinRequest
+                .builder()
+                .locale(locale)
+                .editPinRequest(editPinRequest)
+                .build();
+        RequestOperation<EditpinRequest, EditpinResponse> operation
               = new Editpin.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -88,12 +114,32 @@ public class Pins {
      * 
      * <p>Read pin details given its ID.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param getPinRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetpinResponse retrieve(GetPinRequest request) {
-        RequestOperation<GetPinRequest, GetpinResponse> operation
+    public GetpinResponse retrieve(GetPinRequest getPinRequest) {
+        return retrieve(Optional.empty(), getPinRequest);
+    }
+
+    /**
+     * Read pin
+     * 
+     * <p>Read pin details given its ID.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param getPinRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetpinResponse retrieve(Optional<String> locale, GetPinRequest getPinRequest) {
+        GetpinRequest request =
+            GetpinRequest
+                .builder()
+                .locale(locale)
+                .getPinRequest(getPinRequest)
+                .build();
+        RequestOperation<GetpinRequest, GetpinResponse> operation
               = new Getpin.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -114,11 +160,31 @@ public class Pins {
      * 
      * <p>Lists all pins.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param requestBody List pins request
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public ListpinsResponse list(ListpinsRequest request) {
+    public ListpinsResponse list(ListpinsRequestBody requestBody) {
+        return list(Optional.empty(), requestBody);
+    }
+
+    /**
+     * List pins
+     * 
+     * <p>Lists all pins.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param requestBody List pins request
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListpinsResponse list(Optional<String> locale, ListpinsRequestBody requestBody) {
+        ListpinsRequest request =
+            ListpinsRequest
+                .builder()
+                .locale(locale)
+                .requestBody(requestBody)
+                .build();
         RequestOperation<ListpinsRequest, ListpinsResponse> operation
               = new Listpins.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -140,12 +206,32 @@ public class Pins {
      * 
      * <p>Pin a document as a result for a given search query.Pin results that are known to be a good match.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param pinRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public PinResponse create(PinRequest request) {
-        RequestOperation<PinRequest, PinResponse> operation
+    public PinResponse create(PinRequest pinRequest) {
+        return create(Optional.empty(), pinRequest);
+    }
+
+    /**
+     * Create pin
+     * 
+     * <p>Pin a document as a result for a given search query.Pin results that are known to be a good match.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param pinRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PinResponse create(Optional<String> locale, PinRequest pinRequest) {
+        com.glean.api_client.glean_api_client.models.operations.PinRequest request =
+            com.glean.api_client.glean_api_client.models.operations.PinRequest
+                .builder()
+                .locale(locale)
+                .pinRequest(pinRequest)
+                .build();
+        RequestOperation<com.glean.api_client.glean_api_client.models.operations.PinRequest, PinResponse> operation
               = new Pin.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -166,12 +252,32 @@ public class Pins {
      * 
      * <p>Unpin a previously pinned result.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param unpin 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public UnpinResponse remove(Unpin request) {
-        RequestOperation<Unpin, UnpinResponse> operation
+    public UnpinResponse remove(Unpin unpin) {
+        return remove(Optional.empty(), unpin);
+    }
+
+    /**
+     * Delete pin
+     * 
+     * <p>Unpin a previously pinned result.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param unpin 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UnpinResponse remove(Optional<String> locale, Unpin unpin) {
+        UnpinRequest request =
+            UnpinRequest
+                .builder()
+                .locale(locale)
+                .unpin(unpin)
+                .build();
+        RequestOperation<UnpinRequest, UnpinResponse> operation
               = new com.glean.api_client.glean_api_client.operations.Unpin.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }

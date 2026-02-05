@@ -10,27 +10,52 @@ import com.glean.api_client.glean_api_client.models.components.ReminderRequest;
 import com.glean.api_client.glean_api_client.operations.Addverificationreminder;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class AddverificationreminderRequestBuilder {
 
-    private ReminderRequest request;
+    private Optional<String> locale = Optional.empty();
+    private ReminderRequest reminderRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public AddverificationreminderRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public AddverificationreminderRequestBuilder request(ReminderRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public AddverificationreminderRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public AddverificationreminderRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public AddverificationreminderRequestBuilder reminderRequest(ReminderRequest reminderRequest) {
+        Utils.checkNotNull(reminderRequest, "reminderRequest");
+        this.reminderRequest = reminderRequest;
+        return this;
+    }
+
+
+    private AddverificationreminderRequest buildRequest() {
+
+        AddverificationreminderRequest request = new AddverificationreminderRequest(locale,
+            reminderRequest);
+
+        return request;
     }
 
     public AddverificationreminderResponse call() {
         
-        RequestOperation<ReminderRequest, AddverificationreminderResponse> operation
+        RequestOperation<AddverificationreminderRequest, AddverificationreminderResponse> operation
               = new Addverificationreminder.Sync(sdkConfiguration, _headers);
+        AddverificationreminderRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

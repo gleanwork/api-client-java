@@ -10,9 +10,9 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
-import com.glean.api_client.glean_api_client.models.components.ReminderRequest;
 import com.glean.api_client.glean_api_client.models.components.Verification;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
+import com.glean.api_client.glean_api_client.models.operations.AddverificationreminderRequest;
 import com.glean.api_client.glean_api_client.models.operations.AddverificationreminderResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
@@ -85,7 +85,7 @@ public class Addverificationreminder {
                     java.util.Optional.empty(),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/rest/api/v1/addverificationreminder");
@@ -96,7 +96,7 @@ public class Addverificationreminder {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "reminderRequest",
                     "json",
                     false);
             if (serializedRequestBody == null) {
@@ -106,6 +106,11 @@ public class Addverificationreminder {
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
+
+            req.addQueryParams(Utils.getQueryParams(
+                    klass,
+                    request,
+                    null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -113,13 +118,13 @@ public class Addverificationreminder {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<ReminderRequest, AddverificationreminderResponse> {
+            implements RequestOperation<AddverificationreminderRequest, AddverificationreminderResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private HttpRequest onBuildRequest(ReminderRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<ReminderRequest>() {});
+        private HttpRequest onBuildRequest(AddverificationreminderRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, AddverificationreminderRequest.class, new TypeReference<AddverificationreminderRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -135,7 +140,7 @@ public class Addverificationreminder {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(ReminderRequest request) {
+        public HttpResponse<InputStream> doRequest(AddverificationreminderRequest request) {
             HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
@@ -187,14 +192,14 @@ public class Addverificationreminder {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<ReminderRequest, com.glean.api_client.glean_api_client.models.operations.async.AddverificationreminderResponse> {
+            implements AsyncRequestOperation<AddverificationreminderRequest, com.glean.api_client.glean_api_client.models.operations.async.AddverificationreminderResponse> {
 
         public Async(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(ReminderRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<ReminderRequest>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(AddverificationreminderRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, AddverificationreminderRequest.class, new TypeReference<AddverificationreminderRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -207,7 +212,7 @@ public class Addverificationreminder {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(ReminderRequest request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(AddverificationreminderRequest request) {
             return unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
                     .handle((resp, err) -> {
                         if (err != null) {

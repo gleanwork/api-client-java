@@ -11,12 +11,14 @@ import com.glean.api_client.glean_api_client.operations.Listverifications;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
+import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class ListverificationsRequestBuilder {
 
     private Optional<Long> count = Optional.empty();
+    private Optional<String> locale = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -35,11 +37,24 @@ public class ListverificationsRequestBuilder {
         this.count = count;
         return this;
     }
+                
+    public ListverificationsRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
+        return this;
+    }
+
+    public ListverificationsRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
 
 
     private ListverificationsRequest buildRequest() {
 
-        ListverificationsRequest request = new ListverificationsRequest(count);
+        ListverificationsRequest request = new ListverificationsRequest(count,
+            locale);
 
         return request;
     }

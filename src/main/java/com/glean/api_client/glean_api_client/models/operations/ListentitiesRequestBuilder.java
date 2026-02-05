@@ -10,27 +10,52 @@ import com.glean.api_client.glean_api_client.models.components.ListEntitiesReque
 import com.glean.api_client.glean_api_client.operations.Listentities;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class ListentitiesRequestBuilder {
 
-    private ListEntitiesRequest request;
+    private Optional<String> locale = Optional.empty();
+    private ListEntitiesRequest listEntitiesRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public ListentitiesRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public ListentitiesRequestBuilder request(ListEntitiesRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public ListentitiesRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public ListentitiesRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public ListentitiesRequestBuilder listEntitiesRequest(ListEntitiesRequest listEntitiesRequest) {
+        Utils.checkNotNull(listEntitiesRequest, "listEntitiesRequest");
+        this.listEntitiesRequest = listEntitiesRequest;
+        return this;
+    }
+
+
+    private ListentitiesRequest buildRequest() {
+
+        ListentitiesRequest request = new ListentitiesRequest(locale,
+            listEntitiesRequest);
+
+        return request;
     }
 
     public ListentitiesResponse call() {
         
-        RequestOperation<ListEntitiesRequest, ListentitiesResponse> operation
+        RequestOperation<ListentitiesRequest, ListentitiesResponse> operation
               = new Listentities.Sync(sdkConfiguration, _headers);
+        ListentitiesRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

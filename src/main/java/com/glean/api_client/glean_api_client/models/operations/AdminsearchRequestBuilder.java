@@ -10,27 +10,52 @@ import com.glean.api_client.glean_api_client.models.components.SearchRequest;
 import com.glean.api_client.glean_api_client.operations.Adminsearch;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class AdminsearchRequestBuilder {
 
-    private SearchRequest request;
+    private Optional<String> locale = Optional.empty();
+    private SearchRequest searchRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public AdminsearchRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public AdminsearchRequestBuilder request(SearchRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public AdminsearchRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public AdminsearchRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public AdminsearchRequestBuilder searchRequest(SearchRequest searchRequest) {
+        Utils.checkNotNull(searchRequest, "searchRequest");
+        this.searchRequest = searchRequest;
+        return this;
+    }
+
+
+    private AdminsearchRequest buildRequest() {
+
+        AdminsearchRequest request = new AdminsearchRequest(locale,
+            searchRequest);
+
+        return request;
     }
 
     public AdminsearchResponse call() {
         
-        RequestOperation<SearchRequest, AdminsearchResponse> operation
+        RequestOperation<AdminsearchRequest, AdminsearchResponse> operation
               = new Adminsearch.Sync(sdkConfiguration, _headers);
+        AdminsearchRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

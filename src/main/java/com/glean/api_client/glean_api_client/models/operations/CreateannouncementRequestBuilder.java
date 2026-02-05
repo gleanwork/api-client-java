@@ -10,27 +10,52 @@ import com.glean.api_client.glean_api_client.models.components.CreateAnnouncemen
 import com.glean.api_client.glean_api_client.operations.Createannouncement;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class CreateannouncementRequestBuilder {
 
-    private CreateAnnouncementRequest request;
+    private Optional<String> locale = Optional.empty();
+    private CreateAnnouncementRequest createAnnouncementRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public CreateannouncementRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public CreateannouncementRequestBuilder request(CreateAnnouncementRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public CreateannouncementRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public CreateannouncementRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public CreateannouncementRequestBuilder createAnnouncementRequest(CreateAnnouncementRequest createAnnouncementRequest) {
+        Utils.checkNotNull(createAnnouncementRequest, "createAnnouncementRequest");
+        this.createAnnouncementRequest = createAnnouncementRequest;
+        return this;
+    }
+
+
+    private CreateannouncementRequest buildRequest() {
+
+        CreateannouncementRequest request = new CreateannouncementRequest(locale,
+            createAnnouncementRequest);
+
+        return request;
     }
 
     public CreateannouncementResponse call() {
         
-        RequestOperation<CreateAnnouncementRequest, CreateannouncementResponse> operation
+        RequestOperation<CreateannouncementRequest, CreateannouncementResponse> operation
               = new Createannouncement.Sync(sdkConfiguration, _headers);
+        CreateannouncementRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

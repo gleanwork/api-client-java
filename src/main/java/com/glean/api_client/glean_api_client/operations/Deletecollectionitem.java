@@ -10,9 +10,9 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
-import com.glean.api_client.glean_api_client.models.components.DeleteCollectionItemRequest;
 import com.glean.api_client.glean_api_client.models.components.DeleteCollectionItemResponse;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
+import com.glean.api_client.glean_api_client.models.operations.DeletecollectionitemRequest;
 import com.glean.api_client.glean_api_client.models.operations.DeletecollectionitemResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
@@ -85,7 +85,7 @@ public class Deletecollectionitem {
                     java.util.Optional.empty(),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/rest/api/v1/deletecollectionitem");
@@ -96,7 +96,7 @@ public class Deletecollectionitem {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "deleteCollectionItemRequest",
                     "json",
                     false);
             if (serializedRequestBody == null) {
@@ -106,6 +106,11 @@ public class Deletecollectionitem {
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
+
+            req.addQueryParams(Utils.getQueryParams(
+                    klass,
+                    request,
+                    null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -113,13 +118,13 @@ public class Deletecollectionitem {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<DeleteCollectionItemRequest, DeletecollectionitemResponse> {
+            implements RequestOperation<DeletecollectionitemRequest, DeletecollectionitemResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private HttpRequest onBuildRequest(DeleteCollectionItemRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<DeleteCollectionItemRequest>() {});
+        private HttpRequest onBuildRequest(DeletecollectionitemRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, DeletecollectionitemRequest.class, new TypeReference<DeletecollectionitemRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -135,7 +140,7 @@ public class Deletecollectionitem {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(DeleteCollectionItemRequest request) {
+        public HttpResponse<InputStream> doRequest(DeletecollectionitemRequest request) {
             HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
@@ -187,14 +192,14 @@ public class Deletecollectionitem {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<DeleteCollectionItemRequest, com.glean.api_client.glean_api_client.models.operations.async.DeletecollectionitemResponse> {
+            implements AsyncRequestOperation<DeletecollectionitemRequest, com.glean.api_client.glean_api_client.models.operations.async.DeletecollectionitemResponse> {
 
         public Async(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(DeleteCollectionItemRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<DeleteCollectionItemRequest>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(DeletecollectionitemRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, DeletecollectionitemRequest.class, new TypeReference<DeletecollectionitemRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -207,7 +212,7 @@ public class Deletecollectionitem {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(DeleteCollectionItemRequest request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(DeletecollectionitemRequest request) {
             return unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
                     .handle((resp, err) -> {
                         if (err != null) {

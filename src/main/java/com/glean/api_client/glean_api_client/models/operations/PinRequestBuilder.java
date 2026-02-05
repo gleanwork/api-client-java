@@ -10,27 +10,52 @@ import com.glean.api_client.glean_api_client.models.components.PinRequest;
 import com.glean.api_client.glean_api_client.operations.Pin;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class PinRequestBuilder {
 
-    private PinRequest request;
+    private Optional<String> locale = Optional.empty();
+    private PinRequest pinRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public PinRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public PinRequestBuilder request(PinRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public PinRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public PinRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public PinRequestBuilder pinRequest(PinRequest pinRequest) {
+        Utils.checkNotNull(pinRequest, "pinRequest");
+        this.pinRequest = pinRequest;
+        return this;
+    }
+
+
+    private com.glean.api_client.glean_api_client.models.operations.PinRequest buildRequest() {
+
+        com.glean.api_client.glean_api_client.models.operations.PinRequest request = new com.glean.api_client.glean_api_client.models.operations.PinRequest(locale,
+            pinRequest);
+
+        return request;
     }
 
     public PinResponse call() {
         
-        RequestOperation<PinRequest, PinResponse> operation
+        RequestOperation<com.glean.api_client.glean_api_client.models.operations.PinRequest, PinResponse> operation
               = new Pin.Sync(sdkConfiguration, _headers);
+        com.glean.api_client.glean_api_client.models.operations.PinRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

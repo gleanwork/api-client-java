@@ -11,10 +11,12 @@ import com.glean.api_client.glean_api_client.operations.Getchatfiles;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
+import java.lang.String;
 import java.util.Optional;
 
 public class GetchatfilesRequestBuilder {
 
+    private Optional<String> locale = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private GetChatFilesRequest getChatFilesRequest;
     private final SDKConfiguration sdkConfiguration;
@@ -22,6 +24,18 @@ public class GetchatfilesRequestBuilder {
 
     public GetchatfilesRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+    }
+                
+    public GetchatfilesRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
+        return this;
+    }
+
+    public GetchatfilesRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
     }
                 
     public GetchatfilesRequestBuilder timezoneOffset(long timezoneOffset) {
@@ -45,7 +59,8 @@ public class GetchatfilesRequestBuilder {
 
     private GetchatfilesRequest buildRequest() {
 
-        GetchatfilesRequest request = new GetchatfilesRequest(timezoneOffset,
+        GetchatfilesRequest request = new GetchatfilesRequest(locale,
+            timezoneOffset,
             getChatFilesRequest);
 
         return request;

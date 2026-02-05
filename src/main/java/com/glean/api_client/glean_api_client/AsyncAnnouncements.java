@@ -8,6 +8,9 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 import com.glean.api_client.glean_api_client.models.components.CreateAnnouncementRequest;
 import com.glean.api_client.glean_api_client.models.components.DeleteAnnouncementRequest;
 import com.glean.api_client.glean_api_client.models.components.UpdateAnnouncementRequest;
+import com.glean.api_client.glean_api_client.models.operations.CreateannouncementRequest;
+import com.glean.api_client.glean_api_client.models.operations.DeleteannouncementRequest;
+import com.glean.api_client.glean_api_client.models.operations.UpdateannouncementRequest;
 import com.glean.api_client.glean_api_client.models.operations.async.CreateannouncementRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.CreateannouncementResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.DeleteannouncementRequestBuilder;
@@ -18,6 +21,8 @@ import com.glean.api_client.glean_api_client.operations.Createannouncement;
 import com.glean.api_client.glean_api_client.operations.Deleteannouncement;
 import com.glean.api_client.glean_api_client.operations.Updateannouncement;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
@@ -57,11 +62,30 @@ public class AsyncAnnouncements {
      * 
      * <p>Create a textual announcement visible to some set of users based on department and location.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param createAnnouncementRequest 
      * @return {@code CompletableFuture<CreateannouncementResponse>} - The async response
      */
-    public CompletableFuture<CreateannouncementResponse> create(CreateAnnouncementRequest request) {
-        AsyncRequestOperation<CreateAnnouncementRequest, CreateannouncementResponse> operation
+    public CompletableFuture<CreateannouncementResponse> create(CreateAnnouncementRequest createAnnouncementRequest) {
+        return create(Optional.empty(), createAnnouncementRequest);
+    }
+
+    /**
+     * Create Announcement
+     * 
+     * <p>Create a textual announcement visible to some set of users based on department and location.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param createAnnouncementRequest 
+     * @return {@code CompletableFuture<CreateannouncementResponse>} - The async response
+     */
+    public CompletableFuture<CreateannouncementResponse> create(Optional<String> locale, CreateAnnouncementRequest createAnnouncementRequest) {
+        CreateannouncementRequest request =
+            CreateannouncementRequest
+                .builder()
+                .locale(locale)
+                .createAnnouncementRequest(createAnnouncementRequest)
+                .build();
+        AsyncRequestOperation<CreateannouncementRequest, CreateannouncementResponse> operation
               = new Createannouncement.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
@@ -84,11 +108,30 @@ public class AsyncAnnouncements {
      * 
      * <p>Delete an existing user-generated announcement.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param deleteAnnouncementRequest 
      * @return {@code CompletableFuture<DeleteannouncementResponse>} - The async response
      */
-    public CompletableFuture<DeleteannouncementResponse> delete(DeleteAnnouncementRequest request) {
-        AsyncRequestOperation<DeleteAnnouncementRequest, DeleteannouncementResponse> operation
+    public CompletableFuture<DeleteannouncementResponse> delete(DeleteAnnouncementRequest deleteAnnouncementRequest) {
+        return delete(Optional.empty(), deleteAnnouncementRequest);
+    }
+
+    /**
+     * Delete Announcement
+     * 
+     * <p>Delete an existing user-generated announcement.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param deleteAnnouncementRequest 
+     * @return {@code CompletableFuture<DeleteannouncementResponse>} - The async response
+     */
+    public CompletableFuture<DeleteannouncementResponse> delete(Optional<String> locale, DeleteAnnouncementRequest deleteAnnouncementRequest) {
+        DeleteannouncementRequest request =
+            DeleteannouncementRequest
+                .builder()
+                .locale(locale)
+                .deleteAnnouncementRequest(deleteAnnouncementRequest)
+                .build();
+        AsyncRequestOperation<DeleteannouncementRequest, DeleteannouncementResponse> operation
               = new Deleteannouncement.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
@@ -111,11 +154,30 @@ public class AsyncAnnouncements {
      * 
      * <p>Update a textual announcement visible to some set of users based on department and location.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param updateAnnouncementRequest 
      * @return {@code CompletableFuture<UpdateannouncementResponse>} - The async response
      */
-    public CompletableFuture<UpdateannouncementResponse> update(UpdateAnnouncementRequest request) {
-        AsyncRequestOperation<UpdateAnnouncementRequest, UpdateannouncementResponse> operation
+    public CompletableFuture<UpdateannouncementResponse> update(UpdateAnnouncementRequest updateAnnouncementRequest) {
+        return update(Optional.empty(), updateAnnouncementRequest);
+    }
+
+    /**
+     * Update Announcement
+     * 
+     * <p>Update a textual announcement visible to some set of users based on department and location.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param updateAnnouncementRequest 
+     * @return {@code CompletableFuture<UpdateannouncementResponse>} - The async response
+     */
+    public CompletableFuture<UpdateannouncementResponse> update(Optional<String> locale, UpdateAnnouncementRequest updateAnnouncementRequest) {
+        UpdateannouncementRequest request =
+            UpdateannouncementRequest
+                .builder()
+                .locale(locale)
+                .updateAnnouncementRequest(updateAnnouncementRequest)
+                .build();
+        AsyncRequestOperation<UpdateannouncementRequest, UpdateannouncementResponse> operation
               = new Updateannouncement.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

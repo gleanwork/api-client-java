@@ -10,27 +10,52 @@ import com.glean.api_client.glean_api_client.models.components.CreateShortcutReq
 import com.glean.api_client.glean_api_client.operations.Createshortcut;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class CreateshortcutRequestBuilder {
 
-    private CreateShortcutRequest request;
+    private Optional<String> locale = Optional.empty();
+    private CreateShortcutRequest createShortcutRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public CreateshortcutRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public CreateshortcutRequestBuilder request(CreateShortcutRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public CreateshortcutRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public CreateshortcutRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public CreateshortcutRequestBuilder createShortcutRequest(CreateShortcutRequest createShortcutRequest) {
+        Utils.checkNotNull(createShortcutRequest, "createShortcutRequest");
+        this.createShortcutRequest = createShortcutRequest;
+        return this;
+    }
+
+
+    private CreateshortcutRequest buildRequest() {
+
+        CreateshortcutRequest request = new CreateshortcutRequest(locale,
+            createShortcutRequest);
+
+        return request;
     }
 
     public CreateshortcutResponse call() {
         
-        RequestOperation<CreateShortcutRequest, CreateshortcutResponse> operation
+        RequestOperation<CreateshortcutRequest, CreateshortcutResponse> operation
               = new Createshortcut.Sync(sdkConfiguration, _headers);
+        CreateshortcutRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

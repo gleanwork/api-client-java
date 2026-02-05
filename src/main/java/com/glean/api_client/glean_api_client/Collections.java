@@ -13,20 +13,28 @@ import com.glean.api_client.glean_api_client.models.components.EditCollectionIte
 import com.glean.api_client.glean_api_client.models.components.EditCollectionRequest;
 import com.glean.api_client.glean_api_client.models.components.GetCollectionRequest;
 import com.glean.api_client.glean_api_client.models.components.ListCollectionsRequest;
+import com.glean.api_client.glean_api_client.models.operations.AddcollectionitemsRequest;
 import com.glean.api_client.glean_api_client.models.operations.AddcollectionitemsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.AddcollectionitemsResponse;
+import com.glean.api_client.glean_api_client.models.operations.CreatecollectionRequest;
 import com.glean.api_client.glean_api_client.models.operations.CreatecollectionRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.CreatecollectionResponse;
+import com.glean.api_client.glean_api_client.models.operations.DeletecollectionRequest;
 import com.glean.api_client.glean_api_client.models.operations.DeletecollectionRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.DeletecollectionResponse;
+import com.glean.api_client.glean_api_client.models.operations.DeletecollectionitemRequest;
 import com.glean.api_client.glean_api_client.models.operations.DeletecollectionitemRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.DeletecollectionitemResponse;
+import com.glean.api_client.glean_api_client.models.operations.EditcollectionRequest;
 import com.glean.api_client.glean_api_client.models.operations.EditcollectionRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.EditcollectionResponse;
+import com.glean.api_client.glean_api_client.models.operations.EditcollectionitemRequest;
 import com.glean.api_client.glean_api_client.models.operations.EditcollectionitemRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.EditcollectionitemResponse;
+import com.glean.api_client.glean_api_client.models.operations.GetcollectionRequest;
 import com.glean.api_client.glean_api_client.models.operations.GetcollectionRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.GetcollectionResponse;
+import com.glean.api_client.glean_api_client.models.operations.ListcollectionsRequest;
 import com.glean.api_client.glean_api_client.models.operations.ListcollectionsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.ListcollectionsResponse;
 import com.glean.api_client.glean_api_client.operations.Addcollectionitems;
@@ -38,6 +46,8 @@ import com.glean.api_client.glean_api_client.operations.Editcollectionitem;
 import com.glean.api_client.glean_api_client.operations.Getcollection;
 import com.glean.api_client.glean_api_client.operations.Listcollections;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import java.lang.String;
+import java.util.Optional;
 
 
 public class Collections {
@@ -75,12 +85,32 @@ public class Collections {
      * 
      * <p>Add items to a Collection.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param addCollectionItemsRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public AddcollectionitemsResponse addItems(AddCollectionItemsRequest request) {
-        RequestOperation<AddCollectionItemsRequest, AddcollectionitemsResponse> operation
+    public AddcollectionitemsResponse addItems(AddCollectionItemsRequest addCollectionItemsRequest) {
+        return addItems(Optional.empty(), addCollectionItemsRequest);
+    }
+
+    /**
+     * Add Collection item
+     * 
+     * <p>Add items to a Collection.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param addCollectionItemsRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AddcollectionitemsResponse addItems(Optional<String> locale, AddCollectionItemsRequest addCollectionItemsRequest) {
+        AddcollectionitemsRequest request =
+            AddcollectionitemsRequest
+                .builder()
+                .locale(locale)
+                .addCollectionItemsRequest(addCollectionItemsRequest)
+                .build();
+        RequestOperation<AddcollectionitemsRequest, AddcollectionitemsResponse> operation
               = new Addcollectionitems.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -101,12 +131,32 @@ public class Collections {
      * 
      * <p>Create a publicly visible (empty) Collection of documents.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param createCollectionRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public CreatecollectionResponse create(CreateCollectionRequest request) {
-        RequestOperation<CreateCollectionRequest, CreatecollectionResponse> operation
+    public CreatecollectionResponse create(CreateCollectionRequest createCollectionRequest) {
+        return create(Optional.empty(), createCollectionRequest);
+    }
+
+    /**
+     * Create Collection
+     * 
+     * <p>Create a publicly visible (empty) Collection of documents.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param createCollectionRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreatecollectionResponse create(Optional<String> locale, CreateCollectionRequest createCollectionRequest) {
+        CreatecollectionRequest request =
+            CreatecollectionRequest
+                .builder()
+                .locale(locale)
+                .createCollectionRequest(createCollectionRequest)
+                .build();
+        RequestOperation<CreatecollectionRequest, CreatecollectionResponse> operation
               = new Createcollection.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -127,12 +177,32 @@ public class Collections {
      * 
      * <p>Delete a Collection given the Collection's ID.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param deleteCollectionRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public DeletecollectionResponse delete(DeleteCollectionRequest request) {
-        RequestOperation<DeleteCollectionRequest, DeletecollectionResponse> operation
+    public DeletecollectionResponse delete(DeleteCollectionRequest deleteCollectionRequest) {
+        return delete(Optional.empty(), deleteCollectionRequest);
+    }
+
+    /**
+     * Delete Collection
+     * 
+     * <p>Delete a Collection given the Collection's ID.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param deleteCollectionRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeletecollectionResponse delete(Optional<String> locale, DeleteCollectionRequest deleteCollectionRequest) {
+        DeletecollectionRequest request =
+            DeletecollectionRequest
+                .builder()
+                .locale(locale)
+                .deleteCollectionRequest(deleteCollectionRequest)
+                .build();
+        RequestOperation<DeletecollectionRequest, DeletecollectionResponse> operation
               = new Deletecollection.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -153,12 +223,32 @@ public class Collections {
      * 
      * <p>Delete a single item from a Collection.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param deleteCollectionItemRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public DeletecollectionitemResponse deleteItem(DeleteCollectionItemRequest request) {
-        RequestOperation<DeleteCollectionItemRequest, DeletecollectionitemResponse> operation
+    public DeletecollectionitemResponse deleteItem(DeleteCollectionItemRequest deleteCollectionItemRequest) {
+        return deleteItem(Optional.empty(), deleteCollectionItemRequest);
+    }
+
+    /**
+     * Delete Collection item
+     * 
+     * <p>Delete a single item from a Collection.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param deleteCollectionItemRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeletecollectionitemResponse deleteItem(Optional<String> locale, DeleteCollectionItemRequest deleteCollectionItemRequest) {
+        DeletecollectionitemRequest request =
+            DeletecollectionitemRequest
+                .builder()
+                .locale(locale)
+                .deleteCollectionItemRequest(deleteCollectionItemRequest)
+                .build();
+        RequestOperation<DeletecollectionitemRequest, DeletecollectionitemResponse> operation
               = new Deletecollectionitem.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -179,12 +269,32 @@ public class Collections {
      * 
      * <p>Update the properties of an existing Collection.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param editCollectionRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public EditcollectionResponse update(EditCollectionRequest request) {
-        RequestOperation<EditCollectionRequest, EditcollectionResponse> operation
+    public EditcollectionResponse update(EditCollectionRequest editCollectionRequest) {
+        return update(Optional.empty(), editCollectionRequest);
+    }
+
+    /**
+     * Update Collection
+     * 
+     * <p>Update the properties of an existing Collection.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param editCollectionRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public EditcollectionResponse update(Optional<String> locale, EditCollectionRequest editCollectionRequest) {
+        EditcollectionRequest request =
+            EditcollectionRequest
+                .builder()
+                .locale(locale)
+                .editCollectionRequest(editCollectionRequest)
+                .build();
+        RequestOperation<EditcollectionRequest, EditcollectionResponse> operation
               = new Editcollection.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -205,12 +315,32 @@ public class Collections {
      * 
      * <p>Update the URL, Glean Document ID, description of an item within a Collection given its ID.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param editCollectionItemRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public EditcollectionitemResponse updateItem(EditCollectionItemRequest request) {
-        RequestOperation<EditCollectionItemRequest, EditcollectionitemResponse> operation
+    public EditcollectionitemResponse updateItem(EditCollectionItemRequest editCollectionItemRequest) {
+        return updateItem(Optional.empty(), editCollectionItemRequest);
+    }
+
+    /**
+     * Update Collection item
+     * 
+     * <p>Update the URL, Glean Document ID, description of an item within a Collection given its ID.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param editCollectionItemRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public EditcollectionitemResponse updateItem(Optional<String> locale, EditCollectionItemRequest editCollectionItemRequest) {
+        EditcollectionitemRequest request =
+            EditcollectionitemRequest
+                .builder()
+                .locale(locale)
+                .editCollectionItemRequest(editCollectionItemRequest)
+                .build();
+        RequestOperation<EditcollectionitemRequest, EditcollectionitemResponse> operation
               = new Editcollectionitem.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -231,12 +361,32 @@ public class Collections {
      * 
      * <p>Read the details of a Collection given its ID. Does not fetch items in this Collection.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param getCollectionRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetcollectionResponse retrieve(GetCollectionRequest request) {
-        RequestOperation<GetCollectionRequest, GetcollectionResponse> operation
+    public GetcollectionResponse retrieve(GetCollectionRequest getCollectionRequest) {
+        return retrieve(Optional.empty(), getCollectionRequest);
+    }
+
+    /**
+     * Read Collection
+     * 
+     * <p>Read the details of a Collection given its ID. Does not fetch items in this Collection.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param getCollectionRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetcollectionResponse retrieve(Optional<String> locale, GetCollectionRequest getCollectionRequest) {
+        GetcollectionRequest request =
+            GetcollectionRequest
+                .builder()
+                .locale(locale)
+                .getCollectionRequest(getCollectionRequest)
+                .build();
+        RequestOperation<GetcollectionRequest, GetcollectionResponse> operation
               = new Getcollection.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -257,12 +407,32 @@ public class Collections {
      * 
      * <p>List all existing Collections.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param listCollectionsRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public ListcollectionsResponse list(ListCollectionsRequest request) {
-        RequestOperation<ListCollectionsRequest, ListcollectionsResponse> operation
+    public ListcollectionsResponse list(ListCollectionsRequest listCollectionsRequest) {
+        return list(Optional.empty(), listCollectionsRequest);
+    }
+
+    /**
+     * List Collections
+     * 
+     * <p>List all existing Collections.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param listCollectionsRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListcollectionsResponse list(Optional<String> locale, ListCollectionsRequest listCollectionsRequest) {
+        ListcollectionsRequest request =
+            ListcollectionsRequest
+                .builder()
+                .locale(locale)
+                .listCollectionsRequest(listCollectionsRequest)
+                .build();
+        RequestOperation<ListcollectionsRequest, ListcollectionsResponse> operation
               = new Listcollections.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }

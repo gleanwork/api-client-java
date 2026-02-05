@@ -16,6 +16,15 @@ import java.util.Optional;
 
 public class DeletechatfilesRequest {
     /**
+     * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+     * `Accept-Language` will be used.
+     * 
+     * <p>If not present or not supported, defaults to the closest match or `en`.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=locale")
+    private Optional<String> locale;
+
+    /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours
      * behind UTC.
      */
@@ -28,17 +37,31 @@ public class DeletechatfilesRequest {
 
     @JsonCreator
     public DeletechatfilesRequest(
+            Optional<String> locale,
             Optional<Long> timezoneOffset,
             DeleteChatFilesRequest deleteChatFilesRequest) {
+        Utils.checkNotNull(locale, "locale");
         Utils.checkNotNull(timezoneOffset, "timezoneOffset");
         Utils.checkNotNull(deleteChatFilesRequest, "deleteChatFilesRequest");
+        this.locale = locale;
         this.timezoneOffset = timezoneOffset;
         this.deleteChatFilesRequest = deleteChatFilesRequest;
     }
     
     public DeletechatfilesRequest(
             DeleteChatFilesRequest deleteChatFilesRequest) {
-        this(Optional.empty(), deleteChatFilesRequest);
+        this(Optional.empty(), Optional.empty(), deleteChatFilesRequest);
+    }
+
+    /**
+     * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+     * `Accept-Language` will be used.
+     * 
+     * <p>If not present or not supported, defaults to the closest match or `en`.
+     */
+    @JsonIgnore
+    public Optional<String> locale() {
+        return locale;
     }
 
     /**
@@ -59,6 +82,31 @@ public class DeletechatfilesRequest {
         return new Builder();
     }
 
+
+    /**
+     * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+     * `Accept-Language` will be used.
+     * 
+     * <p>If not present or not supported, defaults to the closest match or `en`.
+     */
+    public DeletechatfilesRequest withLocale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.ofNullable(locale);
+        return this;
+    }
+
+
+    /**
+     * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+     * `Accept-Language` will be used.
+     * 
+     * <p>If not present or not supported, defaults to the closest match or `en`.
+     */
+    public DeletechatfilesRequest withLocale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
 
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours
@@ -97,6 +145,7 @@ public class DeletechatfilesRequest {
         }
         DeletechatfilesRequest other = (DeletechatfilesRequest) o;
         return 
+            Utils.enhancedDeepEquals(this.locale, other.locale) &&
             Utils.enhancedDeepEquals(this.timezoneOffset, other.timezoneOffset) &&
             Utils.enhancedDeepEquals(this.deleteChatFilesRequest, other.deleteChatFilesRequest);
     }
@@ -104,12 +153,13 @@ public class DeletechatfilesRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            timezoneOffset, deleteChatFilesRequest);
+            locale, timezoneOffset, deleteChatFilesRequest);
     }
     
     @Override
     public String toString() {
         return Utils.toString(DeletechatfilesRequest.class,
+                "locale", locale,
                 "timezoneOffset", timezoneOffset,
                 "deleteChatFilesRequest", deleteChatFilesRequest);
     }
@@ -117,12 +167,39 @@ public class DeletechatfilesRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
+        private Optional<String> locale = Optional.empty();
+
         private Optional<Long> timezoneOffset = Optional.empty();
 
         private DeleteChatFilesRequest deleteChatFilesRequest;
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+         * `Accept-Language` will be used.
+         * 
+         * <p>If not present or not supported, defaults to the closest match or `en`.
+         */
+        public Builder locale(String locale) {
+            Utils.checkNotNull(locale, "locale");
+            this.locale = Optional.ofNullable(locale);
+            return this;
+        }
+
+        /**
+         * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+         * `Accept-Language` will be used.
+         * 
+         * <p>If not present or not supported, defaults to the closest match or `en`.
+         */
+        public Builder locale(Optional<String> locale) {
+            Utils.checkNotNull(locale, "locale");
+            this.locale = locale;
+            return this;
         }
 
 
@@ -156,7 +233,7 @@ public class DeletechatfilesRequest {
         public DeletechatfilesRequest build() {
 
             return new DeletechatfilesRequest(
-                timezoneOffset, deleteChatFilesRequest);
+                locale, timezoneOffset, deleteChatFilesRequest);
         }
 
     }

@@ -9,6 +9,8 @@ import com.glean.api_client.glean_api_client.models.components.InsightsRequest;
 import com.glean.api_client.glean_api_client.models.operations.async.InsightsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.InsightsResponse;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
@@ -48,11 +50,30 @@ public class AsyncInsights {
      * 
      * <p>Gets the aggregate usage insights data displayed in the Insights Dashboards.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param insightsRequest 
      * @return {@code CompletableFuture<InsightsResponse>} - The async response
      */
-    public CompletableFuture<InsightsResponse> retrieve(InsightsRequest request) {
-        AsyncRequestOperation<InsightsRequest, InsightsResponse> operation
+    public CompletableFuture<InsightsResponse> retrieve(InsightsRequest insightsRequest) {
+        return retrieve(Optional.empty(), insightsRequest);
+    }
+
+    /**
+     * Get insights
+     * 
+     * <p>Gets the aggregate usage insights data displayed in the Insights Dashboards.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param insightsRequest 
+     * @return {@code CompletableFuture<InsightsResponse>} - The async response
+     */
+    public CompletableFuture<InsightsResponse> retrieve(Optional<String> locale, InsightsRequest insightsRequest) {
+        com.glean.api_client.glean_api_client.models.operations.InsightsRequest request =
+            com.glean.api_client.glean_api_client.models.operations.InsightsRequest
+                .builder()
+                .locale(locale)
+                .insightsRequest(insightsRequest)
+                .build();
+        AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.InsightsRequest, InsightsResponse> operation
               = new com.glean.api_client.glean_api_client.operations.Insights.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

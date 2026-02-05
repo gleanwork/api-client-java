@@ -9,27 +9,52 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.Unpin;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class UnpinRequestBuilder {
 
-    private Unpin request;
+    private Optional<String> locale = Optional.empty();
+    private Unpin unpin;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public UnpinRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public UnpinRequestBuilder request(Unpin request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public UnpinRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public UnpinRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public UnpinRequestBuilder unpin(Unpin unpin) {
+        Utils.checkNotNull(unpin, "unpin");
+        this.unpin = unpin;
+        return this;
+    }
+
+
+    private UnpinRequest buildRequest() {
+
+        UnpinRequest request = new UnpinRequest(locale,
+            unpin);
+
+        return request;
     }
 
     public UnpinResponse call() {
         
-        RequestOperation<Unpin, UnpinResponse> operation
+        RequestOperation<UnpinRequest, UnpinResponse> operation
               = new com.glean.api_client.glean_api_client.operations.Unpin.Sync(sdkConfiguration, _headers);
+        UnpinRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

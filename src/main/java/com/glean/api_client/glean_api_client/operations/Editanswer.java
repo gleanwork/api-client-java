@@ -11,8 +11,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
 import com.glean.api_client.glean_api_client.models.components.Answer;
-import com.glean.api_client.glean_api_client.models.components.EditAnswerRequest;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
+import com.glean.api_client.glean_api_client.models.operations.EditanswerRequest;
 import com.glean.api_client.glean_api_client.models.operations.EditanswerResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
@@ -85,7 +85,7 @@ public class Editanswer {
                     java.util.Optional.empty(),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/rest/api/v1/editanswer");
@@ -96,7 +96,7 @@ public class Editanswer {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "editAnswerRequest",
                     "json",
                     false);
             if (serializedRequestBody == null) {
@@ -106,6 +106,11 @@ public class Editanswer {
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
+
+            req.addQueryParams(Utils.getQueryParams(
+                    klass,
+                    request,
+                    null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -113,13 +118,13 @@ public class Editanswer {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<EditAnswerRequest, EditanswerResponse> {
+            implements RequestOperation<EditanswerRequest, EditanswerResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private HttpRequest onBuildRequest(EditAnswerRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<EditAnswerRequest>() {});
+        private HttpRequest onBuildRequest(EditanswerRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, EditanswerRequest.class, new TypeReference<EditanswerRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -135,7 +140,7 @@ public class Editanswer {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(EditAnswerRequest request) {
+        public HttpResponse<InputStream> doRequest(EditanswerRequest request) {
             HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
@@ -187,14 +192,14 @@ public class Editanswer {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<EditAnswerRequest, com.glean.api_client.glean_api_client.models.operations.async.EditanswerResponse> {
+            implements AsyncRequestOperation<EditanswerRequest, com.glean.api_client.glean_api_client.models.operations.async.EditanswerResponse> {
 
         public Async(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(EditAnswerRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<EditAnswerRequest>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(EditanswerRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, EditanswerRequest.class, new TypeReference<EditanswerRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -207,7 +212,7 @@ public class Editanswer {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(EditAnswerRequest request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(EditanswerRequest request) {
             return unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
                     .handle((resp, err) -> {
                         if (err != null) {

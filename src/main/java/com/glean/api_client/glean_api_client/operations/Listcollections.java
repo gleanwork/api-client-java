@@ -10,9 +10,9 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
-import com.glean.api_client.glean_api_client.models.components.ListCollectionsRequest;
 import com.glean.api_client.glean_api_client.models.components.ListCollectionsResponse;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
+import com.glean.api_client.glean_api_client.models.operations.ListcollectionsRequest;
 import com.glean.api_client.glean_api_client.models.operations.ListcollectionsResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
@@ -85,7 +85,7 @@ public class Listcollections {
                     java.util.Optional.empty(),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/rest/api/v1/listcollections");
@@ -96,7 +96,7 @@ public class Listcollections {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "listCollectionsRequest",
                     "json",
                     false);
             if (serializedRequestBody == null) {
@@ -106,6 +106,11 @@ public class Listcollections {
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
+
+            req.addQueryParams(Utils.getQueryParams(
+                    klass,
+                    request,
+                    null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -113,13 +118,13 @@ public class Listcollections {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<ListCollectionsRequest, ListcollectionsResponse> {
+            implements RequestOperation<ListcollectionsRequest, ListcollectionsResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private HttpRequest onBuildRequest(ListCollectionsRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<ListCollectionsRequest>() {});
+        private HttpRequest onBuildRequest(ListcollectionsRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, ListcollectionsRequest.class, new TypeReference<ListcollectionsRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -135,7 +140,7 @@ public class Listcollections {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(ListCollectionsRequest request) {
+        public HttpResponse<InputStream> doRequest(ListcollectionsRequest request) {
             HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
@@ -187,14 +192,14 @@ public class Listcollections {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<ListCollectionsRequest, com.glean.api_client.glean_api_client.models.operations.async.ListcollectionsResponse> {
+            implements AsyncRequestOperation<ListcollectionsRequest, com.glean.api_client.glean_api_client.models.operations.async.ListcollectionsResponse> {
 
         public Async(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(ListCollectionsRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<ListCollectionsRequest>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(ListcollectionsRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, ListcollectionsRequest.class, new TypeReference<ListcollectionsRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -207,7 +212,7 @@ public class Listcollections {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(ListCollectionsRequest request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(ListcollectionsRequest request) {
             return unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
                     .handle((resp, err) -> {
                         if (err != null) {

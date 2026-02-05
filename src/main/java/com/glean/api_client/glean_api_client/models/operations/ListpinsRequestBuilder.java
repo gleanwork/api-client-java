@@ -9,27 +9,52 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.operations.Listpins;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class ListpinsRequestBuilder {
 
-    private ListpinsRequest request;
+    private Optional<String> locale = Optional.empty();
+    private ListpinsRequestBody requestBody;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public ListpinsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public ListpinsRequestBuilder request(ListpinsRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public ListpinsRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public ListpinsRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public ListpinsRequestBuilder requestBody(ListpinsRequestBody requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
+        return this;
+    }
+
+
+    private ListpinsRequest buildRequest() {
+
+        ListpinsRequest request = new ListpinsRequest(locale,
+            requestBody);
+
+        return request;
     }
 
     public ListpinsResponse call() {
         
         RequestOperation<ListpinsRequest, ListpinsResponse> operation
               = new Listpins.Sync(sdkConfiguration, _headers);
+        ListpinsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

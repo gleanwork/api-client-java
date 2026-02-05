@@ -10,27 +10,52 @@ import com.glean.api_client.glean_api_client.models.components.DeleteAnnouncemen
 import com.glean.api_client.glean_api_client.operations.Deleteannouncement;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class DeleteannouncementRequestBuilder {
 
-    private DeleteAnnouncementRequest request;
+    private Optional<String> locale = Optional.empty();
+    private DeleteAnnouncementRequest deleteAnnouncementRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public DeleteannouncementRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public DeleteannouncementRequestBuilder request(DeleteAnnouncementRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public DeleteannouncementRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public DeleteannouncementRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public DeleteannouncementRequestBuilder deleteAnnouncementRequest(DeleteAnnouncementRequest deleteAnnouncementRequest) {
+        Utils.checkNotNull(deleteAnnouncementRequest, "deleteAnnouncementRequest");
+        this.deleteAnnouncementRequest = deleteAnnouncementRequest;
+        return this;
+    }
+
+
+    private DeleteannouncementRequest buildRequest() {
+
+        DeleteannouncementRequest request = new DeleteannouncementRequest(locale,
+            deleteAnnouncementRequest);
+
+        return request;
     }
 
     public DeleteannouncementResponse call() {
         
-        RequestOperation<DeleteAnnouncementRequest, DeleteannouncementResponse> operation
+        RequestOperation<DeleteannouncementRequest, DeleteannouncementResponse> operation
               = new Deleteannouncement.Sync(sdkConfiguration, _headers);
+        DeleteannouncementRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

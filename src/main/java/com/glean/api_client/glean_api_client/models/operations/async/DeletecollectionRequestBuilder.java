@@ -7,31 +7,57 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.DeleteCollectionRequest;
+import com.glean.api_client.glean_api_client.models.operations.DeletecollectionRequest;
 import com.glean.api_client.glean_api_client.operations.Deletecollection;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class DeletecollectionRequestBuilder {
 
-    private DeleteCollectionRequest request;
+    private Optional<String> locale = Optional.empty();
+    private DeleteCollectionRequest deleteCollectionRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public DeletecollectionRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public DeletecollectionRequestBuilder request(DeleteCollectionRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public DeletecollectionRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public DeletecollectionRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public DeletecollectionRequestBuilder deleteCollectionRequest(DeleteCollectionRequest deleteCollectionRequest) {
+        Utils.checkNotNull(deleteCollectionRequest, "deleteCollectionRequest");
+        this.deleteCollectionRequest = deleteCollectionRequest;
+        return this;
+    }
+
+
+    private DeletecollectionRequest buildRequest() {
+
+        DeletecollectionRequest request = new DeletecollectionRequest(locale,
+            deleteCollectionRequest);
+
+        return request;
     }
 
     public CompletableFuture<DeletecollectionResponse> call() {
         
-        AsyncRequestOperation<DeleteCollectionRequest, DeletecollectionResponse> operation
+        AsyncRequestOperation<DeletecollectionRequest, DeletecollectionResponse> operation
               = new Deletecollection.Async(sdkConfiguration, _headers);
+        DeletecollectionRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

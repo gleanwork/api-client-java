@@ -204,35 +204,6 @@ public class Glean {
 
             return this;
         }
-
-        /**
-         * Exclude API endpoints that will be deprecated after this date.
-         * Use this to test your integration against upcoming deprecations.
-         *
-         * <p>More information: <a href="https://developers.glean.com/deprecations/overview">Deprecations Overview</a>
-         *
-         * @param excludeDeprecatedAfter date string in YYYY-MM-DD format (e.g., '2026-10-15')
-         * @return The builder instance.
-         */
-        public Builder excludeDeprecatedAfter(String excludeDeprecatedAfter) {
-            this.sdkConfiguration.setExcludeDeprecatedAfter(Optional.of(excludeDeprecatedAfter));
-            return this;
-        }
-
-        /**
-         * Enable experimental API features that are not yet generally available.
-         * Use this to preview and test new functionality.
-         *
-         * <p><strong>Warning:</strong> Experimental features may change or be removed without notice.
-         * Do not rely on experimental features in production environments.
-         *
-         * @param includeExperimental whether to include experimental features
-         * @return The builder instance.
-         */
-        public Builder includeExperimental(boolean includeExperimental) {
-            this.sdkConfiguration.setIncludeExperimental(Optional.of(includeExperimental));
-            return this;
-        }
         // Visible for testing, may be accessed via reflection in tests
         Builder _hooks(com.glean.api_client.glean_api_client.utils.Hooks hooks) {
             sdkConfiguration.setHooks(hooks);  

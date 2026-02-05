@@ -15,6 +15,7 @@ import java.util.Optional;
 
 public class GetAgentSchemasRequestBuilder {
 
+    private Optional<String> locale = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private String agentId;
     private final SDKConfiguration sdkConfiguration;
@@ -22,6 +23,18 @@ public class GetAgentSchemasRequestBuilder {
 
     public GetAgentSchemasRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+    }
+                
+    public GetAgentSchemasRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
+        return this;
+    }
+
+    public GetAgentSchemasRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
     }
                 
     public GetAgentSchemasRequestBuilder timezoneOffset(long timezoneOffset) {
@@ -45,7 +58,8 @@ public class GetAgentSchemasRequestBuilder {
 
     private GetAgentSchemasRequest buildRequest() {
 
-        GetAgentSchemasRequest request = new GetAgentSchemasRequest(timezoneOffset,
+        GetAgentSchemasRequest request = new GetAgentSchemasRequest(locale,
+            timezoneOffset,
             agentId);
 
         return request;

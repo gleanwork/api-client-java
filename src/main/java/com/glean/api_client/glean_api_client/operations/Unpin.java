@@ -11,6 +11,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
+import com.glean.api_client.glean_api_client.models.operations.UnpinRequest;
 import com.glean.api_client.glean_api_client.models.operations.UnpinResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
@@ -83,7 +84,7 @@ public class Unpin {
                     java.util.Optional.empty(),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/rest/api/v1/unpin");
@@ -94,7 +95,7 @@ public class Unpin {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "unpin",
                     "json",
                     false);
             if (serializedRequestBody == null) {
@@ -104,6 +105,11 @@ public class Unpin {
             req.addHeader("Accept", "*/*")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
+
+            req.addQueryParams(Utils.getQueryParams(
+                    klass,
+                    request,
+                    null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -111,13 +117,13 @@ public class Unpin {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<com.glean.api_client.glean_api_client.models.components.Unpin, UnpinResponse> {
+            implements RequestOperation<UnpinRequest, UnpinResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private HttpRequest onBuildRequest(com.glean.api_client.glean_api_client.models.components.Unpin request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<com.glean.api_client.glean_api_client.models.components.Unpin>() {});
+        private HttpRequest onBuildRequest(UnpinRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, UnpinRequest.class, new TypeReference<UnpinRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -133,7 +139,7 @@ public class Unpin {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(com.glean.api_client.glean_api_client.models.components.Unpin request) {
+        public HttpResponse<InputStream> doRequest(UnpinRequest request) {
             HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
@@ -182,14 +188,14 @@ public class Unpin {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<com.glean.api_client.glean_api_client.models.components.Unpin, com.glean.api_client.glean_api_client.models.operations.async.UnpinResponse> {
+            implements AsyncRequestOperation<UnpinRequest, com.glean.api_client.glean_api_client.models.operations.async.UnpinResponse> {
 
         public Async(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(com.glean.api_client.glean_api_client.models.components.Unpin request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<com.glean.api_client.glean_api_client.models.components.Unpin>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(UnpinRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, UnpinRequest.class, new TypeReference<UnpinRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -202,7 +208,7 @@ public class Unpin {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(com.glean.api_client.glean_api_client.models.components.Unpin request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(UnpinRequest request) {
             return unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
                     .handle((resp, err) -> {
                         if (err != null) {

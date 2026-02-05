@@ -52,6 +52,7 @@ import com.glean.api_client.glean_api_client.operations.Listchats;
 import com.glean.api_client.glean_api_client.operations.Uploadchatfiles;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Long;
+import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -96,7 +97,7 @@ public class AsyncChat {
      * @return {@code CompletableFuture<ChatResponse>} - The async response
      */
     public CompletableFuture<ChatResponse> create(ChatRequest chatRequest) {
-        return create(Optional.empty(), chatRequest);
+        return create(Optional.empty(), Optional.empty(), chatRequest);
     }
 
     /**
@@ -104,14 +105,18 @@ public class AsyncChat {
      * 
      * <p>Have a conversation with Glean AI.
      * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param chatRequest The minimal set of fields that form a chat request.
      * @return {@code CompletableFuture<ChatResponse>} - The async response
      */
-    public CompletableFuture<ChatResponse> create(Optional<Long> timezoneOffset, ChatRequest chatRequest) {
+    public CompletableFuture<ChatResponse> create(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            ChatRequest chatRequest) {
         com.glean.api_client.glean_api_client.models.operations.ChatRequest request =
             com.glean.api_client.glean_api_client.models.operations.ChatRequest
                 .builder()
+                .locale(locale)
                 .timezoneOffset(timezoneOffset)
                 .chatRequest(chatRequest)
                 .build();
@@ -141,7 +146,7 @@ public class AsyncChat {
      * @return {@code CompletableFuture<DeleteallchatsResponse>} - The async response
      */
     public CompletableFuture<DeleteallchatsResponse> deleteAllDirect() {
-        return deleteAll(Optional.empty());
+        return deleteAll(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -149,13 +154,15 @@ public class AsyncChat {
      * 
      * <p>Deletes all saved Chats a user has had and all their contained conversational content.
      * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @return {@code CompletableFuture<DeleteallchatsResponse>} - The async response
      */
-    public CompletableFuture<DeleteallchatsResponse> deleteAll(Optional<Long> timezoneOffset) {
+    public CompletableFuture<DeleteallchatsResponse> deleteAll(Optional<String> locale, Optional<Long> timezoneOffset) {
         DeleteallchatsRequest request =
             DeleteallchatsRequest
                 .builder()
+                .locale(locale)
                 .timezoneOffset(timezoneOffset)
                 .build();
         AsyncRequestOperation<DeleteallchatsRequest, DeleteallchatsResponse> operation
@@ -185,7 +192,7 @@ public class AsyncChat {
      * @return {@code CompletableFuture<DeletechatsResponse>} - The async response
      */
     public CompletableFuture<DeletechatsResponse> delete(DeleteChatsRequest deleteChatsRequest) {
-        return delete(Optional.empty(), deleteChatsRequest);
+        return delete(Optional.empty(), Optional.empty(), deleteChatsRequest);
     }
 
     /**
@@ -193,14 +200,18 @@ public class AsyncChat {
      * 
      * <p>Deletes saved Chats and all their contained conversational content.
      * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param deleteChatsRequest 
      * @return {@code CompletableFuture<DeletechatsResponse>} - The async response
      */
-    public CompletableFuture<DeletechatsResponse> delete(Optional<Long> timezoneOffset, DeleteChatsRequest deleteChatsRequest) {
+    public CompletableFuture<DeletechatsResponse> delete(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            DeleteChatsRequest deleteChatsRequest) {
         DeletechatsRequest request =
             DeletechatsRequest
                 .builder()
+                .locale(locale)
                 .timezoneOffset(timezoneOffset)
                 .deleteChatsRequest(deleteChatsRequest)
                 .build();
@@ -231,7 +242,7 @@ public class AsyncChat {
      * @return {@code CompletableFuture<GetchatResponse>} - The async response
      */
     public CompletableFuture<GetchatResponse> retrieve(GetChatRequest getChatRequest) {
-        return retrieve(Optional.empty(), getChatRequest);
+        return retrieve(Optional.empty(), Optional.empty(), getChatRequest);
     }
 
     /**
@@ -239,14 +250,18 @@ public class AsyncChat {
      * 
      * <p>Retrieves the chat history between Glean Assistant and the user for a given Chat.
      * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param getChatRequest 
      * @return {@code CompletableFuture<GetchatResponse>} - The async response
      */
-    public CompletableFuture<GetchatResponse> retrieve(Optional<Long> timezoneOffset, GetChatRequest getChatRequest) {
+    public CompletableFuture<GetchatResponse> retrieve(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            GetChatRequest getChatRequest) {
         GetchatRequest request =
             GetchatRequest
                 .builder()
+                .locale(locale)
                 .timezoneOffset(timezoneOffset)
                 .getChatRequest(getChatRequest)
                 .build();
@@ -278,7 +293,7 @@ public class AsyncChat {
      * @return {@code CompletableFuture<ListchatsResponse>} - The async response
      */
     public CompletableFuture<ListchatsResponse> listDirect() {
-        return list(Optional.empty());
+        return list(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -287,13 +302,15 @@ public class AsyncChat {
      * <p>Retrieves all the saved Chats between Glean Assistant and the user. The returned Chats contain only
      * metadata and no conversational content.
      * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @return {@code CompletableFuture<ListchatsResponse>} - The async response
      */
-    public CompletableFuture<ListchatsResponse> list(Optional<Long> timezoneOffset) {
+    public CompletableFuture<ListchatsResponse> list(Optional<String> locale, Optional<Long> timezoneOffset) {
         ListchatsRequest request =
             ListchatsRequest
                 .builder()
+                .locale(locale)
                 .timezoneOffset(timezoneOffset)
                 .build();
         AsyncRequestOperation<ListchatsRequest, ListchatsResponse> operation
@@ -323,7 +340,7 @@ public class AsyncChat {
      * @return {@code CompletableFuture<GetchatapplicationResponse>} - The async response
      */
     public CompletableFuture<GetchatapplicationResponse> retrieveApplication(GetChatApplicationRequest getChatApplicationRequest) {
-        return retrieveApplication(Optional.empty(), getChatApplicationRequest);
+        return retrieveApplication(Optional.empty(), Optional.empty(), getChatApplicationRequest);
     }
 
     /**
@@ -331,14 +348,18 @@ public class AsyncChat {
      * 
      * <p>Gets the Chat application details for the specified application ID.
      * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param getChatApplicationRequest 
      * @return {@code CompletableFuture<GetchatapplicationResponse>} - The async response
      */
-    public CompletableFuture<GetchatapplicationResponse> retrieveApplication(Optional<Long> timezoneOffset, GetChatApplicationRequest getChatApplicationRequest) {
+    public CompletableFuture<GetchatapplicationResponse> retrieveApplication(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            GetChatApplicationRequest getChatApplicationRequest) {
         GetchatapplicationRequest request =
             GetchatapplicationRequest
                 .builder()
+                .locale(locale)
                 .timezoneOffset(timezoneOffset)
                 .getChatApplicationRequest(getChatApplicationRequest)
                 .build();
@@ -369,7 +390,7 @@ public class AsyncChat {
      * @return {@code CompletableFuture<UploadchatfilesResponse>} - The async response
      */
     public CompletableFuture<UploadchatfilesResponse> uploadFiles(UploadChatFilesRequest uploadChatFilesRequest) {
-        return uploadFiles(Optional.empty(), uploadChatFilesRequest);
+        return uploadFiles(Optional.empty(), Optional.empty(), uploadChatFilesRequest);
     }
 
     /**
@@ -377,14 +398,18 @@ public class AsyncChat {
      * 
      * <p>Upload files for Chat.
      * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param uploadChatFilesRequest 
      * @return {@code CompletableFuture<UploadchatfilesResponse>} - The async response
      */
-    public CompletableFuture<UploadchatfilesResponse> uploadFiles(Optional<Long> timezoneOffset, UploadChatFilesRequest uploadChatFilesRequest) {
+    public CompletableFuture<UploadchatfilesResponse> uploadFiles(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            UploadChatFilesRequest uploadChatFilesRequest) {
         UploadchatfilesRequest request =
             UploadchatfilesRequest
                 .builder()
+                .locale(locale)
                 .timezoneOffset(timezoneOffset)
                 .uploadChatFilesRequest(uploadChatFilesRequest)
                 .build();
@@ -415,7 +440,7 @@ public class AsyncChat {
      * @return {@code CompletableFuture<GetchatfilesResponse>} - The async response
      */
     public CompletableFuture<GetchatfilesResponse> retrieveFiles(GetChatFilesRequest getChatFilesRequest) {
-        return retrieveFiles(Optional.empty(), getChatFilesRequest);
+        return retrieveFiles(Optional.empty(), Optional.empty(), getChatFilesRequest);
     }
 
     /**
@@ -423,14 +448,18 @@ public class AsyncChat {
      * 
      * <p>Get files uploaded by a user for Chat.
      * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param getChatFilesRequest 
      * @return {@code CompletableFuture<GetchatfilesResponse>} - The async response
      */
-    public CompletableFuture<GetchatfilesResponse> retrieveFiles(Optional<Long> timezoneOffset, GetChatFilesRequest getChatFilesRequest) {
+    public CompletableFuture<GetchatfilesResponse> retrieveFiles(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            GetChatFilesRequest getChatFilesRequest) {
         GetchatfilesRequest request =
             GetchatfilesRequest
                 .builder()
+                .locale(locale)
                 .timezoneOffset(timezoneOffset)
                 .getChatFilesRequest(getChatFilesRequest)
                 .build();
@@ -461,7 +490,7 @@ public class AsyncChat {
      * @return {@code CompletableFuture<DeletechatfilesResponse>} - The async response
      */
     public CompletableFuture<DeletechatfilesResponse> deleteFiles(DeleteChatFilesRequest deleteChatFilesRequest) {
-        return deleteFiles(Optional.empty(), deleteChatFilesRequest);
+        return deleteFiles(Optional.empty(), Optional.empty(), deleteChatFilesRequest);
     }
 
     /**
@@ -469,14 +498,18 @@ public class AsyncChat {
      * 
      * <p>Delete files uploaded by a user for Chat.
      * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param deleteChatFilesRequest 
      * @return {@code CompletableFuture<DeletechatfilesResponse>} - The async response
      */
-    public CompletableFuture<DeletechatfilesResponse> deleteFiles(Optional<Long> timezoneOffset, DeleteChatFilesRequest deleteChatFilesRequest) {
+    public CompletableFuture<DeletechatfilesResponse> deleteFiles(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            DeleteChatFilesRequest deleteChatFilesRequest) {
         DeletechatfilesRequest request =
             DeletechatfilesRequest
                 .builder()
+                .locale(locale)
                 .timezoneOffset(timezoneOffset)
                 .deleteChatFilesRequest(deleteChatFilesRequest)
                 .build();

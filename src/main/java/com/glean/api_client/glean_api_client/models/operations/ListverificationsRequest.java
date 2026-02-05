@@ -20,15 +20,27 @@ public class ListverificationsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=count")
     private Optional<Long> count;
 
+    /**
+     * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+     * `Accept-Language` will be used.
+     * 
+     * <p>If not present or not supported, defaults to the closest match or `en`.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=locale")
+    private Optional<String> locale;
+
     @JsonCreator
     public ListverificationsRequest(
-            Optional<Long> count) {
+            Optional<Long> count,
+            Optional<String> locale) {
         Utils.checkNotNull(count, "count");
+        Utils.checkNotNull(locale, "locale");
         this.count = count;
+        this.locale = locale;
     }
     
     public ListverificationsRequest() {
-        this(Optional.empty());
+        this(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -37,6 +49,17 @@ public class ListverificationsRequest {
     @JsonIgnore
     public Optional<Long> count() {
         return count;
+    }
+
+    /**
+     * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+     * `Accept-Language` will be used.
+     * 
+     * <p>If not present or not supported, defaults to the closest match or `en`.
+     */
+    @JsonIgnore
+    public Optional<String> locale() {
+        return locale;
     }
 
     public static Builder builder() {
@@ -63,6 +86,31 @@ public class ListverificationsRequest {
         return this;
     }
 
+    /**
+     * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+     * `Accept-Language` will be used.
+     * 
+     * <p>If not present or not supported, defaults to the closest match or `en`.
+     */
+    public ListverificationsRequest withLocale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.ofNullable(locale);
+        return this;
+    }
+
+
+    /**
+     * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+     * `Accept-Language` will be used.
+     * 
+     * <p>If not present or not supported, defaults to the closest match or `en`.
+     */
+    public ListverificationsRequest withLocale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -73,25 +121,29 @@ public class ListverificationsRequest {
         }
         ListverificationsRequest other = (ListverificationsRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.count, other.count);
+            Utils.enhancedDeepEquals(this.count, other.count) &&
+            Utils.enhancedDeepEquals(this.locale, other.locale);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            count);
+            count, locale);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ListverificationsRequest.class,
-                "count", count);
+                "count", count,
+                "locale", locale);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
         private Optional<Long> count = Optional.empty();
+
+        private Optional<String> locale = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -116,10 +168,35 @@ public class ListverificationsRequest {
             return this;
         }
 
+
+        /**
+         * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+         * `Accept-Language` will be used.
+         * 
+         * <p>If not present or not supported, defaults to the closest match or `en`.
+         */
+        public Builder locale(String locale) {
+            Utils.checkNotNull(locale, "locale");
+            this.locale = Optional.ofNullable(locale);
+            return this;
+        }
+
+        /**
+         * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+         * `Accept-Language` will be used.
+         * 
+         * <p>If not present or not supported, defaults to the closest match or `en`.
+         */
+        public Builder locale(Optional<String> locale) {
+            Utils.checkNotNull(locale, "locale");
+            this.locale = locale;
+            return this;
+        }
+
         public ListverificationsRequest build() {
 
             return new ListverificationsRequest(
-                count);
+                count, locale);
         }
 
     }

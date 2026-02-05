@@ -10,10 +10,10 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
-import com.glean.api_client.glean_api_client.models.components.SearchRequest;
 import com.glean.api_client.glean_api_client.models.components.SearchResponse;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
 import com.glean.api_client.glean_api_client.models.errors.GleanDataError;
+import com.glean.api_client.glean_api_client.models.operations.AdminsearchRequest;
 import com.glean.api_client.glean_api_client.models.operations.AdminsearchResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
@@ -86,7 +86,7 @@ public class Adminsearch {
                     java.util.Optional.empty(),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/rest/api/v1/adminsearch");
@@ -97,7 +97,7 @@ public class Adminsearch {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "searchRequest",
                     "json",
                     false);
             if (serializedRequestBody == null) {
@@ -107,6 +107,11 @@ public class Adminsearch {
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
+
+            req.addQueryParams(Utils.getQueryParams(
+                    klass,
+                    request,
+                    null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -114,13 +119,13 @@ public class Adminsearch {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<SearchRequest, AdminsearchResponse> {
+            implements RequestOperation<AdminsearchRequest, AdminsearchResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private HttpRequest onBuildRequest(SearchRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<SearchRequest>() {});
+        private HttpRequest onBuildRequest(AdminsearchRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, AdminsearchRequest.class, new TypeReference<AdminsearchRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -136,7 +141,7 @@ public class Adminsearch {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(SearchRequest request) {
+        public HttpResponse<InputStream> doRequest(AdminsearchRequest request) {
             HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
@@ -195,14 +200,14 @@ public class Adminsearch {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<SearchRequest, com.glean.api_client.glean_api_client.models.operations.async.AdminsearchResponse> {
+            implements AsyncRequestOperation<AdminsearchRequest, com.glean.api_client.glean_api_client.models.operations.async.AdminsearchResponse> {
 
         public Async(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(SearchRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<SearchRequest>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(AdminsearchRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, AdminsearchRequest.class, new TypeReference<AdminsearchRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -215,7 +220,7 @@ public class Adminsearch {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(SearchRequest request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(AdminsearchRequest request) {
             return unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
                     .handle((resp, err) -> {
                         if (err != null) {

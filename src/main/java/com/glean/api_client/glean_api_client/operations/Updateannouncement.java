@@ -11,8 +11,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
 import com.glean.api_client.glean_api_client.models.components.Announcement;
-import com.glean.api_client.glean_api_client.models.components.UpdateAnnouncementRequest;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
+import com.glean.api_client.glean_api_client.models.operations.UpdateannouncementRequest;
 import com.glean.api_client.glean_api_client.models.operations.UpdateannouncementResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
@@ -85,7 +85,7 @@ public class Updateannouncement {
                     java.util.Optional.empty(),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/rest/api/v1/updateannouncement");
@@ -96,7 +96,7 @@ public class Updateannouncement {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "updateAnnouncementRequest",
                     "json",
                     false);
             if (serializedRequestBody == null) {
@@ -106,6 +106,11 @@ public class Updateannouncement {
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
+
+            req.addQueryParams(Utils.getQueryParams(
+                    klass,
+                    request,
+                    null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -113,13 +118,13 @@ public class Updateannouncement {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<UpdateAnnouncementRequest, UpdateannouncementResponse> {
+            implements RequestOperation<UpdateannouncementRequest, UpdateannouncementResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private HttpRequest onBuildRequest(UpdateAnnouncementRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<UpdateAnnouncementRequest>() {});
+        private HttpRequest onBuildRequest(UpdateannouncementRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, UpdateannouncementRequest.class, new TypeReference<UpdateannouncementRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -135,7 +140,7 @@ public class Updateannouncement {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(UpdateAnnouncementRequest request) {
+        public HttpResponse<InputStream> doRequest(UpdateannouncementRequest request) {
             HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
@@ -187,14 +192,14 @@ public class Updateannouncement {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<UpdateAnnouncementRequest, com.glean.api_client.glean_api_client.models.operations.async.UpdateannouncementResponse> {
+            implements AsyncRequestOperation<UpdateannouncementRequest, com.glean.api_client.glean_api_client.models.operations.async.UpdateannouncementResponse> {
 
         public Async(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(UpdateAnnouncementRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<UpdateAnnouncementRequest>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(UpdateannouncementRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, UpdateannouncementRequest.class, new TypeReference<UpdateannouncementRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -207,7 +212,7 @@ public class Updateannouncement {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(UpdateAnnouncementRequest request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(UpdateannouncementRequest request) {
             return unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
                     .handle((resp, err) -> {
                         if (err != null) {

@@ -10,27 +10,52 @@ import com.glean.api_client.glean_api_client.models.components.ListAnswersReques
 import com.glean.api_client.glean_api_client.operations.Listanswers;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class ListanswersRequestBuilder {
 
-    private ListAnswersRequest request;
+    private Optional<String> locale = Optional.empty();
+    private ListAnswersRequest listAnswersRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public ListanswersRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public ListanswersRequestBuilder request(ListAnswersRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public ListanswersRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public ListanswersRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public ListanswersRequestBuilder listAnswersRequest(ListAnswersRequest listAnswersRequest) {
+        Utils.checkNotNull(listAnswersRequest, "listAnswersRequest");
+        this.listAnswersRequest = listAnswersRequest;
+        return this;
+    }
+
+
+    private ListanswersRequest buildRequest() {
+
+        ListanswersRequest request = new ListanswersRequest(locale,
+            listAnswersRequest);
+
+        return request;
     }
 
     public ListanswersResponse call() {
         
-        RequestOperation<ListAnswersRequest, ListanswersResponse> operation
+        RequestOperation<ListanswersRequest, ListanswersResponse> operation
               = new Listanswers.Sync(sdkConfiguration, _headers);
+        ListanswersRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }
