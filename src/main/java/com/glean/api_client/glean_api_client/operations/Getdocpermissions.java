@@ -10,9 +10,9 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
-import com.glean.api_client.glean_api_client.models.components.GetDocPermissionsRequest;
 import com.glean.api_client.glean_api_client.models.components.GetDocPermissionsResponse;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
+import com.glean.api_client.glean_api_client.models.operations.GetdocpermissionsRequest;
 import com.glean.api_client.glean_api_client.models.operations.GetdocpermissionsResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
@@ -85,7 +85,7 @@ public class Getdocpermissions {
                     java.util.Optional.empty(),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/rest/api/v1/getdocpermissions");
@@ -96,7 +96,7 @@ public class Getdocpermissions {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "getDocPermissionsRequest",
                     "json",
                     false);
             if (serializedRequestBody == null) {
@@ -106,6 +106,11 @@ public class Getdocpermissions {
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
+
+            req.addQueryParams(Utils.getQueryParams(
+                    klass,
+                    request,
+                    null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -113,13 +118,13 @@ public class Getdocpermissions {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<GetDocPermissionsRequest, GetdocpermissionsResponse> {
+            implements RequestOperation<GetdocpermissionsRequest, GetdocpermissionsResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private HttpRequest onBuildRequest(GetDocPermissionsRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<GetDocPermissionsRequest>() {});
+        private HttpRequest onBuildRequest(GetdocpermissionsRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, GetdocpermissionsRequest.class, new TypeReference<GetdocpermissionsRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -135,7 +140,7 @@ public class Getdocpermissions {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(GetDocPermissionsRequest request) {
+        public HttpResponse<InputStream> doRequest(GetdocpermissionsRequest request) {
             HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
@@ -187,14 +192,14 @@ public class Getdocpermissions {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<GetDocPermissionsRequest, com.glean.api_client.glean_api_client.models.operations.async.GetdocpermissionsResponse> {
+            implements AsyncRequestOperation<GetdocpermissionsRequest, com.glean.api_client.glean_api_client.models.operations.async.GetdocpermissionsResponse> {
 
         public Async(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(GetDocPermissionsRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<GetDocPermissionsRequest>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(GetdocpermissionsRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, GetdocpermissionsRequest.class, new TypeReference<GetdocpermissionsRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -207,7 +212,7 @@ public class Getdocpermissions {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(GetDocPermissionsRequest request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(GetdocpermissionsRequest request) {
             return unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
                     .handle((resp, err) -> {
                         if (err != null) {

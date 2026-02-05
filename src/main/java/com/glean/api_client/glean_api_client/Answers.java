@@ -10,14 +10,19 @@ import com.glean.api_client.glean_api_client.models.components.DeleteAnswerReque
 import com.glean.api_client.glean_api_client.models.components.EditAnswerRequest;
 import com.glean.api_client.glean_api_client.models.components.GetAnswerRequest;
 import com.glean.api_client.glean_api_client.models.components.ListAnswersRequest;
+import com.glean.api_client.glean_api_client.models.operations.CreateanswerRequest;
 import com.glean.api_client.glean_api_client.models.operations.CreateanswerRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.CreateanswerResponse;
+import com.glean.api_client.glean_api_client.models.operations.DeleteanswerRequest;
 import com.glean.api_client.glean_api_client.models.operations.DeleteanswerRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.DeleteanswerResponse;
+import com.glean.api_client.glean_api_client.models.operations.EditanswerRequest;
 import com.glean.api_client.glean_api_client.models.operations.EditanswerRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.EditanswerResponse;
+import com.glean.api_client.glean_api_client.models.operations.GetanswerRequest;
 import com.glean.api_client.glean_api_client.models.operations.GetanswerRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.GetanswerResponse;
+import com.glean.api_client.glean_api_client.models.operations.ListanswersRequest;
 import com.glean.api_client.glean_api_client.models.operations.ListanswersRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.ListanswersResponse;
 import com.glean.api_client.glean_api_client.operations.Createanswer;
@@ -27,6 +32,8 @@ import com.glean.api_client.glean_api_client.operations.Getanswer;
 import com.glean.api_client.glean_api_client.operations.Listanswers;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Deprecated;
+import java.lang.String;
+import java.util.Optional;
 
 
 public class Answers {
@@ -64,12 +71,32 @@ public class Answers {
      * 
      * <p>Create a user-generated Answer that contains a question and answer.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param createAnswerRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public CreateanswerResponse create(CreateAnswerRequest request) {
-        RequestOperation<CreateAnswerRequest, CreateanswerResponse> operation
+    public CreateanswerResponse create(CreateAnswerRequest createAnswerRequest) {
+        return create(Optional.empty(), createAnswerRequest);
+    }
+
+    /**
+     * Create Answer
+     * 
+     * <p>Create a user-generated Answer that contains a question and answer.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param createAnswerRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateanswerResponse create(Optional<String> locale, CreateAnswerRequest createAnswerRequest) {
+        CreateanswerRequest request =
+            CreateanswerRequest
+                .builder()
+                .locale(locale)
+                .createAnswerRequest(createAnswerRequest)
+                .build();
+        RequestOperation<CreateanswerRequest, CreateanswerResponse> operation
               = new Createanswer.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -90,12 +117,32 @@ public class Answers {
      * 
      * <p>Delete an existing user-generated Answer.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param deleteAnswerRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteanswerResponse delete(DeleteAnswerRequest request) {
-        RequestOperation<DeleteAnswerRequest, DeleteanswerResponse> operation
+    public DeleteanswerResponse delete(DeleteAnswerRequest deleteAnswerRequest) {
+        return delete(Optional.empty(), deleteAnswerRequest);
+    }
+
+    /**
+     * Delete Answer
+     * 
+     * <p>Delete an existing user-generated Answer.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param deleteAnswerRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeleteanswerResponse delete(Optional<String> locale, DeleteAnswerRequest deleteAnswerRequest) {
+        DeleteanswerRequest request =
+            DeleteanswerRequest
+                .builder()
+                .locale(locale)
+                .deleteAnswerRequest(deleteAnswerRequest)
+                .build();
+        RequestOperation<DeleteanswerRequest, DeleteanswerResponse> operation
               = new Deleteanswer.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -116,12 +163,32 @@ public class Answers {
      * 
      * <p>Update an existing user-generated Answer.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param editAnswerRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public EditanswerResponse update(EditAnswerRequest request) {
-        RequestOperation<EditAnswerRequest, EditanswerResponse> operation
+    public EditanswerResponse update(EditAnswerRequest editAnswerRequest) {
+        return update(Optional.empty(), editAnswerRequest);
+    }
+
+    /**
+     * Update Answer
+     * 
+     * <p>Update an existing user-generated Answer.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param editAnswerRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public EditanswerResponse update(Optional<String> locale, EditAnswerRequest editAnswerRequest) {
+        EditanswerRequest request =
+            EditanswerRequest
+                .builder()
+                .locale(locale)
+                .editAnswerRequest(editAnswerRequest)
+                .build();
+        RequestOperation<EditanswerRequest, EditanswerResponse> operation
               = new Editanswer.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -142,12 +209,32 @@ public class Answers {
      * 
      * <p>Read the details of a particular Answer given its ID.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param getAnswerRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetanswerResponse retrieve(GetAnswerRequest request) {
-        RequestOperation<GetAnswerRequest, GetanswerResponse> operation
+    public GetanswerResponse retrieve(GetAnswerRequest getAnswerRequest) {
+        return retrieve(Optional.empty(), getAnswerRequest);
+    }
+
+    /**
+     * Read Answer
+     * 
+     * <p>Read the details of a particular Answer given its ID.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param getAnswerRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetanswerResponse retrieve(Optional<String> locale, GetAnswerRequest getAnswerRequest) {
+        GetanswerRequest request =
+            GetanswerRequest
+                .builder()
+                .locale(locale)
+                .getAnswerRequest(getAnswerRequest)
+                .build();
+        RequestOperation<GetanswerRequest, GetanswerResponse> operation
               = new Getanswer.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -158,7 +245,7 @@ public class Answers {
      * <p>List Answers created by the current user.
      * 
      * @return The call builder
-     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated method: Deprecated on 2026-01-21, removal scheduled for 2026-10-15: Answer boards have been removed and this endpoint no longer serves a purpose.
      */
     @Deprecated
     public ListanswersRequestBuilder list() {
@@ -170,14 +257,36 @@ public class Answers {
      * 
      * <p>List Answers created by the current user.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param listAnswersRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
-     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated method: Deprecated on 2026-01-21, removal scheduled for 2026-10-15: Answer boards have been removed and this endpoint no longer serves a purpose.
      */
     @Deprecated
-    public ListanswersResponse list(ListAnswersRequest request) {
-        RequestOperation<ListAnswersRequest, ListanswersResponse> operation
+    public ListanswersResponse list(ListAnswersRequest listAnswersRequest) {
+        return list(Optional.empty(), listAnswersRequest);
+    }
+
+    /**
+     * List Answers
+     * 
+     * <p>List Answers created by the current user.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param listAnswersRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     * @deprecated method: Deprecated on 2026-01-21, removal scheduled for 2026-10-15: Answer boards have been removed and this endpoint no longer serves a purpose.
+     */
+    @Deprecated
+    public ListanswersResponse list(Optional<String> locale, ListAnswersRequest listAnswersRequest) {
+        ListanswersRequest request =
+            ListanswersRequest
+                .builder()
+                .locale(locale)
+                .listAnswersRequest(listAnswersRequest)
+                .build();
+        RequestOperation<ListanswersRequest, ListanswersResponse> operation
               = new Listanswers.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }

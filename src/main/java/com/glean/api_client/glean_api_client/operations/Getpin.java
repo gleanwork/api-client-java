@@ -10,9 +10,9 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
-import com.glean.api_client.glean_api_client.models.components.GetPinRequest;
 import com.glean.api_client.glean_api_client.models.components.GetPinResponse;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
+import com.glean.api_client.glean_api_client.models.operations.GetpinRequest;
 import com.glean.api_client.glean_api_client.models.operations.GetpinResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
@@ -85,7 +85,7 @@ public class Getpin {
                     java.util.Optional.empty(),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/rest/api/v1/getpin");
@@ -96,7 +96,7 @@ public class Getpin {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "getPinRequest",
                     "json",
                     false);
             if (serializedRequestBody == null) {
@@ -106,6 +106,11 @@ public class Getpin {
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
+
+            req.addQueryParams(Utils.getQueryParams(
+                    klass,
+                    request,
+                    null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -113,13 +118,13 @@ public class Getpin {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<GetPinRequest, GetpinResponse> {
+            implements RequestOperation<GetpinRequest, GetpinResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private HttpRequest onBuildRequest(GetPinRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<GetPinRequest>() {});
+        private HttpRequest onBuildRequest(GetpinRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, GetpinRequest.class, new TypeReference<GetpinRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -135,7 +140,7 @@ public class Getpin {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(GetPinRequest request) {
+        public HttpResponse<InputStream> doRequest(GetpinRequest request) {
             HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
@@ -187,14 +192,14 @@ public class Getpin {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<GetPinRequest, com.glean.api_client.glean_api_client.models.operations.async.GetpinResponse> {
+            implements AsyncRequestOperation<GetpinRequest, com.glean.api_client.glean_api_client.models.operations.async.GetpinResponse> {
 
         public Async(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(GetPinRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<GetPinRequest>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(GetpinRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, GetpinRequest.class, new TypeReference<GetpinRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -207,7 +212,7 @@ public class Getpin {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(GetPinRequest request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(GetpinRequest request) {
             return unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
                     .handle((resp, err) -> {
                         if (err != null) {

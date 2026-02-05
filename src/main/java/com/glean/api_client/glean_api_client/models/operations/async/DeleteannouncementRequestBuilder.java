@@ -7,31 +7,57 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.DeleteAnnouncementRequest;
+import com.glean.api_client.glean_api_client.models.operations.DeleteannouncementRequest;
 import com.glean.api_client.glean_api_client.operations.Deleteannouncement;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class DeleteannouncementRequestBuilder {
 
-    private DeleteAnnouncementRequest request;
+    private Optional<String> locale = Optional.empty();
+    private DeleteAnnouncementRequest deleteAnnouncementRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public DeleteannouncementRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public DeleteannouncementRequestBuilder request(DeleteAnnouncementRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public DeleteannouncementRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public DeleteannouncementRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public DeleteannouncementRequestBuilder deleteAnnouncementRequest(DeleteAnnouncementRequest deleteAnnouncementRequest) {
+        Utils.checkNotNull(deleteAnnouncementRequest, "deleteAnnouncementRequest");
+        this.deleteAnnouncementRequest = deleteAnnouncementRequest;
+        return this;
+    }
+
+
+    private DeleteannouncementRequest buildRequest() {
+
+        DeleteannouncementRequest request = new DeleteannouncementRequest(locale,
+            deleteAnnouncementRequest);
+
+        return request;
     }
 
     public CompletableFuture<DeleteannouncementResponse> call() {
         
-        AsyncRequestOperation<DeleteAnnouncementRequest, DeleteannouncementResponse> operation
+        AsyncRequestOperation<DeleteannouncementRequest, DeleteannouncementResponse> operation
               = new Deleteannouncement.Async(sdkConfiguration, _headers);
+        DeleteannouncementRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

@@ -10,27 +10,52 @@ import com.glean.api_client.glean_api_client.models.components.AutocompleteReque
 import com.glean.api_client.glean_api_client.operations.Autocomplete;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class AutocompleteRequestBuilder {
 
-    private AutocompleteRequest request;
+    private Optional<String> locale = Optional.empty();
+    private AutocompleteRequest autocompleteRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public AutocompleteRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public AutocompleteRequestBuilder request(AutocompleteRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public AutocompleteRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public AutocompleteRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public AutocompleteRequestBuilder autocompleteRequest(AutocompleteRequest autocompleteRequest) {
+        Utils.checkNotNull(autocompleteRequest, "autocompleteRequest");
+        this.autocompleteRequest = autocompleteRequest;
+        return this;
+    }
+
+
+    private com.glean.api_client.glean_api_client.models.operations.AutocompleteRequest buildRequest() {
+
+        com.glean.api_client.glean_api_client.models.operations.AutocompleteRequest request = new com.glean.api_client.glean_api_client.models.operations.AutocompleteRequest(locale,
+            autocompleteRequest);
+
+        return request;
     }
 
     public AutocompleteResponse call() {
         
-        RequestOperation<AutocompleteRequest, AutocompleteResponse> operation
+        RequestOperation<com.glean.api_client.glean_api_client.models.operations.AutocompleteRequest, AutocompleteResponse> operation
               = new Autocomplete.Sync(sdkConfiguration, _headers);
+        com.glean.api_client.glean_api_client.models.operations.AutocompleteRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

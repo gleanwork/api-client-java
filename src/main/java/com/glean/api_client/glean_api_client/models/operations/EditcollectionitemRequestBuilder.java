@@ -10,27 +10,52 @@ import com.glean.api_client.glean_api_client.models.components.EditCollectionIte
 import com.glean.api_client.glean_api_client.operations.Editcollectionitem;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class EditcollectionitemRequestBuilder {
 
-    private EditCollectionItemRequest request;
+    private Optional<String> locale = Optional.empty();
+    private EditCollectionItemRequest editCollectionItemRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public EditcollectionitemRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public EditcollectionitemRequestBuilder request(EditCollectionItemRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public EditcollectionitemRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public EditcollectionitemRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public EditcollectionitemRequestBuilder editCollectionItemRequest(EditCollectionItemRequest editCollectionItemRequest) {
+        Utils.checkNotNull(editCollectionItemRequest, "editCollectionItemRequest");
+        this.editCollectionItemRequest = editCollectionItemRequest;
+        return this;
+    }
+
+
+    private EditcollectionitemRequest buildRequest() {
+
+        EditcollectionitemRequest request = new EditcollectionitemRequest(locale,
+            editCollectionItemRequest);
+
+        return request;
     }
 
     public EditcollectionitemResponse call() {
         
-        RequestOperation<EditCollectionItemRequest, EditcollectionitemResponse> operation
+        RequestOperation<EditcollectionitemRequest, EditcollectionitemResponse> operation
               = new Editcollectionitem.Sync(sdkConfiguration, _headers);
+        EditcollectionitemRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

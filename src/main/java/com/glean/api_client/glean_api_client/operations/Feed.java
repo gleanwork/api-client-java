@@ -10,8 +10,8 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
-import com.glean.api_client.glean_api_client.models.components.FeedRequest;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
+import com.glean.api_client.glean_api_client.models.operations.FeedRequest;
 import com.glean.api_client.glean_api_client.models.operations.FeedResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
@@ -84,7 +84,7 @@ public class Feed {
                     java.util.Optional.empty(),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/rest/api/v1/feed");
@@ -95,7 +95,7 @@ public class Feed {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "feedRequest",
                     "json",
                     false);
             if (serializedRequestBody == null) {
@@ -105,6 +105,11 @@ public class Feed {
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
+
+            req.addQueryParams(Utils.getQueryParams(
+                    klass,
+                    request,
+                    null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -118,7 +123,7 @@ public class Feed {
         }
 
         private HttpRequest onBuildRequest(FeedRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<FeedRequest>() {});
+            HttpRequest req = buildRequest(request, FeedRequest.class, new TypeReference<FeedRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -193,7 +198,7 @@ public class Feed {
         }
 
         private CompletableFuture<HttpRequest> onBuildRequest(FeedRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<FeedRequest>() {});
+            HttpRequest req = buildRequest(request, FeedRequest.class, new TypeReference<FeedRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

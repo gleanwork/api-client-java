@@ -34,24 +34,22 @@ public class Application {
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        EditPinRequest req = EditPinRequest.builder()
-                .audienceFilters(List.of(
-                    FacetFilter.builder()
-                        .fieldName("type")
-                        .values(List.of(
-                            FacetFilterValue.builder()
-                                .value("Spreadsheet")
-                                .relationType(RelationType.EQUALS)
-                                .build(),
-                            FacetFilterValue.builder()
-                                .value("Presentation")
-                                .relationType(RelationType.EQUALS)
-                                .build()))
-                        .build()))
-                .build();
-
         EditpinResponse res = sdk.client().pins().update()
-                .request(req)
+                .editPinRequest(EditPinRequest.builder()
+                    .audienceFilters(List.of(
+                        FacetFilter.builder()
+                            .fieldName("type")
+                            .values(List.of(
+                                FacetFilterValue.builder()
+                                    .value("Spreadsheet")
+                                    .relationType(RelationType.EQUALS)
+                                    .build(),
+                                FacetFilterValue.builder()
+                                    .value("Presentation")
+                                    .relationType(RelationType.EQUALS)
+                                    .build()))
+                            .build()))
+                    .build())
                 .call();
 
         if (res.pinDocument().isPresent()) {
@@ -63,9 +61,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                               | Type                                                    | Required                                                | Description                                             |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `request`                                               | [EditPinRequest](../../models/shared/EditPinRequest.md) | :heavy_check_mark:                                      | The request object to use for the request.              |
+| Parameter                                                                                                                                                                                           | Type                                                                                                                                                                                                | Required                                                                                                                                                                                            | Description                                                                                                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `locale`                                                                                                                                                                                            | *Optional\<String>*                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                  | The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`. |
+| `editPinRequest`                                                                                                                                                                                    | [EditPinRequest](../../models/components/EditPinRequest.md)                                                                                                                                         | :heavy_check_mark:                                                                                                                                                                                  | Edit pins request                                                                                                                                                                                   |
 
 ### Response
 
@@ -100,11 +99,9 @@ public class Application {
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        GetPinRequest req = GetPinRequest.builder()
-                .build();
-
         GetpinResponse res = sdk.client().pins().retrieve()
-                .request(req)
+                .getPinRequest(GetPinRequest.builder()
+                    .build())
                 .call();
 
         if (res.getPinResponse().isPresent()) {
@@ -116,9 +113,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `request`                                             | [GetPinRequest](../../models/shared/GetPinRequest.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
+| Parameter                                                                                                                                                                                           | Type                                                                                                                                                                                                | Required                                                                                                                                                                                            | Description                                                                                                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `locale`                                                                                                                                                                                            | *Optional\<String>*                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                  | The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`. |
+| `getPinRequest`                                                                                                                                                                                     | [GetPinRequest](../../models/components/GetPinRequest.md)                                                                                                                                           | :heavy_check_mark:                                                                                                                                                                                  | Get pin request                                                                                                                                                                                     |
 
 ### Response
 
@@ -141,7 +139,7 @@ Lists all pins.
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.operations.ListpinsRequest;
+import com.glean.api_client.glean_api_client.models.operations.ListpinsRequestBody;
 import com.glean.api_client.glean_api_client.models.operations.ListpinsResponse;
 import java.lang.Exception;
 
@@ -153,11 +151,9 @@ public class Application {
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        ListpinsRequest req = ListpinsRequest.builder()
-                .build();
-
         ListpinsResponse res = sdk.client().pins().list()
-                .request(req)
+                .requestBody(ListpinsRequestBody.builder()
+                    .build())
                 .call();
 
         if (res.listPinsResponse().isPresent()) {
@@ -169,9 +165,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   |
-| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| `request`                                                     | [ListpinsRequest](../../models/operations/ListpinsRequest.md) | :heavy_check_mark:                                            | The request object to use for the request.                    |
+| Parameter                                                                                                                                                                                           | Type                                                                                                                                                                                                | Required                                                                                                                                                                                            | Description                                                                                                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `locale`                                                                                                                                                                                            | *Optional\<String>*                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                  | The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`. |
+| `requestBody`                                                                                                                                                                                       | [ListpinsRequestBody](../../models/operations/ListpinsRequestBody.md)                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                  | List pins request                                                                                                                                                                                   |
 
 ### Response
 
@@ -207,24 +204,22 @@ public class Application {
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        PinRequest req = PinRequest.builder()
-                .audienceFilters(List.of(
-                    FacetFilter.builder()
-                        .fieldName("type")
-                        .values(List.of(
-                            FacetFilterValue.builder()
-                                .value("Spreadsheet")
-                                .relationType(RelationType.EQUALS)
-                                .build(),
-                            FacetFilterValue.builder()
-                                .value("Presentation")
-                                .relationType(RelationType.EQUALS)
-                                .build()))
-                        .build()))
-                .build();
-
         PinResponse res = sdk.client().pins().create()
-                .request(req)
+                .pinRequest(PinRequest.builder()
+                    .audienceFilters(List.of(
+                        FacetFilter.builder()
+                            .fieldName("type")
+                            .values(List.of(
+                                FacetFilterValue.builder()
+                                    .value("Spreadsheet")
+                                    .relationType(RelationType.EQUALS)
+                                    .build(),
+                                FacetFilterValue.builder()
+                                    .value("Presentation")
+                                    .relationType(RelationType.EQUALS)
+                                    .build()))
+                            .build()))
+                    .build())
                 .call();
 
         if (res.pinDocument().isPresent()) {
@@ -236,9 +231,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                       | Type                                            | Required                                        | Description                                     |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| `request`                                       | [PinRequest](../../models/shared/PinRequest.md) | :heavy_check_mark:                              | The request object to use for the request.      |
+| Parameter                                                                                                                                                                                           | Type                                                                                                                                                                                                | Required                                                                                                                                                                                            | Description                                                                                                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `locale`                                                                                                                                                                                            | *Optional\<String>*                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                  | The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`. |
+| `pinRequest`                                                                                                                                                                                        | [PinRequest](../../models/components/PinRequest.md)                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                  | Details about the document and query for the pin.                                                                                                                                                   |
 
 ### Response
 
@@ -273,11 +269,9 @@ public class Application {
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        Unpin req = Unpin.builder()
-                .build();
-
         UnpinResponse res = sdk.client().pins().remove()
-                .request(req)
+                .unpin(Unpin.builder()
+                    .build())
                 .call();
 
         // handle response
@@ -287,9 +281,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                  | Type                                       | Required                                   | Description                                |
-| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
-| `request`                                  | [Unpin](../../models/shared/Unpin.md)      | :heavy_check_mark:                         | The request object to use for the request. |
+| Parameter                                                                                                                                                                                           | Type                                                                                                                                                                                                | Required                                                                                                                                                                                            | Description                                                                                                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `locale`                                                                                                                                                                                            | *Optional\<String>*                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                  | The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`. |
+| `unpin`                                                                                                                                                                                             | [Unpin](../../models/components/Unpin.md)                                                                                                                                                           | :heavy_check_mark:                                                                                                                                                                                  | Details about the pin being unpinned.                                                                                                                                                               |
 
 ### Response
 

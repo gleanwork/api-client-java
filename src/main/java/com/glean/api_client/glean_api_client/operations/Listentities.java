@@ -10,9 +10,9 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
-import com.glean.api_client.glean_api_client.models.components.ListEntitiesRequest;
 import com.glean.api_client.glean_api_client.models.components.ListEntitiesResponse;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
+import com.glean.api_client.glean_api_client.models.operations.ListentitiesRequest;
 import com.glean.api_client.glean_api_client.models.operations.ListentitiesResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
@@ -85,7 +85,7 @@ public class Listentities {
                     java.util.Optional.empty(),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/rest/api/v1/listentities");
@@ -96,7 +96,7 @@ public class Listentities {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "listEntitiesRequest",
                     "json",
                     false);
             if (serializedRequestBody == null) {
@@ -106,6 +106,11 @@ public class Listentities {
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
+
+            req.addQueryParams(Utils.getQueryParams(
+                    klass,
+                    request,
+                    null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -113,13 +118,13 @@ public class Listentities {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<ListEntitiesRequest, ListentitiesResponse> {
+            implements RequestOperation<ListentitiesRequest, ListentitiesResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private HttpRequest onBuildRequest(ListEntitiesRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<ListEntitiesRequest>() {});
+        private HttpRequest onBuildRequest(ListentitiesRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, ListentitiesRequest.class, new TypeReference<ListentitiesRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -135,7 +140,7 @@ public class Listentities {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(ListEntitiesRequest request) {
+        public HttpResponse<InputStream> doRequest(ListentitiesRequest request) {
             HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
@@ -187,14 +192,14 @@ public class Listentities {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<ListEntitiesRequest, com.glean.api_client.glean_api_client.models.operations.async.ListentitiesResponse> {
+            implements AsyncRequestOperation<ListentitiesRequest, com.glean.api_client.glean_api_client.models.operations.async.ListentitiesResponse> {
 
         public Async(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(ListEntitiesRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<ListEntitiesRequest>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(ListentitiesRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, ListentitiesRequest.class, new TypeReference<ListentitiesRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -207,7 +212,7 @@ public class Listentities {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(ListEntitiesRequest request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(ListentitiesRequest request) {
             return unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
                     .handle((resp, err) -> {
                         if (err != null) {

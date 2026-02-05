@@ -10,28 +10,53 @@ import com.glean.api_client.glean_api_client.models.components.FeedRequest;
 import com.glean.api_client.glean_api_client.operations.Feed;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class FeedRequestBuilder {
 
-    private FeedRequest request;
+    private Optional<String> locale = Optional.empty();
+    private FeedRequest feedRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public FeedRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public FeedRequestBuilder request(FeedRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public FeedRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public FeedRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public FeedRequestBuilder feedRequest(FeedRequest feedRequest) {
+        Utils.checkNotNull(feedRequest, "feedRequest");
+        this.feedRequest = feedRequest;
+        return this;
+    }
+
+
+    private com.glean.api_client.glean_api_client.models.operations.FeedRequest buildRequest() {
+
+        com.glean.api_client.glean_api_client.models.operations.FeedRequest request = new com.glean.api_client.glean_api_client.models.operations.FeedRequest(locale,
+            feedRequest);
+
+        return request;
     }
 
     public CompletableFuture<FeedResponse> call() {
         
-        AsyncRequestOperation<FeedRequest, FeedResponse> operation
+        AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.FeedRequest, FeedResponse> operation
               = new Feed.Async(sdkConfiguration, _headers);
+        com.glean.api_client.glean_api_client.models.operations.FeedRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

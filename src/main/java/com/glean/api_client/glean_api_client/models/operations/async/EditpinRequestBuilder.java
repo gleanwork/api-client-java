@@ -7,31 +7,57 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.EditPinRequest;
+import com.glean.api_client.glean_api_client.models.operations.EditpinRequest;
 import com.glean.api_client.glean_api_client.operations.Editpin;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class EditpinRequestBuilder {
 
-    private EditPinRequest request;
+    private Optional<String> locale = Optional.empty();
+    private EditPinRequest editPinRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public EditpinRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public EditpinRequestBuilder request(EditPinRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public EditpinRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public EditpinRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public EditpinRequestBuilder editPinRequest(EditPinRequest editPinRequest) {
+        Utils.checkNotNull(editPinRequest, "editPinRequest");
+        this.editPinRequest = editPinRequest;
+        return this;
+    }
+
+
+    private EditpinRequest buildRequest() {
+
+        EditpinRequest request = new EditpinRequest(locale,
+            editPinRequest);
+
+        return request;
     }
 
     public CompletableFuture<EditpinResponse> call() {
         
-        AsyncRequestOperation<EditPinRequest, EditpinResponse> operation
+        AsyncRequestOperation<EditpinRequest, EditpinResponse> operation
               = new Editpin.Async(sdkConfiguration, _headers);
+        EditpinRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

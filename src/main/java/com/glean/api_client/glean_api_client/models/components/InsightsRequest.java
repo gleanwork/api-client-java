@@ -10,11 +10,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Boolean;
-import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -41,90 +39,24 @@ public class InsightsRequest {
     @JsonProperty("disablePerUserInsights")
     private Optional<Boolean> disablePerUserInsights;
 
-    /**
-     * Categories of data requested. Request can include single or multiple types.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("categories")
-    @Deprecated
-    private Optional<? extends List<InsightsRequestCategory>> categories;
-
-    /**
-     * Departments that the data is requested for. If this is empty, corresponds to whole company.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("departments")
-    @Deprecated
-    private Optional<? extends List<String>> departments;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("dayRange")
-    private Optional<? extends Period> dayRange;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("aiAppRequestOptions")
-    private Optional<? extends InsightsAiAppRequestOptions> aiAppRequestOptions;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("agentsRequestOptions")
-    private Optional<? extends InsightsAgentsRequestOptions> agentsRequestOptions;
-
-    /**
-     * Types of activity that should count in the definition of an Assistant Active User. Affects only
-     * insights for AI category.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("assistantActivityTypes")
-    @Deprecated
-    private Optional<? extends List<AssistantActivityType>> assistantActivityTypes;
-
     @JsonCreator
     public InsightsRequest(
             @JsonProperty("overviewRequest") Optional<? extends InsightsOverviewRequest> overviewRequest,
             @JsonProperty("assistantRequest") Optional<? extends InsightsAssistantRequest> assistantRequest,
             @JsonProperty("agentsRequest") Optional<? extends AgentsInsightsV2Request> agentsRequest,
-            @JsonProperty("disablePerUserInsights") Optional<Boolean> disablePerUserInsights,
-            @JsonProperty("categories") Optional<? extends List<InsightsRequestCategory>> categories,
-            @JsonProperty("departments") Optional<? extends List<String>> departments,
-            @JsonProperty("dayRange") Optional<? extends Period> dayRange,
-            @JsonProperty("aiAppRequestOptions") Optional<? extends InsightsAiAppRequestOptions> aiAppRequestOptions,
-            @JsonProperty("agentsRequestOptions") Optional<? extends InsightsAgentsRequestOptions> agentsRequestOptions,
-            @JsonProperty("assistantActivityTypes") Optional<? extends List<AssistantActivityType>> assistantActivityTypes) {
+            @JsonProperty("disablePerUserInsights") Optional<Boolean> disablePerUserInsights) {
         Utils.checkNotNull(overviewRequest, "overviewRequest");
         Utils.checkNotNull(assistantRequest, "assistantRequest");
         Utils.checkNotNull(agentsRequest, "agentsRequest");
         Utils.checkNotNull(disablePerUserInsights, "disablePerUserInsights");
-        Utils.checkNotNull(categories, "categories");
-        Utils.checkNotNull(departments, "departments");
-        Utils.checkNotNull(dayRange, "dayRange");
-        Utils.checkNotNull(aiAppRequestOptions, "aiAppRequestOptions");
-        Utils.checkNotNull(agentsRequestOptions, "agentsRequestOptions");
-        Utils.checkNotNull(assistantActivityTypes, "assistantActivityTypes");
         this.overviewRequest = overviewRequest;
         this.assistantRequest = assistantRequest;
         this.agentsRequest = agentsRequest;
         this.disablePerUserInsights = disablePerUserInsights;
-        this.categories = categories;
-        this.departments = departments;
-        this.dayRange = dayRange;
-        this.aiAppRequestOptions = aiAppRequestOptions;
-        this.agentsRequestOptions = agentsRequestOptions;
-        this.assistantActivityTypes = assistantActivityTypes;
     }
     
     public InsightsRequest() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty());
     }
 
@@ -152,61 +84,6 @@ public class InsightsRequest {
     @JsonIgnore
     public Optional<Boolean> disablePerUserInsights() {
         return disablePerUserInsights;
-    }
-
-    /**
-     * Categories of data requested. Request can include single or multiple types.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<List<InsightsRequestCategory>> categories() {
-        return (Optional<List<InsightsRequestCategory>>) categories;
-    }
-
-    /**
-     * Departments that the data is requested for. If this is empty, corresponds to whole company.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<List<String>> departments() {
-        return (Optional<List<String>>) departments;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Period> dayRange() {
-        return (Optional<Period>) dayRange;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<InsightsAiAppRequestOptions> aiAppRequestOptions() {
-        return (Optional<InsightsAiAppRequestOptions>) aiAppRequestOptions;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<InsightsAgentsRequestOptions> agentsRequestOptions() {
-        return (Optional<InsightsAgentsRequestOptions>) agentsRequestOptions;
-    }
-
-    /**
-     * Types of activity that should count in the definition of an Assistant Active User. Affects only
-     * insights for AI category.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<List<AssistantActivityType>> assistantActivityTypes() {
-        return (Optional<List<AssistantActivityType>>) assistantActivityTypes;
     }
 
     public static Builder builder() {
@@ -272,122 +149,6 @@ public class InsightsRequest {
         return this;
     }
 
-    /**
-     * Categories of data requested. Request can include single or multiple types.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public InsightsRequest withCategories(List<InsightsRequestCategory> categories) {
-        Utils.checkNotNull(categories, "categories");
-        this.categories = Optional.ofNullable(categories);
-        return this;
-    }
-
-
-    /**
-     * Categories of data requested. Request can include single or multiple types.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public InsightsRequest withCategories(Optional<? extends List<InsightsRequestCategory>> categories) {
-        Utils.checkNotNull(categories, "categories");
-        this.categories = categories;
-        return this;
-    }
-
-    /**
-     * Departments that the data is requested for. If this is empty, corresponds to whole company.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public InsightsRequest withDepartments(List<String> departments) {
-        Utils.checkNotNull(departments, "departments");
-        this.departments = Optional.ofNullable(departments);
-        return this;
-    }
-
-
-    /**
-     * Departments that the data is requested for. If this is empty, corresponds to whole company.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public InsightsRequest withDepartments(Optional<? extends List<String>> departments) {
-        Utils.checkNotNull(departments, "departments");
-        this.departments = departments;
-        return this;
-    }
-
-    public InsightsRequest withDayRange(Period dayRange) {
-        Utils.checkNotNull(dayRange, "dayRange");
-        this.dayRange = Optional.ofNullable(dayRange);
-        return this;
-    }
-
-
-    public InsightsRequest withDayRange(Optional<? extends Period> dayRange) {
-        Utils.checkNotNull(dayRange, "dayRange");
-        this.dayRange = dayRange;
-        return this;
-    }
-
-    public InsightsRequest withAiAppRequestOptions(InsightsAiAppRequestOptions aiAppRequestOptions) {
-        Utils.checkNotNull(aiAppRequestOptions, "aiAppRequestOptions");
-        this.aiAppRequestOptions = Optional.ofNullable(aiAppRequestOptions);
-        return this;
-    }
-
-
-    public InsightsRequest withAiAppRequestOptions(Optional<? extends InsightsAiAppRequestOptions> aiAppRequestOptions) {
-        Utils.checkNotNull(aiAppRequestOptions, "aiAppRequestOptions");
-        this.aiAppRequestOptions = aiAppRequestOptions;
-        return this;
-    }
-
-    public InsightsRequest withAgentsRequestOptions(InsightsAgentsRequestOptions agentsRequestOptions) {
-        Utils.checkNotNull(agentsRequestOptions, "agentsRequestOptions");
-        this.agentsRequestOptions = Optional.ofNullable(agentsRequestOptions);
-        return this;
-    }
-
-
-    public InsightsRequest withAgentsRequestOptions(Optional<? extends InsightsAgentsRequestOptions> agentsRequestOptions) {
-        Utils.checkNotNull(agentsRequestOptions, "agentsRequestOptions");
-        this.agentsRequestOptions = agentsRequestOptions;
-        return this;
-    }
-
-    /**
-     * Types of activity that should count in the definition of an Assistant Active User. Affects only
-     * insights for AI category.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public InsightsRequest withAssistantActivityTypes(List<AssistantActivityType> assistantActivityTypes) {
-        Utils.checkNotNull(assistantActivityTypes, "assistantActivityTypes");
-        this.assistantActivityTypes = Optional.ofNullable(assistantActivityTypes);
-        return this;
-    }
-
-
-    /**
-     * Types of activity that should count in the definition of an Assistant Active User. Affects only
-     * insights for AI category.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public InsightsRequest withAssistantActivityTypes(Optional<? extends List<AssistantActivityType>> assistantActivityTypes) {
-        Utils.checkNotNull(assistantActivityTypes, "assistantActivityTypes");
-        this.assistantActivityTypes = assistantActivityTypes;
-        return this;
-    }
-
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -401,22 +162,14 @@ public class InsightsRequest {
             Utils.enhancedDeepEquals(this.overviewRequest, other.overviewRequest) &&
             Utils.enhancedDeepEquals(this.assistantRequest, other.assistantRequest) &&
             Utils.enhancedDeepEquals(this.agentsRequest, other.agentsRequest) &&
-            Utils.enhancedDeepEquals(this.disablePerUserInsights, other.disablePerUserInsights) &&
-            Utils.enhancedDeepEquals(this.categories, other.categories) &&
-            Utils.enhancedDeepEquals(this.departments, other.departments) &&
-            Utils.enhancedDeepEquals(this.dayRange, other.dayRange) &&
-            Utils.enhancedDeepEquals(this.aiAppRequestOptions, other.aiAppRequestOptions) &&
-            Utils.enhancedDeepEquals(this.agentsRequestOptions, other.agentsRequestOptions) &&
-            Utils.enhancedDeepEquals(this.assistantActivityTypes, other.assistantActivityTypes);
+            Utils.enhancedDeepEquals(this.disablePerUserInsights, other.disablePerUserInsights);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             overviewRequest, assistantRequest, agentsRequest,
-            disablePerUserInsights, categories, departments,
-            dayRange, aiAppRequestOptions, agentsRequestOptions,
-            assistantActivityTypes);
+            disablePerUserInsights);
     }
     
     @Override
@@ -425,13 +178,7 @@ public class InsightsRequest {
                 "overviewRequest", overviewRequest,
                 "assistantRequest", assistantRequest,
                 "agentsRequest", agentsRequest,
-                "disablePerUserInsights", disablePerUserInsights,
-                "categories", categories,
-                "departments", departments,
-                "dayRange", dayRange,
-                "aiAppRequestOptions", aiAppRequestOptions,
-                "agentsRequestOptions", agentsRequestOptions,
-                "assistantActivityTypes", assistantActivityTypes);
+                "disablePerUserInsights", disablePerUserInsights);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -444,21 +191,6 @@ public class InsightsRequest {
         private Optional<? extends AgentsInsightsV2Request> agentsRequest = Optional.empty();
 
         private Optional<Boolean> disablePerUserInsights = Optional.empty();
-
-        @Deprecated
-        private Optional<? extends List<InsightsRequestCategory>> categories = Optional.empty();
-
-        @Deprecated
-        private Optional<? extends List<String>> departments = Optional.empty();
-
-        private Optional<? extends Period> dayRange = Optional.empty();
-
-        private Optional<? extends InsightsAiAppRequestOptions> aiAppRequestOptions = Optional.empty();
-
-        private Optional<? extends InsightsAgentsRequestOptions> agentsRequestOptions = Optional.empty();
-
-        @Deprecated
-        private Optional<? extends List<AssistantActivityType>> assistantActivityTypes = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -522,129 +254,11 @@ public class InsightsRequest {
             return this;
         }
 
-
-        /**
-         * Categories of data requested. Request can include single or multiple types.
-         * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-         */
-        @Deprecated
-        public Builder categories(List<InsightsRequestCategory> categories) {
-            Utils.checkNotNull(categories, "categories");
-            this.categories = Optional.ofNullable(categories);
-            return this;
-        }
-
-        /**
-         * Categories of data requested. Request can include single or multiple types.
-         * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-         */
-        @Deprecated
-        public Builder categories(Optional<? extends List<InsightsRequestCategory>> categories) {
-            Utils.checkNotNull(categories, "categories");
-            this.categories = categories;
-            return this;
-        }
-
-
-        /**
-         * Departments that the data is requested for. If this is empty, corresponds to whole company.
-         * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-         */
-        @Deprecated
-        public Builder departments(List<String> departments) {
-            Utils.checkNotNull(departments, "departments");
-            this.departments = Optional.ofNullable(departments);
-            return this;
-        }
-
-        /**
-         * Departments that the data is requested for. If this is empty, corresponds to whole company.
-         * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-         */
-        @Deprecated
-        public Builder departments(Optional<? extends List<String>> departments) {
-            Utils.checkNotNull(departments, "departments");
-            this.departments = departments;
-            return this;
-        }
-
-
-        public Builder dayRange(Period dayRange) {
-            Utils.checkNotNull(dayRange, "dayRange");
-            this.dayRange = Optional.ofNullable(dayRange);
-            return this;
-        }
-
-        public Builder dayRange(Optional<? extends Period> dayRange) {
-            Utils.checkNotNull(dayRange, "dayRange");
-            this.dayRange = dayRange;
-            return this;
-        }
-
-
-        public Builder aiAppRequestOptions(InsightsAiAppRequestOptions aiAppRequestOptions) {
-            Utils.checkNotNull(aiAppRequestOptions, "aiAppRequestOptions");
-            this.aiAppRequestOptions = Optional.ofNullable(aiAppRequestOptions);
-            return this;
-        }
-
-        public Builder aiAppRequestOptions(Optional<? extends InsightsAiAppRequestOptions> aiAppRequestOptions) {
-            Utils.checkNotNull(aiAppRequestOptions, "aiAppRequestOptions");
-            this.aiAppRequestOptions = aiAppRequestOptions;
-            return this;
-        }
-
-
-        public Builder agentsRequestOptions(InsightsAgentsRequestOptions agentsRequestOptions) {
-            Utils.checkNotNull(agentsRequestOptions, "agentsRequestOptions");
-            this.agentsRequestOptions = Optional.ofNullable(agentsRequestOptions);
-            return this;
-        }
-
-        public Builder agentsRequestOptions(Optional<? extends InsightsAgentsRequestOptions> agentsRequestOptions) {
-            Utils.checkNotNull(agentsRequestOptions, "agentsRequestOptions");
-            this.agentsRequestOptions = agentsRequestOptions;
-            return this;
-        }
-
-
-        /**
-         * Types of activity that should count in the definition of an Assistant Active User. Affects only
-         * insights for AI category.
-         * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-         */
-        @Deprecated
-        public Builder assistantActivityTypes(List<AssistantActivityType> assistantActivityTypes) {
-            Utils.checkNotNull(assistantActivityTypes, "assistantActivityTypes");
-            this.assistantActivityTypes = Optional.ofNullable(assistantActivityTypes);
-            return this;
-        }
-
-        /**
-         * Types of activity that should count in the definition of an Assistant Active User. Affects only
-         * insights for AI category.
-         * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-         */
-        @Deprecated
-        public Builder assistantActivityTypes(Optional<? extends List<AssistantActivityType>> assistantActivityTypes) {
-            Utils.checkNotNull(assistantActivityTypes, "assistantActivityTypes");
-            this.assistantActivityTypes = assistantActivityTypes;
-            return this;
-        }
-
         public InsightsRequest build() {
 
             return new InsightsRequest(
                 overviewRequest, assistantRequest, agentsRequest,
-                disablePerUserInsights, categories, departments,
-                dayRange, aiAppRequestOptions, agentsRequestOptions,
-                assistantActivityTypes);
+                disablePerUserInsights);
         }
 
     }

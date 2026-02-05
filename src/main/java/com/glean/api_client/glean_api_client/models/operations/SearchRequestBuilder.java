@@ -10,27 +10,52 @@ import com.glean.api_client.glean_api_client.models.components.SearchRequest;
 import com.glean.api_client.glean_api_client.operations.Search;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class SearchRequestBuilder {
 
-    private SearchRequest request;
+    private Optional<String> locale = Optional.empty();
+    private SearchRequest searchRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public SearchRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public SearchRequestBuilder request(SearchRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public SearchRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public SearchRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public SearchRequestBuilder searchRequest(SearchRequest searchRequest) {
+        Utils.checkNotNull(searchRequest, "searchRequest");
+        this.searchRequest = searchRequest;
+        return this;
+    }
+
+
+    private com.glean.api_client.glean_api_client.models.operations.SearchRequest buildRequest() {
+
+        com.glean.api_client.glean_api_client.models.operations.SearchRequest request = new com.glean.api_client.glean_api_client.models.operations.SearchRequest(locale,
+            searchRequest);
+
+        return request;
     }
 
     public SearchResponse call() {
         
-        RequestOperation<SearchRequest, SearchResponse> operation
+        RequestOperation<com.glean.api_client.glean_api_client.models.operations.SearchRequest, SearchResponse> operation
               = new Search.Sync(sdkConfiguration, _headers);
+        com.glean.api_client.glean_api_client.models.operations.SearchRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -10,28 +10,53 @@ import com.glean.api_client.glean_api_client.models.components.VerifyRequest;
 import com.glean.api_client.glean_api_client.operations.Verify;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class VerifyRequestBuilder {
 
-    private VerifyRequest request;
+    private Optional<String> locale = Optional.empty();
+    private VerifyRequest verifyRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public VerifyRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public VerifyRequestBuilder request(VerifyRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public VerifyRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public VerifyRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public VerifyRequestBuilder verifyRequest(VerifyRequest verifyRequest) {
+        Utils.checkNotNull(verifyRequest, "verifyRequest");
+        this.verifyRequest = verifyRequest;
+        return this;
+    }
+
+
+    private com.glean.api_client.glean_api_client.models.operations.VerifyRequest buildRequest() {
+
+        com.glean.api_client.glean_api_client.models.operations.VerifyRequest request = new com.glean.api_client.glean_api_client.models.operations.VerifyRequest(locale,
+            verifyRequest);
+
+        return request;
     }
 
     public CompletableFuture<VerifyResponse> call() {
         
-        AsyncRequestOperation<VerifyRequest, VerifyResponse> operation
+        AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.VerifyRequest, VerifyResponse> operation
               = new Verify.Async(sdkConfiguration, _headers);
+        com.glean.api_client.glean_api_client.models.operations.VerifyRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

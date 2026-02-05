@@ -7,31 +7,57 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.DeleteCollectionItemRequest;
+import com.glean.api_client.glean_api_client.models.operations.DeletecollectionitemRequest;
 import com.glean.api_client.glean_api_client.operations.Deletecollectionitem;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class DeletecollectionitemRequestBuilder {
 
-    private DeleteCollectionItemRequest request;
+    private Optional<String> locale = Optional.empty();
+    private DeleteCollectionItemRequest deleteCollectionItemRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public DeletecollectionitemRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public DeletecollectionitemRequestBuilder request(DeleteCollectionItemRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public DeletecollectionitemRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public DeletecollectionitemRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public DeletecollectionitemRequestBuilder deleteCollectionItemRequest(DeleteCollectionItemRequest deleteCollectionItemRequest) {
+        Utils.checkNotNull(deleteCollectionItemRequest, "deleteCollectionItemRequest");
+        this.deleteCollectionItemRequest = deleteCollectionItemRequest;
+        return this;
+    }
+
+
+    private DeletecollectionitemRequest buildRequest() {
+
+        DeletecollectionitemRequest request = new DeletecollectionitemRequest(locale,
+            deleteCollectionItemRequest);
+
+        return request;
     }
 
     public CompletableFuture<DeletecollectionitemResponse> call() {
         
-        AsyncRequestOperation<DeleteCollectionItemRequest, DeletecollectionitemResponse> operation
+        AsyncRequestOperation<DeletecollectionitemRequest, DeletecollectionitemResponse> operation
               = new Deletecollectionitem.Async(sdkConfiguration, _headers);
+        DeletecollectionitemRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

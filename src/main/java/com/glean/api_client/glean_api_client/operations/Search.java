@@ -10,9 +10,9 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
-import com.glean.api_client.glean_api_client.models.components.SearchRequest;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
 import com.glean.api_client.glean_api_client.models.errors.GleanDataError;
+import com.glean.api_client.glean_api_client.models.operations.SearchRequest;
 import com.glean.api_client.glean_api_client.models.operations.SearchResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
@@ -85,7 +85,7 @@ public class Search {
                     java.util.Optional.empty(),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/rest/api/v1/search");
@@ -96,7 +96,7 @@ public class Search {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "searchRequest",
                     "json",
                     false);
             if (serializedRequestBody == null) {
@@ -106,6 +106,11 @@ public class Search {
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
+
+            req.addQueryParams(Utils.getQueryParams(
+                    klass,
+                    request,
+                    null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -119,7 +124,7 @@ public class Search {
         }
 
         private HttpRequest onBuildRequest(SearchRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<SearchRequest>() {});
+            HttpRequest req = buildRequest(request, SearchRequest.class, new TypeReference<SearchRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -201,7 +206,7 @@ public class Search {
         }
 
         private CompletableFuture<HttpRequest> onBuildRequest(SearchRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<SearchRequest>() {});
+            HttpRequest req = buildRequest(request, SearchRequest.class, new TypeReference<SearchRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

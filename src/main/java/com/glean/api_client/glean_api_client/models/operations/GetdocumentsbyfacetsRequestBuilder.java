@@ -10,11 +10,13 @@ import com.glean.api_client.glean_api_client.models.components.GetDocumentsByFac
 import com.glean.api_client.glean_api_client.operations.Getdocumentsbyfacets;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
 import java.util.Optional;
 
 public class GetdocumentsbyfacetsRequestBuilder {
 
-    private Optional<? extends GetDocumentsByFacetsRequest> request = Optional.empty();
+    private Optional<String> locale = Optional.empty();
+    private Optional<? extends GetDocumentsByFacetsRequest> getDocumentsByFacetsRequest = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -22,22 +24,44 @@ public class GetdocumentsbyfacetsRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
                 
-    public GetdocumentsbyfacetsRequestBuilder request(GetDocumentsByFacetsRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = Optional.of(request);
+    public GetdocumentsbyfacetsRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
     }
 
-    public GetdocumentsbyfacetsRequestBuilder request(Optional<? extends GetDocumentsByFacetsRequest> request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+    public GetdocumentsbyfacetsRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
         return this;
+    }
+                
+    public GetdocumentsbyfacetsRequestBuilder getDocumentsByFacetsRequest(GetDocumentsByFacetsRequest getDocumentsByFacetsRequest) {
+        Utils.checkNotNull(getDocumentsByFacetsRequest, "getDocumentsByFacetsRequest");
+        this.getDocumentsByFacetsRequest = Optional.of(getDocumentsByFacetsRequest);
+        return this;
+    }
+
+    public GetdocumentsbyfacetsRequestBuilder getDocumentsByFacetsRequest(Optional<? extends GetDocumentsByFacetsRequest> getDocumentsByFacetsRequest) {
+        Utils.checkNotNull(getDocumentsByFacetsRequest, "getDocumentsByFacetsRequest");
+        this.getDocumentsByFacetsRequest = getDocumentsByFacetsRequest;
+        return this;
+    }
+
+
+    private GetdocumentsbyfacetsRequest buildRequest() {
+
+        GetdocumentsbyfacetsRequest request = new GetdocumentsbyfacetsRequest(locale,
+            getDocumentsByFacetsRequest);
+
+        return request;
     }
 
     public GetdocumentsbyfacetsResponse call() {
         
-        RequestOperation<Optional<? extends GetDocumentsByFacetsRequest>, GetdocumentsbyfacetsResponse> operation
+        RequestOperation<GetdocumentsbyfacetsRequest, GetdocumentsbyfacetsResponse> operation
               = new Getdocumentsbyfacets.Sync(sdkConfiguration, _headers);
+        GetdocumentsbyfacetsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

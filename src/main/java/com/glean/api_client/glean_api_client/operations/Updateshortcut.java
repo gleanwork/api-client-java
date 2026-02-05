@@ -10,9 +10,9 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
-import com.glean.api_client.glean_api_client.models.components.UpdateShortcutRequest;
 import com.glean.api_client.glean_api_client.models.components.UpdateShortcutResponse;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
+import com.glean.api_client.glean_api_client.models.operations.UpdateshortcutRequest;
 import com.glean.api_client.glean_api_client.models.operations.UpdateshortcutResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
@@ -85,7 +85,7 @@ public class Updateshortcut {
                     java.util.Optional.empty(),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/rest/api/v1/updateshortcut");
@@ -96,7 +96,7 @@ public class Updateshortcut {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "updateShortcutRequest",
                     "json",
                     false);
             if (serializedRequestBody == null) {
@@ -106,6 +106,11 @@ public class Updateshortcut {
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
+
+            req.addQueryParams(Utils.getQueryParams(
+                    klass,
+                    request,
+                    null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -113,13 +118,13 @@ public class Updateshortcut {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<UpdateShortcutRequest, UpdateshortcutResponse> {
+            implements RequestOperation<UpdateshortcutRequest, UpdateshortcutResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private HttpRequest onBuildRequest(UpdateShortcutRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<UpdateShortcutRequest>() {});
+        private HttpRequest onBuildRequest(UpdateshortcutRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, UpdateshortcutRequest.class, new TypeReference<UpdateshortcutRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -135,7 +140,7 @@ public class Updateshortcut {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(UpdateShortcutRequest request) {
+        public HttpResponse<InputStream> doRequest(UpdateshortcutRequest request) {
             HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
@@ -187,14 +192,14 @@ public class Updateshortcut {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<UpdateShortcutRequest, com.glean.api_client.glean_api_client.models.operations.async.UpdateshortcutResponse> {
+            implements AsyncRequestOperation<UpdateshortcutRequest, com.glean.api_client.glean_api_client.models.operations.async.UpdateshortcutResponse> {
 
         public Async(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(UpdateShortcutRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<UpdateShortcutRequest>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(UpdateshortcutRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, UpdateshortcutRequest.class, new TypeReference<UpdateshortcutRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -207,7 +212,7 @@ public class Updateshortcut {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(UpdateShortcutRequest request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(UpdateshortcutRequest request) {
             return unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
                     .handle((resp, err) -> {
                         if (err != null) {

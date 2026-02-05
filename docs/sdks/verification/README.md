@@ -31,12 +31,10 @@ public class Application {
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        ReminderRequest req = ReminderRequest.builder()
-                .documentId("<id>")
-                .build();
-
         AddverificationreminderResponse res = sdk.client().verification().addReminder()
-                .request(req)
+                .reminderRequest(ReminderRequest.builder()
+                    .documentId("<id>")
+                    .build())
                 .call();
 
         if (res.verification().isPresent()) {
@@ -48,9 +46,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                 | Type                                                      | Required                                                  | Description                                               |
-| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| `request`                                                 | [ReminderRequest](../../models/shared/ReminderRequest.md) | :heavy_check_mark:                                        | The request object to use for the request.                |
+| Parameter                                                                                                                                                                                           | Type                                                                                                                                                                                                | Required                                                                                                                                                                                            | Description                                                                                                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `locale`                                                                                                                                                                                            | *Optional\<String>*                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                  | The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`. |
+| `reminderRequest`                                                                                                                                                                                   | [ReminderRequest](../../models/components/ReminderRequest.md)                                                                                                                                       | :heavy_check_mark:                                                                                                                                                                                  | Details about the reminder.                                                                                                                                                                         |
 
 ### Response
 
@@ -96,9 +95,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                             | Type                                  | Required                              | Description                           |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| `count`                               | *Optional\<Long>*                     | :heavy_minus_sign:                    | Maximum number of documents to return |
+| Parameter                                                                                                                                                                                           | Type                                                                                                                                                                                                | Required                                                                                                                                                                                            | Description                                                                                                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `count`                                                                                                                                                                                             | *Optional\<Long>*                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                  | Maximum number of documents to return                                                                                                                                                               |
+| `locale`                                                                                                                                                                                            | *Optional\<String>*                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                  | The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`. |
 
 ### Response
 
@@ -133,12 +133,10 @@ public class Application {
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        VerifyRequest req = VerifyRequest.builder()
-                .documentId("<id>")
-                .build();
-
         VerifyResponse res = sdk.client().verification().verify()
-                .request(req)
+                .verifyRequest(VerifyRequest.builder()
+                    .documentId("<id>")
+                    .build())
                 .call();
 
         if (res.verification().isPresent()) {
@@ -150,9 +148,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `request`                                             | [VerifyRequest](../../models/shared/VerifyRequest.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
+| Parameter                                                                                                                                                                                           | Type                                                                                                                                                                                                | Required                                                                                                                                                                                            | Description                                                                                                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `locale`                                                                                                                                                                                            | *Optional\<String>*                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                  | The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`. |
+| `verifyRequest`                                                                                                                                                                                     | [VerifyRequest](../../models/components/VerifyRequest.md)                                                                                                                                           | :heavy_check_mark:                                                                                                                                                                                  | Details about the verification request.                                                                                                                                                             |
 
 ### Response
 

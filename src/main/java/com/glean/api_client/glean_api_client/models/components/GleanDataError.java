@@ -44,25 +44,35 @@ public class GleanDataError {
     @JsonProperty("errorMessages")
     private Optional<? extends List<ErrorMessage>> errorMessages;
 
+    /**
+     * Indicates the federated search results could not be fetched due to rate limiting.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("federatedSearchRateLimitError")
+    private Optional<Boolean> federatedSearchRateLimitError;
+
     @JsonCreator
     public GleanDataError(
             @JsonProperty("badGmailToken") Optional<Boolean> badGmailToken,
             @JsonProperty("badOutlookToken") Optional<Boolean> badOutlookToken,
             @JsonProperty("invalidOperators") Optional<? extends List<InvalidOperatorValueError>> invalidOperators,
-            @JsonProperty("errorMessages") Optional<? extends List<ErrorMessage>> errorMessages) {
+            @JsonProperty("errorMessages") Optional<? extends List<ErrorMessage>> errorMessages,
+            @JsonProperty("federatedSearchRateLimitError") Optional<Boolean> federatedSearchRateLimitError) {
         Utils.checkNotNull(badGmailToken, "badGmailToken");
         Utils.checkNotNull(badOutlookToken, "badOutlookToken");
         Utils.checkNotNull(invalidOperators, "invalidOperators");
         Utils.checkNotNull(errorMessages, "errorMessages");
+        Utils.checkNotNull(federatedSearchRateLimitError, "federatedSearchRateLimitError");
         this.badGmailToken = badGmailToken;
         this.badOutlookToken = badOutlookToken;
         this.invalidOperators = invalidOperators;
         this.errorMessages = errorMessages;
+        this.federatedSearchRateLimitError = federatedSearchRateLimitError;
     }
     
     public GleanDataError() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -94,6 +104,14 @@ public class GleanDataError {
     @JsonIgnore
     public Optional<List<ErrorMessage>> errorMessages() {
         return (Optional<List<ErrorMessage>>) errorMessages;
+    }
+
+    /**
+     * Indicates the federated search results could not be fetched due to rate limiting.
+     */
+    @JsonIgnore
+    public Optional<Boolean> federatedSearchRateLimitError() {
+        return federatedSearchRateLimitError;
     }
 
     public static Builder builder() {
@@ -171,6 +189,25 @@ public class GleanDataError {
         return this;
     }
 
+    /**
+     * Indicates the federated search results could not be fetched due to rate limiting.
+     */
+    public GleanDataError withFederatedSearchRateLimitError(boolean federatedSearchRateLimitError) {
+        Utils.checkNotNull(federatedSearchRateLimitError, "federatedSearchRateLimitError");
+        this.federatedSearchRateLimitError = Optional.ofNullable(federatedSearchRateLimitError);
+        return this;
+    }
+
+
+    /**
+     * Indicates the federated search results could not be fetched due to rate limiting.
+     */
+    public GleanDataError withFederatedSearchRateLimitError(Optional<Boolean> federatedSearchRateLimitError) {
+        Utils.checkNotNull(federatedSearchRateLimitError, "federatedSearchRateLimitError");
+        this.federatedSearchRateLimitError = federatedSearchRateLimitError;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -184,14 +221,15 @@ public class GleanDataError {
             Utils.enhancedDeepEquals(this.badGmailToken, other.badGmailToken) &&
             Utils.enhancedDeepEquals(this.badOutlookToken, other.badOutlookToken) &&
             Utils.enhancedDeepEquals(this.invalidOperators, other.invalidOperators) &&
-            Utils.enhancedDeepEquals(this.errorMessages, other.errorMessages);
+            Utils.enhancedDeepEquals(this.errorMessages, other.errorMessages) &&
+            Utils.enhancedDeepEquals(this.federatedSearchRateLimitError, other.federatedSearchRateLimitError);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             badGmailToken, badOutlookToken, invalidOperators,
-            errorMessages);
+            errorMessages, federatedSearchRateLimitError);
     }
     
     @Override
@@ -200,7 +238,8 @@ public class GleanDataError {
                 "badGmailToken", badGmailToken,
                 "badOutlookToken", badOutlookToken,
                 "invalidOperators", invalidOperators,
-                "errorMessages", errorMessages);
+                "errorMessages", errorMessages,
+                "federatedSearchRateLimitError", federatedSearchRateLimitError);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -213,6 +252,8 @@ public class GleanDataError {
         private Optional<? extends List<InvalidOperatorValueError>> invalidOperators = Optional.empty();
 
         private Optional<? extends List<ErrorMessage>> errorMessages = Optional.empty();
+
+        private Optional<Boolean> federatedSearchRateLimitError = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -288,11 +329,30 @@ public class GleanDataError {
             return this;
         }
 
+
+        /**
+         * Indicates the federated search results could not be fetched due to rate limiting.
+         */
+        public Builder federatedSearchRateLimitError(boolean federatedSearchRateLimitError) {
+            Utils.checkNotNull(federatedSearchRateLimitError, "federatedSearchRateLimitError");
+            this.federatedSearchRateLimitError = Optional.ofNullable(federatedSearchRateLimitError);
+            return this;
+        }
+
+        /**
+         * Indicates the federated search results could not be fetched due to rate limiting.
+         */
+        public Builder federatedSearchRateLimitError(Optional<Boolean> federatedSearchRateLimitError) {
+            Utils.checkNotNull(federatedSearchRateLimitError, "federatedSearchRateLimitError");
+            this.federatedSearchRateLimitError = federatedSearchRateLimitError;
+            return this;
+        }
+
         public GleanDataError build() {
 
             return new GleanDataError(
                 badGmailToken, badOutlookToken, invalidOperators,
-                errorMessages);
+                errorMessages, federatedSearchRateLimitError);
         }
 
     }

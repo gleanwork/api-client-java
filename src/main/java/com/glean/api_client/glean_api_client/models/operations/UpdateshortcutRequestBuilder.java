@@ -10,27 +10,52 @@ import com.glean.api_client.glean_api_client.models.components.UpdateShortcutReq
 import com.glean.api_client.glean_api_client.operations.Updateshortcut;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class UpdateshortcutRequestBuilder {
 
-    private UpdateShortcutRequest request;
+    private Optional<String> locale = Optional.empty();
+    private UpdateShortcutRequest updateShortcutRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public UpdateshortcutRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public UpdateshortcutRequestBuilder request(UpdateShortcutRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public UpdateshortcutRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public UpdateshortcutRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public UpdateshortcutRequestBuilder updateShortcutRequest(UpdateShortcutRequest updateShortcutRequest) {
+        Utils.checkNotNull(updateShortcutRequest, "updateShortcutRequest");
+        this.updateShortcutRequest = updateShortcutRequest;
+        return this;
+    }
+
+
+    private UpdateshortcutRequest buildRequest() {
+
+        UpdateshortcutRequest request = new UpdateshortcutRequest(locale,
+            updateShortcutRequest);
+
+        return request;
     }
 
     public UpdateshortcutResponse call() {
         
-        RequestOperation<UpdateShortcutRequest, UpdateshortcutResponse> operation
+        RequestOperation<UpdateshortcutRequest, UpdateshortcutResponse> operation
               = new Updateshortcut.Sync(sdkConfiguration, _headers);
+        UpdateshortcutRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -10,9 +10,9 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
-import com.glean.api_client.glean_api_client.models.components.GetDocumentsRequest;
 import com.glean.api_client.glean_api_client.models.components.GetDocumentsResponse;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
+import com.glean.api_client.glean_api_client.models.operations.GetdocumentsRequest;
 import com.glean.api_client.glean_api_client.models.operations.GetdocumentsResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
@@ -84,7 +84,7 @@ public class Getdocuments {
                     java.util.Optional.empty(),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/rest/api/v1/getdocuments");
@@ -95,13 +95,18 @@ public class Getdocuments {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "getDocumentsRequest",
                     "json",
                     false);
             req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
+
+            req.addQueryParams(Utils.getQueryParams(
+                    klass,
+                    request,
+                    null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -109,13 +114,13 @@ public class Getdocuments {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<Optional<? extends GetDocumentsRequest>, GetdocumentsResponse> {
+            implements RequestOperation<GetdocumentsRequest, GetdocumentsResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private HttpRequest onBuildRequest(Optional<? extends GetDocumentsRequest> request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends GetDocumentsRequest>>() {});
+        private HttpRequest onBuildRequest(GetdocumentsRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, GetdocumentsRequest.class, new TypeReference<GetdocumentsRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -131,7 +136,7 @@ public class Getdocuments {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(Optional<? extends GetDocumentsRequest> request) {
+        public HttpResponse<InputStream> doRequest(GetdocumentsRequest request) {
             HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
@@ -183,14 +188,14 @@ public class Getdocuments {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<Optional<? extends GetDocumentsRequest>, com.glean.api_client.glean_api_client.models.operations.async.GetdocumentsResponse> {
+            implements AsyncRequestOperation<GetdocumentsRequest, com.glean.api_client.glean_api_client.models.operations.async.GetdocumentsResponse> {
 
         public Async(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(Optional<? extends GetDocumentsRequest> request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends GetDocumentsRequest>>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(GetdocumentsRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, GetdocumentsRequest.class, new TypeReference<GetdocumentsRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -203,7 +208,7 @@ public class Getdocuments {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(Optional<? extends GetDocumentsRequest> request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(GetdocumentsRequest request) {
             return unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
                     .handle((resp, err) -> {
                         if (err != null) {

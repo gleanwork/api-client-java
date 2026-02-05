@@ -7,6 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 
 import com.glean.api_client.glean_api_client.models.components.ReminderRequest;
 import com.glean.api_client.glean_api_client.models.components.VerifyRequest;
+import com.glean.api_client.glean_api_client.models.operations.AddverificationreminderRequest;
 import com.glean.api_client.glean_api_client.models.operations.ListverificationsRequest;
 import com.glean.api_client.glean_api_client.models.operations.async.AddverificationreminderRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.AddverificationreminderResponse;
@@ -19,6 +20,7 @@ import com.glean.api_client.glean_api_client.operations.Listverifications;
 import com.glean.api_client.glean_api_client.operations.Verify;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Long;
+import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -61,11 +63,31 @@ public class AsyncVerification {
      * <p>Creates a verification reminder for the document. Users can create verification reminders from
      * different product surfaces.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param reminderRequest 
      * @return {@code CompletableFuture<AddverificationreminderResponse>} - The async response
      */
-    public CompletableFuture<AddverificationreminderResponse> addReminder(ReminderRequest request) {
-        AsyncRequestOperation<ReminderRequest, AddverificationreminderResponse> operation
+    public CompletableFuture<AddverificationreminderResponse> addReminder(ReminderRequest reminderRequest) {
+        return addReminder(Optional.empty(), reminderRequest);
+    }
+
+    /**
+     * Create verification
+     * 
+     * <p>Creates a verification reminder for the document. Users can create verification reminders from
+     * different product surfaces.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param reminderRequest 
+     * @return {@code CompletableFuture<AddverificationreminderResponse>} - The async response
+     */
+    public CompletableFuture<AddverificationreminderResponse> addReminder(Optional<String> locale, ReminderRequest reminderRequest) {
+        AddverificationreminderRequest request =
+            AddverificationreminderRequest
+                .builder()
+                .locale(locale)
+                .reminderRequest(reminderRequest)
+                .build();
+        AsyncRequestOperation<AddverificationreminderRequest, AddverificationreminderResponse> operation
               = new Addverificationreminder.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
@@ -93,7 +115,7 @@ public class AsyncVerification {
      * @return {@code CompletableFuture<ListverificationsResponse>} - The async response
      */
     public CompletableFuture<ListverificationsResponse> listDirect() {
-        return list(Optional.empty());
+        return list(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -103,13 +125,15 @@ public class AsyncVerification {
      * document owned by user regarding their verifications.
      * 
      * @param count Maximum number of documents to return
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
      * @return {@code CompletableFuture<ListverificationsResponse>} - The async response
      */
-    public CompletableFuture<ListverificationsResponse> list(Optional<Long> count) {
+    public CompletableFuture<ListverificationsResponse> list(Optional<Long> count, Optional<String> locale) {
         ListverificationsRequest request =
             ListverificationsRequest
                 .builder()
                 .count(count)
+                .locale(locale)
                 .build();
         AsyncRequestOperation<ListverificationsRequest, ListverificationsResponse> operation
               = new Listverifications.Async(sdkConfiguration, _headers);
@@ -134,11 +158,30 @@ public class AsyncVerification {
      * 
      * <p>Verify documents to keep the knowledge up to date within customer corpus.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param verifyRequest 
      * @return {@code CompletableFuture<VerifyResponse>} - The async response
      */
-    public CompletableFuture<VerifyResponse> verify(VerifyRequest request) {
-        AsyncRequestOperation<VerifyRequest, VerifyResponse> operation
+    public CompletableFuture<VerifyResponse> verify(VerifyRequest verifyRequest) {
+        return verify(Optional.empty(), verifyRequest);
+    }
+
+    /**
+     * Update verification
+     * 
+     * <p>Verify documents to keep the knowledge up to date within customer corpus.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param verifyRequest 
+     * @return {@code CompletableFuture<VerifyResponse>} - The async response
+     */
+    public CompletableFuture<VerifyResponse> verify(Optional<String> locale, VerifyRequest verifyRequest) {
+        com.glean.api_client.glean_api_client.models.operations.VerifyRequest request =
+            com.glean.api_client.glean_api_client.models.operations.VerifyRequest
+                .builder()
+                .locale(locale)
+                .verifyRequest(verifyRequest)
+                .build();
+        AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.VerifyRequest, VerifyResponse> operation
               = new Verify.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

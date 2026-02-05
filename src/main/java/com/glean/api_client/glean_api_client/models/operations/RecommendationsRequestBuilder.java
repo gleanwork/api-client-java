@@ -10,27 +10,52 @@ import com.glean.api_client.glean_api_client.models.components.RecommendationsRe
 import com.glean.api_client.glean_api_client.operations.Recommendations;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 
 public class RecommendationsRequestBuilder {
 
-    private RecommendationsRequest request;
+    private Optional<String> locale = Optional.empty();
+    private RecommendationsRequest recommendationsRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public RecommendationsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public RecommendationsRequestBuilder request(RecommendationsRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public RecommendationsRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public RecommendationsRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public RecommendationsRequestBuilder recommendationsRequest(RecommendationsRequest recommendationsRequest) {
+        Utils.checkNotNull(recommendationsRequest, "recommendationsRequest");
+        this.recommendationsRequest = recommendationsRequest;
+        return this;
+    }
+
+
+    private com.glean.api_client.glean_api_client.models.operations.RecommendationsRequest buildRequest() {
+
+        com.glean.api_client.glean_api_client.models.operations.RecommendationsRequest request = new com.glean.api_client.glean_api_client.models.operations.RecommendationsRequest(locale,
+            recommendationsRequest);
+
+        return request;
     }
 
     public RecommendationsResponse call() {
         
-        RequestOperation<RecommendationsRequest, RecommendationsResponse> operation
+        RequestOperation<com.glean.api_client.glean_api_client.models.operations.RecommendationsRequest, RecommendationsResponse> operation
               = new Recommendations.Sync(sdkConfiguration, _headers);
+        com.glean.api_client.glean_api_client.models.operations.RecommendationsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

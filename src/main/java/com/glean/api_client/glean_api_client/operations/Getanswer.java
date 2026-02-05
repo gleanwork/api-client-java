@@ -10,9 +10,9 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
-import com.glean.api_client.glean_api_client.models.components.GetAnswerRequest;
 import com.glean.api_client.glean_api_client.models.components.GetAnswerResponse;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
+import com.glean.api_client.glean_api_client.models.operations.GetanswerRequest;
 import com.glean.api_client.glean_api_client.models.operations.GetanswerResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
@@ -85,7 +85,7 @@ public class Getanswer {
                     java.util.Optional.empty(),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/rest/api/v1/getanswer");
@@ -96,7 +96,7 @@ public class Getanswer {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "getAnswerRequest",
                     "json",
                     false);
             if (serializedRequestBody == null) {
@@ -106,6 +106,11 @@ public class Getanswer {
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
+
+            req.addQueryParams(Utils.getQueryParams(
+                    klass,
+                    request,
+                    null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -113,13 +118,13 @@ public class Getanswer {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<GetAnswerRequest, GetanswerResponse> {
+            implements RequestOperation<GetanswerRequest, GetanswerResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private HttpRequest onBuildRequest(GetAnswerRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<GetAnswerRequest>() {});
+        private HttpRequest onBuildRequest(GetanswerRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, GetanswerRequest.class, new TypeReference<GetanswerRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -135,7 +140,7 @@ public class Getanswer {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(GetAnswerRequest request) {
+        public HttpResponse<InputStream> doRequest(GetanswerRequest request) {
             HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
@@ -187,14 +192,14 @@ public class Getanswer {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<GetAnswerRequest, com.glean.api_client.glean_api_client.models.operations.async.GetanswerResponse> {
+            implements AsyncRequestOperation<GetanswerRequest, com.glean.api_client.glean_api_client.models.operations.async.GetanswerResponse> {
 
         public Async(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(GetAnswerRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<GetAnswerRequest>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(GetanswerRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, GetanswerRequest.class, new TypeReference<GetanswerRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -207,7 +212,7 @@ public class Getanswer {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(GetAnswerRequest request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(GetanswerRequest request) {
             return unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
                     .handle((resp, err) -> {
                         if (err != null) {

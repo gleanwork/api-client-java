@@ -10,28 +10,53 @@ import com.glean.api_client.glean_api_client.models.components.SummarizeRequest;
 import com.glean.api_client.glean_api_client.operations.Summarize;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class SummarizeRequestBuilder {
 
-    private SummarizeRequest request;
+    private Optional<String> locale = Optional.empty();
+    private SummarizeRequest summarizeRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public SummarizeRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public SummarizeRequestBuilder request(SummarizeRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public SummarizeRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public SummarizeRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public SummarizeRequestBuilder summarizeRequest(SummarizeRequest summarizeRequest) {
+        Utils.checkNotNull(summarizeRequest, "summarizeRequest");
+        this.summarizeRequest = summarizeRequest;
+        return this;
+    }
+
+
+    private com.glean.api_client.glean_api_client.models.operations.SummarizeRequest buildRequest() {
+
+        com.glean.api_client.glean_api_client.models.operations.SummarizeRequest request = new com.glean.api_client.glean_api_client.models.operations.SummarizeRequest(locale,
+            summarizeRequest);
+
+        return request;
     }
 
     public CompletableFuture<SummarizeResponse> call() {
         
-        AsyncRequestOperation<SummarizeRequest, SummarizeResponse> operation
+        AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.SummarizeRequest, SummarizeResponse> operation
               = new Summarize.Async(sdkConfiguration, _headers);
+        com.glean.api_client.glean_api_client.models.operations.SummarizeRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

@@ -68,6 +68,14 @@ public class InputOptions {
     @JsonProperty("customTimeRange")
     private Optional<? extends TimeRange> customTimeRange;
 
+    /**
+     * Subset of document IDs to scan. If empty, all documents matching other scope criteria will be
+     * scanned.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("subsetDocIdsToScan")
+    private Optional<? extends List<String>> subsetDocIdsToScan;
+
     @JsonCreator
     public InputOptions(
             @JsonProperty("urlGreenlist") Optional<? extends List<String>> urlGreenlist,
@@ -75,24 +83,28 @@ public class InputOptions {
             @JsonProperty("datasources") Optional<? extends List<String>> datasources,
             @JsonProperty("datasourceInstances") Optional<? extends List<String>> datasourceInstances,
             @JsonProperty("timePeriodType") Optional<? extends InputOptionsTimePeriodType> timePeriodType,
-            @JsonProperty("customTimeRange") Optional<? extends TimeRange> customTimeRange) {
+            @JsonProperty("customTimeRange") Optional<? extends TimeRange> customTimeRange,
+            @JsonProperty("subsetDocIdsToScan") Optional<? extends List<String>> subsetDocIdsToScan) {
         Utils.checkNotNull(urlGreenlist, "urlGreenlist");
         Utils.checkNotNull(datasourcesType, "datasourcesType");
         Utils.checkNotNull(datasources, "datasources");
         Utils.checkNotNull(datasourceInstances, "datasourceInstances");
         Utils.checkNotNull(timePeriodType, "timePeriodType");
         Utils.checkNotNull(customTimeRange, "customTimeRange");
+        Utils.checkNotNull(subsetDocIdsToScan, "subsetDocIdsToScan");
         this.urlGreenlist = urlGreenlist;
         this.datasourcesType = datasourcesType;
         this.datasources = datasources;
         this.datasourceInstances = datasourceInstances;
         this.timePeriodType = timePeriodType;
         this.customTimeRange = customTimeRange;
+        this.subsetDocIdsToScan = subsetDocIdsToScan;
     }
     
     public InputOptions() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -150,6 +162,16 @@ public class InputOptions {
     @JsonIgnore
     public Optional<TimeRange> customTimeRange() {
         return (Optional<TimeRange>) customTimeRange;
+    }
+
+    /**
+     * Subset of document IDs to scan. If empty, all documents matching other scope criteria will be
+     * scanned.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<String>> subsetDocIdsToScan() {
+        return (Optional<List<String>>) subsetDocIdsToScan;
     }
 
     public static Builder builder() {
@@ -277,6 +299,27 @@ public class InputOptions {
         return this;
     }
 
+    /**
+     * Subset of document IDs to scan. If empty, all documents matching other scope criteria will be
+     * scanned.
+     */
+    public InputOptions withSubsetDocIdsToScan(List<String> subsetDocIdsToScan) {
+        Utils.checkNotNull(subsetDocIdsToScan, "subsetDocIdsToScan");
+        this.subsetDocIdsToScan = Optional.ofNullable(subsetDocIdsToScan);
+        return this;
+    }
+
+
+    /**
+     * Subset of document IDs to scan. If empty, all documents matching other scope criteria will be
+     * scanned.
+     */
+    public InputOptions withSubsetDocIdsToScan(Optional<? extends List<String>> subsetDocIdsToScan) {
+        Utils.checkNotNull(subsetDocIdsToScan, "subsetDocIdsToScan");
+        this.subsetDocIdsToScan = subsetDocIdsToScan;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -292,14 +335,16 @@ public class InputOptions {
             Utils.enhancedDeepEquals(this.datasources, other.datasources) &&
             Utils.enhancedDeepEquals(this.datasourceInstances, other.datasourceInstances) &&
             Utils.enhancedDeepEquals(this.timePeriodType, other.timePeriodType) &&
-            Utils.enhancedDeepEquals(this.customTimeRange, other.customTimeRange);
+            Utils.enhancedDeepEquals(this.customTimeRange, other.customTimeRange) &&
+            Utils.enhancedDeepEquals(this.subsetDocIdsToScan, other.subsetDocIdsToScan);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             urlGreenlist, datasourcesType, datasources,
-            datasourceInstances, timePeriodType, customTimeRange);
+            datasourceInstances, timePeriodType, customTimeRange,
+            subsetDocIdsToScan);
     }
     
     @Override
@@ -310,7 +355,8 @@ public class InputOptions {
                 "datasources", datasources,
                 "datasourceInstances", datasourceInstances,
                 "timePeriodType", timePeriodType,
-                "customTimeRange", customTimeRange);
+                "customTimeRange", customTimeRange,
+                "subsetDocIdsToScan", subsetDocIdsToScan);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -329,6 +375,8 @@ public class InputOptions {
         private Optional<? extends InputOptionsTimePeriodType> timePeriodType = Optional.empty();
 
         private Optional<? extends TimeRange> customTimeRange = Optional.empty();
+
+        private Optional<? extends List<String>> subsetDocIdsToScan = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -454,11 +502,33 @@ public class InputOptions {
             return this;
         }
 
+
+        /**
+         * Subset of document IDs to scan. If empty, all documents matching other scope criteria will be
+         * scanned.
+         */
+        public Builder subsetDocIdsToScan(List<String> subsetDocIdsToScan) {
+            Utils.checkNotNull(subsetDocIdsToScan, "subsetDocIdsToScan");
+            this.subsetDocIdsToScan = Optional.ofNullable(subsetDocIdsToScan);
+            return this;
+        }
+
+        /**
+         * Subset of document IDs to scan. If empty, all documents matching other scope criteria will be
+         * scanned.
+         */
+        public Builder subsetDocIdsToScan(Optional<? extends List<String>> subsetDocIdsToScan) {
+            Utils.checkNotNull(subsetDocIdsToScan, "subsetDocIdsToScan");
+            this.subsetDocIdsToScan = subsetDocIdsToScan;
+            return this;
+        }
+
         public InputOptions build() {
 
             return new InputOptions(
                 urlGreenlist, datasourcesType, datasources,
-                datasourceInstances, timePeriodType, customTimeRange);
+                datasourceInstances, timePeriodType, customTimeRange,
+                subsetDocIdsToScan);
         }
 
     }

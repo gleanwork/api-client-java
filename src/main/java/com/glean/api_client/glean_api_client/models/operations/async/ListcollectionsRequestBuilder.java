@@ -7,31 +7,57 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.ListCollectionsRequest;
+import com.glean.api_client.glean_api_client.models.operations.ListcollectionsRequest;
 import com.glean.api_client.glean_api_client.operations.Listcollections;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class ListcollectionsRequestBuilder {
 
-    private ListCollectionsRequest request;
+    private Optional<String> locale = Optional.empty();
+    private ListCollectionsRequest listCollectionsRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public ListcollectionsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public ListcollectionsRequestBuilder request(ListCollectionsRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public ListcollectionsRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public ListcollectionsRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public ListcollectionsRequestBuilder listCollectionsRequest(ListCollectionsRequest listCollectionsRequest) {
+        Utils.checkNotNull(listCollectionsRequest, "listCollectionsRequest");
+        this.listCollectionsRequest = listCollectionsRequest;
+        return this;
+    }
+
+
+    private ListcollectionsRequest buildRequest() {
+
+        ListcollectionsRequest request = new ListcollectionsRequest(locale,
+            listCollectionsRequest);
+
+        return request;
     }
 
     public CompletableFuture<ListcollectionsResponse> call() {
         
-        AsyncRequestOperation<ListCollectionsRequest, ListcollectionsResponse> operation
+        AsyncRequestOperation<ListcollectionsRequest, ListcollectionsResponse> operation
               = new Listcollections.Async(sdkConfiguration, _headers);
+        ListcollectionsRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

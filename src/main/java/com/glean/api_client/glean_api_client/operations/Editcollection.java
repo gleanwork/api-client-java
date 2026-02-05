@@ -10,10 +10,10 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
-import com.glean.api_client.glean_api_client.models.components.EditCollectionRequest;
 import com.glean.api_client.glean_api_client.models.components.EditCollectionResponse;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
 import com.glean.api_client.glean_api_client.models.errors.CollectionError;
+import com.glean.api_client.glean_api_client.models.operations.EditcollectionRequest;
 import com.glean.api_client.glean_api_client.models.operations.EditcollectionResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
@@ -86,7 +86,7 @@ public class Editcollection {
                     java.util.Optional.empty(),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/rest/api/v1/editcollection");
@@ -97,7 +97,7 @@ public class Editcollection {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "editCollectionRequest",
                     "json",
                     false);
             if (serializedRequestBody == null) {
@@ -107,6 +107,11 @@ public class Editcollection {
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
+
+            req.addQueryParams(Utils.getQueryParams(
+                    klass,
+                    request,
+                    null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -114,13 +119,13 @@ public class Editcollection {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<EditCollectionRequest, EditcollectionResponse> {
+            implements RequestOperation<EditcollectionRequest, EditcollectionResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private HttpRequest onBuildRequest(EditCollectionRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<EditCollectionRequest>() {});
+        private HttpRequest onBuildRequest(EditcollectionRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, EditcollectionRequest.class, new TypeReference<EditcollectionRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -136,7 +141,7 @@ public class Editcollection {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(EditCollectionRequest request) {
+        public HttpResponse<InputStream> doRequest(EditcollectionRequest request) {
             HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
@@ -195,14 +200,14 @@ public class Editcollection {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<EditCollectionRequest, com.glean.api_client.glean_api_client.models.operations.async.EditcollectionResponse> {
+            implements AsyncRequestOperation<EditcollectionRequest, com.glean.api_client.glean_api_client.models.operations.async.EditcollectionResponse> {
 
         public Async(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(EditCollectionRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<EditCollectionRequest>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(EditcollectionRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, EditcollectionRequest.class, new TypeReference<EditcollectionRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -215,7 +220,7 @@ public class Editcollection {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(EditCollectionRequest request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(EditcollectionRequest request) {
             return unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
                     .handle((resp, err) -> {
                         if (err != null) {

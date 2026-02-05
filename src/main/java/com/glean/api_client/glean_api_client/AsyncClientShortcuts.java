@@ -10,6 +10,11 @@ import com.glean.api_client.glean_api_client.models.components.DeleteShortcutReq
 import com.glean.api_client.glean_api_client.models.components.GetShortcutRequestUnion;
 import com.glean.api_client.glean_api_client.models.components.ListShortcutsPaginatedRequest;
 import com.glean.api_client.glean_api_client.models.components.UpdateShortcutRequest;
+import com.glean.api_client.glean_api_client.models.operations.CreateshortcutRequest;
+import com.glean.api_client.glean_api_client.models.operations.DeleteshortcutRequest;
+import com.glean.api_client.glean_api_client.models.operations.GetshortcutRequest;
+import com.glean.api_client.glean_api_client.models.operations.ListshortcutsRequest;
+import com.glean.api_client.glean_api_client.models.operations.UpdateshortcutRequest;
 import com.glean.api_client.glean_api_client.models.operations.async.CreateshortcutRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.CreateshortcutResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.DeleteshortcutRequestBuilder;
@@ -26,6 +31,8 @@ import com.glean.api_client.glean_api_client.operations.Getshortcut;
 import com.glean.api_client.glean_api_client.operations.Listshortcuts;
 import com.glean.api_client.glean_api_client.operations.Updateshortcut;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
@@ -65,11 +72,30 @@ public class AsyncClientShortcuts {
      * 
      * <p>Create a user-generated shortcut that contains an alias and destination URL.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param createShortcutRequest 
      * @return {@code CompletableFuture<CreateshortcutResponse>} - The async response
      */
-    public CompletableFuture<CreateshortcutResponse> create(CreateShortcutRequest request) {
-        AsyncRequestOperation<CreateShortcutRequest, CreateshortcutResponse> operation
+    public CompletableFuture<CreateshortcutResponse> create(CreateShortcutRequest createShortcutRequest) {
+        return create(Optional.empty(), createShortcutRequest);
+    }
+
+    /**
+     * Create shortcut
+     * 
+     * <p>Create a user-generated shortcut that contains an alias and destination URL.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param createShortcutRequest 
+     * @return {@code CompletableFuture<CreateshortcutResponse>} - The async response
+     */
+    public CompletableFuture<CreateshortcutResponse> create(Optional<String> locale, CreateShortcutRequest createShortcutRequest) {
+        CreateshortcutRequest request =
+            CreateshortcutRequest
+                .builder()
+                .locale(locale)
+                .createShortcutRequest(createShortcutRequest)
+                .build();
+        AsyncRequestOperation<CreateshortcutRequest, CreateshortcutResponse> operation
               = new Createshortcut.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
@@ -92,11 +118,30 @@ public class AsyncClientShortcuts {
      * 
      * <p>Delete an existing user-generated shortcut.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param deleteShortcutRequest 
      * @return {@code CompletableFuture<DeleteshortcutResponse>} - The async response
      */
-    public CompletableFuture<DeleteshortcutResponse> delete(DeleteShortcutRequest request) {
-        AsyncRequestOperation<DeleteShortcutRequest, DeleteshortcutResponse> operation
+    public CompletableFuture<DeleteshortcutResponse> delete(DeleteShortcutRequest deleteShortcutRequest) {
+        return delete(Optional.empty(), deleteShortcutRequest);
+    }
+
+    /**
+     * Delete shortcut
+     * 
+     * <p>Delete an existing user-generated shortcut.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param deleteShortcutRequest 
+     * @return {@code CompletableFuture<DeleteshortcutResponse>} - The async response
+     */
+    public CompletableFuture<DeleteshortcutResponse> delete(Optional<String> locale, DeleteShortcutRequest deleteShortcutRequest) {
+        DeleteshortcutRequest request =
+            DeleteshortcutRequest
+                .builder()
+                .locale(locale)
+                .deleteShortcutRequest(deleteShortcutRequest)
+                .build();
+        AsyncRequestOperation<DeleteshortcutRequest, DeleteshortcutResponse> operation
               = new Deleteshortcut.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
@@ -119,11 +164,30 @@ public class AsyncClientShortcuts {
      * 
      * <p>Read a particular shortcut's details given its ID.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param getShortcutRequest 
      * @return {@code CompletableFuture<GetshortcutResponse>} - The async response
      */
-    public CompletableFuture<GetshortcutResponse> retrieve(GetShortcutRequestUnion request) {
-        AsyncRequestOperation<GetShortcutRequestUnion, GetshortcutResponse> operation
+    public CompletableFuture<GetshortcutResponse> retrieve(GetShortcutRequestUnion getShortcutRequest) {
+        return retrieve(Optional.empty(), getShortcutRequest);
+    }
+
+    /**
+     * Read shortcut
+     * 
+     * <p>Read a particular shortcut's details given its ID.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param getShortcutRequest 
+     * @return {@code CompletableFuture<GetshortcutResponse>} - The async response
+     */
+    public CompletableFuture<GetshortcutResponse> retrieve(Optional<String> locale, GetShortcutRequestUnion getShortcutRequest) {
+        GetshortcutRequest request =
+            GetshortcutRequest
+                .builder()
+                .locale(locale)
+                .getShortcutRequest(getShortcutRequest)
+                .build();
+        AsyncRequestOperation<GetshortcutRequest, GetshortcutResponse> operation
               = new Getshortcut.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
@@ -146,11 +210,30 @@ public class AsyncClientShortcuts {
      * 
      * <p>List shortcuts editable/owned by the currently authenticated user.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param listShortcutsPaginatedRequest 
      * @return {@code CompletableFuture<ListshortcutsResponse>} - The async response
      */
-    public CompletableFuture<ListshortcutsResponse> list(ListShortcutsPaginatedRequest request) {
-        AsyncRequestOperation<ListShortcutsPaginatedRequest, ListshortcutsResponse> operation
+    public CompletableFuture<ListshortcutsResponse> list(ListShortcutsPaginatedRequest listShortcutsPaginatedRequest) {
+        return list(Optional.empty(), listShortcutsPaginatedRequest);
+    }
+
+    /**
+     * List shortcuts
+     * 
+     * <p>List shortcuts editable/owned by the currently authenticated user.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param listShortcutsPaginatedRequest 
+     * @return {@code CompletableFuture<ListshortcutsResponse>} - The async response
+     */
+    public CompletableFuture<ListshortcutsResponse> list(Optional<String> locale, ListShortcutsPaginatedRequest listShortcutsPaginatedRequest) {
+        ListshortcutsRequest request =
+            ListshortcutsRequest
+                .builder()
+                .locale(locale)
+                .listShortcutsPaginatedRequest(listShortcutsPaginatedRequest)
+                .build();
+        AsyncRequestOperation<ListshortcutsRequest, ListshortcutsResponse> operation
               = new Listshortcuts.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
@@ -173,11 +256,30 @@ public class AsyncClientShortcuts {
      * 
      * <p>Updates the shortcut with the given ID.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param updateShortcutRequest 
      * @return {@code CompletableFuture<UpdateshortcutResponse>} - The async response
      */
-    public CompletableFuture<UpdateshortcutResponse> update(UpdateShortcutRequest request) {
-        AsyncRequestOperation<UpdateShortcutRequest, UpdateshortcutResponse> operation
+    public CompletableFuture<UpdateshortcutResponse> update(UpdateShortcutRequest updateShortcutRequest) {
+        return update(Optional.empty(), updateShortcutRequest);
+    }
+
+    /**
+     * Update shortcut
+     * 
+     * <p>Updates the shortcut with the given ID.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param updateShortcutRequest 
+     * @return {@code CompletableFuture<UpdateshortcutResponse>} - The async response
+     */
+    public CompletableFuture<UpdateshortcutResponse> update(Optional<String> locale, UpdateShortcutRequest updateShortcutRequest) {
+        UpdateshortcutRequest request =
+            UpdateshortcutRequest
+                .builder()
+                .locale(locale)
+                .updateShortcutRequest(updateShortcutRequest)
+                .build();
+        AsyncRequestOperation<UpdateshortcutRequest, UpdateshortcutResponse> operation
               = new Updateshortcut.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

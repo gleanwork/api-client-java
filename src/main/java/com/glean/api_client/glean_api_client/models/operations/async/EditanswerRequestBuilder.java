@@ -7,31 +7,57 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.EditAnswerRequest;
+import com.glean.api_client.glean_api_client.models.operations.EditanswerRequest;
 import com.glean.api_client.glean_api_client.operations.Editanswer;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class EditanswerRequestBuilder {
 
-    private EditAnswerRequest request;
+    private Optional<String> locale = Optional.empty();
+    private EditAnswerRequest editAnswerRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public EditanswerRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public EditanswerRequestBuilder request(EditAnswerRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public EditanswerRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public EditanswerRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public EditanswerRequestBuilder editAnswerRequest(EditAnswerRequest editAnswerRequest) {
+        Utils.checkNotNull(editAnswerRequest, "editAnswerRequest");
+        this.editAnswerRequest = editAnswerRequest;
+        return this;
+    }
+
+
+    private EditanswerRequest buildRequest() {
+
+        EditanswerRequest request = new EditanswerRequest(locale,
+            editAnswerRequest);
+
+        return request;
     }
 
     public CompletableFuture<EditanswerResponse> call() {
         
-        AsyncRequestOperation<EditAnswerRequest, EditanswerResponse> operation
+        AsyncRequestOperation<EditanswerRequest, EditanswerResponse> operation
               = new Editanswer.Async(sdkConfiguration, _headers);
+        EditanswerRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

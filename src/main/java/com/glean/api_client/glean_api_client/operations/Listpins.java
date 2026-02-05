@@ -85,7 +85,7 @@ public class Listpins {
                     java.util.Optional.empty(),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/rest/api/v1/listpins");
@@ -96,7 +96,7 @@ public class Listpins {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "requestBody",
                     "json",
                     false);
             if (serializedRequestBody == null) {
@@ -106,6 +106,11 @@ public class Listpins {
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
+
+            req.addQueryParams(Utils.getQueryParams(
+                    klass,
+                    request,
+                    null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -119,7 +124,7 @@ public class Listpins {
         }
 
         private HttpRequest onBuildRequest(ListpinsRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<ListpinsRequest>() {});
+            HttpRequest req = buildRequest(request, ListpinsRequest.class, new TypeReference<ListpinsRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -194,7 +199,7 @@ public class Listpins {
         }
 
         private CompletableFuture<HttpRequest> onBuildRequest(ListpinsRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<ListpinsRequest>() {});
+            HttpRequest req = buildRequest(request, ListpinsRequest.class, new TypeReference<ListpinsRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 

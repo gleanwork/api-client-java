@@ -15,6 +15,15 @@ import java.util.Optional;
 
 public class GetAgentSchemasRequest {
     /**
+     * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+     * `Accept-Language` will be used.
+     * 
+     * <p>If not present or not supported, defaults to the closest match or `en`.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=locale")
+    private Optional<String> locale;
+
+    /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours
      * behind UTC.
      */
@@ -29,17 +38,31 @@ public class GetAgentSchemasRequest {
 
     @JsonCreator
     public GetAgentSchemasRequest(
+            Optional<String> locale,
             Optional<Long> timezoneOffset,
             String agentId) {
+        Utils.checkNotNull(locale, "locale");
         Utils.checkNotNull(timezoneOffset, "timezoneOffset");
         Utils.checkNotNull(agentId, "agentId");
+        this.locale = locale;
         this.timezoneOffset = timezoneOffset;
         this.agentId = agentId;
     }
     
     public GetAgentSchemasRequest(
             String agentId) {
-        this(Optional.empty(), agentId);
+        this(Optional.empty(), Optional.empty(), agentId);
+    }
+
+    /**
+     * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+     * `Accept-Language` will be used.
+     * 
+     * <p>If not present or not supported, defaults to the closest match or `en`.
+     */
+    @JsonIgnore
+    public Optional<String> locale() {
+        return locale;
     }
 
     /**
@@ -63,6 +86,31 @@ public class GetAgentSchemasRequest {
         return new Builder();
     }
 
+
+    /**
+     * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+     * `Accept-Language` will be used.
+     * 
+     * <p>If not present or not supported, defaults to the closest match or `en`.
+     */
+    public GetAgentSchemasRequest withLocale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.ofNullable(locale);
+        return this;
+    }
+
+
+    /**
+     * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+     * `Accept-Language` will be used.
+     * 
+     * <p>If not present or not supported, defaults to the closest match or `en`.
+     */
+    public GetAgentSchemasRequest withLocale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
 
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours
@@ -104,6 +152,7 @@ public class GetAgentSchemasRequest {
         }
         GetAgentSchemasRequest other = (GetAgentSchemasRequest) o;
         return 
+            Utils.enhancedDeepEquals(this.locale, other.locale) &&
             Utils.enhancedDeepEquals(this.timezoneOffset, other.timezoneOffset) &&
             Utils.enhancedDeepEquals(this.agentId, other.agentId);
     }
@@ -111,12 +160,13 @@ public class GetAgentSchemasRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            timezoneOffset, agentId);
+            locale, timezoneOffset, agentId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetAgentSchemasRequest.class,
+                "locale", locale,
                 "timezoneOffset", timezoneOffset,
                 "agentId", agentId);
     }
@@ -124,12 +174,39 @@ public class GetAgentSchemasRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
+        private Optional<String> locale = Optional.empty();
+
         private Optional<Long> timezoneOffset = Optional.empty();
 
         private String agentId;
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+         * `Accept-Language` will be used.
+         * 
+         * <p>If not present or not supported, defaults to the closest match or `en`.
+         */
+        public Builder locale(String locale) {
+            Utils.checkNotNull(locale, "locale");
+            this.locale = Optional.ofNullable(locale);
+            return this;
+        }
+
+        /**
+         * The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the
+         * `Accept-Language` will be used.
+         * 
+         * <p>If not present or not supported, defaults to the closest match or `en`.
+         */
+        public Builder locale(Optional<String> locale) {
+            Utils.checkNotNull(locale, "locale");
+            this.locale = locale;
+            return this;
         }
 
 
@@ -166,7 +243,7 @@ public class GetAgentSchemasRequest {
         public GetAgentSchemasRequest build() {
 
             return new GetAgentSchemasRequest(
-                timezoneOffset, agentId);
+                locale, timezoneOffset, agentId);
         }
 
     }

@@ -10,9 +10,9 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
-import com.glean.api_client.glean_api_client.models.components.ListShortcutsPaginatedRequest;
 import com.glean.api_client.glean_api_client.models.components.ListShortcutsPaginatedResponse;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
+import com.glean.api_client.glean_api_client.models.operations.ListshortcutsRequest;
 import com.glean.api_client.glean_api_client.models.operations.ListshortcutsResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
@@ -85,7 +85,7 @@ public class Listshortcuts {
                     java.util.Optional.empty(),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/rest/api/v1/listshortcuts");
@@ -96,7 +96,7 @@ public class Listshortcuts {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "listShortcutsPaginatedRequest",
                     "json",
                     false);
             if (serializedRequestBody == null) {
@@ -106,6 +106,11 @@ public class Listshortcuts {
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
+
+            req.addQueryParams(Utils.getQueryParams(
+                    klass,
+                    request,
+                    null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -113,13 +118,13 @@ public class Listshortcuts {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<ListShortcutsPaginatedRequest, ListshortcutsResponse> {
+            implements RequestOperation<ListshortcutsRequest, ListshortcutsResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private HttpRequest onBuildRequest(ListShortcutsPaginatedRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<ListShortcutsPaginatedRequest>() {});
+        private HttpRequest onBuildRequest(ListshortcutsRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, ListshortcutsRequest.class, new TypeReference<ListshortcutsRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -135,7 +140,7 @@ public class Listshortcuts {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(ListShortcutsPaginatedRequest request) {
+        public HttpResponse<InputStream> doRequest(ListshortcutsRequest request) {
             HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
@@ -187,14 +192,14 @@ public class Listshortcuts {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<ListShortcutsPaginatedRequest, com.glean.api_client.glean_api_client.models.operations.async.ListshortcutsResponse> {
+            implements AsyncRequestOperation<ListshortcutsRequest, com.glean.api_client.glean_api_client.models.operations.async.ListshortcutsResponse> {
 
         public Async(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(ListShortcutsPaginatedRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<ListShortcutsPaginatedRequest>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(ListshortcutsRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, ListshortcutsRequest.class, new TypeReference<ListshortcutsRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -207,7 +212,7 @@ public class Listshortcuts {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(ListShortcutsPaginatedRequest request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(ListshortcutsRequest request) {
             return unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
                     .handle((resp, err) -> {
                         if (err != null) {

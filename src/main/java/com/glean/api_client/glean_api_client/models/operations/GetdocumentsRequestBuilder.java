@@ -10,11 +10,13 @@ import com.glean.api_client.glean_api_client.models.components.GetDocumentsReque
 import com.glean.api_client.glean_api_client.operations.Getdocuments;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
 import java.util.Optional;
 
 public class GetdocumentsRequestBuilder {
 
-    private Optional<? extends GetDocumentsRequest> request = Optional.empty();
+    private Optional<String> locale = Optional.empty();
+    private Optional<? extends GetDocumentsRequest> getDocumentsRequest = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -22,22 +24,44 @@ public class GetdocumentsRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
                 
-    public GetdocumentsRequestBuilder request(GetDocumentsRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = Optional.of(request);
+    public GetdocumentsRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
     }
 
-    public GetdocumentsRequestBuilder request(Optional<? extends GetDocumentsRequest> request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+    public GetdocumentsRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
         return this;
+    }
+                
+    public GetdocumentsRequestBuilder getDocumentsRequest(GetDocumentsRequest getDocumentsRequest) {
+        Utils.checkNotNull(getDocumentsRequest, "getDocumentsRequest");
+        this.getDocumentsRequest = Optional.of(getDocumentsRequest);
+        return this;
+    }
+
+    public GetdocumentsRequestBuilder getDocumentsRequest(Optional<? extends GetDocumentsRequest> getDocumentsRequest) {
+        Utils.checkNotNull(getDocumentsRequest, "getDocumentsRequest");
+        this.getDocumentsRequest = getDocumentsRequest;
+        return this;
+    }
+
+
+    private GetdocumentsRequest buildRequest() {
+
+        GetdocumentsRequest request = new GetdocumentsRequest(locale,
+            getDocumentsRequest);
+
+        return request;
     }
 
     public GetdocumentsResponse call() {
         
-        RequestOperation<Optional<? extends GetDocumentsRequest>, GetdocumentsResponse> operation
+        RequestOperation<GetdocumentsRequest, GetdocumentsResponse> operation
               = new Getdocuments.Sync(sdkConfiguration, _headers);
+        GetdocumentsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

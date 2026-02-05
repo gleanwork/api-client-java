@@ -7,31 +7,57 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.ListShortcutsPaginatedRequest;
+import com.glean.api_client.glean_api_client.models.operations.ListshortcutsRequest;
 import com.glean.api_client.glean_api_client.operations.Listshortcuts;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class ListshortcutsRequestBuilder {
 
-    private ListShortcutsPaginatedRequest request;
+    private Optional<String> locale = Optional.empty();
+    private ListShortcutsPaginatedRequest listShortcutsPaginatedRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public ListshortcutsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public ListshortcutsRequestBuilder request(ListShortcutsPaginatedRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public ListshortcutsRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public ListshortcutsRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public ListshortcutsRequestBuilder listShortcutsPaginatedRequest(ListShortcutsPaginatedRequest listShortcutsPaginatedRequest) {
+        Utils.checkNotNull(listShortcutsPaginatedRequest, "listShortcutsPaginatedRequest");
+        this.listShortcutsPaginatedRequest = listShortcutsPaginatedRequest;
+        return this;
+    }
+
+
+    private ListshortcutsRequest buildRequest() {
+
+        ListshortcutsRequest request = new ListshortcutsRequest(locale,
+            listShortcutsPaginatedRequest);
+
+        return request;
     }
 
     public CompletableFuture<ListshortcutsResponse> call() {
         
-        AsyncRequestOperation<ListShortcutsPaginatedRequest, ListshortcutsResponse> operation
+        AsyncRequestOperation<ListshortcutsRequest, ListshortcutsResponse> operation
               = new Listshortcuts.Async(sdkConfiguration, _headers);
+        ListshortcutsRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

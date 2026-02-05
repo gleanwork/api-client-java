@@ -10,6 +10,11 @@ import com.glean.api_client.glean_api_client.models.components.DeleteAnswerReque
 import com.glean.api_client.glean_api_client.models.components.EditAnswerRequest;
 import com.glean.api_client.glean_api_client.models.components.GetAnswerRequest;
 import com.glean.api_client.glean_api_client.models.components.ListAnswersRequest;
+import com.glean.api_client.glean_api_client.models.operations.CreateanswerRequest;
+import com.glean.api_client.glean_api_client.models.operations.DeleteanswerRequest;
+import com.glean.api_client.glean_api_client.models.operations.EditanswerRequest;
+import com.glean.api_client.glean_api_client.models.operations.GetanswerRequest;
+import com.glean.api_client.glean_api_client.models.operations.ListanswersRequest;
 import com.glean.api_client.glean_api_client.models.operations.async.CreateanswerRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.CreateanswerResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.DeleteanswerRequestBuilder;
@@ -27,6 +32,8 @@ import com.glean.api_client.glean_api_client.operations.Getanswer;
 import com.glean.api_client.glean_api_client.operations.Listanswers;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Deprecated;
+import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
@@ -66,11 +73,30 @@ public class AsyncAnswers {
      * 
      * <p>Create a user-generated Answer that contains a question and answer.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param createAnswerRequest 
      * @return {@code CompletableFuture<CreateanswerResponse>} - The async response
      */
-    public CompletableFuture<CreateanswerResponse> create(CreateAnswerRequest request) {
-        AsyncRequestOperation<CreateAnswerRequest, CreateanswerResponse> operation
+    public CompletableFuture<CreateanswerResponse> create(CreateAnswerRequest createAnswerRequest) {
+        return create(Optional.empty(), createAnswerRequest);
+    }
+
+    /**
+     * Create Answer
+     * 
+     * <p>Create a user-generated Answer that contains a question and answer.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param createAnswerRequest 
+     * @return {@code CompletableFuture<CreateanswerResponse>} - The async response
+     */
+    public CompletableFuture<CreateanswerResponse> create(Optional<String> locale, CreateAnswerRequest createAnswerRequest) {
+        CreateanswerRequest request =
+            CreateanswerRequest
+                .builder()
+                .locale(locale)
+                .createAnswerRequest(createAnswerRequest)
+                .build();
+        AsyncRequestOperation<CreateanswerRequest, CreateanswerResponse> operation
               = new Createanswer.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
@@ -93,11 +119,30 @@ public class AsyncAnswers {
      * 
      * <p>Delete an existing user-generated Answer.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param deleteAnswerRequest 
      * @return {@code CompletableFuture<DeleteanswerResponse>} - The async response
      */
-    public CompletableFuture<DeleteanswerResponse> delete(DeleteAnswerRequest request) {
-        AsyncRequestOperation<DeleteAnswerRequest, DeleteanswerResponse> operation
+    public CompletableFuture<DeleteanswerResponse> delete(DeleteAnswerRequest deleteAnswerRequest) {
+        return delete(Optional.empty(), deleteAnswerRequest);
+    }
+
+    /**
+     * Delete Answer
+     * 
+     * <p>Delete an existing user-generated Answer.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param deleteAnswerRequest 
+     * @return {@code CompletableFuture<DeleteanswerResponse>} - The async response
+     */
+    public CompletableFuture<DeleteanswerResponse> delete(Optional<String> locale, DeleteAnswerRequest deleteAnswerRequest) {
+        DeleteanswerRequest request =
+            DeleteanswerRequest
+                .builder()
+                .locale(locale)
+                .deleteAnswerRequest(deleteAnswerRequest)
+                .build();
+        AsyncRequestOperation<DeleteanswerRequest, DeleteanswerResponse> operation
               = new Deleteanswer.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
@@ -120,11 +165,30 @@ public class AsyncAnswers {
      * 
      * <p>Update an existing user-generated Answer.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param editAnswerRequest 
      * @return {@code CompletableFuture<EditanswerResponse>} - The async response
      */
-    public CompletableFuture<EditanswerResponse> update(EditAnswerRequest request) {
-        AsyncRequestOperation<EditAnswerRequest, EditanswerResponse> operation
+    public CompletableFuture<EditanswerResponse> update(EditAnswerRequest editAnswerRequest) {
+        return update(Optional.empty(), editAnswerRequest);
+    }
+
+    /**
+     * Update Answer
+     * 
+     * <p>Update an existing user-generated Answer.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param editAnswerRequest 
+     * @return {@code CompletableFuture<EditanswerResponse>} - The async response
+     */
+    public CompletableFuture<EditanswerResponse> update(Optional<String> locale, EditAnswerRequest editAnswerRequest) {
+        EditanswerRequest request =
+            EditanswerRequest
+                .builder()
+                .locale(locale)
+                .editAnswerRequest(editAnswerRequest)
+                .build();
+        AsyncRequestOperation<EditanswerRequest, EditanswerResponse> operation
               = new Editanswer.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
@@ -147,11 +211,30 @@ public class AsyncAnswers {
      * 
      * <p>Read the details of a particular Answer given its ID.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param getAnswerRequest 
      * @return {@code CompletableFuture<GetanswerResponse>} - The async response
      */
-    public CompletableFuture<GetanswerResponse> retrieve(GetAnswerRequest request) {
-        AsyncRequestOperation<GetAnswerRequest, GetanswerResponse> operation
+    public CompletableFuture<GetanswerResponse> retrieve(GetAnswerRequest getAnswerRequest) {
+        return retrieve(Optional.empty(), getAnswerRequest);
+    }
+
+    /**
+     * Read Answer
+     * 
+     * <p>Read the details of a particular Answer given its ID.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param getAnswerRequest 
+     * @return {@code CompletableFuture<GetanswerResponse>} - The async response
+     */
+    public CompletableFuture<GetanswerResponse> retrieve(Optional<String> locale, GetAnswerRequest getAnswerRequest) {
+        GetanswerRequest request =
+            GetanswerRequest
+                .builder()
+                .locale(locale)
+                .getAnswerRequest(getAnswerRequest)
+                .build();
+        AsyncRequestOperation<GetanswerRequest, GetanswerResponse> operation
               = new Getanswer.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
@@ -164,7 +247,7 @@ public class AsyncAnswers {
      * <p>List Answers created by the current user.
      * 
      * @return The async call builder
-     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated method: Deprecated on 2026-01-21, removal scheduled for 2026-10-15: Answer boards have been removed and this endpoint no longer serves a purpose.
      */
     @Deprecated
     public ListanswersRequestBuilder list() {
@@ -176,13 +259,34 @@ public class AsyncAnswers {
      * 
      * <p>List Answers created by the current user.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param listAnswersRequest 
      * @return {@code CompletableFuture<ListanswersResponse>} - The async response
-     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated method: Deprecated on 2026-01-21, removal scheduled for 2026-10-15: Answer boards have been removed and this endpoint no longer serves a purpose.
      */
     @Deprecated
-    public CompletableFuture<ListanswersResponse> list(ListAnswersRequest request) {
-        AsyncRequestOperation<ListAnswersRequest, ListanswersResponse> operation
+    public CompletableFuture<ListanswersResponse> list(ListAnswersRequest listAnswersRequest) {
+        return list(Optional.empty(), listAnswersRequest);
+    }
+
+    /**
+     * List Answers
+     * 
+     * <p>List Answers created by the current user.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param listAnswersRequest 
+     * @return {@code CompletableFuture<ListanswersResponse>} - The async response
+     * @deprecated method: Deprecated on 2026-01-21, removal scheduled for 2026-10-15: Answer boards have been removed and this endpoint no longer serves a purpose.
+     */
+    @Deprecated
+    public CompletableFuture<ListanswersResponse> list(Optional<String> locale, ListAnswersRequest listAnswersRequest) {
+        ListanswersRequest request =
+            ListanswersRequest
+                .builder()
+                .locale(locale)
+                .listAnswersRequest(listAnswersRequest)
+                .build();
+        AsyncRequestOperation<ListanswersRequest, ListanswersResponse> operation
               = new Listanswers.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

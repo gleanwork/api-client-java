@@ -12,11 +12,13 @@ import com.glean.api_client.glean_api_client.operations.Getchat;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
+import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class GetchatRequestBuilder {
 
+    private Optional<String> locale = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private GetChatRequest getChatRequest;
     private final SDKConfiguration sdkConfiguration;
@@ -24,6 +26,18 @@ public class GetchatRequestBuilder {
 
     public GetchatRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+    }
+                
+    public GetchatRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
+        return this;
+    }
+
+    public GetchatRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
     }
                 
     public GetchatRequestBuilder timezoneOffset(long timezoneOffset) {
@@ -47,7 +61,8 @@ public class GetchatRequestBuilder {
 
     private GetchatRequest buildRequest() {
 
-        GetchatRequest request = new GetchatRequest(timezoneOffset,
+        GetchatRequest request = new GetchatRequest(locale,
+            timezoneOffset,
             getChatRequest);
 
         return request;

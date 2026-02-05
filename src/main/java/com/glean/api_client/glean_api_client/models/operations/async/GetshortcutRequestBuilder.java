@@ -7,31 +7,57 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.GetShortcutRequestUnion;
+import com.glean.api_client.glean_api_client.models.operations.GetshortcutRequest;
 import com.glean.api_client.glean_api_client.operations.Getshortcut;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class GetshortcutRequestBuilder {
 
-    private GetShortcutRequestUnion request;
+    private Optional<String> locale = Optional.empty();
+    private GetShortcutRequestUnion getShortcutRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public GetshortcutRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public GetshortcutRequestBuilder request(GetShortcutRequestUnion request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public GetshortcutRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public GetshortcutRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public GetshortcutRequestBuilder getShortcutRequest(GetShortcutRequestUnion getShortcutRequest) {
+        Utils.checkNotNull(getShortcutRequest, "getShortcutRequest");
+        this.getShortcutRequest = getShortcutRequest;
+        return this;
+    }
+
+
+    private GetshortcutRequest buildRequest() {
+
+        GetshortcutRequest request = new GetshortcutRequest(locale,
+            getShortcutRequest);
+
+        return request;
     }
 
     public CompletableFuture<GetshortcutResponse> call() {
         
-        AsyncRequestOperation<GetShortcutRequestUnion, GetshortcutResponse> operation
+        AsyncRequestOperation<GetshortcutRequest, GetshortcutResponse> operation
               = new Getshortcut.Async(sdkConfiguration, _headers);
+        GetshortcutRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

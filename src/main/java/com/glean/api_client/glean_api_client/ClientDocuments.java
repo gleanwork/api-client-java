@@ -9,10 +9,13 @@ import com.glean.api_client.glean_api_client.models.components.GetDocPermissions
 import com.glean.api_client.glean_api_client.models.components.GetDocumentsByFacetsRequest;
 import com.glean.api_client.glean_api_client.models.components.GetDocumentsRequest;
 import com.glean.api_client.glean_api_client.models.components.SummarizeRequest;
+import com.glean.api_client.glean_api_client.models.operations.GetdocpermissionsRequest;
 import com.glean.api_client.glean_api_client.models.operations.GetdocpermissionsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.GetdocpermissionsResponse;
+import com.glean.api_client.glean_api_client.models.operations.GetdocumentsRequest;
 import com.glean.api_client.glean_api_client.models.operations.GetdocumentsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.GetdocumentsResponse;
+import com.glean.api_client.glean_api_client.models.operations.GetdocumentsbyfacetsRequest;
 import com.glean.api_client.glean_api_client.models.operations.GetdocumentsbyfacetsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.GetdocumentsbyfacetsResponse;
 import com.glean.api_client.glean_api_client.models.operations.SummarizeRequestBuilder;
@@ -22,6 +25,7 @@ import com.glean.api_client.glean_api_client.operations.Getdocuments;
 import com.glean.api_client.glean_api_client.operations.Getdocumentsbyfacets;
 import com.glean.api_client.glean_api_client.operations.Summarize;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import java.lang.String;
 import java.util.Optional;
 
 
@@ -60,12 +64,32 @@ public class ClientDocuments {
      * 
      * <p>Read the emails of all users who have access to the given document.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param getDocPermissionsRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetdocpermissionsResponse retrievePermissions(GetDocPermissionsRequest request) {
-        RequestOperation<GetDocPermissionsRequest, GetdocpermissionsResponse> operation
+    public GetdocpermissionsResponse retrievePermissions(GetDocPermissionsRequest getDocPermissionsRequest) {
+        return retrievePermissions(Optional.empty(), getDocPermissionsRequest);
+    }
+
+    /**
+     * Read document permissions
+     * 
+     * <p>Read the emails of all users who have access to the given document.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param getDocPermissionsRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetdocpermissionsResponse retrievePermissions(Optional<String> locale, GetDocPermissionsRequest getDocPermissionsRequest) {
+        GetdocpermissionsRequest request =
+            GetdocpermissionsRequest
+                .builder()
+                .locale(locale)
+                .getDocPermissionsRequest(getDocPermissionsRequest)
+                .build();
+        RequestOperation<GetdocpermissionsRequest, GetdocpermissionsResponse> operation
               = new Getdocpermissions.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -92,7 +116,7 @@ public class ClientDocuments {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetdocumentsResponse retrieveDirect() {
-        return retrieve(Optional.empty());
+        return retrieve(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -101,12 +125,19 @@ public class ClientDocuments {
      * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`)
      * for the given list of Glean Document IDs or URLs specified in the request.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param getDocumentsRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetdocumentsResponse retrieve(Optional<? extends GetDocumentsRequest> request) {
-        RequestOperation<Optional<? extends GetDocumentsRequest>, GetdocumentsResponse> operation
+    public GetdocumentsResponse retrieve(Optional<String> locale, Optional<? extends GetDocumentsRequest> getDocumentsRequest) {
+        GetdocumentsRequest request =
+            GetdocumentsRequest
+                .builder()
+                .locale(locale)
+                .getDocumentsRequest(getDocumentsRequest)
+                .build();
+        RequestOperation<GetdocumentsRequest, GetdocumentsResponse> operation
               = new Getdocuments.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -133,7 +164,7 @@ public class ClientDocuments {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetdocumentsbyfacetsResponse retrieveByFacetsDirect() {
-        return retrieveByFacets(Optional.empty());
+        return retrieveByFacets(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -142,12 +173,19 @@ public class ClientDocuments {
      * <p>Read the documents including metadata (does not include enhanced metadata via `/documentmetadata`)
      * macthing the given facet conditions.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param getDocumentsByFacetsRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetdocumentsbyfacetsResponse retrieveByFacets(Optional<? extends GetDocumentsByFacetsRequest> request) {
-        RequestOperation<Optional<? extends GetDocumentsByFacetsRequest>, GetdocumentsbyfacetsResponse> operation
+    public GetdocumentsbyfacetsResponse retrieveByFacets(Optional<String> locale, Optional<? extends GetDocumentsByFacetsRequest> getDocumentsByFacetsRequest) {
+        GetdocumentsbyfacetsRequest request =
+            GetdocumentsbyfacetsRequest
+                .builder()
+                .locale(locale)
+                .getDocumentsByFacetsRequest(getDocumentsByFacetsRequest)
+                .build();
+        RequestOperation<GetdocumentsbyfacetsRequest, GetdocumentsbyfacetsResponse> operation
               = new Getdocumentsbyfacets.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -168,12 +206,32 @@ public class ClientDocuments {
      * 
      * <p>Generate an AI summary of the requested documents.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param summarizeRequest Summary of the document
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public SummarizeResponse summarize(SummarizeRequest request) {
-        RequestOperation<SummarizeRequest, SummarizeResponse> operation
+    public SummarizeResponse summarize(SummarizeRequest summarizeRequest) {
+        return summarize(Optional.empty(), summarizeRequest);
+    }
+
+    /**
+     * Summarize documents
+     * 
+     * <p>Generate an AI summary of the requested documents.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param summarizeRequest Summary of the document
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public SummarizeResponse summarize(Optional<String> locale, SummarizeRequest summarizeRequest) {
+        com.glean.api_client.glean_api_client.models.operations.SummarizeRequest request =
+            com.glean.api_client.glean_api_client.models.operations.SummarizeRequest
+                .builder()
+                .locale(locale)
+                .summarizeRequest(summarizeRequest)
+                .build();
+        RequestOperation<com.glean.api_client.glean_api_client.models.operations.SummarizeRequest, SummarizeResponse> operation
               = new Summarize.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }

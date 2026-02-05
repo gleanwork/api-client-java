@@ -7,6 +7,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.models.components.ReminderRequest;
 import com.glean.api_client.glean_api_client.models.components.VerifyRequest;
+import com.glean.api_client.glean_api_client.models.operations.AddverificationreminderRequest;
 import com.glean.api_client.glean_api_client.models.operations.AddverificationreminderRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.AddverificationreminderResponse;
 import com.glean.api_client.glean_api_client.models.operations.ListverificationsRequest;
@@ -19,6 +20,7 @@ import com.glean.api_client.glean_api_client.operations.Listverifications;
 import com.glean.api_client.glean_api_client.operations.Verify;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Long;
+import java.lang.String;
 import java.util.Optional;
 
 
@@ -59,12 +61,33 @@ public class Verification {
      * <p>Creates a verification reminder for the document. Users can create verification reminders from
      * different product surfaces.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param reminderRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public AddverificationreminderResponse addReminder(ReminderRequest request) {
-        RequestOperation<ReminderRequest, AddverificationreminderResponse> operation
+    public AddverificationreminderResponse addReminder(ReminderRequest reminderRequest) {
+        return addReminder(Optional.empty(), reminderRequest);
+    }
+
+    /**
+     * Create verification
+     * 
+     * <p>Creates a verification reminder for the document. Users can create verification reminders from
+     * different product surfaces.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param reminderRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AddverificationreminderResponse addReminder(Optional<String> locale, ReminderRequest reminderRequest) {
+        AddverificationreminderRequest request =
+            AddverificationreminderRequest
+                .builder()
+                .locale(locale)
+                .reminderRequest(reminderRequest)
+                .build();
+        RequestOperation<AddverificationreminderRequest, AddverificationreminderResponse> operation
               = new Addverificationreminder.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -91,7 +114,7 @@ public class Verification {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListverificationsResponse listDirect() {
-        return list(Optional.empty());
+        return list(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -101,14 +124,16 @@ public class Verification {
      * document owned by user regarding their verifications.
      * 
      * @param count Maximum number of documents to return
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public ListverificationsResponse list(Optional<Long> count) {
+    public ListverificationsResponse list(Optional<Long> count, Optional<String> locale) {
         ListverificationsRequest request =
             ListverificationsRequest
                 .builder()
                 .count(count)
+                .locale(locale)
                 .build();
         RequestOperation<ListverificationsRequest, ListverificationsResponse> operation
               = new Listverifications.Sync(sdkConfiguration, _headers);
@@ -131,12 +156,32 @@ public class Verification {
      * 
      * <p>Verify documents to keep the knowledge up to date within customer corpus.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param verifyRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public VerifyResponse verify(VerifyRequest request) {
-        RequestOperation<VerifyRequest, VerifyResponse> operation
+    public VerifyResponse verify(VerifyRequest verifyRequest) {
+        return verify(Optional.empty(), verifyRequest);
+    }
+
+    /**
+     * Update verification
+     * 
+     * <p>Verify documents to keep the knowledge up to date within customer corpus.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param verifyRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public VerifyResponse verify(Optional<String> locale, VerifyRequest verifyRequest) {
+        com.glean.api_client.glean_api_client.models.operations.VerifyRequest request =
+            com.glean.api_client.glean_api_client.models.operations.VerifyRequest
+                .builder()
+                .locale(locale)
+                .verifyRequest(verifyRequest)
+                .build();
+        RequestOperation<com.glean.api_client.glean_api_client.models.operations.VerifyRequest, VerifyResponse> operation
               = new Verify.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }

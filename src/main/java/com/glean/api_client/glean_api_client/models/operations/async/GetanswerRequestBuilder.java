@@ -7,31 +7,57 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.GetAnswerRequest;
+import com.glean.api_client.glean_api_client.models.operations.GetanswerRequest;
 import com.glean.api_client.glean_api_client.operations.Getanswer;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class GetanswerRequestBuilder {
 
-    private GetAnswerRequest request;
+    private Optional<String> locale = Optional.empty();
+    private GetAnswerRequest getAnswerRequest;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
     public GetanswerRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
-    public GetanswerRequestBuilder request(GetAnswerRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+                
+    public GetanswerRequestBuilder locale(String locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = Optional.of(locale);
         return this;
+    }
+
+    public GetanswerRequestBuilder locale(Optional<String> locale) {
+        Utils.checkNotNull(locale, "locale");
+        this.locale = locale;
+        return this;
+    }
+
+    public GetanswerRequestBuilder getAnswerRequest(GetAnswerRequest getAnswerRequest) {
+        Utils.checkNotNull(getAnswerRequest, "getAnswerRequest");
+        this.getAnswerRequest = getAnswerRequest;
+        return this;
+    }
+
+
+    private GetanswerRequest buildRequest() {
+
+        GetanswerRequest request = new GetanswerRequest(locale,
+            getAnswerRequest);
+
+        return request;
     }
 
     public CompletableFuture<GetanswerResponse> call() {
         
-        AsyncRequestOperation<GetAnswerRequest, GetanswerResponse> operation
+        AsyncRequestOperation<GetanswerRequest, GetanswerResponse> operation
               = new Getanswer.Async(sdkConfiguration, _headers);
+        GetanswerRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
