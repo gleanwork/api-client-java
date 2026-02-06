@@ -188,7 +188,8 @@ public class AsyncAgents {
      * Create an agent run and stream the response
      * 
      * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the result as a
-     * stream of server-sent events (SSE).
+     * stream of server-sent events (SSE). **Note**: If the agent uses an input form trigger, all form
+     * fields (including optional fields) must be included in the `input` object.
      * 
      * @return The async call builder
      */
@@ -200,7 +201,8 @@ public class AsyncAgents {
      * Create an agent run and stream the response
      * 
      * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the result as a
-     * stream of server-sent events (SSE).
+     * stream of server-sent events (SSE). **Note**: If the agent uses an input form trigger, all form
+     * fields (including optional fields) must be included in the `input` object.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<CreateAndStreamRunResponse>} - The async response
@@ -217,7 +219,8 @@ public class AsyncAgents {
      * Create an agent run and wait for the response
      * 
      * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the final
-     * response.
+     * response. **Note**: If the agent uses an input form trigger, all form fields (including optional
+     * fields) must be included in the `input` object.
      * 
      * @return The async call builder
      */
@@ -229,7 +232,8 @@ public class AsyncAgents {
      * Create an agent run and wait for the response
      * 
      * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the final
-     * response.
+     * response. **Note**: If the agent uses an input form trigger, all form fields (including optional
+     * fields) must be included in the `input` object.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<CreateAndWaitRunResponse>} - The async response

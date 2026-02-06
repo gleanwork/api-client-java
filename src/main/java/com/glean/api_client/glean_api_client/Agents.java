@@ -185,7 +185,8 @@ public class Agents {
      * Create an agent run and stream the response
      * 
      * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the result as a
-     * stream of server-sent events (SSE).
+     * stream of server-sent events (SSE). **Note**: If the agent uses an input form trigger, all form
+     * fields (including optional fields) must be included in the `input` object.
      * 
      * @return The call builder
      */
@@ -197,7 +198,8 @@ public class Agents {
      * Create an agent run and stream the response
      * 
      * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the result as a
-     * stream of server-sent events (SSE).
+     * stream of server-sent events (SSE). **Note**: If the agent uses an input form trigger, all form
+     * fields (including optional fields) must be included in the `input` object.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -213,7 +215,8 @@ public class Agents {
      * Create an agent run and wait for the response
      * 
      * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the final
-     * response.
+     * response. **Note**: If the agent uses an input form trigger, all form fields (including optional
+     * fields) must be included in the `input` object.
      * 
      * @return The call builder
      */
@@ -225,7 +228,8 @@ public class Agents {
      * Create an agent run and wait for the response
      * 
      * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the final
-     * response.
+     * response. **Note**: If the agent uses an input form trigger, all form fields (including optional
+     * fields) must be included in the `input` object.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
