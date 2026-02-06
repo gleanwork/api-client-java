@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0359d4fe-2923-46fc-aaca-cf70b48dcfa1
 management:
-  docChecksum: 7e8abd279b4f6b1f509868bab951d015
+  docChecksum: 9f934db728af8f9aaaa1df7eb9781bff
   docVersion: 0.9.0
   speakeasyVersion: 1.706.1
   generationVersion: 2.809.2
-  releaseVersion: 0.12.16
-  configChecksum: 1dbff3c5976645ad4cb433a95ef11567
+  releaseVersion: 0.12.17
+  configChecksum: 013c8ae702b2077003b0d223561bcf83
   repoURL: https://github.com/gleanwork/api-client-java.git
   published: true
 persistentEdits:
-  generation_id: 26869596-5b54-4960-b128-f989d1dd3ea7
-  pristine_commit_hash: 56b8c5d90c539b3736d80af379289956d1284151
-  pristine_tree_hash: 30a80ed5e2c6b4766c4e78967c098c4fa668bdb8
+  generation_id: 3ef7dae6-38b8-40eb-8c07-26fbe1d3b407
+  pristine_commit_hash: 35bc860306897618beee70bcbe2c30298e96e60b
+  pristine_tree_hash: 6916eafc177807a0c12433f2ba300ec8d88a57a7
 features:
   java:
     additionalDependencies: 0.1.0
@@ -3142,8 +3142,8 @@ trackedFiles:
     pristine_git_object: 3decbce5bd40edbe278c1c5d2dbf585808e51d9a
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:b66d80f0da0261edb6781ba389d7cd681dac9402
-    pristine_git_object: 32bf1957ae4abd87cf2fbb0e3a7417f0719d8153
+    last_write_checksum: sha1:9daf772b5b88446f6663d43cefe9bce5715c4d4e
+    pristine_git_object: 3feb30fd56ce49aaf358776a56b998e613167406
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3446,8 +3446,8 @@ trackedFiles:
     pristine_git_object: 5e30515ba0d212914ac9a195db6019330b6b0a2b
   src/main/java/com/glean/api_client/glean_api_client/SDKConfiguration.java:
     id: d5fcc61f5992
-    last_write_checksum: sha1:e97c6ffc3f54dd2399655aeea324c76a0f138541
-    pristine_git_object: 66fde7cb0ec485dbfbc94f767bbed40590df5f89
+    last_write_checksum: sha1:a87dab52554bb4d6e28fa8588ec203e6fb1351ec
+    pristine_git_object: fa82ccddea01b85a11b3cacf2c0337942f0629f4
   src/main/java/com/glean/api_client/glean_api_client/Search.java:
     id: f22d94b920b5
     last_write_checksum: sha1:36e225a42ff566cb610d877bb5f41fc09e3e49e5
