@@ -5,10 +5,15 @@ package com.glean.api_client.glean_api_client.models.components;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * AgentSchemas
@@ -34,17 +39,36 @@ public class AgentSchemas {
     @JsonProperty("output_schema")
     private OutputSchema outputSchema;
 
+    /**
+     * List of tools that the agent can invoke. Only included when include_tools query parameter is set to
+     * true.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("tools")
+    private Optional<? extends List<ActionSummary>> tools;
+
     @JsonCreator
     public AgentSchemas(
             @JsonProperty("agent_id") String agentId,
             @JsonProperty("input_schema") InputSchema inputSchema,
-            @JsonProperty("output_schema") OutputSchema outputSchema) {
+            @JsonProperty("output_schema") OutputSchema outputSchema,
+            @JsonProperty("tools") Optional<? extends List<ActionSummary>> tools) {
         Utils.checkNotNull(agentId, "agentId");
         Utils.checkNotNull(inputSchema, "inputSchema");
         Utils.checkNotNull(outputSchema, "outputSchema");
+        Utils.checkNotNull(tools, "tools");
         this.agentId = agentId;
         this.inputSchema = inputSchema;
         this.outputSchema = outputSchema;
+        this.tools = tools;
+    }
+    
+    public AgentSchemas(
+            String agentId,
+            InputSchema inputSchema,
+            OutputSchema outputSchema) {
+        this(agentId, inputSchema, outputSchema,
+            Optional.empty());
     }
 
     /**
@@ -69,6 +93,16 @@ public class AgentSchemas {
     @JsonIgnore
     public OutputSchema outputSchema() {
         return outputSchema;
+    }
+
+    /**
+     * List of tools that the agent can invoke. Only included when include_tools query parameter is set to
+     * true.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<ActionSummary>> tools() {
+        return (Optional<List<ActionSummary>>) tools;
     }
 
     public static Builder builder() {
@@ -103,6 +137,27 @@ public class AgentSchemas {
         return this;
     }
 
+    /**
+     * List of tools that the agent can invoke. Only included when include_tools query parameter is set to
+     * true.
+     */
+    public AgentSchemas withTools(List<ActionSummary> tools) {
+        Utils.checkNotNull(tools, "tools");
+        this.tools = Optional.ofNullable(tools);
+        return this;
+    }
+
+
+    /**
+     * List of tools that the agent can invoke. Only included when include_tools query parameter is set to
+     * true.
+     */
+    public AgentSchemas withTools(Optional<? extends List<ActionSummary>> tools) {
+        Utils.checkNotNull(tools, "tools");
+        this.tools = tools;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -115,13 +170,15 @@ public class AgentSchemas {
         return 
             Utils.enhancedDeepEquals(this.agentId, other.agentId) &&
             Utils.enhancedDeepEquals(this.inputSchema, other.inputSchema) &&
-            Utils.enhancedDeepEquals(this.outputSchema, other.outputSchema);
+            Utils.enhancedDeepEquals(this.outputSchema, other.outputSchema) &&
+            Utils.enhancedDeepEquals(this.tools, other.tools);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            agentId, inputSchema, outputSchema);
+            agentId, inputSchema, outputSchema,
+            tools);
     }
     
     @Override
@@ -129,7 +186,8 @@ public class AgentSchemas {
         return Utils.toString(AgentSchemas.class,
                 "agentId", agentId,
                 "inputSchema", inputSchema,
-                "outputSchema", outputSchema);
+                "outputSchema", outputSchema,
+                "tools", tools);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -140,6 +198,8 @@ public class AgentSchemas {
         private InputSchema inputSchema;
 
         private OutputSchema outputSchema;
+
+        private Optional<? extends List<ActionSummary>> tools = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -175,10 +235,32 @@ public class AgentSchemas {
             return this;
         }
 
+
+        /**
+         * List of tools that the agent can invoke. Only included when include_tools query parameter is set to
+         * true.
+         */
+        public Builder tools(List<ActionSummary> tools) {
+            Utils.checkNotNull(tools, "tools");
+            this.tools = Optional.ofNullable(tools);
+            return this;
+        }
+
+        /**
+         * List of tools that the agent can invoke. Only included when include_tools query parameter is set to
+         * true.
+         */
+        public Builder tools(Optional<? extends List<ActionSummary>> tools) {
+            Utils.checkNotNull(tools, "tools");
+            this.tools = tools;
+            return this;
+        }
+
         public AgentSchemas build() {
 
             return new AgentSchemas(
-                agentId, inputSchema, outputSchema);
+                agentId, inputSchema, outputSchema,
+                tools);
         }
 
     }

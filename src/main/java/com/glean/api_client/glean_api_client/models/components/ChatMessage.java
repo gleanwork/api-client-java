@@ -38,10 +38,15 @@ public class ChatMessage {
     private Optional<? extends Author> author;
 
     /**
-     * A list of Citations that were used to generate the response.
+     * Deprecated: Use inline citations via ChatMessageFragment.citation instead. For detailed reference
+     * information, use ChatMessageCitation.referenceRanges. This field is still populated for backward
+     * compatibility.
+     * 
+     * @deprecated field: Deprecated on 2026-02-06, removal scheduled for 2026-10-15: Use inline citations via ChatMessageFragment.citation and ChatMessageCitation.referenceRanges instead. This field is still populated for backward compatibility..
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("citations")
+    @Deprecated
     private Optional<? extends List<ChatMessageCitation>> citations;
 
     /**
@@ -156,8 +161,13 @@ public class ChatMessage {
     }
 
     /**
-     * A list of Citations that were used to generate the response.
+     * Deprecated: Use inline citations via ChatMessageFragment.citation instead. For detailed reference
+     * information, use ChatMessageCitation.referenceRanges. This field is still populated for backward
+     * compatibility.
+     * 
+     * @deprecated field: Deprecated on 2026-02-06, removal scheduled for 2026-10-15: Use inline citations via ChatMessageFragment.citation and ChatMessageCitation.referenceRanges instead. This field is still populated for backward compatibility..
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<ChatMessageCitation>> citations() {
@@ -267,8 +277,13 @@ public class ChatMessage {
     }
 
     /**
-     * A list of Citations that were used to generate the response.
+     * Deprecated: Use inline citations via ChatMessageFragment.citation instead. For detailed reference
+     * information, use ChatMessageCitation.referenceRanges. This field is still populated for backward
+     * compatibility.
+     * 
+     * @deprecated field: Deprecated on 2026-02-06, removal scheduled for 2026-10-15: Use inline citations via ChatMessageFragment.citation and ChatMessageCitation.referenceRanges instead. This field is still populated for backward compatibility..
      */
+    @Deprecated
     public ChatMessage withCitations(List<ChatMessageCitation> citations) {
         Utils.checkNotNull(citations, "citations");
         this.citations = Optional.ofNullable(citations);
@@ -277,8 +292,13 @@ public class ChatMessage {
 
 
     /**
-     * A list of Citations that were used to generate the response.
+     * Deprecated: Use inline citations via ChatMessageFragment.citation instead. For detailed reference
+     * information, use ChatMessageCitation.referenceRanges. This field is still populated for backward
+     * compatibility.
+     * 
+     * @deprecated field: Deprecated on 2026-02-06, removal scheduled for 2026-10-15: Use inline citations via ChatMessageFragment.citation and ChatMessageCitation.referenceRanges instead. This field is still populated for backward compatibility..
      */
+    @Deprecated
     public ChatMessage withCitations(Optional<? extends List<ChatMessageCitation>> citations) {
         Utils.checkNotNull(citations, "citations");
         this.citations = citations;
@@ -483,6 +503,7 @@ public class ChatMessage {
 
         private Optional<? extends Author> author;
 
+        @Deprecated
         private Optional<? extends List<ChatMessageCitation>> citations = Optional.empty();
 
         private Optional<? extends List<String>> uploadedFileIds = Optional.empty();
@@ -538,8 +559,13 @@ public class ChatMessage {
 
 
         /**
-         * A list of Citations that were used to generate the response.
+         * Deprecated: Use inline citations via ChatMessageFragment.citation instead. For detailed reference
+         * information, use ChatMessageCitation.referenceRanges. This field is still populated for backward
+         * compatibility.
+         * 
+         * @deprecated field: Deprecated on 2026-02-06, removal scheduled for 2026-10-15: Use inline citations via ChatMessageFragment.citation and ChatMessageCitation.referenceRanges instead. This field is still populated for backward compatibility..
          */
+        @Deprecated
         public Builder citations(List<ChatMessageCitation> citations) {
             Utils.checkNotNull(citations, "citations");
             this.citations = Optional.ofNullable(citations);
@@ -547,8 +573,13 @@ public class ChatMessage {
         }
 
         /**
-         * A list of Citations that were used to generate the response.
+         * Deprecated: Use inline citations via ChatMessageFragment.citation instead. For detailed reference
+         * information, use ChatMessageCitation.referenceRanges. This field is still populated for backward
+         * compatibility.
+         * 
+         * @deprecated field: Deprecated on 2026-02-06, removal scheduled for 2026-10-15: Use inline citations via ChatMessageFragment.citation and ChatMessageCitation.referenceRanges instead. This field is still populated for backward compatibility..
          */
+        @Deprecated
         public Builder citations(Optional<? extends List<ChatMessageCitation>> citations) {
             Utils.checkNotNull(citations, "citations");
             this.citations = citations;
