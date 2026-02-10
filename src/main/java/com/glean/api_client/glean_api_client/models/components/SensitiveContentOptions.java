@@ -25,7 +25,7 @@ public class SensitiveContentOptions {
     /**
      * DEPRECATED - use 'customSensitiveExpressions' instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use customSensitiveExpressions instead.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sensitiveInfoTypes")
@@ -35,7 +35,7 @@ public class SensitiveContentOptions {
     /**
      * DEPRECATED - use 'customSensitiveExpressions' instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use customSensitiveExpressions instead.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sensitiveTerms")
@@ -45,7 +45,7 @@ public class SensitiveContentOptions {
     /**
      * DEPRECATED - use 'customSensitiveExpressions' instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use customSensitiveExpressions instead.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sensitiveRegexes")
@@ -83,7 +83,7 @@ public class SensitiveContentOptions {
     /**
      * DEPRECATED - use 'customSensitiveExpressions' instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use customSensitiveExpressions instead.
      */
     @Deprecated
     @SuppressWarnings("unchecked")
@@ -95,7 +95,7 @@ public class SensitiveContentOptions {
     /**
      * DEPRECATED - use 'customSensitiveExpressions' instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use customSensitiveExpressions instead.
      */
     @Deprecated
     @SuppressWarnings("unchecked")
@@ -107,7 +107,7 @@ public class SensitiveContentOptions {
     /**
      * DEPRECATED - use 'customSensitiveExpressions' instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use customSensitiveExpressions instead.
      */
     @Deprecated
     @SuppressWarnings("unchecked")
@@ -133,7 +133,7 @@ public class SensitiveContentOptions {
     /**
      * DEPRECATED - use 'customSensitiveExpressions' instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use customSensitiveExpressions instead.
      */
     @Deprecated
     public SensitiveContentOptions withSensitiveInfoTypes(List<SensitiveInfoType> sensitiveInfoTypes) {
@@ -146,7 +146,7 @@ public class SensitiveContentOptions {
     /**
      * DEPRECATED - use 'customSensitiveExpressions' instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use customSensitiveExpressions instead.
      */
     @Deprecated
     public SensitiveContentOptions withSensitiveInfoTypes(Optional<? extends List<SensitiveInfoType>> sensitiveInfoTypes) {
@@ -158,7 +158,7 @@ public class SensitiveContentOptions {
     /**
      * DEPRECATED - use 'customSensitiveExpressions' instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use customSensitiveExpressions instead.
      */
     @Deprecated
     public SensitiveContentOptions withSensitiveTerms(List<SensitiveExpression> sensitiveTerms) {
@@ -171,7 +171,7 @@ public class SensitiveContentOptions {
     /**
      * DEPRECATED - use 'customSensitiveExpressions' instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use customSensitiveExpressions instead.
      */
     @Deprecated
     public SensitiveContentOptions withSensitiveTerms(Optional<? extends List<SensitiveExpression>> sensitiveTerms) {
@@ -183,7 +183,7 @@ public class SensitiveContentOptions {
     /**
      * DEPRECATED - use 'customSensitiveExpressions' instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use customSensitiveExpressions instead.
      */
     @Deprecated
     public SensitiveContentOptions withSensitiveRegexes(List<SensitiveExpression> sensitiveRegexes) {
@@ -196,7 +196,7 @@ public class SensitiveContentOptions {
     /**
      * DEPRECATED - use 'customSensitiveExpressions' instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use customSensitiveExpressions instead.
      */
     @Deprecated
     public SensitiveContentOptions withSensitiveRegexes(Optional<? extends List<SensitiveExpression>> sensitiveRegexes) {
@@ -278,7 +278,7 @@ public class SensitiveContentOptions {
         /**
          * DEPRECATED - use 'customSensitiveExpressions' instead.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use customSensitiveExpressions instead.
          */
         @Deprecated
         public Builder sensitiveInfoTypes(List<SensitiveInfoType> sensitiveInfoTypes) {
@@ -290,7 +290,7 @@ public class SensitiveContentOptions {
         /**
          * DEPRECATED - use 'customSensitiveExpressions' instead.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use customSensitiveExpressions instead.
          */
         @Deprecated
         public Builder sensitiveInfoTypes(Optional<? extends List<SensitiveInfoType>> sensitiveInfoTypes) {
@@ -303,7 +303,7 @@ public class SensitiveContentOptions {
         /**
          * DEPRECATED - use 'customSensitiveExpressions' instead.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use customSensitiveExpressions instead.
          */
         @Deprecated
         public Builder sensitiveTerms(List<SensitiveExpression> sensitiveTerms) {
@@ -315,7 +315,7 @@ public class SensitiveContentOptions {
         /**
          * DEPRECATED - use 'customSensitiveExpressions' instead.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use customSensitiveExpressions instead.
          */
         @Deprecated
         public Builder sensitiveTerms(Optional<? extends List<SensitiveExpression>> sensitiveTerms) {
@@ -328,7 +328,7 @@ public class SensitiveContentOptions {
         /**
          * DEPRECATED - use 'customSensitiveExpressions' instead.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use customSensitiveExpressions instead.
          */
         @Deprecated
         public Builder sensitiveRegexes(List<SensitiveExpression> sensitiveRegexes) {
@@ -340,7 +340,7 @@ public class SensitiveContentOptions {
         /**
          * DEPRECATED - use 'customSensitiveExpressions' instead.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use customSensitiveExpressions instead.
          */
         @Deprecated
         public Builder sensitiveRegexes(Optional<? extends List<SensitiveExpression>> sensitiveRegexes) {

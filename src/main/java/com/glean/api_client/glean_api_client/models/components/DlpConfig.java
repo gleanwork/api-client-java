@@ -34,7 +34,7 @@ public class DlpConfig {
     /**
      * DEPRECATED - use `sensitiveContentOptions` instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use sensitiveContentOptions instead.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sensitiveInfoTypes")
@@ -50,7 +50,7 @@ public class DlpConfig {
 
     /**
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use broadSharingOptions instead.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("externalSharingOptions")
@@ -181,7 +181,7 @@ public class DlpConfig {
     /**
      * DEPRECATED - use `sensitiveContentOptions` instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use sensitiveContentOptions instead.
      */
     @Deprecated
     @SuppressWarnings("unchecked")
@@ -201,7 +201,7 @@ public class DlpConfig {
 
     /**
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use broadSharingOptions instead.
      */
     @Deprecated
     @SuppressWarnings("unchecked")
@@ -311,7 +311,7 @@ public class DlpConfig {
     /**
      * DEPRECATED - use `sensitiveContentOptions` instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use sensitiveContentOptions instead.
      */
     @Deprecated
     public DlpConfig withSensitiveInfoTypes(List<SensitiveInfoType> sensitiveInfoTypes) {
@@ -324,7 +324,7 @@ public class DlpConfig {
     /**
      * DEPRECATED - use `sensitiveContentOptions` instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use sensitiveContentOptions instead.
      */
     @Deprecated
     public DlpConfig withSensitiveInfoTypes(Optional<? extends List<SensitiveInfoType>> sensitiveInfoTypes) {
@@ -354,7 +354,7 @@ public class DlpConfig {
 
     /**
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use broadSharingOptions instead.
      */
     @Deprecated
     public DlpConfig withExternalSharingOptions(ExternalSharingOptions externalSharingOptions) {
@@ -366,7 +366,7 @@ public class DlpConfig {
 
     /**
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use broadSharingOptions instead.
      */
     @Deprecated
     public DlpConfig withExternalSharingOptions(Optional<? extends ExternalSharingOptions> externalSharingOptions) {
@@ -653,7 +653,7 @@ public class DlpConfig {
         /**
          * DEPRECATED - use `sensitiveContentOptions` instead.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use sensitiveContentOptions instead.
          */
         @Deprecated
         public Builder sensitiveInfoTypes(List<SensitiveInfoType> sensitiveInfoTypes) {
@@ -665,7 +665,7 @@ public class DlpConfig {
         /**
          * DEPRECATED - use `sensitiveContentOptions` instead.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use sensitiveContentOptions instead.
          */
         @Deprecated
         public Builder sensitiveInfoTypes(Optional<? extends List<SensitiveInfoType>> sensitiveInfoTypes) {
@@ -696,7 +696,7 @@ public class DlpConfig {
 
         /**
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use broadSharingOptions instead.
          */
         @Deprecated
         public Builder externalSharingOptions(ExternalSharingOptions externalSharingOptions) {
@@ -707,7 +707,7 @@ public class DlpConfig {
 
         /**
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use broadSharingOptions instead.
          */
         @Deprecated
         public Builder externalSharingOptions(Optional<? extends ExternalSharingOptions> externalSharingOptions) {

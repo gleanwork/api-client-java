@@ -72,6 +72,10 @@ public enum Event {
      */
     MANUAL_FEEDBACK_SIDE_BY_SIDE("MANUAL_FEEDBACK_SIDE_BY_SIDE"),
     /**
+     * The user submitted feedback about time saved by an agent or workflow.
+     */
+    FEEDBACK_TIME_SAVED("FEEDBACK_TIME_SAVED"),
+    /**
      * The user explicitly marked the content as read.
      */
     MARK_AS_READ("MARK_AS_READ"),

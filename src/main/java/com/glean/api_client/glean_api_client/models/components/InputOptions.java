@@ -25,7 +25,7 @@ public class InputOptions {
     /**
      * list of url regex matching documents excluded from report
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("urlGreenlist")
@@ -42,7 +42,7 @@ public class InputOptions {
     /**
      * List of datasources to consider for report. DEPRECATED - use datasourceInstances instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use datasourceInstances instead.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("datasources")
@@ -110,7 +110,7 @@ public class InputOptions {
     /**
      * list of url regex matching documents excluded from report
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
      */
     @Deprecated
     @SuppressWarnings("unchecked")
@@ -131,7 +131,7 @@ public class InputOptions {
     /**
      * List of datasources to consider for report. DEPRECATED - use datasourceInstances instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use datasourceInstances instead.
      */
     @Deprecated
     @SuppressWarnings("unchecked")
@@ -182,7 +182,7 @@ public class InputOptions {
     /**
      * list of url regex matching documents excluded from report
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
      */
     @Deprecated
     public InputOptions withUrlGreenlist(List<String> urlGreenlist) {
@@ -195,7 +195,7 @@ public class InputOptions {
     /**
      * list of url regex matching documents excluded from report
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
      */
     @Deprecated
     public InputOptions withUrlGreenlist(Optional<? extends List<String>> urlGreenlist) {
@@ -226,7 +226,7 @@ public class InputOptions {
     /**
      * List of datasources to consider for report. DEPRECATED - use datasourceInstances instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use datasourceInstances instead.
      */
     @Deprecated
     public InputOptions withDatasources(List<String> datasources) {
@@ -239,7 +239,7 @@ public class InputOptions {
     /**
      * List of datasources to consider for report. DEPRECATED - use datasourceInstances instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use datasourceInstances instead.
      */
     @Deprecated
     public InputOptions withDatasources(Optional<? extends List<String>> datasources) {
@@ -386,7 +386,7 @@ public class InputOptions {
         /**
          * list of url regex matching documents excluded from report
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
          */
         @Deprecated
         public Builder urlGreenlist(List<String> urlGreenlist) {
@@ -398,7 +398,7 @@ public class InputOptions {
         /**
          * list of url regex matching documents excluded from report
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
          */
         @Deprecated
         public Builder urlGreenlist(Optional<? extends List<String>> urlGreenlist) {
@@ -430,7 +430,7 @@ public class InputOptions {
         /**
          * List of datasources to consider for report. DEPRECATED - use datasourceInstances instead.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use datasourceInstances instead.
          */
         @Deprecated
         public Builder datasources(List<String> datasources) {
@@ -442,7 +442,7 @@ public class InputOptions {
         /**
          * List of datasources to consider for report. DEPRECATED - use datasourceInstances instead.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use datasourceInstances instead.
          */
         @Deprecated
         public Builder datasources(Optional<? extends List<String>> datasources) {

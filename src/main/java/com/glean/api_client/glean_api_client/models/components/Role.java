@@ -14,7 +14,7 @@ import java.util.Optional;
  * 
  * <p>DEPRECATED - use permissions instead. Viewer's role on the specific document.
  * 
- * @deprecated enum: This will be removed in a future release, please migrate away from it as soon as possible.
+ * @deprecated enum: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use permissions instead.
  */
 @Deprecated
 public enum Role {
