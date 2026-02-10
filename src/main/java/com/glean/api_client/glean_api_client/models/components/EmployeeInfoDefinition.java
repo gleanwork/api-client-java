@@ -70,7 +70,7 @@ public class EmployeeInfoDefinition {
     /**
      * The employee's location (city/office name etc).
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("location")
@@ -373,7 +373,7 @@ public class EmployeeInfoDefinition {
     /**
      * The employee's location (city/office name etc).
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
      */
     @Deprecated
     @JsonIgnore
@@ -668,7 +668,7 @@ public class EmployeeInfoDefinition {
     /**
      * The employee's location (city/office name etc).
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
      */
     @Deprecated
     public EmployeeInfoDefinition withLocation(String location) {
@@ -681,7 +681,7 @@ public class EmployeeInfoDefinition {
     /**
      * The employee's location (city/office name etc).
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
      */
     @Deprecated
     public EmployeeInfoDefinition withLocation(Optional<String> location) {
@@ -1330,7 +1330,7 @@ public class EmployeeInfoDefinition {
         /**
          * The employee's location (city/office name etc).
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
          */
         @Deprecated
         public Builder location(String location) {
@@ -1342,7 +1342,7 @@ public class EmployeeInfoDefinition {
         /**
          * The employee's location (city/office name etc).
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
          */
         @Deprecated
         public Builder location(Optional<String> location) {

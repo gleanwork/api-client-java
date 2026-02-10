@@ -31,7 +31,7 @@ public class FacetFilterValue {
     /**
      * DEPRECATED - please use relationType instead
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use relationType instead.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("isNegated")
@@ -69,7 +69,7 @@ public class FacetFilterValue {
     /**
      * DEPRECATED - please use relationType instead
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use relationType instead.
      */
     @Deprecated
     @JsonIgnore
@@ -111,7 +111,7 @@ public class FacetFilterValue {
     /**
      * DEPRECATED - please use relationType instead
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use relationType instead.
      */
     @Deprecated
     public FacetFilterValue withIsNegated(boolean isNegated) {
@@ -124,7 +124,7 @@ public class FacetFilterValue {
     /**
      * DEPRECATED - please use relationType instead
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use relationType instead.
      */
     @Deprecated
     public FacetFilterValue withIsNegated(Optional<Boolean> isNegated) {
@@ -206,7 +206,7 @@ public class FacetFilterValue {
         /**
          * DEPRECATED - please use relationType instead
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use relationType instead.
          */
         @Deprecated
         public Builder isNegated(boolean isNegated) {
@@ -218,7 +218,7 @@ public class FacetFilterValue {
         /**
          * DEPRECATED - please use relationType instead
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use relationType instead.
          */
         @Deprecated
         public Builder isNegated(Optional<Boolean> isNegated) {

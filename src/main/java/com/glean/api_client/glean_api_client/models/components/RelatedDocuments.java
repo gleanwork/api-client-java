@@ -41,7 +41,7 @@ public class RelatedDocuments {
     /**
      * A truncated list of documents with this relation. TO BE DEPRECATED.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documents")
@@ -107,7 +107,7 @@ public class RelatedDocuments {
     /**
      * A truncated list of documents with this relation. TO BE DEPRECATED.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
      */
     @Deprecated
     @SuppressWarnings("unchecked")
@@ -187,7 +187,7 @@ public class RelatedDocuments {
     /**
      * A truncated list of documents with this relation. TO BE DEPRECATED.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
      */
     @Deprecated
     public RelatedDocuments withDocuments(List<Document> documents) {
@@ -200,7 +200,7 @@ public class RelatedDocuments {
     /**
      * A truncated list of documents with this relation. TO BE DEPRECATED.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
      */
     @Deprecated
     public RelatedDocuments withDocuments(Optional<? extends List<Document>> documents) {
@@ -339,7 +339,7 @@ public class RelatedDocuments {
         /**
          * A truncated list of documents with this relation. TO BE DEPRECATED.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
          */
         @Deprecated
         public Builder documents(List<Document> documents) {
@@ -351,7 +351,7 @@ public class RelatedDocuments {
         /**
          * A truncated list of documents with this relation. TO BE DEPRECATED.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
          */
         @Deprecated
         public Builder documents(Optional<? extends List<Document>> documents) {

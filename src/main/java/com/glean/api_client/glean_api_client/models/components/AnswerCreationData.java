@@ -42,7 +42,7 @@ public class AnswerCreationData {
      * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards
      * is no longer permitted.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Answer Boards no longer supported.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("boardId")
@@ -173,7 +173,7 @@ public class AnswerCreationData {
      * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards
      * is no longer permitted.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Answer Boards no longer supported.
      */
     @Deprecated
     @JsonIgnore
@@ -305,7 +305,7 @@ public class AnswerCreationData {
      * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards
      * is no longer permitted.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Answer Boards no longer supported.
      */
     @Deprecated
     public AnswerCreationData withBoardId(long boardId) {
@@ -319,7 +319,7 @@ public class AnswerCreationData {
      * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards
      * is no longer permitted.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Answer Boards no longer supported.
      */
     @Deprecated
     public AnswerCreationData withBoardId(Optional<Long> boardId) {
@@ -602,7 +602,7 @@ public class AnswerCreationData {
          * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards
          * is no longer permitted.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Answer Boards no longer supported.
          */
         @Deprecated
         public Builder boardId(long boardId) {
@@ -615,7 +615,7 @@ public class AnswerCreationData {
          * The parent board ID of this Answer, or 0 if it's a floating Answer. Adding Answers to Answer Boards
          * is no longer permitted.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Answer Boards no longer supported.
          */
         @Deprecated
         public Builder boardId(Optional<Long> boardId) {
