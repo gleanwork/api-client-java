@@ -28,7 +28,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 0.12.20
+  version: 0.12.21
   additionalDependencies: []
   additionalPlugins: []
   artifactID: glean-api-client
@@ -45,6 +45,7 @@ java:
   envVarPrefix: GLEAN
   flattenGlobalSecurity: true
   forwardCompatibleEnumsByDefault: false
+  forwardCompatibleUnionsByDefault: "false"
   generateOptionalUnionAccessors: false
   generateSpringBootStarter: true
   githubURL: github.com/gleanwork/api-client-java
@@ -67,7 +68,6 @@ java:
   maxMethodParams: 4
   multipartArrayFormat: standard
   nullFriendlyParameters: false
-  openUnions: true
   operationScopedParams: true
   outputModelSuffix: output
   projectName: glean-api-client

@@ -55,28 +55,39 @@ public class ChatResponse {
     @JsonProperty("chatSessionTrackingToken")
     private Optional<String> chatSessionTrackingToken;
 
+    /**
+     * Datasource instances that could not be queried because the user has not completed or has expired
+     * per-user OAuth, aggregated across all tools invoked in this turn.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("unauthorizedDatasourceInstances")
+    private Optional<? extends List<UnauthorizedDatasourceInstance>> unauthorizedDatasourceInstances;
+
     @JsonCreator
     public ChatResponse(
             @JsonProperty("messages") Optional<? extends List<ChatMessage>> messages,
             @JsonProperty("chatId") Optional<String> chatId,
             @JsonProperty("followUpPrompts") Optional<? extends List<String>> followUpPrompts,
             @JsonProperty("backendTimeMillis") Optional<Long> backendTimeMillis,
-            @JsonProperty("chatSessionTrackingToken") Optional<String> chatSessionTrackingToken) {
+            @JsonProperty("chatSessionTrackingToken") Optional<String> chatSessionTrackingToken,
+            @JsonProperty("unauthorizedDatasourceInstances") Optional<? extends List<UnauthorizedDatasourceInstance>> unauthorizedDatasourceInstances) {
         Utils.checkNotNull(messages, "messages");
         Utils.checkNotNull(chatId, "chatId");
         Utils.checkNotNull(followUpPrompts, "followUpPrompts");
         Utils.checkNotNull(backendTimeMillis, "backendTimeMillis");
         Utils.checkNotNull(chatSessionTrackingToken, "chatSessionTrackingToken");
+        Utils.checkNotNull(unauthorizedDatasourceInstances, "unauthorizedDatasourceInstances");
         this.messages = messages;
         this.chatId = chatId;
         this.followUpPrompts = followUpPrompts;
         this.backendTimeMillis = backendTimeMillis;
         this.chatSessionTrackingToken = chatSessionTrackingToken;
+        this.unauthorizedDatasourceInstances = unauthorizedDatasourceInstances;
     }
     
     public ChatResponse() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -116,6 +127,16 @@ public class ChatResponse {
     @JsonIgnore
     public Optional<String> chatSessionTrackingToken() {
         return chatSessionTrackingToken;
+    }
+
+    /**
+     * Datasource instances that could not be queried because the user has not completed or has expired
+     * per-user OAuth, aggregated across all tools invoked in this turn.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<UnauthorizedDatasourceInstance>> unauthorizedDatasourceInstances() {
+        return (Optional<List<UnauthorizedDatasourceInstance>>) unauthorizedDatasourceInstances;
     }
 
     public static Builder builder() {
@@ -212,6 +233,27 @@ public class ChatResponse {
         return this;
     }
 
+    /**
+     * Datasource instances that could not be queried because the user has not completed or has expired
+     * per-user OAuth, aggregated across all tools invoked in this turn.
+     */
+    public ChatResponse withUnauthorizedDatasourceInstances(List<UnauthorizedDatasourceInstance> unauthorizedDatasourceInstances) {
+        Utils.checkNotNull(unauthorizedDatasourceInstances, "unauthorizedDatasourceInstances");
+        this.unauthorizedDatasourceInstances = Optional.ofNullable(unauthorizedDatasourceInstances);
+        return this;
+    }
+
+
+    /**
+     * Datasource instances that could not be queried because the user has not completed or has expired
+     * per-user OAuth, aggregated across all tools invoked in this turn.
+     */
+    public ChatResponse withUnauthorizedDatasourceInstances(Optional<? extends List<UnauthorizedDatasourceInstance>> unauthorizedDatasourceInstances) {
+        Utils.checkNotNull(unauthorizedDatasourceInstances, "unauthorizedDatasourceInstances");
+        this.unauthorizedDatasourceInstances = unauthorizedDatasourceInstances;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -226,14 +268,15 @@ public class ChatResponse {
             Utils.enhancedDeepEquals(this.chatId, other.chatId) &&
             Utils.enhancedDeepEquals(this.followUpPrompts, other.followUpPrompts) &&
             Utils.enhancedDeepEquals(this.backendTimeMillis, other.backendTimeMillis) &&
-            Utils.enhancedDeepEquals(this.chatSessionTrackingToken, other.chatSessionTrackingToken);
+            Utils.enhancedDeepEquals(this.chatSessionTrackingToken, other.chatSessionTrackingToken) &&
+            Utils.enhancedDeepEquals(this.unauthorizedDatasourceInstances, other.unauthorizedDatasourceInstances);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             messages, chatId, followUpPrompts,
-            backendTimeMillis, chatSessionTrackingToken);
+            backendTimeMillis, chatSessionTrackingToken, unauthorizedDatasourceInstances);
     }
     
     @Override
@@ -243,7 +286,8 @@ public class ChatResponse {
                 "chatId", chatId,
                 "followUpPrompts", followUpPrompts,
                 "backendTimeMillis", backendTimeMillis,
-                "chatSessionTrackingToken", chatSessionTrackingToken);
+                "chatSessionTrackingToken", chatSessionTrackingToken,
+                "unauthorizedDatasourceInstances", unauthorizedDatasourceInstances);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -258,6 +302,8 @@ public class ChatResponse {
         private Optional<Long> backendTimeMillis = Optional.empty();
 
         private Optional<String> chatSessionTrackingToken = Optional.empty();
+
+        private Optional<? extends List<UnauthorizedDatasourceInstance>> unauthorizedDatasourceInstances = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -352,11 +398,32 @@ public class ChatResponse {
             return this;
         }
 
+
+        /**
+         * Datasource instances that could not be queried because the user has not completed or has expired
+         * per-user OAuth, aggregated across all tools invoked in this turn.
+         */
+        public Builder unauthorizedDatasourceInstances(List<UnauthorizedDatasourceInstance> unauthorizedDatasourceInstances) {
+            Utils.checkNotNull(unauthorizedDatasourceInstances, "unauthorizedDatasourceInstances");
+            this.unauthorizedDatasourceInstances = Optional.ofNullable(unauthorizedDatasourceInstances);
+            return this;
+        }
+
+        /**
+         * Datasource instances that could not be queried because the user has not completed or has expired
+         * per-user OAuth, aggregated across all tools invoked in this turn.
+         */
+        public Builder unauthorizedDatasourceInstances(Optional<? extends List<UnauthorizedDatasourceInstance>> unauthorizedDatasourceInstances) {
+            Utils.checkNotNull(unauthorizedDatasourceInstances, "unauthorizedDatasourceInstances");
+            this.unauthorizedDatasourceInstances = unauthorizedDatasourceInstances;
+            return this;
+        }
+
         public ChatResponse build() {
 
             return new ChatResponse(
                 messages, chatId, followUpPrompts,
-                backendTimeMillis, chatSessionTrackingToken);
+                backendTimeMillis, chatSessionTrackingToken, unauthorizedDatasourceInstances);
         }
 
     }
