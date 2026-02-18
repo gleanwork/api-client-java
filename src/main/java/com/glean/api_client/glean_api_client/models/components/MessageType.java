@@ -28,6 +28,30 @@ public enum MessageType {
      */
     CONTEXT("CONTEXT"),
     /**
+     * Control signal for message streaming.
+     */
+    CONTROL("CONTROL"),
+    /**
+     * Control signal indicating the start of a message stream.
+     */
+    CONTROL_START("CONTROL_START"),
+    /**
+     * Control signal indicating the end of a message stream.
+     */
+    CONTROL_FINISH("CONTROL_FINISH"),
+    /**
+     * Control signal indicating the message stream was cancelled.
+     */
+    CONTROL_CANCEL("CONTROL_CANCEL"),
+    /**
+     * Indicates the message streaming needed to be retried.
+     */
+    CONTROL_RETRY("CONTROL_RETRY"),
+    /**
+     * Fallback control signal for unrecognized control types.
+     */
+    CONTROL_UNKNOWN("CONTROL_UNKNOWN"),
+    /**
      * A debug message. Strictly used internally.
      */
     DEBUG("DEBUG"),

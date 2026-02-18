@@ -51,28 +51,39 @@ public class GleanDataError {
     @JsonProperty("federatedSearchRateLimitError")
     private Optional<Boolean> federatedSearchRateLimitError;
 
+    /**
+     * Datasource instances that could not be queried because the user has not completed or has expired
+     * per-user OAuth.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("unauthorizedDatasourceInstances")
+    private Optional<? extends List<UnauthorizedDatasourceInstance>> unauthorizedDatasourceInstances;
+
     @JsonCreator
     public GleanDataError(
             @JsonProperty("badGmailToken") Optional<Boolean> badGmailToken,
             @JsonProperty("badOutlookToken") Optional<Boolean> badOutlookToken,
             @JsonProperty("invalidOperators") Optional<? extends List<InvalidOperatorValueError>> invalidOperators,
             @JsonProperty("errorMessages") Optional<? extends List<ErrorMessage>> errorMessages,
-            @JsonProperty("federatedSearchRateLimitError") Optional<Boolean> federatedSearchRateLimitError) {
+            @JsonProperty("federatedSearchRateLimitError") Optional<Boolean> federatedSearchRateLimitError,
+            @JsonProperty("unauthorizedDatasourceInstances") Optional<? extends List<UnauthorizedDatasourceInstance>> unauthorizedDatasourceInstances) {
         Utils.checkNotNull(badGmailToken, "badGmailToken");
         Utils.checkNotNull(badOutlookToken, "badOutlookToken");
         Utils.checkNotNull(invalidOperators, "invalidOperators");
         Utils.checkNotNull(errorMessages, "errorMessages");
         Utils.checkNotNull(federatedSearchRateLimitError, "federatedSearchRateLimitError");
+        Utils.checkNotNull(unauthorizedDatasourceInstances, "unauthorizedDatasourceInstances");
         this.badGmailToken = badGmailToken;
         this.badOutlookToken = badOutlookToken;
         this.invalidOperators = invalidOperators;
         this.errorMessages = errorMessages;
         this.federatedSearchRateLimitError = federatedSearchRateLimitError;
+        this.unauthorizedDatasourceInstances = unauthorizedDatasourceInstances;
     }
     
     public GleanDataError() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -112,6 +123,16 @@ public class GleanDataError {
     @JsonIgnore
     public Optional<Boolean> federatedSearchRateLimitError() {
         return federatedSearchRateLimitError;
+    }
+
+    /**
+     * Datasource instances that could not be queried because the user has not completed or has expired
+     * per-user OAuth.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<UnauthorizedDatasourceInstance>> unauthorizedDatasourceInstances() {
+        return (Optional<List<UnauthorizedDatasourceInstance>>) unauthorizedDatasourceInstances;
     }
 
     public static Builder builder() {
@@ -208,6 +229,27 @@ public class GleanDataError {
         return this;
     }
 
+    /**
+     * Datasource instances that could not be queried because the user has not completed or has expired
+     * per-user OAuth.
+     */
+    public GleanDataError withUnauthorizedDatasourceInstances(List<UnauthorizedDatasourceInstance> unauthorizedDatasourceInstances) {
+        Utils.checkNotNull(unauthorizedDatasourceInstances, "unauthorizedDatasourceInstances");
+        this.unauthorizedDatasourceInstances = Optional.ofNullable(unauthorizedDatasourceInstances);
+        return this;
+    }
+
+
+    /**
+     * Datasource instances that could not be queried because the user has not completed or has expired
+     * per-user OAuth.
+     */
+    public GleanDataError withUnauthorizedDatasourceInstances(Optional<? extends List<UnauthorizedDatasourceInstance>> unauthorizedDatasourceInstances) {
+        Utils.checkNotNull(unauthorizedDatasourceInstances, "unauthorizedDatasourceInstances");
+        this.unauthorizedDatasourceInstances = unauthorizedDatasourceInstances;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -222,14 +264,15 @@ public class GleanDataError {
             Utils.enhancedDeepEquals(this.badOutlookToken, other.badOutlookToken) &&
             Utils.enhancedDeepEquals(this.invalidOperators, other.invalidOperators) &&
             Utils.enhancedDeepEquals(this.errorMessages, other.errorMessages) &&
-            Utils.enhancedDeepEquals(this.federatedSearchRateLimitError, other.federatedSearchRateLimitError);
+            Utils.enhancedDeepEquals(this.federatedSearchRateLimitError, other.federatedSearchRateLimitError) &&
+            Utils.enhancedDeepEquals(this.unauthorizedDatasourceInstances, other.unauthorizedDatasourceInstances);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             badGmailToken, badOutlookToken, invalidOperators,
-            errorMessages, federatedSearchRateLimitError);
+            errorMessages, federatedSearchRateLimitError, unauthorizedDatasourceInstances);
     }
     
     @Override
@@ -239,7 +282,8 @@ public class GleanDataError {
                 "badOutlookToken", badOutlookToken,
                 "invalidOperators", invalidOperators,
                 "errorMessages", errorMessages,
-                "federatedSearchRateLimitError", federatedSearchRateLimitError);
+                "federatedSearchRateLimitError", federatedSearchRateLimitError,
+                "unauthorizedDatasourceInstances", unauthorizedDatasourceInstances);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -254,6 +298,8 @@ public class GleanDataError {
         private Optional<? extends List<ErrorMessage>> errorMessages = Optional.empty();
 
         private Optional<Boolean> federatedSearchRateLimitError = Optional.empty();
+
+        private Optional<? extends List<UnauthorizedDatasourceInstance>> unauthorizedDatasourceInstances = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -348,11 +394,32 @@ public class GleanDataError {
             return this;
         }
 
+
+        /**
+         * Datasource instances that could not be queried because the user has not completed or has expired
+         * per-user OAuth.
+         */
+        public Builder unauthorizedDatasourceInstances(List<UnauthorizedDatasourceInstance> unauthorizedDatasourceInstances) {
+            Utils.checkNotNull(unauthorizedDatasourceInstances, "unauthorizedDatasourceInstances");
+            this.unauthorizedDatasourceInstances = Optional.ofNullable(unauthorizedDatasourceInstances);
+            return this;
+        }
+
+        /**
+         * Datasource instances that could not be queried because the user has not completed or has expired
+         * per-user OAuth.
+         */
+        public Builder unauthorizedDatasourceInstances(Optional<? extends List<UnauthorizedDatasourceInstance>> unauthorizedDatasourceInstances) {
+            Utils.checkNotNull(unauthorizedDatasourceInstances, "unauthorizedDatasourceInstances");
+            this.unauthorizedDatasourceInstances = unauthorizedDatasourceInstances;
+            return this;
+        }
+
         public GleanDataError build() {
 
             return new GleanDataError(
                 badGmailToken, badOutlookToken, invalidOperators,
-                errorMessages, federatedSearchRateLimitError);
+                errorMessages, federatedSearchRateLimitError, unauthorizedDatasourceInstances);
         }
 
     }
