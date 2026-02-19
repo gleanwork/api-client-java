@@ -56,6 +56,11 @@ public class Glean {
 
     private final Client client;
 
+    /**
+     * Manage indexing API tokens.
+     */
+    private final Authentication authentication;
+
 
     private final Indexing indexing;
 
@@ -65,6 +70,13 @@ public class Glean {
 
     public Client client() {
         return client;
+    }
+
+    /**
+     * Manage indexing API tokens.
+     */
+    public Authentication authentication() {
+        return authentication;
     }
 
 
@@ -243,6 +255,7 @@ public class Glean {
     public Glean(SDKConfiguration sdkConfiguration) {
         sdkConfiguration.initialize();
         this.client = new Client(sdkConfiguration);
+        this.authentication = new Authentication(sdkConfiguration);
         this.indexing = new Indexing(sdkConfiguration);
         this.governance = new Governance(sdkConfiguration);
         SdkInitData data = sdkConfiguration.hooks().sdkInit(

@@ -1,0 +1,8 @@
+# CheckDatasourceAuthResponse
+
+
+## Fields
+
+| Field                                                                                                                 | Type                                                                                                                  | Required                                                                                                              | Description                                                                                                           |
+| --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `unauthorizedDatasourceInstances`                                                                                     | List\<[UnauthorizedDatasourceInstance](../../models/components/UnauthorizedDatasourceInstance.md)>                    | :heavy_minus_sign:                                                                                                    | Datasource instances that require per-user OAuth authorization. Empty or absent when all datasources are authorized.<br/> |
