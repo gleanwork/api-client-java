@@ -44,8 +44,9 @@ public class UnauthorizedDatasourceInstance {
     private Optional<? extends AuthStatus> authStatus;
 
     /**
-     * Relative path to initiate or resume OAuth for the current user and instance. Clients should prepend
-     * their configured Glean backend base URL.
+     * Relative path to initiate or resume OAuth for the current user and instance, including a one-time
+     * authentication token as a query parameter. Clients should prepend their configured Glean backend
+     * base URL.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("authUrlRelativePath")
@@ -99,8 +100,9 @@ public class UnauthorizedDatasourceInstance {
     }
 
     /**
-     * Relative path to initiate or resume OAuth for the current user and instance. Clients should prepend
-     * their configured Glean backend base URL.
+     * Relative path to initiate or resume OAuth for the current user and instance, including a one-time
+     * authentication token as a query parameter. Clients should prepend their configured Glean backend
+     * base URL.
      */
     @JsonIgnore
     public Optional<String> authUrlRelativePath() {
@@ -172,8 +174,9 @@ public class UnauthorizedDatasourceInstance {
     }
 
     /**
-     * Relative path to initiate or resume OAuth for the current user and instance. Clients should prepend
-     * their configured Glean backend base URL.
+     * Relative path to initiate or resume OAuth for the current user and instance, including a one-time
+     * authentication token as a query parameter. Clients should prepend their configured Glean backend
+     * base URL.
      */
     public UnauthorizedDatasourceInstance withAuthUrlRelativePath(String authUrlRelativePath) {
         Utils.checkNotNull(authUrlRelativePath, "authUrlRelativePath");
@@ -183,8 +186,9 @@ public class UnauthorizedDatasourceInstance {
 
 
     /**
-     * Relative path to initiate or resume OAuth for the current user and instance. Clients should prepend
-     * their configured Glean backend base URL.
+     * Relative path to initiate or resume OAuth for the current user and instance, including a one-time
+     * authentication token as a query parameter. Clients should prepend their configured Glean backend
+     * base URL.
      */
     public UnauthorizedDatasourceInstance withAuthUrlRelativePath(Optional<String> authUrlRelativePath) {
         Utils.checkNotNull(authUrlRelativePath, "authUrlRelativePath");
@@ -300,8 +304,9 @@ public class UnauthorizedDatasourceInstance {
 
 
         /**
-         * Relative path to initiate or resume OAuth for the current user and instance. Clients should prepend
-         * their configured Glean backend base URL.
+         * Relative path to initiate or resume OAuth for the current user and instance, including a one-time
+         * authentication token as a query parameter. Clients should prepend their configured Glean backend
+         * base URL.
          */
         public Builder authUrlRelativePath(String authUrlRelativePath) {
             Utils.checkNotNull(authUrlRelativePath, "authUrlRelativePath");
@@ -310,8 +315,9 @@ public class UnauthorizedDatasourceInstance {
         }
 
         /**
-         * Relative path to initiate or resume OAuth for the current user and instance. Clients should prepend
-         * their configured Glean backend base URL.
+         * Relative path to initiate or resume OAuth for the current user and instance, including a one-time
+         * authentication token as a query parameter. Clients should prepend their configured Glean backend
+         * base URL.
          */
         public Builder authUrlRelativePath(Optional<String> authUrlRelativePath) {
             Utils.checkNotNull(authUrlRelativePath, "authUrlRelativePath");

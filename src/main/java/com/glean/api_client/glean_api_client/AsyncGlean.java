@@ -34,6 +34,10 @@ public class AsyncGlean {
     private static final Headers _headers = Headers.EMPTY;
 
     private final AsyncClient client;
+    /**
+     * Manage indexing API tokens.
+     */
+    private final AsyncAuthentication authentication;
 
     private final AsyncIndexing indexing;
 
@@ -41,6 +45,12 @@ public class AsyncGlean {
 
     public AsyncClient client() {
         return client;
+    }
+    /**
+     * Manage indexing API tokens.
+     */
+    public AsyncAuthentication authentication() {
+        return authentication;
     }
 
     public AsyncIndexing indexing() {
@@ -58,6 +68,7 @@ public class AsyncGlean {
         this.syncSDK = syncSDK;
         this.sdkConfiguration = sdkConfiguration;
         this.client = new AsyncClient(syncSDK.client(), sdkConfiguration);
+        this.authentication = new AsyncAuthentication(syncSDK.authentication(), sdkConfiguration);
         this.indexing = new AsyncIndexing(syncSDK.indexing(), sdkConfiguration);
         this.governance = new AsyncGovernance(syncSDK.governance(), sdkConfiguration);
     }

@@ -232,6 +232,17 @@ public class GleanApiClientAutoConfig {
         return glean.client();
     }
     /**
+     * Creates a Authentication sub-SDK bean if none exists.
+     *
+     * @param glean the main SDK instance
+     * @return A configured Authentication instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public Authentication authentication(Glean glean) {
+        return glean.authentication();
+    }
+    /**
      * Creates a Indexing sub-SDK bean if none exists.
      *
      * @param glean the main SDK instance
@@ -276,6 +287,17 @@ public class GleanApiClientAutoConfig {
     @ConditionalOnMissingBean
     public AsyncClient asyncClient(AsyncGlean asyncGlean) {
         return asyncGlean.client();
+    }
+    /**
+     * Creates an AsyncAuthentication sub-SDK bean if none exists.
+     *
+     * @param asyncGlean the async SDK instance
+     * @return A configured AsyncAuthentication instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public AsyncAuthentication asyncAuthentication(AsyncGlean asyncGlean) {
+        return asyncGlean.authentication();
     }
     /**
      * Creates an AsyncIndexing sub-SDK bean if none exists.
