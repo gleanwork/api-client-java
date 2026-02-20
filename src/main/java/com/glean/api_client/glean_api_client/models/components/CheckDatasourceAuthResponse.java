@@ -5,45 +5,35 @@ package com.glean.api_client.glean_api_client.models.components;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Optional;
 
 
 public class CheckDatasourceAuthResponse {
     /**
-     * Datasource instances that require per-user OAuth authorization. Empty or absent when all datasources
-     * are authorized.
+     * Datasource instances that require per-user OAuth authorization. Empty when all datasources are
+     * authorized.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("unauthorizedDatasourceInstances")
-    private Optional<? extends List<UnauthorizedDatasourceInstance>> unauthorizedDatasourceInstances;
+    private List<UnauthorizedDatasourceInstance> unauthorizedDatasourceInstances;
 
     @JsonCreator
     public CheckDatasourceAuthResponse(
-            @JsonProperty("unauthorizedDatasourceInstances") Optional<? extends List<UnauthorizedDatasourceInstance>> unauthorizedDatasourceInstances) {
+            @JsonProperty("unauthorizedDatasourceInstances") List<UnauthorizedDatasourceInstance> unauthorizedDatasourceInstances) {
         Utils.checkNotNull(unauthorizedDatasourceInstances, "unauthorizedDatasourceInstances");
         this.unauthorizedDatasourceInstances = unauthorizedDatasourceInstances;
     }
-    
-    public CheckDatasourceAuthResponse() {
-        this(Optional.empty());
-    }
 
     /**
-     * Datasource instances that require per-user OAuth authorization. Empty or absent when all datasources
-     * are authorized.
+     * Datasource instances that require per-user OAuth authorization. Empty when all datasources are
+     * authorized.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<UnauthorizedDatasourceInstance>> unauthorizedDatasourceInstances() {
-        return (Optional<List<UnauthorizedDatasourceInstance>>) unauthorizedDatasourceInstances;
+    public List<UnauthorizedDatasourceInstance> unauthorizedDatasourceInstances() {
+        return unauthorizedDatasourceInstances;
     }
 
     public static Builder builder() {
@@ -52,21 +42,10 @@ public class CheckDatasourceAuthResponse {
 
 
     /**
-     * Datasource instances that require per-user OAuth authorization. Empty or absent when all datasources
-     * are authorized.
+     * Datasource instances that require per-user OAuth authorization. Empty when all datasources are
+     * authorized.
      */
     public CheckDatasourceAuthResponse withUnauthorizedDatasourceInstances(List<UnauthorizedDatasourceInstance> unauthorizedDatasourceInstances) {
-        Utils.checkNotNull(unauthorizedDatasourceInstances, "unauthorizedDatasourceInstances");
-        this.unauthorizedDatasourceInstances = Optional.ofNullable(unauthorizedDatasourceInstances);
-        return this;
-    }
-
-
-    /**
-     * Datasource instances that require per-user OAuth authorization. Empty or absent when all datasources
-     * are authorized.
-     */
-    public CheckDatasourceAuthResponse withUnauthorizedDatasourceInstances(Optional<? extends List<UnauthorizedDatasourceInstance>> unauthorizedDatasourceInstances) {
         Utils.checkNotNull(unauthorizedDatasourceInstances, "unauthorizedDatasourceInstances");
         this.unauthorizedDatasourceInstances = unauthorizedDatasourceInstances;
         return this;
@@ -100,7 +79,7 @@ public class CheckDatasourceAuthResponse {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends List<UnauthorizedDatasourceInstance>> unauthorizedDatasourceInstances = Optional.empty();
+        private List<UnauthorizedDatasourceInstance> unauthorizedDatasourceInstances;
 
         private Builder() {
           // force use of static builder() method
@@ -108,20 +87,10 @@ public class CheckDatasourceAuthResponse {
 
 
         /**
-         * Datasource instances that require per-user OAuth authorization. Empty or absent when all datasources
-         * are authorized.
+         * Datasource instances that require per-user OAuth authorization. Empty when all datasources are
+         * authorized.
          */
         public Builder unauthorizedDatasourceInstances(List<UnauthorizedDatasourceInstance> unauthorizedDatasourceInstances) {
-            Utils.checkNotNull(unauthorizedDatasourceInstances, "unauthorizedDatasourceInstances");
-            this.unauthorizedDatasourceInstances = Optional.ofNullable(unauthorizedDatasourceInstances);
-            return this;
-        }
-
-        /**
-         * Datasource instances that require per-user OAuth authorization. Empty or absent when all datasources
-         * are authorized.
-         */
-        public Builder unauthorizedDatasourceInstances(Optional<? extends List<UnauthorizedDatasourceInstance>> unauthorizedDatasourceInstances) {
             Utils.checkNotNull(unauthorizedDatasourceInstances, "unauthorizedDatasourceInstances");
             this.unauthorizedDatasourceInstances = unauthorizedDatasourceInstances;
             return this;
