@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 0359d4fe-2923-46fc-aaca-cf70b48dcfa1
 management:
-  docChecksum: e61f09454154d7eb019991c03f6d19eb
+  docChecksum: ec7e84fe9ae49de24ac676fbc253b201
   docVersion: 0.9.0
   speakeasyVersion: 1.722.7
   generationVersion: 2.832.9
-  releaseVersion: 0.12.22
-  configChecksum: a0a3cf529b78d6008f01b4b4a8685b95
+  releaseVersion: 0.12.23
+  configChecksum: b6f4009a53cf9967ce7f6806eb726a74
   repoURL: https://github.com/gleanwork/api-client-java.git
   published: true
 persistentEdits:
-  generation_id: 976557d4-4a59-48aa-95e8-6bd551aa3f9f
-  pristine_commit_hash: 02ea073c3a2c08e4c8348a9912bc85005bd00254
-  pristine_tree_hash: ff6884bb1ba8bc2d8fef0a14c3bb351483fbf196
+  generation_id: eca3ba63-ba74-4799-9915-cd29da6221a0
+  pristine_commit_hash: 042cd019b81d5145e264574e1a3e1f18564bb098
+  pristine_tree_hash: 38f8c08e012aea6032375fdbc28ae887b39f2697
 features:
   java:
     additionalDependencies: 0.1.0
@@ -394,8 +394,8 @@ trackedFiles:
     pristine_git_object: 5198bb58bd0d8c917de9acab2571e321ce52ddfa
   docs/models/components/CheckDatasourceAuthResponse.md:
     id: 252713b09ff9
-    last_write_checksum: sha1:537d7b1ba49e363f558014b8260fe462669e43b1
-    pristine_git_object: c715f548854dd487feda560d3dd9db2310bc5e15
+    last_write_checksum: sha1:820e30c076651352426d1c7ec4a09432da8d0d8d
+    pristine_git_object: 87541f3ea67ee228bf05eaa811208cc1aff4c208
   docs/models/components/CheckDocumentAccessRequest.md:
     id: 99922a67ce1c
     last_write_checksum: sha1:0896a9dc3bd2922d4b7afa0ecb24b03d516ec772
@@ -3166,8 +3166,8 @@ trackedFiles:
     pristine_git_object: 3decbce5bd40edbe278c1c5d2dbf585808e51d9a
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:85b56ce4d8a62914530676a473a289672aa3c686
-    pristine_git_object: f0f849bc4e9d07c16489605f89dcaecc5fb7b533
+    last_write_checksum: sha1:07b0849383dc2c1dfa1564ac7180ce719818df0c
+    pristine_git_object: 46e86b408b9a43c7441d1028a8c69e51190b627f
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3478,8 +3478,8 @@ trackedFiles:
     pristine_git_object: 5e30515ba0d212914ac9a195db6019330b6b0a2b
   src/main/java/com/glean/api_client/glean_api_client/SDKConfiguration.java:
     id: d5fcc61f5992
-    last_write_checksum: sha1:5c96cfc81c45d9cf9714775098c3c7ebee517be0
-    pristine_git_object: 048e5f1ad6581107be55c169bb6a222366c90cb0
+    last_write_checksum: sha1:d27cf4fa216f716e2e28e88197c13065072630f3
+    pristine_git_object: 9a76d7e37692e8d7db8bc70851a808f944946b89
   src/main/java/com/glean/api_client/glean_api_client/Search.java:
     id: f22d94b920b5
     last_write_checksum: sha1:36e225a42ff566cb610d877bb5f41fc09e3e49e5
@@ -3850,8 +3850,8 @@ trackedFiles:
     pristine_git_object: b7d2d996ac18c4ae8df89a17d29cb9396b3758e9
   src/main/java/com/glean/api_client/glean_api_client/models/components/CheckDatasourceAuthResponse.java:
     id: 33eb619b4e56
-    last_write_checksum: sha1:e8b14050f23039ecbebb84b743559d466cf904fa
-    pristine_git_object: e8f951f1acd1dbb44314b42abecb81011163197e
+    last_write_checksum: sha1:921c24642f513edff9b49f5c370957af1f9541a4
+    pristine_git_object: 14777ad3f30d004d004dcdaebd6d4e1afce02569
   src/main/java/com/glean/api_client/glean_api_client/models/components/CheckDocumentAccessRequest.java:
     id: bfccebbc44e6
     last_write_checksum: sha1:816268104ea78da5af836792df98290f64adf508
@@ -9497,7 +9497,7 @@ generatedTests:
   listpolicies: "2025-06-09T18:03:44Z"
 releaseNotes: |
   ## Java SDK Changes:
-  * `glean.authentication.checkdatasourceauth()`: **Added**
+  * `glean.authentication.checkdatasourceauth()`:  `response.unauthorizedDatasourceInstances` **Changed**
 generatedFiles:
   - .gitattributes
   - USAGE.md
