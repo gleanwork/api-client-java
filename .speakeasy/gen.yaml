@@ -45,7 +45,7 @@ java:
   enableStreamingUploads: false
   envVarPrefix: GLEAN
   flattenGlobalSecurity: true
-  forwardCompatibleEnumsByDefault: false
+  forwardCompatibleEnumsByDefault: true
   forwardCompatibleUnionsByDefault: "false"
   generateOptionalUnionAccessors: false
   generateSpringBootStarter: true
