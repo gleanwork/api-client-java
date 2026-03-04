@@ -16,16 +16,16 @@ Each namespace has its own authentication requirements and access patterns. Whil
 // Example of accessing Client namespace
 Glean glean = Glean.builder()
         .apiToken("client-token")
-        .instance("instance-name")
+        .serverURL("mycompany-be.glean.com")
         .build();
 glean.client().search().query()
         .searchRequest(SearchRequest.builder().query("search term").build())
         .call();
 
-// Example of accessing Indexing namespace 
+// Example of accessing Indexing namespace
 Glean glean = Glean.builder()
         .apiToken("indexing-token")
-        .instance("instance-name")
+        .serverURL("mycompany-be.glean.com")
         .build();
 glean.indexing().documents().index()
         .request(DocumentBulkIndexRequest.builder() /* document data */ .build())
@@ -1308,9 +1308,22 @@ many more subclasses in the JDK platform).
 <!-- Start Server Selection [server] -->
 ## Server Selection
 
-### Server Variables
+### Server URL
 
-The default server `https://{instance}-be.glean.com` contains variables and is set to `https://instance-name-be.glean.com` by default. To override default values, the following builder methods are available when initializing the SDK client instance:
+The recommended way to configure your Glean backend is using `.serverURL()` with your deployment URL:
+
+```java
+Glean sdk = Glean.builder()
+        .serverURL("mycompany-be.glean.com")
+        .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
+        .build();
+```
+
+The SDK normalizer will automatically add the `https://` scheme if omitted.
+
+### Server Variables (backwards-compatible)
+
+Alternatively, you can use `.instance()` to configure the server URL via template variable substitution. The default server `https://{instance}-be.glean.com` is set to `https://instance-name-be.glean.com` by default.
 
 | Variable   | BuilderMethod               | Default           | Description                                                                                            |
 | ---------- | --------------------------- | ----------------- | ------------------------------------------------------------------------------------------------------ |
@@ -1333,8 +1346,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .serverIndex(0)
-                .instance("<value>")
+                .instance("instance-name")
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
@@ -1624,7 +1636,7 @@ export X_GLEAN_INCLUDE_EXPERIMENTAL="true"
 // Environment variables are automatically read by the SDK
 Glean glean = Glean.builder()
         .apiToken(System.getenv("GLEAN_API_TOKEN"))
-        .instance("instance-name")
+        .serverURL("mycompany-be.glean.com")
         .build();
 ```
 
@@ -1635,7 +1647,7 @@ import com.glean.api_client.glean_api_client.hooks.GleanBuilder;
 
 Glean glean = GleanBuilder.create()
         .apiToken(System.getenv("GLEAN_API_TOKEN"))
-        .instance("instance-name")
+        .serverURL("mycompany-be.glean.com")
         .excludeDeprecatedAfter("2026-10-15")
         .includeExperimental(true)
         .build();
