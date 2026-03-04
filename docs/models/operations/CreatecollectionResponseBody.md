@@ -1,0 +1,4 @@
+# CreatecollectionResponseBody
+
+OK
+
