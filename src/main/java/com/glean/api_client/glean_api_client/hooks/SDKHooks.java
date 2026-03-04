@@ -13,6 +13,8 @@ public final class SDKHooks {
     }
 
     public static void initialize(com.glean.api_client.glean_api_client.utils.Hooks hooks) {
+        hooks.registerSdkInit(ServerURLNormalizerHook.createSyncHook());
+
         hooks.registerAfterError(AgentFileUploadErrorHook.createSyncHook());
 
         // Register the X-Glean header hook for experimental features and deprecation testing

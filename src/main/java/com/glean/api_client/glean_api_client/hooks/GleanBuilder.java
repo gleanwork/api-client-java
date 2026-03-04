@@ -20,7 +20,7 @@ import java.util.Optional;
  * <pre>{@code
  * Glean glean = GleanBuilder.create()
  *         .apiToken("your-api-token")
- *         .instance("instance-name")
+ *         .serverURL("https://mycompany-be.glean.com")
  *         .excludeDeprecatedAfter("2026-10-15")
  *         .includeExperimental(true)
  *         .build();
