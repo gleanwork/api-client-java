@@ -1,0 +1,9 @@
+# GetAnswerError
+
+
+## Fields
+
+| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              | Example                                                                                  |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `errorType`                                                                              | [Optional\<GetAnswerErrorErrorType>](../../models/components/GetAnswerErrorErrorType.md) | :heavy_minus_sign:                                                                       | N/A                                                                                      |                                                                                          |
+| `answerAuthor`                                                                           | [Optional\<Person>](../../models/components/Person.md)                                   | :heavy_minus_sign:                                                                       | N/A                                                                                      | {<br/>"name": "George Clooney",<br/>"obfuscatedId": "abc123"<br/>}                       |
