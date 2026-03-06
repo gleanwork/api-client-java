@@ -1,0 +1,15 @@
+# ExportInfo
+
+
+## Fields
+
+| Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `createdBy`                                                                | [Optional\<DlpPerson>](../../models/components/DlpPerson.md)               | :heavy_minus_sign:                                                         | Details about the person who created this report/policy.                   |
+| `startTime`                                                                | *Optional\<String>*                                                        | :heavy_minus_sign:                                                         | Timestamp at which this export started.                                    |
+| `endTime`                                                                  | *Optional\<String>*                                                        | :heavy_minus_sign:                                                         | Timestamp at which this export completed.                                  |
+| `exportId`                                                                 | *Optional\<String>*                                                        | :heavy_minus_sign:                                                         | The ID of the export                                                       |
+| `fileName`                                                                 | *Optional\<String>*                                                        | :heavy_minus_sign:                                                         | The name of the file to export the findings to                             |
+| `filter`                                                                   | [Optional\<DlpFindingFilter>](../../models/components/DlpFindingFilter.md) | :heavy_minus_sign:                                                         | N/A                                                                        |
+| `status`                                                                   | [Optional\<ExportInfoStatus>](../../models/components/ExportInfoStatus.md) | :heavy_minus_sign:                                                         | The status of the export                                                   |
+| `exportSize`                                                               | *Optional\<Long>*                                                          | :heavy_minus_sign:                                                         | The size of the exported file in bytes                                     |
