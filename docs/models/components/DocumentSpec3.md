@@ -1,0 +1,10 @@
+# DocumentSpec3
+
+
+## Fields
+
+| Field                                                                                               | Type                                                                                                | Required                                                                                            | Description                                                                                         |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `ugcType`                                                                                           | [DocumentSpecUgcType1](../../models/components/DocumentSpecUgcType1.md)                             | :heavy_check_mark:                                                                                  | The type of the user generated content (UGC datasource).                                            |
+| `contentId`                                                                                         | *long*                                                                                              | :heavy_check_mark:                                                                                  | The numeric id for user generated content. Used for ANNOUNCEMENTS, ANSWERS, COLLECTIONS, SHORTCUTS. |
+| `docType`                                                                                           | *Optional\<String>*                                                                                 | :heavy_minus_sign:                                                                                  | The specific type of the user generated content type.                                               |
