@@ -1,0 +1,9 @@
+# SensitiveInfoType
+
+
+## Fields
+
+| Field                                                                                                              | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| ~~`likelihoodThreshold`~~                                                                                          | [Optional\<SensitiveInfoTypeLikelihoodThreshold>](../../models/components/SensitiveInfoTypeLikelihoodThreshold.md) | :heavy_minus_sign:                                                                                                 | : warning: ** DEPRECATED **: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.      |
+| `infoType`                                                                                                         | *Optional\<String>*                                                                                                | :heavy_minus_sign:                                                                                                 | Text representation of an info-type to scan for.                                                                   |

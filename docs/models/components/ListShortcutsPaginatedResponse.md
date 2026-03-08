@@ -1,0 +1,10 @@
+# ListShortcutsPaginatedResponse
+
+
+## Fields
+
+| Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `shortcuts`                                                                           | List\<[Shortcut](../../models/components/Shortcut.md)>                                | :heavy_check_mark:                                                                    | List of all shortcuts accessible to the user                                          |
+| `facetResults`                                                                        | List\<[FacetResult](../../models/components/FacetResult.md)>                          | :heavy_minus_sign:                                                                    | N/A                                                                                   |
+| `meta`                                                                                | [ShortcutsPaginationMetadata](../../models/components/ShortcutsPaginationMetadata.md) | :heavy_check_mark:                                                                    | N/A                                                                                   |

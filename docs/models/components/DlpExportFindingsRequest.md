@@ -1,0 +1,12 @@
+# DlpExportFindingsRequest
+
+
+## Fields
+
+| Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `exportType`                                                               | [Optional\<ExportType>](../../models/components/ExportType.md)             | :heavy_minus_sign:                                                         | The type of export to perform                                              |
+| `filter`                                                                   | [Optional\<DlpFindingFilter>](../../models/components/DlpFindingFilter.md) | :heavy_minus_sign:                                                         | N/A                                                                        |
+| `fileName`                                                                 | *Optional\<String>*                                                        | :heavy_minus_sign:                                                         | The name of the file to export the findings to                             |
+| `fieldScope`                                                               | [Optional\<FieldScope>](../../models/components/FieldScope.md)             | :heavy_minus_sign:                                                         | Controls which fields to include in the export                             |
+| `fieldsToExclude`                                                          | List\<*String*>                                                            | :heavy_minus_sign:                                                         | List of field names to exclude from the export                             |
