@@ -37,7 +37,7 @@ public class Application {
                 .call();
 
         if (res.getDlpReportResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getDlpReportResponse().get());
         }
     }
 }
@@ -90,7 +90,7 @@ public class Application {
                 .call();
 
         if (res.updateDlpReportResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateDlpReportResponse().get());
         }
     }
 }
@@ -139,7 +139,7 @@ public class Application {
                 .call();
 
         if (res.listDlpReportsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.listDlpReportsResponse().get());
         }
     }
 }
@@ -193,7 +193,7 @@ public class Application {
                 .call();
 
         if (res.createDlpReportResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createDlpReportResponse().get());
         }
     }
 }
@@ -242,7 +242,7 @@ public class Application {
                 .call();
 
         if (res.res().isPresent()) {
-            // handle response
+            System.out.println(res.res().get());
         }
     }
 }

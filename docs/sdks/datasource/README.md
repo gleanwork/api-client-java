@@ -37,7 +37,7 @@ public class Application {
                 .call();
 
         if (res.debugDatasourceStatusResponse().isPresent()) {
-            // handle response
+            System.out.println(res.debugDatasourceStatusResponse().get());
         }
     }
 }

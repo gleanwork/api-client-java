@@ -1,5 +1,13 @@
 # Issue
 
+## Example Usage
+
+```java
+import com.glean.api_client.glean_api_client.models.components.Issue;
+
+Issue value = Issue.INACCURATE_RESPONSE;
+```
+
 
 ## Values
 

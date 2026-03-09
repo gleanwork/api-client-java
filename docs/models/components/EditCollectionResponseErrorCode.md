@@ -1,5 +1,16 @@
 # EditCollectionResponseErrorCode
 
+## Example Usage
+
+```java
+import com.glean.api_client.glean_api_client.models.components.EditCollectionResponseErrorCode;
+
+EditCollectionResponseErrorCode value = EditCollectionResponseErrorCode.NAME_EXISTS;
+
+// Open enum: use .of() to create instances from custom string values
+EditCollectionResponseErrorCode custom = EditCollectionResponseErrorCode.of("custom_value");
+```
+
 
 ## Values
 

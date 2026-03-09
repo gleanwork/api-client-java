@@ -43,7 +43,7 @@ public class Application {
                 .call();
 
         if (res.addCollectionItemsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.addCollectionItemsResponse().get());
         }
     }
 }
@@ -79,8 +79,9 @@ package hello.world;
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.*;
 import com.glean.api_client.glean_api_client.models.errors.CollectionError;
-import com.glean.api_client.glean_api_client.models.operations.CreatecollectionResponse;
+import com.glean.api_client.glean_api_client.models.operations.*;
 import java.lang.Exception;
+import java.lang.Object;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -326,8 +327,8 @@ public class Application {
                                                 .nativeAppUrl("slack://foo/bar")
                                                 .snippets(List.of(
                                                     SearchResultSnippet.builder()
-                                                        .snippet("snippet")
                                                         .mimeType("mimeType")
+                                                        .snippet("snippet")
                                                         .build()))
                                                 .build()))
                                         .build(),
@@ -553,8 +554,8 @@ public class Application {
                                                 .nativeAppUrl("slack://foo/bar")
                                                 .snippets(List.of(
                                                     SearchResultSnippet.builder()
-                                                        .snippet("snippet")
                                                         .mimeType("mimeType")
+                                                        .snippet("snippet")
                                                         .build()))
                                                 .build()))
                                         .build()))
@@ -696,7 +697,17 @@ public class Application {
                 .call();
 
         if (res.oneOf().isPresent()) {
-            // handle response
+            CreatecollectionResponseBody unionValue = res.oneOf().get();
+            Object raw = unionValue.value();
+            if (raw instanceof ResponseBody1) {
+                ResponseBody1 responseBody1Value = (ResponseBody1) raw;
+                // Handle responseBody1 variant
+            } else if (raw instanceof ResponseBody2) {
+                ResponseBody2 responseBody2Value = (ResponseBody2) raw;
+                // Handle responseBody2 variant
+            } else {
+                // Unknown or unsupported variant
+            }
         }
     }
 }
@@ -808,7 +819,7 @@ public class Application {
                 .call();
 
         if (res.deleteCollectionItemResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteCollectionItemResponse().get());
         }
     }
 }
@@ -1139,8 +1150,8 @@ public class Application {
                                                 .nativeAppUrl("slack://foo/bar")
                                                 .snippets(List.of(
                                                     SearchResultSnippet.builder()
-                                                        .snippet("snippet")
                                                         .mimeType("mimeType")
+                                                        .snippet("snippet")
                                                         .build()))
                                                 .build()))
                                         .build(),
@@ -1413,8 +1424,8 @@ public class Application {
                                                 .nativeAppUrl("slack://foo/bar")
                                                 .snippets(List.of(
                                                     SearchResultSnippet.builder()
-                                                        .snippet("snippet")
                                                         .mimeType("mimeType")
+                                                        .snippet("snippet")
                                                         .build()))
                                                 .build()))
                                         .build(),
@@ -1687,8 +1698,8 @@ public class Application {
                                                 .nativeAppUrl("slack://foo/bar")
                                                 .snippets(List.of(
                                                     SearchResultSnippet.builder()
-                                                        .snippet("snippet")
                                                         .mimeType("mimeType")
+                                                        .snippet("snippet")
                                                         .build()))
                                                 .build()))
                                         .build()))
@@ -1832,7 +1843,7 @@ public class Application {
                 .call();
 
         if (res.editCollectionResponse().isPresent()) {
-            // handle response
+            System.out.println(res.editCollectionResponse().get());
         }
     }
 }
@@ -1887,7 +1898,7 @@ public class Application {
                 .call();
 
         if (res.editCollectionItemResponse().isPresent()) {
-            // handle response
+            System.out.println(res.editCollectionItemResponse().get());
         }
     }
 }
@@ -1940,7 +1951,7 @@ public class Application {
                 .call();
 
         if (res.getCollectionResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getCollectionResponse().get());
         }
     }
 }
@@ -1992,7 +2003,7 @@ public class Application {
                 .call();
 
         if (res.listCollectionsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.listCollectionsResponse().get());
         }
     }
 }

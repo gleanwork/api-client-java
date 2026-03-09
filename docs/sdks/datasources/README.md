@@ -1,108 +1,45 @@
-# Indexing.Datasources
+# Datasources
 
 ## Overview
 
+Manage datasources.
+
 ### Available Operations
 
-* [add](#add) - Add or update datasource
-* [retrieveConfig](#retrieveconfig) - Get datasource config
+* [getDatasourceInstanceConfiguration](#getdatasourceinstanceconfiguration) - Get datasource instance configuration
+* [updateDatasourceInstanceConfiguration](#updatedatasourceinstanceconfiguration) - Update datasource instance configuration
 
-## add
+## getDatasourceInstanceConfiguration
 
-Add or update a custom datasource and its schema.
+Gets the greenlisted configuration values for a datasource instance. Returns only configuration keys that are exposed via the public API greenlist.
+
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="post_/api/index/v1/adddatasource" method="post" path="/api/index/v1/adddatasource" -->
+<!-- UsageSnippet language="java" operationID="getDatasourceInstanceConfiguration" method="get" path="/rest/api/v1/configure/datasources/{datasourceId}/instances/{instanceId}" -->
 ```java
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.*;
-import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1AdddatasourceResponse;
+import com.glean.api_client.glean_api_client.models.errors.ErrorResponse;
+import com.glean.api_client.glean_api_client.models.operations.GetDatasourceInstanceConfigurationResponse;
 import java.lang.Exception;
-import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Glean sdk = Glean.builder()
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        CustomDatasourceConfig req = CustomDatasourceConfig.builder()
-                .name("<value>")
-                .urlRegex("https://example-company.datasource.com/.*")
-                .quicklinks(List.of(
-                    Quicklink.builder()
-                        .iconConfig(IconConfig.builder()
-                            .color("#343CED")
-                            .key("person_icon")
-                            .iconType(IconType.GLYPH)
-                            .name("user")
-                            .build())
-                        .build()))
-                .build();
-
-        PostApiIndexV1AdddatasourceResponse res = sdk.indexing().datasources().add()
-                .request(req)
+        GetDatasourceInstanceConfigurationResponse res = sdk.datasources().getDatasourceInstanceConfiguration()
+                .datasourceId("o365sharepoint")
+                .instanceId("o365sharepoint_abc123")
                 .call();
 
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
-| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `request`                                                               | [CustomDatasourceConfig](../../models/shared/CustomDatasourceConfig.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
-
-### Response
-
-**[PostApiIndexV1AdddatasourceResponse](../../models/operations/PostApiIndexV1AdddatasourceResponse.md)**
-
-### Errors
-
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
-
-## retrieveConfig
-
-Fetches the datasource config for the specified custom datasource.
-
-### Example Usage
-
-<!-- UsageSnippet language="java" operationID="post_/api/index/v1/getdatasourceconfig" method="post" path="/api/index/v1/getdatasourceconfig" -->
-```java
-package hello.world;
-
-import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.GetDatasourceConfigRequest;
-import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1GetdatasourceconfigResponse;
-import java.lang.Exception;
-
-public class Application {
-
-    public static void main(String[] args) throws Exception {
-
-        Glean sdk = Glean.builder()
-                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
-            .build();
-
-        GetDatasourceConfigRequest req = GetDatasourceConfigRequest.builder()
-                .datasource("<value>")
-                .build();
-
-        PostApiIndexV1GetdatasourceconfigResponse res = sdk.indexing().datasources().retrieveConfig()
-                .request(req)
-                .call();
-
-        if (res.customDatasourceConfig().isPresent()) {
-            // handle response
+        if (res.datasourceConfigurationResponse().isPresent()) {
+            System.out.println(res.datasourceConfigurationResponse().get());
         }
     }
 }
@@ -110,16 +47,82 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `request`                                                                       | [GetDatasourceConfigRequest](../../models/shared/GetDatasourceConfigRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+| Parameter                                            | Type                                                 | Required                                             | Description                                          | Example                                              |
+| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
+| `datasourceId`                                       | *String*                                             | :heavy_check_mark:                                   | The datasource type identifier (e.g. o365sharepoint) | o365sharepoint                                       |
+| `instanceId`                                         | *String*                                             | :heavy_check_mark:                                   | The datasource instance identifier                   | o365sharepoint_abc123                                |
 
 ### Response
 
-**[PostApiIndexV1GetdatasourceconfigResponse](../../models/operations/PostApiIndexV1GetdatasourceconfigResponse.md)**
+**[GetDatasourceInstanceConfigurationResponse](../../models/operations/GetDatasourceInstanceConfigurationResponse.md)**
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400, 403, 404               | application/json            |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
+
+## updateDatasourceInstanceConfiguration
+
+Updates the greenlisted configuration values for a datasource instance. Only configuration keys that are exposed via the public API greenlist may be set. Returns the full greenlisted configuration after the update is applied.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="updateDatasourceInstanceConfiguration" method="patch" path="/rest/api/v1/configure/datasources/{datasourceId}/instances/{instanceId}" -->
+```java
+package hello.world;
+
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.DatasourceInstanceConfiguration;
+import com.glean.api_client.glean_api_client.models.components.UpdateDatasourceConfigurationRequest;
+import com.glean.api_client.glean_api_client.models.errors.ErrorResponse;
+import com.glean.api_client.glean_api_client.models.operations.UpdateDatasourceInstanceConfigurationResponse;
+import java.lang.Exception;
+import java.util.Map;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
+            .build();
+
+        UpdateDatasourceInstanceConfigurationResponse res = sdk.datasources().updateDatasourceInstanceConfiguration()
+                .datasourceId("o365sharepoint")
+                .instanceId("o365sharepoint_abc123")
+                .updateDatasourceConfigurationRequest(UpdateDatasourceConfigurationRequest.builder()
+                    .configuration(DatasourceInstanceConfiguration.builder()
+                        .values(Map.ofEntries(
+                        ))
+                        .build())
+                    .build())
+                .call();
+
+        if (res.datasourceConfigurationResponse().isPresent()) {
+            System.out.println(res.datasourceConfigurationResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             | Example                                                                                                 |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `datasourceId`                                                                                          | *String*                                                                                                | :heavy_check_mark:                                                                                      | The datasource type identifier (e.g. o365sharepoint)                                                    | o365sharepoint                                                                                          |
+| `instanceId`                                                                                            | *String*                                                                                                | :heavy_check_mark:                                                                                      | The datasource instance identifier                                                                      | o365sharepoint_abc123                                                                                   |
+| `updateDatasourceConfigurationRequest`                                                                  | [UpdateDatasourceConfigurationRequest](../../models/components/UpdateDatasourceConfigurationRequest.md) | :heavy_check_mark:                                                                                      | N/A                                                                                                     |                                                                                                         |
+
+### Response
+
+**[UpdateDatasourceInstanceConfigurationResponse](../../models/operations/UpdateDatasourceInstanceConfigurationResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400, 403, 404               | application/json            |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |

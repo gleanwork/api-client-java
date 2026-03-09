@@ -1,5 +1,13 @@
 # ListEntitiesRequestIncludeField
 
+## Example Usage
+
+```java
+import com.glean.api_client.glean_api_client.models.components.ListEntitiesRequestIncludeField;
+
+ListEntitiesRequestIncludeField value = ListEntitiesRequestIncludeField.PEOPLE;
+```
+
 
 ## Values
 

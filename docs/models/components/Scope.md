@@ -1,5 +1,16 @@
 # Scope
 
+## Example Usage
+
+```java
+import com.glean.api_client.glean_api_client.models.components.Scope;
+
+Scope value = Scope.APP_CARD;
+
+// Open enum: use .of() to create instances from custom string values
+Scope custom = Scope.of("custom_value");
+```
+
 
 ## Values
 

@@ -2,6 +2,17 @@
 
 The type of the warning.
 
+## Example Usage
+
+```java
+import com.glean.api_client.glean_api_client.models.components.WarningType;
+
+WarningType value = WarningType.LONG_QUERY;
+
+// Open enum: use .of() to create instances from custom string values
+WarningType custom = WarningType.of("custom_value");
+```
+
 
 ## Values
 

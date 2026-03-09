@@ -327,7 +327,7 @@ public class Application {
                 .call();
 
         if (res.debugDocumentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.debugDocumentResponse().get());
         }
     }
 }
@@ -390,7 +390,7 @@ public class Application {
                 .call();
 
         if (res.debugDocumentsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.debugDocumentsResponse().get());
         }
     }
 }
@@ -451,7 +451,7 @@ public class Application {
                 .call();
 
         if (res.checkDocumentAccessResponse().isPresent()) {
-            // handle response
+            System.out.println(res.checkDocumentAccessResponse().get());
         }
     }
 }
@@ -480,7 +480,7 @@ Intended for debugging/validation. Fetches the current upload and indexing statu
 Tip: Use [/debug/{datasource}/document](https://developers.glean.com/indexing/debugging/datasource-document) for richer information.
 
 
-> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
+> :warning: **DEPRECATED**: Deprecated on 2026-02-03, removal scheduled for 2026-10-15: Endpoint is deprecated.
 
 ### Example Usage
 
@@ -512,7 +512,7 @@ public class Application {
                 .call();
 
         if (res.getDocumentStatusResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getDocumentStatusResponse().get());
         }
     }
 }
@@ -541,7 +541,7 @@ Fetches document count for the specified custom datasource.
 Tip: Use [/debug/{datasource}/status](https://developers.glean.com/indexing/debugging/datasource-status) for richer information.
 
 
-> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
+> :warning: **DEPRECATED**: Deprecated on 2026-02-03, removal scheduled for 2026-10-15: Endpoint is deprecated.
 
 ### Example Usage
 
@@ -571,7 +571,7 @@ public class Application {
                 .call();
 
         if (res.getDocumentCountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getDocumentCountResponse().get());
         }
     }
 }

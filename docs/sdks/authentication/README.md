@@ -41,7 +41,7 @@ public class Application {
                 .call();
 
         if (res.checkDatasourceAuthResponse().isPresent()) {
-            // handle response
+            System.out.println(res.checkDatasourceAuthResponse().get());
         }
     }
 }

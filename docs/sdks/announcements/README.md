@@ -148,8 +148,8 @@ public class Application {
                                                             .nativeAppUrl("slack://foo/bar")
                                                             .snippets(List.of(
                                                                 SearchResultSnippet.builder()
-                                                                    .snippet("snippet")
                                                                     .mimeType("mimeType")
+                                                                    .snippet("snippet")
                                                                     .build()))
                                                             .build()))
                                                     .build(),
@@ -242,8 +242,8 @@ public class Application {
                                                             .nativeAppUrl("slack://foo/bar")
                                                             .snippets(List.of(
                                                                 SearchResultSnippet.builder()
-                                                                    .snippet("snippet")
                                                                     .mimeType("mimeType")
+                                                                    .snippet("snippet")
                                                                     .build()))
                                                             .build()))
                                                     .build(),
@@ -336,8 +336,8 @@ public class Application {
                                                             .nativeAppUrl("slack://foo/bar")
                                                             .snippets(List.of(
                                                                 SearchResultSnippet.builder()
-                                                                    .snippet("snippet")
                                                                     .mimeType("mimeType")
+                                                                    .snippet("snippet")
                                                                     .build()))
                                                             .build()))
                                                     .build()))
@@ -2572,8 +2572,8 @@ public class Application {
                                                                 .nativeAppUrl("slack://foo/bar")
                                                                 .snippets(List.of(
                                                                     SearchResultSnippet.builder()
-                                                                        .snippet("snippet")
                                                                         .mimeType("mimeType")
+                                                                        .snippet("snippet")
                                                                         .build()))
                                                                 .build()))
                                                         .build(),
@@ -2666,8 +2666,8 @@ public class Application {
                                                                 .nativeAppUrl("slack://foo/bar")
                                                                 .snippets(List.of(
                                                                     SearchResultSnippet.builder()
-                                                                        .snippet("snippet")
                                                                         .mimeType("mimeType")
+                                                                        .snippet("snippet")
                                                                         .build()))
                                                                 .build()))
                                                         .build(),
@@ -2760,8 +2760,8 @@ public class Application {
                                                                 .nativeAppUrl("slack://foo/bar")
                                                                 .snippets(List.of(
                                                                     SearchResultSnippet.builder()
-                                                                        .snippet("snippet")
                                                                         .mimeType("mimeType")
+                                                                        .snippet("snippet")
                                                                         .build()))
                                                                 .build()))
                                                         .build()))
@@ -9269,8 +9269,8 @@ public class Application {
                                             .nativeAppUrl("slack://foo/bar")
                                             .snippets(List.of(
                                                 SearchResultSnippet.builder()
-                                                    .snippet("snippet")
                                                     .mimeType("mimeType")
+                                                    .snippet("snippet")
                                                     .build()))
                                             .relatedResults(List.of(
                                                 RelatedDocuments.builder()
@@ -10484,8 +10484,8 @@ public class Application {
                                                             .nativeAppUrl("slack://foo/bar")
                                                             .snippets(List.of(
                                                                 SearchResultSnippet.builder()
-                                                                    .snippet("snippet")
                                                                     .mimeType("mimeType")
+                                                                    .snippet("snippet")
                                                                     .build()))
                                                             .build()))
                                                     .build(),
@@ -10578,8 +10578,8 @@ public class Application {
                                                             .nativeAppUrl("slack://foo/bar")
                                                             .snippets(List.of(
                                                                 SearchResultSnippet.builder()
-                                                                    .snippet("snippet")
                                                                     .mimeType("mimeType")
+                                                                    .snippet("snippet")
                                                                     .build()))
                                                             .build()))
                                                     .build(),
@@ -10672,8 +10672,8 @@ public class Application {
                                                             .nativeAppUrl("slack://foo/bar")
                                                             .snippets(List.of(
                                                                 SearchResultSnippet.builder()
-                                                                    .snippet("snippet")
                                                                     .mimeType("mimeType")
+                                                                    .snippet("snippet")
                                                                     .build()))
                                                             .build()))
                                                     .build()))
@@ -12908,8 +12908,8 @@ public class Application {
                                                                 .nativeAppUrl("slack://foo/bar")
                                                                 .snippets(List.of(
                                                                     SearchResultSnippet.builder()
-                                                                        .snippet("snippet")
                                                                         .mimeType("mimeType")
+                                                                        .snippet("snippet")
                                                                         .build()))
                                                                 .build()))
                                                         .build(),
@@ -13002,8 +13002,8 @@ public class Application {
                                                                 .nativeAppUrl("slack://foo/bar")
                                                                 .snippets(List.of(
                                                                     SearchResultSnippet.builder()
-                                                                        .snippet("snippet")
                                                                         .mimeType("mimeType")
+                                                                        .snippet("snippet")
                                                                         .build()))
                                                                 .build()))
                                                         .build(),
@@ -13096,8 +13096,8 @@ public class Application {
                                                                 .nativeAppUrl("slack://foo/bar")
                                                                 .snippets(List.of(
                                                                     SearchResultSnippet.builder()
-                                                                        .snippet("snippet")
                                                                         .mimeType("mimeType")
+                                                                        .snippet("snippet")
                                                                         .build()))
                                                                 .build()))
                                                         .build()))
@@ -19605,8 +19605,8 @@ public class Application {
                                             .nativeAppUrl("slack://foo/bar")
                                             .snippets(List.of(
                                                 SearchResultSnippet.builder()
-                                                    .snippet("snippet")
                                                     .mimeType("mimeType")
+                                                    .snippet("snippet")
                                                     .build()))
                                             .relatedResults(List.of(
                                                 RelatedDocuments.builder()
@@ -20745,7 +20745,7 @@ public class Application {
                 .call();
 
         if (res.announcement().isPresent()) {
-            // handle response
+            System.out.println(res.announcement().get());
         }
     }
 }
@@ -20954,8 +20954,8 @@ public class Application {
                                                             .nativeAppUrl("slack://foo/bar")
                                                             .snippets(List.of(
                                                                 SearchResultSnippet.builder()
-                                                                    .snippet("snippet")
                                                                     .mimeType("mimeType")
+                                                                    .snippet("snippet")
                                                                     .build()))
                                                             .build()))
                                                     .build(),
@@ -21042,8 +21042,8 @@ public class Application {
                                                             .nativeAppUrl("slack://foo/bar")
                                                             .snippets(List.of(
                                                                 SearchResultSnippet.builder()
-                                                                    .snippet("snippet")
                                                                     .mimeType("mimeType")
+                                                                    .snippet("snippet")
                                                                     .build()))
                                                             .build()))
                                                     .build(),
@@ -21130,8 +21130,8 @@ public class Application {
                                                             .nativeAppUrl("slack://foo/bar")
                                                             .snippets(List.of(
                                                                 SearchResultSnippet.builder()
-                                                                    .snippet("snippet")
                                                                     .mimeType("mimeType")
+                                                                    .snippet("snippet")
                                                                     .build()))
                                                             .build()))
                                                     .build()))
@@ -24980,8 +24980,8 @@ public class Application {
                                                                 .nativeAppUrl("slack://foo/bar")
                                                                 .snippets(List.of(
                                                                     SearchResultSnippet.builder()
-                                                                        .snippet("snippet")
                                                                         .mimeType("mimeType")
+                                                                        .snippet("snippet")
                                                                         .build()))
                                                                 .build()))
                                                         .build(),
@@ -25068,8 +25068,8 @@ public class Application {
                                                                 .nativeAppUrl("slack://foo/bar")
                                                                 .snippets(List.of(
                                                                     SearchResultSnippet.builder()
-                                                                        .snippet("snippet")
                                                                         .mimeType("mimeType")
+                                                                        .snippet("snippet")
                                                                         .build()))
                                                                 .build()))
                                                         .build(),
@@ -25156,8 +25156,8 @@ public class Application {
                                                                 .nativeAppUrl("slack://foo/bar")
                                                                 .snippets(List.of(
                                                                     SearchResultSnippet.builder()
-                                                                        .snippet("snippet")
                                                                         .mimeType("mimeType")
+                                                                        .snippet("snippet")
                                                                         .build()))
                                                                 .build()))
                                                         .build()))
@@ -34527,8 +34527,8 @@ public class Application {
                                             .nativeAppUrl("slack://foo/bar")
                                             .snippets(List.of(
                                                 SearchResultSnippet.builder()
-                                                    .snippet("snippet")
                                                     .mimeType("mimeType")
+                                                    .snippet("snippet")
                                                     .build()))
                                             .relatedResults(List.of(
                                                 RelatedDocuments.builder()
@@ -35712,8 +35712,8 @@ public class Application {
                                                             .nativeAppUrl("slack://foo/bar")
                                                             .snippets(List.of(
                                                                 SearchResultSnippet.builder()
-                                                                    .snippet("snippet")
                                                                     .mimeType("mimeType")
+                                                                    .snippet("snippet")
                                                                     .build()))
                                                             .build()))
                                                     .build(),
@@ -35800,8 +35800,8 @@ public class Application {
                                                             .nativeAppUrl("slack://foo/bar")
                                                             .snippets(List.of(
                                                                 SearchResultSnippet.builder()
-                                                                    .snippet("snippet")
                                                                     .mimeType("mimeType")
+                                                                    .snippet("snippet")
                                                                     .build()))
                                                             .build()))
                                                     .build(),
@@ -35888,8 +35888,8 @@ public class Application {
                                                             .nativeAppUrl("slack://foo/bar")
                                                             .snippets(List.of(
                                                                 SearchResultSnippet.builder()
-                                                                    .snippet("snippet")
                                                                     .mimeType("mimeType")
+                                                                    .snippet("snippet")
                                                                     .build()))
                                                             .build()))
                                                     .build()))
@@ -39738,8 +39738,8 @@ public class Application {
                                                                 .nativeAppUrl("slack://foo/bar")
                                                                 .snippets(List.of(
                                                                     SearchResultSnippet.builder()
-                                                                        .snippet("snippet")
                                                                         .mimeType("mimeType")
+                                                                        .snippet("snippet")
                                                                         .build()))
                                                                 .build()))
                                                         .build(),
@@ -39826,8 +39826,8 @@ public class Application {
                                                                 .nativeAppUrl("slack://foo/bar")
                                                                 .snippets(List.of(
                                                                     SearchResultSnippet.builder()
-                                                                        .snippet("snippet")
                                                                         .mimeType("mimeType")
+                                                                        .snippet("snippet")
                                                                         .build()))
                                                                 .build()))
                                                         .build(),
@@ -39914,8 +39914,8 @@ public class Application {
                                                                 .nativeAppUrl("slack://foo/bar")
                                                                 .snippets(List.of(
                                                                     SearchResultSnippet.builder()
-                                                                        .snippet("snippet")
                                                                         .mimeType("mimeType")
+                                                                        .snippet("snippet")
                                                                         .build()))
                                                                 .build()))
                                                         .build()))
@@ -49285,8 +49285,8 @@ public class Application {
                                             .nativeAppUrl("slack://foo/bar")
                                             .snippets(List.of(
                                                 SearchResultSnippet.builder()
-                                                    .snippet("snippet")
                                                     .mimeType("mimeType")
+                                                    .snippet("snippet")
                                                     .build()))
                                             .relatedResults(List.of(
                                                 RelatedDocuments.builder()
@@ -50466,8 +50466,8 @@ public class Application {
                                                             .nativeAppUrl("slack://foo/bar")
                                                             .snippets(List.of(
                                                                 SearchResultSnippet.builder()
-                                                                    .snippet("snippet")
                                                                     .mimeType("mimeType")
+                                                                    .snippet("snippet")
                                                                     .build()))
                                                             .build()))
                                                     .build(),
@@ -50554,8 +50554,8 @@ public class Application {
                                                             .nativeAppUrl("slack://foo/bar")
                                                             .snippets(List.of(
                                                                 SearchResultSnippet.builder()
-                                                                    .snippet("snippet")
                                                                     .mimeType("mimeType")
+                                                                    .snippet("snippet")
                                                                     .build()))
                                                             .build()))
                                                     .build(),
@@ -50642,8 +50642,8 @@ public class Application {
                                                             .nativeAppUrl("slack://foo/bar")
                                                             .snippets(List.of(
                                                                 SearchResultSnippet.builder()
-                                                                    .snippet("snippet")
                                                                     .mimeType("mimeType")
+                                                                    .snippet("snippet")
                                                                     .build()))
                                                             .build()))
                                                     .build()))
@@ -54492,8 +54492,8 @@ public class Application {
                                                                 .nativeAppUrl("slack://foo/bar")
                                                                 .snippets(List.of(
                                                                     SearchResultSnippet.builder()
-                                                                        .snippet("snippet")
                                                                         .mimeType("mimeType")
+                                                                        .snippet("snippet")
                                                                         .build()))
                                                                 .build()))
                                                         .build(),
@@ -54580,8 +54580,8 @@ public class Application {
                                                                 .nativeAppUrl("slack://foo/bar")
                                                                 .snippets(List.of(
                                                                     SearchResultSnippet.builder()
-                                                                        .snippet("snippet")
                                                                         .mimeType("mimeType")
+                                                                        .snippet("snippet")
                                                                         .build()))
                                                                 .build()))
                                                         .build(),
@@ -54668,8 +54668,8 @@ public class Application {
                                                                 .nativeAppUrl("slack://foo/bar")
                                                                 .snippets(List.of(
                                                                     SearchResultSnippet.builder()
-                                                                        .snippet("snippet")
                                                                         .mimeType("mimeType")
+                                                                        .snippet("snippet")
                                                                         .build()))
                                                                 .build()))
                                                         .build()))
@@ -64039,8 +64039,8 @@ public class Application {
                                             .nativeAppUrl("slack://foo/bar")
                                             .snippets(List.of(
                                                 SearchResultSnippet.builder()
-                                                    .snippet("snippet")
                                                     .mimeType("mimeType")
+                                                    .snippet("snippet")
                                                     .build()))
                                             .relatedResults(List.of(
                                                 RelatedDocuments.builder()
@@ -65155,7 +65155,7 @@ public class Application {
                 .call();
 
         if (res.announcement().isPresent()) {
-            // handle response
+            System.out.println(res.announcement().get());
         }
     }
 }

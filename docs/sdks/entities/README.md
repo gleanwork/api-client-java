@@ -51,7 +51,7 @@ public class Application {
                 .call();
 
         if (res.listEntitiesResponse().isPresent()) {
-            // handle response
+            System.out.println(res.listEntitiesResponse().get());
         }
     }
 }
@@ -107,7 +107,7 @@ public class Application {
                 .call();
 
         if (res.peopleResponse().isPresent()) {
-            // handle response
+            System.out.println(res.peopleResponse().get());
         }
     }
 }

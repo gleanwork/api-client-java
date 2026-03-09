@@ -21,12 +21,13 @@ Returns details of an [agent](https://developers.glean.com/agents/agents-api) cr
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.errors.ErrorResponse;
 import com.glean.api_client.glean_api_client.models.operations.GetAgentResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Glean sdk = Glean.builder()
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
@@ -37,7 +38,7 @@ public class Application {
                 .call();
 
         if (res.agent().isPresent()) {
-            // handle response
+            System.out.println(res.agent().get());
         }
     }
 }
@@ -57,9 +58,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404                         | application/json            |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## retrieveSchemas
 
@@ -72,12 +74,13 @@ Return [agent](https://developers.glean.com/agents/agents-api)'s input and outpu
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.errors.ErrorResponse;
 import com.glean.api_client.glean_api_client.models.operations.GetAgentSchemasResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Glean sdk = Glean.builder()
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
@@ -88,7 +91,7 @@ public class Application {
                 .call();
 
         if (res.agentSchemas().isPresent()) {
-            // handle response
+            System.out.println(res.agentSchemas().get());
         }
     }
 }
@@ -108,9 +111,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404, 422                    | application/json            |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## list
 
@@ -124,12 +128,13 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.SearchAgentsRequest;
+import com.glean.api_client.glean_api_client.models.errors.ErrorResponse;
 import com.glean.api_client.glean_api_client.models.operations.SearchAgentsResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Glean sdk = Glean.builder()
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
@@ -144,7 +149,7 @@ public class Application {
                 .call();
 
         if (res.searchAgentsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.searchAgentsResponse().get());
         }
     }
 }
@@ -162,9 +167,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404, 422                    | application/json            |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## runStream
 
@@ -179,13 +185,14 @@ package hello.world;
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.AgentRunCreate;
 import com.glean.api_client.glean_api_client.models.components.Message;
+import com.glean.api_client.glean_api_client.models.errors.ErrorResponse;
 import com.glean.api_client.glean_api_client.models.operations.CreateAndStreamRunResponse;
 import java.lang.Exception;
 import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Glean sdk = Glean.builder()
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
@@ -204,7 +211,7 @@ public class Application {
                 .call();
 
         if (res.res().isPresent()) {
-            // handle response
+            System.out.println(res.res().get());
         }
     }
 }
@@ -222,9 +229,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404, 409, 422               | application/json            |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## run
 
@@ -264,7 +272,7 @@ public class Application {
                 .call();
 
         if (res.agentRunWaitResponse().isPresent()) {
-            // handle response
+            System.out.println(res.agentRunWaitResponse().get());
         }
     }
 }

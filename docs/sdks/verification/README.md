@@ -38,7 +38,7 @@ public class Application {
                 .call();
 
         if (res.verification().isPresent()) {
-            // handle response
+            System.out.println(res.verification().get());
         }
     }
 }
@@ -87,7 +87,7 @@ public class Application {
                 .call();
 
         if (res.verificationFeed().isPresent()) {
-            // handle response
+            System.out.println(res.verificationFeed().get());
         }
     }
 }
@@ -140,7 +140,7 @@ public class Application {
                 .call();
 
         if (res.verification().isPresent()) {
-            // handle response
+            System.out.println(res.verification().get());
         }
     }
 }

@@ -1,5 +1,16 @@
 # CollectionErrorErrorCode
 
+## Example Usage
+
+```java
+import com.glean.api_client.glean_api_client.models.components.CollectionErrorErrorCode;
+
+CollectionErrorErrorCode value = CollectionErrorErrorCode.NAME_EXISTS;
+
+// Open enum: use .of() to create instances from custom string values
+CollectionErrorErrorCode custom = CollectionErrorErrorCode.of("custom_value");
+```
+
 
 ## Values
 

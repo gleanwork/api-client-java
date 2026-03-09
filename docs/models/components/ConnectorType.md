@@ -2,6 +2,17 @@
 
 The source from which document content was pulled, e.g. an API crawl or browser history
 
+## Example Usage
+
+```java
+import com.glean.api_client.glean_api_client.models.components.ConnectorType;
+
+ConnectorType value = ConnectorType.API_CRAWL;
+
+// Open enum: use .of() to create instances from custom string values
+ConnectorType custom = ConnectorType.of("custom_value");
+```
+
 
 ## Values
 

@@ -2,6 +2,17 @@
 
 Different ways of sorting entities
 
+## Example Usage
+
+```java
+import com.glean.api_client.glean_api_client.models.components.EntitiesSortOrder;
+
+EntitiesSortOrder value = EntitiesSortOrder.ENTITY_NAME;
+
+// Open enum: use .of() to create instances from custom string values
+EntitiesSortOrder custom = EntitiesSortOrder.of("custom_value");
+```
+
 
 ## Values
 

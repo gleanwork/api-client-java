@@ -53,7 +53,7 @@ public class Application {
                 .call();
 
         if (res.pinDocument().isPresent()) {
-            // handle response
+            System.out.println(res.pinDocument().get());
         }
     }
 }
@@ -105,7 +105,7 @@ public class Application {
                 .call();
 
         if (res.getPinResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getPinResponse().get());
         }
     }
 }
@@ -157,7 +157,7 @@ public class Application {
                 .call();
 
         if (res.listPinsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.listPinsResponse().get());
         }
     }
 }
@@ -223,7 +223,7 @@ public class Application {
                 .call();
 
         if (res.pinDocument().isPresent()) {
-            // handle response
+            System.out.println(res.pinDocument().get());
         }
     }
 }

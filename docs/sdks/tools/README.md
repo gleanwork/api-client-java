@@ -33,7 +33,7 @@ public class Application {
                 .call();
 
         if (res.toolsListResponse().isPresent()) {
-            // handle response
+            System.out.println(res.toolsListResponse().get());
         }
     }
 }
@@ -94,7 +94,7 @@ public class Application {
                 .call();
 
         if (res.toolsCallResponse().isPresent()) {
-            // handle response
+            System.out.println(res.toolsCallResponse().get());
         }
     }
 }

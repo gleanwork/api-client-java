@@ -49,6 +49,7 @@ Remember that each namespace requires its own authentication token type as descr
   * [Custom HTTP Client](#custom-http-client)
   * [Debugging](#debugging)
   * [Experimental Features and Deprecation Testing](#experimental-features-and-deprecation-testing)
+  * [Jackson Configuration](#jackson-configuration)
 * [Development](#development)
   * [Maturity](#maturity)
   * [Contributions](#contributions)
@@ -66,7 +67,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.glean.api-client:glean-api-client:0.12.23'
+implementation 'com.glean.api-client:glean-api-client:0.12.24'
 ```
 
 Maven:
@@ -74,7 +75,7 @@ Maven:
 <dependency>
     <groupId>com.glean.api-client</groupId>
     <artifactId>glean-api-client</artifactId>
-    <version>0.12.23</version>
+    <version>0.12.24</version>
 </dependency>
 ```
 
@@ -128,7 +129,7 @@ public class Application {
                 .call();
 
         if (res.chatResponse().isPresent()) {
-            // handle response
+            System.out.println(res.chatResponse().get());
         }
     }
 }
@@ -166,7 +167,7 @@ public class Application {
                 .call();
 
         if (res.chatRequestStream().isPresent()) {
-            // handle response
+            System.out.println(res.chatRequestStream().get());
         }
     }
 }
@@ -229,6 +230,15 @@ public class Application {
 ```
 
 [comp-fut]: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html
+
+#### Union Consumption Patterns
+
+When a response field is a union model:
+
+- Discriminated unions: branch on the discriminator (`switch`) and then narrow to the concrete type.
+- Non-discriminated unions: use generated accessors (for example `string()`, `asLong()`, `simpleObject()`) to determine the active variant.
+
+For full model-specific examples (including Java 11/16/21 variants), see each union model's **Supported Types** section in the generated model docs.
 <!-- End SDK Example Usage [usage] -->
 
 <!-- Start Asynchronous Support [async-support] -->
@@ -531,6 +541,11 @@ For more information on obtaining the appropriate token type, please contact you
 * [list](docs/sdks/verification/README.md#list) - List verifications
 * [verify](docs/sdks/verification/README.md#verify) - Update verification
 
+### [Datasources](docs/sdks/datasources/README.md)
+
+* [getDatasourceInstanceConfiguration](docs/sdks/datasources/README.md#getdatasourceinstanceconfiguration) - Get datasource instance configuration
+* [updateDatasourceInstanceConfiguration](docs/sdks/datasources/README.md#updatedatasourceinstanceconfiguration) - Update datasource instance configuration
+
 ### [Governance](docs/sdks/governance/README.md)
 
 * [createfindingsexport](docs/sdks/governance/README.md#createfindingsexport) - Creates findings export
@@ -547,10 +562,10 @@ For more information on obtaining the appropriate token type, please contact you
 * [status](docs/sdks/datasource/README.md#status) - Beta: Get datasource status
 
 
-### [Indexing.Datasources](docs/sdks/datasources/README.md)
+### [Indexing.Datasources](docs/sdks/indexingdatasources/README.md)
 
-* [add](docs/sdks/datasources/README.md#add) - Add or update datasource
-* [retrieveConfig](docs/sdks/datasources/README.md#retrieveconfig) - Get datasource config
+* [add](docs/sdks/indexingdatasources/README.md#add) - Add or update datasource
+* [retrieveConfig](docs/sdks/indexingdatasources/README.md#retrieveconfig) - Get datasource config
 
 ### [Indexing.Documents](docs/sdks/indexingdocuments/README.md)
 
@@ -573,7 +588,7 @@ For more information on obtaining the appropriate token type, please contact you
 
 * [~~count~~](docs/sdks/people/README.md#count) - Get user count :warning: **Deprecated**
 * [index](docs/sdks/people/README.md#index) - Index employee
-* [bulkIndex](docs/sdks/people/README.md#bulkindex) - Bulk index employees
+* [~~bulkIndex~~](docs/sdks/people/README.md#bulkindex) - Bulk index employees :warning: **Deprecated**
 * [processAllEmployeesAndTeams](docs/sdks/people/README.md#processallemployeesandteams) - Schedules the processing of uploaded employees and teams
 * [delete](docs/sdks/people/README.md#delete) - Delete employee
 * [indexTeam](docs/sdks/people/README.md#indexteam) - Index team
@@ -625,627 +640,29 @@ Handling errors in this SDK should largely match your expectations. All operatio
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.*;
-import com.glean.api_client.glean_api_client.models.errors.*;
-import com.glean.api_client.glean_api_client.models.operations.CreatecollectionResponse;
+import com.glean.api_client.glean_api_client.models.errors.ErrorResponse;
+import com.glean.api_client.glean_api_client.models.errors.GleanError;
+import com.glean.api_client.glean_api_client.models.operations.GetAgentResponse;
 import java.io.UncheckedIOException;
 import java.lang.Exception;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.*;
+import java.lang.String;
+import java.util.Optional;
 
 public class Application {
 
-    public static void main(String[] args) throws CollectionError, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Glean sdk = Glean.builder()
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
         try {
 
-            CreatecollectionResponse res = sdk.client().collections().create()
-                    .createCollectionRequest(CreateCollectionRequest.builder()
-                        .name("<value>")
-                        .addedRoles(List.of(
-                            UserRoleSpecification.builder()
-                                .role(UserRole.VERIFIER)
-                                .person(Person.builder()
-                                    .name("George Clooney")
-                                    .obfuscatedId("abc123")
-                                    .relatedDocuments(List.of(
-                                        RelatedDocuments.builder()
-                                            .querySuggestion(QuerySuggestion.builder()
-                                                .query("app:github type:pull author:mortimer")
-                                                .searchProviderInfo(SearchProviderInfo.builder()
-                                                    .name("Google")
-                                                    .searchLinkUrlTemplate("https://www.google.com/search?q={query}&hl=en")
-                                                    .build())
-                                                .label("Mortimer's PRs")
-                                                .datasource("github")
-                                                .requestOptions(SearchRequestOptions.builder()
-                                                    .facetBucketSize(977077L)
-                                                    .datasourceFilter("JIRA")
-                                                    .datasourcesFilter(List.of(
-                                                        "JIRA"))
-                                                    .queryOverridesFacetFilters(true)
-                                                    .facetFilters(List.of(
-                                                        FacetFilter.builder()
-                                                            .fieldName("type")
-                                                            .values(List.of(
-                                                                FacetFilterValue.builder()
-                                                                    .value("Spreadsheet")
-                                                                    .relationType(RelationType.EQUALS)
-                                                                    .build(),
-                                                                FacetFilterValue.builder()
-                                                                    .value("Presentation")
-                                                                    .relationType(RelationType.EQUALS)
-                                                                    .build()))
-                                                            .build()))
-                                                    .facetFilterSets(List.of(
-                                                        FacetFilterSet.builder()
-                                                            .filters(List.of(
-                                                                FacetFilter.builder()
-                                                                    .fieldName("type")
-                                                                    .values(List.of(
-                                                                        FacetFilterValue.builder()
-                                                                            .value("Spreadsheet")
-                                                                            .relationType(RelationType.EQUALS)
-                                                                            .build(),
-                                                                        FacetFilterValue.builder()
-                                                                            .value("Presentation")
-                                                                            .relationType(RelationType.EQUALS)
-                                                                            .build()))
-                                                                    .build()))
-                                                            .build(),
-                                                        FacetFilterSet.builder()
-                                                            .filters(List.of(
-                                                                FacetFilter.builder()
-                                                                    .fieldName("type")
-                                                                    .values(List.of(
-                                                                        FacetFilterValue.builder()
-                                                                            .value("Spreadsheet")
-                                                                            .relationType(RelationType.EQUALS)
-                                                                            .build(),
-                                                                        FacetFilterValue.builder()
-                                                                            .value("Presentation")
-                                                                            .relationType(RelationType.EQUALS)
-                                                                            .build()))
-                                                                    .build()))
-                                                            .build(),
-                                                        FacetFilterSet.builder()
-                                                            .filters(List.of(
-                                                                FacetFilter.builder()
-                                                                    .fieldName("type")
-                                                                    .values(List.of(
-                                                                        FacetFilterValue.builder()
-                                                                            .value("Spreadsheet")
-                                                                            .relationType(RelationType.EQUALS)
-                                                                            .build(),
-                                                                        FacetFilterValue.builder()
-                                                                            .value("Presentation")
-                                                                            .relationType(RelationType.EQUALS)
-                                                                            .build()))
-                                                                    .build()))
-                                                            .build()))
-                                                    .authTokens(List.of(
-                                                        AuthToken.builder()
-                                                            .accessToken("123abc")
-                                                            .datasource("gmail")
-                                                            .scope("email profile https://www.googleapis.com/auth/gmail.readonly")
-                                                            .tokenType("Bearer")
-                                                            .authUser("1")
-                                                            .build()))
-                                                    .build())
-                                                .ranges(List.of(
-                                                    TextRange.builder()
-                                                        .startIndex(86650L)
-                                                        .document(Document.builder()
-                                                            .metadata(DocumentMetadata.builder()
-                                                                .datasource("datasource")
-                                                                .objectType("Feature Request")
-                                                                .container("container")
-                                                                .parentId("JIRA_EN-1337")
-                                                                .mimeType("mimeType")
-                                                                .documentId("documentId")
-                                                                .createTime(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
-                                                                .updateTime(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
-                                                                .components(List.of(
-                                                                    "Backend",
-                                                                    "Networking"))
-                                                                .status("[\"Done\"]")
-                                                                .pins(List.of(
-                                                                    PinDocument.builder()
-                                                                        .documentId("<id>")
-                                                                        .audienceFilters(List.of(
-                                                                            FacetFilter.builder()
-                                                                                .fieldName("type")
-                                                                                .values(List.of(
-                                                                                    FacetFilterValue.builder()
-                                                                                        .value("Spreadsheet")
-                                                                                        .relationType(RelationType.EQUALS)
-                                                                                        .build(),
-                                                                                    FacetFilterValue.builder()
-                                                                                        .value("Presentation")
-                                                                                        .relationType(RelationType.EQUALS)
-                                                                                        .build()))
-                                                                                .build()))
-                                                                        .build()))
-                                                                .collections(List.of(
-                                                                    Collection.builder()
-                                                                        .name("<value>")
-                                                                        .description("meaty dial elegantly while react")
-                                                                        .id(854591L)
-                                                                        .audienceFilters(List.of(
-                                                                            FacetFilter.builder()
-                                                                                .fieldName("type")
-                                                                                .values(List.of(
-                                                                                    FacetFilterValue.builder()
-                                                                                        .value("Spreadsheet")
-                                                                                        .relationType(RelationType.EQUALS)
-                                                                                        .build(),
-                                                                                    FacetFilterValue.builder()
-                                                                                        .value("Presentation")
-                                                                                        .relationType(RelationType.EQUALS)
-                                                                                        .build()))
-                                                                                .build()))
-                                                                        .items(List.of(
-                                                                            CollectionItem.builder()
-                                                                                .collectionId(697663L)
-                                                                                .itemType(CollectionItemItemType.TEXT)
-                                                                                .shortcut(Shortcut.builder()
-                                                                                    .inputAlias("<value>")
-                                                                                    .build())
-                                                                                .build(),
-                                                                            CollectionItem.builder()
-                                                                                .collectionId(697663L)
-                                                                                .itemType(CollectionItemItemType.TEXT)
-                                                                                .shortcut(Shortcut.builder()
-                                                                                    .inputAlias("<value>")
-                                                                                    .build())
-                                                                                .build(),
-                                                                            CollectionItem.builder()
-                                                                                .collectionId(697663L)
-                                                                                .itemType(CollectionItemItemType.TEXT)
-                                                                                .shortcut(Shortcut.builder()
-                                                                                    .inputAlias("<value>")
-                                                                                    .build())
-                                                                                .build()))
-                                                                        .build()))
-                                                                .interactions(DocumentInteractions.builder()
-                                                                    .reacts(List.of(
-                                                                        Reaction.builder()
-                                                                            .build(),
-                                                                        Reaction.builder()
-                                                                            .build()))
-                                                                    .shares(List.of(
-                                                                        Share.builder()
-                                                                            .numDaysAgo(365776L)
-                                                                            .build(),
-                                                                        Share.builder()
-                                                                            .numDaysAgo(365776L)
-                                                                            .build(),
-                                                                        Share.builder()
-                                                                            .numDaysAgo(365776L)
-                                                                            .build()))
-                                                                    .build())
-                                                                .verification(Verification.builder()
-                                                                    .state(State.DEPRECATED)
-                                                                    .metadata(VerificationMetadata.builder()
-                                                                        .reminders(List.of(
-                                                                            Reminder.builder()
-                                                                                .assignee(Person.builder()
-                                                                                    .name("George Clooney")
-                                                                                    .obfuscatedId("abc123")
-                                                                                    .build())
-                                                                                .remindAt(268615L)
-                                                                                .build()))
-                                                                        .lastReminder(Reminder.builder()
-                                                                            .assignee(Person.builder()
-                                                                                .name("George Clooney")
-                                                                                .obfuscatedId("abc123")
-                                                                                .build())
-                                                                            .remindAt(423482L)
-                                                                            .build())
-                                                                        .build())
-                                                                    .build())
-                                                                .shortcuts(List.of(
-                                                                    Shortcut.builder()
-                                                                        .inputAlias("<value>")
-                                                                        .build(),
-                                                                    Shortcut.builder()
-                                                                        .inputAlias("<value>")
-                                                                        .build(),
-                                                                    Shortcut.builder()
-                                                                        .inputAlias("<value>")
-                                                                        .build()))
-                                                                .customData(Map.ofEntries(
-                                                                    Map.entry("someCustomField", CustomDataValue.builder()
-                                                                        .build())))
-                                                                .build())
-                                                            .build())
-                                                        .build()))
-                                                .inputDetails(SearchRequestInputDetails.builder()
-                                                    .hasCopyPaste(true)
-                                                    .build())
-                                                .build())
-                                            .results(List.of(
-                                                SearchResult.builder()
-                                                    .url("https://example.com/foo/bar")
-                                                    .title("title")
-                                                    .nativeAppUrl("slack://foo/bar")
-                                                    .snippets(List.of(
-                                                        SearchResultSnippet.builder()
-                                                            .snippet("snippet")
-                                                            .mimeType("mimeType")
-                                                            .build()))
-                                                    .build()))
-                                            .build(),
-                                        RelatedDocuments.builder()
-                                            .querySuggestion(QuerySuggestion.builder()
-                                                .query("app:github type:pull author:mortimer")
-                                                .searchProviderInfo(SearchProviderInfo.builder()
-                                                    .name("Google")
-                                                    .searchLinkUrlTemplate("https://www.google.com/search?q={query}&hl=en")
-                                                    .build())
-                                                .label("Mortimer's PRs")
-                                                .datasource("github")
-                                                .requestOptions(SearchRequestOptions.builder()
-                                                    .facetBucketSize(977077L)
-                                                    .datasourceFilter("JIRA")
-                                                    .datasourcesFilter(List.of(
-                                                        "JIRA"))
-                                                    .queryOverridesFacetFilters(true)
-                                                    .facetFilters(List.of(
-                                                        FacetFilter.builder()
-                                                            .fieldName("type")
-                                                            .values(List.of(
-                                                                FacetFilterValue.builder()
-                                                                    .value("Spreadsheet")
-                                                                    .relationType(RelationType.EQUALS)
-                                                                    .build(),
-                                                                FacetFilterValue.builder()
-                                                                    .value("Presentation")
-                                                                    .relationType(RelationType.EQUALS)
-                                                                    .build()))
-                                                            .build()))
-                                                    .facetFilterSets(List.of(
-                                                        FacetFilterSet.builder()
-                                                            .filters(List.of(
-                                                                FacetFilter.builder()
-                                                                    .fieldName("type")
-                                                                    .values(List.of(
-                                                                        FacetFilterValue.builder()
-                                                                            .value("Spreadsheet")
-                                                                            .relationType(RelationType.EQUALS)
-                                                                            .build(),
-                                                                        FacetFilterValue.builder()
-                                                                            .value("Presentation")
-                                                                            .relationType(RelationType.EQUALS)
-                                                                            .build()))
-                                                                    .build()))
-                                                            .build(),
-                                                        FacetFilterSet.builder()
-                                                            .filters(List.of(
-                                                                FacetFilter.builder()
-                                                                    .fieldName("type")
-                                                                    .values(List.of(
-                                                                        FacetFilterValue.builder()
-                                                                            .value("Spreadsheet")
-                                                                            .relationType(RelationType.EQUALS)
-                                                                            .build(),
-                                                                        FacetFilterValue.builder()
-                                                                            .value("Presentation")
-                                                                            .relationType(RelationType.EQUALS)
-                                                                            .build()))
-                                                                    .build()))
-                                                            .build(),
-                                                        FacetFilterSet.builder()
-                                                            .filters(List.of(
-                                                                FacetFilter.builder()
-                                                                    .fieldName("type")
-                                                                    .values(List.of(
-                                                                        FacetFilterValue.builder()
-                                                                            .value("Spreadsheet")
-                                                                            .relationType(RelationType.EQUALS)
-                                                                            .build(),
-                                                                        FacetFilterValue.builder()
-                                                                            .value("Presentation")
-                                                                            .relationType(RelationType.EQUALS)
-                                                                            .build()))
-                                                                    .build()))
-                                                            .build()))
-                                                    .authTokens(List.of(
-                                                        AuthToken.builder()
-                                                            .accessToken("123abc")
-                                                            .datasource("gmail")
-                                                            .scope("email profile https://www.googleapis.com/auth/gmail.readonly")
-                                                            .tokenType("Bearer")
-                                                            .authUser("1")
-                                                            .build()))
-                                                    .build())
-                                                .ranges(List.of(
-                                                    TextRange.builder()
-                                                        .startIndex(86650L)
-                                                        .document(Document.builder()
-                                                            .metadata(DocumentMetadata.builder()
-                                                                .datasource("datasource")
-                                                                .objectType("Feature Request")
-                                                                .container("container")
-                                                                .parentId("JIRA_EN-1337")
-                                                                .mimeType("mimeType")
-                                                                .documentId("documentId")
-                                                                .createTime(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
-                                                                .updateTime(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
-                                                                .components(List.of(
-                                                                    "Backend",
-                                                                    "Networking"))
-                                                                .status("[\"Done\"]")
-                                                                .pins(List.of(
-                                                                    PinDocument.builder()
-                                                                        .documentId("<id>")
-                                                                        .audienceFilters(List.of(
-                                                                            FacetFilter.builder()
-                                                                                .fieldName("type")
-                                                                                .values(List.of(
-                                                                                    FacetFilterValue.builder()
-                                                                                        .value("Spreadsheet")
-                                                                                        .relationType(RelationType.EQUALS)
-                                                                                        .build(),
-                                                                                    FacetFilterValue.builder()
-                                                                                        .value("Presentation")
-                                                                                        .relationType(RelationType.EQUALS)
-                                                                                        .build()))
-                                                                                .build()))
-                                                                        .build()))
-                                                                .collections(List.of(
-                                                                    Collection.builder()
-                                                                        .name("<value>")
-                                                                        .description("meaty dial elegantly while react")
-                                                                        .id(854591L)
-                                                                        .audienceFilters(List.of(
-                                                                            FacetFilter.builder()
-                                                                                .fieldName("type")
-                                                                                .values(List.of(
-                                                                                    FacetFilterValue.builder()
-                                                                                        .value("Spreadsheet")
-                                                                                        .relationType(RelationType.EQUALS)
-                                                                                        .build(),
-                                                                                    FacetFilterValue.builder()
-                                                                                        .value("Presentation")
-                                                                                        .relationType(RelationType.EQUALS)
-                                                                                        .build()))
-                                                                                .build()))
-                                                                        .items(List.of(
-                                                                            CollectionItem.builder()
-                                                                                .collectionId(697663L)
-                                                                                .itemType(CollectionItemItemType.TEXT)
-                                                                                .shortcut(Shortcut.builder()
-                                                                                    .inputAlias("<value>")
-                                                                                    .build())
-                                                                                .build(),
-                                                                            CollectionItem.builder()
-                                                                                .collectionId(697663L)
-                                                                                .itemType(CollectionItemItemType.TEXT)
-                                                                                .shortcut(Shortcut.builder()
-                                                                                    .inputAlias("<value>")
-                                                                                    .build())
-                                                                                .build(),
-                                                                            CollectionItem.builder()
-                                                                                .collectionId(697663L)
-                                                                                .itemType(CollectionItemItemType.TEXT)
-                                                                                .shortcut(Shortcut.builder()
-                                                                                    .inputAlias("<value>")
-                                                                                    .build())
-                                                                                .build()))
-                                                                        .build()))
-                                                                .interactions(DocumentInteractions.builder()
-                                                                    .reacts(List.of(
-                                                                        Reaction.builder()
-                                                                            .build(),
-                                                                        Reaction.builder()
-                                                                            .build()))
-                                                                    .shares(List.of(
-                                                                        Share.builder()
-                                                                            .numDaysAgo(365776L)
-                                                                            .build(),
-                                                                        Share.builder()
-                                                                            .numDaysAgo(365776L)
-                                                                            .build(),
-                                                                        Share.builder()
-                                                                            .numDaysAgo(365776L)
-                                                                            .build()))
-                                                                    .build())
-                                                                .verification(Verification.builder()
-                                                                    .state(State.DEPRECATED)
-                                                                    .metadata(VerificationMetadata.builder()
-                                                                        .reminders(List.of(
-                                                                            Reminder.builder()
-                                                                                .assignee(Person.builder()
-                                                                                    .name("George Clooney")
-                                                                                    .obfuscatedId("abc123")
-                                                                                    .build())
-                                                                                .remindAt(268615L)
-                                                                                .build()))
-                                                                        .lastReminder(Reminder.builder()
-                                                                            .assignee(Person.builder()
-                                                                                .name("George Clooney")
-                                                                                .obfuscatedId("abc123")
-                                                                                .build())
-                                                                            .remindAt(423482L)
-                                                                            .build())
-                                                                        .build())
-                                                                    .build())
-                                                                .shortcuts(List.of(
-                                                                    Shortcut.builder()
-                                                                        .inputAlias("<value>")
-                                                                        .build(),
-                                                                    Shortcut.builder()
-                                                                        .inputAlias("<value>")
-                                                                        .build(),
-                                                                    Shortcut.builder()
-                                                                        .inputAlias("<value>")
-                                                                        .build()))
-                                                                .customData(Map.ofEntries(
-                                                                    Map.entry("someCustomField", CustomDataValue.builder()
-                                                                        .build())))
-                                                                .build())
-                                                            .build())
-                                                        .build()))
-                                                .inputDetails(SearchRequestInputDetails.builder()
-                                                    .hasCopyPaste(true)
-                                                    .build())
-                                                .build())
-                                            .results(List.of(
-                                                SearchResult.builder()
-                                                    .url("https://example.com/foo/bar")
-                                                    .title("title")
-                                                    .nativeAppUrl("slack://foo/bar")
-                                                    .snippets(List.of(
-                                                        SearchResultSnippet.builder()
-                                                            .snippet("snippet")
-                                                            .mimeType("mimeType")
-                                                            .build()))
-                                                    .build()))
-                                            .build()))
-                                    .metadata(PersonMetadata.builder()
-                                        .type(PersonMetadataType.FULL_TIME)
-                                        .title("Actor")
-                                        .department("Movies")
-                                        .email("george@example.com")
-                                        .location("Hollywood, CA")
-                                        .phone("6505551234")
-                                        .photoUrl("https://example.com/george.jpg")
-                                        .startDate(LocalDate.parse("2000-01-23"))
-                                        .datasourceProfile(List.of(
-                                            DatasourceProfile.builder()
-                                                .datasource("github")
-                                                .handle("<value>")
-                                                .build(),
-                                            DatasourceProfile.builder()
-                                                .datasource("github")
-                                                .handle("<value>")
-                                                .build()))
-                                        .querySuggestions(QuerySuggestionList.builder()
-                                            .suggestions(List.of(
-                                                QuerySuggestion.builder()
-                                                    .query("app:github type:pull author:mortimer")
-                                                    .label("Mortimer's PRs")
-                                                    .datasource("github")
-                                                    .build()))
-                                            .build())
-                                        .inviteInfo(InviteInfo.builder()
-                                            .invites(List.of(
-                                                ChannelInviteInfo.builder()
-                                                    .build(),
-                                                ChannelInviteInfo.builder()
-                                                    .build()))
-                                            .build())
-                                        .customFields(List.of(
-                                            CustomFieldData.builder()
-                                                .label("<value>")
-                                                .values(List.of(
-                                                    CustomFieldValue.of(CustomFieldValueStr.builder()
-                                                        .build()),
-                                                    CustomFieldValue.of(CustomFieldValueStr.builder()
-                                                        .build()),
-                                                    CustomFieldValue.of(CustomFieldValueStr.builder()
-                                                        .build())))
-                                                .build(),
-                                            CustomFieldData.builder()
-                                                .label("<value>")
-                                                .values(List.of(
-                                                    CustomFieldValue.of(CustomFieldValueStr.builder()
-                                                        .build()),
-                                                    CustomFieldValue.of(CustomFieldValueStr.builder()
-                                                        .build()),
-                                                    CustomFieldValue.of(CustomFieldValueStr.builder()
-                                                        .build())))
-                                                .build()))
-                                        .badges(List.of(
-                                            Badge.builder()
-                                                .key("deployment_name_new_hire")
-                                                .displayName("New hire")
-                                                .iconConfig(IconConfig.builder()
-                                                    .color("#343CED")
-                                                    .key("person_icon")
-                                                    .iconType(IconType.GLYPH)
-                                                    .name("user")
-                                                    .build())
-                                                .build()))
-                                        .build())
-                                    .build())
-                                .build()))
-                        .removedRoles(List.of(
-                            UserRoleSpecification.builder()
-                                .role(UserRole.VIEWER)
-                                .person(Person.builder()
-                                    .name("George Clooney")
-                                    .obfuscatedId("abc123")
-                                    .metadata(PersonMetadata.builder()
-                                        .type(PersonMetadataType.FULL_TIME)
-                                        .title("Actor")
-                                        .department("Movies")
-                                        .email("george@example.com")
-                                        .location("Hollywood, CA")
-                                        .phone("6505551234")
-                                        .photoUrl("https://example.com/george.jpg")
-                                        .startDate(LocalDate.parse("2000-01-23"))
-                                        .datasourceProfile(List.of(
-                                            DatasourceProfile.builder()
-                                                .datasource("github")
-                                                .handle("<value>")
-                                                .build(),
-                                            DatasourceProfile.builder()
-                                                .datasource("github")
-                                                .handle("<value>")
-                                                .build()))
-                                        .querySuggestions(QuerySuggestionList.builder()
-                                            .suggestions(List.of(
-                                                QuerySuggestion.builder()
-                                                    .query("app:github type:pull author:mortimer")
-                                                    .label("Mortimer's PRs")
-                                                    .datasource("github")
-                                                    .build()))
-                                            .build())
-                                        .inviteInfo(InviteInfo.builder()
-                                            .invites(List.of(
-                                                ChannelInviteInfo.builder()
-                                                    .build(),
-                                                ChannelInviteInfo.builder()
-                                                    .build()))
-                                            .build())
-                                        .badges(List.of(
-                                            Badge.builder()
-                                                .key("deployment_name_new_hire")
-                                                .displayName("New hire")
-                                                .iconConfig(IconConfig.builder()
-                                                    .color("#343CED")
-                                                    .key("person_icon")
-                                                    .iconType(IconType.GLYPH)
-                                                    .name("user")
-                                                    .build())
-                                                .build()))
-                                        .build())
-                                    .build())
-                                .build()))
-                        .audienceFilters(List.of(
-                            FacetFilter.builder()
-                                .fieldName("type")
-                                .values(List.of(
-                                    FacetFilterValue.builder()
-                                        .value("Spreadsheet")
-                                        .relationType(RelationType.EQUALS)
-                                        .build(),
-                                    FacetFilterValue.builder()
-                                        .value("Presentation")
-                                        .relationType(RelationType.EQUALS)
-                                        .build()))
-                                .build()))
-                        .build())
+            GetAgentResponse res = sdk.client().agents().retrieve()
+                    .agentId("<id>")
                     .call();
 
-            if (res.oneOf().isPresent()) {
-                // handle response
+            if (res.agent().isPresent()) {
+                System.out.println(res.agent().get());
             }
         } catch (GleanError ex) { // all SDK exceptions inherit from GleanError
 
@@ -1262,11 +679,11 @@ public class Application {
 
             // different error subclasses may be thrown 
             // depending on the service call
-            if (ex instanceof CollectionError) {
-                var e = (CollectionError) ex;
+            if (ex instanceof ErrorResponse) {
+                var e = (ErrorResponse) ex;
                 // Check error data fields
                 e.data().ifPresent(payload -> {
-                      ErrorCode errorCode = payload.errorCode();
+                      Optional<String> message = payload.message();
                 });
             }
 
@@ -1286,7 +703,7 @@ public class Application {
 **Primary error:**
 * [`GleanError`](./src/main/java/models/errors/GleanError.java): The base class for HTTP error responses.
 
-<details><summary>Less common errors (8)</summary>
+<details><summary>Less common errors (9)</summary>
 
 <br />
 
@@ -1296,8 +713,9 @@ public class Application {
 many more subclasses in the JDK platform).
 
 **Inherit from [`GleanError`](./src/main/java/models/errors/GleanError.java)**:
-* [`com.glean.api_client.glean_api_client.models.errors.CollectionError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.CollectionError.java): Semantic error. Status code `422`. Applicable to 3 of 114 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.GleanDataError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.GleanDataError.java): Forbidden. Applicable to 2 of 114 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.ErrorResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorResponse.java): Error response returned for failed requests. Applicable to 6 of 116 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.CollectionError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.CollectionError.java): Semantic error. Status code `422`. Applicable to 3 of 116 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.GleanDataError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.GleanDataError.java): Forbidden. Applicable to 2 of 116 methods.*
 
 
 </details>
@@ -1308,22 +726,9 @@ many more subclasses in the JDK platform).
 <!-- Start Server Selection [server] -->
 ## Server Selection
 
-### Server URL
+### Server Variables
 
-The recommended way to configure your Glean backend is using `.serverURL()` with your deployment URL:
-
-```java
-Glean sdk = Glean.builder()
-        .serverURL("https://mycompany-be.glean.com")
-        .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
-        .build();
-```
-
-The SDK normalizer will automatically add the `https://` scheme if omitted.
-
-### Server Variables (backwards-compatible)
-
-Alternatively, you can use `.instance()` to configure the server URL via template variable substitution. The default server `https://{instance}-be.glean.com` is set to `https://instance-name-be.glean.com` by default.
+The default server `https://{instance}-be.glean.com` contains variables and is set to `https://instance-name-be.glean.com` by default. To override default values, the following builder methods are available when initializing the SDK client instance:
 
 | Variable   | BuilderMethod               | Default           | Description                                                                                            |
 | ---------- | --------------------------- | ----------------- | ------------------------------------------------------------------------------------------------------ |
@@ -1346,7 +751,8 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         Glean sdk = Glean.builder()
-                .instance("instance-name")
+                .serverIndex(0)
+                .instance("<value>")
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
@@ -1665,6 +1071,36 @@ Glean glean = GleanBuilder.create()
 > **Note:** Environment variables take precedence over SDK constructor options when both are set.
 
 > **Warning:** Experimental features may change or be removed without notice. Do not rely on experimental features in production environments.
+
+<!-- Start Jackson Configuration [jackson] -->
+## Jackson Configuration
+
+The SDK ships with a pre-configured Jackson [`ObjectMapper`][jackson-databind] accessible via
+`JSON.getMapper()`. It is set up with type modules, strict deserializers, and the feature flags
+needed for full SDK compatibility (including ISO-8601 `OffsetDateTime` serialization):
+
+```java
+import com.glean.api_client.glean_api_client.utils.JSON;
+
+String json = JSON.getMapper().writeValueAsString(response);
+```
+
+To compose with your own `ObjectMapper`, register the provided `GleanApiClientJacksonModule`, which
+bundles all the same modules and feature flags as a single plug-and-play module:
+
+```java
+import com.glean.api_client.glean_api_client.utils.GleanApiClientJacksonModule;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+ObjectMapper myMapper = new ObjectMapper()
+    .registerModule(new GleanApiClientJacksonModule());
+
+String json = myMapper.writeValueAsString(response);
+```
+
+[jackson-databind]: https://github.com/FasterXML/jackson-databind
+[jackson-jsr310]: https://github.com/FasterXML/jackson-modules-java8/tree/master/datetime
+<!-- End Jackson Configuration [jackson] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

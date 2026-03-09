@@ -2,6 +2,17 @@
 
 The name of method used to surface relevant data for a given calendar event.
 
+## Example Usage
+
+```java
+import com.glean.api_client.glean_api_client.models.components.EventStrategyName;
+
+EventStrategyName value = EventStrategyName.CUSTOMER_CARD;
+
+// Open enum: use .of() to create instances from custom string values
+EventStrategyName custom = EventStrategyName.of("custom_value");
+```
+
 
 ## Values
 
