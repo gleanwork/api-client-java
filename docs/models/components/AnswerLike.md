@@ -1,0 +1,9 @@
+# AnswerLike
+
+
+## Fields
+
+| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               | Example                                                                                   |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `user`                                                                                    | [Optional\<Person>](../../models/components/Person.md)                                    | :heavy_minus_sign:                                                                        | N/A                                                                                       | {<br/>"name": "George Clooney",<br/>"obfuscatedId": "abc123"<br/>}                        |
+| `createTime`                                                                              | [OffsetDateTime](https://docs.oracle.com/javase/8/docs/api/java/time/OffsetDateTime.html) | :heavy_minus_sign:                                                                        | The time the user liked the answer in ISO format (ISO 8601).                              |                                                                                           |

@@ -1,0 +1,9 @@
+# GetDocumentsRequest
+
+
+## Fields
+
+| Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `documentSpecs`                                                                                      | List\<[DocumentSpecUnion](../../models/components/DocumentSpecUnion.md)>                             | :heavy_check_mark:                                                                                   | The specification for the documents to be retrieved.                                                 |
+| `includeFields`                                                                                      | List\<[GetDocumentsRequestIncludeField](../../models/components/GetDocumentsRequestIncludeField.md)> | :heavy_minus_sign:                                                                                   | List of Document fields to return (that aren't returned by default)                                  |
