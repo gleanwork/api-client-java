@@ -33,7 +33,7 @@ public class Application {
                 .call();
 
         if (res.getDocumentVisibilityOverridesResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getDocumentVisibilityOverridesResponse().get());
         }
     }
 }
@@ -86,7 +86,7 @@ public class Application {
                 .call();
 
         if (res.updateDocumentVisibilityOverridesResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateDocumentVisibilityOverridesResponse().get());
         }
     }
 }

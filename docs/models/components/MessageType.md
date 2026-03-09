@@ -2,6 +2,17 @@
 
 Semantically groups content of a certain type. It can be used for purposes such as differential UI treatment. USER authored messages should be of type CONTENT and do not need `messageType` specified.
 
+## Example Usage
+
+```java
+import com.glean.api_client.glean_api_client.models.components.MessageType;
+
+MessageType value = MessageType.UPDATE;
+
+// Open enum: use .of() to create instances from custom string values
+MessageType custom = MessageType.of("custom_value");
+```
+
 
 ## Values
 

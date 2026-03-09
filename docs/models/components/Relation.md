@@ -2,6 +2,17 @@
 
 How this document relates to the including entity.
 
+## Example Usage
+
+```java
+import com.glean.api_client.glean_api_client.models.components.Relation;
+
+Relation value = Relation.ATTACHMENT;
+
+// Open enum: use .of() to create instances from custom string values
+Relation custom = Relation.of("custom_value");
+```
+
 
 ## Values
 

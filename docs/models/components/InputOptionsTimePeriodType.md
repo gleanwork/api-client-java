@@ -2,6 +2,17 @@
 
 Type of time period for which to run the report/policy. PAST_DAY is deprecated.
 
+## Example Usage
+
+```java
+import com.glean.api_client.glean_api_client.models.components.InputOptionsTimePeriodType;
+
+InputOptionsTimePeriodType value = InputOptionsTimePeriodType.ALL_TIME;
+
+// Open enum: use .of() to create instances from custom string values
+InputOptionsTimePeriodType custom = InputOptionsTimePeriodType.of("custom_value");
+```
+
 
 ## Values
 

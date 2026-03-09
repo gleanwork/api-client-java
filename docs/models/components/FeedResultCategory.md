@@ -2,6 +2,17 @@
 
 Category of the result, one of the requested categories in incoming request.
 
+## Example Usage
+
+```java
+import com.glean.api_client.glean_api_client.models.components.FeedResultCategory;
+
+FeedResultCategory value = FeedResultCategory.DOCUMENT_SUGGESTION;
+
+// Open enum: use .of() to create instances from custom string values
+FeedResultCategory custom = FeedResultCategory.of("custom_value");
+```
+
 
 ## Values
 
@@ -32,3 +43,7 @@ Category of the result, one of the requested categories in incoming request.
 | `ZERO_STATE_WORKFLOW_SUGGESTION`    | ZERO_STATE_WORKFLOW_SUGGESTION      |
 | `PERSONALIZED_CHAT_SUGGESTION`      | PERSONALIZED_CHAT_SUGGESTION        |
 | `DAILY_DIGEST`                      | DAILY_DIGEST                        |
+| `TASK`                              | TASK                                |
+| `PLAN_MY_DAY`                       | PLAN_MY_DAY                         |
+| `END_MY_DAY`                        | END_MY_DAY                          |
+| `STARTER_KIT`                       | STARTER_KIT                         |

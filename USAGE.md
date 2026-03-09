@@ -29,7 +29,7 @@ public class Application {
                 .call();
 
         if (res.chatResponse().isPresent()) {
-            // handle response
+            System.out.println(res.chatResponse().get());
         }
     }
 }
@@ -65,7 +65,7 @@ public class Application {
                 .call();
 
         if (res.chatRequestStream().isPresent()) {
-            // handle response
+            System.out.println(res.chatRequestStream().get());
         }
     }
 }

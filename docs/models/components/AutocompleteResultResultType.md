@@ -1,5 +1,16 @@
 # AutocompleteResultResultType
 
+## Example Usage
+
+```java
+import com.glean.api_client.glean_api_client.models.components.AutocompleteResultResultType;
+
+AutocompleteResultResultType value = AutocompleteResultResultType.ADDITIONAL_DOCUMENT;
+
+// Open enum: use .of() to create instances from custom string values
+AutocompleteResultResultType custom = AutocompleteResultResultType.of("custom_value");
+```
+
 
 ## Values
 

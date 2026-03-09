@@ -39,7 +39,7 @@ public class Application {
                 .call();
 
         if (res.updateDlpConfigResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateDlpConfigResponse().get());
         }
     }
 }
@@ -88,7 +88,7 @@ public class Application {
                 .call();
 
         if (res.res().isPresent()) {
-            // handle response
+            System.out.println(res.res().get());
         }
     }
 }
@@ -137,7 +137,7 @@ public class Application {
                 .call();
 
         if (res.reportStatusResponse().isPresent()) {
-            // handle response
+            System.out.println(res.reportStatusResponse().get());
         }
     }
 }

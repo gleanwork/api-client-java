@@ -1,5 +1,13 @@
 # IncludeType
 
+## Example Usage
+
+```java
+import com.glean.api_client.glean_api_client.models.components.IncludeType;
+
+IncludeType value = IncludeType.PEOPLE_WITHOUT_MANAGER;
+```
+
 
 ## Values
 

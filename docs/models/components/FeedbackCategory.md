@@ -2,6 +2,14 @@
 
 The feature category to which the feedback applies. These should be broad product areas such as Announcements, Answers, Search, etc. rather than specific components or UI treatments within those areas.
 
+## Example Usage
+
+```java
+import com.glean.api_client.glean_api_client.models.components.FeedbackCategory;
+
+FeedbackCategory value = FeedbackCategory.ANNOUNCEMENT;
+```
+
 
 ## Values
 

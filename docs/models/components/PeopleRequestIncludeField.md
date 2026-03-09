@@ -1,5 +1,13 @@
 # PeopleRequestIncludeField
 
+## Example Usage
+
+```java
+import com.glean.api_client.glean_api_client.models.components.PeopleRequestIncludeField;
+
+PeopleRequestIncludeField value = PeopleRequestIncludeField.BADGES;
+```
+
 
 ## Values
 

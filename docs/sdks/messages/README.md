@@ -38,7 +38,7 @@ public class Application {
                 .call();
 
         if (res.messagesResponse().isPresent()) {
-            // handle response
+            System.out.println(res.messagesResponse().get());
         }
     }
 }

@@ -1,5 +1,16 @@
 # UgcType
 
+## Example Usage
+
+```java
+import com.glean.api_client.glean_api_client.models.components.UgcType;
+
+UgcType value = UgcType.ANNOUNCEMENTS_TYPE;
+
+// Open enum: use .of() to create instances from custom string values
+UgcType custom = UgcType.of("custom_value");
+```
+
 
 ## Values
 

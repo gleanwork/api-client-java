@@ -2,6 +2,17 @@
 
 Hints for the response content.
 
+## Example Usage
+
+```java
+import com.glean.api_client.glean_api_client.models.components.ResponseHint;
+
+ResponseHint value = ResponseHint.ALL_RESULT_COUNTS;
+
+// Open enum: use .of() to create instances from custom string values
+ResponseHint custom = ResponseHint.of("custom_value");
+```
+
 
 ## Values
 

@@ -1,5 +1,13 @@
 # AutocompleteRequestResultType
 
+## Example Usage
+
+```java
+import com.glean.api_client.glean_api_client.models.components.AutocompleteRequestResultType;
+
+AutocompleteRequestResultType value = AutocompleteRequestResultType.ADDITIONAL_DOCUMENT;
+```
+
 
 ## Values
 

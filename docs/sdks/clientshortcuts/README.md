@@ -408,8 +408,8 @@ public class Application {
                                                     .nativeAppUrl("slack://foo/bar")
                                                     .snippets(List.of(
                                                         SearchResultSnippet.builder()
-                                                            .snippet("snippet")
                                                             .mimeType("mimeType")
+                                                            .snippet("snippet")
                                                             .build()))
                                                     .build()))
                                             .build()))
@@ -842,8 +842,8 @@ public class Application {
                                                     .nativeAppUrl("slack://foo/bar")
                                                     .snippets(List.of(
                                                         SearchResultSnippet.builder()
-                                                            .snippet("snippet")
                                                             .mimeType("mimeType")
+                                                            .snippet("snippet")
                                                             .build()))
                                                     .build()))
                                             .build()))
@@ -1276,8 +1276,8 @@ public class Application {
                                                     .nativeAppUrl("slack://foo/bar")
                                                     .snippets(List.of(
                                                         SearchResultSnippet.builder()
-                                                            .snippet("snippet")
                                                             .mimeType("mimeType")
+                                                            .snippet("snippet")
                                                             .build()))
                                                     .build()))
                                             .build()))
@@ -1511,7 +1511,7 @@ public class Application {
                 .call();
 
         if (res.createShortcutResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createShortcutResponse().get());
         }
     }
 }
@@ -1616,7 +1616,7 @@ public class Application {
                 .call();
 
         if (res.getShortcutResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getShortcutResponse().get());
         }
     }
 }
@@ -1683,7 +1683,7 @@ public class Application {
                 .call();
 
         if (res.listShortcutsPaginatedResponse().isPresent()) {
-            // handle response
+            System.out.println(res.listShortcutsPaginatedResponse().get());
         }
     }
 }
@@ -2336,8 +2336,8 @@ public class Application {
                                                 .nativeAppUrl("slack://foo/bar")
                                                 .snippets(List.of(
                                                     SearchResultSnippet.builder()
-                                                        .snippet("snippet")
                                                         .mimeType("mimeType")
+                                                        .snippet("snippet")
                                                         .build()))
                                                 .build()))
                                         .build(),
@@ -2934,8 +2934,8 @@ public class Application {
                                                 .nativeAppUrl("slack://foo/bar")
                                                 .snippets(List.of(
                                                     SearchResultSnippet.builder()
-                                                        .snippet("snippet")
                                                         .mimeType("mimeType")
+                                                        .snippet("snippet")
                                                         .build()))
                                                 .build()))
                                         .build()))
@@ -3614,8 +3614,8 @@ public class Application {
                                                 .nativeAppUrl("slack://foo/bar")
                                                 .snippets(List.of(
                                                     SearchResultSnippet.builder()
-                                                        .snippet("snippet")
                                                         .mimeType("mimeType")
+                                                        .snippet("snippet")
                                                         .build()))
                                                 .build()))
                                         .build(),
@@ -4212,8 +4212,8 @@ public class Application {
                                                 .nativeAppUrl("slack://foo/bar")
                                                 .snippets(List.of(
                                                     SearchResultSnippet.builder()
-                                                        .snippet("snippet")
                                                         .mimeType("mimeType")
+                                                        .snippet("snippet")
                                                         .build()))
                                                 .build()))
                                         .build()))
@@ -4348,7 +4348,7 @@ public class Application {
                 .call();
 
         if (res.updateShortcutResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateShortcutResponse().get());
         }
     }
 }

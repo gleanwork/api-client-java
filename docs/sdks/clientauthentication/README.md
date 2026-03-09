@@ -37,7 +37,7 @@ public class Application {
                 .call();
 
         if (res.createAuthTokenResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createAuthTokenResponse().get());
         }
     }
 }

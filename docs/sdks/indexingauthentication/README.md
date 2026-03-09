@@ -32,7 +32,7 @@ public class Application {
                 .call();
 
         if (res.rotateTokenResponse().isPresent()) {
-            // handle response
+            System.out.println(res.rotateTokenResponse().get());
         }
     }
 }

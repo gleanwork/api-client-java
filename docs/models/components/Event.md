@@ -2,6 +2,14 @@
 
 The action the user took within a Glean client with respect to the object referred to by the given `trackingToken`.
 
+## Example Usage
+
+```java
+import com.glean.api_client.glean_api_client.models.components.Event;
+
+Event value = Event.CLICK;
+```
+
 
 ## Values
 

@@ -38,7 +38,7 @@ public class Application {
                 .call();
 
         if (res.getDocPermissionsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getDocPermissionsResponse().get());
         }
     }
 }
@@ -87,7 +87,7 @@ public class Application {
                 .call();
 
         if (res.getDocumentsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getDocumentsResponse().get());
         }
     }
 }
@@ -171,7 +171,7 @@ public class Application {
                 .call();
 
         if (res.getDocumentsByFacetsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getDocumentsByFacetsResponse().get());
         }
     }
 }
@@ -236,7 +236,7 @@ public class Application {
                 .call();
 
         if (res.summarizeResponse().isPresent()) {
-            // handle response
+            System.out.println(res.summarizeResponse().get());
         }
     }
 }

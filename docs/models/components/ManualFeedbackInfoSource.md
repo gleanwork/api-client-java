@@ -2,6 +2,14 @@
 
 The source associated with the Feedback.event.MANUAL_FEEDBACK event.
 
+## Example Usage
+
+```java
+import com.glean.api_client.glean_api_client.models.components.ManualFeedbackInfoSource;
+
+ManualFeedbackInfoSource value = ManualFeedbackInfoSource.AUTOCOMPLETE;
+```
+
 
 ## Values
 

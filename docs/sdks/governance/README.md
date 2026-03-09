@@ -40,7 +40,7 @@ public class Application {
                 .call();
 
         if (res.exportInfo().isPresent()) {
-            // handle response
+            System.out.println(res.exportInfo().get());
         }
     }
 }
@@ -88,7 +88,7 @@ public class Application {
                 .call();
 
         if (res.listDlpFindingsExportsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.listDlpFindingsExportsResponse().get());
         }
     }
 }
@@ -131,7 +131,7 @@ public class Application {
                 .call();
 
         if (res.res().isPresent()) {
-            // handle response
+            System.out.println(res.res().get());
         }
     }
 }

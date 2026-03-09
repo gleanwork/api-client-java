@@ -2,6 +2,14 @@
 
 Type of the id in the incoming request.
 
+## Example Usage
+
+```java
+import com.glean.api_client.glean_api_client.models.components.IdType;
+
+IdType value = IdType.CHANNEL_NAME;
+```
+
 
 ## Values
 
