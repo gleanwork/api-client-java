@@ -29,6 +29,13 @@ public class AgentSchemas {
     private String agentId;
 
     /**
+     * The name of the agent.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("name")
+    private Optional<String> name;
+
+    /**
      * The schema for the agent input. In JSON Schema format.
      */
     @JsonProperty("input_schema")
@@ -51,14 +58,17 @@ public class AgentSchemas {
     @JsonCreator
     public AgentSchemas(
             @JsonProperty("agent_id") String agentId,
+            @JsonProperty("name") Optional<String> name,
             @JsonProperty("input_schema") InputSchema inputSchema,
             @JsonProperty("output_schema") OutputSchema outputSchema,
             @JsonProperty("tools") Optional<? extends List<ActionSummary>> tools) {
         Utils.checkNotNull(agentId, "agentId");
+        Utils.checkNotNull(name, "name");
         Utils.checkNotNull(inputSchema, "inputSchema");
         Utils.checkNotNull(outputSchema, "outputSchema");
         Utils.checkNotNull(tools, "tools");
         this.agentId = agentId;
+        this.name = name;
         this.inputSchema = inputSchema;
         this.outputSchema = outputSchema;
         this.tools = tools;
@@ -68,8 +78,8 @@ public class AgentSchemas {
             String agentId,
             InputSchema inputSchema,
             OutputSchema outputSchema) {
-        this(agentId, inputSchema, outputSchema,
-            Optional.empty());
+        this(agentId, Optional.empty(), inputSchema,
+            outputSchema, Optional.empty());
     }
 
     /**
@@ -78,6 +88,14 @@ public class AgentSchemas {
     @JsonIgnore
     public String agentId() {
         return agentId;
+    }
+
+    /**
+     * The name of the agent.
+     */
+    @JsonIgnore
+    public Optional<String> name() {
+        return name;
     }
 
     /**
@@ -117,6 +135,25 @@ public class AgentSchemas {
     public AgentSchemas withAgentId(String agentId) {
         Utils.checkNotNull(agentId, "agentId");
         this.agentId = agentId;
+        return this;
+    }
+
+    /**
+     * The name of the agent.
+     */
+    public AgentSchemas withName(String name) {
+        Utils.checkNotNull(name, "name");
+        this.name = Optional.ofNullable(name);
+        return this;
+    }
+
+
+    /**
+     * The name of the agent.
+     */
+    public AgentSchemas withName(Optional<String> name) {
+        Utils.checkNotNull(name, "name");
+        this.name = name;
         return this;
     }
 
@@ -170,6 +207,7 @@ public class AgentSchemas {
         AgentSchemas other = (AgentSchemas) o;
         return 
             Utils.enhancedDeepEquals(this.agentId, other.agentId) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.inputSchema, other.inputSchema) &&
             Utils.enhancedDeepEquals(this.outputSchema, other.outputSchema) &&
             Utils.enhancedDeepEquals(this.tools, other.tools);
@@ -178,14 +216,15 @@ public class AgentSchemas {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            agentId, inputSchema, outputSchema,
-            tools);
+            agentId, name, inputSchema,
+            outputSchema, tools);
     }
     
     @Override
     public String toString() {
         return Utils.toString(AgentSchemas.class,
                 "agentId", agentId,
+                "name", name,
                 "inputSchema", inputSchema,
                 "outputSchema", outputSchema,
                 "tools", tools);
@@ -195,6 +234,8 @@ public class AgentSchemas {
     public final static class Builder {
 
         private String agentId;
+
+        private Optional<String> name = Optional.empty();
 
         private InputSchema inputSchema;
 
@@ -213,6 +254,25 @@ public class AgentSchemas {
         public Builder agentId(String agentId) {
             Utils.checkNotNull(agentId, "agentId");
             this.agentId = agentId;
+            return this;
+        }
+
+
+        /**
+         * The name of the agent.
+         */
+        public Builder name(String name) {
+            Utils.checkNotNull(name, "name");
+            this.name = Optional.ofNullable(name);
+            return this;
+        }
+
+        /**
+         * The name of the agent.
+         */
+        public Builder name(Optional<String> name) {
+            Utils.checkNotNull(name, "name");
+            this.name = name;
             return this;
         }
 
@@ -260,8 +320,8 @@ public class AgentSchemas {
         public AgentSchemas build() {
 
             return new AgentSchemas(
-                agentId, inputSchema, outputSchema,
-                tools);
+                agentId, name, inputSchema,
+                outputSchema, tools);
         }
 
     }

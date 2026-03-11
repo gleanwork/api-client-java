@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 0359d4fe-2923-46fc-aaca-cf70b48dcfa1
 management:
-  docChecksum: c3e8d632c494016ee2d149b060c5b122
+  docChecksum: 57d941bf65abd419f42d9dbbad9f20eb
   docVersion: 0.9.0
-  speakeasyVersion: 1.750.0
-  generationVersion: 2.856.1
-  releaseVersion: 0.12.24
-  configChecksum: 9078cf068dfadd9a830305a23c3f8ec4
+  speakeasyVersion: 1.751.0
+  generationVersion: 2.858.2
+  releaseVersion: 0.12.25
+  configChecksum: fa65060f27e9e7b07bb2713111ced77a
   repoURL: https://github.com/gleanwork/api-client-java.git
   installationURL: https://github.com/gleanwork/api-client-java
   published: true
 persistentEdits:
-  generation_id: cae28f74-f540-42a1-80d0-25e5a295040c
-  pristine_commit_hash: 3b41f82894268f7443de86a01fc6146bca40ac02
-  pristine_tree_hash: 66c1cf26b9d99bd28f17f4186350c54b159c3e64
+  generation_id: e21e28b7-db42-46f3-975f-cac4dc0cf81e
+  pristine_commit_hash: 0d54aea99bbd3f9d31142fb584ae9acaf009a91d
+  pristine_tree_hash: 1c33fe1e6d5e42cc7766a2de22ce834aaaa7b3d2
 features:
   java:
     additionalDependencies: 0.1.0
@@ -127,8 +127,8 @@ trackedFiles:
     pristine_git_object: 5e5611432044c99482cf6e2939c2606a610b8e93
   docs/models/components/AgentSchemas.md:
     id: f240e68c81d1
-    last_write_checksum: sha1:2b24ded0b2dac09d8a00d02daadd26f8dfa02256
-    pristine_git_object: 67080de2fe2343bd17de35dbab4b80c84ffd86df
+    last_write_checksum: sha1:66a407d9859305998077569ad6b94a325d9b1089
+    pristine_git_object: e4cff60c1d4a041e48ce077b05be3ae9c8ce59af
   docs/models/components/AgentUsersInsight.md:
     id: bc38ed2da541
     last_write_checksum: sha1:7af0299c9bc3f3c01762a22fd5541b0931d416bb
@@ -211,8 +211,8 @@ trackedFiles:
     pristine_git_object: c38e5af7600a3cd74195b17c57687a61365198dc
   docs/models/components/AuthConfig.md:
     id: 2451e4f26cfe
-    last_write_checksum: sha1:6830c72ff070134da9459283b7e21b30d51899cd
-    pristine_git_object: 87573f9e2da864c90e7bdbdc5e289ef61811020f
+    last_write_checksum: sha1:9c64703d38095009a92101e17f298a390d7da94b
+    pristine_git_object: 78dda944bf5ee24a89be356249123f31b1e75164
   docs/models/components/AuthConfigStatus.md:
     id: 63d264b1dcb8
     last_write_checksum: sha1:34347918b01c5353113291b037f70930bf183d6c
@@ -2061,6 +2061,10 @@ trackedFiles:
     id: e904cb4053c3
     last_write_checksum: sha1:a54c7536fcb960499c75b32149cd26d7723d3cf7
     pristine_git_object: 92bddd80556cd2606b1df041bd5851218c9e7927
+  docs/models/components/TokenEndpointAuthMethod.md:
+    id: f0dbbb493d41
+    last_write_checksum: sha1:55bfbd9e1b0d264386806166c589a7c24a28ddb3
+    pristine_git_object: f0d55db22ac5b5089e564bd8c4a76fde70093aad
   docs/models/components/Tool.md:
     id: f6c5e55759ba
     last_write_checksum: sha1:77f54197c302623be07682d97af289905a492f57
@@ -3207,8 +3211,8 @@ trackedFiles:
     pristine_git_object: 3decbce5bd40edbe278c1c5d2dbf585808e51d9a
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:bc4b390762ed973209913575ee32c4f9263fbe4a
-    pristine_git_object: dac2a0f630d3df9ba05d7cdf8a48443d13debc5c
+    last_write_checksum: sha1:290b19eca967cff525d614a3932f9ba5817d1434
+    pristine_git_object: 8c9d3d32d07b8ec594274870ecda04daef44f03e
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3527,8 +3531,8 @@ trackedFiles:
     pristine_git_object: ffae914775eb41ff311371f62504344a59d090fd
   src/main/java/com/glean/api_client/glean_api_client/SDKConfiguration.java:
     id: d5fcc61f5992
-    last_write_checksum: sha1:7bfaf422b99fdd1d179d5493dd892ad7a7d966c1
-    pristine_git_object: 0172dffb5f2da20d0bb1ea3d245e4b6a6fef14bd
+    last_write_checksum: sha1:3aad142302500585a62f441a78975e4119109444
+    pristine_git_object: 76eac433a919e850dc2b4bd4b6715d0524bf5364
   src/main/java/com/glean/api_client/glean_api_client/Search.java:
     id: f22d94b920b5
     last_write_checksum: sha1:ac38d1ed47be207940dd6fb7e4c688dddccc6a8b
@@ -3631,8 +3635,8 @@ trackedFiles:
     pristine_git_object: 64e949ec21e9471ac70e3a960126d99cdf66afd7
   src/main/java/com/glean/api_client/glean_api_client/models/components/AgentSchemas.java:
     id: 02499cd63d02
-    last_write_checksum: sha1:d858d9c440ab39a80f5f95de0c7d4d2122680917
-    pristine_git_object: 422995f5125a7bcbb5480c723fda799d5aa166c0
+    last_write_checksum: sha1:4a8b0dcf668ce807f7573b271fa35bd52a47d892
+    pristine_git_object: 550b769c68904420884f30ab814f01851fe82512
   src/main/java/com/glean/api_client/glean_api_client/models/components/AgentUsersInsight.java:
     id: b702924bc01d
     last_write_checksum: sha1:c377b022e7b5a29a207d28dc990f37647eb2c746
@@ -3715,8 +3719,8 @@ trackedFiles:
     pristine_git_object: 6277c7fb78f265273fb9cf2ff9088e141751c743
   src/main/java/com/glean/api_client/glean_api_client/models/components/AuthConfig.java:
     id: 266268058b7c
-    last_write_checksum: sha1:30a41c9e93e326e07bd2d2ffc65aebac22cf838a
-    pristine_git_object: ce3989100e7cb78064c990cae375b705b3f7e0cf
+    last_write_checksum: sha1:2e30ccb9e89703ea04bb49e05eab0fe620d461e1
+    pristine_git_object: 8fad1cfc8319a2bab6cc42eb6400b47ede4e80e4
   src/main/java/com/glean/api_client/glean_api_client/models/components/AuthConfigStatus.java:
     id: 0a61a8a7ad53
     last_write_checksum: sha1:6e54be8efb093ba70e23041e64354d870cf2a555
@@ -5565,6 +5569,10 @@ trackedFiles:
     id: 918e887eb4d1
     last_write_checksum: sha1:7a923380785590f920cc35e3fb83e2e4d4db6fd6
     pristine_git_object: 0a75fbc5328d2db26e9fd0c0096e552d873ef82d
+  src/main/java/com/glean/api_client/glean_api_client/models/components/TokenEndpointAuthMethod.java:
+    id: a296643b32ae
+    last_write_checksum: sha1:bdf30d939a6c81faab4cdba505518a3ce34d1562
+    pristine_git_object: 82c531beedbb509dc97a5dc9886a72faaf315fd9
   src/main/java/com/glean/api_client/glean_api_client/models/components/Tool.java:
     id: b1f1d0700edb
     last_write_checksum: sha1:710f692edb9b3de5e0676c7a382c8ceeeaa68716
@@ -8920,7 +8928,7 @@ examples:
         query: {}
       responses:
         "200":
-          application/json: {"agent_id": "mho4lwzylcozgoc2", "input_schema": {}, "output_schema": {}}
+          application/json: {"agent_id": "mho4lwzylcozgoc2", "name": "HR Policy Agent", "input_schema": {}, "output_schema": {}}
         "404":
           application/json: {}
   searchAgents:
@@ -9648,7 +9656,7 @@ generatedTests:
   get_/rest/api/v1/tools/list: "2025-06-09T18:03:44Z"
   post_/rest/api/v1/tools/call: "2025-06-09T18:03:44Z"
   listpolicies: "2025-06-09T18:03:44Z"
-releaseNotes: "## Java SDK Changes:\n* `glean.client.chat.create()`: \n  *  `request.chatRequest.messages[]` **Changed**\n  *  `response` **Changed** (Breaking ⚠️)\n* `glean.client.search.query()`: \n  *  `request.searchRequest.sourceDocument.metadata.author.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error.unauthorizedDatasourceInstances` **Removed** (Breaking ⚠️)\n* `glean.client.search.recommendations()`: \n  *  `request.recommendationsRequest.sourceDocument.metadata.author.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n  *  `response` **Changed** (Breaking ⚠️)\n* `glean.client.search.autocomplete()`:  `response` **Changed** (Breaking ⚠️)\n* `glean.client.search.queryAsAdmin()`: \n  *  `request.searchRequest.sourceDocument.metadata.author.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n  *  `response` **Changed** (Breaking ⚠️)\n  *  `error.unauthorizedDatasourceInstances` **Removed** (Breaking ⚠️)\n* `glean.client.messages.retrieve()`:  `response.searchResponse` **Changed** (Breaking ⚠️)\n* `glean.client.collections.list()`:  `response.collections[].addedRoles[].person.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n* `glean.client.insights.retrieve()`:  `response.gleanAssist.activityInsights[].user.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n* `glean.client.answers.retrieve()`:  `response.answerResult.answer.addedRoles[].person.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n* `glean.client.chat.retrieve()`:  `response.chatResult.chat` **Changed**\n* `glean.client.chat.list()`:  `response` **Changed**\n* `glean.client.chat.createStream()`: \n  *  `request.chatRequest.messages[]` **Changed**\n* `glean.client.agents.retrieve()`:  `error.status[404]` **Added**\n* `glean.client.agents.retrieveSchemas()`: \n  *  `response.tools[]` **Changed**\n  *  `error` **Changed**\n* `glean.client.agents.list()`:  `error` **Changed**\n* `glean.client.agents.runStream()`:  `error` **Changed**\n* `glean.client.collections.addItems()`:  `response.collection.addedRoles[].person.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n* `glean.client.collections.create()`: \n  *  `request.createCollectionRequest.addedRoles[].person.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n  *  `response.union(class (0)).collection.addedRoles[].person.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n* `glean.client.collections.deleteItem()`:  `response.collection.addedRoles[].person.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n* `glean.client.collections.update()`: \n  *  `request.editCollectionRequest.addedRoles[].person.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n  *  `response.addedRoles[].person.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n* `glean.client.collections.updateItem()`:  `response.collection.addedRoles[].person.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n* `glean.client.collections.retrieve()`:  `response.collection.addedRoles[].person.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n* `glean.datasources.getDatasourceInstanceConfiguration()`: **Added**\n* `glean.client.documents.retrieve()`:  `response.documents.Map<DocumentOrError>.union(Document).metadata.author.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n* `glean.client.documents.retrieveByFacets()`:  `response.documents[].metadata.author.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n* `glean.client.answers.list()`:  `response.answerResults[].answer.addedRoles[].person.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n* `glean.client.answers.update()`: \n  *  `request.editAnswerRequest.addedRoles[].person.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n  *  `response.addedRoles[].person.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n* `glean.client.pins.update()`:  `response.attribution.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n* `glean.client.pins.retrieve()`:  `response.pin.attribution.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n* `glean.client.pins.list()`:  `response.pins[].attribution.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n* `glean.client.pins.create()`:  `response.attribution.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n* `glean.client.answers.create()`: \n  *  `request.createAnswerRequest.data.addedRoles[].person.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n  *  `response.addedRoles[].person.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n* `glean.client.announcements.update()`: \n  *  `request.updateAnnouncementRequest.body.structuredList[].document.metadata.author.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n  *  `response.body.structuredList[].document.metadata.author.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n* `glean.client.search.retrieveFeed()`:  `response.results[]` **Changed**\n* `glean.client.announcements.create()`: \n  *  `request.createAnnouncementRequest.body.structuredList[].document.metadata.author.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n  *  `response.body.structuredList[].document.metadata.author.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n* `glean.datasources.updateDatasourceInstanceConfiguration()`: **Added**\n* `glean.client.entities.list()`:  `response.results[].relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n* `glean.client.entities.readPeople()`:  `response.results[].relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n* `glean.client.shortcuts.create()`: \n  *  `request.createShortcutRequest.data.addedRoles[].person.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n  *  `response.shortcut.addedRoles[].person.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n* `glean.client.shortcuts.retrieve()`:  `response.shortcut.addedRoles[].person.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n* `glean.client.shortcuts.list()`:  `response.shortcuts[].addedRoles[].person.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n* `glean.client.shortcuts.update()`: \n  *  `request.updateShortcutRequest.addedRoles[].person.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n  *  `response.shortcut.addedRoles[].person.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n* `glean.client.verification.addReminder()`:  `response.metadata.lastVerifier.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n* `glean.client.verification.list()`:  `response.documents[].metadata.lastVerifier.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n* `glean.client.verification.verify()`:  `response.metadata.lastVerifier.relatedDocuments[].results[].structuredResults[].snippets[].snippet` **Changed**\n* `glean.indexing.people.bulkIndex()`: **Deprecated**\n"
+releaseNotes: "## Java SDK Changes:\n* `glean.client.chat.create()`: \n  *  `request.chatRequest.messages[].fragments[].action.metadata.auth.tokenEndpointAuthMethod` **Added**\n  *  `response.messages[].fragments[].action.metadata.auth.tokenEndpointAuthMethod` **Added**\n* `glean.client.chat.retrieve()`:  `response.chatResult.chat.messages[].fragments[].action.metadata.auth.tokenEndpointAuthMethod` **Added**\n* `glean.client.chat.createStream()`: \n  *  `request.chatRequest.messages[].fragments[].action.metadata.auth.tokenEndpointAuthMethod` **Added**\n* `glean.client.agents.retrieveSchemas()`:  `response.name` **Added**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md
