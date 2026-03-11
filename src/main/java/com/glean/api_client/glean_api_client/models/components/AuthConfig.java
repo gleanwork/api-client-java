@@ -102,6 +102,18 @@ public class AuthConfig {
     private Optional<String> resource;
 
     /**
+     * The OAuth 2.0 token endpoint authentication method (RFC 7591). Determines how the client
+     * authenticates when exchanging an authorization code for a token. client_secret_post sends
+     * credentials as form fields, client_secret_basic sends them via Authorization header, none omits
+     * client secret and relies on PKCE only.
+     * 
+     * <p>Values use lowercase to match the OAuth 2.0 wire format (RFC 7591 Section 2).
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("token_endpoint_auth_method")
+    private Optional<? extends TokenEndpointAuthMethod> tokenEndpointAuthMethod;
+
+    /**
      * The time the tool was last authorized in ISO format (ISO 8601).
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -120,6 +132,7 @@ public class AuthConfig {
             @JsonProperty("audiences") Optional<? extends List<String>> audiences,
             @JsonProperty("authorization_url") Optional<String> authorizationUrl,
             @JsonProperty("resource") Optional<String> resource,
+            @JsonProperty("token_endpoint_auth_method") Optional<? extends TokenEndpointAuthMethod> tokenEndpointAuthMethod,
             @JsonProperty("lastAuthorizedAt") Optional<OffsetDateTime> lastAuthorizedAt) {
         Utils.checkNotNull(isOnPrem, "isOnPrem");
         Utils.checkNotNull(usesCentralAuth, "usesCentralAuth");
@@ -131,6 +144,7 @@ public class AuthConfig {
         Utils.checkNotNull(audiences, "audiences");
         Utils.checkNotNull(authorizationUrl, "authorizationUrl");
         Utils.checkNotNull(resource, "resource");
+        Utils.checkNotNull(tokenEndpointAuthMethod, "tokenEndpointAuthMethod");
         Utils.checkNotNull(lastAuthorizedAt, "lastAuthorizedAt");
         this.isOnPrem = isOnPrem;
         this.usesCentralAuth = usesCentralAuth;
@@ -142,6 +156,7 @@ public class AuthConfig {
         this.audiences = audiences;
         this.authorizationUrl = authorizationUrl;
         this.resource = resource;
+        this.tokenEndpointAuthMethod = tokenEndpointAuthMethod;
         this.lastAuthorizedAt = lastAuthorizedAt;
     }
     
@@ -149,7 +164,7 @@ public class AuthConfig {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -242,6 +257,20 @@ public class AuthConfig {
     @JsonIgnore
     public Optional<String> resource() {
         return resource;
+    }
+
+    /**
+     * The OAuth 2.0 token endpoint authentication method (RFC 7591). Determines how the client
+     * authenticates when exchanging an authorization code for a token. client_secret_post sends
+     * credentials as form fields, client_secret_basic sends them via Authorization header, none omits
+     * client secret and relies on PKCE only.
+     * 
+     * <p>Values use lowercase to match the OAuth 2.0 wire format (RFC 7591 Section 2).
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<TokenEndpointAuthMethod> tokenEndpointAuthMethod() {
+        return (Optional<TokenEndpointAuthMethod>) tokenEndpointAuthMethod;
     }
 
     /**
@@ -462,6 +491,35 @@ public class AuthConfig {
     }
 
     /**
+     * The OAuth 2.0 token endpoint authentication method (RFC 7591). Determines how the client
+     * authenticates when exchanging an authorization code for a token. client_secret_post sends
+     * credentials as form fields, client_secret_basic sends them via Authorization header, none omits
+     * client secret and relies on PKCE only.
+     * 
+     * <p>Values use lowercase to match the OAuth 2.0 wire format (RFC 7591 Section 2).
+     */
+    public AuthConfig withTokenEndpointAuthMethod(TokenEndpointAuthMethod tokenEndpointAuthMethod) {
+        Utils.checkNotNull(tokenEndpointAuthMethod, "tokenEndpointAuthMethod");
+        this.tokenEndpointAuthMethod = Optional.ofNullable(tokenEndpointAuthMethod);
+        return this;
+    }
+
+
+    /**
+     * The OAuth 2.0 token endpoint authentication method (RFC 7591). Determines how the client
+     * authenticates when exchanging an authorization code for a token. client_secret_post sends
+     * credentials as form fields, client_secret_basic sends them via Authorization header, none omits
+     * client secret and relies on PKCE only.
+     * 
+     * <p>Values use lowercase to match the OAuth 2.0 wire format (RFC 7591 Section 2).
+     */
+    public AuthConfig withTokenEndpointAuthMethod(Optional<? extends TokenEndpointAuthMethod> tokenEndpointAuthMethod) {
+        Utils.checkNotNull(tokenEndpointAuthMethod, "tokenEndpointAuthMethod");
+        this.tokenEndpointAuthMethod = tokenEndpointAuthMethod;
+        return this;
+    }
+
+    /**
      * The time the tool was last authorized in ISO format (ISO 8601).
      */
     public AuthConfig withLastAuthorizedAt(OffsetDateTime lastAuthorizedAt) {
@@ -500,6 +558,7 @@ public class AuthConfig {
             Utils.enhancedDeepEquals(this.audiences, other.audiences) &&
             Utils.enhancedDeepEquals(this.authorizationUrl, other.authorizationUrl) &&
             Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.tokenEndpointAuthMethod, other.tokenEndpointAuthMethod) &&
             Utils.enhancedDeepEquals(this.lastAuthorizedAt, other.lastAuthorizedAt);
     }
     
@@ -509,7 +568,7 @@ public class AuthConfig {
             isOnPrem, usesCentralAuth, type,
             grantType, status, clientUrl,
             scopes, audiences, authorizationUrl,
-            resource, lastAuthorizedAt);
+            resource, tokenEndpointAuthMethod, lastAuthorizedAt);
     }
     
     @Override
@@ -525,6 +584,7 @@ public class AuthConfig {
                 "audiences", audiences,
                 "authorizationUrl", authorizationUrl,
                 "resource", resource,
+                "tokenEndpointAuthMethod", tokenEndpointAuthMethod,
                 "lastAuthorizedAt", lastAuthorizedAt);
     }
 
@@ -550,6 +610,8 @@ public class AuthConfig {
         private Optional<String> authorizationUrl = Optional.empty();
 
         private Optional<String> resource = Optional.empty();
+
+        private Optional<? extends TokenEndpointAuthMethod> tokenEndpointAuthMethod = Optional.empty();
 
         private Optional<OffsetDateTime> lastAuthorizedAt = Optional.empty();
 
@@ -763,6 +825,35 @@ public class AuthConfig {
 
 
         /**
+         * The OAuth 2.0 token endpoint authentication method (RFC 7591). Determines how the client
+         * authenticates when exchanging an authorization code for a token. client_secret_post sends
+         * credentials as form fields, client_secret_basic sends them via Authorization header, none omits
+         * client secret and relies on PKCE only.
+         * 
+         * <p>Values use lowercase to match the OAuth 2.0 wire format (RFC 7591 Section 2).
+         */
+        public Builder tokenEndpointAuthMethod(TokenEndpointAuthMethod tokenEndpointAuthMethod) {
+            Utils.checkNotNull(tokenEndpointAuthMethod, "tokenEndpointAuthMethod");
+            this.tokenEndpointAuthMethod = Optional.ofNullable(tokenEndpointAuthMethod);
+            return this;
+        }
+
+        /**
+         * The OAuth 2.0 token endpoint authentication method (RFC 7591). Determines how the client
+         * authenticates when exchanging an authorization code for a token. client_secret_post sends
+         * credentials as form fields, client_secret_basic sends them via Authorization header, none omits
+         * client secret and relies on PKCE only.
+         * 
+         * <p>Values use lowercase to match the OAuth 2.0 wire format (RFC 7591 Section 2).
+         */
+        public Builder tokenEndpointAuthMethod(Optional<? extends TokenEndpointAuthMethod> tokenEndpointAuthMethod) {
+            Utils.checkNotNull(tokenEndpointAuthMethod, "tokenEndpointAuthMethod");
+            this.tokenEndpointAuthMethod = tokenEndpointAuthMethod;
+            return this;
+        }
+
+
+        /**
          * The time the tool was last authorized in ISO format (ISO 8601).
          */
         public Builder lastAuthorizedAt(OffsetDateTime lastAuthorizedAt) {
@@ -786,7 +877,7 @@ public class AuthConfig {
                 isOnPrem, usesCentralAuth, type,
                 grantType, status, clientUrl,
                 scopes, audiences, authorizationUrl,
-                resource, lastAuthorizedAt);
+                resource, tokenEndpointAuthMethod, lastAuthorizedAt);
         }
 
     }
