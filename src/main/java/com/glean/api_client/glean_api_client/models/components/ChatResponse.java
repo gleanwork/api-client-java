@@ -36,6 +36,13 @@ public class ChatResponse {
     private Optional<String> chatId;
 
     /**
+     * Metadata of a Chat a user had with Glean Assistant. This contains no actual conversational content.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("chat")
+    private Optional<? extends ChatMetadata> chat;
+
+    /**
      * Follow-up prompts for the user to potentially use
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -60,16 +67,19 @@ public class ChatResponse {
     public ChatResponse(
             @JsonProperty("messages") Optional<? extends List<ChatMessage>> messages,
             @JsonProperty("chatId") Optional<String> chatId,
+            @JsonProperty("chat") Optional<? extends ChatMetadata> chat,
             @JsonProperty("followUpPrompts") Optional<? extends List<String>> followUpPrompts,
             @JsonProperty("backendTimeMillis") Optional<Long> backendTimeMillis,
             @JsonProperty("chatSessionTrackingToken") Optional<String> chatSessionTrackingToken) {
         Utils.checkNotNull(messages, "messages");
         Utils.checkNotNull(chatId, "chatId");
+        Utils.checkNotNull(chat, "chat");
         Utils.checkNotNull(followUpPrompts, "followUpPrompts");
         Utils.checkNotNull(backendTimeMillis, "backendTimeMillis");
         Utils.checkNotNull(chatSessionTrackingToken, "chatSessionTrackingToken");
         this.messages = messages;
         this.chatId = chatId;
+        this.chat = chat;
         this.followUpPrompts = followUpPrompts;
         this.backendTimeMillis = backendTimeMillis;
         this.chatSessionTrackingToken = chatSessionTrackingToken;
@@ -77,7 +87,7 @@ public class ChatResponse {
     
     public ChatResponse() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -92,6 +102,15 @@ public class ChatResponse {
     @JsonIgnore
     public Optional<String> chatId() {
         return chatId;
+    }
+
+    /**
+     * Metadata of a Chat a user had with Glean Assistant. This contains no actual conversational content.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ChatMetadata> chat() {
+        return (Optional<ChatMetadata>) chat;
     }
 
     /**
@@ -153,6 +172,25 @@ public class ChatResponse {
     public ChatResponse withChatId(Optional<String> chatId) {
         Utils.checkNotNull(chatId, "chatId");
         this.chatId = chatId;
+        return this;
+    }
+
+    /**
+     * Metadata of a Chat a user had with Glean Assistant. This contains no actual conversational content.
+     */
+    public ChatResponse withChat(ChatMetadata chat) {
+        Utils.checkNotNull(chat, "chat");
+        this.chat = Optional.ofNullable(chat);
+        return this;
+    }
+
+
+    /**
+     * Metadata of a Chat a user had with Glean Assistant. This contains no actual conversational content.
+     */
+    public ChatResponse withChat(Optional<? extends ChatMetadata> chat) {
+        Utils.checkNotNull(chat, "chat");
+        this.chat = chat;
         return this;
     }
 
@@ -225,6 +263,7 @@ public class ChatResponse {
         return 
             Utils.enhancedDeepEquals(this.messages, other.messages) &&
             Utils.enhancedDeepEquals(this.chatId, other.chatId) &&
+            Utils.enhancedDeepEquals(this.chat, other.chat) &&
             Utils.enhancedDeepEquals(this.followUpPrompts, other.followUpPrompts) &&
             Utils.enhancedDeepEquals(this.backendTimeMillis, other.backendTimeMillis) &&
             Utils.enhancedDeepEquals(this.chatSessionTrackingToken, other.chatSessionTrackingToken);
@@ -233,8 +272,8 @@ public class ChatResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            messages, chatId, followUpPrompts,
-            backendTimeMillis, chatSessionTrackingToken);
+            messages, chatId, chat,
+            followUpPrompts, backendTimeMillis, chatSessionTrackingToken);
     }
     
     @Override
@@ -242,6 +281,7 @@ public class ChatResponse {
         return Utils.toString(ChatResponse.class,
                 "messages", messages,
                 "chatId", chatId,
+                "chat", chat,
                 "followUpPrompts", followUpPrompts,
                 "backendTimeMillis", backendTimeMillis,
                 "chatSessionTrackingToken", chatSessionTrackingToken);
@@ -253,6 +293,8 @@ public class ChatResponse {
         private Optional<? extends List<ChatMessage>> messages = Optional.empty();
 
         private Optional<String> chatId = Optional.empty();
+
+        private Optional<? extends ChatMetadata> chat = Optional.empty();
 
         private Optional<? extends List<String>> followUpPrompts = Optional.empty();
 
@@ -293,6 +335,25 @@ public class ChatResponse {
         public Builder chatId(Optional<String> chatId) {
             Utils.checkNotNull(chatId, "chatId");
             this.chatId = chatId;
+            return this;
+        }
+
+
+        /**
+         * Metadata of a Chat a user had with Glean Assistant. This contains no actual conversational content.
+         */
+        public Builder chat(ChatMetadata chat) {
+            Utils.checkNotNull(chat, "chat");
+            this.chat = Optional.ofNullable(chat);
+            return this;
+        }
+
+        /**
+         * Metadata of a Chat a user had with Glean Assistant. This contains no actual conversational content.
+         */
+        public Builder chat(Optional<? extends ChatMetadata> chat) {
+            Utils.checkNotNull(chat, "chat");
+            this.chat = chat;
             return this;
         }
 
@@ -356,8 +417,8 @@ public class ChatResponse {
         public ChatResponse build() {
 
             return new ChatResponse(
-                messages, chatId, followUpPrompts,
-                backendTimeMillis, chatSessionTrackingToken);
+                messages, chatId, chat,
+                followUpPrompts, backendTimeMillis, chatSessionTrackingToken);
         }
 
     }
