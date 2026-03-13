@@ -47,3 +47,5 @@ FeedResultCategory custom = FeedResultCategory.of("custom_value");
 | `PLAN_MY_DAY`                       | PLAN_MY_DAY                         |
 | `END_MY_DAY`                        | END_MY_DAY                          |
 | `STARTER_KIT`                       | STARTER_KIT                         |
+| `MID_DAY_CATCH_UP`                  | MID_DAY_CATCH_UP                    |
+| `QUERY_SUGGESTION`                  | QUERY_SUGGESTION                    |

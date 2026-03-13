@@ -55,6 +55,8 @@ public class FeedResultCategory {
     public static final FeedResultCategory PLAN_MY_DAY = new FeedResultCategory("PLAN_MY_DAY");
     public static final FeedResultCategory END_MY_DAY = new FeedResultCategory("END_MY_DAY");
     public static final FeedResultCategory STARTER_KIT = new FeedResultCategory("STARTER_KIT");
+    public static final FeedResultCategory MID_DAY_CATCH_UP = new FeedResultCategory("MID_DAY_CATCH_UP");
+    public static final FeedResultCategory QUERY_SUGGESTION = new FeedResultCategory("QUERY_SUGGESTION");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -157,6 +159,8 @@ public class FeedResultCategory {
         map.put("PLAN_MY_DAY", PLAN_MY_DAY);
         map.put("END_MY_DAY", END_MY_DAY);
         map.put("STARTER_KIT", STARTER_KIT);
+        map.put("MID_DAY_CATCH_UP", MID_DAY_CATCH_UP);
+        map.put("QUERY_SUGGESTION", QUERY_SUGGESTION);
         return map;
     }
 
@@ -191,6 +195,8 @@ public class FeedResultCategory {
         map.put("PLAN_MY_DAY", FeedResultCategoryEnum.PLAN_MY_DAY);
         map.put("END_MY_DAY", FeedResultCategoryEnum.END_MY_DAY);
         map.put("STARTER_KIT", FeedResultCategoryEnum.STARTER_KIT);
+        map.put("MID_DAY_CATCH_UP", FeedResultCategoryEnum.MID_DAY_CATCH_UP);
+        map.put("QUERY_SUGGESTION", FeedResultCategoryEnum.QUERY_SUGGESTION);
         return map;
     }
     
@@ -225,7 +231,9 @@ public class FeedResultCategory {
         TASK("TASK"),
         PLAN_MY_DAY("PLAN_MY_DAY"),
         END_MY_DAY("END_MY_DAY"),
-        STARTER_KIT("STARTER_KIT"),;
+        STARTER_KIT("STARTER_KIT"),
+        MID_DAY_CATCH_UP("MID_DAY_CATCH_UP"),
+        QUERY_SUGGESTION("QUERY_SUGGESTION"),;
 
         private final String value;
 
