@@ -66,6 +66,10 @@ public class JustificationType {
     public static final JustificationType STARTER_KIT_EXTENSION = new JustificationType("STARTER_KIT_EXTENSION");
     public static final JustificationType STARTER_KIT_ORG_CHART = new JustificationType("STARTER_KIT_ORG_CHART");
     public static final JustificationType STARTER_KIT_ADD_DOC = new JustificationType("STARTER_KIT_ADD_DOC");
+    public static final JustificationType MEETING_RECAP = new JustificationType("MEETING_RECAP");
+    public static final JustificationType ACTIVE_DISCUSSION = new JustificationType("ACTIVE_DISCUSSION");
+    public static final JustificationType MID_DAY_CATCH_UP = new JustificationType("MID_DAY_CATCH_UP");
+    public static final JustificationType QUERY_SUGGESTION = new JustificationType("QUERY_SUGGESTION");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -179,6 +183,10 @@ public class JustificationType {
         map.put("STARTER_KIT_EXTENSION", STARTER_KIT_EXTENSION);
         map.put("STARTER_KIT_ORG_CHART", STARTER_KIT_ORG_CHART);
         map.put("STARTER_KIT_ADD_DOC", STARTER_KIT_ADD_DOC);
+        map.put("MEETING_RECAP", MEETING_RECAP);
+        map.put("ACTIVE_DISCUSSION", ACTIVE_DISCUSSION);
+        map.put("MID_DAY_CATCH_UP", MID_DAY_CATCH_UP);
+        map.put("QUERY_SUGGESTION", QUERY_SUGGESTION);
         return map;
     }
 
@@ -224,6 +232,10 @@ public class JustificationType {
         map.put("STARTER_KIT_EXTENSION", JustificationTypeEnum.STARTER_KIT_EXTENSION);
         map.put("STARTER_KIT_ORG_CHART", JustificationTypeEnum.STARTER_KIT_ORG_CHART);
         map.put("STARTER_KIT_ADD_DOC", JustificationTypeEnum.STARTER_KIT_ADD_DOC);
+        map.put("MEETING_RECAP", JustificationTypeEnum.MEETING_RECAP);
+        map.put("ACTIVE_DISCUSSION", JustificationTypeEnum.ACTIVE_DISCUSSION);
+        map.put("MID_DAY_CATCH_UP", JustificationTypeEnum.MID_DAY_CATCH_UP);
+        map.put("QUERY_SUGGESTION", JustificationTypeEnum.QUERY_SUGGESTION);
         return map;
     }
     
@@ -269,7 +281,11 @@ public class JustificationType {
         END_MY_DAY("END_MY_DAY"),
         STARTER_KIT_EXTENSION("STARTER_KIT_EXTENSION"),
         STARTER_KIT_ORG_CHART("STARTER_KIT_ORG_CHART"),
-        STARTER_KIT_ADD_DOC("STARTER_KIT_ADD_DOC"),;
+        STARTER_KIT_ADD_DOC("STARTER_KIT_ADD_DOC"),
+        MEETING_RECAP("MEETING_RECAP"),
+        ACTIVE_DISCUSSION("ACTIVE_DISCUSSION"),
+        MID_DAY_CATCH_UP("MID_DAY_CATCH_UP"),
+        QUERY_SUGGESTION("QUERY_SUGGESTION"),;
 
         private final String value;
 
