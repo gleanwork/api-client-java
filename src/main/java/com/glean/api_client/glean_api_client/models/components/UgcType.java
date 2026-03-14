@@ -21,13 +21,21 @@ import java.util.Optional;
  */
 public class UgcType {
 
+    public static final UgcType AGENT_TYPE = new UgcType("AGENT_TYPE");
     public static final UgcType ANNOUNCEMENTS_TYPE = new UgcType("ANNOUNCEMENTS_TYPE");
     public static final UgcType ANSWERS_TYPE = new UgcType("ANSWERS_TYPE");
     public static final UgcType COLLECTIONS_TYPE = new UgcType("COLLECTIONS_TYPE");
-    public static final UgcType SHORTCUTS_TYPE = new UgcType("SHORTCUTS_TYPE");
-    public static final UgcType WORKFLOWS_TYPE = new UgcType("WORKFLOWS_TYPE");
-    public static final UgcType PROMPT_TEMPLATES_TYPE = new UgcType("PROMPT_TEMPLATES_TYPE");
+    public static final UgcType EMAIL_TYPE = new UgcType("EMAIL_TYPE");
+    public static final UgcType HTML_CODE_TYPE = new UgcType("HTML_CODE_TYPE");
+    public static final UgcType IMAGE_TYPE = new UgcType("IMAGE_TYPE");
+    public static final UgcType MESSAGE_TYPE = new UgcType("MESSAGE_TYPE");
+    public static final UgcType PAPER_TYPE = new UgcType("PAPER_TYPE");
     public static final UgcType PRISM_VIEWS_TYPE = new UgcType("PRISM_VIEWS_TYPE");
+    public static final UgcType PROMPT_TEMPLATES_TYPE = new UgcType("PROMPT_TEMPLATES_TYPE");
+    public static final UgcType SCRIBES_TYPE = new UgcType("SCRIBES_TYPE");
+    public static final UgcType SHORTCUTS_TYPE = new UgcType("SHORTCUTS_TYPE");
+    public static final UgcType SLIDE_TYPE = new UgcType("SLIDE_TYPE");
+    public static final UgcType WORKFLOWS_TYPE = new UgcType("WORKFLOWS_TYPE");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -101,38 +109,62 @@ public class UgcType {
 
     private static final Map<String, UgcType> createValuesMap() {
         Map<String, UgcType> map = new LinkedHashMap<>();
+        map.put("AGENT_TYPE", AGENT_TYPE);
         map.put("ANNOUNCEMENTS_TYPE", ANNOUNCEMENTS_TYPE);
         map.put("ANSWERS_TYPE", ANSWERS_TYPE);
         map.put("COLLECTIONS_TYPE", COLLECTIONS_TYPE);
-        map.put("SHORTCUTS_TYPE", SHORTCUTS_TYPE);
-        map.put("WORKFLOWS_TYPE", WORKFLOWS_TYPE);
-        map.put("PROMPT_TEMPLATES_TYPE", PROMPT_TEMPLATES_TYPE);
+        map.put("EMAIL_TYPE", EMAIL_TYPE);
+        map.put("HTML_CODE_TYPE", HTML_CODE_TYPE);
+        map.put("IMAGE_TYPE", IMAGE_TYPE);
+        map.put("MESSAGE_TYPE", MESSAGE_TYPE);
+        map.put("PAPER_TYPE", PAPER_TYPE);
         map.put("PRISM_VIEWS_TYPE", PRISM_VIEWS_TYPE);
+        map.put("PROMPT_TEMPLATES_TYPE", PROMPT_TEMPLATES_TYPE);
+        map.put("SCRIBES_TYPE", SCRIBES_TYPE);
+        map.put("SHORTCUTS_TYPE", SHORTCUTS_TYPE);
+        map.put("SLIDE_TYPE", SLIDE_TYPE);
+        map.put("WORKFLOWS_TYPE", WORKFLOWS_TYPE);
         return map;
     }
 
     private static final Map<String, UgcTypeEnum> createEnumsMap() {
         Map<String, UgcTypeEnum> map = new HashMap<>();
+        map.put("AGENT_TYPE", UgcTypeEnum.AGENT_TYPE);
         map.put("ANNOUNCEMENTS_TYPE", UgcTypeEnum.ANNOUNCEMENTS_TYPE);
         map.put("ANSWERS_TYPE", UgcTypeEnum.ANSWERS_TYPE);
         map.put("COLLECTIONS_TYPE", UgcTypeEnum.COLLECTIONS_TYPE);
-        map.put("SHORTCUTS_TYPE", UgcTypeEnum.SHORTCUTS_TYPE);
-        map.put("WORKFLOWS_TYPE", UgcTypeEnum.WORKFLOWS_TYPE);
-        map.put("PROMPT_TEMPLATES_TYPE", UgcTypeEnum.PROMPT_TEMPLATES_TYPE);
+        map.put("EMAIL_TYPE", UgcTypeEnum.EMAIL_TYPE);
+        map.put("HTML_CODE_TYPE", UgcTypeEnum.HTML_CODE_TYPE);
+        map.put("IMAGE_TYPE", UgcTypeEnum.IMAGE_TYPE);
+        map.put("MESSAGE_TYPE", UgcTypeEnum.MESSAGE_TYPE);
+        map.put("PAPER_TYPE", UgcTypeEnum.PAPER_TYPE);
         map.put("PRISM_VIEWS_TYPE", UgcTypeEnum.PRISM_VIEWS_TYPE);
+        map.put("PROMPT_TEMPLATES_TYPE", UgcTypeEnum.PROMPT_TEMPLATES_TYPE);
+        map.put("SCRIBES_TYPE", UgcTypeEnum.SCRIBES_TYPE);
+        map.put("SHORTCUTS_TYPE", UgcTypeEnum.SHORTCUTS_TYPE);
+        map.put("SLIDE_TYPE", UgcTypeEnum.SLIDE_TYPE);
+        map.put("WORKFLOWS_TYPE", UgcTypeEnum.WORKFLOWS_TYPE);
         return map;
     }
     
     
     public enum UgcTypeEnum {
 
+        AGENT_TYPE("AGENT_TYPE"),
         ANNOUNCEMENTS_TYPE("ANNOUNCEMENTS_TYPE"),
         ANSWERS_TYPE("ANSWERS_TYPE"),
         COLLECTIONS_TYPE("COLLECTIONS_TYPE"),
-        SHORTCUTS_TYPE("SHORTCUTS_TYPE"),
-        WORKFLOWS_TYPE("WORKFLOWS_TYPE"),
+        EMAIL_TYPE("EMAIL_TYPE"),
+        HTML_CODE_TYPE("HTML_CODE_TYPE"),
+        IMAGE_TYPE("IMAGE_TYPE"),
+        MESSAGE_TYPE("MESSAGE_TYPE"),
+        PAPER_TYPE("PAPER_TYPE"),
+        PRISM_VIEWS_TYPE("PRISM_VIEWS_TYPE"),
         PROMPT_TEMPLATES_TYPE("PROMPT_TEMPLATES_TYPE"),
-        PRISM_VIEWS_TYPE("PRISM_VIEWS_TYPE"),;
+        SCRIBES_TYPE("SCRIBES_TYPE"),
+        SHORTCUTS_TYPE("SHORTCUTS_TYPE"),
+        SLIDE_TYPE("SLIDE_TYPE"),
+        WORKFLOWS_TYPE("WORKFLOWS_TYPE"),;
 
         private final String value;
 
