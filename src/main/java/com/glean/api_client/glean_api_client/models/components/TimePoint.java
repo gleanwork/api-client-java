@@ -25,7 +25,7 @@ public class TimePoint {
     private Optional<Long> epochSeconds;
 
     /**
-     * The number of days from now. Specification relative to current time. Can be negative.
+     * Number of days in the past, relative to the current date.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("daysFromNow")
@@ -54,7 +54,7 @@ public class TimePoint {
     }
 
     /**
-     * The number of days from now. Specification relative to current time. Can be negative.
+     * Number of days in the past, relative to the current date.
      */
     @JsonIgnore
     public Optional<Long> daysFromNow() {
@@ -86,7 +86,7 @@ public class TimePoint {
     }
 
     /**
-     * The number of days from now. Specification relative to current time. Can be negative.
+     * Number of days in the past, relative to the current date.
      */
     public TimePoint withDaysFromNow(long daysFromNow) {
         Utils.checkNotNull(daysFromNow, "daysFromNow");
@@ -96,7 +96,7 @@ public class TimePoint {
 
 
     /**
-     * The number of days from now. Specification relative to current time. Can be negative.
+     * Number of days in the past, relative to the current date.
      */
     public TimePoint withDaysFromNow(Optional<Long> daysFromNow) {
         Utils.checkNotNull(daysFromNow, "daysFromNow");
@@ -163,7 +163,7 @@ public class TimePoint {
 
 
         /**
-         * The number of days from now. Specification relative to current time. Can be negative.
+         * Number of days in the past, relative to the current date.
          */
         public Builder daysFromNow(long daysFromNow) {
             Utils.checkNotNull(daysFromNow, "daysFromNow");
@@ -172,7 +172,7 @@ public class TimePoint {
         }
 
         /**
-         * The number of days from now. Specification relative to current time. Can be negative.
+         * Number of days in the past, relative to the current date.
          */
         public Builder daysFromNow(Optional<Long> daysFromNow) {
             Utils.checkNotNull(daysFromNow, "daysFromNow");
