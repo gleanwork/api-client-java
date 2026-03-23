@@ -17,3 +17,4 @@ ExportType value = ExportType.FINDINGS;
 | ----------- | ----------- |
 | `FINDINGS`  | FINDINGS    |
 | `DOCUMENTS` | DOCUMENTS   |
+| `ISSUES`    | ISSUES      |

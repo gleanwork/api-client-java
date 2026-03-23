@@ -68,6 +68,21 @@ public class InsightsOverviewResponse {
 
 
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("searchActiveUsers")
+    private Optional<? extends CurrentActiveUsers> searchActiveUsers;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("assistantActiveUsers")
+    private Optional<? extends CurrentActiveUsers> assistantActiveUsers;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("agentsActiveUsers")
+    private Optional<? extends CurrentActiveUsers> agentsActiveUsers;
+
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("extensionSummary")
     private Optional<? extends CurrentActiveUsers> extensionSummary;
 
@@ -198,6 +213,9 @@ public class InsightsOverviewResponse {
             @JsonProperty("totalSignups") Optional<Long> totalSignups,
             @JsonProperty("searchSummary") Optional<? extends InsightsSearchSummary> searchSummary,
             @JsonProperty("chatSummary") Optional<? extends InsightsChatSummary> chatSummary,
+            @JsonProperty("searchActiveUsers") Optional<? extends CurrentActiveUsers> searchActiveUsers,
+            @JsonProperty("assistantActiveUsers") Optional<? extends CurrentActiveUsers> assistantActiveUsers,
+            @JsonProperty("agentsActiveUsers") Optional<? extends CurrentActiveUsers> agentsActiveUsers,
             @JsonProperty("extensionSummary") Optional<? extends CurrentActiveUsers> extensionSummary,
             @JsonProperty("ugcSummary") Optional<? extends CurrentActiveUsers> ugcSummary,
             @JsonProperty("lastUpdatedTs") Optional<Long> lastUpdatedTs,
@@ -227,6 +245,9 @@ public class InsightsOverviewResponse {
         Utils.checkNotNull(totalSignups, "totalSignups");
         Utils.checkNotNull(searchSummary, "searchSummary");
         Utils.checkNotNull(chatSummary, "chatSummary");
+        Utils.checkNotNull(searchActiveUsers, "searchActiveUsers");
+        Utils.checkNotNull(assistantActiveUsers, "assistantActiveUsers");
+        Utils.checkNotNull(agentsActiveUsers, "agentsActiveUsers");
         Utils.checkNotNull(extensionSummary, "extensionSummary");
         Utils.checkNotNull(ugcSummary, "ugcSummary");
         Utils.checkNotNull(lastUpdatedTs, "lastUpdatedTs");
@@ -256,6 +277,9 @@ public class InsightsOverviewResponse {
         this.totalSignups = totalSignups;
         this.searchSummary = searchSummary;
         this.chatSummary = chatSummary;
+        this.searchActiveUsers = searchActiveUsers;
+        this.assistantActiveUsers = assistantActiveUsers;
+        this.agentsActiveUsers = agentsActiveUsers;
         this.extensionSummary = extensionSummary;
         this.ugcSummary = ugcSummary;
         this.lastUpdatedTs = lastUpdatedTs;
@@ -282,6 +306,7 @@ public class InsightsOverviewResponse {
     
     public InsightsOverviewResponse() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
@@ -344,6 +369,24 @@ public class InsightsOverviewResponse {
     @JsonIgnore
     public Optional<InsightsChatSummary> chatSummary() {
         return (Optional<InsightsChatSummary>) chatSummary;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<CurrentActiveUsers> searchActiveUsers() {
+        return (Optional<CurrentActiveUsers>) searchActiveUsers;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<CurrentActiveUsers> assistantActiveUsers() {
+        return (Optional<CurrentActiveUsers>) assistantActiveUsers;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<CurrentActiveUsers> agentsActiveUsers() {
+        return (Optional<CurrentActiveUsers>) agentsActiveUsers;
     }
 
     @SuppressWarnings("unchecked")
@@ -617,6 +660,45 @@ public class InsightsOverviewResponse {
     public InsightsOverviewResponse withChatSummary(Optional<? extends InsightsChatSummary> chatSummary) {
         Utils.checkNotNull(chatSummary, "chatSummary");
         this.chatSummary = chatSummary;
+        return this;
+    }
+
+    public InsightsOverviewResponse withSearchActiveUsers(CurrentActiveUsers searchActiveUsers) {
+        Utils.checkNotNull(searchActiveUsers, "searchActiveUsers");
+        this.searchActiveUsers = Optional.ofNullable(searchActiveUsers);
+        return this;
+    }
+
+
+    public InsightsOverviewResponse withSearchActiveUsers(Optional<? extends CurrentActiveUsers> searchActiveUsers) {
+        Utils.checkNotNull(searchActiveUsers, "searchActiveUsers");
+        this.searchActiveUsers = searchActiveUsers;
+        return this;
+    }
+
+    public InsightsOverviewResponse withAssistantActiveUsers(CurrentActiveUsers assistantActiveUsers) {
+        Utils.checkNotNull(assistantActiveUsers, "assistantActiveUsers");
+        this.assistantActiveUsers = Optional.ofNullable(assistantActiveUsers);
+        return this;
+    }
+
+
+    public InsightsOverviewResponse withAssistantActiveUsers(Optional<? extends CurrentActiveUsers> assistantActiveUsers) {
+        Utils.checkNotNull(assistantActiveUsers, "assistantActiveUsers");
+        this.assistantActiveUsers = assistantActiveUsers;
+        return this;
+    }
+
+    public InsightsOverviewResponse withAgentsActiveUsers(CurrentActiveUsers agentsActiveUsers) {
+        Utils.checkNotNull(agentsActiveUsers, "agentsActiveUsers");
+        this.agentsActiveUsers = Optional.ofNullable(agentsActiveUsers);
+        return this;
+    }
+
+
+    public InsightsOverviewResponse withAgentsActiveUsers(Optional<? extends CurrentActiveUsers> agentsActiveUsers) {
+        Utils.checkNotNull(agentsActiveUsers, "agentsActiveUsers");
+        this.agentsActiveUsers = agentsActiveUsers;
         return this;
     }
 
@@ -959,6 +1041,9 @@ public class InsightsOverviewResponse {
             Utils.enhancedDeepEquals(this.totalSignups, other.totalSignups) &&
             Utils.enhancedDeepEquals(this.searchSummary, other.searchSummary) &&
             Utils.enhancedDeepEquals(this.chatSummary, other.chatSummary) &&
+            Utils.enhancedDeepEquals(this.searchActiveUsers, other.searchActiveUsers) &&
+            Utils.enhancedDeepEquals(this.assistantActiveUsers, other.assistantActiveUsers) &&
+            Utils.enhancedDeepEquals(this.agentsActiveUsers, other.agentsActiveUsers) &&
             Utils.enhancedDeepEquals(this.extensionSummary, other.extensionSummary) &&
             Utils.enhancedDeepEquals(this.ugcSummary, other.ugcSummary) &&
             Utils.enhancedDeepEquals(this.lastUpdatedTs, other.lastUpdatedTs) &&
@@ -988,7 +1073,8 @@ public class InsightsOverviewResponse {
         return Utils.enhancedHash(
             monthlyActiveUsers, weeklyActiveUsers, departments,
             employeeCount, totalSignups, searchSummary,
-            chatSummary, extensionSummary, ugcSummary,
+            chatSummary, searchActiveUsers, assistantActiveUsers,
+            agentsActiveUsers, extensionSummary, ugcSummary,
             lastUpdatedTs, searchSessionSatisfaction, monthlyActiveUserTimeseries,
             weeklyActiveUserTimeseries, dailyActiveUserTimeseries, searchMonthlyActiveUserTimeseries,
             searchWeeklyActiveUserTimeseries, searchDailyActiveUserTimeseries, assistantMonthlyActiveUserTimeseries,
@@ -1008,6 +1094,9 @@ public class InsightsOverviewResponse {
                 "totalSignups", totalSignups,
                 "searchSummary", searchSummary,
                 "chatSummary", chatSummary,
+                "searchActiveUsers", searchActiveUsers,
+                "assistantActiveUsers", assistantActiveUsers,
+                "agentsActiveUsers", agentsActiveUsers,
                 "extensionSummary", extensionSummary,
                 "ugcSummary", ugcSummary,
                 "lastUpdatedTs", lastUpdatedTs,
@@ -1048,6 +1137,12 @@ public class InsightsOverviewResponse {
         private Optional<? extends InsightsSearchSummary> searchSummary = Optional.empty();
 
         private Optional<? extends InsightsChatSummary> chatSummary = Optional.empty();
+
+        private Optional<? extends CurrentActiveUsers> searchActiveUsers = Optional.empty();
+
+        private Optional<? extends CurrentActiveUsers> assistantActiveUsers = Optional.empty();
+
+        private Optional<? extends CurrentActiveUsers> agentsActiveUsers = Optional.empty();
 
         private Optional<? extends CurrentActiveUsers> extensionSummary = Optional.empty();
 
@@ -1215,6 +1310,45 @@ public class InsightsOverviewResponse {
         public Builder chatSummary(Optional<? extends InsightsChatSummary> chatSummary) {
             Utils.checkNotNull(chatSummary, "chatSummary");
             this.chatSummary = chatSummary;
+            return this;
+        }
+
+
+        public Builder searchActiveUsers(CurrentActiveUsers searchActiveUsers) {
+            Utils.checkNotNull(searchActiveUsers, "searchActiveUsers");
+            this.searchActiveUsers = Optional.ofNullable(searchActiveUsers);
+            return this;
+        }
+
+        public Builder searchActiveUsers(Optional<? extends CurrentActiveUsers> searchActiveUsers) {
+            Utils.checkNotNull(searchActiveUsers, "searchActiveUsers");
+            this.searchActiveUsers = searchActiveUsers;
+            return this;
+        }
+
+
+        public Builder assistantActiveUsers(CurrentActiveUsers assistantActiveUsers) {
+            Utils.checkNotNull(assistantActiveUsers, "assistantActiveUsers");
+            this.assistantActiveUsers = Optional.ofNullable(assistantActiveUsers);
+            return this;
+        }
+
+        public Builder assistantActiveUsers(Optional<? extends CurrentActiveUsers> assistantActiveUsers) {
+            Utils.checkNotNull(assistantActiveUsers, "assistantActiveUsers");
+            this.assistantActiveUsers = assistantActiveUsers;
+            return this;
+        }
+
+
+        public Builder agentsActiveUsers(CurrentActiveUsers agentsActiveUsers) {
+            Utils.checkNotNull(agentsActiveUsers, "agentsActiveUsers");
+            this.agentsActiveUsers = Optional.ofNullable(agentsActiveUsers);
+            return this;
+        }
+
+        public Builder agentsActiveUsers(Optional<? extends CurrentActiveUsers> agentsActiveUsers) {
+            Utils.checkNotNull(agentsActiveUsers, "agentsActiveUsers");
+            this.agentsActiveUsers = agentsActiveUsers;
             return this;
         }
 
@@ -1545,7 +1679,8 @@ public class InsightsOverviewResponse {
             return new InsightsOverviewResponse(
                 monthlyActiveUsers, weeklyActiveUsers, departments,
                 employeeCount, totalSignups, searchSummary,
-                chatSummary, extensionSummary, ugcSummary,
+                chatSummary, searchActiveUsers, assistantActiveUsers,
+                agentsActiveUsers, extensionSummary, ugcSummary,
                 lastUpdatedTs, searchSessionSatisfaction, monthlyActiveUserTimeseries,
                 weeklyActiveUserTimeseries, dailyActiveUserTimeseries, searchMonthlyActiveUserTimeseries,
                 searchWeeklyActiveUserTimeseries, searchDailyActiveUserTimeseries, assistantMonthlyActiveUserTimeseries,

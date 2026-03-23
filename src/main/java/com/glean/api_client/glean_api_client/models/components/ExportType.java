@@ -16,7 +16,8 @@ import java.util.Optional;
  */
 public enum ExportType {
     FINDINGS("FINDINGS"),
-    DOCUMENTS("DOCUMENTS");
+    DOCUMENTS("DOCUMENTS"),
+    ISSUES("ISSUES");
 
     @JsonValue
     private final String value;

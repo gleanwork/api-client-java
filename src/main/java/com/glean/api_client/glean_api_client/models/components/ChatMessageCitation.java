@@ -47,6 +47,11 @@ public class ChatMessageCitation {
     @JsonProperty("sourcePerson")
     private Optional<? extends Person> sourcePerson;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("sourceCustomEntity")
+    private Optional<? extends CustomEntity> sourceCustomEntity;
+
     /**
      * Each reference range and its corresponding snippets
      */
@@ -60,22 +65,25 @@ public class ChatMessageCitation {
             @JsonProperty("sourceDocument") Optional<? extends Document> sourceDocument,
             @JsonProperty("sourceFile") Optional<? extends ChatFile> sourceFile,
             @JsonProperty("sourcePerson") Optional<? extends Person> sourcePerson,
+            @JsonProperty("sourceCustomEntity") Optional<? extends CustomEntity> sourceCustomEntity,
             @JsonProperty("referenceRanges") Optional<? extends List<ReferenceRange>> referenceRanges) {
         Utils.checkNotNull(trackingToken, "trackingToken");
         Utils.checkNotNull(sourceDocument, "sourceDocument");
         Utils.checkNotNull(sourceFile, "sourceFile");
         Utils.checkNotNull(sourcePerson, "sourcePerson");
+        Utils.checkNotNull(sourceCustomEntity, "sourceCustomEntity");
         Utils.checkNotNull(referenceRanges, "referenceRanges");
         this.trackingToken = trackingToken;
         this.sourceDocument = sourceDocument;
         this.sourceFile = sourceFile;
         this.sourcePerson = sourcePerson;
+        this.sourceCustomEntity = sourceCustomEntity;
         this.referenceRanges = referenceRanges;
     }
     
     public ChatMessageCitation() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -106,6 +114,12 @@ public class ChatMessageCitation {
     @JsonIgnore
     public Optional<Person> sourcePerson() {
         return (Optional<Person>) sourcePerson;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<CustomEntity> sourceCustomEntity() {
+        return (Optional<CustomEntity>) sourceCustomEntity;
     }
 
     /**
@@ -188,6 +202,19 @@ public class ChatMessageCitation {
         return this;
     }
 
+    public ChatMessageCitation withSourceCustomEntity(CustomEntity sourceCustomEntity) {
+        Utils.checkNotNull(sourceCustomEntity, "sourceCustomEntity");
+        this.sourceCustomEntity = Optional.ofNullable(sourceCustomEntity);
+        return this;
+    }
+
+
+    public ChatMessageCitation withSourceCustomEntity(Optional<? extends CustomEntity> sourceCustomEntity) {
+        Utils.checkNotNull(sourceCustomEntity, "sourceCustomEntity");
+        this.sourceCustomEntity = sourceCustomEntity;
+        return this;
+    }
+
     /**
      * Each reference range and its corresponding snippets
      */
@@ -221,6 +248,7 @@ public class ChatMessageCitation {
             Utils.enhancedDeepEquals(this.sourceDocument, other.sourceDocument) &&
             Utils.enhancedDeepEquals(this.sourceFile, other.sourceFile) &&
             Utils.enhancedDeepEquals(this.sourcePerson, other.sourcePerson) &&
+            Utils.enhancedDeepEquals(this.sourceCustomEntity, other.sourceCustomEntity) &&
             Utils.enhancedDeepEquals(this.referenceRanges, other.referenceRanges);
     }
     
@@ -228,7 +256,7 @@ public class ChatMessageCitation {
     public int hashCode() {
         return Utils.enhancedHash(
             trackingToken, sourceDocument, sourceFile,
-            sourcePerson, referenceRanges);
+            sourcePerson, sourceCustomEntity, referenceRanges);
     }
     
     @Override
@@ -238,6 +266,7 @@ public class ChatMessageCitation {
                 "sourceDocument", sourceDocument,
                 "sourceFile", sourceFile,
                 "sourcePerson", sourcePerson,
+                "sourceCustomEntity", sourceCustomEntity,
                 "referenceRanges", referenceRanges);
     }
 
@@ -251,6 +280,8 @@ public class ChatMessageCitation {
         private Optional<? extends ChatFile> sourceFile = Optional.empty();
 
         private Optional<? extends Person> sourcePerson = Optional.empty();
+
+        private Optional<? extends CustomEntity> sourceCustomEntity = Optional.empty();
 
         private Optional<? extends List<ReferenceRange>> referenceRanges = Optional.empty();
 
@@ -325,6 +356,19 @@ public class ChatMessageCitation {
         }
 
 
+        public Builder sourceCustomEntity(CustomEntity sourceCustomEntity) {
+            Utils.checkNotNull(sourceCustomEntity, "sourceCustomEntity");
+            this.sourceCustomEntity = Optional.ofNullable(sourceCustomEntity);
+            return this;
+        }
+
+        public Builder sourceCustomEntity(Optional<? extends CustomEntity> sourceCustomEntity) {
+            Utils.checkNotNull(sourceCustomEntity, "sourceCustomEntity");
+            this.sourceCustomEntity = sourceCustomEntity;
+            return this;
+        }
+
+
         /**
          * Each reference range and its corresponding snippets
          */
@@ -347,7 +391,7 @@ public class ChatMessageCitation {
 
             return new ChatMessageCitation(
                 trackingToken, sourceDocument, sourceFile,
-                sourcePerson, referenceRanges);
+                sourcePerson, sourceCustomEntity, referenceRanges);
         }
 
     }

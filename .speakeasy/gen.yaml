@@ -30,7 +30,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 0.12.29
+  version: 0.12.30
   additionalDependencies: []
   additionalPlugins: []
   artifactID: glean-api-client

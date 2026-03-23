@@ -639,3 +639,13 @@ Based on:
 - [java v0.12.29] .
 ### Releases
 - [Maven Central v0.12.29] https://central.sonatype.com/artifact/com.glean.api-client/glean-api-client/0.12.29 - .
+
+## 2026-03-23 09:42:34
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.759.1 (2.869.10) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v0.12.30] .
+### Releases
+- [Maven Central v0.12.30] https://central.sonatype.com/artifact/com.glean.api-client/glean-api-client/0.12.30 - .
