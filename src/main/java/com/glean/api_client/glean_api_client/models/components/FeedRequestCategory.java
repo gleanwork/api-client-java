@@ -40,7 +40,8 @@ public enum FeedRequestCategory {
     END_MY_DAY("END_MY_DAY"),
     STARTER_KIT("STARTER_KIT"),
     MID_DAY_CATCH_UP("MID_DAY_CATCH_UP"),
-    QUERY_SUGGESTION("QUERY_SUGGESTION");
+    QUERY_SUGGESTION("QUERY_SUGGESTION"),
+    WEEKLY_MEETINGS("WEEKLY_MEETINGS");
 
     @JsonValue
     private final String value;
