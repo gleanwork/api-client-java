@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 0359d4fe-2923-46fc-aaca-cf70b48dcfa1
 management:
-  docChecksum: 34cd4112e4c32279bed69c71c169040f
+  docChecksum: bd83469a3c96e8732836267779bd09eb
   docVersion: 0.9.0
-  speakeasyVersion: 1.757.1
-  generationVersion: 2.866.2
-  releaseVersion: 0.12.29
-  configChecksum: fbb4d73f586b3d6808ec47242ac52796
+  speakeasyVersion: 1.759.1
+  generationVersion: 2.869.10
+  releaseVersion: 0.12.30
+  configChecksum: 51d786475d7b56500da1f96c624ef0b7
   repoURL: https://github.com/gleanwork/api-client-java.git
   installationURL: https://github.com/gleanwork/api-client-java
   published: true
 persistentEdits:
-  generation_id: 1376f32d-3677-46cc-b1fb-f6868f7f29ac
-  pristine_commit_hash: 59897d7b2dc6b2271d1a6586df0f2c61fea56acb
-  pristine_tree_hash: 0554641fc376f6851344552750852e12841f8287
+  generation_id: 0f1e8e48-81eb-4606-8007-196ac0429037
+  pristine_commit_hash: 69a5ec4a7db0a81b9b647ab4a27c2f4dc2673815
+  pristine_tree_hash: f7bbda1baab31db3dfd10a748a37a1827c69d912
 features:
   java:
     additionalDependencies: 0.1.0
@@ -355,8 +355,8 @@ trackedFiles:
     pristine_git_object: 44a0e8f5a48bd0202cf999977cf54b02440ad48f
   docs/models/components/ChatMessageCitation.md:
     id: 4c679e41e387
-    last_write_checksum: sha1:91b411ee25667a37455da12c93070f85c261355f
-    pristine_git_object: 1063b42f7c3315a7434443ce4639d62a8e56e09e
+    last_write_checksum: sha1:4b253ab9a194ec567b1d001db42d5de15f158982
+    pristine_git_object: d87bcee5df0550dbcac033293ba4f1662723997c
   docs/models/components/ChatMessageFragment.md:
     id: 998e5c5b431f
     last_write_checksum: sha1:9b4d789359e4ef9b2cb4aae25bbc6f1ffe1f3fa6
@@ -1027,8 +1027,8 @@ trackedFiles:
     pristine_git_object: 29e92c35939e690e9dd2a58495afb90a99bb655a
   docs/models/components/ExportType.md:
     id: e93159ff949a
-    last_write_checksum: sha1:355504f0df880fba6d46fe1985baa60c624b9f5c
-    pristine_git_object: ca17190a66c5f711d80618a0a76ef1b4d385f5bd
+    last_write_checksum: sha1:442dc194bf9a9cb89207d7a491a8cbd3cb10d0f3
+    pristine_git_object: 0f157ac0e4edccb62bf4f62a9be66c12b7720145
   docs/models/components/ExternalSharingOptions.md:
     id: d62ab6bcefc2
     last_write_checksum: sha1:096de44887e7b789bdb7ae113a07f21a43595129
@@ -1403,8 +1403,8 @@ trackedFiles:
     pristine_git_object: 58b92865edd1fade5a400b24eecb30d6e2192526
   docs/models/components/InsightsOverviewResponse.md:
     id: eb8d62a9cad4
-    last_write_checksum: sha1:9c2aedb331bcde5d65e4f6dd2b862fb8920382e6
-    pristine_git_object: 6724bad81901ac0eaec3efad35d784cd1adc0aff
+    last_write_checksum: sha1:a8f64b428a2bba8d0b4c4ebe2628cffca126b07d
+    pristine_git_object: 6e556f24f2a9b724a9e11f2d5b7151cb6f7aa1cb
   docs/models/components/InsightsRequest.md:
     id: bca39583d1ca
     last_write_checksum: sha1:5bf841888c51c1ac5666f3a0ce26fe728ba5439d
@@ -3211,8 +3211,8 @@ trackedFiles:
     pristine_git_object: 3decbce5bd40edbe278c1c5d2dbf585808e51d9a
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:baa1cdb96fb4ede979270e5b8ccb7e0b837f1402
-    pristine_git_object: d7ca93adb15c04fa1ac89cc293b3260b58942f71
+    last_write_checksum: sha1:c21653a07bf918d0e1be1a826469f6895d01a258
+    pristine_git_object: 99e2ec040a6d88f460a7c47b98d040cceeff695b
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3531,8 +3531,8 @@ trackedFiles:
     pristine_git_object: ffae914775eb41ff311371f62504344a59d090fd
   src/main/java/com/glean/api_client/glean_api_client/SDKConfiguration.java:
     id: d5fcc61f5992
-    last_write_checksum: sha1:ae20c8a861d3c6693af212c1a8ee33add7f51f28
-    pristine_git_object: 5d7abec3a18af82eed9c37746438ba13f9b29e6f
+    last_write_checksum: sha1:d89e4347e007bf5a8f1475088d244ee278383c89
+    pristine_git_object: 183088bd15b0ded55e639cac1ead95f1ae02ef16
   src/main/java/com/glean/api_client/glean_api_client/Search.java:
     id: f22d94b920b5
     last_write_checksum: sha1:ac38d1ed47be207940dd6fb7e4c688dddccc6a8b
@@ -3863,8 +3863,8 @@ trackedFiles:
     pristine_git_object: 650b5da3a0948e4264ae19a722d7b87f62e199ef
   src/main/java/com/glean/api_client/glean_api_client/models/components/ChatMessageCitation.java:
     id: c239b058e1e3
-    last_write_checksum: sha1:b527db5653c32759daf24b364447b2590e4ec065
-    pristine_git_object: bb5333a258b7afb3a8ded5009559cec5afca6b99
+    last_write_checksum: sha1:6e25ac0ef6ff150ba4a76906d3908ef142f0fa96
+    pristine_git_object: d074d871e31881d51b24374d6c45bdb8046d0e1d
   src/main/java/com/glean/api_client/glean_api_client/models/components/ChatMessageFragment.java:
     id: c22528520aec
     last_write_checksum: sha1:b129bfbd798039c162a300a0df7d40e619f61110
@@ -4535,8 +4535,8 @@ trackedFiles:
     pristine_git_object: 789d19896abc0a46fab87dcbedb64cd7d4cf0ab7
   src/main/java/com/glean/api_client/glean_api_client/models/components/ExportType.java:
     id: 899c7965db91
-    last_write_checksum: sha1:7479bdf94e1dd22c4bf77a46bde668ba8ea614ca
-    pristine_git_object: 74200c6936ae9c33d569b1606e4c25a4393b20f0
+    last_write_checksum: sha1:b97f7949272cbd824ebac537f3cdda478c6530c5
+    pristine_git_object: 1654e91278c5e7889c209ebee20676b01ae90ce9
   src/main/java/com/glean/api_client/glean_api_client/models/components/ExternalSharingOptions.java:
     id: 13275f42d6ce
     last_write_checksum: sha1:299836756a6da50a5e47ec4c89a702ec1e3d0cc0
@@ -4911,8 +4911,8 @@ trackedFiles:
     pristine_git_object: b8ec936bceaff6ca8ffc907fc064779808bd328b
   src/main/java/com/glean/api_client/glean_api_client/models/components/InsightsOverviewResponse.java:
     id: 2df162b5c362
-    last_write_checksum: sha1:1067b7e06f0d23757486125a3dfe1453ae0c03e1
-    pristine_git_object: fc9c067f885a44840db361fb266357aab60be910
+    last_write_checksum: sha1:7cef5e4dd70eb3fa7f03ec3d716fefe645c99990
+    pristine_git_object: ba67584f56d747b6d1eb01ca06cba9e37eb1f8fe
   src/main/java/com/glean/api_client/glean_api_client/models/components/InsightsRequest.java:
     id: d18f487ace2b
     last_write_checksum: sha1:9f4f66fe84e8930d611b20bf21d4a9a044f7c9cd
@@ -9656,6 +9656,7 @@ generatedTests:
   get_/rest/api/v1/tools/list: "2025-06-09T18:03:44Z"
   post_/rest/api/v1/tools/call: "2025-06-09T18:03:44Z"
   listpolicies: "2025-06-09T18:03:44Z"
+releaseNotes: "## Java SDK Changes:\n* `glean.client.chat.create()`: \n  *  `request.chatRequest.messages[].citations[].sourceCustomEntity` **Added**\n  *  `response.messages[].citations[].sourceCustomEntity` **Added**\n* `glean.client.chat.retrieve()`:  `response.chatResult.chat.messages[].citations[].sourceCustomEntity` **Added**\n* `glean.client.chat.createStream()`: \n  *  `request.chatRequest.messages[].citations[].sourceCustomEntity` **Added**\n* `glean.client.insights.retrieve()`:  `response.overviewResponse` **Changed**\n* `glean.governance.createfindingsexport()`: \n  *  `request.exportType.enum(issues)` **Added**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md
