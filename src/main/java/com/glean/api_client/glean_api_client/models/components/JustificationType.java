@@ -70,6 +70,7 @@ public class JustificationType {
     public static final JustificationType ACTIVE_DISCUSSION = new JustificationType("ACTIVE_DISCUSSION");
     public static final JustificationType MID_DAY_CATCH_UP = new JustificationType("MID_DAY_CATCH_UP");
     public static final JustificationType QUERY_SUGGESTION = new JustificationType("QUERY_SUGGESTION");
+    public static final JustificationType WEEKLY_MEETINGS = new JustificationType("WEEKLY_MEETINGS");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -187,6 +188,7 @@ public class JustificationType {
         map.put("ACTIVE_DISCUSSION", ACTIVE_DISCUSSION);
         map.put("MID_DAY_CATCH_UP", MID_DAY_CATCH_UP);
         map.put("QUERY_SUGGESTION", QUERY_SUGGESTION);
+        map.put("WEEKLY_MEETINGS", WEEKLY_MEETINGS);
         return map;
     }
 
@@ -236,6 +238,7 @@ public class JustificationType {
         map.put("ACTIVE_DISCUSSION", JustificationTypeEnum.ACTIVE_DISCUSSION);
         map.put("MID_DAY_CATCH_UP", JustificationTypeEnum.MID_DAY_CATCH_UP);
         map.put("QUERY_SUGGESTION", JustificationTypeEnum.QUERY_SUGGESTION);
+        map.put("WEEKLY_MEETINGS", JustificationTypeEnum.WEEKLY_MEETINGS);
         return map;
     }
     
@@ -285,7 +288,8 @@ public class JustificationType {
         MEETING_RECAP("MEETING_RECAP"),
         ACTIVE_DISCUSSION("ACTIVE_DISCUSSION"),
         MID_DAY_CATCH_UP("MID_DAY_CATCH_UP"),
-        QUERY_SUGGESTION("QUERY_SUGGESTION"),;
+        QUERY_SUGGESTION("QUERY_SUGGESTION"),
+        WEEKLY_MEETINGS("WEEKLY_MEETINGS"),;
 
         private final String value;
 
