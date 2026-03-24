@@ -149,7 +149,7 @@ public class People {
     /**
      * Index employee
      * 
-     * <p>Adds an employee or updates information about an employee
+     * <p>Adds an employee or replaces the existing information about an employee.
      * 
      * @return The call builder
      */
@@ -160,7 +160,7 @@ public class People {
     /**
      * Index employee
      * 
-     * <p>Adds an employee or updates information about an employee
+     * <p>Adds an employee or replaces the existing information about an employee.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
