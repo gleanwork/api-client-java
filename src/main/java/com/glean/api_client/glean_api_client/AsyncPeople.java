@@ -153,7 +153,7 @@ public class AsyncPeople {
     /**
      * Index employee
      * 
-     * <p>Adds an employee or updates information about an employee
+     * <p>Adds an employee or replaces the existing information about an employee.
      * 
      * @return The async call builder
      */
@@ -164,7 +164,7 @@ public class AsyncPeople {
     /**
      * Index employee
      * 
-     * <p>Adds an employee or updates information about an employee
+     * <p>Adds an employee or replaces the existing information about an employee.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<PostApiIndexV1IndexemployeeResponse>} - The async response
