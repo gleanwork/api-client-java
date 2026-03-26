@@ -28,6 +28,7 @@ public class ChatFileStatus {
 
     public static final ChatFileStatus PROCESSING = new ChatFileStatus("PROCESSING");
     public static final ChatFileStatus PROCESSED = new ChatFileStatus("PROCESSED");
+    public static final ChatFileStatus PARTIALLY_PROCESSED = new ChatFileStatus("PARTIALLY_PROCESSED");
     public static final ChatFileStatus FAILED = new ChatFileStatus("FAILED");
     public static final ChatFileStatus DELETED = new ChatFileStatus("DELETED");
 
@@ -105,6 +106,7 @@ public class ChatFileStatus {
         Map<String, ChatFileStatus> map = new LinkedHashMap<>();
         map.put("PROCESSING", PROCESSING);
         map.put("PROCESSED", PROCESSED);
+        map.put("PARTIALLY_PROCESSED", PARTIALLY_PROCESSED);
         map.put("FAILED", FAILED);
         map.put("DELETED", DELETED);
         return map;
@@ -114,6 +116,7 @@ public class ChatFileStatus {
         Map<String, ChatFileStatusEnum> map = new HashMap<>();
         map.put("PROCESSING", ChatFileStatusEnum.PROCESSING);
         map.put("PROCESSED", ChatFileStatusEnum.PROCESSED);
+        map.put("PARTIALLY_PROCESSED", ChatFileStatusEnum.PARTIALLY_PROCESSED);
         map.put("FAILED", ChatFileStatusEnum.FAILED);
         map.put("DELETED", ChatFileStatusEnum.DELETED);
         return map;
@@ -124,6 +127,7 @@ public class ChatFileStatus {
 
         PROCESSING("PROCESSING"),
         PROCESSED("PROCESSED"),
+        PARTIALLY_PROCESSED("PARTIALLY_PROCESSED"),
         FAILED("FAILED"),
         DELETED("DELETED"),;
 

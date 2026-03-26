@@ -16,9 +16,10 @@ ChatFileStatus custom = ChatFileStatus.of("custom_value");
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `PROCESSING` | PROCESSING   |
-| `PROCESSED`  | PROCESSED    |
-| `FAILED`     | FAILED       |
-| `DELETED`    | DELETED      |
+| Name                  | Value                 |
+| --------------------- | --------------------- |
+| `PROCESSING`          | PROCESSING            |
+| `PROCESSED`           | PROCESSED             |
+| `PARTIALLY_PROCESSED` | PARTIALLY_PROCESSED   |
+| `FAILED`              | FAILED                |
+| `DELETED`             | DELETED               |
