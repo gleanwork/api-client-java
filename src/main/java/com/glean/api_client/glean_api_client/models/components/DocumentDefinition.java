@@ -177,6 +177,14 @@ public class DocumentDefinition {
     private Optional<? extends List<String>> additionalUrls;
 
     /**
+     * A deep link, if available, into the datasource's native application for the user's platform (e.g.
+     * slack://channel/message).
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("nativeAppUrl")
+    private Optional<String> nativeAppUrl;
+
+    /**
      * Comments associated with the document.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -214,6 +222,7 @@ public class DocumentDefinition {
             @JsonProperty("interactions") Optional<? extends DocumentInteractionsDefinition> interactions,
             @JsonProperty("status") Optional<String> status,
             @JsonProperty("additionalUrls") Optional<? extends List<String>> additionalUrls,
+            @JsonProperty("nativeAppUrl") Optional<String> nativeAppUrl,
             @JsonProperty("comments") Optional<? extends List<CommentDefinition>> comments,
             @JsonProperty("customProperties") Optional<? extends List<CustomProperty>> customProperties) {
         Utils.checkNotNull(title, "title");
@@ -237,6 +246,7 @@ public class DocumentDefinition {
         Utils.checkNotNull(interactions, "interactions");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(additionalUrls, "additionalUrls");
+        Utils.checkNotNull(nativeAppUrl, "nativeAppUrl");
         Utils.checkNotNull(comments, "comments");
         Utils.checkNotNull(customProperties, "customProperties");
         this.title = title;
@@ -260,6 +270,7 @@ public class DocumentDefinition {
         this.interactions = interactions;
         this.status = status;
         this.additionalUrls = additionalUrls;
+        this.nativeAppUrl = nativeAppUrl;
         this.comments = comments;
         this.customProperties = customProperties;
     }
@@ -273,7 +284,7 @@ public class DocumentDefinition {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -456,6 +467,15 @@ public class DocumentDefinition {
     @JsonIgnore
     public Optional<List<String>> additionalUrls() {
         return (Optional<List<String>>) additionalUrls;
+    }
+
+    /**
+     * A deep link, if available, into the datasource's native application for the user's platform (e.g.
+     * slack://channel/message).
+     */
+    @JsonIgnore
+    public Optional<String> nativeAppUrl() {
+        return nativeAppUrl;
     }
 
     /**
@@ -885,6 +905,27 @@ public class DocumentDefinition {
     }
 
     /**
+     * A deep link, if available, into the datasource's native application for the user's platform (e.g.
+     * slack://channel/message).
+     */
+    public DocumentDefinition withNativeAppUrl(String nativeAppUrl) {
+        Utils.checkNotNull(nativeAppUrl, "nativeAppUrl");
+        this.nativeAppUrl = Optional.ofNullable(nativeAppUrl);
+        return this;
+    }
+
+
+    /**
+     * A deep link, if available, into the datasource's native application for the user's platform (e.g.
+     * slack://channel/message).
+     */
+    public DocumentDefinition withNativeAppUrl(Optional<String> nativeAppUrl) {
+        Utils.checkNotNull(nativeAppUrl, "nativeAppUrl");
+        this.nativeAppUrl = nativeAppUrl;
+        return this;
+    }
+
+    /**
      * Comments associated with the document.
      */
     public DocumentDefinition withComments(List<CommentDefinition> comments) {
@@ -955,6 +996,7 @@ public class DocumentDefinition {
             Utils.enhancedDeepEquals(this.interactions, other.interactions) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.additionalUrls, other.additionalUrls) &&
+            Utils.enhancedDeepEquals(this.nativeAppUrl, other.nativeAppUrl) &&
             Utils.enhancedDeepEquals(this.comments, other.comments) &&
             Utils.enhancedDeepEquals(this.customProperties, other.customProperties);
     }
@@ -969,7 +1011,7 @@ public class DocumentDefinition {
             owner, permissions, createdAt,
             updatedAt, updatedBy, tags,
             interactions, status, additionalUrls,
-            comments, customProperties);
+            nativeAppUrl, comments, customProperties);
     }
     
     @Override
@@ -996,6 +1038,7 @@ public class DocumentDefinition {
                 "interactions", interactions,
                 "status", status,
                 "additionalUrls", additionalUrls,
+                "nativeAppUrl", nativeAppUrl,
                 "comments", comments,
                 "customProperties", customProperties);
     }
@@ -1044,6 +1087,8 @@ public class DocumentDefinition {
         private Optional<String> status = Optional.empty();
 
         private Optional<? extends List<String>> additionalUrls = Optional.empty();
+
+        private Optional<String> nativeAppUrl = Optional.empty();
 
         private Optional<? extends List<CommentDefinition>> comments = Optional.empty();
 
@@ -1458,6 +1503,27 @@ public class DocumentDefinition {
 
 
         /**
+         * A deep link, if available, into the datasource's native application for the user's platform (e.g.
+         * slack://channel/message).
+         */
+        public Builder nativeAppUrl(String nativeAppUrl) {
+            Utils.checkNotNull(nativeAppUrl, "nativeAppUrl");
+            this.nativeAppUrl = Optional.ofNullable(nativeAppUrl);
+            return this;
+        }
+
+        /**
+         * A deep link, if available, into the datasource's native application for the user's platform (e.g.
+         * slack://channel/message).
+         */
+        public Builder nativeAppUrl(Optional<String> nativeAppUrl) {
+            Utils.checkNotNull(nativeAppUrl, "nativeAppUrl");
+            this.nativeAppUrl = nativeAppUrl;
+            return this;
+        }
+
+
+        /**
          * Comments associated with the document.
          */
         public Builder comments(List<CommentDefinition> comments) {
@@ -1506,7 +1572,7 @@ public class DocumentDefinition {
                 owner, permissions, createdAt,
                 updatedAt, updatedBy, tags,
                 interactions, status, additionalUrls,
-                comments, customProperties);
+                nativeAppUrl, comments, customProperties);
         }
 
     }
