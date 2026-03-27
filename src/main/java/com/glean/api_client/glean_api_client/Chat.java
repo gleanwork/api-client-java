@@ -370,7 +370,7 @@ public class Chat {
     }
 
     /**
-     * Upload files for Chat.
+     * Upload files for Chat
      * 
      * <p>Upload files for Chat.
      * 
@@ -381,7 +381,7 @@ public class Chat {
     }
 
     /**
-     * Upload files for Chat.
+     * Upload files for Chat
      * 
      * <p>Upload files for Chat.
      * 
@@ -394,7 +394,7 @@ public class Chat {
     }
 
     /**
-     * Upload files for Chat.
+     * Upload files for Chat
      * 
      * <p>Upload files for Chat.
      * 
@@ -420,7 +420,7 @@ public class Chat {
     }
 
     /**
-     * Get files uploaded by a user for Chat.
+     * Get files uploaded by a user for Chat
      * 
      * <p>Get files uploaded by a user for Chat.
      * 
@@ -431,7 +431,7 @@ public class Chat {
     }
 
     /**
-     * Get files uploaded by a user for Chat.
+     * Get files uploaded by a user for Chat
      * 
      * <p>Get files uploaded by a user for Chat.
      * 
@@ -444,7 +444,7 @@ public class Chat {
     }
 
     /**
-     * Get files uploaded by a user for Chat.
+     * Get files uploaded by a user for Chat
      * 
      * <p>Get files uploaded by a user for Chat.
      * 
@@ -470,7 +470,7 @@ public class Chat {
     }
 
     /**
-     * Delete files uploaded by a user for chat.
+     * Delete files uploaded by a user for chat
      * 
      * <p>Delete files uploaded by a user for Chat.
      * 
@@ -481,7 +481,7 @@ public class Chat {
     }
 
     /**
-     * Delete files uploaded by a user for chat.
+     * Delete files uploaded by a user for chat
      * 
      * <p>Delete files uploaded by a user for Chat.
      * 
@@ -494,7 +494,7 @@ public class Chat {
     }
 
     /**
-     * Delete files uploaded by a user for chat.
+     * Delete files uploaded by a user for chat
      * 
      * <p>Delete files uploaded by a user for Chat.
      * 
