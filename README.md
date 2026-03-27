@@ -67,7 +67,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.glean.api-client:glean-api-client:0.12.32'
+implementation 'com.glean.api-client:glean-api-client:0.12.33'
 ```
 
 Maven:
@@ -75,7 +75,7 @@ Maven:
 <dependency>
     <groupId>com.glean.api-client</groupId>
     <artifactId>glean-api-client</artifactId>
-    <version>0.12.32</version>
+    <version>0.12.33</version>
 </dependency>
 ```
 
@@ -451,9 +451,9 @@ For more information on obtaining the appropriate token type, please contact you
 * [retrieve](docs/sdks/chat/README.md#retrieve) - Retrieves a Chat
 * [list](docs/sdks/chat/README.md#list) - Retrieves all saved Chats
 * [retrieveApplication](docs/sdks/chat/README.md#retrieveapplication) - Gets the metadata for a custom Chat application
-* [uploadFiles](docs/sdks/chat/README.md#uploadfiles) - Upload files for Chat.
-* [retrieveFiles](docs/sdks/chat/README.md#retrievefiles) - Get files uploaded by a user for Chat.
-* [deleteFiles](docs/sdks/chat/README.md#deletefiles) - Delete files uploaded by a user for chat.
+* [uploadFiles](docs/sdks/chat/README.md#uploadfiles) - Upload files for Chat
+* [retrieveFiles](docs/sdks/chat/README.md#retrievefiles) - Get files uploaded by a user for Chat
+* [deleteFiles](docs/sdks/chat/README.md#deletefiles) - Delete files uploaded by a user for chat
 * [createStream](docs/sdks/chat/README.md#createstream) - Chat
 
 ### [Client.Collections](docs/sdks/collections/README.md)
