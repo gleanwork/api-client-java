@@ -71,6 +71,10 @@ public class JustificationType {
     public static final JustificationType MID_DAY_CATCH_UP = new JustificationType("MID_DAY_CATCH_UP");
     public static final JustificationType QUERY_SUGGESTION = new JustificationType("QUERY_SUGGESTION");
     public static final JustificationType WEEKLY_MEETINGS = new JustificationType("WEEKLY_MEETINGS");
+    public static final JustificationType FOLLOW_UP = new JustificationType("FOLLOW_UP");
+    public static final JustificationType MILESTONE_TIMELINE_CHECK = new JustificationType("MILESTONE_TIMELINE_CHECK");
+    public static final JustificationType PROJECT_DISCUSSION_DIGEST = new JustificationType("PROJECT_DISCUSSION_DIGEST");
+    public static final JustificationType PROJECT_NEXT_STEP = new JustificationType("PROJECT_NEXT_STEP");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -189,6 +193,10 @@ public class JustificationType {
         map.put("MID_DAY_CATCH_UP", MID_DAY_CATCH_UP);
         map.put("QUERY_SUGGESTION", QUERY_SUGGESTION);
         map.put("WEEKLY_MEETINGS", WEEKLY_MEETINGS);
+        map.put("FOLLOW_UP", FOLLOW_UP);
+        map.put("MILESTONE_TIMELINE_CHECK", MILESTONE_TIMELINE_CHECK);
+        map.put("PROJECT_DISCUSSION_DIGEST", PROJECT_DISCUSSION_DIGEST);
+        map.put("PROJECT_NEXT_STEP", PROJECT_NEXT_STEP);
         return map;
     }
 
@@ -239,6 +247,10 @@ public class JustificationType {
         map.put("MID_DAY_CATCH_UP", JustificationTypeEnum.MID_DAY_CATCH_UP);
         map.put("QUERY_SUGGESTION", JustificationTypeEnum.QUERY_SUGGESTION);
         map.put("WEEKLY_MEETINGS", JustificationTypeEnum.WEEKLY_MEETINGS);
+        map.put("FOLLOW_UP", JustificationTypeEnum.FOLLOW_UP);
+        map.put("MILESTONE_TIMELINE_CHECK", JustificationTypeEnum.MILESTONE_TIMELINE_CHECK);
+        map.put("PROJECT_DISCUSSION_DIGEST", JustificationTypeEnum.PROJECT_DISCUSSION_DIGEST);
+        map.put("PROJECT_NEXT_STEP", JustificationTypeEnum.PROJECT_NEXT_STEP);
         return map;
     }
     
@@ -289,7 +301,11 @@ public class JustificationType {
         ACTIVE_DISCUSSION("ACTIVE_DISCUSSION"),
         MID_DAY_CATCH_UP("MID_DAY_CATCH_UP"),
         QUERY_SUGGESTION("QUERY_SUGGESTION"),
-        WEEKLY_MEETINGS("WEEKLY_MEETINGS"),;
+        WEEKLY_MEETINGS("WEEKLY_MEETINGS"),
+        FOLLOW_UP("FOLLOW_UP"),
+        MILESTONE_TIMELINE_CHECK("MILESTONE_TIMELINE_CHECK"),
+        PROJECT_DISCUSSION_DIGEST("PROJECT_DISCUSSION_DIGEST"),
+        PROJECT_NEXT_STEP("PROJECT_NEXT_STEP"),;
 
         private final String value;
 
