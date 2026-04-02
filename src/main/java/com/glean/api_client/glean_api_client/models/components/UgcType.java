@@ -33,6 +33,7 @@ public class UgcType {
     public static final UgcType PAPER_TYPE = new UgcType("PAPER_TYPE");
     public static final UgcType PRISM_VIEWS_TYPE = new UgcType("PRISM_VIEWS_TYPE");
     public static final UgcType PROMPT_TEMPLATES_TYPE = new UgcType("PROMPT_TEMPLATES_TYPE");
+    public static final UgcType PINS_TYPE = new UgcType("PINS_TYPE");
     public static final UgcType SCRIBES_TYPE = new UgcType("SCRIBES_TYPE");
     public static final UgcType SHORTCUTS_TYPE = new UgcType("SHORTCUTS_TYPE");
     public static final UgcType SLIDE_TYPE = new UgcType("SLIDE_TYPE");
@@ -122,6 +123,7 @@ public class UgcType {
         map.put("PAPER_TYPE", PAPER_TYPE);
         map.put("PRISM_VIEWS_TYPE", PRISM_VIEWS_TYPE);
         map.put("PROMPT_TEMPLATES_TYPE", PROMPT_TEMPLATES_TYPE);
+        map.put("PINS_TYPE", PINS_TYPE);
         map.put("SCRIBES_TYPE", SCRIBES_TYPE);
         map.put("SHORTCUTS_TYPE", SHORTCUTS_TYPE);
         map.put("SLIDE_TYPE", SLIDE_TYPE);
@@ -143,6 +145,7 @@ public class UgcType {
         map.put("PAPER_TYPE", UgcTypeEnum.PAPER_TYPE);
         map.put("PRISM_VIEWS_TYPE", UgcTypeEnum.PRISM_VIEWS_TYPE);
         map.put("PROMPT_TEMPLATES_TYPE", UgcTypeEnum.PROMPT_TEMPLATES_TYPE);
+        map.put("PINS_TYPE", UgcTypeEnum.PINS_TYPE);
         map.put("SCRIBES_TYPE", UgcTypeEnum.SCRIBES_TYPE);
         map.put("SHORTCUTS_TYPE", UgcTypeEnum.SHORTCUTS_TYPE);
         map.put("SLIDE_TYPE", UgcTypeEnum.SLIDE_TYPE);
@@ -165,6 +168,7 @@ public class UgcType {
         PAPER_TYPE("PAPER_TYPE"),
         PRISM_VIEWS_TYPE("PRISM_VIEWS_TYPE"),
         PROMPT_TEMPLATES_TYPE("PROMPT_TEMPLATES_TYPE"),
+        PINS_TYPE("PINS_TYPE"),
         SCRIBES_TYPE("SCRIBES_TYPE"),
         SHORTCUTS_TYPE("SHORTCUTS_TYPE"),
         SLIDE_TYPE("SLIDE_TYPE"),
