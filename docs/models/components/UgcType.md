@@ -28,6 +28,7 @@ UgcType custom = UgcType.of("custom_value");
 | `PAPER_TYPE`            | PAPER_TYPE              |
 | `PRISM_VIEWS_TYPE`      | PRISM_VIEWS_TYPE        |
 | `PROMPT_TEMPLATES_TYPE` | PROMPT_TEMPLATES_TYPE   |
+| `PINS_TYPE`             | PINS_TYPE               |
 | `SCRIBES_TYPE`          | SCRIBES_TYPE            |
 | `SHORTCUTS_TYPE`        | SHORTCUTS_TYPE          |
 | `SLIDE_TYPE`            | SLIDE_TYPE              |
