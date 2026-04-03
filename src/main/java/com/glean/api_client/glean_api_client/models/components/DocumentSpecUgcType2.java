@@ -28,6 +28,7 @@ public class DocumentSpecUgcType2 {
 
     public static final DocumentSpecUgcType2 ANNOUNCEMENTS = new DocumentSpecUgcType2("ANNOUNCEMENTS");
     public static final DocumentSpecUgcType2 ANSWERS = new DocumentSpecUgcType2("ANSWERS");
+    public static final DocumentSpecUgcType2 ARTIFACTS = new DocumentSpecUgcType2("ARTIFACTS");
     public static final DocumentSpecUgcType2 COLLECTIONS = new DocumentSpecUgcType2("COLLECTIONS");
     public static final DocumentSpecUgcType2 SHORTCUTS = new DocumentSpecUgcType2("SHORTCUTS");
     public static final DocumentSpecUgcType2 CHATS = new DocumentSpecUgcType2("CHATS");
@@ -106,6 +107,7 @@ public class DocumentSpecUgcType2 {
         Map<String, DocumentSpecUgcType2> map = new LinkedHashMap<>();
         map.put("ANNOUNCEMENTS", ANNOUNCEMENTS);
         map.put("ANSWERS", ANSWERS);
+        map.put("ARTIFACTS", ARTIFACTS);
         map.put("COLLECTIONS", COLLECTIONS);
         map.put("SHORTCUTS", SHORTCUTS);
         map.put("CHATS", CHATS);
@@ -116,6 +118,7 @@ public class DocumentSpecUgcType2 {
         Map<String, DocumentSpecUgcType2Enum> map = new HashMap<>();
         map.put("ANNOUNCEMENTS", DocumentSpecUgcType2Enum.ANNOUNCEMENTS);
         map.put("ANSWERS", DocumentSpecUgcType2Enum.ANSWERS);
+        map.put("ARTIFACTS", DocumentSpecUgcType2Enum.ARTIFACTS);
         map.put("COLLECTIONS", DocumentSpecUgcType2Enum.COLLECTIONS);
         map.put("SHORTCUTS", DocumentSpecUgcType2Enum.SHORTCUTS);
         map.put("CHATS", DocumentSpecUgcType2Enum.CHATS);
@@ -127,6 +130,7 @@ public class DocumentSpecUgcType2 {
 
         ANNOUNCEMENTS("ANNOUNCEMENTS"),
         ANSWERS("ANSWERS"),
+        ARTIFACTS("ARTIFACTS"),
         COLLECTIONS("COLLECTIONS"),
         SHORTCUTS("SHORTCUTS"),
         CHATS("CHATS"),;
