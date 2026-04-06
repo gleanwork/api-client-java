@@ -46,7 +46,7 @@ public class AsyncIndexingShortcuts {
      * would be hosted by Glean, please use the `/uploadshortcuts` endpoint.
      * 
      * <p>For information on what you can do with Golinks, which are Glean-hosted shortcuts, please refer to
-     * [this](https://help.glean.com/en/articles/5628838-how-go-links-work) page.
+     * [this](https://docs.glean.com/user-guide/knowledge/go-links/how-go-links-work) page.
      * 
      * @return The async call builder
      */
@@ -62,7 +62,7 @@ public class AsyncIndexingShortcuts {
      * would be hosted by Glean, please use the `/uploadshortcuts` endpoint.
      * 
      * <p>For information on what you can do with Golinks, which are Glean-hosted shortcuts, please refer to
-     * [this](https://help.glean.com/en/articles/5628838-how-go-links-work) page.
+     * [this](https://docs.glean.com/user-guide/knowledge/go-links/how-go-links-work) page.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<PostApiIndexV1BulkindexshortcutsResponse>} - The async response

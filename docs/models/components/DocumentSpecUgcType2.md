@@ -20,6 +20,7 @@ DocumentSpecUgcType2 custom = DocumentSpecUgcType2.of("custom_value");
 | --------------- | --------------- |
 | `ANNOUNCEMENTS` | ANNOUNCEMENTS   |
 | `ANSWERS`       | ANSWERS         |
+| `ARTIFACTS`     | ARTIFACTS       |
 | `COLLECTIONS`   | COLLECTIONS     |
 | `SHORTCUTS`     | SHORTCUTS       |
 | `CHATS`         | CHATS           |
