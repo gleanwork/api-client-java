@@ -63,6 +63,11 @@ public class DlpFindingFilter {
 
 
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("statuses")
+    private Optional<? extends List<DlpIssueStatus>> statuses;
+
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timeRange")
     private Optional<? extends TimeRangeFilter> timeRange;
 
@@ -81,6 +86,7 @@ public class DlpFindingFilter {
             @JsonProperty("documentIds") Optional<? extends List<String>> documentIds,
             @JsonProperty("severity") Optional<? extends DlpSeverity> severity,
             @JsonProperty("documentSeverity") Optional<? extends List<DlpSeverity>> documentSeverity,
+            @JsonProperty("statuses") Optional<? extends List<DlpIssueStatus>> statuses,
             @JsonProperty("timeRange") Optional<? extends TimeRangeFilter> timeRange,
             @JsonProperty("archived") Optional<Boolean> archived) {
         Utils.checkNotNull(infoType, "infoType");
@@ -91,6 +97,7 @@ public class DlpFindingFilter {
         Utils.checkNotNull(documentIds, "documentIds");
         Utils.checkNotNull(severity, "severity");
         Utils.checkNotNull(documentSeverity, "documentSeverity");
+        Utils.checkNotNull(statuses, "statuses");
         Utils.checkNotNull(timeRange, "timeRange");
         Utils.checkNotNull(archived, "archived");
         this.infoType = infoType;
@@ -101,6 +108,7 @@ public class DlpFindingFilter {
         this.documentIds = documentIds;
         this.severity = severity;
         this.documentSeverity = documentSeverity;
+        this.statuses = statuses;
         this.timeRange = timeRange;
         this.archived = archived;
     }
@@ -109,7 +117,7 @@ public class DlpFindingFilter {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -156,6 +164,12 @@ public class DlpFindingFilter {
     @JsonIgnore
     public Optional<List<DlpSeverity>> documentSeverity() {
         return (Optional<List<DlpSeverity>>) documentSeverity;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<DlpIssueStatus>> statuses() {
+        return (Optional<List<DlpIssueStatus>>) statuses;
     }
 
     @SuppressWarnings("unchecked")
@@ -284,6 +298,19 @@ public class DlpFindingFilter {
         return this;
     }
 
+    public DlpFindingFilter withStatuses(List<DlpIssueStatus> statuses) {
+        Utils.checkNotNull(statuses, "statuses");
+        this.statuses = Optional.ofNullable(statuses);
+        return this;
+    }
+
+
+    public DlpFindingFilter withStatuses(Optional<? extends List<DlpIssueStatus>> statuses) {
+        Utils.checkNotNull(statuses, "statuses");
+        this.statuses = statuses;
+        return this;
+    }
+
     public DlpFindingFilter withTimeRange(TimeRangeFilter timeRange) {
         Utils.checkNotNull(timeRange, "timeRange");
         this.timeRange = Optional.ofNullable(timeRange);
@@ -328,6 +355,7 @@ public class DlpFindingFilter {
             Utils.enhancedDeepEquals(this.documentIds, other.documentIds) &&
             Utils.enhancedDeepEquals(this.severity, other.severity) &&
             Utils.enhancedDeepEquals(this.documentSeverity, other.documentSeverity) &&
+            Utils.enhancedDeepEquals(this.statuses, other.statuses) &&
             Utils.enhancedDeepEquals(this.timeRange, other.timeRange) &&
             Utils.enhancedDeepEquals(this.archived, other.archived);
     }
@@ -337,8 +365,8 @@ public class DlpFindingFilter {
         return Utils.enhancedHash(
             infoType, regexId, reportId,
             datasource, visibility, documentIds,
-            severity, documentSeverity, timeRange,
-            archived);
+            severity, documentSeverity, statuses,
+            timeRange, archived);
     }
     
     @Override
@@ -352,6 +380,7 @@ public class DlpFindingFilter {
                 "documentIds", documentIds,
                 "severity", severity,
                 "documentSeverity", documentSeverity,
+                "statuses", statuses,
                 "timeRange", timeRange,
                 "archived", archived);
     }
@@ -374,6 +403,8 @@ public class DlpFindingFilter {
         private Optional<? extends DlpSeverity> severity = Optional.empty();
 
         private Optional<? extends List<DlpSeverity>> documentSeverity = Optional.empty();
+
+        private Optional<? extends List<DlpIssueStatus>> statuses = Optional.empty();
 
         private Optional<? extends TimeRangeFilter> timeRange = Optional.empty();
 
@@ -494,6 +525,19 @@ public class DlpFindingFilter {
         }
 
 
+        public Builder statuses(List<DlpIssueStatus> statuses) {
+            Utils.checkNotNull(statuses, "statuses");
+            this.statuses = Optional.ofNullable(statuses);
+            return this;
+        }
+
+        public Builder statuses(Optional<? extends List<DlpIssueStatus>> statuses) {
+            Utils.checkNotNull(statuses, "statuses");
+            this.statuses = statuses;
+            return this;
+        }
+
+
         public Builder timeRange(TimeRangeFilter timeRange) {
             Utils.checkNotNull(timeRange, "timeRange");
             this.timeRange = Optional.ofNullable(timeRange);
@@ -524,8 +568,8 @@ public class DlpFindingFilter {
             return new DlpFindingFilter(
                 infoType, regexId, reportId,
                 datasource, visibility, documentIds,
-                severity, documentSeverity, timeRange,
-                archived);
+                severity, documentSeverity, statuses,
+                timeRange, archived);
         }
 
     }
