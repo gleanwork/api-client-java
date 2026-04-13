@@ -44,6 +44,13 @@ public class Workflow {
     @JsonProperty("lastUpdateTimestamp")
     private Optional<Long> lastUpdateTimestamp;
 
+    /**
+     * Server Unix timestamp of the last time the draft was saved.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("lastDraftSavedAt")
+    private Optional<Long> lastDraftSavedAt;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lastUpdatedBy")
@@ -67,6 +74,7 @@ public class Workflow {
             @JsonProperty("author") Optional<? extends Person> author,
             @JsonProperty("createTimestamp") Optional<Long> createTimestamp,
             @JsonProperty("lastUpdateTimestamp") Optional<Long> lastUpdateTimestamp,
+            @JsonProperty("lastDraftSavedAt") Optional<Long> lastDraftSavedAt,
             @JsonProperty("lastUpdatedBy") Optional<? extends Person> lastUpdatedBy,
             @JsonProperty("permissions") Optional<? extends ObjectPermissions> permissions,
             @JsonProperty("id") Optional<String> id) {
@@ -74,6 +82,7 @@ public class Workflow {
         Utils.checkNotNull(author, "author");
         Utils.checkNotNull(createTimestamp, "createTimestamp");
         Utils.checkNotNull(lastUpdateTimestamp, "lastUpdateTimestamp");
+        Utils.checkNotNull(lastDraftSavedAt, "lastDraftSavedAt");
         Utils.checkNotNull(lastUpdatedBy, "lastUpdatedBy");
         Utils.checkNotNull(permissions, "permissions");
         Utils.checkNotNull(id, "id");
@@ -81,6 +90,7 @@ public class Workflow {
         this.author = author;
         this.createTimestamp = createTimestamp;
         this.lastUpdateTimestamp = lastUpdateTimestamp;
+        this.lastDraftSavedAt = lastDraftSavedAt;
         this.lastUpdatedBy = lastUpdatedBy;
         this.permissions = permissions;
         this.id = id;
@@ -89,7 +99,7 @@ public class Workflow {
     public Workflow() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -120,6 +130,14 @@ public class Workflow {
     @JsonIgnore
     public Optional<Long> lastUpdateTimestamp() {
         return lastUpdateTimestamp;
+    }
+
+    /**
+     * Server Unix timestamp of the last time the draft was saved.
+     */
+    @JsonIgnore
+    public Optional<Long> lastDraftSavedAt() {
+        return lastDraftSavedAt;
     }
 
     @SuppressWarnings("unchecked")
@@ -217,6 +235,25 @@ public class Workflow {
         return this;
     }
 
+    /**
+     * Server Unix timestamp of the last time the draft was saved.
+     */
+    public Workflow withLastDraftSavedAt(long lastDraftSavedAt) {
+        Utils.checkNotNull(lastDraftSavedAt, "lastDraftSavedAt");
+        this.lastDraftSavedAt = Optional.ofNullable(lastDraftSavedAt);
+        return this;
+    }
+
+
+    /**
+     * Server Unix timestamp of the last time the draft was saved.
+     */
+    public Workflow withLastDraftSavedAt(Optional<Long> lastDraftSavedAt) {
+        Utils.checkNotNull(lastDraftSavedAt, "lastDraftSavedAt");
+        this.lastDraftSavedAt = lastDraftSavedAt;
+        return this;
+    }
+
     public Workflow withLastUpdatedBy(Person lastUpdatedBy) {
         Utils.checkNotNull(lastUpdatedBy, "lastUpdatedBy");
         this.lastUpdatedBy = Optional.ofNullable(lastUpdatedBy);
@@ -276,6 +313,7 @@ public class Workflow {
             Utils.enhancedDeepEquals(this.author, other.author) &&
             Utils.enhancedDeepEquals(this.createTimestamp, other.createTimestamp) &&
             Utils.enhancedDeepEquals(this.lastUpdateTimestamp, other.lastUpdateTimestamp) &&
+            Utils.enhancedDeepEquals(this.lastDraftSavedAt, other.lastDraftSavedAt) &&
             Utils.enhancedDeepEquals(this.lastUpdatedBy, other.lastUpdatedBy) &&
             Utils.enhancedDeepEquals(this.permissions, other.permissions) &&
             Utils.enhancedDeepEquals(this.id, other.id);
@@ -285,8 +323,8 @@ public class Workflow {
     public int hashCode() {
         return Utils.enhancedHash(
             name, author, createTimestamp,
-            lastUpdateTimestamp, lastUpdatedBy, permissions,
-            id);
+            lastUpdateTimestamp, lastDraftSavedAt, lastUpdatedBy,
+            permissions, id);
     }
     
     @Override
@@ -296,6 +334,7 @@ public class Workflow {
                 "author", author,
                 "createTimestamp", createTimestamp,
                 "lastUpdateTimestamp", lastUpdateTimestamp,
+                "lastDraftSavedAt", lastDraftSavedAt,
                 "lastUpdatedBy", lastUpdatedBy,
                 "permissions", permissions,
                 "id", id);
@@ -311,6 +350,8 @@ public class Workflow {
         private Optional<Long> createTimestamp = Optional.empty();
 
         private Optional<Long> lastUpdateTimestamp = Optional.empty();
+
+        private Optional<Long> lastDraftSavedAt = Optional.empty();
 
         private Optional<? extends Person> lastUpdatedBy = Optional.empty();
 
@@ -393,6 +434,25 @@ public class Workflow {
         }
 
 
+        /**
+         * Server Unix timestamp of the last time the draft was saved.
+         */
+        public Builder lastDraftSavedAt(long lastDraftSavedAt) {
+            Utils.checkNotNull(lastDraftSavedAt, "lastDraftSavedAt");
+            this.lastDraftSavedAt = Optional.ofNullable(lastDraftSavedAt);
+            return this;
+        }
+
+        /**
+         * Server Unix timestamp of the last time the draft was saved.
+         */
+        public Builder lastDraftSavedAt(Optional<Long> lastDraftSavedAt) {
+            Utils.checkNotNull(lastDraftSavedAt, "lastDraftSavedAt");
+            this.lastDraftSavedAt = lastDraftSavedAt;
+            return this;
+        }
+
+
         public Builder lastUpdatedBy(Person lastUpdatedBy) {
             Utils.checkNotNull(lastUpdatedBy, "lastUpdatedBy");
             this.lastUpdatedBy = Optional.ofNullable(lastUpdatedBy);
@@ -441,8 +501,8 @@ public class Workflow {
 
             return new Workflow(
                 name, author, createTimestamp,
-                lastUpdateTimestamp, lastUpdatedBy, permissions,
-                id);
+                lastUpdateTimestamp, lastDraftSavedAt, lastUpdatedBy,
+                permissions, id);
         }
 
     }
