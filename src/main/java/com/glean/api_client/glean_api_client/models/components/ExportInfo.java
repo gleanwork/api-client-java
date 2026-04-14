@@ -53,10 +53,24 @@ public class ExportInfo {
     @JsonProperty("fileName")
     private Optional<String> fileName;
 
+    /**
+     * The type of export to perform
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("exportType")
+    private Optional<? extends ExportInfoExportType> exportType;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("filter")
     private Optional<? extends DlpFindingFilter> filter;
+
+    /**
+     * Filter for DLP issues. Includes document-level filters and issue-specific filters.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("issueFilter")
+    private Optional<? extends DlpIssueFilter> issueFilter;
 
     /**
      * The status of the export
@@ -79,7 +93,9 @@ public class ExportInfo {
             @JsonProperty("endTime") Optional<String> endTime,
             @JsonProperty("exportId") Optional<String> exportId,
             @JsonProperty("fileName") Optional<String> fileName,
+            @JsonProperty("exportType") Optional<? extends ExportInfoExportType> exportType,
             @JsonProperty("filter") Optional<? extends DlpFindingFilter> filter,
+            @JsonProperty("issueFilter") Optional<? extends DlpIssueFilter> issueFilter,
             @JsonProperty("status") Optional<? extends ExportInfoStatus> status,
             @JsonProperty("exportSize") Optional<Long> exportSize) {
         Utils.checkNotNull(createdBy, "createdBy");
@@ -87,7 +103,9 @@ public class ExportInfo {
         Utils.checkNotNull(endTime, "endTime");
         Utils.checkNotNull(exportId, "exportId");
         Utils.checkNotNull(fileName, "fileName");
+        Utils.checkNotNull(exportType, "exportType");
         Utils.checkNotNull(filter, "filter");
+        Utils.checkNotNull(issueFilter, "issueFilter");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(exportSize, "exportSize");
         this.createdBy = createdBy;
@@ -95,7 +113,9 @@ public class ExportInfo {
         this.endTime = endTime;
         this.exportId = exportId;
         this.fileName = fileName;
+        this.exportType = exportType;
         this.filter = filter;
+        this.issueFilter = issueFilter;
         this.status = status;
         this.exportSize = exportSize;
     }
@@ -103,7 +123,8 @@ public class ExportInfo {
     public ExportInfo() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -147,10 +168,28 @@ public class ExportInfo {
         return fileName;
     }
 
+    /**
+     * The type of export to perform
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ExportInfoExportType> exportType() {
+        return (Optional<ExportInfoExportType>) exportType;
+    }
+
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<DlpFindingFilter> filter() {
         return (Optional<DlpFindingFilter>) filter;
+    }
+
+    /**
+     * Filter for DLP issues. Includes document-level filters and issue-specific filters.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<DlpIssueFilter> issueFilter() {
+        return (Optional<DlpIssueFilter>) issueFilter;
     }
 
     /**
@@ -270,6 +309,25 @@ public class ExportInfo {
         return this;
     }
 
+    /**
+     * The type of export to perform
+     */
+    public ExportInfo withExportType(ExportInfoExportType exportType) {
+        Utils.checkNotNull(exportType, "exportType");
+        this.exportType = Optional.ofNullable(exportType);
+        return this;
+    }
+
+
+    /**
+     * The type of export to perform
+     */
+    public ExportInfo withExportType(Optional<? extends ExportInfoExportType> exportType) {
+        Utils.checkNotNull(exportType, "exportType");
+        this.exportType = exportType;
+        return this;
+    }
+
     public ExportInfo withFilter(DlpFindingFilter filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = Optional.ofNullable(filter);
@@ -280,6 +338,25 @@ public class ExportInfo {
     public ExportInfo withFilter(Optional<? extends DlpFindingFilter> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = filter;
+        return this;
+    }
+
+    /**
+     * Filter for DLP issues. Includes document-level filters and issue-specific filters.
+     */
+    public ExportInfo withIssueFilter(DlpIssueFilter issueFilter) {
+        Utils.checkNotNull(issueFilter, "issueFilter");
+        this.issueFilter = Optional.ofNullable(issueFilter);
+        return this;
+    }
+
+
+    /**
+     * Filter for DLP issues. Includes document-level filters and issue-specific filters.
+     */
+    public ExportInfo withIssueFilter(Optional<? extends DlpIssueFilter> issueFilter) {
+        Utils.checkNotNull(issueFilter, "issueFilter");
+        this.issueFilter = issueFilter;
         return this;
     }
 
@@ -336,7 +413,9 @@ public class ExportInfo {
             Utils.enhancedDeepEquals(this.endTime, other.endTime) &&
             Utils.enhancedDeepEquals(this.exportId, other.exportId) &&
             Utils.enhancedDeepEquals(this.fileName, other.fileName) &&
+            Utils.enhancedDeepEquals(this.exportType, other.exportType) &&
             Utils.enhancedDeepEquals(this.filter, other.filter) &&
+            Utils.enhancedDeepEquals(this.issueFilter, other.issueFilter) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.exportSize, other.exportSize);
     }
@@ -345,8 +424,9 @@ public class ExportInfo {
     public int hashCode() {
         return Utils.enhancedHash(
             createdBy, startTime, endTime,
-            exportId, fileName, filter,
-            status, exportSize);
+            exportId, fileName, exportType,
+            filter, issueFilter, status,
+            exportSize);
     }
     
     @Override
@@ -357,7 +437,9 @@ public class ExportInfo {
                 "endTime", endTime,
                 "exportId", exportId,
                 "fileName", fileName,
+                "exportType", exportType,
                 "filter", filter,
+                "issueFilter", issueFilter,
                 "status", status,
                 "exportSize", exportSize);
     }
@@ -375,7 +457,11 @@ public class ExportInfo {
 
         private Optional<String> fileName = Optional.empty();
 
+        private Optional<? extends ExportInfoExportType> exportType = Optional.empty();
+
         private Optional<? extends DlpFindingFilter> filter = Optional.empty();
+
+        private Optional<? extends DlpIssueFilter> issueFilter = Optional.empty();
 
         private Optional<? extends ExportInfoStatus> status = Optional.empty();
 
@@ -481,6 +567,25 @@ public class ExportInfo {
         }
 
 
+        /**
+         * The type of export to perform
+         */
+        public Builder exportType(ExportInfoExportType exportType) {
+            Utils.checkNotNull(exportType, "exportType");
+            this.exportType = Optional.ofNullable(exportType);
+            return this;
+        }
+
+        /**
+         * The type of export to perform
+         */
+        public Builder exportType(Optional<? extends ExportInfoExportType> exportType) {
+            Utils.checkNotNull(exportType, "exportType");
+            this.exportType = exportType;
+            return this;
+        }
+
+
         public Builder filter(DlpFindingFilter filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = Optional.ofNullable(filter);
@@ -490,6 +595,25 @@ public class ExportInfo {
         public Builder filter(Optional<? extends DlpFindingFilter> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = filter;
+            return this;
+        }
+
+
+        /**
+         * Filter for DLP issues. Includes document-level filters and issue-specific filters.
+         */
+        public Builder issueFilter(DlpIssueFilter issueFilter) {
+            Utils.checkNotNull(issueFilter, "issueFilter");
+            this.issueFilter = Optional.ofNullable(issueFilter);
+            return this;
+        }
+
+        /**
+         * Filter for DLP issues. Includes document-level filters and issue-specific filters.
+         */
+        public Builder issueFilter(Optional<? extends DlpIssueFilter> issueFilter) {
+            Utils.checkNotNull(issueFilter, "issueFilter");
+            this.issueFilter = issueFilter;
             return this;
         }
 
@@ -535,8 +659,9 @@ public class ExportInfo {
 
             return new ExportInfo(
                 createdBy, startTime, endTime,
-                exportId, fileName, filter,
-                status, exportSize);
+                exportId, fileName, exportType,
+                filter, issueFilter, status,
+                exportSize);
         }
 
     }

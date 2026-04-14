@@ -1,0 +1,20 @@
+# DlpIssueFilter
+
+Filter for DLP issues. Includes document-level filters and issue-specific filters.
+
+
+## Fields
+
+| Field                                                                    | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `searchText`                                                             | *Optional\<String>*                                                      | :heavy_minus_sign:                                                       | Text to search for in issue fields.                                      |
+| `statuses`                                                               | List\<[DlpIssueStatus](../../models/components/DlpIssueStatus.md)>       | :heavy_minus_sign:                                                       | Filter by one or more issue statuses.                                    |
+| `assigneeId`                                                             | *Optional\<String>*                                                      | :heavy_minus_sign:                                                       | Filter by assignee user ID.                                              |
+| `infoType`                                                               | *Optional\<String>*                                                      | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `regexId`                                                                | *Optional\<String>*                                                      | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `reportIds`                                                              | List\<*String*>                                                          | :heavy_minus_sign:                                                       | Filter by one or more report/policy IDs.                                 |
+| `docId`                                                                  | *Optional\<String>*                                                      | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `datasource`                                                             | *Optional\<String>*                                                      | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `visibility`                                                             | *Optional\<String>*                                                      | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `severities`                                                             | List\<[DlpSeverity](../../models/components/DlpSeverity.md)>             | :heavy_minus_sign:                                                       | Filter by one or more severity levels.                                   |
+| `timeRange`                                                              | [Optional\<TimeRangeFilter>](../../models/components/TimeRangeFilter.md) | :heavy_minus_sign:                                                       | N/A                                                                      |
