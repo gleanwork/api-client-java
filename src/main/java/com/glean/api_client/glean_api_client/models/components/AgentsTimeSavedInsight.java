@@ -62,6 +62,14 @@ public class AgentsTimeSavedInsight {
     @JsonProperty("minsPerRun")
     private Optional<Float> minsPerRun;
 
+    /**
+     * Total number of users who provided feedback on time saved for this agent over the specified time
+     * period.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("feedbackUserCount")
+    private Optional<Long> feedbackUserCount;
+
     @JsonCreator
     public AgentsTimeSavedInsight(
             @JsonProperty("agentId") Optional<String> agentId,
@@ -69,24 +77,28 @@ public class AgentsTimeSavedInsight {
             @JsonProperty("icon") Optional<? extends IconConfig> icon,
             @JsonProperty("isDeleted") Optional<Boolean> isDeleted,
             @JsonProperty("runCount") Optional<Long> runCount,
-            @JsonProperty("minsPerRun") Optional<Float> minsPerRun) {
+            @JsonProperty("minsPerRun") Optional<Float> minsPerRun,
+            @JsonProperty("feedbackUserCount") Optional<Long> feedbackUserCount) {
         Utils.checkNotNull(agentId, "agentId");
         Utils.checkNotNull(agentName, "agentName");
         Utils.checkNotNull(icon, "icon");
         Utils.checkNotNull(isDeleted, "isDeleted");
         Utils.checkNotNull(runCount, "runCount");
         Utils.checkNotNull(minsPerRun, "minsPerRun");
+        Utils.checkNotNull(feedbackUserCount, "feedbackUserCount");
         this.agentId = agentId;
         this.agentName = agentName;
         this.icon = icon;
         this.isDeleted = isDeleted;
         this.runCount = runCount;
         this.minsPerRun = minsPerRun;
+        this.feedbackUserCount = feedbackUserCount;
     }
     
     public AgentsTimeSavedInsight() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -136,6 +148,15 @@ public class AgentsTimeSavedInsight {
     @JsonIgnore
     public Optional<Float> minsPerRun() {
         return minsPerRun;
+    }
+
+    /**
+     * Total number of users who provided feedback on time saved for this agent over the specified time
+     * period.
+     */
+    @JsonIgnore
+    public Optional<Long> feedbackUserCount() {
+        return feedbackUserCount;
     }
 
     public static Builder builder() {
@@ -257,6 +278,27 @@ public class AgentsTimeSavedInsight {
         return this;
     }
 
+    /**
+     * Total number of users who provided feedback on time saved for this agent over the specified time
+     * period.
+     */
+    public AgentsTimeSavedInsight withFeedbackUserCount(long feedbackUserCount) {
+        Utils.checkNotNull(feedbackUserCount, "feedbackUserCount");
+        this.feedbackUserCount = Optional.ofNullable(feedbackUserCount);
+        return this;
+    }
+
+
+    /**
+     * Total number of users who provided feedback on time saved for this agent over the specified time
+     * period.
+     */
+    public AgentsTimeSavedInsight withFeedbackUserCount(Optional<Long> feedbackUserCount) {
+        Utils.checkNotNull(feedbackUserCount, "feedbackUserCount");
+        this.feedbackUserCount = feedbackUserCount;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -272,14 +314,16 @@ public class AgentsTimeSavedInsight {
             Utils.enhancedDeepEquals(this.icon, other.icon) &&
             Utils.enhancedDeepEquals(this.isDeleted, other.isDeleted) &&
             Utils.enhancedDeepEquals(this.runCount, other.runCount) &&
-            Utils.enhancedDeepEquals(this.minsPerRun, other.minsPerRun);
+            Utils.enhancedDeepEquals(this.minsPerRun, other.minsPerRun) &&
+            Utils.enhancedDeepEquals(this.feedbackUserCount, other.feedbackUserCount);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             agentId, agentName, icon,
-            isDeleted, runCount, minsPerRun);
+            isDeleted, runCount, minsPerRun,
+            feedbackUserCount);
     }
     
     @Override
@@ -290,7 +334,8 @@ public class AgentsTimeSavedInsight {
                 "icon", icon,
                 "isDeleted", isDeleted,
                 "runCount", runCount,
-                "minsPerRun", minsPerRun);
+                "minsPerRun", minsPerRun,
+                "feedbackUserCount", feedbackUserCount);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -307,6 +352,8 @@ public class AgentsTimeSavedInsight {
         private Optional<Long> runCount = Optional.empty();
 
         private Optional<Float> minsPerRun = Optional.empty();
+
+        private Optional<Long> feedbackUserCount = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -426,11 +473,33 @@ public class AgentsTimeSavedInsight {
             return this;
         }
 
+
+        /**
+         * Total number of users who provided feedback on time saved for this agent over the specified time
+         * period.
+         */
+        public Builder feedbackUserCount(long feedbackUserCount) {
+            Utils.checkNotNull(feedbackUserCount, "feedbackUserCount");
+            this.feedbackUserCount = Optional.ofNullable(feedbackUserCount);
+            return this;
+        }
+
+        /**
+         * Total number of users who provided feedback on time saved for this agent over the specified time
+         * period.
+         */
+        public Builder feedbackUserCount(Optional<Long> feedbackUserCount) {
+            Utils.checkNotNull(feedbackUserCount, "feedbackUserCount");
+            this.feedbackUserCount = feedbackUserCount;
+            return this;
+        }
+
         public AgentsTimeSavedInsight build() {
 
             return new AgentsTimeSavedInsight(
                 agentId, agentName, icon,
-                isDeleted, runCount, minsPerRun);
+                isDeleted, runCount, minsPerRun,
+                feedbackUserCount);
         }
 
     }

@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 0359d4fe-2923-46fc-aaca-cf70b48dcfa1
 management:
-  docChecksum: 95495705a106bf02a21467a7d00ea312
+  docChecksum: 02c031b7248e8c1df275b524638100fe
   docVersion: 0.9.0
-  speakeasyVersion: 1.761.3
-  generationVersion: 2.879.11
-  releaseVersion: 0.12.36
-  configChecksum: 1f488f495cca2305304bfcc158d08edc
+  speakeasyVersion: 1.761.5
+  generationVersion: 2.879.13
+  releaseVersion: 0.12.37
+  configChecksum: 6b459c6c8bcfed84652b08e57218a0e3
   repoURL: https://github.com/gleanwork/api-client-java.git
   installationURL: https://github.com/gleanwork/api-client-java
   published: true
 persistentEdits:
-  generation_id: bbc5fb4b-c2a4-4b49-a4f4-bb236d7d20ab
-  pristine_commit_hash: 116a27a79215020a82437ddf17c8c9ddff2ba199
-  pristine_tree_hash: c59b3af3ab46ebafcc85118af017aeca19d3f535
+  generation_id: 861e6107-69b5-4ca4-bb7a-27cb012a6dfa
+  pristine_commit_hash: df513c42940583955a185408dc498e5f28a65a73
+  pristine_tree_hash: e34f87bca3eefc7cdbcdc59033726fc9bf077bba
 features:
   java:
     additionalDependencies: 0.1.0
@@ -143,8 +143,8 @@ trackedFiles:
     pristine_git_object: a7445ae69aa5a40a36cfeba9873dc296ce4be8fd
   docs/models/components/AgentsTimeSavedInsight.md:
     id: a6b9d40adfea
-    last_write_checksum: sha1:a92122381797dcd13f9bc88051901c79a23e28f5
-    pristine_git_object: bc38ab566899944ebe2d85a337eb997c97440edb
+    last_write_checksum: sha1:83778ce6380774a413d262e691f4099d6693591a
+    pristine_git_object: c17951625e115f2e7a4fa97fce36bddbfc582a90
   docs/models/components/AgentsUsageByDepartmentInsight.md:
     id: 28489701e7da
     last_write_checksum: sha1:402ddfbffd49b46c6e864fa506bd1ef2c3342d7d
@@ -811,8 +811,12 @@ trackedFiles:
     pristine_git_object: 805d41b54b6055cbe183537fb83548a016acecb6
   docs/models/components/DlpExportFindingsRequest.md:
     id: 77b477ee2a66
-    last_write_checksum: sha1:8011e1a7452d1728fc3145422f8e4136b0f0aa2b
-    pristine_git_object: f06fa04daaae9c9213533a4529c2cdf17ab9e18c
+    last_write_checksum: sha1:1c023a2f7a010cf94204bedf2ad335a786b9b77b
+    pristine_git_object: f97e4a52319cb8b210789b2681d2b5e41c0d5ab4
+  docs/models/components/DlpExportFindingsRequestExportType.md:
+    id: bcf2f5bcff9c
+    last_write_checksum: sha1:7713012172ea9ddf028f69571d8a38a4754a4e8b
+    pristine_git_object: 1ef875526389e3ff8bd4554d0fca806982f67699
   docs/models/components/DlpFindingFilter.md:
     id: 393e15b29070
     last_write_checksum: sha1:1c4eb8267094cc7544365bcf4fd135cd3f4ec817
@@ -821,6 +825,10 @@ trackedFiles:
     id: faa0e105561b
     last_write_checksum: sha1:c399109ccd6f639cef1a3e53aeda839d1aa79b9f
     pristine_git_object: c2f49c25bfdccfc9f56959c2fc639df4d7656adb
+  docs/models/components/DlpIssueFilter.md:
+    id: b57a3ab57eab
+    last_write_checksum: sha1:a01d1cc11d4a042342c9cf4a17825ac3bd69fed5
+    pristine_git_object: 320c8610b543dafd1334bdefa6295504f0628b25
   docs/models/components/DlpIssueStatus.md:
     id: b7ee9c461b20
     last_write_checksum: sha1:498a85c82133f124fefe017492eaf9ef18dab57a
@@ -1027,16 +1035,16 @@ trackedFiles:
     pristine_git_object: 92014ebd54aa0169a3c382028be03a6e48ce964e
   docs/models/components/ExportInfo.md:
     id: c7996087902c
-    last_write_checksum: sha1:93a2170166e6f1ae43515b9d1de1d14c1a69cd0e
-    pristine_git_object: d435b81bc9fddb7580603f15b672587772e46fbc
+    last_write_checksum: sha1:552eeb2963d9780400fd0e59050e0fce3e028f3a
+    pristine_git_object: ac315c5e8b3793f9c2aeaf7d9d581c500c02c141
+  docs/models/components/ExportInfoExportType.md:
+    id: 07457205a82e
+    last_write_checksum: sha1:ab23d26c529c73c59ef21771f6c1cac58abb607f
+    pristine_git_object: e82d0ff5f48112f53020f46713e058e501ce9be7
   docs/models/components/ExportInfoStatus.md:
     id: 8a617f221b54
     last_write_checksum: sha1:b8779f7d18408dcacd7c2dfae197a3a035fea8d4
     pristine_git_object: 29e92c35939e690e9dd2a58495afb90a99bb655a
-  docs/models/components/ExportType.md:
-    id: e93159ff949a
-    last_write_checksum: sha1:442dc194bf9a9cb89207d7a491a8cbd3cb10d0f3
-    pristine_git_object: 0f157ac0e4edccb62bf4f62a9be66c12b7720145
   docs/models/components/ExternalSharingOptions.md:
     id: d62ab6bcefc2
     last_write_checksum: sha1:096de44887e7b789bdb7ae113a07f21a43595129
@@ -3219,8 +3227,8 @@ trackedFiles:
     pristine_git_object: 3decbce5bd40edbe278c1c5d2dbf585808e51d9a
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:b52b14304dbc37cc9818fd76b52658516b8d8dc9
-    pristine_git_object: b3adfe577cc1a754333e53a57c9bf3dbb66bb56d
+    last_write_checksum: sha1:642890f093b35a1526318d04f7890419f5b4a124
+    pristine_git_object: 22a3123f99fbdcde43a52e11fb439b5a14ceb77e
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3539,8 +3547,8 @@ trackedFiles:
     pristine_git_object: ffae914775eb41ff311371f62504344a59d090fd
   src/main/java/com/glean/api_client/glean_api_client/SDKConfiguration.java:
     id: d5fcc61f5992
-    last_write_checksum: sha1:61e8eb84e54d743dbe1dea8695a0caaf182c273c
-    pristine_git_object: f7f8aaf0726a4053206e818c1265b262d5a3d290
+    last_write_checksum: sha1:bd16e9edbf5b73e4a02783994fce1479377b0616
+    pristine_git_object: 5473df366d91059ed91a233c7df7e77d73f1809a
   src/main/java/com/glean/api_client/glean_api_client/Search.java:
     id: f22d94b920b5
     last_write_checksum: sha1:ac38d1ed47be207940dd6fb7e4c688dddccc6a8b
@@ -3659,8 +3667,8 @@ trackedFiles:
     pristine_git_object: 229f6f44ccd82aca1813abc68fc7d07d1652c4dc
   src/main/java/com/glean/api_client/glean_api_client/models/components/AgentsTimeSavedInsight.java:
     id: 4cd0a2b44815
-    last_write_checksum: sha1:505ecdb23293861978d190a2291243106bd5eb9a
-    pristine_git_object: 382b5876a0b46a7c82900322e79f41ada7952967
+    last_write_checksum: sha1:43613513c7e5e4305e7168ca47e882129594f7a3
+    pristine_git_object: cb614428b3fe07788906ed6c79a91fd0e5b5d728
   src/main/java/com/glean/api_client/glean_api_client/models/components/AgentsUsageByDepartmentInsight.java:
     id: 4c3687028ff5
     last_write_checksum: sha1:dd2067286e0e38b6f8cd8476e63888335ee9282e
@@ -4327,8 +4335,12 @@ trackedFiles:
     pristine_git_object: 85dce0dfd671897055ce2d05c1eee739abcc593c
   src/main/java/com/glean/api_client/glean_api_client/models/components/DlpExportFindingsRequest.java:
     id: f65a1e62e286
-    last_write_checksum: sha1:6a235f7525ca069402a03ce1565ea4f5469eead6
-    pristine_git_object: 6c6e1718c306554a43731c2e4fe8dae48b54d19c
+    last_write_checksum: sha1:15d6b3a35bb3d703da64c3d6b242266bb32a7594
+    pristine_git_object: f66bbf5a15b6919d1982c9dd037976993cd13e14
+  src/main/java/com/glean/api_client/glean_api_client/models/components/DlpExportFindingsRequestExportType.java:
+    id: 192761fc1c28
+    last_write_checksum: sha1:b1026a7884c94806074cc92665fd4ed0a271be72
+    pristine_git_object: 1970433c9d5d8903ee9d5a195adfa48c9c5c60ea
   src/main/java/com/glean/api_client/glean_api_client/models/components/DlpFindingFilter.java:
     id: dc525d4858a5
     last_write_checksum: sha1:96f3ae141922c7d9bde996a60c84e46e6eba3e6c
@@ -4337,6 +4349,10 @@ trackedFiles:
     id: 28cba0614d04
     last_write_checksum: sha1:58ac2414e61346b2aad1fb35dc2eaa5aaf728111
     pristine_git_object: c5c97734fcd128a6065bb6a73d640a6dc8df4954
+  src/main/java/com/glean/api_client/glean_api_client/models/components/DlpIssueFilter.java:
+    id: 6ff00a980f91
+    last_write_checksum: sha1:f8e8a4971363e6a45c373cb95880372854088c9a
+    pristine_git_object: a56dabf37cfd58cf380a67f8bde3ed04e1bee531
   src/main/java/com/glean/api_client/glean_api_client/models/components/DlpIssueStatus.java:
     id: 42641eb02b5e
     last_write_checksum: sha1:09026611cb4ee4f4d2e2f1e9a1e7d224802ea73a
@@ -4543,16 +4559,16 @@ trackedFiles:
     pristine_git_object: f5c5415d94c401942addb01237deaef031d274bb
   src/main/java/com/glean/api_client/glean_api_client/models/components/ExportInfo.java:
     id: ba6d21a1125d
-    last_write_checksum: sha1:03b0464becb05c8ce7fc6d7d49517c591a0ab84c
-    pristine_git_object: dbe5eab88ac5f0b7163acaf5885b36d4bd13685e
+    last_write_checksum: sha1:729f5fec5027fd39bf80321d5abc043f98854d29
+    pristine_git_object: f16425123fff4f27344359d34a97025239741d0e
+  src/main/java/com/glean/api_client/glean_api_client/models/components/ExportInfoExportType.java:
+    id: 1a6fbe9f7326
+    last_write_checksum: sha1:75e19fcba07707bf0bc263a3f23a9581b7017ac5
+    pristine_git_object: 6425967a842bcbe7881275700b9c5d75deee92c8
   src/main/java/com/glean/api_client/glean_api_client/models/components/ExportInfoStatus.java:
     id: 626d316bca66
     last_write_checksum: sha1:d6caa2b2994a8eac4372080b0457c1dc125ef70a
     pristine_git_object: 789d19896abc0a46fab87dcbedb64cd7d4cf0ab7
-  src/main/java/com/glean/api_client/glean_api_client/models/components/ExportType.java:
-    id: 899c7965db91
-    last_write_checksum: sha1:b97f7949272cbd824ebac537f3cdda478c6530c5
-    pristine_git_object: 1654e91278c5e7889c209ebee20676b01ae90ce9
   src/main/java/com/glean/api_client/glean_api_client/models/components/ExternalSharingOptions.java:
     id: 13275f42d6ce
     last_write_checksum: sha1:299836756a6da50a5e47ec4c89a702ec1e3d0cc0
@@ -9672,7 +9688,7 @@ generatedTests:
   get_/rest/api/v1/tools/list: "2025-06-09T18:03:44Z"
   post_/rest/api/v1/tools/call: "2025-06-09T18:03:44Z"
   listpolicies: "2025-06-09T18:03:44Z"
-releaseNotes: "## Java SDK Changes:\n* `glean.client.activity.feedback()`: \n  *  `request.feedback1.manualFeedbackInfo.issues[]` **Changed**\n* `glean.client.search.retrieveFeed()`:  `response.results[].primaryEntry.workflow.workflow.lastDraftSavedAt` **Added**\n* `glean.governance.createfindingsexport()`: \n  *  `request.filter.statuses` **Added**\n  *  `response.filter.statuses` **Added**\n* `glean.governance.listfindingsexports()`:  `response.exports[].filter.statuses` **Added**\n"
+releaseNotes: "## Java SDK Changes:\n* `glean.client.insights.retrieve()`:  `response.agentsResponse.agentsTimeSavedInsights[].feedbackUserCount` **Added**\n* `glean.governance.createfindingsexport()`: \n  *  `request.issueFilter` **Added**\n  *  `response` **Changed**\n* `glean.governance.listfindingsexports()`:  `response.exports[]` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md
