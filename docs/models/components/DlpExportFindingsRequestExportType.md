@@ -1,13 +1,13 @@
-# ExportType
+# DlpExportFindingsRequestExportType
 
 The type of export to perform
 
 ## Example Usage
 
 ```java
-import com.glean.api_client.glean_api_client.models.components.ExportType;
+import com.glean.api_client.glean_api_client.models.components.DlpExportFindingsRequestExportType;
 
-ExportType value = ExportType.FINDINGS;
+DlpExportFindingsRequestExportType value = DlpExportFindingsRequestExportType.FINDINGS;
 ```
 
 

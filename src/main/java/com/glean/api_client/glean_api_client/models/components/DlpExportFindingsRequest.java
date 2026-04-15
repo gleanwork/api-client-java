@@ -23,12 +23,19 @@ public class DlpExportFindingsRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("exportType")
-    private Optional<? extends ExportType> exportType;
+    private Optional<? extends DlpExportFindingsRequestExportType> exportType;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("filter")
     private Optional<? extends DlpFindingFilter> filter;
+
+    /**
+     * Filter for DLP issues. Includes document-level filters and issue-specific filters.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("issueFilter")
+    private Optional<? extends DlpIssueFilter> issueFilter;
 
     /**
      * The name of the file to export the findings to
@@ -53,18 +60,21 @@ public class DlpExportFindingsRequest {
 
     @JsonCreator
     public DlpExportFindingsRequest(
-            @JsonProperty("exportType") Optional<? extends ExportType> exportType,
+            @JsonProperty("exportType") Optional<? extends DlpExportFindingsRequestExportType> exportType,
             @JsonProperty("filter") Optional<? extends DlpFindingFilter> filter,
+            @JsonProperty("issueFilter") Optional<? extends DlpIssueFilter> issueFilter,
             @JsonProperty("fileName") Optional<String> fileName,
             @JsonProperty("fieldScope") Optional<? extends FieldScope> fieldScope,
             @JsonProperty("fieldsToExclude") Optional<? extends List<String>> fieldsToExclude) {
         Utils.checkNotNull(exportType, "exportType");
         Utils.checkNotNull(filter, "filter");
+        Utils.checkNotNull(issueFilter, "issueFilter");
         Utils.checkNotNull(fileName, "fileName");
         Utils.checkNotNull(fieldScope, "fieldScope");
         Utils.checkNotNull(fieldsToExclude, "fieldsToExclude");
         this.exportType = exportType;
         this.filter = filter;
+        this.issueFilter = issueFilter;
         this.fileName = fileName;
         this.fieldScope = fieldScope;
         this.fieldsToExclude = fieldsToExclude;
@@ -72,7 +82,7 @@ public class DlpExportFindingsRequest {
     
     public DlpExportFindingsRequest() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -80,14 +90,23 @@ public class DlpExportFindingsRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ExportType> exportType() {
-        return (Optional<ExportType>) exportType;
+    public Optional<DlpExportFindingsRequestExportType> exportType() {
+        return (Optional<DlpExportFindingsRequestExportType>) exportType;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<DlpFindingFilter> filter() {
         return (Optional<DlpFindingFilter>) filter;
+    }
+
+    /**
+     * Filter for DLP issues. Includes document-level filters and issue-specific filters.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<DlpIssueFilter> issueFilter() {
+        return (Optional<DlpIssueFilter>) issueFilter;
     }
 
     /**
@@ -124,7 +143,7 @@ public class DlpExportFindingsRequest {
     /**
      * The type of export to perform
      */
-    public DlpExportFindingsRequest withExportType(ExportType exportType) {
+    public DlpExportFindingsRequest withExportType(DlpExportFindingsRequestExportType exportType) {
         Utils.checkNotNull(exportType, "exportType");
         this.exportType = Optional.ofNullable(exportType);
         return this;
@@ -134,7 +153,7 @@ public class DlpExportFindingsRequest {
     /**
      * The type of export to perform
      */
-    public DlpExportFindingsRequest withExportType(Optional<? extends ExportType> exportType) {
+    public DlpExportFindingsRequest withExportType(Optional<? extends DlpExportFindingsRequestExportType> exportType) {
         Utils.checkNotNull(exportType, "exportType");
         this.exportType = exportType;
         return this;
@@ -150,6 +169,25 @@ public class DlpExportFindingsRequest {
     public DlpExportFindingsRequest withFilter(Optional<? extends DlpFindingFilter> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = filter;
+        return this;
+    }
+
+    /**
+     * Filter for DLP issues. Includes document-level filters and issue-specific filters.
+     */
+    public DlpExportFindingsRequest withIssueFilter(DlpIssueFilter issueFilter) {
+        Utils.checkNotNull(issueFilter, "issueFilter");
+        this.issueFilter = Optional.ofNullable(issueFilter);
+        return this;
+    }
+
+
+    /**
+     * Filter for DLP issues. Includes document-level filters and issue-specific filters.
+     */
+    public DlpExportFindingsRequest withIssueFilter(Optional<? extends DlpIssueFilter> issueFilter) {
+        Utils.checkNotNull(issueFilter, "issueFilter");
+        this.issueFilter = issueFilter;
         return this;
     }
 
@@ -222,6 +260,7 @@ public class DlpExportFindingsRequest {
         return 
             Utils.enhancedDeepEquals(this.exportType, other.exportType) &&
             Utils.enhancedDeepEquals(this.filter, other.filter) &&
+            Utils.enhancedDeepEquals(this.issueFilter, other.issueFilter) &&
             Utils.enhancedDeepEquals(this.fileName, other.fileName) &&
             Utils.enhancedDeepEquals(this.fieldScope, other.fieldScope) &&
             Utils.enhancedDeepEquals(this.fieldsToExclude, other.fieldsToExclude);
@@ -230,8 +269,8 @@ public class DlpExportFindingsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            exportType, filter, fileName,
-            fieldScope, fieldsToExclude);
+            exportType, filter, issueFilter,
+            fileName, fieldScope, fieldsToExclude);
     }
     
     @Override
@@ -239,6 +278,7 @@ public class DlpExportFindingsRequest {
         return Utils.toString(DlpExportFindingsRequest.class,
                 "exportType", exportType,
                 "filter", filter,
+                "issueFilter", issueFilter,
                 "fileName", fileName,
                 "fieldScope", fieldScope,
                 "fieldsToExclude", fieldsToExclude);
@@ -247,9 +287,11 @@ public class DlpExportFindingsRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends ExportType> exportType = Optional.empty();
+        private Optional<? extends DlpExportFindingsRequestExportType> exportType = Optional.empty();
 
         private Optional<? extends DlpFindingFilter> filter = Optional.empty();
+
+        private Optional<? extends DlpIssueFilter> issueFilter = Optional.empty();
 
         private Optional<String> fileName = Optional.empty();
 
@@ -265,7 +307,7 @@ public class DlpExportFindingsRequest {
         /**
          * The type of export to perform
          */
-        public Builder exportType(ExportType exportType) {
+        public Builder exportType(DlpExportFindingsRequestExportType exportType) {
             Utils.checkNotNull(exportType, "exportType");
             this.exportType = Optional.ofNullable(exportType);
             return this;
@@ -274,7 +316,7 @@ public class DlpExportFindingsRequest {
         /**
          * The type of export to perform
          */
-        public Builder exportType(Optional<? extends ExportType> exportType) {
+        public Builder exportType(Optional<? extends DlpExportFindingsRequestExportType> exportType) {
             Utils.checkNotNull(exportType, "exportType");
             this.exportType = exportType;
             return this;
@@ -290,6 +332,25 @@ public class DlpExportFindingsRequest {
         public Builder filter(Optional<? extends DlpFindingFilter> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = filter;
+            return this;
+        }
+
+
+        /**
+         * Filter for DLP issues. Includes document-level filters and issue-specific filters.
+         */
+        public Builder issueFilter(DlpIssueFilter issueFilter) {
+            Utils.checkNotNull(issueFilter, "issueFilter");
+            this.issueFilter = Optional.ofNullable(issueFilter);
+            return this;
+        }
+
+        /**
+         * Filter for DLP issues. Includes document-level filters and issue-specific filters.
+         */
+        public Builder issueFilter(Optional<? extends DlpIssueFilter> issueFilter) {
+            Utils.checkNotNull(issueFilter, "issueFilter");
+            this.issueFilter = issueFilter;
             return this;
         }
 
@@ -353,8 +414,8 @@ public class DlpExportFindingsRequest {
         public DlpExportFindingsRequest build() {
 
             return new DlpExportFindingsRequest(
-                exportType, filter, fileName,
-                fieldScope, fieldsToExclude);
+                exportType, filter, issueFilter,
+                fileName, fieldScope, fieldsToExclude);
         }
 
     }
