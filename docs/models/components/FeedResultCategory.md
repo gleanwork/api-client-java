@@ -53,4 +53,5 @@ FeedResultCategory custom = FeedResultCategory.of("custom_value");
 | `FOLLOW_UP`                         | FOLLOW_UP                           |
 | `MILESTONE_TIMELINE_CHECK`          | MILESTONE_TIMELINE_CHECK            |
 | `PROJECT_DISCUSSION_DIGEST`         | PROJECT_DISCUSSION_DIGEST           |
+| `PROJECT_FOCUS_BLOCK`               | PROJECT_FOCUS_BLOCK                 |
 | `PROJECT_NEXT_STEP`                 | PROJECT_NEXT_STEP                   |
