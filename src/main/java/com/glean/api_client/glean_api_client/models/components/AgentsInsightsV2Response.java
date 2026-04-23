@@ -62,6 +62,11 @@ public class AgentsInsightsV2Response {
 
 
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("topUseCasesInsights")
+    private Optional<? extends List<AgentUseCaseInsight>> topUseCasesInsights;
+
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("agentsUsageByDepartmentInsights")
     private Optional<? extends List<AgentsUsageByDepartmentInsight>> agentsUsageByDepartmentInsights;
 
@@ -116,6 +121,7 @@ public class AgentsInsightsV2Response {
             @JsonProperty("dailyActiveUserTimeseries") Optional<? extends LabeledCountInfo> dailyActiveUserTimeseries,
             @JsonProperty("sharedAgentsCount") Optional<Long> sharedAgentsCount,
             @JsonProperty("topAgentsInsights") Optional<? extends List<PerAgentInsight>> topAgentsInsights,
+            @JsonProperty("topUseCasesInsights") Optional<? extends List<AgentUseCaseInsight>> topUseCasesInsights,
             @JsonProperty("agentsUsageByDepartmentInsights") Optional<? extends List<AgentsUsageByDepartmentInsight>> agentsUsageByDepartmentInsights,
             @JsonProperty("agentUsersInsights") Optional<? extends List<AgentUsersInsight>> agentUsersInsights,
             @JsonProperty("agentsTimeSavedInsights") Optional<? extends List<AgentsTimeSavedInsight>> agentsTimeSavedInsights,
@@ -132,6 +138,7 @@ public class AgentsInsightsV2Response {
         Utils.checkNotNull(dailyActiveUserTimeseries, "dailyActiveUserTimeseries");
         Utils.checkNotNull(sharedAgentsCount, "sharedAgentsCount");
         Utils.checkNotNull(topAgentsInsights, "topAgentsInsights");
+        Utils.checkNotNull(topUseCasesInsights, "topUseCasesInsights");
         Utils.checkNotNull(agentsUsageByDepartmentInsights, "agentsUsageByDepartmentInsights");
         Utils.checkNotNull(agentUsersInsights, "agentUsersInsights");
         Utils.checkNotNull(agentsTimeSavedInsights, "agentsTimeSavedInsights");
@@ -148,6 +155,7 @@ public class AgentsInsightsV2Response {
         this.dailyActiveUserTimeseries = dailyActiveUserTimeseries;
         this.sharedAgentsCount = sharedAgentsCount;
         this.topAgentsInsights = topAgentsInsights;
+        this.topUseCasesInsights = topUseCasesInsights;
         this.agentsUsageByDepartmentInsights = agentsUsageByDepartmentInsights;
         this.agentUsersInsights = agentUsersInsights;
         this.agentsTimeSavedInsights = agentsTimeSavedInsights;
@@ -165,7 +173,7 @@ public class AgentsInsightsV2Response {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -214,6 +222,12 @@ public class AgentsInsightsV2Response {
     @JsonIgnore
     public Optional<List<PerAgentInsight>> topAgentsInsights() {
         return (Optional<List<PerAgentInsight>>) topAgentsInsights;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<AgentUseCaseInsight>> topUseCasesInsights() {
+        return (Optional<List<AgentUseCaseInsight>>) topUseCasesInsights;
     }
 
     @SuppressWarnings("unchecked")
@@ -387,6 +401,19 @@ public class AgentsInsightsV2Response {
         return this;
     }
 
+    public AgentsInsightsV2Response withTopUseCasesInsights(List<AgentUseCaseInsight> topUseCasesInsights) {
+        Utils.checkNotNull(topUseCasesInsights, "topUseCasesInsights");
+        this.topUseCasesInsights = Optional.ofNullable(topUseCasesInsights);
+        return this;
+    }
+
+
+    public AgentsInsightsV2Response withTopUseCasesInsights(Optional<? extends List<AgentUseCaseInsight>> topUseCasesInsights) {
+        Utils.checkNotNull(topUseCasesInsights, "topUseCasesInsights");
+        this.topUseCasesInsights = topUseCasesInsights;
+        return this;
+    }
+
     public AgentsInsightsV2Response withAgentsUsageByDepartmentInsights(List<AgentsUsageByDepartmentInsight> agentsUsageByDepartmentInsights) {
         Utils.checkNotNull(agentsUsageByDepartmentInsights, "agentsUsageByDepartmentInsights");
         this.agentsUsageByDepartmentInsights = Optional.ofNullable(agentsUsageByDepartmentInsights);
@@ -527,6 +554,7 @@ public class AgentsInsightsV2Response {
             Utils.enhancedDeepEquals(this.dailyActiveUserTimeseries, other.dailyActiveUserTimeseries) &&
             Utils.enhancedDeepEquals(this.sharedAgentsCount, other.sharedAgentsCount) &&
             Utils.enhancedDeepEquals(this.topAgentsInsights, other.topAgentsInsights) &&
+            Utils.enhancedDeepEquals(this.topUseCasesInsights, other.topUseCasesInsights) &&
             Utils.enhancedDeepEquals(this.agentsUsageByDepartmentInsights, other.agentsUsageByDepartmentInsights) &&
             Utils.enhancedDeepEquals(this.agentUsersInsights, other.agentUsersInsights) &&
             Utils.enhancedDeepEquals(this.agentsTimeSavedInsights, other.agentsTimeSavedInsights) &&
@@ -543,10 +571,10 @@ public class AgentsInsightsV2Response {
         return Utils.enhancedHash(
             monthlyActiveUsers, weeklyActiveUsers, monthlyActiveUserTimeseries,
             weeklyActiveUserTimeseries, dailyActiveUserTimeseries, sharedAgentsCount,
-            topAgentsInsights, agentsUsageByDepartmentInsights, agentUsersInsights,
-            agentsTimeSavedInsights, dailyAgentRunsTimeseries, successfulRunsTimeseries,
-            failedRunsTimeseries, pausedRunsTimeseries, upvotesTimeseries,
-            downvotesTimeseries);
+            topAgentsInsights, topUseCasesInsights, agentsUsageByDepartmentInsights,
+            agentUsersInsights, agentsTimeSavedInsights, dailyAgentRunsTimeseries,
+            successfulRunsTimeseries, failedRunsTimeseries, pausedRunsTimeseries,
+            upvotesTimeseries, downvotesTimeseries);
     }
     
     @Override
@@ -559,6 +587,7 @@ public class AgentsInsightsV2Response {
                 "dailyActiveUserTimeseries", dailyActiveUserTimeseries,
                 "sharedAgentsCount", sharedAgentsCount,
                 "topAgentsInsights", topAgentsInsights,
+                "topUseCasesInsights", topUseCasesInsights,
                 "agentsUsageByDepartmentInsights", agentsUsageByDepartmentInsights,
                 "agentUsersInsights", agentUsersInsights,
                 "agentsTimeSavedInsights", agentsTimeSavedInsights,
@@ -586,6 +615,8 @@ public class AgentsInsightsV2Response {
         private Optional<Long> sharedAgentsCount = Optional.empty();
 
         private Optional<? extends List<PerAgentInsight>> topAgentsInsights = Optional.empty();
+
+        private Optional<? extends List<AgentUseCaseInsight>> topUseCasesInsights = Optional.empty();
 
         private Optional<? extends List<AgentsUsageByDepartmentInsight>> agentsUsageByDepartmentInsights = Optional.empty();
 
@@ -719,6 +750,19 @@ public class AgentsInsightsV2Response {
         }
 
 
+        public Builder topUseCasesInsights(List<AgentUseCaseInsight> topUseCasesInsights) {
+            Utils.checkNotNull(topUseCasesInsights, "topUseCasesInsights");
+            this.topUseCasesInsights = Optional.ofNullable(topUseCasesInsights);
+            return this;
+        }
+
+        public Builder topUseCasesInsights(Optional<? extends List<AgentUseCaseInsight>> topUseCasesInsights) {
+            Utils.checkNotNull(topUseCasesInsights, "topUseCasesInsights");
+            this.topUseCasesInsights = topUseCasesInsights;
+            return this;
+        }
+
+
         public Builder agentsUsageByDepartmentInsights(List<AgentsUsageByDepartmentInsight> agentsUsageByDepartmentInsights) {
             Utils.checkNotNull(agentsUsageByDepartmentInsights, "agentsUsageByDepartmentInsights");
             this.agentsUsageByDepartmentInsights = Optional.ofNullable(agentsUsageByDepartmentInsights);
@@ -846,10 +890,10 @@ public class AgentsInsightsV2Response {
             return new AgentsInsightsV2Response(
                 monthlyActiveUsers, weeklyActiveUsers, monthlyActiveUserTimeseries,
                 weeklyActiveUserTimeseries, dailyActiveUserTimeseries, sharedAgentsCount,
-                topAgentsInsights, agentsUsageByDepartmentInsights, agentUsersInsights,
-                agentsTimeSavedInsights, dailyAgentRunsTimeseries, successfulRunsTimeseries,
-                failedRunsTimeseries, pausedRunsTimeseries, upvotesTimeseries,
-                downvotesTimeseries);
+                topAgentsInsights, topUseCasesInsights, agentsUsageByDepartmentInsights,
+                agentUsersInsights, agentsTimeSavedInsights, dailyAgentRunsTimeseries,
+                successfulRunsTimeseries, failedRunsTimeseries, pausedRunsTimeseries,
+                upvotesTimeseries, downvotesTimeseries);
         }
 
     }

@@ -23,3 +23,4 @@ EditCollectionResponseErrorCode custom = EditCollectionResponseErrorCode.of("cus
 | `HEIGHT_VIOLATION`          | HEIGHT_VIOLATION            |
 | `WIDTH_VIOLATION`           | WIDTH_VIOLATION             |
 | `NO_PERMISSIONS`            | NO_PERMISSIONS              |
+| `CORRUPT_ITEM`              | CORRUPT_ITEM                |
