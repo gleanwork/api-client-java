@@ -1,0 +1,9 @@
+# GetDatasourceCredentialStatusRequest
+
+
+## Fields
+
+| Field                                                | Type                                                 | Required                                             | Description                                          | Example                                              |
+| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
+| `datasourceId`                                       | *String*                                             | :heavy_check_mark:                                   | The datasource type identifier (e.g. o365sharepoint) | o365sharepoint                                       |
+| `instanceId`                                         | *String*                                             | :heavy_check_mark:                                   | The datasource instance identifier                   | o365sharepoint_abc123                                |
