@@ -22,6 +22,7 @@ import java.util.Optional;
 public class AddCollectionItemsErrorErrorType {
 
     public static final AddCollectionItemsErrorErrorType EXISTING_ITEM = new AddCollectionItemsErrorErrorType("EXISTING_ITEM");
+    public static final AddCollectionItemsErrorErrorType CORRUPT_ITEM = new AddCollectionItemsErrorErrorType("CORRUPT_ITEM");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -96,19 +97,22 @@ public class AddCollectionItemsErrorErrorType {
     private static final Map<String, AddCollectionItemsErrorErrorType> createValuesMap() {
         Map<String, AddCollectionItemsErrorErrorType> map = new LinkedHashMap<>();
         map.put("EXISTING_ITEM", EXISTING_ITEM);
+        map.put("CORRUPT_ITEM", CORRUPT_ITEM);
         return map;
     }
 
     private static final Map<String, AddCollectionItemsErrorErrorTypeEnum> createEnumsMap() {
         Map<String, AddCollectionItemsErrorErrorTypeEnum> map = new HashMap<>();
         map.put("EXISTING_ITEM", AddCollectionItemsErrorErrorTypeEnum.EXISTING_ITEM);
+        map.put("CORRUPT_ITEM", AddCollectionItemsErrorErrorTypeEnum.CORRUPT_ITEM);
         return map;
     }
     
     
     public enum AddCollectionItemsErrorErrorTypeEnum {
 
-        EXISTING_ITEM("EXISTING_ITEM"),;
+        EXISTING_ITEM("EXISTING_ITEM"),
+        CORRUPT_ITEM("CORRUPT_ITEM"),;
 
         private final String value;
 

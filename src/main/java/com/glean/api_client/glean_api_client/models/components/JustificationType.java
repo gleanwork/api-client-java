@@ -74,6 +74,7 @@ public class JustificationType {
     public static final JustificationType FOLLOW_UP = new JustificationType("FOLLOW_UP");
     public static final JustificationType MILESTONE_TIMELINE_CHECK = new JustificationType("MILESTONE_TIMELINE_CHECK");
     public static final JustificationType PROJECT_DISCUSSION_DIGEST = new JustificationType("PROJECT_DISCUSSION_DIGEST");
+    public static final JustificationType PROJECT_FOCUS_BLOCK = new JustificationType("PROJECT_FOCUS_BLOCK");
     public static final JustificationType PROJECT_NEXT_STEP = new JustificationType("PROJECT_NEXT_STEP");
 
     // This map will grow whenever a Color gets created with a new
@@ -196,6 +197,7 @@ public class JustificationType {
         map.put("FOLLOW_UP", FOLLOW_UP);
         map.put("MILESTONE_TIMELINE_CHECK", MILESTONE_TIMELINE_CHECK);
         map.put("PROJECT_DISCUSSION_DIGEST", PROJECT_DISCUSSION_DIGEST);
+        map.put("PROJECT_FOCUS_BLOCK", PROJECT_FOCUS_BLOCK);
         map.put("PROJECT_NEXT_STEP", PROJECT_NEXT_STEP);
         return map;
     }
@@ -250,6 +252,7 @@ public class JustificationType {
         map.put("FOLLOW_UP", JustificationTypeEnum.FOLLOW_UP);
         map.put("MILESTONE_TIMELINE_CHECK", JustificationTypeEnum.MILESTONE_TIMELINE_CHECK);
         map.put("PROJECT_DISCUSSION_DIGEST", JustificationTypeEnum.PROJECT_DISCUSSION_DIGEST);
+        map.put("PROJECT_FOCUS_BLOCK", JustificationTypeEnum.PROJECT_FOCUS_BLOCK);
         map.put("PROJECT_NEXT_STEP", JustificationTypeEnum.PROJECT_NEXT_STEP);
         return map;
     }
@@ -305,6 +308,7 @@ public class JustificationType {
         FOLLOW_UP("FOLLOW_UP"),
         MILESTONE_TIMELINE_CHECK("MILESTONE_TIMELINE_CHECK"),
         PROJECT_DISCUSSION_DIGEST("PROJECT_DISCUSSION_DIGEST"),
+        PROJECT_FOCUS_BLOCK("PROJECT_FOCUS_BLOCK"),
         PROJECT_NEXT_STEP("PROJECT_NEXT_STEP"),;
 
         private final String value;
