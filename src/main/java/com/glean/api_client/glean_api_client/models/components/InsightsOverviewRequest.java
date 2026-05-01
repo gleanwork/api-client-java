@@ -25,6 +25,13 @@ public class InsightsOverviewRequest {
     @JsonProperty("departments")
     private Optional<? extends List<String>> departments;
 
+    /**
+     * Manager emails whose teams should be filtered for. Empty array means no filtering.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("managerEmails")
+    private Optional<? extends List<String>> managerEmails;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("dayRange")
@@ -33,15 +40,18 @@ public class InsightsOverviewRequest {
     @JsonCreator
     public InsightsOverviewRequest(
             @JsonProperty("departments") Optional<? extends List<String>> departments,
+            @JsonProperty("managerEmails") Optional<? extends List<String>> managerEmails,
             @JsonProperty("dayRange") Optional<? extends Period> dayRange) {
         Utils.checkNotNull(departments, "departments");
+        Utils.checkNotNull(managerEmails, "managerEmails");
         Utils.checkNotNull(dayRange, "dayRange");
         this.departments = departments;
+        this.managerEmails = managerEmails;
         this.dayRange = dayRange;
     }
     
     public InsightsOverviewRequest() {
-        this(Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -51,6 +61,15 @@ public class InsightsOverviewRequest {
     @JsonIgnore
     public Optional<List<String>> departments() {
         return (Optional<List<String>>) departments;
+    }
+
+    /**
+     * Manager emails whose teams should be filtered for. Empty array means no filtering.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<String>> managerEmails() {
+        return (Optional<List<String>>) managerEmails;
     }
 
     @SuppressWarnings("unchecked")
@@ -83,6 +102,25 @@ public class InsightsOverviewRequest {
         return this;
     }
 
+    /**
+     * Manager emails whose teams should be filtered for. Empty array means no filtering.
+     */
+    public InsightsOverviewRequest withManagerEmails(List<String> managerEmails) {
+        Utils.checkNotNull(managerEmails, "managerEmails");
+        this.managerEmails = Optional.ofNullable(managerEmails);
+        return this;
+    }
+
+
+    /**
+     * Manager emails whose teams should be filtered for. Empty array means no filtering.
+     */
+    public InsightsOverviewRequest withManagerEmails(Optional<? extends List<String>> managerEmails) {
+        Utils.checkNotNull(managerEmails, "managerEmails");
+        this.managerEmails = managerEmails;
+        return this;
+    }
+
     public InsightsOverviewRequest withDayRange(Period dayRange) {
         Utils.checkNotNull(dayRange, "dayRange");
         this.dayRange = Optional.ofNullable(dayRange);
@@ -107,19 +145,21 @@ public class InsightsOverviewRequest {
         InsightsOverviewRequest other = (InsightsOverviewRequest) o;
         return 
             Utils.enhancedDeepEquals(this.departments, other.departments) &&
+            Utils.enhancedDeepEquals(this.managerEmails, other.managerEmails) &&
             Utils.enhancedDeepEquals(this.dayRange, other.dayRange);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            departments, dayRange);
+            departments, managerEmails, dayRange);
     }
     
     @Override
     public String toString() {
         return Utils.toString(InsightsOverviewRequest.class,
                 "departments", departments,
+                "managerEmails", managerEmails,
                 "dayRange", dayRange);
     }
 
@@ -127,6 +167,8 @@ public class InsightsOverviewRequest {
     public final static class Builder {
 
         private Optional<? extends List<String>> departments = Optional.empty();
+
+        private Optional<? extends List<String>> managerEmails = Optional.empty();
 
         private Optional<? extends Period> dayRange = Optional.empty();
 
@@ -154,6 +196,25 @@ public class InsightsOverviewRequest {
         }
 
 
+        /**
+         * Manager emails whose teams should be filtered for. Empty array means no filtering.
+         */
+        public Builder managerEmails(List<String> managerEmails) {
+            Utils.checkNotNull(managerEmails, "managerEmails");
+            this.managerEmails = Optional.ofNullable(managerEmails);
+            return this;
+        }
+
+        /**
+         * Manager emails whose teams should be filtered for. Empty array means no filtering.
+         */
+        public Builder managerEmails(Optional<? extends List<String>> managerEmails) {
+            Utils.checkNotNull(managerEmails, "managerEmails");
+            this.managerEmails = managerEmails;
+            return this;
+        }
+
+
         public Builder dayRange(Period dayRange) {
             Utils.checkNotNull(dayRange, "dayRange");
             this.dayRange = Optional.ofNullable(dayRange);
@@ -169,7 +230,7 @@ public class InsightsOverviewRequest {
         public InsightsOverviewRequest build() {
 
             return new InsightsOverviewRequest(
-                departments, dayRange);
+                departments, managerEmails, dayRange);
         }
 
     }
