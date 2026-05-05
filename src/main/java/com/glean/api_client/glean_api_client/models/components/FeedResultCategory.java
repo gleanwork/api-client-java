@@ -61,7 +61,10 @@ public class FeedResultCategory {
     public static final FeedResultCategory FOLLOW_UP = new FeedResultCategory("FOLLOW_UP");
     public static final FeedResultCategory MILESTONE_TIMELINE_CHECK = new FeedResultCategory("MILESTONE_TIMELINE_CHECK");
     public static final FeedResultCategory PROJECT_DISCUSSION_DIGEST = new FeedResultCategory("PROJECT_DISCUSSION_DIGEST");
+    public static final FeedResultCategory PROJECT_FOCUS_BLOCK = new FeedResultCategory("PROJECT_FOCUS_BLOCK");
     public static final FeedResultCategory PROJECT_NEXT_STEP = new FeedResultCategory("PROJECT_NEXT_STEP");
+    public static final FeedResultCategory DEMO_CARD = new FeedResultCategory("DEMO_CARD");
+    public static final FeedResultCategory OOO_PLANNER = new FeedResultCategory("OOO_PLANNER");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -170,7 +173,10 @@ public class FeedResultCategory {
         map.put("FOLLOW_UP", FOLLOW_UP);
         map.put("MILESTONE_TIMELINE_CHECK", MILESTONE_TIMELINE_CHECK);
         map.put("PROJECT_DISCUSSION_DIGEST", PROJECT_DISCUSSION_DIGEST);
+        map.put("PROJECT_FOCUS_BLOCK", PROJECT_FOCUS_BLOCK);
         map.put("PROJECT_NEXT_STEP", PROJECT_NEXT_STEP);
+        map.put("DEMO_CARD", DEMO_CARD);
+        map.put("OOO_PLANNER", OOO_PLANNER);
         return map;
     }
 
@@ -211,7 +217,10 @@ public class FeedResultCategory {
         map.put("FOLLOW_UP", FeedResultCategoryEnum.FOLLOW_UP);
         map.put("MILESTONE_TIMELINE_CHECK", FeedResultCategoryEnum.MILESTONE_TIMELINE_CHECK);
         map.put("PROJECT_DISCUSSION_DIGEST", FeedResultCategoryEnum.PROJECT_DISCUSSION_DIGEST);
+        map.put("PROJECT_FOCUS_BLOCK", FeedResultCategoryEnum.PROJECT_FOCUS_BLOCK);
         map.put("PROJECT_NEXT_STEP", FeedResultCategoryEnum.PROJECT_NEXT_STEP);
+        map.put("DEMO_CARD", FeedResultCategoryEnum.DEMO_CARD);
+        map.put("OOO_PLANNER", FeedResultCategoryEnum.OOO_PLANNER);
         return map;
     }
     
@@ -253,7 +262,10 @@ public class FeedResultCategory {
         FOLLOW_UP("FOLLOW_UP"),
         MILESTONE_TIMELINE_CHECK("MILESTONE_TIMELINE_CHECK"),
         PROJECT_DISCUSSION_DIGEST("PROJECT_DISCUSSION_DIGEST"),
-        PROJECT_NEXT_STEP("PROJECT_NEXT_STEP"),;
+        PROJECT_FOCUS_BLOCK("PROJECT_FOCUS_BLOCK"),
+        PROJECT_NEXT_STEP("PROJECT_NEXT_STEP"),
+        DEMO_CARD("DEMO_CARD"),
+        OOO_PLANNER("OOO_PLANNER"),;
 
         private final String value;
 
