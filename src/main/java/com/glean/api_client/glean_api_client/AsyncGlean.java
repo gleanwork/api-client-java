@@ -40,6 +40,8 @@ public class AsyncGlean {
      */
     private final AsyncAuthentication authentication;
 
+    private final AsyncEntities entities;
+
     private final AsyncIndexing indexing;
 
     private final AsyncGovernance governance;
@@ -56,6 +58,10 @@ public class AsyncGlean {
      */
     public AsyncAuthentication authentication() {
         return authentication;
+    }
+
+    public AsyncEntities entities() {
+        return entities;
     }
 
     public AsyncIndexing indexing() {
@@ -80,6 +86,7 @@ public class AsyncGlean {
         this.sdkConfiguration = sdkConfiguration;
         this.client = new AsyncClient(syncSDK.client(), sdkConfiguration);
         this.authentication = new AsyncAuthentication(syncSDK.authentication(), sdkConfiguration);
+        this.entities = new AsyncEntities(syncSDK.entities(), sdkConfiguration);
         this.indexing = new AsyncIndexing(syncSDK.indexing(), sdkConfiguration);
         this.governance = new AsyncGovernance(syncSDK.governance(), sdkConfiguration);
         this.datasources = new AsyncDatasources(syncSDK.datasources(), sdkConfiguration);
