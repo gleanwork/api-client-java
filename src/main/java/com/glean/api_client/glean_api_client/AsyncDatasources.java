@@ -6,14 +6,22 @@ package com.glean.api_client.glean_api_client;
 
 import static com.glean.api_client.glean_api_client.operations.Operations.AsyncRequestOperation;
 
+import com.glean.api_client.glean_api_client.models.components.RotateDatasourceCredentialsRequest;
 import com.glean.api_client.glean_api_client.models.components.UpdateDatasourceConfigurationRequest;
+import com.glean.api_client.glean_api_client.models.operations.GetDatasourceCredentialStatusRequest;
 import com.glean.api_client.glean_api_client.models.operations.GetDatasourceInstanceConfigurationRequest;
 import com.glean.api_client.glean_api_client.models.operations.UpdateDatasourceInstanceConfigurationRequest;
+import com.glean.api_client.glean_api_client.models.operations.async.GetDatasourceCredentialStatusRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.GetDatasourceCredentialStatusResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.GetDatasourceInstanceConfigurationRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.GetDatasourceInstanceConfigurationResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.RotateDatasourceCredentialsRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.RotateDatasourceCredentialsResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.UpdateDatasourceInstanceConfigurationRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.UpdateDatasourceInstanceConfigurationResponse;
+import com.glean.api_client.glean_api_client.operations.GetDatasourceCredentialStatus;
 import com.glean.api_client.glean_api_client.operations.GetDatasourceInstanceConfiguration;
+import com.glean.api_client.glean_api_client.operations.RotateDatasourceCredentials;
 import com.glean.api_client.glean_api_client.operations.UpdateDatasourceInstanceConfiguration;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.String;
@@ -116,6 +124,90 @@ public class AsyncDatasources {
                 .build();
         AsyncRequestOperation<UpdateDatasourceInstanceConfigurationRequest, UpdateDatasourceInstanceConfigurationResponse> operation
               = new UpdateDatasourceInstanceConfiguration.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Get datasource instance credential status
+     * 
+     * <p>Returns the current credential status for a datasource instance. Access is limited to callers with
+     * the ADMIN scope; the handler enforces this check.
+     * 
+     * @return The async call builder
+     */
+    public GetDatasourceCredentialStatusRequestBuilder getDatasourceCredentialStatus() {
+        return new GetDatasourceCredentialStatusRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Get datasource instance credential status
+     * 
+     * <p>Returns the current credential status for a datasource instance. Access is limited to callers with
+     * the ADMIN scope; the handler enforces this check.
+     * 
+     * @param datasourceInstanceId The full datasource instance identifier (e.g. o365sharepoint_abc123)
+     * @return {@code CompletableFuture<GetDatasourceCredentialStatusResponse>} - The async response
+     */
+    public CompletableFuture<GetDatasourceCredentialStatusResponse> getDatasourceCredentialStatus(String datasourceInstanceId) {
+        GetDatasourceCredentialStatusRequest request =
+            GetDatasourceCredentialStatusRequest
+                .builder()
+                .datasourceInstanceId(datasourceInstanceId)
+                .build();
+        AsyncRequestOperation<GetDatasourceCredentialStatusRequest, GetDatasourceCredentialStatusResponse> operation
+              = new GetDatasourceCredentialStatus.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Rotate datasource instance credentials
+     * 
+     * <p>Rotates the credentials that a datasource instance uses to connect to its upstream system. Replaces
+     * the active credential material with the supplied values and returns the credential status after
+     * rotation. Access is limited to callers with the ADMIN scope; the handler enforces this check.
+     * Only keys recognized as credential material for the datasource type may be set in
+     * `credentials.values` (e.g. `clientSecret`, `apiToken`, `privateKey`, depending on the configured
+     * auth method). Unrecognized keys, or keys that correspond to non-credential configuration, cause a
+     * 400; other instance configuration must be updated via PATCH
+     * /configure/datasources/{datasourceId}/instances/{instanceId}.
+     * 
+     * @return The async call builder
+     */
+    public RotateDatasourceCredentialsRequestBuilder rotateDatasourceCredentials() {
+        return new RotateDatasourceCredentialsRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Rotate datasource instance credentials
+     * 
+     * <p>Rotates the credentials that a datasource instance uses to connect to its upstream system. Replaces
+     * the active credential material with the supplied values and returns the credential status after
+     * rotation. Access is limited to callers with the ADMIN scope; the handler enforces this check.
+     * Only keys recognized as credential material for the datasource type may be set in
+     * `credentials.values` (e.g. `clientSecret`, `apiToken`, `privateKey`, depending on the configured
+     * auth method). Unrecognized keys, or keys that correspond to non-credential configuration, cause a
+     * 400; other instance configuration must be updated via PATCH
+     * /configure/datasources/{datasourceId}/instances/{instanceId}.
+     * 
+     * @param datasourceInstanceId The full datasource instance identifier (e.g. o365sharepoint_abc123)
+     * @param rotateDatasourceCredentialsRequest Request to rotate the credentials used by a datasource instance. Replaces the active credential material with the supplied values.
+     *         `credentials.values` must contain only keys recognized as credential material for the datasource type (for example `clientSecret` for OAuth, `apiToken` for API-token auth, `privateKey` for certificate auth). Unrecognized keys, or keys that correspond to non-credential configuration, cause a 400; use the configure endpoint to change non-credential config.
+     *         
+     * @return {@code CompletableFuture<RotateDatasourceCredentialsResponse>} - The async response
+     */
+    public CompletableFuture<RotateDatasourceCredentialsResponse> rotateDatasourceCredentials(String datasourceInstanceId, RotateDatasourceCredentialsRequest rotateDatasourceCredentialsRequest) {
+        com.glean.api_client.glean_api_client.models.operations.RotateDatasourceCredentialsRequest request =
+            com.glean.api_client.glean_api_client.models.operations.RotateDatasourceCredentialsRequest
+                .builder()
+                .datasourceInstanceId(datasourceInstanceId)
+                .rotateDatasourceCredentialsRequest(rotateDatasourceCredentialsRequest)
+                .build();
+        AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.RotateDatasourceCredentialsRequest, RotateDatasourceCredentialsResponse> operation
+              = new RotateDatasourceCredentials.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
