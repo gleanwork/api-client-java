@@ -22,7 +22,7 @@ public class AsyncClient {
     private final AsyncMessages messages;
     private final AsyncPins pins;
     private final AsyncSearch search;
-    private final AsyncEntities entities;
+    private final AsyncClientEntities entities;
     private final AsyncClientShortcuts shortcuts;
     private final AsyncVerification verification;
     private final AsyncTools tools;
@@ -43,7 +43,7 @@ public class AsyncClient {
         this.messages = new AsyncMessages(syncSDK.messages(), this.sdkConfiguration);
         this.pins = new AsyncPins(syncSDK.pins(), this.sdkConfiguration);
         this.search = new AsyncSearch(syncSDK.search(), this.sdkConfiguration);
-        this.entities = new AsyncEntities(syncSDK.entities(), this.sdkConfiguration);
+        this.entities = new AsyncClientEntities(syncSDK.entities(), this.sdkConfiguration);
         this.shortcuts = new AsyncClientShortcuts(syncSDK.shortcuts(), this.sdkConfiguration);
         this.verification = new AsyncVerification(syncSDK.verification(), this.sdkConfiguration);
         this.tools = new AsyncTools(syncSDK.tools(), this.sdkConfiguration);
@@ -99,7 +99,7 @@ public class AsyncClient {
         return search;
     }
 
-    public final AsyncEntities entities() {
+    public final AsyncClientEntities entities() {
         return entities;
     }
 
