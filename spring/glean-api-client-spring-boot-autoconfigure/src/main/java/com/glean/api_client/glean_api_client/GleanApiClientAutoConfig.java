@@ -244,6 +244,28 @@ public class GleanApiClientAutoConfig {
         return glean.authentication();
     }
     /**
+     * Creates a Entities sub-SDK bean if none exists.
+     *
+     * @param glean the main SDK instance
+     * @return A configured Entities instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public Entities entities(Glean glean) {
+        return glean.entities();
+    }
+    /**
+     * Creates a Tools sub-SDK bean if none exists.
+     *
+     * @param glean the main SDK instance
+     * @return A configured Tools instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public Tools tools(Glean glean) {
+        return glean.tools();
+    }
+    /**
      * Creates a Indexing sub-SDK bean if none exists.
      *
      * @param glean the main SDK instance
@@ -310,6 +332,28 @@ public class GleanApiClientAutoConfig {
     @ConditionalOnMissingBean
     public AsyncAuthentication asyncAuthentication(AsyncGlean asyncGlean) {
         return asyncGlean.authentication();
+    }
+    /**
+     * Creates an AsyncEntities sub-SDK bean if none exists.
+     *
+     * @param asyncGlean the async SDK instance
+     * @return A configured AsyncEntities instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public AsyncEntities asyncEntities(AsyncGlean asyncGlean) {
+        return asyncGlean.entities();
+    }
+    /**
+     * Creates an AsyncTools sub-SDK bean if none exists.
+     *
+     * @param asyncGlean the async SDK instance
+     * @return A configured AsyncTools instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public AsyncTools asyncTools(AsyncGlean asyncGlean) {
+        return asyncGlean.tools();
     }
     /**
      * Creates an AsyncIndexing sub-SDK bean if none exists.

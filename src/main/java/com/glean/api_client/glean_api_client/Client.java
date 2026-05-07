@@ -23,10 +23,10 @@ public class Client {
     private final Messages messages;
     private final Pins pins;
     private final Search search;
-    private final Entities entities;
+    private final ClientEntities entities;
     private final ClientShortcuts shortcuts;
     private final Verification verification;
-    private final Tools tools;
+    private final ClientTools tools;
     private final ClientGovernance governance;
 
     Client(SDKConfiguration sdkConfiguration) {
@@ -43,10 +43,10 @@ public class Client {
         this.messages = new Messages(this.sdkConfiguration);
         this.pins = new Pins(this.sdkConfiguration);
         this.search = new Search(this.sdkConfiguration);
-        this.entities = new Entities(this.sdkConfiguration);
+        this.entities = new ClientEntities(this.sdkConfiguration);
         this.shortcuts = new ClientShortcuts(this.sdkConfiguration);
         this.verification = new Verification(this.sdkConfiguration);
-        this.tools = new Tools(this.sdkConfiguration);
+        this.tools = new ClientTools(this.sdkConfiguration);
         this.governance = new ClientGovernance(this.sdkConfiguration);
         this.asyncSDK = new AsyncClient(this, sdkConfiguration);
     }
@@ -99,7 +99,7 @@ public class Client {
         return search;
     }
 
-    public final Entities entities() {
+    public final ClientEntities entities() {
         return entities;
     }
 
@@ -111,7 +111,7 @@ public class Client {
         return verification;
     }
 
-    public final Tools tools() {
+    public final ClientTools tools() {
         return tools;
     }
 
