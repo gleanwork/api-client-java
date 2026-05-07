@@ -14,7 +14,7 @@ public class AsyncClient {
     private final AsyncAnnouncements announcements;
     private final AsyncAnswers answers;
     private final AsyncClientAuthentication authentication;
-    private final AsyncChat chat;
+    private final AsyncClientChat chat;
     private final AsyncAgents agents;
     private final AsyncCollections collections;
     private final AsyncClientDocuments documents;
@@ -22,10 +22,10 @@ public class AsyncClient {
     private final AsyncMessages messages;
     private final AsyncPins pins;
     private final AsyncSearch search;
-    private final AsyncEntities entities;
+    private final AsyncClientEntities entities;
     private final AsyncClientShortcuts shortcuts;
     private final AsyncVerification verification;
-    private final AsyncTools tools;
+    private final AsyncClientTools tools;
     private final AsyncClientGovernance governance;
     private final Client syncSDK;
 
@@ -35,7 +35,7 @@ public class AsyncClient {
         this.announcements = new AsyncAnnouncements(syncSDK.announcements(), this.sdkConfiguration);
         this.answers = new AsyncAnswers(syncSDK.answers(), this.sdkConfiguration);
         this.authentication = new AsyncClientAuthentication(syncSDK.authentication(), this.sdkConfiguration);
-        this.chat = new AsyncChat(syncSDK.chat(), this.sdkConfiguration);
+        this.chat = new AsyncClientChat(syncSDK.chat(), this.sdkConfiguration);
         this.agents = new AsyncAgents(syncSDK.agents(), this.sdkConfiguration);
         this.collections = new AsyncCollections(syncSDK.collections(), this.sdkConfiguration);
         this.documents = new AsyncClientDocuments(syncSDK.documents(), this.sdkConfiguration);
@@ -43,10 +43,10 @@ public class AsyncClient {
         this.messages = new AsyncMessages(syncSDK.messages(), this.sdkConfiguration);
         this.pins = new AsyncPins(syncSDK.pins(), this.sdkConfiguration);
         this.search = new AsyncSearch(syncSDK.search(), this.sdkConfiguration);
-        this.entities = new AsyncEntities(syncSDK.entities(), this.sdkConfiguration);
+        this.entities = new AsyncClientEntities(syncSDK.entities(), this.sdkConfiguration);
         this.shortcuts = new AsyncClientShortcuts(syncSDK.shortcuts(), this.sdkConfiguration);
         this.verification = new AsyncVerification(syncSDK.verification(), this.sdkConfiguration);
-        this.tools = new AsyncTools(syncSDK.tools(), this.sdkConfiguration);
+        this.tools = new AsyncClientTools(syncSDK.tools(), this.sdkConfiguration);
         this.governance = new AsyncClientGovernance(syncSDK.governance(), this.sdkConfiguration);
         this.syncSDK = syncSDK;
     }
@@ -67,7 +67,7 @@ public class AsyncClient {
         return authentication;
     }
 
-    public final AsyncChat chat() {
+    public final AsyncClientChat chat() {
         return chat;
     }
 
@@ -99,7 +99,7 @@ public class AsyncClient {
         return search;
     }
 
-    public final AsyncEntities entities() {
+    public final AsyncClientEntities entities() {
         return entities;
     }
 
@@ -111,7 +111,7 @@ public class AsyncClient {
         return verification;
     }
 
-    public final AsyncTools tools() {
+    public final AsyncClientTools tools() {
         return tools;
     }
 

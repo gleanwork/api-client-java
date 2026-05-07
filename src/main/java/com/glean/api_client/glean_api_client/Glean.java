@@ -63,6 +63,15 @@ public class Glean {
     private final Authentication authentication;
 
 
+    private final Chat chat;
+
+
+    private final Entities entities;
+
+
+    private final Tools tools;
+
+
     private final Indexing indexing;
 
 
@@ -83,6 +92,21 @@ public class Glean {
      */
     public Authentication authentication() {
         return authentication;
+    }
+
+
+    public Chat chat() {
+        return chat;
+    }
+
+
+    public Entities entities() {
+        return entities;
+    }
+
+
+    public Tools tools() {
+        return tools;
     }
 
 
@@ -269,6 +293,9 @@ public class Glean {
         sdkConfiguration.initialize();
         this.client = new Client(sdkConfiguration);
         this.authentication = new Authentication(sdkConfiguration);
+        this.chat = new Chat(sdkConfiguration);
+        this.entities = new Entities(sdkConfiguration);
+        this.tools = new Tools(sdkConfiguration);
         this.indexing = new Indexing(sdkConfiguration);
         this.governance = new Governance(sdkConfiguration);
         this.datasources = new Datasources(sdkConfiguration);
