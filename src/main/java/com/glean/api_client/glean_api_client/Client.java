@@ -23,7 +23,7 @@ public class Client {
     private final Messages messages;
     private final Pins pins;
     private final Search search;
-    private final Entities entities;
+    private final ClientEntities entities;
     private final ClientShortcuts shortcuts;
     private final Verification verification;
     private final Tools tools;
@@ -43,7 +43,7 @@ public class Client {
         this.messages = new Messages(this.sdkConfiguration);
         this.pins = new Pins(this.sdkConfiguration);
         this.search = new Search(this.sdkConfiguration);
-        this.entities = new Entities(this.sdkConfiguration);
+        this.entities = new ClientEntities(this.sdkConfiguration);
         this.shortcuts = new ClientShortcuts(this.sdkConfiguration);
         this.verification = new Verification(this.sdkConfiguration);
         this.tools = new Tools(this.sdkConfiguration);
@@ -99,7 +99,7 @@ public class Client {
         return search;
     }
 
-    public final Entities entities() {
+    public final ClientEntities entities() {
         return entities;
     }
 
