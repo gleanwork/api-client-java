@@ -6,15 +6,10 @@ package com.glean.api_client.glean_api_client;
 
 import static com.glean.api_client.glean_api_client.operations.Operations.AsyncRequestOperation;
 
-import com.glean.api_client.glean_api_client.models.components.ListEntitiesRequest;
-import com.glean.api_client.glean_api_client.models.components.PeopleRequest;
-import com.glean.api_client.glean_api_client.models.operations.ListentitiesRequest;
-import com.glean.api_client.glean_api_client.models.operations.async.ListentitiesRequestBuilder;
-import com.glean.api_client.glean_api_client.models.operations.async.ListentitiesResponse;
-import com.glean.api_client.glean_api_client.models.operations.async.PeopleRequestBuilder;
-import com.glean.api_client.glean_api_client.models.operations.async.PeopleResponse;
-import com.glean.api_client.glean_api_client.operations.Listentities;
-import com.glean.api_client.glean_api_client.operations.People;
+import com.glean.api_client.glean_api_client.models.operations.GetPersonPhotoRequest;
+import com.glean.api_client.glean_api_client.models.operations.async.GetPersonPhotoRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.GetPersonPhotoResponse;
+import com.glean.api_client.glean_api_client.operations.GetPersonPhoto;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.String;
 import java.util.Optional;
@@ -42,101 +37,62 @@ public class AsyncEntities {
 
 
     /**
-     * List entities
+     * Get person photo
      * 
-     * <p>List some set of details for all entities that fit the given criteria and return in the requested
-     * order. Does not support negation in filters, assumes relation type EQUALS. There is a limit of 10000
-     * entities that can be retrieved via this endpoint, except when using FULL_DIRECTORY request type for
-     * people entities.
+     * <p>Returns the profile photo bytes for a person whose photo is stored in Glean (crawled from an
+     * identity source or user-uploaded via admin console). Photos hosted externally (e.g. Slack CDN) are
+     * not served by this endpoint; callers should follow the photoUrl from /people or /listentities
+     * directly.
      * 
-     * @return The async call builder
-     */
-    public ListentitiesRequestBuilder list() {
-        return new ListentitiesRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * List entities
-     * 
-     * <p>List some set of details for all entities that fit the given criteria and return in the requested
-     * order. Does not support negation in filters, assumes relation type EQUALS. There is a limit of 10000
-     * entities that can be retrieved via this endpoint, except when using FULL_DIRECTORY request type for
-     * people entities.
-     * 
-     * @param listEntitiesRequest 
-     * @return {@code CompletableFuture<ListentitiesResponse>} - The async response
-     */
-    public CompletableFuture<ListentitiesResponse> list(ListEntitiesRequest listEntitiesRequest) {
-        return list(Optional.empty(), listEntitiesRequest);
-    }
-
-    /**
-     * List entities
-     * 
-     * <p>List some set of details for all entities that fit the given criteria and return in the requested
-     * order. Does not support negation in filters, assumes relation type EQUALS. There is a limit of 10000
-     * entities that can be retrieved via this endpoint, except when using FULL_DIRECTORY request type for
-     * people entities.
-     * 
-     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
-     * @param listEntitiesRequest 
-     * @return {@code CompletableFuture<ListentitiesResponse>} - The async response
-     */
-    public CompletableFuture<ListentitiesResponse> list(Optional<String> locale, ListEntitiesRequest listEntitiesRequest) {
-        ListentitiesRequest request =
-            ListentitiesRequest
-                .builder()
-                .locale(locale)
-                .listEntitiesRequest(listEntitiesRequest)
-                .build();
-        AsyncRequestOperation<ListentitiesRequest, ListentitiesResponse> operation
-              = new Listentities.Async(sdkConfiguration, _headers);
-        return operation.doRequest(request)
-            .thenCompose(operation::handleResponse);
-    }
-
-
-    /**
-     * Read people
-     * 
-     * <p>Read people details for the given IDs.
+     * <p>Responses include a Cache-Control header (max-age=3600) to reduce redundant fetches.
      * 
      * @return The async call builder
      */
-    public PeopleRequestBuilder readPeople() {
-        return new PeopleRequestBuilder(sdkConfiguration);
+    public GetPersonPhotoRequestBuilder getPersonPhoto() {
+        return new GetPersonPhotoRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * Read people
+     * Get person photo
      * 
-     * <p>Read people details for the given IDs.
+     * <p>Returns the profile photo bytes for a person whose photo is stored in Glean (crawled from an
+     * identity source or user-uploaded via admin console). Photos hosted externally (e.g. Slack CDN) are
+     * not served by this endpoint; callers should follow the photoUrl from /people or /listentities
+     * directly.
      * 
-     * @param peopleRequest 
-     * @return {@code CompletableFuture<PeopleResponse>} - The async response
+     * <p>Responses include a Cache-Control header (max-age=3600) to reduce redundant fetches.
+     * 
+     * @param personId The obfuscated ID of the person whose photo to retrieve.
+     * @return {@code CompletableFuture<GetPersonPhotoResponse>} - The async response
      */
-    public CompletableFuture<PeopleResponse> readPeople(PeopleRequest peopleRequest) {
-        return readPeople(Optional.empty(), peopleRequest);
+    public CompletableFuture<GetPersonPhotoResponse> getPersonPhoto(String personId) {
+        return getPersonPhoto(personId, Optional.empty());
     }
 
     /**
-     * Read people
+     * Get person photo
      * 
-     * <p>Read people details for the given IDs.
+     * <p>Returns the profile photo bytes for a person whose photo is stored in Glean (crawled from an
+     * identity source or user-uploaded via admin console). Photos hosted externally (e.g. Slack CDN) are
+     * not served by this endpoint; callers should follow the photoUrl from /people or /listentities
+     * directly.
      * 
-     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
-     * @param peopleRequest 
-     * @return {@code CompletableFuture<PeopleResponse>} - The async response
+     * <p>Responses include a Cache-Control header (max-age=3600) to reduce redundant fetches.
+     * 
+     * @param personId The obfuscated ID of the person whose photo to retrieve.
+     * @param ds Optional datasource override for crawled photos (e.g. AZURE, GDRIVE, OKTA). When omitted, the datasource is derived from the person's stored photo URL or the deployment's primary person datasource.
+     *         
+     * @return {@code CompletableFuture<GetPersonPhotoResponse>} - The async response
      */
-    public CompletableFuture<PeopleResponse> readPeople(Optional<String> locale, PeopleRequest peopleRequest) {
-        com.glean.api_client.glean_api_client.models.operations.PeopleRequest request =
-            com.glean.api_client.glean_api_client.models.operations.PeopleRequest
+    public CompletableFuture<GetPersonPhotoResponse> getPersonPhoto(String personId, Optional<String> ds) {
+        GetPersonPhotoRequest request =
+            GetPersonPhotoRequest
                 .builder()
-                .locale(locale)
-                .peopleRequest(peopleRequest)
+                .personId(personId)
+                .ds(ds)
                 .build();
-        AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.PeopleRequest, PeopleResponse> operation
-              = new People.Async(sdkConfiguration, _headers);
+        AsyncRequestOperation<GetPersonPhotoRequest, GetPersonPhotoResponse> operation
+              = new GetPersonPhoto.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

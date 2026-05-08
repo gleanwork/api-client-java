@@ -18,14 +18,14 @@ import java.util.Optional;
 
 public class InsightsSearchSummary {
     /**
-     * Number of current Monthly Active Users, in the specified departments.
+     * Number of current Monthly Active Users.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("monthlyActiveUsers")
     private Optional<Long> monthlyActiveUsers;
 
     /**
-     * Number of current Weekly Active Users, in the specified departments.
+     * Number of current Weekly Active Users.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("weeklyActiveUsers")
@@ -67,7 +67,7 @@ public class InsightsSearchSummary {
     }
 
     /**
-     * Number of current Monthly Active Users, in the specified departments.
+     * Number of current Monthly Active Users.
      */
     @JsonIgnore
     public Optional<Long> monthlyActiveUsers() {
@@ -75,7 +75,7 @@ public class InsightsSearchSummary {
     }
 
     /**
-     * Number of current Weekly Active Users, in the specified departments.
+     * Number of current Weekly Active Users.
      */
     @JsonIgnore
     public Optional<Long> weeklyActiveUsers() {
@@ -104,7 +104,7 @@ public class InsightsSearchSummary {
 
 
     /**
-     * Number of current Monthly Active Users, in the specified departments.
+     * Number of current Monthly Active Users.
      */
     public InsightsSearchSummary withMonthlyActiveUsers(long monthlyActiveUsers) {
         Utils.checkNotNull(monthlyActiveUsers, "monthlyActiveUsers");
@@ -114,7 +114,7 @@ public class InsightsSearchSummary {
 
 
     /**
-     * Number of current Monthly Active Users, in the specified departments.
+     * Number of current Monthly Active Users.
      */
     public InsightsSearchSummary withMonthlyActiveUsers(Optional<Long> monthlyActiveUsers) {
         Utils.checkNotNull(monthlyActiveUsers, "monthlyActiveUsers");
@@ -123,7 +123,7 @@ public class InsightsSearchSummary {
     }
 
     /**
-     * Number of current Weekly Active Users, in the specified departments.
+     * Number of current Weekly Active Users.
      */
     public InsightsSearchSummary withWeeklyActiveUsers(long weeklyActiveUsers) {
         Utils.checkNotNull(weeklyActiveUsers, "weeklyActiveUsers");
@@ -133,7 +133,7 @@ public class InsightsSearchSummary {
 
 
     /**
-     * Number of current Weekly Active Users, in the specified departments.
+     * Number of current Weekly Active Users.
      */
     public InsightsSearchSummary withWeeklyActiveUsers(Optional<Long> weeklyActiveUsers) {
         Utils.checkNotNull(weeklyActiveUsers, "weeklyActiveUsers");
@@ -228,7 +228,7 @@ public class InsightsSearchSummary {
 
 
         /**
-         * Number of current Monthly Active Users, in the specified departments.
+         * Number of current Monthly Active Users.
          */
         public Builder monthlyActiveUsers(long monthlyActiveUsers) {
             Utils.checkNotNull(monthlyActiveUsers, "monthlyActiveUsers");
@@ -237,7 +237,7 @@ public class InsightsSearchSummary {
         }
 
         /**
-         * Number of current Monthly Active Users, in the specified departments.
+         * Number of current Monthly Active Users.
          */
         public Builder monthlyActiveUsers(Optional<Long> monthlyActiveUsers) {
             Utils.checkNotNull(monthlyActiveUsers, "monthlyActiveUsers");
@@ -247,7 +247,7 @@ public class InsightsSearchSummary {
 
 
         /**
-         * Number of current Weekly Active Users, in the specified departments.
+         * Number of current Weekly Active Users.
          */
         public Builder weeklyActiveUsers(long weeklyActiveUsers) {
             Utils.checkNotNull(weeklyActiveUsers, "weeklyActiveUsers");
@@ -256,7 +256,7 @@ public class InsightsSearchSummary {
         }
 
         /**
-         * Number of current Weekly Active Users, in the specified departments.
+         * Number of current Weekly Active Users.
          */
         public Builder weeklyActiveUsers(Optional<Long> weeklyActiveUsers) {
             Utils.checkNotNull(weeklyActiveUsers, "weeklyActiveUsers");
