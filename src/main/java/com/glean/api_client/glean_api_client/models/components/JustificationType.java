@@ -70,11 +70,15 @@ public class JustificationType {
     public static final JustificationType ACTIVE_DISCUSSION = new JustificationType("ACTIVE_DISCUSSION");
     public static final JustificationType MID_DAY_CATCH_UP = new JustificationType("MID_DAY_CATCH_UP");
     public static final JustificationType QUERY_SUGGESTION = new JustificationType("QUERY_SUGGESTION");
+    public static final JustificationType COWORK_CUJ_PROMO = new JustificationType("COWORK_CUJ_PROMO");
     public static final JustificationType WEEKLY_MEETINGS = new JustificationType("WEEKLY_MEETINGS");
     public static final JustificationType FOLLOW_UP = new JustificationType("FOLLOW_UP");
     public static final JustificationType MILESTONE_TIMELINE_CHECK = new JustificationType("MILESTONE_TIMELINE_CHECK");
     public static final JustificationType PROJECT_DISCUSSION_DIGEST = new JustificationType("PROJECT_DISCUSSION_DIGEST");
+    public static final JustificationType PROJECT_FOCUS_BLOCK = new JustificationType("PROJECT_FOCUS_BLOCK");
     public static final JustificationType PROJECT_NEXT_STEP = new JustificationType("PROJECT_NEXT_STEP");
+    public static final JustificationType DEMO_CARD = new JustificationType("DEMO_CARD");
+    public static final JustificationType OOO_PLANNER = new JustificationType("OOO_PLANNER");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -192,11 +196,15 @@ public class JustificationType {
         map.put("ACTIVE_DISCUSSION", ACTIVE_DISCUSSION);
         map.put("MID_DAY_CATCH_UP", MID_DAY_CATCH_UP);
         map.put("QUERY_SUGGESTION", QUERY_SUGGESTION);
+        map.put("COWORK_CUJ_PROMO", COWORK_CUJ_PROMO);
         map.put("WEEKLY_MEETINGS", WEEKLY_MEETINGS);
         map.put("FOLLOW_UP", FOLLOW_UP);
         map.put("MILESTONE_TIMELINE_CHECK", MILESTONE_TIMELINE_CHECK);
         map.put("PROJECT_DISCUSSION_DIGEST", PROJECT_DISCUSSION_DIGEST);
+        map.put("PROJECT_FOCUS_BLOCK", PROJECT_FOCUS_BLOCK);
         map.put("PROJECT_NEXT_STEP", PROJECT_NEXT_STEP);
+        map.put("DEMO_CARD", DEMO_CARD);
+        map.put("OOO_PLANNER", OOO_PLANNER);
         return map;
     }
 
@@ -246,11 +254,15 @@ public class JustificationType {
         map.put("ACTIVE_DISCUSSION", JustificationTypeEnum.ACTIVE_DISCUSSION);
         map.put("MID_DAY_CATCH_UP", JustificationTypeEnum.MID_DAY_CATCH_UP);
         map.put("QUERY_SUGGESTION", JustificationTypeEnum.QUERY_SUGGESTION);
+        map.put("COWORK_CUJ_PROMO", JustificationTypeEnum.COWORK_CUJ_PROMO);
         map.put("WEEKLY_MEETINGS", JustificationTypeEnum.WEEKLY_MEETINGS);
         map.put("FOLLOW_UP", JustificationTypeEnum.FOLLOW_UP);
         map.put("MILESTONE_TIMELINE_CHECK", JustificationTypeEnum.MILESTONE_TIMELINE_CHECK);
         map.put("PROJECT_DISCUSSION_DIGEST", JustificationTypeEnum.PROJECT_DISCUSSION_DIGEST);
+        map.put("PROJECT_FOCUS_BLOCK", JustificationTypeEnum.PROJECT_FOCUS_BLOCK);
         map.put("PROJECT_NEXT_STEP", JustificationTypeEnum.PROJECT_NEXT_STEP);
+        map.put("DEMO_CARD", JustificationTypeEnum.DEMO_CARD);
+        map.put("OOO_PLANNER", JustificationTypeEnum.OOO_PLANNER);
         return map;
     }
     
@@ -301,11 +313,15 @@ public class JustificationType {
         ACTIVE_DISCUSSION("ACTIVE_DISCUSSION"),
         MID_DAY_CATCH_UP("MID_DAY_CATCH_UP"),
         QUERY_SUGGESTION("QUERY_SUGGESTION"),
+        COWORK_CUJ_PROMO("COWORK_CUJ_PROMO"),
         WEEKLY_MEETINGS("WEEKLY_MEETINGS"),
         FOLLOW_UP("FOLLOW_UP"),
         MILESTONE_TIMELINE_CHECK("MILESTONE_TIMELINE_CHECK"),
         PROJECT_DISCUSSION_DIGEST("PROJECT_DISCUSSION_DIGEST"),
-        PROJECT_NEXT_STEP("PROJECT_NEXT_STEP"),;
+        PROJECT_FOCUS_BLOCK("PROJECT_FOCUS_BLOCK"),
+        PROJECT_NEXT_STEP("PROJECT_NEXT_STEP"),
+        DEMO_CARD("DEMO_CARD"),
+        OOO_PLANNER("OOO_PLANNER"),;
 
         private final String value;
 
