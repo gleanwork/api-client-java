@@ -6,18 +6,16 @@ package com.glean.api_client.glean_api_client;
 
 import static com.glean.api_client.glean_api_client.operations.Operations.AsyncRequestOperation;
 
-import com.glean.api_client.glean_api_client.models.components.ToolsCallRequest;
-import com.glean.api_client.glean_api_client.models.operations.GetRestApiV1ToolsListRequest;
-import com.glean.api_client.glean_api_client.models.operations.async.GetRestApiV1ToolsListRequestBuilder;
-import com.glean.api_client.glean_api_client.models.operations.async.GetRestApiV1ToolsListResponse;
-import com.glean.api_client.glean_api_client.models.operations.async.PostRestApiV1ToolsCallRequestBuilder;
-import com.glean.api_client.glean_api_client.models.operations.async.PostRestApiV1ToolsCallResponse;
-import com.glean.api_client.glean_api_client.operations.GetRestApiV1ToolsList;
-import com.glean.api_client.glean_api_client.operations.PostRestApiV1ToolsCall;
+import com.glean.api_client.glean_api_client.models.components.AuthorizeActionRequest;
+import com.glean.api_client.glean_api_client.models.operations.GetActionAuthStatusRequest;
+import com.glean.api_client.glean_api_client.models.operations.async.AuthorizeActionRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.AuthorizeActionResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.GetActionAuthStatusRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.GetActionAuthStatusResponse;
+import com.glean.api_client.glean_api_client.operations.AuthorizeAction;
+import com.glean.api_client.glean_api_client.operations.GetActionAuthStatus;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.String;
-import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
@@ -42,73 +40,82 @@ public class AsyncTools {
 
 
     /**
-     * List available tools
+     * Get end-user authentication status for an action pack.
      * 
-     * <p>Returns a filtered set of available tools based on optional tool name parameters. If no filters are
-     * provided, all available tools are returned.
+     * <p>Reports whether the calling user is already authenticated against the third-party
+     * tool backing the specified action pack. Intended for headless / server-driven clients
+     * that render an "Authorize" prompt when the user has not yet consented to the tool.
      * 
      * @return The async call builder
      */
-    public GetRestApiV1ToolsListRequestBuilder list() {
-        return new GetRestApiV1ToolsListRequestBuilder(sdkConfiguration);
+    public GetActionAuthStatusRequestBuilder getActionAuthStatus() {
+        return new GetActionAuthStatusRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * List available tools
+     * Get end-user authentication status for an action pack.
      * 
-     * <p>Returns a filtered set of available tools based on optional tool name parameters. If no filters are
-     * provided, all available tools are returned.
+     * <p>Reports whether the calling user is already authenticated against the third-party
+     * tool backing the specified action pack. Intended for headless / server-driven clients
+     * that render an "Authorize" prompt when the user has not yet consented to the tool.
      * 
-     * @return {@code CompletableFuture<GetRestApiV1ToolsListResponse>} - The async response
+     * @param actionPackId ID of the action pack to query or authorize.
+     * @return {@code CompletableFuture<GetActionAuthStatusResponse>} - The async response
      */
-    public CompletableFuture<GetRestApiV1ToolsListResponse> listDirect() {
-        return list(Optional.empty());
-    }
-
-    /**
-     * List available tools
-     * 
-     * <p>Returns a filtered set of available tools based on optional tool name parameters. If no filters are
-     * provided, all available tools are returned.
-     * 
-     * @param toolNames Optional array of tool names to filter by
-     * @return {@code CompletableFuture<GetRestApiV1ToolsListResponse>} - The async response
-     */
-    public CompletableFuture<GetRestApiV1ToolsListResponse> list(Optional<? extends List<String>> toolNames) {
-        GetRestApiV1ToolsListRequest request =
-            GetRestApiV1ToolsListRequest
+    public CompletableFuture<GetActionAuthStatusResponse> getActionAuthStatus(String actionPackId) {
+        GetActionAuthStatusRequest request =
+            GetActionAuthStatusRequest
                 .builder()
-                .toolNames(toolNames)
+                .actionPackId(actionPackId)
                 .build();
-        AsyncRequestOperation<GetRestApiV1ToolsListRequest, GetRestApiV1ToolsListResponse> operation
-              = new GetRestApiV1ToolsList.Async(sdkConfiguration, _headers);
+        AsyncRequestOperation<GetActionAuthStatusRequest, GetActionAuthStatusResponse> operation
+              = new GetActionAuthStatus.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
 
 
     /**
-     * Execute the specified tool
+     * Start the OAuth authorization flow for an action pack.
      * 
-     * <p>Execute the specified tool with provided parameters
+     * <p>Starts the third-party OAuth flow for the specified action pack and returns the
+     * redirect URL that the client should navigate the end user to. After the OAuth
+     * callback completes, the user's browser is redirected back to `returnUrl` with a
+     * status query parameter (`?glean_action_auth=success|error&amp;actionPackId=...`).
+     * 
+     * <p>`returnUrl` must match the tenant's configured return URL allowlist; otherwise the
+     * request is rejected with 400.
      * 
      * @return The async call builder
      */
-    public PostRestApiV1ToolsCallRequestBuilder run() {
-        return new PostRestApiV1ToolsCallRequestBuilder(sdkConfiguration);
+    public AuthorizeActionRequestBuilder authorizeAction() {
+        return new AuthorizeActionRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * Execute the specified tool
+     * Start the OAuth authorization flow for an action pack.
      * 
-     * <p>Execute the specified tool with provided parameters
+     * <p>Starts the third-party OAuth flow for the specified action pack and returns the
+     * redirect URL that the client should navigate the end user to. After the OAuth
+     * callback completes, the user's browser is redirected back to `returnUrl` with a
+     * status query parameter (`?glean_action_auth=success|error&amp;actionPackId=...`).
      * 
-     * @param request The request object containing all the parameters for the API call.
-     * @return {@code CompletableFuture<PostRestApiV1ToolsCallResponse>} - The async response
+     * <p>`returnUrl` must match the tenant's configured return URL allowlist; otherwise the
+     * request is rejected with 400.
+     * 
+     * @param actionPackId ID of the action pack to query or authorize.
+     * @param authorizeActionRequest 
+     * @return {@code CompletableFuture<AuthorizeActionResponse>} - The async response
      */
-    public CompletableFuture<PostRestApiV1ToolsCallResponse> run(ToolsCallRequest request) {
-        AsyncRequestOperation<ToolsCallRequest, PostRestApiV1ToolsCallResponse> operation
-              = new PostRestApiV1ToolsCall.Async(sdkConfiguration, _headers);
+    public CompletableFuture<AuthorizeActionResponse> authorizeAction(String actionPackId, AuthorizeActionRequest authorizeActionRequest) {
+        com.glean.api_client.glean_api_client.models.operations.AuthorizeActionRequest request =
+            com.glean.api_client.glean_api_client.models.operations.AuthorizeActionRequest
+                .builder()
+                .actionPackId(actionPackId)
+                .authorizeActionRequest(authorizeActionRequest)
+                .build();
+        AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.AuthorizeActionRequest, AuthorizeActionResponse> operation
+              = new AuthorizeAction.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
