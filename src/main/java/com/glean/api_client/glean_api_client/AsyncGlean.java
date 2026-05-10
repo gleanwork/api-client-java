@@ -40,6 +40,14 @@ public class AsyncGlean {
      */
     private final AsyncAuthentication authentication;
 
+    private final AsyncChat chat;
+
+    private final AsyncAgents agents;
+
+    private final AsyncEntities entities;
+
+    private final AsyncTools tools;
+
     private final AsyncIndexing indexing;
 
     private final AsyncGovernance governance;
@@ -56,6 +64,22 @@ public class AsyncGlean {
      */
     public AsyncAuthentication authentication() {
         return authentication;
+    }
+
+    public AsyncChat chat() {
+        return chat;
+    }
+
+    public AsyncAgents agents() {
+        return agents;
+    }
+
+    public AsyncEntities entities() {
+        return entities;
+    }
+
+    public AsyncTools tools() {
+        return tools;
     }
 
     public AsyncIndexing indexing() {
@@ -80,6 +104,10 @@ public class AsyncGlean {
         this.sdkConfiguration = sdkConfiguration;
         this.client = new AsyncClient(syncSDK.client(), sdkConfiguration);
         this.authentication = new AsyncAuthentication(syncSDK.authentication(), sdkConfiguration);
+        this.chat = new AsyncChat(syncSDK.chat(), sdkConfiguration);
+        this.agents = new AsyncAgents(syncSDK.agents(), sdkConfiguration);
+        this.entities = new AsyncEntities(syncSDK.entities(), sdkConfiguration);
+        this.tools = new AsyncTools(syncSDK.tools(), sdkConfiguration);
         this.indexing = new AsyncIndexing(syncSDK.indexing(), sdkConfiguration);
         this.governance = new AsyncGovernance(syncSDK.governance(), sdkConfiguration);
         this.datasources = new AsyncDatasources(syncSDK.datasources(), sdkConfiguration);
