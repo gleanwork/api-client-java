@@ -67,7 +67,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.glean.api-client:glean-api-client:0.12.38'
+implementation 'com.glean.api-client:glean-api-client:0.13.0'
 ```
 
 Maven:
@@ -75,7 +75,7 @@ Maven:
 <dependency>
     <groupId>com.glean.api-client</groupId>
     <artifactId>glean-api-client</artifactId>
-    <version>0.12.38</version>
+    <version>0.13.0</version>
 </dependency>
 ```
 
@@ -408,22 +408,30 @@ For more information on obtaining the appropriate token type, please contact you
 <details open>
 <summary>Available methods</summary>
 
+### [Agents](docs/sdks/agents/README.md)
+
+* [editAgent](docs/sdks/agents/README.md#editagent) - Edit an agent
+
 ### [Authentication](docs/sdks/authentication/README.md)
 
 * [checkdatasourceauth](docs/sdks/authentication/README.md#checkdatasourceauth) - Check datasource authorization
+
+### [Chat](docs/sdks/chat/README.md)
+
+* [getChatFile](docs/sdks/chat/README.md#getchatfile) - Download a chat file
 
 ### [Client.Activity](docs/sdks/activity/README.md)
 
 * [report](docs/sdks/activity/README.md#report) - Report document activity
 * [feedback](docs/sdks/activity/README.md#feedback) - Report client activity
 
-### [Client.Agents](docs/sdks/agents/README.md)
+### [Client.Agents](docs/sdks/clientagents/README.md)
 
-* [retrieve](docs/sdks/agents/README.md#retrieve) - Retrieve an agent
-* [retrieveSchemas](docs/sdks/agents/README.md#retrieveschemas) - List an agent's schemas
-* [list](docs/sdks/agents/README.md#list) - Search agents
-* [runStream](docs/sdks/agents/README.md#runstream) - Create an agent run and stream the response
-* [run](docs/sdks/agents/README.md#run) - Create an agent run and wait for the response
+* [retrieve](docs/sdks/clientagents/README.md#retrieve) - Retrieve an agent
+* [retrieveSchemas](docs/sdks/clientagents/README.md#retrieveschemas) - List an agent's schemas
+* [list](docs/sdks/clientagents/README.md#list) - Search agents
+* [runStream](docs/sdks/clientagents/README.md#runstream) - Create an agent run and stream the response
+* [run](docs/sdks/clientagents/README.md#run) - Create an agent run and wait for the response
 
 ### [Client.Announcements](docs/sdks/announcements/README.md)
 
@@ -443,18 +451,18 @@ For more information on obtaining the appropriate token type, please contact you
 
 * [createToken](docs/sdks/clientauthentication/README.md#createtoken) - Create authentication token
 
-### [Client.Chat](docs/sdks/chat/README.md)
+### [Client.Chat](docs/sdks/clientchat/README.md)
 
-* [create](docs/sdks/chat/README.md#create) - Chat
-* [deleteAll](docs/sdks/chat/README.md#deleteall) - Deletes all saved Chats owned by a user
-* [delete](docs/sdks/chat/README.md#delete) - Deletes saved Chats
-* [retrieve](docs/sdks/chat/README.md#retrieve) - Retrieves a Chat
-* [list](docs/sdks/chat/README.md#list) - Retrieves all saved Chats
-* [retrieveApplication](docs/sdks/chat/README.md#retrieveapplication) - Gets the metadata for a custom Chat application
-* [uploadFiles](docs/sdks/chat/README.md#uploadfiles) - Upload files for Chat
-* [retrieveFiles](docs/sdks/chat/README.md#retrievefiles) - Get files uploaded by a user for Chat
-* [deleteFiles](docs/sdks/chat/README.md#deletefiles) - Delete files uploaded by a user for chat
-* [createStream](docs/sdks/chat/README.md#createstream) - Chat
+* [create](docs/sdks/clientchat/README.md#create) - Chat
+* [deleteAll](docs/sdks/clientchat/README.md#deleteall) - Deletes all saved Chats owned by a user
+* [delete](docs/sdks/clientchat/README.md#delete) - Deletes saved Chats
+* [retrieve](docs/sdks/clientchat/README.md#retrieve) - Retrieves a Chat
+* [list](docs/sdks/clientchat/README.md#list) - Retrieves all saved Chats
+* [retrieveApplication](docs/sdks/clientchat/README.md#retrieveapplication) - Gets the metadata for a custom Chat application
+* [uploadFiles](docs/sdks/clientchat/README.md#uploadfiles) - Upload files for Chat
+* [retrieveFiles](docs/sdks/clientchat/README.md#retrievefiles) - Get files uploaded by a user for Chat
+* [deleteFiles](docs/sdks/clientchat/README.md#deletefiles) - Delete files uploaded by a user for chat
+* [createStream](docs/sdks/clientchat/README.md#createstream) - Chat
 
 ### [Client.Collections](docs/sdks/collections/README.md)
 
@@ -474,10 +482,10 @@ For more information on obtaining the appropriate token type, please contact you
 * [retrieveByFacets](docs/sdks/clientdocuments/README.md#retrievebyfacets) - Read documents by facets
 * [summarize](docs/sdks/clientdocuments/README.md#summarize) - Summarize documents
 
-### [Client.Entities](docs/sdks/entities/README.md)
+### [Client.Entities](docs/sdks/cliententities/README.md)
 
-* [list](docs/sdks/entities/README.md#list) - List entities
-* [readPeople](docs/sdks/entities/README.md#readpeople) - Read people
+* [list](docs/sdks/cliententities/README.md#list) - List entities
+* [readPeople](docs/sdks/cliententities/README.md#readpeople) - Read people
 
 ### [Client.Governance.Data.Policies](docs/sdks/policies/README.md)
 
@@ -530,10 +538,10 @@ For more information on obtaining the appropriate token type, please contact you
 * [list](docs/sdks/clientshortcuts/README.md#list) - List shortcuts
 * [update](docs/sdks/clientshortcuts/README.md#update) - Update shortcut
 
-### [Client.Tools](docs/sdks/tools/README.md)
+### [Client.Tools](docs/sdks/clienttools/README.md)
 
-* [list](docs/sdks/tools/README.md#list) - List available tools
-* [run](docs/sdks/tools/README.md#run) - Execute the specified tool
+* [list](docs/sdks/clienttools/README.md#list) - List available tools
+* [run](docs/sdks/clienttools/README.md#run) - Execute the specified tool
 
 ### [Client.Verification](docs/sdks/verification/README.md)
 
@@ -545,6 +553,12 @@ For more information on obtaining the appropriate token type, please contact you
 
 * [getDatasourceInstanceConfiguration](docs/sdks/datasources/README.md#getdatasourceinstanceconfiguration) - Get datasource instance configuration
 * [updateDatasourceInstanceConfiguration](docs/sdks/datasources/README.md#updatedatasourceinstanceconfiguration) - Update datasource instance configuration
+* [getDatasourceCredentialStatus](docs/sdks/datasources/README.md#getdatasourcecredentialstatus) - Get datasource instance credential status
+* [rotateDatasourceCredentials](docs/sdks/datasources/README.md#rotatedatasourcecredentials) - Rotate datasource instance credentials
+
+### [Entities](docs/sdks/entities/README.md)
+
+* [getPersonPhoto](docs/sdks/entities/README.md#getpersonphoto) - Get person photo
 
 ### [Governance](docs/sdks/governance/README.md)
 
@@ -614,6 +628,16 @@ For more information on obtaining the appropriate token type, please contact you
 
 * [bulkIndex](docs/sdks/indexingshortcuts/README.md#bulkindex) - Bulk index external shortcuts
 * [upload](docs/sdks/indexingshortcuts/README.md#upload) - Upload shortcuts
+
+### [Tools](docs/sdks/tools/README.md)
+
+* [getActionPackAuthStatus](docs/sdks/tools/README.md#getactionpackauthstatus) - Get end-user authentication status for an action pack.
+* [authorizeActionPack](docs/sdks/tools/README.md#authorizeactionpack) - Start the OAuth authorization flow for an action pack.
+
+### [Troubleshooting](docs/sdks/troubleshooting/README.md)
+
+* [postApiIndexV1DebugDatasourceDocumentEvents](docs/sdks/troubleshooting/README.md#postapiindexv1debugdatasourcedocumentevents) - Beta: Get document lifecycle events
+
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -713,9 +737,9 @@ public class Application {
 many more subclasses in the JDK platform).
 
 **Inherit from [`GleanError`](./src/main/java/models/errors/GleanError.java)**:
-* [`com.glean.api_client.glean_api_client.models.errors.ErrorResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorResponse.java): Error response returned for failed requests. Applicable to 6 of 116 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.CollectionError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.CollectionError.java): Semantic error. Status code `422`. Applicable to 3 of 116 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.GleanDataError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.GleanDataError.java): Forbidden. Applicable to 2 of 116 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.ErrorResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorResponse.java): Error response returned for failed requests. Applicable to 9 of 124 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.CollectionError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.CollectionError.java): Semantic error. Status code `422`. Applicable to 3 of 124 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.GleanDataError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.GleanDataError.java): Forbidden. Applicable to 2 of 124 methods.*
 
 
 </details>
