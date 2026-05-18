@@ -33,4 +33,5 @@ UgcType custom = UgcType.of("custom_value");
 | `SHORTCUTS_TYPE`        | SHORTCUTS_TYPE          |
 | `SLIDE_TYPE`            | SLIDE_TYPE              |
 | `SPREADSHEET_TYPE`      | SPREADSHEET_TYPE        |
+| `INLINE_HTML_TYPE`      | INLINE_HTML_TYPE        |
 | `WORKFLOWS_TYPE`        | WORKFLOWS_TYPE          |

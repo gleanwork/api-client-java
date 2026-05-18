@@ -75,6 +75,11 @@ public class PerAgentInsight {
     @JsonProperty("downvoteCount")
     private Optional<Long> downvoteCount;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("owner")
+    private Optional<? extends Person> owner;
+
     @JsonCreator
     public PerAgentInsight(
             @JsonProperty("agentId") Optional<String> agentId,
@@ -84,7 +89,8 @@ public class PerAgentInsight {
             @JsonProperty("userCount") Optional<Long> userCount,
             @JsonProperty("runCount") Optional<Long> runCount,
             @JsonProperty("upvoteCount") Optional<Long> upvoteCount,
-            @JsonProperty("downvoteCount") Optional<Long> downvoteCount) {
+            @JsonProperty("downvoteCount") Optional<Long> downvoteCount,
+            @JsonProperty("owner") Optional<? extends Person> owner) {
         Utils.checkNotNull(agentId, "agentId");
         Utils.checkNotNull(agentName, "agentName");
         Utils.checkNotNull(icon, "icon");
@@ -93,6 +99,7 @@ public class PerAgentInsight {
         Utils.checkNotNull(runCount, "runCount");
         Utils.checkNotNull(upvoteCount, "upvoteCount");
         Utils.checkNotNull(downvoteCount, "downvoteCount");
+        Utils.checkNotNull(owner, "owner");
         this.agentId = agentId;
         this.agentName = agentName;
         this.icon = icon;
@@ -101,12 +108,13 @@ public class PerAgentInsight {
         this.runCount = runCount;
         this.upvoteCount = upvoteCount;
         this.downvoteCount = downvoteCount;
+        this.owner = owner;
     }
     
     public PerAgentInsight() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -172,6 +180,12 @@ public class PerAgentInsight {
     @JsonIgnore
     public Optional<Long> downvoteCount() {
         return downvoteCount;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Person> owner() {
+        return (Optional<Person>) owner;
     }
 
     public static Builder builder() {
@@ -331,6 +345,19 @@ public class PerAgentInsight {
         return this;
     }
 
+    public PerAgentInsight withOwner(Person owner) {
+        Utils.checkNotNull(owner, "owner");
+        this.owner = Optional.ofNullable(owner);
+        return this;
+    }
+
+
+    public PerAgentInsight withOwner(Optional<? extends Person> owner) {
+        Utils.checkNotNull(owner, "owner");
+        this.owner = owner;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -348,7 +375,8 @@ public class PerAgentInsight {
             Utils.enhancedDeepEquals(this.userCount, other.userCount) &&
             Utils.enhancedDeepEquals(this.runCount, other.runCount) &&
             Utils.enhancedDeepEquals(this.upvoteCount, other.upvoteCount) &&
-            Utils.enhancedDeepEquals(this.downvoteCount, other.downvoteCount);
+            Utils.enhancedDeepEquals(this.downvoteCount, other.downvoteCount) &&
+            Utils.enhancedDeepEquals(this.owner, other.owner);
     }
     
     @Override
@@ -356,7 +384,7 @@ public class PerAgentInsight {
         return Utils.enhancedHash(
             agentId, agentName, icon,
             isDeleted, userCount, runCount,
-            upvoteCount, downvoteCount);
+            upvoteCount, downvoteCount, owner);
     }
     
     @Override
@@ -369,7 +397,8 @@ public class PerAgentInsight {
                 "userCount", userCount,
                 "runCount", runCount,
                 "upvoteCount", upvoteCount,
-                "downvoteCount", downvoteCount);
+                "downvoteCount", downvoteCount,
+                "owner", owner);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -390,6 +419,8 @@ public class PerAgentInsight {
         private Optional<Long> upvoteCount = Optional.empty();
 
         private Optional<Long> downvoteCount = Optional.empty();
+
+        private Optional<? extends Person> owner = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -547,12 +578,25 @@ public class PerAgentInsight {
             return this;
         }
 
+
+        public Builder owner(Person owner) {
+            Utils.checkNotNull(owner, "owner");
+            this.owner = Optional.ofNullable(owner);
+            return this;
+        }
+
+        public Builder owner(Optional<? extends Person> owner) {
+            Utils.checkNotNull(owner, "owner");
+            this.owner = owner;
+            return this;
+        }
+
         public PerAgentInsight build() {
 
             return new PerAgentInsight(
                 agentId, agentName, icon,
                 isDeleted, userCount, runCount,
-                upvoteCount, downvoteCount);
+                upvoteCount, downvoteCount, owner);
         }
 
     }
