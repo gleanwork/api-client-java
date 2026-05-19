@@ -28,6 +28,7 @@ public class CollectionErrorErrorCode {
     public static final CollectionErrorErrorCode HEIGHT_VIOLATION = new CollectionErrorErrorCode("HEIGHT_VIOLATION");
     public static final CollectionErrorErrorCode WIDTH_VIOLATION = new CollectionErrorErrorCode("WIDTH_VIOLATION");
     public static final CollectionErrorErrorCode NO_PERMISSIONS = new CollectionErrorErrorCode("NO_PERMISSIONS");
+    public static final CollectionErrorErrorCode CORRUPT_ITEM = new CollectionErrorErrorCode("CORRUPT_ITEM");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -108,6 +109,7 @@ public class CollectionErrorErrorCode {
         map.put("HEIGHT_VIOLATION", HEIGHT_VIOLATION);
         map.put("WIDTH_VIOLATION", WIDTH_VIOLATION);
         map.put("NO_PERMISSIONS", NO_PERMISSIONS);
+        map.put("CORRUPT_ITEM", CORRUPT_ITEM);
         return map;
     }
 
@@ -120,6 +122,7 @@ public class CollectionErrorErrorCode {
         map.put("HEIGHT_VIOLATION", CollectionErrorErrorCodeEnum.HEIGHT_VIOLATION);
         map.put("WIDTH_VIOLATION", CollectionErrorErrorCodeEnum.WIDTH_VIOLATION);
         map.put("NO_PERMISSIONS", CollectionErrorErrorCodeEnum.NO_PERMISSIONS);
+        map.put("CORRUPT_ITEM", CollectionErrorErrorCodeEnum.CORRUPT_ITEM);
         return map;
     }
     
@@ -132,7 +135,8 @@ public class CollectionErrorErrorCode {
         CONCURRENT_HIERARCHY_EDIT("CONCURRENT_HIERARCHY_EDIT"),
         HEIGHT_VIOLATION("HEIGHT_VIOLATION"),
         WIDTH_VIOLATION("WIDTH_VIOLATION"),
-        NO_PERMISSIONS("NO_PERMISSIONS"),;
+        NO_PERMISSIONS("NO_PERMISSIONS"),
+        CORRUPT_ITEM("CORRUPT_ITEM"),;
 
         private final String value;
 
