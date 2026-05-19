@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.Deprecated;
 import java.lang.Float;
 import java.lang.Long;
 import java.lang.Override;
@@ -22,14 +23,14 @@ import java.util.Optional;
 
 public class InsightsOverviewResponse {
     /**
-     * Number of current Monthly Active Users, in the specified departments.
+     * Number of current Monthly Active Users.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("monthlyActiveUsers")
     private Optional<Long> monthlyActiveUsers;
 
     /**
-     * Number of current Weekly Active Users, in the specified departments.
+     * Number of current Weekly Active Users.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("weeklyActiveUsers")
@@ -100,9 +101,12 @@ public class InsightsOverviewResponse {
 
     /**
      * Search session satisfaction rate, over the specified time period in the specified departments.
+     * 
+     * @deprecated field: Deprecated on 2026-05-13, removal scheduled for 2027-01-15: This property is no longer supported. Please contact Support for alternatives..
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("searchSessionSatisfaction")
+    @Deprecated
     private Optional<Float> searchSessionSatisfaction;
 
 
@@ -319,7 +323,7 @@ public class InsightsOverviewResponse {
     }
 
     /**
-     * Number of current Monthly Active Users, in the specified departments.
+     * Number of current Monthly Active Users.
      */
     @JsonIgnore
     public Optional<Long> monthlyActiveUsers() {
@@ -327,7 +331,7 @@ public class InsightsOverviewResponse {
     }
 
     /**
-     * Number of current Weekly Active Users, in the specified departments.
+     * Number of current Weekly Active Users.
      */
     @JsonIgnore
     public Optional<Long> weeklyActiveUsers() {
@@ -411,7 +415,10 @@ public class InsightsOverviewResponse {
 
     /**
      * Search session satisfaction rate, over the specified time period in the specified departments.
+     * 
+     * @deprecated field: Deprecated on 2026-05-13, removal scheduled for 2027-01-15: This property is no longer supported. Please contact Support for alternatives..
      */
+    @Deprecated
     @JsonIgnore
     public Optional<Float> searchSessionSatisfaction() {
         return searchSessionSatisfaction;
@@ -543,7 +550,7 @@ public class InsightsOverviewResponse {
 
 
     /**
-     * Number of current Monthly Active Users, in the specified departments.
+     * Number of current Monthly Active Users.
      */
     public InsightsOverviewResponse withMonthlyActiveUsers(long monthlyActiveUsers) {
         Utils.checkNotNull(monthlyActiveUsers, "monthlyActiveUsers");
@@ -553,7 +560,7 @@ public class InsightsOverviewResponse {
 
 
     /**
-     * Number of current Monthly Active Users, in the specified departments.
+     * Number of current Monthly Active Users.
      */
     public InsightsOverviewResponse withMonthlyActiveUsers(Optional<Long> monthlyActiveUsers) {
         Utils.checkNotNull(monthlyActiveUsers, "monthlyActiveUsers");
@@ -562,7 +569,7 @@ public class InsightsOverviewResponse {
     }
 
     /**
-     * Number of current Weekly Active Users, in the specified departments.
+     * Number of current Weekly Active Users.
      */
     public InsightsOverviewResponse withWeeklyActiveUsers(long weeklyActiveUsers) {
         Utils.checkNotNull(weeklyActiveUsers, "weeklyActiveUsers");
@@ -572,7 +579,7 @@ public class InsightsOverviewResponse {
 
 
     /**
-     * Number of current Weekly Active Users, in the specified departments.
+     * Number of current Weekly Active Users.
      */
     public InsightsOverviewResponse withWeeklyActiveUsers(Optional<Long> weeklyActiveUsers) {
         Utils.checkNotNull(weeklyActiveUsers, "weeklyActiveUsers");
@@ -749,7 +756,10 @@ public class InsightsOverviewResponse {
 
     /**
      * Search session satisfaction rate, over the specified time period in the specified departments.
+     * 
+     * @deprecated field: Deprecated on 2026-05-13, removal scheduled for 2027-01-15: This property is no longer supported. Please contact Support for alternatives..
      */
+    @Deprecated
     public InsightsOverviewResponse withSearchSessionSatisfaction(float searchSessionSatisfaction) {
         Utils.checkNotNull(searchSessionSatisfaction, "searchSessionSatisfaction");
         this.searchSessionSatisfaction = Optional.ofNullable(searchSessionSatisfaction);
@@ -759,7 +769,10 @@ public class InsightsOverviewResponse {
 
     /**
      * Search session satisfaction rate, over the specified time period in the specified departments.
+     * 
+     * @deprecated field: Deprecated on 2026-05-13, removal scheduled for 2027-01-15: This property is no longer supported. Please contact Support for alternatives..
      */
+    @Deprecated
     public InsightsOverviewResponse withSearchSessionSatisfaction(Optional<Float> searchSessionSatisfaction) {
         Utils.checkNotNull(searchSessionSatisfaction, "searchSessionSatisfaction");
         this.searchSessionSatisfaction = searchSessionSatisfaction;
@@ -1150,6 +1163,7 @@ public class InsightsOverviewResponse {
 
         private Optional<Long> lastUpdatedTs = Optional.empty();
 
+        @Deprecated
         private Optional<Float> searchSessionSatisfaction = Optional.empty();
 
         private Optional<? extends LabeledCountInfo> monthlyActiveUserTimeseries = Optional.empty();
@@ -1194,7 +1208,7 @@ public class InsightsOverviewResponse {
 
 
         /**
-         * Number of current Monthly Active Users, in the specified departments.
+         * Number of current Monthly Active Users.
          */
         public Builder monthlyActiveUsers(long monthlyActiveUsers) {
             Utils.checkNotNull(monthlyActiveUsers, "monthlyActiveUsers");
@@ -1203,7 +1217,7 @@ public class InsightsOverviewResponse {
         }
 
         /**
-         * Number of current Monthly Active Users, in the specified departments.
+         * Number of current Monthly Active Users.
          */
         public Builder monthlyActiveUsers(Optional<Long> monthlyActiveUsers) {
             Utils.checkNotNull(monthlyActiveUsers, "monthlyActiveUsers");
@@ -1213,7 +1227,7 @@ public class InsightsOverviewResponse {
 
 
         /**
-         * Number of current Weekly Active Users, in the specified departments.
+         * Number of current Weekly Active Users.
          */
         public Builder weeklyActiveUsers(long weeklyActiveUsers) {
             Utils.checkNotNull(weeklyActiveUsers, "weeklyActiveUsers");
@@ -1222,7 +1236,7 @@ public class InsightsOverviewResponse {
         }
 
         /**
-         * Number of current Weekly Active Users, in the specified departments.
+         * Number of current Weekly Active Users.
          */
         public Builder weeklyActiveUsers(Optional<Long> weeklyActiveUsers) {
             Utils.checkNotNull(weeklyActiveUsers, "weeklyActiveUsers");
@@ -1400,7 +1414,10 @@ public class InsightsOverviewResponse {
 
         /**
          * Search session satisfaction rate, over the specified time period in the specified departments.
+         * 
+         * @deprecated field: Deprecated on 2026-05-13, removal scheduled for 2027-01-15: This property is no longer supported. Please contact Support for alternatives..
          */
+        @Deprecated
         public Builder searchSessionSatisfaction(float searchSessionSatisfaction) {
             Utils.checkNotNull(searchSessionSatisfaction, "searchSessionSatisfaction");
             this.searchSessionSatisfaction = Optional.ofNullable(searchSessionSatisfaction);
@@ -1409,7 +1426,10 @@ public class InsightsOverviewResponse {
 
         /**
          * Search session satisfaction rate, over the specified time period in the specified departments.
+         * 
+         * @deprecated field: Deprecated on 2026-05-13, removal scheduled for 2027-01-15: This property is no longer supported. Please contact Support for alternatives..
          */
+        @Deprecated
         public Builder searchSessionSatisfaction(Optional<Float> searchSessionSatisfaction) {
             Utils.checkNotNull(searchSessionSatisfaction, "searchSessionSatisfaction");
             this.searchSessionSatisfaction = searchSessionSatisfaction;

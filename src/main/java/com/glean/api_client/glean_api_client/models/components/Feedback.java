@@ -48,7 +48,7 @@ public class Feedback {
      * `trackingToken`.
      */
     @JsonProperty("event")
-    private Event event;
+    private FeedbackEvent event;
 
     /**
      * Position of the element in the case that the client controls order (such as feed and autocomplete).
@@ -163,7 +163,7 @@ public class Feedback {
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("category") Optional<? extends FeedbackCategory> category,
             @JsonProperty("trackingTokens") List<String> trackingTokens,
-            @JsonProperty("event") Event event,
+            @JsonProperty("event") FeedbackEvent event,
             @JsonProperty("position") Optional<Long> position,
             @JsonProperty("payload") Optional<String> payload,
             @JsonProperty("sessionInfo") Optional<? extends SessionInfo> sessionInfo,
@@ -227,7 +227,7 @@ public class Feedback {
     
     public Feedback(
             List<String> trackingTokens,
-            Event event) {
+            FeedbackEvent event) {
         this(Optional.empty(), Optional.empty(), trackingTokens,
             event, Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
@@ -270,7 +270,7 @@ public class Feedback {
      * `trackingToken`.
      */
     @JsonIgnore
-    public Event event() {
+    public FeedbackEvent event() {
         return event;
     }
 
@@ -463,7 +463,7 @@ public class Feedback {
      * The action the user took within a Glean client with respect to the object referred to by the given
      * `trackingToken`.
      */
-    public Feedback withEvent(Event event) {
+    public Feedback withEvent(FeedbackEvent event) {
         Utils.checkNotNull(event, "event");
         this.event = event;
         return this;
@@ -836,7 +836,7 @@ public class Feedback {
 
         private List<String> trackingTokens;
 
-        private Event event;
+        private FeedbackEvent event;
 
         private Optional<Long> position = Optional.empty();
 
@@ -935,7 +935,7 @@ public class Feedback {
          * The action the user took within a Glean client with respect to the object referred to by the given
          * `trackingToken`.
          */
-        public Builder event(Event event) {
+        public Builder event(FeedbackEvent event) {
             Utils.checkNotNull(event, "event");
             this.event = event;
             return this;
