@@ -8,6 +8,8 @@ Manage datasources.
 
 * [getDatasourceInstanceConfiguration](#getdatasourceinstanceconfiguration) - Get datasource instance configuration
 * [updateDatasourceInstanceConfiguration](#updatedatasourceinstanceconfiguration) - Update datasource instance configuration
+* [getDatasourceCredentialStatus](#getdatasourcecredentialstatus) - Get datasource instance credential status
+* [rotateDatasourceCredentials](#rotatedatasourcecredentials) - Rotate datasource instance credentials
 
 ## getDatasourceInstanceConfiguration
 
@@ -119,6 +121,121 @@ public class Application {
 ### Response
 
 **[UpdateDatasourceInstanceConfigurationResponse](../../models/operations/UpdateDatasourceInstanceConfigurationResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400, 403, 404               | application/json            |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
+
+## getDatasourceCredentialStatus
+
+Returns the current credential status for a datasource instance. Access is limited to callers with the ADMIN scope; the handler enforces this check.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="getDatasourceCredentialStatus" method="get" path="/rest/api/v1/datasource/{datasourceInstanceId}/credentialstatus" -->
+```java
+package hello.world;
+
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.errors.ErrorResponse;
+import com.glean.api_client.glean_api_client.models.operations.GetDatasourceCredentialStatusResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
+            .build();
+
+        GetDatasourceCredentialStatusResponse res = sdk.datasources().getDatasourceCredentialStatus()
+                .datasourceInstanceId("o365sharepoint_abc123")
+                .call();
+
+        if (res.datasourceCredentialStatusResponse().isPresent()) {
+            System.out.println(res.datasourceCredentialStatusResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          | Example                                                              |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `datasourceInstanceId`                                               | *String*                                                             | :heavy_check_mark:                                                   | The full datasource instance identifier (e.g. o365sharepoint_abc123) | o365sharepoint_abc123                                                |
+
+### Response
+
+**[GetDatasourceCredentialStatusResponse](../../models/operations/GetDatasourceCredentialStatusResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400, 403, 404               | application/json            |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
+
+## rotateDatasourceCredentials
+
+Rotates the credentials that a datasource instance uses to connect to its upstream system. Replaces the active credential material with the supplied values and returns the credential status after rotation. Access is limited to callers with the ADMIN scope; the handler enforces this check.
+Only keys recognized as credential material for the datasource type may be set in `credentials.values` (e.g. `clientSecret`, `apiToken`, `privateKey`, depending on the configured auth method). Unrecognized keys, or keys that correspond to non-credential configuration, cause a 400; other instance configuration must be updated via PATCH /configure/datasources/{datasourceId}/instances/{instanceId}.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="rotateDatasourceCredentials" method="post" path="/rest/api/v1/datasource/{datasourceInstanceId}/credentials" -->
+```java
+package hello.world;
+
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.errors.ErrorResponse;
+import com.glean.api_client.glean_api_client.models.operations.RotateDatasourceCredentialsResponse;
+import java.lang.Exception;
+import java.util.Map;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
+            .build();
+
+        RotateDatasourceCredentialsResponse res = sdk.datasources().rotateDatasourceCredentials()
+                .datasourceInstanceId("o365sharepoint_abc123")
+                .rotateDatasourceCredentialsRequest(RotateDatasourceCredentialsRequest.builder()
+                    .credentials(DatasourceInstanceConfiguration.builder()
+                        .values(Map.ofEntries(
+                            Map.entry("key", ConfigurationValue.builder()
+                                .build())))
+                        .build())
+                    .build())
+                .call();
+
+        if (res.datasourceCredentialStatusResponse().isPresent()) {
+            System.out.println(res.datasourceCredentialStatusResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         | Example                                                                                             |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `datasourceInstanceId`                                                                              | *String*                                                                                            | :heavy_check_mark:                                                                                  | The full datasource instance identifier (e.g. o365sharepoint_abc123)                                | o365sharepoint_abc123                                                                               |
+| `rotateDatasourceCredentialsRequest`                                                                | [RotateDatasourceCredentialsRequest](../../models/components/RotateDatasourceCredentialsRequest.md) | :heavy_check_mark:                                                                                  | N/A                                                                                                 |                                                                                                     |
+
+### Response
+
+**[RotateDatasourceCredentialsResponse](../../models/operations/RotateDatasourceCredentialsResponse.md)**
 
 ### Errors
 

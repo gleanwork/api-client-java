@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.Deprecated;
 import java.lang.Float;
 import java.lang.Long;
 import java.lang.Override;
@@ -22,14 +23,14 @@ import java.util.Optional;
 
 public class InsightsOverviewResponse {
     /**
-     * Number of current Monthly Active Users, in the specified departments.
+     * Number of current Monthly Active Users.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("monthlyActiveUsers")
     private Optional<Long> monthlyActiveUsers;
 
     /**
-     * Number of current Weekly Active Users, in the specified departments.
+     * Number of current Weekly Active Users.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("weeklyActiveUsers")
@@ -83,6 +84,11 @@ public class InsightsOverviewResponse {
 
 
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("mcpActiveUsers")
+    private Optional<? extends CurrentActiveUsers> mcpActiveUsers;
+
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("extensionSummary")
     private Optional<? extends CurrentActiveUsers> extensionSummary;
 
@@ -100,9 +106,12 @@ public class InsightsOverviewResponse {
 
     /**
      * Search session satisfaction rate, over the specified time period in the specified departments.
+     * 
+     * @deprecated field: Deprecated on 2026-05-13, removal scheduled for 2027-01-15: This property is no longer supported. Please contact Support for alternatives..
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("searchSessionSatisfaction")
+    @Deprecated
     private Optional<Float> searchSessionSatisfaction;
 
 
@@ -167,6 +176,21 @@ public class InsightsOverviewResponse {
 
 
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("mcpMonthlyActiveUserTimeseries")
+    private Optional<? extends LabeledCountInfo> mcpMonthlyActiveUserTimeseries;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("mcpWeeklyActiveUserTimeseries")
+    private Optional<? extends LabeledCountInfo> mcpWeeklyActiveUserTimeseries;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("mcpDailyActiveUserTimeseries")
+    private Optional<? extends LabeledCountInfo> mcpDailyActiveUserTimeseries;
+
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("searchesTimeseries")
     private Optional<? extends LabeledCountInfo> searchesTimeseries;
 
@@ -179,6 +203,11 @@ public class InsightsOverviewResponse {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("agentRunsTimeseries")
     private Optional<? extends LabeledCountInfo> agentRunsTimeseries;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("mcpCallsTimeseries")
+    private Optional<? extends LabeledCountInfo> mcpCallsTimeseries;
 
     /**
      * Counts of search result clicks, by datasource, over the specified time period in the specified
@@ -216,6 +245,7 @@ public class InsightsOverviewResponse {
             @JsonProperty("searchActiveUsers") Optional<? extends CurrentActiveUsers> searchActiveUsers,
             @JsonProperty("assistantActiveUsers") Optional<? extends CurrentActiveUsers> assistantActiveUsers,
             @JsonProperty("agentsActiveUsers") Optional<? extends CurrentActiveUsers> agentsActiveUsers,
+            @JsonProperty("mcpActiveUsers") Optional<? extends CurrentActiveUsers> mcpActiveUsers,
             @JsonProperty("extensionSummary") Optional<? extends CurrentActiveUsers> extensionSummary,
             @JsonProperty("ugcSummary") Optional<? extends CurrentActiveUsers> ugcSummary,
             @JsonProperty("lastUpdatedTs") Optional<Long> lastUpdatedTs,
@@ -232,9 +262,13 @@ public class InsightsOverviewResponse {
             @JsonProperty("agentsMonthlyActiveUserTimeseries") Optional<? extends LabeledCountInfo> agentsMonthlyActiveUserTimeseries,
             @JsonProperty("agentsWeeklyActiveUserTimeseries") Optional<? extends LabeledCountInfo> agentsWeeklyActiveUserTimeseries,
             @JsonProperty("agentsDailyActiveUserTimeseries") Optional<? extends LabeledCountInfo> agentsDailyActiveUserTimeseries,
+            @JsonProperty("mcpMonthlyActiveUserTimeseries") Optional<? extends LabeledCountInfo> mcpMonthlyActiveUserTimeseries,
+            @JsonProperty("mcpWeeklyActiveUserTimeseries") Optional<? extends LabeledCountInfo> mcpWeeklyActiveUserTimeseries,
+            @JsonProperty("mcpDailyActiveUserTimeseries") Optional<? extends LabeledCountInfo> mcpDailyActiveUserTimeseries,
             @JsonProperty("searchesTimeseries") Optional<? extends LabeledCountInfo> searchesTimeseries,
             @JsonProperty("assistantInteractionsTimeseries") Optional<? extends LabeledCountInfo> assistantInteractionsTimeseries,
             @JsonProperty("agentRunsTimeseries") Optional<? extends LabeledCountInfo> agentRunsTimeseries,
+            @JsonProperty("mcpCallsTimeseries") Optional<? extends LabeledCountInfo> mcpCallsTimeseries,
             @JsonProperty("searchDatasourceCounts") Optional<? extends Map<String, Long>> searchDatasourceCounts,
             @JsonProperty("chatDatasourceCounts") Optional<? extends Map<String, Long>> chatDatasourceCounts,
             @JsonProperty("perUserInsights") Optional<? extends List<PerUserInsight>> perUserInsights) {
@@ -248,6 +282,7 @@ public class InsightsOverviewResponse {
         Utils.checkNotNull(searchActiveUsers, "searchActiveUsers");
         Utils.checkNotNull(assistantActiveUsers, "assistantActiveUsers");
         Utils.checkNotNull(agentsActiveUsers, "agentsActiveUsers");
+        Utils.checkNotNull(mcpActiveUsers, "mcpActiveUsers");
         Utils.checkNotNull(extensionSummary, "extensionSummary");
         Utils.checkNotNull(ugcSummary, "ugcSummary");
         Utils.checkNotNull(lastUpdatedTs, "lastUpdatedTs");
@@ -264,9 +299,13 @@ public class InsightsOverviewResponse {
         Utils.checkNotNull(agentsMonthlyActiveUserTimeseries, "agentsMonthlyActiveUserTimeseries");
         Utils.checkNotNull(agentsWeeklyActiveUserTimeseries, "agentsWeeklyActiveUserTimeseries");
         Utils.checkNotNull(agentsDailyActiveUserTimeseries, "agentsDailyActiveUserTimeseries");
+        Utils.checkNotNull(mcpMonthlyActiveUserTimeseries, "mcpMonthlyActiveUserTimeseries");
+        Utils.checkNotNull(mcpWeeklyActiveUserTimeseries, "mcpWeeklyActiveUserTimeseries");
+        Utils.checkNotNull(mcpDailyActiveUserTimeseries, "mcpDailyActiveUserTimeseries");
         Utils.checkNotNull(searchesTimeseries, "searchesTimeseries");
         Utils.checkNotNull(assistantInteractionsTimeseries, "assistantInteractionsTimeseries");
         Utils.checkNotNull(agentRunsTimeseries, "agentRunsTimeseries");
+        Utils.checkNotNull(mcpCallsTimeseries, "mcpCallsTimeseries");
         Utils.checkNotNull(searchDatasourceCounts, "searchDatasourceCounts");
         Utils.checkNotNull(chatDatasourceCounts, "chatDatasourceCounts");
         Utils.checkNotNull(perUserInsights, "perUserInsights");
@@ -280,6 +319,7 @@ public class InsightsOverviewResponse {
         this.searchActiveUsers = searchActiveUsers;
         this.assistantActiveUsers = assistantActiveUsers;
         this.agentsActiveUsers = agentsActiveUsers;
+        this.mcpActiveUsers = mcpActiveUsers;
         this.extensionSummary = extensionSummary;
         this.ugcSummary = ugcSummary;
         this.lastUpdatedTs = lastUpdatedTs;
@@ -296,9 +336,13 @@ public class InsightsOverviewResponse {
         this.agentsMonthlyActiveUserTimeseries = agentsMonthlyActiveUserTimeseries;
         this.agentsWeeklyActiveUserTimeseries = agentsWeeklyActiveUserTimeseries;
         this.agentsDailyActiveUserTimeseries = agentsDailyActiveUserTimeseries;
+        this.mcpMonthlyActiveUserTimeseries = mcpMonthlyActiveUserTimeseries;
+        this.mcpWeeklyActiveUserTimeseries = mcpWeeklyActiveUserTimeseries;
+        this.mcpDailyActiveUserTimeseries = mcpDailyActiveUserTimeseries;
         this.searchesTimeseries = searchesTimeseries;
         this.assistantInteractionsTimeseries = assistantInteractionsTimeseries;
         this.agentRunsTimeseries = agentRunsTimeseries;
+        this.mcpCallsTimeseries = mcpCallsTimeseries;
         this.searchDatasourceCounts = searchDatasourceCounts;
         this.chatDatasourceCounts = chatDatasourceCounts;
         this.perUserInsights = perUserInsights;
@@ -315,11 +359,13 @@ public class InsightsOverviewResponse {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
-     * Number of current Monthly Active Users, in the specified departments.
+     * Number of current Monthly Active Users.
      */
     @JsonIgnore
     public Optional<Long> monthlyActiveUsers() {
@@ -327,7 +373,7 @@ public class InsightsOverviewResponse {
     }
 
     /**
-     * Number of current Weekly Active Users, in the specified departments.
+     * Number of current Weekly Active Users.
      */
     @JsonIgnore
     public Optional<Long> weeklyActiveUsers() {
@@ -391,6 +437,12 @@ public class InsightsOverviewResponse {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
+    public Optional<CurrentActiveUsers> mcpActiveUsers() {
+        return (Optional<CurrentActiveUsers>) mcpActiveUsers;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
     public Optional<CurrentActiveUsers> extensionSummary() {
         return (Optional<CurrentActiveUsers>) extensionSummary;
     }
@@ -411,7 +463,10 @@ public class InsightsOverviewResponse {
 
     /**
      * Search session satisfaction rate, over the specified time period in the specified departments.
+     * 
+     * @deprecated field: Deprecated on 2026-05-13, removal scheduled for 2027-01-15: This property is no longer supported. Please contact Support for alternatives..
      */
+    @Deprecated
     @JsonIgnore
     public Optional<Float> searchSessionSatisfaction() {
         return searchSessionSatisfaction;
@@ -491,6 +546,24 @@ public class InsightsOverviewResponse {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
+    public Optional<LabeledCountInfo> mcpMonthlyActiveUserTimeseries() {
+        return (Optional<LabeledCountInfo>) mcpMonthlyActiveUserTimeseries;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<LabeledCountInfo> mcpWeeklyActiveUserTimeseries() {
+        return (Optional<LabeledCountInfo>) mcpWeeklyActiveUserTimeseries;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<LabeledCountInfo> mcpDailyActiveUserTimeseries() {
+        return (Optional<LabeledCountInfo>) mcpDailyActiveUserTimeseries;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
     public Optional<LabeledCountInfo> searchesTimeseries() {
         return (Optional<LabeledCountInfo>) searchesTimeseries;
     }
@@ -505,6 +578,12 @@ public class InsightsOverviewResponse {
     @JsonIgnore
     public Optional<LabeledCountInfo> agentRunsTimeseries() {
         return (Optional<LabeledCountInfo>) agentRunsTimeseries;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<LabeledCountInfo> mcpCallsTimeseries() {
+        return (Optional<LabeledCountInfo>) mcpCallsTimeseries;
     }
 
     /**
@@ -543,7 +622,7 @@ public class InsightsOverviewResponse {
 
 
     /**
-     * Number of current Monthly Active Users, in the specified departments.
+     * Number of current Monthly Active Users.
      */
     public InsightsOverviewResponse withMonthlyActiveUsers(long monthlyActiveUsers) {
         Utils.checkNotNull(monthlyActiveUsers, "monthlyActiveUsers");
@@ -553,7 +632,7 @@ public class InsightsOverviewResponse {
 
 
     /**
-     * Number of current Monthly Active Users, in the specified departments.
+     * Number of current Monthly Active Users.
      */
     public InsightsOverviewResponse withMonthlyActiveUsers(Optional<Long> monthlyActiveUsers) {
         Utils.checkNotNull(monthlyActiveUsers, "monthlyActiveUsers");
@@ -562,7 +641,7 @@ public class InsightsOverviewResponse {
     }
 
     /**
-     * Number of current Weekly Active Users, in the specified departments.
+     * Number of current Weekly Active Users.
      */
     public InsightsOverviewResponse withWeeklyActiveUsers(long weeklyActiveUsers) {
         Utils.checkNotNull(weeklyActiveUsers, "weeklyActiveUsers");
@@ -572,7 +651,7 @@ public class InsightsOverviewResponse {
 
 
     /**
-     * Number of current Weekly Active Users, in the specified departments.
+     * Number of current Weekly Active Users.
      */
     public InsightsOverviewResponse withWeeklyActiveUsers(Optional<Long> weeklyActiveUsers) {
         Utils.checkNotNull(weeklyActiveUsers, "weeklyActiveUsers");
@@ -702,6 +781,19 @@ public class InsightsOverviewResponse {
         return this;
     }
 
+    public InsightsOverviewResponse withMcpActiveUsers(CurrentActiveUsers mcpActiveUsers) {
+        Utils.checkNotNull(mcpActiveUsers, "mcpActiveUsers");
+        this.mcpActiveUsers = Optional.ofNullable(mcpActiveUsers);
+        return this;
+    }
+
+
+    public InsightsOverviewResponse withMcpActiveUsers(Optional<? extends CurrentActiveUsers> mcpActiveUsers) {
+        Utils.checkNotNull(mcpActiveUsers, "mcpActiveUsers");
+        this.mcpActiveUsers = mcpActiveUsers;
+        return this;
+    }
+
     public InsightsOverviewResponse withExtensionSummary(CurrentActiveUsers extensionSummary) {
         Utils.checkNotNull(extensionSummary, "extensionSummary");
         this.extensionSummary = Optional.ofNullable(extensionSummary);
@@ -749,7 +841,10 @@ public class InsightsOverviewResponse {
 
     /**
      * Search session satisfaction rate, over the specified time period in the specified departments.
+     * 
+     * @deprecated field: Deprecated on 2026-05-13, removal scheduled for 2027-01-15: This property is no longer supported. Please contact Support for alternatives..
      */
+    @Deprecated
     public InsightsOverviewResponse withSearchSessionSatisfaction(float searchSessionSatisfaction) {
         Utils.checkNotNull(searchSessionSatisfaction, "searchSessionSatisfaction");
         this.searchSessionSatisfaction = Optional.ofNullable(searchSessionSatisfaction);
@@ -759,7 +854,10 @@ public class InsightsOverviewResponse {
 
     /**
      * Search session satisfaction rate, over the specified time period in the specified departments.
+     * 
+     * @deprecated field: Deprecated on 2026-05-13, removal scheduled for 2027-01-15: This property is no longer supported. Please contact Support for alternatives..
      */
+    @Deprecated
     public InsightsOverviewResponse withSearchSessionSatisfaction(Optional<Float> searchSessionSatisfaction) {
         Utils.checkNotNull(searchSessionSatisfaction, "searchSessionSatisfaction");
         this.searchSessionSatisfaction = searchSessionSatisfaction;
@@ -922,6 +1020,45 @@ public class InsightsOverviewResponse {
         return this;
     }
 
+    public InsightsOverviewResponse withMcpMonthlyActiveUserTimeseries(LabeledCountInfo mcpMonthlyActiveUserTimeseries) {
+        Utils.checkNotNull(mcpMonthlyActiveUserTimeseries, "mcpMonthlyActiveUserTimeseries");
+        this.mcpMonthlyActiveUserTimeseries = Optional.ofNullable(mcpMonthlyActiveUserTimeseries);
+        return this;
+    }
+
+
+    public InsightsOverviewResponse withMcpMonthlyActiveUserTimeseries(Optional<? extends LabeledCountInfo> mcpMonthlyActiveUserTimeseries) {
+        Utils.checkNotNull(mcpMonthlyActiveUserTimeseries, "mcpMonthlyActiveUserTimeseries");
+        this.mcpMonthlyActiveUserTimeseries = mcpMonthlyActiveUserTimeseries;
+        return this;
+    }
+
+    public InsightsOverviewResponse withMcpWeeklyActiveUserTimeseries(LabeledCountInfo mcpWeeklyActiveUserTimeseries) {
+        Utils.checkNotNull(mcpWeeklyActiveUserTimeseries, "mcpWeeklyActiveUserTimeseries");
+        this.mcpWeeklyActiveUserTimeseries = Optional.ofNullable(mcpWeeklyActiveUserTimeseries);
+        return this;
+    }
+
+
+    public InsightsOverviewResponse withMcpWeeklyActiveUserTimeseries(Optional<? extends LabeledCountInfo> mcpWeeklyActiveUserTimeseries) {
+        Utils.checkNotNull(mcpWeeklyActiveUserTimeseries, "mcpWeeklyActiveUserTimeseries");
+        this.mcpWeeklyActiveUserTimeseries = mcpWeeklyActiveUserTimeseries;
+        return this;
+    }
+
+    public InsightsOverviewResponse withMcpDailyActiveUserTimeseries(LabeledCountInfo mcpDailyActiveUserTimeseries) {
+        Utils.checkNotNull(mcpDailyActiveUserTimeseries, "mcpDailyActiveUserTimeseries");
+        this.mcpDailyActiveUserTimeseries = Optional.ofNullable(mcpDailyActiveUserTimeseries);
+        return this;
+    }
+
+
+    public InsightsOverviewResponse withMcpDailyActiveUserTimeseries(Optional<? extends LabeledCountInfo> mcpDailyActiveUserTimeseries) {
+        Utils.checkNotNull(mcpDailyActiveUserTimeseries, "mcpDailyActiveUserTimeseries");
+        this.mcpDailyActiveUserTimeseries = mcpDailyActiveUserTimeseries;
+        return this;
+    }
+
     public InsightsOverviewResponse withSearchesTimeseries(LabeledCountInfo searchesTimeseries) {
         Utils.checkNotNull(searchesTimeseries, "searchesTimeseries");
         this.searchesTimeseries = Optional.ofNullable(searchesTimeseries);
@@ -958,6 +1095,19 @@ public class InsightsOverviewResponse {
     public InsightsOverviewResponse withAgentRunsTimeseries(Optional<? extends LabeledCountInfo> agentRunsTimeseries) {
         Utils.checkNotNull(agentRunsTimeseries, "agentRunsTimeseries");
         this.agentRunsTimeseries = agentRunsTimeseries;
+        return this;
+    }
+
+    public InsightsOverviewResponse withMcpCallsTimeseries(LabeledCountInfo mcpCallsTimeseries) {
+        Utils.checkNotNull(mcpCallsTimeseries, "mcpCallsTimeseries");
+        this.mcpCallsTimeseries = Optional.ofNullable(mcpCallsTimeseries);
+        return this;
+    }
+
+
+    public InsightsOverviewResponse withMcpCallsTimeseries(Optional<? extends LabeledCountInfo> mcpCallsTimeseries) {
+        Utils.checkNotNull(mcpCallsTimeseries, "mcpCallsTimeseries");
+        this.mcpCallsTimeseries = mcpCallsTimeseries;
         return this;
     }
 
@@ -1044,6 +1194,7 @@ public class InsightsOverviewResponse {
             Utils.enhancedDeepEquals(this.searchActiveUsers, other.searchActiveUsers) &&
             Utils.enhancedDeepEquals(this.assistantActiveUsers, other.assistantActiveUsers) &&
             Utils.enhancedDeepEquals(this.agentsActiveUsers, other.agentsActiveUsers) &&
+            Utils.enhancedDeepEquals(this.mcpActiveUsers, other.mcpActiveUsers) &&
             Utils.enhancedDeepEquals(this.extensionSummary, other.extensionSummary) &&
             Utils.enhancedDeepEquals(this.ugcSummary, other.ugcSummary) &&
             Utils.enhancedDeepEquals(this.lastUpdatedTs, other.lastUpdatedTs) &&
@@ -1060,9 +1211,13 @@ public class InsightsOverviewResponse {
             Utils.enhancedDeepEquals(this.agentsMonthlyActiveUserTimeseries, other.agentsMonthlyActiveUserTimeseries) &&
             Utils.enhancedDeepEquals(this.agentsWeeklyActiveUserTimeseries, other.agentsWeeklyActiveUserTimeseries) &&
             Utils.enhancedDeepEquals(this.agentsDailyActiveUserTimeseries, other.agentsDailyActiveUserTimeseries) &&
+            Utils.enhancedDeepEquals(this.mcpMonthlyActiveUserTimeseries, other.mcpMonthlyActiveUserTimeseries) &&
+            Utils.enhancedDeepEquals(this.mcpWeeklyActiveUserTimeseries, other.mcpWeeklyActiveUserTimeseries) &&
+            Utils.enhancedDeepEquals(this.mcpDailyActiveUserTimeseries, other.mcpDailyActiveUserTimeseries) &&
             Utils.enhancedDeepEquals(this.searchesTimeseries, other.searchesTimeseries) &&
             Utils.enhancedDeepEquals(this.assistantInteractionsTimeseries, other.assistantInteractionsTimeseries) &&
             Utils.enhancedDeepEquals(this.agentRunsTimeseries, other.agentRunsTimeseries) &&
+            Utils.enhancedDeepEquals(this.mcpCallsTimeseries, other.mcpCallsTimeseries) &&
             Utils.enhancedDeepEquals(this.searchDatasourceCounts, other.searchDatasourceCounts) &&
             Utils.enhancedDeepEquals(this.chatDatasourceCounts, other.chatDatasourceCounts) &&
             Utils.enhancedDeepEquals(this.perUserInsights, other.perUserInsights);
@@ -1074,14 +1229,16 @@ public class InsightsOverviewResponse {
             monthlyActiveUsers, weeklyActiveUsers, departments,
             employeeCount, totalSignups, searchSummary,
             chatSummary, searchActiveUsers, assistantActiveUsers,
-            agentsActiveUsers, extensionSummary, ugcSummary,
-            lastUpdatedTs, searchSessionSatisfaction, monthlyActiveUserTimeseries,
-            weeklyActiveUserTimeseries, dailyActiveUserTimeseries, searchMonthlyActiveUserTimeseries,
-            searchWeeklyActiveUserTimeseries, searchDailyActiveUserTimeseries, assistantMonthlyActiveUserTimeseries,
-            assistantWeeklyActiveUserTimeseries, assistantDailyActiveUserTimeseries, agentsMonthlyActiveUserTimeseries,
-            agentsWeeklyActiveUserTimeseries, agentsDailyActiveUserTimeseries, searchesTimeseries,
-            assistantInteractionsTimeseries, agentRunsTimeseries, searchDatasourceCounts,
-            chatDatasourceCounts, perUserInsights);
+            agentsActiveUsers, mcpActiveUsers, extensionSummary,
+            ugcSummary, lastUpdatedTs, searchSessionSatisfaction,
+            monthlyActiveUserTimeseries, weeklyActiveUserTimeseries, dailyActiveUserTimeseries,
+            searchMonthlyActiveUserTimeseries, searchWeeklyActiveUserTimeseries, searchDailyActiveUserTimeseries,
+            assistantMonthlyActiveUserTimeseries, assistantWeeklyActiveUserTimeseries, assistantDailyActiveUserTimeseries,
+            agentsMonthlyActiveUserTimeseries, agentsWeeklyActiveUserTimeseries, agentsDailyActiveUserTimeseries,
+            mcpMonthlyActiveUserTimeseries, mcpWeeklyActiveUserTimeseries, mcpDailyActiveUserTimeseries,
+            searchesTimeseries, assistantInteractionsTimeseries, agentRunsTimeseries,
+            mcpCallsTimeseries, searchDatasourceCounts, chatDatasourceCounts,
+            perUserInsights);
     }
     
     @Override
@@ -1097,6 +1254,7 @@ public class InsightsOverviewResponse {
                 "searchActiveUsers", searchActiveUsers,
                 "assistantActiveUsers", assistantActiveUsers,
                 "agentsActiveUsers", agentsActiveUsers,
+                "mcpActiveUsers", mcpActiveUsers,
                 "extensionSummary", extensionSummary,
                 "ugcSummary", ugcSummary,
                 "lastUpdatedTs", lastUpdatedTs,
@@ -1113,9 +1271,13 @@ public class InsightsOverviewResponse {
                 "agentsMonthlyActiveUserTimeseries", agentsMonthlyActiveUserTimeseries,
                 "agentsWeeklyActiveUserTimeseries", agentsWeeklyActiveUserTimeseries,
                 "agentsDailyActiveUserTimeseries", agentsDailyActiveUserTimeseries,
+                "mcpMonthlyActiveUserTimeseries", mcpMonthlyActiveUserTimeseries,
+                "mcpWeeklyActiveUserTimeseries", mcpWeeklyActiveUserTimeseries,
+                "mcpDailyActiveUserTimeseries", mcpDailyActiveUserTimeseries,
                 "searchesTimeseries", searchesTimeseries,
                 "assistantInteractionsTimeseries", assistantInteractionsTimeseries,
                 "agentRunsTimeseries", agentRunsTimeseries,
+                "mcpCallsTimeseries", mcpCallsTimeseries,
                 "searchDatasourceCounts", searchDatasourceCounts,
                 "chatDatasourceCounts", chatDatasourceCounts,
                 "perUserInsights", perUserInsights);
@@ -1144,12 +1306,15 @@ public class InsightsOverviewResponse {
 
         private Optional<? extends CurrentActiveUsers> agentsActiveUsers = Optional.empty();
 
+        private Optional<? extends CurrentActiveUsers> mcpActiveUsers = Optional.empty();
+
         private Optional<? extends CurrentActiveUsers> extensionSummary = Optional.empty();
 
         private Optional<? extends CurrentActiveUsers> ugcSummary = Optional.empty();
 
         private Optional<Long> lastUpdatedTs = Optional.empty();
 
+        @Deprecated
         private Optional<Float> searchSessionSatisfaction = Optional.empty();
 
         private Optional<? extends LabeledCountInfo> monthlyActiveUserTimeseries = Optional.empty();
@@ -1176,11 +1341,19 @@ public class InsightsOverviewResponse {
 
         private Optional<? extends LabeledCountInfo> agentsDailyActiveUserTimeseries = Optional.empty();
 
+        private Optional<? extends LabeledCountInfo> mcpMonthlyActiveUserTimeseries = Optional.empty();
+
+        private Optional<? extends LabeledCountInfo> mcpWeeklyActiveUserTimeseries = Optional.empty();
+
+        private Optional<? extends LabeledCountInfo> mcpDailyActiveUserTimeseries = Optional.empty();
+
         private Optional<? extends LabeledCountInfo> searchesTimeseries = Optional.empty();
 
         private Optional<? extends LabeledCountInfo> assistantInteractionsTimeseries = Optional.empty();
 
         private Optional<? extends LabeledCountInfo> agentRunsTimeseries = Optional.empty();
+
+        private Optional<? extends LabeledCountInfo> mcpCallsTimeseries = Optional.empty();
 
         private Optional<? extends Map<String, Long>> searchDatasourceCounts = Optional.empty();
 
@@ -1194,7 +1367,7 @@ public class InsightsOverviewResponse {
 
 
         /**
-         * Number of current Monthly Active Users, in the specified departments.
+         * Number of current Monthly Active Users.
          */
         public Builder monthlyActiveUsers(long monthlyActiveUsers) {
             Utils.checkNotNull(monthlyActiveUsers, "monthlyActiveUsers");
@@ -1203,7 +1376,7 @@ public class InsightsOverviewResponse {
         }
 
         /**
-         * Number of current Monthly Active Users, in the specified departments.
+         * Number of current Monthly Active Users.
          */
         public Builder monthlyActiveUsers(Optional<Long> monthlyActiveUsers) {
             Utils.checkNotNull(monthlyActiveUsers, "monthlyActiveUsers");
@@ -1213,7 +1386,7 @@ public class InsightsOverviewResponse {
 
 
         /**
-         * Number of current Weekly Active Users, in the specified departments.
+         * Number of current Weekly Active Users.
          */
         public Builder weeklyActiveUsers(long weeklyActiveUsers) {
             Utils.checkNotNull(weeklyActiveUsers, "weeklyActiveUsers");
@@ -1222,7 +1395,7 @@ public class InsightsOverviewResponse {
         }
 
         /**
-         * Number of current Weekly Active Users, in the specified departments.
+         * Number of current Weekly Active Users.
          */
         public Builder weeklyActiveUsers(Optional<Long> weeklyActiveUsers) {
             Utils.checkNotNull(weeklyActiveUsers, "weeklyActiveUsers");
@@ -1353,6 +1526,19 @@ public class InsightsOverviewResponse {
         }
 
 
+        public Builder mcpActiveUsers(CurrentActiveUsers mcpActiveUsers) {
+            Utils.checkNotNull(mcpActiveUsers, "mcpActiveUsers");
+            this.mcpActiveUsers = Optional.ofNullable(mcpActiveUsers);
+            return this;
+        }
+
+        public Builder mcpActiveUsers(Optional<? extends CurrentActiveUsers> mcpActiveUsers) {
+            Utils.checkNotNull(mcpActiveUsers, "mcpActiveUsers");
+            this.mcpActiveUsers = mcpActiveUsers;
+            return this;
+        }
+
+
         public Builder extensionSummary(CurrentActiveUsers extensionSummary) {
             Utils.checkNotNull(extensionSummary, "extensionSummary");
             this.extensionSummary = Optional.ofNullable(extensionSummary);
@@ -1400,7 +1586,10 @@ public class InsightsOverviewResponse {
 
         /**
          * Search session satisfaction rate, over the specified time period in the specified departments.
+         * 
+         * @deprecated field: Deprecated on 2026-05-13, removal scheduled for 2027-01-15: This property is no longer supported. Please contact Support for alternatives..
          */
+        @Deprecated
         public Builder searchSessionSatisfaction(float searchSessionSatisfaction) {
             Utils.checkNotNull(searchSessionSatisfaction, "searchSessionSatisfaction");
             this.searchSessionSatisfaction = Optional.ofNullable(searchSessionSatisfaction);
@@ -1409,7 +1598,10 @@ public class InsightsOverviewResponse {
 
         /**
          * Search session satisfaction rate, over the specified time period in the specified departments.
+         * 
+         * @deprecated field: Deprecated on 2026-05-13, removal scheduled for 2027-01-15: This property is no longer supported. Please contact Support for alternatives..
          */
+        @Deprecated
         public Builder searchSessionSatisfaction(Optional<Float> searchSessionSatisfaction) {
             Utils.checkNotNull(searchSessionSatisfaction, "searchSessionSatisfaction");
             this.searchSessionSatisfaction = searchSessionSatisfaction;
@@ -1573,6 +1765,45 @@ public class InsightsOverviewResponse {
         }
 
 
+        public Builder mcpMonthlyActiveUserTimeseries(LabeledCountInfo mcpMonthlyActiveUserTimeseries) {
+            Utils.checkNotNull(mcpMonthlyActiveUserTimeseries, "mcpMonthlyActiveUserTimeseries");
+            this.mcpMonthlyActiveUserTimeseries = Optional.ofNullable(mcpMonthlyActiveUserTimeseries);
+            return this;
+        }
+
+        public Builder mcpMonthlyActiveUserTimeseries(Optional<? extends LabeledCountInfo> mcpMonthlyActiveUserTimeseries) {
+            Utils.checkNotNull(mcpMonthlyActiveUserTimeseries, "mcpMonthlyActiveUserTimeseries");
+            this.mcpMonthlyActiveUserTimeseries = mcpMonthlyActiveUserTimeseries;
+            return this;
+        }
+
+
+        public Builder mcpWeeklyActiveUserTimeseries(LabeledCountInfo mcpWeeklyActiveUserTimeseries) {
+            Utils.checkNotNull(mcpWeeklyActiveUserTimeseries, "mcpWeeklyActiveUserTimeseries");
+            this.mcpWeeklyActiveUserTimeseries = Optional.ofNullable(mcpWeeklyActiveUserTimeseries);
+            return this;
+        }
+
+        public Builder mcpWeeklyActiveUserTimeseries(Optional<? extends LabeledCountInfo> mcpWeeklyActiveUserTimeseries) {
+            Utils.checkNotNull(mcpWeeklyActiveUserTimeseries, "mcpWeeklyActiveUserTimeseries");
+            this.mcpWeeklyActiveUserTimeseries = mcpWeeklyActiveUserTimeseries;
+            return this;
+        }
+
+
+        public Builder mcpDailyActiveUserTimeseries(LabeledCountInfo mcpDailyActiveUserTimeseries) {
+            Utils.checkNotNull(mcpDailyActiveUserTimeseries, "mcpDailyActiveUserTimeseries");
+            this.mcpDailyActiveUserTimeseries = Optional.ofNullable(mcpDailyActiveUserTimeseries);
+            return this;
+        }
+
+        public Builder mcpDailyActiveUserTimeseries(Optional<? extends LabeledCountInfo> mcpDailyActiveUserTimeseries) {
+            Utils.checkNotNull(mcpDailyActiveUserTimeseries, "mcpDailyActiveUserTimeseries");
+            this.mcpDailyActiveUserTimeseries = mcpDailyActiveUserTimeseries;
+            return this;
+        }
+
+
         public Builder searchesTimeseries(LabeledCountInfo searchesTimeseries) {
             Utils.checkNotNull(searchesTimeseries, "searchesTimeseries");
             this.searchesTimeseries = Optional.ofNullable(searchesTimeseries);
@@ -1608,6 +1839,19 @@ public class InsightsOverviewResponse {
         public Builder agentRunsTimeseries(Optional<? extends LabeledCountInfo> agentRunsTimeseries) {
             Utils.checkNotNull(agentRunsTimeseries, "agentRunsTimeseries");
             this.agentRunsTimeseries = agentRunsTimeseries;
+            return this;
+        }
+
+
+        public Builder mcpCallsTimeseries(LabeledCountInfo mcpCallsTimeseries) {
+            Utils.checkNotNull(mcpCallsTimeseries, "mcpCallsTimeseries");
+            this.mcpCallsTimeseries = Optional.ofNullable(mcpCallsTimeseries);
+            return this;
+        }
+
+        public Builder mcpCallsTimeseries(Optional<? extends LabeledCountInfo> mcpCallsTimeseries) {
+            Utils.checkNotNull(mcpCallsTimeseries, "mcpCallsTimeseries");
+            this.mcpCallsTimeseries = mcpCallsTimeseries;
             return this;
         }
 
@@ -1680,14 +1924,16 @@ public class InsightsOverviewResponse {
                 monthlyActiveUsers, weeklyActiveUsers, departments,
                 employeeCount, totalSignups, searchSummary,
                 chatSummary, searchActiveUsers, assistantActiveUsers,
-                agentsActiveUsers, extensionSummary, ugcSummary,
-                lastUpdatedTs, searchSessionSatisfaction, monthlyActiveUserTimeseries,
-                weeklyActiveUserTimeseries, dailyActiveUserTimeseries, searchMonthlyActiveUserTimeseries,
-                searchWeeklyActiveUserTimeseries, searchDailyActiveUserTimeseries, assistantMonthlyActiveUserTimeseries,
-                assistantWeeklyActiveUserTimeseries, assistantDailyActiveUserTimeseries, agentsMonthlyActiveUserTimeseries,
-                agentsWeeklyActiveUserTimeseries, agentsDailyActiveUserTimeseries, searchesTimeseries,
-                assistantInteractionsTimeseries, agentRunsTimeseries, searchDatasourceCounts,
-                chatDatasourceCounts, perUserInsights);
+                agentsActiveUsers, mcpActiveUsers, extensionSummary,
+                ugcSummary, lastUpdatedTs, searchSessionSatisfaction,
+                monthlyActiveUserTimeseries, weeklyActiveUserTimeseries, dailyActiveUserTimeseries,
+                searchMonthlyActiveUserTimeseries, searchWeeklyActiveUserTimeseries, searchDailyActiveUserTimeseries,
+                assistantMonthlyActiveUserTimeseries, assistantWeeklyActiveUserTimeseries, assistantDailyActiveUserTimeseries,
+                agentsMonthlyActiveUserTimeseries, agentsWeeklyActiveUserTimeseries, agentsDailyActiveUserTimeseries,
+                mcpMonthlyActiveUserTimeseries, mcpWeeklyActiveUserTimeseries, mcpDailyActiveUserTimeseries,
+                searchesTimeseries, assistantInteractionsTimeseries, agentRunsTimeseries,
+                mcpCallsTimeseries, searchDatasourceCounts, chatDatasourceCounts,
+                perUserInsights);
         }
 
     }
