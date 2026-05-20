@@ -1,16 +1,16 @@
-# PropertyType
+# PropertyDefinitionPropertyType
 
 The type of custom property - this governs the search and faceting behavior. Note that MULTIPICKLIST is not yet supported.
 
 ## Example Usage
 
 ```java
-import com.glean.api_client.glean_api_client.models.components.PropertyType;
+import com.glean.api_client.glean_api_client.models.components.PropertyDefinitionPropertyType;
 
-PropertyType value = PropertyType.TEXT;
+PropertyDefinitionPropertyType value = PropertyDefinitionPropertyType.TEXT;
 
 // Open enum: use .of() to create instances from custom string values
-PropertyType custom = PropertyType.of("custom_value");
+PropertyDefinitionPropertyType custom = PropertyDefinitionPropertyType.of("custom_value");
 ```
 
 
