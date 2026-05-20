@@ -12,6 +12,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -24,24 +26,45 @@ public class ChatSuggestion {
     private Optional<String> query;
 
     /**
+     * Button text to show for the suggestion action.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("cta")
+    private Optional<String> cta;
+
+    /**
      * Targeted Glean Chat feature for the suggestion.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("feature")
     private Optional<String> feature;
 
+    /**
+     * Document IDs that grounded the suggestion.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("sourceDocumentIds")
+    private Optional<? extends List<String>> sourceDocumentIds;
+
     @JsonCreator
     public ChatSuggestion(
             @JsonProperty("query") Optional<String> query,
-            @JsonProperty("feature") Optional<String> feature) {
+            @JsonProperty("cta") Optional<String> cta,
+            @JsonProperty("feature") Optional<String> feature,
+            @JsonProperty("sourceDocumentIds") Optional<? extends List<String>> sourceDocumentIds) {
         Utils.checkNotNull(query, "query");
+        Utils.checkNotNull(cta, "cta");
         Utils.checkNotNull(feature, "feature");
+        Utils.checkNotNull(sourceDocumentIds, "sourceDocumentIds");
         this.query = query;
+        this.cta = cta;
         this.feature = feature;
+        this.sourceDocumentIds = sourceDocumentIds;
     }
     
     public ChatSuggestion() {
-        this(Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -53,11 +76,28 @@ public class ChatSuggestion {
     }
 
     /**
+     * Button text to show for the suggestion action.
+     */
+    @JsonIgnore
+    public Optional<String> cta() {
+        return cta;
+    }
+
+    /**
      * Targeted Glean Chat feature for the suggestion.
      */
     @JsonIgnore
     public Optional<String> feature() {
         return feature;
+    }
+
+    /**
+     * Document IDs that grounded the suggestion.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<String>> sourceDocumentIds() {
+        return (Optional<List<String>>) sourceDocumentIds;
     }
 
     public static Builder builder() {
@@ -85,6 +125,25 @@ public class ChatSuggestion {
     }
 
     /**
+     * Button text to show for the suggestion action.
+     */
+    public ChatSuggestion withCta(String cta) {
+        Utils.checkNotNull(cta, "cta");
+        this.cta = Optional.ofNullable(cta);
+        return this;
+    }
+
+
+    /**
+     * Button text to show for the suggestion action.
+     */
+    public ChatSuggestion withCta(Optional<String> cta) {
+        Utils.checkNotNull(cta, "cta");
+        this.cta = cta;
+        return this;
+    }
+
+    /**
      * Targeted Glean Chat feature for the suggestion.
      */
     public ChatSuggestion withFeature(String feature) {
@@ -103,6 +162,25 @@ public class ChatSuggestion {
         return this;
     }
 
+    /**
+     * Document IDs that grounded the suggestion.
+     */
+    public ChatSuggestion withSourceDocumentIds(List<String> sourceDocumentIds) {
+        Utils.checkNotNull(sourceDocumentIds, "sourceDocumentIds");
+        this.sourceDocumentIds = Optional.ofNullable(sourceDocumentIds);
+        return this;
+    }
+
+
+    /**
+     * Document IDs that grounded the suggestion.
+     */
+    public ChatSuggestion withSourceDocumentIds(Optional<? extends List<String>> sourceDocumentIds) {
+        Utils.checkNotNull(sourceDocumentIds, "sourceDocumentIds");
+        this.sourceDocumentIds = sourceDocumentIds;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -114,20 +192,25 @@ public class ChatSuggestion {
         ChatSuggestion other = (ChatSuggestion) o;
         return 
             Utils.enhancedDeepEquals(this.query, other.query) &&
-            Utils.enhancedDeepEquals(this.feature, other.feature);
+            Utils.enhancedDeepEquals(this.cta, other.cta) &&
+            Utils.enhancedDeepEquals(this.feature, other.feature) &&
+            Utils.enhancedDeepEquals(this.sourceDocumentIds, other.sourceDocumentIds);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            query, feature);
+            query, cta, feature,
+            sourceDocumentIds);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ChatSuggestion.class,
                 "query", query,
-                "feature", feature);
+                "cta", cta,
+                "feature", feature,
+                "sourceDocumentIds", sourceDocumentIds);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -135,7 +218,11 @@ public class ChatSuggestion {
 
         private Optional<String> query = Optional.empty();
 
+        private Optional<String> cta = Optional.empty();
+
         private Optional<String> feature = Optional.empty();
+
+        private Optional<? extends List<String>> sourceDocumentIds = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -162,6 +249,25 @@ public class ChatSuggestion {
 
 
         /**
+         * Button text to show for the suggestion action.
+         */
+        public Builder cta(String cta) {
+            Utils.checkNotNull(cta, "cta");
+            this.cta = Optional.ofNullable(cta);
+            return this;
+        }
+
+        /**
+         * Button text to show for the suggestion action.
+         */
+        public Builder cta(Optional<String> cta) {
+            Utils.checkNotNull(cta, "cta");
+            this.cta = cta;
+            return this;
+        }
+
+
+        /**
          * Targeted Glean Chat feature for the suggestion.
          */
         public Builder feature(String feature) {
@@ -179,10 +285,30 @@ public class ChatSuggestion {
             return this;
         }
 
+
+        /**
+         * Document IDs that grounded the suggestion.
+         */
+        public Builder sourceDocumentIds(List<String> sourceDocumentIds) {
+            Utils.checkNotNull(sourceDocumentIds, "sourceDocumentIds");
+            this.sourceDocumentIds = Optional.ofNullable(sourceDocumentIds);
+            return this;
+        }
+
+        /**
+         * Document IDs that grounded the suggestion.
+         */
+        public Builder sourceDocumentIds(Optional<? extends List<String>> sourceDocumentIds) {
+            Utils.checkNotNull(sourceDocumentIds, "sourceDocumentIds");
+            this.sourceDocumentIds = sourceDocumentIds;
+            return this;
+        }
+
         public ChatSuggestion build() {
 
             return new ChatSuggestion(
-                query, feature);
+                query, cta, feature,
+                sourceDocumentIds);
         }
 
     }
