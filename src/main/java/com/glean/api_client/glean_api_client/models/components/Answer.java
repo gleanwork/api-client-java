@@ -109,6 +109,13 @@ public class Answer {
     @JsonProperty("permissions")
     private Optional<? extends ObjectPermissions> permissions;
 
+    /**
+     * An opaque token that represents this particular UGC. To be used for `/feedback` reporting.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("trackingToken")
+    private Optional<String> trackingToken;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("combinedAnswerText")
@@ -182,6 +189,7 @@ public class Answer {
             @JsonProperty("sourceDocumentSpec") Optional<? extends DocumentSpecUnion> sourceDocumentSpec,
             @JsonProperty("sourceType") Optional<? extends AnswerSourceType> sourceType,
             @JsonProperty("permissions") Optional<? extends ObjectPermissions> permissions,
+            @JsonProperty("trackingToken") Optional<String> trackingToken,
             @JsonProperty("combinedAnswerText") Optional<? extends StructuredText> combinedAnswerText,
             @JsonProperty("likes") Optional<? extends AnswerLikes> likes,
             @JsonProperty("author") Optional<? extends Person> author,
@@ -205,6 +213,7 @@ public class Answer {
         Utils.checkNotNull(sourceDocumentSpec, "sourceDocumentSpec");
         Utils.checkNotNull(sourceType, "sourceType");
         Utils.checkNotNull(permissions, "permissions");
+        Utils.checkNotNull(trackingToken, "trackingToken");
         Utils.checkNotNull(combinedAnswerText, "combinedAnswerText");
         Utils.checkNotNull(likes, "likes");
         Utils.checkNotNull(author, "author");
@@ -228,6 +237,7 @@ public class Answer {
         this.sourceDocumentSpec = sourceDocumentSpec;
         this.sourceType = sourceType;
         this.permissions = permissions;
+        this.trackingToken = trackingToken;
         this.combinedAnswerText = combinedAnswerText;
         this.likes = likes;
         this.author = author;
@@ -249,7 +259,7 @@ public class Answer {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -356,6 +366,14 @@ public class Answer {
     @JsonIgnore
     public Optional<ObjectPermissions> permissions() {
         return (Optional<ObjectPermissions>) permissions;
+    }
+
+    /**
+     * An opaque token that represents this particular UGC. To be used for `/feedback` reporting.
+     */
+    @JsonIgnore
+    public Optional<String> trackingToken() {
+        return trackingToken;
     }
 
     @SuppressWarnings("unchecked")
@@ -657,6 +675,25 @@ public class Answer {
         return this;
     }
 
+    /**
+     * An opaque token that represents this particular UGC. To be used for `/feedback` reporting.
+     */
+    public Answer withTrackingToken(String trackingToken) {
+        Utils.checkNotNull(trackingToken, "trackingToken");
+        this.trackingToken = Optional.ofNullable(trackingToken);
+        return this;
+    }
+
+
+    /**
+     * An opaque token that represents this particular UGC. To be used for `/feedback` reporting.
+     */
+    public Answer withTrackingToken(Optional<String> trackingToken) {
+        Utils.checkNotNull(trackingToken, "trackingToken");
+        this.trackingToken = trackingToken;
+        return this;
+    }
+
     public Answer withCombinedAnswerText(StructuredText combinedAnswerText) {
         Utils.checkNotNull(combinedAnswerText, "combinedAnswerText");
         this.combinedAnswerText = Optional.ofNullable(combinedAnswerText);
@@ -834,6 +871,7 @@ public class Answer {
             Utils.enhancedDeepEquals(this.sourceDocumentSpec, other.sourceDocumentSpec) &&
             Utils.enhancedDeepEquals(this.sourceType, other.sourceType) &&
             Utils.enhancedDeepEquals(this.permissions, other.permissions) &&
+            Utils.enhancedDeepEquals(this.trackingToken, other.trackingToken) &&
             Utils.enhancedDeepEquals(this.combinedAnswerText, other.combinedAnswerText) &&
             Utils.enhancedDeepEquals(this.likes, other.likes) &&
             Utils.enhancedDeepEquals(this.author, other.author) &&
@@ -853,10 +891,10 @@ public class Answer {
             questionVariations, bodyText, boardId,
             audienceFilters, addedRoles, removedRoles,
             roles, sourceDocumentSpec, sourceType,
-            permissions, combinedAnswerText, likes,
-            author, createTime, updateTime,
-            updatedBy, verification, collections,
-            documentCategory, sourceDocument);
+            permissions, trackingToken, combinedAnswerText,
+            likes, author, createTime,
+            updateTime, updatedBy, verification,
+            collections, documentCategory, sourceDocument);
     }
     
     @Override
@@ -875,6 +913,7 @@ public class Answer {
                 "sourceDocumentSpec", sourceDocumentSpec,
                 "sourceType", sourceType,
                 "permissions", permissions,
+                "trackingToken", trackingToken,
                 "combinedAnswerText", combinedAnswerText,
                 "likes", likes,
                 "author", author,
@@ -916,6 +955,8 @@ public class Answer {
         private Optional<? extends AnswerSourceType> sourceType = Optional.empty();
 
         private Optional<? extends ObjectPermissions> permissions = Optional.empty();
+
+        private Optional<String> trackingToken = Optional.empty();
 
         private Optional<? extends StructuredText> combinedAnswerText = Optional.empty();
 
@@ -1168,6 +1209,25 @@ public class Answer {
         }
 
 
+        /**
+         * An opaque token that represents this particular UGC. To be used for `/feedback` reporting.
+         */
+        public Builder trackingToken(String trackingToken) {
+            Utils.checkNotNull(trackingToken, "trackingToken");
+            this.trackingToken = Optional.ofNullable(trackingToken);
+            return this;
+        }
+
+        /**
+         * An opaque token that represents this particular UGC. To be used for `/feedback` reporting.
+         */
+        public Builder trackingToken(Optional<String> trackingToken) {
+            Utils.checkNotNull(trackingToken, "trackingToken");
+            this.trackingToken = trackingToken;
+            return this;
+        }
+
+
         public Builder combinedAnswerText(StructuredText combinedAnswerText) {
             Utils.checkNotNull(combinedAnswerText, "combinedAnswerText");
             this.combinedAnswerText = Optional.ofNullable(combinedAnswerText);
@@ -1328,10 +1388,10 @@ public class Answer {
                 questionVariations, bodyText, boardId,
                 audienceFilters, addedRoles, removedRoles,
                 roles, sourceDocumentSpec, sourceType,
-                permissions, combinedAnswerText, likes,
-                author, createTime, updateTime,
-                updatedBy, verification, collections,
-                documentCategory, sourceDocument);
+                permissions, trackingToken, combinedAnswerText,
+                likes, author, createTime,
+                updateTime, updatedBy, verification,
+                collections, documentCategory, sourceDocument);
         }
 
     }
