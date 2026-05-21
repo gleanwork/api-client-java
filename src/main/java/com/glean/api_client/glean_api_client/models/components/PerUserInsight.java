@@ -79,6 +79,13 @@ public class PerUserInsight {
     @JsonProperty("numAgentRuns")
     private Optional<Long> numAgentRuns;
 
+    /**
+     * Total number of MCP calls for this user over the specified time period.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("numMcpCalls")
+    private Optional<Long> numMcpCalls;
+
     @JsonCreator
     public PerUserInsight(
             @JsonProperty("person") Optional<? extends Person> person,
@@ -89,7 +96,8 @@ public class PerUserInsight {
             @JsonProperty("numDaysActive") Optional<Long> numDaysActive,
             @JsonProperty("numSummarizations") Optional<Long> numSummarizations,
             @JsonProperty("numAiAnswers") Optional<Long> numAiAnswers,
-            @JsonProperty("numAgentRuns") Optional<Long> numAgentRuns) {
+            @JsonProperty("numAgentRuns") Optional<Long> numAgentRuns,
+            @JsonProperty("numMcpCalls") Optional<Long> numMcpCalls) {
         Utils.checkNotNull(person, "person");
         Utils.checkNotNull(numSearches, "numSearches");
         Utils.checkNotNull(numChats, "numChats");
@@ -99,6 +107,7 @@ public class PerUserInsight {
         Utils.checkNotNull(numSummarizations, "numSummarizations");
         Utils.checkNotNull(numAiAnswers, "numAiAnswers");
         Utils.checkNotNull(numAgentRuns, "numAgentRuns");
+        Utils.checkNotNull(numMcpCalls, "numMcpCalls");
         this.person = person;
         this.numSearches = numSearches;
         this.numChats = numChats;
@@ -108,12 +117,14 @@ public class PerUserInsight {
         this.numSummarizations = numSummarizations;
         this.numAiAnswers = numAiAnswers;
         this.numAgentRuns = numAgentRuns;
+        this.numMcpCalls = numMcpCalls;
     }
     
     public PerUserInsight() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -184,6 +195,14 @@ public class PerUserInsight {
     @JsonIgnore
     public Optional<Long> numAgentRuns() {
         return numAgentRuns;
+    }
+
+    /**
+     * Total number of MCP calls for this user over the specified time period.
+     */
+    @JsonIgnore
+    public Optional<Long> numMcpCalls() {
+        return numMcpCalls;
     }
 
     public static Builder builder() {
@@ -356,6 +375,25 @@ public class PerUserInsight {
         return this;
     }
 
+    /**
+     * Total number of MCP calls for this user over the specified time period.
+     */
+    public PerUserInsight withNumMcpCalls(long numMcpCalls) {
+        Utils.checkNotNull(numMcpCalls, "numMcpCalls");
+        this.numMcpCalls = Optional.ofNullable(numMcpCalls);
+        return this;
+    }
+
+
+    /**
+     * Total number of MCP calls for this user over the specified time period.
+     */
+    public PerUserInsight withNumMcpCalls(Optional<Long> numMcpCalls) {
+        Utils.checkNotNull(numMcpCalls, "numMcpCalls");
+        this.numMcpCalls = numMcpCalls;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -374,7 +412,8 @@ public class PerUserInsight {
             Utils.enhancedDeepEquals(this.numDaysActive, other.numDaysActive) &&
             Utils.enhancedDeepEquals(this.numSummarizations, other.numSummarizations) &&
             Utils.enhancedDeepEquals(this.numAiAnswers, other.numAiAnswers) &&
-            Utils.enhancedDeepEquals(this.numAgentRuns, other.numAgentRuns);
+            Utils.enhancedDeepEquals(this.numAgentRuns, other.numAgentRuns) &&
+            Utils.enhancedDeepEquals(this.numMcpCalls, other.numMcpCalls);
     }
     
     @Override
@@ -382,7 +421,8 @@ public class PerUserInsight {
         return Utils.enhancedHash(
             person, numSearches, numChats,
             numActiveSessions, numGleanbotUsefulResponses, numDaysActive,
-            numSummarizations, numAiAnswers, numAgentRuns);
+            numSummarizations, numAiAnswers, numAgentRuns,
+            numMcpCalls);
     }
     
     @Override
@@ -396,7 +436,8 @@ public class PerUserInsight {
                 "numDaysActive", numDaysActive,
                 "numSummarizations", numSummarizations,
                 "numAiAnswers", numAiAnswers,
-                "numAgentRuns", numAgentRuns);
+                "numAgentRuns", numAgentRuns,
+                "numMcpCalls", numMcpCalls);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -419,6 +460,8 @@ public class PerUserInsight {
         private Optional<Long> numAiAnswers = Optional.empty();
 
         private Optional<Long> numAgentRuns = Optional.empty();
+
+        private Optional<Long> numMcpCalls = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -589,12 +632,32 @@ public class PerUserInsight {
             return this;
         }
 
+
+        /**
+         * Total number of MCP calls for this user over the specified time period.
+         */
+        public Builder numMcpCalls(long numMcpCalls) {
+            Utils.checkNotNull(numMcpCalls, "numMcpCalls");
+            this.numMcpCalls = Optional.ofNullable(numMcpCalls);
+            return this;
+        }
+
+        /**
+         * Total number of MCP calls for this user over the specified time period.
+         */
+        public Builder numMcpCalls(Optional<Long> numMcpCalls) {
+            Utils.checkNotNull(numMcpCalls, "numMcpCalls");
+            this.numMcpCalls = numMcpCalls;
+            return this;
+        }
+
         public PerUserInsight build() {
 
             return new PerUserInsight(
                 person, numSearches, numChats,
                 numActiveSessions, numGleanbotUsefulResponses, numDaysActive,
-                numSummarizations, numAiAnswers, numAgentRuns);
+                numSummarizations, numAiAnswers, numAgentRuns,
+                numMcpCalls);
         }
 
     }
