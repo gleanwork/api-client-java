@@ -94,6 +94,13 @@ public class Collection {
     private Optional<? extends ObjectPermissions> permissions;
 
     /**
+     * An opaque token that represents this particular UGC. To be used for `/feedback` reporting.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("trackingToken")
+    private Optional<String> trackingToken;
+
+    /**
      * The unique ID of the Collection.
      */
     @JsonProperty("id")
@@ -181,6 +188,7 @@ public class Collection {
             @JsonProperty("thumbnail") Optional<? extends Thumbnail> thumbnail,
             @JsonProperty("allowedDatasource") Optional<String> allowedDatasource,
             @JsonProperty("permissions") Optional<? extends ObjectPermissions> permissions,
+            @JsonProperty("trackingToken") Optional<String> trackingToken,
             @JsonProperty("id") long id,
             @JsonProperty("createTime") Optional<OffsetDateTime> createTime,
             @JsonProperty("updateTime") Optional<OffsetDateTime> updateTime,
@@ -204,6 +212,7 @@ public class Collection {
         Utils.checkNotNull(thumbnail, "thumbnail");
         Utils.checkNotNull(allowedDatasource, "allowedDatasource");
         Utils.checkNotNull(permissions, "permissions");
+        Utils.checkNotNull(trackingToken, "trackingToken");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(createTime, "createTime");
         Utils.checkNotNull(updateTime, "updateTime");
@@ -227,6 +236,7 @@ public class Collection {
         this.thumbnail = thumbnail;
         this.allowedDatasource = allowedDatasource;
         this.permissions = permissions;
+        this.trackingToken = trackingToken;
         this.id = id;
         this.createTime = createTime;
         this.updateTime = updateTime;
@@ -248,11 +258,11 @@ public class Collection {
         this(name, description, Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), id,
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            id, Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -341,6 +351,14 @@ public class Collection {
     @JsonIgnore
     public Optional<ObjectPermissions> permissions() {
         return (Optional<ObjectPermissions>) permissions;
+    }
+
+    /**
+     * An opaque token that represents this particular UGC. To be used for `/feedback` reporting.
+     */
+    @JsonIgnore
+    public Optional<String> trackingToken() {
+        return trackingToken;
     }
 
     /**
@@ -618,6 +636,25 @@ public class Collection {
     }
 
     /**
+     * An opaque token that represents this particular UGC. To be used for `/feedback` reporting.
+     */
+    public Collection withTrackingToken(String trackingToken) {
+        Utils.checkNotNull(trackingToken, "trackingToken");
+        this.trackingToken = Optional.ofNullable(trackingToken);
+        return this;
+    }
+
+
+    /**
+     * An opaque token that represents this particular UGC. To be used for `/feedback` reporting.
+     */
+    public Collection withTrackingToken(Optional<String> trackingToken) {
+        Utils.checkNotNull(trackingToken, "trackingToken");
+        this.trackingToken = trackingToken;
+        return this;
+    }
+
+    /**
      * The unique ID of the Collection.
      */
     public Collection withId(long id) {
@@ -830,6 +867,7 @@ public class Collection {
             Utils.enhancedDeepEquals(this.thumbnail, other.thumbnail) &&
             Utils.enhancedDeepEquals(this.allowedDatasource, other.allowedDatasource) &&
             Utils.enhancedDeepEquals(this.permissions, other.permissions) &&
+            Utils.enhancedDeepEquals(this.trackingToken, other.trackingToken) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.createTime, other.createTime) &&
             Utils.enhancedDeepEquals(this.updateTime, other.updateTime) &&
@@ -850,11 +888,11 @@ public class Collection {
             name, description, addedRoles,
             removedRoles, audienceFilters, icon,
             adminLocked, parentId, thumbnail,
-            allowedDatasource, permissions, id,
-            createTime, updateTime, creator,
-            updatedBy, itemCount, childCount,
-            items, pinMetadata, shortcuts,
-            children, roles);
+            allowedDatasource, permissions, trackingToken,
+            id, createTime, updateTime,
+            creator, updatedBy, itemCount,
+            childCount, items, pinMetadata,
+            shortcuts, children, roles);
     }
     
     @Override
@@ -871,6 +909,7 @@ public class Collection {
                 "thumbnail", thumbnail,
                 "allowedDatasource", allowedDatasource,
                 "permissions", permissions,
+                "trackingToken", trackingToken,
                 "id", id,
                 "createTime", createTime,
                 "updateTime", updateTime,
@@ -909,6 +948,8 @@ public class Collection {
         private Optional<String> allowedDatasource = Optional.empty();
 
         private Optional<? extends ObjectPermissions> permissions = Optional.empty();
+
+        private Optional<String> trackingToken = Optional.empty();
 
         private Long id;
 
@@ -1121,6 +1162,25 @@ public class Collection {
 
 
         /**
+         * An opaque token that represents this particular UGC. To be used for `/feedback` reporting.
+         */
+        public Builder trackingToken(String trackingToken) {
+            Utils.checkNotNull(trackingToken, "trackingToken");
+            this.trackingToken = Optional.ofNullable(trackingToken);
+            return this;
+        }
+
+        /**
+         * An opaque token that represents this particular UGC. To be used for `/feedback` reporting.
+         */
+        public Builder trackingToken(Optional<String> trackingToken) {
+            Utils.checkNotNull(trackingToken, "trackingToken");
+            this.trackingToken = trackingToken;
+            return this;
+        }
+
+
+        /**
          * The unique ID of the Collection.
          */
         public Builder id(long id) {
@@ -1318,11 +1378,11 @@ public class Collection {
                 name, description, addedRoles,
                 removedRoles, audienceFilters, icon,
                 adminLocked, parentId, thumbnail,
-                allowedDatasource, permissions, id,
-                createTime, updateTime, creator,
-                updatedBy, itemCount, childCount,
-                items, pinMetadata, shortcuts,
-                children, roles);
+                allowedDatasource, permissions, trackingToken,
+                id, createTime, updateTime,
+                creator, updatedBy, itemCount,
+                childCount, items, pinMetadata,
+                shortcuts, children, roles);
         }
 
     }

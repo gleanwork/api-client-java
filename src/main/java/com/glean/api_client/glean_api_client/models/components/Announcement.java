@@ -131,6 +131,13 @@ public class Announcement {
     private Optional<? extends ObjectPermissions> permissions;
 
     /**
+     * An opaque token that represents this particular UGC. To be used for `/feedback` reporting.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("trackingToken")
+    private Optional<String> trackingToken;
+
+    /**
      * The opaque id of the announcement.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -196,6 +203,7 @@ public class Announcement {
             @JsonProperty("viewUrl") Optional<String> viewUrl,
             @JsonProperty("draftId") Optional<Long> draftId,
             @JsonProperty("permissions") Optional<? extends ObjectPermissions> permissions,
+            @JsonProperty("trackingToken") Optional<String> trackingToken,
             @JsonProperty("id") Optional<Long> id,
             @JsonProperty("author") Optional<? extends Person> author,
             @JsonProperty("createTimestamp") Optional<Long> createTimestamp,
@@ -220,6 +228,7 @@ public class Announcement {
         Utils.checkNotNull(viewUrl, "viewUrl");
         Utils.checkNotNull(draftId, "draftId");
         Utils.checkNotNull(permissions, "permissions");
+        Utils.checkNotNull(trackingToken, "trackingToken");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(author, "author");
         Utils.checkNotNull(createTimestamp, "createTimestamp");
@@ -244,6 +253,7 @@ public class Announcement {
         this.viewUrl = viewUrl;
         this.draftId = draftId;
         this.permissions = permissions;
+        this.trackingToken = trackingToken;
         this.id = id;
         this.author = author;
         this.createTimestamp = createTimestamp;
@@ -262,7 +272,8 @@ public class Announcement {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -391,6 +402,14 @@ public class Announcement {
     @JsonIgnore
     public Optional<ObjectPermissions> permissions() {
         return (Optional<ObjectPermissions>) permissions;
+    }
+
+    /**
+     * An opaque token that represents this particular UGC. To be used for `/feedback` reporting.
+     */
+    @JsonIgnore
+    public Optional<String> trackingToken() {
+        return trackingToken;
     }
 
     /**
@@ -745,6 +764,25 @@ public class Announcement {
     }
 
     /**
+     * An opaque token that represents this particular UGC. To be used for `/feedback` reporting.
+     */
+    public Announcement withTrackingToken(String trackingToken) {
+        Utils.checkNotNull(trackingToken, "trackingToken");
+        this.trackingToken = Optional.ofNullable(trackingToken);
+        return this;
+    }
+
+
+    /**
+     * An opaque token that represents this particular UGC. To be used for `/feedback` reporting.
+     */
+    public Announcement withTrackingToken(Optional<String> trackingToken) {
+        Utils.checkNotNull(trackingToken, "trackingToken");
+        this.trackingToken = trackingToken;
+        return this;
+    }
+
+    /**
      * The opaque id of the announcement.
      */
     public Announcement withId(long id) {
@@ -898,6 +936,7 @@ public class Announcement {
             Utils.enhancedDeepEquals(this.viewUrl, other.viewUrl) &&
             Utils.enhancedDeepEquals(this.draftId, other.draftId) &&
             Utils.enhancedDeepEquals(this.permissions, other.permissions) &&
+            Utils.enhancedDeepEquals(this.trackingToken, other.trackingToken) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.author, other.author) &&
             Utils.enhancedDeepEquals(this.createTimestamp, other.createTimestamp) &&
@@ -916,9 +955,10 @@ public class Announcement {
             banner, audienceFilters, sourceDocumentId,
             hideAttribution, channel, postType,
             isPrioritized, viewUrl, draftId,
-            permissions, id, author,
-            createTimestamp, lastUpdateTimestamp, updatedBy,
-            viewerInfo, sourceDocument, isPublished);
+            permissions, trackingToken, id,
+            author, createTimestamp, lastUpdateTimestamp,
+            updatedBy, viewerInfo, sourceDocument,
+            isPublished);
     }
     
     @Override
@@ -940,6 +980,7 @@ public class Announcement {
                 "viewUrl", viewUrl,
                 "draftId", draftId,
                 "permissions", permissions,
+                "trackingToken", trackingToken,
                 "id", id,
                 "author", author,
                 "createTimestamp", createTimestamp,
@@ -984,6 +1025,8 @@ public class Announcement {
         private Optional<Long> draftId = Optional.empty();
 
         private Optional<? extends ObjectPermissions> permissions = Optional.empty();
+
+        private Optional<String> trackingToken = Optional.empty();
 
         private Optional<Long> id = Optional.empty();
 
@@ -1297,6 +1340,25 @@ public class Announcement {
 
 
         /**
+         * An opaque token that represents this particular UGC. To be used for `/feedback` reporting.
+         */
+        public Builder trackingToken(String trackingToken) {
+            Utils.checkNotNull(trackingToken, "trackingToken");
+            this.trackingToken = Optional.ofNullable(trackingToken);
+            return this;
+        }
+
+        /**
+         * An opaque token that represents this particular UGC. To be used for `/feedback` reporting.
+         */
+        public Builder trackingToken(Optional<String> trackingToken) {
+            Utils.checkNotNull(trackingToken, "trackingToken");
+            this.trackingToken = trackingToken;
+            return this;
+        }
+
+
+        /**
          * The opaque id of the announcement.
          */
         public Builder id(long id) {
@@ -1431,9 +1493,10 @@ public class Announcement {
                 banner, audienceFilters, sourceDocumentId,
                 hideAttribution, channel, postType,
                 isPrioritized, viewUrl, draftId,
-                permissions, id, author,
-                createTimestamp, lastUpdateTimestamp, updatedBy,
-                viewerInfo, sourceDocument, isPublished);
+                permissions, trackingToken, id,
+                author, createTimestamp, lastUpdateTimestamp,
+                updatedBy, viewerInfo, sourceDocument,
+                isPublished);
         }
 
     }
