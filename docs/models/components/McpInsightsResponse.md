@@ -1,0 +1,15 @@
+# McpInsightsResponse
+
+
+## Fields
+
+| Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `monthlyActiveUsers`                                                       | *Optional\<Long>*                                                          | :heavy_minus_sign:                                                         | Number of current Monthly Active Users.                                    |
+| `weeklyActiveUsers`                                                        | *Optional\<Long>*                                                          | :heavy_minus_sign:                                                         | Number of current Weekly Active Users.                                     |
+| `dailyActiveUsers`                                                         | *Optional\<Long>*                                                          | :heavy_minus_sign:                                                         | Number of current Daily Active Users.                                      |
+| `monthlyActiveUserTimeseries`                                              | [Optional\<LabeledCountInfo>](../../models/components/LabeledCountInfo.md) | :heavy_minus_sign:                                                         | N/A                                                                        |
+| `weeklyActiveUserTimeseries`                                               | [Optional\<LabeledCountInfo>](../../models/components/LabeledCountInfo.md) | :heavy_minus_sign:                                                         | N/A                                                                        |
+| `dailyActiveUserTimeseries`                                                | [Optional\<LabeledCountInfo>](../../models/components/LabeledCountInfo.md) | :heavy_minus_sign:                                                         | N/A                                                                        |
+| `overallDailyActiveUserTimeseries`                                         | [Optional\<LabeledCountInfo>](../../models/components/LabeledCountInfo.md) | :heavy_minus_sign:                                                         | N/A                                                                        |
+| `topHostApplicationsActiveUserTimeseries`                                  | List\<[LabeledCountInfo](../../models/components/LabeledCountInfo.md)>     | :heavy_minus_sign:                                                         | N/A                                                                        |
