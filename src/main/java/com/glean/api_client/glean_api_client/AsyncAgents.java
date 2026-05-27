@@ -6,25 +6,11 @@ package com.glean.api_client.glean_api_client;
 
 import static com.glean.api_client.glean_api_client.operations.Operations.AsyncRequestOperation;
 
-import com.glean.api_client.glean_api_client.models.components.AgentRunCreate;
-import com.glean.api_client.glean_api_client.models.components.SearchAgentsRequest;
-import com.glean.api_client.glean_api_client.models.operations.GetAgentRequest;
-import com.glean.api_client.glean_api_client.models.operations.GetAgentSchemasRequest;
-import com.glean.api_client.glean_api_client.models.operations.async.CreateAndStreamRunRequestBuilder;
-import com.glean.api_client.glean_api_client.models.operations.async.CreateAndStreamRunResponse;
-import com.glean.api_client.glean_api_client.models.operations.async.CreateAndWaitRunRequestBuilder;
-import com.glean.api_client.glean_api_client.models.operations.async.CreateAndWaitRunResponse;
-import com.glean.api_client.glean_api_client.models.operations.async.GetAgentRequestBuilder;
-import com.glean.api_client.glean_api_client.models.operations.async.GetAgentResponse;
-import com.glean.api_client.glean_api_client.models.operations.async.GetAgentSchemasRequestBuilder;
-import com.glean.api_client.glean_api_client.models.operations.async.GetAgentSchemasResponse;
-import com.glean.api_client.glean_api_client.models.operations.async.SearchAgentsRequestBuilder;
-import com.glean.api_client.glean_api_client.models.operations.async.SearchAgentsResponse;
-import com.glean.api_client.glean_api_client.operations.CreateAndStreamRun;
-import com.glean.api_client.glean_api_client.operations.CreateAndWaitRun;
-import com.glean.api_client.glean_api_client.operations.GetAgent;
-import com.glean.api_client.glean_api_client.operations.GetAgentSchemas;
-import com.glean.api_client.glean_api_client.operations.SearchAgents;
+import com.glean.api_client.glean_api_client.models.components.EditWorkflowRequest;
+import com.glean.api_client.glean_api_client.models.operations.EditAgentRequest;
+import com.glean.api_client.glean_api_client.models.operations.async.EditAgentRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.EditAgentResponse;
+import com.glean.api_client.glean_api_client.operations.EditAgent;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Long;
 import java.lang.String;
@@ -53,195 +39,61 @@ public class AsyncAgents {
 
 
     /**
-     * Retrieve an agent
+     * Edit an agent
      * 
-     * <p>Returns details of an [agent](https://developers.glean.com/agents/agents-api) created in the Agent
-     * Builder.
+     * <p>Creates a draft or publishes an [agent](https://developers.glean.com/agents/agents-api). Use
+     * `isDraft=true` to save a draft, or `isDraft=false` (or omit) to publish immediately. Only draft and
+     * publish modes are supported.
      * 
      * @return The async call builder
      */
-    public GetAgentRequestBuilder retrieve() {
-        return new GetAgentRequestBuilder(sdkConfiguration);
+    public EditAgentRequestBuilder editAgent() {
+        return new EditAgentRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * Retrieve an agent
+     * Edit an agent
      * 
-     * <p>Returns details of an [agent](https://developers.glean.com/agents/agents-api) created in the Agent
-     * Builder.
+     * <p>Creates a draft or publishes an [agent](https://developers.glean.com/agents/agents-api). Use
+     * `isDraft=true` to save a draft, or `isDraft=false` (or omit) to publish immediately. Only draft and
+     * publish modes are supported.
      * 
      * @param agentId The ID of the agent.
-     * @return {@code CompletableFuture<GetAgentResponse>} - The async response
+     * @param editWorkflowRequest 
+     * @return {@code CompletableFuture<EditAgentResponse>} - The async response
      */
-    public CompletableFuture<GetAgentResponse> retrieve(String agentId) {
-        return retrieve(Optional.empty(), Optional.empty(), agentId);
+    public CompletableFuture<EditAgentResponse> editAgent(String agentId, EditWorkflowRequest editWorkflowRequest) {
+        return editAgent(
+                Optional.empty(), Optional.empty(), agentId,
+                editWorkflowRequest);
     }
 
     /**
-     * Retrieve an agent
+     * Edit an agent
      * 
-     * <p>Returns details of an [agent](https://developers.glean.com/agents/agents-api) created in the Agent
-     * Builder.
+     * <p>Creates a draft or publishes an [agent](https://developers.glean.com/agents/agents-api). Use
+     * `isDraft=true` to save a draft, or `isDraft=false` (or omit) to publish immediately. Only draft and
+     * publish modes are supported.
      * 
      * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param agentId The ID of the agent.
-     * @return {@code CompletableFuture<GetAgentResponse>} - The async response
+     * @param editWorkflowRequest 
+     * @return {@code CompletableFuture<EditAgentResponse>} - The async response
      */
-    public CompletableFuture<GetAgentResponse> retrieve(
+    public CompletableFuture<EditAgentResponse> editAgent(
             Optional<String> locale, Optional<Long> timezoneOffset,
-            String agentId) {
-        GetAgentRequest request =
-            GetAgentRequest
+            String agentId, EditWorkflowRequest editWorkflowRequest) {
+        EditAgentRequest request =
+            EditAgentRequest
                 .builder()
                 .locale(locale)
                 .timezoneOffset(timezoneOffset)
                 .agentId(agentId)
+                .editWorkflowRequest(editWorkflowRequest)
                 .build();
-        AsyncRequestOperation<GetAgentRequest, GetAgentResponse> operation
-              = new GetAgent.Async(sdkConfiguration, _headers);
-        return operation.doRequest(request)
-            .thenCompose(operation::handleResponse);
-    }
-
-
-    /**
-     * List an agent's schemas
-     * 
-     * <p>Return [agent](https://developers.glean.com/agents/agents-api)'s input and output schemas. You can
-     * use these schemas to detect changes to an agent's input or output structure.
-     * 
-     * @return The async call builder
-     */
-    public GetAgentSchemasRequestBuilder retrieveSchemas() {
-        return new GetAgentSchemasRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * List an agent's schemas
-     * 
-     * <p>Return [agent](https://developers.glean.com/agents/agents-api)'s input and output schemas. You can
-     * use these schemas to detect changes to an agent's input or output structure.
-     * 
-     * @param agentId The ID of the agent.
-     * @return {@code CompletableFuture<GetAgentSchemasResponse>} - The async response
-     */
-    public CompletableFuture<GetAgentSchemasResponse> retrieveSchemas(String agentId) {
-        return retrieveSchemas(Optional.empty(), Optional.empty(), agentId);
-    }
-
-    /**
-     * List an agent's schemas
-     * 
-     * <p>Return [agent](https://developers.glean.com/agents/agents-api)'s input and output schemas. You can
-     * use these schemas to detect changes to an agent's input or output structure.
-     * 
-     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
-     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
-     * @param agentId The ID of the agent.
-     * @return {@code CompletableFuture<GetAgentSchemasResponse>} - The async response
-     */
-    public CompletableFuture<GetAgentSchemasResponse> retrieveSchemas(
-            Optional<String> locale, Optional<Long> timezoneOffset,
-            String agentId) {
-        GetAgentSchemasRequest request =
-            GetAgentSchemasRequest
-                .builder()
-                .locale(locale)
-                .timezoneOffset(timezoneOffset)
-                .agentId(agentId)
-                .build();
-        AsyncRequestOperation<GetAgentSchemasRequest, GetAgentSchemasResponse> operation
-              = new GetAgentSchemas.Async(sdkConfiguration, _headers);
-        return operation.doRequest(request)
-            .thenCompose(operation::handleResponse);
-    }
-
-
-    /**
-     * Search agents
-     * 
-     * <p>Search for [agents](https://developers.glean.com/agents/agents-api) by agent name.
-     * 
-     * @return The async call builder
-     */
-    public SearchAgentsRequestBuilder list() {
-        return new SearchAgentsRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * Search agents
-     * 
-     * <p>Search for [agents](https://developers.glean.com/agents/agents-api) by agent name.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @return {@code CompletableFuture<SearchAgentsResponse>} - The async response
-     */
-    public CompletableFuture<SearchAgentsResponse> list(SearchAgentsRequest request) {
-        AsyncRequestOperation<SearchAgentsRequest, SearchAgentsResponse> operation
-              = new SearchAgents.Async(sdkConfiguration, _headers);
-        return operation.doRequest(request)
-            .thenCompose(operation::handleResponse);
-    }
-
-
-    /**
-     * Create an agent run and stream the response
-     * 
-     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the result as a
-     * stream of server-sent events (SSE). **Note**: If the agent uses an input form trigger, all form
-     * fields (including optional fields) must be included in the `input` object.
-     * 
-     * @return The async call builder
-     */
-    public CreateAndStreamRunRequestBuilder runStream() {
-        return new CreateAndStreamRunRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * Create an agent run and stream the response
-     * 
-     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the result as a
-     * stream of server-sent events (SSE). **Note**: If the agent uses an input form trigger, all form
-     * fields (including optional fields) must be included in the `input` object.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @return {@code CompletableFuture<CreateAndStreamRunResponse>} - The async response
-     */
-    public CompletableFuture<CreateAndStreamRunResponse> runStream(AgentRunCreate request) {
-        AsyncRequestOperation<AgentRunCreate, CreateAndStreamRunResponse> operation
-              = new CreateAndStreamRun.Async(sdkConfiguration, _headers);
-        return operation.doRequest(request)
-            .thenCompose(operation::handleResponse);
-    }
-
-
-    /**
-     * Create an agent run and wait for the response
-     * 
-     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the final
-     * response. **Note**: If the agent uses an input form trigger, all form fields (including optional
-     * fields) must be included in the `input` object.
-     * 
-     * @return The async call builder
-     */
-    public CreateAndWaitRunRequestBuilder run() {
-        return new CreateAndWaitRunRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * Create an agent run and wait for the response
-     * 
-     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the final
-     * response. **Note**: If the agent uses an input form trigger, all form fields (including optional
-     * fields) must be included in the `input` object.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @return {@code CompletableFuture<CreateAndWaitRunResponse>} - The async response
-     */
-    public CompletableFuture<CreateAndWaitRunResponse> run(AgentRunCreate request) {
-        AsyncRequestOperation<AgentRunCreate, CreateAndWaitRunResponse> operation
-              = new CreateAndWaitRun.Async(sdkConfiguration, _headers);
+        AsyncRequestOperation<EditAgentRequest, EditAgentResponse> operation
+              = new EditAgent.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
