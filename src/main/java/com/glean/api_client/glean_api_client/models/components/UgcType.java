@@ -38,6 +38,8 @@ public class UgcType {
     public static final UgcType SHORTCUTS_TYPE = new UgcType("SHORTCUTS_TYPE");
     public static final UgcType SLIDE_TYPE = new UgcType("SLIDE_TYPE");
     public static final UgcType SPREADSHEET_TYPE = new UgcType("SPREADSHEET_TYPE");
+    public static final UgcType INLINE_HTML_TYPE = new UgcType("INLINE_HTML_TYPE");
+    public static final UgcType PODCAST_TYPE = new UgcType("PODCAST_TYPE");
     public static final UgcType WORKFLOWS_TYPE = new UgcType("WORKFLOWS_TYPE");
 
     // This map will grow whenever a Color gets created with a new
@@ -129,6 +131,8 @@ public class UgcType {
         map.put("SHORTCUTS_TYPE", SHORTCUTS_TYPE);
         map.put("SLIDE_TYPE", SLIDE_TYPE);
         map.put("SPREADSHEET_TYPE", SPREADSHEET_TYPE);
+        map.put("INLINE_HTML_TYPE", INLINE_HTML_TYPE);
+        map.put("PODCAST_TYPE", PODCAST_TYPE);
         map.put("WORKFLOWS_TYPE", WORKFLOWS_TYPE);
         return map;
     }
@@ -152,6 +156,8 @@ public class UgcType {
         map.put("SHORTCUTS_TYPE", UgcTypeEnum.SHORTCUTS_TYPE);
         map.put("SLIDE_TYPE", UgcTypeEnum.SLIDE_TYPE);
         map.put("SPREADSHEET_TYPE", UgcTypeEnum.SPREADSHEET_TYPE);
+        map.put("INLINE_HTML_TYPE", UgcTypeEnum.INLINE_HTML_TYPE);
+        map.put("PODCAST_TYPE", UgcTypeEnum.PODCAST_TYPE);
         map.put("WORKFLOWS_TYPE", UgcTypeEnum.WORKFLOWS_TYPE);
         return map;
     }
@@ -176,6 +182,8 @@ public class UgcType {
         SHORTCUTS_TYPE("SHORTCUTS_TYPE"),
         SLIDE_TYPE("SLIDE_TYPE"),
         SPREADSHEET_TYPE("SPREADSHEET_TYPE"),
+        INLINE_HTML_TYPE("INLINE_HTML_TYPE"),
+        PODCAST_TYPE("PODCAST_TYPE"),
         WORKFLOWS_TYPE("WORKFLOWS_TYPE"),;
 
         private final String value;
