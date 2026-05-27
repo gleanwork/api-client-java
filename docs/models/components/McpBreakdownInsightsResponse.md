@@ -1,0 +1,11 @@
+# McpBreakdownInsightsResponse
+
+
+## Fields
+
+| Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `usersBreakdown`                                                                             | List\<[McpUserBreakdown](../../models/components/McpUserBreakdown.md)>                       | :heavy_minus_sign:                                                                           | N/A                                                                                          |
+| `hostApplicationsBreakdown`                                                                  | List\<[McpHostApplicationBreakdown](../../models/components/McpHostApplicationBreakdown.md)> | :heavy_minus_sign:                                                                           | N/A                                                                                          |
+| `toolsBreakdown`                                                                             | List\<[McpToolBreakdown](../../models/components/McpToolBreakdown.md)>                       | :heavy_minus_sign:                                                                           | N/A                                                                                          |
+| `serversBreakdown`                                                                           | List\<[McpServerBreakdown](../../models/components/McpServerBreakdown.md)>                   | :heavy_minus_sign:                                                                           | N/A                                                                                          |

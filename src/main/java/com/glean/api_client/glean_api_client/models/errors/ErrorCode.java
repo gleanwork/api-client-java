@@ -28,6 +28,7 @@ public class ErrorCode {
     public static final ErrorCode HEIGHT_VIOLATION = new ErrorCode("HEIGHT_VIOLATION");
     public static final ErrorCode WIDTH_VIOLATION = new ErrorCode("WIDTH_VIOLATION");
     public static final ErrorCode NO_PERMISSIONS = new ErrorCode("NO_PERMISSIONS");
+    public static final ErrorCode CORRUPT_ITEM = new ErrorCode("CORRUPT_ITEM");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -108,6 +109,7 @@ public class ErrorCode {
         map.put("HEIGHT_VIOLATION", HEIGHT_VIOLATION);
         map.put("WIDTH_VIOLATION", WIDTH_VIOLATION);
         map.put("NO_PERMISSIONS", NO_PERMISSIONS);
+        map.put("CORRUPT_ITEM", CORRUPT_ITEM);
         return map;
     }
 
@@ -120,6 +122,7 @@ public class ErrorCode {
         map.put("HEIGHT_VIOLATION", ErrorCodeEnum.HEIGHT_VIOLATION);
         map.put("WIDTH_VIOLATION", ErrorCodeEnum.WIDTH_VIOLATION);
         map.put("NO_PERMISSIONS", ErrorCodeEnum.NO_PERMISSIONS);
+        map.put("CORRUPT_ITEM", ErrorCodeEnum.CORRUPT_ITEM);
         return map;
     }
     
@@ -132,7 +135,8 @@ public class ErrorCode {
         CONCURRENT_HIERARCHY_EDIT("CONCURRENT_HIERARCHY_EDIT"),
         HEIGHT_VIOLATION("HEIGHT_VIOLATION"),
         WIDTH_VIOLATION("WIDTH_VIOLATION"),
-        NO_PERMISSIONS("NO_PERMISSIONS"),;
+        NO_PERMISSIONS("NO_PERMISSIONS"),
+        CORRUPT_ITEM("CORRUPT_ITEM"),;
 
         private final String value;
 
