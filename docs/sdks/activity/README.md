@@ -94,8 +94,8 @@ Report events that happen to results within a Glean client UI, such as search re
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.Event;
 import com.glean.api_client.glean_api_client.models.components.Feedback;
+import com.glean.api_client.glean_api_client.models.components.FeedbackEvent;
 import com.glean.api_client.glean_api_client.models.operations.FeedbackResponse;
 import java.lang.Exception;
 import java.util.List;
@@ -112,7 +112,7 @@ public class Application {
                 .feedback1(Feedback.builder()
                     .trackingTokens(List.of(
                         "trackingTokens"))
-                    .event(Event.VIEW)
+                    .event(FeedbackEvent.VIEW)
                     .build())
                 .call();
 

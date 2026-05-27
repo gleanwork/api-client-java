@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
@@ -53,6 +54,19 @@ public class Workflow {
 
 
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("lastDraftSavedBy")
+    private Optional<? extends Person> lastDraftSavedBy;
+
+    /**
+     * ID of the VCS user (e.g. GitHub username) who last saved the draft. Set only by the draft save path
+     * via the external Git integration API.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("lastDraftGitAuthorId")
+    private Optional<String> lastDraftGitAuthorId;
+
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lastUpdatedBy")
     private Optional<? extends Person> lastUpdatedBy;
 
@@ -68,6 +82,22 @@ public class Workflow {
     @JsonProperty("id")
     private Optional<String> id;
 
+    /**
+     * When present, indicates this workflow is admin-verified. Set via the dedicated admin settings
+     * endpoint, not by regular edits.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("verified")
+    private Optional<Boolean> verified;
+
+    /**
+     * When true, displays organization name instead of author name in agent card. Set via the dedicated
+     * admin settings endpoint, not by regular edits.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("showOrganizationAsAuthor")
+    private Optional<Boolean> showOrganizationAsAuthor;
+
     @JsonCreator
     public Workflow(
             @JsonProperty("name") Optional<String> name,
@@ -75,31 +105,44 @@ public class Workflow {
             @JsonProperty("createTimestamp") Optional<Long> createTimestamp,
             @JsonProperty("lastUpdateTimestamp") Optional<Long> lastUpdateTimestamp,
             @JsonProperty("lastDraftSavedAt") Optional<Long> lastDraftSavedAt,
+            @JsonProperty("lastDraftSavedBy") Optional<? extends Person> lastDraftSavedBy,
+            @JsonProperty("lastDraftGitAuthorId") Optional<String> lastDraftGitAuthorId,
             @JsonProperty("lastUpdatedBy") Optional<? extends Person> lastUpdatedBy,
             @JsonProperty("permissions") Optional<? extends ObjectPermissions> permissions,
-            @JsonProperty("id") Optional<String> id) {
+            @JsonProperty("id") Optional<String> id,
+            @JsonProperty("verified") Optional<Boolean> verified,
+            @JsonProperty("showOrganizationAsAuthor") Optional<Boolean> showOrganizationAsAuthor) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(author, "author");
         Utils.checkNotNull(createTimestamp, "createTimestamp");
         Utils.checkNotNull(lastUpdateTimestamp, "lastUpdateTimestamp");
         Utils.checkNotNull(lastDraftSavedAt, "lastDraftSavedAt");
+        Utils.checkNotNull(lastDraftSavedBy, "lastDraftSavedBy");
+        Utils.checkNotNull(lastDraftGitAuthorId, "lastDraftGitAuthorId");
         Utils.checkNotNull(lastUpdatedBy, "lastUpdatedBy");
         Utils.checkNotNull(permissions, "permissions");
         Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(verified, "verified");
+        Utils.checkNotNull(showOrganizationAsAuthor, "showOrganizationAsAuthor");
         this.name = name;
         this.author = author;
         this.createTimestamp = createTimestamp;
         this.lastUpdateTimestamp = lastUpdateTimestamp;
         this.lastDraftSavedAt = lastDraftSavedAt;
+        this.lastDraftSavedBy = lastDraftSavedBy;
+        this.lastDraftGitAuthorId = lastDraftGitAuthorId;
         this.lastUpdatedBy = lastUpdatedBy;
         this.permissions = permissions;
         this.id = id;
+        this.verified = verified;
+        this.showOrganizationAsAuthor = showOrganizationAsAuthor;
     }
     
     public Workflow() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -142,6 +185,21 @@ public class Workflow {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
+    public Optional<Person> lastDraftSavedBy() {
+        return (Optional<Person>) lastDraftSavedBy;
+    }
+
+    /**
+     * ID of the VCS user (e.g. GitHub username) who last saved the draft. Set only by the draft save path
+     * via the external Git integration API.
+     */
+    @JsonIgnore
+    public Optional<String> lastDraftGitAuthorId() {
+        return lastDraftGitAuthorId;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
     public Optional<Person> lastUpdatedBy() {
         return (Optional<Person>) lastUpdatedBy;
     }
@@ -158,6 +216,24 @@ public class Workflow {
     @JsonIgnore
     public Optional<String> id() {
         return id;
+    }
+
+    /**
+     * When present, indicates this workflow is admin-verified. Set via the dedicated admin settings
+     * endpoint, not by regular edits.
+     */
+    @JsonIgnore
+    public Optional<Boolean> verified() {
+        return verified;
+    }
+
+    /**
+     * When true, displays organization name instead of author name in agent card. Set via the dedicated
+     * admin settings endpoint, not by regular edits.
+     */
+    @JsonIgnore
+    public Optional<Boolean> showOrganizationAsAuthor() {
+        return showOrganizationAsAuthor;
     }
 
     public static Builder builder() {
@@ -254,6 +330,40 @@ public class Workflow {
         return this;
     }
 
+    public Workflow withLastDraftSavedBy(Person lastDraftSavedBy) {
+        Utils.checkNotNull(lastDraftSavedBy, "lastDraftSavedBy");
+        this.lastDraftSavedBy = Optional.ofNullable(lastDraftSavedBy);
+        return this;
+    }
+
+
+    public Workflow withLastDraftSavedBy(Optional<? extends Person> lastDraftSavedBy) {
+        Utils.checkNotNull(lastDraftSavedBy, "lastDraftSavedBy");
+        this.lastDraftSavedBy = lastDraftSavedBy;
+        return this;
+    }
+
+    /**
+     * ID of the VCS user (e.g. GitHub username) who last saved the draft. Set only by the draft save path
+     * via the external Git integration API.
+     */
+    public Workflow withLastDraftGitAuthorId(String lastDraftGitAuthorId) {
+        Utils.checkNotNull(lastDraftGitAuthorId, "lastDraftGitAuthorId");
+        this.lastDraftGitAuthorId = Optional.ofNullable(lastDraftGitAuthorId);
+        return this;
+    }
+
+
+    /**
+     * ID of the VCS user (e.g. GitHub username) who last saved the draft. Set only by the draft save path
+     * via the external Git integration API.
+     */
+    public Workflow withLastDraftGitAuthorId(Optional<String> lastDraftGitAuthorId) {
+        Utils.checkNotNull(lastDraftGitAuthorId, "lastDraftGitAuthorId");
+        this.lastDraftGitAuthorId = lastDraftGitAuthorId;
+        return this;
+    }
+
     public Workflow withLastUpdatedBy(Person lastUpdatedBy) {
         Utils.checkNotNull(lastUpdatedBy, "lastUpdatedBy");
         this.lastUpdatedBy = Optional.ofNullable(lastUpdatedBy);
@@ -299,6 +409,48 @@ public class Workflow {
         return this;
     }
 
+    /**
+     * When present, indicates this workflow is admin-verified. Set via the dedicated admin settings
+     * endpoint, not by regular edits.
+     */
+    public Workflow withVerified(boolean verified) {
+        Utils.checkNotNull(verified, "verified");
+        this.verified = Optional.ofNullable(verified);
+        return this;
+    }
+
+
+    /**
+     * When present, indicates this workflow is admin-verified. Set via the dedicated admin settings
+     * endpoint, not by regular edits.
+     */
+    public Workflow withVerified(Optional<Boolean> verified) {
+        Utils.checkNotNull(verified, "verified");
+        this.verified = verified;
+        return this;
+    }
+
+    /**
+     * When true, displays organization name instead of author name in agent card. Set via the dedicated
+     * admin settings endpoint, not by regular edits.
+     */
+    public Workflow withShowOrganizationAsAuthor(boolean showOrganizationAsAuthor) {
+        Utils.checkNotNull(showOrganizationAsAuthor, "showOrganizationAsAuthor");
+        this.showOrganizationAsAuthor = Optional.ofNullable(showOrganizationAsAuthor);
+        return this;
+    }
+
+
+    /**
+     * When true, displays organization name instead of author name in agent card. Set via the dedicated
+     * admin settings endpoint, not by regular edits.
+     */
+    public Workflow withShowOrganizationAsAuthor(Optional<Boolean> showOrganizationAsAuthor) {
+        Utils.checkNotNull(showOrganizationAsAuthor, "showOrganizationAsAuthor");
+        this.showOrganizationAsAuthor = showOrganizationAsAuthor;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -314,17 +466,22 @@ public class Workflow {
             Utils.enhancedDeepEquals(this.createTimestamp, other.createTimestamp) &&
             Utils.enhancedDeepEquals(this.lastUpdateTimestamp, other.lastUpdateTimestamp) &&
             Utils.enhancedDeepEquals(this.lastDraftSavedAt, other.lastDraftSavedAt) &&
+            Utils.enhancedDeepEquals(this.lastDraftSavedBy, other.lastDraftSavedBy) &&
+            Utils.enhancedDeepEquals(this.lastDraftGitAuthorId, other.lastDraftGitAuthorId) &&
             Utils.enhancedDeepEquals(this.lastUpdatedBy, other.lastUpdatedBy) &&
             Utils.enhancedDeepEquals(this.permissions, other.permissions) &&
-            Utils.enhancedDeepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.verified, other.verified) &&
+            Utils.enhancedDeepEquals(this.showOrganizationAsAuthor, other.showOrganizationAsAuthor);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             name, author, createTimestamp,
-            lastUpdateTimestamp, lastDraftSavedAt, lastUpdatedBy,
-            permissions, id);
+            lastUpdateTimestamp, lastDraftSavedAt, lastDraftSavedBy,
+            lastDraftGitAuthorId, lastUpdatedBy, permissions,
+            id, verified, showOrganizationAsAuthor);
     }
     
     @Override
@@ -335,9 +492,13 @@ public class Workflow {
                 "createTimestamp", createTimestamp,
                 "lastUpdateTimestamp", lastUpdateTimestamp,
                 "lastDraftSavedAt", lastDraftSavedAt,
+                "lastDraftSavedBy", lastDraftSavedBy,
+                "lastDraftGitAuthorId", lastDraftGitAuthorId,
                 "lastUpdatedBy", lastUpdatedBy,
                 "permissions", permissions,
-                "id", id);
+                "id", id,
+                "verified", verified,
+                "showOrganizationAsAuthor", showOrganizationAsAuthor);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -353,11 +514,19 @@ public class Workflow {
 
         private Optional<Long> lastDraftSavedAt = Optional.empty();
 
+        private Optional<? extends Person> lastDraftSavedBy = Optional.empty();
+
+        private Optional<String> lastDraftGitAuthorId = Optional.empty();
+
         private Optional<? extends Person> lastUpdatedBy = Optional.empty();
 
         private Optional<? extends ObjectPermissions> permissions = Optional.empty();
 
         private Optional<String> id = Optional.empty();
+
+        private Optional<Boolean> verified = Optional.empty();
+
+        private Optional<Boolean> showOrganizationAsAuthor = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -453,6 +622,40 @@ public class Workflow {
         }
 
 
+        public Builder lastDraftSavedBy(Person lastDraftSavedBy) {
+            Utils.checkNotNull(lastDraftSavedBy, "lastDraftSavedBy");
+            this.lastDraftSavedBy = Optional.ofNullable(lastDraftSavedBy);
+            return this;
+        }
+
+        public Builder lastDraftSavedBy(Optional<? extends Person> lastDraftSavedBy) {
+            Utils.checkNotNull(lastDraftSavedBy, "lastDraftSavedBy");
+            this.lastDraftSavedBy = lastDraftSavedBy;
+            return this;
+        }
+
+
+        /**
+         * ID of the VCS user (e.g. GitHub username) who last saved the draft. Set only by the draft save path
+         * via the external Git integration API.
+         */
+        public Builder lastDraftGitAuthorId(String lastDraftGitAuthorId) {
+            Utils.checkNotNull(lastDraftGitAuthorId, "lastDraftGitAuthorId");
+            this.lastDraftGitAuthorId = Optional.ofNullable(lastDraftGitAuthorId);
+            return this;
+        }
+
+        /**
+         * ID of the VCS user (e.g. GitHub username) who last saved the draft. Set only by the draft save path
+         * via the external Git integration API.
+         */
+        public Builder lastDraftGitAuthorId(Optional<String> lastDraftGitAuthorId) {
+            Utils.checkNotNull(lastDraftGitAuthorId, "lastDraftGitAuthorId");
+            this.lastDraftGitAuthorId = lastDraftGitAuthorId;
+            return this;
+        }
+
+
         public Builder lastUpdatedBy(Person lastUpdatedBy) {
             Utils.checkNotNull(lastUpdatedBy, "lastUpdatedBy");
             this.lastUpdatedBy = Optional.ofNullable(lastUpdatedBy);
@@ -497,12 +700,55 @@ public class Workflow {
             return this;
         }
 
+
+        /**
+         * When present, indicates this workflow is admin-verified. Set via the dedicated admin settings
+         * endpoint, not by regular edits.
+         */
+        public Builder verified(boolean verified) {
+            Utils.checkNotNull(verified, "verified");
+            this.verified = Optional.ofNullable(verified);
+            return this;
+        }
+
+        /**
+         * When present, indicates this workflow is admin-verified. Set via the dedicated admin settings
+         * endpoint, not by regular edits.
+         */
+        public Builder verified(Optional<Boolean> verified) {
+            Utils.checkNotNull(verified, "verified");
+            this.verified = verified;
+            return this;
+        }
+
+
+        /**
+         * When true, displays organization name instead of author name in agent card. Set via the dedicated
+         * admin settings endpoint, not by regular edits.
+         */
+        public Builder showOrganizationAsAuthor(boolean showOrganizationAsAuthor) {
+            Utils.checkNotNull(showOrganizationAsAuthor, "showOrganizationAsAuthor");
+            this.showOrganizationAsAuthor = Optional.ofNullable(showOrganizationAsAuthor);
+            return this;
+        }
+
+        /**
+         * When true, displays organization name instead of author name in agent card. Set via the dedicated
+         * admin settings endpoint, not by regular edits.
+         */
+        public Builder showOrganizationAsAuthor(Optional<Boolean> showOrganizationAsAuthor) {
+            Utils.checkNotNull(showOrganizationAsAuthor, "showOrganizationAsAuthor");
+            this.showOrganizationAsAuthor = showOrganizationAsAuthor;
+            return this;
+        }
+
         public Workflow build() {
 
             return new Workflow(
                 name, author, createTimestamp,
-                lastUpdateTimestamp, lastDraftSavedAt, lastUpdatedBy,
-                permissions, id);
+                lastUpdateTimestamp, lastDraftSavedAt, lastDraftSavedBy,
+                lastDraftGitAuthorId, lastUpdatedBy, permissions,
+                id, verified, showOrganizationAsAuthor);
         }
 
     }
