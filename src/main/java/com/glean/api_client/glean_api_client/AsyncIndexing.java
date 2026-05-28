@@ -17,6 +17,7 @@ public class AsyncIndexing {
     private final AsyncIndexingDatasources datasources;
     private final AsyncIndexingAuthentication authentication;
     private final AsyncIndexingShortcuts shortcuts;
+    private final AsyncCustomMetadata customMetadata;
     private final Indexing syncSDK;
 
     AsyncIndexing(Indexing syncSDK, SDKConfiguration sdkConfiguration) {
@@ -28,6 +29,7 @@ public class AsyncIndexing {
         this.datasources = new AsyncIndexingDatasources(syncSDK.datasources(), this.sdkConfiguration);
         this.authentication = new AsyncIndexingAuthentication(syncSDK.authentication(), this.sdkConfiguration);
         this.shortcuts = new AsyncIndexingShortcuts(syncSDK.shortcuts(), this.sdkConfiguration);
+        this.customMetadata = new AsyncCustomMetadata(syncSDK.customMetadata(), this.sdkConfiguration);
         this.syncSDK = syncSDK;
     }
 
@@ -57,6 +59,10 @@ public class AsyncIndexing {
 
     public final AsyncIndexingShortcuts shortcuts() {
         return shortcuts;
+    }
+
+    public final AsyncCustomMetadata customMetadata() {
+        return customMetadata;
     }
 
     /**
