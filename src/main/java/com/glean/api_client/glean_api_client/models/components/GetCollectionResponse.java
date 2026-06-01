@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -27,32 +28,35 @@ public class GetCollectionResponse {
     @JsonProperty("rootCollection")
     private Optional<? extends Collection> rootCollection;
 
-    /**
-     * An opaque token that represents this particular Collection. To be used for `/feedback` reporting.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("trackingToken")
-    private Optional<String> trackingToken;
-
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
     private Optional<? extends CollectionError3> error;
 
+    /**
+     * Use `collection.trackingToken` instead.
+     * 
+     * @deprecated field: Deprecated on 2026-05-07, removal scheduled for 2027-01-15: Use `collection.trackingToken` instead..
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("trackingToken")
+    @Deprecated
+    private Optional<String> trackingToken;
+
     @JsonCreator
     public GetCollectionResponse(
             @JsonProperty("collection") Optional<? extends Collection> collection,
             @JsonProperty("rootCollection") Optional<? extends Collection> rootCollection,
-            @JsonProperty("trackingToken") Optional<String> trackingToken,
-            @JsonProperty("error") Optional<? extends CollectionError3> error) {
+            @JsonProperty("error") Optional<? extends CollectionError3> error,
+            @JsonProperty("trackingToken") Optional<String> trackingToken) {
         Utils.checkNotNull(collection, "collection");
         Utils.checkNotNull(rootCollection, "rootCollection");
-        Utils.checkNotNull(trackingToken, "trackingToken");
         Utils.checkNotNull(error, "error");
+        Utils.checkNotNull(trackingToken, "trackingToken");
         this.collection = collection;
         this.rootCollection = rootCollection;
-        this.trackingToken = trackingToken;
         this.error = error;
+        this.trackingToken = trackingToken;
     }
     
     public GetCollectionResponse() {
@@ -72,18 +76,21 @@ public class GetCollectionResponse {
         return (Optional<Collection>) rootCollection;
     }
 
-    /**
-     * An opaque token that represents this particular Collection. To be used for `/feedback` reporting.
-     */
-    @JsonIgnore
-    public Optional<String> trackingToken() {
-        return trackingToken;
-    }
-
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<CollectionError3> error() {
         return (Optional<CollectionError3>) error;
+    }
+
+    /**
+     * Use `collection.trackingToken` instead.
+     * 
+     * @deprecated field: Deprecated on 2026-05-07, removal scheduled for 2027-01-15: Use `collection.trackingToken` instead..
+     */
+    @Deprecated
+    @JsonIgnore
+    public Optional<String> trackingToken() {
+        return trackingToken;
     }
 
     public static Builder builder() {
@@ -117,25 +124,6 @@ public class GetCollectionResponse {
         return this;
     }
 
-    /**
-     * An opaque token that represents this particular Collection. To be used for `/feedback` reporting.
-     */
-    public GetCollectionResponse withTrackingToken(String trackingToken) {
-        Utils.checkNotNull(trackingToken, "trackingToken");
-        this.trackingToken = Optional.ofNullable(trackingToken);
-        return this;
-    }
-
-
-    /**
-     * An opaque token that represents this particular Collection. To be used for `/feedback` reporting.
-     */
-    public GetCollectionResponse withTrackingToken(Optional<String> trackingToken) {
-        Utils.checkNotNull(trackingToken, "trackingToken");
-        this.trackingToken = trackingToken;
-        return this;
-    }
-
     public GetCollectionResponse withError(CollectionError3 error) {
         Utils.checkNotNull(error, "error");
         this.error = Optional.ofNullable(error);
@@ -146,6 +134,31 @@ public class GetCollectionResponse {
     public GetCollectionResponse withError(Optional<? extends CollectionError3> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
+        return this;
+    }
+
+    /**
+     * Use `collection.trackingToken` instead.
+     * 
+     * @deprecated field: Deprecated on 2026-05-07, removal scheduled for 2027-01-15: Use `collection.trackingToken` instead..
+     */
+    @Deprecated
+    public GetCollectionResponse withTrackingToken(String trackingToken) {
+        Utils.checkNotNull(trackingToken, "trackingToken");
+        this.trackingToken = Optional.ofNullable(trackingToken);
+        return this;
+    }
+
+
+    /**
+     * Use `collection.trackingToken` instead.
+     * 
+     * @deprecated field: Deprecated on 2026-05-07, removal scheduled for 2027-01-15: Use `collection.trackingToken` instead..
+     */
+    @Deprecated
+    public GetCollectionResponse withTrackingToken(Optional<String> trackingToken) {
+        Utils.checkNotNull(trackingToken, "trackingToken");
+        this.trackingToken = trackingToken;
         return this;
     }
 
@@ -161,15 +174,15 @@ public class GetCollectionResponse {
         return 
             Utils.enhancedDeepEquals(this.collection, other.collection) &&
             Utils.enhancedDeepEquals(this.rootCollection, other.rootCollection) &&
-            Utils.enhancedDeepEquals(this.trackingToken, other.trackingToken) &&
-            Utils.enhancedDeepEquals(this.error, other.error);
+            Utils.enhancedDeepEquals(this.error, other.error) &&
+            Utils.enhancedDeepEquals(this.trackingToken, other.trackingToken);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            collection, rootCollection, trackingToken,
-            error);
+            collection, rootCollection, error,
+            trackingToken);
     }
     
     @Override
@@ -177,8 +190,8 @@ public class GetCollectionResponse {
         return Utils.toString(GetCollectionResponse.class,
                 "collection", collection,
                 "rootCollection", rootCollection,
-                "trackingToken", trackingToken,
-                "error", error);
+                "error", error,
+                "trackingToken", trackingToken);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -188,9 +201,10 @@ public class GetCollectionResponse {
 
         private Optional<? extends Collection> rootCollection = Optional.empty();
 
-        private Optional<String> trackingToken = Optional.empty();
-
         private Optional<? extends CollectionError3> error = Optional.empty();
+
+        @Deprecated
+        private Optional<String> trackingToken = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -223,25 +237,6 @@ public class GetCollectionResponse {
         }
 
 
-        /**
-         * An opaque token that represents this particular Collection. To be used for `/feedback` reporting.
-         */
-        public Builder trackingToken(String trackingToken) {
-            Utils.checkNotNull(trackingToken, "trackingToken");
-            this.trackingToken = Optional.ofNullable(trackingToken);
-            return this;
-        }
-
-        /**
-         * An opaque token that represents this particular Collection. To be used for `/feedback` reporting.
-         */
-        public Builder trackingToken(Optional<String> trackingToken) {
-            Utils.checkNotNull(trackingToken, "trackingToken");
-            this.trackingToken = trackingToken;
-            return this;
-        }
-
-
         public Builder error(CollectionError3 error) {
             Utils.checkNotNull(error, "error");
             this.error = Optional.ofNullable(error);
@@ -254,11 +249,36 @@ public class GetCollectionResponse {
             return this;
         }
 
+
+        /**
+         * Use `collection.trackingToken` instead.
+         * 
+         * @deprecated field: Deprecated on 2026-05-07, removal scheduled for 2027-01-15: Use `collection.trackingToken` instead..
+         */
+        @Deprecated
+        public Builder trackingToken(String trackingToken) {
+            Utils.checkNotNull(trackingToken, "trackingToken");
+            this.trackingToken = Optional.ofNullable(trackingToken);
+            return this;
+        }
+
+        /**
+         * Use `collection.trackingToken` instead.
+         * 
+         * @deprecated field: Deprecated on 2026-05-07, removal scheduled for 2027-01-15: Use `collection.trackingToken` instead..
+         */
+        @Deprecated
+        public Builder trackingToken(Optional<String> trackingToken) {
+            Utils.checkNotNull(trackingToken, "trackingToken");
+            this.trackingToken = trackingToken;
+            return this;
+        }
+
         public GetCollectionResponse build() {
 
             return new GetCollectionResponse(
-                collection, rootCollection, trackingToken,
-                error);
+                collection, rootCollection, error,
+                trackingToken);
         }
 
     }

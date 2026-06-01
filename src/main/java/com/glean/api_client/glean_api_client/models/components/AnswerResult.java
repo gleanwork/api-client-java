@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -21,10 +22,13 @@ public class AnswerResult {
     private Answer answer;
 
     /**
-     * An opaque token that represents this particular Answer. To be used for `/feedback` reporting.
+     * Use `answer.trackingToken` instead.
+     * 
+     * @deprecated field: Deprecated on 2026-05-07, removal scheduled for 2027-01-15: Use `answer.trackingToken` instead..
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("trackingToken")
+    @Deprecated
     private Optional<String> trackingToken;
 
     @JsonCreator
@@ -48,8 +52,11 @@ public class AnswerResult {
     }
 
     /**
-     * An opaque token that represents this particular Answer. To be used for `/feedback` reporting.
+     * Use `answer.trackingToken` instead.
+     * 
+     * @deprecated field: Deprecated on 2026-05-07, removal scheduled for 2027-01-15: Use `answer.trackingToken` instead..
      */
+    @Deprecated
     @JsonIgnore
     public Optional<String> trackingToken() {
         return trackingToken;
@@ -67,8 +74,11 @@ public class AnswerResult {
     }
 
     /**
-     * An opaque token that represents this particular Answer. To be used for `/feedback` reporting.
+     * Use `answer.trackingToken` instead.
+     * 
+     * @deprecated field: Deprecated on 2026-05-07, removal scheduled for 2027-01-15: Use `answer.trackingToken` instead..
      */
+    @Deprecated
     public AnswerResult withTrackingToken(String trackingToken) {
         Utils.checkNotNull(trackingToken, "trackingToken");
         this.trackingToken = Optional.ofNullable(trackingToken);
@@ -77,8 +87,11 @@ public class AnswerResult {
 
 
     /**
-     * An opaque token that represents this particular Answer. To be used for `/feedback` reporting.
+     * Use `answer.trackingToken` instead.
+     * 
+     * @deprecated field: Deprecated on 2026-05-07, removal scheduled for 2027-01-15: Use `answer.trackingToken` instead..
      */
+    @Deprecated
     public AnswerResult withTrackingToken(Optional<String> trackingToken) {
         Utils.checkNotNull(trackingToken, "trackingToken");
         this.trackingToken = trackingToken;
@@ -117,6 +130,7 @@ public class AnswerResult {
 
         private Answer answer;
 
+        @Deprecated
         private Optional<String> trackingToken = Optional.empty();
 
         private Builder() {
@@ -132,8 +146,11 @@ public class AnswerResult {
 
 
         /**
-         * An opaque token that represents this particular Answer. To be used for `/feedback` reporting.
+         * Use `answer.trackingToken` instead.
+         * 
+         * @deprecated field: Deprecated on 2026-05-07, removal scheduled for 2027-01-15: Use `answer.trackingToken` instead..
          */
+        @Deprecated
         public Builder trackingToken(String trackingToken) {
             Utils.checkNotNull(trackingToken, "trackingToken");
             this.trackingToken = Optional.ofNullable(trackingToken);
@@ -141,8 +158,11 @@ public class AnswerResult {
         }
 
         /**
-         * An opaque token that represents this particular Answer. To be used for `/feedback` reporting.
+         * Use `answer.trackingToken` instead.
+         * 
+         * @deprecated field: Deprecated on 2026-05-07, removal scheduled for 2027-01-15: Use `answer.trackingToken` instead..
          */
+        @Deprecated
         public Builder trackingToken(Optional<String> trackingToken) {
             Utils.checkNotNull(trackingToken, "trackingToken");
             this.trackingToken = trackingToken;

@@ -47,7 +47,7 @@ public class PropertyDefinition {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("propertyType")
-    private Optional<? extends PropertyType> propertyType;
+    private Optional<? extends PropertyDefinitionPropertyType> propertyType;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -91,7 +91,7 @@ public class PropertyDefinition {
             @JsonProperty("name") Optional<String> name,
             @JsonProperty("displayLabel") Optional<String> displayLabel,
             @JsonProperty("displayLabelPlural") Optional<String> displayLabelPlural,
-            @JsonProperty("propertyType") Optional<? extends PropertyType> propertyType,
+            @JsonProperty("propertyType") Optional<? extends PropertyDefinitionPropertyType> propertyType,
             @JsonProperty("uiOptions") Optional<? extends UiOptions> uiOptions,
             @JsonProperty("hideUiFacet") Optional<Boolean> hideUiFacet,
             @JsonProperty("uiFacetOrder") Optional<Long> uiFacetOrder,
@@ -154,8 +154,8 @@ public class PropertyDefinition {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PropertyType> propertyType() {
-        return (Optional<PropertyType>) propertyType;
+    public Optional<PropertyDefinitionPropertyType> propertyType() {
+        return (Optional<PropertyDefinitionPropertyType>) propertyType;
     }
 
     @SuppressWarnings("unchecked")
@@ -268,7 +268,7 @@ public class PropertyDefinition {
      * The type of custom property - this governs the search and faceting behavior. Note that MULTIPICKLIST
      * is not yet supported.
      */
-    public PropertyDefinition withPropertyType(PropertyType propertyType) {
+    public PropertyDefinition withPropertyType(PropertyDefinitionPropertyType propertyType) {
         Utils.checkNotNull(propertyType, "propertyType");
         this.propertyType = Optional.ofNullable(propertyType);
         return this;
@@ -279,7 +279,7 @@ public class PropertyDefinition {
      * The type of custom property - this governs the search and faceting behavior. Note that MULTIPICKLIST
      * is not yet supported.
      */
-    public PropertyDefinition withPropertyType(Optional<? extends PropertyType> propertyType) {
+    public PropertyDefinition withPropertyType(Optional<? extends PropertyDefinitionPropertyType> propertyType) {
         Utils.checkNotNull(propertyType, "propertyType");
         this.propertyType = propertyType;
         return this;
@@ -434,7 +434,7 @@ public class PropertyDefinition {
 
         private Optional<String> displayLabelPlural = Optional.empty();
 
-        private Optional<? extends PropertyType> propertyType = Optional.empty();
+        private Optional<? extends PropertyDefinitionPropertyType> propertyType = Optional.empty();
 
         private Optional<? extends UiOptions> uiOptions = Optional.empty();
 
@@ -514,7 +514,7 @@ public class PropertyDefinition {
          * The type of custom property - this governs the search and faceting behavior. Note that MULTIPICKLIST
          * is not yet supported.
          */
-        public Builder propertyType(PropertyType propertyType) {
+        public Builder propertyType(PropertyDefinitionPropertyType propertyType) {
             Utils.checkNotNull(propertyType, "propertyType");
             this.propertyType = Optional.ofNullable(propertyType);
             return this;
@@ -524,7 +524,7 @@ public class PropertyDefinition {
          * The type of custom property - this governs the search and faceting behavior. Note that MULTIPICKLIST
          * is not yet supported.
          */
-        public Builder propertyType(Optional<? extends PropertyType> propertyType) {
+        public Builder propertyType(Optional<? extends PropertyDefinitionPropertyType> propertyType) {
             Utils.checkNotNull(propertyType, "propertyType");
             this.propertyType = propertyType;
             return this;

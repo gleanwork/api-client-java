@@ -18,6 +18,8 @@ import java.util.Optional;
  */
 public enum FeedbackCategory {
     ANNOUNCEMENT("ANNOUNCEMENT"),
+    ANSWERS("ANSWERS"),
+    ARTIFACTS("ARTIFACTS"),
     AUTOCOMPLETE("AUTOCOMPLETE"),
     COLLECTIONS("COLLECTIONS"),
     FEED("FEED"),
