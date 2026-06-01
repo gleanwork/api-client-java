@@ -33,6 +33,16 @@ public class InsightsRequest {
     @JsonProperty("agentsRequest")
     private Optional<? extends AgentsInsightsV2Request> agentsRequest;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("mcpRequest")
+    private Optional<? extends McpInsightsRequest> mcpRequest;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("mcpBreakdownRequest")
+    private Optional<? extends McpBreakdownInsightsRequest> mcpBreakdownRequest;
+
     /**
      * If true, suppresses the generation of per-user Insights in the response. Default is false.
      */
@@ -45,20 +55,26 @@ public class InsightsRequest {
             @JsonProperty("overviewRequest") Optional<? extends InsightsOverviewRequest> overviewRequest,
             @JsonProperty("assistantRequest") Optional<? extends InsightsAssistantRequest> assistantRequest,
             @JsonProperty("agentsRequest") Optional<? extends AgentsInsightsV2Request> agentsRequest,
+            @JsonProperty("mcpRequest") Optional<? extends McpInsightsRequest> mcpRequest,
+            @JsonProperty("mcpBreakdownRequest") Optional<? extends McpBreakdownInsightsRequest> mcpBreakdownRequest,
             @JsonProperty("disablePerUserInsights") Optional<Boolean> disablePerUserInsights) {
         Utils.checkNotNull(overviewRequest, "overviewRequest");
         Utils.checkNotNull(assistantRequest, "assistantRequest");
         Utils.checkNotNull(agentsRequest, "agentsRequest");
+        Utils.checkNotNull(mcpRequest, "mcpRequest");
+        Utils.checkNotNull(mcpBreakdownRequest, "mcpBreakdownRequest");
         Utils.checkNotNull(disablePerUserInsights, "disablePerUserInsights");
         this.overviewRequest = overviewRequest;
         this.assistantRequest = assistantRequest;
         this.agentsRequest = agentsRequest;
+        this.mcpRequest = mcpRequest;
+        this.mcpBreakdownRequest = mcpBreakdownRequest;
         this.disablePerUserInsights = disablePerUserInsights;
     }
     
     public InsightsRequest() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -77,6 +93,18 @@ public class InsightsRequest {
     @JsonIgnore
     public Optional<AgentsInsightsV2Request> agentsRequest() {
         return (Optional<AgentsInsightsV2Request>) agentsRequest;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<McpInsightsRequest> mcpRequest() {
+        return (Optional<McpInsightsRequest>) mcpRequest;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<McpBreakdownInsightsRequest> mcpBreakdownRequest() {
+        return (Optional<McpBreakdownInsightsRequest>) mcpBreakdownRequest;
     }
 
     /**
@@ -131,6 +159,32 @@ public class InsightsRequest {
         return this;
     }
 
+    public InsightsRequest withMcpRequest(McpInsightsRequest mcpRequest) {
+        Utils.checkNotNull(mcpRequest, "mcpRequest");
+        this.mcpRequest = Optional.ofNullable(mcpRequest);
+        return this;
+    }
+
+
+    public InsightsRequest withMcpRequest(Optional<? extends McpInsightsRequest> mcpRequest) {
+        Utils.checkNotNull(mcpRequest, "mcpRequest");
+        this.mcpRequest = mcpRequest;
+        return this;
+    }
+
+    public InsightsRequest withMcpBreakdownRequest(McpBreakdownInsightsRequest mcpBreakdownRequest) {
+        Utils.checkNotNull(mcpBreakdownRequest, "mcpBreakdownRequest");
+        this.mcpBreakdownRequest = Optional.ofNullable(mcpBreakdownRequest);
+        return this;
+    }
+
+
+    public InsightsRequest withMcpBreakdownRequest(Optional<? extends McpBreakdownInsightsRequest> mcpBreakdownRequest) {
+        Utils.checkNotNull(mcpBreakdownRequest, "mcpBreakdownRequest");
+        this.mcpBreakdownRequest = mcpBreakdownRequest;
+        return this;
+    }
+
     /**
      * If true, suppresses the generation of per-user Insights in the response. Default is false.
      */
@@ -163,6 +217,8 @@ public class InsightsRequest {
             Utils.enhancedDeepEquals(this.overviewRequest, other.overviewRequest) &&
             Utils.enhancedDeepEquals(this.assistantRequest, other.assistantRequest) &&
             Utils.enhancedDeepEquals(this.agentsRequest, other.agentsRequest) &&
+            Utils.enhancedDeepEquals(this.mcpRequest, other.mcpRequest) &&
+            Utils.enhancedDeepEquals(this.mcpBreakdownRequest, other.mcpBreakdownRequest) &&
             Utils.enhancedDeepEquals(this.disablePerUserInsights, other.disablePerUserInsights);
     }
     
@@ -170,7 +226,7 @@ public class InsightsRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             overviewRequest, assistantRequest, agentsRequest,
-            disablePerUserInsights);
+            mcpRequest, mcpBreakdownRequest, disablePerUserInsights);
     }
     
     @Override
@@ -179,6 +235,8 @@ public class InsightsRequest {
                 "overviewRequest", overviewRequest,
                 "assistantRequest", assistantRequest,
                 "agentsRequest", agentsRequest,
+                "mcpRequest", mcpRequest,
+                "mcpBreakdownRequest", mcpBreakdownRequest,
                 "disablePerUserInsights", disablePerUserInsights);
     }
 
@@ -190,6 +248,10 @@ public class InsightsRequest {
         private Optional<? extends InsightsAssistantRequest> assistantRequest = Optional.empty();
 
         private Optional<? extends AgentsInsightsV2Request> agentsRequest = Optional.empty();
+
+        private Optional<? extends McpInsightsRequest> mcpRequest = Optional.empty();
+
+        private Optional<? extends McpBreakdownInsightsRequest> mcpBreakdownRequest = Optional.empty();
 
         private Optional<Boolean> disablePerUserInsights = Optional.empty();
 
@@ -237,6 +299,32 @@ public class InsightsRequest {
         }
 
 
+        public Builder mcpRequest(McpInsightsRequest mcpRequest) {
+            Utils.checkNotNull(mcpRequest, "mcpRequest");
+            this.mcpRequest = Optional.ofNullable(mcpRequest);
+            return this;
+        }
+
+        public Builder mcpRequest(Optional<? extends McpInsightsRequest> mcpRequest) {
+            Utils.checkNotNull(mcpRequest, "mcpRequest");
+            this.mcpRequest = mcpRequest;
+            return this;
+        }
+
+
+        public Builder mcpBreakdownRequest(McpBreakdownInsightsRequest mcpBreakdownRequest) {
+            Utils.checkNotNull(mcpBreakdownRequest, "mcpBreakdownRequest");
+            this.mcpBreakdownRequest = Optional.ofNullable(mcpBreakdownRequest);
+            return this;
+        }
+
+        public Builder mcpBreakdownRequest(Optional<? extends McpBreakdownInsightsRequest> mcpBreakdownRequest) {
+            Utils.checkNotNull(mcpBreakdownRequest, "mcpBreakdownRequest");
+            this.mcpBreakdownRequest = mcpBreakdownRequest;
+            return this;
+        }
+
+
         /**
          * If true, suppresses the generation of per-user Insights in the response. Default is false.
          */
@@ -259,7 +347,7 @@ public class InsightsRequest {
 
             return new InsightsRequest(
                 overviewRequest, assistantRequest, agentsRequest,
-                disablePerUserInsights);
+                mcpRequest, mcpBreakdownRequest, disablePerUserInsights);
         }
 
     }
