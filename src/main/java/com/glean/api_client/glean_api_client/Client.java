@@ -15,18 +15,18 @@ public class Client {
     private final Announcements announcements;
     private final Answers answers;
     private final ClientAuthentication authentication;
-    private final Chat chat;
-    private final Agents agents;
+    private final ClientChat chat;
+    private final ClientAgents agents;
     private final Collections collections;
     private final ClientDocuments documents;
     private final Insights insights;
     private final Messages messages;
     private final Pins pins;
     private final Search search;
-    private final Entities entities;
+    private final ClientEntities entities;
     private final ClientShortcuts shortcuts;
     private final Verification verification;
-    private final Tools tools;
+    private final ClientTools tools;
     private final ClientGovernance governance;
 
     Client(SDKConfiguration sdkConfiguration) {
@@ -35,18 +35,18 @@ public class Client {
         this.announcements = new Announcements(this.sdkConfiguration);
         this.answers = new Answers(this.sdkConfiguration);
         this.authentication = new ClientAuthentication(this.sdkConfiguration);
-        this.chat = new Chat(this.sdkConfiguration);
-        this.agents = new Agents(this.sdkConfiguration);
+        this.chat = new ClientChat(this.sdkConfiguration);
+        this.agents = new ClientAgents(this.sdkConfiguration);
         this.collections = new Collections(this.sdkConfiguration);
         this.documents = new ClientDocuments(this.sdkConfiguration);
         this.insights = new Insights(this.sdkConfiguration);
         this.messages = new Messages(this.sdkConfiguration);
         this.pins = new Pins(this.sdkConfiguration);
         this.search = new Search(this.sdkConfiguration);
-        this.entities = new Entities(this.sdkConfiguration);
+        this.entities = new ClientEntities(this.sdkConfiguration);
         this.shortcuts = new ClientShortcuts(this.sdkConfiguration);
         this.verification = new Verification(this.sdkConfiguration);
-        this.tools = new Tools(this.sdkConfiguration);
+        this.tools = new ClientTools(this.sdkConfiguration);
         this.governance = new ClientGovernance(this.sdkConfiguration);
         this.asyncSDK = new AsyncClient(this, sdkConfiguration);
     }
@@ -67,11 +67,11 @@ public class Client {
         return authentication;
     }
 
-    public final Chat chat() {
+    public final ClientChat chat() {
         return chat;
     }
 
-    public final Agents agents() {
+    public final ClientAgents agents() {
         return agents;
     }
 
@@ -99,7 +99,7 @@ public class Client {
         return search;
     }
 
-    public final Entities entities() {
+    public final ClientEntities entities() {
         return entities;
     }
 
@@ -111,7 +111,7 @@ public class Client {
         return verification;
     }
 
-    public final Tools tools() {
+    public final ClientTools tools() {
         return tools;
     }
 
