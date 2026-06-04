@@ -28,6 +28,7 @@ public class EditCollectionResponseErrorCode {
     public static final EditCollectionResponseErrorCode HEIGHT_VIOLATION = new EditCollectionResponseErrorCode("HEIGHT_VIOLATION");
     public static final EditCollectionResponseErrorCode WIDTH_VIOLATION = new EditCollectionResponseErrorCode("WIDTH_VIOLATION");
     public static final EditCollectionResponseErrorCode NO_PERMISSIONS = new EditCollectionResponseErrorCode("NO_PERMISSIONS");
+    public static final EditCollectionResponseErrorCode CORRUPT_ITEM = new EditCollectionResponseErrorCode("CORRUPT_ITEM");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -108,6 +109,7 @@ public class EditCollectionResponseErrorCode {
         map.put("HEIGHT_VIOLATION", HEIGHT_VIOLATION);
         map.put("WIDTH_VIOLATION", WIDTH_VIOLATION);
         map.put("NO_PERMISSIONS", NO_PERMISSIONS);
+        map.put("CORRUPT_ITEM", CORRUPT_ITEM);
         return map;
     }
 
@@ -120,6 +122,7 @@ public class EditCollectionResponseErrorCode {
         map.put("HEIGHT_VIOLATION", EditCollectionResponseErrorCodeEnum.HEIGHT_VIOLATION);
         map.put("WIDTH_VIOLATION", EditCollectionResponseErrorCodeEnum.WIDTH_VIOLATION);
         map.put("NO_PERMISSIONS", EditCollectionResponseErrorCodeEnum.NO_PERMISSIONS);
+        map.put("CORRUPT_ITEM", EditCollectionResponseErrorCodeEnum.CORRUPT_ITEM);
         return map;
     }
     
@@ -132,7 +135,8 @@ public class EditCollectionResponseErrorCode {
         CONCURRENT_HIERARCHY_EDIT("CONCURRENT_HIERARCHY_EDIT"),
         HEIGHT_VIOLATION("HEIGHT_VIOLATION"),
         WIDTH_VIOLATION("WIDTH_VIOLATION"),
-        NO_PERMISSIONS("NO_PERMISSIONS"),;
+        NO_PERMISSIONS("NO_PERMISSIONS"),
+        CORRUPT_ITEM("CORRUPT_ITEM"),;
 
         private final String value;
 

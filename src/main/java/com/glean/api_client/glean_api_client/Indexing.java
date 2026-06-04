@@ -18,6 +18,7 @@ public class Indexing {
     private final IndexingDatasources datasources;
     private final IndexingAuthentication authentication;
     private final IndexingShortcuts shortcuts;
+    private final CustomMetadata customMetadata;
 
     Indexing(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -28,6 +29,7 @@ public class Indexing {
         this.datasources = new IndexingDatasources(this.sdkConfiguration);
         this.authentication = new IndexingAuthentication(this.sdkConfiguration);
         this.shortcuts = new IndexingShortcuts(this.sdkConfiguration);
+        this.customMetadata = new CustomMetadata(this.sdkConfiguration);
         this.asyncSDK = new AsyncIndexing(this, sdkConfiguration);
     }
 
@@ -57,6 +59,10 @@ public class Indexing {
 
     public final IndexingShortcuts shortcuts() {
         return shortcuts;
+    }
+
+    public final CustomMetadata customMetadata() {
+        return customMetadata;
     }
 
     /**
