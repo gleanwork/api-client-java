@@ -6,25 +6,11 @@ package com.glean.api_client.glean_api_client;
 
 import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
 
-import com.glean.api_client.glean_api_client.models.components.AgentRunCreate;
-import com.glean.api_client.glean_api_client.models.components.SearchAgentsRequest;
-import com.glean.api_client.glean_api_client.models.operations.CreateAndStreamRunRequestBuilder;
-import com.glean.api_client.glean_api_client.models.operations.CreateAndStreamRunResponse;
-import com.glean.api_client.glean_api_client.models.operations.CreateAndWaitRunRequestBuilder;
-import com.glean.api_client.glean_api_client.models.operations.CreateAndWaitRunResponse;
-import com.glean.api_client.glean_api_client.models.operations.GetAgentRequest;
-import com.glean.api_client.glean_api_client.models.operations.GetAgentRequestBuilder;
-import com.glean.api_client.glean_api_client.models.operations.GetAgentResponse;
-import com.glean.api_client.glean_api_client.models.operations.GetAgentSchemasRequest;
-import com.glean.api_client.glean_api_client.models.operations.GetAgentSchemasRequestBuilder;
-import com.glean.api_client.glean_api_client.models.operations.GetAgentSchemasResponse;
-import com.glean.api_client.glean_api_client.models.operations.SearchAgentsRequestBuilder;
-import com.glean.api_client.glean_api_client.models.operations.SearchAgentsResponse;
-import com.glean.api_client.glean_api_client.operations.CreateAndStreamRun;
-import com.glean.api_client.glean_api_client.operations.CreateAndWaitRun;
-import com.glean.api_client.glean_api_client.operations.GetAgent;
-import com.glean.api_client.glean_api_client.operations.GetAgentSchemas;
-import com.glean.api_client.glean_api_client.operations.SearchAgents;
+import com.glean.api_client.glean_api_client.models.components.EditWorkflowRequest;
+import com.glean.api_client.glean_api_client.models.operations.EditAgentRequest;
+import com.glean.api_client.glean_api_client.models.operations.EditAgentRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.EditAgentResponse;
+import com.glean.api_client.glean_api_client.operations.EditAgent;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Long;
 import java.lang.String;
@@ -51,194 +37,62 @@ public class Agents {
     }
 
     /**
-     * Retrieve an agent
+     * Edit an agent
      * 
-     * <p>Returns details of an [agent](https://developers.glean.com/agents/agents-api) created in the Agent
-     * Builder.
+     * <p>Creates a draft or publishes an [agent](https://developers.glean.com/agents/agents-api). Use
+     * `isDraft=true` to save a draft, or `isDraft=false` (or omit) to publish immediately. Only draft and
+     * publish modes are supported.
      * 
      * @return The call builder
      */
-    public GetAgentRequestBuilder retrieve() {
-        return new GetAgentRequestBuilder(sdkConfiguration);
+    public EditAgentRequestBuilder editAgent() {
+        return new EditAgentRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * Retrieve an agent
+     * Edit an agent
      * 
-     * <p>Returns details of an [agent](https://developers.glean.com/agents/agents-api) created in the Agent
-     * Builder.
+     * <p>Creates a draft or publishes an [agent](https://developers.glean.com/agents/agents-api). Use
+     * `isDraft=true` to save a draft, or `isDraft=false` (or omit) to publish immediately. Only draft and
+     * publish modes are supported.
      * 
      * @param agentId The ID of the agent.
+     * @param editWorkflowRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetAgentResponse retrieve(String agentId) {
-        return retrieve(Optional.empty(), Optional.empty(), agentId);
+    public EditAgentResponse editAgent(String agentId, EditWorkflowRequest editWorkflowRequest) {
+        return editAgent(Optional.empty(), Optional.empty(), agentId,
+            editWorkflowRequest);
     }
 
     /**
-     * Retrieve an agent
+     * Edit an agent
      * 
-     * <p>Returns details of an [agent](https://developers.glean.com/agents/agents-api) created in the Agent
-     * Builder.
+     * <p>Creates a draft or publishes an [agent](https://developers.glean.com/agents/agents-api). Use
+     * `isDraft=true` to save a draft, or `isDraft=false` (or omit) to publish immediately. Only draft and
+     * publish modes are supported.
      * 
      * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param agentId The ID of the agent.
+     * @param editWorkflowRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetAgentResponse retrieve(
+    public EditAgentResponse editAgent(
             Optional<String> locale, Optional<Long> timezoneOffset,
-            String agentId) {
-        GetAgentRequest request =
-            GetAgentRequest
+            String agentId, EditWorkflowRequest editWorkflowRequest) {
+        EditAgentRequest request =
+            EditAgentRequest
                 .builder()
                 .locale(locale)
                 .timezoneOffset(timezoneOffset)
                 .agentId(agentId)
+                .editWorkflowRequest(editWorkflowRequest)
                 .build();
-        RequestOperation<GetAgentRequest, GetAgentResponse> operation
-              = new GetAgent.Sync(sdkConfiguration, _headers);
-        return operation.handleResponse(operation.doRequest(request));
-    }
-
-    /**
-     * List an agent's schemas
-     * 
-     * <p>Return [agent](https://developers.glean.com/agents/agents-api)'s input and output schemas. You can
-     * use these schemas to detect changes to an agent's input or output structure.
-     * 
-     * @return The call builder
-     */
-    public GetAgentSchemasRequestBuilder retrieveSchemas() {
-        return new GetAgentSchemasRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * List an agent's schemas
-     * 
-     * <p>Return [agent](https://developers.glean.com/agents/agents-api)'s input and output schemas. You can
-     * use these schemas to detect changes to an agent's input or output structure.
-     * 
-     * @param agentId The ID of the agent.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public GetAgentSchemasResponse retrieveSchemas(String agentId) {
-        return retrieveSchemas(Optional.empty(), Optional.empty(), agentId);
-    }
-
-    /**
-     * List an agent's schemas
-     * 
-     * <p>Return [agent](https://developers.glean.com/agents/agents-api)'s input and output schemas. You can
-     * use these schemas to detect changes to an agent's input or output structure.
-     * 
-     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
-     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
-     * @param agentId The ID of the agent.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public GetAgentSchemasResponse retrieveSchemas(
-            Optional<String> locale, Optional<Long> timezoneOffset,
-            String agentId) {
-        GetAgentSchemasRequest request =
-            GetAgentSchemasRequest
-                .builder()
-                .locale(locale)
-                .timezoneOffset(timezoneOffset)
-                .agentId(agentId)
-                .build();
-        RequestOperation<GetAgentSchemasRequest, GetAgentSchemasResponse> operation
-              = new GetAgentSchemas.Sync(sdkConfiguration, _headers);
-        return operation.handleResponse(operation.doRequest(request));
-    }
-
-    /**
-     * Search agents
-     * 
-     * <p>Search for [agents](https://developers.glean.com/agents/agents-api) by agent name.
-     * 
-     * @return The call builder
-     */
-    public SearchAgentsRequestBuilder list() {
-        return new SearchAgentsRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * Search agents
-     * 
-     * <p>Search for [agents](https://developers.glean.com/agents/agents-api) by agent name.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public SearchAgentsResponse list(SearchAgentsRequest request) {
-        RequestOperation<SearchAgentsRequest, SearchAgentsResponse> operation
-              = new SearchAgents.Sync(sdkConfiguration, _headers);
-        return operation.handleResponse(operation.doRequest(request));
-    }
-
-    /**
-     * Create an agent run and stream the response
-     * 
-     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the result as a
-     * stream of server-sent events (SSE). **Note**: If the agent uses an input form trigger, all form
-     * fields (including optional fields) must be included in the `input` object.
-     * 
-     * @return The call builder
-     */
-    public CreateAndStreamRunRequestBuilder runStream() {
-        return new CreateAndStreamRunRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * Create an agent run and stream the response
-     * 
-     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the result as a
-     * stream of server-sent events (SSE). **Note**: If the agent uses an input form trigger, all form
-     * fields (including optional fields) must be included in the `input` object.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public CreateAndStreamRunResponse runStream(AgentRunCreate request) {
-        RequestOperation<AgentRunCreate, CreateAndStreamRunResponse> operation
-              = new CreateAndStreamRun.Sync(sdkConfiguration, _headers);
-        return operation.handleResponse(operation.doRequest(request));
-    }
-
-    /**
-     * Create an agent run and wait for the response
-     * 
-     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the final
-     * response. **Note**: If the agent uses an input form trigger, all form fields (including optional
-     * fields) must be included in the `input` object.
-     * 
-     * @return The call builder
-     */
-    public CreateAndWaitRunRequestBuilder run() {
-        return new CreateAndWaitRunRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * Create an agent run and wait for the response
-     * 
-     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the final
-     * response. **Note**: If the agent uses an input form trigger, all form fields (including optional
-     * fields) must be included in the `input` object.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public CreateAndWaitRunResponse run(AgentRunCreate request) {
-        RequestOperation<AgentRunCreate, CreateAndWaitRunResponse> operation
-              = new CreateAndWaitRun.Sync(sdkConfiguration, _headers);
+        RequestOperation<EditAgentRequest, EditAgentResponse> operation
+              = new EditAgent.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

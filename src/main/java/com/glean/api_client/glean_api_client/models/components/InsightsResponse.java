@@ -37,25 +37,41 @@ public class InsightsResponse {
     @JsonProperty("agentsResponse")
     private Optional<? extends AgentsInsightsV2Response> agentsResponse;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("mcpResponse")
+    private Optional<? extends McpInsightsResponse> mcpResponse;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("mcpBreakdownResponse")
+    private Optional<? extends McpBreakdownInsightsResponse> mcpBreakdownResponse;
+
     @JsonCreator
     public InsightsResponse(
             @JsonProperty("gleanAssist") Optional<? extends GleanAssistInsightsResponse> gleanAssist,
             @JsonProperty("overviewResponse") Optional<? extends InsightsOverviewResponse> overviewResponse,
             @JsonProperty("assistantResponse") Optional<? extends AssistantInsightsResponse> assistantResponse,
-            @JsonProperty("agentsResponse") Optional<? extends AgentsInsightsV2Response> agentsResponse) {
+            @JsonProperty("agentsResponse") Optional<? extends AgentsInsightsV2Response> agentsResponse,
+            @JsonProperty("mcpResponse") Optional<? extends McpInsightsResponse> mcpResponse,
+            @JsonProperty("mcpBreakdownResponse") Optional<? extends McpBreakdownInsightsResponse> mcpBreakdownResponse) {
         Utils.checkNotNull(gleanAssist, "gleanAssist");
         Utils.checkNotNull(overviewResponse, "overviewResponse");
         Utils.checkNotNull(assistantResponse, "assistantResponse");
         Utils.checkNotNull(agentsResponse, "agentsResponse");
+        Utils.checkNotNull(mcpResponse, "mcpResponse");
+        Utils.checkNotNull(mcpBreakdownResponse, "mcpBreakdownResponse");
         this.gleanAssist = gleanAssist;
         this.overviewResponse = overviewResponse;
         this.assistantResponse = assistantResponse;
         this.agentsResponse = agentsResponse;
+        this.mcpResponse = mcpResponse;
+        this.mcpBreakdownResponse = mcpBreakdownResponse;
     }
     
     public InsightsResponse() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -80,6 +96,18 @@ public class InsightsResponse {
     @JsonIgnore
     public Optional<AgentsInsightsV2Response> agentsResponse() {
         return (Optional<AgentsInsightsV2Response>) agentsResponse;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<McpInsightsResponse> mcpResponse() {
+        return (Optional<McpInsightsResponse>) mcpResponse;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<McpBreakdownInsightsResponse> mcpBreakdownResponse() {
+        return (Optional<McpBreakdownInsightsResponse>) mcpBreakdownResponse;
     }
 
     public static Builder builder() {
@@ -139,6 +167,32 @@ public class InsightsResponse {
         return this;
     }
 
+    public InsightsResponse withMcpResponse(McpInsightsResponse mcpResponse) {
+        Utils.checkNotNull(mcpResponse, "mcpResponse");
+        this.mcpResponse = Optional.ofNullable(mcpResponse);
+        return this;
+    }
+
+
+    public InsightsResponse withMcpResponse(Optional<? extends McpInsightsResponse> mcpResponse) {
+        Utils.checkNotNull(mcpResponse, "mcpResponse");
+        this.mcpResponse = mcpResponse;
+        return this;
+    }
+
+    public InsightsResponse withMcpBreakdownResponse(McpBreakdownInsightsResponse mcpBreakdownResponse) {
+        Utils.checkNotNull(mcpBreakdownResponse, "mcpBreakdownResponse");
+        this.mcpBreakdownResponse = Optional.ofNullable(mcpBreakdownResponse);
+        return this;
+    }
+
+
+    public InsightsResponse withMcpBreakdownResponse(Optional<? extends McpBreakdownInsightsResponse> mcpBreakdownResponse) {
+        Utils.checkNotNull(mcpBreakdownResponse, "mcpBreakdownResponse");
+        this.mcpBreakdownResponse = mcpBreakdownResponse;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -152,14 +206,16 @@ public class InsightsResponse {
             Utils.enhancedDeepEquals(this.gleanAssist, other.gleanAssist) &&
             Utils.enhancedDeepEquals(this.overviewResponse, other.overviewResponse) &&
             Utils.enhancedDeepEquals(this.assistantResponse, other.assistantResponse) &&
-            Utils.enhancedDeepEquals(this.agentsResponse, other.agentsResponse);
+            Utils.enhancedDeepEquals(this.agentsResponse, other.agentsResponse) &&
+            Utils.enhancedDeepEquals(this.mcpResponse, other.mcpResponse) &&
+            Utils.enhancedDeepEquals(this.mcpBreakdownResponse, other.mcpBreakdownResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             gleanAssist, overviewResponse, assistantResponse,
-            agentsResponse);
+            agentsResponse, mcpResponse, mcpBreakdownResponse);
     }
     
     @Override
@@ -168,7 +224,9 @@ public class InsightsResponse {
                 "gleanAssist", gleanAssist,
                 "overviewResponse", overviewResponse,
                 "assistantResponse", assistantResponse,
-                "agentsResponse", agentsResponse);
+                "agentsResponse", agentsResponse,
+                "mcpResponse", mcpResponse,
+                "mcpBreakdownResponse", mcpBreakdownResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -181,6 +239,10 @@ public class InsightsResponse {
         private Optional<? extends AssistantInsightsResponse> assistantResponse = Optional.empty();
 
         private Optional<? extends AgentsInsightsV2Response> agentsResponse = Optional.empty();
+
+        private Optional<? extends McpInsightsResponse> mcpResponse = Optional.empty();
+
+        private Optional<? extends McpBreakdownInsightsResponse> mcpBreakdownResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -238,11 +300,37 @@ public class InsightsResponse {
             return this;
         }
 
+
+        public Builder mcpResponse(McpInsightsResponse mcpResponse) {
+            Utils.checkNotNull(mcpResponse, "mcpResponse");
+            this.mcpResponse = Optional.ofNullable(mcpResponse);
+            return this;
+        }
+
+        public Builder mcpResponse(Optional<? extends McpInsightsResponse> mcpResponse) {
+            Utils.checkNotNull(mcpResponse, "mcpResponse");
+            this.mcpResponse = mcpResponse;
+            return this;
+        }
+
+
+        public Builder mcpBreakdownResponse(McpBreakdownInsightsResponse mcpBreakdownResponse) {
+            Utils.checkNotNull(mcpBreakdownResponse, "mcpBreakdownResponse");
+            this.mcpBreakdownResponse = Optional.ofNullable(mcpBreakdownResponse);
+            return this;
+        }
+
+        public Builder mcpBreakdownResponse(Optional<? extends McpBreakdownInsightsResponse> mcpBreakdownResponse) {
+            Utils.checkNotNull(mcpBreakdownResponse, "mcpBreakdownResponse");
+            this.mcpBreakdownResponse = mcpBreakdownResponse;
+            return this;
+        }
+
         public InsightsResponse build() {
 
             return new InsightsResponse(
                 gleanAssist, overviewResponse, assistantResponse,
-                agentsResponse);
+                agentsResponse, mcpResponse, mcpBreakdownResponse);
         }
 
     }
