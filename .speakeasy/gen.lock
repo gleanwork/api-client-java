@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 0359d4fe-2923-46fc-aaca-cf70b48dcfa1
 management:
-  docChecksum: a20695749796cddfd0cc7c0e4a12a7ab
+  docChecksum: f945598f65bd3d18fa64e0f4961a6114
   docVersion: 0.9.0
-  speakeasyVersion: 1.770.0
+  speakeasyVersion: 1.771.0
   generationVersion: 2.893.0
-  releaseVersion: 0.13.0
-  configChecksum: aba9b1644748444cabd44fdb8652449d
+  releaseVersion: 0.13.1
+  configChecksum: d71729687a43ca8615eddfaa55f55d73
   repoURL: https://github.com/gleanwork/api-client-java.git
   installationURL: https://github.com/gleanwork/api-client-java
   published: true
 persistentEdits:
-  generation_id: 6ff9ce8b-47dc-4590-8d5f-c3966dcb2e5e
-  pristine_commit_hash: 84bd49dff5fd1074d128cf97b984087dd21889df
-  pristine_tree_hash: 802693f3ca710aadb7404fd64495bc2f91fae4af
+  generation_id: 80b9a894-73cd-4094-9cb1-9e21d44a6243
+  pristine_commit_hash: b075f4faa68b3b0e26c9ea82e9aad4b5e7cfca0b
+  pristine_tree_hash: ea0f232fefae79fa3cf902a8fa77686f15cbce0d
 features:
   java:
     acceptHeaders: 2.81.2
@@ -3474,8 +3474,8 @@ trackedFiles:
     pristine_git_object: 3decbce5bd40edbe278c1c5d2dbf585808e51d9a
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:a1c18655eabce15567aa1f56708cb2cea3c41e11
-    pristine_git_object: a5c0888f34f0b136cc79529a47042da1aaa8bc1f
+    last_write_checksum: sha1:46be99bbf76b75fe0807135250659205e6775716
+    pristine_git_object: f6a8718adb619a358b954f720eb36ca1cad651e0
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3838,8 +3838,8 @@ trackedFiles:
     pristine_git_object: ffae914775eb41ff311371f62504344a59d090fd
   src/main/java/com/glean/api_client/glean_api_client/SDKConfiguration.java:
     id: d5fcc61f5992
-    last_write_checksum: sha1:fdf5715f92df2b72dd0afe370f6c932e67bec30c
-    pristine_git_object: c6d69784d12434088f711f804bea0103cd1c4dea
+    last_write_checksum: sha1:742fb3b77d9c085432fd7a4a6c714a48e340d865
+    pristine_git_object: 85a9705d1ee61b4b74045edf8a7bde90a196da4f
   src/main/java/com/glean/api_client/glean_api_client/Search.java:
     id: f22d94b920b5
     last_write_checksum: sha1:ac38d1ed47be207940dd6fb7e4c688dddccc6a8b
@@ -8734,8 +8734,8 @@ trackedFiles:
     pristine_git_object: 1333b211552d7fd0fbeea99cb783553631335381
   src/main/java/com/glean/api_client/glean_api_client/operations/Chat.java:
     id: 5b64dd840142
-    last_write_checksum: sha1:e033270e9659c9fd6b2b384b309d2850b7718b33
-    pristine_git_object: e5509a6df58bd6714520f1a7f73d383c8b41a79d
+    last_write_checksum: sha1:c29062fbfe9f239876f5f4db352dd6a9f82b33ff
+    pristine_git_object: cf90b09320c8f8674b16dd2e976f7ca98d1f11d1
   src/main/java/com/glean/api_client/glean_api_client/operations/ChatStream.java:
     id: da130e586c99
     last_write_checksum: sha1:6e0a24f238df49085810cb34121a4500764956fc
@@ -10554,7 +10554,9 @@ generatedTests:
   get_/rest/api/v1/tools/list: "2025-06-09T18:03:44Z"
   post_/rest/api/v1/tools/call: "2025-06-09T18:03:44Z"
   listpolicies: "2025-06-09T18:03:44Z"
-releaseNotes: "## Java SDK Changes:\n* `glean.client.collections.addItems()`:  `response` **Changed** (Breaking ⚠️)\n* `glean.chat.getChatFile()`: **Added**\n* `glean.agents.editAgent()`: **Added**\n* `glean.entities.getPersonPhoto()`: **Added**\n* `glean.tools.getActionPackAuthStatus()`: **Added**\n* `glean.tools.authorizeActionPack()`: **Added**\n* `glean.indexing.customMetadata.upsert()`: **Added**\n* `glean.indexing.customMetadata.delete()`: **Added**\n* `glean.indexing.customMetadata.getSchema()`: **Added**\n* `glean.indexing.customMetadata.upsertSchema()`: **Added**\n* `glean.indexing.customMetadata.deleteSchema()`: **Added**\n* `glean.troubleshooting.post/api/index/v1/debug/{datasource}/document/events()`: **Added**\n* `glean.datasources.getDatasourceCredentialStatus()`: **Added**\n* `glean.datasources.rotateDatasourceCredentials()`: **Added**\n* `glean.client.activity.feedback()`: \n  *  `request.feedback1.category` **Changed**\n* `glean.client.announcements.create()`: \n  *  `request.createAnnouncementRequest.body.structuredList[].document.metadata.author.relatedDocuments[].results[].structuredResults[].answer` **Changed**\n  *  `response` **Changed**\n* `glean.client.announcements.update()`: \n  *  `request.updateAnnouncementRequest.body.structuredList[].document.metadata.author.relatedDocuments[].results[].structuredResults[].answer` **Changed**\n  *  `response` **Changed**\n* `glean.client.answers.create()`: \n  *  `request.createAnswerRequest.data.addedRoles[].person.relatedDocuments[]` **Changed**\n  *  `response` **Changed**\n* `glean.client.answers.update()`: \n  *  `request.editAnswerRequest.addedRoles[].person.relatedDocuments[]` **Changed**\n  *  `response` **Changed**\n* `glean.client.answers.retrieve()`:  `response.answerResult.answer` **Changed**\n* `glean.client.answers.list()`:  `response.answerResults[].answer` **Changed**\n* `glean.client.chat.create()`: \n  *  `request.chatRequest.messages[].citations[].sourceDocument.metadata.author.relatedDocuments[].results[].structuredResults[].answer` **Changed**\n  *  `response.messages[].citations[].sourceDocument.metadata.author.relatedDocuments[].results[].structuredResults[].answer` **Changed**\n* `glean.client.chat.retrieve()`:  `response.chatResult.chat.createdBy.relatedDocuments[]` **Changed**\n* `glean.client.chat.list()`:  `response.chatResults[].chat.createdBy.relatedDocuments[]` **Changed**\n* `glean.client.chat.createStream()`: \n  *  `request.chatRequest.messages[].citations[].sourceDocument.metadata.author.relatedDocuments[].results[].structuredResults[].answer` **Changed**\n* `glean.client.collections.create()`: \n  *  `request.createCollectionRequest.addedRoles[].person.relatedDocuments[]` **Changed**\n  *  `response.union(class (0))` **Changed**\n  *  `errorCode.enum(corruptItem)` **Added**\n* `glean.client.collections.delete()`:  `errorCode.enum(corruptItem)` **Added**\n* `glean.client.collections.deleteItem()`:  `response.collection` **Changed**\n* `glean.client.collections.update()`: \n  *  `request.editCollectionRequest.addedRoles[].person.relatedDocuments[]` **Changed**\n  *  `response` **Changed**\n  *  `errorCode.enum(corruptItem)` **Added**\n* `glean.client.collections.updateItem()`:  `response.collection` **Changed**\n* `glean.client.collections.retrieve()`:  `response` **Changed**\n* `glean.client.collections.list()`:  `response.collections[]` **Changed**\n* `glean.client.documents.retrieve()`:  `response.documents.Map<DocumentOrError>.union(Document).metadata.author.relatedDocuments[].results[].structuredResults[].answer` **Changed**\n* `glean.client.documents.retrieveByFacets()`:  `response.documents[].metadata.author.relatedDocuments[].results[].structuredResults[].answer` **Changed**\n* `glean.client.insights.retrieve()`: \n  *  `request.insightsRequest` **Changed**\n  *  `response` **Changed**\n* `glean.client.messages.retrieve()`:  `response.searchResponse.results[].structuredResults[]` **Changed**\n* `glean.client.pins.update()`:  `response.attribution.relatedDocuments[]` **Changed**\n* `glean.client.pins.retrieve()`:  `response.pin.attribution.relatedDocuments[]` **Changed**\n* `glean.client.pins.list()`:  `response.pins[].attribution.relatedDocuments[]` **Changed**\n* `glean.client.pins.create()`:  `response.attribution.relatedDocuments[]` **Changed**\n* `glean.client.search.queryAsAdmin()`: \n  *  `request.searchRequest.sourceDocument.metadata.author.relatedDocuments[].results[].structuredResults[].answer` **Changed**\n  *  `response.results[].structuredResults[]` **Changed**\n* `glean.client.search.autocomplete()`:  `response.results[].document.metadata.author.relatedDocuments[].results[].structuredResults[].answer` **Changed**\n* `glean.client.search.retrieveFeed()`: \n  *  `request.feedRequest.categories[]` **Changed**\n  *  `response.results[]` **Changed**\n* `glean.client.search.recommendations()`: \n  *  `request.recommendationsRequest.sourceDocument.metadata.author.relatedDocuments[].results[].structuredResults[].answer` **Changed**\n  *  `response.results[].structuredResults[]` **Changed**\n* `glean.client.search.query()`: \n  *  `request.searchRequest.sourceDocument.metadata.author.relatedDocuments[].results[].structuredResults[].answer` **Changed**\n  *  `response.results[].structuredResults[]` **Changed**\n* `glean.client.entities.list()`:  `response.results[].relatedDocuments[]` **Changed**\n* `glean.client.entities.readPeople()`:  `response.results[].relatedDocuments[]` **Changed**\n* `glean.client.shortcuts.create()`: \n  *  `request.createShortcutRequest.data.addedRoles[].person.relatedDocuments[]` **Changed**\n  *  `response.shortcut.addedRoles[].person.relatedDocuments[]` **Changed**\n* `glean.client.shortcuts.retrieve()`:  `response.shortcut.addedRoles[].person.relatedDocuments[]` **Changed**\n* `glean.client.shortcuts.list()`:  `response.shortcuts[].addedRoles[].person.relatedDocuments[]` **Changed**\n* `glean.client.shortcuts.update()`: \n  *  `request.updateShortcutRequest.addedRoles[].person.relatedDocuments[]` **Changed**\n  *  `response.shortcut.addedRoles[].person.relatedDocuments[]` **Changed**\n* `glean.client.verification.addReminder()`:  `response.metadata.lastVerifier.relatedDocuments[]` **Changed**\n* `glean.client.verification.list()`:  `response.documents[].metadata.lastVerifier.relatedDocuments[]` **Changed**\n* `glean.client.verification.verify()`:  `response.metadata.lastVerifier.relatedDocuments[]` **Changed**\n"
+releaseNotes: |
+  ## Java SDK Changes:
+  * `glean.client.chat.create()`:  `response.status[202]` **Added** (Breaking ⚠️)
 generatedFiles:
   - .gitattributes
   - USAGE.md
