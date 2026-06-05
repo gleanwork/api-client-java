@@ -244,6 +244,50 @@ public class GleanApiClientAutoConfig {
         return glean.authentication();
     }
     /**
+     * Creates a Chat sub-SDK bean if none exists.
+     *
+     * @param glean the main SDK instance
+     * @return A configured Chat instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public Chat chat(Glean glean) {
+        return glean.chat();
+    }
+    /**
+     * Creates a Agents sub-SDK bean if none exists.
+     *
+     * @param glean the main SDK instance
+     * @return A configured Agents instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public Agents agents(Glean glean) {
+        return glean.agents();
+    }
+    /**
+     * Creates a Entities sub-SDK bean if none exists.
+     *
+     * @param glean the main SDK instance
+     * @return A configured Entities instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public Entities entities(Glean glean) {
+        return glean.entities();
+    }
+    /**
+     * Creates a Tools sub-SDK bean if none exists.
+     *
+     * @param glean the main SDK instance
+     * @return A configured Tools instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public Tools tools(Glean glean) {
+        return glean.tools();
+    }
+    /**
      * Creates a Indexing sub-SDK bean if none exists.
      *
      * @param glean the main SDK instance
@@ -253,6 +297,17 @@ public class GleanApiClientAutoConfig {
     @ConditionalOnMissingBean
     public Indexing indexing(Glean glean) {
         return glean.indexing();
+    }
+    /**
+     * Creates a Troubleshooting sub-SDK bean if none exists.
+     *
+     * @param glean the main SDK instance
+     * @return A configured Troubleshooting instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public Troubleshooting troubleshooting(Glean glean) {
+        return glean.troubleshooting();
     }
     /**
      * Creates a Governance sub-SDK bean if none exists.
@@ -312,6 +367,50 @@ public class GleanApiClientAutoConfig {
         return asyncGlean.authentication();
     }
     /**
+     * Creates an AsyncChat sub-SDK bean if none exists.
+     *
+     * @param asyncGlean the async SDK instance
+     * @return A configured AsyncChat instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public AsyncChat asyncChat(AsyncGlean asyncGlean) {
+        return asyncGlean.chat();
+    }
+    /**
+     * Creates an AsyncAgents sub-SDK bean if none exists.
+     *
+     * @param asyncGlean the async SDK instance
+     * @return A configured AsyncAgents instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public AsyncAgents asyncAgents(AsyncGlean asyncGlean) {
+        return asyncGlean.agents();
+    }
+    /**
+     * Creates an AsyncEntities sub-SDK bean if none exists.
+     *
+     * @param asyncGlean the async SDK instance
+     * @return A configured AsyncEntities instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public AsyncEntities asyncEntities(AsyncGlean asyncGlean) {
+        return asyncGlean.entities();
+    }
+    /**
+     * Creates an AsyncTools sub-SDK bean if none exists.
+     *
+     * @param asyncGlean the async SDK instance
+     * @return A configured AsyncTools instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public AsyncTools asyncTools(AsyncGlean asyncGlean) {
+        return asyncGlean.tools();
+    }
+    /**
      * Creates an AsyncIndexing sub-SDK bean if none exists.
      *
      * @param asyncGlean the async SDK instance
@@ -321,6 +420,17 @@ public class GleanApiClientAutoConfig {
     @ConditionalOnMissingBean
     public AsyncIndexing asyncIndexing(AsyncGlean asyncGlean) {
         return asyncGlean.indexing();
+    }
+    /**
+     * Creates an AsyncTroubleshooting sub-SDK bean if none exists.
+     *
+     * @param asyncGlean the async SDK instance
+     * @return A configured AsyncTroubleshooting instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public AsyncTroubleshooting asyncTroubleshooting(AsyncGlean asyncGlean) {
+        return asyncGlean.troubleshooting();
     }
     /**
      * Creates an AsyncGovernance sub-SDK bean if none exists.

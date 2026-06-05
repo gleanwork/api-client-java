@@ -63,7 +63,22 @@ public class Glean {
     private final Authentication authentication;
 
 
+    private final Chat chat;
+
+
+    private final Agents agents;
+
+
+    private final Entities entities;
+
+
+    private final Tools tools;
+
+
     private final Indexing indexing;
+
+
+    private final Troubleshooting troubleshooting;
 
 
     private final Governance governance;
@@ -86,8 +101,33 @@ public class Glean {
     }
 
 
+    public Chat chat() {
+        return chat;
+    }
+
+
+    public Agents agents() {
+        return agents;
+    }
+
+
+    public Entities entities() {
+        return entities;
+    }
+
+
+    public Tools tools() {
+        return tools;
+    }
+
+
     public Indexing indexing() {
         return indexing;
+    }
+
+
+    public Troubleshooting troubleshooting() {
+        return troubleshooting;
     }
 
 
@@ -269,7 +309,12 @@ public class Glean {
         sdkConfiguration.initialize();
         this.client = new Client(sdkConfiguration);
         this.authentication = new Authentication(sdkConfiguration);
+        this.chat = new Chat(sdkConfiguration);
+        this.agents = new Agents(sdkConfiguration);
+        this.entities = new Entities(sdkConfiguration);
+        this.tools = new Tools(sdkConfiguration);
         this.indexing = new Indexing(sdkConfiguration);
+        this.troubleshooting = new Troubleshooting(sdkConfiguration);
         this.governance = new Governance(sdkConfiguration);
         this.datasources = new Datasources(sdkConfiguration);
         SdkInitData data = sdkConfiguration.hooks().sdkInit(
