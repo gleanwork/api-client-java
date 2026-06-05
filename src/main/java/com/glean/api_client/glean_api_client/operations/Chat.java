@@ -173,7 +173,7 @@ public class Chat {
 
             ChatResponse res = resBuilder.build();
             
-            if (Utils.statusCodeMatches(response.statusCode(), "200")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "200", "202")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return res.withChatResponse(Utils.unmarshal(response, new TypeReference<com.glean.api_client.glean_api_client.models.components.ChatResponse>() {}));
                 } else {
@@ -243,7 +243,7 @@ public class Chat {
 
             com.glean.api_client.glean_api_client.models.operations.async.ChatResponse res = resBuilder.build();
             
-            if (Utils.statusCodeMatches(response.statusCode(), "200")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "200", "202")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return Utils.unmarshalAsync(response, new TypeReference<com.glean.api_client.glean_api_client.models.components.ChatResponse>() {})
                             .thenApply(res::withChatResponse);
