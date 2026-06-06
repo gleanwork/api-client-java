@@ -472,7 +472,6 @@ public class CustomDatasourceConfig {
         return redlistTitleRegex;
     }
 
-
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<CustomDatasourceConfigConnectorType> connectorType() {
@@ -883,13 +882,11 @@ public class CustomDatasourceConfig {
         return this;
     }
 
-
     public CustomDatasourceConfig withConnectorType(CustomDatasourceConfigConnectorType connectorType) {
         Utils.checkNotNull(connectorType, "connectorType");
         this.connectorType = Optional.ofNullable(connectorType);
         return this;
     }
-
 
 
     public CustomDatasourceConfig withConnectorType(Optional<? extends CustomDatasourceConfigConnectorType> connectorType) {
@@ -1584,13 +1581,11 @@ public class CustomDatasourceConfig {
         }
 
 
-
         public Builder connectorType(CustomDatasourceConfigConnectorType connectorType) {
             Utils.checkNotNull(connectorType, "connectorType");
             this.connectorType = Optional.ofNullable(connectorType);
             return this;
         }
-
 
         public Builder connectorType(Optional<? extends CustomDatasourceConfigConnectorType> connectorType) {
             Utils.checkNotNull(connectorType, "connectorType");
