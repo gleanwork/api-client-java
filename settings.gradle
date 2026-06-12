@@ -9,12 +9,6 @@
 
 rootProject.name = 'glean-api-client'
 
-include 'glean-api-client-spring-boot-autoconfigure'
-include 'glean-api-client-spring-boot-starter'
-
-project(':glean-api-client-spring-boot-autoconfigure').projectDir = file('spring/glean-api-client-spring-boot-autoconfigure')
-project(':glean-api-client-spring-boot-starter').projectDir = file('spring/glean-api-client-spring-boot-starter')
-
 // Apply additional settings if the file exists
 if (file('settings-extra.gradle').exists()) {
     apply from: 'settings-extra.gradle'
