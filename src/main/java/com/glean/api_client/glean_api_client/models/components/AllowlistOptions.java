@@ -19,8 +19,8 @@ import java.util.Optional;
 /**
  * AllowlistOptions
  * 
- * <p>Terms that are allow-listed during the scans. If any finding picked up by a rule exactly matches a
- * term in the allow-list, it will not be counted as a violation.
+ * <p>Terms and regexes that are allow-listed during the scans. If any finding picked up by a rule exactly
+ * matches a term, or matches a regex, in the allow-list, it will not be counted as a violation.
  */
 public class AllowlistOptions {
     /**
@@ -30,15 +30,25 @@ public class AllowlistOptions {
     @JsonProperty("terms")
     private Optional<? extends List<String>> terms;
 
+    /**
+     * list of regular expressions whose matches are considered whitelisted content
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("regexes")
+    private Optional<? extends List<String>> regexes;
+
     @JsonCreator
     public AllowlistOptions(
-            @JsonProperty("terms") Optional<? extends List<String>> terms) {
+            @JsonProperty("terms") Optional<? extends List<String>> terms,
+            @JsonProperty("regexes") Optional<? extends List<String>> regexes) {
         Utils.checkNotNull(terms, "terms");
+        Utils.checkNotNull(regexes, "regexes");
         this.terms = terms;
+        this.regexes = regexes;
     }
     
     public AllowlistOptions() {
-        this(Optional.empty());
+        this(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -48,6 +58,15 @@ public class AllowlistOptions {
     @JsonIgnore
     public Optional<List<String>> terms() {
         return (Optional<List<String>>) terms;
+    }
+
+    /**
+     * list of regular expressions whose matches are considered whitelisted content
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<String>> regexes() {
+        return (Optional<List<String>>) regexes;
     }
 
     public static Builder builder() {
@@ -74,6 +93,25 @@ public class AllowlistOptions {
         return this;
     }
 
+    /**
+     * list of regular expressions whose matches are considered whitelisted content
+     */
+    public AllowlistOptions withRegexes(List<String> regexes) {
+        Utils.checkNotNull(regexes, "regexes");
+        this.regexes = Optional.ofNullable(regexes);
+        return this;
+    }
+
+
+    /**
+     * list of regular expressions whose matches are considered whitelisted content
+     */
+    public AllowlistOptions withRegexes(Optional<? extends List<String>> regexes) {
+        Utils.checkNotNull(regexes, "regexes");
+        this.regexes = regexes;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -84,25 +122,29 @@ public class AllowlistOptions {
         }
         AllowlistOptions other = (AllowlistOptions) o;
         return 
-            Utils.enhancedDeepEquals(this.terms, other.terms);
+            Utils.enhancedDeepEquals(this.terms, other.terms) &&
+            Utils.enhancedDeepEquals(this.regexes, other.regexes);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            terms);
+            terms, regexes);
     }
     
     @Override
     public String toString() {
         return Utils.toString(AllowlistOptions.class,
-                "terms", terms);
+                "terms", terms,
+                "regexes", regexes);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
         private Optional<? extends List<String>> terms = Optional.empty();
+
+        private Optional<? extends List<String>> regexes = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -127,10 +169,29 @@ public class AllowlistOptions {
             return this;
         }
 
+
+        /**
+         * list of regular expressions whose matches are considered whitelisted content
+         */
+        public Builder regexes(List<String> regexes) {
+            Utils.checkNotNull(regexes, "regexes");
+            this.regexes = Optional.ofNullable(regexes);
+            return this;
+        }
+
+        /**
+         * list of regular expressions whose matches are considered whitelisted content
+         */
+        public Builder regexes(Optional<? extends List<String>> regexes) {
+            Utils.checkNotNull(regexes, "regexes");
+            this.regexes = regexes;
+            return this;
+        }
+
         public AllowlistOptions build() {
 
             return new AllowlistOptions(
-                terms);
+                terms, regexes);
         }
 
     }
