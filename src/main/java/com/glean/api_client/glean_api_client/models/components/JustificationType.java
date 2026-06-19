@@ -71,6 +71,7 @@ public class JustificationType {
     public static final JustificationType MID_DAY_CATCH_UP = new JustificationType("MID_DAY_CATCH_UP");
     public static final JustificationType QUERY_SUGGESTION = new JustificationType("QUERY_SUGGESTION");
     public static final JustificationType COWORK_CUJ_PROMO = new JustificationType("COWORK_CUJ_PROMO");
+    public static final JustificationType CARD_STACK_PROMO = new JustificationType("CARD_STACK_PROMO");
     public static final JustificationType WEEKLY_MEETINGS = new JustificationType("WEEKLY_MEETINGS");
     public static final JustificationType FOLLOW_UP = new JustificationType("FOLLOW_UP");
     public static final JustificationType MILESTONE_TIMELINE_CHECK = new JustificationType("MILESTONE_TIMELINE_CHECK");
@@ -198,6 +199,7 @@ public class JustificationType {
         map.put("MID_DAY_CATCH_UP", MID_DAY_CATCH_UP);
         map.put("QUERY_SUGGESTION", QUERY_SUGGESTION);
         map.put("COWORK_CUJ_PROMO", COWORK_CUJ_PROMO);
+        map.put("CARD_STACK_PROMO", CARD_STACK_PROMO);
         map.put("WEEKLY_MEETINGS", WEEKLY_MEETINGS);
         map.put("FOLLOW_UP", FOLLOW_UP);
         map.put("MILESTONE_TIMELINE_CHECK", MILESTONE_TIMELINE_CHECK);
@@ -257,6 +259,7 @@ public class JustificationType {
         map.put("MID_DAY_CATCH_UP", JustificationTypeEnum.MID_DAY_CATCH_UP);
         map.put("QUERY_SUGGESTION", JustificationTypeEnum.QUERY_SUGGESTION);
         map.put("COWORK_CUJ_PROMO", JustificationTypeEnum.COWORK_CUJ_PROMO);
+        map.put("CARD_STACK_PROMO", JustificationTypeEnum.CARD_STACK_PROMO);
         map.put("WEEKLY_MEETINGS", JustificationTypeEnum.WEEKLY_MEETINGS);
         map.put("FOLLOW_UP", JustificationTypeEnum.FOLLOW_UP);
         map.put("MILESTONE_TIMELINE_CHECK", JustificationTypeEnum.MILESTONE_TIMELINE_CHECK);
@@ -317,6 +320,7 @@ public class JustificationType {
         MID_DAY_CATCH_UP("MID_DAY_CATCH_UP"),
         QUERY_SUGGESTION("QUERY_SUGGESTION"),
         COWORK_CUJ_PROMO("COWORK_CUJ_PROMO"),
+        CARD_STACK_PROMO("CARD_STACK_PROMO"),
         WEEKLY_MEETINGS("WEEKLY_MEETINGS"),
         FOLLOW_UP("FOLLOW_UP"),
         MILESTONE_TIMELINE_CHECK("MILESTONE_TIMELINE_CHECK"),
