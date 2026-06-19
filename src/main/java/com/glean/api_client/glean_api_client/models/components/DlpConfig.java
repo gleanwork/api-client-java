@@ -113,8 +113,8 @@ public class DlpConfig {
     private Optional<Boolean> autoHideDocs;
 
     /**
-     * Terms that are allow-listed during the scans. If any finding picked up by a rule exactly matches a
-     * term in the allow-list, it will not be counted as a violation.
+     * Terms and regexes that are allow-listed during the scans. If any finding picked up by a rule exactly
+     * matches a term, or matches a regex, in the allow-list, it will not be counted as a violation.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("allowlistOptions")
@@ -276,8 +276,8 @@ public class DlpConfig {
     }
 
     /**
-     * Terms that are allow-listed during the scans. If any finding picked up by a rule exactly matches a
-     * term in the allow-list, it will not be counted as a violation.
+     * Terms and regexes that are allow-listed during the scans. If any finding picked up by a rule exactly
+     * matches a term, or matches a regex, in the allow-list, it will not be counted as a violation.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -523,8 +523,8 @@ public class DlpConfig {
     }
 
     /**
-     * Terms that are allow-listed during the scans. If any finding picked up by a rule exactly matches a
-     * term in the allow-list, it will not be counted as a violation.
+     * Terms and regexes that are allow-listed during the scans. If any finding picked up by a rule exactly
+     * matches a term, or matches a regex, in the allow-list, it will not be counted as a violation.
      */
     public DlpConfig withAllowlistOptions(AllowlistOptions allowlistOptions) {
         Utils.checkNotNull(allowlistOptions, "allowlistOptions");
@@ -534,8 +534,8 @@ public class DlpConfig {
 
 
     /**
-     * Terms that are allow-listed during the scans. If any finding picked up by a rule exactly matches a
-     * term in the allow-list, it will not be counted as a violation.
+     * Terms and regexes that are allow-listed during the scans. If any finding picked up by a rule exactly
+     * matches a term, or matches a regex, in the allow-list, it will not be counted as a violation.
      */
     public DlpConfig withAllowlistOptions(Optional<? extends AllowlistOptions> allowlistOptions) {
         Utils.checkNotNull(allowlistOptions, "allowlistOptions");
@@ -865,8 +865,8 @@ public class DlpConfig {
 
 
         /**
-         * Terms that are allow-listed during the scans. If any finding picked up by a rule exactly matches a
-         * term in the allow-list, it will not be counted as a violation.
+         * Terms and regexes that are allow-listed during the scans. If any finding picked up by a rule exactly
+         * matches a term, or matches a regex, in the allow-list, it will not be counted as a violation.
          */
         public Builder allowlistOptions(AllowlistOptions allowlistOptions) {
             Utils.checkNotNull(allowlistOptions, "allowlistOptions");
@@ -875,8 +875,8 @@ public class DlpConfig {
         }
 
         /**
-         * Terms that are allow-listed during the scans. If any finding picked up by a rule exactly matches a
-         * term in the allow-list, it will not be counted as a violation.
+         * Terms and regexes that are allow-listed during the scans. If any finding picked up by a rule exactly
+         * matches a term, or matches a regex, in the allow-list, it will not be counted as a violation.
          */
         public Builder allowlistOptions(Optional<? extends AllowlistOptions> allowlistOptions) {
             Utils.checkNotNull(allowlistOptions, "allowlistOptions");
