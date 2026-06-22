@@ -305,7 +305,7 @@ public class Glean {
         return new Builder();
     }
 
-    public Glean(SDKConfiguration sdkConfiguration) {
+    private Glean(SDKConfiguration sdkConfiguration) {
         sdkConfiguration.initialize();
         this.client = new Client(sdkConfiguration);
         this.authentication = new Authentication(sdkConfiguration);
