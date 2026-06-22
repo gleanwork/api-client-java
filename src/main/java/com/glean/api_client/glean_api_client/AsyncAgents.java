@@ -6,10 +6,15 @@ package com.glean.api_client.glean_api_client;
 
 import static com.glean.api_client.glean_api_client.operations.Operations.AsyncRequestOperation;
 
+import com.glean.api_client.glean_api_client.models.components.CreateWorkflowRequest;
 import com.glean.api_client.glean_api_client.models.components.EditWorkflowRequest;
+import com.glean.api_client.glean_api_client.models.operations.CreateAgentRequest;
 import com.glean.api_client.glean_api_client.models.operations.EditAgentRequest;
+import com.glean.api_client.glean_api_client.models.operations.async.CreateAgentRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.CreateAgentResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.EditAgentRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.EditAgentResponse;
+import com.glean.api_client.glean_api_client.operations.CreateAgent;
 import com.glean.api_client.glean_api_client.operations.EditAgent;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Long;
@@ -35,6 +40,56 @@ public class AsyncAgents {
      */
     public Agents sync() {
         return syncSDK;
+    }
+
+
+    /**
+     * Create an agent
+     * 
+     * <p>Create an agent.
+     * 
+     * @return The async call builder
+     */
+    public CreateAgentRequestBuilder createAgent() {
+        return new CreateAgentRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Create an agent
+     * 
+     * <p>Create an agent.
+     * 
+     * @param createWorkflowRequest 
+     * @return {@code CompletableFuture<CreateAgentResponse>} - The async response
+     */
+    public CompletableFuture<CreateAgentResponse> createAgent(CreateWorkflowRequest createWorkflowRequest) {
+        return createAgent(Optional.empty(), Optional.empty(), createWorkflowRequest);
+    }
+
+    /**
+     * Create an agent
+     * 
+     * <p>Create an agent.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param createWorkflowRequest 
+     * @return {@code CompletableFuture<CreateAgentResponse>} - The async response
+     */
+    public CompletableFuture<CreateAgentResponse> createAgent(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            CreateWorkflowRequest createWorkflowRequest) {
+        CreateAgentRequest request =
+            CreateAgentRequest
+                .builder()
+                .locale(locale)
+                .timezoneOffset(timezoneOffset)
+                .createWorkflowRequest(createWorkflowRequest)
+                .build();
+        AsyncRequestOperation<CreateAgentRequest, CreateAgentResponse> operation
+              = new CreateAgent.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
     }
 
 
