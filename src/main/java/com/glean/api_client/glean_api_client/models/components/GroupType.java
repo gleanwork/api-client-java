@@ -34,6 +34,7 @@ public class GroupType {
     public static final GroupType LOCATION = new GroupType("LOCATION");
     public static final GroupType REGION = new GroupType("REGION");
     public static final GroupType EXTERNAL_GROUP = new GroupType("EXTERNAL_GROUP");
+    public static final GroupType COLLECTION_AUDIENCE = new GroupType("COLLECTION_AUDIENCE");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -115,6 +116,7 @@ public class GroupType {
         map.put("LOCATION", LOCATION);
         map.put("REGION", REGION);
         map.put("EXTERNAL_GROUP", EXTERNAL_GROUP);
+        map.put("COLLECTION_AUDIENCE", COLLECTION_AUDIENCE);
         return map;
     }
 
@@ -128,6 +130,7 @@ public class GroupType {
         map.put("LOCATION", GroupTypeEnum.LOCATION);
         map.put("REGION", GroupTypeEnum.REGION);
         map.put("EXTERNAL_GROUP", GroupTypeEnum.EXTERNAL_GROUP);
+        map.put("COLLECTION_AUDIENCE", GroupTypeEnum.COLLECTION_AUDIENCE);
         return map;
     }
     
@@ -141,7 +144,8 @@ public class GroupType {
         ROLE_TYPE("ROLE_TYPE"),
         LOCATION("LOCATION"),
         REGION("REGION"),
-        EXTERNAL_GROUP("EXTERNAL_GROUP"),;
+        EXTERNAL_GROUP("EXTERNAL_GROUP"),
+        COLLECTION_AUDIENCE("COLLECTION_AUDIENCE"),;
 
         private final String value;
 
