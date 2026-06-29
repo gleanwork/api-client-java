@@ -43,27 +43,38 @@ public class FeedResult {
     @JsonProperty("rank")
     private Optional<Long> rank;
 
+    /**
+     * Placement source for ranked feed results. ORGANIC means the card was emitted by normal feed ranking.
+     * PROMO means the card was inserted by the homepage cards promo framework.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("placementReason")
+    private Optional<? extends PlacementReason> placementReason;
+
     @JsonCreator
     public FeedResult(
             @JsonProperty("category") FeedResultCategory category,
             @JsonProperty("primaryEntry") FeedEntry primaryEntry,
             @JsonProperty("secondaryEntries") Optional<? extends List<FeedEntry>> secondaryEntries,
-            @JsonProperty("rank") Optional<Long> rank) {
+            @JsonProperty("rank") Optional<Long> rank,
+            @JsonProperty("placementReason") Optional<? extends PlacementReason> placementReason) {
         Utils.checkNotNull(category, "category");
         Utils.checkNotNull(primaryEntry, "primaryEntry");
         Utils.checkNotNull(secondaryEntries, "secondaryEntries");
         Utils.checkNotNull(rank, "rank");
+        Utils.checkNotNull(placementReason, "placementReason");
         this.category = category;
         this.primaryEntry = primaryEntry;
         this.secondaryEntries = secondaryEntries;
         this.rank = rank;
+        this.placementReason = placementReason;
     }
     
     public FeedResult(
             FeedResultCategory category,
             FeedEntry primaryEntry) {
         this(category, primaryEntry, Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -94,6 +105,16 @@ public class FeedResult {
     @JsonIgnore
     public Optional<Long> rank() {
         return rank;
+    }
+
+    /**
+     * Placement source for ranked feed results. ORGANIC means the card was emitted by normal feed ranking.
+     * PROMO means the card was inserted by the homepage cards promo framework.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<PlacementReason> placementReason() {
+        return (Optional<PlacementReason>) placementReason;
     }
 
     public static Builder builder() {
@@ -154,6 +175,27 @@ public class FeedResult {
         return this;
     }
 
+    /**
+     * Placement source for ranked feed results. ORGANIC means the card was emitted by normal feed ranking.
+     * PROMO means the card was inserted by the homepage cards promo framework.
+     */
+    public FeedResult withPlacementReason(PlacementReason placementReason) {
+        Utils.checkNotNull(placementReason, "placementReason");
+        this.placementReason = Optional.ofNullable(placementReason);
+        return this;
+    }
+
+
+    /**
+     * Placement source for ranked feed results. ORGANIC means the card was emitted by normal feed ranking.
+     * PROMO means the card was inserted by the homepage cards promo framework.
+     */
+    public FeedResult withPlacementReason(Optional<? extends PlacementReason> placementReason) {
+        Utils.checkNotNull(placementReason, "placementReason");
+        this.placementReason = placementReason;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -167,14 +209,15 @@ public class FeedResult {
             Utils.enhancedDeepEquals(this.category, other.category) &&
             Utils.enhancedDeepEquals(this.primaryEntry, other.primaryEntry) &&
             Utils.enhancedDeepEquals(this.secondaryEntries, other.secondaryEntries) &&
-            Utils.enhancedDeepEquals(this.rank, other.rank);
+            Utils.enhancedDeepEquals(this.rank, other.rank) &&
+            Utils.enhancedDeepEquals(this.placementReason, other.placementReason);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             category, primaryEntry, secondaryEntries,
-            rank);
+            rank, placementReason);
     }
     
     @Override
@@ -183,7 +226,8 @@ public class FeedResult {
                 "category", category,
                 "primaryEntry", primaryEntry,
                 "secondaryEntries", secondaryEntries,
-                "rank", rank);
+                "rank", rank,
+                "placementReason", placementReason);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -196,6 +240,8 @@ public class FeedResult {
         private Optional<? extends List<FeedEntry>> secondaryEntries = Optional.empty();
 
         private Optional<Long> rank = Optional.empty();
+
+        private Optional<? extends PlacementReason> placementReason = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -256,11 +302,32 @@ public class FeedResult {
             return this;
         }
 
+
+        /**
+         * Placement source for ranked feed results. ORGANIC means the card was emitted by normal feed ranking.
+         * PROMO means the card was inserted by the homepage cards promo framework.
+         */
+        public Builder placementReason(PlacementReason placementReason) {
+            Utils.checkNotNull(placementReason, "placementReason");
+            this.placementReason = Optional.ofNullable(placementReason);
+            return this;
+        }
+
+        /**
+         * Placement source for ranked feed results. ORGANIC means the card was emitted by normal feed ranking.
+         * PROMO means the card was inserted by the homepage cards promo framework.
+         */
+        public Builder placementReason(Optional<? extends PlacementReason> placementReason) {
+            Utils.checkNotNull(placementReason, "placementReason");
+            this.placementReason = placementReason;
+            return this;
+        }
+
         public FeedResult build() {
 
             return new FeedResult(
                 category, primaryEntry, secondaryEntries,
-                rank);
+                rank, placementReason);
         }
 
     }
