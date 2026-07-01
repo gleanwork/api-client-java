@@ -55,6 +55,9 @@ public class Glean {
     };
 
 
+    private final Platform platform;
+
+
     private final Client client;
 
     /**
@@ -87,6 +90,11 @@ public class Glean {
      * Manage datasources.
      */
     private final Datasources datasources;
+
+
+    public Platform platform() {
+        return platform;
+    }
 
 
     public Client client() {
@@ -307,6 +315,7 @@ public class Glean {
 
     private Glean(SDKConfiguration sdkConfiguration) {
         sdkConfiguration.initialize();
+        this.platform = new Platform(sdkConfiguration);
         this.client = new Client(sdkConfiguration);
         this.authentication = new Authentication(sdkConfiguration);
         this.chat = new Chat(sdkConfiguration);

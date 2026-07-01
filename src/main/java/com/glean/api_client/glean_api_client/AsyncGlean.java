@@ -34,6 +34,8 @@ import com.glean.api_client.glean_api_client.utils.Headers;
 public class AsyncGlean {
     private static final Headers _headers = Headers.EMPTY;
 
+    private final AsyncPlatform platform;
+
     private final AsyncClient client;
     /**
      * Manage indexing API tokens.
@@ -57,6 +59,10 @@ public class AsyncGlean {
      * Manage datasources.
      */
     private final AsyncDatasources datasources;
+
+    public AsyncPlatform platform() {
+        return platform;
+    }
 
     public AsyncClient client() {
         return client;
@@ -108,6 +114,7 @@ public class AsyncGlean {
     AsyncGlean(Glean syncSDK, SDKConfiguration sdkConfiguration) {
         this.syncSDK = syncSDK;
         this.sdkConfiguration = sdkConfiguration;
+        this.platform = new AsyncPlatform(syncSDK.platform(), sdkConfiguration);
         this.client = new AsyncClient(syncSDK.client(), sdkConfiguration);
         this.authentication = new AsyncAuthentication(syncSDK.authentication(), sdkConfiguration);
         this.chat = new AsyncChat(syncSDK.chat(), sdkConfiguration);
