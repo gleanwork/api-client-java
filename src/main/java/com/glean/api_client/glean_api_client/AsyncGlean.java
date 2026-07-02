@@ -34,72 +34,28 @@ import com.glean.api_client.glean_api_client.utils.Headers;
 public class AsyncGlean {
     private static final Headers _headers = Headers.EMPTY;
 
-    private final AsyncClient client;
-    /**
-     * Manage indexing API tokens.
-     */
-    private final AsyncAuthentication authentication;
-
-    private final AsyncChat chat;
-
     private final AsyncAgents agents;
 
-    private final AsyncEntities entities;
+    private final AsyncSearch search;
 
-    private final AsyncTools tools;
+    private final AsyncClient client;
 
     private final AsyncIndexing indexing;
-
-    private final AsyncTroubleshooting troubleshooting;
-
-    private final AsyncGovernance governance;
-    /**
-     * Manage datasources.
-     */
-    private final AsyncDatasources datasources;
-
-    public AsyncClient client() {
-        return client;
-    }
-    /**
-     * Manage indexing API tokens.
-     */
-    public AsyncAuthentication authentication() {
-        return authentication;
-    }
-
-    public AsyncChat chat() {
-        return chat;
-    }
 
     public AsyncAgents agents() {
         return agents;
     }
 
-    public AsyncEntities entities() {
-        return entities;
+    public AsyncSearch search() {
+        return search;
     }
 
-    public AsyncTools tools() {
-        return tools;
+    public AsyncClient client() {
+        return client;
     }
 
     public AsyncIndexing indexing() {
         return indexing;
-    }
-
-    public AsyncTroubleshooting troubleshooting() {
-        return troubleshooting;
-    }
-
-    public AsyncGovernance governance() {
-        return governance;
-    }
-    /**
-     * Manage datasources.
-     */
-    public AsyncDatasources datasources() {
-        return datasources;
     }
 
     private final SDKConfiguration sdkConfiguration;
@@ -108,16 +64,10 @@ public class AsyncGlean {
     AsyncGlean(Glean syncSDK, SDKConfiguration sdkConfiguration) {
         this.syncSDK = syncSDK;
         this.sdkConfiguration = sdkConfiguration;
-        this.client = new AsyncClient(syncSDK.client(), sdkConfiguration);
-        this.authentication = new AsyncAuthentication(syncSDK.authentication(), sdkConfiguration);
-        this.chat = new AsyncChat(syncSDK.chat(), sdkConfiguration);
         this.agents = new AsyncAgents(syncSDK.agents(), sdkConfiguration);
-        this.entities = new AsyncEntities(syncSDK.entities(), sdkConfiguration);
-        this.tools = new AsyncTools(syncSDK.tools(), sdkConfiguration);
+        this.search = new AsyncSearch(syncSDK.search(), sdkConfiguration);
+        this.client = new AsyncClient(syncSDK.client(), sdkConfiguration);
         this.indexing = new AsyncIndexing(syncSDK.indexing(), sdkConfiguration);
-        this.troubleshooting = new AsyncTroubleshooting(syncSDK.troubleshooting(), sdkConfiguration);
-        this.governance = new AsyncGovernance(syncSDK.governance(), sdkConfiguration);
-        this.datasources = new AsyncDatasources(syncSDK.datasources(), sdkConfiguration);
     }
 
     /**
