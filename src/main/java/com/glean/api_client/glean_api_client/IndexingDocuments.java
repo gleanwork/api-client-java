@@ -8,6 +8,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.models.components.BulkIndexDocumentsRequest;
 import com.glean.api_client.glean_api_client.models.components.CheckDocumentAccessRequest;
+import com.glean.api_client.glean_api_client.models.components.DebugDocumentLifecycleRequest;
 import com.glean.api_client.glean_api_client.models.components.DebugDocumentRequest;
 import com.glean.api_client.glean_api_client.models.components.DebugDocumentsRequest;
 import com.glean.api_client.glean_api_client.models.components.DeleteDocumentRequest;
@@ -20,6 +21,9 @@ import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1Bul
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1BulkindexdocumentsResponse;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1CheckdocumentaccessRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1CheckdocumentaccessResponse;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DebugDatasourceDocumentEventsRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DebugDatasourceDocumentEventsRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DebugDatasourceDocumentEventsResponse;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DebugDatasourceDocumentRequest;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DebugDatasourceDocumentRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DebugDatasourceDocumentResponse;
@@ -41,6 +45,7 @@ import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1Pro
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Bulkindexdocuments;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Checkdocumentaccess;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DebugDatasourceDocument;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DebugDatasourceDocumentEvents;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DebugDatasourceDocuments;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Deletedocument;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Getdocumentcount;
@@ -455,6 +460,43 @@ public class IndexingDocuments {
     public PostApiIndexV1GetdocumentcountResponse count(GetDocumentCountRequest request) {
         RequestOperation<GetDocumentCountRequest, PostApiIndexV1GetdocumentcountResponse> operation
               = new PostApiIndexV1Getdocumentcount.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Beta: Get document lifecycle events
+     * 
+     * <p>Retrieves lifecycle events for a specific document including upload time, index times and deletions.
+     * Rate limited to 1 request per minute per datasource. Currently in beta, might undergo breaking
+     * changes without prior notice.
+     * 
+     * @return The call builder
+     */
+    public PostApiIndexV1DebugDatasourceDocumentEventsRequestBuilder debugEvents() {
+        return new PostApiIndexV1DebugDatasourceDocumentEventsRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Beta: Get document lifecycle events
+     * 
+     * <p>Retrieves lifecycle events for a specific document including upload time, index times and deletions.
+     * Rate limited to 1 request per minute per datasource. Currently in beta, might undergo breaking
+     * changes without prior notice.
+     * 
+     * @param datasource The datasource to which the document belongs
+     * @param debugDocumentLifecycleRequest Describes the request body of the /debug/{datasource}/document/events API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1DebugDatasourceDocumentEventsResponse debugEvents(String datasource, DebugDocumentLifecycleRequest debugDocumentLifecycleRequest) {
+        PostApiIndexV1DebugDatasourceDocumentEventsRequest request =
+            PostApiIndexV1DebugDatasourceDocumentEventsRequest
+                .builder()
+                .datasource(datasource)
+                .debugDocumentLifecycleRequest(debugDocumentLifecycleRequest)
+                .build();
+        RequestOperation<PostApiIndexV1DebugDatasourceDocumentEventsRequest, PostApiIndexV1DebugDatasourceDocumentEventsResponse> operation
+              = new PostApiIndexV1DebugDatasourceDocumentEvents.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

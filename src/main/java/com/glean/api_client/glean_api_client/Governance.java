@@ -4,36 +4,29 @@
  */
 package com.glean.api_client.glean_api_client;
 
-import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
-import static com.glean.api_client.glean_api_client.operations.Operations.RequestlessOperation;
-
-import com.glean.api_client.glean_api_client.models.components.DlpExportFindingsRequest;
-import com.glean.api_client.glean_api_client.models.operations.CreatefindingsexportRequestBuilder;
-import com.glean.api_client.glean_api_client.models.operations.CreatefindingsexportResponse;
-import com.glean.api_client.glean_api_client.models.operations.DeletefindingsexportRequest;
-import com.glean.api_client.glean_api_client.models.operations.DeletefindingsexportRequestBuilder;
-import com.glean.api_client.glean_api_client.models.operations.DeletefindingsexportResponse;
-import com.glean.api_client.glean_api_client.models.operations.DownloadfindingsexportRequest;
-import com.glean.api_client.glean_api_client.models.operations.DownloadfindingsexportRequestBuilder;
-import com.glean.api_client.glean_api_client.models.operations.DownloadfindingsexportResponse;
-import com.glean.api_client.glean_api_client.models.operations.ListfindingsexportsRequestBuilder;
-import com.glean.api_client.glean_api_client.models.operations.ListfindingsexportsResponse;
-import com.glean.api_client.glean_api_client.operations.Createfindingsexport;
-import com.glean.api_client.glean_api_client.operations.Deletefindingsexport;
-import com.glean.api_client.glean_api_client.operations.Downloadfindingsexport;
-import com.glean.api_client.glean_api_client.operations.Listfindingsexports;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.String;
 
 
 public class Governance {
     private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncGovernance asyncSDK;
+    private final Data data;
+    private final GovernanceDocuments documents;
 
     Governance(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.data = new Data(this.sdkConfiguration);
+        this.documents = new GovernanceDocuments(this.sdkConfiguration);
         this.asyncSDK = new AsyncGovernance(this, sdkConfiguration);
+    }
+
+    public final Data data() {
+        return data;
+    }
+
+    public final GovernanceDocuments documents() {
+        return documents;
     }
 
     /**
@@ -43,119 +36,6 @@ public class Governance {
      */
     public AsyncGovernance async() {
         return asyncSDK;
-    }
-
-    /**
-     * Creates findings export
-     * 
-     * <p>Creates a new DLP findings export job.
-     * 
-     * @return The call builder
-     */
-    public CreatefindingsexportRequestBuilder createfindingsexport() {
-        return new CreatefindingsexportRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * Creates findings export
-     * 
-     * <p>Creates a new DLP findings export job.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public CreatefindingsexportResponse createfindingsexport(DlpExportFindingsRequest request) {
-        RequestOperation<DlpExportFindingsRequest, CreatefindingsexportResponse> operation
-              = new Createfindingsexport.Sync(sdkConfiguration, _headers);
-        return operation.handleResponse(operation.doRequest(request));
-    }
-
-    /**
-     * Lists findings exports
-     * 
-     * <p>Lists all DLP findings exports.
-     * 
-     * @return The call builder
-     */
-    public ListfindingsexportsRequestBuilder listfindingsexports() {
-        return new ListfindingsexportsRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * Lists findings exports
-     * 
-     * <p>Lists all DLP findings exports.
-     * 
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public ListfindingsexportsResponse listfindingsexportsDirect() {
-        RequestlessOperation<ListfindingsexportsResponse> operation
-            = new Listfindingsexports.Sync(sdkConfiguration, _headers);
-        return operation.handleResponse(operation.doRequest());
-    }
-
-    /**
-     * Downloads findings export
-     * 
-     * <p>Downloads a DLP findings export as a CSV file.
-     * 
-     * @return The call builder
-     */
-    public DownloadfindingsexportRequestBuilder downloadfindingsexport() {
-        return new DownloadfindingsexportRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * Downloads findings export
-     * 
-     * <p>Downloads a DLP findings export as a CSV file.
-     * 
-     * @param id The ID of the export to download.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public DownloadfindingsexportResponse downloadfindingsexport(String id) {
-        DownloadfindingsexportRequest request =
-            DownloadfindingsexportRequest
-                .builder()
-                .id(id)
-                .build();
-        RequestOperation<DownloadfindingsexportRequest, DownloadfindingsexportResponse> operation
-              = new Downloadfindingsexport.Sync(sdkConfiguration, _headers);
-        return operation.handleResponse(operation.doRequest(request));
-    }
-
-    /**
-     * Deletes findings export
-     * 
-     * <p>Deletes a DLP findings export.
-     * 
-     * @return The call builder
-     */
-    public DeletefindingsexportRequestBuilder deletefindingsexport() {
-        return new DeletefindingsexportRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * Deletes findings export
-     * 
-     * <p>Deletes a DLP findings export.
-     * 
-     * @param id The ID of the export to delete.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public DeletefindingsexportResponse deletefindingsexport(long id) {
-        DeletefindingsexportRequest request =
-            DeletefindingsexportRequest
-                .builder()
-                .id(id)
-                .build();
-        RequestOperation<DeletefindingsexportRequest, DeletefindingsexportResponse> operation
-              = new Deletefindingsexport.Sync(sdkConfiguration, _headers);
-        return operation.handleResponse(operation.doRequest(request));
     }
 
 }

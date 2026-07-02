@@ -12,12 +12,14 @@ public class AsyncData {
     private final SDKConfiguration sdkConfiguration;
     private final AsyncPolicies policies;
     private final AsyncReports reports;
+    private final AsyncFindings findings;
     private final Data syncSDK;
 
     AsyncData(Data syncSDK, SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.policies = new AsyncPolicies(syncSDK.policies(), this.sdkConfiguration);
         this.reports = new AsyncReports(syncSDK.reports(), this.sdkConfiguration);
+        this.findings = new AsyncFindings(syncSDK.findings(), this.sdkConfiguration);
         this.syncSDK = syncSDK;
     }
 
@@ -27,6 +29,10 @@ public class AsyncData {
 
     public final AsyncReports reports() {
         return reports;
+    }
+
+    public final AsyncFindings findings() {
+        return findings;
     }
 
     /**

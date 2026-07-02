@@ -55,55 +55,16 @@ public class Glean {
     };
 
 
-    private final Client client;
-
-    /**
-     * Manage indexing API tokens.
-     */
-    private final Authentication authentication;
-
-
-    private final Chat chat;
-
-
     private final Agents agents;
 
 
-    private final Entities entities;
+    private final Search search;
 
 
-    private final Tools tools;
+    private final Client client;
 
 
     private final Indexing indexing;
-
-
-    private final Troubleshooting troubleshooting;
-
-
-    private final Governance governance;
-
-    /**
-     * Manage datasources.
-     */
-    private final Datasources datasources;
-
-
-    public Client client() {
-        return client;
-    }
-
-    /**
-     * Manage indexing API tokens.
-     */
-    public Authentication authentication() {
-        return authentication;
-    }
-
-
-    public Chat chat() {
-        return chat;
-    }
 
 
     public Agents agents() {
@@ -111,35 +72,18 @@ public class Glean {
     }
 
 
-    public Entities entities() {
-        return entities;
+    public Search search() {
+        return search;
     }
 
 
-    public Tools tools() {
-        return tools;
+    public Client client() {
+        return client;
     }
 
 
     public Indexing indexing() {
         return indexing;
-    }
-
-
-    public Troubleshooting troubleshooting() {
-        return troubleshooting;
-    }
-
-
-    public Governance governance() {
-        return governance;
-    }
-
-    /**
-     * Manage datasources.
-     */
-    public Datasources datasources() {
-        return datasources;
     }
     private final AsyncGlean asyncSDK;
 
@@ -307,16 +251,10 @@ public class Glean {
 
     private Glean(SDKConfiguration sdkConfiguration) {
         sdkConfiguration.initialize();
-        this.client = new Client(sdkConfiguration);
-        this.authentication = new Authentication(sdkConfiguration);
-        this.chat = new Chat(sdkConfiguration);
         this.agents = new Agents(sdkConfiguration);
-        this.entities = new Entities(sdkConfiguration);
-        this.tools = new Tools(sdkConfiguration);
+        this.search = new Search(sdkConfiguration);
+        this.client = new Client(sdkConfiguration);
         this.indexing = new Indexing(sdkConfiguration);
-        this.troubleshooting = new Troubleshooting(sdkConfiguration);
-        this.governance = new Governance(sdkConfiguration);
-        this.datasources = new Datasources(sdkConfiguration);
         SdkInitData data = sdkConfiguration.hooks().sdkInit(
                 new SdkInitData(
                         sdkConfiguration.resolvedServerUrl(), 

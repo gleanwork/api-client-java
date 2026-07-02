@@ -6,8 +6,11 @@ package com.glean.api_client.glean_api_client;
 
 import static com.glean.api_client.glean_api_client.operations.Operations.RequestlessOperation;
 
+import com.glean.api_client.glean_api_client.models.operations.CheckdatasourceauthRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.CheckdatasourceauthResponse;
 import com.glean.api_client.glean_api_client.models.operations.CreateauthtokenRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.CreateauthtokenResponse;
+import com.glean.api_client.glean_api_client.operations.Checkdatasourceauth;
 import com.glean.api_client.glean_api_client.operations.Createauthtoken;
 import com.glean.api_client.glean_api_client.utils.Headers;
 
@@ -29,6 +32,43 @@ public class ClientAuthentication {
      */
     public AsyncClientAuthentication async() {
         return asyncSDK;
+    }
+
+    /**
+     * Check datasource authorization
+     * 
+     * <p>Returns all datasource instances that require per-user OAuth authorization
+     * for the authenticated user, along with a transient auth token that can be
+     * appended to auth URLs to complete OAuth flows.
+     * 
+     * <p>Clients construct the full OAuth URL by combining the backend base URL,
+     * the `authUrlRelativePath` from each instance, and the transient auth token:
+     * `<backend>/&lt;authUrlRelativePath&gt;?transient_auth_token=&lt;token&gt;`.
+     * 
+     * @return The call builder
+     */
+    public CheckdatasourceauthRequestBuilder checkDatasourceAuth() {
+        return new CheckdatasourceauthRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Check datasource authorization
+     * 
+     * <p>Returns all datasource instances that require per-user OAuth authorization
+     * for the authenticated user, along with a transient auth token that can be
+     * appended to auth URLs to complete OAuth flows.
+     * 
+     * <p>Clients construct the full OAuth URL by combining the backend base URL,
+     * the `authUrlRelativePath` from each instance, and the transient auth token:
+     * `<backend>/&lt;authUrlRelativePath&gt;?transient_auth_token=&lt;token&gt;`.
+     * 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CheckdatasourceauthResponse checkDatasourceAuthDirect() {
+        RequestlessOperation<CheckdatasourceauthResponse> operation
+            = new Checkdatasourceauth.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest());
     }
 
     /**
