@@ -8,15 +8,33 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.models.components.CreateWorkflowRequest;
 import com.glean.api_client.glean_api_client.models.components.EditWorkflowRequest;
+import com.glean.api_client.glean_api_client.models.components.PlatformAgentRunCreateRequest;
+import com.glean.api_client.glean_api_client.models.components.PlatformAgentsSearchRequest;
 import com.glean.api_client.glean_api_client.models.operations.CreateAgentRequest;
 import com.glean.api_client.glean_api_client.models.operations.CreateAgentRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.CreateAgentResponse;
 import com.glean.api_client.glean_api_client.models.operations.EditAgentRequest;
 import com.glean.api_client.glean_api_client.models.operations.EditAgentRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.EditAgentResponse;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsCreateRunRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsCreateRunRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsCreateRunResponse;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsGetRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsGetRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsGetResponse;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsGetSchemasRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsGetSchemasRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsGetSchemasResponse;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsSearchRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsSearchResponse;
 import com.glean.api_client.glean_api_client.operations.CreateAgent;
 import com.glean.api_client.glean_api_client.operations.EditAgent;
+import com.glean.api_client.glean_api_client.operations.PlatformAgentsCreateRun;
+import com.glean.api_client.glean_api_client.operations.PlatformAgentsGet;
+import com.glean.api_client.glean_api_client.operations.PlatformAgentsGetSchemas;
+import com.glean.api_client.glean_api_client.operations.PlatformAgentsSearch;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
@@ -39,6 +57,145 @@ public class Agents {
      */
     public AsyncAgents async() {
         return asyncSDK;
+    }
+
+    /**
+     * Search agents
+     * 
+     * <p>Search agents available to the authenticated user by agent name.
+     * 
+     * @return The call builder
+     */
+    public PlatformAgentsSearchRequestBuilder search() {
+        return new PlatformAgentsSearchRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Search agents
+     * 
+     * <p>Search agents available to the authenticated user by agent name.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformAgentsSearchResponse search(PlatformAgentsSearchRequest request) {
+        RequestOperation<PlatformAgentsSearchRequest, PlatformAgentsSearchResponse> operation
+              = new PlatformAgentsSearch.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Get agent
+     * 
+     * <p>Retrieve details for an agent available to the authenticated user.
+     * 
+     * @return The call builder
+     */
+    public PlatformAgentsGetRequestBuilder get() {
+        return new PlatformAgentsGetRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Get agent
+     * 
+     * <p>Retrieve details for an agent available to the authenticated user.
+     * 
+     * @param agentId ID of the agent to retrieve.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformAgentsGetResponse get(String agentId) {
+        PlatformAgentsGetRequest request =
+            PlatformAgentsGetRequest
+                .builder()
+                .agentId(agentId)
+                .build();
+        RequestOperation<PlatformAgentsGetRequest, PlatformAgentsGetResponse> operation
+              = new PlatformAgentsGet.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Get agent schemas
+     * 
+     * <p>Retrieve an agent's input and output JSON schemas.
+     * 
+     * @return The call builder
+     */
+    public PlatformAgentsGetSchemasRequestBuilder getSchemas() {
+        return new PlatformAgentsGetSchemasRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Get agent schemas
+     * 
+     * <p>Retrieve an agent's input and output JSON schemas.
+     * 
+     * @param agentId ID of the agent whose schemas should be retrieved.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformAgentsGetSchemasResponse getSchemas(String agentId) {
+        return getSchemas(agentId, Optional.empty());
+    }
+
+    /**
+     * Get agent schemas
+     * 
+     * <p>Retrieve an agent's input and output JSON schemas.
+     * 
+     * @param agentId ID of the agent whose schemas should be retrieved.
+     * @param includeTools Whether to include tool metadata in the response.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformAgentsGetSchemasResponse getSchemas(String agentId, Optional<Boolean> includeTools) {
+        PlatformAgentsGetSchemasRequest request =
+            PlatformAgentsGetSchemasRequest
+                .builder()
+                .agentId(agentId)
+                .includeTools(includeTools)
+                .build();
+        RequestOperation<PlatformAgentsGetSchemasRequest, PlatformAgentsGetSchemasResponse> operation
+              = new PlatformAgentsGetSchemas.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Create agent run
+     * 
+     * <p>Execute an agent run. Set `stream` to true to receive server-sent events; otherwise the response
+     * contains the final agent messages.
+     * 
+     * @return The call builder
+     */
+    public PlatformAgentsCreateRunRequestBuilder createRun() {
+        return new PlatformAgentsCreateRunRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Create agent run
+     * 
+     * <p>Execute an agent run. Set `stream` to true to receive server-sent events; otherwise the response
+     * contains the final agent messages.
+     * 
+     * @param agentId ID of the agent to run.
+     * @param platformAgentRunCreateRequest Request to run an agent. A request MUST supply either `messages` (a non-empty conversation) or `input` (for input-form triggered agents).
+     *         
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformAgentsCreateRunResponse createRun(String agentId, PlatformAgentRunCreateRequest platformAgentRunCreateRequest) {
+        PlatformAgentsCreateRunRequest request =
+            PlatformAgentsCreateRunRequest
+                .builder()
+                .agentId(agentId)
+                .platformAgentRunCreateRequest(platformAgentRunCreateRequest)
+                .build();
+        RequestOperation<PlatformAgentsCreateRunRequest, PlatformAgentsCreateRunResponse> operation
+              = new PlatformAgentsCreateRun.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
     /**

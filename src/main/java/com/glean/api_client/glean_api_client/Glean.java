@@ -55,6 +55,12 @@ public class Glean {
     };
 
 
+    private final Agents agents;
+
+
+    private final Search search;
+
+
     private final Client client;
 
     /**
@@ -64,9 +70,6 @@ public class Glean {
 
 
     private final Chat chat;
-
-
-    private final Agents agents;
 
 
     private final Entities entities;
@@ -89,6 +92,16 @@ public class Glean {
     private final Datasources datasources;
 
 
+    public Agents agents() {
+        return agents;
+    }
+
+
+    public Search search() {
+        return search;
+    }
+
+
     public Client client() {
         return client;
     }
@@ -103,11 +116,6 @@ public class Glean {
 
     public Chat chat() {
         return chat;
-    }
-
-
-    public Agents agents() {
-        return agents;
     }
 
 
@@ -307,10 +315,11 @@ public class Glean {
 
     private Glean(SDKConfiguration sdkConfiguration) {
         sdkConfiguration.initialize();
+        this.agents = new Agents(sdkConfiguration);
+        this.search = new Search(sdkConfiguration);
         this.client = new Client(sdkConfiguration);
         this.authentication = new Authentication(sdkConfiguration);
         this.chat = new Chat(sdkConfiguration);
-        this.agents = new Agents(sdkConfiguration);
         this.entities = new Entities(sdkConfiguration);
         this.tools = new Tools(sdkConfiguration);
         this.indexing = new Indexing(sdkConfiguration);
