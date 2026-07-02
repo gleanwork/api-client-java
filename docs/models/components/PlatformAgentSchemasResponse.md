@@ -1,0 +1,13 @@
+# PlatformAgentSchemasResponse
+
+
+## Fields
+
+| Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `agentId`                                                                        | *String*                                                                         | :heavy_check_mark:                                                               | ID of the agent.                                                                 |
+| `name`                                                                           | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | Name of the agent.                                                               |
+| `inputSchema`                                                                    | Map\<String, *Object*>                                                           | :heavy_check_mark:                                                               | Agent input schema in JSON Schema format.                                        |
+| `outputSchema`                                                                   | Map\<String, *Object*>                                                           | :heavy_check_mark:                                                               | Agent output schema in JSON Schema format.                                       |
+| `tools`                                                                          | List\<[PlatformActionSummary](../../models/components/PlatformActionSummary.md)> | :heavy_minus_sign:                                                               | Tools that the agent can invoke, when requested.                                 |
+| `requestId`                                                                      | *String*                                                                         | :heavy_check_mark:                                                               | Platform-generated request ID for support correlation.                           |

@@ -4,39 +4,46 @@
 
 ### Available Operations
 
-* [createAgent](#createagent) - Create an agent
-* [editAgent](#editagent) - Edit an agent
+* [search](#search) - Search agents
+* [get](#get) - Get agent
+* [getSchemas](#getschemas) - Get agent schemas
+* [createRun](#createrun) - Create agent run
 
-## createAgent
+## search
 
-Create an agent.
+Search agents available to the authenticated user by agent name.
+
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="createAgent" method="post" path="/rest/api/v1/agents" -->
+<!-- UsageSnippet language="java" operationID="platform-agents-search" method="post" path="/api/agents/search" -->
 ```java
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.CreateWorkflowRequest;
-import com.glean.api_client.glean_api_client.models.operations.CreateAgentResponse;
+import com.glean.api_client.glean_api_client.models.components.PlatformAgentsSearchRequest;
+import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsSearchResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws PlatformProblemDetailException, Exception {
 
         Glean sdk = Glean.builder()
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        CreateAgentResponse res = sdk.agents().createAgent()
-                .createWorkflowRequest(CreateWorkflowRequest.builder()
-                    .build())
+        PlatformAgentsSearchRequest req = PlatformAgentsSearchRequest.builder()
+                .name("HR Policy Agent")
+                .build();
+
+        PlatformAgentsSearchResponse res = sdk.agents().search()
+                .request(req)
                 .call();
 
-        if (res.workflowResult().isPresent()) {
-            System.out.println(res.workflowResult().get());
+        if (res.platformAgentsSearchResponse().isPresent()) {
+            System.out.println(res.platformAgentsSearchResponse().get());
         }
     }
 }
@@ -44,73 +51,189 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                           | Type                                                                                                                                                                                                | Required                                                                                                                                                                                            | Description                                                                                                                                                                                         |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `locale`                                                                                                                                                                                            | *Optional\<String>*                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                  | The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`. |
-| `timezoneOffset`                                                                                                                                                                                    | *Optional\<Long>*                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                  | The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.                                                                                          |
-| `createWorkflowRequest`                                                                                                                                                                             | [CreateWorkflowRequest](../../models/components/CreateWorkflowRequest.md)                                                                                                                           | :heavy_check_mark:                                                                                                                                                                                  | N/A                                                                                                                                                                                                 |
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `request`                                                                         | [PlatformAgentsSearchRequest](../../models/shared/PlatformAgentsSearchRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
 
 ### Response
 
-**[CreateAgentResponse](../../models/operations/CreateAgentResponse.md)**
+**[PlatformAgentsSearchResponse](../../models/operations/PlatformAgentsSearchResponse.md)**
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| models/errors/PlatformProblemDetailException | 400, 401, 403, 404, 408, 429                 | application/problem+json                     |
+| models/errors/PlatformProblemDetailException | 500, 503                                     | application/problem+json                     |
+| models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
 
-## editAgent
+## get
 
-Creates a draft or publishes an [agent](https://developers.glean.com/agents/agents-api). Use `isDraft=true` to save a draft, or `isDraft=false` (or omit) to publish immediately. Only draft and publish modes are supported.
+Retrieve details for an agent available to the authenticated user.
+
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="editAgent" method="post" path="/rest/api/v1/agents/{agent_id}" -->
+<!-- UsageSnippet language="java" operationID="platform-agents-get" method="get" path="/api/agents/{agent_id}" -->
 ```java
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.EditWorkflowRequest;
-import com.glean.api_client.glean_api_client.models.errors.ErrorResponse;
-import com.glean.api_client.glean_api_client.models.operations.EditAgentResponse;
+import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsGetResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, Exception {
+    public static void main(String[] args) throws PlatformProblemDetailException, Exception {
 
         Glean sdk = Glean.builder()
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        EditAgentResponse res = sdk.agents().editAgent()
+        PlatformAgentsGetResponse res = sdk.agents().get()
                 .agentId("<id>")
-                .editWorkflowRequest(EditWorkflowRequest.builder()
-                    .build())
                 .call();
 
-        // handle response
+        if (res.platformAgentGetResponse().isPresent()) {
+            System.out.println(res.platformAgentGetResponse().get());
+        }
     }
 }
 ```
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                           | Type                                                                                                                                                                                                | Required                                                                                                                                                                                            | Description                                                                                                                                                                                         |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `locale`                                                                                                                                                                                            | *Optional\<String>*                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                  | The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`. |
-| `timezoneOffset`                                                                                                                                                                                    | *Optional\<Long>*                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                  | The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.                                                                                          |
-| `agentId`                                                                                                                                                                                           | *String*                                                                                                                                                                                            | :heavy_check_mark:                                                                                                                                                                                  | The ID of the agent.                                                                                                                                                                                |
-| `editWorkflowRequest`                                                                                                                                                                               | [EditWorkflowRequest](../../models/components/EditWorkflowRequest.md)                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                  | N/A                                                                                                                                                                                                 |
+| Parameter                    | Type                         | Required                     | Description                  |
+| ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- |
+| `agentId`                    | *String*                     | :heavy_check_mark:           | ID of the agent to retrieve. |
 
 ### Response
 
-**[EditAgentResponse](../../models/operations/EditAgentResponse.md)**
+**[PlatformAgentsGetResponse](../../models/operations/PlatformAgentsGetResponse.md)**
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 404                         | application/json            |
-| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| models/errors/PlatformProblemDetailException | 400, 401, 403, 404, 408, 429                 | application/problem+json                     |
+| models/errors/PlatformProblemDetailException | 500, 503                                     | application/problem+json                     |
+| models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
+
+## getSchemas
+
+Retrieve an agent's input and output JSON schemas.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="platform-agents-get-schemas" method="get" path="/api/agents/{agent_id}/schemas" -->
+```java
+package hello.world;
+
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsGetSchemasResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws PlatformProblemDetailException, Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
+            .build();
+
+        PlatformAgentsGetSchemasResponse res = sdk.agents().getSchemas()
+                .agentId("<id>")
+                .includeTools(false)
+                .call();
+
+        if (res.platformAgentSchemasResponse().isPresent()) {
+            System.out.println(res.platformAgentSchemasResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                          | Type                                               | Required                                           | Description                                        |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| `agentId`                                          | *String*                                           | :heavy_check_mark:                                 | ID of the agent whose schemas should be retrieved. |
+| `includeTools`                                     | *Optional\<Boolean>*                               | :heavy_minus_sign:                                 | Whether to include tool metadata in the response.  |
+
+### Response
+
+**[PlatformAgentsGetSchemasResponse](../../models/operations/PlatformAgentsGetSchemasResponse.md)**
+
+### Errors
+
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| models/errors/PlatformProblemDetailException | 400, 401, 403, 404, 408, 429                 | application/problem+json                     |
+| models/errors/PlatformProblemDetailException | 500, 503                                     | application/problem+json                     |
+| models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
+
+## createRun
+
+Execute an agent run. Set `stream` to true to receive server-sent events; otherwise the response contains the final agent messages.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="platform-agents-create-run" method="post" path="/api/agents/{agent_id}/runs" -->
+```java
+package hello.world;
+
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsCreateRunResponse;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws PlatformProblemDetailException, Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
+            .build();
+
+        PlatformAgentsCreateRunResponse res = sdk.agents().createRun()
+                .agentId("<id>")
+                .platformAgentRunCreateRequest(PlatformAgentRunCreateRequest.builder()
+                    .messages(List.of(
+                        PlatformMessage.builder()
+                            .role(PlatformMessageRole.USER)
+                            .content(List.of())
+                            .build()))
+                    .build())
+                .call();
+
+        if (res.platformAgentRunWaitResponse().isPresent()) {
+            System.out.println(res.platformAgentRunWaitResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `agentId`                                                                                 | *String*                                                                                  | :heavy_check_mark:                                                                        | ID of the agent to run.                                                                   |
+| `platformAgentRunCreateRequest`                                                           | [PlatformAgentRunCreateRequest](../../models/components/PlatformAgentRunCreateRequest.md) | :heavy_check_mark:                                                                        | N/A                                                                                       |
+
+### Response
+
+**[PlatformAgentsCreateRunResponse](../../models/operations/PlatformAgentsCreateRunResponse.md)**
+
+### Errors
+
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| models/errors/PlatformProblemDetailException | 400, 401, 403, 404, 408, 409, 429            | application/problem+json                     |
+| models/errors/PlatformProblemDetailException | 500, 503                                     | application/problem+json                     |
+| models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |

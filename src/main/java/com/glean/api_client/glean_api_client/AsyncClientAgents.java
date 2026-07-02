@@ -7,21 +7,31 @@ package com.glean.api_client.glean_api_client;
 import static com.glean.api_client.glean_api_client.operations.Operations.AsyncRequestOperation;
 
 import com.glean.api_client.glean_api_client.models.components.AgentRunCreate;
+import com.glean.api_client.glean_api_client.models.components.CreateWorkflowRequest;
+import com.glean.api_client.glean_api_client.models.components.EditWorkflowRequest;
 import com.glean.api_client.glean_api_client.models.components.SearchAgentsRequest;
+import com.glean.api_client.glean_api_client.models.operations.CreateAgentRequest;
+import com.glean.api_client.glean_api_client.models.operations.EditAgentRequest;
 import com.glean.api_client.glean_api_client.models.operations.GetAgentRequest;
 import com.glean.api_client.glean_api_client.models.operations.GetAgentSchemasRequest;
+import com.glean.api_client.glean_api_client.models.operations.async.CreateAgentRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.CreateAgentResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.CreateAndStreamRunRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.CreateAndStreamRunResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.CreateAndWaitRunRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.CreateAndWaitRunResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.EditAgentRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.EditAgentResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.GetAgentRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.GetAgentResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.GetAgentSchemasRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.GetAgentSchemasResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.SearchAgentsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.SearchAgentsResponse;
+import com.glean.api_client.glean_api_client.operations.CreateAgent;
 import com.glean.api_client.glean_api_client.operations.CreateAndStreamRun;
 import com.glean.api_client.glean_api_client.operations.CreateAndWaitRun;
+import com.glean.api_client.glean_api_client.operations.EditAgent;
 import com.glean.api_client.glean_api_client.operations.GetAgent;
 import com.glean.api_client.glean_api_client.operations.GetAgentSchemas;
 import com.glean.api_client.glean_api_client.operations.SearchAgents;
@@ -49,6 +59,56 @@ public class AsyncClientAgents {
      */
     public ClientAgents sync() {
         return syncSDK;
+    }
+
+
+    /**
+     * Create an agent
+     * 
+     * <p>Create an agent.
+     * 
+     * @return The async call builder
+     */
+    public CreateAgentRequestBuilder create() {
+        return new CreateAgentRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Create an agent
+     * 
+     * <p>Create an agent.
+     * 
+     * @param createWorkflowRequest 
+     * @return {@code CompletableFuture<CreateAgentResponse>} - The async response
+     */
+    public CompletableFuture<CreateAgentResponse> create(CreateWorkflowRequest createWorkflowRequest) {
+        return create(Optional.empty(), Optional.empty(), createWorkflowRequest);
+    }
+
+    /**
+     * Create an agent
+     * 
+     * <p>Create an agent.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param createWorkflowRequest 
+     * @return {@code CompletableFuture<CreateAgentResponse>} - The async response
+     */
+    public CompletableFuture<CreateAgentResponse> create(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            CreateWorkflowRequest createWorkflowRequest) {
+        CreateAgentRequest request =
+            CreateAgentRequest
+                .builder()
+                .locale(locale)
+                .timezoneOffset(timezoneOffset)
+                .createWorkflowRequest(createWorkflowRequest)
+                .build();
+        AsyncRequestOperation<CreateAgentRequest, CreateAgentResponse> operation
+              = new CreateAgent.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
     }
 
 
@@ -100,6 +160,67 @@ public class AsyncClientAgents {
                 .build();
         AsyncRequestOperation<GetAgentRequest, GetAgentResponse> operation
               = new GetAgent.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Edit an agent
+     * 
+     * <p>Creates a draft or publishes an [agent](https://developers.glean.com/agents/agents-api). Use
+     * `isDraft=true` to save a draft, or `isDraft=false` (or omit) to publish immediately. Only draft and
+     * publish modes are supported.
+     * 
+     * @return The async call builder
+     */
+    public EditAgentRequestBuilder update() {
+        return new EditAgentRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Edit an agent
+     * 
+     * <p>Creates a draft or publishes an [agent](https://developers.glean.com/agents/agents-api). Use
+     * `isDraft=true` to save a draft, or `isDraft=false` (or omit) to publish immediately. Only draft and
+     * publish modes are supported.
+     * 
+     * @param agentId The ID of the agent.
+     * @param editWorkflowRequest 
+     * @return {@code CompletableFuture<EditAgentResponse>} - The async response
+     */
+    public CompletableFuture<EditAgentResponse> update(String agentId, EditWorkflowRequest editWorkflowRequest) {
+        return update(
+                Optional.empty(), Optional.empty(), agentId,
+                editWorkflowRequest);
+    }
+
+    /**
+     * Edit an agent
+     * 
+     * <p>Creates a draft or publishes an [agent](https://developers.glean.com/agents/agents-api). Use
+     * `isDraft=true` to save a draft, or `isDraft=false` (or omit) to publish immediately. Only draft and
+     * publish modes are supported.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param agentId The ID of the agent.
+     * @param editWorkflowRequest 
+     * @return {@code CompletableFuture<EditAgentResponse>} - The async response
+     */
+    public CompletableFuture<EditAgentResponse> update(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            String agentId, EditWorkflowRequest editWorkflowRequest) {
+        EditAgentRequest request =
+            EditAgentRequest
+                .builder()
+                .locale(locale)
+                .timezoneOffset(timezoneOffset)
+                .agentId(agentId)
+                .editWorkflowRequest(editWorkflowRequest)
+                .build();
+        AsyncRequestOperation<EditAgentRequest, EditAgentResponse> operation
+              = new EditAgent.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

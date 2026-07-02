@@ -8,6 +8,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 
 import com.glean.api_client.glean_api_client.models.components.BulkIndexDocumentsRequest;
 import com.glean.api_client.glean_api_client.models.components.CheckDocumentAccessRequest;
+import com.glean.api_client.glean_api_client.models.components.DebugDocumentLifecycleRequest;
 import com.glean.api_client.glean_api_client.models.components.DebugDocumentRequest;
 import com.glean.api_client.glean_api_client.models.components.DebugDocumentsRequest;
 import com.glean.api_client.glean_api_client.models.components.DeleteDocumentRequest;
@@ -16,12 +17,15 @@ import com.glean.api_client.glean_api_client.models.components.GetDocumentStatus
 import com.glean.api_client.glean_api_client.models.components.IndexDocumentRequest;
 import com.glean.api_client.glean_api_client.models.components.IndexDocumentsRequest;
 import com.glean.api_client.glean_api_client.models.components.ProcessAllDocumentsRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DebugDatasourceDocumentEventsRequest;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DebugDatasourceDocumentRequest;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DebugDatasourceDocumentsRequest;
 import com.glean.api_client.glean_api_client.models.operations.async.PostApiIndexV1BulkindexdocumentsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PostApiIndexV1BulkindexdocumentsResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.PostApiIndexV1CheckdocumentaccessRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PostApiIndexV1CheckdocumentaccessResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.PostApiIndexV1DebugDatasourceDocumentEventsRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.PostApiIndexV1DebugDatasourceDocumentEventsResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.PostApiIndexV1DebugDatasourceDocumentRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PostApiIndexV1DebugDatasourceDocumentResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.PostApiIndexV1DebugDatasourceDocumentsRequestBuilder;
@@ -41,6 +45,7 @@ import com.glean.api_client.glean_api_client.models.operations.async.PostApiInde
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Bulkindexdocuments;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Checkdocumentaccess;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DebugDatasourceDocument;
+import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DebugDatasourceDocumentEvents;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DebugDatasourceDocuments;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Deletedocument;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Getdocumentcount;
@@ -464,6 +469,44 @@ public class AsyncIndexingDocuments {
     public CompletableFuture<PostApiIndexV1GetdocumentcountResponse> count(GetDocumentCountRequest request) {
         AsyncRequestOperation<GetDocumentCountRequest, PostApiIndexV1GetdocumentcountResponse> operation
               = new PostApiIndexV1Getdocumentcount.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Beta: Get document lifecycle events
+     * 
+     * <p>Retrieves lifecycle events for a specific document including upload time, index times and deletions.
+     * Rate limited to 1 request per minute per datasource. Currently in beta, might undergo breaking
+     * changes without prior notice.
+     * 
+     * @return The async call builder
+     */
+    public PostApiIndexV1DebugDatasourceDocumentEventsRequestBuilder debugEvents() {
+        return new PostApiIndexV1DebugDatasourceDocumentEventsRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Beta: Get document lifecycle events
+     * 
+     * <p>Retrieves lifecycle events for a specific document including upload time, index times and deletions.
+     * Rate limited to 1 request per minute per datasource. Currently in beta, might undergo breaking
+     * changes without prior notice.
+     * 
+     * @param datasource The datasource to which the document belongs
+     * @param debugDocumentLifecycleRequest Describes the request body of the /debug/{datasource}/document/events API call.
+     * @return {@code CompletableFuture<PostApiIndexV1DebugDatasourceDocumentEventsResponse>} - The async response
+     */
+    public CompletableFuture<PostApiIndexV1DebugDatasourceDocumentEventsResponse> debugEvents(String datasource, DebugDocumentLifecycleRequest debugDocumentLifecycleRequest) {
+        PostApiIndexV1DebugDatasourceDocumentEventsRequest request =
+            PostApiIndexV1DebugDatasourceDocumentEventsRequest
+                .builder()
+                .datasource(datasource)
+                .debugDocumentLifecycleRequest(debugDocumentLifecycleRequest)
+                .build();
+        AsyncRequestOperation<PostApiIndexV1DebugDatasourceDocumentEventsRequest, PostApiIndexV1DebugDatasourceDocumentEventsResponse> operation
+              = new PostApiIndexV1DebugDatasourceDocumentEvents.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

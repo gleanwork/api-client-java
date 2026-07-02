@@ -7,15 +7,25 @@ package com.glean.api_client.glean_api_client;
 import static com.glean.api_client.glean_api_client.operations.Operations.AsyncRequestOperation;
 
 import com.glean.api_client.glean_api_client.models.components.AuthorizeActionPackRequest;
+import com.glean.api_client.glean_api_client.models.components.ToolsCallRequest;
 import com.glean.api_client.glean_api_client.models.operations.GetActionPackAuthStatusRequest;
+import com.glean.api_client.glean_api_client.models.operations.GetRestApiV1ToolsListRequest;
 import com.glean.api_client.glean_api_client.models.operations.async.AuthorizeActionPackRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.AuthorizeActionPackResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.GetActionPackAuthStatusRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.GetActionPackAuthStatusResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.GetRestApiV1ToolsListRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.GetRestApiV1ToolsListResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.PostRestApiV1ToolsCallRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.PostRestApiV1ToolsCallResponse;
 import com.glean.api_client.glean_api_client.operations.AuthorizeActionPack;
 import com.glean.api_client.glean_api_client.operations.GetActionPackAuthStatus;
+import com.glean.api_client.glean_api_client.operations.GetRestApiV1ToolsList;
+import com.glean.api_client.glean_api_client.operations.PostRestApiV1ToolsCall;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.String;
+import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
@@ -40,6 +50,79 @@ public class AsyncTools {
 
 
     /**
+     * List available tools
+     * 
+     * <p>Returns a filtered set of available tools based on optional tool name parameters. If no filters are
+     * provided, all available tools are returned.
+     * 
+     * @return The async call builder
+     */
+    public GetRestApiV1ToolsListRequestBuilder list() {
+        return new GetRestApiV1ToolsListRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * List available tools
+     * 
+     * <p>Returns a filtered set of available tools based on optional tool name parameters. If no filters are
+     * provided, all available tools are returned.
+     * 
+     * @return {@code CompletableFuture<GetRestApiV1ToolsListResponse>} - The async response
+     */
+    public CompletableFuture<GetRestApiV1ToolsListResponse> listDirect() {
+        return list(Optional.empty());
+    }
+
+    /**
+     * List available tools
+     * 
+     * <p>Returns a filtered set of available tools based on optional tool name parameters. If no filters are
+     * provided, all available tools are returned.
+     * 
+     * @param toolNames Optional array of tool names to filter by
+     * @return {@code CompletableFuture<GetRestApiV1ToolsListResponse>} - The async response
+     */
+    public CompletableFuture<GetRestApiV1ToolsListResponse> list(Optional<? extends List<String>> toolNames) {
+        GetRestApiV1ToolsListRequest request =
+            GetRestApiV1ToolsListRequest
+                .builder()
+                .toolNames(toolNames)
+                .build();
+        AsyncRequestOperation<GetRestApiV1ToolsListRequest, GetRestApiV1ToolsListResponse> operation
+              = new GetRestApiV1ToolsList.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Execute the specified tool
+     * 
+     * <p>Execute the specified tool with provided parameters
+     * 
+     * @return The async call builder
+     */
+    public PostRestApiV1ToolsCallRequestBuilder run() {
+        return new PostRestApiV1ToolsCallRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Execute the specified tool
+     * 
+     * <p>Execute the specified tool with provided parameters
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return {@code CompletableFuture<PostRestApiV1ToolsCallResponse>} - The async response
+     */
+    public CompletableFuture<PostRestApiV1ToolsCallResponse> run(ToolsCallRequest request) {
+        AsyncRequestOperation<ToolsCallRequest, PostRestApiV1ToolsCallResponse> operation
+              = new PostRestApiV1ToolsCall.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
      * Get end-user authentication status for an action pack.
      * 
      * <p>Reports whether the calling user is already authenticated against the third-party
@@ -48,7 +131,7 @@ public class AsyncTools {
      * 
      * @return The async call builder
      */
-    public GetActionPackAuthStatusRequestBuilder getActionPackAuthStatus() {
+    public GetActionPackAuthStatusRequestBuilder retrieveActionPackAuthStatus() {
         return new GetActionPackAuthStatusRequestBuilder(sdkConfiguration);
     }
 
@@ -62,7 +145,7 @@ public class AsyncTools {
      * @param actionPackId ID of the action pack to query or authorize.
      * @return {@code CompletableFuture<GetActionPackAuthStatusResponse>} - The async response
      */
-    public CompletableFuture<GetActionPackAuthStatusResponse> getActionPackAuthStatus(String actionPackId) {
+    public CompletableFuture<GetActionPackAuthStatusResponse> retrieveActionPackAuthStatus(String actionPackId) {
         GetActionPackAuthStatusRequest request =
             GetActionPackAuthStatusRequest
                 .builder()
