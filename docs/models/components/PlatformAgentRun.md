@@ -1,0 +1,12 @@
+# PlatformAgentRun
+
+
+## Fields
+
+| Field                                                                                   | Type                                                                                    | Required                                                                                | Description                                                                             |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `agentId`                                                                               | *String*                                                                                | :heavy_check_mark:                                                                      | ID of the agent being run.                                                              |
+| `input`                                                                                 | Map\<String, *Object*>                                                                  | :heavy_minus_sign:                                                                      | Input fields for an input-form triggered agent.                                         |
+| `messages`                                                                              | List\<[PlatformMessage](../../models/components/PlatformMessage.md)>                    | :heavy_minus_sign:                                                                      | Messages passed to the agent.                                                           |
+| `metadata`                                                                              | Map\<String, *Object*>                                                                  | :heavy_minus_sign:                                                                      | Metadata passed to the agent.                                                           |
+| `status`                                                                                | [PlatformAgentExecutionStatus](../../models/components/PlatformAgentExecutionStatus.md) | :heavy_check_mark:                                                                      | Status of the agent run.                                                                |

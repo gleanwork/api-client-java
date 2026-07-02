@@ -34,6 +34,10 @@ import com.glean.api_client.glean_api_client.utils.Headers;
 public class AsyncGlean {
     private static final Headers _headers = Headers.EMPTY;
 
+    private final AsyncAgents agents;
+
+    private final AsyncSearch search;
+
     private final AsyncClient client;
     /**
      * Manage indexing API tokens.
@@ -41,8 +45,6 @@ public class AsyncGlean {
     private final AsyncAuthentication authentication;
 
     private final AsyncChat chat;
-
-    private final AsyncAgents agents;
 
     private final AsyncEntities entities;
 
@@ -58,6 +60,14 @@ public class AsyncGlean {
      */
     private final AsyncDatasources datasources;
 
+    public AsyncAgents agents() {
+        return agents;
+    }
+
+    public AsyncSearch search() {
+        return search;
+    }
+
     public AsyncClient client() {
         return client;
     }
@@ -70,10 +80,6 @@ public class AsyncGlean {
 
     public AsyncChat chat() {
         return chat;
-    }
-
-    public AsyncAgents agents() {
-        return agents;
     }
 
     public AsyncEntities entities() {
@@ -108,10 +114,11 @@ public class AsyncGlean {
     AsyncGlean(Glean syncSDK, SDKConfiguration sdkConfiguration) {
         this.syncSDK = syncSDK;
         this.sdkConfiguration = sdkConfiguration;
+        this.agents = new AsyncAgents(syncSDK.agents(), sdkConfiguration);
+        this.search = new AsyncSearch(syncSDK.search(), sdkConfiguration);
         this.client = new AsyncClient(syncSDK.client(), sdkConfiguration);
         this.authentication = new AsyncAuthentication(syncSDK.authentication(), sdkConfiguration);
         this.chat = new AsyncChat(syncSDK.chat(), sdkConfiguration);
-        this.agents = new AsyncAgents(syncSDK.agents(), sdkConfiguration);
         this.entities = new AsyncEntities(syncSDK.entities(), sdkConfiguration);
         this.tools = new AsyncTools(syncSDK.tools(), sdkConfiguration);
         this.indexing = new AsyncIndexing(syncSDK.indexing(), sdkConfiguration);
