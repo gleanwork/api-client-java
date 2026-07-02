@@ -39,6 +39,7 @@ public class PlatformProblemDetailCode {
     public static final PlatformProblemDetailCode RESOURCE_NOT_FOUND = new PlatformProblemDetailCode("resource_not_found");
     public static final PlatformProblemDetailCode METHOD_NOT_ALLOWED = new PlatformProblemDetailCode("method_not_allowed");
     public static final PlatformProblemDetailCode REQUEST_TIMEOUT = new PlatformProblemDetailCode("request_timeout");
+    public static final PlatformProblemDetailCode REQUEST_TOO_LARGE = new PlatformProblemDetailCode("request_too_large");
     public static final PlatformProblemDetailCode CONFLICT = new PlatformProblemDetailCode("conflict");
     public static final PlatformProblemDetailCode GONE = new PlatformProblemDetailCode("gone");
     public static final PlatformProblemDetailCode UNPROCESSABLE_QUERY = new PlatformProblemDetailCode("unprocessable_query");
@@ -131,6 +132,7 @@ public class PlatformProblemDetailCode {
         map.put("resource_not_found", RESOURCE_NOT_FOUND);
         map.put("method_not_allowed", METHOD_NOT_ALLOWED);
         map.put("request_timeout", REQUEST_TIMEOUT);
+        map.put("request_too_large", REQUEST_TOO_LARGE);
         map.put("conflict", CONFLICT);
         map.put("gone", GONE);
         map.put("unprocessable_query", UNPROCESSABLE_QUERY);
@@ -155,6 +157,7 @@ public class PlatformProblemDetailCode {
         map.put("resource_not_found", PlatformProblemDetailCodeEnum.RESOURCE_NOT_FOUND);
         map.put("method_not_allowed", PlatformProblemDetailCodeEnum.METHOD_NOT_ALLOWED);
         map.put("request_timeout", PlatformProblemDetailCodeEnum.REQUEST_TIMEOUT);
+        map.put("request_too_large", PlatformProblemDetailCodeEnum.REQUEST_TOO_LARGE);
         map.put("conflict", PlatformProblemDetailCodeEnum.CONFLICT);
         map.put("gone", PlatformProblemDetailCodeEnum.GONE);
         map.put("unprocessable_query", PlatformProblemDetailCodeEnum.UNPROCESSABLE_QUERY);
@@ -180,6 +183,7 @@ public class PlatformProblemDetailCode {
         RESOURCE_NOT_FOUND("resource_not_found"),
         METHOD_NOT_ALLOWED("method_not_allowed"),
         REQUEST_TIMEOUT("request_timeout"),
+        REQUEST_TOO_LARGE("request_too_large"),
         CONFLICT("conflict"),
         GONE("gone"),
         UNPROCESSABLE_QUERY("unprocessable_query"),
