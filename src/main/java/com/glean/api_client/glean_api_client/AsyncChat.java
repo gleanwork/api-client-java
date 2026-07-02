@@ -6,12 +6,58 @@ package com.glean.api_client.glean_api_client;
 
 import static com.glean.api_client.glean_api_client.operations.Operations.AsyncRequestOperation;
 
+import com.glean.api_client.glean_api_client.models.components.ChatRequest;
+import com.glean.api_client.glean_api_client.models.components.DeleteChatFilesRequest;
+import com.glean.api_client.glean_api_client.models.components.DeleteChatsRequest;
+import com.glean.api_client.glean_api_client.models.components.GetChatApplicationRequest;
+import com.glean.api_client.glean_api_client.models.components.GetChatFilesRequest;
+import com.glean.api_client.glean_api_client.models.components.GetChatRequest;
+import com.glean.api_client.glean_api_client.models.components.UploadChatFilesRequest;
+import com.glean.api_client.glean_api_client.models.operations.ChatStreamRequest;
+import com.glean.api_client.glean_api_client.models.operations.DeleteallchatsRequest;
+import com.glean.api_client.glean_api_client.models.operations.DeletechatfilesRequest;
+import com.glean.api_client.glean_api_client.models.operations.DeletechatsRequest;
 import com.glean.api_client.glean_api_client.models.operations.GetChatFileRequest;
+import com.glean.api_client.glean_api_client.models.operations.GetchatRequest;
+import com.glean.api_client.glean_api_client.models.operations.GetchatapplicationRequest;
+import com.glean.api_client.glean_api_client.models.operations.GetchatfilesRequest;
+import com.glean.api_client.glean_api_client.models.operations.ListchatsRequest;
+import com.glean.api_client.glean_api_client.models.operations.UploadchatfilesRequest;
+import com.glean.api_client.glean_api_client.models.operations.async.ChatRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.ChatResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.ChatStreamRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.ChatStreamResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.DeleteallchatsRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.DeleteallchatsResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.DeletechatfilesRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.DeletechatfilesResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.DeletechatsRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.DeletechatsResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.GetChatFileRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.GetChatFileResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.GetchatRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.GetchatResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.GetchatapplicationRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.GetchatapplicationResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.GetchatfilesRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.GetchatfilesResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.ListchatsRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.ListchatsResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.UploadchatfilesRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.UploadchatfilesResponse;
+import com.glean.api_client.glean_api_client.operations.ChatStream;
+import com.glean.api_client.glean_api_client.operations.Deleteallchats;
+import com.glean.api_client.glean_api_client.operations.Deletechatfiles;
+import com.glean.api_client.glean_api_client.operations.Deletechats;
 import com.glean.api_client.glean_api_client.operations.GetChatFile;
+import com.glean.api_client.glean_api_client.operations.Getchat;
+import com.glean.api_client.glean_api_client.operations.Getchatapplication;
+import com.glean.api_client.glean_api_client.operations.Getchatfiles;
+import com.glean.api_client.glean_api_client.operations.Listchats;
+import com.glean.api_client.glean_api_client.operations.Uploadchatfiles;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Boolean;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -38,6 +84,449 @@ public class AsyncChat {
 
 
     /**
+     * Chat
+     * 
+     * <p>Have a conversation with Glean AI.
+     * 
+     * @return The async call builder
+     */
+    public ChatRequestBuilder create() {
+        return new ChatRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Chat
+     * 
+     * <p>Have a conversation with Glean AI.
+     * 
+     * @param chatRequest The minimal set of fields that form a chat request.
+     * @return {@code CompletableFuture<ChatResponse>} - The async response
+     */
+    public CompletableFuture<ChatResponse> create(ChatRequest chatRequest) {
+        return create(Optional.empty(), Optional.empty(), chatRequest);
+    }
+
+    /**
+     * Chat
+     * 
+     * <p>Have a conversation with Glean AI.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param chatRequest The minimal set of fields that form a chat request.
+     * @return {@code CompletableFuture<ChatResponse>} - The async response
+     */
+    public CompletableFuture<ChatResponse> create(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            ChatRequest chatRequest) {
+        com.glean.api_client.glean_api_client.models.operations.ChatRequest request =
+            com.glean.api_client.glean_api_client.models.operations.ChatRequest
+                .builder()
+                .locale(locale)
+                .timezoneOffset(timezoneOffset)
+                .chatRequest(chatRequest)
+                .build();
+        AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.ChatRequest, ChatResponse> operation
+              = new com.glean.api_client.glean_api_client.operations.Chat.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Deletes all saved Chats owned by a user
+     * 
+     * <p>Deletes all saved Chats a user has had and all their contained conversational content.
+     * 
+     * @return The async call builder
+     */
+    public DeleteallchatsRequestBuilder deleteAll() {
+        return new DeleteallchatsRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Deletes all saved Chats owned by a user
+     * 
+     * <p>Deletes all saved Chats a user has had and all their contained conversational content.
+     * 
+     * @return {@code CompletableFuture<DeleteallchatsResponse>} - The async response
+     */
+    public CompletableFuture<DeleteallchatsResponse> deleteAllDirect() {
+        return deleteAll(Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * Deletes all saved Chats owned by a user
+     * 
+     * <p>Deletes all saved Chats a user has had and all their contained conversational content.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @return {@code CompletableFuture<DeleteallchatsResponse>} - The async response
+     */
+    public CompletableFuture<DeleteallchatsResponse> deleteAll(Optional<String> locale, Optional<Long> timezoneOffset) {
+        DeleteallchatsRequest request =
+            DeleteallchatsRequest
+                .builder()
+                .locale(locale)
+                .timezoneOffset(timezoneOffset)
+                .build();
+        AsyncRequestOperation<DeleteallchatsRequest, DeleteallchatsResponse> operation
+              = new Deleteallchats.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Deletes saved Chats
+     * 
+     * <p>Deletes saved Chats and all their contained conversational content.
+     * 
+     * @return The async call builder
+     */
+    public DeletechatsRequestBuilder delete() {
+        return new DeletechatsRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Deletes saved Chats
+     * 
+     * <p>Deletes saved Chats and all their contained conversational content.
+     * 
+     * @param deleteChatsRequest 
+     * @return {@code CompletableFuture<DeletechatsResponse>} - The async response
+     */
+    public CompletableFuture<DeletechatsResponse> delete(DeleteChatsRequest deleteChatsRequest) {
+        return delete(Optional.empty(), Optional.empty(), deleteChatsRequest);
+    }
+
+    /**
+     * Deletes saved Chats
+     * 
+     * <p>Deletes saved Chats and all their contained conversational content.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param deleteChatsRequest 
+     * @return {@code CompletableFuture<DeletechatsResponse>} - The async response
+     */
+    public CompletableFuture<DeletechatsResponse> delete(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            DeleteChatsRequest deleteChatsRequest) {
+        DeletechatsRequest request =
+            DeletechatsRequest
+                .builder()
+                .locale(locale)
+                .timezoneOffset(timezoneOffset)
+                .deleteChatsRequest(deleteChatsRequest)
+                .build();
+        AsyncRequestOperation<DeletechatsRequest, DeletechatsResponse> operation
+              = new Deletechats.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Retrieves a Chat
+     * 
+     * <p>Retrieves the chat history between Glean Assistant and the user for a given Chat.
+     * 
+     * @return The async call builder
+     */
+    public GetchatRequestBuilder retrieve() {
+        return new GetchatRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Retrieves a Chat
+     * 
+     * <p>Retrieves the chat history between Glean Assistant and the user for a given Chat.
+     * 
+     * @param getChatRequest 
+     * @return {@code CompletableFuture<GetchatResponse>} - The async response
+     */
+    public CompletableFuture<GetchatResponse> retrieve(GetChatRequest getChatRequest) {
+        return retrieve(Optional.empty(), Optional.empty(), getChatRequest);
+    }
+
+    /**
+     * Retrieves a Chat
+     * 
+     * <p>Retrieves the chat history between Glean Assistant and the user for a given Chat.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param getChatRequest 
+     * @return {@code CompletableFuture<GetchatResponse>} - The async response
+     */
+    public CompletableFuture<GetchatResponse> retrieve(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            GetChatRequest getChatRequest) {
+        GetchatRequest request =
+            GetchatRequest
+                .builder()
+                .locale(locale)
+                .timezoneOffset(timezoneOffset)
+                .getChatRequest(getChatRequest)
+                .build();
+        AsyncRequestOperation<GetchatRequest, GetchatResponse> operation
+              = new Getchat.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Retrieves all saved Chats
+     * 
+     * <p>Retrieves all the saved Chats between Glean Assistant and the user. The returned Chats contain only
+     * metadata and no conversational content.
+     * 
+     * @return The async call builder
+     */
+    public ListchatsRequestBuilder list() {
+        return new ListchatsRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Retrieves all saved Chats
+     * 
+     * <p>Retrieves all the saved Chats between Glean Assistant and the user. The returned Chats contain only
+     * metadata and no conversational content.
+     * 
+     * @return {@code CompletableFuture<ListchatsResponse>} - The async response
+     */
+    public CompletableFuture<ListchatsResponse> listDirect() {
+        return list(Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * Retrieves all saved Chats
+     * 
+     * <p>Retrieves all the saved Chats between Glean Assistant and the user. The returned Chats contain only
+     * metadata and no conversational content.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @return {@code CompletableFuture<ListchatsResponse>} - The async response
+     */
+    public CompletableFuture<ListchatsResponse> list(Optional<String> locale, Optional<Long> timezoneOffset) {
+        ListchatsRequest request =
+            ListchatsRequest
+                .builder()
+                .locale(locale)
+                .timezoneOffset(timezoneOffset)
+                .build();
+        AsyncRequestOperation<ListchatsRequest, ListchatsResponse> operation
+              = new Listchats.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Gets the metadata for a custom Chat application
+     * 
+     * <p>Gets the Chat application details for the specified application ID.
+     * 
+     * @return The async call builder
+     */
+    public GetchatapplicationRequestBuilder retrieveApplication() {
+        return new GetchatapplicationRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Gets the metadata for a custom Chat application
+     * 
+     * <p>Gets the Chat application details for the specified application ID.
+     * 
+     * @param getChatApplicationRequest 
+     * @return {@code CompletableFuture<GetchatapplicationResponse>} - The async response
+     */
+    public CompletableFuture<GetchatapplicationResponse> retrieveApplication(GetChatApplicationRequest getChatApplicationRequest) {
+        return retrieveApplication(Optional.empty(), Optional.empty(), getChatApplicationRequest);
+    }
+
+    /**
+     * Gets the metadata for a custom Chat application
+     * 
+     * <p>Gets the Chat application details for the specified application ID.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param getChatApplicationRequest 
+     * @return {@code CompletableFuture<GetchatapplicationResponse>} - The async response
+     */
+    public CompletableFuture<GetchatapplicationResponse> retrieveApplication(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            GetChatApplicationRequest getChatApplicationRequest) {
+        GetchatapplicationRequest request =
+            GetchatapplicationRequest
+                .builder()
+                .locale(locale)
+                .timezoneOffset(timezoneOffset)
+                .getChatApplicationRequest(getChatApplicationRequest)
+                .build();
+        AsyncRequestOperation<GetchatapplicationRequest, GetchatapplicationResponse> operation
+              = new Getchatapplication.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Upload files for Chat
+     * 
+     * <p>Upload files for Chat.
+     * 
+     * @return The async call builder
+     */
+    public UploadchatfilesRequestBuilder uploadFiles() {
+        return new UploadchatfilesRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Upload files for Chat
+     * 
+     * <p>Upload files for Chat.
+     * 
+     * @param uploadChatFilesRequest 
+     * @return {@code CompletableFuture<UploadchatfilesResponse>} - The async response
+     */
+    public CompletableFuture<UploadchatfilesResponse> uploadFiles(UploadChatFilesRequest uploadChatFilesRequest) {
+        return uploadFiles(Optional.empty(), Optional.empty(), uploadChatFilesRequest);
+    }
+
+    /**
+     * Upload files for Chat
+     * 
+     * <p>Upload files for Chat.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param uploadChatFilesRequest 
+     * @return {@code CompletableFuture<UploadchatfilesResponse>} - The async response
+     */
+    public CompletableFuture<UploadchatfilesResponse> uploadFiles(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            UploadChatFilesRequest uploadChatFilesRequest) {
+        UploadchatfilesRequest request =
+            UploadchatfilesRequest
+                .builder()
+                .locale(locale)
+                .timezoneOffset(timezoneOffset)
+                .uploadChatFilesRequest(uploadChatFilesRequest)
+                .build();
+        AsyncRequestOperation<UploadchatfilesRequest, UploadchatfilesResponse> operation
+              = new Uploadchatfiles.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Get files uploaded by a user for Chat
+     * 
+     * <p>Get files uploaded by a user for Chat.
+     * 
+     * @return The async call builder
+     */
+    public GetchatfilesRequestBuilder retrieveFiles() {
+        return new GetchatfilesRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Get files uploaded by a user for Chat
+     * 
+     * <p>Get files uploaded by a user for Chat.
+     * 
+     * @param getChatFilesRequest 
+     * @return {@code CompletableFuture<GetchatfilesResponse>} - The async response
+     */
+    public CompletableFuture<GetchatfilesResponse> retrieveFiles(GetChatFilesRequest getChatFilesRequest) {
+        return retrieveFiles(Optional.empty(), Optional.empty(), getChatFilesRequest);
+    }
+
+    /**
+     * Get files uploaded by a user for Chat
+     * 
+     * <p>Get files uploaded by a user for Chat.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param getChatFilesRequest 
+     * @return {@code CompletableFuture<GetchatfilesResponse>} - The async response
+     */
+    public CompletableFuture<GetchatfilesResponse> retrieveFiles(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            GetChatFilesRequest getChatFilesRequest) {
+        GetchatfilesRequest request =
+            GetchatfilesRequest
+                .builder()
+                .locale(locale)
+                .timezoneOffset(timezoneOffset)
+                .getChatFilesRequest(getChatFilesRequest)
+                .build();
+        AsyncRequestOperation<GetchatfilesRequest, GetchatfilesResponse> operation
+              = new Getchatfiles.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Delete files uploaded by a user for chat
+     * 
+     * <p>Delete files uploaded by a user for Chat.
+     * 
+     * @return The async call builder
+     */
+    public DeletechatfilesRequestBuilder deleteFiles() {
+        return new DeletechatfilesRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Delete files uploaded by a user for chat
+     * 
+     * <p>Delete files uploaded by a user for Chat.
+     * 
+     * @param deleteChatFilesRequest 
+     * @return {@code CompletableFuture<DeletechatfilesResponse>} - The async response
+     */
+    public CompletableFuture<DeletechatfilesResponse> deleteFiles(DeleteChatFilesRequest deleteChatFilesRequest) {
+        return deleteFiles(Optional.empty(), Optional.empty(), deleteChatFilesRequest);
+    }
+
+    /**
+     * Delete files uploaded by a user for chat
+     * 
+     * <p>Delete files uploaded by a user for Chat.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param deleteChatFilesRequest 
+     * @return {@code CompletableFuture<DeletechatfilesResponse>} - The async response
+     */
+    public CompletableFuture<DeletechatfilesResponse> deleteFiles(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            DeleteChatFilesRequest deleteChatFilesRequest) {
+        DeletechatfilesRequest request =
+            DeletechatfilesRequest
+                .builder()
+                .locale(locale)
+                .timezoneOffset(timezoneOffset)
+                .deleteChatFilesRequest(deleteChatFilesRequest)
+                .build();
+        AsyncRequestOperation<DeletechatfilesRequest, DeletechatfilesResponse> operation
+              = new Deletechatfiles.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
      * Download a chat file
      * 
      * <p>Download the raw content of a file generated or uploaded during a chat session (for example, an
@@ -46,7 +535,7 @@ public class AsyncChat {
      * 
      * @return The async call builder
      */
-    public GetChatFileRequestBuilder getChatFile() {
+    public GetChatFileRequestBuilder retrieveFile() {
         return new GetChatFileRequestBuilder(sdkConfiguration);
     }
 
@@ -60,8 +549,8 @@ public class AsyncChat {
      * @param fileId Identifier of the chat file to download.
      * @return {@code CompletableFuture<GetChatFileResponse>} - The async response
      */
-    public CompletableFuture<GetChatFileResponse> getChatFile(String fileId) {
-        return getChatFile(fileId, Optional.empty());
+    public CompletableFuture<GetChatFileResponse> retrieveFile(String fileId) {
+        return retrieveFile(fileId, Optional.empty());
     }
 
     /**
@@ -76,7 +565,7 @@ public class AsyncChat {
      *         
      * @return {@code CompletableFuture<GetChatFileResponse>} - The async response
      */
-    public CompletableFuture<GetChatFileResponse> getChatFile(String fileId, Optional<Boolean> preview) {
+    public CompletableFuture<GetChatFileResponse> retrieveFile(String fileId, Optional<Boolean> preview) {
         GetChatFileRequest request =
             GetChatFileRequest
                 .builder()
@@ -85,6 +574,52 @@ public class AsyncChat {
                 .build();
         AsyncRequestOperation<GetChatFileRequest, GetChatFileResponse> operation
               = new GetChatFile.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Chat
+     * 
+     * <p>Have a conversation with Glean AI.
+     * 
+     * @return The async call builder
+     */
+    public ChatStreamRequestBuilder createStream() {
+        return new ChatStreamRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Chat
+     * 
+     * <p>Have a conversation with Glean AI.
+     * 
+     * @param chatRequest The minimal set of fields that form a chat request.
+     * @return {@code CompletableFuture<ChatStreamResponse>} - The async response
+     */
+    public CompletableFuture<ChatStreamResponse> createStream(ChatRequest chatRequest) {
+        return createStream(Optional.empty(), chatRequest);
+    }
+
+    /**
+     * Chat
+     * 
+     * <p>Have a conversation with Glean AI.
+     * 
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param chatRequest The minimal set of fields that form a chat request.
+     * @return {@code CompletableFuture<ChatStreamResponse>} - The async response
+     */
+    public CompletableFuture<ChatStreamResponse> createStream(Optional<Long> timezoneOffset, ChatRequest chatRequest) {
+        ChatStreamRequest request =
+            ChatStreamRequest
+                .builder()
+                .timezoneOffset(timezoneOffset)
+                .chatRequest(chatRequest)
+                .build();
+        AsyncRequestOperation<ChatStreamRequest, ChatStreamResponse> operation
+              = new ChatStream.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

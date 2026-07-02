@@ -67,7 +67,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.glean.api-client:glean-api-client:0.13.2'
+implementation 'com.glean.api-client:glean-api-client:0.14.0'
 ```
 
 Maven:
@@ -75,7 +75,7 @@ Maven:
 <dependency>
     <groupId>com.glean.api-client</groupId>
     <artifactId>glean-api-client</artifactId>
-    <version>0.13.2</version>
+    <version>0.14.0</version>
 </dependency>
 ```
 
@@ -179,10 +179,8 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.AsyncGlean;
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.*;
-import com.glean.api_client.glean_api_client.models.operations.async.ActivityResponse;
-import java.time.OffsetDateTime;
-import java.util.List;
+import com.glean.api_client.glean_api_client.models.components.PlatformAgentsSearchRequest;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsSearchResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class Application {
@@ -194,37 +192,19 @@ public class Application {
             .build()
             .async();
 
-        Activity req = Activity.builder()
-                .events(List.of(
-                    ActivityEvent.builder()
-                        .action(ActivityEventAction.HISTORICAL_VIEW)
-                        .timestamp(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
-                        .url("https://example.com/")
-                        .build(),
-                    ActivityEvent.builder()
-                        .action(ActivityEventAction.SEARCH)
-                        .timestamp(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
-                        .url("https://example.com/search?q=query")
-                        .params(ActivityEventParams.builder()
-                            .query("query")
-                            .build())
-                        .build(),
-                    ActivityEvent.builder()
-                        .action(ActivityEventAction.VIEW)
-                        .timestamp(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
-                        .url("https://example.com/")
-                        .params(ActivityEventParams.builder()
-                            .duration(20L)
-                            .referrer("https://example.com/document")
-                            .build())
-                        .build()))
+        PlatformAgentsSearchRequest req = PlatformAgentsSearchRequest.builder()
+                .name("HR Policy Agent")
                 .build();
 
-        CompletableFuture<ActivityResponse> resFut = sdk.client().activity().report()
+        CompletableFuture<PlatformAgentsSearchResponse> resFut = sdk.agents().search()
                 .request(req)
                 .call();
 
-        // handle response
+        resFut.thenAccept(res -> {
+            if (res.platformAgentsSearchResponse().isPresent()) {
+                System.out.println(res.platformAgentsSearchResponse().get());
+            }
+        });
     }
 }
 ```
@@ -323,51 +303,30 @@ To authenticate with the API the `apiToken` parameter must be set when initializ
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.*;
-import com.glean.api_client.glean_api_client.models.operations.ActivityResponse;
+import com.glean.api_client.glean_api_client.models.components.PlatformAgentsSearchRequest;
+import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsSearchResponse;
 import java.lang.Exception;
-import java.time.OffsetDateTime;
-import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws PlatformProblemDetailException, Exception {
 
         Glean sdk = Glean.builder()
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        Activity req = Activity.builder()
-                .events(List.of(
-                    ActivityEvent.builder()
-                        .action(ActivityEventAction.HISTORICAL_VIEW)
-                        .timestamp(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
-                        .url("https://example.com/")
-                        .build(),
-                    ActivityEvent.builder()
-                        .action(ActivityEventAction.SEARCH)
-                        .timestamp(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
-                        .url("https://example.com/search?q=query")
-                        .params(ActivityEventParams.builder()
-                            .query("query")
-                            .build())
-                        .build(),
-                    ActivityEvent.builder()
-                        .action(ActivityEventAction.VIEW)
-                        .timestamp(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
-                        .url("https://example.com/")
-                        .params(ActivityEventParams.builder()
-                            .duration(20L)
-                            .referrer("https://example.com/document")
-                            .build())
-                        .build()))
+        PlatformAgentsSearchRequest req = PlatformAgentsSearchRequest.builder()
+                .name("HR Policy Agent")
                 .build();
 
-        ActivityResponse res = sdk.client().activity().report()
+        PlatformAgentsSearchResponse res = sdk.agents().search()
                 .request(req)
                 .call();
 
-        // handle response
+        if (res.platformAgentsSearchResponse().isPresent()) {
+            System.out.println(res.platformAgentsSearchResponse().get());
+        }
     }
 }
 ```
@@ -410,16 +369,10 @@ For more information on obtaining the appropriate token type, please contact you
 
 ### [Agents](docs/sdks/agents/README.md)
 
-* [createAgent](docs/sdks/agents/README.md#createagent) - Create an agent
-* [editAgent](docs/sdks/agents/README.md#editagent) - Edit an agent
-
-### [Authentication](docs/sdks/authentication/README.md)
-
-* [checkdatasourceauth](docs/sdks/authentication/README.md#checkdatasourceauth) - Check datasource authorization
-
-### [Chat](docs/sdks/chat/README.md)
-
-* [getChatFile](docs/sdks/chat/README.md#getchatfile) - Download a chat file
+* [search](docs/sdks/agents/README.md#search) - Search agents
+* [get](docs/sdks/agents/README.md#get) - Get agent
+* [getSchemas](docs/sdks/agents/README.md#getschemas) - Get agent schemas
+* [createRun](docs/sdks/agents/README.md#createrun) - Create agent run
 
 ### [Client.Activity](docs/sdks/activity/README.md)
 
@@ -428,7 +381,9 @@ For more information on obtaining the appropriate token type, please contact you
 
 ### [Client.Agents](docs/sdks/clientagents/README.md)
 
+* [create](docs/sdks/clientagents/README.md#create) - Create an agent
 * [retrieve](docs/sdks/clientagents/README.md#retrieve) - Retrieve an agent
+* [update](docs/sdks/clientagents/README.md#update) - Edit an agent
 * [retrieveSchemas](docs/sdks/clientagents/README.md#retrieveschemas) - List an agent's schemas
 * [list](docs/sdks/clientagents/README.md#list) - Search agents
 * [runStream](docs/sdks/clientagents/README.md#runstream) - Create an agent run and stream the response
@@ -450,20 +405,22 @@ For more information on obtaining the appropriate token type, please contact you
 
 ### [Client.Authentication](docs/sdks/clientauthentication/README.md)
 
+* [checkDatasourceAuth](docs/sdks/clientauthentication/README.md#checkdatasourceauth) - Check datasource authorization
 * [createToken](docs/sdks/clientauthentication/README.md#createtoken) - Create authentication token
 
-### [Client.Chat](docs/sdks/clientchat/README.md)
+### [Client.Chat](docs/sdks/chat/README.md)
 
-* [create](docs/sdks/clientchat/README.md#create) - Chat
-* [deleteAll](docs/sdks/clientchat/README.md#deleteall) - Deletes all saved Chats owned by a user
-* [delete](docs/sdks/clientchat/README.md#delete) - Deletes saved Chats
-* [retrieve](docs/sdks/clientchat/README.md#retrieve) - Retrieves a Chat
-* [list](docs/sdks/clientchat/README.md#list) - Retrieves all saved Chats
-* [retrieveApplication](docs/sdks/clientchat/README.md#retrieveapplication) - Gets the metadata for a custom Chat application
-* [uploadFiles](docs/sdks/clientchat/README.md#uploadfiles) - Upload files for Chat
-* [retrieveFiles](docs/sdks/clientchat/README.md#retrievefiles) - Get files uploaded by a user for Chat
-* [deleteFiles](docs/sdks/clientchat/README.md#deletefiles) - Delete files uploaded by a user for chat
-* [createStream](docs/sdks/clientchat/README.md#createstream) - Chat
+* [create](docs/sdks/chat/README.md#create) - Chat
+* [deleteAll](docs/sdks/chat/README.md#deleteall) - Deletes all saved Chats owned by a user
+* [delete](docs/sdks/chat/README.md#delete) - Deletes saved Chats
+* [retrieve](docs/sdks/chat/README.md#retrieve) - Retrieves a Chat
+* [list](docs/sdks/chat/README.md#list) - Retrieves all saved Chats
+* [retrieveApplication](docs/sdks/chat/README.md#retrieveapplication) - Gets the metadata for a custom Chat application
+* [uploadFiles](docs/sdks/chat/README.md#uploadfiles) - Upload files for Chat
+* [retrieveFiles](docs/sdks/chat/README.md#retrievefiles) - Get files uploaded by a user for Chat
+* [deleteFiles](docs/sdks/chat/README.md#deletefiles) - Delete files uploaded by a user for chat
+* [retrieveFile](docs/sdks/chat/README.md#retrievefile) - Download a chat file
+* [createStream](docs/sdks/chat/README.md#createstream) - Chat
 
 ### [Client.Collections](docs/sdks/collections/README.md)
 
@@ -476,6 +433,13 @@ For more information on obtaining the appropriate token type, please contact you
 * [retrieve](docs/sdks/collections/README.md#retrieve) - Read Collection
 * [list](docs/sdks/collections/README.md#list) - List Collections
 
+### [Client.Datasources](docs/sdks/clientdatasources/README.md)
+
+* [retrieveConfiguration](docs/sdks/clientdatasources/README.md#retrieveconfiguration) - Get datasource instance configuration
+* [updateConfiguration](docs/sdks/clientdatasources/README.md#updateconfiguration) - Update datasource instance configuration
+* [retrieveCredentialStatus](docs/sdks/clientdatasources/README.md#retrievecredentialstatus) - Get datasource instance credential status
+* [rotateCredentials](docs/sdks/clientdatasources/README.md#rotatecredentials) - Rotate datasource instance credentials
+
 ### [Client.Documents](docs/sdks/clientdocuments/README.md)
 
 * [retrievePermissions](docs/sdks/clientdocuments/README.md#retrievepermissions) - Read document permissions
@@ -483,10 +447,18 @@ For more information on obtaining the appropriate token type, please contact you
 * [retrieveByFacets](docs/sdks/clientdocuments/README.md#retrievebyfacets) - Read documents by facets
 * [summarize](docs/sdks/clientdocuments/README.md#summarize) - Summarize documents
 
-### [Client.Entities](docs/sdks/cliententities/README.md)
+### [Client.Entities](docs/sdks/entities/README.md)
 
-* [list](docs/sdks/cliententities/README.md#list) - List entities
-* [readPeople](docs/sdks/cliententities/README.md#readpeople) - Read people
+* [list](docs/sdks/entities/README.md#list) - List entities
+* [readPeople](docs/sdks/entities/README.md#readpeople) - Read people
+* [retrievePersonPhoto](docs/sdks/entities/README.md#retrievepersonphoto) - Get person photo
+
+### [Client.Governance.Data.Findings](docs/sdks/findings/README.md)
+
+* [create](docs/sdks/findings/README.md#create) - Creates findings export
+* [list](docs/sdks/findings/README.md#list) - Lists findings exports
+* [download](docs/sdks/findings/README.md#download) - Downloads findings export
+* [delete](docs/sdks/findings/README.md#delete) - Deletes findings export
 
 ### [Client.Governance.Data.Policies](docs/sdks/policies/README.md)
 
@@ -523,13 +495,13 @@ For more information on obtaining the appropriate token type, please contact you
 * [create](docs/sdks/pins/README.md#create) - Create pin
 * [remove](docs/sdks/pins/README.md#remove) - Delete pin
 
-### [Client.Search](docs/sdks/search/README.md)
+### [Client.Search](docs/sdks/clientsearch/README.md)
 
-* [queryAsAdmin](docs/sdks/search/README.md#queryasadmin) - Search the index (admin)
-* [autocomplete](docs/sdks/search/README.md#autocomplete) - Autocomplete
-* [retrieveFeed](docs/sdks/search/README.md#retrievefeed) - Feed of documents and events
-* [recommendations](docs/sdks/search/README.md#recommendations) - Recommend documents
-* [query](docs/sdks/search/README.md#query) - Search
+* [queryAsAdmin](docs/sdks/clientsearch/README.md#queryasadmin) - Search the index (admin)
+* [autocomplete](docs/sdks/clientsearch/README.md#autocomplete) - Autocomplete
+* [retrieveFeed](docs/sdks/clientsearch/README.md#retrievefeed) - Feed of documents and events
+* [recommendations](docs/sdks/clientsearch/README.md#recommendations) - Recommend documents
+* [query](docs/sdks/clientsearch/README.md#query) - Search
 
 ### [Client.Shortcuts](docs/sdks/clientshortcuts/README.md)
 
@@ -539,34 +511,18 @@ For more information on obtaining the appropriate token type, please contact you
 * [list](docs/sdks/clientshortcuts/README.md#list) - List shortcuts
 * [update](docs/sdks/clientshortcuts/README.md#update) - Update shortcut
 
-### [Client.Tools](docs/sdks/clienttools/README.md)
+### [Client.Tools](docs/sdks/tools/README.md)
 
-* [list](docs/sdks/clienttools/README.md#list) - List available tools
-* [run](docs/sdks/clienttools/README.md#run) - Execute the specified tool
+* [list](docs/sdks/tools/README.md#list) - List available tools
+* [run](docs/sdks/tools/README.md#run) - Execute the specified tool
+* [retrieveActionPackAuthStatus](docs/sdks/tools/README.md#retrieveactionpackauthstatus) - Get end-user authentication status for an action pack.
+* [authorizeActionPack](docs/sdks/tools/README.md#authorizeactionpack) - Start the OAuth authorization flow for an action pack.
 
 ### [Client.Verification](docs/sdks/verification/README.md)
 
 * [addReminder](docs/sdks/verification/README.md#addreminder) - Create verification
 * [list](docs/sdks/verification/README.md#list) - List verifications
 * [verify](docs/sdks/verification/README.md#verify) - Update verification
-
-### [Datasources](docs/sdks/datasources/README.md)
-
-* [getDatasourceInstanceConfiguration](docs/sdks/datasources/README.md#getdatasourceinstanceconfiguration) - Get datasource instance configuration
-* [updateDatasourceInstanceConfiguration](docs/sdks/datasources/README.md#updatedatasourceinstanceconfiguration) - Update datasource instance configuration
-* [getDatasourceCredentialStatus](docs/sdks/datasources/README.md#getdatasourcecredentialstatus) - Get datasource instance credential status
-* [rotateDatasourceCredentials](docs/sdks/datasources/README.md#rotatedatasourcecredentials) - Rotate datasource instance credentials
-
-### [Entities](docs/sdks/entities/README.md)
-
-* [getPersonPhoto](docs/sdks/entities/README.md#getpersonphoto) - Get person photo
-
-### [Governance](docs/sdks/governance/README.md)
-
-* [createfindingsexport](docs/sdks/governance/README.md#createfindingsexport) - Creates findings export
-* [listfindingsexports](docs/sdks/governance/README.md#listfindingsexports) - Lists findings exports
-* [downloadfindingsexport](docs/sdks/governance/README.md#downloadfindingsexport) - Downloads findings export
-* [deletefindingsexport](docs/sdks/governance/README.md#deletefindingsexport) - Deletes findings export
 
 ### [Indexing.Authentication](docs/sdks/indexingauthentication/README.md)
 
@@ -604,6 +560,8 @@ For more information on obtaining the appropriate token type, please contact you
 * [checkAccess](docs/sdks/indexingdocuments/README.md#checkaccess) - Check document access
 * [~~status~~](docs/sdks/indexingdocuments/README.md#status) - Get document upload and indexing status :warning: **Deprecated**
 * [~~count~~](docs/sdks/indexingdocuments/README.md#count) - Get document count :warning: **Deprecated**
+* [debugEvents](docs/sdks/indexingdocuments/README.md#debugevents) - Beta: Get document lifecycle events
+
 
 ### [Indexing.People](docs/sdks/people/README.md)
 
@@ -638,15 +596,9 @@ For more information on obtaining the appropriate token type, please contact you
 * [bulkIndex](docs/sdks/indexingshortcuts/README.md#bulkindex) - Bulk index external shortcuts
 * [upload](docs/sdks/indexingshortcuts/README.md#upload) - Upload shortcuts
 
-### [Tools](docs/sdks/tools/README.md)
+### [Search](docs/sdks/search/README.md)
 
-* [getActionPackAuthStatus](docs/sdks/tools/README.md#getactionpackauthstatus) - Get end-user authentication status for an action pack.
-* [authorizeActionPack](docs/sdks/tools/README.md#authorizeactionpack) - Start the OAuth authorization flow for an action pack.
-
-### [Troubleshooting](docs/sdks/troubleshooting/README.md)
-
-* [postApiIndexV1DebugDatasourceDocumentEvents](docs/sdks/troubleshooting/README.md#postapiindexv1debugdatasourcedocumentevents) - Beta: Get document lifecycle events
-
+* [query](docs/sdks/search/README.md#query) - Search
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -673,9 +625,10 @@ Handling errors in this SDK should largely match your expectations. All operatio
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.errors.ErrorResponse;
+import com.glean.api_client.glean_api_client.models.components.PlatformAgentsSearchRequest;
 import com.glean.api_client.glean_api_client.models.errors.GleanError;
-import com.glean.api_client.glean_api_client.models.operations.GetAgentResponse;
+import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsSearchResponse;
 import java.io.UncheckedIOException;
 import java.lang.Exception;
 import java.lang.String;
@@ -683,19 +636,23 @@ import java.util.Optional;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, Exception {
+    public static void main(String[] args) throws PlatformProblemDetailException, Exception {
 
         Glean sdk = Glean.builder()
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
         try {
 
-            GetAgentResponse res = sdk.client().agents().retrieve()
-                    .agentId("<id>")
+            PlatformAgentsSearchRequest req = PlatformAgentsSearchRequest.builder()
+                    .name("HR Policy Agent")
+                    .build();
+
+            PlatformAgentsSearchResponse res = sdk.agents().search()
+                    .request(req)
                     .call();
 
-            if (res.agent().isPresent()) {
-                System.out.println(res.agent().get());
+            if (res.platformAgentsSearchResponse().isPresent()) {
+                System.out.println(res.platformAgentsSearchResponse().get());
             }
         } catch (GleanError ex) { // all SDK exceptions inherit from GleanError
 
@@ -712,11 +669,13 @@ public class Application {
 
             // different error subclasses may be thrown 
             // depending on the service call
-            if (ex instanceof ErrorResponse) {
-                var e = (ErrorResponse) ex;
+            if (ex instanceof PlatformProblemDetailException) {
+                var e = (PlatformProblemDetailException) ex;
                 // Check error data fields
                 e.data().ifPresent(payload -> {
-                      Optional<String> message = payload.message();
+                      String type = payload.type();
+                      String title = payload.title();
+                      // ...
                 });
             }
 
@@ -736,7 +695,7 @@ public class Application {
 **Primary error:**
 * [`GleanError`](./src/main/java/models/errors/GleanError.java): The base class for HTTP error responses.
 
-<details><summary>Less common errors (10)</summary>
+<details><summary>Less common errors (11)</summary>
 
 <br />
 
@@ -746,10 +705,11 @@ public class Application {
 many more subclasses in the JDK platform).
 
 **Inherit from [`GleanError`](./src/main/java/models/errors/GleanError.java)**:
-* [`com.glean.api_client.glean_api_client.models.errors.ErrorResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorResponse.java): Error response returned for failed requests. Applicable to 9 of 130 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse.java): Error response for custom metadata operations. Applicable to 5 of 130 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.CollectionError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.CollectionError.java): Semantic error. Status code `422`. Applicable to 3 of 130 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.GleanDataError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.GleanDataError.java): Forbidden. Applicable to 2 of 130 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.ErrorResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorResponse.java): Error response returned for failed requests. Applicable to 9 of 135 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException.java): Error response following RFC 9457, extended with `code` and `documentation_url` for machine-readable classification and self-service remediation. Applicable to 5 of 135 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse.java): Error response for custom metadata operations. Applicable to 5 of 135 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.CollectionError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.CollectionError.java): Semantic error. Status code `422`. Applicable to 3 of 135 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.GleanDataError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.GleanDataError.java): Forbidden. Applicable to 2 of 135 methods.*
 
 
 </details>
@@ -774,15 +734,14 @@ The default server `https://{instance}-be.glean.com` contains variables and is s
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.*;
-import com.glean.api_client.glean_api_client.models.operations.ActivityResponse;
+import com.glean.api_client.glean_api_client.models.components.PlatformAgentsSearchRequest;
+import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsSearchResponse;
 import java.lang.Exception;
-import java.time.OffsetDateTime;
-import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws PlatformProblemDetailException, Exception {
 
         Glean sdk = Glean.builder()
                 .serverIndex(0)
@@ -790,37 +749,17 @@ public class Application {
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        Activity req = Activity.builder()
-                .events(List.of(
-                    ActivityEvent.builder()
-                        .action(ActivityEventAction.HISTORICAL_VIEW)
-                        .timestamp(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
-                        .url("https://example.com/")
-                        .build(),
-                    ActivityEvent.builder()
-                        .action(ActivityEventAction.SEARCH)
-                        .timestamp(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
-                        .url("https://example.com/search?q=query")
-                        .params(ActivityEventParams.builder()
-                            .query("query")
-                            .build())
-                        .build(),
-                    ActivityEvent.builder()
-                        .action(ActivityEventAction.VIEW)
-                        .timestamp(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
-                        .url("https://example.com/")
-                        .params(ActivityEventParams.builder()
-                            .duration(20L)
-                            .referrer("https://example.com/document")
-                            .build())
-                        .build()))
+        PlatformAgentsSearchRequest req = PlatformAgentsSearchRequest.builder()
+                .name("HR Policy Agent")
                 .build();
 
-        ActivityResponse res = sdk.client().activity().report()
+        PlatformAgentsSearchResponse res = sdk.agents().search()
                 .request(req)
                 .call();
 
-        // handle response
+        if (res.platformAgentsSearchResponse().isPresent()) {
+            System.out.println(res.platformAgentsSearchResponse().get());
+        }
     }
 }
 ```
@@ -832,52 +771,31 @@ The default server can be overridden globally using the `.serverURL(String serve
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.*;
-import com.glean.api_client.glean_api_client.models.operations.ActivityResponse;
+import com.glean.api_client.glean_api_client.models.components.PlatformAgentsSearchRequest;
+import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsSearchResponse;
 import java.lang.Exception;
-import java.time.OffsetDateTime;
-import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws PlatformProblemDetailException, Exception {
 
         Glean sdk = Glean.builder()
                 .serverURL("https://instance-name-be.glean.com")
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        Activity req = Activity.builder()
-                .events(List.of(
-                    ActivityEvent.builder()
-                        .action(ActivityEventAction.HISTORICAL_VIEW)
-                        .timestamp(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
-                        .url("https://example.com/")
-                        .build(),
-                    ActivityEvent.builder()
-                        .action(ActivityEventAction.SEARCH)
-                        .timestamp(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
-                        .url("https://example.com/search?q=query")
-                        .params(ActivityEventParams.builder()
-                            .query("query")
-                            .build())
-                        .build(),
-                    ActivityEvent.builder()
-                        .action(ActivityEventAction.VIEW)
-                        .timestamp(OffsetDateTime.parse("2000-01-23T04:56:07.000Z"))
-                        .url("https://example.com/")
-                        .params(ActivityEventParams.builder()
-                            .duration(20L)
-                            .referrer("https://example.com/document")
-                            .build())
-                        .build()))
+        PlatformAgentsSearchRequest req = PlatformAgentsSearchRequest.builder()
+                .name("HR Policy Agent")
                 .build();
 
-        ActivityResponse res = sdk.client().activity().report()
+        PlatformAgentsSearchResponse res = sdk.agents().search()
                 .request(req)
                 .call();
 
-        // handle response
+        if (res.platformAgentsSearchResponse().isPresent()) {
+            System.out.println(res.platformAgentsSearchResponse().get());
+        }
     }
 }
 ```

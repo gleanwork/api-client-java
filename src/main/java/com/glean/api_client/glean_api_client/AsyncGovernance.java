@@ -4,37 +4,29 @@
  */
 package com.glean.api_client.glean_api_client;
 
-import static com.glean.api_client.glean_api_client.operations.Operations.AsyncRequestOperation;
-import static com.glean.api_client.glean_api_client.operations.Operations.AsyncRequestlessOperation;
-
-import com.glean.api_client.glean_api_client.models.components.DlpExportFindingsRequest;
-import com.glean.api_client.glean_api_client.models.operations.DeletefindingsexportRequest;
-import com.glean.api_client.glean_api_client.models.operations.DownloadfindingsexportRequest;
-import com.glean.api_client.glean_api_client.models.operations.async.CreatefindingsexportRequestBuilder;
-import com.glean.api_client.glean_api_client.models.operations.async.CreatefindingsexportResponse;
-import com.glean.api_client.glean_api_client.models.operations.async.DeletefindingsexportRequestBuilder;
-import com.glean.api_client.glean_api_client.models.operations.async.DeletefindingsexportResponse;
-import com.glean.api_client.glean_api_client.models.operations.async.DownloadfindingsexportRequestBuilder;
-import com.glean.api_client.glean_api_client.models.operations.async.DownloadfindingsexportResponse;
-import com.glean.api_client.glean_api_client.models.operations.async.ListfindingsexportsRequestBuilder;
-import com.glean.api_client.glean_api_client.models.operations.async.ListfindingsexportsResponse;
-import com.glean.api_client.glean_api_client.operations.Createfindingsexport;
-import com.glean.api_client.glean_api_client.operations.Deletefindingsexport;
-import com.glean.api_client.glean_api_client.operations.Downloadfindingsexport;
-import com.glean.api_client.glean_api_client.operations.Listfindingsexports;
 import com.glean.api_client.glean_api_client.utils.Headers;
-import java.lang.String;
-import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncGovernance {
     private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncData data;
+    private final AsyncGovernanceDocuments documents;
     private final Governance syncSDK;
 
     AsyncGovernance(Governance syncSDK, SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.data = new AsyncData(syncSDK.data(), this.sdkConfiguration);
+        this.documents = new AsyncGovernanceDocuments(syncSDK.documents(), this.sdkConfiguration);
         this.syncSDK = syncSDK;
+    }
+
+    public final AsyncData data() {
+        return data;
+    }
+
+    public final AsyncGovernanceDocuments documents() {
+        return documents;
     }
 
     /**
@@ -44,123 +36,6 @@ public class AsyncGovernance {
      */
     public Governance sync() {
         return syncSDK;
-    }
-
-
-    /**
-     * Creates findings export
-     * 
-     * <p>Creates a new DLP findings export job.
-     * 
-     * @return The async call builder
-     */
-    public CreatefindingsexportRequestBuilder createfindingsexport() {
-        return new CreatefindingsexportRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * Creates findings export
-     * 
-     * <p>Creates a new DLP findings export job.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @return {@code CompletableFuture<CreatefindingsexportResponse>} - The async response
-     */
-    public CompletableFuture<CreatefindingsexportResponse> createfindingsexport(DlpExportFindingsRequest request) {
-        AsyncRequestOperation<DlpExportFindingsRequest, CreatefindingsexportResponse> operation
-              = new Createfindingsexport.Async(sdkConfiguration, _headers);
-        return operation.doRequest(request)
-            .thenCompose(operation::handleResponse);
-    }
-
-
-    /**
-     * Lists findings exports
-     * 
-     * <p>Lists all DLP findings exports.
-     * 
-     * @return The async call builder
-     */
-    public ListfindingsexportsRequestBuilder listfindingsexports() {
-        return new ListfindingsexportsRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * Lists findings exports
-     * 
-     * <p>Lists all DLP findings exports.
-     * 
-     * @return {@code CompletableFuture<ListfindingsexportsResponse>} - The async response
-     */
-    public CompletableFuture<ListfindingsexportsResponse> listfindingsexportsDirect() {
-        AsyncRequestlessOperation<ListfindingsexportsResponse> operation
-            = new Listfindingsexports.Async(sdkConfiguration, _headers);
-        return operation.doRequest()
-            .thenCompose(operation::handleResponse);
-    }
-
-
-    /**
-     * Downloads findings export
-     * 
-     * <p>Downloads a DLP findings export as a CSV file.
-     * 
-     * @return The async call builder
-     */
-    public DownloadfindingsexportRequestBuilder downloadfindingsexport() {
-        return new DownloadfindingsexportRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * Downloads findings export
-     * 
-     * <p>Downloads a DLP findings export as a CSV file.
-     * 
-     * @param id The ID of the export to download.
-     * @return {@code CompletableFuture<DownloadfindingsexportResponse>} - The async response
-     */
-    public CompletableFuture<DownloadfindingsexportResponse> downloadfindingsexport(String id) {
-        DownloadfindingsexportRequest request =
-            DownloadfindingsexportRequest
-                .builder()
-                .id(id)
-                .build();
-        AsyncRequestOperation<DownloadfindingsexportRequest, DownloadfindingsexportResponse> operation
-              = new Downloadfindingsexport.Async(sdkConfiguration, _headers);
-        return operation.doRequest(request)
-            .thenCompose(operation::handleResponse);
-    }
-
-
-    /**
-     * Deletes findings export
-     * 
-     * <p>Deletes a DLP findings export.
-     * 
-     * @return The async call builder
-     */
-    public DeletefindingsexportRequestBuilder deletefindingsexport() {
-        return new DeletefindingsexportRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * Deletes findings export
-     * 
-     * <p>Deletes a DLP findings export.
-     * 
-     * @param id The ID of the export to delete.
-     * @return {@code CompletableFuture<DeletefindingsexportResponse>} - The async response
-     */
-    public CompletableFuture<DeletefindingsexportResponse> deletefindingsexport(long id) {
-        DeletefindingsexportRequest request =
-            DeletefindingsexportRequest
-                .builder()
-                .id(id)
-                .build();
-        AsyncRequestOperation<DeletefindingsexportRequest, DeletefindingsexportResponse> operation
-              = new Deletefindingsexport.Async(sdkConfiguration, _headers);
-        return operation.doRequest(request)
-            .thenCompose(operation::handleResponse);
     }
 
 }
