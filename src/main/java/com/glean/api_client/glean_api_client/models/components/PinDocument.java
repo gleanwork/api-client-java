@@ -67,6 +67,11 @@ public class PinDocument {
     @JsonProperty("updateTime")
     private Optional<OffsetDateTime> updateTime;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("favoriteInfo")
+    private Optional<? extends FavoriteInfo> favoriteInfo;
+
     @JsonCreator
     public PinDocument(
             @JsonProperty("queries") Optional<? extends List<String>> queries,
@@ -76,7 +81,8 @@ public class PinDocument {
             @JsonProperty("attribution") Optional<? extends Person> attribution,
             @JsonProperty("updatedBy") Optional<? extends Person> updatedBy,
             @JsonProperty("createTime") Optional<OffsetDateTime> createTime,
-            @JsonProperty("updateTime") Optional<OffsetDateTime> updateTime) {
+            @JsonProperty("updateTime") Optional<OffsetDateTime> updateTime,
+            @JsonProperty("favoriteInfo") Optional<? extends FavoriteInfo> favoriteInfo) {
         Utils.checkNotNull(queries, "queries");
         Utils.checkNotNull(audienceFilters, "audienceFilters");
         Utils.checkNotNull(id, "id");
@@ -85,6 +91,7 @@ public class PinDocument {
         Utils.checkNotNull(updatedBy, "updatedBy");
         Utils.checkNotNull(createTime, "createTime");
         Utils.checkNotNull(updateTime, "updateTime");
+        Utils.checkNotNull(favoriteInfo, "favoriteInfo");
         this.queries = queries;
         this.audienceFilters = audienceFilters;
         this.id = id;
@@ -93,13 +100,14 @@ public class PinDocument {
         this.updatedBy = updatedBy;
         this.createTime = createTime;
         this.updateTime = updateTime;
+        this.favoriteInfo = favoriteInfo;
     }
     
     public PinDocument(
             String documentId) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             documentId, Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -157,6 +165,12 @@ public class PinDocument {
     @JsonIgnore
     public Optional<OffsetDateTime> updateTime() {
         return updateTime;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<FavoriteInfo> favoriteInfo() {
+        return (Optional<FavoriteInfo>) favoriteInfo;
     }
 
     public static Builder builder() {
@@ -284,6 +298,19 @@ public class PinDocument {
         return this;
     }
 
+    public PinDocument withFavoriteInfo(FavoriteInfo favoriteInfo) {
+        Utils.checkNotNull(favoriteInfo, "favoriteInfo");
+        this.favoriteInfo = Optional.ofNullable(favoriteInfo);
+        return this;
+    }
+
+
+    public PinDocument withFavoriteInfo(Optional<? extends FavoriteInfo> favoriteInfo) {
+        Utils.checkNotNull(favoriteInfo, "favoriteInfo");
+        this.favoriteInfo = favoriteInfo;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -301,7 +328,8 @@ public class PinDocument {
             Utils.enhancedDeepEquals(this.attribution, other.attribution) &&
             Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
             Utils.enhancedDeepEquals(this.createTime, other.createTime) &&
-            Utils.enhancedDeepEquals(this.updateTime, other.updateTime);
+            Utils.enhancedDeepEquals(this.updateTime, other.updateTime) &&
+            Utils.enhancedDeepEquals(this.favoriteInfo, other.favoriteInfo);
     }
     
     @Override
@@ -309,7 +337,7 @@ public class PinDocument {
         return Utils.enhancedHash(
             queries, audienceFilters, id,
             documentId, attribution, updatedBy,
-            createTime, updateTime);
+            createTime, updateTime, favoriteInfo);
     }
     
     @Override
@@ -322,7 +350,8 @@ public class PinDocument {
                 "attribution", attribution,
                 "updatedBy", updatedBy,
                 "createTime", createTime,
-                "updateTime", updateTime);
+                "updateTime", updateTime,
+                "favoriteInfo", favoriteInfo);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -343,6 +372,8 @@ public class PinDocument {
         private Optional<OffsetDateTime> createTime = Optional.empty();
 
         private Optional<OffsetDateTime> updateTime = Optional.empty();
+
+        private Optional<? extends FavoriteInfo> favoriteInfo = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -469,12 +500,25 @@ public class PinDocument {
             return this;
         }
 
+
+        public Builder favoriteInfo(FavoriteInfo favoriteInfo) {
+            Utils.checkNotNull(favoriteInfo, "favoriteInfo");
+            this.favoriteInfo = Optional.ofNullable(favoriteInfo);
+            return this;
+        }
+
+        public Builder favoriteInfo(Optional<? extends FavoriteInfo> favoriteInfo) {
+            Utils.checkNotNull(favoriteInfo, "favoriteInfo");
+            this.favoriteInfo = favoriteInfo;
+            return this;
+        }
+
         public PinDocument build() {
 
             return new PinDocument(
                 queries, audienceFilters, id,
                 documentId, attribution, updatedBy,
-                createTime, updateTime);
+                createTime, updateTime, favoriteInfo);
         }
 
     }

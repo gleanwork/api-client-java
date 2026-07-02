@@ -170,6 +170,11 @@ public class Shortcut {
     @JsonProperty("roles")
     private Optional<? extends List<UserRoleSpecification>> roles;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("favoriteInfo")
+    private Optional<? extends FavoriteInfo> favoriteInfo;
+
     @JsonCreator
     public Shortcut(
             @JsonProperty("id") Optional<Long> id,
@@ -193,7 +198,8 @@ public class Shortcut {
             @JsonProperty("editUrl") Optional<String> editUrl,
             @JsonProperty("alias") Optional<String> alias,
             @JsonProperty("title") Optional<String> title,
-            @JsonProperty("roles") Optional<? extends List<UserRoleSpecification>> roles) {
+            @JsonProperty("roles") Optional<? extends List<UserRoleSpecification>> roles,
+            @JsonProperty("favoriteInfo") Optional<? extends FavoriteInfo> favoriteInfo) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(inputAlias, "inputAlias");
         Utils.checkNotNull(destinationUrl, "destinationUrl");
@@ -216,6 +222,7 @@ public class Shortcut {
         Utils.checkNotNull(alias, "alias");
         Utils.checkNotNull(title, "title");
         Utils.checkNotNull(roles, "roles");
+        Utils.checkNotNull(favoriteInfo, "favoriteInfo");
         this.id = id;
         this.inputAlias = inputAlias;
         this.destinationUrl = destinationUrl;
@@ -238,6 +245,7 @@ public class Shortcut {
         this.alias = alias;
         this.title = title;
         this.roles = roles;
+        this.favoriteInfo = favoriteInfo;
     }
     
     public Shortcut(
@@ -249,7 +257,7 @@ public class Shortcut {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -425,6 +433,12 @@ public class Shortcut {
     @JsonIgnore
     public Optional<List<UserRoleSpecification>> roles() {
         return (Optional<List<UserRoleSpecification>>) roles;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<FavoriteInfo> favoriteInfo() {
+        return (Optional<FavoriteInfo>) favoriteInfo;
     }
 
     public static Builder builder() {
@@ -824,6 +838,19 @@ public class Shortcut {
         return this;
     }
 
+    public Shortcut withFavoriteInfo(FavoriteInfo favoriteInfo) {
+        Utils.checkNotNull(favoriteInfo, "favoriteInfo");
+        this.favoriteInfo = Optional.ofNullable(favoriteInfo);
+        return this;
+    }
+
+
+    public Shortcut withFavoriteInfo(Optional<? extends FavoriteInfo> favoriteInfo) {
+        Utils.checkNotNull(favoriteInfo, "favoriteInfo");
+        this.favoriteInfo = favoriteInfo;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -855,7 +882,8 @@ public class Shortcut {
             Utils.enhancedDeepEquals(this.editUrl, other.editUrl) &&
             Utils.enhancedDeepEquals(this.alias, other.alias) &&
             Utils.enhancedDeepEquals(this.title, other.title) &&
-            Utils.enhancedDeepEquals(this.roles, other.roles);
+            Utils.enhancedDeepEquals(this.roles, other.roles) &&
+            Utils.enhancedDeepEquals(this.favoriteInfo, other.favoriteInfo);
     }
     
     @Override
@@ -868,7 +896,7 @@ public class Shortcut {
             updatedBy, updateTime, destinationDocument,
             intermediateUrl, viewPrefix, isExternal,
             editUrl, alias, title,
-            roles);
+            roles, favoriteInfo);
     }
     
     @Override
@@ -895,7 +923,8 @@ public class Shortcut {
                 "editUrl", editUrl,
                 "alias", alias,
                 "title", title,
-                "roles", roles);
+                "roles", roles,
+                "favoriteInfo", favoriteInfo);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -944,6 +973,8 @@ public class Shortcut {
         private Optional<String> title = Optional.empty();
 
         private Optional<? extends List<UserRoleSpecification>> roles = Optional.empty();
+
+        private Optional<? extends FavoriteInfo> favoriteInfo = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -1342,6 +1373,19 @@ public class Shortcut {
             return this;
         }
 
+
+        public Builder favoriteInfo(FavoriteInfo favoriteInfo) {
+            Utils.checkNotNull(favoriteInfo, "favoriteInfo");
+            this.favoriteInfo = Optional.ofNullable(favoriteInfo);
+            return this;
+        }
+
+        public Builder favoriteInfo(Optional<? extends FavoriteInfo> favoriteInfo) {
+            Utils.checkNotNull(favoriteInfo, "favoriteInfo");
+            this.favoriteInfo = favoriteInfo;
+            return this;
+        }
+
         public Shortcut build() {
 
             return new Shortcut(
@@ -1352,7 +1396,7 @@ public class Shortcut {
                 updatedBy, updateTime, destinationDocument,
                 intermediateUrl, viewPrefix, isExternal,
                 editUrl, alias, title,
-                roles);
+                roles, favoriteInfo);
         }
 
     }
