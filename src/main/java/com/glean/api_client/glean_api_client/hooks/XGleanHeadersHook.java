@@ -17,7 +17,7 @@ import java.util.function.Function;
  * <p>This hook sets the following headers based on SDK options or environment variables:
  * <ul>
  *   <li>{@code X-Glean-Exclude-Deprecated-After} - Exclude API endpoints deprecated after this date</li>
- *   <li>{@code X-Glean-Experimental} - Enable experimental API features</li>
+ *   <li>{@code X-Glean-Include-Experimental} - Enable experimental API features</li>
  * </ul>
  *
  * <p>Environment variables take precedence over SDK constructor options:
@@ -32,7 +32,7 @@ public final class XGleanHeadersHook {
     static final String ENV_INCLUDE_EXPERIMENTAL = "X_GLEAN_INCLUDE_EXPERIMENTAL";
 
     static final String HEADER_EXCLUDE_DEPRECATED_AFTER = "X-Glean-Exclude-Deprecated-After";
-    static final String HEADER_EXPERIMENTAL = "X-Glean-Experimental";
+    static final String HEADER_EXPERIMENTAL = "X-Glean-Include-Experimental";
 
     private XGleanHeadersHook() {
         // prevent instantiation
