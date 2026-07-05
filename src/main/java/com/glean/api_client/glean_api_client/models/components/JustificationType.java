@@ -60,6 +60,7 @@ public class JustificationType {
     public static final JustificationType ZERO_STATE_AGENT_SUGGESTION = new JustificationType("ZERO_STATE_AGENT_SUGGESTION");
     public static final JustificationType PERSONALIZED_CHAT_SUGGESTION = new JustificationType("PERSONALIZED_CHAT_SUGGESTION");
     public static final JustificationType DAILY_DIGEST = new JustificationType("DAILY_DIGEST");
+    public static final JustificationType PODCAST = new JustificationType("PODCAST");
     public static final JustificationType TASK = new JustificationType("TASK");
     public static final JustificationType PLAN_MY_DAY = new JustificationType("PLAN_MY_DAY");
     public static final JustificationType END_MY_DAY = new JustificationType("END_MY_DAY");
@@ -188,6 +189,7 @@ public class JustificationType {
         map.put("ZERO_STATE_AGENT_SUGGESTION", ZERO_STATE_AGENT_SUGGESTION);
         map.put("PERSONALIZED_CHAT_SUGGESTION", PERSONALIZED_CHAT_SUGGESTION);
         map.put("DAILY_DIGEST", DAILY_DIGEST);
+        map.put("PODCAST", PODCAST);
         map.put("TASK", TASK);
         map.put("PLAN_MY_DAY", PLAN_MY_DAY);
         map.put("END_MY_DAY", END_MY_DAY);
@@ -248,6 +250,7 @@ public class JustificationType {
         map.put("ZERO_STATE_AGENT_SUGGESTION", JustificationTypeEnum.ZERO_STATE_AGENT_SUGGESTION);
         map.put("PERSONALIZED_CHAT_SUGGESTION", JustificationTypeEnum.PERSONALIZED_CHAT_SUGGESTION);
         map.put("DAILY_DIGEST", JustificationTypeEnum.DAILY_DIGEST);
+        map.put("PODCAST", JustificationTypeEnum.PODCAST);
         map.put("TASK", JustificationTypeEnum.TASK);
         map.put("PLAN_MY_DAY", JustificationTypeEnum.PLAN_MY_DAY);
         map.put("END_MY_DAY", JustificationTypeEnum.END_MY_DAY);
@@ -309,6 +312,7 @@ public class JustificationType {
         ZERO_STATE_AGENT_SUGGESTION("ZERO_STATE_AGENT_SUGGESTION"),
         PERSONALIZED_CHAT_SUGGESTION("PERSONALIZED_CHAT_SUGGESTION"),
         DAILY_DIGEST("DAILY_DIGEST"),
+        PODCAST("PODCAST"),
         TASK("TASK"),
         PLAN_MY_DAY("PLAN_MY_DAY"),
         END_MY_DAY("END_MY_DAY"),

@@ -63,7 +63,7 @@ public class Application {
 
 | Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| models/errors/PlatformProblemDetailException | 400, 401, 403, 404, 408, 429                 | application/problem+json                     |
+| models/errors/PlatformProblemDetailException | 400, 401, 403, 404, 408, 413, 429            | application/problem+json                     |
 | models/errors/PlatformProblemDetailException | 500, 503                                     | application/problem+json                     |
 | models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
 
@@ -234,6 +234,6 @@ public class Application {
 
 | Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| models/errors/PlatformProblemDetailException | 400, 401, 403, 404, 408, 409, 429            | application/problem+json                     |
+| models/errors/PlatformProblemDetailException | 400, 401, 403, 404, 408, 409, 413, 429       | application/problem+json                     |
 | models/errors/PlatformProblemDetailException | 500, 503                                     | application/problem+json                     |
 | models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |

@@ -176,6 +176,11 @@ public class EditCollectionResponse {
     private Optional<? extends List<UserRoleSpecification>> roles;
 
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("favoriteInfo")
+    private Optional<? extends FavoriteInfo> favoriteInfo;
+
+
     @JsonProperty("errorCode")
     private EditCollectionResponseErrorCode errorCode;
 
@@ -215,6 +220,7 @@ public class EditCollectionResponse {
             @JsonProperty("shortcuts") Optional<? extends List<String>> shortcuts,
             @JsonProperty("children") Optional<? extends List<Collection>> children,
             @JsonProperty("roles") Optional<? extends List<UserRoleSpecification>> roles,
+            @JsonProperty("favoriteInfo") Optional<? extends FavoriteInfo> favoriteInfo,
             @JsonProperty("errorCode") EditCollectionResponseErrorCode errorCode,
             @JsonProperty("collection") Optional<? extends Collection> collection,
             @JsonProperty("error") Optional<? extends CollectionError2> error) {
@@ -242,6 +248,7 @@ public class EditCollectionResponse {
         Utils.checkNotNull(shortcuts, "shortcuts");
         Utils.checkNotNull(children, "children");
         Utils.checkNotNull(roles, "roles");
+        Utils.checkNotNull(favoriteInfo, "favoriteInfo");
         Utils.checkNotNull(errorCode, "errorCode");
         Utils.checkNotNull(collection, "collection");
         Utils.checkNotNull(error, "error");
@@ -269,6 +276,7 @@ public class EditCollectionResponse {
         this.shortcuts = shortcuts;
         this.children = children;
         this.roles = roles;
+        this.favoriteInfo = favoriteInfo;
         this.errorCode = errorCode;
         this.collection = collection;
         this.error = error;
@@ -287,7 +295,8 @@ public class EditCollectionResponse {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            errorCode, Optional.empty(), Optional.empty());
+            Optional.empty(), errorCode, Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -474,6 +483,12 @@ public class EditCollectionResponse {
     @JsonIgnore
     public Optional<List<UserRoleSpecification>> roles() {
         return (Optional<List<UserRoleSpecification>>) roles;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<FavoriteInfo> favoriteInfo() {
+        return (Optional<FavoriteInfo>) favoriteInfo;
     }
 
     @JsonIgnore
@@ -888,6 +903,19 @@ public class EditCollectionResponse {
         return this;
     }
 
+    public EditCollectionResponse withFavoriteInfo(FavoriteInfo favoriteInfo) {
+        Utils.checkNotNull(favoriteInfo, "favoriteInfo");
+        this.favoriteInfo = Optional.ofNullable(favoriteInfo);
+        return this;
+    }
+
+
+    public EditCollectionResponse withFavoriteInfo(Optional<? extends FavoriteInfo> favoriteInfo) {
+        Utils.checkNotNull(favoriteInfo, "favoriteInfo");
+        this.favoriteInfo = favoriteInfo;
+        return this;
+    }
+
     public EditCollectionResponse withErrorCode(EditCollectionResponseErrorCode errorCode) {
         Utils.checkNotNull(errorCode, "errorCode");
         this.errorCode = errorCode;
@@ -954,6 +982,7 @@ public class EditCollectionResponse {
             Utils.enhancedDeepEquals(this.shortcuts, other.shortcuts) &&
             Utils.enhancedDeepEquals(this.children, other.children) &&
             Utils.enhancedDeepEquals(this.roles, other.roles) &&
+            Utils.enhancedDeepEquals(this.favoriteInfo, other.favoriteInfo) &&
             Utils.enhancedDeepEquals(this.errorCode, other.errorCode) &&
             Utils.enhancedDeepEquals(this.collection, other.collection) &&
             Utils.enhancedDeepEquals(this.error, other.error);
@@ -970,7 +999,8 @@ public class EditCollectionResponse {
             creator, updatedBy, itemCount,
             childCount, items, pinMetadata,
             shortcuts, children, roles,
-            errorCode, collection, error);
+            favoriteInfo, errorCode, collection,
+            error);
     }
     
     @Override
@@ -1000,6 +1030,7 @@ public class EditCollectionResponse {
                 "shortcuts", shortcuts,
                 "children", children,
                 "roles", roles,
+                "favoriteInfo", favoriteInfo,
                 "errorCode", errorCode,
                 "collection", collection,
                 "error", error);
@@ -1055,6 +1086,8 @@ public class EditCollectionResponse {
         private Optional<? extends List<Collection>> children = Optional.empty();
 
         private Optional<? extends List<UserRoleSpecification>> roles = Optional.empty();
+
+        private Optional<? extends FavoriteInfo> favoriteInfo = Optional.empty();
 
         private EditCollectionResponseErrorCode errorCode;
 
@@ -1460,6 +1493,19 @@ public class EditCollectionResponse {
         }
 
 
+        public Builder favoriteInfo(FavoriteInfo favoriteInfo) {
+            Utils.checkNotNull(favoriteInfo, "favoriteInfo");
+            this.favoriteInfo = Optional.ofNullable(favoriteInfo);
+            return this;
+        }
+
+        public Builder favoriteInfo(Optional<? extends FavoriteInfo> favoriteInfo) {
+            Utils.checkNotNull(favoriteInfo, "favoriteInfo");
+            this.favoriteInfo = favoriteInfo;
+            return this;
+        }
+
+
         public Builder errorCode(EditCollectionResponseErrorCode errorCode) {
             Utils.checkNotNull(errorCode, "errorCode");
             this.errorCode = errorCode;
@@ -1503,7 +1549,8 @@ public class EditCollectionResponse {
                 creator, updatedBy, itemCount,
                 childCount, items, pinMetadata,
                 shortcuts, children, roles,
-                errorCode, collection, error);
+                favoriteInfo, errorCode, collection,
+                error);
         }
 
     }

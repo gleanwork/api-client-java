@@ -185,6 +185,11 @@ public class Announcement {
     @JsonProperty("isPublished")
     private Optional<Boolean> isPublished;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("favoriteInfo")
+    private Optional<? extends FavoriteInfo> favoriteInfo;
+
     @JsonCreator
     public Announcement(
             @JsonProperty("startTime") Optional<OffsetDateTime> startTime,
@@ -211,7 +216,8 @@ public class Announcement {
             @JsonProperty("updatedBy") Optional<? extends Person> updatedBy,
             @JsonProperty("viewerInfo") Optional<? extends AnnouncementViewerInfo> viewerInfo,
             @JsonProperty("sourceDocument") Optional<? extends Document> sourceDocument,
-            @JsonProperty("isPublished") Optional<Boolean> isPublished) {
+            @JsonProperty("isPublished") Optional<Boolean> isPublished,
+            @JsonProperty("favoriteInfo") Optional<? extends FavoriteInfo> favoriteInfo) {
         Utils.checkNotNull(startTime, "startTime");
         Utils.checkNotNull(endTime, "endTime");
         Utils.checkNotNull(title, "title");
@@ -237,6 +243,7 @@ public class Announcement {
         Utils.checkNotNull(viewerInfo, "viewerInfo");
         Utils.checkNotNull(sourceDocument, "sourceDocument");
         Utils.checkNotNull(isPublished, "isPublished");
+        Utils.checkNotNull(favoriteInfo, "favoriteInfo");
         this.startTime = startTime;
         this.endTime = endTime;
         this.title = title;
@@ -262,6 +269,7 @@ public class Announcement {
         this.viewerInfo = viewerInfo;
         this.sourceDocument = sourceDocument;
         this.isPublished = isPublished;
+        this.favoriteInfo = favoriteInfo;
     }
     
     public Announcement() {
@@ -273,7 +281,7 @@ public class Announcement {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -466,6 +474,12 @@ public class Announcement {
     @JsonIgnore
     public Optional<Boolean> isPublished() {
         return isPublished;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<FavoriteInfo> favoriteInfo() {
+        return (Optional<FavoriteInfo>) favoriteInfo;
     }
 
     public static Builder builder() {
@@ -910,6 +924,19 @@ public class Announcement {
         return this;
     }
 
+    public Announcement withFavoriteInfo(FavoriteInfo favoriteInfo) {
+        Utils.checkNotNull(favoriteInfo, "favoriteInfo");
+        this.favoriteInfo = Optional.ofNullable(favoriteInfo);
+        return this;
+    }
+
+
+    public Announcement withFavoriteInfo(Optional<? extends FavoriteInfo> favoriteInfo) {
+        Utils.checkNotNull(favoriteInfo, "favoriteInfo");
+        this.favoriteInfo = favoriteInfo;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -944,7 +971,8 @@ public class Announcement {
             Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
             Utils.enhancedDeepEquals(this.viewerInfo, other.viewerInfo) &&
             Utils.enhancedDeepEquals(this.sourceDocument, other.sourceDocument) &&
-            Utils.enhancedDeepEquals(this.isPublished, other.isPublished);
+            Utils.enhancedDeepEquals(this.isPublished, other.isPublished) &&
+            Utils.enhancedDeepEquals(this.favoriteInfo, other.favoriteInfo);
     }
     
     @Override
@@ -958,7 +986,7 @@ public class Announcement {
             permissions, trackingToken, id,
             author, createTimestamp, lastUpdateTimestamp,
             updatedBy, viewerInfo, sourceDocument,
-            isPublished);
+            isPublished, favoriteInfo);
     }
     
     @Override
@@ -988,7 +1016,8 @@ public class Announcement {
                 "updatedBy", updatedBy,
                 "viewerInfo", viewerInfo,
                 "sourceDocument", sourceDocument,
-                "isPublished", isPublished);
+                "isPublished", isPublished,
+                "favoriteInfo", favoriteInfo);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -1043,6 +1072,8 @@ public class Announcement {
         private Optional<? extends Document> sourceDocument = Optional.empty();
 
         private Optional<Boolean> isPublished = Optional.empty();
+
+        private Optional<? extends FavoriteInfo> favoriteInfo = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -1485,6 +1516,19 @@ public class Announcement {
             return this;
         }
 
+
+        public Builder favoriteInfo(FavoriteInfo favoriteInfo) {
+            Utils.checkNotNull(favoriteInfo, "favoriteInfo");
+            this.favoriteInfo = Optional.ofNullable(favoriteInfo);
+            return this;
+        }
+
+        public Builder favoriteInfo(Optional<? extends FavoriteInfo> favoriteInfo) {
+            Utils.checkNotNull(favoriteInfo, "favoriteInfo");
+            this.favoriteInfo = favoriteInfo;
+            return this;
+        }
+
         public Announcement build() {
 
             return new Announcement(
@@ -1496,7 +1540,7 @@ public class Announcement {
                 permissions, trackingToken, id,
                 author, createTimestamp, lastUpdateTimestamp,
                 updatedBy, viewerInfo, sourceDocument,
-                isPublished);
+                isPublished, favoriteInfo);
         }
 
     }
