@@ -51,6 +51,7 @@ public class FeedResultCategory {
     public static final FeedResultCategory ZERO_STATE_WORKFLOW_SUGGESTION = new FeedResultCategory("ZERO_STATE_WORKFLOW_SUGGESTION");
     public static final FeedResultCategory PERSONALIZED_CHAT_SUGGESTION = new FeedResultCategory("PERSONALIZED_CHAT_SUGGESTION");
     public static final FeedResultCategory DAILY_DIGEST = new FeedResultCategory("DAILY_DIGEST");
+    public static final FeedResultCategory PODCAST = new FeedResultCategory("PODCAST");
     public static final FeedResultCategory TASK = new FeedResultCategory("TASK");
     public static final FeedResultCategory PLAN_MY_DAY = new FeedResultCategory("PLAN_MY_DAY");
     public static final FeedResultCategory END_MY_DAY = new FeedResultCategory("END_MY_DAY");
@@ -166,6 +167,7 @@ public class FeedResultCategory {
         map.put("ZERO_STATE_WORKFLOW_SUGGESTION", ZERO_STATE_WORKFLOW_SUGGESTION);
         map.put("PERSONALIZED_CHAT_SUGGESTION", PERSONALIZED_CHAT_SUGGESTION);
         map.put("DAILY_DIGEST", DAILY_DIGEST);
+        map.put("PODCAST", PODCAST);
         map.put("TASK", TASK);
         map.put("PLAN_MY_DAY", PLAN_MY_DAY);
         map.put("END_MY_DAY", END_MY_DAY);
@@ -213,6 +215,7 @@ public class FeedResultCategory {
         map.put("ZERO_STATE_WORKFLOW_SUGGESTION", FeedResultCategoryEnum.ZERO_STATE_WORKFLOW_SUGGESTION);
         map.put("PERSONALIZED_CHAT_SUGGESTION", FeedResultCategoryEnum.PERSONALIZED_CHAT_SUGGESTION);
         map.put("DAILY_DIGEST", FeedResultCategoryEnum.DAILY_DIGEST);
+        map.put("PODCAST", FeedResultCategoryEnum.PODCAST);
         map.put("TASK", FeedResultCategoryEnum.TASK);
         map.put("PLAN_MY_DAY", FeedResultCategoryEnum.PLAN_MY_DAY);
         map.put("END_MY_DAY", FeedResultCategoryEnum.END_MY_DAY);
@@ -261,6 +264,7 @@ public class FeedResultCategory {
         ZERO_STATE_WORKFLOW_SUGGESTION("ZERO_STATE_WORKFLOW_SUGGESTION"),
         PERSONALIZED_CHAT_SUGGESTION("PERSONALIZED_CHAT_SUGGESTION"),
         DAILY_DIGEST("DAILY_DIGEST"),
+        PODCAST("PODCAST"),
         TASK("TASK"),
         PLAN_MY_DAY("PLAN_MY_DAY"),
         END_MY_DAY("END_MY_DAY"),
