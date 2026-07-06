@@ -43,6 +43,7 @@ FeedResultCategory custom = FeedResultCategory.of("custom_value");
 | `ZERO_STATE_WORKFLOW_SUGGESTION`    | ZERO_STATE_WORKFLOW_SUGGESTION      |
 | `PERSONALIZED_CHAT_SUGGESTION`      | PERSONALIZED_CHAT_SUGGESTION        |
 | `DAILY_DIGEST`                      | DAILY_DIGEST                        |
+| `PODCAST`                           | PODCAST                             |
 | `TASK`                              | TASK                                |
 | `PLAN_MY_DAY`                       | PLAN_MY_DAY                         |
 | `END_MY_DAY`                        | END_MY_DAY                          |

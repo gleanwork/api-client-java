@@ -13,6 +13,7 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -31,19 +32,27 @@ public class AnswerResult {
     @Deprecated
     private Optional<String> trackingToken;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("favoriteInfo")
+    private Optional<? extends FavoriteInfo> favoriteInfo;
+
     @JsonCreator
     public AnswerResult(
             @JsonProperty("answer") Answer answer,
-            @JsonProperty("trackingToken") Optional<String> trackingToken) {
+            @JsonProperty("trackingToken") Optional<String> trackingToken,
+            @JsonProperty("favoriteInfo") Optional<? extends FavoriteInfo> favoriteInfo) {
         Utils.checkNotNull(answer, "answer");
         Utils.checkNotNull(trackingToken, "trackingToken");
+        Utils.checkNotNull(favoriteInfo, "favoriteInfo");
         this.answer = answer;
         this.trackingToken = trackingToken;
+        this.favoriteInfo = favoriteInfo;
     }
     
     public AnswerResult(
             Answer answer) {
-        this(answer, Optional.empty());
+        this(answer, Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -60,6 +69,12 @@ public class AnswerResult {
     @JsonIgnore
     public Optional<String> trackingToken() {
         return trackingToken;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<FavoriteInfo> favoriteInfo() {
+        return (Optional<FavoriteInfo>) favoriteInfo;
     }
 
     public static Builder builder() {
@@ -98,6 +113,19 @@ public class AnswerResult {
         return this;
     }
 
+    public AnswerResult withFavoriteInfo(FavoriteInfo favoriteInfo) {
+        Utils.checkNotNull(favoriteInfo, "favoriteInfo");
+        this.favoriteInfo = Optional.ofNullable(favoriteInfo);
+        return this;
+    }
+
+
+    public AnswerResult withFavoriteInfo(Optional<? extends FavoriteInfo> favoriteInfo) {
+        Utils.checkNotNull(favoriteInfo, "favoriteInfo");
+        this.favoriteInfo = favoriteInfo;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -109,20 +137,22 @@ public class AnswerResult {
         AnswerResult other = (AnswerResult) o;
         return 
             Utils.enhancedDeepEquals(this.answer, other.answer) &&
-            Utils.enhancedDeepEquals(this.trackingToken, other.trackingToken);
+            Utils.enhancedDeepEquals(this.trackingToken, other.trackingToken) &&
+            Utils.enhancedDeepEquals(this.favoriteInfo, other.favoriteInfo);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            answer, trackingToken);
+            answer, trackingToken, favoriteInfo);
     }
     
     @Override
     public String toString() {
         return Utils.toString(AnswerResult.class,
                 "answer", answer,
-                "trackingToken", trackingToken);
+                "trackingToken", trackingToken,
+                "favoriteInfo", favoriteInfo);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -132,6 +162,8 @@ public class AnswerResult {
 
         @Deprecated
         private Optional<String> trackingToken = Optional.empty();
+
+        private Optional<? extends FavoriteInfo> favoriteInfo = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -169,10 +201,23 @@ public class AnswerResult {
             return this;
         }
 
+
+        public Builder favoriteInfo(FavoriteInfo favoriteInfo) {
+            Utils.checkNotNull(favoriteInfo, "favoriteInfo");
+            this.favoriteInfo = Optional.ofNullable(favoriteInfo);
+            return this;
+        }
+
+        public Builder favoriteInfo(Optional<? extends FavoriteInfo> favoriteInfo) {
+            Utils.checkNotNull(favoriteInfo, "favoriteInfo");
+            this.favoriteInfo = favoriteInfo;
+            return this;
+        }
+
         public AnswerResult build() {
 
             return new AnswerResult(
-                answer, trackingToken);
+                answer, trackingToken, favoriteInfo);
         }
 
     }
