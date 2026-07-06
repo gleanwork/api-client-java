@@ -175,6 +175,11 @@ public class Collection {
     @JsonProperty("roles")
     private Optional<? extends List<UserRoleSpecification>> roles;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("favoriteInfo")
+    private Optional<? extends FavoriteInfo> favoriteInfo;
+
     @JsonCreator
     public Collection(
             @JsonProperty("name") String name,
@@ -200,7 +205,8 @@ public class Collection {
             @JsonProperty("pinMetadata") Optional<? extends CollectionPinnedMetadata> pinMetadata,
             @JsonProperty("shortcuts") Optional<? extends List<String>> shortcuts,
             @JsonProperty("children") Optional<? extends List<Collection>> children,
-            @JsonProperty("roles") Optional<? extends List<UserRoleSpecification>> roles) {
+            @JsonProperty("roles") Optional<? extends List<UserRoleSpecification>> roles,
+            @JsonProperty("favoriteInfo") Optional<? extends FavoriteInfo> favoriteInfo) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(addedRoles, "addedRoles");
@@ -225,6 +231,7 @@ public class Collection {
         Utils.checkNotNull(shortcuts, "shortcuts");
         Utils.checkNotNull(children, "children");
         Utils.checkNotNull(roles, "roles");
+        Utils.checkNotNull(favoriteInfo, "favoriteInfo");
         this.name = name;
         this.description = description;
         this.addedRoles = addedRoles;
@@ -249,6 +256,7 @@ public class Collection {
         this.shortcuts = shortcuts;
         this.children = children;
         this.roles = roles;
+        this.favoriteInfo = favoriteInfo;
     }
     
     public Collection(
@@ -262,7 +270,8 @@ public class Collection {
             id, Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -449,6 +458,12 @@ public class Collection {
     @JsonIgnore
     public Optional<List<UserRoleSpecification>> roles() {
         return (Optional<List<UserRoleSpecification>>) roles;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<FavoriteInfo> favoriteInfo() {
+        return (Optional<FavoriteInfo>) favoriteInfo;
     }
 
     public static Builder builder() {
@@ -846,6 +861,19 @@ public class Collection {
         return this;
     }
 
+    public Collection withFavoriteInfo(FavoriteInfo favoriteInfo) {
+        Utils.checkNotNull(favoriteInfo, "favoriteInfo");
+        this.favoriteInfo = Optional.ofNullable(favoriteInfo);
+        return this;
+    }
+
+
+    public Collection withFavoriteInfo(Optional<? extends FavoriteInfo> favoriteInfo) {
+        Utils.checkNotNull(favoriteInfo, "favoriteInfo");
+        this.favoriteInfo = favoriteInfo;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -879,7 +907,8 @@ public class Collection {
             Utils.enhancedDeepEquals(this.pinMetadata, other.pinMetadata) &&
             Utils.enhancedDeepEquals(this.shortcuts, other.shortcuts) &&
             Utils.enhancedDeepEquals(this.children, other.children) &&
-            Utils.enhancedDeepEquals(this.roles, other.roles);
+            Utils.enhancedDeepEquals(this.roles, other.roles) &&
+            Utils.enhancedDeepEquals(this.favoriteInfo, other.favoriteInfo);
     }
     
     @Override
@@ -892,7 +921,8 @@ public class Collection {
             id, createTime, updateTime,
             creator, updatedBy, itemCount,
             childCount, items, pinMetadata,
-            shortcuts, children, roles);
+            shortcuts, children, roles,
+            favoriteInfo);
     }
     
     @Override
@@ -921,7 +951,8 @@ public class Collection {
                 "pinMetadata", pinMetadata,
                 "shortcuts", shortcuts,
                 "children", children,
-                "roles", roles);
+                "roles", roles,
+                "favoriteInfo", favoriteInfo);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -974,6 +1005,8 @@ public class Collection {
         private Optional<? extends List<Collection>> children = Optional.empty();
 
         private Optional<? extends List<UserRoleSpecification>> roles = Optional.empty();
+
+        private Optional<? extends FavoriteInfo> favoriteInfo = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -1372,6 +1405,19 @@ public class Collection {
             return this;
         }
 
+
+        public Builder favoriteInfo(FavoriteInfo favoriteInfo) {
+            Utils.checkNotNull(favoriteInfo, "favoriteInfo");
+            this.favoriteInfo = Optional.ofNullable(favoriteInfo);
+            return this;
+        }
+
+        public Builder favoriteInfo(Optional<? extends FavoriteInfo> favoriteInfo) {
+            Utils.checkNotNull(favoriteInfo, "favoriteInfo");
+            this.favoriteInfo = favoriteInfo;
+            return this;
+        }
+
         public Collection build() {
 
             return new Collection(
@@ -1382,7 +1428,8 @@ public class Collection {
                 id, createTime, updateTime,
                 creator, updatedBy, itemCount,
                 childCount, items, pinMetadata,
-                shortcuts, children, roles);
+                shortcuts, children, roles,
+                favoriteInfo);
         }
 
     }
