@@ -8,6 +8,8 @@
 * [run](#run) - Execute the specified tool
 * [retrieveActionPackAuthStatus](#retrieveactionpackauthstatus) - Get end-user authentication status for an action pack.
 * [authorizeActionPack](#authorizeactionpack) - Start the OAuth authorization flow for an action pack.
+* [retrieveToolServerAuthStatus](#retrievetoolserverauthstatus) - Get end-user authentication status for a tool server.
+* [authorizeToolServer](#authorizetoolserver) - Start the OAuth authorization flow for a tool server.
 
 ## list
 
@@ -224,6 +226,118 @@ public class Application {
 ### Response
 
 **[AuthorizeActionPackResponse](../../models/operations/AuthorizeActionPackResponse.md)**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
+
+## retrieveToolServerAuthStatus
+
+Returns display information and the calling user's current authentication status
+for the specified tool server.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="getToolServerAuthStatus" method="get" path="/rest/api/v1/tool-servers/{serverId}/auth" -->
+```java
+package hello.world;
+
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.operations.GetToolServerAuthStatusResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
+            .build();
+
+        GetToolServerAuthStatusResponse res = sdk.client().tools().retrieveToolServerAuthStatus()
+                .serverId("<id>")
+                .call();
+
+        if (res.toolServerAuthStatusResponse().isPresent()) {
+            System.out.println(res.toolServerAuthStatusResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                             | Type                                  | Required                              | Description                           |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| `serverId`                            | *String*                              | :heavy_check_mark:                    | Unique identifier of the tool server. |
+
+### Response
+
+**[GetToolServerAuthStatusResponse](../../models/operations/GetToolServerAuthStatusResponse.md)**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
+
+## authorizeToolServer
+
+Initiates the third-party OAuth flow for the specified tool server and returns the
+authorization URL that the client should navigate the end user to. After the OAuth
+callback completes, the user's browser is redirected back to `returnUrl` with query
+parameters indicating the result.
+
+`returnUrl` must match the tenant's configured return URL allowlist; otherwise the
+request is rejected with 400.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="authorizeToolServer" method="post" path="/rest/api/v1/tool-servers/{serverId}/auth" -->
+```java
+package hello.world;
+
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.AuthorizeToolServerRequest;
+import com.glean.api_client.glean_api_client.models.operations.AuthorizeToolServerResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
+            .build();
+
+        AuthorizeToolServerResponse res = sdk.client().tools().authorizeToolServer()
+                .serverId("<id>")
+                .authorizeToolServerRequest(AuthorizeToolServerRequest.builder()
+                    .returnUrl("https://lucky-disadvantage.com")
+                    .build())
+                .call();
+
+        if (res.authorizeToolServerResponse().isPresent()) {
+            System.out.println(res.authorizeToolServerResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `serverId`                                                                          | *String*                                                                            | :heavy_check_mark:                                                                  | Unique identifier of the tool server.                                               |
+| `authorizeToolServerRequest`                                                        | [AuthorizeToolServerRequest](../../models/components/AuthorizeToolServerRequest.md) | :heavy_check_mark:                                                                  | N/A                                                                                 |
+
+### Response
+
+**[AuthorizeToolServerResponse](../../models/operations/AuthorizeToolServerResponse.md)**
 
 ### Errors
 
