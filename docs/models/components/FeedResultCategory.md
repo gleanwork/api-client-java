@@ -61,3 +61,4 @@ FeedResultCategory custom = FeedResultCategory.of("custom_value");
 | `DEMO_CARD`                         | DEMO_CARD                           |
 | `OOO_PLANNER`                       | OOO_PLANNER                         |
 | `OOO_CATCH_UP`                      | OOO_CATCH_UP                        |
+| `ADMIN_HEALTH_CENTER`               | ADMIN_HEALTH_CENTER                 |

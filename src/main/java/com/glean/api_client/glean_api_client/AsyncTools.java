@@ -7,20 +7,28 @@ package com.glean.api_client.glean_api_client;
 import static com.glean.api_client.glean_api_client.operations.Operations.AsyncRequestOperation;
 
 import com.glean.api_client.glean_api_client.models.components.AuthorizeActionPackRequest;
+import com.glean.api_client.glean_api_client.models.components.AuthorizeToolServerRequest;
 import com.glean.api_client.glean_api_client.models.components.ToolsCallRequest;
 import com.glean.api_client.glean_api_client.models.operations.GetActionPackAuthStatusRequest;
 import com.glean.api_client.glean_api_client.models.operations.GetRestApiV1ToolsListRequest;
+import com.glean.api_client.glean_api_client.models.operations.GetToolServerAuthStatusRequest;
 import com.glean.api_client.glean_api_client.models.operations.async.AuthorizeActionPackRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.AuthorizeActionPackResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.AuthorizeToolServerRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.AuthorizeToolServerResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.GetActionPackAuthStatusRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.GetActionPackAuthStatusResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.GetRestApiV1ToolsListRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.GetRestApiV1ToolsListResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.GetToolServerAuthStatusRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.GetToolServerAuthStatusResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.PostRestApiV1ToolsCallRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PostRestApiV1ToolsCallResponse;
 import com.glean.api_client.glean_api_client.operations.AuthorizeActionPack;
+import com.glean.api_client.glean_api_client.operations.AuthorizeToolServer;
 import com.glean.api_client.glean_api_client.operations.GetActionPackAuthStatus;
 import com.glean.api_client.glean_api_client.operations.GetRestApiV1ToolsList;
+import com.glean.api_client.glean_api_client.operations.GetToolServerAuthStatus;
 import com.glean.api_client.glean_api_client.operations.PostRestApiV1ToolsCall;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.String;
@@ -199,6 +207,86 @@ public class AsyncTools {
                 .build();
         AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.AuthorizeActionPackRequest, AuthorizeActionPackResponse> operation
               = new AuthorizeActionPack.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Get end-user authentication status for a tool server.
+     * 
+     * <p>Returns display information and the calling user's current authentication status
+     * for the specified tool server.
+     * 
+     * @return The async call builder
+     */
+    public GetToolServerAuthStatusRequestBuilder retrieveToolServerAuthStatus() {
+        return new GetToolServerAuthStatusRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Get end-user authentication status for a tool server.
+     * 
+     * <p>Returns display information and the calling user's current authentication status
+     * for the specified tool server.
+     * 
+     * @param serverId Unique identifier of the tool server.
+     * @return {@code CompletableFuture<GetToolServerAuthStatusResponse>} - The async response
+     */
+    public CompletableFuture<GetToolServerAuthStatusResponse> retrieveToolServerAuthStatus(String serverId) {
+        GetToolServerAuthStatusRequest request =
+            GetToolServerAuthStatusRequest
+                .builder()
+                .serverId(serverId)
+                .build();
+        AsyncRequestOperation<GetToolServerAuthStatusRequest, GetToolServerAuthStatusResponse> operation
+              = new GetToolServerAuthStatus.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Start the OAuth authorization flow for a tool server.
+     * 
+     * <p>Initiates the third-party OAuth flow for the specified tool server and returns the
+     * authorization URL that the client should navigate the end user to. After the OAuth
+     * callback completes, the user's browser is redirected back to `returnUrl` with query
+     * parameters indicating the result.
+     * 
+     * <p>`returnUrl` must match the tenant's configured return URL allowlist; otherwise the
+     * request is rejected with 400.
+     * 
+     * @return The async call builder
+     */
+    public AuthorizeToolServerRequestBuilder authorizeToolServer() {
+        return new AuthorizeToolServerRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Start the OAuth authorization flow for a tool server.
+     * 
+     * <p>Initiates the third-party OAuth flow for the specified tool server and returns the
+     * authorization URL that the client should navigate the end user to. After the OAuth
+     * callback completes, the user's browser is redirected back to `returnUrl` with query
+     * parameters indicating the result.
+     * 
+     * <p>`returnUrl` must match the tenant's configured return URL allowlist; otherwise the
+     * request is rejected with 400.
+     * 
+     * @param serverId Unique identifier of the tool server.
+     * @param authorizeToolServerRequest 
+     * @return {@code CompletableFuture<AuthorizeToolServerResponse>} - The async response
+     */
+    public CompletableFuture<AuthorizeToolServerResponse> authorizeToolServer(String serverId, AuthorizeToolServerRequest authorizeToolServerRequest) {
+        com.glean.api_client.glean_api_client.models.operations.AuthorizeToolServerRequest request =
+            com.glean.api_client.glean_api_client.models.operations.AuthorizeToolServerRequest
+                .builder()
+                .serverId(serverId)
+                .authorizeToolServerRequest(authorizeToolServerRequest)
+                .build();
+        AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.AuthorizeToolServerRequest, AuthorizeToolServerResponse> operation
+              = new AuthorizeToolServer.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
