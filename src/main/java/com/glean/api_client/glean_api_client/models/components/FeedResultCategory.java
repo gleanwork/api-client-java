@@ -69,6 +69,7 @@ public class FeedResultCategory {
     public static final FeedResultCategory DEMO_CARD = new FeedResultCategory("DEMO_CARD");
     public static final FeedResultCategory OOO_PLANNER = new FeedResultCategory("OOO_PLANNER");
     public static final FeedResultCategory OOO_CATCH_UP = new FeedResultCategory("OOO_CATCH_UP");
+    public static final FeedResultCategory ADMIN_HEALTH_CENTER = new FeedResultCategory("ADMIN_HEALTH_CENTER");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -185,6 +186,7 @@ public class FeedResultCategory {
         map.put("DEMO_CARD", DEMO_CARD);
         map.put("OOO_PLANNER", OOO_PLANNER);
         map.put("OOO_CATCH_UP", OOO_CATCH_UP);
+        map.put("ADMIN_HEALTH_CENTER", ADMIN_HEALTH_CENTER);
         return map;
     }
 
@@ -233,6 +235,7 @@ public class FeedResultCategory {
         map.put("DEMO_CARD", FeedResultCategoryEnum.DEMO_CARD);
         map.put("OOO_PLANNER", FeedResultCategoryEnum.OOO_PLANNER);
         map.put("OOO_CATCH_UP", FeedResultCategoryEnum.OOO_CATCH_UP);
+        map.put("ADMIN_HEALTH_CENTER", FeedResultCategoryEnum.ADMIN_HEALTH_CENTER);
         return map;
     }
     
@@ -281,7 +284,8 @@ public class FeedResultCategory {
         PROJECT_NEXT_STEP("PROJECT_NEXT_STEP"),
         DEMO_CARD("DEMO_CARD"),
         OOO_PLANNER("OOO_PLANNER"),
-        OOO_CATCH_UP("OOO_CATCH_UP"),;
+        OOO_CATCH_UP("OOO_CATCH_UP"),
+        ADMIN_HEALTH_CENTER("ADMIN_HEALTH_CENTER"),;
 
         private final String value;
 

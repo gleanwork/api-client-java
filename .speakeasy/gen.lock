@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 0359d4fe-2923-46fc-aaca-cf70b48dcfa1
 management:
-  docChecksum: 6718837b4405c131be50d0c12e238d38
+  docChecksum: 5c7701aa515577cc32a4e41893fec554
   docVersion: 0.9.0
-  speakeasyVersion: 1.788.1
-  generationVersion: 2.915.1
-  releaseVersion: 0.14.1
-  configChecksum: d0d144db97d6df2a47cd220bff0b990b
+  speakeasyVersion: 1.789.0
+  generationVersion: 2.916.2
+  releaseVersion: 0.14.2
+  configChecksum: 95aa076aa99f70f73eac7b1470402ba1
   repoURL: https://github.com/gleanwork/api-client-java.git
   installationURL: https://github.com/gleanwork/api-client-java
   published: true
 persistentEdits:
-  generation_id: 868c2772-22a5-4cc4-a113-890c8bef2aba
-  pristine_commit_hash: b8bbb6c53d1b9596d2122179350287b6a3b2dbf9
-  pristine_tree_hash: 737705176e51301ea25f88a64ce7bf4c310a2b22
+  generation_id: b1b33c25-68c9-48f2-97b5-7a40212ea1f0
+  pristine_commit_hash: 273bdda7a2ca22b6223033a07c04758f0ac75218
+  pristine_tree_hash: 1a364654830ea96f1e170d8d65674e507592750c
 features:
   java:
     acceptHeaders: 2.81.2
@@ -269,6 +269,14 @@ trackedFiles:
     id: 631c3902ecdb
     last_write_checksum: sha1:f12a441cd4ae5d1a366f2fec1d1d677568ff7df4
     pristine_git_object: ed4ef9617aa73ddd352f54323dbe31a4b5c26d39
+  docs/models/components/AuthorizeToolServerRequest.md:
+    id: 7b735f30fcb9
+    last_write_checksum: sha1:dee79f018f1b6dcbee393fac4b51cbb593a8789c
+    pristine_git_object: 49fccd81553406be3dd702d61c8a27aa1d28efce
+  docs/models/components/AuthorizeToolServerResponse.md:
+    id: 175570fed21d
+    last_write_checksum: sha1:3f66b7c9933489d7419a56bb8203e5ab544a4006
+    pristine_git_object: d4092c161d38260cbedd294b3c0165dfc974cd89
   docs/models/components/AutocompleteRequest.md:
     id: 95e007987643
     last_write_checksum: sha1:37fedb12e272a777a196f836ca66e4edcd4d2b3a
@@ -1167,8 +1175,8 @@ trackedFiles:
     pristine_git_object: b9cce921992bf7d948b7a2e3e4360ca2e3b81654
   docs/models/components/FeedRequestCategory.md:
     id: afe4d7d42b83
-    last_write_checksum: sha1:addc1b4ea9fcedb794a8cffab39927d04667478d
-    pristine_git_object: d24df18c6299a17af4351244f8f9c72d5e72eaf3
+    last_write_checksum: sha1:0670edf18622fefd44d597b68304144c55244569
+    pristine_git_object: 96c6049792e2c06f54f4f80b25c83866e3c854bc
   docs/models/components/FeedRequestOptions.md:
     id: 75fd500a75b1
     last_write_checksum: sha1:448af6f7a5d161d4e2f856a6bfdb5da3bd7a9c68
@@ -1183,8 +1191,8 @@ trackedFiles:
     pristine_git_object: fe54d018bd3d86cdb240ee2f85219c5fc07040c4
   docs/models/components/FeedResultCategory.md:
     id: de8a61d55051
-    last_write_checksum: sha1:64ea2b016573950ad9997d9c48917f88d45c4491
-    pristine_git_object: c399e171836b324e961a509138a47fce68f614b9
+    last_write_checksum: sha1:11c4524c66077aa4c248701b3eb26d7c012641c9
+    pristine_git_object: b7332e912e7a8b822346f61babbd50b4a9c90673
   docs/models/components/Feedback.md:
     id: 73b99e5606f2
     last_write_checksum: sha1:20ae2315c831db0791ccd9a9d396dbb2811dbd15
@@ -1519,8 +1527,8 @@ trackedFiles:
     pristine_git_object: ef8823f4217073ab8cda466d2e3e36d080141fd2
   docs/models/components/JustificationType.md:
     id: 4f9697992386
-    last_write_checksum: sha1:2ff3906c237e688f583f484cd789d5bd5c11ccb6
-    pristine_git_object: 7fbcdcadb9e65ceb077d0ef70cfee8ebdd70cb6d
+    last_write_checksum: sha1:40ef264ccf5069d65040d1dc5602ba1b5c58b90f
+    pristine_git_object: 4dcc78754df80b3a0e06317ba0cd56a4ca2665f7
   docs/models/components/KnowledgeType.md:
     id: 652b79486bf3
     last_write_checksum: sha1:350f41b8184a84215ebbab80a83079e093a54b40
@@ -2325,6 +2333,14 @@ trackedFiles:
     id: 5c5f356997ba
     last_write_checksum: sha1:81d1fe95b982ca07b00ac35f41784c1cf56ab9a2
     pristine_git_object: 4ae4fc929f48561b98f426c1a8a7153a77efae5e
+  docs/models/components/ToolServerAuthStatus.md:
+    id: eef8e72f21c7
+    last_write_checksum: sha1:958c3d0e6829318cc63b4d7460756add068b668a
+    pristine_git_object: 30c4fb628b9e907c55ddd40c5871e23eb26a51ff
+  docs/models/components/ToolServerAuthStatusResponse.md:
+    id: ae20e2f2aede
+    last_write_checksum: sha1:0a158ede28ef7140c949c86f606185cf8b68b871
+    pristine_git_object: a08f35c003bd77475b864cb03b92d1c101674bf1
   docs/models/components/ToolSets.md:
     id: 2dec20c1e759
     last_write_checksum: sha1:6e0c75e501d60719f1c0e55f7e641e8b02da3be5
@@ -2567,8 +2583,8 @@ trackedFiles:
     pristine_git_object: fa12f9644bab377f09064f69869097b40cbea2b6
   docs/models/errors/PlatformProblemDetailException.md:
     id: 20c46776ad61
-    last_write_checksum: sha1:33b922bba6fffa2aeed4b3382c742f943b1651e7
-    pristine_git_object: e3133b511263d5fb4a0fa4bbc1152dee37ad3d16
+    last_write_checksum: sha1:809af863b69a349a7cac66b58ba408b9832f0825
+    pristine_git_object: 07a17224a221334ff2c7f580d2b6ac05bd7d1932
   docs/models/operations/ActivityResponse.md:
     id: abb6e00957d5
     last_write_checksum: sha1:abc14096d3cb9aed19f041351a32089f5f000289
@@ -2605,6 +2621,14 @@ trackedFiles:
     id: d9f2f72ae6cf
     last_write_checksum: sha1:1c4273af3bddf419b37a92158a2fd184dd0872dc
     pristine_git_object: e1c6394d3f90462645261a15b8c2b299328f8cb4
+  docs/models/operations/AuthorizeToolServerRequest.md:
+    id: c398b2f94efa
+    last_write_checksum: sha1:82f6b39ba083e1009885df6dbc5cf7607827adbd
+    pristine_git_object: 7b3535b4134d16079c155aff08d6805f9f69ef10
+  docs/models/operations/AuthorizeToolServerResponse.md:
+    id: 3be4c094cebf
+    last_write_checksum: sha1:e50d83048ce20289993caad91a2a9c4240f4435e
+    pristine_git_object: 79b83a3766167e82343b1a8f07e3ec34b946ae11
   docs/models/operations/AutocompleteRequest.md:
     id: 9ccbc7b72fe5
     last_write_checksum: sha1:08c06e938619514f2abb41bb3e78d5b8fe58c172
@@ -2941,6 +2965,14 @@ trackedFiles:
     id: da8605b18a19
     last_write_checksum: sha1:926bb8c52ec6794915462003f7ea07732694b594
     pristine_git_object: 2e0336bc4778c1df08adf302cefb948b522c892c
+  docs/models/operations/GetToolServerAuthStatusRequest.md:
+    id: 62779170965e
+    last_write_checksum: sha1:34bb728b0aa14b826ed0240ab4bf1aea7d465324
+    pristine_git_object: 410a0b263dcfa512794e02893ed220662bd5b5e5
+  docs/models/operations/GetToolServerAuthStatusResponse.md:
+    id: cea4bed30a50
+    last_write_checksum: sha1:6bc7d3daa64ff595bc0574853fbc1b6dd563e065
+    pristine_git_object: f252563361cc9863ba53092c2dafb6fe9838f385
   docs/models/operations/GetanswerRequest.md:
     id: b60ff7df95a1
     last_write_checksum: sha1:b53463f14c0441d4f9743c5c435b0b1315a04e95
@@ -3591,8 +3623,8 @@ trackedFiles:
     pristine_git_object: f8fddad628dcb886b0d70027f2e8cde033f4b22d
   docs/sdks/tools/README.md:
     id: 044286549bac
-    last_write_checksum: sha1:0f5363cf4c494cd135ecb54c135010690c09040b
-    pristine_git_object: aac7edaa17d6e0c83df582dd5abd2f724bdb4d8e
+    last_write_checksum: sha1:f463db245c247de5af8035245870ca014bbe82fc
+    pristine_git_object: 5d89ef5329473c4771fd195477529e7ed5126a82
   docs/sdks/verification/README.md:
     id: 8148670b64d3
     last_write_checksum: sha1:e4b6b3b45b5b0c1718596fc683778df5ffc612bf
@@ -3607,8 +3639,8 @@ trackedFiles:
     pristine_git_object: 3decbce5bd40edbe278c1c5d2dbf585808e51d9a
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:58ddacc35fcc9f63915164570acb5e06c2d9ad7c
-    pristine_git_object: 20818f895eadb448d4db624e3d765390e5ecde50
+    last_write_checksum: sha1:d5b376a46a83c492608c39e1072e17b35101d80f
+    pristine_git_object: b45cd292930cc950c43d747a2bdb9c5c16ab6d27
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3787,8 +3819,8 @@ trackedFiles:
     pristine_git_object: 4a17ff91f2cad3a65578dd16fac8bfbb864699e5
   src/main/java/com/glean/api_client/glean_api_client/AsyncTools.java:
     id: 02ad87504d7a
-    last_write_checksum: sha1:77975095651d9c358eec76b3733e6a3ebaa75fdb
-    pristine_git_object: e7c82602b4f5ba1a45ab22769b65d1eac4657da2
+    last_write_checksum: sha1:506200f5eeb1be124b9352d28f9db587d0b12cad
+    pristine_git_object: 9953c32804138549add53e74fd2bea2053cf0acb
   src/main/java/com/glean/api_client/glean_api_client/AsyncVerification.java:
     id: 8666e963a45c
     last_write_checksum: sha1:33ab517028f147aab0b1f15c15d32e0077948b58
@@ -3915,8 +3947,8 @@ trackedFiles:
     pristine_git_object: ffae914775eb41ff311371f62504344a59d090fd
   src/main/java/com/glean/api_client/glean_api_client/SDKConfiguration.java:
     id: d5fcc61f5992
-    last_write_checksum: sha1:f5dbb324f5cc0de40d02c85bcb1839158d4c9019
-    pristine_git_object: 2d24b2616bf898dc99758f0454a948d138e857aa
+    last_write_checksum: sha1:6c14ab75a60a510150d0b7da899615e32295a147
+    pristine_git_object: 27ecdf5e058fc419269713f84ebaecd90a597905
   src/main/java/com/glean/api_client/glean_api_client/Search.java:
     id: f22d94b920b5
     last_write_checksum: sha1:803fcb8e55cb4a76ec275ae45b83730fc7ed18c7
@@ -3927,8 +3959,8 @@ trackedFiles:
     pristine_git_object: f1e58a1696e5159e96259e20e83ca6f5584f810a
   src/main/java/com/glean/api_client/glean_api_client/Tools.java:
     id: bb072637f39b
-    last_write_checksum: sha1:a457200166845c6fc66805a419b84ede1711fc9f
-    pristine_git_object: 93a74dec92a313692ac33c40120ae0d341a8c245
+    last_write_checksum: sha1:052d5febd57bebffbebd0884fd5698bff5cd20a7
+    pristine_git_object: a82758cba7004a8aeac4605d2daf405508081ad7
   src/main/java/com/glean/api_client/glean_api_client/Verification.java:
     id: a9b3dde933de
     last_write_checksum: sha1:19ce4d59d774ae80dce441f62e87bda2e6be3fbd
@@ -4157,6 +4189,14 @@ trackedFiles:
     id: b47610d6f4f1
     last_write_checksum: sha1:bdde864291a96062a0d5a01b2574085e79010085
     pristine_git_object: 8d8afbe3a3d008e0c302cd994ea92b0493f2527c
+  src/main/java/com/glean/api_client/glean_api_client/models/components/AuthorizeToolServerRequest.java:
+    id: 5fdcfcb4219e
+    last_write_checksum: sha1:add338898f79f2e9391a8a4475f050694bbd19c7
+    pristine_git_object: e779467eda6e0d42e102973322ae3d4b13d7b790
+  src/main/java/com/glean/api_client/glean_api_client/models/components/AuthorizeToolServerResponse.java:
+    id: c5cef159dbd3
+    last_write_checksum: sha1:13fbf361696e5c0042c31d7d1cd45bd46909a91d
+    pristine_git_object: eb2eb7255ecd03237ca061cdd3308fa6e9d162ef
   src/main/java/com/glean/api_client/glean_api_client/models/components/AutocompleteRequest.java:
     id: 503b44c212c8
     last_write_checksum: sha1:5de8ec892b9cebbf6effa441d2eb5349416ac05d
@@ -5055,8 +5095,8 @@ trackedFiles:
     pristine_git_object: da07bc2b22a0c18ddaaeb554bf70ddf655b607cc
   src/main/java/com/glean/api_client/glean_api_client/models/components/FeedRequestCategory.java:
     id: 57e4db8e0360
-    last_write_checksum: sha1:90c3e49a56e1c2d48366f9dfa3d0283c88ca9185
-    pristine_git_object: e356742a70d81f1f2b17d628e3c5dabe987289e3
+    last_write_checksum: sha1:478e53ba195ed96f6e50b4e1b80dacd6216b2abf
+    pristine_git_object: d927e9574d7063d2272659967835fc2594533bab
   src/main/java/com/glean/api_client/glean_api_client/models/components/FeedRequestOptions.java:
     id: 0961449ce7b9
     last_write_checksum: sha1:1becd935e511806b12ea1aedebd9da174d807ad6
@@ -5071,8 +5111,8 @@ trackedFiles:
     pristine_git_object: 32750e39b3f10683acfb3f3e57422288364d7126
   src/main/java/com/glean/api_client/glean_api_client/models/components/FeedResultCategory.java:
     id: d5f852e61d61
-    last_write_checksum: sha1:b66d8b9e891a09cc64459e7937c5bd21e40424e9
-    pristine_git_object: ec303bc77ab954707971c6343edd962dfd7b34d0
+    last_write_checksum: sha1:52688079ebaf068b68faadaabc32faabe47ea6b8
+    pristine_git_object: d465c10d19bf2691e1ef27be8ac19b6411ced660
   src/main/java/com/glean/api_client/glean_api_client/models/components/Feedback.java:
     id: f7178cc3b4f0
     last_write_checksum: sha1:266cacdd3f7c698ffdbd56a505d8fda10170c444
@@ -5407,8 +5447,8 @@ trackedFiles:
     pristine_git_object: 27aa91ed2894e57bf87f42b39c63adbe776c49f9
   src/main/java/com/glean/api_client/glean_api_client/models/components/JustificationType.java:
     id: 4e704d02ecd5
-    last_write_checksum: sha1:9e46666e4a21c6b64e4197725da92653d088b44c
-    pristine_git_object: 9bf47dc50486e46f1113c0247e910569ccd51906
+    last_write_checksum: sha1:7396a2f8d786ac04db9a1ab71a47b8ce35e66da4
+    pristine_git_object: 89235925cab5a78cc34669537d5c287d46dbd4e3
   src/main/java/com/glean/api_client/glean_api_client/models/components/KnowledgeType.java:
     id: 86321f7dd6fe
     last_write_checksum: sha1:85872bd4390e4a048c4995b1427bec8b2fe88664
@@ -6213,6 +6253,14 @@ trackedFiles:
     id: bf941dae7985
     last_write_checksum: sha1:c08f98edc394c30d288fb000a8942c13595da37f
     pristine_git_object: d4f52330c5bf290f3ea3662bfe91f2554ec18091
+  src/main/java/com/glean/api_client/glean_api_client/models/components/ToolServerAuthStatus.java:
+    id: 345160dcdd8f
+    last_write_checksum: sha1:8e6ca853a8c521935c2ae59cf9bf05bc78a9835e
+    pristine_git_object: 2b032dc256ce5d12ac85ec7c10ebc9aeccd33153
+  src/main/java/com/glean/api_client/glean_api_client/models/components/ToolServerAuthStatusResponse.java:
+    id: 0d1067a88ae3
+    last_write_checksum: sha1:de69a8b1f38f02da59d463a707dd604531190f5d
+    pristine_git_object: eec20e85273a0dc7e5da16dec0ede6dca8d21762
   src/main/java/com/glean/api_client/glean_api_client/models/components/ToolSets.java:
     id: a74bdefc9ec5
     last_write_checksum: sha1:4839878dcbd893ebe0cfa84fe8e178fc8496b6c4
@@ -6493,6 +6541,10 @@ trackedFiles:
     id: 7d9298beca1b
     last_write_checksum: sha1:dd39b15631ff7b1d56b433904ee88cec7de69742
     pristine_git_object: abb1096b0b1bf2fbd49872e7ef05a37b6874ff79
+  src/main/java/com/glean/api_client/glean_api_client/models/operations//async/AuthorizeToolServerRequestBuilder.java:
+    id: 9d2ae15cef2a
+    last_write_checksum: sha1:c22e9b995506bcdb86736b8cb391c972eecd7b86
+    pristine_git_object: 3a68921e11f370a4b3e57e65585af0a9846e9894
   src/main/java/com/glean/api_client/glean_api_client/models/operations//async/AutocompleteRequestBuilder.java:
     id: 6a4d2a211808
     last_write_checksum: sha1:48ddb49de8fff77b38e5bf43c0fdfe223c945d53
@@ -6673,6 +6725,10 @@ trackedFiles:
     id: d0ece07eab72
     last_write_checksum: sha1:e8ab3b7c1fa8f86c686ee3edf34d43bc29ce20eb
     pristine_git_object: 4ba5c6b6b8d9bb4f2a80869aacae909998ccc7f3
+  src/main/java/com/glean/api_client/glean_api_client/models/operations//async/GetToolServerAuthStatusRequestBuilder.java:
+    id: 24f7060c9d22
+    last_write_checksum: sha1:016733d2f686aa2bdb5025afc72cf8c500a0f92f
+    pristine_git_object: c1907e2711c07758ebcbc624fac80de4bd0ecce1
   src/main/java/com/glean/api_client/glean_api_client/models/operations//async/GetanswerRequestBuilder.java:
     id: ccf6a26a0d91
     last_write_checksum: sha1:9aea363622d290c16aa564b7a1a6701cbc4d4808
@@ -7069,6 +7125,18 @@ trackedFiles:
     id: 835f39d8ea06
     last_write_checksum: sha1:0ccb54646d6eedf212a3bf86483bced295dc8f66
     pristine_git_object: e539e207a2c7cd1fd3c5f3b1e60d9da6925afe86
+  src/main/java/com/glean/api_client/glean_api_client/models/operations/AuthorizeToolServerRequest.java:
+    id: 3b086817072f
+    last_write_checksum: sha1:fa6b257594793274cec977593f4953f215927068
+    pristine_git_object: 692e35039780905892c37f7863a98372d408fd8d
+  src/main/java/com/glean/api_client/glean_api_client/models/operations/AuthorizeToolServerRequestBuilder.java:
+    id: 5804bd1c502c
+    last_write_checksum: sha1:e7bbe6eda7ecbaf02ac19d1fb239517be08f45e6
+    pristine_git_object: 1057f700e6bd48676d01bae685219f44536aee04
+  src/main/java/com/glean/api_client/glean_api_client/models/operations/AuthorizeToolServerResponse.java:
+    id: 9245f6fc5742
+    last_write_checksum: sha1:fc099b740268b5994e2f7e2d3295f61e83ab678d
+    pristine_git_object: f886c3c19f766f94a51ddbf68de0bd38d9cf3c48
   src/main/java/com/glean/api_client/glean_api_client/models/operations/AutocompleteRequest.java:
     id: 8021321d0adc
     last_write_checksum: sha1:cc73266c6e5512567cf42505442c6ae4a7843497
@@ -7585,6 +7653,18 @@ trackedFiles:
     id: 97053e2b6ece
     last_write_checksum: sha1:54840d63ca96c2eaa4fc76f2096a8ddb7b5555ad
     pristine_git_object: 3d681def90787aad8d568e7df212162f81ec074b
+  src/main/java/com/glean/api_client/glean_api_client/models/operations/GetToolServerAuthStatusRequest.java:
+    id: f11afcfcd794
+    last_write_checksum: sha1:ae46cee2d9abec5876995ee06442a547b43c4b43
+    pristine_git_object: 46c0adc3eb79c105c512b58fb97cf58de1e6f070
+  src/main/java/com/glean/api_client/glean_api_client/models/operations/GetToolServerAuthStatusRequestBuilder.java:
+    id: 26980b695666
+    last_write_checksum: sha1:c866d93140cf7be939c0f8c59729f289918d8451
+    pristine_git_object: d81d79969e59ce678237303acd74bf77542e5df5
+  src/main/java/com/glean/api_client/glean_api_client/models/operations/GetToolServerAuthStatusResponse.java:
+    id: 59d5925d85dc
+    last_write_checksum: sha1:a3d3703815173469b5a32f8b4a64067bbfeecefd
+    pristine_git_object: 809b1809edb052f1cd1186bf7937a2a0ccc7d656
   src/main/java/com/glean/api_client/glean_api_client/models/operations/GetanswerRequest.java:
     id: 6d3b46774e25
     last_write_checksum: sha1:fa736f28835a5525efe780d8c8547c181dae5649
@@ -8481,6 +8561,10 @@ trackedFiles:
     id: cfa165144833
     last_write_checksum: sha1:a82c77e5e782a35e33f0a13c16711405009b32e8
     pristine_git_object: 8de572a696c20bfdf8f3773dad9fa0db6208e0fd
+  src/main/java/com/glean/api_client/glean_api_client/models/operations/async/AuthorizeToolServerResponse.java:
+    id: be0f102e5b05
+    last_write_checksum: sha1:33bf016c14feb0baf3787d5867329d5661c9fc08
+    pristine_git_object: 201ca8dd56db952bf41cf6118ea06b0abc0c786d
   src/main/java/com/glean/api_client/glean_api_client/models/operations/async/AutocompleteResponse.java:
     id: 62728eb50c3e
     last_write_checksum: sha1:e53eef27fe09af01911705c5e0022d22b77baaac
@@ -8661,6 +8745,10 @@ trackedFiles:
     id: ba801362e6da
     last_write_checksum: sha1:d46602c60af1b8ce10811cedfa21ccf250a3e98d
     pristine_git_object: 8384a22852f4b2c86617b57df4d2ca398c17c7ba
+  src/main/java/com/glean/api_client/glean_api_client/models/operations/async/GetToolServerAuthStatusResponse.java:
+    id: d850557bda72
+    last_write_checksum: sha1:7cf3fe4c6a78ad9bee3b0ec86c5a3f03f6226a27
+    pristine_git_object: 1aee1bf7f0f6de4a4dd117eac8e7d5a164133340
   src/main/java/com/glean/api_client/glean_api_client/models/operations/async/GetanswerResponse.java:
     id: 1edbba96333b
     last_write_checksum: sha1:1c3fa11ad26f2b2a2c852440b9f38cd5d7d5dec2
@@ -9021,6 +9109,10 @@ trackedFiles:
     id: a6c868436cd4
     last_write_checksum: sha1:d6a3f24667f2e7b0ca80d556044163dbc725318f
     pristine_git_object: 9079f771bb42c702ff18c1bd3f49f593a17bb7ae
+  src/main/java/com/glean/api_client/glean_api_client/operations/AuthorizeToolServer.java:
+    id: d97188dd3dfc
+    last_write_checksum: sha1:44268d51a673c2f4d2593d7f5e4a8f944886fbf9
+    pristine_git_object: 39b823ffe65f70e5c77bd1558f118fae33d9d3bb
   src/main/java/com/glean/api_client/glean_api_client/operations/Autocomplete.java:
     id: 47c33477bc27
     last_write_checksum: sha1:216b81b5549a305b0c0460e739756b390a199515
@@ -9201,6 +9293,10 @@ trackedFiles:
     id: 50c6bb08a25c
     last_write_checksum: sha1:c4b2e3c31fb986673234bbda51972319275b7c05
     pristine_git_object: 0f49c7e94a6e68637f442d699e653244f153fe12
+  src/main/java/com/glean/api_client/glean_api_client/operations/GetToolServerAuthStatus.java:
+    id: 7a0f5de8768d
+    last_write_checksum: sha1:89a78ed823af70ef6938f1efb2e081cf7627e3c4
+    pristine_git_object: 592f8d75be09753196844ce36824cd7b36b1944f
   src/main/java/com/glean/api_client/glean_api_client/operations/Getanswer.java:
     id: ba980eb5d5c5
     last_write_checksum: sha1:35d96beb6422e3836e32c295e200e8fb659e8f59
@@ -10799,6 +10895,24 @@ examples:
           application/problem+json: {"type": "https://developer.glean.com/errors/invalid-cursor", "title": "Invalid Pagination Cursor", "status": 400, "detail": "The provided cursor has expired. Start a new search to get a fresh cursor.\n", "code": "invalid_cursor", "documentation_url": "https://developer.glean.com/errors/invalid-cursor", "request_id": "req_7f8a9b0c1d2e", "errors": [{"pointer": "/messages/0/role", "detail": "Must be one of: USER, GLEAN_AI.", "code": "invalid_cursor"}]}
         "500":
           application/problem+json: {"type": "https://developer.glean.com/errors/invalid-cursor", "title": "Invalid Pagination Cursor", "status": 400, "detail": "The provided cursor has expired. Start a new search to get a fresh cursor.\n", "code": "invalid_cursor", "documentation_url": "https://developer.glean.com/errors/invalid-cursor", "request_id": "req_7f8a9b0c1d2e", "errors": [{"pointer": "/messages/0/role", "detail": "Must be one of: USER, GLEAN_AI.", "code": "invalid_cursor"}]}
+  getToolServerAuthStatus:
+    speakeasy-default-get-tool-server-auth-status:
+      parameters:
+        path:
+          serverId: "<id>"
+      responses:
+        "200":
+          application/json: {"authStatus": "AUTHORIZED", "authType": "AUTH_NONE"}
+  authorizeToolServer:
+    speakeasy-default-authorize-tool-server:
+      parameters:
+        path:
+          serverId: "<id>"
+      requestBody:
+        application/json: {"returnUrl": "https://lucky-disadvantage.com"}
+      responses:
+        "200":
+          application/json: {"authorizationUrl": "https://shocked-casket.name/"}
 examplesVersion: 1.0.2
 generatedTests:
   activity: "2025-06-09T18:03:44Z"
@@ -10941,7 +11055,7 @@ generatedTests:
   get_/rest/api/v1/tools/list: "2025-06-09T18:03:44Z"
   post_/rest/api/v1/tools/call: "2025-06-09T18:03:44Z"
   listpolicies: "2025-06-09T18:03:44Z"
-releaseNotes: "## Java SDK Changes:\n* `glean.agents.search()`:  `error` **Changed**\n* `glean.agents.get()`:  `error.code.enum(requestTooLarge)` **Added**\n* `glean.agents.getSchemas()`:  `error.code.enum(requestTooLarge)` **Added**\n* `glean.agents.createRun()`:  `error` **Changed**\n* `glean.search.query()`:  `error` **Changed**\n* `glean.client.announcements.create()`: \n  *  `request.createAnnouncementRequest.body.structuredList[].document.metadata.author.relatedDocuments[].results[]` **Changed**\n  *  `response` **Changed**\n* `glean.client.announcements.update()`: \n  *  `request.updateAnnouncementRequest.body.structuredList[].document.metadata.author.relatedDocuments[].results[]` **Changed**\n  *  `response` **Changed**\n* `glean.client.answers.create()`: \n  *  `request.createAnswerRequest.data.addedRoles[].person.relatedDocuments[].querySuggestion.ranges[].document.metadata` **Changed**\n  *  `response.addedRoles[].person.relatedDocuments[].querySuggestion.ranges[].document.metadata` **Changed**\n* `glean.client.answers.update()`: \n  *  `request.editAnswerRequest.addedRoles[].person.relatedDocuments[].querySuggestion.ranges[].document.metadata` **Changed**\n  *  `response.addedRoles[].person.relatedDocuments[].querySuggestion.ranges[].document.metadata` **Changed**\n* `glean.client.answers.retrieve()`:  `response.answerResult` **Changed**\n* `glean.client.answers.list()`:  `response.answerResults[]` **Changed**\n* `glean.client.chat.create()`: \n  *  `request.chatRequest.messages[].citations[].sourceDocument.metadata.author.relatedDocuments[].results[]` **Changed**\n  *  `response.messages[].citations[].sourceDocument.metadata.author.relatedDocuments[].results[]` **Changed**\n* `glean.client.chat.retrieve()`:  `response.chatResult.chat.createdBy.relatedDocuments[].querySuggestion.ranges[].document.metadata` **Changed**\n* `glean.client.chat.list()`:  `response.chatResults[].chat.createdBy.relatedDocuments[].querySuggestion.ranges[].document.metadata` **Changed**\n* `glean.client.chat.createStream()`: \n  *  `request.chatRequest.messages[].citations[].sourceDocument.metadata.author.relatedDocuments[].results[]` **Changed**\n* `glean.client.agents.create()`:  `response.workflow.author.relatedDocuments[].querySuggestion.ranges[].document.metadata` **Changed**\n* `glean.client.collections.addItems()`:  `response.collection` **Changed**\n* `glean.client.collections.create()`: \n  *  `request.createCollectionRequest.addedRoles[].person.relatedDocuments[].querySuggestion.ranges[].document.metadata` **Changed**\n  *  `response.union(class (0)).collection` **Changed**\n* `glean.client.collections.deleteItem()`:  `response.collection` **Changed**\n* `glean.client.collections.update()`: \n  *  `request.editCollectionRequest.addedRoles[].person.relatedDocuments[].querySuggestion.ranges[].document.metadata` **Changed**\n  *  `response` **Changed**\n* `glean.client.collections.updateItem()`:  `response.collection` **Changed**\n* `glean.client.collections.retrieve()`:  `response.collection` **Changed**\n* `glean.client.collections.list()`:  `response.collections[]` **Changed**\n* `glean.client.documents.retrieve()`:  `response.documents.Map<DocumentOrError>.union(Document).metadata.author.relatedDocuments[].results[]` **Changed**\n* `glean.client.documents.retrieveByFacets()`:  `response.documents[].metadata.author.relatedDocuments[].results[]` **Changed**\n* `glean.client.insights.retrieve()`:  `response.gleanAssist.activityInsights[].user.relatedDocuments[].querySuggestion.ranges[].document.metadata` **Changed**\n* `glean.client.messages.retrieve()`:  `response.searchResponse.results[].structuredResults[].document.metadata` **Changed**\n* `glean.client.pins.update()`:  `response` **Changed**\n* `glean.client.pins.retrieve()`:  `response.pin` **Changed**\n* `glean.client.pins.list()`:  `response.pins[]` **Changed**\n* `glean.client.pins.create()`:  `response` **Changed**\n* `glean.client.search.queryAsAdmin()`: \n  *  `request.searchRequest.sourceDocument.metadata.author.relatedDocuments[].results[]` **Changed**\n  *  `response.results[].structuredResults[].document.metadata` **Changed**\n* `glean.client.search.autocomplete()`:  `response.results[].document.metadata.author.relatedDocuments[].results[]` **Changed**\n* `glean.client.search.retrieveFeed()`: \n  *  `request.feedRequest.categories[].enum(podcast)` **Added**\n  *  `response.results[]` **Changed**\n* `glean.client.search.recommendations()`: \n  *  `request.recommendationsRequest.sourceDocument.metadata.author.relatedDocuments[].results[]` **Changed**\n  *  `response.results[].structuredResults[].document.metadata` **Changed**\n* `glean.client.search.query()`: \n  *  `request.searchRequest.sourceDocument.metadata.author.relatedDocuments[].results[]` **Changed**\n  *  `response.results[].structuredResults[].document.metadata` **Changed**\n* `glean.client.entities.list()`:  `response.results[].relatedDocuments[].querySuggestion.ranges[].document.metadata` **Changed**\n* `glean.client.entities.readPeople()`:  `response.results[].relatedDocuments[].querySuggestion.ranges[].document.metadata` **Changed**\n* `glean.client.shortcuts.create()`: \n  *  `request.createShortcutRequest.data.addedRoles[].person.relatedDocuments[].querySuggestion.ranges[].document.metadata` **Changed**\n  *  `response.shortcut` **Changed**\n* `glean.client.shortcuts.retrieve()`:  `response.shortcut` **Changed**\n* `glean.client.shortcuts.list()`:  `response.shortcuts[]` **Changed**\n* `glean.client.shortcuts.update()`: \n  *  `request.updateShortcutRequest.addedRoles[].person.relatedDocuments[].querySuggestion.ranges[].document.metadata` **Changed**\n  *  `response.shortcut` **Changed**\n* `glean.client.verification.addReminder()`:  `response.metadata.lastVerifier.relatedDocuments[].querySuggestion.ranges[].document.metadata` **Changed**\n* `glean.client.verification.list()`:  `response.documents[].metadata.lastVerifier.relatedDocuments[].querySuggestion.ranges[].document.metadata` **Changed**\n* `glean.client.verification.verify()`:  `response.metadata.lastVerifier.relatedDocuments[].querySuggestion.ranges[].document.metadata` **Changed**\n"
+releaseNotes: "## Java SDK Changes:\n* `glean.client.tools.retrieveToolServerAuthStatus()`: **Added**\n* `glean.client.tools.authorizeToolServer()`: **Added**\n* `glean.client.search.retrieveFeed()`: \n  *  `request.feedRequest.categories[].enum(adminHealthCenter)` **Added**\n  *  `response.results[]` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md

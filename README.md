@@ -67,7 +67,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.glean.api-client:glean-api-client:0.14.1'
+implementation 'com.glean.api-client:glean-api-client:0.14.2'
 ```
 
 Maven:
@@ -75,7 +75,7 @@ Maven:
 <dependency>
     <groupId>com.glean.api-client</groupId>
     <artifactId>glean-api-client</artifactId>
-    <version>0.14.1</version>
+    <version>0.14.2</version>
 </dependency>
 ```
 
@@ -517,6 +517,8 @@ For more information on obtaining the appropriate token type, please contact you
 * [run](docs/sdks/tools/README.md#run) - Execute the specified tool
 * [retrieveActionPackAuthStatus](docs/sdks/tools/README.md#retrieveactionpackauthstatus) - Get end-user authentication status for an action pack.
 * [authorizeActionPack](docs/sdks/tools/README.md#authorizeactionpack) - Start the OAuth authorization flow for an action pack.
+* [retrieveToolServerAuthStatus](docs/sdks/tools/README.md#retrievetoolserverauthstatus) - Get end-user authentication status for a tool server.
+* [authorizeToolServer](docs/sdks/tools/README.md#authorizetoolserver) - Start the OAuth authorization flow for a tool server.
 
 ### [Client.Verification](docs/sdks/verification/README.md)
 
@@ -705,11 +707,11 @@ public class Application {
 many more subclasses in the JDK platform).
 
 **Inherit from [`GleanError`](./src/main/java/models/errors/GleanError.java)**:
-* [`com.glean.api_client.glean_api_client.models.errors.ErrorResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorResponse.java): Error response returned for failed requests. Applicable to 9 of 135 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException.java): Error response following RFC 9457, extended with `code` and `documentation_url` for machine-readable classification and self-service remediation. Applicable to 5 of 135 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse.java): Error response for custom metadata operations. Applicable to 5 of 135 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.CollectionError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.CollectionError.java): Semantic error. Status code `422`. Applicable to 3 of 135 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.GleanDataError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.GleanDataError.java): Forbidden. Applicable to 2 of 135 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.ErrorResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorResponse.java): Error response returned for failed requests. Applicable to 9 of 137 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException.java): Error response following RFC 9457, extended with `code` and `documentation_url` for machine-readable classification and self-service remediation. Applicable to 5 of 137 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse.java): Error response for custom metadata operations. Applicable to 5 of 137 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.CollectionError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.CollectionError.java): Semantic error. Status code `422`. Applicable to 3 of 137 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.GleanDataError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.GleanDataError.java): Forbidden. Applicable to 2 of 137 methods.*
 
 
 </details>
