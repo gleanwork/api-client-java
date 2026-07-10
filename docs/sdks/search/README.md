@@ -38,9 +38,6 @@ public class Application {
                 .datasources(List.of(
                     "confluence",
                     "google_drive"))
-                .datasourceInstances(List.of(
-                    "slack_acme",
-                    "slack_eu"))
                 .filters(List.of(
                     PlatformFilter.builder()
                         .field("type")

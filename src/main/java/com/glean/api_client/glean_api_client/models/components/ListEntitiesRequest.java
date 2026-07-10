@@ -87,7 +87,7 @@ public class ListEntitiesRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("requestType")
-    private Optional<? extends RequestType> requestType;
+    private Optional<? extends ListEntitiesRequestRequestType> requestType;
 
     @JsonCreator
     public ListEntitiesRequest(
@@ -100,7 +100,7 @@ public class ListEntitiesRequest {
             @JsonProperty("pageSize") Optional<Long> pageSize,
             @JsonProperty("cursor") Optional<String> cursor,
             @JsonProperty("source") Optional<String> source,
-            @JsonProperty("requestType") Optional<? extends RequestType> requestType) {
+            @JsonProperty("requestType") Optional<? extends ListEntitiesRequestRequestType> requestType) {
         Utils.checkNotNull(filter, "filter");
         Utils.checkNotNull(sort, "sort");
         Utils.checkNotNull(entityType, "entityType");
@@ -207,8 +207,8 @@ public class ListEntitiesRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<RequestType> requestType() {
-        return (Optional<RequestType>) requestType;
+    public Optional<ListEntitiesRequestRequestType> requestType() {
+        return (Optional<ListEntitiesRequestRequestType>) requestType;
     }
 
     public static Builder builder() {
@@ -382,7 +382,7 @@ public class ListEntitiesRequest {
     /**
      * The type of request being made.
      */
-    public ListEntitiesRequest withRequestType(RequestType requestType) {
+    public ListEntitiesRequest withRequestType(ListEntitiesRequestRequestType requestType) {
         Utils.checkNotNull(requestType, "requestType");
         this.requestType = Optional.ofNullable(requestType);
         return this;
@@ -392,7 +392,7 @@ public class ListEntitiesRequest {
     /**
      * The type of request being made.
      */
-    public ListEntitiesRequest withRequestType(Optional<? extends RequestType> requestType) {
+    public ListEntitiesRequest withRequestType(Optional<? extends ListEntitiesRequestRequestType> requestType) {
         Utils.checkNotNull(requestType, "requestType");
         this.requestType = requestType;
         return this;
@@ -465,7 +465,7 @@ public class ListEntitiesRequest {
 
         private Optional<String> source = Optional.empty();
 
-        private Optional<? extends RequestType> requestType;
+        private Optional<? extends ListEntitiesRequestRequestType> requestType;
 
         private Builder() {
           // force use of static builder() method
@@ -638,7 +638,7 @@ public class ListEntitiesRequest {
         /**
          * The type of request being made.
          */
-        public Builder requestType(RequestType requestType) {
+        public Builder requestType(ListEntitiesRequestRequestType requestType) {
             Utils.checkNotNull(requestType, "requestType");
             this.requestType = Optional.ofNullable(requestType);
             return this;
@@ -647,7 +647,7 @@ public class ListEntitiesRequest {
         /**
          * The type of request being made.
          */
-        public Builder requestType(Optional<? extends RequestType> requestType) {
+        public Builder requestType(Optional<? extends ListEntitiesRequestRequestType> requestType) {
             Utils.checkNotNull(requestType, "requestType");
             this.requestType = requestType;
             return this;
@@ -675,10 +675,10 @@ public class ListEntitiesRequest {
                         "\"PEOPLE\"",
                         new TypeReference<Optional<? extends ListEntitiesRequestEntityType>>() {});
 
-        private static final LazySingletonValue<Optional<? extends RequestType>> _SINGLETON_VALUE_RequestType =
+        private static final LazySingletonValue<Optional<? extends ListEntitiesRequestRequestType>> _SINGLETON_VALUE_RequestType =
                 new LazySingletonValue<>(
                         "requestType",
                         "\"STANDARD\"",
-                        new TypeReference<Optional<? extends RequestType>>() {});
+                        new TypeReference<Optional<? extends ListEntitiesRequestRequestType>>() {});
     }
 }
