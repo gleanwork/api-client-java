@@ -72,6 +72,30 @@ public class ChatMessageFragment {
     @JsonProperty("citation")
     private Optional<? extends ChatMessageCitation> citation;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("serverToolRequest")
+    private Optional<? extends ServerToolRequest> serverToolRequest;
+
+    /**
+     * Response to a server tool request. The applicable fields depend on requestType:
+     * 
+     * <p>For EXECUTION requests:
+     * - isGranted: whether tool execution is approved
+     * - reason: optional explanation
+     * 
+     * <p>For AUTHENTICATION_SUGGESTION requests:
+     * - isGranted: whether auth completed successfully (true=connected, false=skipped)
+     * - authContext: contains serverId or actionPackId for identifying the authenticated entity
+     * - reason: optional explanation for skip
+     * 
+     * <p>For VOTE_SUGGESTION requests:
+     * - voted: whether the user voted for this tool
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("serverToolResponse")
+    private Optional<? extends ServerToolResponse> serverToolResponse;
+
     @JsonCreator
     public ChatMessageFragment(
             @JsonProperty("structuredResults") Optional<? extends List<StructuredResult>> structuredResults,
@@ -80,7 +104,9 @@ public class ChatMessageFragment {
             @JsonProperty("querySuggestion") Optional<? extends QuerySuggestion> querySuggestion,
             @JsonProperty("file") Optional<? extends ChatFile> file,
             @JsonProperty("action") Optional<? extends ToolInfo> action,
-            @JsonProperty("citation") Optional<? extends ChatMessageCitation> citation) {
+            @JsonProperty("citation") Optional<? extends ChatMessageCitation> citation,
+            @JsonProperty("serverToolRequest") Optional<? extends ServerToolRequest> serverToolRequest,
+            @JsonProperty("serverToolResponse") Optional<? extends ServerToolResponse> serverToolResponse) {
         Utils.checkNotNull(structuredResults, "structuredResults");
         Utils.checkNotNull(trackingToken, "trackingToken");
         Utils.checkNotNull(text, "text");
@@ -88,6 +114,8 @@ public class ChatMessageFragment {
         Utils.checkNotNull(file, "file");
         Utils.checkNotNull(action, "action");
         Utils.checkNotNull(citation, "citation");
+        Utils.checkNotNull(serverToolRequest, "serverToolRequest");
+        Utils.checkNotNull(serverToolResponse, "serverToolResponse");
         this.structuredResults = structuredResults;
         this.trackingToken = trackingToken;
         this.text = text;
@@ -95,12 +123,14 @@ public class ChatMessageFragment {
         this.file = file;
         this.action = action;
         this.citation = citation;
+        this.serverToolRequest = serverToolRequest;
+        this.serverToolResponse = serverToolResponse;
     }
     
     public ChatMessageFragment() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -154,6 +184,33 @@ public class ChatMessageFragment {
     @JsonIgnore
     public Optional<ChatMessageCitation> citation() {
         return (Optional<ChatMessageCitation>) citation;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ServerToolRequest> serverToolRequest() {
+        return (Optional<ServerToolRequest>) serverToolRequest;
+    }
+
+    /**
+     * Response to a server tool request. The applicable fields depend on requestType:
+     * 
+     * <p>For EXECUTION requests:
+     * - isGranted: whether tool execution is approved
+     * - reason: optional explanation
+     * 
+     * <p>For AUTHENTICATION_SUGGESTION requests:
+     * - isGranted: whether auth completed successfully (true=connected, false=skipped)
+     * - authContext: contains serverId or actionPackId for identifying the authenticated entity
+     * - reason: optional explanation for skip
+     * 
+     * <p>For VOTE_SUGGESTION requests:
+     * - voted: whether the user voted for this tool
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ServerToolResponse> serverToolResponse() {
+        return (Optional<ServerToolResponse>) serverToolResponse;
     }
 
     public static Builder builder() {
@@ -278,6 +335,62 @@ public class ChatMessageFragment {
         return this;
     }
 
+    public ChatMessageFragment withServerToolRequest(ServerToolRequest serverToolRequest) {
+        Utils.checkNotNull(serverToolRequest, "serverToolRequest");
+        this.serverToolRequest = Optional.ofNullable(serverToolRequest);
+        return this;
+    }
+
+
+    public ChatMessageFragment withServerToolRequest(Optional<? extends ServerToolRequest> serverToolRequest) {
+        Utils.checkNotNull(serverToolRequest, "serverToolRequest");
+        this.serverToolRequest = serverToolRequest;
+        return this;
+    }
+
+    /**
+     * Response to a server tool request. The applicable fields depend on requestType:
+     * 
+     * <p>For EXECUTION requests:
+     * - isGranted: whether tool execution is approved
+     * - reason: optional explanation
+     * 
+     * <p>For AUTHENTICATION_SUGGESTION requests:
+     * - isGranted: whether auth completed successfully (true=connected, false=skipped)
+     * - authContext: contains serverId or actionPackId for identifying the authenticated entity
+     * - reason: optional explanation for skip
+     * 
+     * <p>For VOTE_SUGGESTION requests:
+     * - voted: whether the user voted for this tool
+     */
+    public ChatMessageFragment withServerToolResponse(ServerToolResponse serverToolResponse) {
+        Utils.checkNotNull(serverToolResponse, "serverToolResponse");
+        this.serverToolResponse = Optional.ofNullable(serverToolResponse);
+        return this;
+    }
+
+
+    /**
+     * Response to a server tool request. The applicable fields depend on requestType:
+     * 
+     * <p>For EXECUTION requests:
+     * - isGranted: whether tool execution is approved
+     * - reason: optional explanation
+     * 
+     * <p>For AUTHENTICATION_SUGGESTION requests:
+     * - isGranted: whether auth completed successfully (true=connected, false=skipped)
+     * - authContext: contains serverId or actionPackId for identifying the authenticated entity
+     * - reason: optional explanation for skip
+     * 
+     * <p>For VOTE_SUGGESTION requests:
+     * - voted: whether the user voted for this tool
+     */
+    public ChatMessageFragment withServerToolResponse(Optional<? extends ServerToolResponse> serverToolResponse) {
+        Utils.checkNotNull(serverToolResponse, "serverToolResponse");
+        this.serverToolResponse = serverToolResponse;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -294,7 +407,9 @@ public class ChatMessageFragment {
             Utils.enhancedDeepEquals(this.querySuggestion, other.querySuggestion) &&
             Utils.enhancedDeepEquals(this.file, other.file) &&
             Utils.enhancedDeepEquals(this.action, other.action) &&
-            Utils.enhancedDeepEquals(this.citation, other.citation);
+            Utils.enhancedDeepEquals(this.citation, other.citation) &&
+            Utils.enhancedDeepEquals(this.serverToolRequest, other.serverToolRequest) &&
+            Utils.enhancedDeepEquals(this.serverToolResponse, other.serverToolResponse);
     }
     
     @Override
@@ -302,7 +417,7 @@ public class ChatMessageFragment {
         return Utils.enhancedHash(
             structuredResults, trackingToken, text,
             querySuggestion, file, action,
-            citation);
+            citation, serverToolRequest, serverToolResponse);
     }
     
     @Override
@@ -314,7 +429,9 @@ public class ChatMessageFragment {
                 "querySuggestion", querySuggestion,
                 "file", file,
                 "action", action,
-                "citation", citation);
+                "citation", citation,
+                "serverToolRequest", serverToolRequest,
+                "serverToolResponse", serverToolResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -333,6 +450,10 @@ public class ChatMessageFragment {
         private Optional<? extends ToolInfo> action = Optional.empty();
 
         private Optional<? extends ChatMessageCitation> citation = Optional.empty();
+
+        private Optional<? extends ServerToolRequest> serverToolRequest = Optional.empty();
+
+        private Optional<? extends ServerToolResponse> serverToolResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -455,12 +576,68 @@ public class ChatMessageFragment {
             return this;
         }
 
+
+        public Builder serverToolRequest(ServerToolRequest serverToolRequest) {
+            Utils.checkNotNull(serverToolRequest, "serverToolRequest");
+            this.serverToolRequest = Optional.ofNullable(serverToolRequest);
+            return this;
+        }
+
+        public Builder serverToolRequest(Optional<? extends ServerToolRequest> serverToolRequest) {
+            Utils.checkNotNull(serverToolRequest, "serverToolRequest");
+            this.serverToolRequest = serverToolRequest;
+            return this;
+        }
+
+
+        /**
+         * Response to a server tool request. The applicable fields depend on requestType:
+         * 
+         * <p>For EXECUTION requests:
+         * - isGranted: whether tool execution is approved
+         * - reason: optional explanation
+         * 
+         * <p>For AUTHENTICATION_SUGGESTION requests:
+         * - isGranted: whether auth completed successfully (true=connected, false=skipped)
+         * - authContext: contains serverId or actionPackId for identifying the authenticated entity
+         * - reason: optional explanation for skip
+         * 
+         * <p>For VOTE_SUGGESTION requests:
+         * - voted: whether the user voted for this tool
+         */
+        public Builder serverToolResponse(ServerToolResponse serverToolResponse) {
+            Utils.checkNotNull(serverToolResponse, "serverToolResponse");
+            this.serverToolResponse = Optional.ofNullable(serverToolResponse);
+            return this;
+        }
+
+        /**
+         * Response to a server tool request. The applicable fields depend on requestType:
+         * 
+         * <p>For EXECUTION requests:
+         * - isGranted: whether tool execution is approved
+         * - reason: optional explanation
+         * 
+         * <p>For AUTHENTICATION_SUGGESTION requests:
+         * - isGranted: whether auth completed successfully (true=connected, false=skipped)
+         * - authContext: contains serverId or actionPackId for identifying the authenticated entity
+         * - reason: optional explanation for skip
+         * 
+         * <p>For VOTE_SUGGESTION requests:
+         * - voted: whether the user voted for this tool
+         */
+        public Builder serverToolResponse(Optional<? extends ServerToolResponse> serverToolResponse) {
+            Utils.checkNotNull(serverToolResponse, "serverToolResponse");
+            this.serverToolResponse = serverToolResponse;
+            return this;
+        }
+
         public ChatMessageFragment build() {
 
             return new ChatMessageFragment(
                 structuredResults, trackingToken, text,
                 querySuggestion, file, action,
-                citation);
+                citation, serverToolRequest, serverToolResponse);
         }
 
     }
