@@ -58,6 +58,9 @@ public class Glean {
     private final Agents agents;
 
 
+    private final Platform platform;
+
+
     private final Search search;
 
 
@@ -69,6 +72,11 @@ public class Glean {
 
     public Agents agents() {
         return agents;
+    }
+
+
+    public Platform platform() {
+        return platform;
     }
 
 
@@ -252,6 +260,7 @@ public class Glean {
     private Glean(SDKConfiguration sdkConfiguration) {
         sdkConfiguration.initialize();
         this.agents = new Agents(sdkConfiguration);
+        this.platform = new Platform(sdkConfiguration);
         this.search = new Search(sdkConfiguration);
         this.client = new Client(sdkConfiguration);
         this.indexing = new Indexing(sdkConfiguration);
