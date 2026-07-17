@@ -25,8 +25,8 @@ public class SDKConfiguration {
 
     private static final String LANGUAGE = "java";
     public static final String OPENAPI_DOC_VERSION = "0.9.0";
-    public static final String SDK_VERSION = "0.14.3";
-    public static final String GEN_VERSION = "2.916.4";
+    public static final String SDK_VERSION = "0.14.4";
+    public static final String GEN_VERSION = "2.918.3";
     private static final String BASE_PACKAGE = "com.glean.api_client.glean_api_client";
     public static final String USER_AGENT = 
             String.format("speakeasy-sdk/%s %s %s %s %s",
