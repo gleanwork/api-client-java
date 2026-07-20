@@ -12,9 +12,17 @@ import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1Add
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1AdddatasourceResponse;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1GetdatasourceconfigRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1GetdatasourceconfigResponse;
+import com.glean.api_client.glean_api_client.models.operations.PostRestApiIndexSubmissionsDatasourceInstanceTypeRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostRestApiIndexSubmissionsDatasourceInstanceTypeRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.PostRestApiIndexSubmissionsDatasourceInstanceTypeResponse;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Adddatasource;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Getdatasourceconfig;
+import com.glean.api_client.glean_api_client.operations.PostRestApiIndexSubmissionsDatasourceInstanceType;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import java.lang.Object;
+import java.lang.String;
+import java.util.Map;
+import java.util.Optional;
 
 
 public class IndexingDatasources {
@@ -85,6 +93,62 @@ public class IndexingDatasources {
     public PostApiIndexV1GetdatasourceconfigResponse retrieveConfig(GetDatasourceConfigRequest request) {
         RequestOperation<GetDatasourceConfigRequest, PostApiIndexV1GetdatasourceconfigResponse> operation
               = new PostApiIndexV1Getdatasourceconfig.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Submit datasource data
+     * 
+     * <p>Validates and asynchronously processes a datasource-specific submission.
+     * 
+     * @return The call builder
+     */
+    public PostRestApiIndexSubmissionsDatasourceInstanceTypeRequestBuilder submit() {
+        return new PostRestApiIndexSubmissionsDatasourceInstanceTypeRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Submit datasource data
+     * 
+     * <p>Validates and asynchronously processes a datasource-specific submission.
+     * 
+     * @param datasourceInstance Datasource instance that should process the submission
+     * @param type Submission type registered for the datasource
+     * @param requestBody 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostRestApiIndexSubmissionsDatasourceInstanceTypeResponse submit(
+            String datasourceInstance, String type,
+            Map<String, Object> requestBody) {
+        return submit(datasourceInstance, type, requestBody,
+            Optional.empty());
+    }
+
+    /**
+     * Submit datasource data
+     * 
+     * <p>Validates and asynchronously processes a datasource-specific submission.
+     * 
+     * @param datasourceInstance Datasource instance that should process the submission
+     * @param type Submission type registered for the datasource
+     * @param requestBody 
+     * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostRestApiIndexSubmissionsDatasourceInstanceTypeResponse submit(
+            String datasourceInstance, String type,
+            Map<String, Object> requestBody, Optional<String> serverURL) {
+        PostRestApiIndexSubmissionsDatasourceInstanceTypeRequest request =
+            PostRestApiIndexSubmissionsDatasourceInstanceTypeRequest
+                .builder()
+                .datasourceInstance(datasourceInstance)
+                .type(type)
+                .requestBody(requestBody)
+                .build();
+        RequestOperation<PostRestApiIndexSubmissionsDatasourceInstanceTypeRequest, PostRestApiIndexSubmissionsDatasourceInstanceTypeResponse> operation
+              = new PostRestApiIndexSubmissionsDatasourceInstanceType.Sync(sdkConfiguration, serverURL, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
