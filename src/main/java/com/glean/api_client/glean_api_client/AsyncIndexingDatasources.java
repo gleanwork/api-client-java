@@ -8,13 +8,21 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 
 import com.glean.api_client.glean_api_client.models.components.CustomDatasourceConfig;
 import com.glean.api_client.glean_api_client.models.components.GetDatasourceConfigRequest;
+import com.glean.api_client.glean_api_client.models.operations.PostRestApiIndexSubmissionsDatasourceInstanceTypeRequest;
 import com.glean.api_client.glean_api_client.models.operations.async.PostApiIndexV1AdddatasourceRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PostApiIndexV1AdddatasourceResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.PostApiIndexV1GetdatasourceconfigRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PostApiIndexV1GetdatasourceconfigResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.PostRestApiIndexSubmissionsDatasourceInstanceTypeRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.PostRestApiIndexSubmissionsDatasourceInstanceTypeResponse;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Adddatasource;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Getdatasourceconfig;
+import com.glean.api_client.glean_api_client.operations.PostRestApiIndexSubmissionsDatasourceInstanceType;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import java.lang.Object;
+import java.lang.String;
+import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
@@ -87,6 +95,63 @@ public class AsyncIndexingDatasources {
     public CompletableFuture<PostApiIndexV1GetdatasourceconfigResponse> retrieveConfig(GetDatasourceConfigRequest request) {
         AsyncRequestOperation<GetDatasourceConfigRequest, PostApiIndexV1GetdatasourceconfigResponse> operation
               = new PostApiIndexV1Getdatasourceconfig.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Submit datasource data
+     * 
+     * <p>Validates and asynchronously processes a datasource-specific submission.
+     * 
+     * @return The async call builder
+     */
+    public PostRestApiIndexSubmissionsDatasourceInstanceTypeRequestBuilder submit() {
+        return new PostRestApiIndexSubmissionsDatasourceInstanceTypeRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Submit datasource data
+     * 
+     * <p>Validates and asynchronously processes a datasource-specific submission.
+     * 
+     * @param datasourceInstance Datasource instance that should process the submission
+     * @param type Submission type registered for the datasource
+     * @param requestBody 
+     * @return {@code CompletableFuture<PostRestApiIndexSubmissionsDatasourceInstanceTypeResponse>} - The async response
+     */
+    public CompletableFuture<PostRestApiIndexSubmissionsDatasourceInstanceTypeResponse> submit(
+            String datasourceInstance, String type,
+            Map<String, Object> requestBody) {
+        return submit(
+                datasourceInstance, type, requestBody,
+                Optional.empty());
+    }
+
+    /**
+     * Submit datasource data
+     * 
+     * <p>Validates and asynchronously processes a datasource-specific submission.
+     * 
+     * @param datasourceInstance Datasource instance that should process the submission
+     * @param type Submission type registered for the datasource
+     * @param requestBody 
+     * @param serverURL Overrides the server URL.
+     * @return {@code CompletableFuture<PostRestApiIndexSubmissionsDatasourceInstanceTypeResponse>} - The async response
+     */
+    public CompletableFuture<PostRestApiIndexSubmissionsDatasourceInstanceTypeResponse> submit(
+            String datasourceInstance, String type,
+            Map<String, Object> requestBody, Optional<String> serverURL) {
+        PostRestApiIndexSubmissionsDatasourceInstanceTypeRequest request =
+            PostRestApiIndexSubmissionsDatasourceInstanceTypeRequest
+                .builder()
+                .datasourceInstance(datasourceInstance)
+                .type(type)
+                .requestBody(requestBody)
+                .build();
+        AsyncRequestOperation<PostRestApiIndexSubmissionsDatasourceInstanceTypeRequest, PostRestApiIndexSubmissionsDatasourceInstanceTypeResponse> operation
+              = new PostRestApiIndexSubmissionsDatasourceInstanceType.Async(sdkConfiguration, serverURL, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

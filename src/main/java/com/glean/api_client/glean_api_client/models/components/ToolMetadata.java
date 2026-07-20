@@ -113,6 +113,20 @@ public class ToolMetadata {
     private Optional<? extends WriteActionType> writeActionType;
 
     /**
+     * Analytics-only signal (product snapshot) describing WHERE the action's
+     * read/write determination came from. Complementary to the effective
+     * read/write value (the tool's ToolType, which drives HITL): the value says
+     * read-or-write, this says how confident that is. MCP_ANNOTATION = from the
+     * tool's read-only/destructive hints; ADMIN_OVERRIDE = an admin set it;
+     * NONE = no usable hint (the effective value then defaults to write);
+     * NATIVE_TOOL_DEFINITION = from a curated native tool (snapshot-derived).
+     * Does not affect runtime behavior.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("actionTypeSource")
+    private Optional<? extends ActionTypeSource> actionTypeSource;
+
+    /**
      * The type of authentication being used.
      * Use 'OAUTH_*' when Glean calls an external API (e.g., Jira) on behalf of a user to obtain an OAuth
      * token.
@@ -165,6 +179,7 @@ public class ToolMetadata {
             @JsonProperty("createdAt") Optional<OffsetDateTime> createdAt,
             @JsonProperty("lastUpdatedAt") Optional<OffsetDateTime> lastUpdatedAt,
             @JsonProperty("writeActionType") Optional<? extends WriteActionType> writeActionType,
+            @JsonProperty("actionTypeSource") Optional<? extends ActionTypeSource> actionTypeSource,
             @JsonProperty("authType") Optional<? extends AuthType> authType,
             @JsonProperty("auth") Optional<? extends AuthConfig> auth,
             @JsonProperty("permissions") Optional<? extends ObjectPermissions> permissions,
@@ -183,6 +198,7 @@ public class ToolMetadata {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(lastUpdatedAt, "lastUpdatedAt");
         Utils.checkNotNull(writeActionType, "writeActionType");
+        Utils.checkNotNull(actionTypeSource, "actionTypeSource");
         Utils.checkNotNull(authType, "authType");
         Utils.checkNotNull(auth, "auth");
         Utils.checkNotNull(permissions, "permissions");
@@ -201,6 +217,7 @@ public class ToolMetadata {
         this.createdAt = createdAt;
         this.lastUpdatedAt = lastUpdatedAt;
         this.writeActionType = writeActionType;
+        this.actionTypeSource = actionTypeSource;
         this.authType = authType;
         this.auth = auth;
         this.permissions = permissions;
@@ -218,7 +235,8 @@ public class ToolMetadata {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -327,6 +345,22 @@ public class ToolMetadata {
     @JsonIgnore
     public Optional<WriteActionType> writeActionType() {
         return (Optional<WriteActionType>) writeActionType;
+    }
+
+    /**
+     * Analytics-only signal (product snapshot) describing WHERE the action's
+     * read/write determination came from. Complementary to the effective
+     * read/write value (the tool's ToolType, which drives HITL): the value says
+     * read-or-write, this says how confident that is. MCP_ANNOTATION = from the
+     * tool's read-only/destructive hints; ADMIN_OVERRIDE = an admin set it;
+     * NONE = no usable hint (the effective value then defaults to write);
+     * NATIVE_TOOL_DEFINITION = from a curated native tool (snapshot-derived).
+     * Does not affect runtime behavior.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ActionTypeSource> actionTypeSource() {
+        return (Optional<ActionTypeSource>) actionTypeSource;
     }
 
     /**
@@ -586,6 +620,39 @@ public class ToolMetadata {
     }
 
     /**
+     * Analytics-only signal (product snapshot) describing WHERE the action's
+     * read/write determination came from. Complementary to the effective
+     * read/write value (the tool's ToolType, which drives HITL): the value says
+     * read-or-write, this says how confident that is. MCP_ANNOTATION = from the
+     * tool's read-only/destructive hints; ADMIN_OVERRIDE = an admin set it;
+     * NONE = no usable hint (the effective value then defaults to write);
+     * NATIVE_TOOL_DEFINITION = from a curated native tool (snapshot-derived).
+     * Does not affect runtime behavior.
+     */
+    public ToolMetadata withActionTypeSource(ActionTypeSource actionTypeSource) {
+        Utils.checkNotNull(actionTypeSource, "actionTypeSource");
+        this.actionTypeSource = Optional.ofNullable(actionTypeSource);
+        return this;
+    }
+
+
+    /**
+     * Analytics-only signal (product snapshot) describing WHERE the action's
+     * read/write determination came from. Complementary to the effective
+     * read/write value (the tool's ToolType, which drives HITL): the value says
+     * read-or-write, this says how confident that is. MCP_ANNOTATION = from the
+     * tool's read-only/destructive hints; ADMIN_OVERRIDE = an admin set it;
+     * NONE = no usable hint (the effective value then defaults to write);
+     * NATIVE_TOOL_DEFINITION = from a curated native tool (snapshot-derived).
+     * Does not affect runtime behavior.
+     */
+    public ToolMetadata withActionTypeSource(Optional<? extends ActionTypeSource> actionTypeSource) {
+        Utils.checkNotNull(actionTypeSource, "actionTypeSource");
+        this.actionTypeSource = actionTypeSource;
+        return this;
+    }
+
+    /**
      * The type of authentication being used.
      * Use 'OAUTH_*' when Glean calls an external API (e.g., Jira) on behalf of a user to obtain an OAuth
      * token.
@@ -707,6 +774,7 @@ public class ToolMetadata {
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.lastUpdatedAt, other.lastUpdatedAt) &&
             Utils.enhancedDeepEquals(this.writeActionType, other.writeActionType) &&
+            Utils.enhancedDeepEquals(this.actionTypeSource, other.actionTypeSource) &&
             Utils.enhancedDeepEquals(this.authType, other.authType) &&
             Utils.enhancedDeepEquals(this.auth, other.auth) &&
             Utils.enhancedDeepEquals(this.permissions, other.permissions) &&
@@ -721,8 +789,9 @@ public class ToolMetadata {
             toolId, displayDescription, logoUrl,
             objectName, knowledgeType, createdBy,
             lastUpdatedBy, createdAt, lastUpdatedAt,
-            writeActionType, authType, auth,
-            permissions, usageInstructions, isSetupFinished);
+            writeActionType, actionTypeSource, authType,
+            auth, permissions, usageInstructions,
+            isSetupFinished);
     }
     
     @Override
@@ -741,6 +810,7 @@ public class ToolMetadata {
                 "createdAt", createdAt,
                 "lastUpdatedAt", lastUpdatedAt,
                 "writeActionType", writeActionType,
+                "actionTypeSource", actionTypeSource,
                 "authType", authType,
                 "auth", auth,
                 "permissions", permissions,
@@ -776,6 +846,8 @@ public class ToolMetadata {
         private Optional<OffsetDateTime> lastUpdatedAt = Optional.empty();
 
         private Optional<? extends WriteActionType> writeActionType = Optional.empty();
+
+        private Optional<? extends ActionTypeSource> actionTypeSource = Optional.empty();
 
         private Optional<? extends AuthType> authType = Optional.empty();
 
@@ -1003,6 +1075,39 @@ public class ToolMetadata {
 
 
         /**
+         * Analytics-only signal (product snapshot) describing WHERE the action's
+         * read/write determination came from. Complementary to the effective
+         * read/write value (the tool's ToolType, which drives HITL): the value says
+         * read-or-write, this says how confident that is. MCP_ANNOTATION = from the
+         * tool's read-only/destructive hints; ADMIN_OVERRIDE = an admin set it;
+         * NONE = no usable hint (the effective value then defaults to write);
+         * NATIVE_TOOL_DEFINITION = from a curated native tool (snapshot-derived).
+         * Does not affect runtime behavior.
+         */
+        public Builder actionTypeSource(ActionTypeSource actionTypeSource) {
+            Utils.checkNotNull(actionTypeSource, "actionTypeSource");
+            this.actionTypeSource = Optional.ofNullable(actionTypeSource);
+            return this;
+        }
+
+        /**
+         * Analytics-only signal (product snapshot) describing WHERE the action's
+         * read/write determination came from. Complementary to the effective
+         * read/write value (the tool's ToolType, which drives HITL): the value says
+         * read-or-write, this says how confident that is. MCP_ANNOTATION = from the
+         * tool's read-only/destructive hints; ADMIN_OVERRIDE = an admin set it;
+         * NONE = no usable hint (the effective value then defaults to write);
+         * NATIVE_TOOL_DEFINITION = from a curated native tool (snapshot-derived).
+         * Does not affect runtime behavior.
+         */
+        public Builder actionTypeSource(Optional<? extends ActionTypeSource> actionTypeSource) {
+            Utils.checkNotNull(actionTypeSource, "actionTypeSource");
+            this.actionTypeSource = actionTypeSource;
+            return this;
+        }
+
+
+        /**
          * The type of authentication being used.
          * Use 'OAUTH_*' when Glean calls an external API (e.g., Jira) on behalf of a user to obtain an OAuth
          * token.
@@ -1107,8 +1212,9 @@ public class ToolMetadata {
                 toolId, displayDescription, logoUrl,
                 objectName, knowledgeType, createdBy,
                 lastUpdatedBy, createdAt, lastUpdatedAt,
-                writeActionType, authType, auth,
-                permissions, usageInstructions, isSetupFinished);
+                writeActionType, actionTypeSource, authType,
+                auth, permissions, usageInstructions,
+                isSetupFinished);
         }
 
     }

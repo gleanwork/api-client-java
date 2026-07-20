@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -37,21 +38,56 @@ public class DlpIssueFilter {
     private Optional<? extends List<DlpIssueStatus>> statuses;
 
     /**
-     * Filter by assignee user ID.
+     * Filter by a single assignee user ID. Deprecated; use assigneeIds.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("assigneeId")
+    @Deprecated
     private Optional<String> assigneeId;
 
+    /**
+     * Filter by one or more assignee user IDs. Use the sentinel value "UNASSIGNED" to match issues with no
+     * assignee.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("assigneeIds")
+    private Optional<? extends List<String>> assigneeIds;
 
+    /**
+     * Filter by a single built-in info type. Deprecated; use infoTypes.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("infoType")
+    @Deprecated
     private Optional<String> infoType;
 
+    /**
+     * Filter by one or more built-in info types.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("infoTypes")
+    private Optional<? extends List<String>> infoTypes;
 
+    /**
+     * Filter by a single regex rule ID. Deprecated; use regexIds.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("regexId")
+    @Deprecated
     private Optional<String> regexId;
+
+    /**
+     * Filter by one or more regex rule IDs.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("regexIds")
+    private Optional<? extends List<String>> regexIds;
 
     /**
      * Filter by one or more report/policy IDs.
@@ -65,10 +101,22 @@ public class DlpIssueFilter {
     @JsonProperty("docId")
     private Optional<String> docId;
 
-
+    /**
+     * Filter by a single datasource. Deprecated; use datasources.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("datasource")
+    @Deprecated
     private Optional<String> datasource;
+
+    /**
+     * Filter by one or more datasources.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("datasources")
+    private Optional<? extends List<String>> datasources;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -92,33 +140,45 @@ public class DlpIssueFilter {
             @JsonProperty("searchText") Optional<String> searchText,
             @JsonProperty("statuses") Optional<? extends List<DlpIssueStatus>> statuses,
             @JsonProperty("assigneeId") Optional<String> assigneeId,
+            @JsonProperty("assigneeIds") Optional<? extends List<String>> assigneeIds,
             @JsonProperty("infoType") Optional<String> infoType,
+            @JsonProperty("infoTypes") Optional<? extends List<String>> infoTypes,
             @JsonProperty("regexId") Optional<String> regexId,
+            @JsonProperty("regexIds") Optional<? extends List<String>> regexIds,
             @JsonProperty("reportIds") Optional<? extends List<String>> reportIds,
             @JsonProperty("docId") Optional<String> docId,
             @JsonProperty("datasource") Optional<String> datasource,
+            @JsonProperty("datasources") Optional<? extends List<String>> datasources,
             @JsonProperty("visibility") Optional<String> visibility,
             @JsonProperty("severities") Optional<? extends List<DlpSeverity>> severities,
             @JsonProperty("timeRange") Optional<? extends TimeRangeFilter> timeRange) {
         Utils.checkNotNull(searchText, "searchText");
         Utils.checkNotNull(statuses, "statuses");
         Utils.checkNotNull(assigneeId, "assigneeId");
+        Utils.checkNotNull(assigneeIds, "assigneeIds");
         Utils.checkNotNull(infoType, "infoType");
+        Utils.checkNotNull(infoTypes, "infoTypes");
         Utils.checkNotNull(regexId, "regexId");
+        Utils.checkNotNull(regexIds, "regexIds");
         Utils.checkNotNull(reportIds, "reportIds");
         Utils.checkNotNull(docId, "docId");
         Utils.checkNotNull(datasource, "datasource");
+        Utils.checkNotNull(datasources, "datasources");
         Utils.checkNotNull(visibility, "visibility");
         Utils.checkNotNull(severities, "severities");
         Utils.checkNotNull(timeRange, "timeRange");
         this.searchText = searchText;
         this.statuses = statuses;
         this.assigneeId = assigneeId;
+        this.assigneeIds = assigneeIds;
         this.infoType = infoType;
+        this.infoTypes = infoTypes;
         this.regexId = regexId;
+        this.regexIds = regexIds;
         this.reportIds = reportIds;
         this.docId = docId;
         this.datasource = datasource;
+        this.datasources = datasources;
         this.visibility = visibility;
         this.severities = severities;
         this.timeRange = timeRange;
@@ -128,7 +188,8 @@ public class DlpIssueFilter {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -149,21 +210,64 @@ public class DlpIssueFilter {
     }
 
     /**
-     * Filter by assignee user ID.
+     * Filter by a single assignee user ID. Deprecated; use assigneeIds.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     @JsonIgnore
     public Optional<String> assigneeId() {
         return assigneeId;
     }
 
+    /**
+     * Filter by one or more assignee user IDs. Use the sentinel value "UNASSIGNED" to match issues with no
+     * assignee.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<String>> assigneeIds() {
+        return (Optional<List<String>>) assigneeIds;
+    }
+
+    /**
+     * Filter by a single built-in info type. Deprecated; use infoTypes.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
     @JsonIgnore
     public Optional<String> infoType() {
         return infoType;
     }
 
+    /**
+     * Filter by one or more built-in info types.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<String>> infoTypes() {
+        return (Optional<List<String>>) infoTypes;
+    }
+
+    /**
+     * Filter by a single regex rule ID. Deprecated; use regexIds.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
     @JsonIgnore
     public Optional<String> regexId() {
         return regexId;
+    }
+
+    /**
+     * Filter by one or more regex rule IDs.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<String>> regexIds() {
+        return (Optional<List<String>>) regexIds;
     }
 
     /**
@@ -180,9 +284,24 @@ public class DlpIssueFilter {
         return docId;
     }
 
+    /**
+     * Filter by a single datasource. Deprecated; use datasources.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
     @JsonIgnore
     public Optional<String> datasource() {
         return datasource;
+    }
+
+    /**
+     * Filter by one or more datasources.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<String>> datasources() {
+        return (Optional<List<String>>) datasources;
     }
 
     @JsonIgnore
@@ -249,8 +368,11 @@ public class DlpIssueFilter {
     }
 
     /**
-     * Filter by assignee user ID.
+     * Filter by a single assignee user ID. Deprecated; use assigneeIds.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public DlpIssueFilter withAssigneeId(String assigneeId) {
         Utils.checkNotNull(assigneeId, "assigneeId");
         this.assigneeId = Optional.ofNullable(assigneeId);
@@ -259,14 +381,44 @@ public class DlpIssueFilter {
 
 
     /**
-     * Filter by assignee user ID.
+     * Filter by a single assignee user ID. Deprecated; use assigneeIds.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public DlpIssueFilter withAssigneeId(Optional<String> assigneeId) {
         Utils.checkNotNull(assigneeId, "assigneeId");
         this.assigneeId = assigneeId;
         return this;
     }
 
+    /**
+     * Filter by one or more assignee user IDs. Use the sentinel value "UNASSIGNED" to match issues with no
+     * assignee.
+     */
+    public DlpIssueFilter withAssigneeIds(List<String> assigneeIds) {
+        Utils.checkNotNull(assigneeIds, "assigneeIds");
+        this.assigneeIds = Optional.ofNullable(assigneeIds);
+        return this;
+    }
+
+
+    /**
+     * Filter by one or more assignee user IDs. Use the sentinel value "UNASSIGNED" to match issues with no
+     * assignee.
+     */
+    public DlpIssueFilter withAssigneeIds(Optional<? extends List<String>> assigneeIds) {
+        Utils.checkNotNull(assigneeIds, "assigneeIds");
+        this.assigneeIds = assigneeIds;
+        return this;
+    }
+
+    /**
+     * Filter by a single built-in info type. Deprecated; use infoTypes.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
     public DlpIssueFilter withInfoType(String infoType) {
         Utils.checkNotNull(infoType, "infoType");
         this.infoType = Optional.ofNullable(infoType);
@@ -274,12 +426,43 @@ public class DlpIssueFilter {
     }
 
 
+    /**
+     * Filter by a single built-in info type. Deprecated; use infoTypes.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
     public DlpIssueFilter withInfoType(Optional<String> infoType) {
         Utils.checkNotNull(infoType, "infoType");
         this.infoType = infoType;
         return this;
     }
 
+    /**
+     * Filter by one or more built-in info types.
+     */
+    public DlpIssueFilter withInfoTypes(List<String> infoTypes) {
+        Utils.checkNotNull(infoTypes, "infoTypes");
+        this.infoTypes = Optional.ofNullable(infoTypes);
+        return this;
+    }
+
+
+    /**
+     * Filter by one or more built-in info types.
+     */
+    public DlpIssueFilter withInfoTypes(Optional<? extends List<String>> infoTypes) {
+        Utils.checkNotNull(infoTypes, "infoTypes");
+        this.infoTypes = infoTypes;
+        return this;
+    }
+
+    /**
+     * Filter by a single regex rule ID. Deprecated; use regexIds.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
     public DlpIssueFilter withRegexId(String regexId) {
         Utils.checkNotNull(regexId, "regexId");
         this.regexId = Optional.ofNullable(regexId);
@@ -287,9 +470,34 @@ public class DlpIssueFilter {
     }
 
 
+    /**
+     * Filter by a single regex rule ID. Deprecated; use regexIds.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
     public DlpIssueFilter withRegexId(Optional<String> regexId) {
         Utils.checkNotNull(regexId, "regexId");
         this.regexId = regexId;
+        return this;
+    }
+
+    /**
+     * Filter by one or more regex rule IDs.
+     */
+    public DlpIssueFilter withRegexIds(List<String> regexIds) {
+        Utils.checkNotNull(regexIds, "regexIds");
+        this.regexIds = Optional.ofNullable(regexIds);
+        return this;
+    }
+
+
+    /**
+     * Filter by one or more regex rule IDs.
+     */
+    public DlpIssueFilter withRegexIds(Optional<? extends List<String>> regexIds) {
+        Utils.checkNotNull(regexIds, "regexIds");
+        this.regexIds = regexIds;
         return this;
     }
 
@@ -325,6 +533,12 @@ public class DlpIssueFilter {
         return this;
     }
 
+    /**
+     * Filter by a single datasource. Deprecated; use datasources.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
     public DlpIssueFilter withDatasource(String datasource) {
         Utils.checkNotNull(datasource, "datasource");
         this.datasource = Optional.ofNullable(datasource);
@@ -332,9 +546,34 @@ public class DlpIssueFilter {
     }
 
 
+    /**
+     * Filter by a single datasource. Deprecated; use datasources.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
     public DlpIssueFilter withDatasource(Optional<String> datasource) {
         Utils.checkNotNull(datasource, "datasource");
         this.datasource = datasource;
+        return this;
+    }
+
+    /**
+     * Filter by one or more datasources.
+     */
+    public DlpIssueFilter withDatasources(List<String> datasources) {
+        Utils.checkNotNull(datasources, "datasources");
+        this.datasources = Optional.ofNullable(datasources);
+        return this;
+    }
+
+
+    /**
+     * Filter by one or more datasources.
+     */
+    public DlpIssueFilter withDatasources(Optional<? extends List<String>> datasources) {
+        Utils.checkNotNull(datasources, "datasources");
+        this.datasources = datasources;
         return this;
     }
 
@@ -396,11 +635,15 @@ public class DlpIssueFilter {
             Utils.enhancedDeepEquals(this.searchText, other.searchText) &&
             Utils.enhancedDeepEquals(this.statuses, other.statuses) &&
             Utils.enhancedDeepEquals(this.assigneeId, other.assigneeId) &&
+            Utils.enhancedDeepEquals(this.assigneeIds, other.assigneeIds) &&
             Utils.enhancedDeepEquals(this.infoType, other.infoType) &&
+            Utils.enhancedDeepEquals(this.infoTypes, other.infoTypes) &&
             Utils.enhancedDeepEquals(this.regexId, other.regexId) &&
+            Utils.enhancedDeepEquals(this.regexIds, other.regexIds) &&
             Utils.enhancedDeepEquals(this.reportIds, other.reportIds) &&
             Utils.enhancedDeepEquals(this.docId, other.docId) &&
             Utils.enhancedDeepEquals(this.datasource, other.datasource) &&
+            Utils.enhancedDeepEquals(this.datasources, other.datasources) &&
             Utils.enhancedDeepEquals(this.visibility, other.visibility) &&
             Utils.enhancedDeepEquals(this.severities, other.severities) &&
             Utils.enhancedDeepEquals(this.timeRange, other.timeRange);
@@ -410,9 +653,10 @@ public class DlpIssueFilter {
     public int hashCode() {
         return Utils.enhancedHash(
             searchText, statuses, assigneeId,
-            infoType, regexId, reportIds,
-            docId, datasource, visibility,
-            severities, timeRange);
+            assigneeIds, infoType, infoTypes,
+            regexId, regexIds, reportIds,
+            docId, datasource, datasources,
+            visibility, severities, timeRange);
     }
     
     @Override
@@ -421,11 +665,15 @@ public class DlpIssueFilter {
                 "searchText", searchText,
                 "statuses", statuses,
                 "assigneeId", assigneeId,
+                "assigneeIds", assigneeIds,
                 "infoType", infoType,
+                "infoTypes", infoTypes,
                 "regexId", regexId,
+                "regexIds", regexIds,
                 "reportIds", reportIds,
                 "docId", docId,
                 "datasource", datasource,
+                "datasources", datasources,
                 "visibility", visibility,
                 "severities", severities,
                 "timeRange", timeRange);
@@ -438,17 +686,29 @@ public class DlpIssueFilter {
 
         private Optional<? extends List<DlpIssueStatus>> statuses = Optional.empty();
 
+        @Deprecated
         private Optional<String> assigneeId = Optional.empty();
 
+        private Optional<? extends List<String>> assigneeIds = Optional.empty();
+
+        @Deprecated
         private Optional<String> infoType = Optional.empty();
 
+        private Optional<? extends List<String>> infoTypes = Optional.empty();
+
+        @Deprecated
         private Optional<String> regexId = Optional.empty();
+
+        private Optional<? extends List<String>> regexIds = Optional.empty();
 
         private Optional<? extends List<String>> reportIds = Optional.empty();
 
         private Optional<String> docId = Optional.empty();
 
+        @Deprecated
         private Optional<String> datasource = Optional.empty();
+
+        private Optional<? extends List<String>> datasources = Optional.empty();
 
         private Optional<String> visibility = Optional.empty();
 
@@ -500,8 +760,11 @@ public class DlpIssueFilter {
 
 
         /**
-         * Filter by assignee user ID.
+         * Filter by a single assignee user ID. Deprecated; use assigneeIds.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder assigneeId(String assigneeId) {
             Utils.checkNotNull(assigneeId, "assigneeId");
             this.assigneeId = Optional.ofNullable(assigneeId);
@@ -509,8 +772,11 @@ public class DlpIssueFilter {
         }
 
         /**
-         * Filter by assignee user ID.
+         * Filter by a single assignee user ID. Deprecated; use assigneeIds.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder assigneeId(Optional<String> assigneeId) {
             Utils.checkNotNull(assigneeId, "assigneeId");
             this.assigneeId = assigneeId;
@@ -518,12 +784,45 @@ public class DlpIssueFilter {
         }
 
 
+        /**
+         * Filter by one or more assignee user IDs. Use the sentinel value "UNASSIGNED" to match issues with no
+         * assignee.
+         */
+        public Builder assigneeIds(List<String> assigneeIds) {
+            Utils.checkNotNull(assigneeIds, "assigneeIds");
+            this.assigneeIds = Optional.ofNullable(assigneeIds);
+            return this;
+        }
+
+        /**
+         * Filter by one or more assignee user IDs. Use the sentinel value "UNASSIGNED" to match issues with no
+         * assignee.
+         */
+        public Builder assigneeIds(Optional<? extends List<String>> assigneeIds) {
+            Utils.checkNotNull(assigneeIds, "assigneeIds");
+            this.assigneeIds = assigneeIds;
+            return this;
+        }
+
+
+        /**
+         * Filter by a single built-in info type. Deprecated; use infoTypes.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         */
+        @Deprecated
         public Builder infoType(String infoType) {
             Utils.checkNotNull(infoType, "infoType");
             this.infoType = Optional.ofNullable(infoType);
             return this;
         }
 
+        /**
+         * Filter by a single built-in info type. Deprecated; use infoTypes.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         */
+        @Deprecated
         public Builder infoType(Optional<String> infoType) {
             Utils.checkNotNull(infoType, "infoType");
             this.infoType = infoType;
@@ -531,15 +830,65 @@ public class DlpIssueFilter {
         }
 
 
+        /**
+         * Filter by one or more built-in info types.
+         */
+        public Builder infoTypes(List<String> infoTypes) {
+            Utils.checkNotNull(infoTypes, "infoTypes");
+            this.infoTypes = Optional.ofNullable(infoTypes);
+            return this;
+        }
+
+        /**
+         * Filter by one or more built-in info types.
+         */
+        public Builder infoTypes(Optional<? extends List<String>> infoTypes) {
+            Utils.checkNotNull(infoTypes, "infoTypes");
+            this.infoTypes = infoTypes;
+            return this;
+        }
+
+
+        /**
+         * Filter by a single regex rule ID. Deprecated; use regexIds.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         */
+        @Deprecated
         public Builder regexId(String regexId) {
             Utils.checkNotNull(regexId, "regexId");
             this.regexId = Optional.ofNullable(regexId);
             return this;
         }
 
+        /**
+         * Filter by a single regex rule ID. Deprecated; use regexIds.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         */
+        @Deprecated
         public Builder regexId(Optional<String> regexId) {
             Utils.checkNotNull(regexId, "regexId");
             this.regexId = regexId;
+            return this;
+        }
+
+
+        /**
+         * Filter by one or more regex rule IDs.
+         */
+        public Builder regexIds(List<String> regexIds) {
+            Utils.checkNotNull(regexIds, "regexIds");
+            this.regexIds = Optional.ofNullable(regexIds);
+            return this;
+        }
+
+        /**
+         * Filter by one or more regex rule IDs.
+         */
+        public Builder regexIds(Optional<? extends List<String>> regexIds) {
+            Utils.checkNotNull(regexIds, "regexIds");
+            this.regexIds = regexIds;
             return this;
         }
 
@@ -576,15 +925,46 @@ public class DlpIssueFilter {
         }
 
 
+        /**
+         * Filter by a single datasource. Deprecated; use datasources.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         */
+        @Deprecated
         public Builder datasource(String datasource) {
             Utils.checkNotNull(datasource, "datasource");
             this.datasource = Optional.ofNullable(datasource);
             return this;
         }
 
+        /**
+         * Filter by a single datasource. Deprecated; use datasources.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         */
+        @Deprecated
         public Builder datasource(Optional<String> datasource) {
             Utils.checkNotNull(datasource, "datasource");
             this.datasource = datasource;
+            return this;
+        }
+
+
+        /**
+         * Filter by one or more datasources.
+         */
+        public Builder datasources(List<String> datasources) {
+            Utils.checkNotNull(datasources, "datasources");
+            this.datasources = Optional.ofNullable(datasources);
+            return this;
+        }
+
+        /**
+         * Filter by one or more datasources.
+         */
+        public Builder datasources(Optional<? extends List<String>> datasources) {
+            Utils.checkNotNull(datasources, "datasources");
+            this.datasources = datasources;
             return this;
         }
 
@@ -637,9 +1017,10 @@ public class DlpIssueFilter {
 
             return new DlpIssueFilter(
                 searchText, statuses, assigneeId,
-                infoType, regexId, reportIds,
-                docId, datasource, visibility,
-                severities, timeRange);
+                assigneeIds, infoType, infoTypes,
+                regexId, regexIds, reportIds,
+                docId, datasource, datasources,
+                visibility, severities, timeRange);
         }
 
     }
