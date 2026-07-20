@@ -98,6 +98,14 @@ public class Workflow {
     @JsonProperty("showOrganizationAsAuthor")
     private Optional<Boolean> showOrganizationAsAuthor;
 
+    /**
+     * For a CUSTOM_WEBHOOK-triggered agent, the full inbound webhook URL
+     * (.../webhooks/custom/&lt;token&gt;) minted for the agent. Empty for other trigger types.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("webhookUrl")
+    private Optional<String> webhookUrl;
+
     @JsonCreator
     public Workflow(
             @JsonProperty("name") Optional<String> name,
@@ -111,7 +119,8 @@ public class Workflow {
             @JsonProperty("permissions") Optional<? extends ObjectPermissions> permissions,
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("verified") Optional<Boolean> verified,
-            @JsonProperty("showOrganizationAsAuthor") Optional<Boolean> showOrganizationAsAuthor) {
+            @JsonProperty("showOrganizationAsAuthor") Optional<Boolean> showOrganizationAsAuthor,
+            @JsonProperty("webhookUrl") Optional<String> webhookUrl) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(author, "author");
         Utils.checkNotNull(createTimestamp, "createTimestamp");
@@ -124,6 +133,7 @@ public class Workflow {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(verified, "verified");
         Utils.checkNotNull(showOrganizationAsAuthor, "showOrganizationAsAuthor");
+        Utils.checkNotNull(webhookUrl, "webhookUrl");
         this.name = name;
         this.author = author;
         this.createTimestamp = createTimestamp;
@@ -136,13 +146,15 @@ public class Workflow {
         this.id = id;
         this.verified = verified;
         this.showOrganizationAsAuthor = showOrganizationAsAuthor;
+        this.webhookUrl = webhookUrl;
     }
     
     public Workflow() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -234,6 +246,15 @@ public class Workflow {
     @JsonIgnore
     public Optional<Boolean> showOrganizationAsAuthor() {
         return showOrganizationAsAuthor;
+    }
+
+    /**
+     * For a CUSTOM_WEBHOOK-triggered agent, the full inbound webhook URL
+     * (.../webhooks/custom/&lt;token&gt;) minted for the agent. Empty for other trigger types.
+     */
+    @JsonIgnore
+    public Optional<String> webhookUrl() {
+        return webhookUrl;
     }
 
     public static Builder builder() {
@@ -451,6 +472,27 @@ public class Workflow {
         return this;
     }
 
+    /**
+     * For a CUSTOM_WEBHOOK-triggered agent, the full inbound webhook URL
+     * (.../webhooks/custom/&lt;token&gt;) minted for the agent. Empty for other trigger types.
+     */
+    public Workflow withWebhookUrl(String webhookUrl) {
+        Utils.checkNotNull(webhookUrl, "webhookUrl");
+        this.webhookUrl = Optional.ofNullable(webhookUrl);
+        return this;
+    }
+
+
+    /**
+     * For a CUSTOM_WEBHOOK-triggered agent, the full inbound webhook URL
+     * (.../webhooks/custom/&lt;token&gt;) minted for the agent. Empty for other trigger types.
+     */
+    public Workflow withWebhookUrl(Optional<String> webhookUrl) {
+        Utils.checkNotNull(webhookUrl, "webhookUrl");
+        this.webhookUrl = webhookUrl;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -472,7 +514,8 @@ public class Workflow {
             Utils.enhancedDeepEquals(this.permissions, other.permissions) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.verified, other.verified) &&
-            Utils.enhancedDeepEquals(this.showOrganizationAsAuthor, other.showOrganizationAsAuthor);
+            Utils.enhancedDeepEquals(this.showOrganizationAsAuthor, other.showOrganizationAsAuthor) &&
+            Utils.enhancedDeepEquals(this.webhookUrl, other.webhookUrl);
     }
     
     @Override
@@ -481,7 +524,8 @@ public class Workflow {
             name, author, createTimestamp,
             lastUpdateTimestamp, lastDraftSavedAt, lastDraftSavedBy,
             lastDraftGitAuthorId, lastUpdatedBy, permissions,
-            id, verified, showOrganizationAsAuthor);
+            id, verified, showOrganizationAsAuthor,
+            webhookUrl);
     }
     
     @Override
@@ -498,7 +542,8 @@ public class Workflow {
                 "permissions", permissions,
                 "id", id,
                 "verified", verified,
-                "showOrganizationAsAuthor", showOrganizationAsAuthor);
+                "showOrganizationAsAuthor", showOrganizationAsAuthor,
+                "webhookUrl", webhookUrl);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -527,6 +572,8 @@ public class Workflow {
         private Optional<Boolean> verified = Optional.empty();
 
         private Optional<Boolean> showOrganizationAsAuthor = Optional.empty();
+
+        private Optional<String> webhookUrl = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -742,13 +789,35 @@ public class Workflow {
             return this;
         }
 
+
+        /**
+         * For a CUSTOM_WEBHOOK-triggered agent, the full inbound webhook URL
+         * (.../webhooks/custom/&lt;token&gt;) minted for the agent. Empty for other trigger types.
+         */
+        public Builder webhookUrl(String webhookUrl) {
+            Utils.checkNotNull(webhookUrl, "webhookUrl");
+            this.webhookUrl = Optional.ofNullable(webhookUrl);
+            return this;
+        }
+
+        /**
+         * For a CUSTOM_WEBHOOK-triggered agent, the full inbound webhook URL
+         * (.../webhooks/custom/&lt;token&gt;) minted for the agent. Empty for other trigger types.
+         */
+        public Builder webhookUrl(Optional<String> webhookUrl) {
+            Utils.checkNotNull(webhookUrl, "webhookUrl");
+            this.webhookUrl = webhookUrl;
+            return this;
+        }
+
         public Workflow build() {
 
             return new Workflow(
                 name, author, createTimestamp,
                 lastUpdateTimestamp, lastDraftSavedAt, lastDraftSavedBy,
                 lastDraftGitAuthorId, lastUpdatedBy, permissions,
-                id, verified, showOrganizationAsAuthor);
+                id, verified, showOrganizationAsAuthor,
+                webhookUrl);
         }
 
     }
