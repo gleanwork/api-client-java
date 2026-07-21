@@ -50,7 +50,8 @@ public class DlpFindingFilter {
     private Optional<? extends List<String>> documentIds;
 
     /**
-     * Severity levels for DLP findings and analyses.
+     * Severity levels for DLP findings and analyses. FALSE_POSITIVE ranks below LOW and marks analyses
+     * that concluded every flagged entity is a detector false positive.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("severity")
@@ -152,7 +153,8 @@ public class DlpFindingFilter {
     }
 
     /**
-     * Severity levels for DLP findings and analyses.
+     * Severity levels for DLP findings and analyses. FALSE_POSITIVE ranks below LOW and marks analyses
+     * that concluded every flagged entity is a detector false positive.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -267,7 +269,8 @@ public class DlpFindingFilter {
     }
 
     /**
-     * Severity levels for DLP findings and analyses.
+     * Severity levels for DLP findings and analyses. FALSE_POSITIVE ranks below LOW and marks analyses
+     * that concluded every flagged entity is a detector false positive.
      */
     public DlpFindingFilter withSeverity(DlpSeverity severity) {
         Utils.checkNotNull(severity, "severity");
@@ -277,7 +280,8 @@ public class DlpFindingFilter {
 
 
     /**
-     * Severity levels for DLP findings and analyses.
+     * Severity levels for DLP findings and analyses. FALSE_POSITIVE ranks below LOW and marks analyses
+     * that concluded every flagged entity is a detector false positive.
      */
     public DlpFindingFilter withSeverity(Optional<? extends DlpSeverity> severity) {
         Utils.checkNotNull(severity, "severity");
@@ -494,7 +498,8 @@ public class DlpFindingFilter {
 
 
         /**
-         * Severity levels for DLP findings and analyses.
+         * Severity levels for DLP findings and analyses. FALSE_POSITIVE ranks below LOW and marks analyses
+         * that concluded every flagged entity is a detector false positive.
          */
         public Builder severity(DlpSeverity severity) {
             Utils.checkNotNull(severity, "severity");
@@ -503,7 +508,8 @@ public class DlpFindingFilter {
         }
 
         /**
-         * Severity levels for DLP findings and analyses.
+         * Severity levels for DLP findings and analyses. FALSE_POSITIVE ranks below LOW and marks analyses
+         * that concluded every flagged entity is a detector false positive.
          */
         public Builder severity(Optional<? extends DlpSeverity> severity) {
             Utils.checkNotNull(severity, "severity");
