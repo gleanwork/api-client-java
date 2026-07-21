@@ -22,7 +22,8 @@ import java.util.Optional;
 /**
  * DlpSeverity
  * 
- * <p>Severity levels for DLP findings and analyses.
+ * <p>Severity levels for DLP findings and analyses. FALSE_POSITIVE ranks below LOW and marks analyses
+ * that concluded every flagged entity is a detector false positive.
  */
 public class DlpSeverity {
 
@@ -30,6 +31,7 @@ public class DlpSeverity {
     public static final DlpSeverity LOW = new DlpSeverity("LOW");
     public static final DlpSeverity MEDIUM = new DlpSeverity("MEDIUM");
     public static final DlpSeverity HIGH = new DlpSeverity("HIGH");
+    public static final DlpSeverity FALSE_POSITIVE = new DlpSeverity("FALSE_POSITIVE");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -107,6 +109,7 @@ public class DlpSeverity {
         map.put("LOW", LOW);
         map.put("MEDIUM", MEDIUM);
         map.put("HIGH", HIGH);
+        map.put("FALSE_POSITIVE", FALSE_POSITIVE);
         return map;
     }
 
@@ -116,6 +119,7 @@ public class DlpSeverity {
         map.put("LOW", DlpSeverityEnum.LOW);
         map.put("MEDIUM", DlpSeverityEnum.MEDIUM);
         map.put("HIGH", DlpSeverityEnum.HIGH);
+        map.put("FALSE_POSITIVE", DlpSeverityEnum.FALSE_POSITIVE);
         return map;
     }
     
@@ -125,7 +129,8 @@ public class DlpSeverity {
         UNSPECIFIED("UNSPECIFIED"),
         LOW("LOW"),
         MEDIUM("MEDIUM"),
-        HIGH("HIGH"),;
+        HIGH("HIGH"),
+        FALSE_POSITIVE("FALSE_POSITIVE"),;
 
         private final String value;
 
