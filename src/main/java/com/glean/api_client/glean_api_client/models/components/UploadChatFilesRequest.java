@@ -18,11 +18,11 @@ public class UploadChatFilesRequest {
      * Raw files to be uploaded for chat in binary format.
      */
     @SpeakeasyMetadata("multipartForm:file,name=files")
-    private List<File> files;
+    private List<UploadChatFilesRequestFile> files;
 
     @JsonCreator
     public UploadChatFilesRequest(
-            List<File> files) {
+            List<UploadChatFilesRequestFile> files) {
         Utils.checkNotNull(files, "files");
         this.files = files;
     }
@@ -31,7 +31,7 @@ public class UploadChatFilesRequest {
      * Raw files to be uploaded for chat in binary format.
      */
     @JsonIgnore
-    public List<File> files() {
+    public List<UploadChatFilesRequestFile> files() {
         return files;
     }
 
@@ -43,7 +43,7 @@ public class UploadChatFilesRequest {
     /**
      * Raw files to be uploaded for chat in binary format.
      */
-    public UploadChatFilesRequest withFiles(List<File> files) {
+    public UploadChatFilesRequest withFiles(List<UploadChatFilesRequestFile> files) {
         Utils.checkNotNull(files, "files");
         this.files = files;
         return this;
@@ -77,7 +77,7 @@ public class UploadChatFilesRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<File> files;
+        private List<UploadChatFilesRequestFile> files;
 
         private Builder() {
           // force use of static builder() method
@@ -87,7 +87,7 @@ public class UploadChatFilesRequest {
         /**
          * Raw files to be uploaded for chat in binary format.
          */
-        public Builder files(List<File> files) {
+        public Builder files(List<UploadChatFilesRequestFile> files) {
             Utils.checkNotNull(files, "files");
             this.files = files;
             return this;

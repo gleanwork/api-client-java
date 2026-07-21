@@ -1,0 +1,11 @@
+# PlatformSkillVersionsListResponse
+
+
+## Fields
+
+| Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `versions`                                                                     | List\<[PlatformSkillVersion](../../models/components/PlatformSkillVersion.md)> | :heavy_check_mark:                                                             | Versions available for the skill.                                              |
+| `hasMore`                                                                      | *boolean*                                                                      | :heavy_check_mark:                                                             | Whether additional results are available.                                      |
+| `nextCursor`                                                                   | *Optional\<String>*                                                            | :heavy_check_mark:                                                             | Cursor for the next page, or null when no more results are available.          |
+| `requestId`                                                                    | *String*                                                                       | :heavy_check_mark:                                                             | Platform-generated request ID for support correlation.                         |
