@@ -36,6 +36,8 @@ public class AsyncGlean {
 
     private final AsyncAgents agents;
 
+    private final AsyncSkills skills;
+
     private final AsyncSearch search;
 
     private final AsyncClient client;
@@ -44,6 +46,10 @@ public class AsyncGlean {
 
     public AsyncAgents agents() {
         return agents;
+    }
+
+    public AsyncSkills skills() {
+        return skills;
     }
 
     public AsyncSearch search() {
@@ -65,6 +71,7 @@ public class AsyncGlean {
         this.syncSDK = syncSDK;
         this.sdkConfiguration = sdkConfiguration;
         this.agents = new AsyncAgents(syncSDK.agents(), sdkConfiguration);
+        this.skills = new AsyncSkills(syncSDK.skills(), sdkConfiguration);
         this.search = new AsyncSearch(syncSDK.search(), sdkConfiguration);
         this.client = new AsyncClient(syncSDK.client(), sdkConfiguration);
         this.indexing = new AsyncIndexing(syncSDK.indexing(), sdkConfiguration);
