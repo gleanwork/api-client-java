@@ -6,6 +6,7 @@
 
 * [add](#add) - Add or update datasource
 * [retrieveConfig](#retrieveconfig) - Get datasource config
+* [submit](#submit) - Submit datasource data
 
 ## add
 
@@ -123,3 +124,64 @@ public class Application {
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
 | models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
+
+## submit
+
+Validates and asynchronously processes a datasource-specific submission.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="post_/rest/api/index/submissions/{datasourceInstance}/{type}" method="post" path="/rest/api/index/submissions/{datasourceInstance}/{type}" -->
+```java
+package hello.world;
+
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse;
+import com.glean.api_client.glean_api_client.models.operations.PostRestApiIndexSubmissionsDatasourceInstanceTypeResponse;
+import java.lang.Exception;
+import java.util.Map;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorInfoResponse, Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
+            .build();
+
+        PostRestApiIndexSubmissionsDatasourceInstanceTypeResponse res = sdk.indexing().datasources().submit()
+                .datasourceInstance("<value>")
+                .type("<value>")
+                .requestBody(Map.ofEntries(
+                    Map.entry("key", "<value>"),
+                    Map.entry("key1", "<value>"),
+                    Map.entry("key2", "<value>")))
+                .call();
+
+        if (res.object().isPresent()) {
+            System.out.println(res.object().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                              | Type                                                   | Required                                               | Description                                            |
+| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
+| `datasourceInstance`                                   | *String*                                               | :heavy_check_mark:                                     | Datasource instance that should process the submission |
+| `type`                                                 | *String*                                               | :heavy_check_mark:                                     | Submission type registered for the datasource          |
+| `requestBody`                                          | Map\<String, *Object*>                                 | :heavy_check_mark:                                     | N/A                                                    |
+| `serverURL`                                            | *String*                                               | :heavy_minus_sign:                                     | An optional server URL to use.                         |
+
+### Response
+
+**[PostRestApiIndexSubmissionsDatasourceInstanceTypeResponse](../../models/operations/PostRestApiIndexSubmissionsDatasourceInstanceTypeResponse.md)**
+
+### Errors
+
+| Error Type                      | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| models/errors/ErrorInfoResponse | 400, 401, 404                   | application/json                |
+| models/errors/ErrorInfoResponse | 500                             | application/json                |
+| models/errors/APIException      | 4XX, 5XX                        | \*/\*                           |

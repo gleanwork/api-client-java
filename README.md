@@ -67,7 +67,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.glean.api-client:glean-api-client:0.14.3'
+implementation 'com.glean.api-client:glean-api-client:0.14.4'
 ```
 
 Maven:
@@ -75,7 +75,7 @@ Maven:
 <dependency>
     <groupId>com.glean.api-client</groupId>
     <artifactId>glean-api-client</artifactId>
-    <version>0.14.3</version>
+    <version>0.14.4</version>
 </dependency>
 ```
 
@@ -547,6 +547,7 @@ For more information on obtaining the appropriate token type, please contact you
 
 * [add](docs/sdks/indexingdatasources/README.md#add) - Add or update datasource
 * [retrieveConfig](docs/sdks/indexingdatasources/README.md#retrieveconfig) - Get datasource config
+* [submit](docs/sdks/indexingdatasources/README.md#submit) - Submit datasource data
 
 ### [Indexing.Documents](docs/sdks/indexingdocuments/README.md)
 
@@ -601,6 +602,18 @@ For more information on obtaining the appropriate token type, please contact you
 ### [Search](docs/sdks/search/README.md)
 
 * [query](docs/sdks/search/README.md#query) - Search
+
+### [Skills](docs/sdks/skills/README.md)
+
+* [create](docs/sdks/skills/README.md#create) - Create skill
+* [list](docs/sdks/skills/README.md#list) - List skills
+* [validate](docs/sdks/skills/README.md#validate) - Validate skill bundle
+* [retrieve](docs/sdks/skills/README.md#retrieve) - Retrieve skill
+* [retrieveContent](docs/sdks/skills/README.md#retrievecontent) - Download skill content
+* [createVersion](docs/sdks/skills/README.md#createversion) - Create skill version
+* [listVersions](docs/sdks/skills/README.md#listversions) - List skill versions
+* [retrieveVersion](docs/sdks/skills/README.md#retrieveversion) - Retrieve skill version
+* [retrieveVersionContent](docs/sdks/skills/README.md#retrieveversioncontent) - Download skill version content
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -707,11 +720,11 @@ public class Application {
 many more subclasses in the JDK platform).
 
 **Inherit from [`GleanError`](./src/main/java/models/errors/GleanError.java)**:
-* [`com.glean.api_client.glean_api_client.models.errors.ErrorResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorResponse.java): Error response returned for failed requests. Applicable to 9 of 137 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException.java): Error response following RFC 9457, extended with `code` and `documentation_url` for machine-readable classification and self-service remediation. Applicable to 5 of 137 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse.java): Error response for custom metadata operations. Applicable to 5 of 137 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.CollectionError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.CollectionError.java): Semantic error. Status code `422`. Applicable to 3 of 137 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.GleanDataError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.GleanDataError.java): Forbidden. Applicable to 2 of 137 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException.java): Error response following RFC 9457, extended with `code` and `documentation_url` for machine-readable classification and self-service remediation. Applicable to 14 of 147 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.ErrorResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorResponse.java): Error response returned for failed requests. Applicable to 9 of 147 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse.java): Error response for custom metadata operations. Applicable to 6 of 147 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.CollectionError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.CollectionError.java): Semantic error. Status code `422`. Applicable to 3 of 147 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.GleanDataError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.GleanDataError.java): Forbidden. Applicable to 2 of 147 methods.*
 
 
 </details>
@@ -809,11 +822,10 @@ The server URL can also be overridden on a per-operation basis, provided a serve
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.CustomMetadataPutRequest;
 import com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse;
-import com.glean.api_client.glean_api_client.models.operations.PutRestApiIndexDocumentDocIdCustomMetadataGroupNameResponse;
+import com.glean.api_client.glean_api_client.models.operations.PostRestApiIndexSubmissionsDatasourceInstanceTypeResponse;
 import java.lang.Exception;
-import java.util.List;
+import java.util.Map;
 
 public class Application {
 
@@ -823,17 +835,18 @@ public class Application {
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        PutRestApiIndexDocumentDocIdCustomMetadataGroupNameResponse res = sdk.indexing().customMetadata().upsert()
+        PostRestApiIndexSubmissionsDatasourceInstanceTypeResponse res = sdk.indexing().datasources().submit()
                 .serverURL("https://instance-name-be.glean.com")
-                .docId("<id>")
-                .groupName("<value>")
-                .customMetadataPutRequest(CustomMetadataPutRequest.builder()
-                    .customMetadata(List.of())
-                    .build())
+                .datasourceInstance("<value>")
+                .type("<value>")
+                .requestBody(Map.ofEntries(
+                    Map.entry("key", "<value>"),
+                    Map.entry("key1", "<value>"),
+                    Map.entry("key2", "<value>")))
                 .call();
 
-        if (res.successResponse().isPresent()) {
-            System.out.println(res.successResponse().get());
+        if (res.object().isPresent()) {
+            System.out.println(res.object().get());
         }
     }
 }
