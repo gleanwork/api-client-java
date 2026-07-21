@@ -49982,8 +49982,8 @@ Upload files for Chat.
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.File;
 import com.glean.api_client.glean_api_client.models.components.UploadChatFilesRequest;
+import com.glean.api_client.glean_api_client.models.components.UploadChatFilesRequestFile;
 import com.glean.api_client.glean_api_client.models.operations.UploadchatfilesResponse;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.io.FileInputStream;
@@ -50001,7 +50001,7 @@ public class Application {
         UploadchatfilesResponse res = sdk.client().chat().uploadFiles()
                 .uploadChatFilesRequest(UploadChatFilesRequest.builder()
                     .files(List.of(
-                        File.builder()
+                        UploadChatFilesRequestFile.builder()
                             .fileName("example.file")
                             .content(Utils.readBytesAndClose(new FileInputStream("example.file")))
                             .build()))
