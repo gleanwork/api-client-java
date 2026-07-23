@@ -43,28 +43,42 @@ public class PlatformSearchResponse {
     @JsonProperty("request_id")
     private String requestId;
 
+    /**
+     * Non-blocking warnings for this response. Always present; empty means `[]`. Clients must tolerate
+     * unknown warning codes.
+     * 
+     * <p>Current code `results_incomplete` means some results may be unavailable for the requested datasource
+     * scope; results, `has_more`, and `next_cursor` remain present.
+     */
+    @JsonProperty("warnings")
+    private List<PlatformWarning> warnings;
+
     @JsonCreator
     public PlatformSearchResponse(
             @JsonProperty("results") List<PlatformResult> results,
             @JsonProperty("has_more") boolean hasMore,
             @JsonProperty("next_cursor") Optional<String> nextCursor,
-            @JsonProperty("request_id") String requestId) {
+            @JsonProperty("request_id") String requestId,
+            @JsonProperty("warnings") List<PlatformWarning> warnings) {
         Utils.checkNotNull(results, "results");
         Utils.checkNotNull(hasMore, "hasMore");
         Utils.checkNotNull(nextCursor, "nextCursor");
         Utils.checkNotNull(requestId, "requestId");
+        Utils.checkNotNull(warnings, "warnings");
         this.results = results;
         this.hasMore = hasMore;
         this.nextCursor = nextCursor;
         this.requestId = requestId;
+        this.warnings = warnings;
     }
     
     public PlatformSearchResponse(
             List<PlatformResult> results,
             boolean hasMore,
-            String requestId) {
+            String requestId,
+            List<PlatformWarning> warnings) {
         this(results, hasMore, Optional.empty(),
-            requestId);
+            requestId, warnings);
     }
 
     /**
@@ -97,6 +111,18 @@ public class PlatformSearchResponse {
     @JsonIgnore
     public String requestId() {
         return requestId;
+    }
+
+    /**
+     * Non-blocking warnings for this response. Always present; empty means `[]`. Clients must tolerate
+     * unknown warning codes.
+     * 
+     * <p>Current code `results_incomplete` means some results may be unavailable for the requested datasource
+     * scope; results, `has_more`, and `next_cursor` remain present.
+     */
+    @JsonIgnore
+    public List<PlatformWarning> warnings() {
+        return warnings;
     }
 
     public static Builder builder() {
@@ -150,6 +176,19 @@ public class PlatformSearchResponse {
         return this;
     }
 
+    /**
+     * Non-blocking warnings for this response. Always present; empty means `[]`. Clients must tolerate
+     * unknown warning codes.
+     * 
+     * <p>Current code `results_incomplete` means some results may be unavailable for the requested datasource
+     * scope; results, `has_more`, and `next_cursor` remain present.
+     */
+    public PlatformSearchResponse withWarnings(List<PlatformWarning> warnings) {
+        Utils.checkNotNull(warnings, "warnings");
+        this.warnings = warnings;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -163,14 +202,15 @@ public class PlatformSearchResponse {
             Utils.enhancedDeepEquals(this.results, other.results) &&
             Utils.enhancedDeepEquals(this.hasMore, other.hasMore) &&
             Utils.enhancedDeepEquals(this.nextCursor, other.nextCursor) &&
-            Utils.enhancedDeepEquals(this.requestId, other.requestId);
+            Utils.enhancedDeepEquals(this.requestId, other.requestId) &&
+            Utils.enhancedDeepEquals(this.warnings, other.warnings);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             results, hasMore, nextCursor,
-            requestId);
+            requestId, warnings);
     }
     
     @Override
@@ -179,7 +219,8 @@ public class PlatformSearchResponse {
                 "results", results,
                 "hasMore", hasMore,
                 "nextCursor", nextCursor,
-                "requestId", requestId);
+                "requestId", requestId,
+                "warnings", warnings);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -192,6 +233,8 @@ public class PlatformSearchResponse {
         private Optional<String> nextCursor = Optional.empty();
 
         private String requestId;
+
+        private List<PlatformWarning> warnings;
 
         private Builder() {
           // force use of static builder() method
@@ -246,11 +289,25 @@ public class PlatformSearchResponse {
             return this;
         }
 
+
+        /**
+         * Non-blocking warnings for this response. Always present; empty means `[]`. Clients must tolerate
+         * unknown warning codes.
+         * 
+         * <p>Current code `results_incomplete` means some results may be unavailable for the requested datasource
+         * scope; results, `has_more`, and `next_cursor` remain present.
+         */
+        public Builder warnings(List<PlatformWarning> warnings) {
+            Utils.checkNotNull(warnings, "warnings");
+            this.warnings = warnings;
+            return this;
+        }
+
         public PlatformSearchResponse build() {
 
             return new PlatformSearchResponse(
                 results, hasMore, nextCursor,
-                requestId);
+                requestId, warnings);
         }
 
     }

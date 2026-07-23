@@ -44,21 +44,11 @@ public class PlatformSearchRequest {
     private JsonNullable<String> cursor;
 
     /**
-     * Restrict results to specific datasources. Requests must not specify both `datasources` and
-     * `datasource_instances`.
+     * Restrict results to specific canonical normalized datasource identifiers.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("datasources")
     private Optional<? extends List<String>> datasources;
-
-    /**
-     * Restrict results to specific datasource instances. Values are datasource instance identifiers
-     * returned by `GET /api/search/filters`. Requests must not specify both `datasources` and
-     * `datasource_instances`.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("datasource_instances")
-    private Optional<? extends List<String>> datasourceInstances;
 
     /**
      * Structured filters applied to search results. Equality operators OR multiple values within a filter.
@@ -66,7 +56,8 @@ public class PlatformSearchRequest {
      * 
      * <p>Filters are AND'd with any inline operators in `query`. Note that conflicting constraints on the
      * same field (e.g., `type:document` in the query and `type: spreadsheet` in a filter) produce an empty
-     * result set.
+     * result set. Exact public built-ins receive the public operator contract; other nonblank fields pass
+     * through as possible custom fields.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("filters")
@@ -85,21 +76,18 @@ public class PlatformSearchRequest {
             @JsonProperty("page_size") Optional<Long> pageSize,
             @JsonProperty("cursor") JsonNullable<String> cursor,
             @JsonProperty("datasources") Optional<? extends List<String>> datasources,
-            @JsonProperty("datasource_instances") Optional<? extends List<String>> datasourceInstances,
             @JsonProperty("filters") Optional<? extends List<PlatformFilter>> filters,
             @JsonProperty("time_range") Optional<? extends PlatformTimeRange> timeRange) {
         Utils.checkNotNull(query, "query");
         Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(datasources, "datasources");
-        Utils.checkNotNull(datasourceInstances, "datasourceInstances");
         Utils.checkNotNull(filters, "filters");
         Utils.checkNotNull(timeRange, "timeRange");
         this.query = query;
         this.pageSize = pageSize;
         this.cursor = cursor;
         this.datasources = datasources;
-        this.datasourceInstances = datasourceInstances;
         this.filters = filters;
         this.timeRange = timeRange;
     }
@@ -107,8 +95,7 @@ public class PlatformSearchRequest {
     public PlatformSearchRequest(
             String query) {
         this(query, Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -137,8 +124,7 @@ public class PlatformSearchRequest {
     }
 
     /**
-     * Restrict results to specific datasources. Requests must not specify both `datasources` and
-     * `datasource_instances`.
+     * Restrict results to specific canonical normalized datasource identifiers.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -147,23 +133,13 @@ public class PlatformSearchRequest {
     }
 
     /**
-     * Restrict results to specific datasource instances. Values are datasource instance identifiers
-     * returned by `GET /api/search/filters`. Requests must not specify both `datasources` and
-     * `datasource_instances`.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<List<String>> datasourceInstances() {
-        return (Optional<List<String>>) datasourceInstances;
-    }
-
-    /**
      * Structured filters applied to search results. Equality operators OR multiple values within a filter.
      * Multiple filters are AND'd together, including range filters on the same field.
      * 
      * <p>Filters are AND'd with any inline operators in `query`. Note that conflicting constraints on the
      * same field (e.g., `type:document` in the query and `type: spreadsheet` in a filter) produce an empty
-     * result set.
+     * result set. Exact public built-ins receive the public operator contract; other nonblank fields pass
+     * through as possible custom fields.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -233,8 +209,7 @@ public class PlatformSearchRequest {
     }
 
     /**
-     * Restrict results to specific datasources. Requests must not specify both `datasources` and
-     * `datasource_instances`.
+     * Restrict results to specific canonical normalized datasource identifiers.
      */
     public PlatformSearchRequest withDatasources(List<String> datasources) {
         Utils.checkNotNull(datasources, "datasources");
@@ -244,35 +219,11 @@ public class PlatformSearchRequest {
 
 
     /**
-     * Restrict results to specific datasources. Requests must not specify both `datasources` and
-     * `datasource_instances`.
+     * Restrict results to specific canonical normalized datasource identifiers.
      */
     public PlatformSearchRequest withDatasources(Optional<? extends List<String>> datasources) {
         Utils.checkNotNull(datasources, "datasources");
         this.datasources = datasources;
-        return this;
-    }
-
-    /**
-     * Restrict results to specific datasource instances. Values are datasource instance identifiers
-     * returned by `GET /api/search/filters`. Requests must not specify both `datasources` and
-     * `datasource_instances`.
-     */
-    public PlatformSearchRequest withDatasourceInstances(List<String> datasourceInstances) {
-        Utils.checkNotNull(datasourceInstances, "datasourceInstances");
-        this.datasourceInstances = Optional.ofNullable(datasourceInstances);
-        return this;
-    }
-
-
-    /**
-     * Restrict results to specific datasource instances. Values are datasource instance identifiers
-     * returned by `GET /api/search/filters`. Requests must not specify both `datasources` and
-     * `datasource_instances`.
-     */
-    public PlatformSearchRequest withDatasourceInstances(Optional<? extends List<String>> datasourceInstances) {
-        Utils.checkNotNull(datasourceInstances, "datasourceInstances");
-        this.datasourceInstances = datasourceInstances;
         return this;
     }
 
@@ -282,7 +233,8 @@ public class PlatformSearchRequest {
      * 
      * <p>Filters are AND'd with any inline operators in `query`. Note that conflicting constraints on the
      * same field (e.g., `type:document` in the query and `type: spreadsheet` in a filter) produce an empty
-     * result set.
+     * result set. Exact public built-ins receive the public operator contract; other nonblank fields pass
+     * through as possible custom fields.
      */
     public PlatformSearchRequest withFilters(List<PlatformFilter> filters) {
         Utils.checkNotNull(filters, "filters");
@@ -297,7 +249,8 @@ public class PlatformSearchRequest {
      * 
      * <p>Filters are AND'd with any inline operators in `query`. Note that conflicting constraints on the
      * same field (e.g., `type:document` in the query and `type: spreadsheet` in a filter) produce an empty
-     * result set.
+     * result set. Exact public built-ins receive the public operator contract; other nonblank fields pass
+     * through as possible custom fields.
      */
     public PlatformSearchRequest withFilters(Optional<? extends List<PlatformFilter>> filters) {
         Utils.checkNotNull(filters, "filters");
@@ -338,7 +291,6 @@ public class PlatformSearchRequest {
             Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
             Utils.enhancedDeepEquals(this.datasources, other.datasources) &&
-            Utils.enhancedDeepEquals(this.datasourceInstances, other.datasourceInstances) &&
             Utils.enhancedDeepEquals(this.filters, other.filters) &&
             Utils.enhancedDeepEquals(this.timeRange, other.timeRange);
     }
@@ -347,8 +299,7 @@ public class PlatformSearchRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             query, pageSize, cursor,
-            datasources, datasourceInstances, filters,
-            timeRange);
+            datasources, filters, timeRange);
     }
     
     @Override
@@ -358,7 +309,6 @@ public class PlatformSearchRequest {
                 "pageSize", pageSize,
                 "cursor", cursor,
                 "datasources", datasources,
-                "datasourceInstances", datasourceInstances,
                 "filters", filters,
                 "timeRange", timeRange);
     }
@@ -373,8 +323,6 @@ public class PlatformSearchRequest {
         private JsonNullable<String> cursor = JsonNullable.undefined();
 
         private Optional<? extends List<String>> datasources = Optional.empty();
-
-        private Optional<? extends List<String>> datasourceInstances = Optional.empty();
 
         private Optional<? extends List<PlatformFilter>> filters = Optional.empty();
 
@@ -435,8 +383,7 @@ public class PlatformSearchRequest {
 
 
         /**
-         * Restrict results to specific datasources. Requests must not specify both `datasources` and
-         * `datasource_instances`.
+         * Restrict results to specific canonical normalized datasource identifiers.
          */
         public Builder datasources(List<String> datasources) {
             Utils.checkNotNull(datasources, "datasources");
@@ -445,35 +392,11 @@ public class PlatformSearchRequest {
         }
 
         /**
-         * Restrict results to specific datasources. Requests must not specify both `datasources` and
-         * `datasource_instances`.
+         * Restrict results to specific canonical normalized datasource identifiers.
          */
         public Builder datasources(Optional<? extends List<String>> datasources) {
             Utils.checkNotNull(datasources, "datasources");
             this.datasources = datasources;
-            return this;
-        }
-
-
-        /**
-         * Restrict results to specific datasource instances. Values are datasource instance identifiers
-         * returned by `GET /api/search/filters`. Requests must not specify both `datasources` and
-         * `datasource_instances`.
-         */
-        public Builder datasourceInstances(List<String> datasourceInstances) {
-            Utils.checkNotNull(datasourceInstances, "datasourceInstances");
-            this.datasourceInstances = Optional.ofNullable(datasourceInstances);
-            return this;
-        }
-
-        /**
-         * Restrict results to specific datasource instances. Values are datasource instance identifiers
-         * returned by `GET /api/search/filters`. Requests must not specify both `datasources` and
-         * `datasource_instances`.
-         */
-        public Builder datasourceInstances(Optional<? extends List<String>> datasourceInstances) {
-            Utils.checkNotNull(datasourceInstances, "datasourceInstances");
-            this.datasourceInstances = datasourceInstances;
             return this;
         }
 
@@ -484,7 +407,8 @@ public class PlatformSearchRequest {
          * 
          * <p>Filters are AND'd with any inline operators in `query`. Note that conflicting constraints on the
          * same field (e.g., `type:document` in the query and `type: spreadsheet` in a filter) produce an empty
-         * result set.
+         * result set. Exact public built-ins receive the public operator contract; other nonblank fields pass
+         * through as possible custom fields.
          */
         public Builder filters(List<PlatformFilter> filters) {
             Utils.checkNotNull(filters, "filters");
@@ -498,7 +422,8 @@ public class PlatformSearchRequest {
          * 
          * <p>Filters are AND'd with any inline operators in `query`. Note that conflicting constraints on the
          * same field (e.g., `type:document` in the query and `type: spreadsheet` in a filter) produce an empty
-         * result set.
+         * result set. Exact public built-ins receive the public operator contract; other nonblank fields pass
+         * through as possible custom fields.
          */
         public Builder filters(Optional<? extends List<PlatformFilter>> filters) {
             Utils.checkNotNull(filters, "filters");
@@ -532,8 +457,7 @@ public class PlatformSearchRequest {
 
             return new PlatformSearchRequest(
                 query, pageSize, cursor,
-                datasources, datasourceInstances, filters,
-                timeRange);
+                datasources, filters, timeRange);
         }
 
 
