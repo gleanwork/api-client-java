@@ -7,10 +7,17 @@ package com.glean.api_client.glean_api_client;
 import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
 
 import com.glean.api_client.glean_api_client.models.components.PlatformSearchRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSearchFiltersRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSearchFiltersRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSearchFiltersResponse;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSearchRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSearchResponse;
 import com.glean.api_client.glean_api_client.operations.PlatformSearch;
+import com.glean.api_client.glean_api_client.operations.PlatformSearchFilters;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import java.lang.String;
+import java.util.List;
+import java.util.Optional;
 
 
 public class Search {
@@ -36,7 +43,19 @@ public class Search {
      * Search
      * 
      * <p>Execute a search query and retrieve ranked results. This is the data retrieval variant of the search
-     * API and returns only results and pagination state.
+     * API and returns only results and pagination state. Structured filters accept exact public built-ins
+     * and free-form custom fields.
+     * Successful responses always include a non-nullable `warnings` array (`[]` when empty). When results
+     * are incomplete for the requested datasource scope, the response remains HTTP 200 with `results`,
+     * `has_more`, and `next_cursor` preserved and a `results_incomplete` warning. Query outcomes that
+     * cannot be honored return HTTP 422 `unprocessable_query` and suppress results and cursor; invalid
+     * inline operators may include a nested `/query` `invalid_filter` issue.
+     * 
+     * <p>Backend work and audit logging may already have occurred before such a 422 replaces a result-bearing
+     * response. Structural and representability failures remain HTTP 400. Rate limits return HTTP 429 with
+     * `Retry-After`.
+     * 
+     * <p>Temporary backend unavailability returns HTTP 503.
      * 
      * @return The call builder
      */
@@ -48,7 +67,19 @@ public class Search {
      * Search
      * 
      * <p>Execute a search query and retrieve ranked results. This is the data retrieval variant of the search
-     * API and returns only results and pagination state.
+     * API and returns only results and pagination state. Structured filters accept exact public built-ins
+     * and free-form custom fields.
+     * Successful responses always include a non-nullable `warnings` array (`[]` when empty). When results
+     * are incomplete for the requested datasource scope, the response remains HTTP 200 with `results`,
+     * `has_more`, and `next_cursor` preserved and a `results_incomplete` warning. Query outcomes that
+     * cannot be honored return HTTP 422 `unprocessable_query` and suppress results and cursor; invalid
+     * inline operators may include a nested `/query` `invalid_filter` issue.
+     * 
+     * <p>Backend work and audit logging may already have occurred before such a 422 replaces a result-bearing
+     * response. Structural and representability failures remain HTTP 400. Rate limits return HTTP 429 with
+     * `Retry-After`.
+     * 
+     * <p>Temporary backend unavailability returns HTTP 503.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -57,6 +88,68 @@ public class Search {
     public PlatformSearchResponse query(PlatformSearchRequest request) {
         RequestOperation<PlatformSearchRequest, PlatformSearchResponse> operation
               = new PlatformSearch.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * List search filters
+     * 
+     * <p>Discover caller-visible datasources and common built-in filter fields that can be used with Platform
+     * Search. This is a best-effort common catalog, not an authoritative inventory of every field search
+     * may accept.
+     * Without `query`, the response returns datasource rows and field metadata without executing search.
+     * With a nonblank `query`, exactly one `datasources` value is required and the response may include
+     * bounded, non-exhaustive facet values for matching public fields.
+     * 
+     * @return The call builder
+     */
+    public PlatformSearchFiltersRequestBuilder listFilters() {
+        return new PlatformSearchFiltersRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * List search filters
+     * 
+     * <p>Discover caller-visible datasources and common built-in filter fields that can be used with Platform
+     * Search. This is a best-effort common catalog, not an authoritative inventory of every field search
+     * may accept.
+     * Without `query`, the response returns datasource rows and field metadata without executing search.
+     * With a nonblank `query`, exactly one `datasources` value is required and the response may include
+     * bounded, non-exhaustive facet values for matching public fields.
+     * 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformSearchFiltersResponse listFiltersDirect() {
+        return listFilters(Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * List search filters
+     * 
+     * <p>Discover caller-visible datasources and common built-in filter fields that can be used with Platform
+     * Search. This is a best-effort common catalog, not an authoritative inventory of every field search
+     * may accept.
+     * Without `query`, the response returns datasource rows and field metadata without executing search.
+     * With a nonblank `query`, exactly one `datasources` value is required and the response may include
+     * bounded, non-exhaustive facet values for matching public fields.
+     * 
+     * @param datasources Restrict metadata to one or more canonical normalized datasource identifiers. With a nonblank `query`, exactly one datasource is required.
+     *         
+     * @param query Optional search query used to request bounded facet values for the selected datasource. When present it must be nonblank.
+     *         
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformSearchFiltersResponse listFilters(Optional<? extends List<String>> datasources, Optional<String> query) {
+        PlatformSearchFiltersRequest request =
+            PlatformSearchFiltersRequest
+                .builder()
+                .datasources(datasources)
+                .query(query)
+                .build();
+        RequestOperation<PlatformSearchFiltersRequest, PlatformSearchFiltersResponse> operation
+              = new PlatformSearchFilters.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

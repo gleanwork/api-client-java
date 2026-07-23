@@ -34,7 +34,8 @@ public class PlatformSearchResponse implements AsyncResponse {
     private HttpResponse<Blob> rawResponse;
 
     /**
-     * Successful search.
+     * Successful search. Always includes `warnings` (`[]` when empty). A `results_incomplete` warning may
+     * be present while results and cursor remain available.
      */
     private Optional<? extends com.glean.api_client.glean_api_client.models.components.PlatformSearchResponse> platformSearchResponse;
 
@@ -87,7 +88,8 @@ public class PlatformSearchResponse implements AsyncResponse {
     }
 
     /**
-     * Successful search.
+     * Successful search. Always includes `warnings` (`[]` when empty). A `results_incomplete` warning may
+     * be present while results and cursor remain available.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -128,7 +130,8 @@ public class PlatformSearchResponse implements AsyncResponse {
     }
 
     /**
-     * Successful search.
+     * Successful search. Always includes `warnings` (`[]` when empty). A `results_incomplete` warning may
+     * be present while results and cursor remain available.
      */
     public PlatformSearchResponse withPlatformSearchResponse(com.glean.api_client.glean_api_client.models.components.PlatformSearchResponse platformSearchResponse) {
         Utils.checkNotNull(platformSearchResponse, "platformSearchResponse");
@@ -138,7 +141,8 @@ public class PlatformSearchResponse implements AsyncResponse {
 
 
     /**
-     * Successful search.
+     * Successful search. Always includes `warnings` (`[]` when empty). A `results_incomplete` warning may
+     * be present while results and cursor remain available.
      */
     public PlatformSearchResponse withPlatformSearchResponse(Optional<? extends com.glean.api_client.glean_api_client.models.components.PlatformSearchResponse> platformSearchResponse) {
         Utils.checkNotNull(platformSearchResponse, "platformSearchResponse");
@@ -225,7 +229,8 @@ public class PlatformSearchResponse implements AsyncResponse {
 
 
         /**
-         * Successful search.
+         * Successful search. Always includes `warnings` (`[]` when empty). A `results_incomplete` warning may
+         * be present while results and cursor remain available.
          */
         public Builder platformSearchResponse(com.glean.api_client.glean_api_client.models.components.PlatformSearchResponse platformSearchResponse) {
             Utils.checkNotNull(platformSearchResponse, "platformSearchResponse");
@@ -234,7 +239,8 @@ public class PlatformSearchResponse implements AsyncResponse {
         }
 
         /**
-         * Successful search.
+         * Successful search. Always includes `warnings` (`[]` when empty). A `results_incomplete` warning may
+         * be present while results and cursor remain available.
          */
         public Builder platformSearchResponse(Optional<? extends com.glean.api_client.glean_api_client.models.components.PlatformSearchResponse> platformSearchResponse) {
             Utils.checkNotNull(platformSearchResponse, "platformSearchResponse");
