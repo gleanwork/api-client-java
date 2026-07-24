@@ -46,6 +46,8 @@ public class DatasourceCategory {
     public static final DatasourceCategory ENTITY = new DatasourceCategory("ENTITY");
     public static final DatasourceCategory CALENDAR = new DatasourceCategory("CALENDAR");
     public static final DatasourceCategory AGENTS = new DatasourceCategory("AGENTS");
+    public static final DatasourceCategory AI_CONVERSATION = new DatasourceCategory("AI_CONVERSATION");
+    public static final DatasourceCategory AI_ARTIFACT = new DatasourceCategory("AI_ARTIFACT");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -137,6 +139,8 @@ public class DatasourceCategory {
         map.put("ENTITY", ENTITY);
         map.put("CALENDAR", CALENDAR);
         map.put("AGENTS", AGENTS);
+        map.put("AI_CONVERSATION", AI_CONVERSATION);
+        map.put("AI_ARTIFACT", AI_ARTIFACT);
         return map;
     }
 
@@ -160,6 +164,8 @@ public class DatasourceCategory {
         map.put("ENTITY", DatasourceCategoryEnum.ENTITY);
         map.put("CALENDAR", DatasourceCategoryEnum.CALENDAR);
         map.put("AGENTS", DatasourceCategoryEnum.AGENTS);
+        map.put("AI_CONVERSATION", DatasourceCategoryEnum.AI_CONVERSATION);
+        map.put("AI_ARTIFACT", DatasourceCategoryEnum.AI_ARTIFACT);
         return map;
     }
     
@@ -183,7 +189,9 @@ public class DatasourceCategory {
         EXTERNAL_SHORTCUT("EXTERNAL_SHORTCUT"),
         ENTITY("ENTITY"),
         CALENDAR("CALENDAR"),
-        AGENTS("AGENTS"),;
+        AGENTS("AGENTS"),
+        AI_CONVERSATION("AI_CONVERSATION"),
+        AI_ARTIFACT("AI_ARTIFACT"),;
 
         private final String value;
 
