@@ -7,6 +7,7 @@ package com.glean.api_client.glean_api_client;
 import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
 
 import com.glean.api_client.glean_api_client.models.components.PlatformSkillCreateRequest;
+import com.glean.api_client.glean_api_client.models.components.PlatformSkillUpdateRequest;
 import com.glean.api_client.glean_api_client.models.components.PlatformSkillValidationRequest;
 import com.glean.api_client.glean_api_client.models.components.PlatformSkillVersionCreateRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsCreateRequestBuilder;
@@ -32,6 +33,9 @@ import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsLis
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsListVersionsRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsListVersionsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsListVersionsResponse;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsUpdateRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsUpdateRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsUpdateResponse;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsValidateRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsValidateResponse;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsCreate;
@@ -42,6 +46,7 @@ import com.glean.api_client.glean_api_client.operations.PlatformSkillsGetVersion
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsGetVersionContent;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsList;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsListVersions;
+import com.glean.api_client.glean_api_client.operations.PlatformSkillsUpdate;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsValidate;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Long;
@@ -166,6 +171,41 @@ public class Skills {
     public PlatformSkillsValidateResponse validate(PlatformSkillValidationRequest request) {
         RequestOperation<PlatformSkillValidationRequest, PlatformSkillsValidateResponse> operation
               = new PlatformSkillsValidate.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Update skill
+     * 
+     * <p>Update mutable metadata for a skill. V1 supports enabling or disabling a skill without changing its
+     * content.
+     * 
+     * @return The call builder
+     */
+    public PlatformSkillsUpdateRequestBuilder update() {
+        return new PlatformSkillsUpdateRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Update skill
+     * 
+     * <p>Update mutable metadata for a skill. V1 supports enabling or disabling a skill without changing its
+     * content.
+     * 
+     * @param skillId Glean skill ID.
+     * @param platformSkillUpdateRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformSkillsUpdateResponse update(String skillId, PlatformSkillUpdateRequest platformSkillUpdateRequest) {
+        PlatformSkillsUpdateRequest request =
+            PlatformSkillsUpdateRequest
+                .builder()
+                .skillId(skillId)
+                .platformSkillUpdateRequest(platformSkillUpdateRequest)
+                .build();
+        RequestOperation<PlatformSkillsUpdateRequest, PlatformSkillsUpdateResponse> operation
+              = new PlatformSkillsUpdate.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

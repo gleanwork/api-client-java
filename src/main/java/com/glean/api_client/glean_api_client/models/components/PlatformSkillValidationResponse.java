@@ -28,7 +28,7 @@ public class PlatformSkillValidationResponse {
      * Non-blocking validation warnings.
      */
     @JsonProperty("warnings")
-    private List<PlatformSkillValidationWarning> warnings;
+    private List<PlatformWarning> warnings;
 
     /**
      * Platform-generated request ID for support correlation.
@@ -40,7 +40,7 @@ public class PlatformSkillValidationResponse {
     public PlatformSkillValidationResponse(
             @JsonProperty("metadata") PlatformSkillValidationMetadata metadata,
             @JsonProperty("files") List<PlatformSkillValidationFile> files,
-            @JsonProperty("warnings") List<PlatformSkillValidationWarning> warnings,
+            @JsonProperty("warnings") List<PlatformWarning> warnings,
             @JsonProperty("request_id") String requestId) {
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(files, "files");
@@ -69,7 +69,7 @@ public class PlatformSkillValidationResponse {
      * Non-blocking validation warnings.
      */
     @JsonIgnore
-    public List<PlatformSkillValidationWarning> warnings() {
+    public List<PlatformWarning> warnings() {
         return warnings;
     }
 
@@ -104,7 +104,7 @@ public class PlatformSkillValidationResponse {
     /**
      * Non-blocking validation warnings.
      */
-    public PlatformSkillValidationResponse withWarnings(List<PlatformSkillValidationWarning> warnings) {
+    public PlatformSkillValidationResponse withWarnings(List<PlatformWarning> warnings) {
         Utils.checkNotNull(warnings, "warnings");
         this.warnings = warnings;
         return this;
@@ -158,7 +158,7 @@ public class PlatformSkillValidationResponse {
 
         private List<PlatformSkillValidationFile> files;
 
-        private List<PlatformSkillValidationWarning> warnings;
+        private List<PlatformWarning> warnings;
 
         private String requestId;
 
@@ -187,7 +187,7 @@ public class PlatformSkillValidationResponse {
         /**
          * Non-blocking validation warnings.
          */
-        public Builder warnings(List<PlatformSkillValidationWarning> warnings) {
+        public Builder warnings(List<PlatformWarning> warnings) {
             Utils.checkNotNull(warnings, "warnings");
             this.warnings = warnings;
             return this;
