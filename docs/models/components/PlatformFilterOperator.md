@@ -8,6 +8,9 @@ Supported filter operator.
 import com.glean.api_client.glean_api_client.models.components.PlatformFilterOperator;
 
 PlatformFilterOperator value = PlatformFilterOperator.EQUALS;
+
+// Open enum: use .of() to create instances from custom string values
+PlatformFilterOperator custom = PlatformFilterOperator.of("custom_value");
 ```
 
 

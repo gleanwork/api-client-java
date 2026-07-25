@@ -49826,12 +49826,13 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.GetChatRequest;
+import com.glean.api_client.glean_api_client.models.errors.AccessRequestPermissionDeniedResponseException;
 import com.glean.api_client.glean_api_client.models.operations.GetchatResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws AccessRequestPermissionDeniedResponseException, Exception {
 
         Glean sdk = Glean.builder()
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
@@ -49864,9 +49865,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
+| Error Type                                                   | Status Code                                                  | Content Type                                                 |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| models/errors/AccessRequestPermissionDeniedResponseException | 403                                                          | application/json                                             |
+| models/errors/APIException                                   | 4XX, 5XX                                                     | \*/\*                                                        |
 
 ## list
 

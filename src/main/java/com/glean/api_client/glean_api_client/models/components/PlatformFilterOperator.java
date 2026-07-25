@@ -4,42 +4,146 @@
  */
 package com.glean.api_client.glean_api_client.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * PlatformFilterOperator
  * 
  * <p>Supported filter operator.
  */
-public enum PlatformFilterOperator {
-    EQUALS("EQUALS"),
-    NOT_EQUALS("NOT_EQUALS"),
-    GT("GT"),
-    GTE("GTE"),
-    LT("LT"),
-    LTE("LTE");
+public class PlatformFilterOperator {
 
-    @JsonValue
+    public static final PlatformFilterOperator EQUALS = new PlatformFilterOperator("EQUALS");
+    public static final PlatformFilterOperator NOT_EQUALS = new PlatformFilterOperator("NOT_EQUALS");
+    public static final PlatformFilterOperator GT = new PlatformFilterOperator("GT");
+    public static final PlatformFilterOperator GTE = new PlatformFilterOperator("GTE");
+    public static final PlatformFilterOperator LT = new PlatformFilterOperator("LT");
+    public static final PlatformFilterOperator LTE = new PlatformFilterOperator("LTE");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, PlatformFilterOperator> values = createValuesMap();
+    private static final Map<String, PlatformFilterOperatorEnum> enums = createEnumsMap();
+
     private final String value;
 
-    PlatformFilterOperator(String value) {
+    private PlatformFilterOperator(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a PlatformFilterOperator with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as PlatformFilterOperator
+     */ 
+    @JsonCreator
+    public static PlatformFilterOperator of(String value) {
+        synchronized (PlatformFilterOperator.class) {
+            return values.computeIfAbsent(value, v -> new PlatformFilterOperator(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<PlatformFilterOperator> fromValue(String value) {
-        for (PlatformFilterOperator o: PlatformFilterOperator.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<PlatformFilterOperatorEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        PlatformFilterOperator other = (PlatformFilterOperator) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "PlatformFilterOperator [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static PlatformFilterOperator[] values() {
+        synchronized (PlatformFilterOperator.class) {
+            return values.values().toArray(new PlatformFilterOperator[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, PlatformFilterOperator> createValuesMap() {
+        Map<String, PlatformFilterOperator> map = new LinkedHashMap<>();
+        map.put("EQUALS", EQUALS);
+        map.put("NOT_EQUALS", NOT_EQUALS);
+        map.put("GT", GT);
+        map.put("GTE", GTE);
+        map.put("LT", LT);
+        map.put("LTE", LTE);
+        return map;
+    }
+
+    private static final Map<String, PlatformFilterOperatorEnum> createEnumsMap() {
+        Map<String, PlatformFilterOperatorEnum> map = new HashMap<>();
+        map.put("EQUALS", PlatformFilterOperatorEnum.EQUALS);
+        map.put("NOT_EQUALS", PlatformFilterOperatorEnum.NOT_EQUALS);
+        map.put("GT", PlatformFilterOperatorEnum.GT);
+        map.put("GTE", PlatformFilterOperatorEnum.GTE);
+        map.put("LT", PlatformFilterOperatorEnum.LT);
+        map.put("LTE", PlatformFilterOperatorEnum.LTE);
+        return map;
+    }
+    
+    
+    public enum PlatformFilterOperatorEnum {
+
+        EQUALS("EQUALS"),
+        NOT_EQUALS("NOT_EQUALS"),
+        GT("GT"),
+        GTE("GTE"),
+        LT("LT"),
+        LTE("LTE"),;
+
+        private final String value;
+
+        private PlatformFilterOperatorEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 
