@@ -105,7 +105,8 @@ public class AuthConfig {
      * The OAuth 2.0 token endpoint authentication method (RFC 7591). Determines how the client
      * authenticates when exchanging an authorization code for a token. client_secret_post sends
      * credentials as form fields, client_secret_basic sends them via Authorization header, none omits
-     * client secret and relies on PKCE only.
+     * client secret and relies on PKCE only, and private_key_jwt authenticates with a JWT client assertion
+     * signed by the client's private key (RFC 7523 Section 2.2 / OIDC Core Section 9).
      * 
      * <p>Values use lowercase to match the OAuth 2.0 wire format (RFC 7591 Section 2).
      */
@@ -263,7 +264,8 @@ public class AuthConfig {
      * The OAuth 2.0 token endpoint authentication method (RFC 7591). Determines how the client
      * authenticates when exchanging an authorization code for a token. client_secret_post sends
      * credentials as form fields, client_secret_basic sends them via Authorization header, none omits
-     * client secret and relies on PKCE only.
+     * client secret and relies on PKCE only, and private_key_jwt authenticates with a JWT client assertion
+     * signed by the client's private key (RFC 7523 Section 2.2 / OIDC Core Section 9).
      * 
      * <p>Values use lowercase to match the OAuth 2.0 wire format (RFC 7591 Section 2).
      */
@@ -494,7 +496,8 @@ public class AuthConfig {
      * The OAuth 2.0 token endpoint authentication method (RFC 7591). Determines how the client
      * authenticates when exchanging an authorization code for a token. client_secret_post sends
      * credentials as form fields, client_secret_basic sends them via Authorization header, none omits
-     * client secret and relies on PKCE only.
+     * client secret and relies on PKCE only, and private_key_jwt authenticates with a JWT client assertion
+     * signed by the client's private key (RFC 7523 Section 2.2 / OIDC Core Section 9).
      * 
      * <p>Values use lowercase to match the OAuth 2.0 wire format (RFC 7591 Section 2).
      */
@@ -509,7 +512,8 @@ public class AuthConfig {
      * The OAuth 2.0 token endpoint authentication method (RFC 7591). Determines how the client
      * authenticates when exchanging an authorization code for a token. client_secret_post sends
      * credentials as form fields, client_secret_basic sends them via Authorization header, none omits
-     * client secret and relies on PKCE only.
+     * client secret and relies on PKCE only, and private_key_jwt authenticates with a JWT client assertion
+     * signed by the client's private key (RFC 7523 Section 2.2 / OIDC Core Section 9).
      * 
      * <p>Values use lowercase to match the OAuth 2.0 wire format (RFC 7591 Section 2).
      */
@@ -828,7 +832,8 @@ public class AuthConfig {
          * The OAuth 2.0 token endpoint authentication method (RFC 7591). Determines how the client
          * authenticates when exchanging an authorization code for a token. client_secret_post sends
          * credentials as form fields, client_secret_basic sends them via Authorization header, none omits
-         * client secret and relies on PKCE only.
+         * client secret and relies on PKCE only, and private_key_jwt authenticates with a JWT client assertion
+         * signed by the client's private key (RFC 7523 Section 2.2 / OIDC Core Section 9).
          * 
          * <p>Values use lowercase to match the OAuth 2.0 wire format (RFC 7591 Section 2).
          */
@@ -842,7 +847,8 @@ public class AuthConfig {
          * The OAuth 2.0 token endpoint authentication method (RFC 7591). Determines how the client
          * authenticates when exchanging an authorization code for a token. client_secret_post sends
          * credentials as form fields, client_secret_basic sends them via Authorization header, none omits
-         * client secret and relies on PKCE only.
+         * client secret and relies on PKCE only, and private_key_jwt authenticates with a JWT client assertion
+         * signed by the client's private key (RFC 7523 Section 2.2 / OIDC Core Section 9).
          * 
          * <p>Values use lowercase to match the OAuth 2.0 wire format (RFC 7591 Section 2).
          */
