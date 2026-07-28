@@ -67,7 +67,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.glean.api-client:glean-api-client:0.14.4'
+implementation 'com.glean.api-client:glean-api-client:0.15.0'
 ```
 
 Maven:
@@ -75,7 +75,7 @@ Maven:
 <dependency>
     <groupId>com.glean.api-client</groupId>
     <artifactId>glean-api-client</artifactId>
-    <version>0.14.4</version>
+    <version>0.15.0</version>
 </dependency>
 ```
 
@@ -602,12 +602,14 @@ For more information on obtaining the appropriate token type, please contact you
 ### [Search](docs/sdks/search/README.md)
 
 * [query](docs/sdks/search/README.md#query) - Search
+* [listFilters](docs/sdks/search/README.md#listfilters) - List search filters
 
 ### [Skills](docs/sdks/skills/README.md)
 
 * [create](docs/sdks/skills/README.md#create) - Create skill
 * [list](docs/sdks/skills/README.md#list) - List skills
 * [validate](docs/sdks/skills/README.md#validate) - Validate skill bundle
+* [update](docs/sdks/skills/README.md#update) - Update skill
 * [retrieve](docs/sdks/skills/README.md#retrieve) - Retrieve skill
 * [retrieveContent](docs/sdks/skills/README.md#retrievecontent) - Download skill content
 * [createVersion](docs/sdks/skills/README.md#createversion) - Create skill version
@@ -710,7 +712,7 @@ public class Application {
 **Primary error:**
 * [`GleanError`](./src/main/java/models/errors/GleanError.java): The base class for HTTP error responses.
 
-<details><summary>Less common errors (11)</summary>
+<details><summary>Less common errors (12)</summary>
 
 <br />
 
@@ -720,11 +722,12 @@ public class Application {
 many more subclasses in the JDK platform).
 
 **Inherit from [`GleanError`](./src/main/java/models/errors/GleanError.java)**:
-* [`com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException.java): Error response following RFC 9457, extended with `code` and `documentation_url` for machine-readable classification and self-service remediation. Applicable to 14 of 147 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.ErrorResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorResponse.java): Error response returned for failed requests. Applicable to 9 of 147 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse.java): Error response for custom metadata operations. Applicable to 6 of 147 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.CollectionError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.CollectionError.java): Semantic error. Status code `422`. Applicable to 3 of 147 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.GleanDataError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.GleanDataError.java): Forbidden. Applicable to 2 of 147 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException.java): Error response following RFC 9457, extended with `code` and `documentation_url` for machine-readable classification and self-service remediation. Applicable to 16 of 149 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.ErrorResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorResponse.java): Error response returned for failed requests. Applicable to 9 of 149 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse.java): Error response for custom metadata operations. Applicable to 6 of 149 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.CollectionError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.CollectionError.java): Semantic error. Status code `422`. Applicable to 3 of 149 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.GleanDataError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.GleanDataError.java): Forbidden. Applicable to 2 of 149 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.AccessRequestPermissionDeniedResponseException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.AccessRequestPermissionDeniedResponseException.java): Forbidden. Status code `403`. Applicable to 1 of 149 methods.*
 
 
 </details>

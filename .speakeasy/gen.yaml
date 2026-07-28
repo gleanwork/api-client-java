@@ -30,7 +30,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 0.14.4
+  version: 0.15.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: glean-api-client
@@ -53,8 +53,10 @@ java:
   generateOptionalUnionAccessors: false
   generateSpringBootStarter: true
   generateUnionDocs: false
+  getterStyle: presence-aware
   githubURL: github.com/gleanwork/api-client-java
   groupID: com.glean.api-client
+  httpClient: jdk
   imports:
     option: openapi
     paths:

@@ -7,6 +7,7 @@
 * [create](#create) - Create skill
 * [list](#list) - List skills
 * [validate](#validate) - Validate skill bundle
+* [update](#update) - Update skill
 * [retrieve](#retrieve) - Retrieve skill
 * [retrieveContent](#retrievecontent) - Download skill content
 * [createVersion](#createversion) - Create skill version
@@ -186,6 +187,65 @@ public class Application {
 | Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | models/errors/PlatformProblemDetailException | 400, 401, 403, 404, 408, 413, 429            | application/problem+json                     |
+| models/errors/PlatformProblemDetailException | 500, 503                                     | application/problem+json                     |
+| models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
+
+## update
+
+Update mutable metadata for a skill. V1 supports enabling or disabling a skill without changing its content.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="platform-skills-update" method="patch" path="/api/skills/{skill_id}" -->
+```java
+package hello.world;
+
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.PlatformSkillUpdateRequest;
+import com.glean.api_client.glean_api_client.models.components.PlatformSkillUpdateStatus;
+import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsUpdateResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws PlatformProblemDetailException, Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
+            .build();
+
+        PlatformSkillsUpdateResponse res = sdk.skills().update()
+                .skillId("<id>")
+                .platformSkillUpdateRequest(PlatformSkillUpdateRequest.builder()
+                    .status(PlatformSkillUpdateStatus.DISABLED)
+                    .build())
+                .call();
+
+        if (res.platformSkillUpdateResponse().isPresent()) {
+            System.out.println(res.platformSkillUpdateResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `skillId`                                                                           | *String*                                                                            | :heavy_check_mark:                                                                  | Glean skill ID.                                                                     |
+| `platformSkillUpdateRequest`                                                        | [PlatformSkillUpdateRequest](../../models/components/PlatformSkillUpdateRequest.md) | :heavy_check_mark:                                                                  | N/A                                                                                 |
+
+### Response
+
+**[PlatformSkillsUpdateResponse](../../models/operations/PlatformSkillsUpdateResponse.md)**
+
+### Errors
+
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| models/errors/PlatformProblemDetailException | 400, 401, 403, 404, 408, 409, 413, 429       | application/problem+json                     |
 | models/errors/PlatformProblemDetailException | 500, 503                                     | application/problem+json                     |
 | models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
 

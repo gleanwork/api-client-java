@@ -809,3 +809,13 @@ Based on:
 - [java v0.14.4] .
 ### Releases
 - [Maven Central v0.14.4] https://central.sonatype.com/artifact/com.glean.api-client/glean-api-client/0.14.4 - .
+
+## 2026-07-28 03:15:56
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.791.0 (2.924.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v0.15.0] .
+### Releases
+- [Maven Central v0.15.0] https://central.sonatype.com/artifact/com.glean.api-client/glean-api-client/0.15.0 - .

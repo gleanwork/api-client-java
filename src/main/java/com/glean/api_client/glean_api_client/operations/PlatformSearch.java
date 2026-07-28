@@ -176,7 +176,7 @@ public class PlatformSearch {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            if (Utils.statusCodeMatches(response.statusCode(), "400", "401", "403", "404", "408", "413", "429")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "400", "401", "403", "404", "408", "413", "422", "429")) {
                 if (Utils.contentTypeMatches(contentType, "application/problem+json")) {
                     throw PlatformProblemDetailException.from(response);
                 } else {
@@ -261,7 +261,7 @@ public class PlatformSearch {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }
             }
-            if (Utils.statusCodeMatches(response.statusCode(), "400", "401", "403", "404", "408", "413", "429")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "400", "401", "403", "404", "408", "413", "422", "429")) {
                 if (Utils.contentTypeMatches(contentType, "application/problem+json")) {
                     return PlatformProblemDetailException.fromAsync(response)
                             .thenCompose(CompletableFuture::failedFuture);
