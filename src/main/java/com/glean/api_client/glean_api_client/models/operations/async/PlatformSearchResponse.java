@@ -34,7 +34,7 @@ public class PlatformSearchResponse implements AsyncResponse {
     private HttpResponse<Blob> rawResponse;
 
     /**
-     * Successful search.
+     * Successful response.
      */
     private Optional<? extends com.glean.api_client.glean_api_client.models.components.PlatformSearchResponse> platformSearchResponse;
 
@@ -87,7 +87,7 @@ public class PlatformSearchResponse implements AsyncResponse {
     }
 
     /**
-     * Successful search.
+     * Successful response.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -128,7 +128,7 @@ public class PlatformSearchResponse implements AsyncResponse {
     }
 
     /**
-     * Successful search.
+     * Successful response.
      */
     public PlatformSearchResponse withPlatformSearchResponse(com.glean.api_client.glean_api_client.models.components.PlatformSearchResponse platformSearchResponse) {
         Utils.checkNotNull(platformSearchResponse, "platformSearchResponse");
@@ -138,7 +138,7 @@ public class PlatformSearchResponse implements AsyncResponse {
 
 
     /**
-     * Successful search.
+     * Successful response.
      */
     public PlatformSearchResponse withPlatformSearchResponse(Optional<? extends com.glean.api_client.glean_api_client.models.components.PlatformSearchResponse> platformSearchResponse) {
         Utils.checkNotNull(platformSearchResponse, "platformSearchResponse");
@@ -225,7 +225,7 @@ public class PlatformSearchResponse implements AsyncResponse {
 
 
         /**
-         * Successful search.
+         * Successful response.
          */
         public Builder platformSearchResponse(com.glean.api_client.glean_api_client.models.components.PlatformSearchResponse platformSearchResponse) {
             Utils.checkNotNull(platformSearchResponse, "platformSearchResponse");
@@ -234,7 +234,7 @@ public class PlatformSearchResponse implements AsyncResponse {
         }
 
         /**
-         * Successful search.
+         * Successful response.
          */
         public Builder platformSearchResponse(Optional<? extends com.glean.api_client.glean_api_client.models.components.PlatformSearchResponse> platformSearchResponse) {
             Utils.checkNotNull(platformSearchResponse, "platformSearchResponse");

@@ -35,6 +35,7 @@ PlatformProblemDetailCode custom = PlatformProblemDetailCode.of("custom_value");
 | `CONFLICT`                 | conflict                   |
 | `GONE`                     | gone                       |
 | `UNPROCESSABLE_QUERY`      | unprocessable_query        |
+| `TOOLS_UNAUTHORIZED`       | tools_unauthorized         |
 | `RATE_LIMIT_EXCEEDED`      | rate_limit_exceeded        |
 | `INTERNAL_ERROR`           | internal_error             |
 | `SERVICE_UNAVAILABLE`      | service_unavailable        |

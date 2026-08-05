@@ -46,13 +46,6 @@ public class PlatformResult {
     private String datasource;
 
     /**
-     * The datasource instance this result originates from, if known.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("datasource_instance")
-    private JsonNullable<String> datasourceInstance;
-
-    /**
      * The document type within the datasource.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -93,7 +86,6 @@ public class PlatformResult {
             @JsonProperty("title") String title,
             @JsonProperty("snippets") Optional<? extends List<String>> snippets,
             @JsonProperty("datasource") String datasource,
-            @JsonProperty("datasource_instance") JsonNullable<String> datasourceInstance,
             @JsonProperty("document_type") JsonNullable<String> documentType,
             @JsonProperty("creator") Optional<? extends PlatformPersonReference> creator,
             @JsonProperty("owner") Optional<? extends PlatformPersonReference> owner,
@@ -103,7 +95,6 @@ public class PlatformResult {
         Utils.checkNotNull(title, "title");
         Utils.checkNotNull(snippets, "snippets");
         Utils.checkNotNull(datasource, "datasource");
-        Utils.checkNotNull(datasourceInstance, "datasourceInstance");
         Utils.checkNotNull(documentType, "documentType");
         Utils.checkNotNull(creator, "creator");
         Utils.checkNotNull(owner, "owner");
@@ -113,7 +104,6 @@ public class PlatformResult {
         this.title = title;
         this.snippets = snippets;
         this.datasource = datasource;
-        this.datasourceInstance = datasourceInstance;
         this.documentType = documentType;
         this.creator = creator;
         this.owner = owner;
@@ -126,9 +116,8 @@ public class PlatformResult {
             String title,
             String datasource) {
         this(url, title, Optional.empty(),
-            datasource, JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            datasource, JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -162,14 +151,6 @@ public class PlatformResult {
     @JsonIgnore
     public String datasource() {
         return datasource;
-    }
-
-    /**
-     * The datasource instance this result originates from, if known.
-     */
-    @JsonIgnore
-    public JsonNullable<String> datasourceInstance() {
-        return datasourceInstance;
     }
 
     /**
@@ -262,24 +243,6 @@ public class PlatformResult {
     public PlatformResult withDatasource(String datasource) {
         Utils.checkNotNull(datasource, "datasource");
         this.datasource = datasource;
-        return this;
-    }
-
-    /**
-     * The datasource instance this result originates from, if known.
-     */
-    public PlatformResult withDatasourceInstance(String datasourceInstance) {
-        Utils.checkNotNull(datasourceInstance, "datasourceInstance");
-        this.datasourceInstance = JsonNullable.of(datasourceInstance);
-        return this;
-    }
-
-    /**
-     * The datasource instance this result originates from, if known.
-     */
-    public PlatformResult withDatasourceInstance(JsonNullable<String> datasourceInstance) {
-        Utils.checkNotNull(datasourceInstance, "datasourceInstance");
-        this.datasourceInstance = datasourceInstance;
         return this;
     }
 
@@ -389,7 +352,6 @@ public class PlatformResult {
             Utils.enhancedDeepEquals(this.title, other.title) &&
             Utils.enhancedDeepEquals(this.snippets, other.snippets) &&
             Utils.enhancedDeepEquals(this.datasource, other.datasource) &&
-            Utils.enhancedDeepEquals(this.datasourceInstance, other.datasourceInstance) &&
             Utils.enhancedDeepEquals(this.documentType, other.documentType) &&
             Utils.enhancedDeepEquals(this.creator, other.creator) &&
             Utils.enhancedDeepEquals(this.owner, other.owner) &&
@@ -401,9 +363,8 @@ public class PlatformResult {
     public int hashCode() {
         return Utils.enhancedHash(
             url, title, snippets,
-            datasource, datasourceInstance, documentType,
-            creator, owner, updatedAt,
-            createdAt);
+            datasource, documentType, creator,
+            owner, updatedAt, createdAt);
     }
     
     @Override
@@ -413,7 +374,6 @@ public class PlatformResult {
                 "title", title,
                 "snippets", snippets,
                 "datasource", datasource,
-                "datasourceInstance", datasourceInstance,
                 "documentType", documentType,
                 "creator", creator,
                 "owner", owner,
@@ -431,8 +391,6 @@ public class PlatformResult {
         private Optional<? extends List<String>> snippets = Optional.empty();
 
         private String datasource;
-
-        private JsonNullable<String> datasourceInstance = JsonNullable.undefined();
 
         private JsonNullable<String> documentType = JsonNullable.undefined();
 
@@ -494,25 +452,6 @@ public class PlatformResult {
         public Builder datasource(String datasource) {
             Utils.checkNotNull(datasource, "datasource");
             this.datasource = datasource;
-            return this;
-        }
-
-
-        /**
-         * The datasource instance this result originates from, if known.
-         */
-        public Builder datasourceInstance(String datasourceInstance) {
-            Utils.checkNotNull(datasourceInstance, "datasourceInstance");
-            this.datasourceInstance = JsonNullable.of(datasourceInstance);
-            return this;
-        }
-
-        /**
-         * The datasource instance this result originates from, if known.
-         */
-        public Builder datasourceInstance(JsonNullable<String> datasourceInstance) {
-            Utils.checkNotNull(datasourceInstance, "datasourceInstance");
-            this.datasourceInstance = datasourceInstance;
             return this;
         }
 
@@ -615,9 +554,8 @@ public class PlatformResult {
 
             return new PlatformResult(
                 url, title, snippets,
-                datasource, datasourceInstance, documentType,
-                creator, owner, updatedAt,
-                createdAt);
+                datasource, documentType, creator,
+                owner, updatedAt, createdAt);
         }
 
     }

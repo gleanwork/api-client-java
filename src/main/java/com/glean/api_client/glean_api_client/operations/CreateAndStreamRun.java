@@ -14,6 +14,7 @@ import com.glean.api_client.glean_api_client.SecuritySource;
 import com.glean.api_client.glean_api_client.models.components.AgentRunCreate;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
 import com.glean.api_client.glean_api_client.models.errors.ErrorResponse;
+import com.glean.api_client.glean_api_client.models.errors.UnauthorizedAgentToolsError;
 import com.glean.api_client.glean_api_client.models.operations.CreateAndStreamRunResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
 import com.glean.api_client.glean_api_client.utils.Exceptions;
@@ -180,9 +181,16 @@ public class CreateAndStreamRun {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            if (Utils.statusCodeMatches(response.statusCode(), "404", "409", "422")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "404", "409")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     throw ErrorResponse.from(response);
+                } else {
+                    throw APIException.from("Unexpected content-type received: " + contentType, response);
+                }
+            }
+            if (Utils.statusCodeMatches(response.statusCode(), "422")) {
+                if (Utils.contentTypeMatches(contentType, "application/json")) {
+                    throw UnauthorizedAgentToolsError.from(response);
                 } else {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
@@ -265,9 +273,17 @@ public class CreateAndStreamRun {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }
             }
-            if (Utils.statusCodeMatches(response.statusCode(), "404", "409", "422")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "404", "409")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return ErrorResponse.fromAsync(response)
+                            .thenCompose(CompletableFuture::failedFuture);
+                } else {
+                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
+                }
+            }
+            if (Utils.statusCodeMatches(response.statusCode(), "422")) {
+                if (Utils.contentTypeMatches(contentType, "application/json")) {
+                    return UnauthorizedAgentToolsError.fromAsync(response)
                             .thenCompose(CompletableFuture::failedFuture);
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);

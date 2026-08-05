@@ -27,7 +27,7 @@ public class ViewerInfo {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("role")
     @Deprecated
-    private Optional<? extends Role> role;
+    private Optional<? extends ViewerInfoRole> role;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -36,7 +36,7 @@ public class ViewerInfo {
 
     @JsonCreator
     public ViewerInfo(
-            @JsonProperty("role") Optional<? extends Role> role,
+            @JsonProperty("role") Optional<? extends ViewerInfoRole> role,
             @JsonProperty("lastViewedTime") Optional<OffsetDateTime> lastViewedTime) {
         Utils.checkNotNull(role, "role");
         Utils.checkNotNull(lastViewedTime, "lastViewedTime");
@@ -56,8 +56,8 @@ public class ViewerInfo {
     @Deprecated
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Role> role() {
-        return (Optional<Role>) role;
+    public Optional<ViewerInfoRole> role() {
+        return (Optional<ViewerInfoRole>) role;
     }
 
     @JsonIgnore
@@ -76,7 +76,7 @@ public class ViewerInfo {
      * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use permissions instead.
      */
     @Deprecated
-    public ViewerInfo withRole(Role role) {
+    public ViewerInfo withRole(ViewerInfoRole role) {
         Utils.checkNotNull(role, "role");
         this.role = Optional.ofNullable(role);
         return this;
@@ -89,7 +89,7 @@ public class ViewerInfo {
      * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use permissions instead.
      */
     @Deprecated
-    public ViewerInfo withRole(Optional<? extends Role> role) {
+    public ViewerInfo withRole(Optional<? extends ViewerInfoRole> role) {
         Utils.checkNotNull(role, "role");
         this.role = role;
         return this;
@@ -139,7 +139,7 @@ public class ViewerInfo {
     public final static class Builder {
 
         @Deprecated
-        private Optional<? extends Role> role = Optional.empty();
+        private Optional<? extends ViewerInfoRole> role = Optional.empty();
 
         private Optional<OffsetDateTime> lastViewedTime = Optional.empty();
 
@@ -154,7 +154,7 @@ public class ViewerInfo {
          * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use permissions instead.
          */
         @Deprecated
-        public Builder role(Role role) {
+        public Builder role(ViewerInfoRole role) {
             Utils.checkNotNull(role, "role");
             this.role = Optional.ofNullable(role);
             return this;
@@ -166,7 +166,7 @@ public class ViewerInfo {
          * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use permissions instead.
          */
         @Deprecated
-        public Builder role(Optional<? extends Role> role) {
+        public Builder role(Optional<? extends ViewerInfoRole> role) {
             Utils.checkNotNull(role, "role");
             this.role = role;
             return this;

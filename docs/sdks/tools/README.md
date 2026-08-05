@@ -10,6 +10,7 @@
 * [authorizeActionPack](#authorizeactionpack) - Start the OAuth authorization flow for an action pack.
 * [retrieveToolServerAuthStatus](#retrievetoolserverauthstatus) - Get end-user authentication status for a tool server.
 * [authorizeToolServer](#authorizetoolserver) - Start the OAuth authorization flow for a tool server.
+* [getToolServerTools](#gettoolservertools) - Get tool definitions from a tool server.
 
 ## list
 
@@ -338,6 +339,70 @@ public class Application {
 ### Response
 
 **[AuthorizeToolServerResponse](../../models/operations/AuthorizeToolServerResponse.md)**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
+
+## getToolServerTools
+
+Returns the name, description and JSON input schema for the named tools on the
+specified tool server. Works for both action packs and MCP servers.
+
+`toolNames` is required. Names that do not exist on the server are returned in
+`notFound` rather than failing the request, so a single bad name does not force
+callers into one-at-a-time retries. Matching is case-insensitive and treats `-`
+and `_` as equivalent.
+
+Native tools are not served; `serverId=native` returns 404.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="getToolServerTools" method="get" path="/rest/api/v1/tool-servers/{serverId}/tools" -->
+```java
+package hello.world;
+
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.operations.GetToolServerToolsResponse;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
+            .build();
+
+        GetToolServerToolsResponse res = sdk.client().tools().getToolServerTools()
+                .serverId("<id>")
+                .toolNames(List.of(
+                    "<value 1>",
+                    "<value 2>",
+                    "<value 3>"))
+                .call();
+
+        if (res.toolDefinitionsResponse().isPresent()) {
+            System.out.println(res.toolDefinitionsResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                          | Type                                               | Required                                           | Description                                        |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| `serverId`                                         | *String*                                           | :heavy_check_mark:                                 | Unique identifier of the tool server.              |
+| `toolNames`                                        | List\<*String*>                                    | :heavy_check_mark:                                 | Tool names to look up on this server. Maximum 100. |
+
+### Response
+
+**[GetToolServerToolsResponse](../../models/operations/GetToolServerToolsResponse.md)**
 
 ### Errors
 

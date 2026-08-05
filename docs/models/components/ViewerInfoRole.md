@@ -1,4 +1,4 @@
-# ~~Role~~
+# ~~ViewerInfoRole~~
 
 DEPRECATED - use permissions instead. Viewer's role on the specific document.
 
@@ -7,12 +7,12 @@ DEPRECATED - use permissions instead. Viewer's role on the specific document.
 ## Example Usage
 
 ```java
-import com.glean.api_client.glean_api_client.models.components.Role;
+import com.glean.api_client.glean_api_client.models.components.ViewerInfoRole;
 
-Role value = Role.ANSWER_MODERATOR;
+ViewerInfoRole value = ViewerInfoRole.ANSWER_MODERATOR;
 
 // Open enum: use .of() to create instances from custom string values
-Role custom = Role.of("custom_value");
+ViewerInfoRole custom = ViewerInfoRole.of("custom_value");
 ```
 
 
