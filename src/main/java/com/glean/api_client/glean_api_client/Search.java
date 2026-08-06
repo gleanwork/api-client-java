@@ -7,10 +7,17 @@ package com.glean.api_client.glean_api_client;
 import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
 
 import com.glean.api_client.glean_api_client.models.components.PlatformSearchRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSearchFiltersRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSearchFiltersRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSearchFiltersResponse;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSearchRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSearchResponse;
 import com.glean.api_client.glean_api_client.operations.PlatformSearch;
+import com.glean.api_client.glean_api_client.operations.PlatformSearchFilters;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import java.lang.String;
+import java.util.List;
+import java.util.Optional;
 
 
 public class Search {
@@ -35,8 +42,13 @@ public class Search {
     /**
      * Search
      * 
-     * <p>Execute a search query and retrieve ranked results. This is the data retrieval variant of the search
-     * API and returns only results and pagination state.
+     * <p>Search your organization's connected content and return ranked document results with cursor
+     * pagination. Use `GET /api/search/filters` to discover datasource identifiers and common filter
+     * fields. Built-in filter names are validated; other field names are accepted as custom filters and
+     * behavior depends on your Glean configuration and connected sources.
+     * Errors: HTTP 422 `unprocessable_query` returns no `results` or `next_cursor`. See `warnings` on the
+     * response for non-blocking issues such as partially available results. Not every query issue produces
+     * a warning or error.
      * 
      * @return The call builder
      */
@@ -47,8 +59,13 @@ public class Search {
     /**
      * Search
      * 
-     * <p>Execute a search query and retrieve ranked results. This is the data retrieval variant of the search
-     * API and returns only results and pagination state.
+     * <p>Search your organization's connected content and return ranked document results with cursor
+     * pagination. Use `GET /api/search/filters` to discover datasource identifiers and common filter
+     * fields. Built-in filter names are validated; other field names are accepted as custom filters and
+     * behavior depends on your Glean configuration and connected sources.
+     * Errors: HTTP 422 `unprocessable_query` returns no `results` or `next_cursor`. See `warnings` on the
+     * response for non-blocking issues such as partially available results. Not every query issue produces
+     * a warning or error.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -57,6 +74,77 @@ public class Search {
     public PlatformSearchResponse query(PlatformSearchRequest request) {
         RequestOperation<PlatformSearchRequest, PlatformSearchResponse> operation
               = new PlatformSearch.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * List search filters
+     * 
+     * <p>List datasources and common built-in filter fields visible to the authenticated user. This is a
+     * best-effort catalog, not an exhaustive list of every filter search accepts.
+     * Without `query`, returns field metadata only and does not run a search. With a nonblank `query`,
+     * provide exactly one `datasources` value to request suggested filter values for that query; no
+     * documents are returned and this endpoint does not include warning objects. See
+     * `FilterFieldInfo.values` for limitations on suggested values.
+     * 
+     * <p>Rate-limited requests return HTTP 429 with `Retry-After`; temporary backend unavailability returns
+     * HTTP 503.
+     * 
+     * @return The call builder
+     */
+    public PlatformSearchFiltersRequestBuilder listFilters() {
+        return new PlatformSearchFiltersRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * List search filters
+     * 
+     * <p>List datasources and common built-in filter fields visible to the authenticated user. This is a
+     * best-effort catalog, not an exhaustive list of every filter search accepts.
+     * Without `query`, returns field metadata only and does not run a search. With a nonblank `query`,
+     * provide exactly one `datasources` value to request suggested filter values for that query; no
+     * documents are returned and this endpoint does not include warning objects. See
+     * `FilterFieldInfo.values` for limitations on suggested values.
+     * 
+     * <p>Rate-limited requests return HTTP 429 with `Retry-After`; temporary backend unavailability returns
+     * HTTP 503.
+     * 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformSearchFiltersResponse listFiltersDirect() {
+        return listFilters(Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * List search filters
+     * 
+     * <p>List datasources and common built-in filter fields visible to the authenticated user. This is a
+     * best-effort catalog, not an exhaustive list of every filter search accepts.
+     * Without `query`, returns field metadata only and does not run a search. With a nonblank `query`,
+     * provide exactly one `datasources` value to request suggested filter values for that query; no
+     * documents are returned and this endpoint does not include warning objects. See
+     * `FilterFieldInfo.values` for limitations on suggested values.
+     * 
+     * <p>Rate-limited requests return HTTP 429 with `Retry-After`; temporary backend unavailability returns
+     * HTTP 503.
+     * 
+     * @param datasources Restrict metadata to one or more datasource identifiers as returned by this endpoint (for example, `jira`). With a nonblank `query`, exactly one datasource is required. Unknown or inaccessible identifiers return `invalid_datasource`.
+     *         
+     * @param query Optional search query that requests suggested filter values for the selected datasource. Must be nonblank when present. Triggers a search for facet values only; does not return documents.
+     *         
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformSearchFiltersResponse listFilters(Optional<? extends List<String>> datasources, Optional<String> query) {
+        PlatformSearchFiltersRequest request =
+            PlatformSearchFiltersRequest
+                .builder()
+                .datasources(datasources)
+                .query(query)
+                .build();
+        RequestOperation<PlatformSearchFiltersRequest, PlatformSearchFiltersResponse> operation
+              = new PlatformSearchFilters.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
