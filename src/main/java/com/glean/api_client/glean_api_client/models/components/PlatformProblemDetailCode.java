@@ -43,6 +43,7 @@ public class PlatformProblemDetailCode {
     public static final PlatformProblemDetailCode CONFLICT = new PlatformProblemDetailCode("conflict");
     public static final PlatformProblemDetailCode GONE = new PlatformProblemDetailCode("gone");
     public static final PlatformProblemDetailCode UNPROCESSABLE_QUERY = new PlatformProblemDetailCode("unprocessable_query");
+    public static final PlatformProblemDetailCode TOOLS_UNAUTHORIZED = new PlatformProblemDetailCode("tools_unauthorized");
     public static final PlatformProblemDetailCode RATE_LIMIT_EXCEEDED = new PlatformProblemDetailCode("rate_limit_exceeded");
     public static final PlatformProblemDetailCode INTERNAL_ERROR = new PlatformProblemDetailCode("internal_error");
     public static final PlatformProblemDetailCode SERVICE_UNAVAILABLE = new PlatformProblemDetailCode("service_unavailable");
@@ -136,6 +137,7 @@ public class PlatformProblemDetailCode {
         map.put("conflict", CONFLICT);
         map.put("gone", GONE);
         map.put("unprocessable_query", UNPROCESSABLE_QUERY);
+        map.put("tools_unauthorized", TOOLS_UNAUTHORIZED);
         map.put("rate_limit_exceeded", RATE_LIMIT_EXCEEDED);
         map.put("internal_error", INTERNAL_ERROR);
         map.put("service_unavailable", SERVICE_UNAVAILABLE);
@@ -161,6 +163,7 @@ public class PlatformProblemDetailCode {
         map.put("conflict", PlatformProblemDetailCodeEnum.CONFLICT);
         map.put("gone", PlatformProblemDetailCodeEnum.GONE);
         map.put("unprocessable_query", PlatformProblemDetailCodeEnum.UNPROCESSABLE_QUERY);
+        map.put("tools_unauthorized", PlatformProblemDetailCodeEnum.TOOLS_UNAUTHORIZED);
         map.put("rate_limit_exceeded", PlatformProblemDetailCodeEnum.RATE_LIMIT_EXCEEDED);
         map.put("internal_error", PlatformProblemDetailCodeEnum.INTERNAL_ERROR);
         map.put("service_unavailable", PlatformProblemDetailCodeEnum.SERVICE_UNAVAILABLE);
@@ -187,6 +190,7 @@ public class PlatformProblemDetailCode {
         CONFLICT("conflict"),
         GONE("gone"),
         UNPROCESSABLE_QUERY("unprocessable_query"),
+        TOOLS_UNAUTHORIZED("tools_unauthorized"),
         RATE_LIMIT_EXCEEDED("rate_limit_exceeded"),
         INTERNAL_ERROR("internal_error"),
         SERVICE_UNAVAILABLE("service_unavailable"),;
