@@ -247,9 +247,10 @@ public class Application {
                                 .components(List.of(
                                     "Backend",
                                     "Networking"))
-                                .status("[\"Done\"]")
+                                .status("Done")
                                 .customData(Map.ofEntries(
                                     Map.entry("someCustomField", CustomDataValue.builder()
+                                        .stringValue("someCustomValue")
                                         .build())))
                                 .build())
                             .build())
@@ -270,9 +271,10 @@ public class Application {
                                 .components(List.of(
                                     "Backend",
                                     "Networking"))
-                                .status("[\"Done\"]")
+                                .status("Done")
                                 .customData(Map.ofEntries(
                                     Map.entry("someCustomField", CustomDataValue.builder()
+                                        .stringValue("someCustomValue")
                                         .build())))
                                 .build())
                             .build())
@@ -292,9 +294,10 @@ public class Application {
                             .components(List.of(
                                 "Backend",
                                 "Networking"))
-                            .status("[\"Done\"]")
+                            .status("Done")
                             .customData(Map.ofEntries(
                                 Map.entry("someCustomField", CustomDataValue.builder()
+                                    .stringValue("someCustomValue")
                                     .build())))
                             .build())
                         .build())
@@ -365,9 +368,10 @@ public class Application {
                                     .components(List.of(
                                         "Backend",
                                         "Networking"))
-                                    .status("[\"Done\"]")
+                                    .status("Done")
                                     .customData(Map.ofEntries(
                                         Map.entry("someCustomField", CustomDataValue.builder()
+                                            .stringValue("someCustomValue")
                                             .build())))
                                     .build())
                                 .build())
@@ -388,9 +392,10 @@ public class Application {
                                     .components(List.of(
                                         "Backend",
                                         "Networking"))
-                                    .status("[\"Done\"]")
+                                    .status("Done")
                                     .customData(Map.ofEntries(
                                         Map.entry("someCustomField", CustomDataValue.builder()
+                                            .stringValue("someCustomValue")
                                             .build())))
                                     .build())
                                 .build())
@@ -410,9 +415,10 @@ public class Application {
                                 .components(List.of(
                                     "Backend",
                                     "Networking"))
-                                .status("[\"Done\"]")
+                                .status("Done")
                                 .customData(Map.ofEntries(
                                     Map.entry("someCustomField", CustomDataValue.builder()
+                                        .stringValue("someCustomValue")
                                         .build())))
                                 .build())
                             .build())
