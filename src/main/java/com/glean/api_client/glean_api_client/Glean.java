@@ -58,6 +58,9 @@ public class Glean {
     private final Agents agents;
 
 
+    private final Chat chat;
+
+
     private final Skills skills;
 
 
@@ -72,6 +75,11 @@ public class Glean {
 
     public Agents agents() {
         return agents;
+    }
+
+
+    public Chat chat() {
+        return chat;
     }
 
 
@@ -260,6 +268,7 @@ public class Glean {
     private Glean(SDKConfiguration sdkConfiguration) {
         sdkConfiguration.initialize();
         this.agents = new Agents(sdkConfiguration);
+        this.chat = new Chat(sdkConfiguration);
         this.skills = new Skills(sdkConfiguration);
         this.search = new Search(sdkConfiguration);
         this.client = new Client(sdkConfiguration);

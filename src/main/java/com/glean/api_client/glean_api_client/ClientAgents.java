@@ -9,6 +9,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.models.components.AgentRunCreate;
 import com.glean.api_client.glean_api_client.models.components.CreateWorkflowRequest;
 import com.glean.api_client.glean_api_client.models.components.EditWorkflowRequest;
+import com.glean.api_client.glean_api_client.models.components.ImportAgentRequest;
 import com.glean.api_client.glean_api_client.models.components.SearchAgentsRequest;
 import com.glean.api_client.glean_api_client.models.operations.CreateAgentRequest;
 import com.glean.api_client.glean_api_client.models.operations.CreateAgentRequestBuilder;
@@ -26,6 +27,8 @@ import com.glean.api_client.glean_api_client.models.operations.GetAgentResponse;
 import com.glean.api_client.glean_api_client.models.operations.GetAgentSchemasRequest;
 import com.glean.api_client.glean_api_client.models.operations.GetAgentSchemasRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.GetAgentSchemasResponse;
+import com.glean.api_client.glean_api_client.models.operations.ImportAgentRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.ImportAgentResponse;
 import com.glean.api_client.glean_api_client.models.operations.SearchAgentsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.SearchAgentsResponse;
 import com.glean.api_client.glean_api_client.operations.CreateAgent;
@@ -34,6 +37,7 @@ import com.glean.api_client.glean_api_client.operations.CreateAndWaitRun;
 import com.glean.api_client.glean_api_client.operations.EditAgent;
 import com.glean.api_client.glean_api_client.operations.GetAgent;
 import com.glean.api_client.glean_api_client.operations.GetAgentSchemas;
+import com.glean.api_client.glean_api_client.operations.ImportAgent;
 import com.glean.api_client.glean_api_client.operations.SearchAgents;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Long;
@@ -273,6 +277,69 @@ public class ClientAgents {
                 .build();
         RequestOperation<GetAgentSchemasRequest, GetAgentSchemasResponse> operation
               = new GetAgentSchemas.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Import an agent
+     * 
+     * <p>Imports an [agent](https://developers.glean.com/agents/agents-api) from its on-disk folder
+     * representation (spec.yaml, instructions.md, skills/, subagents/) packaged as a zip, and creates or
+     * updates the agent. Inverse of the export flow: the folder-to-schema conversion runs server-side. The
+     * bundle must contain only regular files; symlinks are resolved by the caller at packaging time.
+     * 
+     * @return The call builder
+     */
+    public ImportAgentRequestBuilder import_() {
+        return new ImportAgentRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Import an agent
+     * 
+     * <p>Imports an [agent](https://developers.glean.com/agents/agents-api) from its on-disk folder
+     * representation (spec.yaml, instructions.md, skills/, subagents/) packaged as a zip, and creates or
+     * updates the agent. Inverse of the export flow: the folder-to-schema conversion runs server-side. The
+     * bundle must contain only regular files; symlinks are resolved by the caller at packaging time.
+     * 
+     * @param agentId The ID of the agent to create or update.
+     * @param importAgentRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ImportAgentResponse import_(String agentId, ImportAgentRequest importAgentRequest) {
+        return import_(Optional.empty(), Optional.empty(), agentId,
+            importAgentRequest);
+    }
+
+    /**
+     * Import an agent
+     * 
+     * <p>Imports an [agent](https://developers.glean.com/agents/agents-api) from its on-disk folder
+     * representation (spec.yaml, instructions.md, skills/, subagents/) packaged as a zip, and creates or
+     * updates the agent. Inverse of the export flow: the folder-to-schema conversion runs server-side. The
+     * bundle must contain only regular files; symlinks are resolved by the caller at packaging time.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param agentId The ID of the agent to create or update.
+     * @param importAgentRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ImportAgentResponse import_(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            String agentId, ImportAgentRequest importAgentRequest) {
+        com.glean.api_client.glean_api_client.models.operations.ImportAgentRequest request =
+            com.glean.api_client.glean_api_client.models.operations.ImportAgentRequest
+                .builder()
+                .locale(locale)
+                .timezoneOffset(timezoneOffset)
+                .agentId(agentId)
+                .importAgentRequest(importAgentRequest)
+                .build();
+        RequestOperation<com.glean.api_client.glean_api_client.models.operations.ImportAgentRequest, ImportAgentResponse> operation
+              = new ImportAgent.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

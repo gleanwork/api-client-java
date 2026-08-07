@@ -48,6 +48,7 @@ public class Application {
                                     .build()))
                             .build()))
                     .pageSize(100L)
+                    .cursor("")
                     .build())
                 .call();
 

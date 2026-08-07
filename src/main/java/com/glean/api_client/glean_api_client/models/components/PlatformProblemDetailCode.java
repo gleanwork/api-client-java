@@ -36,13 +36,16 @@ public class PlatformProblemDetailCode {
     public static final PlatformProblemDetailCode AUTHENTICATION_REQUIRED = new PlatformProblemDetailCode("authentication_required");
     public static final PlatformProblemDetailCode TOKEN_EXPIRED = new PlatformProblemDetailCode("token_expired");
     public static final PlatformProblemDetailCode INSUFFICIENT_PERMISSIONS = new PlatformProblemDetailCode("insufficient_permissions");
+    public static final PlatformProblemDetailCode SPEND_LIMIT_EXCEEDED = new PlatformProblemDetailCode("spend_limit_exceeded");
     public static final PlatformProblemDetailCode RESOURCE_NOT_FOUND = new PlatformProblemDetailCode("resource_not_found");
     public static final PlatformProblemDetailCode METHOD_NOT_ALLOWED = new PlatformProblemDetailCode("method_not_allowed");
     public static final PlatformProblemDetailCode REQUEST_TIMEOUT = new PlatformProblemDetailCode("request_timeout");
     public static final PlatformProblemDetailCode REQUEST_TOO_LARGE = new PlatformProblemDetailCode("request_too_large");
+    public static final PlatformProblemDetailCode TOKEN_LIMIT_EXCEEDED = new PlatformProblemDetailCode("token_limit_exceeded");
     public static final PlatformProblemDetailCode CONFLICT = new PlatformProblemDetailCode("conflict");
     public static final PlatformProblemDetailCode GONE = new PlatformProblemDetailCode("gone");
     public static final PlatformProblemDetailCode UNPROCESSABLE_QUERY = new PlatformProblemDetailCode("unprocessable_query");
+    public static final PlatformProblemDetailCode TOOLS_UNAUTHORIZED = new PlatformProblemDetailCode("tools_unauthorized");
     public static final PlatformProblemDetailCode RATE_LIMIT_EXCEEDED = new PlatformProblemDetailCode("rate_limit_exceeded");
     public static final PlatformProblemDetailCode INTERNAL_ERROR = new PlatformProblemDetailCode("internal_error");
     public static final PlatformProblemDetailCode SERVICE_UNAVAILABLE = new PlatformProblemDetailCode("service_unavailable");
@@ -129,13 +132,16 @@ public class PlatformProblemDetailCode {
         map.put("authentication_required", AUTHENTICATION_REQUIRED);
         map.put("token_expired", TOKEN_EXPIRED);
         map.put("insufficient_permissions", INSUFFICIENT_PERMISSIONS);
+        map.put("spend_limit_exceeded", SPEND_LIMIT_EXCEEDED);
         map.put("resource_not_found", RESOURCE_NOT_FOUND);
         map.put("method_not_allowed", METHOD_NOT_ALLOWED);
         map.put("request_timeout", REQUEST_TIMEOUT);
         map.put("request_too_large", REQUEST_TOO_LARGE);
+        map.put("token_limit_exceeded", TOKEN_LIMIT_EXCEEDED);
         map.put("conflict", CONFLICT);
         map.put("gone", GONE);
         map.put("unprocessable_query", UNPROCESSABLE_QUERY);
+        map.put("tools_unauthorized", TOOLS_UNAUTHORIZED);
         map.put("rate_limit_exceeded", RATE_LIMIT_EXCEEDED);
         map.put("internal_error", INTERNAL_ERROR);
         map.put("service_unavailable", SERVICE_UNAVAILABLE);
@@ -154,13 +160,16 @@ public class PlatformProblemDetailCode {
         map.put("authentication_required", PlatformProblemDetailCodeEnum.AUTHENTICATION_REQUIRED);
         map.put("token_expired", PlatformProblemDetailCodeEnum.TOKEN_EXPIRED);
         map.put("insufficient_permissions", PlatformProblemDetailCodeEnum.INSUFFICIENT_PERMISSIONS);
+        map.put("spend_limit_exceeded", PlatformProblemDetailCodeEnum.SPEND_LIMIT_EXCEEDED);
         map.put("resource_not_found", PlatformProblemDetailCodeEnum.RESOURCE_NOT_FOUND);
         map.put("method_not_allowed", PlatformProblemDetailCodeEnum.METHOD_NOT_ALLOWED);
         map.put("request_timeout", PlatformProblemDetailCodeEnum.REQUEST_TIMEOUT);
         map.put("request_too_large", PlatformProblemDetailCodeEnum.REQUEST_TOO_LARGE);
+        map.put("token_limit_exceeded", PlatformProblemDetailCodeEnum.TOKEN_LIMIT_EXCEEDED);
         map.put("conflict", PlatformProblemDetailCodeEnum.CONFLICT);
         map.put("gone", PlatformProblemDetailCodeEnum.GONE);
         map.put("unprocessable_query", PlatformProblemDetailCodeEnum.UNPROCESSABLE_QUERY);
+        map.put("tools_unauthorized", PlatformProblemDetailCodeEnum.TOOLS_UNAUTHORIZED);
         map.put("rate_limit_exceeded", PlatformProblemDetailCodeEnum.RATE_LIMIT_EXCEEDED);
         map.put("internal_error", PlatformProblemDetailCodeEnum.INTERNAL_ERROR);
         map.put("service_unavailable", PlatformProblemDetailCodeEnum.SERVICE_UNAVAILABLE);
@@ -180,13 +189,16 @@ public class PlatformProblemDetailCode {
         AUTHENTICATION_REQUIRED("authentication_required"),
         TOKEN_EXPIRED("token_expired"),
         INSUFFICIENT_PERMISSIONS("insufficient_permissions"),
+        SPEND_LIMIT_EXCEEDED("spend_limit_exceeded"),
         RESOURCE_NOT_FOUND("resource_not_found"),
         METHOD_NOT_ALLOWED("method_not_allowed"),
         REQUEST_TIMEOUT("request_timeout"),
         REQUEST_TOO_LARGE("request_too_large"),
+        TOKEN_LIMIT_EXCEEDED("token_limit_exceeded"),
         CONFLICT("conflict"),
         GONE("gone"),
         UNPROCESSABLE_QUERY("unprocessable_query"),
+        TOOLS_UNAUTHORIZED("tools_unauthorized"),
         RATE_LIMIT_EXCEEDED("rate_limit_exceeded"),
         INTERNAL_ERROR("internal_error"),
         SERVICE_UNAVAILABLE("service_unavailable"),;

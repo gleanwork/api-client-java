@@ -66,6 +66,16 @@ public class PersonMetadata {
     private Optional<String> department;
 
     /**
+     * Normalized job-function category assigned by Entity Builder from the source department and, when
+     * available, job title. Unlike `department`, which preserves the company-specific organizational unit,
+     * this field groups departments into configured categories such as `Engineering`, `Sales`, or `IT`; it
+     * may be `Unknown` when the mapping is inconclusive.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("jobFunction")
+    private Optional<String> jobFunction;
+
+    /**
      * Info about the employee's team(s).
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -346,6 +356,7 @@ public class PersonMetadata {
             @JsonProperty("title") Optional<String> title,
             @JsonProperty("businessUnit") Optional<String> businessUnit,
             @JsonProperty("department") Optional<String> department,
+            @JsonProperty("jobFunction") Optional<String> jobFunction,
             @JsonProperty("teams") Optional<? extends List<PersonTeam>> teams,
             @JsonProperty("departmentCount") Optional<Long> departmentCount,
             @JsonProperty("email") Optional<String> email,
@@ -391,6 +402,7 @@ public class PersonMetadata {
         Utils.checkNotNull(title, "title");
         Utils.checkNotNull(businessUnit, "businessUnit");
         Utils.checkNotNull(department, "department");
+        Utils.checkNotNull(jobFunction, "jobFunction");
         Utils.checkNotNull(teams, "teams");
         Utils.checkNotNull(departmentCount, "departmentCount");
         Utils.checkNotNull(email, "email");
@@ -436,6 +448,7 @@ public class PersonMetadata {
         this.title = title;
         this.businessUnit = businessUnit;
         this.department = department;
+        this.jobFunction = jobFunction;
         this.teams = teams;
         this.departmentCount = departmentCount;
         this.email = email;
@@ -492,7 +505,8 @@ public class PersonMetadata {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -540,6 +554,17 @@ public class PersonMetadata {
     @JsonIgnore
     public Optional<String> department() {
         return department;
+    }
+
+    /**
+     * Normalized job-function category assigned by Entity Builder from the source department and, when
+     * available, job title. Unlike `department`, which preserves the company-specific organizational unit,
+     * this field groups departments into configured categories such as `Engineering`, `Sales`, or `IT`; it
+     * may be `Unknown` when the mapping is inconclusive.
+     */
+    @JsonIgnore
+    public Optional<String> jobFunction() {
+        return jobFunction;
     }
 
     /**
@@ -979,6 +1004,31 @@ public class PersonMetadata {
     public PersonMetadata withDepartment(Optional<String> department) {
         Utils.checkNotNull(department, "department");
         this.department = department;
+        return this;
+    }
+
+    /**
+     * Normalized job-function category assigned by Entity Builder from the source department and, when
+     * available, job title. Unlike `department`, which preserves the company-specific organizational unit,
+     * this field groups departments into configured categories such as `Engineering`, `Sales`, or `IT`; it
+     * may be `Unknown` when the mapping is inconclusive.
+     */
+    public PersonMetadata withJobFunction(String jobFunction) {
+        Utils.checkNotNull(jobFunction, "jobFunction");
+        this.jobFunction = Optional.ofNullable(jobFunction);
+        return this;
+    }
+
+
+    /**
+     * Normalized job-function category assigned by Entity Builder from the source department and, when
+     * available, job title. Unlike `department`, which preserves the company-specific organizational unit,
+     * this field groups departments into configured categories such as `Engineering`, `Sales`, or `IT`; it
+     * may be `Unknown` when the mapping is inconclusive.
+     */
+    public PersonMetadata withJobFunction(Optional<String> jobFunction) {
+        Utils.checkNotNull(jobFunction, "jobFunction");
+        this.jobFunction = jobFunction;
         return this;
     }
 
@@ -1733,6 +1783,7 @@ public class PersonMetadata {
             Utils.enhancedDeepEquals(this.title, other.title) &&
             Utils.enhancedDeepEquals(this.businessUnit, other.businessUnit) &&
             Utils.enhancedDeepEquals(this.department, other.department) &&
+            Utils.enhancedDeepEquals(this.jobFunction, other.jobFunction) &&
             Utils.enhancedDeepEquals(this.teams, other.teams) &&
             Utils.enhancedDeepEquals(this.departmentCount, other.departmentCount) &&
             Utils.enhancedDeepEquals(this.email, other.email) &&
@@ -1779,19 +1830,20 @@ public class PersonMetadata {
         return Utils.enhancedHash(
             type, firstName, lastName,
             title, businessUnit, department,
-            teams, departmentCount, email,
-            aliasEmails, location, structuredLocation,
-            externalProfileLink, manager, managementChain,
-            phone, timezone, timezoneOffset,
-            timezoneIANA, photoUrl, uneditedPhotoUrl,
-            bannerUrl, reports, startDate,
-            endDate, bio, pronoun,
-            orgSizeCount, directReportsCount, preferredName,
-            socialNetwork, datasourceProfile, querySuggestions,
-            peopleDistance, inviteInfo, isSignedUp,
-            lastExtensionUse, permissions, customFields,
-            loggingId, startDatePercentile, busyEvents,
-            profileBoolSettings, badges, isOrgRoot);
+            jobFunction, teams, departmentCount,
+            email, aliasEmails, location,
+            structuredLocation, externalProfileLink, manager,
+            managementChain, phone, timezone,
+            timezoneOffset, timezoneIANA, photoUrl,
+            uneditedPhotoUrl, bannerUrl, reports,
+            startDate, endDate, bio,
+            pronoun, orgSizeCount, directReportsCount,
+            preferredName, socialNetwork, datasourceProfile,
+            querySuggestions, peopleDistance, inviteInfo,
+            isSignedUp, lastExtensionUse, permissions,
+            customFields, loggingId, startDatePercentile,
+            busyEvents, profileBoolSettings, badges,
+            isOrgRoot);
     }
     
     @Override
@@ -1803,6 +1855,7 @@ public class PersonMetadata {
                 "title", title,
                 "businessUnit", businessUnit,
                 "department", department,
+                "jobFunction", jobFunction,
                 "teams", teams,
                 "departmentCount", departmentCount,
                 "email", email,
@@ -1858,6 +1911,8 @@ public class PersonMetadata {
         private Optional<String> businessUnit = Optional.empty();
 
         private Optional<String> department = Optional.empty();
+
+        private Optional<String> jobFunction = Optional.empty();
 
         private Optional<? extends List<PersonTeam>> teams = Optional.empty();
 
@@ -2048,6 +2103,31 @@ public class PersonMetadata {
         public Builder department(Optional<String> department) {
             Utils.checkNotNull(department, "department");
             this.department = department;
+            return this;
+        }
+
+
+        /**
+         * Normalized job-function category assigned by Entity Builder from the source department and, when
+         * available, job title. Unlike `department`, which preserves the company-specific organizational unit,
+         * this field groups departments into configured categories such as `Engineering`, `Sales`, or `IT`; it
+         * may be `Unknown` when the mapping is inconclusive.
+         */
+        public Builder jobFunction(String jobFunction) {
+            Utils.checkNotNull(jobFunction, "jobFunction");
+            this.jobFunction = Optional.ofNullable(jobFunction);
+            return this;
+        }
+
+        /**
+         * Normalized job-function category assigned by Entity Builder from the source department and, when
+         * available, job title. Unlike `department`, which preserves the company-specific organizational unit,
+         * this field groups departments into configured categories such as `Engineering`, `Sales`, or `IT`; it
+         * may be `Unknown` when the mapping is inconclusive.
+         */
+        public Builder jobFunction(Optional<String> jobFunction) {
+            Utils.checkNotNull(jobFunction, "jobFunction");
+            this.jobFunction = jobFunction;
             return this;
         }
 
@@ -2791,19 +2871,20 @@ public class PersonMetadata {
             return new PersonMetadata(
                 type, firstName, lastName,
                 title, businessUnit, department,
-                teams, departmentCount, email,
-                aliasEmails, location, structuredLocation,
-                externalProfileLink, manager, managementChain,
-                phone, timezone, timezoneOffset,
-                timezoneIANA, photoUrl, uneditedPhotoUrl,
-                bannerUrl, reports, startDate,
-                endDate, bio, pronoun,
-                orgSizeCount, directReportsCount, preferredName,
-                socialNetwork, datasourceProfile, querySuggestions,
-                peopleDistance, inviteInfo, isSignedUp,
-                lastExtensionUse, permissions, customFields,
-                loggingId, startDatePercentile, busyEvents,
-                profileBoolSettings, badges, isOrgRoot);
+                jobFunction, teams, departmentCount,
+                email, aliasEmails, location,
+                structuredLocation, externalProfileLink, manager,
+                managementChain, phone, timezone,
+                timezoneOffset, timezoneIANA, photoUrl,
+                uneditedPhotoUrl, bannerUrl, reports,
+                startDate, endDate, bio,
+                pronoun, orgSizeCount, directReportsCount,
+                preferredName, socialNetwork, datasourceProfile,
+                querySuggestions, peopleDistance, inviteInfo,
+                isSignedUp, lastExtensionUse, permissions,
+                customFields, loggingId, startDatePercentile,
+                busyEvents, profileBoolSettings, badges,
+                isOrgRoot);
         }
 
     }

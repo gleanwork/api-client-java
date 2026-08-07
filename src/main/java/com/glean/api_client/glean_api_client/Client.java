@@ -15,7 +15,7 @@ public class Client {
     private final Announcements announcements;
     private final Answers answers;
     private final ClientAuthentication authentication;
-    private final Chat chat;
+    private final ClientChat chat;
     private final ClientAgents agents;
     private final Collections collections;
     private final ClientDocuments documents;
@@ -36,7 +36,7 @@ public class Client {
         this.announcements = new Announcements(this.sdkConfiguration);
         this.answers = new Answers(this.sdkConfiguration);
         this.authentication = new ClientAuthentication(this.sdkConfiguration);
-        this.chat = new Chat(this.sdkConfiguration);
+        this.chat = new ClientChat(this.sdkConfiguration);
         this.agents = new ClientAgents(this.sdkConfiguration);
         this.collections = new Collections(this.sdkConfiguration);
         this.documents = new ClientDocuments(this.sdkConfiguration);
@@ -69,7 +69,7 @@ public class Client {
         return authentication;
     }
 
-    public final Chat chat() {
+    public final ClientChat chat() {
         return chat;
     }
 

@@ -9,6 +9,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 import com.glean.api_client.glean_api_client.models.components.AgentRunCreate;
 import com.glean.api_client.glean_api_client.models.components.CreateWorkflowRequest;
 import com.glean.api_client.glean_api_client.models.components.EditWorkflowRequest;
+import com.glean.api_client.glean_api_client.models.components.ImportAgentRequest;
 import com.glean.api_client.glean_api_client.models.components.SearchAgentsRequest;
 import com.glean.api_client.glean_api_client.models.operations.CreateAgentRequest;
 import com.glean.api_client.glean_api_client.models.operations.EditAgentRequest;
@@ -26,6 +27,8 @@ import com.glean.api_client.glean_api_client.models.operations.async.GetAgentReq
 import com.glean.api_client.glean_api_client.models.operations.async.GetAgentResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.GetAgentSchemasRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.GetAgentSchemasResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.ImportAgentRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.ImportAgentResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.SearchAgentsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.SearchAgentsResponse;
 import com.glean.api_client.glean_api_client.operations.CreateAgent;
@@ -34,6 +37,7 @@ import com.glean.api_client.glean_api_client.operations.CreateAndWaitRun;
 import com.glean.api_client.glean_api_client.operations.EditAgent;
 import com.glean.api_client.glean_api_client.operations.GetAgent;
 import com.glean.api_client.glean_api_client.operations.GetAgentSchemas;
+import com.glean.api_client.glean_api_client.operations.ImportAgent;
 import com.glean.api_client.glean_api_client.operations.SearchAgents;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Long;
@@ -274,6 +278,70 @@ public class AsyncClientAgents {
                 .build();
         AsyncRequestOperation<GetAgentSchemasRequest, GetAgentSchemasResponse> operation
               = new GetAgentSchemas.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Import an agent
+     * 
+     * <p>Imports an [agent](https://developers.glean.com/agents/agents-api) from its on-disk folder
+     * representation (spec.yaml, instructions.md, skills/, subagents/) packaged as a zip, and creates or
+     * updates the agent. Inverse of the export flow: the folder-to-schema conversion runs server-side. The
+     * bundle must contain only regular files; symlinks are resolved by the caller at packaging time.
+     * 
+     * @return The async call builder
+     */
+    public ImportAgentRequestBuilder import_() {
+        return new ImportAgentRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Import an agent
+     * 
+     * <p>Imports an [agent](https://developers.glean.com/agents/agents-api) from its on-disk folder
+     * representation (spec.yaml, instructions.md, skills/, subagents/) packaged as a zip, and creates or
+     * updates the agent. Inverse of the export flow: the folder-to-schema conversion runs server-side. The
+     * bundle must contain only regular files; symlinks are resolved by the caller at packaging time.
+     * 
+     * @param agentId The ID of the agent to create or update.
+     * @param importAgentRequest 
+     * @return {@code CompletableFuture<ImportAgentResponse>} - The async response
+     */
+    public CompletableFuture<ImportAgentResponse> import_(String agentId, ImportAgentRequest importAgentRequest) {
+        return import_(
+                Optional.empty(), Optional.empty(), agentId,
+                importAgentRequest);
+    }
+
+    /**
+     * Import an agent
+     * 
+     * <p>Imports an [agent](https://developers.glean.com/agents/agents-api) from its on-disk folder
+     * representation (spec.yaml, instructions.md, skills/, subagents/) packaged as a zip, and creates or
+     * updates the agent. Inverse of the export flow: the folder-to-schema conversion runs server-side. The
+     * bundle must contain only regular files; symlinks are resolved by the caller at packaging time.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param agentId The ID of the agent to create or update.
+     * @param importAgentRequest 
+     * @return {@code CompletableFuture<ImportAgentResponse>} - The async response
+     */
+    public CompletableFuture<ImportAgentResponse> import_(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            String agentId, ImportAgentRequest importAgentRequest) {
+        com.glean.api_client.glean_api_client.models.operations.ImportAgentRequest request =
+            com.glean.api_client.glean_api_client.models.operations.ImportAgentRequest
+                .builder()
+                .locale(locale)
+                .timezoneOffset(timezoneOffset)
+                .agentId(agentId)
+                .importAgentRequest(importAgentRequest)
+                .build();
+        AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.ImportAgentRequest, ImportAgentResponse> operation
+              = new ImportAgent.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
