@@ -7,6 +7,8 @@ package com.glean.api_client.glean_api_client;
 import static com.glean.api_client.glean_api_client.operations.Operations.AsyncRequestOperation;
 
 import com.glean.api_client.glean_api_client.models.components.PlatformSkillCreateRequest;
+import com.glean.api_client.glean_api_client.models.components.PlatformSkillSourcePreviewRequest;
+import com.glean.api_client.glean_api_client.models.components.PlatformSkillUpdateRequest;
 import com.glean.api_client.glean_api_client.models.components.PlatformSkillValidationRequest;
 import com.glean.api_client.glean_api_client.models.components.PlatformSkillVersionCreateRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsCreateVersionRequest;
@@ -16,6 +18,7 @@ import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsGet
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsGetVersionRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsListRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsListVersionsRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsUpdateRequest;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformSkillsCreateRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformSkillsCreateResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformSkillsCreateVersionRequestBuilder;
@@ -32,6 +35,10 @@ import com.glean.api_client.glean_api_client.models.operations.async.PlatformSki
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformSkillsListResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformSkillsListVersionsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformSkillsListVersionsResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformSkillsPreviewSourceRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformSkillsPreviewSourceResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformSkillsUpdateRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformSkillsUpdateResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformSkillsValidateRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformSkillsValidateResponse;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsCreate;
@@ -42,6 +49,8 @@ import com.glean.api_client.glean_api_client.operations.PlatformSkillsGetVersion
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsGetVersionContent;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsList;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsListVersions;
+import com.glean.api_client.glean_api_client.operations.PlatformSkillsPreviewSource;
+import com.glean.api_client.glean_api_client.operations.PlatformSkillsUpdate;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsValidate;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Long;
@@ -168,6 +177,73 @@ public class AsyncSkills {
     public CompletableFuture<PlatformSkillsValidateResponse> validate(PlatformSkillValidationRequest request) {
         AsyncRequestOperation<PlatformSkillValidationRequest, PlatformSkillsValidateResponse> operation
               = new PlatformSkillsValidate.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Preview a GitHub skill source
+     * 
+     * <p>Inspect a GitHub URL without persisting a source or any discovered skills. Set stream to true to
+     * receive repository scan progress as server-sent events; otherwise the response contains the
+     * completed preview.
+     * 
+     * @return The async call builder
+     */
+    public PlatformSkillsPreviewSourceRequestBuilder previewSource() {
+        return new PlatformSkillsPreviewSourceRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Preview a GitHub skill source
+     * 
+     * <p>Inspect a GitHub URL without persisting a source or any discovered skills. Set stream to true to
+     * receive repository scan progress as server-sent events; otherwise the response contains the
+     * completed preview.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return {@code CompletableFuture<PlatformSkillsPreviewSourceResponse>} - The async response
+     */
+    public CompletableFuture<PlatformSkillsPreviewSourceResponse> previewSource(PlatformSkillSourcePreviewRequest request) {
+        AsyncRequestOperation<PlatformSkillSourcePreviewRequest, PlatformSkillsPreviewSourceResponse> operation
+              = new PlatformSkillsPreviewSource.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Update skill
+     * 
+     * <p>Update mutable metadata for a skill. V1 supports enabling or disabling a skill without changing its
+     * content.
+     * 
+     * @return The async call builder
+     */
+    public PlatformSkillsUpdateRequestBuilder update() {
+        return new PlatformSkillsUpdateRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Update skill
+     * 
+     * <p>Update mutable metadata for a skill. V1 supports enabling or disabling a skill without changing its
+     * content.
+     * 
+     * @param skillId Glean skill ID.
+     * @param platformSkillUpdateRequest 
+     * @return {@code CompletableFuture<PlatformSkillsUpdateResponse>} - The async response
+     */
+    public CompletableFuture<PlatformSkillsUpdateResponse> update(String skillId, PlatformSkillUpdateRequest platformSkillUpdateRequest) {
+        PlatformSkillsUpdateRequest request =
+            PlatformSkillsUpdateRequest
+                .builder()
+                .skillId(skillId)
+                .platformSkillUpdateRequest(platformSkillUpdateRequest)
+                .build();
+        AsyncRequestOperation<PlatformSkillsUpdateRequest, PlatformSkillsUpdateResponse> operation
+              = new PlatformSkillsUpdate.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

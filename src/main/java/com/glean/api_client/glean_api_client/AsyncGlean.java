@@ -36,6 +36,8 @@ public class AsyncGlean {
 
     private final AsyncAgents agents;
 
+    private final AsyncChat chat;
+
     private final AsyncSkills skills;
 
     private final AsyncSearch search;
@@ -46,6 +48,10 @@ public class AsyncGlean {
 
     public AsyncAgents agents() {
         return agents;
+    }
+
+    public AsyncChat chat() {
+        return chat;
     }
 
     public AsyncSkills skills() {
@@ -71,6 +77,7 @@ public class AsyncGlean {
         this.syncSDK = syncSDK;
         this.sdkConfiguration = sdkConfiguration;
         this.agents = new AsyncAgents(syncSDK.agents(), sdkConfiguration);
+        this.chat = new AsyncChat(syncSDK.chat(), sdkConfiguration);
         this.skills = new AsyncSkills(syncSDK.skills(), sdkConfiguration);
         this.search = new AsyncSearch(syncSDK.search(), sdkConfiguration);
         this.client = new AsyncClient(syncSDK.client(), sdkConfiguration);

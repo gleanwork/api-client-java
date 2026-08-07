@@ -8,6 +8,7 @@
 * [retrieve](#retrieve) - Retrieve an agent
 * [update](#update) - Edit an agent
 * [retrieveSchemas](#retrieveschemas) - List an agent's schemas
+* [import_](#import_) - Import an agent
 * [list](#list) - Search agents
 * [runStream](#runstream) - Create an agent run and stream the response
 * [run](#run) - Create an agent run and wait for the response
@@ -226,6 +227,67 @@ public class Application {
 | models/errors/ErrorResponse | 404, 422                    | application/json            |
 | models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
+## import_
+
+Imports an [agent](https://developers.glean.com/agents/agents-api) from its on-disk folder representation (spec.yaml, instructions.md, skills/, subagents/) packaged as a zip, and creates or updates the agent. Inverse of the export flow: the folder-to-schema conversion runs server-side. The bundle must contain only regular files; symlinks are resolved by the caller at packaging time.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="importAgent" method="post" path="/rest/api/v1/agents/{agent_id}/import" -->
+```java
+package hello.world;
+
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.Bundle;
+import com.glean.api_client.glean_api_client.models.components.ImportAgentRequest;
+import com.glean.api_client.glean_api_client.models.errors.ErrorResponse;
+import com.glean.api_client.glean_api_client.models.operations.ImportAgentResponse;
+import com.glean.api_client.glean_api_client.utils.Utils;
+import java.io.FileInputStream;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
+            .build();
+
+        ImportAgentResponse res = sdk.client().agents().import_()
+                .agentId("<id>")
+                .importAgentRequest(ImportAgentRequest.builder()
+                    .bundle(Bundle.builder()
+                        .fileName("example.file")
+                        .content(Utils.readBytesAndClose(new FileInputStream("example.file")))
+                        .build())
+                    .build())
+                .call();
+
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                                           | Type                                                                                                                                                                                                | Required                                                                                                                                                                                            | Description                                                                                                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `locale`                                                                                                                                                                                            | *Optional\<String>*                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                  | The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`. |
+| `timezoneOffset`                                                                                                                                                                                    | *Optional\<Long>*                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                  | The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.                                                                                          |
+| `agentId`                                                                                                                                                                                           | *String*                                                                                                                                                                                            | :heavy_check_mark:                                                                                                                                                                                  | The ID of the agent to create or update.                                                                                                                                                            |
+| `importAgentRequest`                                                                                                                                                                                | [ImportAgentRequest](../../models/components/ImportAgentRequest.md)                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                  | N/A                                                                                                                                                                                                 |
+
+### Response
+
+**[ImportAgentResponse](../../models/operations/ImportAgentResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404                         | application/json            |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
+
 ## list
 
 Search for [agents](https://developers.glean.com/agents/agents-api) by agent name.
@@ -296,13 +358,14 @@ import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.AgentRunCreate;
 import com.glean.api_client.glean_api_client.models.components.Message;
 import com.glean.api_client.glean_api_client.models.errors.ErrorResponse;
+import com.glean.api_client.glean_api_client.models.errors.UnauthorizedAgentToolsError;
 import com.glean.api_client.glean_api_client.models.operations.CreateAndStreamRunResponse;
 import java.lang.Exception;
 import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, Exception {
+    public static void main(String[] args) throws ErrorResponse, UnauthorizedAgentToolsError, Exception {
 
         Glean sdk = Glean.builder()
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
@@ -339,10 +402,11 @@ public class Application {
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 404, 409, 422               | application/json            |
-| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| models/errors/ErrorResponse               | 404, 409                                  | application/json                          |
+| models/errors/UnauthorizedAgentToolsError | 422                                       | application/json                          |
+| models/errors/APIException                | 4XX, 5XX                                  | \*/\*                                     |
 
 ## run
 
@@ -357,13 +421,14 @@ package hello.world;
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.AgentRunCreate;
 import com.glean.api_client.glean_api_client.models.components.Message;
+import com.glean.api_client.glean_api_client.models.errors.UnauthorizedAgentToolsError;
 import com.glean.api_client.glean_api_client.models.operations.CreateAndWaitRunResponse;
 import java.lang.Exception;
 import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws UnauthorizedAgentToolsError, Exception {
 
         Glean sdk = Glean.builder()
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
@@ -400,6 +465,7 @@ public class Application {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
+| Error Type                                | Status Code                               | Content Type                              |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| models/errors/UnauthorizedAgentToolsError | 422                                       | application/json                          |
+| models/errors/APIException                | 4XX, 5XX                                  | \*/\*                                     |

@@ -13,6 +13,7 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
 import com.glean.api_client.glean_api_client.models.components.GetChatResponse;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
+import com.glean.api_client.glean_api_client.models.errors.AccessRequestPermissionDeniedResponseException;
 import com.glean.api_client.glean_api_client.models.operations.GetchatRequest;
 import com.glean.api_client.glean_api_client.models.operations.GetchatResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
@@ -181,7 +182,14 @@ public class Getchat {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            if (Utils.statusCodeMatches(response.statusCode(), "400", "401", "403", "429", "4XX")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "403")) {
+                if (Utils.contentTypeMatches(contentType, "application/json")) {
+                    throw AccessRequestPermissionDeniedResponseException.from(response);
+                } else {
+                    throw APIException.from("Unexpected content-type received: " + contentType, response);
+                }
+            }
+            if (Utils.statusCodeMatches(response.statusCode(), "400", "401", "429", "4XX")) {
                 // no content
                 throw APIException.from("API error occurred", response);
             }
@@ -252,7 +260,15 @@ public class Getchat {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }
             }
-            if (Utils.statusCodeMatches(response.statusCode(), "400", "401", "403", "429", "4XX")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "403")) {
+                if (Utils.contentTypeMatches(contentType, "application/json")) {
+                    return AccessRequestPermissionDeniedResponseException.fromAsync(response)
+                            .thenCompose(CompletableFuture::failedFuture);
+                } else {
+                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
+                }
+            }
+            if (Utils.statusCodeMatches(response.statusCode(), "400", "401", "429", "4XX")) {
                 // no content
                 return Utils.createAsyncApiError(response, "API error occurred");
             }
