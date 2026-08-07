@@ -167,6 +167,7 @@ public class Application {
                                             .build()))
                                     .build()))
                             .build()))
+                    .cursor("")
                     .build())
                 .call();
 

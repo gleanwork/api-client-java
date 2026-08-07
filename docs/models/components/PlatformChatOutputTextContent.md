@@ -1,0 +1,10 @@
+# PlatformChatOutputTextContent
+
+
+## Fields
+
+| Field                                                                                              | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `type`                                                                                             | [PlatformChatOutputTextContentType](../../models/components/PlatformChatOutputTextContentType.md)  | :heavy_check_mark:                                                                                 | N/A                                                                                                |
+| `text`                                                                                             | *String*                                                                                           | :heavy_check_mark:                                                                                 | N/A                                                                                                |
+| `annotations`                                                                                      | List\<[PlatformChatCitationAnnotation](../../models/components/PlatformChatCitationAnnotation.md)> | :heavy_minus_sign:                                                                                 | N/A                                                                                                |
