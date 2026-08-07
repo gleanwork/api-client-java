@@ -1,0 +1,12 @@
+# PlatformChatFileSource
+
+
+## Fields
+
+| Field                                                                               | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `type`                                                                              | [PlatformChatFileSourceType](../../models/components/PlatformChatFileSourceType.md) | :heavy_check_mark:                                                                  | N/A                                                                                 |
+| `fileId`                                                                            | *String*                                                                            | :heavy_check_mark:                                                                  | N/A                                                                                 |
+| `title`                                                                             | *Optional\<String>*                                                                 | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `url`                                                                               | *Optional\<String>*                                                                 | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `datasource`                                                                        | *Optional\<String>*                                                                 | :heavy_minus_sign:                                                                  | N/A                                                                                 |

@@ -56,6 +56,7 @@ public class FeedResultCategory {
     public static final FeedResultCategory PLAN_MY_DAY = new FeedResultCategory("PLAN_MY_DAY");
     public static final FeedResultCategory END_MY_DAY = new FeedResultCategory("END_MY_DAY");
     public static final FeedResultCategory STARTER_KIT = new FeedResultCategory("STARTER_KIT");
+    public static final FeedResultCategory MEETING_PREP_AUTOMATION = new FeedResultCategory("MEETING_PREP_AUTOMATION");
     public static final FeedResultCategory MID_DAY_CATCH_UP = new FeedResultCategory("MID_DAY_CATCH_UP");
     public static final FeedResultCategory QUERY_SUGGESTION = new FeedResultCategory("QUERY_SUGGESTION");
     public static final FeedResultCategory COWORK_CUJ_PROMO = new FeedResultCategory("COWORK_CUJ_PROMO");
@@ -173,6 +174,7 @@ public class FeedResultCategory {
         map.put("PLAN_MY_DAY", PLAN_MY_DAY);
         map.put("END_MY_DAY", END_MY_DAY);
         map.put("STARTER_KIT", STARTER_KIT);
+        map.put("MEETING_PREP_AUTOMATION", MEETING_PREP_AUTOMATION);
         map.put("MID_DAY_CATCH_UP", MID_DAY_CATCH_UP);
         map.put("QUERY_SUGGESTION", QUERY_SUGGESTION);
         map.put("COWORK_CUJ_PROMO", COWORK_CUJ_PROMO);
@@ -222,6 +224,7 @@ public class FeedResultCategory {
         map.put("PLAN_MY_DAY", FeedResultCategoryEnum.PLAN_MY_DAY);
         map.put("END_MY_DAY", FeedResultCategoryEnum.END_MY_DAY);
         map.put("STARTER_KIT", FeedResultCategoryEnum.STARTER_KIT);
+        map.put("MEETING_PREP_AUTOMATION", FeedResultCategoryEnum.MEETING_PREP_AUTOMATION);
         map.put("MID_DAY_CATCH_UP", FeedResultCategoryEnum.MID_DAY_CATCH_UP);
         map.put("QUERY_SUGGESTION", FeedResultCategoryEnum.QUERY_SUGGESTION);
         map.put("COWORK_CUJ_PROMO", FeedResultCategoryEnum.COWORK_CUJ_PROMO);
@@ -272,6 +275,7 @@ public class FeedResultCategory {
         PLAN_MY_DAY("PLAN_MY_DAY"),
         END_MY_DAY("END_MY_DAY"),
         STARTER_KIT("STARTER_KIT"),
+        MEETING_PREP_AUTOMATION("MEETING_PREP_AUTOMATION"),
         MID_DAY_CATCH_UP("MID_DAY_CATCH_UP"),
         QUERY_SUGGESTION("QUERY_SUGGESTION"),
         COWORK_CUJ_PROMO("COWORK_CUJ_PROMO"),
