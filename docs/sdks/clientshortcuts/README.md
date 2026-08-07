@@ -1666,6 +1666,7 @@ public class Application {
         ListshortcutsResponse res = sdk.client().shortcuts().list()
                 .listShortcutsPaginatedRequest(ListShortcutsPaginatedRequest.builder()
                     .pageSize(10L)
+                    .cursor("")
                     .filters(List.of(
                         FacetFilter.builder()
                             .fieldName("type")

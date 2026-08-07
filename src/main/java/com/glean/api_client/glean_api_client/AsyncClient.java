@@ -14,7 +14,7 @@ public class AsyncClient {
     private final AsyncAnnouncements announcements;
     private final AsyncAnswers answers;
     private final AsyncClientAuthentication authentication;
-    private final AsyncChat chat;
+    private final AsyncClientChat chat;
     private final AsyncClientAgents agents;
     private final AsyncCollections collections;
     private final AsyncClientDocuments documents;
@@ -36,7 +36,7 @@ public class AsyncClient {
         this.announcements = new AsyncAnnouncements(syncSDK.announcements(), this.sdkConfiguration);
         this.answers = new AsyncAnswers(syncSDK.answers(), this.sdkConfiguration);
         this.authentication = new AsyncClientAuthentication(syncSDK.authentication(), this.sdkConfiguration);
-        this.chat = new AsyncChat(syncSDK.chat(), this.sdkConfiguration);
+        this.chat = new AsyncClientChat(syncSDK.chat(), this.sdkConfiguration);
         this.agents = new AsyncClientAgents(syncSDK.agents(), this.sdkConfiguration);
         this.collections = new AsyncCollections(syncSDK.collections(), this.sdkConfiguration);
         this.documents = new AsyncClientDocuments(syncSDK.documents(), this.sdkConfiguration);
@@ -69,7 +69,7 @@ public class AsyncClient {
         return authentication;
     }
 
-    public final AsyncChat chat() {
+    public final AsyncClientChat chat() {
         return chat;
     }
 

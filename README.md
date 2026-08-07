@@ -67,7 +67,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.glean.api-client:glean-api-client:0.14.4'
+implementation 'com.glean.api-client:glean-api-client:0.15.0'
 ```
 
 Maven:
@@ -75,7 +75,7 @@ Maven:
 <dependency>
     <groupId>com.glean.api-client</groupId>
     <artifactId>glean-api-client</artifactId>
-    <version>0.14.4</version>
+    <version>0.15.0</version>
 </dependency>
 ```
 
@@ -374,6 +374,10 @@ For more information on obtaining the appropriate token type, please contact you
 * [getSchemas](docs/sdks/agents/README.md#getschemas) - Get agent schemas
 * [createRun](docs/sdks/agents/README.md#createrun) - Create agent run
 
+### [Chat](docs/sdks/chat/README.md)
+
+* [create](docs/sdks/chat/README.md#create) - Create a chat response
+
 ### [Client.Activity](docs/sdks/activity/README.md)
 
 * [report](docs/sdks/activity/README.md#report) - Report document activity
@@ -385,6 +389,7 @@ For more information on obtaining the appropriate token type, please contact you
 * [retrieve](docs/sdks/clientagents/README.md#retrieve) - Retrieve an agent
 * [update](docs/sdks/clientagents/README.md#update) - Edit an agent
 * [retrieveSchemas](docs/sdks/clientagents/README.md#retrieveschemas) - List an agent's schemas
+* [import_](docs/sdks/clientagents/README.md#import_) - Import an agent
 * [list](docs/sdks/clientagents/README.md#list) - Search agents
 * [runStream](docs/sdks/clientagents/README.md#runstream) - Create an agent run and stream the response
 * [run](docs/sdks/clientagents/README.md#run) - Create an agent run and wait for the response
@@ -408,19 +413,19 @@ For more information on obtaining the appropriate token type, please contact you
 * [checkDatasourceAuth](docs/sdks/clientauthentication/README.md#checkdatasourceauth) - Check datasource authorization
 * [createToken](docs/sdks/clientauthentication/README.md#createtoken) - Create authentication token
 
-### [Client.Chat](docs/sdks/chat/README.md)
+### [Client.Chat](docs/sdks/clientchat/README.md)
 
-* [create](docs/sdks/chat/README.md#create) - Chat
-* [deleteAll](docs/sdks/chat/README.md#deleteall) - Deletes all saved Chats owned by a user
-* [delete](docs/sdks/chat/README.md#delete) - Deletes saved Chats
-* [retrieve](docs/sdks/chat/README.md#retrieve) - Retrieves a Chat
-* [list](docs/sdks/chat/README.md#list) - Retrieves all saved Chats
-* [retrieveApplication](docs/sdks/chat/README.md#retrieveapplication) - Gets the metadata for a custom Chat application
-* [uploadFiles](docs/sdks/chat/README.md#uploadfiles) - Upload files for Chat
-* [retrieveFiles](docs/sdks/chat/README.md#retrievefiles) - Get files uploaded by a user for Chat
-* [deleteFiles](docs/sdks/chat/README.md#deletefiles) - Delete files uploaded by a user for chat
-* [retrieveFile](docs/sdks/chat/README.md#retrievefile) - Download a chat file
-* [createStream](docs/sdks/chat/README.md#createstream) - Chat
+* [create](docs/sdks/clientchat/README.md#create) - Chat
+* [deleteAll](docs/sdks/clientchat/README.md#deleteall) - Deletes all saved Chats owned by a user
+* [delete](docs/sdks/clientchat/README.md#delete) - Deletes saved Chats
+* [retrieve](docs/sdks/clientchat/README.md#retrieve) - Retrieves a Chat
+* [list](docs/sdks/clientchat/README.md#list) - Retrieves all saved Chats
+* [retrieveApplication](docs/sdks/clientchat/README.md#retrieveapplication) - Gets the metadata for a custom Chat application
+* [uploadFiles](docs/sdks/clientchat/README.md#uploadfiles) - Upload files for Chat
+* [retrieveFiles](docs/sdks/clientchat/README.md#retrievefiles) - Get files uploaded by a user for Chat
+* [deleteFiles](docs/sdks/clientchat/README.md#deletefiles) - Delete files uploaded by a user for chat
+* [retrieveFile](docs/sdks/clientchat/README.md#retrievefile) - Download a chat file
+* [createStream](docs/sdks/clientchat/README.md#createstream) - Chat
 
 ### [Client.Collections](docs/sdks/collections/README.md)
 
@@ -519,6 +524,7 @@ For more information on obtaining the appropriate token type, please contact you
 * [authorizeActionPack](docs/sdks/tools/README.md#authorizeactionpack) - Start the OAuth authorization flow for an action pack.
 * [retrieveToolServerAuthStatus](docs/sdks/tools/README.md#retrievetoolserverauthstatus) - Get end-user authentication status for a tool server.
 * [authorizeToolServer](docs/sdks/tools/README.md#authorizetoolserver) - Start the OAuth authorization flow for a tool server.
+* [getToolServerTools](docs/sdks/tools/README.md#gettoolservertools) - Get tool definitions from a tool server.
 
 ### [Client.Verification](docs/sdks/verification/README.md)
 
@@ -602,14 +608,20 @@ For more information on obtaining the appropriate token type, please contact you
 ### [Search](docs/sdks/search/README.md)
 
 * [query](docs/sdks/search/README.md#query) - Search
+* [listFilters](docs/sdks/search/README.md#listfilters) - List search filters
 
 ### [Skills](docs/sdks/skills/README.md)
 
 * [create](docs/sdks/skills/README.md#create) - Create skill
 * [list](docs/sdks/skills/README.md#list) - List skills
 * [validate](docs/sdks/skills/README.md#validate) - Validate skill bundle
+* [import_](docs/sdks/skills/README.md#import_) - Import skills from GitHub
+* [previewSource](docs/sdks/skills/README.md#previewsource) - Preview a GitHub skill source
+* [update](docs/sdks/skills/README.md#update) - Update skill
+* [delete](docs/sdks/skills/README.md#delete) - Delete skill
 * [retrieve](docs/sdks/skills/README.md#retrieve) - Retrieve skill
 * [retrieveContent](docs/sdks/skills/README.md#retrievecontent) - Download skill content
+* [sync](docs/sdks/skills/README.md#sync) - Sync a GitHub-imported skill
 * [createVersion](docs/sdks/skills/README.md#createversion) - Create skill version
 * [listVersions](docs/sdks/skills/README.md#listversions) - List skill versions
 * [retrieveVersion](docs/sdks/skills/README.md#retrieveversion) - Retrieve skill version
@@ -710,7 +722,7 @@ public class Application {
 **Primary error:**
 * [`GleanError`](./src/main/java/models/errors/GleanError.java): The base class for HTTP error responses.
 
-<details><summary>Less common errors (11)</summary>
+<details><summary>Less common errors (14)</summary>
 
 <br />
 
@@ -720,11 +732,14 @@ public class Application {
 many more subclasses in the JDK platform).
 
 **Inherit from [`GleanError`](./src/main/java/models/errors/GleanError.java)**:
-* [`com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException.java): Error response following RFC 9457, extended with `code` and `documentation_url` for machine-readable classification and self-service remediation. Applicable to 14 of 147 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.ErrorResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorResponse.java): Error response returned for failed requests. Applicable to 9 of 147 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse.java): Error response for custom metadata operations. Applicable to 6 of 147 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.CollectionError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.CollectionError.java): Semantic error. Status code `422`. Applicable to 3 of 147 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.GleanDataError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.GleanDataError.java): Forbidden. Applicable to 2 of 147 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException.java): Error response following RFC 9457, extended with `code` and `documentation_url` for machine-readable classification and self-service remediation. Applicable to 21 of 156 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.ErrorResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorResponse.java): Error response returned for failed requests. Applicable to 10 of 156 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse.java): Error response for custom metadata operations. Applicable to 6 of 156 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.CollectionError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.CollectionError.java): Semantic error. Status code `422`. Applicable to 3 of 156 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.GleanDataError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.GleanDataError.java): Forbidden. Applicable to 2 of 156 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.UnauthorizedAgentToolsError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.UnauthorizedAgentToolsError.java): Returned when the agent has tools the caller must authorize before the run can start. Each entry in `authenticationSuggestions` names one such tool; POST its `serverId` to `/tool-servers/{serverId}/auth` with `returnUrl` in the request body to obtain an `authorizationUrl` to redirect the end user to, then retry the run once OAuth completes. Status code `422`. Applicable to 2 of 156 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.AccessRequestPermissionDeniedResponseException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.AccessRequestPermissionDeniedResponseException.java): Forbidden. Status code `403`. Applicable to 1 of 156 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.PlatformUnauthorizedAgentToolsProblemException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.PlatformUnauthorizedAgentToolsProblemException.java): Problem detail extended with `authentication_suggestions` naming each tool the caller must authorize. Status code `422`. Applicable to 1 of 156 methods.*
 
 
 </details>

@@ -12,6 +12,7 @@ import com.glean.api_client.glean_api_client.models.components.ToolsCallRequest;
 import com.glean.api_client.glean_api_client.models.operations.GetActionPackAuthStatusRequest;
 import com.glean.api_client.glean_api_client.models.operations.GetRestApiV1ToolsListRequest;
 import com.glean.api_client.glean_api_client.models.operations.GetToolServerAuthStatusRequest;
+import com.glean.api_client.glean_api_client.models.operations.GetToolServerToolsRequest;
 import com.glean.api_client.glean_api_client.models.operations.async.AuthorizeActionPackRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.AuthorizeActionPackResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.AuthorizeToolServerRequestBuilder;
@@ -22,6 +23,8 @@ import com.glean.api_client.glean_api_client.models.operations.async.GetRestApiV
 import com.glean.api_client.glean_api_client.models.operations.async.GetRestApiV1ToolsListResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.GetToolServerAuthStatusRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.GetToolServerAuthStatusResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.GetToolServerToolsRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.GetToolServerToolsResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.PostRestApiV1ToolsCallRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PostRestApiV1ToolsCallResponse;
 import com.glean.api_client.glean_api_client.operations.AuthorizeActionPack;
@@ -29,6 +32,7 @@ import com.glean.api_client.glean_api_client.operations.AuthorizeToolServer;
 import com.glean.api_client.glean_api_client.operations.GetActionPackAuthStatus;
 import com.glean.api_client.glean_api_client.operations.GetRestApiV1ToolsList;
 import com.glean.api_client.glean_api_client.operations.GetToolServerAuthStatus;
+import com.glean.api_client.glean_api_client.operations.GetToolServerTools;
 import com.glean.api_client.glean_api_client.operations.PostRestApiV1ToolsCall;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.String;
@@ -287,6 +291,56 @@ public class AsyncTools {
                 .build();
         AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.AuthorizeToolServerRequest, AuthorizeToolServerResponse> operation
               = new AuthorizeToolServer.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Get tool definitions from a tool server.
+     * 
+     * <p>Returns the name, description and JSON input schema for the named tools on the
+     * specified tool server. Works for both action packs and MCP servers.
+     * 
+     * <p>`toolNames` is required. Names that do not exist on the server are returned in
+     * `notFound` rather than failing the request, so a single bad name does not force
+     * callers into one-at-a-time retries. Matching is case-insensitive and treats `-`
+     * and `_` as equivalent.
+     * 
+     * <p>Native tools are not served; `serverId=native` returns 404.
+     * 
+     * @return The async call builder
+     */
+    public GetToolServerToolsRequestBuilder getToolServerTools() {
+        return new GetToolServerToolsRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Get tool definitions from a tool server.
+     * 
+     * <p>Returns the name, description and JSON input schema for the named tools on the
+     * specified tool server. Works for both action packs and MCP servers.
+     * 
+     * <p>`toolNames` is required. Names that do not exist on the server are returned in
+     * `notFound` rather than failing the request, so a single bad name does not force
+     * callers into one-at-a-time retries. Matching is case-insensitive and treats `-`
+     * and `_` as equivalent.
+     * 
+     * <p>Native tools are not served; `serverId=native` returns 404.
+     * 
+     * @param serverId Unique identifier of the tool server.
+     * @param toolNames Tool names to look up on this server. Maximum 100.
+     * @return {@code CompletableFuture<GetToolServerToolsResponse>} - The async response
+     */
+    public CompletableFuture<GetToolServerToolsResponse> getToolServerTools(String serverId, List<String> toolNames) {
+        GetToolServerToolsRequest request =
+            GetToolServerToolsRequest
+                .builder()
+                .serverId(serverId)
+                .toolNames(toolNames)
+                .build();
+        AsyncRequestOperation<GetToolServerToolsRequest, GetToolServerToolsResponse> operation
+              = new GetToolServerTools.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

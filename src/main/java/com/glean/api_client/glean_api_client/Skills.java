@@ -7,6 +7,9 @@ package com.glean.api_client.glean_api_client;
 import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
 
 import com.glean.api_client.glean_api_client.models.components.PlatformSkillCreateRequest;
+import com.glean.api_client.glean_api_client.models.components.PlatformSkillImportRequest;
+import com.glean.api_client.glean_api_client.models.components.PlatformSkillSourcePreviewRequest;
+import com.glean.api_client.glean_api_client.models.components.PlatformSkillUpdateRequest;
 import com.glean.api_client.glean_api_client.models.components.PlatformSkillValidationRequest;
 import com.glean.api_client.glean_api_client.models.components.PlatformSkillVersionCreateRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsCreateRequestBuilder;
@@ -14,6 +17,9 @@ import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsCre
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsCreateVersionRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsCreateVersionRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsCreateVersionResponse;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsDeleteRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsDeleteRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsDeleteResponse;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsGetContentRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsGetContentRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsGetContentResponse;
@@ -26,22 +32,37 @@ import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsGet
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsGetVersionRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsGetVersionRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsGetVersionResponse;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsImportRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsImportResponse;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsListRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsListRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsListResponse;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsListVersionsRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsListVersionsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsListVersionsResponse;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsPreviewSourceRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsPreviewSourceResponse;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsSyncRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsSyncRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsSyncResponse;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsUpdateRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsUpdateRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsUpdateResponse;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsValidateRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsValidateResponse;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsCreate;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsCreateVersion;
+import com.glean.api_client.glean_api_client.operations.PlatformSkillsDelete;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsGet;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsGetContent;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsGetVersion;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsGetVersionContent;
+import com.glean.api_client.glean_api_client.operations.PlatformSkillsImport;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsList;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsListVersions;
+import com.glean.api_client.glean_api_client.operations.PlatformSkillsPreviewSource;
+import com.glean.api_client.glean_api_client.operations.PlatformSkillsSync;
+import com.glean.api_client.glean_api_client.operations.PlatformSkillsUpdate;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsValidate;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Long;
@@ -170,6 +191,140 @@ public class Skills {
     }
 
     /**
+     * Import skills from GitHub
+     * 
+     * <p>Import one or more skills selected from a GitHub source preview. Each source URL is fetched and
+     * persisted as an independent skill with source provenance. This operation does not create a durable
+     * source resource.
+     * 
+     * <p>The import is atomic: if any source cannot be fetched, validated, or persisted, no skills are
+     * created.
+     * 
+     * @return The call builder
+     */
+    public PlatformSkillsImportRequestBuilder import_() {
+        return new PlatformSkillsImportRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Import skills from GitHub
+     * 
+     * <p>Import one or more skills selected from a GitHub source preview. Each source URL is fetched and
+     * persisted as an independent skill with source provenance. This operation does not create a durable
+     * source resource.
+     * 
+     * <p>The import is atomic: if any source cannot be fetched, validated, or persisted, no skills are
+     * created.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformSkillsImportResponse import_(PlatformSkillImportRequest request) {
+        RequestOperation<PlatformSkillImportRequest, PlatformSkillsImportResponse> operation
+              = new PlatformSkillsImport.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Preview a GitHub skill source
+     * 
+     * <p>Inspect a GitHub URL without persisting a source or any discovered skills. Set stream to true to
+     * receive repository scan progress as server-sent events; otherwise the response contains the
+     * completed preview.
+     * 
+     * @return The call builder
+     */
+    public PlatformSkillsPreviewSourceRequestBuilder previewSource() {
+        return new PlatformSkillsPreviewSourceRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Preview a GitHub skill source
+     * 
+     * <p>Inspect a GitHub URL without persisting a source or any discovered skills. Set stream to true to
+     * receive repository scan progress as server-sent events; otherwise the response contains the
+     * completed preview.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformSkillsPreviewSourceResponse previewSource(PlatformSkillSourcePreviewRequest request) {
+        RequestOperation<PlatformSkillSourcePreviewRequest, PlatformSkillsPreviewSourceResponse> operation
+              = new PlatformSkillsPreviewSource.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Update skill
+     * 
+     * <p>Update mutable metadata for a skill. V1 supports enabling or disabling a skill without changing its
+     * content.
+     * 
+     * @return The call builder
+     */
+    public PlatformSkillsUpdateRequestBuilder update() {
+        return new PlatformSkillsUpdateRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Update skill
+     * 
+     * <p>Update mutable metadata for a skill. V1 supports enabling or disabling a skill without changing its
+     * content.
+     * 
+     * @param skillId Glean skill ID.
+     * @param platformSkillUpdateRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformSkillsUpdateResponse update(String skillId, PlatformSkillUpdateRequest platformSkillUpdateRequest) {
+        PlatformSkillsUpdateRequest request =
+            PlatformSkillsUpdateRequest
+                .builder()
+                .skillId(skillId)
+                .platformSkillUpdateRequest(platformSkillUpdateRequest)
+                .build();
+        RequestOperation<PlatformSkillsUpdateRequest, PlatformSkillsUpdateResponse> operation
+              = new PlatformSkillsUpdate.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Delete skill
+     * 
+     * <p>Delete a skill the authenticated caller is allowed to manage. This operation permanently removes all
+     * versions of the skill.
+     * 
+     * @return The call builder
+     */
+    public PlatformSkillsDeleteRequestBuilder delete() {
+        return new PlatformSkillsDeleteRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Delete skill
+     * 
+     * <p>Delete a skill the authenticated caller is allowed to manage. This operation permanently removes all
+     * versions of the skill.
+     * 
+     * @param skillId Glean skill ID.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformSkillsDeleteResponse delete(String skillId) {
+        PlatformSkillsDeleteRequest request =
+            PlatformSkillsDeleteRequest
+                .builder()
+                .skillId(skillId)
+                .build();
+        RequestOperation<PlatformSkillsDeleteRequest, PlatformSkillsDeleteResponse> operation
+              = new PlatformSkillsDelete.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
      * Retrieve skill
      * 
      * <p>Retrieve metadata for a skill available to the authenticated user.
@@ -228,6 +383,41 @@ public class Skills {
                 .build();
         RequestOperation<PlatformSkillsGetContentRequest, PlatformSkillsGetContentResponse> operation
               = new PlatformSkillsGetContent.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Sync a GitHub-imported skill
+     * 
+     * <p>Refresh one GitHub-imported skill from its stored source URL. If the skill content has changed, this
+     * operation creates a new skill version. If the skill is no longer present upstream, the stored skill
+     * is left unchanged and must be deleted explicitly.
+     * 
+     * @return The call builder
+     */
+    public PlatformSkillsSyncRequestBuilder sync() {
+        return new PlatformSkillsSyncRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Sync a GitHub-imported skill
+     * 
+     * <p>Refresh one GitHub-imported skill from its stored source URL. If the skill content has changed, this
+     * operation creates a new skill version. If the skill is no longer present upstream, the stored skill
+     * is left unchanged and must be deleted explicitly.
+     * 
+     * @param skillId ID of the GitHub-imported skill to sync.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformSkillsSyncResponse sync(String skillId) {
+        PlatformSkillsSyncRequest request =
+            PlatformSkillsSyncRequest
+                .builder()
+                .skillId(skillId)
+                .build();
+        RequestOperation<PlatformSkillsSyncRequest, PlatformSkillsSyncResponse> operation
+              = new PlatformSkillsSync.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

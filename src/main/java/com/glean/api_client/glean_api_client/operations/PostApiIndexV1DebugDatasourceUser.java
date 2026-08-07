@@ -106,7 +106,7 @@ public class PostApiIndexV1DebugDatasourceUser {
                 throw new IllegalArgumentException("Request body is required");
             }
             req.setBody(Optional.ofNullable(serializedRequestBody));
-            req.addHeader("Accept", "application/json; charset=UTF-8")
+            req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
@@ -172,7 +172,7 @@ public class PostApiIndexV1DebugDatasourceUser {
             PostApiIndexV1DebugDatasourceUserResponse res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
-                if (Utils.contentTypeMatches(contentType, "application/json; charset=UTF-8")) {
+                if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return res.withDebugUserResponse(Utils.unmarshal(response, new TypeReference<DebugUserResponse>() {}));
                 } else {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
@@ -242,7 +242,7 @@ public class PostApiIndexV1DebugDatasourceUser {
             com.glean.api_client.glean_api_client.models.operations.async.PostApiIndexV1DebugDatasourceUserResponse res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
-                if (Utils.contentTypeMatches(contentType, "application/json; charset=UTF-8")) {
+                if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return Utils.unmarshalAsync(response, new TypeReference<DebugUserResponse>() {})
                             .thenApply(res::withDebugUserResponse);
                 } else {
