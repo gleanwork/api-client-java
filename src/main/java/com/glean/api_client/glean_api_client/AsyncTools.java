@@ -300,14 +300,16 @@ public class AsyncTools {
      * Get tool definitions from a tool server.
      * 
      * <p>Returns the name, description and JSON input schema for the named tools on the
-     * specified tool server. Works for both action packs and MCP servers.
+     * specified tool server. Works for Glean's built-in tools, tool packs and MCP
+     * servers.
      * 
      * <p>`toolNames` is required. Names that do not exist on the server are returned in
      * `notFound` rather than failing the request, so a single bad name does not force
      * callers into one-at-a-time retries. Matching is case-insensitive and treats `-`
      * and `_` as equivalent.
      * 
-     * <p>Native tools are not served; `serverId=native` returns 404.
+     * <p>Use `serverId=native` for Glean's built-in tools. Their names are matched
+     * exactly.
      * 
      * @return The async call builder
      */
@@ -319,14 +321,16 @@ public class AsyncTools {
      * Get tool definitions from a tool server.
      * 
      * <p>Returns the name, description and JSON input schema for the named tools on the
-     * specified tool server. Works for both action packs and MCP servers.
+     * specified tool server. Works for Glean's built-in tools, tool packs and MCP
+     * servers.
      * 
      * <p>`toolNames` is required. Names that do not exist on the server are returned in
      * `notFound` rather than failing the request, so a single bad name does not force
      * callers into one-at-a-time retries. Matching is case-insensitive and treats `-`
      * and `_` as equivalent.
      * 
-     * <p>Native tools are not served; `serverId=native` returns 404.
+     * <p>Use `serverId=native` for Glean's built-in tools. Their names are matched
+     * exactly.
      * 
      * @param serverId Unique identifier of the tool server.
      * @param toolNames Tool names to look up on this server. Maximum 100.
