@@ -84,6 +84,7 @@ public class JustificationType {
     public static final JustificationType OOO_PLANNER = new JustificationType("OOO_PLANNER");
     public static final JustificationType OOO_CATCH_UP = new JustificationType("OOO_CATCH_UP");
     public static final JustificationType ADMIN_HEALTH_CENTER = new JustificationType("ADMIN_HEALTH_CENTER");
+    public static final JustificationType KNOWLEDGE_GAP = new JustificationType("KNOWLEDGE_GAP");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -215,6 +216,7 @@ public class JustificationType {
         map.put("OOO_PLANNER", OOO_PLANNER);
         map.put("OOO_CATCH_UP", OOO_CATCH_UP);
         map.put("ADMIN_HEALTH_CENTER", ADMIN_HEALTH_CENTER);
+        map.put("KNOWLEDGE_GAP", KNOWLEDGE_GAP);
         return map;
     }
 
@@ -278,6 +280,7 @@ public class JustificationType {
         map.put("OOO_PLANNER", JustificationTypeEnum.OOO_PLANNER);
         map.put("OOO_CATCH_UP", JustificationTypeEnum.OOO_CATCH_UP);
         map.put("ADMIN_HEALTH_CENTER", JustificationTypeEnum.ADMIN_HEALTH_CENTER);
+        map.put("KNOWLEDGE_GAP", JustificationTypeEnum.KNOWLEDGE_GAP);
         return map;
     }
     
@@ -341,7 +344,8 @@ public class JustificationType {
         DEMO_CARD("DEMO_CARD"),
         OOO_PLANNER("OOO_PLANNER"),
         OOO_CATCH_UP("OOO_CATCH_UP"),
-        ADMIN_HEALTH_CENTER("ADMIN_HEALTH_CENTER"),;
+        ADMIN_HEALTH_CENTER("ADMIN_HEALTH_CENTER"),
+        KNOWLEDGE_GAP("KNOWLEDGE_GAP"),;
 
         private final String value;
 
