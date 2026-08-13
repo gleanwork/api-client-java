@@ -24,11 +24,14 @@ import java.util.Optional;
  * 
  * <p>Placement source for ranked feed results. ORGANIC means the card was emitted by normal feed ranking.
  * PROMO means the card was inserted by the homepage cards promo framework.
+ * 
+ * <p>PINNED means the card was moved to the head of the ranked stack (e.g. knowledge-gap pilot cards).
  */
 public class PlacementReason {
 
     public static final PlacementReason ORGANIC = new PlacementReason("ORGANIC");
     public static final PlacementReason PROMO = new PlacementReason("PROMO");
+    public static final PlacementReason PINNED = new PlacementReason("PINNED");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -104,6 +107,7 @@ public class PlacementReason {
         Map<String, PlacementReason> map = new LinkedHashMap<>();
         map.put("ORGANIC", ORGANIC);
         map.put("PROMO", PROMO);
+        map.put("PINNED", PINNED);
         return map;
     }
 
@@ -111,6 +115,7 @@ public class PlacementReason {
         Map<String, PlacementReasonEnum> map = new HashMap<>();
         map.put("ORGANIC", PlacementReasonEnum.ORGANIC);
         map.put("PROMO", PlacementReasonEnum.PROMO);
+        map.put("PINNED", PlacementReasonEnum.PINNED);
         return map;
     }
     
@@ -118,7 +123,8 @@ public class PlacementReason {
     public enum PlacementReasonEnum {
 
         ORGANIC("ORGANIC"),
-        PROMO("PROMO"),;
+        PROMO("PROMO"),
+        PINNED("PINNED"),;
 
         private final String value;
 
