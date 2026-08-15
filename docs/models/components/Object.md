@@ -13,4 +13,4 @@ Object value = Object.RESPONSE;
 
 | Name       | Value      |
 | ---------- | ---------- |
-| `RESPONSE` | response   |
+| `RESPONSE` | RESPONSE   |
