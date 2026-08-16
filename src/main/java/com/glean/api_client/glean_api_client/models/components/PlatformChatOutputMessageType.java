@@ -21,7 +21,7 @@ import java.util.Optional;
  */
 public class PlatformChatOutputMessageType {
 
-    public static final PlatformChatOutputMessageType MESSAGE = new PlatformChatOutputMessageType("message");
+    public static final PlatformChatOutputMessageType MESSAGE = new PlatformChatOutputMessageType("MESSAGE");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -95,20 +95,20 @@ public class PlatformChatOutputMessageType {
 
     private static final Map<String, PlatformChatOutputMessageType> createValuesMap() {
         Map<String, PlatformChatOutputMessageType> map = new LinkedHashMap<>();
-        map.put("message", MESSAGE);
+        map.put("MESSAGE", MESSAGE);
         return map;
     }
 
     private static final Map<String, PlatformChatOutputMessageTypeEnum> createEnumsMap() {
         Map<String, PlatformChatOutputMessageTypeEnum> map = new HashMap<>();
-        map.put("message", PlatformChatOutputMessageTypeEnum.MESSAGE);
+        map.put("MESSAGE", PlatformChatOutputMessageTypeEnum.MESSAGE);
         return map;
     }
     
     
     public enum PlatformChatOutputMessageTypeEnum {
 
-        MESSAGE("message"),;
+        MESSAGE("MESSAGE"),;
 
         private final String value;
 
