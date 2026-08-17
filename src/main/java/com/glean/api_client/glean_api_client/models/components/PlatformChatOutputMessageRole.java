@@ -21,7 +21,7 @@ import java.util.Optional;
  */
 public class PlatformChatOutputMessageRole {
 
-    public static final PlatformChatOutputMessageRole ASSISTANT = new PlatformChatOutputMessageRole("assistant");
+    public static final PlatformChatOutputMessageRole ASSISTANT = new PlatformChatOutputMessageRole("ASSISTANT");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -95,20 +95,20 @@ public class PlatformChatOutputMessageRole {
 
     private static final Map<String, PlatformChatOutputMessageRole> createValuesMap() {
         Map<String, PlatformChatOutputMessageRole> map = new LinkedHashMap<>();
-        map.put("assistant", ASSISTANT);
+        map.put("ASSISTANT", ASSISTANT);
         return map;
     }
 
     private static final Map<String, PlatformChatOutputMessageRoleEnum> createEnumsMap() {
         Map<String, PlatformChatOutputMessageRoleEnum> map = new HashMap<>();
-        map.put("assistant", PlatformChatOutputMessageRoleEnum.ASSISTANT);
+        map.put("ASSISTANT", PlatformChatOutputMessageRoleEnum.ASSISTANT);
         return map;
     }
     
     
     public enum PlatformChatOutputMessageRoleEnum {
 
-        ASSISTANT("assistant"),;
+        ASSISTANT("ASSISTANT"),;
 
         private final String value;
 

@@ -21,7 +21,7 @@ import java.util.Optional;
  */
 public class PlatformChatCustomEntitySourceType {
 
-    public static final PlatformChatCustomEntitySourceType CUSTOM_ENTITY = new PlatformChatCustomEntitySourceType("custom_entity");
+    public static final PlatformChatCustomEntitySourceType CUSTOM_ENTITY = new PlatformChatCustomEntitySourceType("CUSTOM_ENTITY");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -95,20 +95,20 @@ public class PlatformChatCustomEntitySourceType {
 
     private static final Map<String, PlatformChatCustomEntitySourceType> createValuesMap() {
         Map<String, PlatformChatCustomEntitySourceType> map = new LinkedHashMap<>();
-        map.put("custom_entity", CUSTOM_ENTITY);
+        map.put("CUSTOM_ENTITY", CUSTOM_ENTITY);
         return map;
     }
 
     private static final Map<String, PlatformChatCustomEntitySourceTypeEnum> createEnumsMap() {
         Map<String, PlatformChatCustomEntitySourceTypeEnum> map = new HashMap<>();
-        map.put("custom_entity", PlatformChatCustomEntitySourceTypeEnum.CUSTOM_ENTITY);
+        map.put("CUSTOM_ENTITY", PlatformChatCustomEntitySourceTypeEnum.CUSTOM_ENTITY);
         return map;
     }
     
     
     public enum PlatformChatCustomEntitySourceTypeEnum {
 
-        CUSTOM_ENTITY("custom_entity"),;
+        CUSTOM_ENTITY("CUSTOM_ENTITY"),;
 
         private final String value;
 

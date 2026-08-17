@@ -21,7 +21,7 @@ import java.util.Optional;
  */
 public class PlatformChatCompletedResponseStatus {
 
-    public static final PlatformChatCompletedResponseStatus COMPLETED = new PlatformChatCompletedResponseStatus("completed");
+    public static final PlatformChatCompletedResponseStatus COMPLETED = new PlatformChatCompletedResponseStatus("COMPLETED");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -95,20 +95,20 @@ public class PlatformChatCompletedResponseStatus {
 
     private static final Map<String, PlatformChatCompletedResponseStatus> createValuesMap() {
         Map<String, PlatformChatCompletedResponseStatus> map = new LinkedHashMap<>();
-        map.put("completed", COMPLETED);
+        map.put("COMPLETED", COMPLETED);
         return map;
     }
 
     private static final Map<String, PlatformChatCompletedResponseStatusEnum> createEnumsMap() {
         Map<String, PlatformChatCompletedResponseStatusEnum> map = new HashMap<>();
-        map.put("completed", PlatformChatCompletedResponseStatusEnum.COMPLETED);
+        map.put("COMPLETED", PlatformChatCompletedResponseStatusEnum.COMPLETED);
         return map;
     }
     
     
     public enum PlatformChatCompletedResponseStatusEnum {
 
-        COMPLETED("completed"),;
+        COMPLETED("COMPLETED"),;
 
         private final String value;
 
