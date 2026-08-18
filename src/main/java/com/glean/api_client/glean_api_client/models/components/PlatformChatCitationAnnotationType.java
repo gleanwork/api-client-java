@@ -21,7 +21,7 @@ import java.util.Optional;
  */
 public class PlatformChatCitationAnnotationType {
 
-    public static final PlatformChatCitationAnnotationType CITATION = new PlatformChatCitationAnnotationType("citation");
+    public static final PlatformChatCitationAnnotationType CITATION = new PlatformChatCitationAnnotationType("CITATION");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -95,20 +95,20 @@ public class PlatformChatCitationAnnotationType {
 
     private static final Map<String, PlatformChatCitationAnnotationType> createValuesMap() {
         Map<String, PlatformChatCitationAnnotationType> map = new LinkedHashMap<>();
-        map.put("citation", CITATION);
+        map.put("CITATION", CITATION);
         return map;
     }
 
     private static final Map<String, PlatformChatCitationAnnotationTypeEnum> createEnumsMap() {
         Map<String, PlatformChatCitationAnnotationTypeEnum> map = new HashMap<>();
-        map.put("citation", PlatformChatCitationAnnotationTypeEnum.CITATION);
+        map.put("CITATION", PlatformChatCitationAnnotationTypeEnum.CITATION);
         return map;
     }
     
     
     public enum PlatformChatCitationAnnotationTypeEnum {
 
-        CITATION("citation"),;
+        CITATION("CITATION"),;
 
         private final String value;
 
