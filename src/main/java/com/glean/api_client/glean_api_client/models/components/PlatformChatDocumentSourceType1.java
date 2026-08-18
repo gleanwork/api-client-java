@@ -21,7 +21,7 @@ import java.util.Optional;
  */
 public class PlatformChatDocumentSourceType1 {
 
-    public static final PlatformChatDocumentSourceType1 DOCUMENT = new PlatformChatDocumentSourceType1("document");
+    public static final PlatformChatDocumentSourceType1 DOCUMENT = new PlatformChatDocumentSourceType1("DOCUMENT");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -95,20 +95,20 @@ public class PlatformChatDocumentSourceType1 {
 
     private static final Map<String, PlatformChatDocumentSourceType1> createValuesMap() {
         Map<String, PlatformChatDocumentSourceType1> map = new LinkedHashMap<>();
-        map.put("document", DOCUMENT);
+        map.put("DOCUMENT", DOCUMENT);
         return map;
     }
 
     private static final Map<String, PlatformChatDocumentSourceType1Enum> createEnumsMap() {
         Map<String, PlatformChatDocumentSourceType1Enum> map = new HashMap<>();
-        map.put("document", PlatformChatDocumentSourceType1Enum.DOCUMENT);
+        map.put("DOCUMENT", PlatformChatDocumentSourceType1Enum.DOCUMENT);
         return map;
     }
     
     
     public enum PlatformChatDocumentSourceType1Enum {
 
-        DOCUMENT("document"),;
+        DOCUMENT("DOCUMENT"),;
 
         private final String value;
 

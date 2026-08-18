@@ -13,4 +13,4 @@ PlatformChatOutputMessageRole value = PlatformChatOutputMessageRole.ASSISTANT;
 
 | Name        | Value       |
 | ----------- | ----------- |
-| `ASSISTANT` | assistant   |
+| `ASSISTANT` | ASSISTANT   |
