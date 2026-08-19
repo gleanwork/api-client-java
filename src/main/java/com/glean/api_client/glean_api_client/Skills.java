@@ -163,34 +163,6 @@ public class Skills {
     }
 
     /**
-     * Validate skill bundle
-     * 
-     * <p>Validate a skill bundle without persisting it. Accepts a SKILL.md, .zip, or .skill upload and
-     * returns parsed metadata plus the normalized file layout.
-     * 
-     * @return The call builder
-     */
-    public PlatformSkillsValidateRequestBuilder validate() {
-        return new PlatformSkillsValidateRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * Validate skill bundle
-     * 
-     * <p>Validate a skill bundle without persisting it. Accepts a SKILL.md, .zip, or .skill upload and
-     * returns parsed metadata plus the normalized file layout.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public PlatformSkillsValidateResponse validate(PlatformSkillValidationRequest request) {
-        RequestOperation<PlatformSkillValidationRequest, PlatformSkillsValidateResponse> operation
-              = new PlatformSkillsValidate.Sync(sdkConfiguration, _headers);
-        return operation.handleResponse(operation.doRequest(request));
-    }
-
-    /**
      * Import skills from GitHub
      * 
      * <p>Import one or more skills selected from a GitHub source preview. Each source URL is fetched and
@@ -223,6 +195,34 @@ public class Skills {
     public PlatformSkillsImportResponse import_(PlatformSkillImportRequest request) {
         RequestOperation<PlatformSkillImportRequest, PlatformSkillsImportResponse> operation
               = new PlatformSkillsImport.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Validate skill bundle
+     * 
+     * <p>Validate a skill bundle without persisting it. Accepts a SKILL.md, .zip, or .skill upload and
+     * returns parsed metadata plus the normalized file layout.
+     * 
+     * @return The call builder
+     */
+    public PlatformSkillsValidateRequestBuilder validate() {
+        return new PlatformSkillsValidateRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Validate skill bundle
+     * 
+     * <p>Validate a skill bundle without persisting it. Accepts a SKILL.md, .zip, or .skill upload and
+     * returns parsed metadata plus the normalized file layout.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformSkillsValidateResponse validate(PlatformSkillValidationRequest request) {
+        RequestOperation<PlatformSkillValidationRequest, PlatformSkillsValidateResponse> operation
+              = new PlatformSkillsValidate.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

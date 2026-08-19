@@ -20,8 +20,8 @@ import java.util.Optional;
 
 public class PlatformChatCreateRequest {
     /**
-     * Either a plain string (single user turn) or a chronological array of `user`/`assistant` messages.
-     * The final array message must be `user`.
+     * Either a plain string (single user turn) or a chronological array of `USER`/`ASSISTANT` messages.
+     * The final array message must be `USER`.
      */
     @JsonProperty("input")
     private Input input;
@@ -72,8 +72,8 @@ public class PlatformChatCreateRequest {
     }
 
     /**
-     * Either a plain string (single user turn) or a chronological array of `user`/`assistant` messages.
-     * The final array message must be `user`.
+     * Either a plain string (single user turn) or a chronological array of `USER`/`ASSISTANT` messages.
+     * The final array message must be `USER`.
      */
     @JsonIgnore
     public Input input() {
@@ -112,8 +112,8 @@ public class PlatformChatCreateRequest {
 
 
     /**
-     * Either a plain string (single user turn) or a chronological array of `user`/`assistant` messages.
-     * The final array message must be `user`.
+     * Either a plain string (single user turn) or a chronological array of `USER`/`ASSISTANT` messages.
+     * The final array message must be `USER`.
      */
     public PlatformChatCreateRequest withInput(Input input) {
         Utils.checkNotNull(input, "input");
@@ -231,8 +231,8 @@ public class PlatformChatCreateRequest {
 
 
         /**
-         * Either a plain string (single user turn) or a chronological array of `user`/`assistant` messages.
-         * The final array message must be `user`.
+         * Either a plain string (single user turn) or a chronological array of `USER`/`ASSISTANT` messages.
+         * The final array message must be `USER`.
          */
         public Builder input(Input input) {
             Utils.checkNotNull(input, "input");
