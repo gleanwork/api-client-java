@@ -1,0 +1,9 @@
+# PlatformTriggersEventsSearchRequest
+
+
+## Fields
+
+| Field                                                                                                        | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `triggerId`                                                                                                  | *String*                                                                                                     | :heavy_check_mark:                                                                                           | ID of the trigger whose events to search.                                                                    |
+| `platformTriggerEventSearchRequest`                                                                          | [Optional\<PlatformTriggerEventSearchRequest>](../../models/components/PlatformTriggerEventSearchRequest.md) | :heavy_minus_sign:                                                                                           | N/A                                                                                                          |

@@ -13,4 +13,4 @@ PlatformChatDocumentSourceType1 value = PlatformChatDocumentSourceType1.DOCUMENT
 
 | Name       | Value      |
 | ---------- | ---------- |
-| `DOCUMENT` | document   |
+| `DOCUMENT` | DOCUMENT   |

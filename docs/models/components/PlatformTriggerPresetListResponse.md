@@ -1,0 +1,11 @@
+# PlatformTriggerPresetListResponse
+
+
+## Fields
+
+| Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `results`                                                                        | List\<[PlatformTriggerPreset](../../models/components/PlatformTriggerPreset.md)> | :heavy_check_mark:                                                               | Trigger presets available to the caller.                                         |
+| `hasMore`                                                                        | *boolean*                                                                        | :heavy_check_mark:                                                               | Whether additional results are available.                                        |
+| `nextCursor`                                                                     | *Optional\<String>*                                                              | :heavy_check_mark:                                                               | Cursor for the next page, or null when no more results are available.            |
+| `requestId`                                                                      | *String*                                                                         | :heavy_check_mark:                                                               | Platform-generated request ID for support correlation.                           |
