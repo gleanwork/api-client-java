@@ -67,6 +67,9 @@ public class Glean {
     private final Search search;
 
 
+    private final Triggers triggers;
+
+
     private final Client client;
 
 
@@ -90,6 +93,11 @@ public class Glean {
 
     public Search search() {
         return search;
+    }
+
+
+    public Triggers triggers() {
+        return triggers;
     }
 
 
@@ -271,6 +279,7 @@ public class Glean {
         this.chat = new Chat(sdkConfiguration);
         this.skills = new Skills(sdkConfiguration);
         this.search = new Search(sdkConfiguration);
+        this.triggers = new Triggers(sdkConfiguration);
         this.client = new Client(sdkConfiguration);
         this.indexing = new Indexing(sdkConfiguration);
         SdkInitData data = sdkConfiguration.hooks().sdkInit(

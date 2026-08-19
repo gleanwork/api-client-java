@@ -60,6 +60,7 @@ JustificationType custom = JustificationType.of("custom_value");
 | `STARTER_KIT_ORG_CHART`                 | STARTER_KIT_ORG_CHART                   |
 | `STARTER_KIT_ADD_DOC`                   | STARTER_KIT_ADD_DOC                     |
 | `MEETING_RECAP`                         | MEETING_RECAP                           |
+| `MEETING_ROOM`                          | MEETING_ROOM                            |
 | `MEETING_PREP_AUTOMATION`               | MEETING_PREP_AUTOMATION                 |
 | `ACTIVE_DISCUSSION`                     | ACTIVE_DISCUSSION                       |
 | `MID_DAY_CATCH_UP`                      | MID_DAY_CATCH_UP                        |
@@ -76,3 +77,4 @@ JustificationType custom = JustificationType.of("custom_value");
 | `OOO_PLANNER`                           | OOO_PLANNER                             |
 | `OOO_CATCH_UP`                          | OOO_CATCH_UP                            |
 | `ADMIN_HEALTH_CENTER`                   | ADMIN_HEALTH_CENTER                     |
+| `KNOWLEDGE_GAP`                         | KNOWLEDGE_GAP                           |

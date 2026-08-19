@@ -16,6 +16,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * CalendarEvent
@@ -51,6 +52,27 @@ public class CalendarEvent {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("attendees")
     private Optional<? extends CalendarAttendees> attendees;
+
+    /**
+     * Whether the requesting user is the organizer of this event.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("isOrganizer")
+    private JsonNullable<Boolean> isOrganizer;
+
+    /**
+     * The current booking status of the room resource associated with an event.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("roomBookingStatus")
+    private Optional<? extends CalendarRoomBookingStatus> roomBookingStatus;
+
+    /**
+     * The display name of the room resource associated with this event.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("roomName")
+    private Optional<String> roomName;
 
     /**
      * The location that this event is taking place at.
@@ -109,6 +131,9 @@ public class CalendarEvent {
             @JsonProperty("id") String id,
             @JsonProperty("url") String url,
             @JsonProperty("attendees") Optional<? extends CalendarAttendees> attendees,
+            @JsonProperty("isOrganizer") JsonNullable<Boolean> isOrganizer,
+            @JsonProperty("roomBookingStatus") Optional<? extends CalendarRoomBookingStatus> roomBookingStatus,
+            @JsonProperty("roomName") Optional<String> roomName,
             @JsonProperty("location") Optional<String> location,
             @JsonProperty("conferenceData") Optional<? extends ConferenceData> conferenceData,
             @JsonProperty("description") Optional<String> description,
@@ -122,6 +147,9 @@ public class CalendarEvent {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(url, "url");
         Utils.checkNotNull(attendees, "attendees");
+        Utils.checkNotNull(isOrganizer, "isOrganizer");
+        Utils.checkNotNull(roomBookingStatus, "roomBookingStatus");
+        Utils.checkNotNull(roomName, "roomName");
         Utils.checkNotNull(location, "location");
         Utils.checkNotNull(conferenceData, "conferenceData");
         Utils.checkNotNull(description, "description");
@@ -135,6 +163,9 @@ public class CalendarEvent {
         this.id = id;
         this.url = url;
         this.attendees = attendees;
+        this.isOrganizer = isOrganizer;
+        this.roomBookingStatus = roomBookingStatus;
+        this.roomName = roomName;
         this.location = location;
         this.conferenceData = conferenceData;
         this.description = description;
@@ -149,7 +180,8 @@ public class CalendarEvent {
             String id,
             String url) {
         this(Optional.empty(), Optional.empty(), id,
-            url, Optional.empty(), Optional.empty(),
+            url, Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty());
@@ -190,6 +222,31 @@ public class CalendarEvent {
     @JsonIgnore
     public Optional<CalendarAttendees> attendees() {
         return (Optional<CalendarAttendees>) attendees;
+    }
+
+    /**
+     * Whether the requesting user is the organizer of this event.
+     */
+    @JsonIgnore
+    public JsonNullable<Boolean> isOrganizer() {
+        return isOrganizer;
+    }
+
+    /**
+     * The current booking status of the room resource associated with an event.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<CalendarRoomBookingStatus> roomBookingStatus() {
+        return (Optional<CalendarRoomBookingStatus>) roomBookingStatus;
+    }
+
+    /**
+     * The display name of the room resource associated with this event.
+     */
+    @JsonIgnore
+    public Optional<String> roomName() {
+        return roomName;
     }
 
     /**
@@ -315,6 +372,62 @@ public class CalendarEvent {
     public CalendarEvent withAttendees(Optional<? extends CalendarAttendees> attendees) {
         Utils.checkNotNull(attendees, "attendees");
         this.attendees = attendees;
+        return this;
+    }
+
+    /**
+     * Whether the requesting user is the organizer of this event.
+     */
+    public CalendarEvent withIsOrganizer(boolean isOrganizer) {
+        Utils.checkNotNull(isOrganizer, "isOrganizer");
+        this.isOrganizer = JsonNullable.of(isOrganizer);
+        return this;
+    }
+
+    /**
+     * Whether the requesting user is the organizer of this event.
+     */
+    public CalendarEvent withIsOrganizer(JsonNullable<Boolean> isOrganizer) {
+        Utils.checkNotNull(isOrganizer, "isOrganizer");
+        this.isOrganizer = isOrganizer;
+        return this;
+    }
+
+    /**
+     * The current booking status of the room resource associated with an event.
+     */
+    public CalendarEvent withRoomBookingStatus(CalendarRoomBookingStatus roomBookingStatus) {
+        Utils.checkNotNull(roomBookingStatus, "roomBookingStatus");
+        this.roomBookingStatus = Optional.ofNullable(roomBookingStatus);
+        return this;
+    }
+
+
+    /**
+     * The current booking status of the room resource associated with an event.
+     */
+    public CalendarEvent withRoomBookingStatus(Optional<? extends CalendarRoomBookingStatus> roomBookingStatus) {
+        Utils.checkNotNull(roomBookingStatus, "roomBookingStatus");
+        this.roomBookingStatus = roomBookingStatus;
+        return this;
+    }
+
+    /**
+     * The display name of the room resource associated with this event.
+     */
+    public CalendarEvent withRoomName(String roomName) {
+        Utils.checkNotNull(roomName, "roomName");
+        this.roomName = Optional.ofNullable(roomName);
+        return this;
+    }
+
+
+    /**
+     * The display name of the room resource associated with this event.
+     */
+    public CalendarEvent withRoomName(Optional<String> roomName) {
+        Utils.checkNotNull(roomName, "roomName");
+        this.roomName = roomName;
         return this;
     }
 
@@ -467,6 +580,9 @@ public class CalendarEvent {
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.url, other.url) &&
             Utils.enhancedDeepEquals(this.attendees, other.attendees) &&
+            Utils.enhancedDeepEquals(this.isOrganizer, other.isOrganizer) &&
+            Utils.enhancedDeepEquals(this.roomBookingStatus, other.roomBookingStatus) &&
+            Utils.enhancedDeepEquals(this.roomName, other.roomName) &&
             Utils.enhancedDeepEquals(this.location, other.location) &&
             Utils.enhancedDeepEquals(this.conferenceData, other.conferenceData) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
@@ -481,7 +597,8 @@ public class CalendarEvent {
     public int hashCode() {
         return Utils.enhancedHash(
             time, eventType, id,
-            url, attendees, location,
+            url, attendees, isOrganizer,
+            roomBookingStatus, roomName, location,
             conferenceData, description, datasource,
             hasTranscript, transcriptUrl, classifications,
             generatedAttachments);
@@ -495,6 +612,9 @@ public class CalendarEvent {
                 "id", id,
                 "url", url,
                 "attendees", attendees,
+                "isOrganizer", isOrganizer,
+                "roomBookingStatus", roomBookingStatus,
+                "roomName", roomName,
                 "location", location,
                 "conferenceData", conferenceData,
                 "description", description,
@@ -517,6 +637,12 @@ public class CalendarEvent {
         private String url;
 
         private Optional<? extends CalendarAttendees> attendees = Optional.empty();
+
+        private JsonNullable<Boolean> isOrganizer = JsonNullable.undefined();
+
+        private Optional<? extends CalendarRoomBookingStatus> roomBookingStatus = Optional.empty();
+
+        private Optional<String> roomName = Optional.empty();
 
         private Optional<String> location = Optional.empty();
 
@@ -600,6 +726,63 @@ public class CalendarEvent {
         public Builder attendees(Optional<? extends CalendarAttendees> attendees) {
             Utils.checkNotNull(attendees, "attendees");
             this.attendees = attendees;
+            return this;
+        }
+
+
+        /**
+         * Whether the requesting user is the organizer of this event.
+         */
+        public Builder isOrganizer(boolean isOrganizer) {
+            Utils.checkNotNull(isOrganizer, "isOrganizer");
+            this.isOrganizer = JsonNullable.of(isOrganizer);
+            return this;
+        }
+
+        /**
+         * Whether the requesting user is the organizer of this event.
+         */
+        public Builder isOrganizer(JsonNullable<Boolean> isOrganizer) {
+            Utils.checkNotNull(isOrganizer, "isOrganizer");
+            this.isOrganizer = isOrganizer;
+            return this;
+        }
+
+
+        /**
+         * The current booking status of the room resource associated with an event.
+         */
+        public Builder roomBookingStatus(CalendarRoomBookingStatus roomBookingStatus) {
+            Utils.checkNotNull(roomBookingStatus, "roomBookingStatus");
+            this.roomBookingStatus = Optional.ofNullable(roomBookingStatus);
+            return this;
+        }
+
+        /**
+         * The current booking status of the room resource associated with an event.
+         */
+        public Builder roomBookingStatus(Optional<? extends CalendarRoomBookingStatus> roomBookingStatus) {
+            Utils.checkNotNull(roomBookingStatus, "roomBookingStatus");
+            this.roomBookingStatus = roomBookingStatus;
+            return this;
+        }
+
+
+        /**
+         * The display name of the room resource associated with this event.
+         */
+        public Builder roomName(String roomName) {
+            Utils.checkNotNull(roomName, "roomName");
+            this.roomName = Optional.ofNullable(roomName);
+            return this;
+        }
+
+        /**
+         * The display name of the room resource associated with this event.
+         */
+        public Builder roomName(Optional<String> roomName) {
+            Utils.checkNotNull(roomName, "roomName");
+            this.roomName = roomName;
             return this;
         }
 
@@ -741,7 +924,8 @@ public class CalendarEvent {
 
             return new CalendarEvent(
                 time, eventType, id,
-                url, attendees, location,
+                url, attendees, isOrganizer,
+                roomBookingStatus, roomName, location,
                 conferenceData, description, datasource,
                 hasTranscript, transcriptUrl, classifications,
                 generatedAttachments);
