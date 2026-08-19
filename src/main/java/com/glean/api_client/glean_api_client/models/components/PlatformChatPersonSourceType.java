@@ -21,7 +21,7 @@ import java.util.Optional;
  */
 public class PlatformChatPersonSourceType {
 
-    public static final PlatformChatPersonSourceType PERSON = new PlatformChatPersonSourceType("person");
+    public static final PlatformChatPersonSourceType PERSON = new PlatformChatPersonSourceType("PERSON");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -95,20 +95,20 @@ public class PlatformChatPersonSourceType {
 
     private static final Map<String, PlatformChatPersonSourceType> createValuesMap() {
         Map<String, PlatformChatPersonSourceType> map = new LinkedHashMap<>();
-        map.put("person", PERSON);
+        map.put("PERSON", PERSON);
         return map;
     }
 
     private static final Map<String, PlatformChatPersonSourceTypeEnum> createEnumsMap() {
         Map<String, PlatformChatPersonSourceTypeEnum> map = new HashMap<>();
-        map.put("person", PlatformChatPersonSourceTypeEnum.PERSON);
+        map.put("PERSON", PlatformChatPersonSourceTypeEnum.PERSON);
         return map;
     }
     
     
     public enum PlatformChatPersonSourceTypeEnum {
 
-        PERSON("person"),;
+        PERSON("PERSON"),;
 
         private final String value;
 

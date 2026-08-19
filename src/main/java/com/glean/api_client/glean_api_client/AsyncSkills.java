@@ -166,35 +166,6 @@ public class AsyncSkills {
 
 
     /**
-     * Validate skill bundle
-     * 
-     * <p>Validate a skill bundle without persisting it. Accepts a SKILL.md, .zip, or .skill upload and
-     * returns parsed metadata plus the normalized file layout.
-     * 
-     * @return The async call builder
-     */
-    public PlatformSkillsValidateRequestBuilder validate() {
-        return new PlatformSkillsValidateRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * Validate skill bundle
-     * 
-     * <p>Validate a skill bundle without persisting it. Accepts a SKILL.md, .zip, or .skill upload and
-     * returns parsed metadata plus the normalized file layout.
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @return {@code CompletableFuture<PlatformSkillsValidateResponse>} - The async response
-     */
-    public CompletableFuture<PlatformSkillsValidateResponse> validate(PlatformSkillValidationRequest request) {
-        AsyncRequestOperation<PlatformSkillValidationRequest, PlatformSkillsValidateResponse> operation
-              = new PlatformSkillsValidate.Async(sdkConfiguration, _headers);
-        return operation.doRequest(request)
-            .thenCompose(operation::handleResponse);
-    }
-
-
-    /**
      * Import skills from GitHub
      * 
      * <p>Import one or more skills selected from a GitHub source preview. Each source URL is fetched and
@@ -226,6 +197,35 @@ public class AsyncSkills {
     public CompletableFuture<PlatformSkillsImportResponse> import_(PlatformSkillImportRequest request) {
         AsyncRequestOperation<PlatformSkillImportRequest, PlatformSkillsImportResponse> operation
               = new PlatformSkillsImport.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Validate skill bundle
+     * 
+     * <p>Validate a skill bundle without persisting it. Accepts a SKILL.md, .zip, or .skill upload and
+     * returns parsed metadata plus the normalized file layout.
+     * 
+     * @return The async call builder
+     */
+    public PlatformSkillsValidateRequestBuilder validate() {
+        return new PlatformSkillsValidateRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Validate skill bundle
+     * 
+     * <p>Validate a skill bundle without persisting it. Accepts a SKILL.md, .zip, or .skill upload and
+     * returns parsed metadata plus the normalized file layout.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return {@code CompletableFuture<PlatformSkillsValidateResponse>} - The async response
+     */
+    public CompletableFuture<PlatformSkillsValidateResponse> validate(PlatformSkillValidationRequest request) {
+        AsyncRequestOperation<PlatformSkillValidationRequest, PlatformSkillsValidateResponse> operation
+              = new PlatformSkillsValidate.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

@@ -13,4 +13,4 @@ PlatformChatFileSourceType value = PlatformChatFileSourceType.FILE;
 
 | Name   | Value  |
 | ------ | ------ |
-| `FILE` | file   |
+| `FILE` | FILE   |

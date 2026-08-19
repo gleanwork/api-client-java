@@ -42,6 +42,8 @@ public class AsyncGlean {
 
     private final AsyncSearch search;
 
+    private final AsyncTriggers triggers;
+
     private final AsyncClient client;
 
     private final AsyncIndexing indexing;
@@ -62,6 +64,10 @@ public class AsyncGlean {
         return search;
     }
 
+    public AsyncTriggers triggers() {
+        return triggers;
+    }
+
     public AsyncClient client() {
         return client;
     }
@@ -80,6 +86,7 @@ public class AsyncGlean {
         this.chat = new AsyncChat(syncSDK.chat(), sdkConfiguration);
         this.skills = new AsyncSkills(syncSDK.skills(), sdkConfiguration);
         this.search = new AsyncSearch(syncSDK.search(), sdkConfiguration);
+        this.triggers = new AsyncTriggers(syncSDK.triggers(), sdkConfiguration);
         this.client = new AsyncClient(syncSDK.client(), sdkConfiguration);
         this.indexing = new AsyncIndexing(syncSDK.indexing(), sdkConfiguration);
     }
