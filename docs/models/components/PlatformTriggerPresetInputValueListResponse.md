@@ -1,0 +1,10 @@
+# PlatformTriggerPresetInputValueListResponse
+
+
+## Fields
+
+| Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `results`                                                                                            | List\<[PlatformTriggerPresetInputValue](../../models/components/PlatformTriggerPresetInputValue.md)> | :heavy_check_mark:                                                                                   | The bounded set of selectable values matching the query.                                             |
+| `isTruncated`                                                                                        | *boolean*                                                                                            | :heavy_check_mark:                                                                                   | Whether additional matches were omitted. When true, refine `query` to narrow the result set.<br/>    |
+| `requestId`                                                                                          | *String*                                                                                             | :heavy_check_mark:                                                                                   | Platform-generated request ID for support correlation.                                               |

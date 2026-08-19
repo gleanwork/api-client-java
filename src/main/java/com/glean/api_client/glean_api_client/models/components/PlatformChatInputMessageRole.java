@@ -10,8 +10,8 @@ import java.util.Objects;
 import java.util.Optional;
 
 public enum PlatformChatInputMessageRole {
-    USER("user"),
-    ASSISTANT("assistant");
+    USER("USER"),
+    ASSISTANT("ASSISTANT");
 
     @JsonValue
     private final String value;
