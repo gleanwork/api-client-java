@@ -1,0 +1,11 @@
+# PlatformTriggerPresetSummary
+
+
+## Fields
+
+| Field                                                            | Type                                                             | Required                                                         | Description                                                      | Example                                                          |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `presetId`                                                       | *String*                                                         | :heavy_check_mark:                                               | ID of the preset. Pass this when creating a trigger.             | GITHUB_1                                                         |
+| `datasource`                                                     | *String*                                                         | :heavy_check_mark:                                               | Datasource the preset fires on.                                  | github                                                           |
+| `displayName`                                                    | *String*                                                         | :heavy_check_mark:                                               | Human-readable preset name.                                      | Review requested from me                                         |
+| `description`                                                    | *Optional\<String>*                                              | :heavy_minus_sign:                                               | Human-readable description of when the preset fires.             | A review is requested from the trigger creator on a pull request |

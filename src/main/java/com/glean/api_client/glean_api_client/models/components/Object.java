@@ -21,7 +21,7 @@ import java.util.Optional;
  */
 public class Object {
 
-    public static final Object RESPONSE = new Object("response");
+    public static final Object RESPONSE = new Object("RESPONSE");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -95,20 +95,20 @@ public class Object {
 
     private static final Map<String, Object> createValuesMap() {
         Map<String, Object> map = new LinkedHashMap<>();
-        map.put("response", RESPONSE);
+        map.put("RESPONSE", RESPONSE);
         return map;
     }
 
     private static final Map<String, ObjectEnum> createEnumsMap() {
         Map<String, ObjectEnum> map = new HashMap<>();
-        map.put("response", ObjectEnum.RESPONSE);
+        map.put("RESPONSE", ObjectEnum.RESPONSE);
         return map;
     }
     
     
     public enum ObjectEnum {
 
-        RESPONSE("response"),;
+        RESPONSE("RESPONSE"),;
 
         private final String value;
 

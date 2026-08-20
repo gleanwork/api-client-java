@@ -6,8 +6,8 @@
 
 * [create](#create) - Create skill
 * [list](#list) - List skills
-* [validate](#validate) - Validate skill bundle
 * [import_](#import_) - Import skills from GitHub
+* [validate](#validate) - Validate skill bundle
 * [previewSource](#previewsource) - Preview a GitHub skill source
 * [update](#update) - Update skill
 * [delete](#delete) - Delete skill
@@ -133,6 +133,66 @@ public class Application {
 | models/errors/PlatformProblemDetailException | 500, 503                                     | application/problem+json                     |
 | models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
 
+## import_
+
+Import one or more skills selected from a GitHub source preview. Each source URL is fetched and persisted as an independent skill with source provenance. This operation does not create a durable source resource. The import is atomic: if any source cannot be fetched, validated, or persisted, no skills are created.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="platform-skills-import" method="post" path="/api/skills/import" -->
+```java
+package hello.world;
+
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.PlatformSkillImportRequest;
+import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsImportResponse;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws PlatformProblemDetailException, Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
+            .build();
+
+        PlatformSkillImportRequest req = PlatformSkillImportRequest.builder()
+                .sourceUrls(List.of(
+                    "<value 1>"))
+                .build();
+
+        PlatformSkillsImportResponse res = sdk.skills().import_()
+                .request(req)
+                .call();
+
+        if (res.platformSkillImportResponse().isPresent()) {
+            System.out.println(res.platformSkillImportResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `request`                                                                       | [PlatformSkillImportRequest](../../models/shared/PlatformSkillImportRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+
+### Response
+
+**[PlatformSkillsImportResponse](../../models/operations/PlatformSkillsImportResponse.md)**
+
+### Errors
+
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| models/errors/PlatformProblemDetailException | 400, 401, 403, 408, 409, 413, 429            | application/problem+json                     |
+| models/errors/PlatformProblemDetailException | 500, 503                                     | application/problem+json                     |
+| models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
+
 ## validate
 
 Validate a skill bundle without persisting it. Accepts a SKILL.md, .zip, or .skill upload and returns parsed metadata plus the normalized file layout.
@@ -191,66 +251,6 @@ public class Application {
 | Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | models/errors/PlatformProblemDetailException | 400, 401, 403, 404, 408, 413, 429            | application/problem+json                     |
-| models/errors/PlatformProblemDetailException | 500, 503                                     | application/problem+json                     |
-| models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
-
-## import_
-
-Import one or more skills selected from a GitHub source preview. Each source URL is fetched and persisted as an independent skill with source provenance. This operation does not create a durable source resource. The import is atomic: if any source cannot be fetched, validated, or persisted, no skills are created.
-
-
-### Example Usage
-
-<!-- UsageSnippet language="java" operationID="platform-skills-import" method="post" path="/api/skills/import" -->
-```java
-package hello.world;
-
-import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.PlatformSkillImportRequest;
-import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
-import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsImportResponse;
-import java.lang.Exception;
-import java.util.List;
-
-public class Application {
-
-    public static void main(String[] args) throws PlatformProblemDetailException, Exception {
-
-        Glean sdk = Glean.builder()
-                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
-            .build();
-
-        PlatformSkillImportRequest req = PlatformSkillImportRequest.builder()
-                .sourceUrls(List.of(
-                    "<value 1>"))
-                .build();
-
-        PlatformSkillsImportResponse res = sdk.skills().import_()
-                .request(req)
-                .call();
-
-        if (res.platformSkillImportResponse().isPresent()) {
-            System.out.println(res.platformSkillImportResponse().get());
-        }
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `request`                                                                       | [PlatformSkillImportRequest](../../models/shared/PlatformSkillImportRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
-
-### Response
-
-**[PlatformSkillsImportResponse](../../models/operations/PlatformSkillsImportResponse.md)**
-
-### Errors
-
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| models/errors/PlatformProblemDetailException | 400, 401, 403, 408, 409, 413, 429            | application/problem+json                     |
 | models/errors/PlatformProblemDetailException | 500, 503                                     | application/problem+json                     |
 | models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
 

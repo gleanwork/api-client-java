@@ -13,5 +13,5 @@ PlatformChatInputMessageRole value = PlatformChatInputMessageRole.USER;
 
 | Name        | Value       |
 | ----------- | ----------- |
-| `USER`      | user        |
-| `ASSISTANT` | assistant   |
+| `USER`      | USER        |
+| `ASSISTANT` | ASSISTANT   |

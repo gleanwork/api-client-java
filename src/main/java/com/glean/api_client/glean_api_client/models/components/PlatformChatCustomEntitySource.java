@@ -15,7 +15,7 @@ import java.lang.String;
 import java.util.Optional;
 
 
-public class PlatformChatCustomEntitySource {
+public class PlatformChatCustomEntitySource implements PlatformChatCitationSource {
 
     @JsonProperty("type")
     private PlatformChatCustomEntitySourceType type;
@@ -74,8 +74,9 @@ public class PlatformChatCustomEntitySource {
     }
 
     @JsonIgnore
-    public PlatformChatCustomEntitySourceType type() {
-        return type;
+    @Override
+    public String type() {
+        return Utils.discriminatorToString(type);
     }
 
     @JsonIgnore
