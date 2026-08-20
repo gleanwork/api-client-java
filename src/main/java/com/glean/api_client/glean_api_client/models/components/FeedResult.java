@@ -46,6 +46,8 @@ public class FeedResult {
     /**
      * Placement source for ranked feed results. ORGANIC means the card was emitted by normal feed ranking.
      * PROMO means the card was inserted by the homepage cards promo framework.
+     * 
+     * <p>PINNED means the card was moved to the head of the ranked stack (e.g. knowledge-gap pilot cards).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("placementReason")
@@ -110,6 +112,8 @@ public class FeedResult {
     /**
      * Placement source for ranked feed results. ORGANIC means the card was emitted by normal feed ranking.
      * PROMO means the card was inserted by the homepage cards promo framework.
+     * 
+     * <p>PINNED means the card was moved to the head of the ranked stack (e.g. knowledge-gap pilot cards).
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -178,6 +182,8 @@ public class FeedResult {
     /**
      * Placement source for ranked feed results. ORGANIC means the card was emitted by normal feed ranking.
      * PROMO means the card was inserted by the homepage cards promo framework.
+     * 
+     * <p>PINNED means the card was moved to the head of the ranked stack (e.g. knowledge-gap pilot cards).
      */
     public FeedResult withPlacementReason(PlacementReason placementReason) {
         Utils.checkNotNull(placementReason, "placementReason");
@@ -189,6 +195,8 @@ public class FeedResult {
     /**
      * Placement source for ranked feed results. ORGANIC means the card was emitted by normal feed ranking.
      * PROMO means the card was inserted by the homepage cards promo framework.
+     * 
+     * <p>PINNED means the card was moved to the head of the ranked stack (e.g. knowledge-gap pilot cards).
      */
     public FeedResult withPlacementReason(Optional<? extends PlacementReason> placementReason) {
         Utils.checkNotNull(placementReason, "placementReason");
@@ -306,6 +314,8 @@ public class FeedResult {
         /**
          * Placement source for ranked feed results. ORGANIC means the card was emitted by normal feed ranking.
          * PROMO means the card was inserted by the homepage cards promo framework.
+         * 
+         * <p>PINNED means the card was moved to the head of the ranked stack (e.g. knowledge-gap pilot cards).
          */
         public Builder placementReason(PlacementReason placementReason) {
             Utils.checkNotNull(placementReason, "placementReason");
@@ -316,6 +326,8 @@ public class FeedResult {
         /**
          * Placement source for ranked feed results. ORGANIC means the card was emitted by normal feed ranking.
          * PROMO means the card was inserted by the homepage cards promo framework.
+         * 
+         * <p>PINNED means the card was moved to the head of the ranked stack (e.g. knowledge-gap pilot cards).
          */
         public Builder placementReason(Optional<? extends PlacementReason> placementReason) {
             Utils.checkNotNull(placementReason, "placementReason");
