@@ -4,111 +4,28 @@
  */
 package com.glean.api_client.glean_api_client.models.components;
 
-import com.fasterxml.jackson.annotation.JsonValue;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.glean.api_client.glean_api_client.utils.OneOfDeserializer;
-import com.glean.api_client.glean_api_client.utils.TypedObject;
-import com.glean.api_client.glean_api_client.utils.Utils.JsonShape;
-import com.glean.api_client.glean_api_client.utils.Utils.TypeReferenceWithShape;
-import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Override;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.annotation.JsonTypeIdResolver;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 
 /**
  * PlatformChatCitationSource
  * 
  * <p>Four-variant citation source union.
  */
-@JsonDeserialize(using = PlatformChatCitationSource._Deserializer.class)
-public class PlatformChatCitationSource {
+@JsonTypeInfo(
+        use = Id.CUSTOM,
+        property = "type",
+        include = As.EXISTING_PROPERTY,
+        visible = true,
+        defaultImpl = UnknownPlatformChatCitationSource.class
+)
+@JsonTypeIdResolver(PlatformChatCitationSourceTypeIdResolver.class)
+public interface PlatformChatCitationSource {
 
-    @JsonValue
-    private final TypedObject value;
-    
-    private PlatformChatCitationSource(TypedObject value) {
-        this.value = value;
-    }
-
-    public static PlatformChatCitationSource of(PlatformChatDocumentSource value) {
-        Utils.checkNotNull(value, "value");
-        return new PlatformChatCitationSource(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
-    }
-
-    public static PlatformChatCitationSource of(PlatformChatPersonSource value) {
-        Utils.checkNotNull(value, "value");
-        return new PlatformChatCitationSource(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
-    }
-
-    public static PlatformChatCitationSource of(PlatformChatFileSource value) {
-        Utils.checkNotNull(value, "value");
-        return new PlatformChatCitationSource(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
-    }
-
-    public static PlatformChatCitationSource of(PlatformChatCustomEntitySource value) {
-        Utils.checkNotNull(value, "value");
-        return new PlatformChatCitationSource(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
-    }
-    
-    /**
-     * Returns an instance of one of these types:
-     * <ul>
-     * <li>{@code com.glean.api_client.glean_api_client.models.components.PlatformChatDocumentSource}</li>
-     * <li>{@code com.glean.api_client.glean_api_client.models.components.PlatformChatPersonSource}</li>
-     * <li>{@code com.glean.api_client.glean_api_client.models.components.PlatformChatFileSource}</li>
-     * <li>{@code com.glean.api_client.glean_api_client.models.components.PlatformChatCustomEntitySource}</li>
-     * </ul>
-     * 
-     * <p>Use {@code instanceof} to determine what type is returned. For example:
-     * 
-     * <pre>
-     * if (obj.value() instanceof String) {
-     *     String answer = (String) obj.value();
-     *     System.out.println("answer=" + answer);
-     * }
-     * </pre>
-     * 
-     * @return value of oneOf type
-     **/ 
-    public java.lang.Object value() {
-        return value.value();
-    }
-    
-    @Override
-    public boolean equals(java.lang.Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        PlatformChatCitationSource other = (PlatformChatCitationSource) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
-    }
-    
-    @Override
-    public int hashCode() {
-        return Utils.enhancedHash(value.value());
-    }
-    
-    @SuppressWarnings("serial")
-    public static final class _Deserializer extends OneOfDeserializer<PlatformChatCitationSource> {
-
-        public _Deserializer() {
-            super(PlatformChatCitationSource.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<PlatformChatDocumentSource>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<PlatformChatPersonSource>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<PlatformChatFileSource>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<PlatformChatCustomEntitySource>() {}, JsonShape.DEFAULT));
-        }
-    }
-    
-    @Override
-    public String toString() {
-        return Utils.toString(PlatformChatCitationSource.class,
-                "value", value);
-    }
+    String type();
 
 }
 

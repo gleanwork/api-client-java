@@ -68,9 +68,11 @@ public class FeedResultCategory {
     public static final FeedResultCategory PROJECT_FOCUS_BLOCK = new FeedResultCategory("PROJECT_FOCUS_BLOCK");
     public static final FeedResultCategory PROJECT_NEXT_STEP = new FeedResultCategory("PROJECT_NEXT_STEP");
     public static final FeedResultCategory DEMO_CARD = new FeedResultCategory("DEMO_CARD");
+    public static final FeedResultCategory RESOLVE_MEETING_CONFLICT = new FeedResultCategory("RESOLVE_MEETING_CONFLICT");
     public static final FeedResultCategory OOO_PLANNER = new FeedResultCategory("OOO_PLANNER");
     public static final FeedResultCategory OOO_CATCH_UP = new FeedResultCategory("OOO_CATCH_UP");
     public static final FeedResultCategory ADMIN_HEALTH_CENTER = new FeedResultCategory("ADMIN_HEALTH_CENTER");
+    public static final FeedResultCategory KNOWLEDGE_GAP = new FeedResultCategory("KNOWLEDGE_GAP");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -186,9 +188,11 @@ public class FeedResultCategory {
         map.put("PROJECT_FOCUS_BLOCK", PROJECT_FOCUS_BLOCK);
         map.put("PROJECT_NEXT_STEP", PROJECT_NEXT_STEP);
         map.put("DEMO_CARD", DEMO_CARD);
+        map.put("RESOLVE_MEETING_CONFLICT", RESOLVE_MEETING_CONFLICT);
         map.put("OOO_PLANNER", OOO_PLANNER);
         map.put("OOO_CATCH_UP", OOO_CATCH_UP);
         map.put("ADMIN_HEALTH_CENTER", ADMIN_HEALTH_CENTER);
+        map.put("KNOWLEDGE_GAP", KNOWLEDGE_GAP);
         return map;
     }
 
@@ -236,9 +240,11 @@ public class FeedResultCategory {
         map.put("PROJECT_FOCUS_BLOCK", FeedResultCategoryEnum.PROJECT_FOCUS_BLOCK);
         map.put("PROJECT_NEXT_STEP", FeedResultCategoryEnum.PROJECT_NEXT_STEP);
         map.put("DEMO_CARD", FeedResultCategoryEnum.DEMO_CARD);
+        map.put("RESOLVE_MEETING_CONFLICT", FeedResultCategoryEnum.RESOLVE_MEETING_CONFLICT);
         map.put("OOO_PLANNER", FeedResultCategoryEnum.OOO_PLANNER);
         map.put("OOO_CATCH_UP", FeedResultCategoryEnum.OOO_CATCH_UP);
         map.put("ADMIN_HEALTH_CENTER", FeedResultCategoryEnum.ADMIN_HEALTH_CENTER);
+        map.put("KNOWLEDGE_GAP", FeedResultCategoryEnum.KNOWLEDGE_GAP);
         return map;
     }
     
@@ -287,9 +293,11 @@ public class FeedResultCategory {
         PROJECT_FOCUS_BLOCK("PROJECT_FOCUS_BLOCK"),
         PROJECT_NEXT_STEP("PROJECT_NEXT_STEP"),
         DEMO_CARD("DEMO_CARD"),
+        RESOLVE_MEETING_CONFLICT("RESOLVE_MEETING_CONFLICT"),
         OOO_PLANNER("OOO_PLANNER"),
         OOO_CATCH_UP("OOO_CATCH_UP"),
-        ADMIN_HEALTH_CENTER("ADMIN_HEALTH_CENTER"),;
+        ADMIN_HEALTH_CENTER("ADMIN_HEALTH_CENTER"),
+        KNOWLEDGE_GAP("KNOWLEDGE_GAP"),;
 
         private final String value;
 
