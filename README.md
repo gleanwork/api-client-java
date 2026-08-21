@@ -67,7 +67,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.glean.api-client:glean-api-client:0.15.0'
+implementation 'com.glean.api-client:glean-api-client:0.16.0'
 ```
 
 Maven:
@@ -75,7 +75,7 @@ Maven:
 <dependency>
     <groupId>com.glean.api-client</groupId>
     <artifactId>glean-api-client</artifactId>
-    <version>0.15.0</version>
+    <version>0.16.0</version>
 </dependency>
 ```
 
@@ -614,8 +614,8 @@ For more information on obtaining the appropriate token type, please contact you
 
 * [create](docs/sdks/skills/README.md#create) - Create skill
 * [list](docs/sdks/skills/README.md#list) - List skills
-* [validate](docs/sdks/skills/README.md#validate) - Validate skill bundle
 * [import_](docs/sdks/skills/README.md#import_) - Import skills from GitHub
+* [validate](docs/sdks/skills/README.md#validate) - Validate skill bundle
 * [previewSource](docs/sdks/skills/README.md#previewsource) - Preview a GitHub skill source
 * [update](docs/sdks/skills/README.md#update) - Update skill
 * [delete](docs/sdks/skills/README.md#delete) - Delete skill
@@ -626,6 +626,19 @@ For more information on obtaining the appropriate token type, please contact you
 * [listVersions](docs/sdks/skills/README.md#listversions) - List skill versions
 * [retrieveVersion](docs/sdks/skills/README.md#retrieveversion) - Retrieve skill version
 * [retrieveVersionContent](docs/sdks/skills/README.md#retrieveversioncontent) - Download skill version content
+
+### [Triggers](docs/sdks/triggers/README.md)
+
+* [create](docs/sdks/triggers/README.md#create) - Create trigger
+* [list](docs/sdks/triggers/README.md#list) - List triggers
+* [get](docs/sdks/triggers/README.md#get) - Get trigger
+* [update](docs/sdks/triggers/README.md#update) - Update trigger
+* [delete](docs/sdks/triggers/README.md#delete) - Delete trigger
+* [searchEvents](docs/sdks/triggers/README.md#searchevents) - Search events for a trigger
+* [listPresets](docs/sdks/triggers/README.md#listpresets) - List trigger presets
+* [getPreset](docs/sdks/triggers/README.md#getpreset) - Get trigger preset
+* [listPresetInputValues](docs/sdks/triggers/README.md#listpresetinputvalues) - Search trigger preset input values
+* [searchPresetEvents](docs/sdks/triggers/README.md#searchpresetevents) - Search events for a trigger preset
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -732,14 +745,14 @@ public class Application {
 many more subclasses in the JDK platform).
 
 **Inherit from [`GleanError`](./src/main/java/models/errors/GleanError.java)**:
-* [`com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException.java): Error response following RFC 9457, extended with `code` and `documentation_url` for machine-readable classification and self-service remediation. Applicable to 21 of 156 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.ErrorResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorResponse.java): Error response returned for failed requests. Applicable to 10 of 156 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse.java): Error response for custom metadata operations. Applicable to 6 of 156 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.CollectionError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.CollectionError.java): Semantic error. Status code `422`. Applicable to 3 of 156 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.GleanDataError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.GleanDataError.java): Forbidden. Applicable to 2 of 156 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.UnauthorizedAgentToolsError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.UnauthorizedAgentToolsError.java): Returned when the agent has tools the caller must authorize before the run can start. Each entry in `authenticationSuggestions` names one such tool; POST its `serverId` to `/tool-servers/{serverId}/auth` with `returnUrl` in the request body to obtain an `authorizationUrl` to redirect the end user to, then retry the run once OAuth completes. Status code `422`. Applicable to 2 of 156 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.AccessRequestPermissionDeniedResponseException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.AccessRequestPermissionDeniedResponseException.java): Forbidden. Status code `403`. Applicable to 1 of 156 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.PlatformUnauthorizedAgentToolsProblemException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.PlatformUnauthorizedAgentToolsProblemException.java): Problem detail extended with `authentication_suggestions` naming each tool the caller must authorize. Status code `422`. Applicable to 1 of 156 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException.java): Error response following RFC 9457, extended with `code` and `documentation_url` for machine-readable classification and self-service remediation. Applicable to 31 of 166 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.ErrorResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorResponse.java): Error response returned for failed requests. Applicable to 10 of 166 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse.java): Error response for custom metadata operations. Applicable to 6 of 166 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.CollectionError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.CollectionError.java): Semantic error. Status code `422`. Applicable to 3 of 166 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.GleanDataError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.GleanDataError.java): Forbidden. Applicable to 2 of 166 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.UnauthorizedAgentToolsError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.UnauthorizedAgentToolsError.java): Returned when the agent has tools the caller must authorize before the run can start. Each entry in `authenticationSuggestions` names one such tool; POST its `serverId` to `/tool-servers/{serverId}/auth` with `returnUrl` in the request body to obtain an `authorizationUrl` to redirect the end user to, then retry the run once OAuth completes. Status code `422`. Applicable to 2 of 166 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.AccessRequestPermissionDeniedResponseException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.AccessRequestPermissionDeniedResponseException.java): Forbidden. Status code `403`. Applicable to 1 of 166 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.PlatformUnauthorizedAgentToolsProblemException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.PlatformUnauthorizedAgentToolsProblemException.java): Problem detail extended with `authentication_suggestions` naming each tool the caller must authorize. Status code `422`. Applicable to 1 of 166 methods.*
 
 
 </details>

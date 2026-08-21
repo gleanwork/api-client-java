@@ -13,4 +13,4 @@ PlatformChatPersonSourceType value = PlatformChatPersonSourceType.PERSON;
 
 | Name     | Value    |
 | -------- | -------- |
-| `PERSON` | person   |
+| `PERSON` | PERSON   |

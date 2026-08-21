@@ -17,7 +17,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 
 @JsonDeserialize(using = PlatformChatDocumentSource._Deserializer.class)
-public class PlatformChatDocumentSource {
+public class PlatformChatDocumentSource implements PlatformChatCitationSource {
 
     @JsonValue
     private final TypedObject value;
@@ -91,5 +91,20 @@ public class PlatformChatDocumentSource {
                 "value", value);
     }
 
+    
+    /**
+     * Returns the discriminator value for this PlatformChatCitationSource implementation.
+     * 
+     * <p>
+     * The value is determined from the actual field content, allowing this model
+     * to be used both as part of a discriminated union and as a standalone model.
+     *
+     * @return the discriminator value from the field content
+     * @see PlatformChatCitationSource Valid discriminator values: "DOCUMENT", "PERSON", "FILE", "CUSTOM_ENTITY"
+     */
+    @Override
+    public String type() {
+        return "DOCUMENT";
+    }
 }
 

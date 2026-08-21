@@ -53,6 +53,13 @@ public class ChatMessageCitation {
     private Optional<? extends CustomEntity> sourceCustomEntity;
 
     /**
+     * A skill cited by Assistant.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("sourceSkill")
+    private Optional<? extends ChatSkill> sourceSkill;
+
+    /**
      * Each reference range and its corresponding snippets
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -66,24 +73,28 @@ public class ChatMessageCitation {
             @JsonProperty("sourceFile") Optional<? extends ChatFile> sourceFile,
             @JsonProperty("sourcePerson") Optional<? extends Person> sourcePerson,
             @JsonProperty("sourceCustomEntity") Optional<? extends CustomEntity> sourceCustomEntity,
+            @JsonProperty("sourceSkill") Optional<? extends ChatSkill> sourceSkill,
             @JsonProperty("referenceRanges") Optional<? extends List<ReferenceRange>> referenceRanges) {
         Utils.checkNotNull(trackingToken, "trackingToken");
         Utils.checkNotNull(sourceDocument, "sourceDocument");
         Utils.checkNotNull(sourceFile, "sourceFile");
         Utils.checkNotNull(sourcePerson, "sourcePerson");
         Utils.checkNotNull(sourceCustomEntity, "sourceCustomEntity");
+        Utils.checkNotNull(sourceSkill, "sourceSkill");
         Utils.checkNotNull(referenceRanges, "referenceRanges");
         this.trackingToken = trackingToken;
         this.sourceDocument = sourceDocument;
         this.sourceFile = sourceFile;
         this.sourcePerson = sourcePerson;
         this.sourceCustomEntity = sourceCustomEntity;
+        this.sourceSkill = sourceSkill;
         this.referenceRanges = referenceRanges;
     }
     
     public ChatMessageCitation() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -120,6 +131,15 @@ public class ChatMessageCitation {
     @JsonIgnore
     public Optional<CustomEntity> sourceCustomEntity() {
         return (Optional<CustomEntity>) sourceCustomEntity;
+    }
+
+    /**
+     * A skill cited by Assistant.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ChatSkill> sourceSkill() {
+        return (Optional<ChatSkill>) sourceSkill;
     }
 
     /**
@@ -216,6 +236,25 @@ public class ChatMessageCitation {
     }
 
     /**
+     * A skill cited by Assistant.
+     */
+    public ChatMessageCitation withSourceSkill(ChatSkill sourceSkill) {
+        Utils.checkNotNull(sourceSkill, "sourceSkill");
+        this.sourceSkill = Optional.ofNullable(sourceSkill);
+        return this;
+    }
+
+
+    /**
+     * A skill cited by Assistant.
+     */
+    public ChatMessageCitation withSourceSkill(Optional<? extends ChatSkill> sourceSkill) {
+        Utils.checkNotNull(sourceSkill, "sourceSkill");
+        this.sourceSkill = sourceSkill;
+        return this;
+    }
+
+    /**
      * Each reference range and its corresponding snippets
      */
     public ChatMessageCitation withReferenceRanges(List<ReferenceRange> referenceRanges) {
@@ -249,6 +288,7 @@ public class ChatMessageCitation {
             Utils.enhancedDeepEquals(this.sourceFile, other.sourceFile) &&
             Utils.enhancedDeepEquals(this.sourcePerson, other.sourcePerson) &&
             Utils.enhancedDeepEquals(this.sourceCustomEntity, other.sourceCustomEntity) &&
+            Utils.enhancedDeepEquals(this.sourceSkill, other.sourceSkill) &&
             Utils.enhancedDeepEquals(this.referenceRanges, other.referenceRanges);
     }
     
@@ -256,7 +296,8 @@ public class ChatMessageCitation {
     public int hashCode() {
         return Utils.enhancedHash(
             trackingToken, sourceDocument, sourceFile,
-            sourcePerson, sourceCustomEntity, referenceRanges);
+            sourcePerson, sourceCustomEntity, sourceSkill,
+            referenceRanges);
     }
     
     @Override
@@ -267,6 +308,7 @@ public class ChatMessageCitation {
                 "sourceFile", sourceFile,
                 "sourcePerson", sourcePerson,
                 "sourceCustomEntity", sourceCustomEntity,
+                "sourceSkill", sourceSkill,
                 "referenceRanges", referenceRanges);
     }
 
@@ -282,6 +324,8 @@ public class ChatMessageCitation {
         private Optional<? extends Person> sourcePerson = Optional.empty();
 
         private Optional<? extends CustomEntity> sourceCustomEntity = Optional.empty();
+
+        private Optional<? extends ChatSkill> sourceSkill = Optional.empty();
 
         private Optional<? extends List<ReferenceRange>> referenceRanges = Optional.empty();
 
@@ -370,6 +414,25 @@ public class ChatMessageCitation {
 
 
         /**
+         * A skill cited by Assistant.
+         */
+        public Builder sourceSkill(ChatSkill sourceSkill) {
+            Utils.checkNotNull(sourceSkill, "sourceSkill");
+            this.sourceSkill = Optional.ofNullable(sourceSkill);
+            return this;
+        }
+
+        /**
+         * A skill cited by Assistant.
+         */
+        public Builder sourceSkill(Optional<? extends ChatSkill> sourceSkill) {
+            Utils.checkNotNull(sourceSkill, "sourceSkill");
+            this.sourceSkill = sourceSkill;
+            return this;
+        }
+
+
+        /**
          * Each reference range and its corresponding snippets
          */
         public Builder referenceRanges(List<ReferenceRange> referenceRanges) {
@@ -391,7 +454,8 @@ public class ChatMessageCitation {
 
             return new ChatMessageCitation(
                 trackingToken, sourceDocument, sourceFile,
-                sourcePerson, sourceCustomEntity, referenceRanges);
+                sourcePerson, sourceCustomEntity, sourceSkill,
+                referenceRanges);
         }
 
     }

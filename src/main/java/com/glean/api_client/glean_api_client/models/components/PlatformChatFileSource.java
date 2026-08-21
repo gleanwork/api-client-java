@@ -15,7 +15,7 @@ import java.lang.String;
 import java.util.Optional;
 
 
-public class PlatformChatFileSource {
+public class PlatformChatFileSource implements PlatformChatCitationSource {
 
     @JsonProperty("type")
     private PlatformChatFileSourceType type;
@@ -66,8 +66,9 @@ public class PlatformChatFileSource {
     }
 
     @JsonIgnore
-    public PlatformChatFileSourceType type() {
-        return type;
+    @Override
+    public String type() {
+        return Utils.discriminatorToString(type);
     }
 
     @JsonIgnore

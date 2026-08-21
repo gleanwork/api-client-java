@@ -13,4 +13,4 @@ PlatformChatOutputMessageType value = PlatformChatOutputMessageType.MESSAGE;
 
 | Name      | Value     |
 | --------- | --------- |
-| `MESSAGE` | message   |
+| `MESSAGE` | MESSAGE   |
