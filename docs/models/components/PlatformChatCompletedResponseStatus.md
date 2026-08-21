@@ -13,4 +13,4 @@ PlatformChatCompletedResponseStatus value = PlatformChatCompletedResponseStatus.
 
 | Name        | Value       |
 | ----------- | ----------- |
-| `COMPLETED` | completed   |
+| `COMPLETED` | COMPLETED   |

@@ -21,7 +21,7 @@ import java.util.Optional;
  */
 public class PlatformChatFileSourceType {
 
-    public static final PlatformChatFileSourceType FILE = new PlatformChatFileSourceType("file");
+    public static final PlatformChatFileSourceType FILE = new PlatformChatFileSourceType("FILE");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -95,20 +95,20 @@ public class PlatformChatFileSourceType {
 
     private static final Map<String, PlatformChatFileSourceType> createValuesMap() {
         Map<String, PlatformChatFileSourceType> map = new LinkedHashMap<>();
-        map.put("file", FILE);
+        map.put("FILE", FILE);
         return map;
     }
 
     private static final Map<String, PlatformChatFileSourceTypeEnum> createEnumsMap() {
         Map<String, PlatformChatFileSourceTypeEnum> map = new HashMap<>();
-        map.put("file", PlatformChatFileSourceTypeEnum.FILE);
+        map.put("FILE", PlatformChatFileSourceTypeEnum.FILE);
         return map;
     }
     
     
     public enum PlatformChatFileSourceTypeEnum {
 
-        FILE("file"),;
+        FILE("FILE"),;
 
         private final String value;
 
