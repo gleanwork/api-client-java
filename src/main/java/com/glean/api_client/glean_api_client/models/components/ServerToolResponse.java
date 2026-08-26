@@ -34,6 +34,9 @@ import java.util.Optional;
  * 
  * <p>For VOTE_SUGGESTION requests:
  * - voted: whether the user voted for this tool
+ * 
+ * <p>For SANDBOX_EGRESS requests:
+ * - isGranted: whether the sandbox egress call is approved
  */
 public class ServerToolResponse {
     /**
