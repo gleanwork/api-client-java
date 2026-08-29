@@ -33,7 +33,7 @@ public class Application {
             .build();
 
         PlatformChatCreateRequest req = PlatformChatCreateRequest.builder()
-                .input(Input.of("<value>"))
+                .input(Input.of("What is our parental leave policy?"))
                 .build();
 
         PlatformChatCreateResponse res = sdk.chat().create()

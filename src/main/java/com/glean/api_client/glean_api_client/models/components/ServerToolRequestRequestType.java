@@ -29,6 +29,7 @@ public class ServerToolRequestRequestType {
     public static final ServerToolRequestRequestType EXECUTION = new ServerToolRequestRequestType("EXECUTION");
     public static final ServerToolRequestRequestType AUTHENTICATION_SUGGESTION = new ServerToolRequestRequestType("AUTHENTICATION_SUGGESTION");
     public static final ServerToolRequestRequestType VOTE_SUGGESTION = new ServerToolRequestRequestType("VOTE_SUGGESTION");
+    public static final ServerToolRequestRequestType SANDBOX_EGRESS = new ServerToolRequestRequestType("SANDBOX_EGRESS");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -105,6 +106,7 @@ public class ServerToolRequestRequestType {
         map.put("EXECUTION", EXECUTION);
         map.put("AUTHENTICATION_SUGGESTION", AUTHENTICATION_SUGGESTION);
         map.put("VOTE_SUGGESTION", VOTE_SUGGESTION);
+        map.put("SANDBOX_EGRESS", SANDBOX_EGRESS);
         return map;
     }
 
@@ -113,6 +115,7 @@ public class ServerToolRequestRequestType {
         map.put("EXECUTION", ServerToolRequestRequestTypeEnum.EXECUTION);
         map.put("AUTHENTICATION_SUGGESTION", ServerToolRequestRequestTypeEnum.AUTHENTICATION_SUGGESTION);
         map.put("VOTE_SUGGESTION", ServerToolRequestRequestTypeEnum.VOTE_SUGGESTION);
+        map.put("SANDBOX_EGRESS", ServerToolRequestRequestTypeEnum.SANDBOX_EGRESS);
         return map;
     }
     
@@ -121,7 +124,8 @@ public class ServerToolRequestRequestType {
 
         EXECUTION("EXECUTION"),
         AUTHENTICATION_SUGGESTION("AUTHENTICATION_SUGGESTION"),
-        VOTE_SUGGESTION("VOTE_SUGGESTION"),;
+        VOTE_SUGGESTION("VOTE_SUGGESTION"),
+        SANDBOX_EGRESS("SANDBOX_EGRESS"),;
 
         private final String value;
 
