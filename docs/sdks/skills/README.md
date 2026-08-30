@@ -161,7 +161,7 @@ public class Application {
 
         PlatformSkillImportRequest req = PlatformSkillImportRequest.builder()
                 .sourceUrls(List.of(
-                    "<value 1>"))
+                    "https://github.com/anthropics/skills/tree/main/skills/skill-creator"))
                 .build();
 
         PlatformSkillsImportResponse res = sdk.skills().import_()
@@ -280,7 +280,7 @@ public class Application {
             .build();
 
         PlatformSkillSourcePreviewRequest req = PlatformSkillSourcePreviewRequest.builder()
-                .sourceUrl("https://ugly-information.name/")
+                .sourceUrl("https://github.com/anthropics/skills")
                 .build();
 
         PlatformSkillsPreviewSourceResponse res = sdk.skills().previewSource()
@@ -341,7 +341,7 @@ public class Application {
         PlatformSkillsUpdateResponse res = sdk.skills().update()
                 .skillId("<id>")
                 .platformSkillUpdateRequest(PlatformSkillUpdateRequest.builder()
-                    .status(PlatformSkillUpdateStatus.DISABLED)
+                    .status(PlatformSkillUpdateStatus.ENABLED)
                     .build())
                 .call();
 
@@ -354,10 +354,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
-| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `skillId`                                                                           | *String*                                                                            | :heavy_check_mark:                                                                  | Glean skill ID.                                                                     |
-| `platformSkillUpdateRequest`                                                        | [PlatformSkillUpdateRequest](../../models/components/PlatformSkillUpdateRequest.md) | :heavy_check_mark:                                                                  | N/A                                                                                 |
+| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         | Example                                                                             |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `skillId`                                                                           | *String*                                                                            | :heavy_check_mark:                                                                  | Glean skill ID.                                                                     |                                                                                     |
+| `platformSkillUpdateRequest`                                                        | [PlatformSkillUpdateRequest](../../models/components/PlatformSkillUpdateRequest.md) | :heavy_check_mark:                                                                  | N/A                                                                                 | {<br/>"status": "ENABLED"<br/>}                                                     |
 
 ### Response
 

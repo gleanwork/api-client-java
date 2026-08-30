@@ -208,7 +208,11 @@ public class Application {
                     .messages(List.of(
                         PlatformMessage.builder()
                             .role(PlatformMessageRole.USER)
-                            .content(List.of())
+                            .content(List.of(
+                                PlatformMessageTextBlock.builder()
+                                    .text("What is our parental leave policy?")
+                                    .type(PlatformContentType.TEXT)
+                                    .build()))
                             .build()))
                     .build())
                 .call();
@@ -222,10 +226,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               |
-| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `agentId`                                                                                 | *String*                                                                                  | :heavy_check_mark:                                                                        | ID of the agent to run.                                                                   |
-| `platformAgentRunCreateRequest`                                                           | [PlatformAgentRunCreateRequest](../../models/components/PlatformAgentRunCreateRequest.md) | :heavy_check_mark:                                                                        | N/A                                                                                       |
+| Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             | Example                                                                                                                 |
+| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `agentId`                                                                                                               | *String*                                                                                                                | :heavy_check_mark:                                                                                                      | ID of the agent to run.                                                                                                 |                                                                                                                         |
+| `platformAgentRunCreateRequest`                                                                                         | [PlatformAgentRunCreateRequest](../../models/components/PlatformAgentRunCreateRequest.md)                               | :heavy_check_mark:                                                                                                      | N/A                                                                                                                     | {<br/>"messages": [<br/>{<br/>"role": "USER",<br/>"content": [<br/>{<br/>"text": "What is our parental leave policy?",<br/>"type": "text"<br/>}<br/>]<br/>}<br/>]<br/>} |
 
 ### Response
 
