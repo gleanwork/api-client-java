@@ -91,6 +91,9 @@ public class ChatMessageFragment {
      * 
      * <p>For VOTE_SUGGESTION requests:
      * - voted: whether the user voted for this tool
+     * 
+     * <p>For SANDBOX_EGRESS requests:
+     * - isGranted: whether the sandbox egress call is approved
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("serverToolResponse")
@@ -206,6 +209,9 @@ public class ChatMessageFragment {
      * 
      * <p>For VOTE_SUGGESTION requests:
      * - voted: whether the user voted for this tool
+     * 
+     * <p>For SANDBOX_EGRESS requests:
+     * - isGranted: whether the sandbox egress call is approved
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -362,6 +368,9 @@ public class ChatMessageFragment {
      * 
      * <p>For VOTE_SUGGESTION requests:
      * - voted: whether the user voted for this tool
+     * 
+     * <p>For SANDBOX_EGRESS requests:
+     * - isGranted: whether the sandbox egress call is approved
      */
     public ChatMessageFragment withServerToolResponse(ServerToolResponse serverToolResponse) {
         Utils.checkNotNull(serverToolResponse, "serverToolResponse");
@@ -384,6 +393,9 @@ public class ChatMessageFragment {
      * 
      * <p>For VOTE_SUGGESTION requests:
      * - voted: whether the user voted for this tool
+     * 
+     * <p>For SANDBOX_EGRESS requests:
+     * - isGranted: whether the sandbox egress call is approved
      */
     public ChatMessageFragment withServerToolResponse(Optional<? extends ServerToolResponse> serverToolResponse) {
         Utils.checkNotNull(serverToolResponse, "serverToolResponse");
@@ -604,6 +616,9 @@ public class ChatMessageFragment {
          * 
          * <p>For VOTE_SUGGESTION requests:
          * - voted: whether the user voted for this tool
+         * 
+         * <p>For SANDBOX_EGRESS requests:
+         * - isGranted: whether the sandbox egress call is approved
          */
         public Builder serverToolResponse(ServerToolResponse serverToolResponse) {
             Utils.checkNotNull(serverToolResponse, "serverToolResponse");
@@ -625,6 +640,9 @@ public class ChatMessageFragment {
          * 
          * <p>For VOTE_SUGGESTION requests:
          * - voted: whether the user voted for this tool
+         * 
+         * <p>For SANDBOX_EGRESS requests:
+         * - isGranted: whether the sandbox egress call is approved
          */
         public Builder serverToolResponse(Optional<? extends ServerToolResponse> serverToolResponse) {
             Utils.checkNotNull(serverToolResponse, "serverToolResponse");
