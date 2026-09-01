@@ -67,7 +67,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.glean.api-client:glean-api-client:0.16.0'
+implementation 'com.glean.api-client:glean-api-client:0.16.1'
 ```
 
 Maven:
@@ -75,7 +75,7 @@ Maven:
 <dependency>
     <groupId>com.glean.api-client</groupId>
     <artifactId>glean-api-client</artifactId>
-    <version>0.16.0</version>
+    <version>0.16.1</version>
 </dependency>
 ```
 
@@ -386,13 +386,13 @@ For more information on obtaining the appropriate token type, please contact you
 ### [Client.Agents](docs/sdks/clientagents/README.md)
 
 * [create](docs/sdks/clientagents/README.md#create) - Create an agent
-* [retrieve](docs/sdks/clientagents/README.md#retrieve) - Retrieve an agent
+* [~~retrieve~~](docs/sdks/clientagents/README.md#retrieve) - Retrieve an agent :warning: **Deprecated**
 * [update](docs/sdks/clientagents/README.md#update) - Edit an agent
-* [retrieveSchemas](docs/sdks/clientagents/README.md#retrieveschemas) - List an agent's schemas
+* [~~retrieveSchemas~~](docs/sdks/clientagents/README.md#retrieveschemas) - List an agent's schemas :warning: **Deprecated**
 * [import_](docs/sdks/clientagents/README.md#import_) - Import an agent
-* [list](docs/sdks/clientagents/README.md#list) - Search agents
-* [runStream](docs/sdks/clientagents/README.md#runstream) - Create an agent run and stream the response
-* [run](docs/sdks/clientagents/README.md#run) - Create an agent run and wait for the response
+* [~~list~~](docs/sdks/clientagents/README.md#list) - Search agents :warning: **Deprecated**
+* [~~runStream~~](docs/sdks/clientagents/README.md#runstream) - Create an agent run and stream the response :warning: **Deprecated**
+* [~~run~~](docs/sdks/clientagents/README.md#run) - Create an agent run and wait for the response :warning: **Deprecated**
 
 ### [Client.Announcements](docs/sdks/announcements/README.md)
 
