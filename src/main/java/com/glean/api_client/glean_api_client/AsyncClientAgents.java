@@ -40,6 +40,7 @@ import com.glean.api_client.glean_api_client.operations.GetAgentSchemas;
 import com.glean.api_client.glean_api_client.operations.ImportAgent;
 import com.glean.api_client.glean_api_client.operations.SearchAgents;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import java.lang.Deprecated;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
@@ -123,7 +124,9 @@ public class AsyncClientAgents {
      * Builder.
      * 
      * @return The async call builder
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use GET /api/agents/{agent_id} instead..
      */
+    @Deprecated
     public GetAgentRequestBuilder retrieve() {
         return new GetAgentRequestBuilder(sdkConfiguration);
     }
@@ -136,7 +139,9 @@ public class AsyncClientAgents {
      * 
      * @param agentId The ID of the agent.
      * @return {@code CompletableFuture<GetAgentResponse>} - The async response
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use GET /api/agents/{agent_id} instead..
      */
+    @Deprecated
     public CompletableFuture<GetAgentResponse> retrieve(String agentId) {
         return retrieve(Optional.empty(), Optional.empty(), agentId);
     }
@@ -151,7 +156,9 @@ public class AsyncClientAgents {
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param agentId The ID of the agent.
      * @return {@code CompletableFuture<GetAgentResponse>} - The async response
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use GET /api/agents/{agent_id} instead..
      */
+    @Deprecated
     public CompletableFuture<GetAgentResponse> retrieve(
             Optional<String> locale, Optional<Long> timezoneOffset,
             String agentId) {
@@ -237,7 +244,9 @@ public class AsyncClientAgents {
      * use these schemas to detect changes to an agent's input or output structure.
      * 
      * @return The async call builder
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use GET /api/agents/{agent_id}/schemas instead..
      */
+    @Deprecated
     public GetAgentSchemasRequestBuilder retrieveSchemas() {
         return new GetAgentSchemasRequestBuilder(sdkConfiguration);
     }
@@ -250,7 +259,9 @@ public class AsyncClientAgents {
      * 
      * @param agentId The ID of the agent.
      * @return {@code CompletableFuture<GetAgentSchemasResponse>} - The async response
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use GET /api/agents/{agent_id}/schemas instead..
      */
+    @Deprecated
     public CompletableFuture<GetAgentSchemasResponse> retrieveSchemas(String agentId) {
         return retrieveSchemas(Optional.empty(), Optional.empty(), agentId);
     }
@@ -265,7 +276,9 @@ public class AsyncClientAgents {
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
      * @param agentId The ID of the agent.
      * @return {@code CompletableFuture<GetAgentSchemasResponse>} - The async response
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use GET /api/agents/{agent_id}/schemas instead..
      */
+    @Deprecated
     public CompletableFuture<GetAgentSchemasResponse> retrieveSchemas(
             Optional<String> locale, Optional<Long> timezoneOffset,
             String agentId) {
@@ -353,7 +366,9 @@ public class AsyncClientAgents {
      * <p>Search for [agents](https://developers.glean.com/agents/agents-api) by agent name.
      * 
      * @return The async call builder
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use POST /api/agents/search instead..
      */
+    @Deprecated
     public SearchAgentsRequestBuilder list() {
         return new SearchAgentsRequestBuilder(sdkConfiguration);
     }
@@ -365,7 +380,9 @@ public class AsyncClientAgents {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<SearchAgentsResponse>} - The async response
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use POST /api/agents/search instead..
      */
+    @Deprecated
     public CompletableFuture<SearchAgentsResponse> list(SearchAgentsRequest request) {
         AsyncRequestOperation<SearchAgentsRequest, SearchAgentsResponse> operation
               = new SearchAgents.Async(sdkConfiguration, _headers);
@@ -382,7 +399,9 @@ public class AsyncClientAgents {
      * fields (including optional fields) must be included in the `input` object.
      * 
      * @return The async call builder
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use POST /api/agents/{agent_id}/runs with stream=true instead..
      */
+    @Deprecated
     public CreateAndStreamRunRequestBuilder runStream() {
         return new CreateAndStreamRunRequestBuilder(sdkConfiguration);
     }
@@ -396,7 +415,9 @@ public class AsyncClientAgents {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<CreateAndStreamRunResponse>} - The async response
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use POST /api/agents/{agent_id}/runs with stream=true instead..
      */
+    @Deprecated
     public CompletableFuture<CreateAndStreamRunResponse> runStream(AgentRunCreate request) {
         AsyncRequestOperation<AgentRunCreate, CreateAndStreamRunResponse> operation
               = new CreateAndStreamRun.Async(sdkConfiguration, _headers);
@@ -413,7 +434,9 @@ public class AsyncClientAgents {
      * fields) must be included in the `input` object.
      * 
      * @return The async call builder
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use POST /api/agents/{agent_id}/runs instead..
      */
+    @Deprecated
     public CreateAndWaitRunRequestBuilder run() {
         return new CreateAndWaitRunRequestBuilder(sdkConfiguration);
     }
@@ -427,7 +450,9 @@ public class AsyncClientAgents {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<CreateAndWaitRunResponse>} - The async response
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use POST /api/agents/{agent_id}/runs instead..
      */
+    @Deprecated
     public CompletableFuture<CreateAndWaitRunResponse> run(AgentRunCreate request) {
         AsyncRequestOperation<AgentRunCreate, CreateAndWaitRunResponse> operation
               = new CreateAndWaitRun.Async(sdkConfiguration, _headers);

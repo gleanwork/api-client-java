@@ -49,8 +49,8 @@ public class ImportAgentRequest {
     private Optional<? extends ImportAgentSyncMode> syncMode;
 
     /**
-     * When true, validates and stores a draft preview without publishing (used for PR preview links).
-     * Takes precedence over `syncMode`: when `isDraft` is true, `syncMode` is ignored.
+     * Deprecated. Draft mutation semantics are not supported for transient previews. Use transient and
+     * parentWorkflowId instead.
      */
     @SpeakeasyMetadata("multipartForm:name=isDraft")
     private Optional<Boolean> isDraft;
@@ -127,8 +127,8 @@ public class ImportAgentRequest {
     }
 
     /**
-     * When true, validates and stores a draft preview without publishing (used for PR preview links).
-     * Takes precedence over `syncMode`: when `isDraft` is true, `syncMode` is ignored.
+     * Deprecated. Draft mutation semantics are not supported for transient previews. Use transient and
+     * parentWorkflowId instead.
      */
     @JsonIgnore
     public Optional<Boolean> isDraft() {
@@ -229,8 +229,8 @@ public class ImportAgentRequest {
     }
 
     /**
-     * When true, validates and stores a draft preview without publishing (used for PR preview links).
-     * Takes precedence over `syncMode`: when `isDraft` is true, `syncMode` is ignored.
+     * Deprecated. Draft mutation semantics are not supported for transient previews. Use transient and
+     * parentWorkflowId instead.
      */
     public ImportAgentRequest withIsDraft(boolean isDraft) {
         Utils.checkNotNull(isDraft, "isDraft");
@@ -240,8 +240,8 @@ public class ImportAgentRequest {
 
 
     /**
-     * When true, validates and stores a draft preview without publishing (used for PR preview links).
-     * Takes precedence over `syncMode`: when `isDraft` is true, `syncMode` is ignored.
+     * Deprecated. Draft mutation semantics are not supported for transient previews. Use transient and
+     * parentWorkflowId instead.
      */
     public ImportAgentRequest withIsDraft(Optional<Boolean> isDraft) {
         Utils.checkNotNull(isDraft, "isDraft");
@@ -395,8 +395,8 @@ public class ImportAgentRequest {
 
 
         /**
-         * When true, validates and stores a draft preview without publishing (used for PR preview links).
-         * Takes precedence over `syncMode`: when `isDraft` is true, `syncMode` is ignored.
+         * Deprecated. Draft mutation semantics are not supported for transient previews. Use transient and
+         * parentWorkflowId instead.
          */
         public Builder isDraft(boolean isDraft) {
             Utils.checkNotNull(isDraft, "isDraft");
@@ -405,8 +405,8 @@ public class ImportAgentRequest {
         }
 
         /**
-         * When true, validates and stores a draft preview without publishing (used for PR preview links).
-         * Takes precedence over `syncMode`: when `isDraft` is true, `syncMode` is ignored.
+         * Deprecated. Draft mutation semantics are not supported for transient previews. Use transient and
+         * parentWorkflowId instead.
          */
         public Builder isDraft(Optional<Boolean> isDraft) {
             Utils.checkNotNull(isDraft, "isDraft");

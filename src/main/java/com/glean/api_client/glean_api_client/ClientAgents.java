@@ -40,6 +40,7 @@ import com.glean.api_client.glean_api_client.operations.GetAgentSchemas;
 import com.glean.api_client.glean_api_client.operations.ImportAgent;
 import com.glean.api_client.glean_api_client.operations.SearchAgents;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import java.lang.Deprecated;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
@@ -121,7 +122,9 @@ public class ClientAgents {
      * Builder.
      * 
      * @return The call builder
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use GET /api/agents/{agent_id} instead..
      */
+    @Deprecated
     public GetAgentRequestBuilder retrieve() {
         return new GetAgentRequestBuilder(sdkConfiguration);
     }
@@ -135,7 +138,9 @@ public class ClientAgents {
      * @param agentId The ID of the agent.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use GET /api/agents/{agent_id} instead..
      */
+    @Deprecated
     public GetAgentResponse retrieve(String agentId) {
         return retrieve(Optional.empty(), Optional.empty(), agentId);
     }
@@ -151,7 +156,9 @@ public class ClientAgents {
      * @param agentId The ID of the agent.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use GET /api/agents/{agent_id} instead..
      */
+    @Deprecated
     public GetAgentResponse retrieve(
             Optional<String> locale, Optional<Long> timezoneOffset,
             String agentId) {
@@ -234,7 +241,9 @@ public class ClientAgents {
      * use these schemas to detect changes to an agent's input or output structure.
      * 
      * @return The call builder
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use GET /api/agents/{agent_id}/schemas instead..
      */
+    @Deprecated
     public GetAgentSchemasRequestBuilder retrieveSchemas() {
         return new GetAgentSchemasRequestBuilder(sdkConfiguration);
     }
@@ -248,7 +257,9 @@ public class ClientAgents {
      * @param agentId The ID of the agent.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use GET /api/agents/{agent_id}/schemas instead..
      */
+    @Deprecated
     public GetAgentSchemasResponse retrieveSchemas(String agentId) {
         return retrieveSchemas(Optional.empty(), Optional.empty(), agentId);
     }
@@ -264,7 +275,9 @@ public class ClientAgents {
      * @param agentId The ID of the agent.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use GET /api/agents/{agent_id}/schemas instead..
      */
+    @Deprecated
     public GetAgentSchemasResponse retrieveSchemas(
             Optional<String> locale, Optional<Long> timezoneOffset,
             String agentId) {
@@ -349,7 +362,9 @@ public class ClientAgents {
      * <p>Search for [agents](https://developers.glean.com/agents/agents-api) by agent name.
      * 
      * @return The call builder
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use POST /api/agents/search instead..
      */
+    @Deprecated
     public SearchAgentsRequestBuilder list() {
         return new SearchAgentsRequestBuilder(sdkConfiguration);
     }
@@ -362,7 +377,9 @@ public class ClientAgents {
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use POST /api/agents/search instead..
      */
+    @Deprecated
     public SearchAgentsResponse list(SearchAgentsRequest request) {
         RequestOperation<SearchAgentsRequest, SearchAgentsResponse> operation
               = new SearchAgents.Sync(sdkConfiguration, _headers);
@@ -377,7 +394,9 @@ public class ClientAgents {
      * fields (including optional fields) must be included in the `input` object.
      * 
      * @return The call builder
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use POST /api/agents/{agent_id}/runs with stream=true instead..
      */
+    @Deprecated
     public CreateAndStreamRunRequestBuilder runStream() {
         return new CreateAndStreamRunRequestBuilder(sdkConfiguration);
     }
@@ -392,7 +411,9 @@ public class ClientAgents {
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use POST /api/agents/{agent_id}/runs with stream=true instead..
      */
+    @Deprecated
     public CreateAndStreamRunResponse runStream(AgentRunCreate request) {
         RequestOperation<AgentRunCreate, CreateAndStreamRunResponse> operation
               = new CreateAndStreamRun.Sync(sdkConfiguration, _headers);
@@ -407,7 +428,9 @@ public class ClientAgents {
      * fields) must be included in the `input` object.
      * 
      * @return The call builder
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use POST /api/agents/{agent_id}/runs instead..
      */
+    @Deprecated
     public CreateAndWaitRunRequestBuilder run() {
         return new CreateAndWaitRunRequestBuilder(sdkConfiguration);
     }
@@ -422,7 +445,9 @@ public class ClientAgents {
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use POST /api/agents/{agent_id}/runs instead..
      */
+    @Deprecated
     public CreateAndWaitRunResponse run(AgentRunCreate request) {
         RequestOperation<AgentRunCreate, CreateAndWaitRunResponse> operation
               = new CreateAndWaitRun.Sync(sdkConfiguration, _headers);
