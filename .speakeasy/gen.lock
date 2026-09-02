@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 0359d4fe-2923-46fc-aaca-cf70b48dcfa1
 management:
-  docChecksum: 8dc95bfc7e332908fbcd5de1c6c86785
+  docChecksum: d3255aaee85a98958462efd3fc79f664
   docVersion: 0.9.0
   speakeasyVersion: 1.796.2
   generationVersion: 2.933.0
-  releaseVersion: 0.16.1
-  configChecksum: 48d2ac7302ce9a63522c253c9c4a471c
+  releaseVersion: 0.16.2
+  configChecksum: 174815e7588f8f9a917546d008afcad2
   repoURL: https://github.com/gleanwork/api-client-java.git
   installationURL: https://github.com/gleanwork/api-client-java
   published: true
 persistentEdits:
-  generation_id: 773507b3-593e-4e63-b564-9020cf7625c7
-  pristine_commit_hash: 5a03e68ab91d549c4cb296cbf511c9897512ae67
-  pristine_tree_hash: aa12c4b00e7e3633b2feace5134773532723a0dc
+  generation_id: c9937813-4936-41c4-b82f-38be266585fd
+  pristine_commit_hash: 372b8cbf0c3a0a10564400cee6a98c7aaa11f2a6
+  pristine_tree_hash: abc3515c274d31f1de0ba5b87d4838648ea89f49
 features:
   java:
     acceptHeaders: 2.81.2
@@ -4349,8 +4349,8 @@ trackedFiles:
     pristine_git_object: 3decbce5bd40edbe278c1c5d2dbf585808e51d9a
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:0768003c524b3e51f5ae9cfcb87250ccd5af56e4
-    pristine_git_object: c482e4d00d808621b14f8c303ffa48dbe7ab048f
+    last_write_checksum: sha1:c26db8543a9d7ff582eb96c454e19e90470bc500
+    pristine_git_object: b1f7dc4b71dedee75e7105dc61a749e136ae89cc
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -4673,8 +4673,8 @@ trackedFiles:
     pristine_git_object: ffae914775eb41ff311371f62504344a59d090fd
   src/main/java/com/glean/api_client/glean_api_client/SDKConfiguration.java:
     id: d5fcc61f5992
-    last_write_checksum: sha1:accc6875e1217d998474aa060c41eeee2293fbf9
-    pristine_git_object: eed829831c0b14234e8f22eea397f2a7ebe874e5
+    last_write_checksum: sha1:f027fc9d9ea1ec0766f6901dd019b41f174c0991
+    pristine_git_object: b312bea1c7ac4170bc816cfab9d93db2584b280a
   src/main/java/com/glean/api_client/glean_api_client/Search.java:
     id: f22d94b920b5
     last_write_checksum: sha1:14e024607aebae4b1197445ad31984898c4735a3
@@ -13333,7 +13333,6 @@ generatedTests:
   get_/rest/api/v1/tools/list: "2025-06-09T18:03:44Z"
   post_/rest/api/v1/tools/call: "2025-06-09T18:03:44Z"
   listpolicies: "2025-06-09T18:03:44Z"
-releaseNotes: "## Java SDK Changes:\n* `glean.client.chat.create()`: \n  *  `request.chatRequest.messages[].fragments[]` **Changed**\n  *  `response.messages[].fragments[]` **Changed**\n* `glean.client.chat.retrieve()`:  `response.chatResult.chat.messages[].fragments[]` **Changed**\n* `glean.client.chat.createStream()`: \n  *  `request.chatRequest.messages[].fragments[]` **Changed**\n* `glean.client.agents.retrieve()`: **Deprecated**\n* `glean.client.agents.retrieveSchemas()`: **Deprecated**\n* `glean.client.agents.list()`: **Deprecated**\n* `glean.client.agents.runStream()`: **Deprecated**\n* `glean.client.agents.runStream()`:  `error.authenticationSuggestions[].requestType.enum(sandboxEgress)` **Added**\n* `glean.client.agents.run()`: **Deprecated**\n* `glean.client.agents.run()`:  `error.authenticationSuggestions[].requestType.enum(sandboxEgress)` **Added**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md
