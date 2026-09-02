@@ -6,11 +6,19 @@ package com.glean.api_client.glean_api_client;
 
 import static com.glean.api_client.glean_api_client.operations.Operations.AsyncRequestOperation;
 
-import com.glean.api_client.glean_api_client.models.components.PlatformChatCreateRequest;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.glean.api_client.glean_api_client.models.components.PlatformChatStreamEventServerSentEvent;
+import com.glean.api_client.glean_api_client.models.operations.PlatformChatCreateRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformChatCreateStreamRequest;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformChatCreateRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformChatCreateResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformChatCreateStreamRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformChatCreateStreamResponse;
 import com.glean.api_client.glean_api_client.operations.PlatformChatCreate;
+import com.glean.api_client.glean_api_client.operations.PlatformChatCreateStream;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Utils;
+import com.glean.api_client.glean_api_client.utils.reactive.EventStream;
 import java.util.concurrent.CompletableFuture;
 
 
@@ -60,6 +68,48 @@ public class AsyncChat {
               = new PlatformChatCreate.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * SDK-only logical operation. HTTP clients must call the base path; the URL fragment is not sent.
+     * Create a chat response
+     * 
+     * <p>SDK-only logical operation. HTTP clients must call the base path; the URL fragment is not sent. Run
+     * an assistant turn.
+     * 
+     * <p>Set `stream` to true to receive server-sent events; otherwise the response is a typed JSON response
+     * object.
+     * 
+     * @return The async call builder
+     */
+    public PlatformChatCreateStreamRequestBuilder createStream() {
+        return new PlatformChatCreateStreamRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * SDK-only logical operation. HTTP clients must call the base path; the URL fragment is not sent.
+     * Create a chat response
+     * 
+     * <p>SDK-only logical operation. HTTP clients must call the base path; the URL fragment is not sent. Run
+     * an assistant turn.
+     * 
+     * <p>Set `stream` to true to receive server-sent events; otherwise the response is a typed JSON response
+     * object.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return A reactive SSE publisher that emits events from the server.
+     * Can be consumed using reactive streams toolkits such as RxJava, Project Reactor, or Java 9+ Flow API.
+     */
+    public EventStream<PlatformChatCreateStreamResponse, PlatformChatStreamEventServerSentEvent> createStream(PlatformChatCreateStreamRequest request) {
+        AsyncRequestOperation<PlatformChatCreateStreamRequest, PlatformChatCreateStreamResponse> operation
+              = new PlatformChatCreateStream.Async(sdkConfiguration, _headers);
+        return EventStream.forSSE(
+                operation.doRequest(request).thenCompose(operation::handleResponse),
+                new TypeReference<>() {
+                },
+                Utils.mapper(),
+                null);
     }
 
 }
