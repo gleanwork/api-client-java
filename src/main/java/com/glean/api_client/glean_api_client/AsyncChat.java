@@ -45,8 +45,10 @@ public class AsyncChat {
     /**
      * Create a chat response
      * 
-     * <p>Run an assistant turn. Set `stream` to true to receive server-sent events; otherwise the response is
-     * a typed JSON response object.
+     * <p>Run an assistant turn. The default response is JSON. HTTP clients request server-sent events by
+     * setting `stream` to true in the JSON body.
+     * 
+     * <p>An `Accept: text/event-stream` header does not replace `stream`.
      * 
      * @return The async call builder
      */
@@ -57,8 +59,10 @@ public class AsyncChat {
     /**
      * Create a chat response
      * 
-     * <p>Run an assistant turn. Set `stream` to true to receive server-sent events; otherwise the response is
-     * a typed JSON response object.
+     * <p>Run an assistant turn. The default response is JSON. HTTP clients request server-sent events by
+     * setting `stream` to true in the JSON body.
+     * 
+     * <p>An `Accept: text/event-stream` header does not replace `stream`.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<PlatformChatCreateResponse>} - The async response
@@ -78,8 +82,8 @@ public class AsyncChat {
      * <p>SDK-only logical operation. HTTP clients must call the base path; the URL fragment is not sent. Run
      * an assistant turn.
      * 
-     * <p>Set `stream` to true to receive server-sent events; otherwise the response is a typed JSON response
-     * object.
+     * <p>The default response is JSON. HTTP clients request server-sent events by setting `stream` to true in
+     * the JSON body. An `Accept: text/event-stream` header does not replace `stream`.
      * 
      * @return The async call builder
      */
@@ -94,8 +98,8 @@ public class AsyncChat {
      * <p>SDK-only logical operation. HTTP clients must call the base path; the URL fragment is not sent. Run
      * an assistant turn.
      * 
-     * <p>Set `stream` to true to receive server-sent events; otherwise the response is a typed JSON response
-     * object.
+     * <p>The default response is JSON. HTTP clients request server-sent events by setting `stream` to true in
+     * the JSON body. An `Accept: text/event-stream` header does not replace `stream`.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return A reactive SSE publisher that emits events from the server.
