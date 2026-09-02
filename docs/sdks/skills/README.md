@@ -339,7 +339,7 @@ public class Application {
             .build();
 
         PlatformSkillsUpdateResponse res = sdk.skills().update()
-                .skillId("<id>")
+                .skillId("{skill_id}")
                 .platformSkillUpdateRequest(PlatformSkillUpdateRequest.builder()
                     .status(PlatformSkillUpdateStatus.ENABLED)
                     .build())
@@ -356,7 +356,7 @@ public class Application {
 
 | Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         | Example                                                                             |
 | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `skillId`                                                                           | *String*                                                                            | :heavy_check_mark:                                                                  | Glean skill ID.                                                                     |                                                                                     |
+| `skillId`                                                                           | *String*                                                                            | :heavy_check_mark:                                                                  | Glean skill ID.                                                                     | {skill_id}                                                                          |
 | `platformSkillUpdateRequest`                                                        | [PlatformSkillUpdateRequest](../../models/components/PlatformSkillUpdateRequest.md) | :heavy_check_mark:                                                                  | N/A                                                                                 | {<br/>"status": "ENABLED"<br/>}                                                     |
 
 ### Response
@@ -396,7 +396,7 @@ public class Application {
             .build();
 
         PlatformSkillsDeleteResponse res = sdk.skills().delete()
-                .skillId("<id>")
+                .skillId("{skill_id}")
                 .call();
 
         // handle response
@@ -406,9 +406,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `skillId`          | *String*           | :heavy_check_mark: | Glean skill ID.    |
+| Parameter          | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `skillId`          | *String*           | :heavy_check_mark: | Glean skill ID.    | {skill_id}         |
 
 ### Response
 
@@ -447,7 +447,7 @@ public class Application {
             .build();
 
         PlatformSkillsGetResponse res = sdk.skills().retrieve()
-                .skillId("<id>")
+                .skillId("{skill_id}")
                 .call();
 
         if (res.platformSkillGetResponse().isPresent()) {
@@ -459,9 +459,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `skillId`          | *String*           | :heavy_check_mark: | Glean skill ID.    |
+| Parameter          | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `skillId`          | *String*           | :heavy_check_mark: | Glean skill ID.    | {skill_id}         |
 
 ### Response
 
@@ -500,7 +500,7 @@ public class Application {
             .build();
 
         PlatformSkillsGetContentResponse res = sdk.skills().retrieveContent()
-                .skillId("<id>")
+                .skillId("{skill_id}")
                 .call();
 
         if (res.responseStream().isPresent()) {
@@ -512,9 +512,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `skillId`          | *String*           | :heavy_check_mark: | Glean skill ID.    |
+| Parameter          | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `skillId`          | *String*           | :heavy_check_mark: | Glean skill ID.    | {skill_id}         |
 
 ### Response
 
@@ -553,7 +553,7 @@ public class Application {
             .build();
 
         PlatformSkillsSyncResponse res = sdk.skills().sync()
-                .skillId("<id>")
+                .skillId("{skill_id}")
                 .call();
 
         if (res.platformSkillSyncResponse().isPresent()) {
@@ -565,9 +565,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                | Type                                     | Required                                 | Description                              |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `skillId`                                | *String*                                 | :heavy_check_mark:                       | ID of the GitHub-imported skill to sync. |
+| Parameter                                | Type                                     | Required                                 | Description                              | Example                                  |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `skillId`                                | *String*                                 | :heavy_check_mark:                       | ID of the GitHub-imported skill to sync. | {skill_id}                               |
 
 ### Response
 
@@ -610,7 +610,7 @@ public class Application {
             .build();
 
         PlatformSkillsCreateVersionResponse res = sdk.skills().createVersion()
-                .skillId("<id>")
+                .skillId("{skill_id}")
                 .platformSkillVersionCreateRequest(PlatformSkillVersionCreateRequest.builder()
                     .file(PlatformSkillVersionCreateRequestFile.builder()
                         .fileName("example.file")
@@ -625,10 +625,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                         | Type                                                                                              | Required                                                                                          | Description                                                                                       |
-| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `skillId`                                                                                         | *String*                                                                                          | :heavy_check_mark:                                                                                | Glean skill ID.                                                                                   |
-| `platformSkillVersionCreateRequest`                                                               | [PlatformSkillVersionCreateRequest](../../models/components/PlatformSkillVersionCreateRequest.md) | :heavy_check_mark:                                                                                | N/A                                                                                               |
+| Parameter                                                                                         | Type                                                                                              | Required                                                                                          | Description                                                                                       | Example                                                                                           |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `skillId`                                                                                         | *String*                                                                                          | :heavy_check_mark:                                                                                | Glean skill ID.                                                                                   | {skill_id}                                                                                        |
+| `platformSkillVersionCreateRequest`                                                               | [PlatformSkillVersionCreateRequest](../../models/components/PlatformSkillVersionCreateRequest.md) | :heavy_check_mark:                                                                                | N/A                                                                                               |                                                                                                   |
 
 ### Response
 
@@ -667,7 +667,7 @@ public class Application {
             .build();
 
         PlatformSkillsListVersionsResponse res = sdk.skills().listVersions()
-                .skillId("<id>")
+                .skillId("{skill_id}")
                 .call();
 
         if (res.platformSkillVersionsListResponse().isPresent()) {
@@ -679,11 +679,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                          | Type                                               | Required                                           | Description                                        |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| `skillId`                                          | *String*                                           | :heavy_check_mark:                                 | Glean skill ID.                                    |
-| `pageSize`                                         | *Optional\<Long>*                                  | :heavy_minus_sign:                                 | Maximum number of versions to return.              |
-| `cursor`                                           | *Optional\<String>*                                | :heavy_minus_sign:                                 | Opaque pagination cursor from a previous response. |
+| Parameter                                          | Type                                               | Required                                           | Description                                        | Example                                            |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| `skillId`                                          | *String*                                           | :heavy_check_mark:                                 | Glean skill ID.                                    | {skill_id}                                         |
+| `pageSize`                                         | *Optional\<Long>*                                  | :heavy_minus_sign:                                 | Maximum number of versions to return.              |                                                    |
+| `cursor`                                           | *Optional\<String>*                                | :heavy_minus_sign:                                 | Opaque pagination cursor from a previous response. |                                                    |
 
 ### Response
 
@@ -722,8 +722,8 @@ public class Application {
             .build();
 
         PlatformSkillsGetVersionResponse res = sdk.skills().retrieveVersion()
-                .skillId("<id>")
-                .version(495658L)
+                .skillId("{skill_id}")
+                .version(1L)
                 .call();
 
         if (res.platformSkillVersionGetResponse().isPresent()) {
@@ -735,10 +735,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter             | Type                  | Required              | Description           |
-| --------------------- | --------------------- | --------------------- | --------------------- |
-| `skillId`             | *String*              | :heavy_check_mark:    | Glean skill ID.       |
-| `version`             | *long*                | :heavy_check_mark:    | Major version number. |
+| Parameter             | Type                  | Required              | Description           | Example               |
+| --------------------- | --------------------- | --------------------- | --------------------- | --------------------- |
+| `skillId`             | *String*              | :heavy_check_mark:    | Glean skill ID.       | {skill_id}            |
+| `version`             | *long*                | :heavy_check_mark:    | Major version number. | 1                     |
 
 ### Response
 
@@ -777,8 +777,8 @@ public class Application {
             .build();
 
         PlatformSkillsGetVersionContentResponse res = sdk.skills().retrieveVersionContent()
-                .skillId("<id>")
-                .version(117760L)
+                .skillId("{skill_id}")
+                .version(1L)
                 .call();
 
         if (res.responseStream().isPresent()) {
@@ -790,10 +790,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter             | Type                  | Required              | Description           |
-| --------------------- | --------------------- | --------------------- | --------------------- |
-| `skillId`             | *String*              | :heavy_check_mark:    | Glean skill ID.       |
-| `version`             | *long*                | :heavy_check_mark:    | Major version number. |
+| Parameter             | Type                  | Required              | Description           | Example               |
+| --------------------- | --------------------- | --------------------- | --------------------- | --------------------- |
+| `skillId`             | *String*              | :heavy_check_mark:    | Glean skill ID.       | {skill_id}            |
+| `version`             | *long*                | :heavy_check_mark:    | Major version number. | 1                     |
 
 ### Response
 

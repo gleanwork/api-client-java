@@ -92,7 +92,7 @@ public class Application {
             .build();
 
         PlatformAgentsGetResponse res = sdk.agents().get()
-                .agentId("<id>")
+                .agentId("{agent_id}")
                 .call();
 
         if (res.platformAgentGetResponse().isPresent()) {
@@ -104,9 +104,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                    | Type                         | Required                     | Description                  |
-| ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- |
-| `agentId`                    | *String*                     | :heavy_check_mark:           | ID of the agent to retrieve. |
+| Parameter                    | Type                         | Required                     | Description                  | Example                      |
+| ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- |
+| `agentId`                    | *String*                     | :heavy_check_mark:           | ID of the agent to retrieve. | {agent_id}                   |
 
 ### Response
 
@@ -145,7 +145,7 @@ public class Application {
             .build();
 
         PlatformAgentsGetSchemasResponse res = sdk.agents().getSchemas()
-                .agentId("<id>")
+                .agentId("{agent_id}")
                 .includeTools(false)
                 .call();
 
@@ -158,10 +158,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                          | Type                                               | Required                                           | Description                                        |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| `agentId`                                          | *String*                                           | :heavy_check_mark:                                 | ID of the agent whose schemas should be retrieved. |
-| `includeTools`                                     | *Optional\<Boolean>*                               | :heavy_minus_sign:                                 | Whether to include tool metadata in the response.  |
+| Parameter                                          | Type                                               | Required                                           | Description                                        | Example                                            |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| `agentId`                                          | *String*                                           | :heavy_check_mark:                                 | ID of the agent whose schemas should be retrieved. | {agent_id}                                         |
+| `includeTools`                                     | *Optional\<Boolean>*                               | :heavy_minus_sign:                                 | Whether to include tool metadata in the response.  |                                                    |
 
 ### Response
 
@@ -203,7 +203,7 @@ public class Application {
             .build();
 
         PlatformAgentsCreateRunResponse res = sdk.agents().createRun()
-                .agentId("<id>")
+                .agentId("{agent_id}")
                 .platformAgentRunCreateRequest(PlatformAgentRunCreateRequest.builder()
                     .messages(List.of(
                         PlatformMessage.builder()
@@ -228,7 +228,7 @@ public class Application {
 
 | Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             | Example                                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `agentId`                                                                                                               | *String*                                                                                                                | :heavy_check_mark:                                                                                                      | ID of the agent to run.                                                                                                 |                                                                                                                         |
+| `agentId`                                                                                                               | *String*                                                                                                                | :heavy_check_mark:                                                                                                      | ID of the agent to run.                                                                                                 | {agent_id}                                                                                                              |
 | `platformAgentRunCreateRequest`                                                                                         | [PlatformAgentRunCreateRequest](../../models/components/PlatformAgentRunCreateRequest.md)                               | :heavy_check_mark:                                                                                                      | N/A                                                                                                                     | {<br/>"messages": [<br/>{<br/>"role": "USER",<br/>"content": [<br/>{<br/>"text": "What is our parental leave policy?",<br/>"type": "text"<br/>}<br/>]<br/>}<br/>]<br/>} |
 
 ### Response
