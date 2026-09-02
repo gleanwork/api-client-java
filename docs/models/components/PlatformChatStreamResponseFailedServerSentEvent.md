@@ -1,0 +1,10 @@
+# PlatformChatStreamResponseFailedServerSentEvent
+
+
+## Fields
+
+| Field                                                                                           | Type                                                                                            | Required                                                                                        | Description                                                                                     |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `id`                                                                                            | *Optional\<String>*                                                                             | :heavy_minus_sign:                                                                              | N/A                                                                                             |
+| `event`                                                                                         | *String*                                                                                        | :heavy_check_mark:                                                                              | N/A                                                                                             |
+| `data`                                                                                          | [PlatformChatStreamResponseFailed](../../models/components/PlatformChatStreamResponseFailed.md) | :heavy_check_mark:                                                                              | N/A                                                                                             |

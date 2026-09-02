@@ -6,10 +6,14 @@ package com.glean.api_client.glean_api_client;
 
 import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
 
-import com.glean.api_client.glean_api_client.models.components.PlatformChatCreateRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformChatCreateRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformChatCreateRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PlatformChatCreateResponse;
+import com.glean.api_client.glean_api_client.models.operations.PlatformChatCreateStreamRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformChatCreateStreamRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.PlatformChatCreateStreamResponse;
 import com.glean.api_client.glean_api_client.operations.PlatformChatCreate;
+import com.glean.api_client.glean_api_client.operations.PlatformChatCreateStream;
 import com.glean.api_client.glean_api_client.utils.Headers;
 
 
@@ -57,6 +61,42 @@ public class Chat {
     public PlatformChatCreateResponse create(PlatformChatCreateRequest request) {
         RequestOperation<PlatformChatCreateRequest, PlatformChatCreateResponse> operation
               = new PlatformChatCreate.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * SDK-only logical operation. HTTP clients must call the base path; the URL fragment is not sent.
+     * Create a chat response
+     * 
+     * <p>SDK-only logical operation. HTTP clients must call the base path; the URL fragment is not sent. Run
+     * an assistant turn.
+     * 
+     * <p>Set `stream` to true to receive server-sent events; otherwise the response is a typed JSON response
+     * object.
+     * 
+     * @return The call builder
+     */
+    public PlatformChatCreateStreamRequestBuilder createStream() {
+        return new PlatformChatCreateStreamRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * SDK-only logical operation. HTTP clients must call the base path; the URL fragment is not sent.
+     * Create a chat response
+     * 
+     * <p>SDK-only logical operation. HTTP clients must call the base path; the URL fragment is not sent. Run
+     * an assistant turn.
+     * 
+     * <p>Set `stream` to true to receive server-sent events; otherwise the response is a typed JSON response
+     * object.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformChatCreateStreamResponse createStream(PlatformChatCreateStreamRequest request) {
+        RequestOperation<PlatformChatCreateStreamRequest, PlatformChatCreateStreamResponse> operation
+              = new PlatformChatCreateStream.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
