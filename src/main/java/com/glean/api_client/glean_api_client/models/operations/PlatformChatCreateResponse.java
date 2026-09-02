@@ -39,28 +39,20 @@ public class PlatformChatCreateResponse implements Response {
      */
     private Optional<? extends PlatformChatCompletedResponse> platformChatCompletedResponse;
 
-    /**
-     * Successful response.
-     */
-    private Optional<String> res;
-
     @JsonCreator
     public PlatformChatCreateResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends PlatformChatCompletedResponse> platformChatCompletedResponse,
-            Optional<String> res) {
+            Optional<? extends PlatformChatCompletedResponse> platformChatCompletedResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         Utils.checkNotNull(platformChatCompletedResponse, "platformChatCompletedResponse");
-        Utils.checkNotNull(res, "res");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
         this.platformChatCompletedResponse = platformChatCompletedResponse;
-        this.res = res;
     }
     
     public PlatformChatCreateResponse(
@@ -68,7 +60,7 @@ public class PlatformChatCreateResponse implements Response {
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         this(contentType, statusCode, rawResponse,
-            Optional.empty(), Optional.empty());
+            Optional.empty());
     }
 
     /**
@@ -102,14 +94,6 @@ public class PlatformChatCreateResponse implements Response {
     @JsonIgnore
     public Optional<PlatformChatCompletedResponse> platformChatCompletedResponse() {
         return (Optional<PlatformChatCompletedResponse>) platformChatCompletedResponse;
-    }
-
-    /**
-     * Successful response.
-     */
-    @JsonIgnore
-    public Optional<String> res() {
-        return res;
     }
 
     public static Builder builder() {
@@ -163,25 +147,6 @@ public class PlatformChatCreateResponse implements Response {
         return this;
     }
 
-    /**
-     * Successful response.
-     */
-    public PlatformChatCreateResponse withRes(String res) {
-        Utils.checkNotNull(res, "res");
-        this.res = Optional.ofNullable(res);
-        return this;
-    }
-
-
-    /**
-     * Successful response.
-     */
-    public PlatformChatCreateResponse withRes(Optional<String> res) {
-        Utils.checkNotNull(res, "res");
-        this.res = res;
-        return this;
-    }
-
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -195,15 +160,14 @@ public class PlatformChatCreateResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.platformChatCompletedResponse, other.platformChatCompletedResponse) &&
-            Utils.enhancedDeepEquals(this.res, other.res);
+            Utils.enhancedDeepEquals(this.platformChatCompletedResponse, other.platformChatCompletedResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            platformChatCompletedResponse, res);
+            platformChatCompletedResponse);
     }
     
     @Override
@@ -212,8 +176,7 @@ public class PlatformChatCreateResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "platformChatCompletedResponse", platformChatCompletedResponse,
-                "res", res);
+                "platformChatCompletedResponse", platformChatCompletedResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -226,8 +189,6 @@ public class PlatformChatCreateResponse implements Response {
         private HttpResponse<InputStream> rawResponse;
 
         private Optional<? extends PlatformChatCompletedResponse> platformChatCompletedResponse = Optional.empty();
-
-        private Optional<String> res = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -282,30 +243,11 @@ public class PlatformChatCreateResponse implements Response {
             return this;
         }
 
-
-        /**
-         * Successful response.
-         */
-        public Builder res(String res) {
-            Utils.checkNotNull(res, "res");
-            this.res = Optional.ofNullable(res);
-            return this;
-        }
-
-        /**
-         * Successful response.
-         */
-        public Builder res(Optional<String> res) {
-            Utils.checkNotNull(res, "res");
-            this.res = res;
-            return this;
-        }
-
         public PlatformChatCreateResponse build() {
 
             return new PlatformChatCreateResponse(
                 contentType, statusCode, rawResponse,
-                platformChatCompletedResponse, res);
+                platformChatCompletedResponse);
         }
 
     }

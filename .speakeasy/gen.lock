@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 0359d4fe-2923-46fc-aaca-cf70b48dcfa1
 management:
-  docChecksum: d3255aaee85a98958462efd3fc79f664
+  docChecksum: edc1d70ac465e8b7ce71bf4303a05851
   docVersion: 0.9.0
-  speakeasyVersion: 1.796.2
-  generationVersion: 2.933.0
-  releaseVersion: 0.16.2
-  configChecksum: 174815e7588f8f9a917546d008afcad2
+  speakeasyVersion: 1.796.3
+  generationVersion: 2.934.1
+  releaseVersion: 0.17.0
+  configChecksum: 5e6760ca4e8c9fe35434d5c5277c3815
   repoURL: https://github.com/gleanwork/api-client-java.git
   installationURL: https://github.com/gleanwork/api-client-java
   published: true
 persistentEdits:
-  generation_id: c9937813-4936-41c4-b82f-38be266585fd
-  pristine_commit_hash: 372b8cbf0c3a0a10564400cee6a98c7aaa11f2a6
-  pristine_tree_hash: abc3515c274d31f1de0ba5b87d4838648ea89f49
+  generation_id: 34509b0d-21ec-43fe-b7e9-c65ffb1ba53b
+  pristine_commit_hash: 29d359b19b5c9fbfe4af3403ce8fb46bc1f6a577
+  pristine_tree_hash: 389db05890ada6aef5eb720b1b3944e87067ecab
 features:
   java:
     acceptHeaders: 2.81.2
@@ -36,6 +36,7 @@ features:
     nameOverrides: 2.81.5
     nullables: 0.1.1
     sdkHooks: 1.2.0
+    serverEvents: 0.2.5
     unions: 0.3.8
     uploadStreams: 0.1.0
 trackedFiles:
@@ -437,8 +438,8 @@ trackedFiles:
     pristine_git_object: 235e7b43733c93c935c589d0c8ea224ff5c8f976
   docs/models/components/ChatMessageFragment.md:
     id: 998e5c5b431f
-    last_write_checksum: sha1:2c33fb950c1a4879055f65e4f169df0fe1f2962f
-    pristine_git_object: 6b3784453654331bc970d443341260e220f4d60c
+    last_write_checksum: sha1:411832c92fa9fd75d25658f4d8609f497f133120
+    pristine_git_object: 4818e6846d3e2be77599e362d9771e38075bf71a
   docs/models/components/ChatMetadata.md:
     id: cc43eff646ef
     last_write_checksum: sha1:f594ff1895ab08264e1029f275a3c9bfc1c9b748
@@ -1527,10 +1528,6 @@ trackedFiles:
     id: 068ec2da96dd
     last_write_checksum: sha1:8b31fa1d47c145c5e70b3bc4ebfa8825a6f75de7
     pristine_git_object: dc3592ff09434ded18e0862142511753b690f448
-  docs/models/components/Input.md:
-    id: bf64e9517504
-    last_write_checksum: sha1:84e330b29f13c15647d6ce24cd9a0da5b1822576
-    pristine_git_object: cfd493ab959a14d6b1bc7081384f71c30b817484
   docs/models/components/InputOptions.md:
     id: 517f976a3847
     last_write_checksum: sha1:138f736bca31c0c2a5f49e98fa14cfb464ada0a6
@@ -1755,10 +1752,6 @@ trackedFiles:
     id: 5cbf4ccfdc29
     last_write_checksum: sha1:89670a29ae8347bbd0083612ba5b81417a2be02a
     pristine_git_object: ed122a44116a504b3410fb455b62912b03517283
-  docs/models/components/Object.md:
-    id: 664819da5a69
-    last_write_checksum: sha1:e7c9b3652c11606148764f0069ccaba34048c0cd
-    pristine_git_object: fd1ecf2b9a02cfb54111b258af14621132b056ac
   docs/models/components/ObjectDefinition.md:
     id: 39e14825b6cd
     last_write_checksum: sha1:cbc92f9eb823a3abef989226bc1ca5e7950a6c0b
@@ -1937,16 +1930,16 @@ trackedFiles:
     pristine_git_object: 085ed1c4164e3228a9a5e2debba09002b5f4aa40
   docs/models/components/PlatformChatCompletedResponse.md:
     id: 400d2306e17e
-    last_write_checksum: sha1:847f2656c3dcbf48ab7a8591f240f91690a736bf
-    pristine_git_object: 0aa9024ae2ebad9993b3ef3412b585301b6169bd
+    last_write_checksum: sha1:68a3384708191ff203a679dad382b55a9f347fc4
+    pristine_git_object: fb891e05bf50c864c239f0d2e6ba3081708aebb0
+  docs/models/components/PlatformChatCompletedResponseObject.md:
+    id: 64319c608f22
+    last_write_checksum: sha1:775ad77208ce16db251df04d361f953a46524cfa
+    pristine_git_object: 5c7deec0bf6c0f1d534588cde33b6c4f4f8f5e53
   docs/models/components/PlatformChatCompletedResponseStatus.md:
     id: 3a23e7cd4ef2
     last_write_checksum: sha1:238e24c34a11efa7735c3c9ff29d78c2396e856e
     pristine_git_object: 20f5a52a269c0a898f4ec473d7f35f3d2955d62c
-  docs/models/components/PlatformChatCreateRequest.md:
-    id: db25c888cc01
-    last_write_checksum: sha1:b03267cf53c998a916b972059c1428dce49a509a
-    pristine_git_object: 6231cff7b54eb7c39673ef3352a335db80ccb356
   docs/models/components/PlatformChatCustomEntitySource.md:
     id: b763add1c9d5
     last_write_checksum: sha1:6e91ed1f230b5ec1975190bfbbe21bc9da233def
@@ -1975,6 +1968,18 @@ trackedFiles:
     id: 3983e99d9633
     last_write_checksum: sha1:3f8e3f5147a07efb654c0bf889de3512f12110f9
     pristine_git_object: c346c489cda9600ac049b5cc5567caa9e1263915
+  docs/models/components/PlatformChatFailedResponse.md:
+    id: 7ee247791dcf
+    last_write_checksum: sha1:012cb92290fa8c60b5d7916e4de3e4bc07499ad0
+    pristine_git_object: a915d711422811316f9c8448896041f62c3112dd
+  docs/models/components/PlatformChatFailedResponseObject.md:
+    id: 185374f1e5f0
+    last_write_checksum: sha1:832295db18a709954f1e82b92306bac764ea17e0
+    pristine_git_object: 3e509205c1c77ede099cde12c08eb50b9894e804
+  docs/models/components/PlatformChatFailedResponseStatus.md:
+    id: 8a08455dcd78
+    last_write_checksum: sha1:6e263766961c54405ea82960bdbe0f05a56db23e
+    pristine_git_object: 194f8757d4a4c59ebcf287e1c4d6dc8790cd65b1
   docs/models/components/PlatformChatFileSource.md:
     id: a2ba6aadb91b
     last_write_checksum: sha1:639976b9382c900ee537983981b86409802ec09e
@@ -2019,6 +2024,86 @@ trackedFiles:
     id: 304f2fe8daa1
     last_write_checksum: sha1:7cca2e81093d3c779471121596dc8f5ccfb74cb7
     pristine_git_object: 2084ff25e168de48f6c4343dd0b42c83f970d2e2
+  docs/models/components/PlatformChatResponseError.md:
+    id: 27e7d2af9dc5
+    last_write_checksum: sha1:533d4736d1290907173e6ed653ed3d9ea3dc4db6
+    pristine_git_object: 4b149f8683883b87fa84ea8097c1ad1d09eb6a72
+  docs/models/components/PlatformChatStreamEventServerSentEvent.md:
+    id: c55ff5034521
+    last_write_checksum: sha1:74c7a2b933db05565fbd3ae8a76d606e0bfecd86
+    pristine_git_object: 3908ef56dbd3e8ab9188d60e26dc885b19e7f6f3
+  docs/models/components/PlatformChatStreamOutputTextDelta.md:
+    id: 6b38a0a2cddc
+    last_write_checksum: sha1:43929d05b2d3e00796c8c9d52b4cbf2197af1211
+    pristine_git_object: 2eb6edc59f3c0c81f462c16713a5312a9670aa95
+  docs/models/components/PlatformChatStreamOutputTextDeltaServerSentEvent.md:
+    id: 5532d0d00dea
+    last_write_checksum: sha1:9ae988ddea527211571b4cad46e4cd138e5c06e2
+    pristine_git_object: 48ea69e615b76cfd3185f40c5bad04bf6cdb513a
+  docs/models/components/PlatformChatStreamOutputTextDeltaType.md:
+    id: 7d3d39901909
+    last_write_checksum: sha1:3ae8816a7936f0b529f0163e1d1a49f64f999221
+    pristine_git_object: ba4be9a22c34bf248d073bbeded233bfd512d005
+  docs/models/components/PlatformChatStreamOutputTextDone.md:
+    id: df795bffc1e2
+    last_write_checksum: sha1:a84d7f95e5d1d676d8aea3418b61e8787b1c3cf1
+    pristine_git_object: d97720e056a3c2026b2c763f1617faa96ba1e08d
+  docs/models/components/PlatformChatStreamOutputTextDoneServerSentEvent.md:
+    id: 8541aa080f92
+    last_write_checksum: sha1:68309cc91b60761bb13de142340adb35f24d88e0
+    pristine_git_object: 686e318d776672df133a6adc698d759134a7353b
+  docs/models/components/PlatformChatStreamOutputTextDoneType.md:
+    id: d140425eb378
+    last_write_checksum: sha1:84874411161384f990ec6c59b65b43b8f0d3f087
+    pristine_git_object: 88b46d18e58a4051ea43916c7f69f8c25dc912f3
+  docs/models/components/PlatformChatStreamProgress.md:
+    id: dfde07263ae3
+    last_write_checksum: sha1:15024d2c6d598fb6d4e55aeeee8755d139efd780
+    pristine_git_object: 790a473470e0325745a2468caf2ee9d7cb790e38
+  docs/models/components/PlatformChatStreamProgressServerSentEvent.md:
+    id: 2028893aadb4
+    last_write_checksum: sha1:016cd6bc9a34bac609083341767d395c5f298231
+    pristine_git_object: 9bfa7ac85d3579b23ec4f437b60f32ebeba8080f
+  docs/models/components/PlatformChatStreamProgressType.md:
+    id: f41cfbaba59e
+    last_write_checksum: sha1:089bde736922d5256f267af9677102a006a9d418
+    pristine_git_object: c915c3259324aa065f54e5112ea530403558f15f
+  docs/models/components/PlatformChatStreamResponseCompleted.md:
+    id: 0c6739c9aa59
+    last_write_checksum: sha1:ad7209cf2b181d0dfe0421c230ae2035f7dfa9df
+    pristine_git_object: 8ad0a44bf79b9281b2700837b265cc0d45344937
+  docs/models/components/PlatformChatStreamResponseCompletedServerSentEvent.md:
+    id: b4360cbd17ff
+    last_write_checksum: sha1:7275310582340b9b6117df4f769da5c4cbd2b898
+    pristine_git_object: 3deb8ca7e1b5bb09ad24723e764084e25e61e8ea
+  docs/models/components/PlatformChatStreamResponseCompletedType.md:
+    id: 21ec62d67757
+    last_write_checksum: sha1:bc728bf0ff917d151450f858701e648c3e42038a
+    pristine_git_object: 962c99e0c5e8b46336b341c157163ce527dcf39c
+  docs/models/components/PlatformChatStreamResponseCreated.md:
+    id: 08bb2927746b
+    last_write_checksum: sha1:eb119be9b3f324e83b9e12ec7fd90ffa82dba216
+    pristine_git_object: 383adc19520ddd4dd68bdd742541acd7e00d2f90
+  docs/models/components/PlatformChatStreamResponseCreatedServerSentEvent.md:
+    id: 7e13510b3dde
+    last_write_checksum: sha1:6050f794d96203d4621dc6ecc9b1f0889d930f1f
+    pristine_git_object: 08e4b0410e122836dd8b33788b506bcf218f4c66
+  docs/models/components/PlatformChatStreamResponseCreatedType.md:
+    id: b5a082d03fc2
+    last_write_checksum: sha1:fa3eb496e51c37132fcdfd55ece2d7ca85a0b7d2
+    pristine_git_object: 68bfc3c8a83a1f846f75389dd3a5dcccaf4bf404
+  docs/models/components/PlatformChatStreamResponseFailed.md:
+    id: b0e6c3144dc4
+    last_write_checksum: sha1:b4db2f6219265077edd3fb418b437f69fb1cec2f
+    pristine_git_object: a65fda7d7446f2d6a6e0e572357ddebca8174cab
+  docs/models/components/PlatformChatStreamResponseFailedServerSentEvent.md:
+    id: e9c34c2c5b4a
+    last_write_checksum: sha1:722cea076bcbd368544e424bcfdf5509cf254db6
+    pristine_git_object: 9dcae02f67365f705ab4f695dbc97564e17983d6
+  docs/models/components/PlatformChatStreamResponseFailedType.md:
+    id: cbf41c44e2e8
+    last_write_checksum: sha1:26e76466423be47aeeebbabf765eacfc9b21d651
+    pristine_git_object: 1e072b0c4c5e431a413448eff2dd8fe986d60e48
   docs/models/components/PlatformContentScheduleWebhookEvent.md:
     id: 56a5266ec1e3
     last_write_checksum: sha1:7875fe331731f6808d2670d25b1831cc9628fe65
@@ -3711,10 +3796,30 @@ trackedFiles:
     id: 69c6ba109512
     last_write_checksum: sha1:439f70aa6d30b622e8bb20c6ef8c2a8ce800a459
     pristine_git_object: e1d4afd47a1e924bf6c174452f04c361350c4ad2
+  docs/models/operations/PlatformChatCreateInput.md:
+    id: f4793f35c9b2
+    last_write_checksum: sha1:33cf87c678b2c6ceacb722f66e13dcc2482fb3b4
+    pristine_git_object: eb733534ae775f35501834b2719906c02f811bf7
+  docs/models/operations/PlatformChatCreateRequest.md:
+    id: 4fd6bd954008
+    last_write_checksum: sha1:d77984c4da6afc6d5bd186781f4054d470067d3a
+    pristine_git_object: be17d27e83a4c342ab05ee8a802c030025dabc71
   docs/models/operations/PlatformChatCreateResponse.md:
     id: 92f81c654e6d
-    last_write_checksum: sha1:5816a634d9d1014730cd0658718d39454d6dcd4f
-    pristine_git_object: 885689c15e8cbf39e38b846047c70fc72908e61b
+    last_write_checksum: sha1:56ac3cdd9f162b2ce64e515268a3c342ac48ca7d
+    pristine_git_object: 4271bbe51ad86f9a79a87705c7d3af98423ac7a0
+  docs/models/operations/PlatformChatCreateStreamInput.md:
+    id: 15a0936103b6
+    last_write_checksum: sha1:231d3eac4352e9590f8c8637b049ef401c891eca
+    pristine_git_object: 1e95b3c5cfd4ddda44a99bdc3f21f4b731945bb1
+  docs/models/operations/PlatformChatCreateStreamRequest.md:
+    id: 5549db932a83
+    last_write_checksum: sha1:7739999d24c9dae4254a3a78911eeb7387f9817c
+    pristine_git_object: 049d00d8c7ccf11524043851969ca27a42ecce0e
+  docs/models/operations/PlatformChatCreateStreamResponse.md:
+    id: 3c3852ec4a32
+    last_write_checksum: sha1:7fb6b5ae80a36a8ef1e90981bb7bf89b5ab12353
+    pristine_git_object: 22deb773dd42b16317fe454cac68b37de69bf554
   docs/models/operations/PlatformSearchFiltersRequest.md:
     id: 1a4008095fc4
     last_write_checksum: sha1:cd7c15a3f2da10917713db2b6bcf26e046df624c
@@ -4225,8 +4330,8 @@ trackedFiles:
     pristine_git_object: 6603db8c8828357d67059a746ee541aee6c45301
   docs/sdks/chat/README.md:
     id: 393193527c2c
-    last_write_checksum: sha1:aa8e2380bd25a27804130a980ef4c944518b9578
-    pristine_git_object: 5b57b52cddaf421eba965b743f88a4ef1d18cdd0
+    last_write_checksum: sha1:5729edbf9825e91e6885d40d3eb1a389b9fbb8c2
+    pristine_git_object: dac4d4806aba7cb5cd4e5f9127f1790cd4e348be
   docs/sdks/clientagents/README.md:
     id: 8e00e6d6b64e
     last_write_checksum: sha1:8abee37ed4719ed7b9bacfa7a0bd0e3daf0aae94
@@ -4349,8 +4454,8 @@ trackedFiles:
     pristine_git_object: 3decbce5bd40edbe278c1c5d2dbf585808e51d9a
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:c26db8543a9d7ff582eb96c454e19e90470bc500
-    pristine_git_object: b1f7dc4b71dedee75e7105dc61a749e136ae89cc
+    last_write_checksum: sha1:7aae79dbd6c960500bfbf681208634e98a5cbeb9
+    pristine_git_object: 783b11aa17a36087cfc41298e4857ec8e0bcb632
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -4409,8 +4514,8 @@ trackedFiles:
     pristine_git_object: 2e4b82da55703e54e9f737d617789cbda7c1d869
   src/main/java/com/glean/api_client/glean_api_client/AsyncChat.java:
     id: 64a2a6f928f7
-    last_write_checksum: sha1:95772920a68539eed6384740f64ba786e34b937c
-    pristine_git_object: f1f1c161c97c579a2a984e48632bda3bd336e079
+    last_write_checksum: sha1:0a5d68f5a531f2f20bd9e7e647fbf020aea23bd6
+    pristine_git_object: 60f20d9e8bed311de7c738d4df0fa8e46016d929
   src/main/java/com/glean/api_client/glean_api_client/AsyncClient.java:
     id: 4458603ff05d
     last_write_checksum: sha1:eed6f6b62a1760730662b478d997e1002789b813
@@ -4553,8 +4658,8 @@ trackedFiles:
     pristine_git_object: 097ece11f4924877616823c8526babbc38a3b1cb
   src/main/java/com/glean/api_client/glean_api_client/Chat.java:
     id: 84cca4c2d53b
-    last_write_checksum: sha1:d226cea2626a0ae08eeeef29d151aaef2e535759
-    pristine_git_object: 2eea4a259f885d8bde2967ea78dcd17a2c232b83
+    last_write_checksum: sha1:bff148c946e4611f3f07577af9252672bd8168a8
+    pristine_git_object: 922d74dc5321f8f8549e02fcb72d610a3207b6c3
   src/main/java/com/glean/api_client/glean_api_client/Client.java:
     id: 3e1158028401
     last_write_checksum: sha1:141ebab96ffa1eb9416a82c7901cdf8105d9df8d
@@ -4673,8 +4778,8 @@ trackedFiles:
     pristine_git_object: ffae914775eb41ff311371f62504344a59d090fd
   src/main/java/com/glean/api_client/glean_api_client/SDKConfiguration.java:
     id: d5fcc61f5992
-    last_write_checksum: sha1:f027fc9d9ea1ec0766f6901dd019b41f174c0991
-    pristine_git_object: b312bea1c7ac4170bc816cfab9d93db2584b280a
+    last_write_checksum: sha1:60164b6812ebebc0d729db5ecf4e9202453c996a
+    pristine_git_object: 573b671e3250fe4723203f417f0dae4149a8f860
   src/main/java/com/glean/api_client/glean_api_client/Search.java:
     id: f22d94b920b5
     last_write_checksum: sha1:14e024607aebae4b1197445ad31984898c4735a3
@@ -5093,8 +5198,8 @@ trackedFiles:
     pristine_git_object: 2546c775b695452bcc1a8d8e134e99c2a70c9976
   src/main/java/com/glean/api_client/glean_api_client/models/components/ChatMessageFragment.java:
     id: c22528520aec
-    last_write_checksum: sha1:6673a4bdb67f5620d0c1a7fe446a63ab4b5d4c59
-    pristine_git_object: bea60ac335b6e1f8595b6e2289999de245c574c3
+    last_write_checksum: sha1:caaf88b4b2f1b2d79a73b5a416f7fc9f55829d21
+    pristine_git_object: 7bc18bc531ad0b9e3d2331b319db0f27729b2e86
   src/main/java/com/glean/api_client/glean_api_client/models/components/ChatMetadata.java:
     id: b6d2e9d21bd1
     last_write_checksum: sha1:400c3443ecc621cf6e43f7e6855c7fcbdcd97e36
@@ -6183,10 +6288,6 @@ trackedFiles:
     id: a50881f74636
     last_write_checksum: sha1:81f3d00e84b6016fc9264c17cb0d7196993cbdd2
     pristine_git_object: 8765aff9af60fd7d17cffe1b25a6c10443414c11
-  src/main/java/com/glean/api_client/glean_api_client/models/components/Input.java:
-    id: 5191994177f6
-    last_write_checksum: sha1:548841ce0622694c46a81e0bae1ee20986a9533b
-    pristine_git_object: 38d3eea88a9519ddeedc29fc26adf84ede32d19d
   src/main/java/com/glean/api_client/glean_api_client/models/components/InputOptions.java:
     id: 5e6954da0fe5
     last_write_checksum: sha1:1266cca7e2991af173e8e8822292f270476ef0d3
@@ -6411,10 +6512,6 @@ trackedFiles:
     id: c15527d88840
     last_write_checksum: sha1:34c7cd15f310127295ab3727a6ce5f185b788c4d
     pristine_git_object: 86b2ac96bdcdc768cee7b3574a1cca0b83493e2a
-  src/main/java/com/glean/api_client/glean_api_client/models/components/Object.java:
-    id: 86fd6cc8b4d3
-    last_write_checksum: sha1:edb5eafb22a636119d3b1130a94dd8242b713601
-    pristine_git_object: dd5dfb2cd34eec8f65dfd8fcf73a7535f931c3c9
   src/main/java/com/glean/api_client/glean_api_client/models/components/ObjectDefinition.java:
     id: 20f12c950005
     last_write_checksum: sha1:533f08382aea9bcb77775d994bd312f75289b817
@@ -6597,16 +6694,16 @@ trackedFiles:
     pristine_git_object: caffa82ac05b686575ef86ce6a940a0d2576b17d
   src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatCompletedResponse.java:
     id: 084ad11abcf1
-    last_write_checksum: sha1:e503707615ff5f13d6bb0149024f47515478812b
-    pristine_git_object: 7a8ec5abd25bdcd94647742087247bf9eb617159
+    last_write_checksum: sha1:96aad944c430895c3d817e1c1ea73343c9b3bfe3
+    pristine_git_object: 0f407a32e29c09498181d76b2100aec9583d6063
+  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatCompletedResponseObject.java:
+    id: 761c01ff7472
+    last_write_checksum: sha1:0d579efdbd113202b58bb57658765a8d3020aebd
+    pristine_git_object: b50175695e8597beb503999e8fa9a1619335a8f0
   src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatCompletedResponseStatus.java:
     id: 9afc9bd6c744
     last_write_checksum: sha1:4a629f9362bc85d434dbc3750b1f4236853cdcf6
     pristine_git_object: a75fec8b685b48446318bcf459a219b39c32ba37
-  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatCreateRequest.java:
-    id: 47fecfbaeae8
-    last_write_checksum: sha1:395db0df5714ecf28437feee6438bcd683de96bb
-    pristine_git_object: b0ef7f405a3e65eead15be4442932022d17b8b19
   src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatCustomEntitySource.java:
     id: 32d1ae4ae106
     last_write_checksum: sha1:e4c20820e391bee90b325b9fe3a49d50f1f473d4
@@ -6635,6 +6732,18 @@ trackedFiles:
     id: c04d935ee3d0
     last_write_checksum: sha1:f665e9067fdbc9a2e11b995af94109287de93823
     pristine_git_object: cb8314a5c756bac26833203aee86d75cf6072d7b
+  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatFailedResponse.java:
+    id: 0c2beacd9479
+    last_write_checksum: sha1:46eda381c9c62e76ed3171de55bb683d2f3c2b3a
+    pristine_git_object: fa4cc20fdbfe207e5cc80a885be38c5fc9752c8f
+  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatFailedResponseObject.java:
+    id: ab00cddfe3ac
+    last_write_checksum: sha1:0e1d81104ee81459497367a86abf16868a625300
+    pristine_git_object: 6b458f717f9625f38b49de6f3edda282fcdb967d
+  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatFailedResponseStatus.java:
+    id: 384f2efa0b94
+    last_write_checksum: sha1:9cddac1af670418d70f8e56fda6ce2e289debbd7
+    pristine_git_object: 7f64ee580d0467017c987bc2c99055c9c40df772
   src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatFileSource.java:
     id: 6bd3d8d6dcbc
     last_write_checksum: sha1:cb1a449f76456a7b87e12151e33ed7dcebb01462
@@ -6679,6 +6788,90 @@ trackedFiles:
     id: ddb60ba6386a
     last_write_checksum: sha1:24137e3784668601f67acd989f0fdae00dde46f8
     pristine_git_object: c15c4e88ebadb613a1a53b136f553452fe9335e1
+  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatResponseError.java:
+    id: 837b13e58bc6
+    last_write_checksum: sha1:d4813cc80f371dc82cb7e64f9fb7f2ea87a37b52
+    pristine_git_object: d814337df29f21b220b29bdaa088e2bb40d0ba33
+  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatStreamEventServerSentEvent.java:
+    id: d99bf35581c4
+    last_write_checksum: sha1:366e71adb39a03366bb197ac0561d97530ab1409
+    pristine_git_object: de959f642e283542415ee64b5b1decaf6ed5b68b
+  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatStreamEventServerSentEventTypeIdResolver.java:
+    id: 61e1abecf4d2
+    last_write_checksum: sha1:83cb4c7fa0c3f627511a741ed90a432bab2b195c
+    pristine_git_object: 0254419982086eff5b484bfa76e2a2ebffb6b48d
+  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatStreamOutputTextDelta.java:
+    id: 645efa9c0867
+    last_write_checksum: sha1:f5584c564e46b5e60c80e89a53be5b7556c78315
+    pristine_git_object: 9c39f81258460ae2c06d835ff72011751e7db99a
+  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatStreamOutputTextDeltaServerSentEvent.java:
+    id: 7f4d9da80b20
+    last_write_checksum: sha1:900613c5c8effd17bec8170693c1a37b1ac0298f
+    pristine_git_object: d7935fad81a91b7266ffa5fe464cd56180690728
+  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatStreamOutputTextDeltaType.java:
+    id: 00868c839568
+    last_write_checksum: sha1:506d4951c5122d5c27ce7bfb2346df358c83624e
+    pristine_git_object: 9ee2dc0ca3943a13758b671ba320b831e8c156e7
+  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatStreamOutputTextDone.java:
+    id: e9b743c2522b
+    last_write_checksum: sha1:e54c737cfa692e1b9e42d1716a7848308957ff3e
+    pristine_git_object: db107cf4f2180a5c4cd9eaa9e0c5193ce8466f4f
+  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatStreamOutputTextDoneServerSentEvent.java:
+    id: 52b3afa0c47d
+    last_write_checksum: sha1:ffa866ed13015535ba3af6badbacaf86aa20558a
+    pristine_git_object: 8445bb5417f15e56fbc31ff86dd08a5c8a22a9ad
+  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatStreamOutputTextDoneType.java:
+    id: 4b290abaf348
+    last_write_checksum: sha1:9b7d8fd01118db7e20c57c688425932b2da123b4
+    pristine_git_object: be805e7789d12c0ba6d709318ae24236dd8a863c
+  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatStreamProgress.java:
+    id: 062c57b9df88
+    last_write_checksum: sha1:0fc0db9482141e62923fabe9eecf32cd14a74f46
+    pristine_git_object: 3bdb06baa3a4fdfc8395d8ab76f76e2423ebf646
+  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatStreamProgressServerSentEvent.java:
+    id: fda7a5b0886a
+    last_write_checksum: sha1:e48e4aab2f03997621b080fa02abd57cf8877285
+    pristine_git_object: 7cb6bb9baf26f3bd469558be77f63bf73e8a2c01
+  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatStreamProgressType.java:
+    id: 6e5ee1445d95
+    last_write_checksum: sha1:07f9142cf3c339263d6d28ec1b2d6803f51879bc
+    pristine_git_object: 26c4b77629a5ccad2a6f5caef50ce7f338e2b39d
+  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatStreamResponseCompleted.java:
+    id: cb16e9414e5a
+    last_write_checksum: sha1:ee2e76417e4322176bd800feab9dd3c5546e1e36
+    pristine_git_object: 8e270d9b16e82fb751d7f7f0bd90fa66808d2b57
+  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatStreamResponseCompletedServerSentEvent.java:
+    id: b5410ab61073
+    last_write_checksum: sha1:2ae7618a38ccbc9438480a37ccd98d1040c7945e
+    pristine_git_object: 7a84dc9a7e5f0499b34fedba6723e20bb28fa318
+  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatStreamResponseCompletedType.java:
+    id: 7d85a766f662
+    last_write_checksum: sha1:5ce6b84d6d1065c1471ad54214aaf24b96737f50
+    pristine_git_object: 2678a417b7d36f24f0bc79df9ea20d933c0e23fc
+  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatStreamResponseCreated.java:
+    id: 89059f6114e6
+    last_write_checksum: sha1:8d3391c54c4517baa98206b48bd0638a5dc3687b
+    pristine_git_object: b1debfb9ff466e426d07c84801e1e16098962481
+  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatStreamResponseCreatedServerSentEvent.java:
+    id: 6e54677c8b1c
+    last_write_checksum: sha1:28f27b1e37de8040404f27daede2d60f571974b8
+    pristine_git_object: b8bbddbb58c5b104492e16d0766e9dc2c7bd09a8
+  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatStreamResponseCreatedType.java:
+    id: 348d90dba9d0
+    last_write_checksum: sha1:5c1d6be4cba6f310ba3c444386cefbb42b2ffd36
+    pristine_git_object: 961571439998127b2a1a4d4ed95abbebb90cdbb6
+  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatStreamResponseFailed.java:
+    id: 2edab81f8038
+    last_write_checksum: sha1:d721e93826b14e253089d8eaf37d9ed0762b0e97
+    pristine_git_object: 70476eae9a47e0d88bc6d6b54c59475fcf26293f
+  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatStreamResponseFailedServerSentEvent.java:
+    id: fbc7a278ccaa
+    last_write_checksum: sha1:d99940c095ca2b60ed9d9a370297a4af85d40591
+    pristine_git_object: 0e4aa76dd3b12f62a08e10fd240649aba7158701
+  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformChatStreamResponseFailedType.java:
+    id: 4a00a656a0ae
+    last_write_checksum: sha1:94a0567b5fbf5c54d101ffc1dc670697f41ca827
+    pristine_git_object: c32a10d66ca7106e697bc71df86d73e28bd60d5f
   src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformContentScheduleWebhookEvent.java:
     id: accfef1744f3
     last_write_checksum: sha1:82c5fffcdd7644aa04332e0ec8811c3dc003d67f
@@ -7511,6 +7704,10 @@ trackedFiles:
     id: 27211d671564
     last_write_checksum: sha1:728b864473d009e742c608412821dcc43d3cbd51
     pristine_git_object: 973dc151e031d1ad830823ffb23a10f8d21cf70d
+  src/main/java/com/glean/api_client/glean_api_client/models/components/UnknownPlatformChatStreamEventServerSentEvent.java:
+    id: "477837010874"
+    last_write_checksum: sha1:30ddfe67fef8ec5fafb469a282ab892400dc899e
+    pristine_git_object: 686600f73ca8a38c726ebaa8e9eb8733fcdf00db
   src/main/java/com/glean/api_client/glean_api_client/models/components/UnknownPlatformTriggerWebhookEvent.java:
     id: a23336ba337c
     last_write_checksum: sha1:490d8f3677b8cb0f09e8fe1632bab89bc1029279
@@ -8097,8 +8294,12 @@ trackedFiles:
     pristine_git_object: 6954137606f65f50a3347f5454e9c08b5dd0bfbf
   src/main/java/com/glean/api_client/glean_api_client/models/operations//async/PlatformChatCreateRequestBuilder.java:
     id: 8992c58ea90d
-    last_write_checksum: sha1:6245ae2a766349f3d6b594c630d0735a069f5a44
-    pristine_git_object: b37daf486617cf041b36cc75efce7b85cbd39e29
+    last_write_checksum: sha1:143417e27cbb392ebfb20456036673591d46cfd2
+    pristine_git_object: 0c802858a01b29e1ab44685bca4370e435d5676a
+  src/main/java/com/glean/api_client/glean_api_client/models/operations//async/PlatformChatCreateStreamRequestBuilder.java:
+    id: 004990aaa45d
+    last_write_checksum: sha1:16d88833e3691ceceabeff1c467bfd743678e0dd
+    pristine_git_object: 88ea724f53ed473d80197cb400019add1cdf9ba6
   src/main/java/com/glean/api_client/glean_api_client/models/operations//async/PlatformSearchFiltersRequestBuilder.java:
     id: 8e0651b29a5c
     last_write_checksum: sha1:3aeb9ec2b9971853b54682b28a1c798f48e5a730
@@ -9399,14 +9600,38 @@ trackedFiles:
     id: 797a95edf650
     last_write_checksum: sha1:ad6856a23785be496390782be312b0b004a974a2
     pristine_git_object: f6403da16588dde87d9315b9438ebc1d4d4abe14
+  src/main/java/com/glean/api_client/glean_api_client/models/operations/PlatformChatCreateInput.java:
+    id: 072a93c9bac5
+    last_write_checksum: sha1:e5208612f33edf72b94d2448454cec65ca576c75
+    pristine_git_object: b49d59212c5d34379fd0566e49b864de9e9aa718
+  src/main/java/com/glean/api_client/glean_api_client/models/operations/PlatformChatCreateRequest.java:
+    id: 4fe284ab93e7
+    last_write_checksum: sha1:fd650c3ae25923b2ea88ac215d44b219526e41c8
+    pristine_git_object: 9c4580b9c52aae14fb7517f0b2333a23ff3d2f10
   src/main/java/com/glean/api_client/glean_api_client/models/operations/PlatformChatCreateRequestBuilder.java:
     id: 46e42c43e442
-    last_write_checksum: sha1:a7a01398adcad0c22659a7ddbf669d9324d2629e
-    pristine_git_object: 9db3d7dd57230054a374fdb5b5370da6e7974bee
+    last_write_checksum: sha1:02bffb26ba72f3c59919f44fe4ab752e86fc604a
+    pristine_git_object: 7a3f26f95fa3770f23b11acc8e082a6983639aeb
   src/main/java/com/glean/api_client/glean_api_client/models/operations/PlatformChatCreateResponse.java:
     id: f62b3419fe3c
-    last_write_checksum: sha1:dce615f275ad53b7d4ea54c6e7f4f6de810e2aab
-    pristine_git_object: 215a7922213670e23ab95cd9b84a857563d03621
+    last_write_checksum: sha1:6de36958cfa738bcac3bedfc0741064009bf6ccd
+    pristine_git_object: 5bb145a7934481d841bf38b12861261c91c7b4f4
+  src/main/java/com/glean/api_client/glean_api_client/models/operations/PlatformChatCreateStreamInput.java:
+    id: 8a4a972f0c2e
+    last_write_checksum: sha1:827d22981f2d5e85dd4db9f9b309ad7cbd32da3d
+    pristine_git_object: 564eea2ba1fc8dde5671ced8deb4f0f3e948ff00
+  src/main/java/com/glean/api_client/glean_api_client/models/operations/PlatformChatCreateStreamRequest.java:
+    id: 51c993a3bf3f
+    last_write_checksum: sha1:04cc404ea3161d8a66b4b3990eae8a613f2a8e02
+    pristine_git_object: 09b4e1c04405a1b6652a79c06f155b576164fac7
+  src/main/java/com/glean/api_client/glean_api_client/models/operations/PlatformChatCreateStreamRequestBuilder.java:
+    id: 233231117d7f
+    last_write_checksum: sha1:634a373809839540722e964158c1135186dd7893
+    pristine_git_object: f04b7b8041239c98f224f3c995bc0a5ff912b1db
+  src/main/java/com/glean/api_client/glean_api_client/models/operations/PlatformChatCreateStreamResponse.java:
+    id: 1a1bc5fe1d2b
+    last_write_checksum: sha1:9f5a459234437b9660c375235a9ef342fa5e723f
+    pristine_git_object: 5f63f2908f4bf5952a9a74bbdd63f1ebca048551
   src/main/java/com/glean/api_client/glean_api_client/models/operations/PlatformSearchFiltersRequest.java:
     id: fbf5c5a7d902
     last_write_checksum: sha1:28a9be6e4a226c76371f91ad6e0bd7d9b138e340
@@ -10561,8 +10786,12 @@ trackedFiles:
     pristine_git_object: 84352def253ce9dac5fb54dfd7a7b14df2f0b20e
   src/main/java/com/glean/api_client/glean_api_client/models/operations/async/PlatformChatCreateResponse.java:
     id: 54f44f787104
-    last_write_checksum: sha1:eaef437ffd8e7aee7af7a8064cd15938a7b4387e
-    pristine_git_object: af0ec313fe8cc889ef0f915a869054561568292b
+    last_write_checksum: sha1:742eb3da68673b2c4ccf1c6d2bd291b4ebe9bbc0
+    pristine_git_object: 76cb12fce4482bc7b7f4b6bb03c014884631674c
+  src/main/java/com/glean/api_client/glean_api_client/models/operations/async/PlatformChatCreateStreamResponse.java:
+    id: e984325d00c5
+    last_write_checksum: sha1:5c302c3700cc1ad796212639ff3a57ae069c16a5
+    pristine_git_object: 639badb9afe2b9bd8db43b309a4f29232fe41b84
   src/main/java/com/glean/api_client/glean_api_client/models/operations/async/PlatformSearchFiltersResponse.java:
     id: e44e4ce8ebf0
     last_write_checksum: sha1:e39322c68006b8dfc368d0b3630b6d687c809c37
@@ -11229,8 +11458,12 @@ trackedFiles:
     pristine_git_object: c5021a3812b4be41f37df82ccb8d7a9856c502b8
   src/main/java/com/glean/api_client/glean_api_client/operations/PlatformChatCreate.java:
     id: bc0b62eca15b
-    last_write_checksum: sha1:c11a8751ad773683a8416f0b90ca0046d8432b7f
-    pristine_git_object: f8840527376e9c7fc1ba4ca9cf73d1493463e14e
+    last_write_checksum: sha1:c35719bc69eb979300c0e232a5081a1f20c431e1
+    pristine_git_object: a33e2453cc4d775cf3209fdf031b73060318ad0b
+  src/main/java/com/glean/api_client/glean_api_client/operations/PlatformChatCreateStream.java:
+    id: 3227bbdb3ac2
+    last_write_checksum: sha1:8ab000b1890f125dc94c66b7a62eadd9ca70ea5e
+    pristine_git_object: 25f8259e0c3b31152cce7beec8bb7cc769c1c49f
   src/main/java/com/glean/api_client/glean_api_client/operations/PlatformSearch.java:
     id: 9b5d67796029
     last_write_checksum: sha1:094ccd1b45375475466482339959aafa1db10a56
@@ -13191,6 +13424,15 @@ examples:
           application/problem+json: {"type": "https://developers.glean.com/errors/invalid-cursor", "title": "Invalid Pagination Cursor", "status": 400, "detail": "The provided cursor has expired. Start a new search to get a fresh cursor.\n", "code": "invalid_cursor", "documentation_url": "https://developers.glean.com/errors/invalid-cursor", "request_id": "req_7f8a9b0c1d2e", "errors": [{"pointer": "/messages/0/role", "detail": "Must be one of: USER, GLEAN_AI.", "code": "invalid_cursor"}]}
         "500":
           application/problem+json: {"type": "https://developers.glean.com/errors/invalid-cursor", "title": "Invalid Pagination Cursor", "status": 400, "detail": "The provided cursor has expired. Start a new search to get a fresh cursor.\n", "code": "invalid_cursor", "documentation_url": "https://developers.glean.com/errors/invalid-cursor", "request_id": "req_7f8a9b0c1d2e", "errors": [{"pointer": "/messages/0/role", "detail": "Must be one of: USER, GLEAN_AI.", "code": "invalid_cursor"}]}
+  platform-chat-create-stream:
+    speakeasy-default-platform-chat-create-stream:
+      requestBody:
+        application/json: {"input": "What is our parental leave policy?", "stream": true, "store": true}
+      responses:
+        "400":
+          application/problem+json: {"type": "https://developers.glean.com/errors/invalid-cursor", "title": "Invalid Pagination Cursor", "status": 400, "detail": "The provided cursor has expired. Start a new search to get a fresh cursor.\n", "code": "invalid_cursor", "documentation_url": "https://developers.glean.com/errors/invalid-cursor", "request_id": "req_7f8a9b0c1d2e", "errors": [{"pointer": "/messages/0/role", "detail": "Must be one of: USER, GLEAN_AI.", "code": "invalid_cursor"}]}
+        "500":
+          application/problem+json: {"type": "https://developers.glean.com/errors/invalid-cursor", "title": "Invalid Pagination Cursor", "status": 400, "detail": "The provided cursor has expired. Start a new search to get a fresh cursor.\n", "code": "invalid_cursor", "documentation_url": "https://developers.glean.com/errors/invalid-cursor", "request_id": "req_7f8a9b0c1d2e", "errors": [{"pointer": "/messages/0/role", "detail": "Must be one of: USER, GLEAN_AI.", "code": "invalid_cursor"}]}
 examplesVersion: 1.0.2
 generatedTests:
   activity: "2025-06-09T18:03:44Z"
@@ -13333,6 +13575,7 @@ generatedTests:
   get_/rest/api/v1/tools/list: "2025-06-09T18:03:44Z"
   post_/rest/api/v1/tools/call: "2025-06-09T18:03:44Z"
   listpolicies: "2025-06-09T18:03:44Z"
+releaseNotes: "## Java SDK Changes:\n* `glean.chat.create()`: \n  *  `request.stream` **Changed**\n  *  `response.status[200].content[text/event-stream` **Removed** (Breaking ⚠️)\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md

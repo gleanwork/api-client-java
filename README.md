@@ -44,6 +44,7 @@ Remember that each namespace requires its own authentication token type as descr
   * [Asynchronous Support](#asynchronous-support)
   * [Authentication](#authentication)
   * [Available Resources and Operations](#available-resources-and-operations)
+  * [Server-sent event streaming](#server-sent-event-streaming)
   * [Error Handling](#error-handling)
   * [Server Selection](#server-selection)
   * [Custom HTTP Client](#custom-http-client)
@@ -67,7 +68,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.glean.api-client:glean-api-client:0.16.2'
+implementation 'com.glean.api-client:glean-api-client:0.17.0'
 ```
 
 Maven:
@@ -75,7 +76,7 @@ Maven:
 <dependency>
     <groupId>com.glean.api-client</groupId>
     <artifactId>glean-api-client</artifactId>
-    <version>0.16.2</version>
+    <version>0.17.0</version>
 </dependency>
 ```
 
@@ -377,6 +378,7 @@ For more information on obtaining the appropriate token type, please contact you
 ### [Chat](docs/sdks/chat/README.md)
 
 * [create](docs/sdks/chat/README.md#create) - Create a chat response
+* [createStream](docs/sdks/chat/README.md#createstream) - SDK-only logical operation. HTTP clients must call the base path; the URL fragment is not sent. Create a chat response
 
 ### [Client.Activity](docs/sdks/activity/README.md)
 
@@ -643,6 +645,106 @@ For more information on obtaining the appropriate token type, please contact you
 </details>
 <!-- End Available Resources and Operations [operations] -->
 
+<!-- Start Server-sent event streaming [eventstream] -->
+## Server-sent event streaming
+
+[Server-sent events][mdn-sse] are used to stream content from certain
+operations. These operations will expose the stream as an iterable that
+can be consumed using a simple `for` loop. The loop will
+terminate when the server no longer has any events to send and closes the
+underlying connection.
+
+```java
+package hello.world;
+
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.PlatformChatStreamEventServerSentEvent;
+import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.operations.*;
+import com.glean.api_client.glean_api_client.utils.EventStream;
+import java.lang.Exception;
+import java.util.stream.Stream;
+
+public class Application {
+
+    public static void main(String[] args) throws PlatformProblemDetailException, Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
+            .build();
+
+        PlatformChatCreateStreamRequest req = PlatformChatCreateStreamRequest.builder()
+                .input(PlatformChatCreateStreamInput.of("What is our parental leave policy?"))
+                .build();
+
+        PlatformChatCreateStreamResponse res = sdk.chat().createStream()
+                .request(req)
+                .call();
+
+        // handle event stream, must be closed after use!
+        try (EventStream<PlatformChatStreamEventServerSentEvent> events = res.events()) {
+            // Option 1: Use for-each loop
+            for (PlatformChatStreamEventServerSentEvent event : events) {
+                System.out.println(event);
+            }
+
+            // Option 2: Use Stream API
+            try (Stream<PlatformChatStreamEventServerSentEvent> stream = events.stream()) {
+                 stream.forEach(System.out::println);
+            }
+        }
+    }
+}
+```
+#### Reactive Streams Interoperability
+An asynchronous SDK client is also available for event streaming that returns a [`Flow.Publisher<T>`][flow-pub]. See [Asynchronous Support](#asynchronous-support) for more details on async benefits and reactive library integration.
+```java
+package hello.world;
+
+import com.glean.api_client.glean_api_client.AsyncGlean;
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.PlatformChatStreamEventServerSentEvent;
+import com.glean.api_client.glean_api_client.models.operations.PlatformChatCreateStreamInput;
+import com.glean.api_client.glean_api_client.models.operations.PlatformChatCreateStreamRequest;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformChatCreateStreamResponse;
+import com.glean.api_client.glean_api_client.utils.reactive.EventStream;
+import reactor.core.publisher.Flux;
+
+public class Application {
+
+    public static void main(String[] args) {
+
+        AsyncGlean sdk = Glean.builder()
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
+            .build()
+            .async();
+
+        PlatformChatCreateStreamRequest req = PlatformChatCreateStreamRequest.builder()
+                .input(PlatformChatCreateStreamInput.of("What is our parental leave policy?"))
+                .build();
+
+        EventStream<PlatformChatCreateStreamResponse, PlatformChatStreamEventServerSentEvent> res = sdk.chat().createStream()
+                .request(req)
+                .call();
+
+        // handle async event stream using Reactive Streams Publisher
+        // EventStream is a Reactive Streams Publisher, providing broad compatibility with reactive libraries
+
+        // Example using Project Reactor (illustrative)
+        Flux<PlatformChatStreamEventServerSentEvent>  flux = Flux.from(res);
+        flux.subscribe(
+            event -> System.out.println(event),
+            error -> error.printStackTrace(),
+            () -> System.out.println("Event stream completed")
+        );
+    }
+}
+```
+
+[mdn-sse]: https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events
+[flow-pub]: https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/Flow.Publisher.html
+<!-- End Server-sent event streaming [eventstream] -->
+
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
@@ -745,14 +847,14 @@ public class Application {
 many more subclasses in the JDK platform).
 
 **Inherit from [`GleanError`](./src/main/java/models/errors/GleanError.java)**:
-* [`com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException.java): Error response following RFC 9457, extended with `code` and `documentation_url` for machine-readable classification and self-service remediation. Applicable to 31 of 166 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.ErrorResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorResponse.java): Error response returned for failed requests. Applicable to 10 of 166 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse.java): Error response for custom metadata operations. Applicable to 6 of 166 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.CollectionError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.CollectionError.java): Semantic error. Status code `422`. Applicable to 3 of 166 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.GleanDataError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.GleanDataError.java): Forbidden. Applicable to 2 of 166 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.UnauthorizedAgentToolsError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.UnauthorizedAgentToolsError.java): Returned when the agent has tools the caller must authorize before the run can start. Each entry in `authenticationSuggestions` names one such tool; POST its `serverId` to `/tool-servers/{serverId}/auth` with `returnUrl` in the request body to obtain an `authorizationUrl` to redirect the end user to, then retry the run once OAuth completes. Status code `422`. Applicable to 2 of 166 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.AccessRequestPermissionDeniedResponseException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.AccessRequestPermissionDeniedResponseException.java): Forbidden. Status code `403`. Applicable to 1 of 166 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.PlatformUnauthorizedAgentToolsProblemException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.PlatformUnauthorizedAgentToolsProblemException.java): Problem detail extended with `authentication_suggestions` naming each tool the caller must authorize. Status code `422`. Applicable to 1 of 166 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException.java): Error response following RFC 9457, extended with `code` and `documentation_url` for machine-readable classification and self-service remediation. Applicable to 32 of 167 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.ErrorResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorResponse.java): Error response returned for failed requests. Applicable to 10 of 167 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse.java): Error response for custom metadata operations. Applicable to 6 of 167 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.CollectionError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.CollectionError.java): Semantic error. Status code `422`. Applicable to 3 of 167 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.GleanDataError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.GleanDataError.java): Forbidden. Applicable to 2 of 167 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.UnauthorizedAgentToolsError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.UnauthorizedAgentToolsError.java): Returned when the agent has tools the caller must authorize before the run can start. Each entry in `authenticationSuggestions` names one such tool; POST its `serverId` to `/tool-servers/{serverId}/auth` with `returnUrl` in the request body to obtain an `authorizationUrl` to redirect the end user to, then retry the run once OAuth completes. Status code `422`. Applicable to 2 of 167 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.AccessRequestPermissionDeniedResponseException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.AccessRequestPermissionDeniedResponseException.java): Forbidden. Status code `403`. Applicable to 1 of 167 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.PlatformUnauthorizedAgentToolsProblemException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.PlatformUnauthorizedAgentToolsProblemException.java): Problem detail extended with `authentication_suggestions` naming each tool the caller must authorize. Status code `422`. Applicable to 1 of 167 methods.*
 
 
 </details>

@@ -28,7 +28,7 @@ public class PlatformChatCompletedResponse {
 
 
     @JsonProperty("object")
-    private Object object;
+    private PlatformChatCompletedResponseObject object;
 
     /**
      * RFC 3339 UTC timestamp when the response was created.
@@ -62,7 +62,7 @@ public class PlatformChatCompletedResponse {
     @JsonCreator
     public PlatformChatCompletedResponse(
             @JsonProperty("id") String id,
-            @JsonProperty("object") Object object,
+            @JsonProperty("object") PlatformChatCompletedResponseObject object,
             @JsonProperty("created_at") OffsetDateTime createdAt,
             @JsonProperty("status") PlatformChatCompletedResponseStatus status,
             @JsonProperty("output") List<PlatformChatOutputMessage> output,
@@ -89,7 +89,7 @@ public class PlatformChatCompletedResponse {
     
     public PlatformChatCompletedResponse(
             String id,
-            Object object,
+            PlatformChatCompletedResponseObject object,
             OffsetDateTime createdAt,
             PlatformChatCompletedResponseStatus status,
             List<PlatformChatOutputMessage> output,
@@ -110,7 +110,7 @@ public class PlatformChatCompletedResponse {
     }
 
     @JsonIgnore
-    public Object object() {
+    public PlatformChatCompletedResponseObject object() {
         return object;
     }
 
@@ -165,7 +165,7 @@ public class PlatformChatCompletedResponse {
         return this;
     }
 
-    public PlatformChatCompletedResponse withObject(Object object) {
+    public PlatformChatCompletedResponse withObject(PlatformChatCompletedResponseObject object) {
         Utils.checkNotNull(object, "object");
         this.object = object;
         return this;
@@ -268,7 +268,7 @@ public class PlatformChatCompletedResponse {
 
         private String id;
 
-        private Object object;
+        private PlatformChatCompletedResponseObject object;
 
         private OffsetDateTime createdAt;
 
@@ -298,7 +298,7 @@ public class PlatformChatCompletedResponse {
         }
 
 
-        public Builder object(Object object) {
+        public Builder object(PlatformChatCompletedResponseObject object) {
             Utils.checkNotNull(object, "object");
             this.object = object;
             return this;

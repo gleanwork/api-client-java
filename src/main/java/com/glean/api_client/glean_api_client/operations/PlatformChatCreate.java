@@ -12,12 +12,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
 import com.glean.api_client.glean_api_client.models.components.PlatformChatCompletedResponse;
-import com.glean.api_client.glean_api_client.models.components.PlatformChatCreateRequest;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
 import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.operations.PlatformChatCreateRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformChatCreateResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
-import com.glean.api_client.glean_api_client.utils.Exceptions;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
 import com.glean.api_client.glean_api_client.utils.HTTPRequest;
 import com.glean.api_client.glean_api_client.utils.Headers;
@@ -35,7 +34,6 @@ import java.lang.String;
 import java.lang.Throwable;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
@@ -107,7 +105,7 @@ public class PlatformChatCreate {
                 throw new IllegalArgumentException("Request body is required");
             }
             req.setBody(Optional.ofNullable(serializedRequestBody));
-            req.addHeader("Accept", "application/json;q=1, text/event-stream;q=0")
+            req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
@@ -175,10 +173,6 @@ public class PlatformChatCreate {
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return res.withPlatformChatCompletedResponse(Utils.unmarshal(response, new TypeReference<PlatformChatCompletedResponse>() {}));
-                } else if (Utils.contentTypeMatches(contentType, "text/event-stream")) {
-                    String out = unchecked(() -> Utils.toUtf8AndClose(response.body())).get();
-                    res.withRes(out);
-                    return res;
                 } else {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
@@ -264,16 +258,6 @@ public class PlatformChatCreate {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return Utils.unmarshalAsync(response, new TypeReference<PlatformChatCompletedResponse>() {})
                             .thenApply(res::withPlatformChatCompletedResponse);
-                } else if (Utils.contentTypeMatches(contentType, "text/event-stream")) {
-                    return response.body().toByteArray().thenApply(bodyBytes -> {
-                        try {
-                            String out = new String(bodyBytes, StandardCharsets.UTF_8);
-                            res.withRes(out);
-                            return res;
-                        } catch (Exception e) {
-                            return Exceptions.rethrow(e);
-                        }
-                    });
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }
