@@ -27,7 +27,8 @@ Create a trigger from a preset and return it with its signing secret.
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.components.PlatformTriggerCreateRequest;
+import com.glean.api_client.glean_api_client.models.components.PlatformTriggerDelivery;
 import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
 import com.glean.api_client.glean_api_client.models.operations.PlatformTriggersCreateResponse;
 import java.lang.Exception;
@@ -44,15 +45,10 @@ public class Application {
         PlatformTriggerCreateRequest req = PlatformTriggerCreateRequest.builder()
                 .presetId("GITHUB_1")
                 .delivery(PlatformTriggerDelivery.builder()
-                    .webhookUrl("https://customer.app/webhook")
-                    .auth(PlatformTriggerAuth.builder()
-                        .type(PlatformTriggerAuthType.BEARER)
-                        .secret("secret_test_123")
-                        .build())
+                    .webhookUrl("https://example.com/webhook")
                     .build())
-                .description("Reviews I am tagged on, sent to my team's review channel")
                 .inputs(Map.ofEntries(
-                    Map.entry("repository", "acme/payments-api")))
+                    Map.entry("repository", "{repository}")))
                 .build();
 
         PlatformTriggersCreateResponse res = sdk.triggers().create()
@@ -163,7 +159,7 @@ public class Application {
             .build();
 
         PlatformTriggersGetResponse res = sdk.triggers().get()
-                .triggerId("<id>")
+                .triggerId("{trigger_id}")
                 .call();
 
         if (res.platformTriggerGetResponse().isPresent()) {
@@ -175,9 +171,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                      | Type                           | Required                       | Description                    |
-| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
-| `triggerId`                    | *String*                       | :heavy_check_mark:             | ID of the trigger to retrieve. |
+| Parameter                      | Type                           | Required                       | Description                    | Example                        |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `triggerId`                    | *String*                       | :heavy_check_mark:             | ID of the trigger to retrieve. | {trigger_id}                   |
 
 ### Response
 
@@ -203,7 +199,8 @@ Update a trigger.
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.components.PlatformTriggerDelivery;
+import com.glean.api_client.glean_api_client.models.components.PlatformTriggerUpdateRequest;
 import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
 import com.glean.api_client.glean_api_client.models.operations.PlatformTriggersUpdateResponse;
 import java.lang.Exception;
@@ -218,18 +215,12 @@ public class Application {
             .build();
 
         PlatformTriggersUpdateResponse res = sdk.triggers().update()
-                .triggerId("<id>")
+                .triggerId("{trigger_id}")
                 .platformTriggerUpdateRequest(PlatformTriggerUpdateRequest.builder()
-                    .status(PlatformTriggerStatus.ENABLED)
-                    .description("Reviews I am tagged on, sent to my team's review channel")
                     .inputs(Map.ofEntries(
-                        Map.entry("repository", "acme/payments-api")))
+                        Map.entry("repository", "{repository}")))
                     .delivery(PlatformTriggerDelivery.builder()
-                        .webhookUrl("https://customer.app/webhook")
-                        .auth(PlatformTriggerAuth.builder()
-                            .type(PlatformTriggerAuthType.BEARER)
-                            .secret("secret_test_123")
-                            .build())
+                        .webhookUrl("https://example.com/webhook")
                         .build())
                     .build())
                 .call();
@@ -243,10 +234,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             |
-| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| `triggerId`                                                                             | *String*                                                                                | :heavy_check_mark:                                                                      | ID of the trigger to update.                                                            |
-| `platformTriggerUpdateRequest`                                                          | [PlatformTriggerUpdateRequest](../../models/components/PlatformTriggerUpdateRequest.md) | :heavy_check_mark:                                                                      | N/A                                                                                     |
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  | Example                                                                                                      |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `triggerId`                                                                                                  | *String*                                                                                                     | :heavy_check_mark:                                                                                           | ID of the trigger to update.                                                                                 | {trigger_id}                                                                                                 |
+| `platformTriggerUpdateRequest`                                                                               | [PlatformTriggerUpdateRequest](../../models/components/PlatformTriggerUpdateRequest.md)                      | :heavy_check_mark:                                                                                           | N/A                                                                                                          | {<br/>"inputs": {<br/>"repository": "{repository}"<br/>},<br/>"delivery": {<br/>"webhook_url": "https://example.com/webhook"<br/>}<br/>} |
 
 ### Response
 
@@ -285,7 +276,7 @@ public class Application {
             .build();
 
         PlatformTriggersDeleteResponse res = sdk.triggers().delete()
-                .triggerId("<id>")
+                .triggerId("{trigger_id}")
                 .call();
 
         // handle response
@@ -295,9 +286,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                    | Type                         | Required                     | Description                  |
-| ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- |
-| `triggerId`                  | *String*                     | :heavy_check_mark:           | ID of the trigger to delete. |
+| Parameter                    | Type                         | Required                     | Description                  | Example                      |
+| ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- |
+| `triggerId`                  | *String*                     | :heavy_check_mark:           | ID of the trigger to delete. | {trigger_id}                 |
 
 ### Response
 
@@ -323,6 +314,7 @@ Search recent content events an existing trigger matches. Read-only — no webho
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.PlatformTriggerEventSearchRequest;
 import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
 import com.glean.api_client.glean_api_client.models.operations.PlatformTriggersEventsSearchResponse;
 import java.lang.Exception;
@@ -336,7 +328,9 @@ public class Application {
             .build();
 
         PlatformTriggersEventsSearchResponse res = sdk.triggers().searchEvents()
-                .triggerId("<id>")
+                .triggerId("{trigger_id}")
+                .platformTriggerEventSearchRequest(PlatformTriggerEventSearchRequest.builder()
+                    .build())
                 .call();
 
         if (res.platformTriggerEventSearchResponse().isPresent()) {
@@ -348,10 +342,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
-| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| `triggerId`                                                                                                  | *String*                                                                                                     | :heavy_check_mark:                                                                                           | ID of the trigger whose events to search.                                                                    |
-| `platformTriggerEventSearchRequest`                                                                          | [Optional\<PlatformTriggerEventSearchRequest>](../../models/components/PlatformTriggerEventSearchRequest.md) | :heavy_minus_sign:                                                                                           | N/A                                                                                                          |
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  | Example                                                                                                      |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `triggerId`                                                                                                  | *String*                                                                                                     | :heavy_check_mark:                                                                                           | ID of the trigger whose events to search.                                                                    | {trigger_id}                                                                                                 |
+| `platformTriggerEventSearchRequest`                                                                          | [Optional\<PlatformTriggerEventSearchRequest>](../../models/components/PlatformTriggerEventSearchRequest.md) | :heavy_minus_sign:                                                                                           | N/A                                                                                                          | {<br/>"page_size": 10<br/>}                                                                                  |
 
 ### Response
 
@@ -445,7 +439,7 @@ public class Application {
             .build();
 
         PlatformTriggerPresetsGetResponse res = sdk.triggers().getPreset()
-                .presetId("<id>")
+                .presetId("{preset_id}")
                 .call();
 
         if (res.platformTriggerPresetGetResponse().isPresent()) {
@@ -457,9 +451,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                     | Type                          | Required                      | Description                   |
-| ----------------------------- | ----------------------------- | ----------------------------- | ----------------------------- |
-| `presetId`                    | *String*                      | :heavy_check_mark:            | ID of the preset to retrieve. |
+| Parameter                     | Type                          | Required                      | Description                   | Example                       |
+| ----------------------------- | ----------------------------- | ----------------------------- | ----------------------------- | ----------------------------- |
+| `presetId`                    | *String*                      | :heavy_check_mark:            | ID of the preset to retrieve. | {preset_id}                   |
 
 ### Response
 
@@ -498,8 +492,8 @@ public class Application {
             .build();
 
         PlatformTriggerPresetsInputValuesListResponse res = sdk.triggers().listPresetInputValues()
-                .presetId("<id>")
-                .field("<value>")
+                .presetId("{preset_id}")
+                .field("{field}")
                 .call();
 
         if (res.platformTriggerPresetInputValueListResponse().isPresent()) {
@@ -511,11 +505,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                            | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
-| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `presetId`                                                                                                           | *String*                                                                                                             | :heavy_check_mark:                                                                                                   | ID of the preset the input belongs to.                                                                               |
-| `field`                                                                                                              | *String*                                                                                                             | :heavy_check_mark:                                                                                                   | Field identifier of the input whose values to list.                                                                  |
-| `query`                                                                                                              | *Optional\<String>*                                                                                                  | :heavy_minus_sign:                                                                                                   | Prefix filter over the input's option values, for typeahead. Matching is on the option value, not its display name.<br/> |
+| Parameter                                                                                                            | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          | Example                                                                                                              |
+| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `presetId`                                                                                                           | *String*                                                                                                             | :heavy_check_mark:                                                                                                   | ID of the preset the input belongs to.                                                                               | {preset_id}                                                                                                          |
+| `field`                                                                                                              | *String*                                                                                                             | :heavy_check_mark:                                                                                                   | Field identifier of the input whose values to list.                                                                  | {field}                                                                                                              |
+| `query`                                                                                                              | *Optional\<String>*                                                                                                  | :heavy_minus_sign:                                                                                                   | Prefix filter over the input's option values, for typeahead. Matching is on the option value, not its display name.<br/> |                                                                                                                      |
 
 ### Response
 
@@ -556,10 +550,10 @@ public class Application {
             .build();
 
         PlatformTriggerPresetsEventsSearchResponse res = sdk.triggers().searchPresetEvents()
-                .presetId("<id>")
+                .presetId("{preset_id}")
                 .platformTriggerPresetEventSearchRequest(PlatformTriggerPresetEventSearchRequest.builder()
                     .inputs(Map.ofEntries(
-                        Map.entry("repository", "acme/payments-api")))
+                        Map.entry("repository", "{repository}")))
                     .build())
                 .call();
 
@@ -572,10 +566,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `presetId`                                                                                                               | *String*                                                                                                                 | :heavy_check_mark:                                                                                                       | ID of the preset to preview.                                                                                             |
-| `platformTriggerPresetEventSearchRequest`                                                                                | [Optional\<PlatformTriggerPresetEventSearchRequest>](../../models/components/PlatformTriggerPresetEventSearchRequest.md) | :heavy_minus_sign:                                                                                                       | N/A                                                                                                                      |
+| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              | Example                                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| `presetId`                                                                                                               | *String*                                                                                                                 | :heavy_check_mark:                                                                                                       | ID of the preset to preview.                                                                                             | {preset_id}                                                                                                              |
+| `platformTriggerPresetEventSearchRequest`                                                                                | [Optional\<PlatformTriggerPresetEventSearchRequest>](../../models/components/PlatformTriggerPresetEventSearchRequest.md) | :heavy_minus_sign:                                                                                                       | N/A                                                                                                                      | {<br/>"inputs": {<br/>"repository": "{repository}"<br/>},<br/>"page_size": 10<br/>}                                      |
 
 ### Response
 
