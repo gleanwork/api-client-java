@@ -20,12 +20,10 @@ Errors: HTTP 422 `unprocessable_query` returns no `results` or `next_cursor`. Se
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.PlatformFilter;
 import com.glean.api_client.glean_api_client.models.components.PlatformSearchRequest;
 import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSearchResponse;
 import java.lang.Exception;
-import java.util.List;
 
 public class Application {
 
@@ -37,16 +35,6 @@ public class Application {
 
         PlatformSearchRequest req = PlatformSearchRequest.builder()
                 .query("quarterly planning 2026")
-                .datasources(List.of(
-                    "confluence",
-                    "google_drive"))
-                .filters(List.of(
-                    PlatformFilter.builder()
-                        .field("type")
-                        .values(List.of(
-                            "spreadsheet",
-                            "presentation"))
-                        .build()))
                 .build();
 
         PlatformSearchResponse res = sdk.search().query()
