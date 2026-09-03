@@ -36,6 +36,7 @@ public class UgcType {
     public static final UgcType PINS_TYPE = new UgcType("PINS_TYPE");
     public static final UgcType SCRIBES_TYPE = new UgcType("SCRIBES_TYPE");
     public static final UgcType SHORTCUTS_TYPE = new UgcType("SHORTCUTS_TYPE");
+    public static final UgcType SKILLS_TYPE = new UgcType("SKILLS_TYPE");
     public static final UgcType SLIDE_TYPE = new UgcType("SLIDE_TYPE");
     public static final UgcType SPREADSHEET_TYPE = new UgcType("SPREADSHEET_TYPE");
     public static final UgcType INLINE_HTML_TYPE = new UgcType("INLINE_HTML_TYPE");
@@ -129,6 +130,7 @@ public class UgcType {
         map.put("PINS_TYPE", PINS_TYPE);
         map.put("SCRIBES_TYPE", SCRIBES_TYPE);
         map.put("SHORTCUTS_TYPE", SHORTCUTS_TYPE);
+        map.put("SKILLS_TYPE", SKILLS_TYPE);
         map.put("SLIDE_TYPE", SLIDE_TYPE);
         map.put("SPREADSHEET_TYPE", SPREADSHEET_TYPE);
         map.put("INLINE_HTML_TYPE", INLINE_HTML_TYPE);
@@ -154,6 +156,7 @@ public class UgcType {
         map.put("PINS_TYPE", UgcTypeEnum.PINS_TYPE);
         map.put("SCRIBES_TYPE", UgcTypeEnum.SCRIBES_TYPE);
         map.put("SHORTCUTS_TYPE", UgcTypeEnum.SHORTCUTS_TYPE);
+        map.put("SKILLS_TYPE", UgcTypeEnum.SKILLS_TYPE);
         map.put("SLIDE_TYPE", UgcTypeEnum.SLIDE_TYPE);
         map.put("SPREADSHEET_TYPE", UgcTypeEnum.SPREADSHEET_TYPE);
         map.put("INLINE_HTML_TYPE", UgcTypeEnum.INLINE_HTML_TYPE);
@@ -180,6 +183,7 @@ public class UgcType {
         PINS_TYPE("PINS_TYPE"),
         SCRIBES_TYPE("SCRIBES_TYPE"),
         SHORTCUTS_TYPE("SHORTCUTS_TYPE"),
+        SKILLS_TYPE("SKILLS_TYPE"),
         SLIDE_TYPE("SLIDE_TYPE"),
         SPREADSHEET_TYPE("SPREADSHEET_TYPE"),
         INLINE_HTML_TYPE("INLINE_HTML_TYPE"),
