@@ -69,6 +69,7 @@ public class FeedResultCategory {
     public static final FeedResultCategory PROJECT_NEXT_STEP = new FeedResultCategory("PROJECT_NEXT_STEP");
     public static final FeedResultCategory DEMO_CARD = new FeedResultCategory("DEMO_CARD");
     public static final FeedResultCategory RESOLVE_MEETING_CONFLICT = new FeedResultCategory("RESOLVE_MEETING_CONFLICT");
+    public static final FeedResultCategory FINDING_MEETING_ROOM = new FeedResultCategory("FINDING_MEETING_ROOM");
     public static final FeedResultCategory OOO_PLANNER = new FeedResultCategory("OOO_PLANNER");
     public static final FeedResultCategory OOO_CATCH_UP = new FeedResultCategory("OOO_CATCH_UP");
     public static final FeedResultCategory ADMIN_HEALTH_CENTER = new FeedResultCategory("ADMIN_HEALTH_CENTER");
@@ -189,6 +190,7 @@ public class FeedResultCategory {
         map.put("PROJECT_NEXT_STEP", PROJECT_NEXT_STEP);
         map.put("DEMO_CARD", DEMO_CARD);
         map.put("RESOLVE_MEETING_CONFLICT", RESOLVE_MEETING_CONFLICT);
+        map.put("FINDING_MEETING_ROOM", FINDING_MEETING_ROOM);
         map.put("OOO_PLANNER", OOO_PLANNER);
         map.put("OOO_CATCH_UP", OOO_CATCH_UP);
         map.put("ADMIN_HEALTH_CENTER", ADMIN_HEALTH_CENTER);
@@ -241,6 +243,7 @@ public class FeedResultCategory {
         map.put("PROJECT_NEXT_STEP", FeedResultCategoryEnum.PROJECT_NEXT_STEP);
         map.put("DEMO_CARD", FeedResultCategoryEnum.DEMO_CARD);
         map.put("RESOLVE_MEETING_CONFLICT", FeedResultCategoryEnum.RESOLVE_MEETING_CONFLICT);
+        map.put("FINDING_MEETING_ROOM", FeedResultCategoryEnum.FINDING_MEETING_ROOM);
         map.put("OOO_PLANNER", FeedResultCategoryEnum.OOO_PLANNER);
         map.put("OOO_CATCH_UP", FeedResultCategoryEnum.OOO_CATCH_UP);
         map.put("ADMIN_HEALTH_CENTER", FeedResultCategoryEnum.ADMIN_HEALTH_CENTER);
@@ -294,6 +297,7 @@ public class FeedResultCategory {
         PROJECT_NEXT_STEP("PROJECT_NEXT_STEP"),
         DEMO_CARD("DEMO_CARD"),
         RESOLVE_MEETING_CONFLICT("RESOLVE_MEETING_CONFLICT"),
+        FINDING_MEETING_ROOM("FINDING_MEETING_ROOM"),
         OOO_PLANNER("OOO_PLANNER"),
         OOO_CATCH_UP("OOO_CATCH_UP"),
         ADMIN_HEALTH_CENTER("ADMIN_HEALTH_CENTER"),
