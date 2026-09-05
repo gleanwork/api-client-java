@@ -83,10 +83,12 @@ public class JustificationType {
     public static final JustificationType PROJECT_NEXT_STEP = new JustificationType("PROJECT_NEXT_STEP");
     public static final JustificationType DEMO_CARD = new JustificationType("DEMO_CARD");
     public static final JustificationType RESOLVE_MEETING_CONFLICT = new JustificationType("RESOLVE_MEETING_CONFLICT");
+    public static final JustificationType FINDING_MEETING_ROOM = new JustificationType("FINDING_MEETING_ROOM");
     public static final JustificationType OOO_PLANNER = new JustificationType("OOO_PLANNER");
     public static final JustificationType OOO_CATCH_UP = new JustificationType("OOO_CATCH_UP");
     public static final JustificationType ADMIN_HEALTH_CENTER = new JustificationType("ADMIN_HEALTH_CENTER");
     public static final JustificationType KNOWLEDGE_GAP = new JustificationType("KNOWLEDGE_GAP");
+    public static final JustificationType ARTIFACT_CREATION = new JustificationType("ARTIFACT_CREATION");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -217,10 +219,12 @@ public class JustificationType {
         map.put("PROJECT_NEXT_STEP", PROJECT_NEXT_STEP);
         map.put("DEMO_CARD", DEMO_CARD);
         map.put("RESOLVE_MEETING_CONFLICT", RESOLVE_MEETING_CONFLICT);
+        map.put("FINDING_MEETING_ROOM", FINDING_MEETING_ROOM);
         map.put("OOO_PLANNER", OOO_PLANNER);
         map.put("OOO_CATCH_UP", OOO_CATCH_UP);
         map.put("ADMIN_HEALTH_CENTER", ADMIN_HEALTH_CENTER);
         map.put("KNOWLEDGE_GAP", KNOWLEDGE_GAP);
+        map.put("ARTIFACT_CREATION", ARTIFACT_CREATION);
         return map;
     }
 
@@ -283,10 +287,12 @@ public class JustificationType {
         map.put("PROJECT_NEXT_STEP", JustificationTypeEnum.PROJECT_NEXT_STEP);
         map.put("DEMO_CARD", JustificationTypeEnum.DEMO_CARD);
         map.put("RESOLVE_MEETING_CONFLICT", JustificationTypeEnum.RESOLVE_MEETING_CONFLICT);
+        map.put("FINDING_MEETING_ROOM", JustificationTypeEnum.FINDING_MEETING_ROOM);
         map.put("OOO_PLANNER", JustificationTypeEnum.OOO_PLANNER);
         map.put("OOO_CATCH_UP", JustificationTypeEnum.OOO_CATCH_UP);
         map.put("ADMIN_HEALTH_CENTER", JustificationTypeEnum.ADMIN_HEALTH_CENTER);
         map.put("KNOWLEDGE_GAP", JustificationTypeEnum.KNOWLEDGE_GAP);
+        map.put("ARTIFACT_CREATION", JustificationTypeEnum.ARTIFACT_CREATION);
         return map;
     }
     
@@ -350,10 +356,12 @@ public class JustificationType {
         PROJECT_NEXT_STEP("PROJECT_NEXT_STEP"),
         DEMO_CARD("DEMO_CARD"),
         RESOLVE_MEETING_CONFLICT("RESOLVE_MEETING_CONFLICT"),
+        FINDING_MEETING_ROOM("FINDING_MEETING_ROOM"),
         OOO_PLANNER("OOO_PLANNER"),
         OOO_CATCH_UP("OOO_CATCH_UP"),
         ADMIN_HEALTH_CENTER("ADMIN_HEALTH_CENTER"),
-        KNOWLEDGE_GAP("KNOWLEDGE_GAP"),;
+        KNOWLEDGE_GAP("KNOWLEDGE_GAP"),
+        ARTIFACT_CREATION("ARTIFACT_CREATION"),;
 
         private final String value;
 
