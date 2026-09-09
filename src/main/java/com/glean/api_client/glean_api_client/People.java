@@ -180,7 +180,7 @@ public class People {
      * an explanation of how to use bulk endpoints.
      * 
      * @return The call builder
-     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2026-10-15: Endpoint is deprecated.
+     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2027-01-15: Endpoint is deprecated.
      */
     @Deprecated
     public PostApiIndexV1BulkindexemployeesRequestBuilder bulkIndex() {
@@ -197,7 +197,7 @@ public class People {
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
-     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2026-10-15: Endpoint is deprecated.
+     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2027-01-15: Endpoint is deprecated.
      */
     @Deprecated
     public PostApiIndexV1BulkindexemployeesResponse bulkIndex(BulkIndexEmployeesRequest request) {
