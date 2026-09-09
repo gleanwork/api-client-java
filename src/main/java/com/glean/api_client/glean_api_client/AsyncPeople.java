@@ -185,7 +185,7 @@ public class AsyncPeople {
      * an explanation of how to use bulk endpoints.
      * 
      * @return The async call builder
-     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2026-10-15: Endpoint is deprecated.
+     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2027-01-15: Endpoint is deprecated.
      */
     @Deprecated
     public PostApiIndexV1BulkindexemployeesRequestBuilder bulkIndex() {
@@ -201,7 +201,7 @@ public class AsyncPeople {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<PostApiIndexV1BulkindexemployeesResponse>} - The async response
-     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2026-10-15: Endpoint is deprecated.
+     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2027-01-15: Endpoint is deprecated.
      */
     @Deprecated
     public CompletableFuture<PostApiIndexV1BulkindexemployeesResponse> bulkIndex(BulkIndexEmployeesRequest request) {
