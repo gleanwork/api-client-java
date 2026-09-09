@@ -89,6 +89,7 @@ public class JustificationType {
     public static final JustificationType ADMIN_HEALTH_CENTER = new JustificationType("ADMIN_HEALTH_CENTER");
     public static final JustificationType KNOWLEDGE_GAP = new JustificationType("KNOWLEDGE_GAP");
     public static final JustificationType ARTIFACT_CREATION = new JustificationType("ARTIFACT_CREATION");
+    public static final JustificationType EDIT_DOC = new JustificationType("EDIT_DOC");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -225,6 +226,7 @@ public class JustificationType {
         map.put("ADMIN_HEALTH_CENTER", ADMIN_HEALTH_CENTER);
         map.put("KNOWLEDGE_GAP", KNOWLEDGE_GAP);
         map.put("ARTIFACT_CREATION", ARTIFACT_CREATION);
+        map.put("EDIT_DOC", EDIT_DOC);
         return map;
     }
 
@@ -293,6 +295,7 @@ public class JustificationType {
         map.put("ADMIN_HEALTH_CENTER", JustificationTypeEnum.ADMIN_HEALTH_CENTER);
         map.put("KNOWLEDGE_GAP", JustificationTypeEnum.KNOWLEDGE_GAP);
         map.put("ARTIFACT_CREATION", JustificationTypeEnum.ARTIFACT_CREATION);
+        map.put("EDIT_DOC", JustificationTypeEnum.EDIT_DOC);
         return map;
     }
     
@@ -361,7 +364,8 @@ public class JustificationType {
         OOO_CATCH_UP("OOO_CATCH_UP"),
         ADMIN_HEALTH_CENTER("ADMIN_HEALTH_CENTER"),
         KNOWLEDGE_GAP("KNOWLEDGE_GAP"),
-        ARTIFACT_CREATION("ARTIFACT_CREATION"),;
+        ARTIFACT_CREATION("ARTIFACT_CREATION"),
+        EDIT_DOC("EDIT_DOC"),;
 
         private final String value;
 

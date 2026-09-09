@@ -75,6 +75,7 @@ public class FeedResultCategory {
     public static final FeedResultCategory ADMIN_HEALTH_CENTER = new FeedResultCategory("ADMIN_HEALTH_CENTER");
     public static final FeedResultCategory KNOWLEDGE_GAP = new FeedResultCategory("KNOWLEDGE_GAP");
     public static final FeedResultCategory ARTIFACT_CREATION = new FeedResultCategory("ARTIFACT_CREATION");
+    public static final FeedResultCategory EDIT_DOC = new FeedResultCategory("EDIT_DOC");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -197,6 +198,7 @@ public class FeedResultCategory {
         map.put("ADMIN_HEALTH_CENTER", ADMIN_HEALTH_CENTER);
         map.put("KNOWLEDGE_GAP", KNOWLEDGE_GAP);
         map.put("ARTIFACT_CREATION", ARTIFACT_CREATION);
+        map.put("EDIT_DOC", EDIT_DOC);
         return map;
     }
 
@@ -251,6 +253,7 @@ public class FeedResultCategory {
         map.put("ADMIN_HEALTH_CENTER", FeedResultCategoryEnum.ADMIN_HEALTH_CENTER);
         map.put("KNOWLEDGE_GAP", FeedResultCategoryEnum.KNOWLEDGE_GAP);
         map.put("ARTIFACT_CREATION", FeedResultCategoryEnum.ARTIFACT_CREATION);
+        map.put("EDIT_DOC", FeedResultCategoryEnum.EDIT_DOC);
         return map;
     }
     
@@ -305,7 +308,8 @@ public class FeedResultCategory {
         OOO_CATCH_UP("OOO_CATCH_UP"),
         ADMIN_HEALTH_CENTER("ADMIN_HEALTH_CENTER"),
         KNOWLEDGE_GAP("KNOWLEDGE_GAP"),
-        ARTIFACT_CREATION("ARTIFACT_CREATION"),;
+        ARTIFACT_CREATION("ARTIFACT_CREATION"),
+        EDIT_DOC("EDIT_DOC"),;
 
         private final String value;
 
