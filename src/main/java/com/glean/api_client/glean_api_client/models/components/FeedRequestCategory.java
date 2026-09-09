@@ -58,7 +58,8 @@ public enum FeedRequestCategory {
     OOO_CATCH_UP("OOO_CATCH_UP"),
     ADMIN_HEALTH_CENTER("ADMIN_HEALTH_CENTER"),
     KNOWLEDGE_GAP("KNOWLEDGE_GAP"),
-    ARTIFACT_CREATION("ARTIFACT_CREATION");
+    ARTIFACT_CREATION("ARTIFACT_CREATION"),
+    EDIT_DOC("EDIT_DOC");
 
     @JsonValue
     private final String value;
