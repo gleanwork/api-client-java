@@ -81,3 +81,4 @@ JustificationType custom = JustificationType.of("custom_value");
 | `ADMIN_HEALTH_CENTER`                   | ADMIN_HEALTH_CENTER                     |
 | `KNOWLEDGE_GAP`                         | KNOWLEDGE_GAP                           |
 | `ARTIFACT_CREATION`                     | ARTIFACT_CREATION                       |
+| `EDIT_DOC`                              | EDIT_DOC                                |
