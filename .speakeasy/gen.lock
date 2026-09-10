@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 0359d4fe-2923-46fc-aaca-cf70b48dcfa1
 management:
-  docChecksum: 6353c0f55e4a0e81bd102bec49feb762
+  docChecksum: 75dcb4ef654ae196b194eb433d5ff95e
   docVersion: 0.9.0
   speakeasyVersion: 1.796.4
   generationVersion: 2.935.1
-  releaseVersion: 0.17.13
-  configChecksum: b0d0a9cf897597a6c9c6f25a94f255f0
+  releaseVersion: 0.17.14
+  configChecksum: f449d78ed3ba3ca2a4bd2b2bceab75c9
   repoURL: https://github.com/gleanwork/api-client-java.git
   installationURL: https://github.com/gleanwork/api-client-java
   published: true
 persistentEdits:
-  generation_id: bbb89e14-06bf-4b72-b1b6-0c6c6cfac599
-  pristine_commit_hash: 00942c945b58ed6fafde5a158e39dd26dbd18701
-  pristine_tree_hash: b86fc0a416847cc457d7f31a78423e74f3ad60b8
+  generation_id: 6900d023-6aa7-4ee0-9009-9d6d44db7900
+  pristine_commit_hash: ed5262a108d8672daf320d32c217b5485175f3ca
+  pristine_tree_hash: 38f8b0daad94fbce3304cedcf644ad1ee89d1a3a
 features:
   java:
     acceptHeaders: 2.81.2
@@ -4454,8 +4454,8 @@ trackedFiles:
     pristine_git_object: 3decbce5bd40edbe278c1c5d2dbf585808e51d9a
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:0b5d7cbb215b95e07975476af44ca3eee5dee2e0
-    pristine_git_object: e9afdb9cdd35d4e0ffc668d183ff751ecf07b28a
+    last_write_checksum: sha1:67e42324814989ad7b87a65f620f146496bf0062
+    pristine_git_object: 418d97b2c12f2961dedfbee379c1b3c6aa710a18
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -4778,8 +4778,8 @@ trackedFiles:
     pristine_git_object: ffae914775eb41ff311371f62504344a59d090fd
   src/main/java/com/glean/api_client/glean_api_client/SDKConfiguration.java:
     id: d5fcc61f5992
-    last_write_checksum: sha1:0596ee03ff5d6a81ccd5e5342eddb370fd7331ba
-    pristine_git_object: 3beed55d18b0904cc02862bdab6e94a29968c5a1
+    last_write_checksum: sha1:32684d9595990ba1084b079bfd74e16650c4d187
+    pristine_git_object: 86c484e820089d2d286edf8b6e8a828bfe6c6122
   src/main/java/com/glean/api_client/glean_api_client/Search.java:
     id: f22d94b920b5
     last_write_checksum: sha1:14e024607aebae4b1197445ad31984898c4735a3
