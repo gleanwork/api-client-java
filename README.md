@@ -68,7 +68,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.glean.api-client:glean-api-client:0.17.12'
+implementation 'com.glean.api-client:glean-api-client:0.17.13'
 ```
 
 Maven:
@@ -76,7 +76,7 @@ Maven:
 <dependency>
     <groupId>com.glean.api-client</groupId>
     <artifactId>glean-api-client</artifactId>
-    <version>0.17.12</version>
+    <version>0.17.13</version>
 </dependency>
 ```
 
@@ -378,7 +378,7 @@ For more information on obtaining the appropriate token type, please contact you
 ### [Chat](docs/sdks/chat/README.md)
 
 * [create](docs/sdks/chat/README.md#create) - Create a chat response
-* [createStream](docs/sdks/chat/README.md#createstream) - SDK-only logical operation. HTTP clients must call the base path; the URL fragment is not sent. Create a chat response
+* [createStream](docs/sdks/chat/README.md#createstream) - Create a streaming chat response
 
 ### [Client.Activity](docs/sdks/activity/README.md)
 
