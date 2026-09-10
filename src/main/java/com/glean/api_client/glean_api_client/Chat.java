@@ -69,14 +69,12 @@ public class Chat {
     }
 
     /**
-     * SDK-only logical operation. HTTP clients must call the base path; the URL fragment is not sent.
-     * Create a chat response
+     * Create a streaming chat response
      * 
      * <p>SDK-only logical operation. HTTP clients must call the base path; the URL fragment is not sent. Run
-     * an assistant turn.
+     * an assistant turn as server-sent events.
      * 
-     * <p>The default response is JSON. HTTP clients request server-sent events by setting `stream` to true in
-     * the JSON body. An `Accept: text/event-stream` header does not replace `stream`.
+     * <p>HTTP clients request this mode by setting `stream` to true in the JSON body.
      * 
      * @return The call builder
      */
@@ -85,14 +83,12 @@ public class Chat {
     }
 
     /**
-     * SDK-only logical operation. HTTP clients must call the base path; the URL fragment is not sent.
-     * Create a chat response
+     * Create a streaming chat response
      * 
      * <p>SDK-only logical operation. HTTP clients must call the base path; the URL fragment is not sent. Run
-     * an assistant turn.
+     * an assistant turn as server-sent events.
      * 
-     * <p>The default response is JSON. HTTP clients request server-sent events by setting `stream` to true in
-     * the JSON body. An `Accept: text/event-stream` header does not replace `stream`.
+     * <p>HTTP clients request this mode by setting `stream` to true in the JSON body.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
