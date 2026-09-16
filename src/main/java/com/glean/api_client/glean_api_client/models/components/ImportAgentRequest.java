@@ -49,6 +49,17 @@ public class ImportAgentRequest {
     private Optional<? extends ImportAgentSyncMode> syncMode;
 
     /**
+     * Optional baseline hash of the currently published agent definition. When publish hash validation is
+     * enabled, an import updating an existing agent with syncMode PUBLISHED is rejected with HTTP 409 if
+     * the current published definition hash is nonempty and does not match this baseline. Leading and
+     * trailing whitespace is trimmed; omitted or blank values skip validation.
+     * 
+     * <p>Ignored for STAGED imports, new agents, and transient previews.
+     */
+    @SpeakeasyMetadata("multipartForm:name=publishedBaselineHash")
+    private Optional<String> publishedBaselineHash;
+
+    /**
      * Deprecated. Draft mutation semantics are not supported for transient previews. Use transient and
      * parentWorkflowId instead.
      */
@@ -62,25 +73,29 @@ public class ImportAgentRequest {
             Optional<String> gitAuthorId,
             Optional<String> commitMessage,
             Optional<? extends ImportAgentSyncMode> syncMode,
+            Optional<String> publishedBaselineHash,
             Optional<Boolean> isDraft) {
         Utils.checkNotNull(bundle, "bundle");
         Utils.checkNotNull(gitCommitSha, "gitCommitSha");
         Utils.checkNotNull(gitAuthorId, "gitAuthorId");
         Utils.checkNotNull(commitMessage, "commitMessage");
         Utils.checkNotNull(syncMode, "syncMode");
+        Utils.checkNotNull(publishedBaselineHash, "publishedBaselineHash");
         Utils.checkNotNull(isDraft, "isDraft");
         this.bundle = bundle;
         this.gitCommitSha = gitCommitSha;
         this.gitAuthorId = gitAuthorId;
         this.commitMessage = commitMessage;
         this.syncMode = syncMode;
+        this.publishedBaselineHash = publishedBaselineHash;
         this.isDraft = isDraft;
     }
     
     public ImportAgentRequest(
             Bundle bundle) {
         this(bundle, Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -124,6 +139,19 @@ public class ImportAgentRequest {
     @JsonIgnore
     public Optional<ImportAgentSyncMode> syncMode() {
         return (Optional<ImportAgentSyncMode>) syncMode;
+    }
+
+    /**
+     * Optional baseline hash of the currently published agent definition. When publish hash validation is
+     * enabled, an import updating an existing agent with syncMode PUBLISHED is rejected with HTTP 409 if
+     * the current published definition hash is nonempty and does not match this baseline. Leading and
+     * trailing whitespace is trimmed; omitted or blank values skip validation.
+     * 
+     * <p>Ignored for STAGED imports, new agents, and transient previews.
+     */
+    @JsonIgnore
+    public Optional<String> publishedBaselineHash() {
+        return publishedBaselineHash;
     }
 
     /**
@@ -229,6 +257,35 @@ public class ImportAgentRequest {
     }
 
     /**
+     * Optional baseline hash of the currently published agent definition. When publish hash validation is
+     * enabled, an import updating an existing agent with syncMode PUBLISHED is rejected with HTTP 409 if
+     * the current published definition hash is nonempty and does not match this baseline. Leading and
+     * trailing whitespace is trimmed; omitted or blank values skip validation.
+     * 
+     * <p>Ignored for STAGED imports, new agents, and transient previews.
+     */
+    public ImportAgentRequest withPublishedBaselineHash(String publishedBaselineHash) {
+        Utils.checkNotNull(publishedBaselineHash, "publishedBaselineHash");
+        this.publishedBaselineHash = Optional.ofNullable(publishedBaselineHash);
+        return this;
+    }
+
+
+    /**
+     * Optional baseline hash of the currently published agent definition. When publish hash validation is
+     * enabled, an import updating an existing agent with syncMode PUBLISHED is rejected with HTTP 409 if
+     * the current published definition hash is nonempty and does not match this baseline. Leading and
+     * trailing whitespace is trimmed; omitted or blank values skip validation.
+     * 
+     * <p>Ignored for STAGED imports, new agents, and transient previews.
+     */
+    public ImportAgentRequest withPublishedBaselineHash(Optional<String> publishedBaselineHash) {
+        Utils.checkNotNull(publishedBaselineHash, "publishedBaselineHash");
+        this.publishedBaselineHash = publishedBaselineHash;
+        return this;
+    }
+
+    /**
      * Deprecated. Draft mutation semantics are not supported for transient previews. Use transient and
      * parentWorkflowId instead.
      */
@@ -264,6 +321,7 @@ public class ImportAgentRequest {
             Utils.enhancedDeepEquals(this.gitAuthorId, other.gitAuthorId) &&
             Utils.enhancedDeepEquals(this.commitMessage, other.commitMessage) &&
             Utils.enhancedDeepEquals(this.syncMode, other.syncMode) &&
+            Utils.enhancedDeepEquals(this.publishedBaselineHash, other.publishedBaselineHash) &&
             Utils.enhancedDeepEquals(this.isDraft, other.isDraft);
     }
     
@@ -271,7 +329,8 @@ public class ImportAgentRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             bundle, gitCommitSha, gitAuthorId,
-            commitMessage, syncMode, isDraft);
+            commitMessage, syncMode, publishedBaselineHash,
+            isDraft);
     }
     
     @Override
@@ -282,6 +341,7 @@ public class ImportAgentRequest {
                 "gitAuthorId", gitAuthorId,
                 "commitMessage", commitMessage,
                 "syncMode", syncMode,
+                "publishedBaselineHash", publishedBaselineHash,
                 "isDraft", isDraft);
     }
 
@@ -297,6 +357,8 @@ public class ImportAgentRequest {
         private Optional<String> commitMessage = Optional.empty();
 
         private Optional<? extends ImportAgentSyncMode> syncMode = Optional.empty();
+
+        private Optional<String> publishedBaselineHash = Optional.empty();
 
         private Optional<Boolean> isDraft = Optional.empty();
 
@@ -395,6 +457,35 @@ public class ImportAgentRequest {
 
 
         /**
+         * Optional baseline hash of the currently published agent definition. When publish hash validation is
+         * enabled, an import updating an existing agent with syncMode PUBLISHED is rejected with HTTP 409 if
+         * the current published definition hash is nonempty and does not match this baseline. Leading and
+         * trailing whitespace is trimmed; omitted or blank values skip validation.
+         * 
+         * <p>Ignored for STAGED imports, new agents, and transient previews.
+         */
+        public Builder publishedBaselineHash(String publishedBaselineHash) {
+            Utils.checkNotNull(publishedBaselineHash, "publishedBaselineHash");
+            this.publishedBaselineHash = Optional.ofNullable(publishedBaselineHash);
+            return this;
+        }
+
+        /**
+         * Optional baseline hash of the currently published agent definition. When publish hash validation is
+         * enabled, an import updating an existing agent with syncMode PUBLISHED is rejected with HTTP 409 if
+         * the current published definition hash is nonempty and does not match this baseline. Leading and
+         * trailing whitespace is trimmed; omitted or blank values skip validation.
+         * 
+         * <p>Ignored for STAGED imports, new agents, and transient previews.
+         */
+        public Builder publishedBaselineHash(Optional<String> publishedBaselineHash) {
+            Utils.checkNotNull(publishedBaselineHash, "publishedBaselineHash");
+            this.publishedBaselineHash = publishedBaselineHash;
+            return this;
+        }
+
+
+        /**
          * Deprecated. Draft mutation semantics are not supported for transient previews. Use transient and
          * parentWorkflowId instead.
          */
@@ -418,7 +509,8 @@ public class ImportAgentRequest {
 
             return new ImportAgentRequest(
                 bundle, gitCommitSha, gitAuthorId,
-                commitMessage, syncMode, isDraft);
+                commitMessage, syncMode, publishedBaselineHash,
+                isDraft);
         }
 
     }
