@@ -6,10 +6,15 @@ package com.glean.api_client.glean_api_client.models.components;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
+import java.util.Optional;
 
 
 public class PlatformMessageTextBlock {
@@ -23,14 +28,28 @@ public class PlatformMessageTextBlock {
     @JsonProperty("type")
     private PlatformContentType type;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("annotations")
+    private Optional<? extends List<PlatformChatCitationAnnotation>> annotations;
+
     @JsonCreator
     public PlatformMessageTextBlock(
             @JsonProperty("text") String text,
-            @JsonProperty("type") PlatformContentType type) {
+            @JsonProperty("type") PlatformContentType type,
+            @JsonProperty("annotations") Optional<? extends List<PlatformChatCitationAnnotation>> annotations) {
         Utils.checkNotNull(text, "text");
         Utils.checkNotNull(type, "type");
+        Utils.checkNotNull(annotations, "annotations");
         this.text = text;
         this.type = type;
+        this.annotations = annotations;
+    }
+    
+    public PlatformMessageTextBlock(
+            String text,
+            PlatformContentType type) {
+        this(text, type, Optional.empty());
     }
 
     /**
@@ -44,6 +63,12 @@ public class PlatformMessageTextBlock {
     @JsonIgnore
     public PlatformContentType type() {
         return type;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<PlatformChatCitationAnnotation>> annotations() {
+        return (Optional<List<PlatformChatCitationAnnotation>>) annotations;
     }
 
     public static Builder builder() {
@@ -66,6 +91,19 @@ public class PlatformMessageTextBlock {
         return this;
     }
 
+    public PlatformMessageTextBlock withAnnotations(List<PlatformChatCitationAnnotation> annotations) {
+        Utils.checkNotNull(annotations, "annotations");
+        this.annotations = Optional.ofNullable(annotations);
+        return this;
+    }
+
+
+    public PlatformMessageTextBlock withAnnotations(Optional<? extends List<PlatformChatCitationAnnotation>> annotations) {
+        Utils.checkNotNull(annotations, "annotations");
+        this.annotations = annotations;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -77,20 +115,22 @@ public class PlatformMessageTextBlock {
         PlatformMessageTextBlock other = (PlatformMessageTextBlock) o;
         return 
             Utils.enhancedDeepEquals(this.text, other.text) &&
-            Utils.enhancedDeepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.annotations, other.annotations);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            text, type);
+            text, type, annotations);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PlatformMessageTextBlock.class,
                 "text", text,
-                "type", type);
+                "type", type,
+                "annotations", annotations);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -99,6 +139,8 @@ public class PlatformMessageTextBlock {
         private String text;
 
         private PlatformContentType type;
+
+        private Optional<? extends List<PlatformChatCitationAnnotation>> annotations = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -121,10 +163,23 @@ public class PlatformMessageTextBlock {
             return this;
         }
 
+
+        public Builder annotations(List<PlatformChatCitationAnnotation> annotations) {
+            Utils.checkNotNull(annotations, "annotations");
+            this.annotations = Optional.ofNullable(annotations);
+            return this;
+        }
+
+        public Builder annotations(Optional<? extends List<PlatformChatCitationAnnotation>> annotations) {
+            Utils.checkNotNull(annotations, "annotations");
+            this.annotations = annotations;
+            return this;
+        }
+
         public PlatformMessageTextBlock build() {
 
             return new PlatformMessageTextBlock(
-                text, type);
+                text, type, annotations);
         }
 
     }

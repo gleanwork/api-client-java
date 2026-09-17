@@ -47,7 +47,7 @@ public class AgentRunCreate {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("messages")
-    private Optional<? extends List<Message>> messages;
+    private Optional<? extends List<MessageInput>> messages;
 
     /**
      * The metadata to pass to the agent.
@@ -60,7 +60,7 @@ public class AgentRunCreate {
     public AgentRunCreate(
             @JsonProperty("agent_id") String agentId,
             @JsonProperty("input") Optional<? extends Map<String, Object>> input,
-            @JsonProperty("messages") Optional<? extends List<Message>> messages,
+            @JsonProperty("messages") Optional<? extends List<MessageInput>> messages,
             @JsonProperty("metadata") Optional<? extends Map<String, Object>> metadata) {
         Utils.checkNotNull(agentId, "agentId");
         Utils.checkNotNull(input, "input");
@@ -100,8 +100,8 @@ public class AgentRunCreate {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<Message>> messages() {
-        return (Optional<List<Message>>) messages;
+    public Optional<List<MessageInput>> messages() {
+        return (Optional<List<MessageInput>>) messages;
     }
 
     /**
@@ -149,7 +149,7 @@ public class AgentRunCreate {
     /**
      * The messages to pass an input to the agent.
      */
-    public AgentRunCreate withMessages(List<Message> messages) {
+    public AgentRunCreate withMessages(List<MessageInput> messages) {
         Utils.checkNotNull(messages, "messages");
         this.messages = Optional.ofNullable(messages);
         return this;
@@ -159,7 +159,7 @@ public class AgentRunCreate {
     /**
      * The messages to pass an input to the agent.
      */
-    public AgentRunCreate withMessages(Optional<? extends List<Message>> messages) {
+    public AgentRunCreate withMessages(Optional<? extends List<MessageInput>> messages) {
         Utils.checkNotNull(messages, "messages");
         this.messages = messages;
         return this;
@@ -223,7 +223,7 @@ public class AgentRunCreate {
 
         private Optional<? extends Map<String, Object>> input = Optional.empty();
 
-        private Optional<? extends List<Message>> messages = Optional.empty();
+        private Optional<? extends List<MessageInput>> messages = Optional.empty();
 
         private Optional<? extends Map<String, Object>> metadata = Optional.empty();
 
@@ -264,7 +264,7 @@ public class AgentRunCreate {
         /**
          * The messages to pass an input to the agent.
          */
-        public Builder messages(List<Message> messages) {
+        public Builder messages(List<MessageInput> messages) {
             Utils.checkNotNull(messages, "messages");
             this.messages = Optional.ofNullable(messages);
             return this;
@@ -273,7 +273,7 @@ public class AgentRunCreate {
         /**
          * The messages to pass an input to the agent.
          */
-        public Builder messages(Optional<? extends List<Message>> messages) {
+        public Builder messages(Optional<? extends List<MessageInput>> messages) {
             Utils.checkNotNull(messages, "messages");
             this.messages = messages;
             return this;
