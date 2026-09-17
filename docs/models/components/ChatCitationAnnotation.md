@@ -1,0 +1,12 @@
+# ChatCitationAnnotation
+
+
+## Fields
+
+| Field                                                                               | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `type`                                                                              | [ChatCitationAnnotationType](../../models/components/ChatCitationAnnotationType.md) | :heavy_check_mark:                                                                  | N/A                                                                                 |
+| `sources`                                                                           | List\<[ChatCitationSource](../../models/components/ChatCitationSource.md)>          | :heavy_check_mark:                                                                  | N/A                                                                                 |
+| `startIndex`                                                                        | *JsonNullable\<Long>*                                                               | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `endIndex`                                                                          | *JsonNullable\<Long>*                                                               | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `snippets`                                                                          | List\<[ChatCitationSnippet](../../models/components/ChatCitationSnippet.md)>        | :heavy_minus_sign:                                                                  | N/A                                                                                 |

@@ -76,6 +76,8 @@ public class FeedResultCategory {
     public static final FeedResultCategory KNOWLEDGE_GAP = new FeedResultCategory("KNOWLEDGE_GAP");
     public static final FeedResultCategory ARTIFACT_CREATION = new FeedResultCategory("ARTIFACT_CREATION");
     public static final FeedResultCategory EDIT_DOC = new FeedResultCategory("EDIT_DOC");
+    public static final FeedResultCategory CHAT_TO_ARTIFACT = new FeedResultCategory("CHAT_TO_ARTIFACT");
+    public static final FeedResultCategory SHARE_ARTIFACT = new FeedResultCategory("SHARE_ARTIFACT");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -199,6 +201,8 @@ public class FeedResultCategory {
         map.put("KNOWLEDGE_GAP", KNOWLEDGE_GAP);
         map.put("ARTIFACT_CREATION", ARTIFACT_CREATION);
         map.put("EDIT_DOC", EDIT_DOC);
+        map.put("CHAT_TO_ARTIFACT", CHAT_TO_ARTIFACT);
+        map.put("SHARE_ARTIFACT", SHARE_ARTIFACT);
         return map;
     }
 
@@ -254,6 +258,8 @@ public class FeedResultCategory {
         map.put("KNOWLEDGE_GAP", FeedResultCategoryEnum.KNOWLEDGE_GAP);
         map.put("ARTIFACT_CREATION", FeedResultCategoryEnum.ARTIFACT_CREATION);
         map.put("EDIT_DOC", FeedResultCategoryEnum.EDIT_DOC);
+        map.put("CHAT_TO_ARTIFACT", FeedResultCategoryEnum.CHAT_TO_ARTIFACT);
+        map.put("SHARE_ARTIFACT", FeedResultCategoryEnum.SHARE_ARTIFACT);
         return map;
     }
     
@@ -309,7 +315,9 @@ public class FeedResultCategory {
         ADMIN_HEALTH_CENTER("ADMIN_HEALTH_CENTER"),
         KNOWLEDGE_GAP("KNOWLEDGE_GAP"),
         ARTIFACT_CREATION("ARTIFACT_CREATION"),
-        EDIT_DOC("EDIT_DOC"),;
+        EDIT_DOC("EDIT_DOC"),
+        CHAT_TO_ARTIFACT("CHAT_TO_ARTIFACT"),
+        SHARE_ARTIFACT("SHARE_ARTIFACT"),;
 
         private final String value;
 
