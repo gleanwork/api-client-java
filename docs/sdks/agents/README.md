@@ -206,10 +206,10 @@ public class Application {
                 .agentId("{agent_id}")
                 .platformAgentRunCreateRequest(PlatformAgentRunCreateRequest.builder()
                     .messages(List.of(
-                        PlatformMessage.builder()
+                        PlatformMessageInput.builder()
                             .role(PlatformMessageRole.USER)
                             .content(List.of(
-                                PlatformMessageTextBlock.builder()
+                                PlatformMessageTextBlockInput.builder()
                                     .text("What is our parental leave policy?")
                                     .type(PlatformContentType.TEXT)
                                     .build()))
