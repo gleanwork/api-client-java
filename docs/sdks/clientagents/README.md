@@ -364,7 +364,7 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.AgentRunCreate;
-import com.glean.api_client.glean_api_client.models.components.Message;
+import com.glean.api_client.glean_api_client.models.components.MessageInput;
 import com.glean.api_client.glean_api_client.models.errors.ErrorResponse;
 import com.glean.api_client.glean_api_client.models.errors.UnauthorizedAgentToolsError;
 import com.glean.api_client.glean_api_client.models.operations.CreateAndStreamRunResponse;
@@ -382,7 +382,7 @@ public class Application {
         AgentRunCreate req = AgentRunCreate.builder()
                 .agentId("<id>")
                 .messages(List.of(
-                    Message.builder()
+                    MessageInput.builder()
                         .role("USER")
                         .build()))
                 .build();
@@ -430,7 +430,7 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.AgentRunCreate;
-import com.glean.api_client.glean_api_client.models.components.Message;
+import com.glean.api_client.glean_api_client.models.components.MessageInput;
 import com.glean.api_client.glean_api_client.models.errors.UnauthorizedAgentToolsError;
 import com.glean.api_client.glean_api_client.models.operations.CreateAndWaitRunResponse;
 import java.lang.Exception;
@@ -447,7 +447,7 @@ public class Application {
         AgentRunCreate req = AgentRunCreate.builder()
                 .agentId("<id>")
                 .messages(List.of(
-                    Message.builder()
+                    MessageInput.builder()
                         .role("USER")
                         .build()))
                 .build();
