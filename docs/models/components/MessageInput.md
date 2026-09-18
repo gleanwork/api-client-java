@@ -1,0 +1,9 @@
+# MessageInput
+
+
+## Fields
+
+| Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `role`                                                                           | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | The role of the message.                                                         | USER                                                                             |
+| `content`                                                                        | List\<[MessageTextBlockInput](../../models/components/MessageTextBlockInput.md)> | :heavy_minus_sign:                                                               | The content of the message.                                                      |                                                                                  |

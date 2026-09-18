@@ -1,0 +1,12 @@
+# ChatDocumentSourceDocument2
+
+
+## Fields
+
+| Field                                                                         | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `url`                                                                         | *String*                                                                      | :heavy_check_mark:                                                            | N/A                                                                           |
+| `type`                                                                        | [ChatDocumentSourceType2](../../models/components/ChatDocumentSourceType2.md) | :heavy_check_mark:                                                            | N/A                                                                           |
+| `documentId`                                                                  | *Optional\<String>*                                                           | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `title`                                                                       | *Optional\<String>*                                                           | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `datasource`                                                                  | *Optional\<String>*                                                           | :heavy_minus_sign:                                                            | N/A                                                                           |

@@ -6,6 +6,8 @@ package com.glean.api_client.glean_api_client.models.components;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.glean.api_client.glean_api_client.utils.LazySingletonValue;
 import com.glean.api_client.glean_api_client.utils.SpeakeasyMetadata;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Boolean;
@@ -49,6 +51,26 @@ public class ImportAgentRequest {
     private Optional<? extends ImportAgentSyncMode> syncMode;
 
     /**
+     * Provenance recorded on the staged commit or published version this import produces. Doesn't change
+     * the agent's management mode (workflowSource). GIT: synced from a Git repository.
+     * 
+     * <p>USER: uploaded by a user. Defaults to USER when omitted. Ignored for transient imports.
+     */
+    @SpeakeasyMetadata("multipartForm:name=versionSource")
+    private Optional<? extends VersionSource> versionSource;
+
+    /**
+     * Optional baseline hash of the currently published agent definition. When publish hash validation is
+     * enabled, an import updating an existing agent with syncMode PUBLISHED is rejected with HTTP 409 if
+     * the current published definition hash is nonempty and does not match this baseline. Leading and
+     * trailing whitespace is trimmed; omitted or blank values skip validation.
+     * 
+     * <p>Ignored for STAGED imports, new agents, and transient previews.
+     */
+    @SpeakeasyMetadata("multipartForm:name=publishedBaselineHash")
+    private Optional<String> publishedBaselineHash;
+
+    /**
      * Deprecated. Draft mutation semantics are not supported for transient previews. Use transient and
      * parentWorkflowId instead.
      */
@@ -62,25 +84,32 @@ public class ImportAgentRequest {
             Optional<String> gitAuthorId,
             Optional<String> commitMessage,
             Optional<? extends ImportAgentSyncMode> syncMode,
+            Optional<? extends VersionSource> versionSource,
+            Optional<String> publishedBaselineHash,
             Optional<Boolean> isDraft) {
         Utils.checkNotNull(bundle, "bundle");
         Utils.checkNotNull(gitCommitSha, "gitCommitSha");
         Utils.checkNotNull(gitAuthorId, "gitAuthorId");
         Utils.checkNotNull(commitMessage, "commitMessage");
         Utils.checkNotNull(syncMode, "syncMode");
+        Utils.checkNotNull(versionSource, "versionSource");
+        Utils.checkNotNull(publishedBaselineHash, "publishedBaselineHash");
         Utils.checkNotNull(isDraft, "isDraft");
         this.bundle = bundle;
         this.gitCommitSha = gitCommitSha;
         this.gitAuthorId = gitAuthorId;
         this.commitMessage = commitMessage;
         this.syncMode = syncMode;
+        this.versionSource = versionSource;
+        this.publishedBaselineHash = publishedBaselineHash;
         this.isDraft = isDraft;
     }
     
     public ImportAgentRequest(
             Bundle bundle) {
         this(bundle, Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -124,6 +153,31 @@ public class ImportAgentRequest {
     @JsonIgnore
     public Optional<ImportAgentSyncMode> syncMode() {
         return (Optional<ImportAgentSyncMode>) syncMode;
+    }
+
+    /**
+     * Provenance recorded on the staged commit or published version this import produces. Doesn't change
+     * the agent's management mode (workflowSource). GIT: synced from a Git repository.
+     * 
+     * <p>USER: uploaded by a user. Defaults to USER when omitted. Ignored for transient imports.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<VersionSource> versionSource() {
+        return (Optional<VersionSource>) versionSource;
+    }
+
+    /**
+     * Optional baseline hash of the currently published agent definition. When publish hash validation is
+     * enabled, an import updating an existing agent with syncMode PUBLISHED is rejected with HTTP 409 if
+     * the current published definition hash is nonempty and does not match this baseline. Leading and
+     * trailing whitespace is trimmed; omitted or blank values skip validation.
+     * 
+     * <p>Ignored for STAGED imports, new agents, and transient previews.
+     */
+    @JsonIgnore
+    public Optional<String> publishedBaselineHash() {
+        return publishedBaselineHash;
     }
 
     /**
@@ -229,6 +283,60 @@ public class ImportAgentRequest {
     }
 
     /**
+     * Provenance recorded on the staged commit or published version this import produces. Doesn't change
+     * the agent's management mode (workflowSource). GIT: synced from a Git repository.
+     * 
+     * <p>USER: uploaded by a user. Defaults to USER when omitted. Ignored for transient imports.
+     */
+    public ImportAgentRequest withVersionSource(VersionSource versionSource) {
+        Utils.checkNotNull(versionSource, "versionSource");
+        this.versionSource = Optional.ofNullable(versionSource);
+        return this;
+    }
+
+
+    /**
+     * Provenance recorded on the staged commit or published version this import produces. Doesn't change
+     * the agent's management mode (workflowSource). GIT: synced from a Git repository.
+     * 
+     * <p>USER: uploaded by a user. Defaults to USER when omitted. Ignored for transient imports.
+     */
+    public ImportAgentRequest withVersionSource(Optional<? extends VersionSource> versionSource) {
+        Utils.checkNotNull(versionSource, "versionSource");
+        this.versionSource = versionSource;
+        return this;
+    }
+
+    /**
+     * Optional baseline hash of the currently published agent definition. When publish hash validation is
+     * enabled, an import updating an existing agent with syncMode PUBLISHED is rejected with HTTP 409 if
+     * the current published definition hash is nonempty and does not match this baseline. Leading and
+     * trailing whitespace is trimmed; omitted or blank values skip validation.
+     * 
+     * <p>Ignored for STAGED imports, new agents, and transient previews.
+     */
+    public ImportAgentRequest withPublishedBaselineHash(String publishedBaselineHash) {
+        Utils.checkNotNull(publishedBaselineHash, "publishedBaselineHash");
+        this.publishedBaselineHash = Optional.ofNullable(publishedBaselineHash);
+        return this;
+    }
+
+
+    /**
+     * Optional baseline hash of the currently published agent definition. When publish hash validation is
+     * enabled, an import updating an existing agent with syncMode PUBLISHED is rejected with HTTP 409 if
+     * the current published definition hash is nonempty and does not match this baseline. Leading and
+     * trailing whitespace is trimmed; omitted or blank values skip validation.
+     * 
+     * <p>Ignored for STAGED imports, new agents, and transient previews.
+     */
+    public ImportAgentRequest withPublishedBaselineHash(Optional<String> publishedBaselineHash) {
+        Utils.checkNotNull(publishedBaselineHash, "publishedBaselineHash");
+        this.publishedBaselineHash = publishedBaselineHash;
+        return this;
+    }
+
+    /**
      * Deprecated. Draft mutation semantics are not supported for transient previews. Use transient and
      * parentWorkflowId instead.
      */
@@ -264,6 +372,8 @@ public class ImportAgentRequest {
             Utils.enhancedDeepEquals(this.gitAuthorId, other.gitAuthorId) &&
             Utils.enhancedDeepEquals(this.commitMessage, other.commitMessage) &&
             Utils.enhancedDeepEquals(this.syncMode, other.syncMode) &&
+            Utils.enhancedDeepEquals(this.versionSource, other.versionSource) &&
+            Utils.enhancedDeepEquals(this.publishedBaselineHash, other.publishedBaselineHash) &&
             Utils.enhancedDeepEquals(this.isDraft, other.isDraft);
     }
     
@@ -271,7 +381,8 @@ public class ImportAgentRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             bundle, gitCommitSha, gitAuthorId,
-            commitMessage, syncMode, isDraft);
+            commitMessage, syncMode, versionSource,
+            publishedBaselineHash, isDraft);
     }
     
     @Override
@@ -282,6 +393,8 @@ public class ImportAgentRequest {
                 "gitAuthorId", gitAuthorId,
                 "commitMessage", commitMessage,
                 "syncMode", syncMode,
+                "versionSource", versionSource,
+                "publishedBaselineHash", publishedBaselineHash,
                 "isDraft", isDraft);
     }
 
@@ -297,6 +410,10 @@ public class ImportAgentRequest {
         private Optional<String> commitMessage = Optional.empty();
 
         private Optional<? extends ImportAgentSyncMode> syncMode = Optional.empty();
+
+        private Optional<? extends VersionSource> versionSource;
+
+        private Optional<String> publishedBaselineHash = Optional.empty();
 
         private Optional<Boolean> isDraft = Optional.empty();
 
@@ -395,6 +512,60 @@ public class ImportAgentRequest {
 
 
         /**
+         * Provenance recorded on the staged commit or published version this import produces. Doesn't change
+         * the agent's management mode (workflowSource). GIT: synced from a Git repository.
+         * 
+         * <p>USER: uploaded by a user. Defaults to USER when omitted. Ignored for transient imports.
+         */
+        public Builder versionSource(VersionSource versionSource) {
+            Utils.checkNotNull(versionSource, "versionSource");
+            this.versionSource = Optional.ofNullable(versionSource);
+            return this;
+        }
+
+        /**
+         * Provenance recorded on the staged commit or published version this import produces. Doesn't change
+         * the agent's management mode (workflowSource). GIT: synced from a Git repository.
+         * 
+         * <p>USER: uploaded by a user. Defaults to USER when omitted. Ignored for transient imports.
+         */
+        public Builder versionSource(Optional<? extends VersionSource> versionSource) {
+            Utils.checkNotNull(versionSource, "versionSource");
+            this.versionSource = versionSource;
+            return this;
+        }
+
+
+        /**
+         * Optional baseline hash of the currently published agent definition. When publish hash validation is
+         * enabled, an import updating an existing agent with syncMode PUBLISHED is rejected with HTTP 409 if
+         * the current published definition hash is nonempty and does not match this baseline. Leading and
+         * trailing whitespace is trimmed; omitted or blank values skip validation.
+         * 
+         * <p>Ignored for STAGED imports, new agents, and transient previews.
+         */
+        public Builder publishedBaselineHash(String publishedBaselineHash) {
+            Utils.checkNotNull(publishedBaselineHash, "publishedBaselineHash");
+            this.publishedBaselineHash = Optional.ofNullable(publishedBaselineHash);
+            return this;
+        }
+
+        /**
+         * Optional baseline hash of the currently published agent definition. When publish hash validation is
+         * enabled, an import updating an existing agent with syncMode PUBLISHED is rejected with HTTP 409 if
+         * the current published definition hash is nonempty and does not match this baseline. Leading and
+         * trailing whitespace is trimmed; omitted or blank values skip validation.
+         * 
+         * <p>Ignored for STAGED imports, new agents, and transient previews.
+         */
+        public Builder publishedBaselineHash(Optional<String> publishedBaselineHash) {
+            Utils.checkNotNull(publishedBaselineHash, "publishedBaselineHash");
+            this.publishedBaselineHash = publishedBaselineHash;
+            return this;
+        }
+
+
+        /**
          * Deprecated. Draft mutation semantics are not supported for transient previews. Use transient and
          * parentWorkflowId instead.
          */
@@ -415,11 +586,21 @@ public class ImportAgentRequest {
         }
 
         public ImportAgentRequest build() {
+            if (versionSource == null) {
+                versionSource = _SINGLETON_VALUE_VersionSource.value();
+            }
 
             return new ImportAgentRequest(
                 bundle, gitCommitSha, gitAuthorId,
-                commitMessage, syncMode, isDraft);
+                commitMessage, syncMode, versionSource,
+                publishedBaselineHash, isDraft);
         }
 
+
+        private static final LazySingletonValue<Optional<? extends VersionSource>> _SINGLETON_VALUE_VersionSource =
+                new LazySingletonValue<>(
+                        "versionSource",
+                        "\"USER\"",
+                        new TypeReference<Optional<? extends VersionSource>>() {});
     }
 }
