@@ -17,12 +17,12 @@ import java.util.Optional;
 
 public class PlatformChatDocumentSourceDocument1 {
 
-    @JsonProperty("type")
-    private PlatformChatDocumentSourceType1 type;
-
-
     @JsonProperty("document_id")
     private String documentId;
+
+
+    @JsonProperty("type")
+    private PlatformChatDocumentSourceType1 type;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -41,38 +41,38 @@ public class PlatformChatDocumentSourceDocument1 {
 
     @JsonCreator
     public PlatformChatDocumentSourceDocument1(
-            @JsonProperty("type") PlatformChatDocumentSourceType1 type,
             @JsonProperty("document_id") String documentId,
+            @JsonProperty("type") PlatformChatDocumentSourceType1 type,
             @JsonProperty("url") Optional<String> url,
             @JsonProperty("title") Optional<String> title,
             @JsonProperty("datasource") Optional<String> datasource) {
-        Utils.checkNotNull(type, "type");
         Utils.checkNotNull(documentId, "documentId");
+        Utils.checkNotNull(type, "type");
         Utils.checkNotNull(url, "url");
         Utils.checkNotNull(title, "title");
         Utils.checkNotNull(datasource, "datasource");
-        this.type = type;
         this.documentId = documentId;
+        this.type = type;
         this.url = url;
         this.title = title;
         this.datasource = datasource;
     }
     
     public PlatformChatDocumentSourceDocument1(
-            PlatformChatDocumentSourceType1 type,
-            String documentId) {
-        this(type, documentId, Optional.empty(),
+            String documentId,
+            PlatformChatDocumentSourceType1 type) {
+        this(documentId, type, Optional.empty(),
             Optional.empty(), Optional.empty());
-    }
-
-    @JsonIgnore
-    public PlatformChatDocumentSourceType1 type() {
-        return type;
     }
 
     @JsonIgnore
     public String documentId() {
         return documentId;
+    }
+
+    @JsonIgnore
+    public PlatformChatDocumentSourceType1 type() {
+        return type;
     }
 
     @JsonIgnore
@@ -95,15 +95,15 @@ public class PlatformChatDocumentSourceDocument1 {
     }
 
 
-    public PlatformChatDocumentSourceDocument1 withType(PlatformChatDocumentSourceType1 type) {
-        Utils.checkNotNull(type, "type");
-        this.type = type;
-        return this;
-    }
-
     public PlatformChatDocumentSourceDocument1 withDocumentId(String documentId) {
         Utils.checkNotNull(documentId, "documentId");
         this.documentId = documentId;
+        return this;
+    }
+
+    public PlatformChatDocumentSourceDocument1 withType(PlatformChatDocumentSourceType1 type) {
+        Utils.checkNotNull(type, "type");
+        this.type = type;
         return this;
     }
 
@@ -156,8 +156,8 @@ public class PlatformChatDocumentSourceDocument1 {
         }
         PlatformChatDocumentSourceDocument1 other = (PlatformChatDocumentSourceDocument1) o;
         return 
-            Utils.enhancedDeepEquals(this.type, other.type) &&
             Utils.enhancedDeepEquals(this.documentId, other.documentId) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
             Utils.enhancedDeepEquals(this.url, other.url) &&
             Utils.enhancedDeepEquals(this.title, other.title) &&
             Utils.enhancedDeepEquals(this.datasource, other.datasource);
@@ -166,15 +166,15 @@ public class PlatformChatDocumentSourceDocument1 {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type, documentId, url,
+            documentId, type, url,
             title, datasource);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PlatformChatDocumentSourceDocument1.class,
-                "type", type,
                 "documentId", documentId,
+                "type", type,
                 "url", url,
                 "title", title,
                 "datasource", datasource);
@@ -183,9 +183,9 @@ public class PlatformChatDocumentSourceDocument1 {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private PlatformChatDocumentSourceType1 type;
-
         private String documentId;
+
+        private PlatformChatDocumentSourceType1 type;
 
         private Optional<String> url = Optional.empty();
 
@@ -198,16 +198,16 @@ public class PlatformChatDocumentSourceDocument1 {
         }
 
 
-        public Builder type(PlatformChatDocumentSourceType1 type) {
-            Utils.checkNotNull(type, "type");
-            this.type = type;
+        public Builder documentId(String documentId) {
+            Utils.checkNotNull(documentId, "documentId");
+            this.documentId = documentId;
             return this;
         }
 
 
-        public Builder documentId(String documentId) {
-            Utils.checkNotNull(documentId, "documentId");
-            this.documentId = documentId;
+        public Builder type(PlatformChatDocumentSourceType1 type) {
+            Utils.checkNotNull(type, "type");
+            this.type = type;
             return this;
         }
 
@@ -253,7 +253,7 @@ public class PlatformChatDocumentSourceDocument1 {
         public PlatformChatDocumentSourceDocument1 build() {
 
             return new PlatformChatDocumentSourceDocument1(
-                type, documentId, url,
+                documentId, type, url,
                 title, datasource);
         }
 

@@ -41,7 +41,7 @@ public class PlatformAgentRunCreateRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("messages")
-    private Optional<? extends List<PlatformMessage>> messages;
+    private Optional<? extends List<PlatformMessageInput>> messages;
 
     /**
      * Metadata to pass to the agent.
@@ -60,7 +60,7 @@ public class PlatformAgentRunCreateRequest {
     @JsonCreator
     public PlatformAgentRunCreateRequest(
             @JsonProperty("input") Optional<? extends Map<String, Object>> input,
-            @JsonProperty("messages") Optional<? extends List<PlatformMessage>> messages,
+            @JsonProperty("messages") Optional<? extends List<PlatformMessageInput>> messages,
             @JsonProperty("metadata") Optional<? extends Map<String, Object>> metadata,
             @JsonProperty("stream") Optional<Boolean> stream) {
         Utils.checkNotNull(input, "input");
@@ -93,8 +93,8 @@ public class PlatformAgentRunCreateRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<PlatformMessage>> messages() {
-        return (Optional<List<PlatformMessage>>) messages;
+    public Optional<List<PlatformMessageInput>> messages() {
+        return (Optional<List<PlatformMessageInput>>) messages;
     }
 
     /**
@@ -142,7 +142,7 @@ public class PlatformAgentRunCreateRequest {
      * Messages to pass to the agent. When provided, the array MUST contain at least one message and each
      * message MUST specify a valid `role` and non-empty `content`.
      */
-    public PlatformAgentRunCreateRequest withMessages(List<PlatformMessage> messages) {
+    public PlatformAgentRunCreateRequest withMessages(List<PlatformMessageInput> messages) {
         Utils.checkNotNull(messages, "messages");
         this.messages = Optional.ofNullable(messages);
         return this;
@@ -153,7 +153,7 @@ public class PlatformAgentRunCreateRequest {
      * Messages to pass to the agent. When provided, the array MUST contain at least one message and each
      * message MUST specify a valid `role` and non-empty `content`.
      */
-    public PlatformAgentRunCreateRequest withMessages(Optional<? extends List<PlatformMessage>> messages) {
+    public PlatformAgentRunCreateRequest withMessages(Optional<? extends List<PlatformMessageInput>> messages) {
         Utils.checkNotNull(messages, "messages");
         this.messages = messages;
         return this;
@@ -234,7 +234,7 @@ public class PlatformAgentRunCreateRequest {
 
         private Optional<? extends Map<String, Object>> input = Optional.empty();
 
-        private Optional<? extends List<PlatformMessage>> messages = Optional.empty();
+        private Optional<? extends List<PlatformMessageInput>> messages = Optional.empty();
 
         private Optional<? extends Map<String, Object>> metadata = Optional.empty();
 
@@ -268,7 +268,7 @@ public class PlatformAgentRunCreateRequest {
          * Messages to pass to the agent. When provided, the array MUST contain at least one message and each
          * message MUST specify a valid `role` and non-empty `content`.
          */
-        public Builder messages(List<PlatformMessage> messages) {
+        public Builder messages(List<PlatformMessageInput> messages) {
             Utils.checkNotNull(messages, "messages");
             this.messages = Optional.ofNullable(messages);
             return this;
@@ -278,7 +278,7 @@ public class PlatformAgentRunCreateRequest {
          * Messages to pass to the agent. When provided, the array MUST contain at least one message and each
          * message MUST specify a valid `role` and non-empty `content`.
          */
-        public Builder messages(Optional<? extends List<PlatformMessage>> messages) {
+        public Builder messages(Optional<? extends List<PlatformMessageInput>> messages) {
             Utils.checkNotNull(messages, "messages");
             this.messages = messages;
             return this;

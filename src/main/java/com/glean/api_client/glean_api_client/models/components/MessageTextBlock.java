@@ -6,10 +6,15 @@ package com.glean.api_client.glean_api_client.models.components;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
+import java.util.Optional;
 
 
 public class MessageTextBlock {
@@ -21,14 +26,28 @@ public class MessageTextBlock {
     @JsonProperty("type")
     private ContentType type;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("annotations")
+    private Optional<? extends List<ChatCitationAnnotation>> annotations;
+
     @JsonCreator
     public MessageTextBlock(
             @JsonProperty("text") String text,
-            @JsonProperty("type") ContentType type) {
+            @JsonProperty("type") ContentType type,
+            @JsonProperty("annotations") Optional<? extends List<ChatCitationAnnotation>> annotations) {
         Utils.checkNotNull(text, "text");
         Utils.checkNotNull(type, "type");
+        Utils.checkNotNull(annotations, "annotations");
         this.text = text;
         this.type = type;
+        this.annotations = annotations;
+    }
+    
+    public MessageTextBlock(
+            String text,
+            ContentType type) {
+        this(text, type, Optional.empty());
     }
 
     @JsonIgnore
@@ -39,6 +58,12 @@ public class MessageTextBlock {
     @JsonIgnore
     public ContentType type() {
         return type;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<ChatCitationAnnotation>> annotations() {
+        return (Optional<List<ChatCitationAnnotation>>) annotations;
     }
 
     public static Builder builder() {
@@ -58,6 +83,19 @@ public class MessageTextBlock {
         return this;
     }
 
+    public MessageTextBlock withAnnotations(List<ChatCitationAnnotation> annotations) {
+        Utils.checkNotNull(annotations, "annotations");
+        this.annotations = Optional.ofNullable(annotations);
+        return this;
+    }
+
+
+    public MessageTextBlock withAnnotations(Optional<? extends List<ChatCitationAnnotation>> annotations) {
+        Utils.checkNotNull(annotations, "annotations");
+        this.annotations = annotations;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -69,20 +107,22 @@ public class MessageTextBlock {
         MessageTextBlock other = (MessageTextBlock) o;
         return 
             Utils.enhancedDeepEquals(this.text, other.text) &&
-            Utils.enhancedDeepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.annotations, other.annotations);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            text, type);
+            text, type, annotations);
     }
     
     @Override
     public String toString() {
         return Utils.toString(MessageTextBlock.class,
                 "text", text,
-                "type", type);
+                "type", type,
+                "annotations", annotations);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -91,6 +131,8 @@ public class MessageTextBlock {
         private String text;
 
         private ContentType type;
+
+        private Optional<? extends List<ChatCitationAnnotation>> annotations = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -110,10 +152,23 @@ public class MessageTextBlock {
             return this;
         }
 
+
+        public Builder annotations(List<ChatCitationAnnotation> annotations) {
+            Utils.checkNotNull(annotations, "annotations");
+            this.annotations = Optional.ofNullable(annotations);
+            return this;
+        }
+
+        public Builder annotations(Optional<? extends List<ChatCitationAnnotation>> annotations) {
+            Utils.checkNotNull(annotations, "annotations");
+            this.annotations = annotations;
+            return this;
+        }
+
         public MessageTextBlock build() {
 
             return new MessageTextBlock(
-                text, type);
+                text, type, annotations);
         }
 
     }
