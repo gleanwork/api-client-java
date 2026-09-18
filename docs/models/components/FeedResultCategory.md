@@ -70,3 +70,4 @@ FeedResultCategory custom = FeedResultCategory.of("custom_value");
 | `EDIT_DOC`                          | EDIT_DOC                            |
 | `CHAT_TO_ARTIFACT`                  | CHAT_TO_ARTIFACT                    |
 | `SHARE_ARTIFACT`                    | SHARE_ARTIFACT                      |
+| `CREATE_AGENT`                      | CREATE_AGENT                        |
