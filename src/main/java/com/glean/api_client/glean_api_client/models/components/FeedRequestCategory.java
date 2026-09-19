@@ -61,7 +61,8 @@ public enum FeedRequestCategory {
     ARTIFACT_CREATION("ARTIFACT_CREATION"),
     EDIT_DOC("EDIT_DOC"),
     CHAT_TO_ARTIFACT("CHAT_TO_ARTIFACT"),
-    SHARE_ARTIFACT("SHARE_ARTIFACT");
+    SHARE_ARTIFACT("SHARE_ARTIFACT"),
+    CREATE_AGENT("CREATE_AGENT");
 
     @JsonValue
     private final String value;
