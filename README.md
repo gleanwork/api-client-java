@@ -68,7 +68,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.glean.api-client:glean-api-client:0.17.15'
+implementation 'com.glean.api-client:glean-api-client:0.17.16'
 ```
 
 Maven:
@@ -76,7 +76,7 @@ Maven:
 <dependency>
     <groupId>com.glean.api-client</groupId>
     <artifactId>glean-api-client</artifactId>
-    <version>0.17.15</version>
+    <version>0.17.16</version>
 </dependency>
 ```
 
@@ -658,11 +658,13 @@ underlying connection.
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.PlatformChatStreamEventServerSentEvent;
+import com.glean.api_client.glean_api_client.models.components.*;
 import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
 import com.glean.api_client.glean_api_client.models.operations.*;
 import com.glean.api_client.glean_api_client.utils.EventStream;
 import java.lang.Exception;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 public class Application {
@@ -674,7 +676,23 @@ public class Application {
             .build();
 
         PlatformChatCreateStreamRequest req = PlatformChatCreateStreamRequest.builder()
-                .input(PlatformChatCreateStreamInput.of("What is our parental leave policy?"))
+                .input(PlatformChatCreateStreamInput.of("Summarize our parental leave policy as JSON."))
+                .text(PlatformChatCreateStreamText.builder()
+                    .format(PlatformChatCreateStreamFormat.of(PlatformChatJsonSchemaFormat.builder()
+                        .type(PlatformChatJsonSchemaFormatType.JSON_SCHEMA)
+                        .name("policy_summary")
+                        .schema(Map.ofEntries(
+                            Map.entry("type", "object"),
+                            Map.entry("properties", Map.ofEntries(
+                                Map.entry("eligible_employees", Map.ofEntries(
+                                    Map.entry("type", "string"))),
+                                Map.entry("duration_weeks", Map.ofEntries(
+                                    Map.entry("type", "integer"))))),
+                            Map.entry("required", List.of(
+                                "eligible_employees",
+                                "duration_weeks"))))
+                        .build()))
+                    .build())
                 .build();
 
         PlatformChatCreateStreamResponse res = sdk.chat().createStream()
@@ -703,11 +721,12 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.AsyncGlean;
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.PlatformChatStreamEventServerSentEvent;
-import com.glean.api_client.glean_api_client.models.operations.PlatformChatCreateStreamInput;
-import com.glean.api_client.glean_api_client.models.operations.PlatformChatCreateStreamRequest;
+import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.operations.*;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformChatCreateStreamResponse;
 import com.glean.api_client.glean_api_client.utils.reactive.EventStream;
+import java.util.List;
+import java.util.Map;
 import reactor.core.publisher.Flux;
 
 public class Application {
@@ -720,7 +739,23 @@ public class Application {
             .async();
 
         PlatformChatCreateStreamRequest req = PlatformChatCreateStreamRequest.builder()
-                .input(PlatformChatCreateStreamInput.of("What is our parental leave policy?"))
+                .input(PlatformChatCreateStreamInput.of("Summarize our parental leave policy as JSON."))
+                .text(PlatformChatCreateStreamText.builder()
+                    .format(PlatformChatCreateStreamFormat.of(PlatformChatJsonSchemaFormat.builder()
+                        .type(PlatformChatJsonSchemaFormatType.JSON_SCHEMA)
+                        .name("policy_summary")
+                        .schema(Map.ofEntries(
+                            Map.entry("type", "object"),
+                            Map.entry("properties", Map.ofEntries(
+                                Map.entry("eligible_employees", Map.ofEntries(
+                                    Map.entry("type", "string"))),
+                                Map.entry("duration_weeks", Map.ofEntries(
+                                    Map.entry("type", "integer"))))),
+                            Map.entry("required", List.of(
+                                "eligible_employees",
+                                "duration_weeks"))))
+                        .build()))
+                    .build())
                 .build();
 
         EventStream<PlatformChatCreateStreamResponse, PlatformChatStreamEventServerSentEvent> res = sdk.chat().createStream()
