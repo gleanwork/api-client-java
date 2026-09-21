@@ -78,6 +78,7 @@ public class FeedResultCategory {
     public static final FeedResultCategory EDIT_DOC = new FeedResultCategory("EDIT_DOC");
     public static final FeedResultCategory CHAT_TO_ARTIFACT = new FeedResultCategory("CHAT_TO_ARTIFACT");
     public static final FeedResultCategory SHARE_ARTIFACT = new FeedResultCategory("SHARE_ARTIFACT");
+    public static final FeedResultCategory CREATE_AGENT = new FeedResultCategory("CREATE_AGENT");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -203,6 +204,7 @@ public class FeedResultCategory {
         map.put("EDIT_DOC", EDIT_DOC);
         map.put("CHAT_TO_ARTIFACT", CHAT_TO_ARTIFACT);
         map.put("SHARE_ARTIFACT", SHARE_ARTIFACT);
+        map.put("CREATE_AGENT", CREATE_AGENT);
         return map;
     }
 
@@ -260,6 +262,7 @@ public class FeedResultCategory {
         map.put("EDIT_DOC", FeedResultCategoryEnum.EDIT_DOC);
         map.put("CHAT_TO_ARTIFACT", FeedResultCategoryEnum.CHAT_TO_ARTIFACT);
         map.put("SHARE_ARTIFACT", FeedResultCategoryEnum.SHARE_ARTIFACT);
+        map.put("CREATE_AGENT", FeedResultCategoryEnum.CREATE_AGENT);
         return map;
     }
     
@@ -317,7 +320,8 @@ public class FeedResultCategory {
         ARTIFACT_CREATION("ARTIFACT_CREATION"),
         EDIT_DOC("EDIT_DOC"),
         CHAT_TO_ARTIFACT("CHAT_TO_ARTIFACT"),
-        SHARE_ARTIFACT("SHARE_ARTIFACT"),;
+        SHARE_ARTIFACT("SHARE_ARTIFACT"),
+        CREATE_AGENT("CREATE_AGENT"),;
 
         private final String value;
 
