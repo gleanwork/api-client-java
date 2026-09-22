@@ -8,6 +8,7 @@
 * [get](#get) - Get agent
 * [getSchemas](#getschemas) - Get agent schemas
 * [createRun](#createrun) - Create agent run
+* [getRun](#getrun) - Get agent run
 
 ## search
 
@@ -177,7 +178,7 @@ public class Application {
 
 ## createRun
 
-Execute an agent run. Set `stream` to true to receive server-sent events; otherwise the response contains the final agent messages.
+Execute an agent run. By default, set `stream` to true to receive server-sent events; otherwise the response contains the final agent messages. Set `execution_mode` to `DURABLE` to persist a new run and return its initial snapshot with HTTP 201 without waiting for execution. Poll the agent-scoped GET run endpoint for progress. Durable execution continues after an HTTP disconnect, but is not automatically resumed after a QE restart or crash. An active turn becomes overdue more than 40 minutes after acceptance (a 30-minute execution timeout plus 10 minutes of grace). The next GET of the run marks the overdue turn FAILED without replay; there is no periodic sweep. Without a GET, the stored run can remain RUNNING. Failure does not prove that external tool work has stopped. Paused runs are not expired. Each POST creates a new run; retrying a POST can create another execution. A run tracks one workflow execution; automatic background-subagent wake turns are separate executions, not continuations tracked by this run ID.
 
 
 ### Example Usage
@@ -243,3 +244,58 @@ public class Application {
 | models/errors/PlatformProblemDetailException                 | 400, 401, 403, 404, 408, 409, 413, 429                       | application/problem+json                                     |
 | models/errors/PlatformProblemDetailException                 | 500, 503                                                     | application/problem+json                                     |
 | models/errors/APIException                                   | 4XX, 5XX                                                     | \*/\*                                                        |
+
+## getRun
+
+Retrieve a persisted workflow execution owned by the authenticated user. The run must belong to the specified agent, and the user must still have access to that agent. Unknown runs, runs owned by another user, and mismatched agent/run identifiers return 404. Requires the agents.run scope. Executions without a persisted workflow record are not available through this endpoint.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="platform-agents-get-run" method="get" path="/api/agents/{agent_id}/runs/{run_id}" -->
+```java
+package hello.world;
+
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsGetRunResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws PlatformProblemDetailException, Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
+            .build();
+
+        PlatformAgentsGetRunResponse res = sdk.agents().getRun()
+                .agentId("{agent_id}")
+                .runId("{run_id}")
+                .call();
+
+        if (res.platformAgentRunResponse().isPresent()) {
+            System.out.println(res.platformAgentRunResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                          | Type                               | Required                           | Description                        | Example                            |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| `agentId`                          | *String*                           | :heavy_check_mark:                 | ID of the agent that owns the run. | {agent_id}                         |
+| `runId`                            | *String*                           | :heavy_check_mark:                 | ID of the durable run to retrieve. | {run_id}                           |
+
+### Response
+
+**[PlatformAgentsGetRunResponse](../../models/operations/PlatformAgentsGetRunResponse.md)**
+
+### Errors
+
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| models/errors/PlatformProblemDetailException | 400, 401, 403, 404, 408, 429                 | application/problem+json                     |
+| models/errors/PlatformProblemDetailException | 500, 503                                     | application/problem+json                     |
+| models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
