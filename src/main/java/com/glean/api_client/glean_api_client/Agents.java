@@ -14,6 +14,9 @@ import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsCre
 import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsGetRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsGetRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsGetResponse;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsGetRunRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsGetRunRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsGetRunResponse;
 import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsGetSchemasRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsGetSchemasRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsGetSchemasResponse;
@@ -21,6 +24,7 @@ import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsSea
 import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsSearchResponse;
 import com.glean.api_client.glean_api_client.operations.PlatformAgentsCreateRun;
 import com.glean.api_client.glean_api_client.operations.PlatformAgentsGet;
+import com.glean.api_client.glean_api_client.operations.PlatformAgentsGetRun;
 import com.glean.api_client.glean_api_client.operations.PlatformAgentsGetSchemas;
 import com.glean.api_client.glean_api_client.operations.PlatformAgentsSearch;
 import com.glean.api_client.glean_api_client.utils.Headers;
@@ -184,6 +188,49 @@ public class Agents {
                 .build();
         RequestOperation<PlatformAgentsCreateRunRequest, PlatformAgentsCreateRunResponse> operation
               = new PlatformAgentsCreateRun.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Get agent run
+     * 
+     * <p>Retrieve a persisted workflow execution owned by the authenticated user. The run must belong to the
+     * specified agent, and the user must still have access to that agent. Unknown runs, runs owned by
+     * another user, and mismatched agent/run identifiers return 404.
+     * 
+     * <p>Requires the agents.run scope. Executions without a persisted workflow record are not available
+     * through this endpoint.
+     * 
+     * @return The call builder
+     */
+    public PlatformAgentsGetRunRequestBuilder getRun() {
+        return new PlatformAgentsGetRunRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Get agent run
+     * 
+     * <p>Retrieve a persisted workflow execution owned by the authenticated user. The run must belong to the
+     * specified agent, and the user must still have access to that agent. Unknown runs, runs owned by
+     * another user, and mismatched agent/run identifiers return 404.
+     * 
+     * <p>Requires the agents.run scope. Executions without a persisted workflow record are not available
+     * through this endpoint.
+     * 
+     * @param agentId ID of the agent that owns the run.
+     * @param runId ID of the durable run to retrieve.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformAgentsGetRunResponse getRun(String agentId, String runId) {
+        PlatformAgentsGetRunRequest request =
+            PlatformAgentsGetRunRequest
+                .builder()
+                .agentId(agentId)
+                .runId(runId)
+                .build();
+        RequestOperation<PlatformAgentsGetRunRequest, PlatformAgentsGetRunResponse> operation
+              = new PlatformAgentsGetRun.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
