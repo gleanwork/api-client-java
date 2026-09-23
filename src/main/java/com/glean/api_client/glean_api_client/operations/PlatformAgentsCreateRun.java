@@ -11,6 +11,7 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
+import com.glean.api_client.glean_api_client.models.components.PlatformAgentRunResponse;
 import com.glean.api_client.glean_api_client.models.components.PlatformAgentRunWaitResponse;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
 import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
@@ -186,6 +187,13 @@ public class PlatformAgentsCreateRun {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
             }
+            if (Utils.statusCodeMatches(response.statusCode(), "201")) {
+                if (Utils.contentTypeMatches(contentType, "application/json")) {
+                    return res.withPlatformAgentRunResponse(Utils.unmarshal(response, new TypeReference<PlatformAgentRunResponse>() {}));
+                } else {
+                    throw APIException.from("Unexpected content-type received: " + contentType, response);
+                }
+            }
             if (Utils.statusCodeMatches(response.statusCode(), "422")) {
                 if (Utils.contentTypeMatches(contentType, "application/problem+json")) {
                     throw PlatformUnauthorizedAgentToolsProblemException.from(response);
@@ -284,6 +292,14 @@ public class PlatformAgentsCreateRun {
                             return Exceptions.rethrow(e);
                         }
                     });
+                } else {
+                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
+                }
+            }
+            if (Utils.statusCodeMatches(response.statusCode(), "201")) {
+                if (Utils.contentTypeMatches(contentType, "application/json")) {
+                    return Utils.unmarshalAsync(response, new TypeReference<PlatformAgentRunResponse>() {})
+                            .thenApply(res::withPlatformAgentRunResponse);
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }
