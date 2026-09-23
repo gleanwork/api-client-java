@@ -92,6 +92,8 @@ public class JustificationType {
     public static final JustificationType EDIT_DOC = new JustificationType("EDIT_DOC");
     public static final JustificationType CHAT_TO_ARTIFACT = new JustificationType("CHAT_TO_ARTIFACT");
     public static final JustificationType SHARE_ARTIFACT = new JustificationType("SHARE_ARTIFACT");
+    public static final JustificationType CREATE_AGENT = new JustificationType("CREATE_AGENT");
+    public static final JustificationType MANAGER_INVITE = new JustificationType("MANAGER_INVITE");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -231,6 +233,8 @@ public class JustificationType {
         map.put("EDIT_DOC", EDIT_DOC);
         map.put("CHAT_TO_ARTIFACT", CHAT_TO_ARTIFACT);
         map.put("SHARE_ARTIFACT", SHARE_ARTIFACT);
+        map.put("CREATE_AGENT", CREATE_AGENT);
+        map.put("MANAGER_INVITE", MANAGER_INVITE);
         return map;
     }
 
@@ -302,6 +306,8 @@ public class JustificationType {
         map.put("EDIT_DOC", JustificationTypeEnum.EDIT_DOC);
         map.put("CHAT_TO_ARTIFACT", JustificationTypeEnum.CHAT_TO_ARTIFACT);
         map.put("SHARE_ARTIFACT", JustificationTypeEnum.SHARE_ARTIFACT);
+        map.put("CREATE_AGENT", JustificationTypeEnum.CREATE_AGENT);
+        map.put("MANAGER_INVITE", JustificationTypeEnum.MANAGER_INVITE);
         return map;
     }
     
@@ -373,7 +379,9 @@ public class JustificationType {
         ARTIFACT_CREATION("ARTIFACT_CREATION"),
         EDIT_DOC("EDIT_DOC"),
         CHAT_TO_ARTIFACT("CHAT_TO_ARTIFACT"),
-        SHARE_ARTIFACT("SHARE_ARTIFACT"),;
+        SHARE_ARTIFACT("SHARE_ARTIFACT"),
+        CREATE_AGENT("CREATE_AGENT"),
+        MANAGER_INVITE("MANAGER_INVITE"),;
 
         private final String value;
 
