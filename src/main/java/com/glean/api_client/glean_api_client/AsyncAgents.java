@@ -6,21 +6,30 @@ package com.glean.api_client.glean_api_client;
 
 import static com.glean.api_client.glean_api_client.operations.Operations.AsyncRequestOperation;
 
+import com.glean.api_client.glean_api_client.models.components.PlatformAgentRunCancellationRequest;
 import com.glean.api_client.glean_api_client.models.components.PlatformAgentRunCreateRequest;
 import com.glean.api_client.glean_api_client.models.components.PlatformAgentsSearchRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsCancelRunRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsCreateRunRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsGetRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsGetRunRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsGetSchemasRequest;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsCancelRunRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsCancelRunResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsCreateRunRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsCreateRunResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsGetRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsGetResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsGetRunRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsGetRunResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsGetSchemasRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsGetSchemasResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsSearchRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsSearchResponse;
+import com.glean.api_client.glean_api_client.operations.PlatformAgentsCancelRun;
 import com.glean.api_client.glean_api_client.operations.PlatformAgentsCreateRun;
 import com.glean.api_client.glean_api_client.operations.PlatformAgentsGet;
+import com.glean.api_client.glean_api_client.operations.PlatformAgentsGetRun;
 import com.glean.api_client.glean_api_client.operations.PlatformAgentsGetSchemas;
 import com.glean.api_client.glean_api_client.operations.PlatformAgentsSearch;
 import com.glean.api_client.glean_api_client.utils.Headers;
@@ -158,8 +167,24 @@ public class AsyncAgents {
     /**
      * Create agent run
      * 
-     * <p>Execute an agent run. Set `stream` to true to receive server-sent events; otherwise the response
-     * contains the final agent messages.
+     * <p>Execute an agent run. By default, set `stream` to true to receive server-sent events; otherwise the
+     * response contains the final agent messages. Set `execution_mode` to `DURABLE` to persist a new run
+     * and return its initial snapshot with HTTP 201 without waiting for execution.
+     * 
+     * <p>Poll the agent-scoped GET run endpoint for progress. Durable execution continues after an HTTP
+     * disconnect, but is not automatically resumed after a QE restart or crash. An active turn becomes
+     * overdue more than 40 minutes after acceptance (a 30-minute execution timeout plus 10 minutes of
+     * grace).
+     * 
+     * <p>The next GET of the run marks the overdue turn FAILED without replay; there is no periodic sweep.
+     * Without a GET, the stored run can remain RUNNING. Failure does not prove that external tool work has
+     * stopped.
+     * 
+     * <p>Paused runs are not expired. Each POST creates a new run; retrying a POST can create another
+     * execution. Cancellation can be requested through the run cancellations endpoint.
+     * 
+     * <p>A run tracks one workflow execution; automatic background-subagent wake turns are separate
+     * executions, not continuations tracked by this run ID.
      * 
      * @return The async call builder
      */
@@ -170,8 +195,24 @@ public class AsyncAgents {
     /**
      * Create agent run
      * 
-     * <p>Execute an agent run. Set `stream` to true to receive server-sent events; otherwise the response
-     * contains the final agent messages.
+     * <p>Execute an agent run. By default, set `stream` to true to receive server-sent events; otherwise the
+     * response contains the final agent messages. Set `execution_mode` to `DURABLE` to persist a new run
+     * and return its initial snapshot with HTTP 201 without waiting for execution.
+     * 
+     * <p>Poll the agent-scoped GET run endpoint for progress. Durable execution continues after an HTTP
+     * disconnect, but is not automatically resumed after a QE restart or crash. An active turn becomes
+     * overdue more than 40 minutes after acceptance (a 30-minute execution timeout plus 10 minutes of
+     * grace).
+     * 
+     * <p>The next GET of the run marks the overdue turn FAILED without replay; there is no periodic sweep.
+     * Without a GET, the stored run can remain RUNNING. Failure does not prove that external tool work has
+     * stopped.
+     * 
+     * <p>Paused runs are not expired. Each POST creates a new run; retrying a POST can create another
+     * execution. Cancellation can be requested through the run cancellations endpoint.
+     * 
+     * <p>A run tracks one workflow execution; automatic background-subagent wake turns are separate
+     * executions, not continuations tracked by this run ID.
      * 
      * @param agentId ID of the agent to run.
      * @param platformAgentRunCreateRequest Request to run an agent. A request MUST supply either `messages` (a non-empty conversation) or `input` (for input-form triggered agents).
@@ -187,6 +228,108 @@ public class AsyncAgents {
                 .build();
         AsyncRequestOperation<PlatformAgentsCreateRunRequest, PlatformAgentsCreateRunResponse> operation
               = new PlatformAgentsCreateRun.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Get agent run
+     * 
+     * <p>Retrieve a persisted workflow execution owned by the authenticated user. The run must belong to the
+     * specified agent, and the user must still have access to that agent. Unknown runs, runs owned by
+     * another user, and mismatched agent/run identifiers return 404.
+     * 
+     * <p>Requires the agents.run scope. Executions without a persisted workflow record are not available
+     * through this endpoint.
+     * 
+     * @return The async call builder
+     */
+    public PlatformAgentsGetRunRequestBuilder getRun() {
+        return new PlatformAgentsGetRunRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Get agent run
+     * 
+     * <p>Retrieve a persisted workflow execution owned by the authenticated user. The run must belong to the
+     * specified agent, and the user must still have access to that agent. Unknown runs, runs owned by
+     * another user, and mismatched agent/run identifiers return 404.
+     * 
+     * <p>Requires the agents.run scope. Executions without a persisted workflow record are not available
+     * through this endpoint.
+     * 
+     * @param agentId ID of the agent that owns the run.
+     * @param runId ID of the durable run to retrieve.
+     * @return {@code CompletableFuture<PlatformAgentsGetRunResponse>} - The async response
+     */
+    public CompletableFuture<PlatformAgentsGetRunResponse> getRun(String agentId, String runId) {
+        PlatformAgentsGetRunRequest request =
+            PlatformAgentsGetRunRequest
+                .builder()
+                .agentId(agentId)
+                .runId(runId)
+                .build();
+        AsyncRequestOperation<PlatformAgentsGetRunRequest, PlatformAgentsGetRunResponse> operation
+              = new PlatformAgentsGetRun.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Cancel an agent run
+     * 
+     * <p>Request cooperative cancellation of the durable agent run identified by `run_id` in the JSON body.
+     * Requires ownership, current agent access, and the agents.run scope. Sending a cancellation signal
+     * does not itself change an active run from RUNNING; poll GET run for the final state.
+     * 
+     * <p>Paused runs become CANCELLED without resuming execution. Repeated requests and requests for terminal
+     * runs return the current snapshot. Completion may win a race with cancellation.
+     * 
+     * <p>Completed tool side effects cannot be undone, and external work may continue if a tool does not
+     * support cancellation. Cancellation targets this run, not separate background-subagent executions. An
+     * active run without a cancellation registration returns 409.
+     * 
+     * <p>Cancellation signaling requires Redis. An interrupted active run can instead become FAILED through
+     * deadline cleanup; this does not verify that external tool work has stopped.
+     * 
+     * @return The async call builder
+     */
+    public PlatformAgentsCancelRunRequestBuilder cancelRun() {
+        return new PlatformAgentsCancelRunRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Cancel an agent run
+     * 
+     * <p>Request cooperative cancellation of the durable agent run identified by `run_id` in the JSON body.
+     * Requires ownership, current agent access, and the agents.run scope. Sending a cancellation signal
+     * does not itself change an active run from RUNNING; poll GET run for the final state.
+     * 
+     * <p>Paused runs become CANCELLED without resuming execution. Repeated requests and requests for terminal
+     * runs return the current snapshot. Completion may win a race with cancellation.
+     * 
+     * <p>Completed tool side effects cannot be undone, and external work may continue if a tool does not
+     * support cancellation. Cancellation targets this run, not separate background-subagent executions. An
+     * active run without a cancellation registration returns 409.
+     * 
+     * <p>Cancellation signaling requires Redis. An interrupted active run can instead become FAILED through
+     * deadline cleanup; this does not verify that external tool work has stopped.
+     * 
+     * @param agentId ID of the agent that owns the run.
+     * @param platformAgentRunCancellationRequest Request cooperative cancellation of a run owned by the caller.
+     * @return {@code CompletableFuture<PlatformAgentsCancelRunResponse>} - The async response
+     */
+    public CompletableFuture<PlatformAgentsCancelRunResponse> cancelRun(String agentId, PlatformAgentRunCancellationRequest platformAgentRunCancellationRequest) {
+        PlatformAgentsCancelRunRequest request =
+            PlatformAgentsCancelRunRequest
+                .builder()
+                .agentId(agentId)
+                .platformAgentRunCancellationRequest(platformAgentRunCancellationRequest)
+                .build();
+        AsyncRequestOperation<PlatformAgentsCancelRunRequest, PlatformAgentsCancelRunResponse> operation
+              = new PlatformAgentsCancelRun.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

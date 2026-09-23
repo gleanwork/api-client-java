@@ -51,31 +51,51 @@ public class PlatformAgentRunCreateRequest {
     private Optional<? extends Map<String, Object>> metadata;
 
     /**
-     * Whether to stream the run response as server-sent events.
+     * Whether to stream the run response as server-sent events. Not supported in DURABLE mode.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("stream")
     private Optional<Boolean> stream;
+
+    /**
+     * REQUEST_BOUND preserves the existing wait/stream behavior. DURABLE starts a fresh, persisted
+     * execution with a 30-minute execution timeout and returns immediately. DURABLE requires stream to be
+     * false or omitted and does not accept metadata.chat_session_id.
+     * 
+     * <p>It does not bypass tool approval requirements or provide automatic QE-crash resumption. Expiry is
+     * read-triggered: the next GET of the run marks an active turn FAILED if more than 40 minutes have
+     * passed since the turn was accepted. There is no periodic sweep, so the stored run can remain RUNNING
+     * until it is read.
+     * 
+     * <p>Expiry never replays execution or expires approval-paused runs, and failure does not prove that
+     * external tool work has stopped.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("execution_mode")
+    private Optional<? extends ExecutionMode> executionMode;
 
     @JsonCreator
     public PlatformAgentRunCreateRequest(
             @JsonProperty("input") Optional<? extends Map<String, Object>> input,
             @JsonProperty("messages") Optional<? extends List<PlatformMessageInput>> messages,
             @JsonProperty("metadata") Optional<? extends Map<String, Object>> metadata,
-            @JsonProperty("stream") Optional<Boolean> stream) {
+            @JsonProperty("stream") Optional<Boolean> stream,
+            @JsonProperty("execution_mode") Optional<? extends ExecutionMode> executionMode) {
         Utils.checkNotNull(input, "input");
         Utils.checkNotNull(messages, "messages");
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(stream, "stream");
+        Utils.checkNotNull(executionMode, "executionMode");
         this.input = input;
         this.messages = messages;
         this.metadata = metadata;
         this.stream = stream;
+        this.executionMode = executionMode;
     }
     
     public PlatformAgentRunCreateRequest() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -107,11 +127,30 @@ public class PlatformAgentRunCreateRequest {
     }
 
     /**
-     * Whether to stream the run response as server-sent events.
+     * Whether to stream the run response as server-sent events. Not supported in DURABLE mode.
      */
     @JsonIgnore
     public Optional<Boolean> stream() {
         return stream;
+    }
+
+    /**
+     * REQUEST_BOUND preserves the existing wait/stream behavior. DURABLE starts a fresh, persisted
+     * execution with a 30-minute execution timeout and returns immediately. DURABLE requires stream to be
+     * false or omitted and does not accept metadata.chat_session_id.
+     * 
+     * <p>It does not bypass tool approval requirements or provide automatic QE-crash resumption. Expiry is
+     * read-triggered: the next GET of the run marks an active turn FAILED if more than 40 minutes have
+     * passed since the turn was accepted. There is no periodic sweep, so the stored run can remain RUNNING
+     * until it is read.
+     * 
+     * <p>Expiry never replays execution or expires approval-paused runs, and failure does not prove that
+     * external tool work has stopped.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ExecutionMode> executionMode() {
+        return (Optional<ExecutionMode>) executionMode;
     }
 
     public static Builder builder() {
@@ -179,7 +218,7 @@ public class PlatformAgentRunCreateRequest {
     }
 
     /**
-     * Whether to stream the run response as server-sent events.
+     * Whether to stream the run response as server-sent events. Not supported in DURABLE mode.
      */
     public PlatformAgentRunCreateRequest withStream(boolean stream) {
         Utils.checkNotNull(stream, "stream");
@@ -189,11 +228,50 @@ public class PlatformAgentRunCreateRequest {
 
 
     /**
-     * Whether to stream the run response as server-sent events.
+     * Whether to stream the run response as server-sent events. Not supported in DURABLE mode.
      */
     public PlatformAgentRunCreateRequest withStream(Optional<Boolean> stream) {
         Utils.checkNotNull(stream, "stream");
         this.stream = stream;
+        return this;
+    }
+
+    /**
+     * REQUEST_BOUND preserves the existing wait/stream behavior. DURABLE starts a fresh, persisted
+     * execution with a 30-minute execution timeout and returns immediately. DURABLE requires stream to be
+     * false or omitted and does not accept metadata.chat_session_id.
+     * 
+     * <p>It does not bypass tool approval requirements or provide automatic QE-crash resumption. Expiry is
+     * read-triggered: the next GET of the run marks an active turn FAILED if more than 40 minutes have
+     * passed since the turn was accepted. There is no periodic sweep, so the stored run can remain RUNNING
+     * until it is read.
+     * 
+     * <p>Expiry never replays execution or expires approval-paused runs, and failure does not prove that
+     * external tool work has stopped.
+     */
+    public PlatformAgentRunCreateRequest withExecutionMode(ExecutionMode executionMode) {
+        Utils.checkNotNull(executionMode, "executionMode");
+        this.executionMode = Optional.ofNullable(executionMode);
+        return this;
+    }
+
+
+    /**
+     * REQUEST_BOUND preserves the existing wait/stream behavior. DURABLE starts a fresh, persisted
+     * execution with a 30-minute execution timeout and returns immediately. DURABLE requires stream to be
+     * false or omitted and does not accept metadata.chat_session_id.
+     * 
+     * <p>It does not bypass tool approval requirements or provide automatic QE-crash resumption. Expiry is
+     * read-triggered: the next GET of the run marks an active turn FAILED if more than 40 minutes have
+     * passed since the turn was accepted. There is no periodic sweep, so the stored run can remain RUNNING
+     * until it is read.
+     * 
+     * <p>Expiry never replays execution or expires approval-paused runs, and failure does not prove that
+     * external tool work has stopped.
+     */
+    public PlatformAgentRunCreateRequest withExecutionMode(Optional<? extends ExecutionMode> executionMode) {
+        Utils.checkNotNull(executionMode, "executionMode");
+        this.executionMode = executionMode;
         return this;
     }
 
@@ -210,14 +288,15 @@ public class PlatformAgentRunCreateRequest {
             Utils.enhancedDeepEquals(this.input, other.input) &&
             Utils.enhancedDeepEquals(this.messages, other.messages) &&
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
-            Utils.enhancedDeepEquals(this.stream, other.stream);
+            Utils.enhancedDeepEquals(this.stream, other.stream) &&
+            Utils.enhancedDeepEquals(this.executionMode, other.executionMode);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             input, messages, metadata,
-            stream);
+            stream, executionMode);
     }
     
     @Override
@@ -226,7 +305,8 @@ public class PlatformAgentRunCreateRequest {
                 "input", input,
                 "messages", messages,
                 "metadata", metadata,
-                "stream", stream);
+                "stream", stream,
+                "executionMode", executionMode);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -239,6 +319,8 @@ public class PlatformAgentRunCreateRequest {
         private Optional<? extends Map<String, Object>> metadata = Optional.empty();
 
         private Optional<Boolean> stream;
+
+        private Optional<? extends ExecutionMode> executionMode;
 
         private Builder() {
           // force use of static builder() method
@@ -305,7 +387,7 @@ public class PlatformAgentRunCreateRequest {
 
 
         /**
-         * Whether to stream the run response as server-sent events.
+         * Whether to stream the run response as server-sent events. Not supported in DURABLE mode.
          */
         public Builder stream(boolean stream) {
             Utils.checkNotNull(stream, "stream");
@@ -314,7 +396,7 @@ public class PlatformAgentRunCreateRequest {
         }
 
         /**
-         * Whether to stream the run response as server-sent events.
+         * Whether to stream the run response as server-sent events. Not supported in DURABLE mode.
          */
         public Builder stream(Optional<Boolean> stream) {
             Utils.checkNotNull(stream, "stream");
@@ -322,14 +404,56 @@ public class PlatformAgentRunCreateRequest {
             return this;
         }
 
+
+        /**
+         * REQUEST_BOUND preserves the existing wait/stream behavior. DURABLE starts a fresh, persisted
+         * execution with a 30-minute execution timeout and returns immediately. DURABLE requires stream to be
+         * false or omitted and does not accept metadata.chat_session_id.
+         * 
+         * <p>It does not bypass tool approval requirements or provide automatic QE-crash resumption. Expiry is
+         * read-triggered: the next GET of the run marks an active turn FAILED if more than 40 minutes have
+         * passed since the turn was accepted. There is no periodic sweep, so the stored run can remain RUNNING
+         * until it is read.
+         * 
+         * <p>Expiry never replays execution or expires approval-paused runs, and failure does not prove that
+         * external tool work has stopped.
+         */
+        public Builder executionMode(ExecutionMode executionMode) {
+            Utils.checkNotNull(executionMode, "executionMode");
+            this.executionMode = Optional.ofNullable(executionMode);
+            return this;
+        }
+
+        /**
+         * REQUEST_BOUND preserves the existing wait/stream behavior. DURABLE starts a fresh, persisted
+         * execution with a 30-minute execution timeout and returns immediately. DURABLE requires stream to be
+         * false or omitted and does not accept metadata.chat_session_id.
+         * 
+         * <p>It does not bypass tool approval requirements or provide automatic QE-crash resumption. Expiry is
+         * read-triggered: the next GET of the run marks an active turn FAILED if more than 40 minutes have
+         * passed since the turn was accepted. There is no periodic sweep, so the stored run can remain RUNNING
+         * until it is read.
+         * 
+         * <p>Expiry never replays execution or expires approval-paused runs, and failure does not prove that
+         * external tool work has stopped.
+         */
+        public Builder executionMode(Optional<? extends ExecutionMode> executionMode) {
+            Utils.checkNotNull(executionMode, "executionMode");
+            this.executionMode = executionMode;
+            return this;
+        }
+
         public PlatformAgentRunCreateRequest build() {
             if (stream == null) {
                 stream = _SINGLETON_VALUE_Stream.value();
             }
+            if (executionMode == null) {
+                executionMode = _SINGLETON_VALUE_ExecutionMode.value();
+            }
 
             return new PlatformAgentRunCreateRequest(
                 input, messages, metadata,
-                stream);
+                stream, executionMode);
         }
 
 
@@ -338,5 +462,11 @@ public class PlatformAgentRunCreateRequest {
                         "stream",
                         "false",
                         new TypeReference<Optional<Boolean>>() {});
+
+        private static final LazySingletonValue<Optional<? extends ExecutionMode>> _SINGLETON_VALUE_ExecutionMode =
+                new LazySingletonValue<>(
+                        "execution_mode",
+                        "\"REQUEST_BOUND\"",
+                        new TypeReference<Optional<? extends ExecutionMode>>() {});
     }
 }

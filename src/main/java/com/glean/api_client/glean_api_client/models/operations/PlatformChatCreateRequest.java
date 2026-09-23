@@ -15,6 +15,7 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -47,23 +48,36 @@ public class PlatformChatCreateRequest {
     @JsonProperty("conversation_id")
     private Optional<String> conversationId;
 
+    /**
+     * Optional configuration for the assistant's text response. When `format.type` is `JSON_SCHEMA`, the
+     * response is constrained to the supplied JSON schema and returned in
+     * `output[*].content[*].structured_output`. Structured output is not supported when `stream` is true.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("text")
+    private Optional<? extends PlatformChatCreateText> text;
+
     @JsonCreator
     public PlatformChatCreateRequest(
             @JsonProperty("input") PlatformChatCreateInput input,
             @JsonProperty("store") Optional<Boolean> store,
-            @JsonProperty("conversation_id") Optional<String> conversationId) {
+            @JsonProperty("conversation_id") Optional<String> conversationId,
+            @JsonProperty("text") Optional<? extends PlatformChatCreateText> text) {
         Utils.checkNotNull(input, "input");
         Utils.checkNotNull(store, "store");
         Utils.checkNotNull(conversationId, "conversationId");
+        Utils.checkNotNull(text, "text");
         this.input = input;
         this.stream = Builder._SINGLETON_VALUE_Stream.value();
         this.store = store;
         this.conversationId = conversationId;
+        this.text = text;
     }
     
     public PlatformChatCreateRequest(
             PlatformChatCreateInput input) {
-        this(input, Optional.empty(), Optional.empty());
+        this(input, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -96,6 +110,17 @@ public class PlatformChatCreateRequest {
     @JsonIgnore
     public Optional<String> conversationId() {
         return conversationId;
+    }
+
+    /**
+     * Optional configuration for the assistant's text response. When `format.type` is `JSON_SCHEMA`, the
+     * response is constrained to the supplied JSON schema and returned in
+     * `output[*].content[*].structured_output`. Structured output is not supported when `stream` is true.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<PlatformChatCreateText> text() {
+        return (Optional<PlatformChatCreateText>) text;
     }
 
     public static Builder builder() {
@@ -155,6 +180,29 @@ public class PlatformChatCreateRequest {
         return this;
     }
 
+    /**
+     * Optional configuration for the assistant's text response. When `format.type` is `JSON_SCHEMA`, the
+     * response is constrained to the supplied JSON schema and returned in
+     * `output[*].content[*].structured_output`. Structured output is not supported when `stream` is true.
+     */
+    public PlatformChatCreateRequest withText(PlatformChatCreateText text) {
+        Utils.checkNotNull(text, "text");
+        this.text = Optional.ofNullable(text);
+        return this;
+    }
+
+
+    /**
+     * Optional configuration for the assistant's text response. When `format.type` is `JSON_SCHEMA`, the
+     * response is constrained to the supplied JSON schema and returned in
+     * `output[*].content[*].structured_output`. Structured output is not supported when `stream` is true.
+     */
+    public PlatformChatCreateRequest withText(Optional<? extends PlatformChatCreateText> text) {
+        Utils.checkNotNull(text, "text");
+        this.text = text;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -168,14 +216,15 @@ public class PlatformChatCreateRequest {
             Utils.enhancedDeepEquals(this.input, other.input) &&
             Utils.enhancedDeepEquals(this.stream, other.stream) &&
             Utils.enhancedDeepEquals(this.store, other.store) &&
-            Utils.enhancedDeepEquals(this.conversationId, other.conversationId);
+            Utils.enhancedDeepEquals(this.conversationId, other.conversationId) &&
+            Utils.enhancedDeepEquals(this.text, other.text);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             input, stream, store,
-            conversationId);
+            conversationId, text);
     }
     
     @Override
@@ -184,7 +233,8 @@ public class PlatformChatCreateRequest {
                 "input", input,
                 "stream", stream,
                 "store", store,
-                "conversationId", conversationId);
+                "conversationId", conversationId,
+                "text", text);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -195,6 +245,8 @@ public class PlatformChatCreateRequest {
         private Optional<Boolean> store;
 
         private Optional<String> conversationId = Optional.empty();
+
+        private Optional<? extends PlatformChatCreateText> text = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -253,13 +305,37 @@ public class PlatformChatCreateRequest {
             return this;
         }
 
+
+        /**
+         * Optional configuration for the assistant's text response. When `format.type` is `JSON_SCHEMA`, the
+         * response is constrained to the supplied JSON schema and returned in
+         * `output[*].content[*].structured_output`. Structured output is not supported when `stream` is true.
+         */
+        public Builder text(PlatformChatCreateText text) {
+            Utils.checkNotNull(text, "text");
+            this.text = Optional.ofNullable(text);
+            return this;
+        }
+
+        /**
+         * Optional configuration for the assistant's text response. When `format.type` is `JSON_SCHEMA`, the
+         * response is constrained to the supplied JSON schema and returned in
+         * `output[*].content[*].structured_output`. Structured output is not supported when `stream` is true.
+         */
+        public Builder text(Optional<? extends PlatformChatCreateText> text) {
+            Utils.checkNotNull(text, "text");
+            this.text = text;
+            return this;
+        }
+
         public PlatformChatCreateRequest build() {
             if (store == null) {
                 store = _SINGLETON_VALUE_Store.value();
             }
 
             return new PlatformChatCreateRequest(
-                input, store, conversationId);
+                input, store, conversationId,
+                text);
         }
 
 
