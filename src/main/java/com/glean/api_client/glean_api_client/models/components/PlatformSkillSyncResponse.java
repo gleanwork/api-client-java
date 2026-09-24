@@ -15,12 +15,6 @@ import java.lang.String;
 
 public class PlatformSkillSyncResponse {
     /**
-     * Synchronization status after a successful refresh.
-     */
-    @JsonProperty("sync_status")
-    private PlatformSkillSyncResultStatus syncStatus;
-
-    /**
      * Git commit SHA now associated with the skill.
      */
     @JsonProperty("commit_sha")
@@ -29,8 +23,8 @@ public class PlatformSkillSyncResponse {
     /**
      * Whether this request created a new skill version.
      */
-    @JsonProperty("updated")
-    private boolean updated;
+    @JsonProperty("is_updated")
+    private boolean isUpdated;
 
     /**
      * Platform-generated request ID for support correlation.
@@ -40,26 +34,15 @@ public class PlatformSkillSyncResponse {
 
     @JsonCreator
     public PlatformSkillSyncResponse(
-            @JsonProperty("sync_status") PlatformSkillSyncResultStatus syncStatus,
             @JsonProperty("commit_sha") String commitSha,
-            @JsonProperty("updated") boolean updated,
+            @JsonProperty("is_updated") boolean isUpdated,
             @JsonProperty("request_id") String requestId) {
-        Utils.checkNotNull(syncStatus, "syncStatus");
         Utils.checkNotNull(commitSha, "commitSha");
-        Utils.checkNotNull(updated, "updated");
+        Utils.checkNotNull(isUpdated, "isUpdated");
         Utils.checkNotNull(requestId, "requestId");
-        this.syncStatus = syncStatus;
         this.commitSha = commitSha;
-        this.updated = updated;
+        this.isUpdated = isUpdated;
         this.requestId = requestId;
-    }
-
-    /**
-     * Synchronization status after a successful refresh.
-     */
-    @JsonIgnore
-    public PlatformSkillSyncResultStatus syncStatus() {
-        return syncStatus;
     }
 
     /**
@@ -74,8 +57,8 @@ public class PlatformSkillSyncResponse {
      * Whether this request created a new skill version.
      */
     @JsonIgnore
-    public boolean updated() {
-        return updated;
+    public boolean isUpdated() {
+        return isUpdated;
     }
 
     /**
@@ -92,15 +75,6 @@ public class PlatformSkillSyncResponse {
 
 
     /**
-     * Synchronization status after a successful refresh.
-     */
-    public PlatformSkillSyncResponse withSyncStatus(PlatformSkillSyncResultStatus syncStatus) {
-        Utils.checkNotNull(syncStatus, "syncStatus");
-        this.syncStatus = syncStatus;
-        return this;
-    }
-
-    /**
      * Git commit SHA now associated with the skill.
      */
     public PlatformSkillSyncResponse withCommitSha(String commitSha) {
@@ -112,9 +86,9 @@ public class PlatformSkillSyncResponse {
     /**
      * Whether this request created a new skill version.
      */
-    public PlatformSkillSyncResponse withUpdated(boolean updated) {
-        Utils.checkNotNull(updated, "updated");
-        this.updated = updated;
+    public PlatformSkillSyncResponse withIsUpdated(boolean isUpdated) {
+        Utils.checkNotNull(isUpdated, "isUpdated");
+        this.isUpdated = isUpdated;
         return this;
     }
 
@@ -137,51 +111,36 @@ public class PlatformSkillSyncResponse {
         }
         PlatformSkillSyncResponse other = (PlatformSkillSyncResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.syncStatus, other.syncStatus) &&
             Utils.enhancedDeepEquals(this.commitSha, other.commitSha) &&
-            Utils.enhancedDeepEquals(this.updated, other.updated) &&
+            Utils.enhancedDeepEquals(this.isUpdated, other.isUpdated) &&
             Utils.enhancedDeepEquals(this.requestId, other.requestId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            syncStatus, commitSha, updated,
-            requestId);
+            commitSha, isUpdated, requestId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PlatformSkillSyncResponse.class,
-                "syncStatus", syncStatus,
                 "commitSha", commitSha,
-                "updated", updated,
+                "isUpdated", isUpdated,
                 "requestId", requestId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private PlatformSkillSyncResultStatus syncStatus;
-
         private String commitSha;
 
-        private Boolean updated;
+        private Boolean isUpdated;
 
         private String requestId;
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        /**
-         * Synchronization status after a successful refresh.
-         */
-        public Builder syncStatus(PlatformSkillSyncResultStatus syncStatus) {
-            Utils.checkNotNull(syncStatus, "syncStatus");
-            this.syncStatus = syncStatus;
-            return this;
         }
 
 
@@ -198,9 +157,9 @@ public class PlatformSkillSyncResponse {
         /**
          * Whether this request created a new skill version.
          */
-        public Builder updated(boolean updated) {
-            Utils.checkNotNull(updated, "updated");
-            this.updated = updated;
+        public Builder isUpdated(boolean isUpdated) {
+            Utils.checkNotNull(isUpdated, "isUpdated");
+            this.isUpdated = isUpdated;
             return this;
         }
 
@@ -217,8 +176,7 @@ public class PlatformSkillSyncResponse {
         public PlatformSkillSyncResponse build() {
 
             return new PlatformSkillSyncResponse(
-                syncStatus, commitSha, updated,
-                requestId);
+                commitSha, isUpdated, requestId);
         }
 
     }

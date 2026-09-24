@@ -7,14 +7,13 @@ package com.glean.api_client.glean_api_client.models.operations;
 import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
-import com.glean.api_client.glean_api_client.models.components.PlatformSkillSourcePreviewRequest;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsPreviewSource;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
 
 public class PlatformSkillsPreviewSourceRequestBuilder {
 
-    private PlatformSkillSourcePreviewRequest request;
+    private PlatformSkillsPreviewSourceRequest request;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -22,7 +21,7 @@ public class PlatformSkillsPreviewSourceRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public PlatformSkillsPreviewSourceRequestBuilder request(PlatformSkillSourcePreviewRequest request) {
+    public PlatformSkillsPreviewSourceRequestBuilder request(PlatformSkillsPreviewSourceRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;
@@ -30,7 +29,7 @@ public class PlatformSkillsPreviewSourceRequestBuilder {
 
     public PlatformSkillsPreviewSourceResponse call() {
         
-        RequestOperation<PlatformSkillSourcePreviewRequest, PlatformSkillsPreviewSourceResponse> operation
+        RequestOperation<PlatformSkillsPreviewSourceRequest, PlatformSkillsPreviewSourceResponse> operation
               = new PlatformSkillsPreviewSource.Sync(sdkConfiguration, _headers);
 
         return operation.handleResponse(operation.doRequest(request));

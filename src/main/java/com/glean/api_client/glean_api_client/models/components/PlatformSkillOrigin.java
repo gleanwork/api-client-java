@@ -27,6 +27,7 @@ import java.util.Optional;
 public class PlatformSkillOrigin {
 
     public static final PlatformSkillOrigin CUSTOM = new PlatformSkillOrigin("CUSTOM");
+    public static final PlatformSkillOrigin GITHUB = new PlatformSkillOrigin("GITHUB");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -101,19 +102,22 @@ public class PlatformSkillOrigin {
     private static final Map<String, PlatformSkillOrigin> createValuesMap() {
         Map<String, PlatformSkillOrigin> map = new LinkedHashMap<>();
         map.put("CUSTOM", CUSTOM);
+        map.put("GITHUB", GITHUB);
         return map;
     }
 
     private static final Map<String, PlatformSkillOriginEnum> createEnumsMap() {
         Map<String, PlatformSkillOriginEnum> map = new HashMap<>();
         map.put("CUSTOM", PlatformSkillOriginEnum.CUSTOM);
+        map.put("GITHUB", PlatformSkillOriginEnum.GITHUB);
         return map;
     }
     
     
     public enum PlatformSkillOriginEnum {
 
-        CUSTOM("CUSTOM"),;
+        CUSTOM("CUSTOM"),
+        GITHUB("GITHUB"),;
 
         private final String value;
 

@@ -22,8 +22,8 @@ public class PlatformSkill {
     /**
      * Glean skill ID.
      */
-    @JsonProperty("id")
-    private String id;
+    @JsonProperty("skill_id")
+    private String skillId;
 
     /**
      * Human-readable skill name.
@@ -86,7 +86,7 @@ public class PlatformSkill {
 
     @JsonCreator
     public PlatformSkill(
-            @JsonProperty("id") String id,
+            @JsonProperty("skill_id") String skillId,
             @JsonProperty("display_name") String displayName,
             @JsonProperty("description") String description,
             @JsonProperty("latest_version") long latestVersion,
@@ -97,7 +97,7 @@ public class PlatformSkill {
             @JsonProperty("owner") PlatformPersonReference owner,
             @JsonProperty("created_at") OffsetDateTime createdAt,
             @JsonProperty("updated_at") OffsetDateTime updatedAt) {
-        Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(skillId, "skillId");
         Utils.checkNotNull(displayName, "displayName");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(latestVersion, "latestVersion");
@@ -108,7 +108,7 @@ public class PlatformSkill {
         Utils.checkNotNull(owner, "owner");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(updatedAt, "updatedAt");
-        this.id = id;
+        this.skillId = skillId;
         this.displayName = displayName;
         this.description = description;
         this.latestVersion = latestVersion;
@@ -122,7 +122,7 @@ public class PlatformSkill {
     }
     
     public PlatformSkill(
-            String id,
+            String skillId,
             String displayName,
             String description,
             long latestVersion,
@@ -132,7 +132,7 @@ public class PlatformSkill {
             PlatformPersonReference owner,
             OffsetDateTime createdAt,
             OffsetDateTime updatedAt) {
-        this(id, displayName, description,
+        this(skillId, displayName, description,
             latestVersion, latestMinorVersion, status,
             origin, Optional.empty(), owner,
             createdAt, updatedAt);
@@ -142,8 +142,8 @@ public class PlatformSkill {
      * Glean skill ID.
      */
     @JsonIgnore
-    public String id() {
-        return id;
+    public String skillId() {
+        return skillId;
     }
 
     /**
@@ -232,9 +232,9 @@ public class PlatformSkill {
     /**
      * Glean skill ID.
      */
-    public PlatformSkill withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public PlatformSkill withSkillId(String skillId) {
+        Utils.checkNotNull(skillId, "skillId");
+        this.skillId = skillId;
         return this;
     }
 
@@ -342,7 +342,7 @@ public class PlatformSkill {
         }
         PlatformSkill other = (PlatformSkill) o;
         return 
-            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.skillId, other.skillId) &&
             Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.latestVersion, other.latestVersion) &&
@@ -358,7 +358,7 @@ public class PlatformSkill {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, displayName, description,
+            skillId, displayName, description,
             latestVersion, latestMinorVersion, status,
             origin, sourceProvenance, owner,
             createdAt, updatedAt);
@@ -367,7 +367,7 @@ public class PlatformSkill {
     @Override
     public String toString() {
         return Utils.toString(PlatformSkill.class,
-                "id", id,
+                "skillId", skillId,
                 "displayName", displayName,
                 "description", description,
                 "latestVersion", latestVersion,
@@ -383,7 +383,7 @@ public class PlatformSkill {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
+        private String skillId;
 
         private String displayName;
 
@@ -413,9 +413,9 @@ public class PlatformSkill {
         /**
          * Glean skill ID.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder skillId(String skillId) {
+            Utils.checkNotNull(skillId, "skillId");
+            this.skillId = skillId;
             return this;
         }
 
@@ -525,7 +525,7 @@ public class PlatformSkill {
         public PlatformSkill build() {
 
             return new PlatformSkill(
-                id, displayName, description,
+                skillId, displayName, description,
                 latestVersion, latestMinorVersion, status,
                 origin, sourceProvenance, owner,
                 createdAt, updatedAt);
