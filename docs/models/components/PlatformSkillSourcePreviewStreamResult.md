@@ -1,0 +1,11 @@
+# PlatformSkillSourcePreviewStreamResult
+
+Terminal success event carrying the fully assembled preview.
+
+
+## Fields
+
+| Field                                                                                                               | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `type`                                                                                                              | [PlatformSkillSourcePreviewStreamResultType](../../models/components/PlatformSkillSourcePreviewStreamResultType.md) | :heavy_check_mark:                                                                                                  | Event type, also sent as the SSE `event` name.                                                                      |
+| `response`                                                                                                          | [PlatformSkillSourcePreviewResponse](../../models/components/PlatformSkillSourcePreviewResponse.md)                 | :heavy_check_mark:                                                                                                  | N/A                                                                                                                 |

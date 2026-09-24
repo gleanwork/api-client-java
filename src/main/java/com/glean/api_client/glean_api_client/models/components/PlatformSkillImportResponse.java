@@ -15,7 +15,7 @@ import java.util.List;
 
 public class PlatformSkillImportResponse {
     /**
-     * Independently persisted skills in request order.
+     * Imported skills in request order. The import is atomic: either every source persists or none does.
      */
     @JsonProperty("skills")
     private List<PlatformSkill> skills;
@@ -37,7 +37,7 @@ public class PlatformSkillImportResponse {
     }
 
     /**
-     * Independently persisted skills in request order.
+     * Imported skills in request order. The import is atomic: either every source persists or none does.
      */
     @JsonIgnore
     public List<PlatformSkill> skills() {
@@ -58,7 +58,7 @@ public class PlatformSkillImportResponse {
 
 
     /**
-     * Independently persisted skills in request order.
+     * Imported skills in request order. The import is atomic: either every source persists or none does.
      */
     public PlatformSkillImportResponse withSkills(List<PlatformSkill> skills) {
         Utils.checkNotNull(skills, "skills");
@@ -115,7 +115,7 @@ public class PlatformSkillImportResponse {
 
 
         /**
-         * Independently persisted skills in request order.
+         * Imported skills in request order. The import is atomic: either every source persists or none does.
          */
         public Builder skills(List<PlatformSkill> skills) {
             Utils.checkNotNull(skills, "skills");

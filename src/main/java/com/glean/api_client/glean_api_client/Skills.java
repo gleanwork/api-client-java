@@ -8,7 +8,6 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.models.components.PlatformSkillCreateRequest;
 import com.glean.api_client.glean_api_client.models.components.PlatformSkillImportRequest;
-import com.glean.api_client.glean_api_client.models.components.PlatformSkillSourcePreviewRequest;
 import com.glean.api_client.glean_api_client.models.components.PlatformSkillUpdateRequest;
 import com.glean.api_client.glean_api_client.models.components.PlatformSkillValidationRequest;
 import com.glean.api_client.glean_api_client.models.components.PlatformSkillVersionCreateRequest;
@@ -40,8 +39,12 @@ import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsLis
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsListVersionsRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsListVersionsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsListVersionsResponse;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsPreviewSourceRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsPreviewSourceRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsPreviewSourceResponse;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsPreviewSourceStreamRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsPreviewSourceStreamRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsPreviewSourceStreamResponse;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsSyncRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsSyncRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsSyncResponse;
@@ -61,6 +64,7 @@ import com.glean.api_client.glean_api_client.operations.PlatformSkillsImport;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsList;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsListVersions;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsPreviewSource;
+import com.glean.api_client.glean_api_client.operations.PlatformSkillsPreviewSourceStream;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsSync;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsUpdate;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsValidate;
@@ -93,7 +97,9 @@ public class Skills {
      * Create skill
      * 
      * <p>Create a skill from an uploaded SKILL.md, .zip, or .skill bundle. If the authenticated user already
-     * has a skill with the same name, the existing skill is superseded with a new version.
+     * has a skill with the same name, the existing skill is superseded with a new version, unless it is
+     * source-managed: a same-name create over a GitHub-imported skill returns 409, and the caller syncs
+     * the existing skill instead. Two concurrent same-name creates can still produce two skills.
      * 
      * @return The call builder
      */
@@ -105,7 +111,9 @@ public class Skills {
      * Create skill
      * 
      * <p>Create a skill from an uploaded SKILL.md, .zip, or .skill bundle. If the authenticated user already
-     * has a skill with the same name, the existing skill is superseded with a new version.
+     * has a skill with the same name, the existing skill is superseded with a new version, unless it is
+     * source-managed: a same-name create over a GitHub-imported skill returns 409, and the caller syncs
+     * the existing skill instead. Two concurrent same-name creates can still produce two skills.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -120,7 +128,10 @@ public class Skills {
     /**
      * List skills
      * 
-     * <p>List skills available to the authenticated user.
+     * <p>List every custom skill the authenticated caller can access. Built-in skills are excluded: they have
+     * no versions, content download, update, or delete, so their identifiers would fail most skill
+     * operations. Chat-authored skills shared with the caller without a listed grant are omitted: they
+     * stay retrievable by identifier when it is known, but this list does not discover them.
      * 
      * @return The call builder
      */
@@ -131,7 +142,10 @@ public class Skills {
     /**
      * List skills
      * 
-     * <p>List skills available to the authenticated user.
+     * <p>List every custom skill the authenticated caller can access. Built-in skills are excluded: they have
+     * no versions, content download, update, or delete, so their identifiers would fail most skill
+     * operations. Chat-authored skills shared with the caller without a listed grant are omitted: they
+     * stay retrievable by identifier when it is known, but this list does not discover them.
      * 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -143,7 +157,10 @@ public class Skills {
     /**
      * List skills
      * 
-     * <p>List skills available to the authenticated user.
+     * <p>List every custom skill the authenticated caller can access. Built-in skills are excluded: they have
+     * no versions, content download, update, or delete, so their identifiers would fail most skill
+     * operations. Chat-authored skills shared with the caller without a listed grant are omitted: they
+     * stay retrievable by identifier when it is known, but this list does not discover them.
      * 
      * @param pageSize Maximum number of skills to return.
      * @param cursor Opaque pagination cursor from a previous response.
@@ -250,8 +267,8 @@ public class Skills {
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public PlatformSkillsPreviewSourceResponse previewSource(PlatformSkillSourcePreviewRequest request) {
-        RequestOperation<PlatformSkillSourcePreviewRequest, PlatformSkillsPreviewSourceResponse> operation
+    public PlatformSkillsPreviewSourceResponse previewSource(PlatformSkillsPreviewSourceRequest request) {
+        RequestOperation<PlatformSkillsPreviewSourceRequest, PlatformSkillsPreviewSourceResponse> operation
               = new PlatformSkillsPreviewSource.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -569,6 +586,38 @@ public class Skills {
                 .build();
         RequestOperation<PlatformSkillsGetVersionContentRequest, PlatformSkillsGetVersionContentResponse> operation
               = new PlatformSkillsGetVersionContent.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Preview a GitHub skill source as events
+     * 
+     * <p>SDK-only logical operation. HTTP clients must call the base path; the URL fragment is not sent.
+     * Inspect a GitHub URL as server-sent events.
+     * 
+     * <p>HTTP clients request this mode by setting `stream` to true in the JSON body.
+     * 
+     * @return The call builder
+     */
+    public PlatformSkillsPreviewSourceStreamRequestBuilder previewSourceStream() {
+        return new PlatformSkillsPreviewSourceStreamRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Preview a GitHub skill source as events
+     * 
+     * <p>SDK-only logical operation. HTTP clients must call the base path; the URL fragment is not sent.
+     * Inspect a GitHub URL as server-sent events.
+     * 
+     * <p>HTTP clients request this mode by setting `stream` to true in the JSON body.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformSkillsPreviewSourceStreamResponse previewSourceStream(PlatformSkillsPreviewSourceStreamRequest request) {
+        RequestOperation<PlatformSkillsPreviewSourceStreamRequest, PlatformSkillsPreviewSourceStreamResponse> operation
+              = new PlatformSkillsPreviewSourceStream.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

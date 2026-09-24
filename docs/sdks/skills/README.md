@@ -18,10 +18,11 @@
 * [listVersions](#listversions) - List skill versions
 * [retrieveVersion](#retrieveversion) - Retrieve skill version
 * [retrieveVersionContent](#retrieveversioncontent) - Download skill version content
+* [previewSourceStream](#previewsourcestream) - Preview a GitHub skill source as events
 
 ## create
 
-Create a skill from an uploaded SKILL.md, .zip, or .skill bundle. If the authenticated user already has a skill with the same name, the existing skill is superseded with a new version.
+Create a skill from an uploaded SKILL.md, .zip, or .skill bundle. If the authenticated user already has a skill with the same name, the existing skill is superseded with a new version, unless it is source-managed: a same-name create over a GitHub-imported skill returns 409, and the caller syncs the existing skill instead. Two concurrent same-name creates can still produce two skills.
 
 
 ### Example Usage
@@ -76,13 +77,13 @@ public class Application {
 
 | Error Type                                   | Status Code                                  | Content Type                                 |
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| models/errors/PlatformProblemDetailException | 400, 401, 403, 404, 408, 413, 429            | application/problem+json                     |
+| models/errors/PlatformProblemDetailException | 400, 401, 403, 404, 408, 409, 413, 429       | application/problem+json                     |
 | models/errors/PlatformProblemDetailException | 500, 503                                     | application/problem+json                     |
 | models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
 
 ## list
 
-List skills available to the authenticated user.
+List every custom skill the authenticated caller can access. Built-in skills are excluded: they have no versions, content download, update, or delete, so their identifiers would fail most skill operations. Chat-authored skills shared with the caller without a listed grant are omitted: they stay retrievable by identifier when it is known, but this list does not discover them.
 
 
 ### Example Usage
@@ -147,13 +148,14 @@ package hello.world;
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.components.PlatformSkillImportRequest;
 import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.errors.PlatformUnauthorizedAgentToolsProblemException;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsImportResponse;
 import java.lang.Exception;
 import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws PlatformProblemDetailException, Exception {
+    public static void main(String[] args) throws PlatformUnauthorizedAgentToolsProblemException, PlatformProblemDetailException, Exception {
 
         Glean sdk = Glean.builder()
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
@@ -187,11 +189,12 @@ public class Application {
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| models/errors/PlatformProblemDetailException | 400, 401, 403, 408, 409, 413, 429            | application/problem+json                     |
-| models/errors/PlatformProblemDetailException | 500, 503                                     | application/problem+json                     |
-| models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                                   | Status Code                                                  | Content Type                                                 |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| models/errors/PlatformUnauthorizedAgentToolsProblemException | 422                                                          | application/problem+json                                     |
+| models/errors/PlatformProblemDetailException                 | 400, 401, 403, 408, 409, 413, 429                            | application/problem+json                                     |
+| models/errors/PlatformProblemDetailException                 | 500, 503                                                     | application/problem+json                                     |
+| models/errors/APIException                                   | 4XX, 5XX                                                     | \*/\*                                                        |
 
 ## validate
 
@@ -266,20 +269,21 @@ Inspect a GitHub URL without persisting a source or any discovered skills. Set s
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.PlatformSkillSourcePreviewRequest;
 import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.errors.PlatformUnauthorizedAgentToolsProblemException;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsPreviewSourceRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsPreviewSourceResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws PlatformProblemDetailException, Exception {
+    public static void main(String[] args) throws PlatformUnauthorizedAgentToolsProblemException, PlatformProblemDetailException, Exception {
 
         Glean sdk = Glean.builder()
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        PlatformSkillSourcePreviewRequest req = PlatformSkillSourcePreviewRequest.builder()
+        PlatformSkillsPreviewSourceRequest req = PlatformSkillsPreviewSourceRequest.builder()
                 .sourceUrl("https://github.com/anthropics/skills")
                 .build();
 
@@ -296,9 +300,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
-| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `request`                                                                                     | [PlatformSkillSourcePreviewRequest](../../models/shared/PlatformSkillSourcePreviewRequest.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
+| Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `request`                                                                                           | [PlatformSkillsPreviewSourceRequest](../../models/operations/PlatformSkillsPreviewSourceRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
 
 ### Response
 
@@ -306,11 +310,12 @@ public class Application {
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| models/errors/PlatformProblemDetailException | 400, 401, 403, 408, 413, 429                 | application/problem+json                     |
-| models/errors/PlatformProblemDetailException | 500, 503                                     | application/problem+json                     |
-| models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                                   | Status Code                                                  | Content Type                                                 |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| models/errors/PlatformUnauthorizedAgentToolsProblemException | 422                                                          | application/problem+json                                     |
+| models/errors/PlatformProblemDetailException                 | 400, 401, 403, 408, 413, 429                                 | application/problem+json                                     |
+| models/errors/PlatformProblemDetailException                 | 500, 503                                                     | application/problem+json                                     |
+| models/errors/APIException                                   | 4XX, 5XX                                                     | \*/\*                                                        |
 
 ## update
 
@@ -541,12 +546,13 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.errors.PlatformUnauthorizedAgentToolsProblemException;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsSyncResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws PlatformProblemDetailException, Exception {
+    public static void main(String[] args) throws PlatformUnauthorizedAgentToolsProblemException, PlatformProblemDetailException, Exception {
 
         Glean sdk = Glean.builder()
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
@@ -575,11 +581,12 @@ public class Application {
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| models/errors/PlatformProblemDetailException | 400, 401, 403, 404, 408, 409, 413, 429       | application/problem+json                     |
-| models/errors/PlatformProblemDetailException | 500, 503                                     | application/problem+json                     |
-| models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                                                   | Status Code                                                  | Content Type                                                 |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| models/errors/PlatformUnauthorizedAgentToolsProblemException | 422                                                          | application/problem+json                                     |
+| models/errors/PlatformProblemDetailException                 | 400, 401, 403, 404, 408, 409, 429                            | application/problem+json                                     |
+| models/errors/PlatformProblemDetailException                 | 500, 503                                                     | application/problem+json                                     |
+| models/errors/APIException                                   | 4XX, 5XX                                                     | \*/\*                                                        |
 
 ## createVersion
 
@@ -806,3 +813,75 @@ public class Application {
 | models/errors/PlatformProblemDetailException | 400, 401, 403, 404, 408, 429                 | application/problem+json                     |
 | models/errors/PlatformProblemDetailException | 500, 503                                     | application/problem+json                     |
 | models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
+
+## previewSourceStream
+
+SDK-only logical operation. HTTP clients must call the base path; the URL fragment is not sent. Inspect a GitHub URL as server-sent events. HTTP clients request this mode by setting `stream` to true in the JSON body.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="platform-skills-preview-source-stream" method="post" path="/api/skills/sources/preview#stream" -->
+```java
+package hello.world;
+
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.PlatformSkillSourcePreviewStreamEventServerSentEvent;
+import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.errors.PlatformUnauthorizedAgentToolsProblemException;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsPreviewSourceStreamRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsPreviewSourceStreamResponse;
+import com.glean.api_client.glean_api_client.utils.EventStream;
+import java.lang.Exception;
+import java.util.stream.Stream;
+
+public class Application {
+
+    public static void main(String[] args) throws PlatformUnauthorizedAgentToolsProblemException, PlatformProblemDetailException, Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
+            .build();
+
+        PlatformSkillsPreviewSourceStreamRequest req = PlatformSkillsPreviewSourceStreamRequest.builder()
+                .sourceUrl("https://github.com/anthropics/skills")
+                .build();
+
+        PlatformSkillsPreviewSourceStreamResponse res = sdk.skills().previewSourceStream()
+                .request(req)
+                .call();
+
+        // handle event stream, must be closed after use!
+        try (EventStream<PlatformSkillSourcePreviewStreamEventServerSentEvent> events = res.events()) {
+            // Option 1: Use for-each loop
+            for (PlatformSkillSourcePreviewStreamEventServerSentEvent event : events) {
+                System.out.println(event);
+            }
+
+            // Option 2: Use Stream API
+            try (Stream<PlatformSkillSourcePreviewStreamEventServerSentEvent> stream = events.stream()) {
+                 stream.forEach(System.out::println);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
+| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                       | [PlatformSkillsPreviewSourceStreamRequest](../../models/operations/PlatformSkillsPreviewSourceStreamRequest.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
+
+### Response
+
+**[PlatformSkillsPreviewSourceStreamResponse](../../models/operations/PlatformSkillsPreviewSourceStreamResponse.md)**
+
+### Errors
+
+| Error Type                                                   | Status Code                                                  | Content Type                                                 |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| models/errors/PlatformUnauthorizedAgentToolsProblemException | 422                                                          | application/problem+json                                     |
+| models/errors/PlatformProblemDetailException                 | 400, 401, 403, 408, 413, 429                                 | application/problem+json                                     |
+| models/errors/PlatformProblemDetailException                 | 500, 503                                                     | application/problem+json                                     |
+| models/errors/APIException                                   | 4XX, 5XX                                                     | \*/\*                                                        |
