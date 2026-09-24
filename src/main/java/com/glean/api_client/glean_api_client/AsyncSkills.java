@@ -6,9 +6,10 @@ package com.glean.api_client.glean_api_client;
 
 import static com.glean.api_client.glean_api_client.operations.Operations.AsyncRequestOperation;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.models.components.PlatformSkillCreateRequest;
 import com.glean.api_client.glean_api_client.models.components.PlatformSkillImportRequest;
-import com.glean.api_client.glean_api_client.models.components.PlatformSkillSourcePreviewRequest;
+import com.glean.api_client.glean_api_client.models.components.PlatformSkillSourcePreviewStreamEventServerSentEvent;
 import com.glean.api_client.glean_api_client.models.components.PlatformSkillUpdateRequest;
 import com.glean.api_client.glean_api_client.models.components.PlatformSkillValidationRequest;
 import com.glean.api_client.glean_api_client.models.components.PlatformSkillVersionCreateRequest;
@@ -20,6 +21,8 @@ import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsGet
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsGetVersionRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsListRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsListVersionsRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsPreviewSourceRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsPreviewSourceStreamRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsSyncRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsUpdateRequest;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformSkillsCreateRequestBuilder;
@@ -44,6 +47,8 @@ import com.glean.api_client.glean_api_client.models.operations.async.PlatformSki
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformSkillsListVersionsResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformSkillsPreviewSourceRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformSkillsPreviewSourceResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformSkillsPreviewSourceStreamRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformSkillsPreviewSourceStreamResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformSkillsSyncRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformSkillsSyncResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformSkillsUpdateRequestBuilder;
@@ -61,10 +66,13 @@ import com.glean.api_client.glean_api_client.operations.PlatformSkillsImport;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsList;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsListVersions;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsPreviewSource;
+import com.glean.api_client.glean_api_client.operations.PlatformSkillsPreviewSourceStream;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsSync;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsUpdate;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsValidate;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Utils;
+import com.glean.api_client.glean_api_client.utils.reactive.EventStream;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
@@ -123,7 +131,10 @@ public class AsyncSkills {
     /**
      * List skills
      * 
-     * <p>List skills available to the authenticated user.
+     * <p>List every custom skill the authenticated caller can access. Built-in skills are excluded: they have
+     * no versions, content download, update, or delete, so their identifiers would fail most skill
+     * operations. Chat-authored skills shared with the caller without a listed grant are omitted: they
+     * stay retrievable by identifier when it is known, but this list does not discover them.
      * 
      * @return The async call builder
      */
@@ -134,7 +145,10 @@ public class AsyncSkills {
     /**
      * List skills
      * 
-     * <p>List skills available to the authenticated user.
+     * <p>List every custom skill the authenticated caller can access. Built-in skills are excluded: they have
+     * no versions, content download, update, or delete, so their identifiers would fail most skill
+     * operations. Chat-authored skills shared with the caller without a listed grant are omitted: they
+     * stay retrievable by identifier when it is known, but this list does not discover them.
      * 
      * @return {@code CompletableFuture<PlatformSkillsListResponse>} - The async response
      */
@@ -145,7 +159,10 @@ public class AsyncSkills {
     /**
      * List skills
      * 
-     * <p>List skills available to the authenticated user.
+     * <p>List every custom skill the authenticated caller can access. Built-in skills are excluded: they have
+     * no versions, content download, update, or delete, so their identifiers would fail most skill
+     * operations. Chat-authored skills shared with the caller without a listed grant are omitted: they
+     * stay retrievable by identifier when it is known, but this list does not discover them.
      * 
      * @param pageSize Maximum number of skills to return.
      * @param cursor Opaque pagination cursor from a previous response.
@@ -254,8 +271,8 @@ public class AsyncSkills {
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<PlatformSkillsPreviewSourceResponse>} - The async response
      */
-    public CompletableFuture<PlatformSkillsPreviewSourceResponse> previewSource(PlatformSkillSourcePreviewRequest request) {
-        AsyncRequestOperation<PlatformSkillSourcePreviewRequest, PlatformSkillsPreviewSourceResponse> operation
+    public CompletableFuture<PlatformSkillsPreviewSourceResponse> previewSource(PlatformSkillsPreviewSourceRequest request) {
+        AsyncRequestOperation<PlatformSkillsPreviewSourceRequest, PlatformSkillsPreviewSourceResponse> operation
               = new PlatformSkillsPreviewSource.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
@@ -583,6 +600,44 @@ public class AsyncSkills {
               = new PlatformSkillsGetVersionContent.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Preview a GitHub skill source as events
+     * 
+     * <p>SDK-only logical operation. HTTP clients must call the base path; the URL fragment is not sent.
+     * Inspect a GitHub URL as server-sent events.
+     * 
+     * <p>HTTP clients request this mode by setting `stream` to true in the JSON body.
+     * 
+     * @return The async call builder
+     */
+    public PlatformSkillsPreviewSourceStreamRequestBuilder previewSourceStream() {
+        return new PlatformSkillsPreviewSourceStreamRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Preview a GitHub skill source as events
+     * 
+     * <p>SDK-only logical operation. HTTP clients must call the base path; the URL fragment is not sent.
+     * Inspect a GitHub URL as server-sent events.
+     * 
+     * <p>HTTP clients request this mode by setting `stream` to true in the JSON body.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return A reactive SSE publisher that emits events from the server.
+     * Can be consumed using reactive streams toolkits such as RxJava, Project Reactor, or Java 9+ Flow API.
+     */
+    public EventStream<PlatformSkillsPreviewSourceStreamResponse, PlatformSkillSourcePreviewStreamEventServerSentEvent> previewSourceStream(PlatformSkillsPreviewSourceStreamRequest request) {
+        AsyncRequestOperation<PlatformSkillsPreviewSourceStreamRequest, PlatformSkillsPreviewSourceStreamResponse> operation
+              = new PlatformSkillsPreviewSourceStream.Async(sdkConfiguration, _headers);
+        return EventStream.forSSE(
+                operation.doRequest(request).thenCompose(operation::handleResponse),
+                new TypeReference<>() {
+                },
+                Utils.mapper(),
+                null);
     }
 
 }

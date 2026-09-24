@@ -170,7 +170,7 @@ public class PlatformSkillsImport {
 
             PlatformSkillsImportResponse res = resBuilder.build();
             
-            if (Utils.statusCodeMatches(response.statusCode(), "200")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "201")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return res.withPlatformSkillImportResponse(Utils.unmarshal(response, new TypeReference<PlatformSkillImportResponse>() {}));
                 } else {
@@ -254,7 +254,7 @@ public class PlatformSkillsImport {
 
             com.glean.api_client.glean_api_client.models.operations.async.PlatformSkillsImportResponse res = resBuilder.build();
             
-            if (Utils.statusCodeMatches(response.statusCode(), "200")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "201")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return Utils.unmarshalAsync(response, new TypeReference<PlatformSkillImportResponse>() {})
                             .thenApply(res::withPlatformSkillImportResponse);

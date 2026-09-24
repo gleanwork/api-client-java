@@ -39,28 +39,20 @@ public class PlatformSkillsPreviewSourceResponse implements Response {
      */
     private Optional<? extends PlatformSkillSourcePreviewResponse> platformSkillSourcePreviewResponse;
 
-    /**
-     * Successful response.
-     */
-    private Optional<String> res;
-
     @JsonCreator
     public PlatformSkillsPreviewSourceResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends PlatformSkillSourcePreviewResponse> platformSkillSourcePreviewResponse,
-            Optional<String> res) {
+            Optional<? extends PlatformSkillSourcePreviewResponse> platformSkillSourcePreviewResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         Utils.checkNotNull(platformSkillSourcePreviewResponse, "platformSkillSourcePreviewResponse");
-        Utils.checkNotNull(res, "res");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
         this.platformSkillSourcePreviewResponse = platformSkillSourcePreviewResponse;
-        this.res = res;
     }
     
     public PlatformSkillsPreviewSourceResponse(
@@ -68,7 +60,7 @@ public class PlatformSkillsPreviewSourceResponse implements Response {
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         this(contentType, statusCode, rawResponse,
-            Optional.empty(), Optional.empty());
+            Optional.empty());
     }
 
     /**
@@ -102,14 +94,6 @@ public class PlatformSkillsPreviewSourceResponse implements Response {
     @JsonIgnore
     public Optional<PlatformSkillSourcePreviewResponse> platformSkillSourcePreviewResponse() {
         return (Optional<PlatformSkillSourcePreviewResponse>) platformSkillSourcePreviewResponse;
-    }
-
-    /**
-     * Successful response.
-     */
-    @JsonIgnore
-    public Optional<String> res() {
-        return res;
     }
 
     public static Builder builder() {
@@ -163,25 +147,6 @@ public class PlatformSkillsPreviewSourceResponse implements Response {
         return this;
     }
 
-    /**
-     * Successful response.
-     */
-    public PlatformSkillsPreviewSourceResponse withRes(String res) {
-        Utils.checkNotNull(res, "res");
-        this.res = Optional.ofNullable(res);
-        return this;
-    }
-
-
-    /**
-     * Successful response.
-     */
-    public PlatformSkillsPreviewSourceResponse withRes(Optional<String> res) {
-        Utils.checkNotNull(res, "res");
-        this.res = res;
-        return this;
-    }
-
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -195,15 +160,14 @@ public class PlatformSkillsPreviewSourceResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.platformSkillSourcePreviewResponse, other.platformSkillSourcePreviewResponse) &&
-            Utils.enhancedDeepEquals(this.res, other.res);
+            Utils.enhancedDeepEquals(this.platformSkillSourcePreviewResponse, other.platformSkillSourcePreviewResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            platformSkillSourcePreviewResponse, res);
+            platformSkillSourcePreviewResponse);
     }
     
     @Override
@@ -212,8 +176,7 @@ public class PlatformSkillsPreviewSourceResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "platformSkillSourcePreviewResponse", platformSkillSourcePreviewResponse,
-                "res", res);
+                "platformSkillSourcePreviewResponse", platformSkillSourcePreviewResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -226,8 +189,6 @@ public class PlatformSkillsPreviewSourceResponse implements Response {
         private HttpResponse<InputStream> rawResponse;
 
         private Optional<? extends PlatformSkillSourcePreviewResponse> platformSkillSourcePreviewResponse = Optional.empty();
-
-        private Optional<String> res = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -282,30 +243,11 @@ public class PlatformSkillsPreviewSourceResponse implements Response {
             return this;
         }
 
-
-        /**
-         * Successful response.
-         */
-        public Builder res(String res) {
-            Utils.checkNotNull(res, "res");
-            this.res = Optional.ofNullable(res);
-            return this;
-        }
-
-        /**
-         * Successful response.
-         */
-        public Builder res(Optional<String> res) {
-            Utils.checkNotNull(res, "res");
-            this.res = res;
-            return this;
-        }
-
         public PlatformSkillsPreviewSourceResponse build() {
 
             return new PlatformSkillsPreviewSourceResponse(
                 contentType, statusCode, rawResponse,
-                platformSkillSourcePreviewResponse, res);
+                platformSkillSourcePreviewResponse);
         }
 
     }

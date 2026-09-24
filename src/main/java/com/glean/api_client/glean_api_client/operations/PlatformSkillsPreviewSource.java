@@ -11,13 +11,12 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
-import com.glean.api_client.glean_api_client.models.components.PlatformSkillSourcePreviewRequest;
 import com.glean.api_client.glean_api_client.models.components.PlatformSkillSourcePreviewResponse;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
 import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsPreviewSourceRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsPreviewSourceResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
-import com.glean.api_client.glean_api_client.utils.Exceptions;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
 import com.glean.api_client.glean_api_client.utils.HTTPRequest;
 import com.glean.api_client.glean_api_client.utils.Headers;
@@ -35,7 +34,6 @@ import java.lang.String;
 import java.lang.Throwable;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
@@ -107,7 +105,7 @@ public class PlatformSkillsPreviewSource {
                 throw new IllegalArgumentException("Request body is required");
             }
             req.setBody(Optional.ofNullable(serializedRequestBody));
-            req.addHeader("Accept", "application/json;q=1, text/event-stream;q=0")
+            req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
@@ -117,13 +115,13 @@ public class PlatformSkillsPreviewSource {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<PlatformSkillSourcePreviewRequest, PlatformSkillsPreviewSourceResponse> {
+            implements RequestOperation<PlatformSkillsPreviewSourceRequest, PlatformSkillsPreviewSourceResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private HttpRequest onBuildRequest(PlatformSkillSourcePreviewRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<PlatformSkillSourcePreviewRequest>() {});
+        private HttpRequest onBuildRequest(PlatformSkillsPreviewSourceRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<PlatformSkillsPreviewSourceRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -139,7 +137,7 @@ public class PlatformSkillsPreviewSource {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(PlatformSkillSourcePreviewRequest request) {
+        public HttpResponse<InputStream> doRequest(PlatformSkillsPreviewSourceRequest request) {
             HttpRequest r = unchecked(() -> onBuildRequest(request)).get();
             HttpResponse<InputStream> httpRes;
             try {
@@ -175,10 +173,6 @@ public class PlatformSkillsPreviewSource {
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return res.withPlatformSkillSourcePreviewResponse(Utils.unmarshal(response, new TypeReference<PlatformSkillSourcePreviewResponse>() {}));
-                } else if (Utils.contentTypeMatches(contentType, "text/event-stream")) {
-                    String out = unchecked(() -> Utils.toUtf8AndClose(response.body())).get();
-                    res.withRes(out);
-                    return res;
                 } else {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
@@ -209,14 +203,14 @@ public class PlatformSkillsPreviewSource {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<PlatformSkillSourcePreviewRequest, com.glean.api_client.glean_api_client.models.operations.async.PlatformSkillsPreviewSourceResponse> {
+            implements AsyncRequestOperation<PlatformSkillsPreviewSourceRequest, com.glean.api_client.glean_api_client.models.operations.async.PlatformSkillsPreviewSourceResponse> {
 
         public Async(SDKConfiguration sdkConfiguration, Headers _headers) {
             super(sdkConfiguration, _headers);
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(PlatformSkillSourcePreviewRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<PlatformSkillSourcePreviewRequest>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(PlatformSkillsPreviewSourceRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<PlatformSkillsPreviewSourceRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -229,7 +223,7 @@ public class PlatformSkillsPreviewSource {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(PlatformSkillSourcePreviewRequest request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(PlatformSkillsPreviewSourceRequest request) {
             return unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
                     .handle((resp, err) -> {
                         if (err != null) {
@@ -264,16 +258,6 @@ public class PlatformSkillsPreviewSource {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return Utils.unmarshalAsync(response, new TypeReference<PlatformSkillSourcePreviewResponse>() {})
                             .thenApply(res::withPlatformSkillSourcePreviewResponse);
-                } else if (Utils.contentTypeMatches(contentType, "text/event-stream")) {
-                    return response.body().toByteArray().thenApply(bodyBytes -> {
-                        try {
-                            String out = new String(bodyBytes, StandardCharsets.UTF_8);
-                            res.withRes(out);
-                            return res;
-                        } catch (Exception e) {
-                            return Exceptions.rethrow(e);
-                        }
-                    });
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }
