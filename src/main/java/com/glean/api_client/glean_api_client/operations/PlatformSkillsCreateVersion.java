@@ -172,7 +172,7 @@ public class PlatformSkillsCreateVersion {
 
             PlatformSkillsCreateVersionResponse res = resBuilder.build();
             
-            if (Utils.statusCodeMatches(response.statusCode(), "200")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "201")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return res.withPlatformSkillVersionCreateResponse(Utils.unmarshal(response, new TypeReference<PlatformSkillVersionCreateResponse>() {}));
                 } else {
@@ -256,7 +256,7 @@ public class PlatformSkillsCreateVersion {
 
             com.glean.api_client.glean_api_client.models.operations.async.PlatformSkillsCreateVersionResponse res = resBuilder.build();
             
-            if (Utils.statusCodeMatches(response.statusCode(), "200")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "201")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return Utils.unmarshalAsync(response, new TypeReference<PlatformSkillVersionCreateResponse>() {})
                             .thenApply(res::withPlatformSkillVersionCreateResponse);

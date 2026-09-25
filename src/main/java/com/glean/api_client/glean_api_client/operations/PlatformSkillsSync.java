@@ -14,6 +14,7 @@ import com.glean.api_client.glean_api_client.SecuritySource;
 import com.glean.api_client.glean_api_client.models.components.PlatformSkillSyncResponse;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
 import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.errors.PlatformUnauthorizedAgentToolsProblemException;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsSyncRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsSyncResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
@@ -162,7 +163,14 @@ public class PlatformSkillsSync {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            if (Utils.statusCodeMatches(response.statusCode(), "400", "401", "403", "404", "408", "409", "413", "429")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "422")) {
+                if (Utils.contentTypeMatches(contentType, "application/problem+json")) {
+                    throw PlatformUnauthorizedAgentToolsProblemException.from(response);
+                } else {
+                    throw APIException.from("Unexpected content-type received: " + contentType, response);
+                }
+            }
+            if (Utils.statusCodeMatches(response.statusCode(), "400", "401", "403", "404", "408", "409", "429")) {
                 if (Utils.contentTypeMatches(contentType, "application/problem+json")) {
                     throw PlatformProblemDetailException.from(response);
                 } else {
@@ -247,7 +255,15 @@ public class PlatformSkillsSync {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }
             }
-            if (Utils.statusCodeMatches(response.statusCode(), "400", "401", "403", "404", "408", "409", "413", "429")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "422")) {
+                if (Utils.contentTypeMatches(contentType, "application/problem+json")) {
+                    return PlatformUnauthorizedAgentToolsProblemException.fromAsync(response)
+                            .thenCompose(CompletableFuture::failedFuture);
+                } else {
+                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
+                }
+            }
+            if (Utils.statusCodeMatches(response.statusCode(), "400", "401", "403", "404", "408", "409", "429")) {
                 if (Utils.contentTypeMatches(contentType, "application/problem+json")) {
                     return PlatformProblemDetailException.fromAsync(response)
                             .thenCompose(CompletableFuture::failedFuture);
