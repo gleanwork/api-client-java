@@ -6,6 +6,8 @@ package com.glean.api_client.glean_api_client.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.glean.api_client.glean_api_client.utils.LazySingletonValue;
 import com.glean.api_client.glean_api_client.utils.SpeakeasyMetadata;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
@@ -22,7 +24,7 @@ public class PlatformSkillsListVersionsRequest {
     private String skillId;
 
     /**
-     * Maximum number of versions to return.
+     * Maximum number of versions to return. Defaults to 20. Maximum is 100.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=page_size")
     private Optional<Long> pageSize;
@@ -60,7 +62,7 @@ public class PlatformSkillsListVersionsRequest {
     }
 
     /**
-     * Maximum number of versions to return.
+     * Maximum number of versions to return. Defaults to 20. Maximum is 100.
      */
     @JsonIgnore
     public Optional<Long> pageSize() {
@@ -90,7 +92,7 @@ public class PlatformSkillsListVersionsRequest {
     }
 
     /**
-     * Maximum number of versions to return.
+     * Maximum number of versions to return. Defaults to 20. Maximum is 100.
      */
     public PlatformSkillsListVersionsRequest withPageSize(long pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
@@ -100,7 +102,7 @@ public class PlatformSkillsListVersionsRequest {
 
 
     /**
-     * Maximum number of versions to return.
+     * Maximum number of versions to return. Defaults to 20. Maximum is 100.
      */
     public PlatformSkillsListVersionsRequest withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
@@ -161,7 +163,7 @@ public class PlatformSkillsListVersionsRequest {
 
         private String skillId;
 
-        private Optional<Long> pageSize = Optional.empty();
+        private Optional<Long> pageSize;
 
         private Optional<String> cursor = Optional.empty();
 
@@ -181,7 +183,7 @@ public class PlatformSkillsListVersionsRequest {
 
 
         /**
-         * Maximum number of versions to return.
+         * Maximum number of versions to return. Defaults to 20. Maximum is 100.
          */
         public Builder pageSize(long pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
@@ -190,7 +192,7 @@ public class PlatformSkillsListVersionsRequest {
         }
 
         /**
-         * Maximum number of versions to return.
+         * Maximum number of versions to return. Defaults to 20. Maximum is 100.
          */
         public Builder pageSize(Optional<Long> pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
@@ -218,10 +220,19 @@ public class PlatformSkillsListVersionsRequest {
         }
 
         public PlatformSkillsListVersionsRequest build() {
+            if (pageSize == null) {
+                pageSize = _SINGLETON_VALUE_PageSize.value();
+            }
 
             return new PlatformSkillsListVersionsRequest(
                 skillId, pageSize, cursor);
         }
 
+
+        private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
+                new LazySingletonValue<>(
+                        "page_size",
+                        "20",
+                        new TypeReference<Optional<Long>>() {});
     }
 }

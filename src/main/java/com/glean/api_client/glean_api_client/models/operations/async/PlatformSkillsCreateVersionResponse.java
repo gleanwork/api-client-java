@@ -35,7 +35,7 @@ public class PlatformSkillsCreateVersionResponse implements AsyncResponse {
     private HttpResponse<Blob> rawResponse;
 
     /**
-     * Successful response.
+     * Skill version created.
      */
     private Optional<? extends PlatformSkillVersionCreateResponse> platformSkillVersionCreateResponse;
 
@@ -88,7 +88,7 @@ public class PlatformSkillsCreateVersionResponse implements AsyncResponse {
     }
 
     /**
-     * Successful response.
+     * Skill version created.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -129,7 +129,7 @@ public class PlatformSkillsCreateVersionResponse implements AsyncResponse {
     }
 
     /**
-     * Successful response.
+     * Skill version created.
      */
     public PlatformSkillsCreateVersionResponse withPlatformSkillVersionCreateResponse(PlatformSkillVersionCreateResponse platformSkillVersionCreateResponse) {
         Utils.checkNotNull(platformSkillVersionCreateResponse, "platformSkillVersionCreateResponse");
@@ -139,7 +139,7 @@ public class PlatformSkillsCreateVersionResponse implements AsyncResponse {
 
 
     /**
-     * Successful response.
+     * Skill version created.
      */
     public PlatformSkillsCreateVersionResponse withPlatformSkillVersionCreateResponse(Optional<? extends PlatformSkillVersionCreateResponse> platformSkillVersionCreateResponse) {
         Utils.checkNotNull(platformSkillVersionCreateResponse, "platformSkillVersionCreateResponse");
@@ -226,7 +226,7 @@ public class PlatformSkillsCreateVersionResponse implements AsyncResponse {
 
 
         /**
-         * Successful response.
+         * Skill version created.
          */
         public Builder platformSkillVersionCreateResponse(PlatformSkillVersionCreateResponse platformSkillVersionCreateResponse) {
             Utils.checkNotNull(platformSkillVersionCreateResponse, "platformSkillVersionCreateResponse");
@@ -235,7 +235,7 @@ public class PlatformSkillsCreateVersionResponse implements AsyncResponse {
         }
 
         /**
-         * Successful response.
+         * Skill version created.
          */
         public Builder platformSkillVersionCreateResponse(Optional<? extends PlatformSkillVersionCreateResponse> platformSkillVersionCreateResponse) {
             Utils.checkNotNull(platformSkillVersionCreateResponse, "platformSkillVersionCreateResponse");

@@ -14,7 +14,8 @@ import java.lang.String;
 
 public class PlatformSkillUpdateRequest {
     /**
-     * New status for the skill.
+     * Activation to apply for the authenticated caller. For the owner, this updates the skill's stored
+     * status. For any other caller, it updates only that caller's setting.
      */
     @JsonProperty("status")
     private PlatformSkillUpdateStatus status;
@@ -27,7 +28,8 @@ public class PlatformSkillUpdateRequest {
     }
 
     /**
-     * New status for the skill.
+     * Activation to apply for the authenticated caller. For the owner, this updates the skill's stored
+     * status. For any other caller, it updates only that caller's setting.
      */
     @JsonIgnore
     public PlatformSkillUpdateStatus status() {
@@ -40,7 +42,8 @@ public class PlatformSkillUpdateRequest {
 
 
     /**
-     * New status for the skill.
+     * Activation to apply for the authenticated caller. For the owner, this updates the skill's stored
+     * status. For any other caller, it updates only that caller's setting.
      */
     public PlatformSkillUpdateRequest withStatus(PlatformSkillUpdateStatus status) {
         Utils.checkNotNull(status, "status");
@@ -84,7 +87,8 @@ public class PlatformSkillUpdateRequest {
 
 
         /**
-         * New status for the skill.
+         * Activation to apply for the authenticated caller. For the owner, this updates the skill's stored
+         * status. For any other caller, it updates only that caller's setting.
          */
         public Builder status(PlatformSkillUpdateStatus status) {
             Utils.checkNotNull(status, "status");
