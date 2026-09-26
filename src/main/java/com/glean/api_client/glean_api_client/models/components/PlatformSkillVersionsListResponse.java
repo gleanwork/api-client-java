@@ -21,8 +21,8 @@ public class PlatformSkillVersionsListResponse {
     /**
      * Versions available for the skill.
      */
-    @JsonProperty("versions")
-    private List<PlatformSkillVersion> versions;
+    @JsonProperty("results")
+    private List<PlatformSkillVersion> results;
 
     /**
      * Whether additional results are available.
@@ -45,25 +45,25 @@ public class PlatformSkillVersionsListResponse {
 
     @JsonCreator
     public PlatformSkillVersionsListResponse(
-            @JsonProperty("versions") List<PlatformSkillVersion> versions,
+            @JsonProperty("results") List<PlatformSkillVersion> results,
             @JsonProperty("has_more") boolean hasMore,
             @JsonProperty("next_cursor") Optional<String> nextCursor,
             @JsonProperty("request_id") String requestId) {
-        Utils.checkNotNull(versions, "versions");
+        Utils.checkNotNull(results, "results");
         Utils.checkNotNull(hasMore, "hasMore");
         Utils.checkNotNull(nextCursor, "nextCursor");
         Utils.checkNotNull(requestId, "requestId");
-        this.versions = versions;
+        this.results = results;
         this.hasMore = hasMore;
         this.nextCursor = nextCursor;
         this.requestId = requestId;
     }
     
     public PlatformSkillVersionsListResponse(
-            List<PlatformSkillVersion> versions,
+            List<PlatformSkillVersion> results,
             boolean hasMore,
             String requestId) {
-        this(versions, hasMore, Optional.empty(),
+        this(results, hasMore, Optional.empty(),
             requestId);
     }
 
@@ -71,8 +71,8 @@ public class PlatformSkillVersionsListResponse {
      * Versions available for the skill.
      */
     @JsonIgnore
-    public List<PlatformSkillVersion> versions() {
-        return versions;
+    public List<PlatformSkillVersion> results() {
+        return results;
     }
 
     /**
@@ -107,9 +107,9 @@ public class PlatformSkillVersionsListResponse {
     /**
      * Versions available for the skill.
      */
-    public PlatformSkillVersionsListResponse withVersions(List<PlatformSkillVersion> versions) {
-        Utils.checkNotNull(versions, "versions");
-        this.versions = versions;
+    public PlatformSkillVersionsListResponse withResults(List<PlatformSkillVersion> results) {
+        Utils.checkNotNull(results, "results");
+        this.results = results;
         return this;
     }
 
@@ -160,7 +160,7 @@ public class PlatformSkillVersionsListResponse {
         }
         PlatformSkillVersionsListResponse other = (PlatformSkillVersionsListResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.versions, other.versions) &&
+            Utils.enhancedDeepEquals(this.results, other.results) &&
             Utils.enhancedDeepEquals(this.hasMore, other.hasMore) &&
             Utils.enhancedDeepEquals(this.nextCursor, other.nextCursor) &&
             Utils.enhancedDeepEquals(this.requestId, other.requestId);
@@ -169,14 +169,14 @@ public class PlatformSkillVersionsListResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            versions, hasMore, nextCursor,
+            results, hasMore, nextCursor,
             requestId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PlatformSkillVersionsListResponse.class,
-                "versions", versions,
+                "results", results,
                 "hasMore", hasMore,
                 "nextCursor", nextCursor,
                 "requestId", requestId);
@@ -185,7 +185,7 @@ public class PlatformSkillVersionsListResponse {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<PlatformSkillVersion> versions;
+        private List<PlatformSkillVersion> results;
 
         private Boolean hasMore;
 
@@ -201,9 +201,9 @@ public class PlatformSkillVersionsListResponse {
         /**
          * Versions available for the skill.
          */
-        public Builder versions(List<PlatformSkillVersion> versions) {
-            Utils.checkNotNull(versions, "versions");
-            this.versions = versions;
+        public Builder results(List<PlatformSkillVersion> results) {
+            Utils.checkNotNull(results, "results");
+            this.results = results;
             return this;
         }
 
@@ -249,7 +249,7 @@ public class PlatformSkillVersionsListResponse {
         public PlatformSkillVersionsListResponse build() {
 
             return new PlatformSkillVersionsListResponse(
-                versions, hasMore, nextCursor,
+                results, hasMore, nextCursor,
                 requestId);
         }
 

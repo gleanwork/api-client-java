@@ -9,7 +9,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.glean.api_client.glean_api_client.utils.LazySingletonValue;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
@@ -19,6 +22,21 @@ import java.util.Optional;
 
 
 public class PeopleRequest {
+    /**
+     * If true and the current user's people profile is missing, reads the stored SSO profile and returns a
+     * minimal Person with its display name, the authenticated user's email, the same obfuscatedId used by
+     * a normal self-lookup, and identityOnly set to true. If the SSO profile or its name is unavailable,
+     * preserves the missing-profile error. Applies only when emailIds and obfuscatedIds are empty and the
+     * request doesn't use act-as, a virtual identity, anonymous authentication, or the INVALID_ENTITIES
+     * includeType.
+     * 
+     * <p>The fallback doesn't mask lookup or enrichment errors and doesn't create a directory profile. Normal
+     * people profiles don't require an SSO lookup.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("fallbackToAuthenticatedIdentity")
+    private Optional<Boolean> fallbackToAuthenticatedIdentity;
+
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours
      * behind UTC.
@@ -64,18 +82,21 @@ public class PeopleRequest {
 
     @JsonCreator
     public PeopleRequest(
+            @JsonProperty("fallbackToAuthenticatedIdentity") Optional<Boolean> fallbackToAuthenticatedIdentity,
             @JsonProperty("timezoneOffset") Optional<Long> timezoneOffset,
             @JsonProperty("obfuscatedIds") Optional<? extends List<String>> obfuscatedIds,
             @JsonProperty("emailIds") Optional<? extends List<String>> emailIds,
             @JsonProperty("includeFields") Optional<? extends List<PeopleRequestIncludeField>> includeFields,
             @JsonProperty("includeTypes") Optional<? extends List<IncludeType>> includeTypes,
             @JsonProperty("source") Optional<String> source) {
+        Utils.checkNotNull(fallbackToAuthenticatedIdentity, "fallbackToAuthenticatedIdentity");
         Utils.checkNotNull(timezoneOffset, "timezoneOffset");
         Utils.checkNotNull(obfuscatedIds, "obfuscatedIds");
         Utils.checkNotNull(emailIds, "emailIds");
         Utils.checkNotNull(includeFields, "includeFields");
         Utils.checkNotNull(includeTypes, "includeTypes");
         Utils.checkNotNull(source, "source");
+        this.fallbackToAuthenticatedIdentity = fallbackToAuthenticatedIdentity;
         this.timezoneOffset = timezoneOffset;
         this.obfuscatedIds = obfuscatedIds;
         this.emailIds = emailIds;
@@ -86,7 +107,24 @@ public class PeopleRequest {
     
     public PeopleRequest() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
+    }
+
+    /**
+     * If true and the current user's people profile is missing, reads the stored SSO profile and returns a
+     * minimal Person with its display name, the authenticated user's email, the same obfuscatedId used by
+     * a normal self-lookup, and identityOnly set to true. If the SSO profile or its name is unavailable,
+     * preserves the missing-profile error. Applies only when emailIds and obfuscatedIds are empty and the
+     * request doesn't use act-as, a virtual identity, anonymous authentication, or the INVALID_ENTITIES
+     * includeType.
+     * 
+     * <p>The fallback doesn't mask lookup or enrichment errors and doesn't create a directory profile. Normal
+     * people profiles don't require an SSO lookup.
+     */
+    @JsonIgnore
+    public Optional<Boolean> fallbackToAuthenticatedIdentity() {
+        return fallbackToAuthenticatedIdentity;
     }
 
     /**
@@ -146,6 +184,41 @@ public class PeopleRequest {
         return new Builder();
     }
 
+
+    /**
+     * If true and the current user's people profile is missing, reads the stored SSO profile and returns a
+     * minimal Person with its display name, the authenticated user's email, the same obfuscatedId used by
+     * a normal self-lookup, and identityOnly set to true. If the SSO profile or its name is unavailable,
+     * preserves the missing-profile error. Applies only when emailIds and obfuscatedIds are empty and the
+     * request doesn't use act-as, a virtual identity, anonymous authentication, or the INVALID_ENTITIES
+     * includeType.
+     * 
+     * <p>The fallback doesn't mask lookup or enrichment errors and doesn't create a directory profile. Normal
+     * people profiles don't require an SSO lookup.
+     */
+    public PeopleRequest withFallbackToAuthenticatedIdentity(boolean fallbackToAuthenticatedIdentity) {
+        Utils.checkNotNull(fallbackToAuthenticatedIdentity, "fallbackToAuthenticatedIdentity");
+        this.fallbackToAuthenticatedIdentity = Optional.ofNullable(fallbackToAuthenticatedIdentity);
+        return this;
+    }
+
+
+    /**
+     * If true and the current user's people profile is missing, reads the stored SSO profile and returns a
+     * minimal Person with its display name, the authenticated user's email, the same obfuscatedId used by
+     * a normal self-lookup, and identityOnly set to true. If the SSO profile or its name is unavailable,
+     * preserves the missing-profile error. Applies only when emailIds and obfuscatedIds are empty and the
+     * request doesn't use act-as, a virtual identity, anonymous authentication, or the INVALID_ENTITIES
+     * includeType.
+     * 
+     * <p>The fallback doesn't mask lookup or enrichment errors and doesn't create a directory profile. Normal
+     * people profiles don't require an SSO lookup.
+     */
+    public PeopleRequest withFallbackToAuthenticatedIdentity(Optional<Boolean> fallbackToAuthenticatedIdentity) {
+        Utils.checkNotNull(fallbackToAuthenticatedIdentity, "fallbackToAuthenticatedIdentity");
+        this.fallbackToAuthenticatedIdentity = fallbackToAuthenticatedIdentity;
+        return this;
+    }
 
     /**
      * The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours
@@ -273,6 +346,7 @@ public class PeopleRequest {
         }
         PeopleRequest other = (PeopleRequest) o;
         return 
+            Utils.enhancedDeepEquals(this.fallbackToAuthenticatedIdentity, other.fallbackToAuthenticatedIdentity) &&
             Utils.enhancedDeepEquals(this.timezoneOffset, other.timezoneOffset) &&
             Utils.enhancedDeepEquals(this.obfuscatedIds, other.obfuscatedIds) &&
             Utils.enhancedDeepEquals(this.emailIds, other.emailIds) &&
@@ -284,13 +358,15 @@ public class PeopleRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            timezoneOffset, obfuscatedIds, emailIds,
-            includeFields, includeTypes, source);
+            fallbackToAuthenticatedIdentity, timezoneOffset, obfuscatedIds,
+            emailIds, includeFields, includeTypes,
+            source);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PeopleRequest.class,
+                "fallbackToAuthenticatedIdentity", fallbackToAuthenticatedIdentity,
                 "timezoneOffset", timezoneOffset,
                 "obfuscatedIds", obfuscatedIds,
                 "emailIds", emailIds,
@@ -301,6 +377,8 @@ public class PeopleRequest {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private Optional<Boolean> fallbackToAuthenticatedIdentity;
 
         private Optional<Long> timezoneOffset = Optional.empty();
 
@@ -316,6 +394,41 @@ public class PeopleRequest {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * If true and the current user's people profile is missing, reads the stored SSO profile and returns a
+         * minimal Person with its display name, the authenticated user's email, the same obfuscatedId used by
+         * a normal self-lookup, and identityOnly set to true. If the SSO profile or its name is unavailable,
+         * preserves the missing-profile error. Applies only when emailIds and obfuscatedIds are empty and the
+         * request doesn't use act-as, a virtual identity, anonymous authentication, or the INVALID_ENTITIES
+         * includeType.
+         * 
+         * <p>The fallback doesn't mask lookup or enrichment errors and doesn't create a directory profile. Normal
+         * people profiles don't require an SSO lookup.
+         */
+        public Builder fallbackToAuthenticatedIdentity(boolean fallbackToAuthenticatedIdentity) {
+            Utils.checkNotNull(fallbackToAuthenticatedIdentity, "fallbackToAuthenticatedIdentity");
+            this.fallbackToAuthenticatedIdentity = Optional.ofNullable(fallbackToAuthenticatedIdentity);
+            return this;
+        }
+
+        /**
+         * If true and the current user's people profile is missing, reads the stored SSO profile and returns a
+         * minimal Person with its display name, the authenticated user's email, the same obfuscatedId used by
+         * a normal self-lookup, and identityOnly set to true. If the SSO profile or its name is unavailable,
+         * preserves the missing-profile error. Applies only when emailIds and obfuscatedIds are empty and the
+         * request doesn't use act-as, a virtual identity, anonymous authentication, or the INVALID_ENTITIES
+         * includeType.
+         * 
+         * <p>The fallback doesn't mask lookup or enrichment errors and doesn't create a directory profile. Normal
+         * people profiles don't require an SSO lookup.
+         */
+        public Builder fallbackToAuthenticatedIdentity(Optional<Boolean> fallbackToAuthenticatedIdentity) {
+            Utils.checkNotNull(fallbackToAuthenticatedIdentity, "fallbackToAuthenticatedIdentity");
+            this.fallbackToAuthenticatedIdentity = fallbackToAuthenticatedIdentity;
+            return this;
         }
 
 
@@ -435,11 +548,21 @@ public class PeopleRequest {
         }
 
         public PeopleRequest build() {
+            if (fallbackToAuthenticatedIdentity == null) {
+                fallbackToAuthenticatedIdentity = _SINGLETON_VALUE_FallbackToAuthenticatedIdentity.value();
+            }
 
             return new PeopleRequest(
-                timezoneOffset, obfuscatedIds, emailIds,
-                includeFields, includeTypes, source);
+                fallbackToAuthenticatedIdentity, timezoneOffset, obfuscatedIds,
+                emailIds, includeFields, includeTypes,
+                source);
         }
 
+
+        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_FallbackToAuthenticatedIdentity =
+                new LazySingletonValue<>(
+                        "fallbackToAuthenticatedIdentity",
+                        "false",
+                        new TypeReference<Optional<Boolean>>() {});
     }
 }

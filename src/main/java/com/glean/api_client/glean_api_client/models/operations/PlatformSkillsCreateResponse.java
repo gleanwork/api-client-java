@@ -35,7 +35,7 @@ public class PlatformSkillsCreateResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * Successful response.
+     * Skill created.
      */
     private Optional<? extends PlatformSkillCreateResponse> platformSkillCreateResponse;
 
@@ -88,7 +88,7 @@ public class PlatformSkillsCreateResponse implements Response {
     }
 
     /**
-     * Successful response.
+     * Skill created.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -129,7 +129,7 @@ public class PlatformSkillsCreateResponse implements Response {
     }
 
     /**
-     * Successful response.
+     * Skill created.
      */
     public PlatformSkillsCreateResponse withPlatformSkillCreateResponse(PlatformSkillCreateResponse platformSkillCreateResponse) {
         Utils.checkNotNull(platformSkillCreateResponse, "platformSkillCreateResponse");
@@ -139,7 +139,7 @@ public class PlatformSkillsCreateResponse implements Response {
 
 
     /**
-     * Successful response.
+     * Skill created.
      */
     public PlatformSkillsCreateResponse withPlatformSkillCreateResponse(Optional<? extends PlatformSkillCreateResponse> platformSkillCreateResponse) {
         Utils.checkNotNull(platformSkillCreateResponse, "platformSkillCreateResponse");
@@ -226,7 +226,7 @@ public class PlatformSkillsCreateResponse implements Response {
 
 
         /**
-         * Successful response.
+         * Skill created.
          */
         public Builder platformSkillCreateResponse(PlatformSkillCreateResponse platformSkillCreateResponse) {
             Utils.checkNotNull(platformSkillCreateResponse, "platformSkillCreateResponse");
@@ -235,7 +235,7 @@ public class PlatformSkillsCreateResponse implements Response {
         }
 
         /**
-         * Successful response.
+         * Skill created.
          */
         public Builder platformSkillCreateResponse(Optional<? extends PlatformSkillCreateResponse> platformSkillCreateResponse) {
             Utils.checkNotNull(platformSkillCreateResponse, "platformSkillCreateResponse");
