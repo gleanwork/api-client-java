@@ -16,12 +16,12 @@ AutocompleteRequestResultType value = AutocompleteRequestResultType.ADDITIONAL_D
 | `ADDITIONAL_DOCUMENT` | ADDITIONAL_DOCUMENT   |
 | `APP`                 | APP                   |
 | `BROWSER_HISTORY`     | BROWSER_HISTORY       |
+| `CHAT_HISTORY`        | CHAT_HISTORY          |
 | `DATASOURCE`          | DATASOURCE            |
 | `DOCUMENT`            | DOCUMENT              |
 | `ENTITY`              | ENTITY                |
 | `GOLINK`              | GOLINK                |
 | `HISTORY`             | HISTORY               |
-| `CHAT_HISTORY`        | CHAT_HISTORY          |
 | `NEW_CHAT`            | NEW_CHAT              |
 | `OPERATOR`            | OPERATOR              |
 | `OPERATOR_VALUE`      | OPERATOR_VALUE        |

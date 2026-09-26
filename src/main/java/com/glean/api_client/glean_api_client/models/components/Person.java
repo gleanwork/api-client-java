@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -31,6 +32,14 @@ public class Person {
     private String obfuscatedId;
 
     /**
+     * True when this is an authenticated identity fallback rather than a people profile. Directory
+     * metadata is unavailable.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("identityOnly")
+    private Optional<Boolean> identityOnly;
+
+    /**
      * A list of documents related to this person.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -46,14 +55,17 @@ public class Person {
     public Person(
             @JsonProperty("name") String name,
             @JsonProperty("obfuscatedId") String obfuscatedId,
+            @JsonProperty("identityOnly") Optional<Boolean> identityOnly,
             @JsonProperty("relatedDocuments") Optional<? extends List<RelatedDocuments>> relatedDocuments,
             @JsonProperty("metadata") Optional<? extends PersonMetadata> metadata) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(obfuscatedId, "obfuscatedId");
+        Utils.checkNotNull(identityOnly, "identityOnly");
         Utils.checkNotNull(relatedDocuments, "relatedDocuments");
         Utils.checkNotNull(metadata, "metadata");
         this.name = name;
         this.obfuscatedId = obfuscatedId;
+        this.identityOnly = identityOnly;
         this.relatedDocuments = relatedDocuments;
         this.metadata = metadata;
     }
@@ -62,7 +74,7 @@ public class Person {
             String name,
             String obfuscatedId) {
         this(name, obfuscatedId, Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -79,6 +91,15 @@ public class Person {
     @JsonIgnore
     public String obfuscatedId() {
         return obfuscatedId;
+    }
+
+    /**
+     * True when this is an authenticated identity fallback rather than a people profile. Directory
+     * metadata is unavailable.
+     */
+    @JsonIgnore
+    public Optional<Boolean> identityOnly() {
+        return identityOnly;
     }
 
     /**
@@ -116,6 +137,27 @@ public class Person {
     public Person withObfuscatedId(String obfuscatedId) {
         Utils.checkNotNull(obfuscatedId, "obfuscatedId");
         this.obfuscatedId = obfuscatedId;
+        return this;
+    }
+
+    /**
+     * True when this is an authenticated identity fallback rather than a people profile. Directory
+     * metadata is unavailable.
+     */
+    public Person withIdentityOnly(boolean identityOnly) {
+        Utils.checkNotNull(identityOnly, "identityOnly");
+        this.identityOnly = Optional.ofNullable(identityOnly);
+        return this;
+    }
+
+
+    /**
+     * True when this is an authenticated identity fallback rather than a people profile. Directory
+     * metadata is unavailable.
+     */
+    public Person withIdentityOnly(Optional<Boolean> identityOnly) {
+        Utils.checkNotNull(identityOnly, "identityOnly");
+        this.identityOnly = identityOnly;
         return this;
     }
 
@@ -163,6 +205,7 @@ public class Person {
         return 
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.obfuscatedId, other.obfuscatedId) &&
+            Utils.enhancedDeepEquals(this.identityOnly, other.identityOnly) &&
             Utils.enhancedDeepEquals(this.relatedDocuments, other.relatedDocuments) &&
             Utils.enhancedDeepEquals(this.metadata, other.metadata);
     }
@@ -170,8 +213,8 @@ public class Person {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name, obfuscatedId, relatedDocuments,
-            metadata);
+            name, obfuscatedId, identityOnly,
+            relatedDocuments, metadata);
     }
     
     @Override
@@ -179,6 +222,7 @@ public class Person {
         return Utils.toString(Person.class,
                 "name", name,
                 "obfuscatedId", obfuscatedId,
+                "identityOnly", identityOnly,
                 "relatedDocuments", relatedDocuments,
                 "metadata", metadata);
     }
@@ -189,6 +233,8 @@ public class Person {
         private String name;
 
         private String obfuscatedId;
+
+        private Optional<Boolean> identityOnly = Optional.empty();
 
         private Optional<? extends List<RelatedDocuments>> relatedDocuments = Optional.empty();
 
@@ -215,6 +261,27 @@ public class Person {
         public Builder obfuscatedId(String obfuscatedId) {
             Utils.checkNotNull(obfuscatedId, "obfuscatedId");
             this.obfuscatedId = obfuscatedId;
+            return this;
+        }
+
+
+        /**
+         * True when this is an authenticated identity fallback rather than a people profile. Directory
+         * metadata is unavailable.
+         */
+        public Builder identityOnly(boolean identityOnly) {
+            Utils.checkNotNull(identityOnly, "identityOnly");
+            this.identityOnly = Optional.ofNullable(identityOnly);
+            return this;
+        }
+
+        /**
+         * True when this is an authenticated identity fallback rather than a people profile. Directory
+         * metadata is unavailable.
+         */
+        public Builder identityOnly(Optional<Boolean> identityOnly) {
+            Utils.checkNotNull(identityOnly, "identityOnly");
+            this.identityOnly = identityOnly;
             return this;
         }
 
@@ -253,8 +320,8 @@ public class Person {
         public Person build() {
 
             return new Person(
-                name, obfuscatedId, relatedDocuments,
-                metadata);
+                name, obfuscatedId, identityOnly,
+                relatedDocuments, metadata);
         }
 
     }
