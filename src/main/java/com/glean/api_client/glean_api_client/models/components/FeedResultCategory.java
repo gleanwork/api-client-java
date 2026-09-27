@@ -80,6 +80,7 @@ public class FeedResultCategory {
     public static final FeedResultCategory SHARE_ARTIFACT = new FeedResultCategory("SHARE_ARTIFACT");
     public static final FeedResultCategory CREATE_AGENT = new FeedResultCategory("CREATE_AGENT");
     public static final FeedResultCategory MANAGER_INVITE = new FeedResultCategory("MANAGER_INVITE");
+    public static final FeedResultCategory ONBOARDING_AUTHORIZATION = new FeedResultCategory("ONBOARDING_AUTHORIZATION");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -207,6 +208,7 @@ public class FeedResultCategory {
         map.put("SHARE_ARTIFACT", SHARE_ARTIFACT);
         map.put("CREATE_AGENT", CREATE_AGENT);
         map.put("MANAGER_INVITE", MANAGER_INVITE);
+        map.put("ONBOARDING_AUTHORIZATION", ONBOARDING_AUTHORIZATION);
         return map;
     }
 
@@ -266,6 +268,7 @@ public class FeedResultCategory {
         map.put("SHARE_ARTIFACT", FeedResultCategoryEnum.SHARE_ARTIFACT);
         map.put("CREATE_AGENT", FeedResultCategoryEnum.CREATE_AGENT);
         map.put("MANAGER_INVITE", FeedResultCategoryEnum.MANAGER_INVITE);
+        map.put("ONBOARDING_AUTHORIZATION", FeedResultCategoryEnum.ONBOARDING_AUTHORIZATION);
         return map;
     }
     
@@ -325,7 +328,8 @@ public class FeedResultCategory {
         CHAT_TO_ARTIFACT("CHAT_TO_ARTIFACT"),
         SHARE_ARTIFACT("SHARE_ARTIFACT"),
         CREATE_AGENT("CREATE_AGENT"),
-        MANAGER_INVITE("MANAGER_INVITE"),;
+        MANAGER_INVITE("MANAGER_INVITE"),
+        ONBOARDING_AUTHORIZATION("ONBOARDING_AUTHORIZATION"),;
 
         private final String value;
 
