@@ -21,8 +21,8 @@ public class PlatformSkillsListResponse {
     /**
      * Skills available to the user.
      */
-    @JsonProperty("skills")
-    private List<PlatformSkill> skills;
+    @JsonProperty("results")
+    private List<PlatformSkill> results;
 
     /**
      * Whether additional results are available.
@@ -45,25 +45,25 @@ public class PlatformSkillsListResponse {
 
     @JsonCreator
     public PlatformSkillsListResponse(
-            @JsonProperty("skills") List<PlatformSkill> skills,
+            @JsonProperty("results") List<PlatformSkill> results,
             @JsonProperty("has_more") boolean hasMore,
             @JsonProperty("next_cursor") Optional<String> nextCursor,
             @JsonProperty("request_id") String requestId) {
-        Utils.checkNotNull(skills, "skills");
+        Utils.checkNotNull(results, "results");
         Utils.checkNotNull(hasMore, "hasMore");
         Utils.checkNotNull(nextCursor, "nextCursor");
         Utils.checkNotNull(requestId, "requestId");
-        this.skills = skills;
+        this.results = results;
         this.hasMore = hasMore;
         this.nextCursor = nextCursor;
         this.requestId = requestId;
     }
     
     public PlatformSkillsListResponse(
-            List<PlatformSkill> skills,
+            List<PlatformSkill> results,
             boolean hasMore,
             String requestId) {
-        this(skills, hasMore, Optional.empty(),
+        this(results, hasMore, Optional.empty(),
             requestId);
     }
 
@@ -71,8 +71,8 @@ public class PlatformSkillsListResponse {
      * Skills available to the user.
      */
     @JsonIgnore
-    public List<PlatformSkill> skills() {
-        return skills;
+    public List<PlatformSkill> results() {
+        return results;
     }
 
     /**
@@ -107,9 +107,9 @@ public class PlatformSkillsListResponse {
     /**
      * Skills available to the user.
      */
-    public PlatformSkillsListResponse withSkills(List<PlatformSkill> skills) {
-        Utils.checkNotNull(skills, "skills");
-        this.skills = skills;
+    public PlatformSkillsListResponse withResults(List<PlatformSkill> results) {
+        Utils.checkNotNull(results, "results");
+        this.results = results;
         return this;
     }
 
@@ -160,7 +160,7 @@ public class PlatformSkillsListResponse {
         }
         PlatformSkillsListResponse other = (PlatformSkillsListResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.skills, other.skills) &&
+            Utils.enhancedDeepEquals(this.results, other.results) &&
             Utils.enhancedDeepEquals(this.hasMore, other.hasMore) &&
             Utils.enhancedDeepEquals(this.nextCursor, other.nextCursor) &&
             Utils.enhancedDeepEquals(this.requestId, other.requestId);
@@ -169,14 +169,14 @@ public class PlatformSkillsListResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            skills, hasMore, nextCursor,
+            results, hasMore, nextCursor,
             requestId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PlatformSkillsListResponse.class,
-                "skills", skills,
+                "results", results,
                 "hasMore", hasMore,
                 "nextCursor", nextCursor,
                 "requestId", requestId);
@@ -185,7 +185,7 @@ public class PlatformSkillsListResponse {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<PlatformSkill> skills;
+        private List<PlatformSkill> results;
 
         private Boolean hasMore;
 
@@ -201,9 +201,9 @@ public class PlatformSkillsListResponse {
         /**
          * Skills available to the user.
          */
-        public Builder skills(List<PlatformSkill> skills) {
-            Utils.checkNotNull(skills, "skills");
-            this.skills = skills;
+        public Builder results(List<PlatformSkill> results) {
+            Utils.checkNotNull(results, "results");
+            this.results = results;
             return this;
         }
 
@@ -249,7 +249,7 @@ public class PlatformSkillsListResponse {
         public PlatformSkillsListResponse build() {
 
             return new PlatformSkillsListResponse(
-                skills, hasMore, nextCursor,
+                results, hasMore, nextCursor,
                 requestId);
         }
 

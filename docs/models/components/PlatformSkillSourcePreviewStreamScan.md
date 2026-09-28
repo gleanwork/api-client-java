@@ -1,0 +1,12 @@
+# PlatformSkillSourcePreviewStreamScan
+
+Repository scan started; names every skill path found.
+
+
+## Fields
+
+| Field                                                                                                           | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
+| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `type`                                                                                                          | [PlatformSkillSourcePreviewStreamScanType](../../models/components/PlatformSkillSourcePreviewStreamScanType.md) | :heavy_check_mark:                                                                                              | Event type, also sent as the SSE `event` name.                                                                  |
+| `total`                                                                                                         | *long*                                                                                                          | :heavy_check_mark:                                                                                              | Number of skill paths found in the scan.                                                                        |
+| `skillPaths`                                                                                                    | List\<*String*>                                                                                                 | :heavy_check_mark:                                                                                              | Skill paths found in the scan.                                                                                  |
