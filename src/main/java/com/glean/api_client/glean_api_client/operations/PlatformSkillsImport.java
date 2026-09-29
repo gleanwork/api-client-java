@@ -15,6 +15,7 @@ import com.glean.api_client.glean_api_client.models.components.PlatformSkillImpo
 import com.glean.api_client.glean_api_client.models.components.PlatformSkillImportResponse;
 import com.glean.api_client.glean_api_client.models.errors.APIException;
 import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.errors.PlatformUnauthorizedAgentToolsProblemException;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsImportResponse;
 import com.glean.api_client.glean_api_client.utils.Blob;
 import com.glean.api_client.glean_api_client.utils.HTTPClient;
@@ -170,9 +171,16 @@ public class PlatformSkillsImport {
 
             PlatformSkillsImportResponse res = resBuilder.build();
             
-            if (Utils.statusCodeMatches(response.statusCode(), "200")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "201")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return res.withPlatformSkillImportResponse(Utils.unmarshal(response, new TypeReference<PlatformSkillImportResponse>() {}));
+                } else {
+                    throw APIException.from("Unexpected content-type received: " + contentType, response);
+                }
+            }
+            if (Utils.statusCodeMatches(response.statusCode(), "422")) {
+                if (Utils.contentTypeMatches(contentType, "application/problem+json")) {
+                    throw PlatformUnauthorizedAgentToolsProblemException.from(response);
                 } else {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
@@ -254,10 +262,18 @@ public class PlatformSkillsImport {
 
             com.glean.api_client.glean_api_client.models.operations.async.PlatformSkillsImportResponse res = resBuilder.build();
             
-            if (Utils.statusCodeMatches(response.statusCode(), "200")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "201")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return Utils.unmarshalAsync(response, new TypeReference<PlatformSkillImportResponse>() {})
                             .thenApply(res::withPlatformSkillImportResponse);
+                } else {
+                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
+                }
+            }
+            if (Utils.statusCodeMatches(response.statusCode(), "422")) {
+                if (Utils.contentTypeMatches(contentType, "application/problem+json")) {
+                    return PlatformUnauthorizedAgentToolsProblemException.fromAsync(response)
+                            .thenCompose(CompletableFuture::failedFuture);
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }

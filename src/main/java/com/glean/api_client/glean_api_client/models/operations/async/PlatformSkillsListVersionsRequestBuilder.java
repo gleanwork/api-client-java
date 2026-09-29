@@ -6,10 +6,12 @@ package com.glean.api_client.glean_api_client.models.operations.async;
 
 import static com.glean.api_client.glean_api_client.operations.Operations.AsyncRequestOperation;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsListVersionsRequest;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsListVersions;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.LazySingletonValue;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.String;
@@ -19,7 +21,10 @@ import java.util.concurrent.CompletableFuture;
 public class PlatformSkillsListVersionsRequestBuilder {
 
     private String skillId;
-    private Optional<Long> pageSize = Optional.empty();
+    private Optional<Long> pageSize = Utils.readDefaultOrConstValue(
+                            "pageSize",
+                            "20",
+                            new TypeReference<Optional<Long>>() {});
     private Optional<String> cursor = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -60,6 +65,9 @@ public class PlatformSkillsListVersionsRequestBuilder {
 
 
     private PlatformSkillsListVersionsRequest buildRequest() {
+        if (pageSize == null) {
+            pageSize = _SINGLETON_VALUE_PageSize.value();
+        }
 
         PlatformSkillsListVersionsRequest request = new PlatformSkillsListVersionsRequest(skillId,
             pageSize,
@@ -77,4 +85,10 @@ public class PlatformSkillsListVersionsRequestBuilder {
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
+
+    private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
+            new LazySingletonValue<>(
+                    "pageSize",
+                    "20",
+                    new TypeReference<Optional<Long>>() {});
 }
