@@ -12,7 +12,8 @@ import java.util.Optional;
 /**
  * PlatformSkillUpdateStatus
  * 
- * <p>New status for the skill.
+ * <p>Activation to apply for the authenticated caller. For the owner, this updates the skill's stored
+ * status. For any other caller, it updates only that caller's setting.
  */
 public enum PlatformSkillUpdateStatus {
     ENABLED("ENABLED"),
