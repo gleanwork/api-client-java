@@ -18,7 +18,8 @@ public enum BreakdownType {
     USERS("USERS"),
     HOST_APPLICATIONS("HOST_APPLICATIONS"),
     TOOLS("TOOLS"),
-    SERVERS("SERVERS");
+    SERVERS("SERVERS"),
+    AUTH_METHODS("AUTH_METHODS");
 
     @JsonValue
     private final String value;
