@@ -1,0 +1,13 @@
+# PlatformUsageSettingsResource
+
+Workspace-wide usage settings.
+
+
+
+## Fields
+
+| Field                                                                                                                              | Type                                                                                                                               | Required                                                                                                                           | Description                                                                                                                        |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `multipleMembershipResolution`                                                                                                     | [Optional\<PlatformMultipleMembershipResolutionSettings>](../../models/components/PlatformMultipleMembershipResolutionSettings.md) | :heavy_minus_sign:                                                                                                                 | Settings for resolving limits across multiple memberships.                                                                         |
+| `limitIncreaseRequests`                                                                                                            | [Optional\<PlatformLimitIncreaseRequestSettings>](../../models/components/PlatformLimitIncreaseRequestSettings.md)                 | :heavy_minus_sign:                                                                                                                 | Settings that govern usage limit increase requests.<br/>                                                                           |
+| `updatedAt`                                                                                                                        | [OffsetDateTime](https://docs.oracle.com/javase/8/docs/api/java/time/OffsetDateTime.html)                                          | :heavy_minus_sign:                                                                                                                 | ISO 8601 timestamp of the last settings update.<br/>                                                                               |

@@ -6,6 +6,8 @@ package com.glean.api_client.glean_api_client.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.glean.api_client.glean_api_client.utils.LazySingletonValue;
 import com.glean.api_client.glean_api_client.utils.SpeakeasyMetadata;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
@@ -16,7 +18,7 @@ import java.util.Optional;
 
 public class PlatformSkillsListRequest {
     /**
-     * Maximum number of skills to return.
+     * Maximum number of skills to return. Defaults to 20. Maximum is 100.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=page_size")
     private Optional<Long> pageSize;
@@ -42,7 +44,7 @@ public class PlatformSkillsListRequest {
     }
 
     /**
-     * Maximum number of skills to return.
+     * Maximum number of skills to return. Defaults to 20. Maximum is 100.
      */
     @JsonIgnore
     public Optional<Long> pageSize() {
@@ -63,7 +65,7 @@ public class PlatformSkillsListRequest {
 
 
     /**
-     * Maximum number of skills to return.
+     * Maximum number of skills to return. Defaults to 20. Maximum is 100.
      */
     public PlatformSkillsListRequest withPageSize(long pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
@@ -73,7 +75,7 @@ public class PlatformSkillsListRequest {
 
 
     /**
-     * Maximum number of skills to return.
+     * Maximum number of skills to return. Defaults to 20. Maximum is 100.
      */
     public PlatformSkillsListRequest withPageSize(Optional<Long> pageSize) {
         Utils.checkNotNull(pageSize, "pageSize");
@@ -130,7 +132,7 @@ public class PlatformSkillsListRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<Long> pageSize = Optional.empty();
+        private Optional<Long> pageSize;
 
         private Optional<String> cursor = Optional.empty();
 
@@ -140,7 +142,7 @@ public class PlatformSkillsListRequest {
 
 
         /**
-         * Maximum number of skills to return.
+         * Maximum number of skills to return. Defaults to 20. Maximum is 100.
          */
         public Builder pageSize(long pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
@@ -149,7 +151,7 @@ public class PlatformSkillsListRequest {
         }
 
         /**
-         * Maximum number of skills to return.
+         * Maximum number of skills to return. Defaults to 20. Maximum is 100.
          */
         public Builder pageSize(Optional<Long> pageSize) {
             Utils.checkNotNull(pageSize, "pageSize");
@@ -177,10 +179,19 @@ public class PlatformSkillsListRequest {
         }
 
         public PlatformSkillsListRequest build() {
+            if (pageSize == null) {
+                pageSize = _SINGLETON_VALUE_PageSize.value();
+            }
 
             return new PlatformSkillsListRequest(
                 pageSize, cursor);
         }
 
+
+        private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
+                new LazySingletonValue<>(
+                        "page_size",
+                        "20",
+                        new TypeReference<Optional<Long>>() {});
     }
 }

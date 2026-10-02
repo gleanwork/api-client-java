@@ -8,6 +8,9 @@ Source category for the skill.
 import com.glean.api_client.glean_api_client.models.components.PlatformSkillOrigin;
 
 PlatformSkillOrigin value = PlatformSkillOrigin.CUSTOM;
+
+// Open enum: use .of() to create instances from custom string values
+PlatformSkillOrigin custom = PlatformSkillOrigin.of("custom_value");
 ```
 
 
@@ -16,3 +19,4 @@ PlatformSkillOrigin value = PlatformSkillOrigin.CUSTOM;
 | Name     | Value    |
 | -------- | -------- |
 | `CUSTOM` | CUSTOM   |
+| `GITHUB` | GITHUB   |

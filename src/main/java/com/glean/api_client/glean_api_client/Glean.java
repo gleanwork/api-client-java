@@ -67,6 +67,12 @@ public class Glean {
     private final Search search;
 
 
+    private final Admin admin;
+
+
+    private final Usage usage;
+
+
     private final Triggers triggers;
 
 
@@ -93,6 +99,16 @@ public class Glean {
 
     public Search search() {
         return search;
+    }
+
+
+    public Admin admin() {
+        return admin;
+    }
+
+
+    public Usage usage() {
+        return usage;
     }
 
 
@@ -279,6 +295,8 @@ public class Glean {
         this.chat = new Chat(sdkConfiguration);
         this.skills = new Skills(sdkConfiguration);
         this.search = new Search(sdkConfiguration);
+        this.admin = new Admin(sdkConfiguration);
+        this.usage = new Usage(sdkConfiguration);
         this.triggers = new Triggers(sdkConfiguration);
         this.client = new Client(sdkConfiguration);
         this.indexing = new Indexing(sdkConfiguration);

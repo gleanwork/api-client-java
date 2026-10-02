@@ -1,0 +1,13 @@
+# PlatformRequestListResponse2
+
+The last page has no continuation cursor.
+
+
+## Fields
+
+| Field                                                                                          | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `hasMore`                                                                                      | *boolean*                                                                                      | :heavy_check_mark:                                                                             | Whether a further page is available through next_cursor.                                       |
+| `nextCursor`                                                                                   | *JsonNullable\<String>*                                                                        | :heavy_minus_sign:                                                                             | Opaque nonempty continuation when has_more is true; null or omitted otherwise.                 |
+| `results`                                                                                      | List\<[PlatformLimitIncreaseRequest](../../models/components/PlatformLimitIncreaseRequest.md)> | :heavy_check_mark:                                                                             | Requests visible to the caller under the current filters and authorization.                    |
+| `requestId`                                                                                    | *String*                                                                                       | :heavy_check_mark:                                                                             | Trace identifier for this list response, not a request resource ID.                            |
