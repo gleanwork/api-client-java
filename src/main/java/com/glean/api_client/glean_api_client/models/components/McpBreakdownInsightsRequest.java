@@ -72,6 +72,14 @@ public class McpBreakdownInsightsRequest {
     @JsonProperty("servers")
     private Optional<? extends List<String>> servers;
 
+    /**
+     * Authentication methods to filter by, for example OAUTH_XAA for Cross App Access traffic. Empty array
+     * means all authentication methods.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("authMethods")
+    private Optional<? extends List<String>> authMethods;
+
     @JsonCreator
     public McpBreakdownInsightsRequest(
             @JsonProperty("departments") Optional<? extends List<String>> departments,
@@ -81,7 +89,8 @@ public class McpBreakdownInsightsRequest {
             @JsonProperty("breakdownType") Optional<? extends BreakdownType> breakdownType,
             @JsonProperty("hostApplications") Optional<? extends List<String>> hostApplications,
             @JsonProperty("tools") Optional<? extends List<String>> tools,
-            @JsonProperty("servers") Optional<? extends List<String>> servers) {
+            @JsonProperty("servers") Optional<? extends List<String>> servers,
+            @JsonProperty("authMethods") Optional<? extends List<String>> authMethods) {
         Utils.checkNotNull(departments, "departments");
         Utils.checkNotNull(managerIds, "managerIds");
         Utils.checkNotNull(managerEmails, "managerEmails");
@@ -90,6 +99,7 @@ public class McpBreakdownInsightsRequest {
         Utils.checkNotNull(hostApplications, "hostApplications");
         Utils.checkNotNull(tools, "tools");
         Utils.checkNotNull(servers, "servers");
+        Utils.checkNotNull(authMethods, "authMethods");
         this.departments = departments;
         this.managerIds = managerIds;
         this.managerEmails = managerEmails;
@@ -98,12 +108,13 @@ public class McpBreakdownInsightsRequest {
         this.hostApplications = hostApplications;
         this.tools = tools;
         this.servers = servers;
+        this.authMethods = authMethods;
     }
     
     public McpBreakdownInsightsRequest() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -173,6 +184,16 @@ public class McpBreakdownInsightsRequest {
     @JsonIgnore
     public Optional<List<String>> servers() {
         return (Optional<List<String>>) servers;
+    }
+
+    /**
+     * Authentication methods to filter by, for example OAUTH_XAA for Cross App Access traffic. Empty array
+     * means all authentication methods.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<String>> authMethods() {
+        return (Optional<List<String>>) authMethods;
     }
 
     public static Builder builder() {
@@ -326,6 +347,27 @@ public class McpBreakdownInsightsRequest {
         return this;
     }
 
+    /**
+     * Authentication methods to filter by, for example OAUTH_XAA for Cross App Access traffic. Empty array
+     * means all authentication methods.
+     */
+    public McpBreakdownInsightsRequest withAuthMethods(List<String> authMethods) {
+        Utils.checkNotNull(authMethods, "authMethods");
+        this.authMethods = Optional.ofNullable(authMethods);
+        return this;
+    }
+
+
+    /**
+     * Authentication methods to filter by, for example OAUTH_XAA for Cross App Access traffic. Empty array
+     * means all authentication methods.
+     */
+    public McpBreakdownInsightsRequest withAuthMethods(Optional<? extends List<String>> authMethods) {
+        Utils.checkNotNull(authMethods, "authMethods");
+        this.authMethods = authMethods;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -343,7 +385,8 @@ public class McpBreakdownInsightsRequest {
             Utils.enhancedDeepEquals(this.breakdownType, other.breakdownType) &&
             Utils.enhancedDeepEquals(this.hostApplications, other.hostApplications) &&
             Utils.enhancedDeepEquals(this.tools, other.tools) &&
-            Utils.enhancedDeepEquals(this.servers, other.servers);
+            Utils.enhancedDeepEquals(this.servers, other.servers) &&
+            Utils.enhancedDeepEquals(this.authMethods, other.authMethods);
     }
     
     @Override
@@ -351,7 +394,7 @@ public class McpBreakdownInsightsRequest {
         return Utils.enhancedHash(
             departments, managerIds, managerEmails,
             dayRange, breakdownType, hostApplications,
-            tools, servers);
+            tools, servers, authMethods);
     }
     
     @Override
@@ -364,7 +407,8 @@ public class McpBreakdownInsightsRequest {
                 "breakdownType", breakdownType,
                 "hostApplications", hostApplications,
                 "tools", tools,
-                "servers", servers);
+                "servers", servers,
+                "authMethods", authMethods);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -385,6 +429,8 @@ public class McpBreakdownInsightsRequest {
         private Optional<? extends List<String>> tools = Optional.empty();
 
         private Optional<? extends List<String>> servers = Optional.empty();
+
+        private Optional<? extends List<String>> authMethods = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -536,12 +582,33 @@ public class McpBreakdownInsightsRequest {
             return this;
         }
 
+
+        /**
+         * Authentication methods to filter by, for example OAUTH_XAA for Cross App Access traffic. Empty array
+         * means all authentication methods.
+         */
+        public Builder authMethods(List<String> authMethods) {
+            Utils.checkNotNull(authMethods, "authMethods");
+            this.authMethods = Optional.ofNullable(authMethods);
+            return this;
+        }
+
+        /**
+         * Authentication methods to filter by, for example OAUTH_XAA for Cross App Access traffic. Empty array
+         * means all authentication methods.
+         */
+        public Builder authMethods(Optional<? extends List<String>> authMethods) {
+            Utils.checkNotNull(authMethods, "authMethods");
+            this.authMethods = authMethods;
+            return this;
+        }
+
         public McpBreakdownInsightsRequest build() {
 
             return new McpBreakdownInsightsRequest(
                 departments, managerIds, managerEmails,
                 dayRange, breakdownType, hostApplications,
-                tools, servers);
+                tools, servers, authMethods);
         }
 
     }
