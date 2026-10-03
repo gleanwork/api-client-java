@@ -6,9 +6,11 @@ package com.glean.api_client.glean_api_client.models.operations;
 
 import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsList;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.LazySingletonValue;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.String;
@@ -16,7 +18,10 @@ import java.util.Optional;
 
 public class PlatformSkillsListRequestBuilder {
 
-    private Optional<Long> pageSize = Optional.empty();
+    private Optional<Long> pageSize = Utils.readDefaultOrConstValue(
+                            "pageSize",
+                            "20",
+                            new TypeReference<Optional<Long>>() {});
     private Optional<String> cursor = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -51,6 +56,9 @@ public class PlatformSkillsListRequestBuilder {
 
 
     private PlatformSkillsListRequest buildRequest() {
+        if (pageSize == null) {
+            pageSize = _SINGLETON_VALUE_PageSize.value();
+        }
 
         PlatformSkillsListRequest request = new PlatformSkillsListRequest(pageSize,
             cursor);
@@ -66,4 +74,10 @@ public class PlatformSkillsListRequestBuilder {
 
         return operation.handleResponse(operation.doRequest(request));
     }
+
+    private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PageSize =
+            new LazySingletonValue<>(
+                    "pageSize",
+                    "20",
+                    new TypeReference<Optional<Long>>() {});
 }

@@ -74,6 +74,14 @@ public class AutocompleteResult {
     private Optional<? extends StructuredResult> structuredResult;
 
     /**
+     * An action to perform on user-generated content. This may be accompanied by `text` on the
+     * ChatMessageFragment, which acts as the display name content of the pill.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("ugcAction")
+    private Optional<? extends UgcActionUnion> ugcAction;
+
+    /**
      * A token to be passed in /feedback events associated with this autocomplete result.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -98,6 +106,7 @@ public class AutocompleteResult {
             @JsonProperty("document") Optional<? extends Document> document,
             @JsonProperty("url") Optional<String> url,
             @JsonProperty("structuredResult") Optional<? extends StructuredResult> structuredResult,
+            @JsonProperty("ugcAction") Optional<? extends UgcActionUnion> ugcAction,
             @JsonProperty("trackingToken") Optional<String> trackingToken,
             @JsonProperty("ranges") Optional<? extends List<TextRange>> ranges) {
         Utils.checkNotNull(result, "result");
@@ -109,6 +118,7 @@ public class AutocompleteResult {
         Utils.checkNotNull(document, "document");
         Utils.checkNotNull(url, "url");
         Utils.checkNotNull(structuredResult, "structuredResult");
+        Utils.checkNotNull(ugcAction, "ugcAction");
         Utils.checkNotNull(trackingToken, "trackingToken");
         Utils.checkNotNull(ranges, "ranges");
         this.result = result;
@@ -120,6 +130,7 @@ public class AutocompleteResult {
         this.document = document;
         this.url = url;
         this.structuredResult = structuredResult;
+        this.ugcAction = ugcAction;
         this.trackingToken = trackingToken;
         this.ranges = ranges;
     }
@@ -129,7 +140,7 @@ public class AutocompleteResult {
         this(result, Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -195,6 +206,16 @@ public class AutocompleteResult {
     @JsonIgnore
     public Optional<StructuredResult> structuredResult() {
         return (Optional<StructuredResult>) structuredResult;
+    }
+
+    /**
+     * An action to perform on user-generated content. This may be accompanied by `text` on the
+     * ChatMessageFragment, which acts as the display name content of the pill.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<UgcActionUnion> ugcAction() {
+        return (Optional<UgcActionUnion>) ugcAction;
     }
 
     /**
@@ -358,6 +379,27 @@ public class AutocompleteResult {
     }
 
     /**
+     * An action to perform on user-generated content. This may be accompanied by `text` on the
+     * ChatMessageFragment, which acts as the display name content of the pill.
+     */
+    public AutocompleteResult withUgcAction(UgcActionUnion ugcAction) {
+        Utils.checkNotNull(ugcAction, "ugcAction");
+        this.ugcAction = Optional.ofNullable(ugcAction);
+        return this;
+    }
+
+
+    /**
+     * An action to perform on user-generated content. This may be accompanied by `text` on the
+     * ChatMessageFragment, which acts as the display name content of the pill.
+     */
+    public AutocompleteResult withUgcAction(Optional<? extends UgcActionUnion> ugcAction) {
+        Utils.checkNotNull(ugcAction, "ugcAction");
+        this.ugcAction = ugcAction;
+        return this;
+    }
+
+    /**
      * A token to be passed in /feedback events associated with this autocomplete result.
      */
     public AutocompleteResult withTrackingToken(String trackingToken) {
@@ -414,6 +456,7 @@ public class AutocompleteResult {
             Utils.enhancedDeepEquals(this.document, other.document) &&
             Utils.enhancedDeepEquals(this.url, other.url) &&
             Utils.enhancedDeepEquals(this.structuredResult, other.structuredResult) &&
+            Utils.enhancedDeepEquals(this.ugcAction, other.ugcAction) &&
             Utils.enhancedDeepEquals(this.trackingToken, other.trackingToken) &&
             Utils.enhancedDeepEquals(this.ranges, other.ranges);
     }
@@ -424,7 +467,7 @@ public class AutocompleteResult {
             result, keywords, resultType,
             score, operatorMetadata, quicklink,
             document, url, structuredResult,
-            trackingToken, ranges);
+            ugcAction, trackingToken, ranges);
     }
     
     @Override
@@ -439,6 +482,7 @@ public class AutocompleteResult {
                 "document", document,
                 "url", url,
                 "structuredResult", structuredResult,
+                "ugcAction", ugcAction,
                 "trackingToken", trackingToken,
                 "ranges", ranges);
     }
@@ -463,6 +507,8 @@ public class AutocompleteResult {
         private Optional<String> url = Optional.empty();
 
         private Optional<? extends StructuredResult> structuredResult = Optional.empty();
+
+        private Optional<? extends UgcActionUnion> ugcAction = Optional.empty();
 
         private Optional<String> trackingToken = Optional.empty();
 
@@ -613,6 +659,27 @@ public class AutocompleteResult {
 
 
         /**
+         * An action to perform on user-generated content. This may be accompanied by `text` on the
+         * ChatMessageFragment, which acts as the display name content of the pill.
+         */
+        public Builder ugcAction(UgcActionUnion ugcAction) {
+            Utils.checkNotNull(ugcAction, "ugcAction");
+            this.ugcAction = Optional.ofNullable(ugcAction);
+            return this;
+        }
+
+        /**
+         * An action to perform on user-generated content. This may be accompanied by `text` on the
+         * ChatMessageFragment, which acts as the display name content of the pill.
+         */
+        public Builder ugcAction(Optional<? extends UgcActionUnion> ugcAction) {
+            Utils.checkNotNull(ugcAction, "ugcAction");
+            this.ugcAction = ugcAction;
+            return this;
+        }
+
+
+        /**
          * A token to be passed in /feedback events associated with this autocomplete result.
          */
         public Builder trackingToken(String trackingToken) {
@@ -655,7 +722,7 @@ public class AutocompleteResult {
                 result, keywords, resultType,
                 score, operatorMetadata, quicklink,
                 document, url, structuredResult,
-                trackingToken, ranges);
+                ugcAction, trackingToken, ranges);
         }
 
     }
