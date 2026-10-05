@@ -39,6 +39,7 @@ public class PlatformTriggerEventReason {
     public static final PlatformTriggerEventReason READY_FOR_REVIEW = new PlatformTriggerEventReason("READY_FOR_REVIEW");
     public static final PlatformTriggerEventReason CONVERTED_TO_DRAFT = new PlatformTriggerEventReason("CONVERTED_TO_DRAFT");
     public static final PlatformTriggerEventReason WEBHOOK_UPDATED = new PlatformTriggerEventReason("WEBHOOK_UPDATED");
+    public static final PlatformTriggerEventReason WEBHOOK_CREATED = new PlatformTriggerEventReason("WEBHOOK_CREATED");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -125,6 +126,7 @@ public class PlatformTriggerEventReason {
         map.put("READY_FOR_REVIEW", READY_FOR_REVIEW);
         map.put("CONVERTED_TO_DRAFT", CONVERTED_TO_DRAFT);
         map.put("WEBHOOK_UPDATED", WEBHOOK_UPDATED);
+        map.put("WEBHOOK_CREATED", WEBHOOK_CREATED);
         return map;
     }
 
@@ -143,6 +145,7 @@ public class PlatformTriggerEventReason {
         map.put("READY_FOR_REVIEW", PlatformTriggerEventReasonEnum.READY_FOR_REVIEW);
         map.put("CONVERTED_TO_DRAFT", PlatformTriggerEventReasonEnum.CONVERTED_TO_DRAFT);
         map.put("WEBHOOK_UPDATED", PlatformTriggerEventReasonEnum.WEBHOOK_UPDATED);
+        map.put("WEBHOOK_CREATED", PlatformTriggerEventReasonEnum.WEBHOOK_CREATED);
         return map;
     }
     
@@ -161,7 +164,8 @@ public class PlatformTriggerEventReason {
         REVIEW_REQUEST_REMOVED("REVIEW_REQUEST_REMOVED"),
         READY_FOR_REVIEW("READY_FOR_REVIEW"),
         CONVERTED_TO_DRAFT("CONVERTED_TO_DRAFT"),
-        WEBHOOK_UPDATED("WEBHOOK_UPDATED"),;
+        WEBHOOK_UPDATED("WEBHOOK_UPDATED"),
+        WEBHOOK_CREATED("WEBHOOK_CREATED"),;
 
         private final String value;
 
