@@ -52,28 +52,39 @@ public class McpUserBreakdown {
     @JsonProperty("servers")
     private Optional<? extends List<String>> servers;
 
+    /**
+     * Authentication methods this user's MCP clients presented in the specified time period, for example
+     * OAUTH_XAA for Cross App Access.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("authMethods")
+    private Optional<? extends List<String>> authMethods;
+
     @JsonCreator
     public McpUserBreakdown(
             @JsonProperty("person") Optional<? extends Person> person,
             @JsonProperty("totalCalls") Optional<Long> totalCalls,
             @JsonProperty("hostApplications") Optional<? extends List<String>> hostApplications,
             @JsonProperty("tools") Optional<? extends List<String>> tools,
-            @JsonProperty("servers") Optional<? extends List<String>> servers) {
+            @JsonProperty("servers") Optional<? extends List<String>> servers,
+            @JsonProperty("authMethods") Optional<? extends List<String>> authMethods) {
         Utils.checkNotNull(person, "person");
         Utils.checkNotNull(totalCalls, "totalCalls");
         Utils.checkNotNull(hostApplications, "hostApplications");
         Utils.checkNotNull(tools, "tools");
         Utils.checkNotNull(servers, "servers");
+        Utils.checkNotNull(authMethods, "authMethods");
         this.person = person;
         this.totalCalls = totalCalls;
         this.hostApplications = hostApplications;
         this.tools = tools;
         this.servers = servers;
+        this.authMethods = authMethods;
     }
     
     public McpUserBreakdown() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -115,6 +126,16 @@ public class McpUserBreakdown {
     @JsonIgnore
     public Optional<List<String>> servers() {
         return (Optional<List<String>>) servers;
+    }
+
+    /**
+     * Authentication methods this user's MCP clients presented in the specified time period, for example
+     * OAUTH_XAA for Cross App Access.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<String>> authMethods() {
+        return (Optional<List<String>>) authMethods;
     }
 
     public static Builder builder() {
@@ -211,6 +232,27 @@ public class McpUserBreakdown {
         return this;
     }
 
+    /**
+     * Authentication methods this user's MCP clients presented in the specified time period, for example
+     * OAUTH_XAA for Cross App Access.
+     */
+    public McpUserBreakdown withAuthMethods(List<String> authMethods) {
+        Utils.checkNotNull(authMethods, "authMethods");
+        this.authMethods = Optional.ofNullable(authMethods);
+        return this;
+    }
+
+
+    /**
+     * Authentication methods this user's MCP clients presented in the specified time period, for example
+     * OAUTH_XAA for Cross App Access.
+     */
+    public McpUserBreakdown withAuthMethods(Optional<? extends List<String>> authMethods) {
+        Utils.checkNotNull(authMethods, "authMethods");
+        this.authMethods = authMethods;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -225,14 +267,15 @@ public class McpUserBreakdown {
             Utils.enhancedDeepEquals(this.totalCalls, other.totalCalls) &&
             Utils.enhancedDeepEquals(this.hostApplications, other.hostApplications) &&
             Utils.enhancedDeepEquals(this.tools, other.tools) &&
-            Utils.enhancedDeepEquals(this.servers, other.servers);
+            Utils.enhancedDeepEquals(this.servers, other.servers) &&
+            Utils.enhancedDeepEquals(this.authMethods, other.authMethods);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             person, totalCalls, hostApplications,
-            tools, servers);
+            tools, servers, authMethods);
     }
     
     @Override
@@ -242,7 +285,8 @@ public class McpUserBreakdown {
                 "totalCalls", totalCalls,
                 "hostApplications", hostApplications,
                 "tools", tools,
-                "servers", servers);
+                "servers", servers,
+                "authMethods", authMethods);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -257,6 +301,8 @@ public class McpUserBreakdown {
         private Optional<? extends List<String>> tools = Optional.empty();
 
         private Optional<? extends List<String>> servers = Optional.empty();
+
+        private Optional<? extends List<String>> authMethods = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -351,11 +397,32 @@ public class McpUserBreakdown {
             return this;
         }
 
+
+        /**
+         * Authentication methods this user's MCP clients presented in the specified time period, for example
+         * OAUTH_XAA for Cross App Access.
+         */
+        public Builder authMethods(List<String> authMethods) {
+            Utils.checkNotNull(authMethods, "authMethods");
+            this.authMethods = Optional.ofNullable(authMethods);
+            return this;
+        }
+
+        /**
+         * Authentication methods this user's MCP clients presented in the specified time period, for example
+         * OAUTH_XAA for Cross App Access.
+         */
+        public Builder authMethods(Optional<? extends List<String>> authMethods) {
+            Utils.checkNotNull(authMethods, "authMethods");
+            this.authMethods = authMethods;
+            return this;
+        }
+
         public McpUserBreakdown build() {
 
             return new McpUserBreakdown(
                 person, totalCalls, hostApplications,
-                tools, servers);
+                tools, servers, authMethods);
         }
 
     }

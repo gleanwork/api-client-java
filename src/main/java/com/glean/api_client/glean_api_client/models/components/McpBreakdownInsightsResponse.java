@@ -38,25 +38,33 @@ public class McpBreakdownInsightsResponse {
     @JsonProperty("serversBreakdown")
     private Optional<? extends List<McpServerBreakdown>> serversBreakdown;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("authMethodsBreakdown")
+    private Optional<? extends List<McpAuthMethodBreakdown>> authMethodsBreakdown;
+
     @JsonCreator
     public McpBreakdownInsightsResponse(
             @JsonProperty("usersBreakdown") Optional<? extends List<McpUserBreakdown>> usersBreakdown,
             @JsonProperty("hostApplicationsBreakdown") Optional<? extends List<McpHostApplicationBreakdown>> hostApplicationsBreakdown,
             @JsonProperty("toolsBreakdown") Optional<? extends List<McpToolBreakdown>> toolsBreakdown,
-            @JsonProperty("serversBreakdown") Optional<? extends List<McpServerBreakdown>> serversBreakdown) {
+            @JsonProperty("serversBreakdown") Optional<? extends List<McpServerBreakdown>> serversBreakdown,
+            @JsonProperty("authMethodsBreakdown") Optional<? extends List<McpAuthMethodBreakdown>> authMethodsBreakdown) {
         Utils.checkNotNull(usersBreakdown, "usersBreakdown");
         Utils.checkNotNull(hostApplicationsBreakdown, "hostApplicationsBreakdown");
         Utils.checkNotNull(toolsBreakdown, "toolsBreakdown");
         Utils.checkNotNull(serversBreakdown, "serversBreakdown");
+        Utils.checkNotNull(authMethodsBreakdown, "authMethodsBreakdown");
         this.usersBreakdown = usersBreakdown;
         this.hostApplicationsBreakdown = hostApplicationsBreakdown;
         this.toolsBreakdown = toolsBreakdown;
         this.serversBreakdown = serversBreakdown;
+        this.authMethodsBreakdown = authMethodsBreakdown;
     }
     
     public McpBreakdownInsightsResponse() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -81,6 +89,12 @@ public class McpBreakdownInsightsResponse {
     @JsonIgnore
     public Optional<List<McpServerBreakdown>> serversBreakdown() {
         return (Optional<List<McpServerBreakdown>>) serversBreakdown;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<McpAuthMethodBreakdown>> authMethodsBreakdown() {
+        return (Optional<List<McpAuthMethodBreakdown>>) authMethodsBreakdown;
     }
 
     public static Builder builder() {
@@ -140,6 +154,19 @@ public class McpBreakdownInsightsResponse {
         return this;
     }
 
+    public McpBreakdownInsightsResponse withAuthMethodsBreakdown(List<McpAuthMethodBreakdown> authMethodsBreakdown) {
+        Utils.checkNotNull(authMethodsBreakdown, "authMethodsBreakdown");
+        this.authMethodsBreakdown = Optional.ofNullable(authMethodsBreakdown);
+        return this;
+    }
+
+
+    public McpBreakdownInsightsResponse withAuthMethodsBreakdown(Optional<? extends List<McpAuthMethodBreakdown>> authMethodsBreakdown) {
+        Utils.checkNotNull(authMethodsBreakdown, "authMethodsBreakdown");
+        this.authMethodsBreakdown = authMethodsBreakdown;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -153,14 +180,15 @@ public class McpBreakdownInsightsResponse {
             Utils.enhancedDeepEquals(this.usersBreakdown, other.usersBreakdown) &&
             Utils.enhancedDeepEquals(this.hostApplicationsBreakdown, other.hostApplicationsBreakdown) &&
             Utils.enhancedDeepEquals(this.toolsBreakdown, other.toolsBreakdown) &&
-            Utils.enhancedDeepEquals(this.serversBreakdown, other.serversBreakdown);
+            Utils.enhancedDeepEquals(this.serversBreakdown, other.serversBreakdown) &&
+            Utils.enhancedDeepEquals(this.authMethodsBreakdown, other.authMethodsBreakdown);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             usersBreakdown, hostApplicationsBreakdown, toolsBreakdown,
-            serversBreakdown);
+            serversBreakdown, authMethodsBreakdown);
     }
     
     @Override
@@ -169,7 +197,8 @@ public class McpBreakdownInsightsResponse {
                 "usersBreakdown", usersBreakdown,
                 "hostApplicationsBreakdown", hostApplicationsBreakdown,
                 "toolsBreakdown", toolsBreakdown,
-                "serversBreakdown", serversBreakdown);
+                "serversBreakdown", serversBreakdown,
+                "authMethodsBreakdown", authMethodsBreakdown);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -182,6 +211,8 @@ public class McpBreakdownInsightsResponse {
         private Optional<? extends List<McpToolBreakdown>> toolsBreakdown = Optional.empty();
 
         private Optional<? extends List<McpServerBreakdown>> serversBreakdown = Optional.empty();
+
+        private Optional<? extends List<McpAuthMethodBreakdown>> authMethodsBreakdown = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -239,11 +270,24 @@ public class McpBreakdownInsightsResponse {
             return this;
         }
 
+
+        public Builder authMethodsBreakdown(List<McpAuthMethodBreakdown> authMethodsBreakdown) {
+            Utils.checkNotNull(authMethodsBreakdown, "authMethodsBreakdown");
+            this.authMethodsBreakdown = Optional.ofNullable(authMethodsBreakdown);
+            return this;
+        }
+
+        public Builder authMethodsBreakdown(Optional<? extends List<McpAuthMethodBreakdown>> authMethodsBreakdown) {
+            Utils.checkNotNull(authMethodsBreakdown, "authMethodsBreakdown");
+            this.authMethodsBreakdown = authMethodsBreakdown;
+            return this;
+        }
+
         public McpBreakdownInsightsResponse build() {
 
             return new McpBreakdownInsightsResponse(
                 usersBreakdown, hostApplicationsBreakdown, toolsBreakdown,
-                serversBreakdown);
+                serversBreakdown, authMethodsBreakdown);
         }
 
     }
