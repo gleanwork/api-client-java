@@ -35,23 +35,34 @@ public class SocialNetwork {
     @JsonProperty("profileUrl")
     private String profileUrl;
 
+    /**
+     * URL of the icon to display for this social network, when available.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("iconUrl")
+    private Optional<String> iconUrl;
+
     @JsonCreator
     public SocialNetwork(
             @JsonProperty("name") String name,
             @JsonProperty("profileName") Optional<String> profileName,
-            @JsonProperty("profileUrl") String profileUrl) {
+            @JsonProperty("profileUrl") String profileUrl,
+            @JsonProperty("iconUrl") Optional<String> iconUrl) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(profileName, "profileName");
         Utils.checkNotNull(profileUrl, "profileUrl");
+        Utils.checkNotNull(iconUrl, "iconUrl");
         this.name = name;
         this.profileName = profileName;
         this.profileUrl = profileUrl;
+        this.iconUrl = iconUrl;
     }
     
     public SocialNetwork(
             String name,
             String profileUrl) {
-        this(name, Optional.empty(), profileUrl);
+        this(name, Optional.empty(), profileUrl,
+            Optional.empty());
     }
 
     /**
@@ -76,6 +87,14 @@ public class SocialNetwork {
     @JsonIgnore
     public String profileUrl() {
         return profileUrl;
+    }
+
+    /**
+     * URL of the icon to display for this social network, when available.
+     */
+    @JsonIgnore
+    public Optional<String> iconUrl() {
+        return iconUrl;
     }
 
     public static Builder builder() {
@@ -120,6 +139,25 @@ public class SocialNetwork {
         return this;
     }
 
+    /**
+     * URL of the icon to display for this social network, when available.
+     */
+    public SocialNetwork withIconUrl(String iconUrl) {
+        Utils.checkNotNull(iconUrl, "iconUrl");
+        this.iconUrl = Optional.ofNullable(iconUrl);
+        return this;
+    }
+
+
+    /**
+     * URL of the icon to display for this social network, when available.
+     */
+    public SocialNetwork withIconUrl(Optional<String> iconUrl) {
+        Utils.checkNotNull(iconUrl, "iconUrl");
+        this.iconUrl = iconUrl;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -132,13 +170,15 @@ public class SocialNetwork {
         return 
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.profileName, other.profileName) &&
-            Utils.enhancedDeepEquals(this.profileUrl, other.profileUrl);
+            Utils.enhancedDeepEquals(this.profileUrl, other.profileUrl) &&
+            Utils.enhancedDeepEquals(this.iconUrl, other.iconUrl);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name, profileName, profileUrl);
+            name, profileName, profileUrl,
+            iconUrl);
     }
     
     @Override
@@ -146,7 +186,8 @@ public class SocialNetwork {
         return Utils.toString(SocialNetwork.class,
                 "name", name,
                 "profileName", profileName,
-                "profileUrl", profileUrl);
+                "profileUrl", profileUrl,
+                "iconUrl", iconUrl);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -157,6 +198,8 @@ public class SocialNetwork {
         private Optional<String> profileName = Optional.empty();
 
         private String profileUrl;
+
+        private Optional<String> iconUrl = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -201,10 +244,30 @@ public class SocialNetwork {
             return this;
         }
 
+
+        /**
+         * URL of the icon to display for this social network, when available.
+         */
+        public Builder iconUrl(String iconUrl) {
+            Utils.checkNotNull(iconUrl, "iconUrl");
+            this.iconUrl = Optional.ofNullable(iconUrl);
+            return this;
+        }
+
+        /**
+         * URL of the icon to display for this social network, when available.
+         */
+        public Builder iconUrl(Optional<String> iconUrl) {
+            Utils.checkNotNull(iconUrl, "iconUrl");
+            this.iconUrl = iconUrl;
+            return this;
+        }
+
         public SocialNetwork build() {
 
             return new SocialNetwork(
-                name, profileName, profileUrl);
+                name, profileName, profileUrl,
+                iconUrl);
         }
 
     }
