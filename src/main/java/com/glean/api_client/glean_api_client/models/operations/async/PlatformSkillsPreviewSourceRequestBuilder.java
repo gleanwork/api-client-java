@@ -7,7 +7,7 @@ package com.glean.api_client.glean_api_client.models.operations.async;
 import static com.glean.api_client.glean_api_client.operations.Operations.AsyncRequestOperation;
 
 import com.glean.api_client.glean_api_client.SDKConfiguration;
-import com.glean.api_client.glean_api_client.models.components.PlatformSkillSourcePreviewRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformSkillsPreviewSourceRequest;
 import com.glean.api_client.glean_api_client.operations.PlatformSkillsPreviewSource;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
@@ -15,7 +15,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class PlatformSkillsPreviewSourceRequestBuilder {
 
-    private PlatformSkillSourcePreviewRequest request;
+    private PlatformSkillsPreviewSourceRequest request;
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -23,7 +23,7 @@ public class PlatformSkillsPreviewSourceRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public PlatformSkillsPreviewSourceRequestBuilder request(PlatformSkillSourcePreviewRequest request) {
+    public PlatformSkillsPreviewSourceRequestBuilder request(PlatformSkillsPreviewSourceRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;
@@ -31,7 +31,7 @@ public class PlatformSkillsPreviewSourceRequestBuilder {
 
     public CompletableFuture<PlatformSkillsPreviewSourceResponse> call() {
         
-        AsyncRequestOperation<PlatformSkillSourcePreviewRequest, PlatformSkillsPreviewSourceResponse> operation
+        AsyncRequestOperation<PlatformSkillsPreviewSourceRequest, PlatformSkillsPreviewSourceResponse> operation
               = new PlatformSkillsPreviewSource.Async(sdkConfiguration, _headers);
 
         return operation.doRequest(request)
