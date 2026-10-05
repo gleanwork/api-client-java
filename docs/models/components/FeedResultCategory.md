@@ -38,6 +38,7 @@ FeedResultCategory custom = FeedResultCategory.of("custom_value");
 | `ZERO_STATE_CHAT_TOOL_SUGGESTION`   | ZERO_STATE_CHAT_TOOL_SUGGESTION     |
 | `ZERO_STATE_WORKFLOW_CREATED_BY_ME` | ZERO_STATE_WORKFLOW_CREATED_BY_ME   |
 | `ZERO_STATE_WORKFLOW_FAVORITES`     | ZERO_STATE_WORKFLOW_FAVORITES       |
+| `ZERO_STATE_GLEAN_AGENT_COWORKERS`  | ZERO_STATE_GLEAN_AGENT_COWORKERS    |
 | `ZERO_STATE_WORKFLOW_POPULAR`       | ZERO_STATE_WORKFLOW_POPULAR         |
 | `ZERO_STATE_WORKFLOW_RECENT`        | ZERO_STATE_WORKFLOW_RECENT          |
 | `ZERO_STATE_WORKFLOW_SUGGESTION`    | ZERO_STATE_WORKFLOW_SUGGESTION      |
@@ -72,3 +73,5 @@ FeedResultCategory custom = FeedResultCategory.of("custom_value");
 | `SHARE_ARTIFACT`                    | SHARE_ARTIFACT                      |
 | `CREATE_AGENT`                      | CREATE_AGENT                        |
 | `MANAGER_INVITE`                    | MANAGER_INVITE                      |
+| `ONBOARDING_AUTHORIZATION`          | ONBOARDING_AUTHORIZATION            |
+| `CHAT_REMINDER`                     | CHAT_REMINDER                       |

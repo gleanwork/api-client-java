@@ -40,6 +40,13 @@ public class ChatSuggestion {
     private Optional<String> feature;
 
     /**
+     * Type of the Artifact
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("artifactType")
+    private Optional<? extends ArtifactType> artifactType;
+
+    /**
      * Document IDs that grounded the suggestion.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -51,20 +58,23 @@ public class ChatSuggestion {
             @JsonProperty("query") Optional<String> query,
             @JsonProperty("cta") Optional<String> cta,
             @JsonProperty("feature") Optional<String> feature,
+            @JsonProperty("artifactType") Optional<? extends ArtifactType> artifactType,
             @JsonProperty("sourceDocumentIds") Optional<? extends List<String>> sourceDocumentIds) {
         Utils.checkNotNull(query, "query");
         Utils.checkNotNull(cta, "cta");
         Utils.checkNotNull(feature, "feature");
+        Utils.checkNotNull(artifactType, "artifactType");
         Utils.checkNotNull(sourceDocumentIds, "sourceDocumentIds");
         this.query = query;
         this.cta = cta;
         this.feature = feature;
+        this.artifactType = artifactType;
         this.sourceDocumentIds = sourceDocumentIds;
     }
     
     public ChatSuggestion() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -89,6 +99,15 @@ public class ChatSuggestion {
     @JsonIgnore
     public Optional<String> feature() {
         return feature;
+    }
+
+    /**
+     * Type of the Artifact
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ArtifactType> artifactType() {
+        return (Optional<ArtifactType>) artifactType;
     }
 
     /**
@@ -163,6 +182,25 @@ public class ChatSuggestion {
     }
 
     /**
+     * Type of the Artifact
+     */
+    public ChatSuggestion withArtifactType(ArtifactType artifactType) {
+        Utils.checkNotNull(artifactType, "artifactType");
+        this.artifactType = Optional.ofNullable(artifactType);
+        return this;
+    }
+
+
+    /**
+     * Type of the Artifact
+     */
+    public ChatSuggestion withArtifactType(Optional<? extends ArtifactType> artifactType) {
+        Utils.checkNotNull(artifactType, "artifactType");
+        this.artifactType = artifactType;
+        return this;
+    }
+
+    /**
      * Document IDs that grounded the suggestion.
      */
     public ChatSuggestion withSourceDocumentIds(List<String> sourceDocumentIds) {
@@ -194,6 +232,7 @@ public class ChatSuggestion {
             Utils.enhancedDeepEquals(this.query, other.query) &&
             Utils.enhancedDeepEquals(this.cta, other.cta) &&
             Utils.enhancedDeepEquals(this.feature, other.feature) &&
+            Utils.enhancedDeepEquals(this.artifactType, other.artifactType) &&
             Utils.enhancedDeepEquals(this.sourceDocumentIds, other.sourceDocumentIds);
     }
     
@@ -201,7 +240,7 @@ public class ChatSuggestion {
     public int hashCode() {
         return Utils.enhancedHash(
             query, cta, feature,
-            sourceDocumentIds);
+            artifactType, sourceDocumentIds);
     }
     
     @Override
@@ -210,6 +249,7 @@ public class ChatSuggestion {
                 "query", query,
                 "cta", cta,
                 "feature", feature,
+                "artifactType", artifactType,
                 "sourceDocumentIds", sourceDocumentIds);
     }
 
@@ -221,6 +261,8 @@ public class ChatSuggestion {
         private Optional<String> cta = Optional.empty();
 
         private Optional<String> feature = Optional.empty();
+
+        private Optional<? extends ArtifactType> artifactType = Optional.empty();
 
         private Optional<? extends List<String>> sourceDocumentIds = Optional.empty();
 
@@ -287,6 +329,25 @@ public class ChatSuggestion {
 
 
         /**
+         * Type of the Artifact
+         */
+        public Builder artifactType(ArtifactType artifactType) {
+            Utils.checkNotNull(artifactType, "artifactType");
+            this.artifactType = Optional.ofNullable(artifactType);
+            return this;
+        }
+
+        /**
+         * Type of the Artifact
+         */
+        public Builder artifactType(Optional<? extends ArtifactType> artifactType) {
+            Utils.checkNotNull(artifactType, "artifactType");
+            this.artifactType = artifactType;
+            return this;
+        }
+
+
+        /**
          * Document IDs that grounded the suggestion.
          */
         public Builder sourceDocumentIds(List<String> sourceDocumentIds) {
@@ -308,7 +369,7 @@ public class ChatSuggestion {
 
             return new ChatSuggestion(
                 query, cta, feature,
-                sourceDocumentIds);
+                artifactType, sourceDocumentIds);
         }
 
     }

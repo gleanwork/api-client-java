@@ -46,6 +46,7 @@ public class FeedResultCategory {
     public static final FeedResultCategory ZERO_STATE_CHAT_TOOL_SUGGESTION = new FeedResultCategory("ZERO_STATE_CHAT_TOOL_SUGGESTION");
     public static final FeedResultCategory ZERO_STATE_WORKFLOW_CREATED_BY_ME = new FeedResultCategory("ZERO_STATE_WORKFLOW_CREATED_BY_ME");
     public static final FeedResultCategory ZERO_STATE_WORKFLOW_FAVORITES = new FeedResultCategory("ZERO_STATE_WORKFLOW_FAVORITES");
+    public static final FeedResultCategory ZERO_STATE_GLEAN_AGENT_COWORKERS = new FeedResultCategory("ZERO_STATE_GLEAN_AGENT_COWORKERS");
     public static final FeedResultCategory ZERO_STATE_WORKFLOW_POPULAR = new FeedResultCategory("ZERO_STATE_WORKFLOW_POPULAR");
     public static final FeedResultCategory ZERO_STATE_WORKFLOW_RECENT = new FeedResultCategory("ZERO_STATE_WORKFLOW_RECENT");
     public static final FeedResultCategory ZERO_STATE_WORKFLOW_SUGGESTION = new FeedResultCategory("ZERO_STATE_WORKFLOW_SUGGESTION");
@@ -80,6 +81,8 @@ public class FeedResultCategory {
     public static final FeedResultCategory SHARE_ARTIFACT = new FeedResultCategory("SHARE_ARTIFACT");
     public static final FeedResultCategory CREATE_AGENT = new FeedResultCategory("CREATE_AGENT");
     public static final FeedResultCategory MANAGER_INVITE = new FeedResultCategory("MANAGER_INVITE");
+    public static final FeedResultCategory ONBOARDING_AUTHORIZATION = new FeedResultCategory("ONBOARDING_AUTHORIZATION");
+    public static final FeedResultCategory CHAT_REMINDER = new FeedResultCategory("CHAT_REMINDER");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -173,6 +176,7 @@ public class FeedResultCategory {
         map.put("ZERO_STATE_CHAT_TOOL_SUGGESTION", ZERO_STATE_CHAT_TOOL_SUGGESTION);
         map.put("ZERO_STATE_WORKFLOW_CREATED_BY_ME", ZERO_STATE_WORKFLOW_CREATED_BY_ME);
         map.put("ZERO_STATE_WORKFLOW_FAVORITES", ZERO_STATE_WORKFLOW_FAVORITES);
+        map.put("ZERO_STATE_GLEAN_AGENT_COWORKERS", ZERO_STATE_GLEAN_AGENT_COWORKERS);
         map.put("ZERO_STATE_WORKFLOW_POPULAR", ZERO_STATE_WORKFLOW_POPULAR);
         map.put("ZERO_STATE_WORKFLOW_RECENT", ZERO_STATE_WORKFLOW_RECENT);
         map.put("ZERO_STATE_WORKFLOW_SUGGESTION", ZERO_STATE_WORKFLOW_SUGGESTION);
@@ -207,6 +211,8 @@ public class FeedResultCategory {
         map.put("SHARE_ARTIFACT", SHARE_ARTIFACT);
         map.put("CREATE_AGENT", CREATE_AGENT);
         map.put("MANAGER_INVITE", MANAGER_INVITE);
+        map.put("ONBOARDING_AUTHORIZATION", ONBOARDING_AUTHORIZATION);
+        map.put("CHAT_REMINDER", CHAT_REMINDER);
         return map;
     }
 
@@ -232,6 +238,7 @@ public class FeedResultCategory {
         map.put("ZERO_STATE_CHAT_TOOL_SUGGESTION", FeedResultCategoryEnum.ZERO_STATE_CHAT_TOOL_SUGGESTION);
         map.put("ZERO_STATE_WORKFLOW_CREATED_BY_ME", FeedResultCategoryEnum.ZERO_STATE_WORKFLOW_CREATED_BY_ME);
         map.put("ZERO_STATE_WORKFLOW_FAVORITES", FeedResultCategoryEnum.ZERO_STATE_WORKFLOW_FAVORITES);
+        map.put("ZERO_STATE_GLEAN_AGENT_COWORKERS", FeedResultCategoryEnum.ZERO_STATE_GLEAN_AGENT_COWORKERS);
         map.put("ZERO_STATE_WORKFLOW_POPULAR", FeedResultCategoryEnum.ZERO_STATE_WORKFLOW_POPULAR);
         map.put("ZERO_STATE_WORKFLOW_RECENT", FeedResultCategoryEnum.ZERO_STATE_WORKFLOW_RECENT);
         map.put("ZERO_STATE_WORKFLOW_SUGGESTION", FeedResultCategoryEnum.ZERO_STATE_WORKFLOW_SUGGESTION);
@@ -266,6 +273,8 @@ public class FeedResultCategory {
         map.put("SHARE_ARTIFACT", FeedResultCategoryEnum.SHARE_ARTIFACT);
         map.put("CREATE_AGENT", FeedResultCategoryEnum.CREATE_AGENT);
         map.put("MANAGER_INVITE", FeedResultCategoryEnum.MANAGER_INVITE);
+        map.put("ONBOARDING_AUTHORIZATION", FeedResultCategoryEnum.ONBOARDING_AUTHORIZATION);
+        map.put("CHAT_REMINDER", FeedResultCategoryEnum.CHAT_REMINDER);
         return map;
     }
     
@@ -292,6 +301,7 @@ public class FeedResultCategory {
         ZERO_STATE_CHAT_TOOL_SUGGESTION("ZERO_STATE_CHAT_TOOL_SUGGESTION"),
         ZERO_STATE_WORKFLOW_CREATED_BY_ME("ZERO_STATE_WORKFLOW_CREATED_BY_ME"),
         ZERO_STATE_WORKFLOW_FAVORITES("ZERO_STATE_WORKFLOW_FAVORITES"),
+        ZERO_STATE_GLEAN_AGENT_COWORKERS("ZERO_STATE_GLEAN_AGENT_COWORKERS"),
         ZERO_STATE_WORKFLOW_POPULAR("ZERO_STATE_WORKFLOW_POPULAR"),
         ZERO_STATE_WORKFLOW_RECENT("ZERO_STATE_WORKFLOW_RECENT"),
         ZERO_STATE_WORKFLOW_SUGGESTION("ZERO_STATE_WORKFLOW_SUGGESTION"),
@@ -325,7 +335,9 @@ public class FeedResultCategory {
         CHAT_TO_ARTIFACT("CHAT_TO_ARTIFACT"),
         SHARE_ARTIFACT("SHARE_ARTIFACT"),
         CREATE_AGENT("CREATE_AGENT"),
-        MANAGER_INVITE("MANAGER_INVITE"),;
+        MANAGER_INVITE("MANAGER_INVITE"),
+        ONBOARDING_AUTHORIZATION("ONBOARDING_AUTHORIZATION"),
+        CHAT_REMINDER("CHAT_REMINDER"),;
 
         private final String value;
 
