@@ -19,7 +19,8 @@ import java.util.Optional;
 
 public class DlpExportFindingsRequest {
     /**
-     * The type of export to perform
+     * The type of export to perform. FINDINGS, DOCUMENTS and ISSUES produce JSONL; FINDINGS_CSV produces
+     * one CSV row per finding.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("exportType")
@@ -86,7 +87,8 @@ public class DlpExportFindingsRequest {
     }
 
     /**
-     * The type of export to perform
+     * The type of export to perform. FINDINGS, DOCUMENTS and ISSUES produce JSONL; FINDINGS_CSV produces
+     * one CSV row per finding.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -141,7 +143,8 @@ public class DlpExportFindingsRequest {
 
 
     /**
-     * The type of export to perform
+     * The type of export to perform. FINDINGS, DOCUMENTS and ISSUES produce JSONL; FINDINGS_CSV produces
+     * one CSV row per finding.
      */
     public DlpExportFindingsRequest withExportType(DlpExportFindingsRequestExportType exportType) {
         Utils.checkNotNull(exportType, "exportType");
@@ -151,7 +154,8 @@ public class DlpExportFindingsRequest {
 
 
     /**
-     * The type of export to perform
+     * The type of export to perform. FINDINGS, DOCUMENTS and ISSUES produce JSONL; FINDINGS_CSV produces
+     * one CSV row per finding.
      */
     public DlpExportFindingsRequest withExportType(Optional<? extends DlpExportFindingsRequestExportType> exportType) {
         Utils.checkNotNull(exportType, "exportType");
@@ -305,7 +309,8 @@ public class DlpExportFindingsRequest {
 
 
         /**
-         * The type of export to perform
+         * The type of export to perform. FINDINGS, DOCUMENTS and ISSUES produce JSONL; FINDINGS_CSV produces
+         * one CSV row per finding.
          */
         public Builder exportType(DlpExportFindingsRequestExportType exportType) {
             Utils.checkNotNull(exportType, "exportType");
@@ -314,7 +319,8 @@ public class DlpExportFindingsRequest {
         }
 
         /**
-         * The type of export to perform
+         * The type of export to perform. FINDINGS, DOCUMENTS and ISSUES produce JSONL; FINDINGS_CSV produces
+         * one CSV row per finding.
          */
         public Builder exportType(Optional<? extends DlpExportFindingsRequestExportType> exportType) {
             Utils.checkNotNull(exportType, "exportType");
