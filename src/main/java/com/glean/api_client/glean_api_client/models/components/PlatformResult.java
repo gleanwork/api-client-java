@@ -27,7 +27,9 @@ public class PlatformResult {
     private String url;
 
     /**
-     * Result title.
+     * Display title. For a conversation, this is a title built from the participants, such as "Alice and
+     * Bob", including when the indexed title is the message body. When the result has no title, the server
+     * returns Untitled.
      */
     @JsonProperty("title")
     private String title;
@@ -129,7 +131,9 @@ public class PlatformResult {
     }
 
     /**
-     * Result title.
+     * Display title. For a conversation, this is a title built from the participants, such as "Alice and
+     * Bob", including when the indexed title is the message body. When the result has no title, the server
+     * returns Untitled.
      */
     @JsonIgnore
     public String title() {
@@ -210,7 +214,9 @@ public class PlatformResult {
     }
 
     /**
-     * Result title.
+     * Display title. For a conversation, this is a title built from the participants, such as "Alice and
+     * Bob", including when the indexed title is the message body. When the result has no title, the server
+     * returns Untitled.
      */
     public PlatformResult withTitle(String title) {
         Utils.checkNotNull(title, "title");
@@ -418,7 +424,9 @@ public class PlatformResult {
 
 
         /**
-         * Result title.
+         * Display title. For a conversation, this is a title built from the participants, such as "Alice and
+         * Bob", including when the indexed title is the message body. When the result has no title, the server
+         * returns Untitled.
          */
         public Builder title(String title) {
             Utils.checkNotNull(title, "title");
