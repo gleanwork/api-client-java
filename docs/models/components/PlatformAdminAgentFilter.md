@@ -1,0 +1,12 @@
+# PlatformAdminAgentFilter
+
+A filter on one agent field.
+
+
+## Fields
+
+| Field                                                                                                      | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `field`                                                                                                    | *String*                                                                                                   | :heavy_check_mark:                                                                                         | The agent field to filter on. The only supported field is is_active.                                       |
+| `values`                                                                                                   | List\<*String*>                                                                                            | :heavy_check_mark:                                                                                         | The values to match. An agent matches when any value matches.                                              |
+| `operator`                                                                                                 | [Optional\<PlatformAdminAgentFilterOperator>](../../models/components/PlatformAdminAgentFilterOperator.md) | :heavy_minus_sign:                                                                                         | The only supported operator is EQUALS. Defaults to EQUALS.                                                 |

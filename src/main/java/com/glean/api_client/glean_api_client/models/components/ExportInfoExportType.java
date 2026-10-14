@@ -22,13 +22,15 @@ import java.util.Optional;
 /**
  * ExportInfoExportType
  * 
- * <p>The type of export to perform
+ * <p>The type of export to perform. FINDINGS, DOCUMENTS and ISSUES produce JSONL; FINDINGS_CSV produces
+ * one CSV row per finding.
  */
 public class ExportInfoExportType {
 
     public static final ExportInfoExportType FINDINGS = new ExportInfoExportType("FINDINGS");
     public static final ExportInfoExportType DOCUMENTS = new ExportInfoExportType("DOCUMENTS");
     public static final ExportInfoExportType ISSUES = new ExportInfoExportType("ISSUES");
+    public static final ExportInfoExportType FINDINGS_CSV = new ExportInfoExportType("FINDINGS_CSV");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -105,6 +107,7 @@ public class ExportInfoExportType {
         map.put("FINDINGS", FINDINGS);
         map.put("DOCUMENTS", DOCUMENTS);
         map.put("ISSUES", ISSUES);
+        map.put("FINDINGS_CSV", FINDINGS_CSV);
         return map;
     }
 
@@ -113,6 +116,7 @@ public class ExportInfoExportType {
         map.put("FINDINGS", ExportInfoExportTypeEnum.FINDINGS);
         map.put("DOCUMENTS", ExportInfoExportTypeEnum.DOCUMENTS);
         map.put("ISSUES", ExportInfoExportTypeEnum.ISSUES);
+        map.put("FINDINGS_CSV", ExportInfoExportTypeEnum.FINDINGS_CSV);
         return map;
     }
     
@@ -121,7 +125,8 @@ public class ExportInfoExportType {
 
         FINDINGS("FINDINGS"),
         DOCUMENTS("DOCUMENTS"),
-        ISSUES("ISSUES"),;
+        ISSUES("ISSUES"),
+        FINDINGS_CSV("FINDINGS_CSV"),;
 
         private final String value;
 

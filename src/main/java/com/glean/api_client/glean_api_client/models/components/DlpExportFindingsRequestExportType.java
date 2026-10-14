@@ -12,12 +12,14 @@ import java.util.Optional;
 /**
  * DlpExportFindingsRequestExportType
  * 
- * <p>The type of export to perform
+ * <p>The type of export to perform. FINDINGS, DOCUMENTS and ISSUES produce JSONL; FINDINGS_CSV produces
+ * one CSV row per finding.
  */
 public enum DlpExportFindingsRequestExportType {
     FINDINGS("FINDINGS"),
     DOCUMENTS("DOCUMENTS"),
-    ISSUES("ISSUES");
+    ISSUES("ISSUES"),
+    FINDINGS_CSV("FINDINGS_CSV");
 
     @JsonValue
     private final String value;
