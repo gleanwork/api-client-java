@@ -54,7 +54,8 @@ public class ExportInfo {
     private Optional<String> fileName;
 
     /**
-     * The type of export to perform
+     * The type of export to perform. FINDINGS, DOCUMENTS and ISSUES produce JSONL; FINDINGS_CSV produces
+     * one CSV row per finding.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("exportType")
@@ -169,7 +170,8 @@ public class ExportInfo {
     }
 
     /**
-     * The type of export to perform
+     * The type of export to perform. FINDINGS, DOCUMENTS and ISSUES produce JSONL; FINDINGS_CSV produces
+     * one CSV row per finding.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -310,7 +312,8 @@ public class ExportInfo {
     }
 
     /**
-     * The type of export to perform
+     * The type of export to perform. FINDINGS, DOCUMENTS and ISSUES produce JSONL; FINDINGS_CSV produces
+     * one CSV row per finding.
      */
     public ExportInfo withExportType(ExportInfoExportType exportType) {
         Utils.checkNotNull(exportType, "exportType");
@@ -320,7 +323,8 @@ public class ExportInfo {
 
 
     /**
-     * The type of export to perform
+     * The type of export to perform. FINDINGS, DOCUMENTS and ISSUES produce JSONL; FINDINGS_CSV produces
+     * one CSV row per finding.
      */
     public ExportInfo withExportType(Optional<? extends ExportInfoExportType> exportType) {
         Utils.checkNotNull(exportType, "exportType");
@@ -568,7 +572,8 @@ public class ExportInfo {
 
 
         /**
-         * The type of export to perform
+         * The type of export to perform. FINDINGS, DOCUMENTS and ISSUES produce JSONL; FINDINGS_CSV produces
+         * one CSV row per finding.
          */
         public Builder exportType(ExportInfoExportType exportType) {
             Utils.checkNotNull(exportType, "exportType");
@@ -577,7 +582,8 @@ public class ExportInfo {
         }
 
         /**
-         * The type of export to perform
+         * The type of export to perform. FINDINGS, DOCUMENTS and ISSUES produce JSONL; FINDINGS_CSV produces
+         * one CSV row per finding.
          */
         public Builder exportType(Optional<? extends ExportInfoExportType> exportType) {
             Utils.checkNotNull(exportType, "exportType");
