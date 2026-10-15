@@ -38,7 +38,7 @@ public class DocumentInteractions {
      * To be deprecated in favor of reacts. A (potentially non-exhaustive) list of reactions for the
      * document.
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use reacts instead.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use reacts instead.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reactions")
@@ -109,7 +109,7 @@ public class DocumentInteractions {
      * To be deprecated in favor of reacts. A (potentially non-exhaustive) list of reactions for the
      * document.
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use reacts instead.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use reacts instead.
      */
     @Deprecated
     @SuppressWarnings("unchecked")
@@ -186,7 +186,7 @@ public class DocumentInteractions {
      * To be deprecated in favor of reacts. A (potentially non-exhaustive) list of reactions for the
      * document.
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use reacts instead.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use reacts instead.
      */
     @Deprecated
     public DocumentInteractions withReactions(List<String> reactions) {
@@ -200,7 +200,7 @@ public class DocumentInteractions {
      * To be deprecated in favor of reacts. A (potentially non-exhaustive) list of reactions for the
      * document.
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use reacts instead.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use reacts instead.
      */
     @Deprecated
     public DocumentInteractions withReactions(Optional<? extends List<String>> reactions) {
@@ -353,7 +353,7 @@ public class DocumentInteractions {
          * To be deprecated in favor of reacts. A (potentially non-exhaustive) list of reactions for the
          * document.
          * 
-         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use reacts instead.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use reacts instead.
          */
         @Deprecated
         public Builder reactions(List<String> reactions) {
@@ -366,7 +366,7 @@ public class DocumentInteractions {
          * To be deprecated in favor of reacts. A (potentially non-exhaustive) list of reactions for the
          * document.
          * 
-         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use reacts instead.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use reacts instead.
          */
         @Deprecated
         public Builder reactions(Optional<? extends List<String>> reactions) {
