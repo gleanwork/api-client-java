@@ -8,9 +8,13 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.glean.api_client.glean_api_client.models.components.PlatformUserFilter;
 import com.glean.api_client.glean_api_client.models.components.PlatformUserInclude;
+import com.glean.api_client.glean_api_client.models.operations.PlatformUsersGetRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformUsersGetRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.PlatformUsersGetResponse;
 import com.glean.api_client.glean_api_client.models.operations.PlatformUsersListRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformUsersListRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PlatformUsersListResponse;
+import com.glean.api_client.glean_api_client.operations.PlatformUsersGet;
 import com.glean.api_client.glean_api_client.operations.PlatformUsersList;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Long;
@@ -101,6 +105,68 @@ public class Users {
                 .build();
         RequestOperation<PlatformUsersListRequest, PlatformUsersListResponse> operation
               = new PlatformUsersList.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Get user
+     * 
+     * <p>Get one user in the Glean directory by user_id. The user can be any person that the list returns,
+     * including an inactive user such as a former employee, which is returned with is_active set to false.
+     * A user_id that is not in the directory returns 404 resource_not_found.
+     * 
+     * <p>This includes a deleted user and a person that the People directory does not show. An alias ID of a
+     * merged person returns the person's canonical user_id.
+     * 
+     * @return The call builder
+     */
+    public PlatformUsersGetRequestBuilder get() {
+        return new PlatformUsersGetRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Get user
+     * 
+     * <p>Get one user in the Glean directory by user_id. The user can be any person that the list returns,
+     * including an inactive user such as a former employee, which is returned with is_active set to false.
+     * A user_id that is not in the directory returns 404 resource_not_found.
+     * 
+     * <p>This includes a deleted user and a person that the People directory does not show. An alias ID of a
+     * merged person returns the person's canonical user_id.
+     * 
+     * @param userId Canonical Glean user ID, as the list returns it.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformUsersGetResponse get(String userId) {
+        return get(userId, Optional.empty());
+    }
+
+    /**
+     * Get user
+     * 
+     * <p>Get one user in the Glean directory by user_id. The user can be any person that the list returns,
+     * including an inactive user such as a former employee, which is returned with is_active set to false.
+     * A user_id that is not in the directory returns 404 resource_not_found.
+     * 
+     * <p>This includes a deleted user and a person that the People directory does not show. An alias ID of a
+     * merged person returns the person's canonical user_id.
+     * 
+     * @param userId Canonical Glean user ID, as the list returns it.
+     * @param include Optional fields to add to the user. Each value only adds fields.
+     *         
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformUsersGetResponse get(String userId, Optional<? extends List<PlatformUserInclude>> include) {
+        PlatformUsersGetRequest request =
+            PlatformUsersGetRequest
+                .builder()
+                .userId(userId)
+                .include(include)
+                .build();
+        RequestOperation<PlatformUsersGetRequest, PlatformUsersGetResponse> operation
+              = new PlatformUsersGet.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
