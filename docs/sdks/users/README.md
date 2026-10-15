@@ -5,6 +5,7 @@
 ### Available Operations
 
 * [list](#list) - List users
+* [get](#get) - Get user
 
 ## list
 
@@ -53,6 +54,60 @@ public class Application {
 ### Response
 
 **[PlatformUsersListResponse](../../models/operations/PlatformUsersListResponse.md)**
+
+### Errors
+
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| models/errors/PlatformProblemDetailException | 400, 401, 403, 404, 408, 429                 | application/problem+json                     |
+| models/errors/PlatformProblemDetailException | 500, 503                                     | application/problem+json                     |
+| models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
+
+## get
+
+Get one user in the Glean directory by user_id. The user can be any person that the list returns, including an inactive user such as a former employee, which is returned with is_active set to false. A user_id that is not in the directory returns 404 resource_not_found. This includes a deleted user and a person that the People directory does not show. An alias ID of a merged person returns the person's canonical user_id.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="platform-users-get" method="get" path="/api/users/{user_id}" -->
+```java
+package hello.world;
+
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.operations.PlatformUsersGetResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws PlatformProblemDetailException, Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
+            .build();
+
+        PlatformUsersGetResponse res = sdk.users().get()
+                .userId("{user_id}")
+                .call();
+
+        if (res.platformGetUserResponse().isPresent()) {
+            System.out.println(res.platformGetUserResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  | Example                                                                      |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `userId`                                                                     | *String*                                                                     | :heavy_check_mark:                                                           | Canonical Glean user ID, as the list returns it.                             | {user_id}                                                                    |
+| `include`                                                                    | List\<[PlatformUserInclude](../../models/components/PlatformUserInclude.md)> | :heavy_minus_sign:                                                           | Optional fields to add to the user. Each value only adds fields.<br/>        |                                                                              |
+
+### Response
+
+**[PlatformUsersGetResponse](../../models/operations/PlatformUsersGetResponse.md)**
 
 ### Errors
 
