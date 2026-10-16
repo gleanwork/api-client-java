@@ -248,7 +248,7 @@ public class AsyncAnswers {
      * <p>List Answers created by the current user.
      * 
      * @return The async call builder
-     * @deprecated method: Deprecated on 2026-01-21, removal scheduled for 2026-10-15: Answer boards have been removed and this endpoint no longer serves a purpose.
+     * @deprecated method: Deprecated on 2026-01-21, removal scheduled for 2027-01-15: Answer boards have been removed and this endpoint no longer serves a purpose.
      */
     @Deprecated
     public ListanswersRequestBuilder list() {
@@ -262,7 +262,7 @@ public class AsyncAnswers {
      * 
      * @param listAnswersRequest 
      * @return {@code CompletableFuture<ListanswersResponse>} - The async response
-     * @deprecated method: Deprecated on 2026-01-21, removal scheduled for 2026-10-15: Answer boards have been removed and this endpoint no longer serves a purpose.
+     * @deprecated method: Deprecated on 2026-01-21, removal scheduled for 2027-01-15: Answer boards have been removed and this endpoint no longer serves a purpose.
      */
     @Deprecated
     public CompletableFuture<ListanswersResponse> list(ListAnswersRequest listAnswersRequest) {
@@ -277,7 +277,7 @@ public class AsyncAnswers {
      * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
      * @param listAnswersRequest 
      * @return {@code CompletableFuture<ListanswersResponse>} - The async response
-     * @deprecated method: Deprecated on 2026-01-21, removal scheduled for 2026-10-15: Answer boards have been removed and this endpoint no longer serves a purpose.
+     * @deprecated method: Deprecated on 2026-01-21, removal scheduled for 2027-01-15: Answer boards have been removed and this endpoint no longer serves a purpose.
      */
     @Deprecated
     public CompletableFuture<ListanswersResponse> list(Optional<String> locale, ListAnswersRequest listAnswersRequest) {

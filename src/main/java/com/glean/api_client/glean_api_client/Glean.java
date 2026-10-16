@@ -76,6 +76,9 @@ public class Glean {
     private final Users users;
 
 
+    private final Documents documents;
+
+
     private final Triggers triggers;
 
 
@@ -117,6 +120,11 @@ public class Glean {
 
     public Users users() {
         return users;
+    }
+
+
+    public Documents documents() {
+        return documents;
     }
 
 
@@ -306,6 +314,7 @@ public class Glean {
         this.admin = new Admin(sdkConfiguration);
         this.departments = new Departments(sdkConfiguration);
         this.users = new Users(sdkConfiguration);
+        this.documents = new Documents(sdkConfiguration);
         this.triggers = new Triggers(sdkConfiguration);
         this.client = new Client(sdkConfiguration);
         this.indexing = new Indexing(sdkConfiguration);
