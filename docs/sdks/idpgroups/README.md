@@ -5,6 +5,7 @@
 ### Available Operations
 
 * [list](#list) - List IdP groups
+* [get](#get) - Get an IdP group
 
 ## list
 
@@ -52,6 +53,59 @@ public class Application {
 ### Response
 
 **[PlatformAdminIdpGroupsListResponse](../../models/operations/PlatformAdminIdpGroupsListResponse.md)**
+
+### Errors
+
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| models/errors/PlatformProblemDetailException | 400, 401, 403, 404, 408, 429                 | application/problem+json                     |
+| models/errors/PlatformProblemDetailException | 500, 503                                     | application/problem+json                     |
+| models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
+
+## get
+
+Get one identity provider (IdP) group by its idp_group_id. Inactive IdP groups are returned, so a caller can still show a group after it was removed from the identity provider. An IdP group is active when Glean loaded it from the directory. An IdP group is inactive when only a usage limit names it, for example after the group was removed from the identity provider. An idp_group_id that is not valid, or that names no group that the list returns, returns 404 resource_not_found. The caller must be able to read the workspace configuration or the workspace billing.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="platform-admin-idp-groups-get" method="get" path="/api/admin/idp-groups/{idp_group_id}" -->
+```java
+package hello.world;
+
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAdminIdpGroupsGetResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws PlatformProblemDetailException, Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
+            .build();
+
+        PlatformAdminIdpGroupsGetResponse res = sdk.admin().idpgroups().get()
+                .idpGroupId("{idp_group_id}")
+                .call();
+
+        if (res.platformGetIdpGroupResponse().isPresent()) {
+            System.out.println(res.platformGetIdpGroupResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                    | Type                                                                                                                                                                         | Required                                                                                                                                                                     | Description                                                                                                                                                                  | Example                                                                                                                                                                      |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `idpGroupId`                                                                                                                                                                 | *String*                                                                                                                                                                     | :heavy_check_mark:                                                                                                                                                           | The idp_group_id from a list IdP groups response. IDs are opaque. Do not parse or build them. The group_id in usage limit responses is not an idp_group_id and returns 404.<br/> | {idp_group_id}                                                                                                                                                               |
+
+### Response
+
+**[PlatformAdminIdpGroupsGetResponse](../../models/operations/PlatformAdminIdpGroupsGetResponse.md)**
 
 ### Errors
 

@@ -7,9 +7,13 @@ package com.glean.api_client.glean_api_client;
 import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
 
 import com.glean.api_client.glean_api_client.models.components.PlatformDepartmentFilter;
+import com.glean.api_client.glean_api_client.models.operations.PlatformDepartmentsGetRequest;
+import com.glean.api_client.glean_api_client.models.operations.PlatformDepartmentsGetRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.PlatformDepartmentsGetResponse;
 import com.glean.api_client.glean_api_client.models.operations.PlatformDepartmentsListRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformDepartmentsListRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PlatformDepartmentsListResponse;
+import com.glean.api_client.glean_api_client.operations.PlatformDepartmentsGet;
 import com.glean.api_client.glean_api_client.operations.PlatformDepartmentsList;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Long;
@@ -99,6 +103,52 @@ public class Departments {
                 .build();
         RequestOperation<PlatformDepartmentsListRequest, PlatformDepartmentsListResponse> operation
               = new PlatformDepartmentsList.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Get a department
+     * 
+     * <p>Get one department by its department_id. Inactive departments are returned, so a caller can show the
+     * name of a department that a usage limit still names. A department is active when at least one active
+     * user belongs to it.
+     * 
+     * <p>A department is inactive when only inactive users, such as former employees, belong to it, or when
+     * only a usage limit names it. A department_id that is not valid, or that no user and no usage limit
+     * uses, returns 404 resource_not_found. A department_id comes from the exact department name, so a
+     * renamed department gets a new ID, and a name that is used again gets its old ID back.
+     * 
+     * @return The call builder
+     */
+    public PlatformDepartmentsGetRequestBuilder get() {
+        return new PlatformDepartmentsGetRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Get a department
+     * 
+     * <p>Get one department by its department_id. Inactive departments are returned, so a caller can show the
+     * name of a department that a usage limit still names. A department is active when at least one active
+     * user belongs to it.
+     * 
+     * <p>A department is inactive when only inactive users, such as former employees, belong to it, or when
+     * only a usage limit names it. A department_id that is not valid, or that no user and no usage limit
+     * uses, returns 404 resource_not_found. A department_id comes from the exact department name, so a
+     * renamed department gets a new ID, and a name that is used again gets its old ID back.
+     * 
+     * @param departmentId The department_id from a list departments response or from a user's department. IDs are opaque. Do not parse or build them.
+     *         
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformDepartmentsGetResponse get(String departmentId) {
+        PlatformDepartmentsGetRequest request =
+            PlatformDepartmentsGetRequest
+                .builder()
+                .departmentId(departmentId)
+                .build();
+        RequestOperation<PlatformDepartmentsGetRequest, PlatformDepartmentsGetResponse> operation
+              = new PlatformDepartmentsGet.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
