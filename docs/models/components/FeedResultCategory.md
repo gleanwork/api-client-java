@@ -75,3 +75,4 @@ FeedResultCategory custom = FeedResultCategory.of("custom_value");
 | `MANAGER_INVITE`                    | MANAGER_INVITE                      |
 | `ONBOARDING_AUTHORIZATION`          | ONBOARDING_AUTHORIZATION            |
 | `CHAT_REMINDER`                     | CHAT_REMINDER                       |
+| `DISCOVER`                          | DISCOVER                            |

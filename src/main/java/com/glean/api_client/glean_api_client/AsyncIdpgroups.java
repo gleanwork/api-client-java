@@ -7,9 +7,13 @@ package com.glean.api_client.glean_api_client;
 import static com.glean.api_client.glean_api_client.operations.Operations.AsyncRequestOperation;
 
 import com.glean.api_client.glean_api_client.models.components.PlatformIdpGroupFilter;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAdminIdpGroupsGetRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformAdminIdpGroupsListRequest;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformAdminIdpGroupsGetRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformAdminIdpGroupsGetResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformAdminIdpGroupsListRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformAdminIdpGroupsListResponse;
+import com.glean.api_client.glean_api_client.operations.PlatformAdminIdpGroupsGet;
 import com.glean.api_client.glean_api_client.operations.PlatformAdminIdpGroupsList;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Long;
@@ -114,6 +118,53 @@ public class AsyncIdpgroups {
                 .build();
         AsyncRequestOperation<PlatformAdminIdpGroupsListRequest, PlatformAdminIdpGroupsListResponse> operation
               = new PlatformAdminIdpGroupsList.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Get an IdP group
+     * 
+     * <p>Get one identity provider (IdP) group by its idp_group_id. Inactive IdP groups are returned, so a
+     * caller can still show a group after it was removed from the identity provider. An IdP group is
+     * active when Glean loaded it from the directory.
+     * 
+     * <p>An IdP group is inactive when only a usage limit names it, for example after the group was removed
+     * from the identity provider. An idp_group_id that is not valid, or that names no group that the list
+     * returns, returns 404 resource_not_found. The caller must be able to read the workspace configuration
+     * or the workspace billing.
+     * 
+     * @return The async call builder
+     */
+    public PlatformAdminIdpGroupsGetRequestBuilder get() {
+        return new PlatformAdminIdpGroupsGetRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Get an IdP group
+     * 
+     * <p>Get one identity provider (IdP) group by its idp_group_id. Inactive IdP groups are returned, so a
+     * caller can still show a group after it was removed from the identity provider. An IdP group is
+     * active when Glean loaded it from the directory.
+     * 
+     * <p>An IdP group is inactive when only a usage limit names it, for example after the group was removed
+     * from the identity provider. An idp_group_id that is not valid, or that names no group that the list
+     * returns, returns 404 resource_not_found. The caller must be able to read the workspace configuration
+     * or the workspace billing.
+     * 
+     * @param idpGroupId The idp_group_id from a list IdP groups response. IDs are opaque. Do not parse or build them. The group_id in usage limit responses is not an idp_group_id and returns 404.
+     *         
+     * @return {@code CompletableFuture<PlatformAdminIdpGroupsGetResponse>} - The async response
+     */
+    public CompletableFuture<PlatformAdminIdpGroupsGetResponse> get(String idpGroupId) {
+        PlatformAdminIdpGroupsGetRequest request =
+            PlatformAdminIdpGroupsGetRequest
+                .builder()
+                .idpGroupId(idpGroupId)
+                .build();
+        AsyncRequestOperation<PlatformAdminIdpGroupsGetRequest, PlatformAdminIdpGroupsGetResponse> operation
+              = new PlatformAdminIdpGroupsGet.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
