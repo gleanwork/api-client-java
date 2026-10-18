@@ -22,7 +22,7 @@ public class ViewerInfo {
     /**
      * DEPRECATED - use permissions instead. Viewer's role on the specific document.
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use permissions instead.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use permissions instead.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("role")
@@ -51,7 +51,7 @@ public class ViewerInfo {
     /**
      * DEPRECATED - use permissions instead. Viewer's role on the specific document.
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use permissions instead.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use permissions instead.
      */
     @Deprecated
     @SuppressWarnings("unchecked")
@@ -73,7 +73,7 @@ public class ViewerInfo {
     /**
      * DEPRECATED - use permissions instead. Viewer's role on the specific document.
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use permissions instead.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use permissions instead.
      */
     @Deprecated
     public ViewerInfo withRole(ViewerInfoRole role) {
@@ -86,7 +86,7 @@ public class ViewerInfo {
     /**
      * DEPRECATED - use permissions instead. Viewer's role on the specific document.
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use permissions instead.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use permissions instead.
      */
     @Deprecated
     public ViewerInfo withRole(Optional<? extends ViewerInfoRole> role) {
@@ -151,7 +151,7 @@ public class ViewerInfo {
         /**
          * DEPRECATED - use permissions instead. Viewer's role on the specific document.
          * 
-         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use permissions instead.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use permissions instead.
          */
         @Deprecated
         public Builder role(ViewerInfoRole role) {
@@ -163,7 +163,7 @@ public class ViewerInfo {
         /**
          * DEPRECATED - use permissions instead. Viewer's role on the specific document.
          * 
-         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use permissions instead.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use permissions instead.
          */
         @Deprecated
         public Builder role(Optional<? extends ViewerInfoRole> role) {
