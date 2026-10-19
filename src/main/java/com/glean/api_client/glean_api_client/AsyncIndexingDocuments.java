@@ -406,7 +406,7 @@ public class AsyncIndexingDocuments {
      * for richer information.
      * 
      * @return The async call builder
-     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2026-10-15: Endpoint is deprecated.
+     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2027-01-15: Endpoint is deprecated.
      */
     @Deprecated
     public PostApiIndexV1GetdocumentstatusRequestBuilder status() {
@@ -424,7 +424,7 @@ public class AsyncIndexingDocuments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<PostApiIndexV1GetdocumentstatusResponse>} - The async response
-     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2026-10-15: Endpoint is deprecated.
+     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2027-01-15: Endpoint is deprecated.
      */
     @Deprecated
     public CompletableFuture<PostApiIndexV1GetdocumentstatusResponse> status(GetDocumentStatusRequest request) {
@@ -445,7 +445,7 @@ public class AsyncIndexingDocuments {
      * richer information.
      * 
      * @return The async call builder
-     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2026-10-15: Endpoint is deprecated.
+     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2027-01-15: Endpoint is deprecated.
      */
     @Deprecated
     public PostApiIndexV1GetdocumentcountRequestBuilder count() {
@@ -463,7 +463,7 @@ public class AsyncIndexingDocuments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<PostApiIndexV1GetdocumentcountResponse>} - The async response
-     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2026-10-15: Endpoint is deprecated.
+     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2027-01-15: Endpoint is deprecated.
      */
     @Deprecated
     public CompletableFuture<PostApiIndexV1GetdocumentcountResponse> count(GetDocumentCountRequest request) {
