@@ -25,7 +25,21 @@ import java.util.Optional;
  */
 public class PlatformUserFilter {
     /**
-     * The user field to filter on. The only supported field is is_active.
+     * The user field to filter on.
+     * - is_active: "true" matches active users and "false" matches inactive
+     * users.
+     * 
+     * <p>- name: matches users whose display_name contains the value, ignoring
+     * case and surrounding whitespace. Each value is at most 256 characters.
+     * 
+     * <p>- email: matches the user with the email, ignoring case. An alias email
+     * matches only when the list would return it in alias_emails.
+     * 
+     * <p>- manager_id: matches the direct reports of the user with this user_id. An
+     * alias ID of a merged person matches the same reports.
+     * 
+     * <p>- department_id: matches users in the department, as returned in
+     * department.department_id.
      */
     @JsonProperty("field")
     private String field;
@@ -63,7 +77,21 @@ public class PlatformUserFilter {
     }
 
     /**
-     * The user field to filter on. The only supported field is is_active.
+     * The user field to filter on.
+     * - is_active: "true" matches active users and "false" matches inactive
+     * users.
+     * 
+     * <p>- name: matches users whose display_name contains the value, ignoring
+     * case and surrounding whitespace. Each value is at most 256 characters.
+     * 
+     * <p>- email: matches the user with the email, ignoring case. An alias email
+     * matches only when the list would return it in alias_emails.
+     * 
+     * <p>- manager_id: matches the direct reports of the user with this user_id. An
+     * alias ID of a merged person matches the same reports.
+     * 
+     * <p>- department_id: matches users in the department, as returned in
+     * department.department_id.
      */
     @JsonIgnore
     public String field() {
@@ -93,7 +121,21 @@ public class PlatformUserFilter {
 
 
     /**
-     * The user field to filter on. The only supported field is is_active.
+     * The user field to filter on.
+     * - is_active: "true" matches active users and "false" matches inactive
+     * users.
+     * 
+     * <p>- name: matches users whose display_name contains the value, ignoring
+     * case and surrounding whitespace. Each value is at most 256 characters.
+     * 
+     * <p>- email: matches the user with the email, ignoring case. An alias email
+     * matches only when the list would return it in alias_emails.
+     * 
+     * <p>- manager_id: matches the direct reports of the user with this user_id. An
+     * alias ID of a merged person matches the same reports.
+     * 
+     * <p>- department_id: matches users in the department, as returned in
+     * department.department_id.
      */
     public PlatformUserFilter withField(String field) {
         Utils.checkNotNull(field, "field");
@@ -173,7 +215,21 @@ public class PlatformUserFilter {
 
 
         /**
-         * The user field to filter on. The only supported field is is_active.
+         * The user field to filter on.
+         * - is_active: "true" matches active users and "false" matches inactive
+         * users.
+         * 
+         * <p>- name: matches users whose display_name contains the value, ignoring
+         * case and surrounding whitespace. Each value is at most 256 characters.
+         * 
+         * <p>- email: matches the user with the email, ignoring case. An alias email
+         * matches only when the list would return it in alias_emails.
+         * 
+         * <p>- manager_id: matches the direct reports of the user with this user_id. An
+         * alias ID of a merged person matches the same reports.
+         * 
+         * <p>- department_id: matches users in the department, as returned in
+         * department.department_id.
          */
         public Builder field(String field) {
             Utils.checkNotNull(field, "field");
