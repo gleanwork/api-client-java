@@ -45,7 +45,8 @@ public class Users {
      * includes the same people as the Glean People directory. Inactive users, such as former employees,
      * are left out unless an is_active filter includes the value "false".
      * 
-     * <p>Use the returned user_id values with other Platform APIs, for example as usage limit targets.
+     * <p>Filter by name, email, manager_id, or department_id to find specific users. Use the returned user_id
+     * values with other Platform APIs, for example as usage limit targets.
      * 
      * @return The call builder
      */
@@ -60,7 +61,8 @@ public class Users {
      * includes the same people as the Glean People directory. Inactive users, such as former employees,
      * are left out unless an is_active filter includes the value "false".
      * 
-     * <p>Use the returned user_id values with other Platform APIs, for example as usage limit targets.
+     * <p>Filter by name, email, manager_id, or department_id to find specific users. Use the returned user_id
+     * values with other Platform APIs, for example as usage limit targets.
      * 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -77,7 +79,8 @@ public class Users {
      * includes the same people as the Glean People directory. Inactive users, such as former employees,
      * are left out unless an is_active filter includes the value "false".
      * 
-     * <p>Use the returned user_id values with other Platform APIs, for example as usage limit targets.
+     * <p>Filter by name, email, manager_id, or department_id to find specific users. Use the returned user_id
+     * values with other Platform APIs, for example as usage limit targets.
      * 
      * @param pageSize Maximum number of users to return. Defaults to 50. Maximum is 100.
      * @param cursor Opaque pagination cursor from a previous response. Send the same filters that the previous request used.
