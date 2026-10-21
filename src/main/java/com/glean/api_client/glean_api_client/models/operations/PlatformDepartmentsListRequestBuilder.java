@@ -8,14 +8,12 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
-import com.glean.api_client.glean_api_client.models.components.PlatformDepartmentFilter;
 import com.glean.api_client.glean_api_client.operations.PlatformDepartmentsList;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.LazySingletonValue;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 
 public class PlatformDepartmentsListRequestBuilder {
@@ -25,7 +23,6 @@ public class PlatformDepartmentsListRequestBuilder {
                             "50",
                             new TypeReference<Optional<Long>>() {});
     private Optional<String> cursor = Optional.empty();
-    private Optional<? extends List<PlatformDepartmentFilter>> filters = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -56,18 +53,6 @@ public class PlatformDepartmentsListRequestBuilder {
         this.cursor = cursor;
         return this;
     }
-                
-    public PlatformDepartmentsListRequestBuilder filters(List<PlatformDepartmentFilter> filters) {
-        Utils.checkNotNull(filters, "filters");
-        this.filters = Optional.of(filters);
-        return this;
-    }
-
-    public PlatformDepartmentsListRequestBuilder filters(Optional<? extends List<PlatformDepartmentFilter>> filters) {
-        Utils.checkNotNull(filters, "filters");
-        this.filters = filters;
-        return this;
-    }
 
 
     private PlatformDepartmentsListRequest buildRequest() {
@@ -76,8 +61,7 @@ public class PlatformDepartmentsListRequestBuilder {
         }
 
         PlatformDepartmentsListRequest request = new PlatformDepartmentsListRequest(pageSize,
-            cursor,
-            filters);
+            cursor);
 
         return request;
     }

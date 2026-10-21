@@ -7,15 +7,12 @@ package com.glean.api_client.glean_api_client.models.operations;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.glean.api_client.glean_api_client.models.components.PlatformDepartmentFilter;
 import com.glean.api_client.glean_api_client.utils.LazySingletonValue;
 import com.glean.api_client.glean_api_client.utils.SpeakeasyMetadata;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -27,38 +24,23 @@ public class PlatformDepartmentsListRequest {
     private Optional<Long> pageSize;
 
     /**
-     * Opaque pagination cursor from a previous response. Send the same filters that the previous request
-     * used.
+     * Opaque pagination cursor from a previous response.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")
     private Optional<String> cursor;
 
-    /**
-     * JSON-encoded filters that choose which departments are returned. The only supported field is
-     * is_active, with the values "true" and "false" and the operator EQUALS. Multiple values OR within a
-     * filter.
-     * 
-     * <p>Multiple filters AND together. Without an is_active filter, only active departments are returned. To
-     * return active and inactive departments, send [{"field":"is_active","values":["true","false"]}].
-     */
-    @SpeakeasyMetadata("queryParam:serialization=json,name=filters")
-    private Optional<? extends List<PlatformDepartmentFilter>> filters;
-
     @JsonCreator
     public PlatformDepartmentsListRequest(
             Optional<Long> pageSize,
-            Optional<String> cursor,
-            Optional<? extends List<PlatformDepartmentFilter>> filters) {
+            Optional<String> cursor) {
         Utils.checkNotNull(pageSize, "pageSize");
         Utils.checkNotNull(cursor, "cursor");
-        Utils.checkNotNull(filters, "filters");
         this.pageSize = pageSize;
         this.cursor = cursor;
-        this.filters = filters;
     }
     
     public PlatformDepartmentsListRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -70,26 +52,11 @@ public class PlatformDepartmentsListRequest {
     }
 
     /**
-     * Opaque pagination cursor from a previous response. Send the same filters that the previous request
-     * used.
+     * Opaque pagination cursor from a previous response.
      */
     @JsonIgnore
     public Optional<String> cursor() {
         return cursor;
-    }
-
-    /**
-     * JSON-encoded filters that choose which departments are returned. The only supported field is
-     * is_active, with the values "true" and "false" and the operator EQUALS. Multiple values OR within a
-     * filter.
-     * 
-     * <p>Multiple filters AND together. Without an is_active filter, only active departments are returned. To
-     * return active and inactive departments, send [{"field":"is_active","values":["true","false"]}].
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<List<PlatformDepartmentFilter>> filters() {
-        return (Optional<List<PlatformDepartmentFilter>>) filters;
     }
 
     public static Builder builder() {
@@ -117,8 +84,7 @@ public class PlatformDepartmentsListRequest {
     }
 
     /**
-     * Opaque pagination cursor from a previous response. Send the same filters that the previous request
-     * used.
+     * Opaque pagination cursor from a previous response.
      */
     public PlatformDepartmentsListRequest withCursor(String cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -128,41 +94,11 @@ public class PlatformDepartmentsListRequest {
 
 
     /**
-     * Opaque pagination cursor from a previous response. Send the same filters that the previous request
-     * used.
+     * Opaque pagination cursor from a previous response.
      */
     public PlatformDepartmentsListRequest withCursor(Optional<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
-        return this;
-    }
-
-    /**
-     * JSON-encoded filters that choose which departments are returned. The only supported field is
-     * is_active, with the values "true" and "false" and the operator EQUALS. Multiple values OR within a
-     * filter.
-     * 
-     * <p>Multiple filters AND together. Without an is_active filter, only active departments are returned. To
-     * return active and inactive departments, send [{"field":"is_active","values":["true","false"]}].
-     */
-    public PlatformDepartmentsListRequest withFilters(List<PlatformDepartmentFilter> filters) {
-        Utils.checkNotNull(filters, "filters");
-        this.filters = Optional.ofNullable(filters);
-        return this;
-    }
-
-
-    /**
-     * JSON-encoded filters that choose which departments are returned. The only supported field is
-     * is_active, with the values "true" and "false" and the operator EQUALS. Multiple values OR within a
-     * filter.
-     * 
-     * <p>Multiple filters AND together. Without an is_active filter, only active departments are returned. To
-     * return active and inactive departments, send [{"field":"is_active","values":["true","false"]}].
-     */
-    public PlatformDepartmentsListRequest withFilters(Optional<? extends List<PlatformDepartmentFilter>> filters) {
-        Utils.checkNotNull(filters, "filters");
-        this.filters = filters;
         return this;
     }
 
@@ -177,22 +113,20 @@ public class PlatformDepartmentsListRequest {
         PlatformDepartmentsListRequest other = (PlatformDepartmentsListRequest) o;
         return 
             Utils.enhancedDeepEquals(this.pageSize, other.pageSize) &&
-            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
-            Utils.enhancedDeepEquals(this.filters, other.filters);
+            Utils.enhancedDeepEquals(this.cursor, other.cursor);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            pageSize, cursor, filters);
+            pageSize, cursor);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PlatformDepartmentsListRequest.class,
                 "pageSize", pageSize,
-                "cursor", cursor,
-                "filters", filters);
+                "cursor", cursor);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -201,8 +135,6 @@ public class PlatformDepartmentsListRequest {
         private Optional<Long> pageSize;
 
         private Optional<String> cursor = Optional.empty();
-
-        private Optional<? extends List<PlatformDepartmentFilter>> filters = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -229,8 +161,7 @@ public class PlatformDepartmentsListRequest {
 
 
         /**
-         * Opaque pagination cursor from a previous response. Send the same filters that the previous request
-         * used.
+         * Opaque pagination cursor from a previous response.
          */
         public Builder cursor(String cursor) {
             Utils.checkNotNull(cursor, "cursor");
@@ -239,41 +170,11 @@ public class PlatformDepartmentsListRequest {
         }
 
         /**
-         * Opaque pagination cursor from a previous response. Send the same filters that the previous request
-         * used.
+         * Opaque pagination cursor from a previous response.
          */
         public Builder cursor(Optional<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");
             this.cursor = cursor;
-            return this;
-        }
-
-
-        /**
-         * JSON-encoded filters that choose which departments are returned. The only supported field is
-         * is_active, with the values "true" and "false" and the operator EQUALS. Multiple values OR within a
-         * filter.
-         * 
-         * <p>Multiple filters AND together. Without an is_active filter, only active departments are returned. To
-         * return active and inactive departments, send [{"field":"is_active","values":["true","false"]}].
-         */
-        public Builder filters(List<PlatformDepartmentFilter> filters) {
-            Utils.checkNotNull(filters, "filters");
-            this.filters = Optional.ofNullable(filters);
-            return this;
-        }
-
-        /**
-         * JSON-encoded filters that choose which departments are returned. The only supported field is
-         * is_active, with the values "true" and "false" and the operator EQUALS. Multiple values OR within a
-         * filter.
-         * 
-         * <p>Multiple filters AND together. Without an is_active filter, only active departments are returned. To
-         * return active and inactive departments, send [{"field":"is_active","values":["true","false"]}].
-         */
-        public Builder filters(Optional<? extends List<PlatformDepartmentFilter>> filters) {
-            Utils.checkNotNull(filters, "filters");
-            this.filters = filters;
             return this;
         }
 
@@ -283,7 +184,7 @@ public class PlatformDepartmentsListRequest {
             }
 
             return new PlatformDepartmentsListRequest(
-                pageSize, cursor, filters);
+                pageSize, cursor);
         }
 
 

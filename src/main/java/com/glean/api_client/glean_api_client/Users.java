@@ -42,8 +42,8 @@ public class Users {
      * List users
      * 
      * <p>List the users in the Glean directory, ordered by display_name and then by user_id. The list
-     * includes the same people as the Glean People directory. Inactive users, such as former employees,
-     * are left out unless an is_active filter includes the value "false".
+     * includes the same people as the Glean People directory. Filter by name, email, manager_id, or
+     * department_id to find specific users.
      * 
      * <p>Use the returned user_id values with other Platform APIs, for example as usage limit targets.
      * 
@@ -57,8 +57,8 @@ public class Users {
      * List users
      * 
      * <p>List the users in the Glean directory, ordered by display_name and then by user_id. The list
-     * includes the same people as the Glean People directory. Inactive users, such as former employees,
-     * are left out unless an is_active filter includes the value "false".
+     * includes the same people as the Glean People directory. Filter by name, email, manager_id, or
+     * department_id to find specific users.
      * 
      * <p>Use the returned user_id values with other Platform APIs, for example as usage limit targets.
      * 
@@ -74,8 +74,8 @@ public class Users {
      * List users
      * 
      * <p>List the users in the Glean directory, ordered by display_name and then by user_id. The list
-     * includes the same people as the Glean People directory. Inactive users, such as former employees,
-     * are left out unless an is_active filter includes the value "false".
+     * includes the same people as the Glean People directory. Filter by name, email, manager_id, or
+     * department_id to find specific users.
      * 
      * <p>Use the returned user_id values with other Platform APIs, for example as usage limit targets.
      * 
