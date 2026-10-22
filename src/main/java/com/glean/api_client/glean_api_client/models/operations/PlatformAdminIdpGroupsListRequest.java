@@ -34,15 +34,12 @@ public class PlatformAdminIdpGroupsListRequest {
     private Optional<String> cursor;
 
     /**
-     * JSON-encoded filters that choose which IdP groups are returned. The supported fields are is_active,
-     * with the values "true" and "false", and provider_instance, with datasource instance names such as
-     * "okta". provider_instance values match without case.
+     * JSON-encoded filters that choose which IdP groups are returned. The only supported field is
+     * provider_instance, with datasource instance names such as "okta". provider_instance values match
+     * without case.
      * 
      * <p>The only supported operator is EQUALS. Multiple values OR within a filter. Multiple filters AND
      * together.
-     * 
-     * <p>Without an is_active filter, only active IdP groups are returned. To return active and inactive IdP
-     * groups, send [{"field":"is_active","values":["true","false"]}].
      */
     @SpeakeasyMetadata("queryParam:serialization=json,name=filters")
     private Optional<? extends List<PlatformIdpGroupFilter>> filters;
@@ -82,15 +79,12 @@ public class PlatformAdminIdpGroupsListRequest {
     }
 
     /**
-     * JSON-encoded filters that choose which IdP groups are returned. The supported fields are is_active,
-     * with the values "true" and "false", and provider_instance, with datasource instance names such as
-     * "okta". provider_instance values match without case.
+     * JSON-encoded filters that choose which IdP groups are returned. The only supported field is
+     * provider_instance, with datasource instance names such as "okta". provider_instance values match
+     * without case.
      * 
      * <p>The only supported operator is EQUALS. Multiple values OR within a filter. Multiple filters AND
      * together.
-     * 
-     * <p>Without an is_active filter, only active IdP groups are returned. To return active and inactive IdP
-     * groups, send [{"field":"is_active","values":["true","false"]}].
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -144,15 +138,12 @@ public class PlatformAdminIdpGroupsListRequest {
     }
 
     /**
-     * JSON-encoded filters that choose which IdP groups are returned. The supported fields are is_active,
-     * with the values "true" and "false", and provider_instance, with datasource instance names such as
-     * "okta". provider_instance values match without case.
+     * JSON-encoded filters that choose which IdP groups are returned. The only supported field is
+     * provider_instance, with datasource instance names such as "okta". provider_instance values match
+     * without case.
      * 
      * <p>The only supported operator is EQUALS. Multiple values OR within a filter. Multiple filters AND
      * together.
-     * 
-     * <p>Without an is_active filter, only active IdP groups are returned. To return active and inactive IdP
-     * groups, send [{"field":"is_active","values":["true","false"]}].
      */
     public PlatformAdminIdpGroupsListRequest withFilters(List<PlatformIdpGroupFilter> filters) {
         Utils.checkNotNull(filters, "filters");
@@ -162,15 +153,12 @@ public class PlatformAdminIdpGroupsListRequest {
 
 
     /**
-     * JSON-encoded filters that choose which IdP groups are returned. The supported fields are is_active,
-     * with the values "true" and "false", and provider_instance, with datasource instance names such as
-     * "okta". provider_instance values match without case.
+     * JSON-encoded filters that choose which IdP groups are returned. The only supported field is
+     * provider_instance, with datasource instance names such as "okta". provider_instance values match
+     * without case.
      * 
      * <p>The only supported operator is EQUALS. Multiple values OR within a filter. Multiple filters AND
      * together.
-     * 
-     * <p>Without an is_active filter, only active IdP groups are returned. To return active and inactive IdP
-     * groups, send [{"field":"is_active","values":["true","false"]}].
      */
     public PlatformAdminIdpGroupsListRequest withFilters(Optional<? extends List<PlatformIdpGroupFilter>> filters) {
         Utils.checkNotNull(filters, "filters");
@@ -262,15 +250,12 @@ public class PlatformAdminIdpGroupsListRequest {
 
 
         /**
-         * JSON-encoded filters that choose which IdP groups are returned. The supported fields are is_active,
-         * with the values "true" and "false", and provider_instance, with datasource instance names such as
-         * "okta". provider_instance values match without case.
+         * JSON-encoded filters that choose which IdP groups are returned. The only supported field is
+         * provider_instance, with datasource instance names such as "okta". provider_instance values match
+         * without case.
          * 
          * <p>The only supported operator is EQUALS. Multiple values OR within a filter. Multiple filters AND
          * together.
-         * 
-         * <p>Without an is_active filter, only active IdP groups are returned. To return active and inactive IdP
-         * groups, send [{"field":"is_active","values":["true","false"]}].
          */
         public Builder filters(List<PlatformIdpGroupFilter> filters) {
             Utils.checkNotNull(filters, "filters");
@@ -279,15 +264,12 @@ public class PlatformAdminIdpGroupsListRequest {
         }
 
         /**
-         * JSON-encoded filters that choose which IdP groups are returned. The supported fields are is_active,
-         * with the values "true" and "false", and provider_instance, with datasource instance names such as
-         * "okta". provider_instance values match without case.
+         * JSON-encoded filters that choose which IdP groups are returned. The only supported field is
+         * provider_instance, with datasource instance names such as "okta". provider_instance values match
+         * without case.
          * 
          * <p>The only supported operator is EQUALS. Multiple values OR within a filter. Multiple filters AND
          * together.
-         * 
-         * <p>Without an is_active filter, only active IdP groups are returned. To return active and inactive IdP
-         * groups, send [{"field":"is_active","values":["true","false"]}].
          */
         public Builder filters(Optional<? extends List<PlatformIdpGroupFilter>> filters) {
             Utils.checkNotNull(filters, "filters");

@@ -7,9 +7,13 @@ package com.glean.api_client.glean_api_client;
 import static com.glean.api_client.glean_api_client.operations.Operations.AsyncRequestOperation;
 
 import com.glean.api_client.glean_api_client.models.components.PlatformIdpGroupFilter;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAdminIdpGroupsGetRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformAdminIdpGroupsListRequest;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformAdminIdpGroupsGetRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformAdminIdpGroupsGetResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformAdminIdpGroupsListRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformAdminIdpGroupsListResponse;
+import com.glean.api_client.glean_api_client.operations.PlatformAdminIdpGroupsGet;
 import com.glean.api_client.glean_api_client.operations.PlatformAdminIdpGroupsList;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Long;
@@ -43,15 +47,16 @@ public class AsyncIdpgroups {
      * List IdP groups
      * 
      * <p>List the identity provider (IdP) groups that Glean loads from the directory, ordered by display_name
-     * and then by idp_group_id. Use idp_group_id to name a group in other Platform APIs. An IdP group is
-     * active when Glean loaded it from the directory.
+     * and then by idp_group_id. Use idp_group_id to name a group in other Platform APIs, such as the usage
+     * limit evaluation and limit increase request APIs. Usage limits apply only to IdP groups from the
+     * datasource instance in usage_settings.user_grouping.idp_group_provider_instance of the get usage
+     * settings response, and this API always lists that instance's groups.
      * 
-     * <p>An IdP group is inactive when only a usage limit names it, for example after the group was removed
-     * from the identity provider. Inactive IdP groups are left out unless an is_active filter includes the
-     * value "false". Usage limits apply only to IdP groups from the datasource instance that the usage
-     * settings select, so use the provider_instance filter to list only those groups.
-     * 
-     * <p>Internal O365 ownership groups and SharePoint groups are left out. The caller must be able to read
+     * <p>To list only those groups, pass that value in a provider_instance filter of the filters parameter,
+     * for example `filters=[{"field":"provider_instance","operator":"EQUALS","values":["okta"]}]`,
+     * URL-encoded as
+     * `filters=%5B%7B%22field%22%3A%22provider_instance%22%2C%22operator%22%3A%22EQUALS%22%2C%22values%22%3A%5B%22okta%22%5D%7D%5D`.
+     * Internal O365 ownership groups and SharePoint groups are left out. The caller must be able to read
      * the workspace configuration or the workspace billing.
      * 
      * @return The async call builder
@@ -64,15 +69,16 @@ public class AsyncIdpgroups {
      * List IdP groups
      * 
      * <p>List the identity provider (IdP) groups that Glean loads from the directory, ordered by display_name
-     * and then by idp_group_id. Use idp_group_id to name a group in other Platform APIs. An IdP group is
-     * active when Glean loaded it from the directory.
+     * and then by idp_group_id. Use idp_group_id to name a group in other Platform APIs, such as the usage
+     * limit evaluation and limit increase request APIs. Usage limits apply only to IdP groups from the
+     * datasource instance in usage_settings.user_grouping.idp_group_provider_instance of the get usage
+     * settings response, and this API always lists that instance's groups.
      * 
-     * <p>An IdP group is inactive when only a usage limit names it, for example after the group was removed
-     * from the identity provider. Inactive IdP groups are left out unless an is_active filter includes the
-     * value "false". Usage limits apply only to IdP groups from the datasource instance that the usage
-     * settings select, so use the provider_instance filter to list only those groups.
-     * 
-     * <p>Internal O365 ownership groups and SharePoint groups are left out. The caller must be able to read
+     * <p>To list only those groups, pass that value in a provider_instance filter of the filters parameter,
+     * for example `filters=[{"field":"provider_instance","operator":"EQUALS","values":["okta"]}]`,
+     * URL-encoded as
+     * `filters=%5B%7B%22field%22%3A%22provider_instance%22%2C%22operator%22%3A%22EQUALS%22%2C%22values%22%3A%5B%22okta%22%5D%7D%5D`.
+     * Internal O365 ownership groups and SharePoint groups are left out. The caller must be able to read
      * the workspace configuration or the workspace billing.
      * 
      * @return {@code CompletableFuture<PlatformAdminIdpGroupsListResponse>} - The async response
@@ -85,15 +91,16 @@ public class AsyncIdpgroups {
      * List IdP groups
      * 
      * <p>List the identity provider (IdP) groups that Glean loads from the directory, ordered by display_name
-     * and then by idp_group_id. Use idp_group_id to name a group in other Platform APIs. An IdP group is
-     * active when Glean loaded it from the directory.
+     * and then by idp_group_id. Use idp_group_id to name a group in other Platform APIs, such as the usage
+     * limit evaluation and limit increase request APIs. Usage limits apply only to IdP groups from the
+     * datasource instance in usage_settings.user_grouping.idp_group_provider_instance of the get usage
+     * settings response, and this API always lists that instance's groups.
      * 
-     * <p>An IdP group is inactive when only a usage limit names it, for example after the group was removed
-     * from the identity provider. Inactive IdP groups are left out unless an is_active filter includes the
-     * value "false". Usage limits apply only to IdP groups from the datasource instance that the usage
-     * settings select, so use the provider_instance filter to list only those groups.
-     * 
-     * <p>Internal O365 ownership groups and SharePoint groups are left out. The caller must be able to read
+     * <p>To list only those groups, pass that value in a provider_instance filter of the filters parameter,
+     * for example `filters=[{"field":"provider_instance","operator":"EQUALS","values":["okta"]}]`,
+     * URL-encoded as
+     * `filters=%5B%7B%22field%22%3A%22provider_instance%22%2C%22operator%22%3A%22EQUALS%22%2C%22values%22%3A%5B%22okta%22%5D%7D%5D`.
+     * Internal O365 ownership groups and SharePoint groups are left out. The caller must be able to read
      * the workspace configuration or the workspace billing.
      * 
      * @param pageSize Maximum number of IdP groups to return. Defaults to 50. Maximum is 100.
@@ -114,6 +121,47 @@ public class AsyncIdpgroups {
                 .build();
         AsyncRequestOperation<PlatformAdminIdpGroupsListRequest, PlatformAdminIdpGroupsListResponse> operation
               = new PlatformAdminIdpGroupsList.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Get an IdP group
+     * 
+     * <p>Get one identity provider (IdP) group by its idp_group_id. An idp_group_id that is not valid, or
+     * that names no group that the list returns, returns 404 resource_not_found. A group that was removed
+     * from the identity provider returns 404 after Glean reloads the directory.
+     * 
+     * <p>The caller must be able to read the workspace configuration or the workspace billing.
+     * 
+     * @return The async call builder
+     */
+    public PlatformAdminIdpGroupsGetRequestBuilder get() {
+        return new PlatformAdminIdpGroupsGetRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Get an IdP group
+     * 
+     * <p>Get one identity provider (IdP) group by its idp_group_id. An idp_group_id that is not valid, or
+     * that names no group that the list returns, returns 404 resource_not_found. A group that was removed
+     * from the identity provider returns 404 after Glean reloads the directory.
+     * 
+     * <p>The caller must be able to read the workspace configuration or the workspace billing.
+     * 
+     * @param idpGroupId The idp_group_id from a list IdP groups response or a usage API response. IDs are opaque. Do not parse or build them.
+     *         
+     * @return {@code CompletableFuture<PlatformAdminIdpGroupsGetResponse>} - The async response
+     */
+    public CompletableFuture<PlatformAdminIdpGroupsGetResponse> get(String idpGroupId) {
+        PlatformAdminIdpGroupsGetRequest request =
+            PlatformAdminIdpGroupsGetRequest
+                .builder()
+                .idpGroupId(idpGroupId)
+                .build();
+        AsyncRequestOperation<PlatformAdminIdpGroupsGetRequest, PlatformAdminIdpGroupsGetResponse> operation
+              = new PlatformAdminIdpGroupsGet.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
