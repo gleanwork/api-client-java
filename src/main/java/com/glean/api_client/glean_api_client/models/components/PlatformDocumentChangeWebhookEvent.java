@@ -13,7 +13,10 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -80,7 +83,8 @@ public class PlatformDocumentChangeWebhookEvent implements PlatformTriggerWebhoo
     private Optional<OffsetDateTime> eventTime;
 
     /**
-     * Email body content when the event is for an email document.
+     * Email body content when the event is for an email document, or the message text when the event is
+     * for a Slack message.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("content")
@@ -92,6 +96,17 @@ public class PlatformDocumentChangeWebhookEvent implements PlatformTriggerWebhoo
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("content_truncated")
     private Optional<Boolean> contentTruncated;
+
+    /**
+     * Facets of a Slack message as the event saw them, keyed as trigger filters key them, for example
+     * `from`, `mentions` and `channel`. Person facets carry the person's name. Each key lists up to 50
+     * distinct values.
+     * 
+     * <p>Omitted for other documents and when the event has no facets.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("facets")
+    private Optional<? extends Map<String, List<String>>> facets;
 
     @JsonCreator
     public PlatformDocumentChangeWebhookEvent(
@@ -106,7 +121,8 @@ public class PlatformDocumentChangeWebhookEvent implements PlatformTriggerWebhoo
             @JsonProperty("title") String title,
             @JsonProperty("event_time") Optional<OffsetDateTime> eventTime,
             @JsonProperty("content") Optional<String> content,
-            @JsonProperty("content_truncated") Optional<Boolean> contentTruncated) {
+            @JsonProperty("content_truncated") Optional<Boolean> contentTruncated,
+            @JsonProperty("facets") Optional<? extends Map<String, List<String>>> facets) {
         Utils.checkNotNull(version, "version");
         Utils.checkNotNull(triggerId, "triggerId");
         Utils.checkNotNull(eventType, "eventType");
@@ -119,6 +135,7 @@ public class PlatformDocumentChangeWebhookEvent implements PlatformTriggerWebhoo
         Utils.checkNotNull(eventTime, "eventTime");
         Utils.checkNotNull(content, "content");
         Utils.checkNotNull(contentTruncated, "contentTruncated");
+        Utils.checkNotNull(facets, "facets");
         this.version = version;
         this.triggerId = triggerId;
         this.eventType = eventType;
@@ -131,6 +148,7 @@ public class PlatformDocumentChangeWebhookEvent implements PlatformTriggerWebhoo
         this.eventTime = eventTime;
         this.content = content;
         this.contentTruncated = contentTruncated;
+        this.facets = facets;
     }
     
     public PlatformDocumentChangeWebhookEvent(
@@ -146,7 +164,8 @@ public class PlatformDocumentChangeWebhookEvent implements PlatformTriggerWebhoo
         this(version, triggerId, eventType,
             datasource, reason, docType,
             docId, viewUrl, title,
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -230,7 +249,8 @@ public class PlatformDocumentChangeWebhookEvent implements PlatformTriggerWebhoo
     }
 
     /**
-     * Email body content when the event is for an email document.
+     * Email body content when the event is for an email document, or the message text when the event is
+     * for a Slack message.
      */
     @JsonIgnore
     public Optional<String> content() {
@@ -243,6 +263,19 @@ public class PlatformDocumentChangeWebhookEvent implements PlatformTriggerWebhoo
     @JsonIgnore
     public Optional<Boolean> contentTruncated() {
         return contentTruncated;
+    }
+
+    /**
+     * Facets of a Slack message as the event saw them, keyed as trigger filters key them, for example
+     * `from`, `mentions` and `channel`. Person facets carry the person's name. Each key lists up to 50
+     * distinct values.
+     * 
+     * <p>Omitted for other documents and when the event has no facets.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, List<String>>> facets() {
+        return (Optional<Map<String, List<String>>>) facets;
     }
 
     public static Builder builder() {
@@ -352,7 +385,8 @@ public class PlatformDocumentChangeWebhookEvent implements PlatformTriggerWebhoo
     }
 
     /**
-     * Email body content when the event is for an email document.
+     * Email body content when the event is for an email document, or the message text when the event is
+     * for a Slack message.
      */
     public PlatformDocumentChangeWebhookEvent withContent(String content) {
         Utils.checkNotNull(content, "content");
@@ -362,7 +396,8 @@ public class PlatformDocumentChangeWebhookEvent implements PlatformTriggerWebhoo
 
 
     /**
-     * Email body content when the event is for an email document.
+     * Email body content when the event is for an email document, or the message text when the event is
+     * for a Slack message.
      */
     public PlatformDocumentChangeWebhookEvent withContent(Optional<String> content) {
         Utils.checkNotNull(content, "content");
@@ -389,6 +424,33 @@ public class PlatformDocumentChangeWebhookEvent implements PlatformTriggerWebhoo
         return this;
     }
 
+    /**
+     * Facets of a Slack message as the event saw them, keyed as trigger filters key them, for example
+     * `from`, `mentions` and `channel`. Person facets carry the person's name. Each key lists up to 50
+     * distinct values.
+     * 
+     * <p>Omitted for other documents and when the event has no facets.
+     */
+    public PlatformDocumentChangeWebhookEvent withFacets(Map<String, List<String>> facets) {
+        Utils.checkNotNull(facets, "facets");
+        this.facets = Optional.ofNullable(facets);
+        return this;
+    }
+
+
+    /**
+     * Facets of a Slack message as the event saw them, keyed as trigger filters key them, for example
+     * `from`, `mentions` and `channel`. Person facets carry the person's name. Each key lists up to 50
+     * distinct values.
+     * 
+     * <p>Omitted for other documents and when the event has no facets.
+     */
+    public PlatformDocumentChangeWebhookEvent withFacets(Optional<? extends Map<String, List<String>>> facets) {
+        Utils.checkNotNull(facets, "facets");
+        this.facets = facets;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -410,7 +472,8 @@ public class PlatformDocumentChangeWebhookEvent implements PlatformTriggerWebhoo
             Utils.enhancedDeepEquals(this.title, other.title) &&
             Utils.enhancedDeepEquals(this.eventTime, other.eventTime) &&
             Utils.enhancedDeepEquals(this.content, other.content) &&
-            Utils.enhancedDeepEquals(this.contentTruncated, other.contentTruncated);
+            Utils.enhancedDeepEquals(this.contentTruncated, other.contentTruncated) &&
+            Utils.enhancedDeepEquals(this.facets, other.facets);
     }
     
     @Override
@@ -419,7 +482,8 @@ public class PlatformDocumentChangeWebhookEvent implements PlatformTriggerWebhoo
             version, triggerId, eventType,
             datasource, reason, docType,
             docId, viewUrl, title,
-            eventTime, content, contentTruncated);
+            eventTime, content, contentTruncated,
+            facets);
     }
     
     @Override
@@ -436,7 +500,8 @@ public class PlatformDocumentChangeWebhookEvent implements PlatformTriggerWebhoo
                 "title", title,
                 "eventTime", eventTime,
                 "content", content,
-                "contentTruncated", contentTruncated);
+                "contentTruncated", contentTruncated,
+                "facets", facets);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -465,6 +530,8 @@ public class PlatformDocumentChangeWebhookEvent implements PlatformTriggerWebhoo
         private Optional<String> content = Optional.empty();
 
         private Optional<Boolean> contentTruncated = Optional.empty();
+
+        private Optional<? extends Map<String, List<String>>> facets = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -582,7 +649,8 @@ public class PlatformDocumentChangeWebhookEvent implements PlatformTriggerWebhoo
 
 
         /**
-         * Email body content when the event is for an email document.
+         * Email body content when the event is for an email document, or the message text when the event is
+         * for a Slack message.
          */
         public Builder content(String content) {
             Utils.checkNotNull(content, "content");
@@ -591,7 +659,8 @@ public class PlatformDocumentChangeWebhookEvent implements PlatformTriggerWebhoo
         }
 
         /**
-         * Email body content when the event is for an email document.
+         * Email body content when the event is for an email document, or the message text when the event is
+         * for a Slack message.
          */
         public Builder content(Optional<String> content) {
             Utils.checkNotNull(content, "content");
@@ -618,13 +687,41 @@ public class PlatformDocumentChangeWebhookEvent implements PlatformTriggerWebhoo
             return this;
         }
 
+
+        /**
+         * Facets of a Slack message as the event saw them, keyed as trigger filters key them, for example
+         * `from`, `mentions` and `channel`. Person facets carry the person's name. Each key lists up to 50
+         * distinct values.
+         * 
+         * <p>Omitted for other documents and when the event has no facets.
+         */
+        public Builder facets(Map<String, List<String>> facets) {
+            Utils.checkNotNull(facets, "facets");
+            this.facets = Optional.ofNullable(facets);
+            return this;
+        }
+
+        /**
+         * Facets of a Slack message as the event saw them, keyed as trigger filters key them, for example
+         * `from`, `mentions` and `channel`. Person facets carry the person's name. Each key lists up to 50
+         * distinct values.
+         * 
+         * <p>Omitted for other documents and when the event has no facets.
+         */
+        public Builder facets(Optional<? extends Map<String, List<String>>> facets) {
+            Utils.checkNotNull(facets, "facets");
+            this.facets = facets;
+            return this;
+        }
+
         public PlatformDocumentChangeWebhookEvent build() {
 
             return new PlatformDocumentChangeWebhookEvent(
                 version, triggerId, eventType,
                 datasource, reason, docType,
                 docId, viewUrl, title,
-                eventTime, content, contentTruncated);
+                eventTime, content, contentTruncated,
+                facets);
         }
 
     }

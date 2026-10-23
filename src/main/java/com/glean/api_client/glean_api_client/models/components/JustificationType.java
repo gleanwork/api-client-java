@@ -96,6 +96,7 @@ public class JustificationType {
     public static final JustificationType MANAGER_INVITE = new JustificationType("MANAGER_INVITE");
     public static final JustificationType ONBOARDING_AUTHORIZATION = new JustificationType("ONBOARDING_AUTHORIZATION");
     public static final JustificationType CHAT_REMINDER = new JustificationType("CHAT_REMINDER");
+    public static final JustificationType DISCOVER = new JustificationType("DISCOVER");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -239,6 +240,7 @@ public class JustificationType {
         map.put("MANAGER_INVITE", MANAGER_INVITE);
         map.put("ONBOARDING_AUTHORIZATION", ONBOARDING_AUTHORIZATION);
         map.put("CHAT_REMINDER", CHAT_REMINDER);
+        map.put("DISCOVER", DISCOVER);
         return map;
     }
 
@@ -314,6 +316,7 @@ public class JustificationType {
         map.put("MANAGER_INVITE", JustificationTypeEnum.MANAGER_INVITE);
         map.put("ONBOARDING_AUTHORIZATION", JustificationTypeEnum.ONBOARDING_AUTHORIZATION);
         map.put("CHAT_REMINDER", JustificationTypeEnum.CHAT_REMINDER);
+        map.put("DISCOVER", JustificationTypeEnum.DISCOVER);
         return map;
     }
     
@@ -389,7 +392,8 @@ public class JustificationType {
         CREATE_AGENT("CREATE_AGENT"),
         MANAGER_INVITE("MANAGER_INVITE"),
         ONBOARDING_AUTHORIZATION("ONBOARDING_AUTHORIZATION"),
-        CHAT_REMINDER("CHAT_REMINDER"),;
+        CHAT_REMINDER("CHAT_REMINDER"),
+        DISCOVER("DISCOVER"),;
 
         private final String value;
 

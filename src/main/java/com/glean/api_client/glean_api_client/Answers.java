@@ -246,7 +246,7 @@ public class Answers {
      * <p>List Answers created by the current user.
      * 
      * @return The call builder
-     * @deprecated method: Deprecated on 2026-01-21, removal scheduled for 2026-10-15: Answer boards have been removed and this endpoint no longer serves a purpose.
+     * @deprecated method: Deprecated on 2026-01-21, removal scheduled for 2027-01-15: Answer boards have been removed and this endpoint no longer serves a purpose.
      */
     @Deprecated
     public ListanswersRequestBuilder list() {
@@ -261,7 +261,7 @@ public class Answers {
      * @param listAnswersRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
-     * @deprecated method: Deprecated on 2026-01-21, removal scheduled for 2026-10-15: Answer boards have been removed and this endpoint no longer serves a purpose.
+     * @deprecated method: Deprecated on 2026-01-21, removal scheduled for 2027-01-15: Answer boards have been removed and this endpoint no longer serves a purpose.
      */
     @Deprecated
     public ListanswersResponse list(ListAnswersRequest listAnswersRequest) {
@@ -277,7 +277,7 @@ public class Answers {
      * @param listAnswersRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
-     * @deprecated method: Deprecated on 2026-01-21, removal scheduled for 2026-10-15: Answer boards have been removed and this endpoint no longer serves a purpose.
+     * @deprecated method: Deprecated on 2026-01-21, removal scheduled for 2027-01-15: Answer boards have been removed and this endpoint no longer serves a purpose.
      */
     @Deprecated
     public ListanswersResponse list(Optional<String> locale, ListAnswersRequest listAnswersRequest) {
