@@ -7,9 +7,13 @@ package com.glean.api_client.glean_api_client;
 import static com.glean.api_client.glean_api_client.operations.Operations.AsyncRequestOperation;
 
 import com.glean.api_client.glean_api_client.models.components.PlatformDepartmentFilter;
+import com.glean.api_client.glean_api_client.models.operations.PlatformDepartmentsGetRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformDepartmentsListRequest;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformDepartmentsGetRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformDepartmentsGetResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformDepartmentsListRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformDepartmentsListResponse;
+import com.glean.api_client.glean_api_client.operations.PlatformDepartmentsGet;
 import com.glean.api_client.glean_api_client.operations.PlatformDepartmentsList;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Long;
@@ -42,12 +46,12 @@ public class AsyncDepartments {
     /**
      * List departments
      * 
-     * <p>List the departments in the Glean directory, ordered by display_name and then by department_id. A
-     * department is active when at least one active user belongs to it. A department is inactive when only
-     * inactive users, such as former employees, belong to it, or when only a usage limit names it.
+     * <p>List the departments in the Glean directory, ordered by display_name and then by department_id. The
+     * list includes every department that at least one user belongs to or that a usage limit names, so a
+     * caller can show the name of a department that a usage limit still names after its users leave it.
+     * Department names are exact, so names that differ only by case are different departments.
      * 
-     * <p>Inactive departments are left out unless an is_active filter includes the value "false". Department
-     * names are exact, so names that differ only by case are different departments.
+     * <p>Send a name filter to return only the departments whose display_name contains a value.
      * 
      * @return The async call builder
      */
@@ -58,12 +62,12 @@ public class AsyncDepartments {
     /**
      * List departments
      * 
-     * <p>List the departments in the Glean directory, ordered by display_name and then by department_id. A
-     * department is active when at least one active user belongs to it. A department is inactive when only
-     * inactive users, such as former employees, belong to it, or when only a usage limit names it.
+     * <p>List the departments in the Glean directory, ordered by display_name and then by department_id. The
+     * list includes every department that at least one user belongs to or that a usage limit names, so a
+     * caller can show the name of a department that a usage limit still names after its users leave it.
+     * Department names are exact, so names that differ only by case are different departments.
      * 
-     * <p>Inactive departments are left out unless an is_active filter includes the value "false". Department
-     * names are exact, so names that differ only by case are different departments.
+     * <p>Send a name filter to return only the departments whose display_name contains a value.
      * 
      * @return {@code CompletableFuture<PlatformDepartmentsListResponse>} - The async response
      */
@@ -74,12 +78,12 @@ public class AsyncDepartments {
     /**
      * List departments
      * 
-     * <p>List the departments in the Glean directory, ordered by display_name and then by department_id. A
-     * department is active when at least one active user belongs to it. A department is inactive when only
-     * inactive users, such as former employees, belong to it, or when only a usage limit names it.
+     * <p>List the departments in the Glean directory, ordered by display_name and then by department_id. The
+     * list includes every department that at least one user belongs to or that a usage limit names, so a
+     * caller can show the name of a department that a usage limit still names after its users leave it.
+     * Department names are exact, so names that differ only by case are different departments.
      * 
-     * <p>Inactive departments are left out unless an is_active filter includes the value "false". Department
-     * names are exact, so names that differ only by case are different departments.
+     * <p>Send a name filter to return only the departments whose display_name contains a value.
      * 
      * @param pageSize Maximum number of departments to return. Defaults to 50. Maximum is 100.
      * @param cursor Opaque pagination cursor from a previous response. Send the same filters that the previous request used.
@@ -99,6 +103,49 @@ public class AsyncDepartments {
                 .build();
         AsyncRequestOperation<PlatformDepartmentsListRequest, PlatformDepartmentsListResponse> operation
               = new PlatformDepartmentsList.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Get a department
+     * 
+     * <p>Get one department by its department_id. The department can be any department that the list returns,
+     * including one that only a usage limit names. A department_id that is not valid, or that no user and
+     * no usage limit uses, returns 404 resource_not_found.
+     * 
+     * <p>A department_id comes from the exact department name, so a renamed department gets a new ID, and a
+     * name that is used again gets its old ID back.
+     * 
+     * @return The async call builder
+     */
+    public PlatformDepartmentsGetRequestBuilder get() {
+        return new PlatformDepartmentsGetRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Get a department
+     * 
+     * <p>Get one department by its department_id. The department can be any department that the list returns,
+     * including one that only a usage limit names. A department_id that is not valid, or that no user and
+     * no usage limit uses, returns 404 resource_not_found.
+     * 
+     * <p>A department_id comes from the exact department name, so a renamed department gets a new ID, and a
+     * name that is used again gets its old ID back.
+     * 
+     * @param departmentId The department_id from a list departments response or from a user's department. IDs are opaque. Do not parse or build them.
+     *         
+     * @return {@code CompletableFuture<PlatformDepartmentsGetResponse>} - The async response
+     */
+    public CompletableFuture<PlatformDepartmentsGetResponse> get(String departmentId) {
+        PlatformDepartmentsGetRequest request =
+            PlatformDepartmentsGetRequest
+                .builder()
+                .departmentId(departmentId)
+                .build();
+        AsyncRequestOperation<PlatformDepartmentsGetRequest, PlatformDepartmentsGetResponse> operation
+              = new PlatformDepartmentsGet.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
