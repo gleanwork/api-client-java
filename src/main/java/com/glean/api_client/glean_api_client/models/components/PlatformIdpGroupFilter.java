@@ -25,7 +25,7 @@ import java.util.Optional;
  */
 public class PlatformIdpGroupFilter {
     /**
-     * The IdP group field to filter on. The supported fields are is_active and provider_instance.
+     * The IdP group field to filter on. The only supported field is provider_instance.
      */
     @JsonProperty("field")
     private String field;
@@ -63,7 +63,7 @@ public class PlatformIdpGroupFilter {
     }
 
     /**
-     * The IdP group field to filter on. The supported fields are is_active and provider_instance.
+     * The IdP group field to filter on. The only supported field is provider_instance.
      */
     @JsonIgnore
     public String field() {
@@ -93,7 +93,7 @@ public class PlatformIdpGroupFilter {
 
 
     /**
-     * The IdP group field to filter on. The supported fields are is_active and provider_instance.
+     * The IdP group field to filter on. The only supported field is provider_instance.
      */
     public PlatformIdpGroupFilter withField(String field) {
         Utils.checkNotNull(field, "field");
@@ -173,7 +173,7 @@ public class PlatformIdpGroupFilter {
 
 
         /**
-         * The IdP group field to filter on. The supported fields are is_active and provider_instance.
+         * The IdP group field to filter on. The only supported field is provider_instance.
          */
         public Builder field(String field) {
             Utils.checkNotNull(field, "field");
