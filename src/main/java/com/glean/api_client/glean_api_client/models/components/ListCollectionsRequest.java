@@ -18,6 +18,14 @@ import java.util.Optional;
 
 public class ListCollectionsRequest {
     /**
+     * Case-insensitive substring search on collection names. Leading and trailing whitespace is ignored.
+     * An empty query does not filter collections.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("query")
+    private Optional<String> query;
+
+    /**
      * Whether to include the audience filters with the listed Collections.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -41,19 +49,32 @@ public class ListCollectionsRequest {
 
     @JsonCreator
     public ListCollectionsRequest(
+            @JsonProperty("query") Optional<String> query,
             @JsonProperty("includeAudience") Optional<Boolean> includeAudience,
             @JsonProperty("includeRoles") Optional<Boolean> includeRoles,
             @JsonProperty("allowedDatasource") Optional<String> allowedDatasource) {
+        Utils.checkNotNull(query, "query");
         Utils.checkNotNull(includeAudience, "includeAudience");
         Utils.checkNotNull(includeRoles, "includeRoles");
         Utils.checkNotNull(allowedDatasource, "allowedDatasource");
+        this.query = query;
         this.includeAudience = includeAudience;
         this.includeRoles = includeRoles;
         this.allowedDatasource = allowedDatasource;
     }
     
     public ListCollectionsRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
+    }
+
+    /**
+     * Case-insensitive substring search on collection names. Leading and trailing whitespace is ignored.
+     * An empty query does not filter collections.
+     */
+    @JsonIgnore
+    public Optional<String> query() {
+        return query;
     }
 
     /**
@@ -85,6 +106,27 @@ public class ListCollectionsRequest {
         return new Builder();
     }
 
+
+    /**
+     * Case-insensitive substring search on collection names. Leading and trailing whitespace is ignored.
+     * An empty query does not filter collections.
+     */
+    public ListCollectionsRequest withQuery(String query) {
+        Utils.checkNotNull(query, "query");
+        this.query = Optional.ofNullable(query);
+        return this;
+    }
+
+
+    /**
+     * Case-insensitive substring search on collection names. Leading and trailing whitespace is ignored.
+     * An empty query does not filter collections.
+     */
+    public ListCollectionsRequest withQuery(Optional<String> query) {
+        Utils.checkNotNull(query, "query");
+        this.query = query;
+        return this;
+    }
 
     /**
      * Whether to include the audience filters with the listed Collections.
@@ -155,6 +197,7 @@ public class ListCollectionsRequest {
         }
         ListCollectionsRequest other = (ListCollectionsRequest) o;
         return 
+            Utils.enhancedDeepEquals(this.query, other.query) &&
             Utils.enhancedDeepEquals(this.includeAudience, other.includeAudience) &&
             Utils.enhancedDeepEquals(this.includeRoles, other.includeRoles) &&
             Utils.enhancedDeepEquals(this.allowedDatasource, other.allowedDatasource);
@@ -163,12 +206,14 @@ public class ListCollectionsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            includeAudience, includeRoles, allowedDatasource);
+            query, includeAudience, includeRoles,
+            allowedDatasource);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ListCollectionsRequest.class,
+                "query", query,
                 "includeAudience", includeAudience,
                 "includeRoles", includeRoles,
                 "allowedDatasource", allowedDatasource);
@@ -176,6 +221,8 @@ public class ListCollectionsRequest {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private Optional<String> query = Optional.empty();
 
         private Optional<Boolean> includeAudience = Optional.empty();
 
@@ -185,6 +232,27 @@ public class ListCollectionsRequest {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * Case-insensitive substring search on collection names. Leading and trailing whitespace is ignored.
+         * An empty query does not filter collections.
+         */
+        public Builder query(String query) {
+            Utils.checkNotNull(query, "query");
+            this.query = Optional.ofNullable(query);
+            return this;
+        }
+
+        /**
+         * Case-insensitive substring search on collection names. Leading and trailing whitespace is ignored.
+         * An empty query does not filter collections.
+         */
+        public Builder query(Optional<String> query) {
+            Utils.checkNotNull(query, "query");
+            this.query = query;
+            return this;
         }
 
 
@@ -249,7 +317,8 @@ public class ListCollectionsRequest {
         public ListCollectionsRequest build() {
 
             return new ListCollectionsRequest(
-                includeAudience, includeRoles, allowedDatasource);
+                query, includeAudience, includeRoles,
+                allowedDatasource);
         }
 
     }

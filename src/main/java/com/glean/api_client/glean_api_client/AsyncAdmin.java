@@ -10,21 +10,21 @@ import com.glean.api_client.glean_api_client.utils.Headers;
 public class AsyncAdmin {
     private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
-    private final AsyncUsage usage;
+    private final AsyncOauth oauth;
     private final AsyncIdpgroups idpgroups;
     private final AsyncAdminAgents agents;
     private final Admin syncSDK;
 
     AsyncAdmin(Admin syncSDK, SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
-        this.usage = new AsyncUsage(syncSDK.usage(), this.sdkConfiguration);
+        this.oauth = new AsyncOauth(syncSDK.oauth(), this.sdkConfiguration);
         this.idpgroups = new AsyncIdpgroups(syncSDK.idpgroups(), this.sdkConfiguration);
         this.agents = new AsyncAdminAgents(syncSDK.agents(), this.sdkConfiguration);
         this.syncSDK = syncSDK;
     }
 
-    public final AsyncUsage usage() {
-        return usage;
+    public final AsyncOauth oauth() {
+        return oauth;
     }
 
     public final AsyncIdpgroups idpgroups() {
