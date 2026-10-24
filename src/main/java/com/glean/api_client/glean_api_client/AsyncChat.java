@@ -8,17 +8,22 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.models.components.PlatformChatStreamEventServerSentEvent;
+import com.glean.api_client.glean_api_client.models.components.PlatformChatUpdateRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformChatCreateRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformChatCreateStreamRequest;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformChatCreateRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformChatCreateResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformChatCreateStreamRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformChatCreateStreamResponse;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformChatUpdateRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformChatUpdateResponse;
 import com.glean.api_client.glean_api_client.operations.PlatformChatCreate;
 import com.glean.api_client.glean_api_client.operations.PlatformChatCreateStream;
+import com.glean.api_client.glean_api_client.operations.PlatformChatUpdate;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import com.glean.api_client.glean_api_client.utils.reactive.EventStream;
+import java.lang.String;
 import java.util.concurrent.CompletableFuture;
 
 
@@ -70,6 +75,40 @@ public class AsyncChat {
     public CompletableFuture<PlatformChatCreateResponse> create(PlatformChatCreateRequest request) {
         AsyncRequestOperation<PlatformChatCreateRequest, PlatformChatCreateResponse> operation
               = new PlatformChatCreate.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Update a chat
+     * 
+     * <p>Update the name of a chat. Only the chat owner can update it.
+     * 
+     * @return The async call builder
+     */
+    public PlatformChatUpdateRequestBuilder update() {
+        return new PlatformChatUpdateRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Update a chat
+     * 
+     * <p>Update the name of a chat. Only the chat owner can update it.
+     * 
+     * @param chatId The ID of the chat to update.
+     * @param platformChatUpdateRequest The fields to update on a chat.
+     * @return {@code CompletableFuture<PlatformChatUpdateResponse>} - The async response
+     */
+    public CompletableFuture<PlatformChatUpdateResponse> update(String chatId, PlatformChatUpdateRequest platformChatUpdateRequest) {
+        com.glean.api_client.glean_api_client.models.operations.PlatformChatUpdateRequest request =
+            com.glean.api_client.glean_api_client.models.operations.PlatformChatUpdateRequest
+                .builder()
+                .chatId(chatId)
+                .platformChatUpdateRequest(platformChatUpdateRequest)
+                .build();
+        AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.PlatformChatUpdateRequest, PlatformChatUpdateResponse> operation
+              = new PlatformChatUpdate.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
