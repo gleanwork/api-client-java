@@ -1,0 +1,9 @@
+# PlatformChatUpdateRequest
+
+
+## Fields
+
+| Field                                                                             | Type                                                                              | Required                                                                          | Description                                                                       | Example                                                                           |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `chatId`                                                                          | *String*                                                                          | :heavy_check_mark:                                                                | The ID of the chat to update.                                                     | {chat_id}                                                                         |
+| `platformChatUpdateRequest`                                                       | [PlatformChatUpdateRequest](../../models/components/PlatformChatUpdateRequest.md) | :heavy_check_mark:                                                                | N/A                                                                               |                                                                                   |
