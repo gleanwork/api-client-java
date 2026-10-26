@@ -26,7 +26,7 @@ public class PlatformListDepartmentsResponse {
      * The departments on this page, ordered by display_name and then by department_id.
      */
     @JsonProperty("results")
-    private List<PlatformDepartment> results;
+    private List<PlatformDepartmentReference> results;
 
     /**
      * Whether more departments are available after this page.
@@ -49,7 +49,7 @@ public class PlatformListDepartmentsResponse {
 
     @JsonCreator
     public PlatformListDepartmentsResponse(
-            @JsonProperty("results") List<PlatformDepartment> results,
+            @JsonProperty("results") List<PlatformDepartmentReference> results,
             @JsonProperty("has_more") boolean hasMore,
             @JsonProperty("next_cursor") JsonNullable<String> nextCursor,
             @JsonProperty("request_id") String requestId) {
@@ -64,7 +64,7 @@ public class PlatformListDepartmentsResponse {
     }
     
     public PlatformListDepartmentsResponse(
-            List<PlatformDepartment> results,
+            List<PlatformDepartmentReference> results,
             boolean hasMore,
             String requestId) {
         this(results, hasMore, JsonNullable.undefined(),
@@ -75,7 +75,7 @@ public class PlatformListDepartmentsResponse {
      * The departments on this page, ordered by display_name and then by department_id.
      */
     @JsonIgnore
-    public List<PlatformDepartment> results() {
+    public List<PlatformDepartmentReference> results() {
         return results;
     }
 
@@ -111,7 +111,7 @@ public class PlatformListDepartmentsResponse {
     /**
      * The departments on this page, ordered by display_name and then by department_id.
      */
-    public PlatformListDepartmentsResponse withResults(List<PlatformDepartment> results) {
+    public PlatformListDepartmentsResponse withResults(List<PlatformDepartmentReference> results) {
         Utils.checkNotNull(results, "results");
         this.results = results;
         return this;
@@ -188,7 +188,7 @@ public class PlatformListDepartmentsResponse {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<PlatformDepartment> results;
+        private List<PlatformDepartmentReference> results;
 
         private Boolean hasMore;
 
@@ -204,7 +204,7 @@ public class PlatformListDepartmentsResponse {
         /**
          * The departments on this page, ordered by display_name and then by department_id.
          */
-        public Builder results(List<PlatformDepartment> results) {
+        public Builder results(List<PlatformDepartmentReference> results) {
             Utils.checkNotNull(results, "results");
             this.results = results;
             return this;
