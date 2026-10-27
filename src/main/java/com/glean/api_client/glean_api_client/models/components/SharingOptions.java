@@ -27,7 +27,7 @@ import java.util.Optional;
 public class SharingOptions {
     /**
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Field is deprecated.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("enabled")
@@ -50,7 +50,7 @@ public class SharingOptions {
 
     /**
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Field is deprecated.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("anyoneWithLinkEnabled")
@@ -121,7 +121,7 @@ public class SharingOptions {
 
     /**
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Field is deprecated.
      */
     @Deprecated
     @JsonIgnore
@@ -147,7 +147,7 @@ public class SharingOptions {
 
     /**
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Field is deprecated.
      */
     @Deprecated
     @JsonIgnore
@@ -195,7 +195,7 @@ public class SharingOptions {
 
     /**
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Field is deprecated.
      */
     @Deprecated
     public SharingOptions withEnabled(boolean enabled) {
@@ -207,7 +207,7 @@ public class SharingOptions {
 
     /**
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Field is deprecated.
      */
     @Deprecated
     public SharingOptions withEnabled(Optional<Boolean> enabled) {
@@ -256,7 +256,7 @@ public class SharingOptions {
 
     /**
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Field is deprecated.
      */
     @Deprecated
     public SharingOptions withAnyoneWithLinkEnabled(boolean anyoneWithLinkEnabled) {
@@ -268,7 +268,7 @@ public class SharingOptions {
 
     /**
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Field is deprecated.
      */
     @Deprecated
     public SharingOptions withAnyoneWithLinkEnabled(Optional<Boolean> anyoneWithLinkEnabled) {
@@ -422,7 +422,7 @@ public class SharingOptions {
 
         /**
          * 
-         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Field is deprecated.
          */
         @Deprecated
         public Builder enabled(boolean enabled) {
@@ -433,7 +433,7 @@ public class SharingOptions {
 
         /**
          * 
-         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Field is deprecated.
          */
         @Deprecated
         public Builder enabled(Optional<Boolean> enabled) {
@@ -483,7 +483,7 @@ public class SharingOptions {
 
         /**
          * 
-         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Field is deprecated.
          */
         @Deprecated
         public Builder anyoneWithLinkEnabled(boolean anyoneWithLinkEnabled) {
@@ -494,7 +494,7 @@ public class SharingOptions {
 
         /**
          * 
-         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Field is deprecated.
          */
         @Deprecated
         public Builder anyoneWithLinkEnabled(Optional<Boolean> anyoneWithLinkEnabled) {
