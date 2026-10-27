@@ -1,0 +1,9 @@
+# PlatformUsersGetRequest
+
+
+## Fields
+
+| Field                                                                        | Type                                                                         | Required                                                                     | Description                                                                  | Example                                                                      |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `userId`                                                                     | *String*                                                                     | :heavy_check_mark:                                                           | Canonical Glean user ID, as the list returns it.                             | {user_id}                                                                    |
+| `include`                                                                    | List\<[PlatformUserInclude](../../models/components/PlatformUserInclude.md)> | :heavy_minus_sign:                                                           | Optional fields to add to the user. Each value only adds fields.<br/>        |                                                                              |
