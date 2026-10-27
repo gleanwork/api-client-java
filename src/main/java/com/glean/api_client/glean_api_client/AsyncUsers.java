@@ -8,9 +8,13 @@ import static com.glean.api_client.glean_api_client.operations.Operations.AsyncR
 
 import com.glean.api_client.glean_api_client.models.components.PlatformUserFilter;
 import com.glean.api_client.glean_api_client.models.components.PlatformUserInclude;
+import com.glean.api_client.glean_api_client.models.operations.PlatformUsersGetRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformUsersListRequest;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformUsersGetRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformUsersGetResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformUsersListRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformUsersListResponse;
+import com.glean.api_client.glean_api_client.operations.PlatformUsersGet;
 import com.glean.api_client.glean_api_client.operations.PlatformUsersList;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.Long;
@@ -44,8 +48,8 @@ public class AsyncUsers {
      * List users
      * 
      * <p>List the users in the Glean directory, ordered by display_name and then by user_id. The list
-     * includes the same people as the Glean People directory. Inactive users, such as former employees,
-     * are left out unless an is_active filter includes the value "false".
+     * includes the same people as the Glean People directory. Filter by name, email, manager_id, or
+     * department_id to find specific users.
      * 
      * <p>Use the returned user_id values with other Platform APIs, for example as usage limit targets.
      * 
@@ -59,8 +63,8 @@ public class AsyncUsers {
      * List users
      * 
      * <p>List the users in the Glean directory, ordered by display_name and then by user_id. The list
-     * includes the same people as the Glean People directory. Inactive users, such as former employees,
-     * are left out unless an is_active filter includes the value "false".
+     * includes the same people as the Glean People directory. Filter by name, email, manager_id, or
+     * department_id to find specific users.
      * 
      * <p>Use the returned user_id values with other Platform APIs, for example as usage limit targets.
      * 
@@ -76,8 +80,8 @@ public class AsyncUsers {
      * List users
      * 
      * <p>List the users in the Glean directory, ordered by display_name and then by user_id. The list
-     * includes the same people as the Glean People directory. Inactive users, such as former employees,
-     * are left out unless an is_active filter includes the value "false".
+     * includes the same people as the Glean People directory. Filter by name, email, manager_id, or
+     * department_id to find specific users.
      * 
      * <p>Use the returned user_id values with other Platform APIs, for example as usage limit targets.
      * 
@@ -102,6 +106,65 @@ public class AsyncUsers {
                 .build();
         AsyncRequestOperation<PlatformUsersListRequest, PlatformUsersListResponse> operation
               = new PlatformUsersList.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Get user
+     * 
+     * <p>Get one user in the Glean directory by user_id. The user can be any person that the list returns. A
+     * user_id that is not in the directory returns 404 resource_not_found.
+     * 
+     * <p>This includes a deleted user and a person that the People directory does not show. An alias ID of a
+     * merged person returns the person's canonical user_id.
+     * 
+     * @return The async call builder
+     */
+    public PlatformUsersGetRequestBuilder get() {
+        return new PlatformUsersGetRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Get user
+     * 
+     * <p>Get one user in the Glean directory by user_id. The user can be any person that the list returns. A
+     * user_id that is not in the directory returns 404 resource_not_found.
+     * 
+     * <p>This includes a deleted user and a person that the People directory does not show. An alias ID of a
+     * merged person returns the person's canonical user_id.
+     * 
+     * @param userId Canonical Glean user ID, as the list returns it.
+     * @return {@code CompletableFuture<PlatformUsersGetResponse>} - The async response
+     */
+    public CompletableFuture<PlatformUsersGetResponse> get(String userId) {
+        return get(userId, Optional.empty());
+    }
+
+    /**
+     * Get user
+     * 
+     * <p>Get one user in the Glean directory by user_id. The user can be any person that the list returns. A
+     * user_id that is not in the directory returns 404 resource_not_found.
+     * 
+     * <p>This includes a deleted user and a person that the People directory does not show. An alias ID of a
+     * merged person returns the person's canonical user_id.
+     * 
+     * @param userId Canonical Glean user ID, as the list returns it.
+     * @param include Optional fields to add to the user. Each value only adds fields.
+     *         
+     * @return {@code CompletableFuture<PlatformUsersGetResponse>} - The async response
+     */
+    public CompletableFuture<PlatformUsersGetResponse> get(String userId, Optional<? extends List<PlatformUserInclude>> include) {
+        PlatformUsersGetRequest request =
+            PlatformUsersGetRequest
+                .builder()
+                .userId(userId)
+                .include(include)
+                .build();
+        AsyncRequestOperation<PlatformUsersGetRequest, PlatformUsersGetResponse> operation
+              = new PlatformUsersGet.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
