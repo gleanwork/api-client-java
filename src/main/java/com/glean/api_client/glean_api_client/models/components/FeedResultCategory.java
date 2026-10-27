@@ -69,6 +69,7 @@ public class FeedResultCategory {
     public static final FeedResultCategory PROJECT_FOCUS_BLOCK = new FeedResultCategory("PROJECT_FOCUS_BLOCK");
     public static final FeedResultCategory PROJECT_NEXT_STEP = new FeedResultCategory("PROJECT_NEXT_STEP");
     public static final FeedResultCategory DEMO_CARD = new FeedResultCategory("DEMO_CARD");
+    public static final FeedResultCategory PERSONAL_AGENT_NUX = new FeedResultCategory("PERSONAL_AGENT_NUX");
     public static final FeedResultCategory RESOLVE_MEETING_CONFLICT = new FeedResultCategory("RESOLVE_MEETING_CONFLICT");
     public static final FeedResultCategory FINDING_MEETING_ROOM = new FeedResultCategory("FINDING_MEETING_ROOM");
     public static final FeedResultCategory OOO_PLANNER = new FeedResultCategory("OOO_PLANNER");
@@ -83,6 +84,7 @@ public class FeedResultCategory {
     public static final FeedResultCategory MANAGER_INVITE = new FeedResultCategory("MANAGER_INVITE");
     public static final FeedResultCategory ONBOARDING_AUTHORIZATION = new FeedResultCategory("ONBOARDING_AUTHORIZATION");
     public static final FeedResultCategory CHAT_REMINDER = new FeedResultCategory("CHAT_REMINDER");
+    public static final FeedResultCategory DISCOVER = new FeedResultCategory("DISCOVER");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -199,6 +201,7 @@ public class FeedResultCategory {
         map.put("PROJECT_FOCUS_BLOCK", PROJECT_FOCUS_BLOCK);
         map.put("PROJECT_NEXT_STEP", PROJECT_NEXT_STEP);
         map.put("DEMO_CARD", DEMO_CARD);
+        map.put("PERSONAL_AGENT_NUX", PERSONAL_AGENT_NUX);
         map.put("RESOLVE_MEETING_CONFLICT", RESOLVE_MEETING_CONFLICT);
         map.put("FINDING_MEETING_ROOM", FINDING_MEETING_ROOM);
         map.put("OOO_PLANNER", OOO_PLANNER);
@@ -213,6 +216,7 @@ public class FeedResultCategory {
         map.put("MANAGER_INVITE", MANAGER_INVITE);
         map.put("ONBOARDING_AUTHORIZATION", ONBOARDING_AUTHORIZATION);
         map.put("CHAT_REMINDER", CHAT_REMINDER);
+        map.put("DISCOVER", DISCOVER);
         return map;
     }
 
@@ -261,6 +265,7 @@ public class FeedResultCategory {
         map.put("PROJECT_FOCUS_BLOCK", FeedResultCategoryEnum.PROJECT_FOCUS_BLOCK);
         map.put("PROJECT_NEXT_STEP", FeedResultCategoryEnum.PROJECT_NEXT_STEP);
         map.put("DEMO_CARD", FeedResultCategoryEnum.DEMO_CARD);
+        map.put("PERSONAL_AGENT_NUX", FeedResultCategoryEnum.PERSONAL_AGENT_NUX);
         map.put("RESOLVE_MEETING_CONFLICT", FeedResultCategoryEnum.RESOLVE_MEETING_CONFLICT);
         map.put("FINDING_MEETING_ROOM", FeedResultCategoryEnum.FINDING_MEETING_ROOM);
         map.put("OOO_PLANNER", FeedResultCategoryEnum.OOO_PLANNER);
@@ -275,6 +280,7 @@ public class FeedResultCategory {
         map.put("MANAGER_INVITE", FeedResultCategoryEnum.MANAGER_INVITE);
         map.put("ONBOARDING_AUTHORIZATION", FeedResultCategoryEnum.ONBOARDING_AUTHORIZATION);
         map.put("CHAT_REMINDER", FeedResultCategoryEnum.CHAT_REMINDER);
+        map.put("DISCOVER", FeedResultCategoryEnum.DISCOVER);
         return map;
     }
     
@@ -324,6 +330,7 @@ public class FeedResultCategory {
         PROJECT_FOCUS_BLOCK("PROJECT_FOCUS_BLOCK"),
         PROJECT_NEXT_STEP("PROJECT_NEXT_STEP"),
         DEMO_CARD("DEMO_CARD"),
+        PERSONAL_AGENT_NUX("PERSONAL_AGENT_NUX"),
         RESOLVE_MEETING_CONFLICT("RESOLVE_MEETING_CONFLICT"),
         FINDING_MEETING_ROOM("FINDING_MEETING_ROOM"),
         OOO_PLANNER("OOO_PLANNER"),
@@ -337,7 +344,8 @@ public class FeedResultCategory {
         CREATE_AGENT("CREATE_AGENT"),
         MANAGER_INVITE("MANAGER_INVITE"),
         ONBOARDING_AUTHORIZATION("ONBOARDING_AUTHORIZATION"),
-        CHAT_REMINDER("CHAT_REMINDER"),;
+        CHAT_REMINDER("CHAT_REMINDER"),
+        DISCOVER("DISCOVER"),;
 
         private final String value;
 
