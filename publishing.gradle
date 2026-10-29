@@ -47,7 +47,7 @@ afterEvaluate {
                     description = config.description
                     url = 'https://github.com/gleanwork/api-client-java'
                     scm {
-                        url = 'github.com/gleanwork/api-client-java'
+                        url = 'https://github.com/gleanwork/api-client-java'
                         connection = 'scm:git:ssh://git@github.com/gleanwork/api-client-java.git'
                     }
                     licenses {
