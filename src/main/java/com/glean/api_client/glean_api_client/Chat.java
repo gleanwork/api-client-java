@@ -6,15 +6,20 @@ package com.glean.api_client.glean_api_client;
 
 import static com.glean.api_client.glean_api_client.operations.Operations.RequestOperation;
 
+import com.glean.api_client.glean_api_client.models.components.PlatformChatUpdateRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformChatCreateRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformChatCreateRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PlatformChatCreateResponse;
 import com.glean.api_client.glean_api_client.models.operations.PlatformChatCreateStreamRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformChatCreateStreamRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.PlatformChatCreateStreamResponse;
+import com.glean.api_client.glean_api_client.models.operations.PlatformChatUpdateRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.PlatformChatUpdateResponse;
 import com.glean.api_client.glean_api_client.operations.PlatformChatCreate;
 import com.glean.api_client.glean_api_client.operations.PlatformChatCreateStream;
+import com.glean.api_client.glean_api_client.operations.PlatformChatUpdate;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import java.lang.String;
 
 
 public class Chat {
@@ -65,6 +70,39 @@ public class Chat {
     public PlatformChatCreateResponse create(PlatformChatCreateRequest request) {
         RequestOperation<PlatformChatCreateRequest, PlatformChatCreateResponse> operation
               = new PlatformChatCreate.Sync(sdkConfiguration, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Update a chat
+     * 
+     * <p>Update the name of a chat. Only the chat owner can update it.
+     * 
+     * @return The call builder
+     */
+    public PlatformChatUpdateRequestBuilder update() {
+        return new PlatformChatUpdateRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Update a chat
+     * 
+     * <p>Update the name of a chat. Only the chat owner can update it.
+     * 
+     * @param chatId The ID of the chat to update.
+     * @param platformChatUpdateRequest The fields to update on a chat.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformChatUpdateResponse update(String chatId, PlatformChatUpdateRequest platformChatUpdateRequest) {
+        com.glean.api_client.glean_api_client.models.operations.PlatformChatUpdateRequest request =
+            com.glean.api_client.glean_api_client.models.operations.PlatformChatUpdateRequest
+                .builder()
+                .chatId(chatId)
+                .platformChatUpdateRequest(platformChatUpdateRequest)
+                .build();
+        RequestOperation<com.glean.api_client.glean_api_client.models.operations.PlatformChatUpdateRequest, PlatformChatUpdateResponse> operation
+              = new PlatformChatUpdate.Sync(sdkConfiguration, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

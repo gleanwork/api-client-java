@@ -32,18 +32,31 @@ public class Message {
     @JsonProperty("content")
     private Optional<? extends List<MessageTextBlock>> content;
 
+    /**
+     * An opaque token that represents this particular agent message. Populated only on `GLEAN_AI` messages
+     * in responses. To record feedback, pass the token of the message being rated (typically the final
+     * `GLEAN_AI` message of the run) as the single entry in `trackingTokens` to `/feedback`, with
+     * `category: CHAT`.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("messageTrackingToken")
+    private Optional<String> messageTrackingToken;
+
     @JsonCreator
     public Message(
             @JsonProperty("role") Optional<String> role,
-            @JsonProperty("content") Optional<? extends List<MessageTextBlock>> content) {
+            @JsonProperty("content") Optional<? extends List<MessageTextBlock>> content,
+            @JsonProperty("messageTrackingToken") Optional<String> messageTrackingToken) {
         Utils.checkNotNull(role, "role");
         Utils.checkNotNull(content, "content");
+        Utils.checkNotNull(messageTrackingToken, "messageTrackingToken");
         this.role = role;
         this.content = content;
+        this.messageTrackingToken = messageTrackingToken;
     }
     
     public Message() {
-        this(Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -61,6 +74,17 @@ public class Message {
     @JsonIgnore
     public Optional<List<MessageTextBlock>> content() {
         return (Optional<List<MessageTextBlock>>) content;
+    }
+
+    /**
+     * An opaque token that represents this particular agent message. Populated only on `GLEAN_AI` messages
+     * in responses. To record feedback, pass the token of the message being rated (typically the final
+     * `GLEAN_AI` message of the run) as the single entry in `trackingTokens` to `/feedback`, with
+     * `category: CHAT`.
+     */
+    @JsonIgnore
+    public Optional<String> messageTrackingToken() {
+        return messageTrackingToken;
     }
 
     public static Builder builder() {
@@ -106,6 +130,31 @@ public class Message {
         return this;
     }
 
+    /**
+     * An opaque token that represents this particular agent message. Populated only on `GLEAN_AI` messages
+     * in responses. To record feedback, pass the token of the message being rated (typically the final
+     * `GLEAN_AI` message of the run) as the single entry in `trackingTokens` to `/feedback`, with
+     * `category: CHAT`.
+     */
+    public Message withMessageTrackingToken(String messageTrackingToken) {
+        Utils.checkNotNull(messageTrackingToken, "messageTrackingToken");
+        this.messageTrackingToken = Optional.ofNullable(messageTrackingToken);
+        return this;
+    }
+
+
+    /**
+     * An opaque token that represents this particular agent message. Populated only on `GLEAN_AI` messages
+     * in responses. To record feedback, pass the token of the message being rated (typically the final
+     * `GLEAN_AI` message of the run) as the single entry in `trackingTokens` to `/feedback`, with
+     * `category: CHAT`.
+     */
+    public Message withMessageTrackingToken(Optional<String> messageTrackingToken) {
+        Utils.checkNotNull(messageTrackingToken, "messageTrackingToken");
+        this.messageTrackingToken = messageTrackingToken;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -117,20 +166,22 @@ public class Message {
         Message other = (Message) o;
         return 
             Utils.enhancedDeepEquals(this.role, other.role) &&
-            Utils.enhancedDeepEquals(this.content, other.content);
+            Utils.enhancedDeepEquals(this.content, other.content) &&
+            Utils.enhancedDeepEquals(this.messageTrackingToken, other.messageTrackingToken);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            role, content);
+            role, content, messageTrackingToken);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Message.class,
                 "role", role,
-                "content", content);
+                "content", content,
+                "messageTrackingToken", messageTrackingToken);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -139,6 +190,8 @@ public class Message {
         private Optional<String> role = Optional.empty();
 
         private Optional<? extends List<MessageTextBlock>> content = Optional.empty();
+
+        private Optional<String> messageTrackingToken = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -182,10 +235,35 @@ public class Message {
             return this;
         }
 
+
+        /**
+         * An opaque token that represents this particular agent message. Populated only on `GLEAN_AI` messages
+         * in responses. To record feedback, pass the token of the message being rated (typically the final
+         * `GLEAN_AI` message of the run) as the single entry in `trackingTokens` to `/feedback`, with
+         * `category: CHAT`.
+         */
+        public Builder messageTrackingToken(String messageTrackingToken) {
+            Utils.checkNotNull(messageTrackingToken, "messageTrackingToken");
+            this.messageTrackingToken = Optional.ofNullable(messageTrackingToken);
+            return this;
+        }
+
+        /**
+         * An opaque token that represents this particular agent message. Populated only on `GLEAN_AI` messages
+         * in responses. To record feedback, pass the token of the message being rated (typically the final
+         * `GLEAN_AI` message of the run) as the single entry in `trackingTokens` to `/feedback`, with
+         * `category: CHAT`.
+         */
+        public Builder messageTrackingToken(Optional<String> messageTrackingToken) {
+            Utils.checkNotNull(messageTrackingToken, "messageTrackingToken");
+            this.messageTrackingToken = messageTrackingToken;
+            return this;
+        }
+
         public Message build() {
 
             return new Message(
-                role, content);
+                role, content, messageTrackingToken);
         }
 
     }
