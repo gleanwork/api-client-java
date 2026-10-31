@@ -82,6 +82,7 @@ public class JustificationType {
     public static final JustificationType PROJECT_FOCUS_BLOCK = new JustificationType("PROJECT_FOCUS_BLOCK");
     public static final JustificationType PROJECT_NEXT_STEP = new JustificationType("PROJECT_NEXT_STEP");
     public static final JustificationType DEMO_CARD = new JustificationType("DEMO_CARD");
+    public static final JustificationType PERSONAL_AGENT_NUX = new JustificationType("PERSONAL_AGENT_NUX");
     public static final JustificationType RESOLVE_MEETING_CONFLICT = new JustificationType("RESOLVE_MEETING_CONFLICT");
     public static final JustificationType FINDING_MEETING_ROOM = new JustificationType("FINDING_MEETING_ROOM");
     public static final JustificationType OOO_PLANNER = new JustificationType("OOO_PLANNER");
@@ -96,6 +97,7 @@ public class JustificationType {
     public static final JustificationType MANAGER_INVITE = new JustificationType("MANAGER_INVITE");
     public static final JustificationType ONBOARDING_AUTHORIZATION = new JustificationType("ONBOARDING_AUTHORIZATION");
     public static final JustificationType CHAT_REMINDER = new JustificationType("CHAT_REMINDER");
+    public static final JustificationType DISCOVER = new JustificationType("DISCOVER");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -225,6 +227,7 @@ public class JustificationType {
         map.put("PROJECT_FOCUS_BLOCK", PROJECT_FOCUS_BLOCK);
         map.put("PROJECT_NEXT_STEP", PROJECT_NEXT_STEP);
         map.put("DEMO_CARD", DEMO_CARD);
+        map.put("PERSONAL_AGENT_NUX", PERSONAL_AGENT_NUX);
         map.put("RESOLVE_MEETING_CONFLICT", RESOLVE_MEETING_CONFLICT);
         map.put("FINDING_MEETING_ROOM", FINDING_MEETING_ROOM);
         map.put("OOO_PLANNER", OOO_PLANNER);
@@ -239,6 +242,7 @@ public class JustificationType {
         map.put("MANAGER_INVITE", MANAGER_INVITE);
         map.put("ONBOARDING_AUTHORIZATION", ONBOARDING_AUTHORIZATION);
         map.put("CHAT_REMINDER", CHAT_REMINDER);
+        map.put("DISCOVER", DISCOVER);
         return map;
     }
 
@@ -300,6 +304,7 @@ public class JustificationType {
         map.put("PROJECT_FOCUS_BLOCK", JustificationTypeEnum.PROJECT_FOCUS_BLOCK);
         map.put("PROJECT_NEXT_STEP", JustificationTypeEnum.PROJECT_NEXT_STEP);
         map.put("DEMO_CARD", JustificationTypeEnum.DEMO_CARD);
+        map.put("PERSONAL_AGENT_NUX", JustificationTypeEnum.PERSONAL_AGENT_NUX);
         map.put("RESOLVE_MEETING_CONFLICT", JustificationTypeEnum.RESOLVE_MEETING_CONFLICT);
         map.put("FINDING_MEETING_ROOM", JustificationTypeEnum.FINDING_MEETING_ROOM);
         map.put("OOO_PLANNER", JustificationTypeEnum.OOO_PLANNER);
@@ -314,6 +319,7 @@ public class JustificationType {
         map.put("MANAGER_INVITE", JustificationTypeEnum.MANAGER_INVITE);
         map.put("ONBOARDING_AUTHORIZATION", JustificationTypeEnum.ONBOARDING_AUTHORIZATION);
         map.put("CHAT_REMINDER", JustificationTypeEnum.CHAT_REMINDER);
+        map.put("DISCOVER", JustificationTypeEnum.DISCOVER);
         return map;
     }
     
@@ -376,6 +382,7 @@ public class JustificationType {
         PROJECT_FOCUS_BLOCK("PROJECT_FOCUS_BLOCK"),
         PROJECT_NEXT_STEP("PROJECT_NEXT_STEP"),
         DEMO_CARD("DEMO_CARD"),
+        PERSONAL_AGENT_NUX("PERSONAL_AGENT_NUX"),
         RESOLVE_MEETING_CONFLICT("RESOLVE_MEETING_CONFLICT"),
         FINDING_MEETING_ROOM("FINDING_MEETING_ROOM"),
         OOO_PLANNER("OOO_PLANNER"),
@@ -389,7 +396,8 @@ public class JustificationType {
         CREATE_AGENT("CREATE_AGENT"),
         MANAGER_INVITE("MANAGER_INVITE"),
         ONBOARDING_AUTHORIZATION("ONBOARDING_AUTHORIZATION"),
-        CHAT_REMINDER("CHAT_REMINDER"),;
+        CHAT_REMINDER("CHAT_REMINDER"),
+        DISCOVER("DISCOVER"),;
 
         private final String value;
 
