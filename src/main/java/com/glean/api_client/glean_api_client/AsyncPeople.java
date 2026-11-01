@@ -121,7 +121,7 @@ public class AsyncPeople {
      * richer information.
      * 
      * @return The async call builder
-     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2026-10-15: Endpoint is deprecated.
+     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2027-01-15: Endpoint is deprecated.
      */
     @Deprecated
     public PostApiIndexV1GetusercountRequestBuilder count() {
@@ -139,7 +139,7 @@ public class AsyncPeople {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<PostApiIndexV1GetusercountResponse>} - The async response
-     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2026-10-15: Endpoint is deprecated.
+     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2027-01-15: Endpoint is deprecated.
      */
     @Deprecated
     public CompletableFuture<PostApiIndexV1GetusercountResponse> count(GetUserCountRequest request) {
