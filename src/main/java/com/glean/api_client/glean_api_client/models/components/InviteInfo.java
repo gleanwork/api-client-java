@@ -46,7 +46,7 @@ public class InviteInfo {
     /**
      * The time this person was invited in ISO format (ISO 8601).
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use ChannelInviteInfo instead.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use ChannelInviteInfo instead.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("inviteTime")
@@ -56,7 +56,7 @@ public class InviteInfo {
     /**
      * The time this person was reminded in ISO format (ISO 8601) if a reminder was sent.
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use ChannelInviteInfo instead.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use ChannelInviteInfo instead.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reminderTime")
@@ -113,7 +113,7 @@ public class InviteInfo {
     /**
      * The time this person was invited in ISO format (ISO 8601).
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use ChannelInviteInfo instead.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use ChannelInviteInfo instead.
      */
     @Deprecated
     @JsonIgnore
@@ -124,7 +124,7 @@ public class InviteInfo {
     /**
      * The time this person was reminded in ISO format (ISO 8601) if a reminder was sent.
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use ChannelInviteInfo instead.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use ChannelInviteInfo instead.
      */
     @Deprecated
     @JsonIgnore
@@ -191,7 +191,7 @@ public class InviteInfo {
     /**
      * The time this person was invited in ISO format (ISO 8601).
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use ChannelInviteInfo instead.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use ChannelInviteInfo instead.
      */
     @Deprecated
     public InviteInfo withInviteTime(OffsetDateTime inviteTime) {
@@ -204,7 +204,7 @@ public class InviteInfo {
     /**
      * The time this person was invited in ISO format (ISO 8601).
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use ChannelInviteInfo instead.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use ChannelInviteInfo instead.
      */
     @Deprecated
     public InviteInfo withInviteTime(Optional<OffsetDateTime> inviteTime) {
@@ -216,7 +216,7 @@ public class InviteInfo {
     /**
      * The time this person was reminded in ISO format (ISO 8601) if a reminder was sent.
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use ChannelInviteInfo instead.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use ChannelInviteInfo instead.
      */
     @Deprecated
     public InviteInfo withReminderTime(OffsetDateTime reminderTime) {
@@ -229,7 +229,7 @@ public class InviteInfo {
     /**
      * The time this person was reminded in ISO format (ISO 8601) if a reminder was sent.
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use ChannelInviteInfo instead.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use ChannelInviteInfo instead.
      */
     @Deprecated
     public InviteInfo withReminderTime(Optional<OffsetDateTime> reminderTime) {
@@ -346,7 +346,7 @@ public class InviteInfo {
         /**
          * The time this person was invited in ISO format (ISO 8601).
          * 
-         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use ChannelInviteInfo instead.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use ChannelInviteInfo instead.
          */
         @Deprecated
         public Builder inviteTime(OffsetDateTime inviteTime) {
@@ -358,7 +358,7 @@ public class InviteInfo {
         /**
          * The time this person was invited in ISO format (ISO 8601).
          * 
-         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use ChannelInviteInfo instead.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use ChannelInviteInfo instead.
          */
         @Deprecated
         public Builder inviteTime(Optional<OffsetDateTime> inviteTime) {
@@ -371,7 +371,7 @@ public class InviteInfo {
         /**
          * The time this person was reminded in ISO format (ISO 8601) if a reminder was sent.
          * 
-         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use ChannelInviteInfo instead.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use ChannelInviteInfo instead.
          */
         @Deprecated
         public Builder reminderTime(OffsetDateTime reminderTime) {
@@ -383,7 +383,7 @@ public class InviteInfo {
         /**
          * The time this person was reminded in ISO format (ISO 8601) if a reminder was sent.
          * 
-         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use ChannelInviteInfo instead.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use ChannelInviteInfo instead.
          */
         @Deprecated
         public Builder reminderTime(Optional<OffsetDateTime> reminderTime) {

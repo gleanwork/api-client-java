@@ -25,7 +25,15 @@ import java.util.Optional;
  */
 public class PlatformIdpGroupFilter {
     /**
-     * The IdP group field to filter on. The supported fields are is_active and provider_instance.
+     * The IdP group field to filter on.
+     * - provider_instance: matches groups from the datasource instance, such as
+     * "okta", ignoring case.
+     * 
+     * <p>- provider: matches groups from the identity provider, such as "okta", ignoring
+     * case.
+     * 
+     * <p>- name: matches groups whose display_name contains the value, ignoring case and
+     * surrounding whitespace. Each value is at most 256 characters.
      */
     @JsonProperty("field")
     private String field;
@@ -63,7 +71,15 @@ public class PlatformIdpGroupFilter {
     }
 
     /**
-     * The IdP group field to filter on. The supported fields are is_active and provider_instance.
+     * The IdP group field to filter on.
+     * - provider_instance: matches groups from the datasource instance, such as
+     * "okta", ignoring case.
+     * 
+     * <p>- provider: matches groups from the identity provider, such as "okta", ignoring
+     * case.
+     * 
+     * <p>- name: matches groups whose display_name contains the value, ignoring case and
+     * surrounding whitespace. Each value is at most 256 characters.
      */
     @JsonIgnore
     public String field() {
@@ -93,7 +109,15 @@ public class PlatformIdpGroupFilter {
 
 
     /**
-     * The IdP group field to filter on. The supported fields are is_active and provider_instance.
+     * The IdP group field to filter on.
+     * - provider_instance: matches groups from the datasource instance, such as
+     * "okta", ignoring case.
+     * 
+     * <p>- provider: matches groups from the identity provider, such as "okta", ignoring
+     * case.
+     * 
+     * <p>- name: matches groups whose display_name contains the value, ignoring case and
+     * surrounding whitespace. Each value is at most 256 characters.
      */
     public PlatformIdpGroupFilter withField(String field) {
         Utils.checkNotNull(field, "field");
@@ -173,7 +197,15 @@ public class PlatformIdpGroupFilter {
 
 
         /**
-         * The IdP group field to filter on. The supported fields are is_active and provider_instance.
+         * The IdP group field to filter on.
+         * - provider_instance: matches groups from the datasource instance, such as
+         * "okta", ignoring case.
+         * 
+         * <p>- provider: matches groups from the identity provider, such as "okta", ignoring
+         * case.
+         * 
+         * <p>- name: matches groups whose display_name contains the value, ignoring case and
+         * surrounding whitespace. Each value is at most 256 characters.
          */
         public Builder field(String field) {
             Utils.checkNotNull(field, "field");
