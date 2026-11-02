@@ -60,7 +60,7 @@ public class SearchResultSnippet {
      * A matching snippet from the document. Query term matches are marked by the unicode characters uE006
      * and uE007. Use 'text' field instead.
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use 'text' field instead.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use 'text' field instead.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("snippet")
@@ -140,7 +140,7 @@ public class SearchResultSnippet {
      * A matching snippet from the document. Query term matches are marked by the unicode characters uE006
      * and uE007. Use 'text' field instead.
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use 'text' field instead.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use 'text' field instead.
      */
     @Deprecated
     @JsonIgnore
@@ -254,7 +254,7 @@ public class SearchResultSnippet {
      * A matching snippet from the document. Query term matches are marked by the unicode characters uE006
      * and uE007. Use 'text' field instead.
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use 'text' field instead.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use 'text' field instead.
      */
     @Deprecated
     public SearchResultSnippet withSnippet(String snippet) {
@@ -268,7 +268,7 @@ public class SearchResultSnippet {
      * A matching snippet from the document. Query term matches are marked by the unicode characters uE006
      * and uE007. Use 'text' field instead.
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use 'text' field instead.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use 'text' field instead.
      */
     @Deprecated
     public SearchResultSnippet withSnippet(Optional<String> snippet) {
@@ -435,7 +435,7 @@ public class SearchResultSnippet {
          * A matching snippet from the document. Query term matches are marked by the unicode characters uE006
          * and uE007. Use 'text' field instead.
          * 
-         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use 'text' field instead.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use 'text' field instead.
          */
         @Deprecated
         public Builder snippet(String snippet) {
@@ -448,7 +448,7 @@ public class SearchResultSnippet {
          * A matching snippet from the document. Query term matches are marked by the unicode characters uE006
          * and uE007. Use 'text' field instead.
          * 
-         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Use 'text' field instead.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Use 'text' field instead.
          */
         @Deprecated
         public Builder snippet(Optional<String> snippet) {
