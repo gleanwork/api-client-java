@@ -11,20 +11,20 @@ public class Admin {
     private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncAdmin asyncSDK;
-    private final Usage usage;
+    private final Oauth oauth;
     private final Idpgroups idpgroups;
     private final AdminAgents agents;
 
     Admin(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
-        this.usage = new Usage(this.sdkConfiguration);
+        this.oauth = new Oauth(this.sdkConfiguration);
         this.idpgroups = new Idpgroups(this.sdkConfiguration);
         this.agents = new AdminAgents(this.sdkConfiguration);
         this.asyncSDK = new AsyncAdmin(this, sdkConfiguration);
     }
 
-    public final Usage usage() {
-        return usage;
+    public final Oauth oauth() {
+        return oauth;
     }
 
     public final Idpgroups idpgroups() {

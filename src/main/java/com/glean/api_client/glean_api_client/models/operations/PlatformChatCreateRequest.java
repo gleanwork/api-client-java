@@ -49,6 +49,18 @@ public class PlatformChatCreateRequest {
     private Optional<String> conversationId;
 
     /**
+     * Model for this turn, matched exactly to an id from GET /api/models. When GET /api/models reports
+     * `endpoints.chat` for the model, `POST /api/chat` does not reject this value at `/model`, except
+     * across a deployment change. Other request checks still apply.
+     * 
+     * <p>The model is requested, not guaranteed: deployment configuration can still run the turn on a
+     * different model.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("model")
+    private Optional<String> model;
+
+    /**
      * Optional configuration for the assistant's text response. When `format.type` is `JSON_SCHEMA`, the
      * response is constrained to the supplied JSON schema and returned in
      * `output[*].content[*].structured_output`. Structured output is not supported when `stream` is true.
@@ -62,22 +74,25 @@ public class PlatformChatCreateRequest {
             @JsonProperty("input") PlatformChatCreateInput input,
             @JsonProperty("store") Optional<Boolean> store,
             @JsonProperty("conversation_id") Optional<String> conversationId,
+            @JsonProperty("model") Optional<String> model,
             @JsonProperty("text") Optional<? extends PlatformChatCreateText> text) {
         Utils.checkNotNull(input, "input");
         Utils.checkNotNull(store, "store");
         Utils.checkNotNull(conversationId, "conversationId");
+        Utils.checkNotNull(model, "model");
         Utils.checkNotNull(text, "text");
         this.input = input;
         this.stream = Builder._SINGLETON_VALUE_Stream.value();
         this.store = store;
         this.conversationId = conversationId;
+        this.model = model;
         this.text = text;
     }
     
     public PlatformChatCreateRequest(
             PlatformChatCreateInput input) {
         this(input, Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -110,6 +125,19 @@ public class PlatformChatCreateRequest {
     @JsonIgnore
     public Optional<String> conversationId() {
         return conversationId;
+    }
+
+    /**
+     * Model for this turn, matched exactly to an id from GET /api/models. When GET /api/models reports
+     * `endpoints.chat` for the model, `POST /api/chat` does not reject this value at `/model`, except
+     * across a deployment change. Other request checks still apply.
+     * 
+     * <p>The model is requested, not guaranteed: deployment configuration can still run the turn on a
+     * different model.
+     */
+    @JsonIgnore
+    public Optional<String> model() {
+        return model;
     }
 
     /**
@@ -181,6 +209,35 @@ public class PlatformChatCreateRequest {
     }
 
     /**
+     * Model for this turn, matched exactly to an id from GET /api/models. When GET /api/models reports
+     * `endpoints.chat` for the model, `POST /api/chat` does not reject this value at `/model`, except
+     * across a deployment change. Other request checks still apply.
+     * 
+     * <p>The model is requested, not guaranteed: deployment configuration can still run the turn on a
+     * different model.
+     */
+    public PlatformChatCreateRequest withModel(String model) {
+        Utils.checkNotNull(model, "model");
+        this.model = Optional.ofNullable(model);
+        return this;
+    }
+
+
+    /**
+     * Model for this turn, matched exactly to an id from GET /api/models. When GET /api/models reports
+     * `endpoints.chat` for the model, `POST /api/chat` does not reject this value at `/model`, except
+     * across a deployment change. Other request checks still apply.
+     * 
+     * <p>The model is requested, not guaranteed: deployment configuration can still run the turn on a
+     * different model.
+     */
+    public PlatformChatCreateRequest withModel(Optional<String> model) {
+        Utils.checkNotNull(model, "model");
+        this.model = model;
+        return this;
+    }
+
+    /**
      * Optional configuration for the assistant's text response. When `format.type` is `JSON_SCHEMA`, the
      * response is constrained to the supplied JSON schema and returned in
      * `output[*].content[*].structured_output`. Structured output is not supported when `stream` is true.
@@ -217,6 +274,7 @@ public class PlatformChatCreateRequest {
             Utils.enhancedDeepEquals(this.stream, other.stream) &&
             Utils.enhancedDeepEquals(this.store, other.store) &&
             Utils.enhancedDeepEquals(this.conversationId, other.conversationId) &&
+            Utils.enhancedDeepEquals(this.model, other.model) &&
             Utils.enhancedDeepEquals(this.text, other.text);
     }
     
@@ -224,7 +282,7 @@ public class PlatformChatCreateRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             input, stream, store,
-            conversationId, text);
+            conversationId, model, text);
     }
     
     @Override
@@ -234,6 +292,7 @@ public class PlatformChatCreateRequest {
                 "stream", stream,
                 "store", store,
                 "conversationId", conversationId,
+                "model", model,
                 "text", text);
     }
 
@@ -245,6 +304,8 @@ public class PlatformChatCreateRequest {
         private Optional<Boolean> store;
 
         private Optional<String> conversationId = Optional.empty();
+
+        private Optional<String> model = Optional.empty();
 
         private Optional<? extends PlatformChatCreateText> text = Optional.empty();
 
@@ -307,6 +368,35 @@ public class PlatformChatCreateRequest {
 
 
         /**
+         * Model for this turn, matched exactly to an id from GET /api/models. When GET /api/models reports
+         * `endpoints.chat` for the model, `POST /api/chat` does not reject this value at `/model`, except
+         * across a deployment change. Other request checks still apply.
+         * 
+         * <p>The model is requested, not guaranteed: deployment configuration can still run the turn on a
+         * different model.
+         */
+        public Builder model(String model) {
+            Utils.checkNotNull(model, "model");
+            this.model = Optional.ofNullable(model);
+            return this;
+        }
+
+        /**
+         * Model for this turn, matched exactly to an id from GET /api/models. When GET /api/models reports
+         * `endpoints.chat` for the model, `POST /api/chat` does not reject this value at `/model`, except
+         * across a deployment change. Other request checks still apply.
+         * 
+         * <p>The model is requested, not guaranteed: deployment configuration can still run the turn on a
+         * different model.
+         */
+        public Builder model(Optional<String> model) {
+            Utils.checkNotNull(model, "model");
+            this.model = model;
+            return this;
+        }
+
+
+        /**
          * Optional configuration for the assistant's text response. When `format.type` is `JSON_SCHEMA`, the
          * response is constrained to the supplied JSON schema and returned in
          * `output[*].content[*].structured_output`. Structured output is not supported when `stream` is true.
@@ -335,7 +425,7 @@ public class PlatformChatCreateRequest {
 
             return new PlatformChatCreateRequest(
                 input, store, conversationId,
-                text);
+                model, text);
         }
 
 

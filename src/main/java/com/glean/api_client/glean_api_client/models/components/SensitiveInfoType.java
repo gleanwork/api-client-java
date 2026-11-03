@@ -20,7 +20,7 @@ import java.util.Optional;
 public class SensitiveInfoType {
     /**
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Field is deprecated.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("likelihoodThreshold")
@@ -50,7 +50,7 @@ public class SensitiveInfoType {
 
     /**
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Field is deprecated.
      */
     @Deprecated
     @SuppressWarnings("unchecked")
@@ -74,7 +74,7 @@ public class SensitiveInfoType {
 
     /**
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Field is deprecated.
      */
     @Deprecated
     public SensitiveInfoType withLikelihoodThreshold(SensitiveInfoTypeLikelihoodThreshold likelihoodThreshold) {
@@ -86,7 +86,7 @@ public class SensitiveInfoType {
 
     /**
      * 
-     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
+     * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Field is deprecated.
      */
     @Deprecated
     public SensitiveInfoType withLikelihoodThreshold(Optional<? extends SensitiveInfoTypeLikelihoodThreshold> likelihoodThreshold) {
@@ -156,7 +156,7 @@ public class SensitiveInfoType {
 
         /**
          * 
-         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Field is deprecated.
          */
         @Deprecated
         public Builder likelihoodThreshold(SensitiveInfoTypeLikelihoodThreshold likelihoodThreshold) {
@@ -167,7 +167,7 @@ public class SensitiveInfoType {
 
         /**
          * 
-         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2026-10-15: Field is deprecated.
+         * @deprecated field: Deprecated on 2026-02-05, removal scheduled for 2027-01-15: Field is deprecated.
          */
         @Deprecated
         public Builder likelihoodThreshold(Optional<? extends SensitiveInfoTypeLikelihoodThreshold> likelihoodThreshold) {
