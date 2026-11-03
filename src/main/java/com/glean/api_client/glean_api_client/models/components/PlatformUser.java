@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -50,12 +49,6 @@ public class PlatformUser {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("alias_emails")
     private Optional<? extends List<String>> aliasEmails;
-
-    /**
-     * Whether the user is active. A user whose type is FORMER_EMPLOYEE is inactive.
-     */
-    @JsonProperty("is_active")
-    private boolean isActive;
 
     /**
      * Person employment status or account type.
@@ -106,7 +99,6 @@ public class PlatformUser {
             @JsonProperty("display_name") String displayName,
             @JsonProperty("email") Optional<String> email,
             @JsonProperty("alias_emails") Optional<? extends List<String>> aliasEmails,
-            @JsonProperty("is_active") boolean isActive,
             @JsonProperty("user_type") Optional<? extends PlatformPersonType> userType,
             @JsonProperty("title") Optional<String> title,
             @JsonProperty("department") Optional<? extends PlatformDepartmentReference> department,
@@ -117,7 +109,6 @@ public class PlatformUser {
         Utils.checkNotNull(displayName, "displayName");
         Utils.checkNotNull(email, "email");
         Utils.checkNotNull(aliasEmails, "aliasEmails");
-        Utils.checkNotNull(isActive, "isActive");
         Utils.checkNotNull(userType, "userType");
         Utils.checkNotNull(title, "title");
         Utils.checkNotNull(department, "department");
@@ -128,7 +119,6 @@ public class PlatformUser {
         this.displayName = displayName;
         this.email = email;
         this.aliasEmails = aliasEmails;
-        this.isActive = isActive;
         this.userType = userType;
         this.title = title;
         this.department = department;
@@ -139,12 +129,11 @@ public class PlatformUser {
     
     public PlatformUser(
             String userId,
-            String displayName,
-            boolean isActive) {
+            String displayName) {
         this(userId, displayName, Optional.empty(),
-            Optional.empty(), isActive, Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -180,14 +169,6 @@ public class PlatformUser {
     @JsonIgnore
     public Optional<List<String>> aliasEmails() {
         return (Optional<List<String>>) aliasEmails;
-    }
-
-    /**
-     * Whether the user is active. A user whose type is FORMER_EMPLOYEE is inactive.
-     */
-    @JsonIgnore
-    public boolean isActive() {
-        return isActive;
     }
 
     /**
@@ -304,15 +285,6 @@ public class PlatformUser {
     public PlatformUser withAliasEmails(Optional<? extends List<String>> aliasEmails) {
         Utils.checkNotNull(aliasEmails, "aliasEmails");
         this.aliasEmails = aliasEmails;
-        return this;
-    }
-
-    /**
-     * Whether the user is active. A user whose type is FORMER_EMPLOYEE is inactive.
-     */
-    public PlatformUser withIsActive(boolean isActive) {
-        Utils.checkNotNull(isActive, "isActive");
-        this.isActive = isActive;
         return this;
     }
 
@@ -446,7 +418,6 @@ public class PlatformUser {
             Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
             Utils.enhancedDeepEquals(this.email, other.email) &&
             Utils.enhancedDeepEquals(this.aliasEmails, other.aliasEmails) &&
-            Utils.enhancedDeepEquals(this.isActive, other.isActive) &&
             Utils.enhancedDeepEquals(this.userType, other.userType) &&
             Utils.enhancedDeepEquals(this.title, other.title) &&
             Utils.enhancedDeepEquals(this.department, other.department) &&
@@ -459,9 +430,9 @@ public class PlatformUser {
     public int hashCode() {
         return Utils.enhancedHash(
             userId, displayName, email,
-            aliasEmails, isActive, userType,
-            title, department, manager,
-            photoUrl, datasourceProfiles);
+            aliasEmails, userType, title,
+            department, manager, photoUrl,
+            datasourceProfiles);
     }
     
     @Override
@@ -471,7 +442,6 @@ public class PlatformUser {
                 "displayName", displayName,
                 "email", email,
                 "aliasEmails", aliasEmails,
-                "isActive", isActive,
                 "userType", userType,
                 "title", title,
                 "department", department,
@@ -490,8 +460,6 @@ public class PlatformUser {
         private Optional<String> email = Optional.empty();
 
         private Optional<? extends List<String>> aliasEmails = Optional.empty();
-
-        private Boolean isActive;
 
         private Optional<? extends PlatformPersonType> userType = Optional.empty();
 
@@ -567,16 +535,6 @@ public class PlatformUser {
         public Builder aliasEmails(Optional<? extends List<String>> aliasEmails) {
             Utils.checkNotNull(aliasEmails, "aliasEmails");
             this.aliasEmails = aliasEmails;
-            return this;
-        }
-
-
-        /**
-         * Whether the user is active. A user whose type is FORMER_EMPLOYEE is inactive.
-         */
-        public Builder isActive(boolean isActive) {
-            Utils.checkNotNull(isActive, "isActive");
-            this.isActive = isActive;
             return this;
         }
 
@@ -700,9 +658,9 @@ public class PlatformUser {
 
             return new PlatformUser(
                 userId, displayName, email,
-                aliasEmails, isActive, userType,
-                title, department, manager,
-                photoUrl, datasourceProfiles);
+                aliasEmails, userType, title,
+                department, manager, photoUrl,
+                datasourceProfiles);
         }
 
     }
