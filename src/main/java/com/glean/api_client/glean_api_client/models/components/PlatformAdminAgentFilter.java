@@ -25,7 +25,10 @@ import java.util.Optional;
  */
 public class PlatformAdminAgentFilter {
     /**
-     * The agent field to filter on. The only supported field is is_active.
+     * The agent field to filter on. name matches agents whose name contains the value. description matches
+     * agents whose description contains the value.
+     * 
+     * <p>Matching ignores case and surrounding whitespace. Each value is at most 256 characters.
      */
     @JsonProperty("field")
     private String field;
@@ -63,7 +66,10 @@ public class PlatformAdminAgentFilter {
     }
 
     /**
-     * The agent field to filter on. The only supported field is is_active.
+     * The agent field to filter on. name matches agents whose name contains the value. description matches
+     * agents whose description contains the value.
+     * 
+     * <p>Matching ignores case and surrounding whitespace. Each value is at most 256 characters.
      */
     @JsonIgnore
     public String field() {
@@ -93,7 +99,10 @@ public class PlatformAdminAgentFilter {
 
 
     /**
-     * The agent field to filter on. The only supported field is is_active.
+     * The agent field to filter on. name matches agents whose name contains the value. description matches
+     * agents whose description contains the value.
+     * 
+     * <p>Matching ignores case and surrounding whitespace. Each value is at most 256 characters.
      */
     public PlatformAdminAgentFilter withField(String field) {
         Utils.checkNotNull(field, "field");
@@ -173,7 +182,10 @@ public class PlatformAdminAgentFilter {
 
 
         /**
-         * The agent field to filter on. The only supported field is is_active.
+         * The agent field to filter on. name matches agents whose name contains the value. description matches
+         * agents whose description contains the value.
+         * 
+         * <p>Matching ignores case and surrounding whitespace. Each value is at most 256 characters.
          */
         public Builder field(String field) {
             Utils.checkNotNull(field, "field");
