@@ -51,6 +51,13 @@ public class PlatformSkillVersion {
     private PlatformPersonReference createdBy;
 
     /**
+     * A lightweight reference to a person, used where a payload merely points at someone.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("updated_by")
+    private Optional<? extends PlatformPersonReference> updatedBy;
+
+    /**
      * Time this version was created.
      */
     @JsonProperty("created_at")
@@ -74,6 +81,7 @@ public class PlatformSkillVersion {
             @JsonProperty("minor_version") long minorVersion,
             @JsonProperty("is_latest") boolean isLatest,
             @JsonProperty("created_by") PlatformPersonReference createdBy,
+            @JsonProperty("updated_by") Optional<? extends PlatformPersonReference> updatedBy,
             @JsonProperty("created_at") OffsetDateTime createdAt,
             @JsonProperty("updated_at") OffsetDateTime updatedAt,
             @JsonProperty("source_provenance") Optional<? extends PlatformSkillSourceProvenance> sourceProvenance) {
@@ -82,6 +90,7 @@ public class PlatformSkillVersion {
         Utils.checkNotNull(minorVersion, "minorVersion");
         Utils.checkNotNull(isLatest, "isLatest");
         Utils.checkNotNull(createdBy, "createdBy");
+        Utils.checkNotNull(updatedBy, "updatedBy");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(updatedAt, "updatedAt");
         Utils.checkNotNull(sourceProvenance, "sourceProvenance");
@@ -90,6 +99,7 @@ public class PlatformSkillVersion {
         this.minorVersion = minorVersion;
         this.isLatest = isLatest;
         this.createdBy = createdBy;
+        this.updatedBy = updatedBy;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.sourceProvenance = sourceProvenance;
@@ -104,8 +114,8 @@ public class PlatformSkillVersion {
             OffsetDateTime createdAt,
             OffsetDateTime updatedAt) {
         this(skillId, version, minorVersion,
-            isLatest, createdBy, createdAt,
-            updatedAt, Optional.empty());
+            isLatest, createdBy, Optional.empty(),
+            createdAt, updatedAt, Optional.empty());
     }
 
     /**
@@ -146,6 +156,15 @@ public class PlatformSkillVersion {
     @JsonIgnore
     public PlatformPersonReference createdBy() {
         return createdBy;
+    }
+
+    /**
+     * A lightweight reference to a person, used where a payload merely points at someone.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<PlatformPersonReference> updatedBy() {
+        return (Optional<PlatformPersonReference>) updatedBy;
     }
 
     /**
@@ -221,6 +240,25 @@ public class PlatformSkillVersion {
     }
 
     /**
+     * A lightweight reference to a person, used where a payload merely points at someone.
+     */
+    public PlatformSkillVersion withUpdatedBy(PlatformPersonReference updatedBy) {
+        Utils.checkNotNull(updatedBy, "updatedBy");
+        this.updatedBy = Optional.ofNullable(updatedBy);
+        return this;
+    }
+
+
+    /**
+     * A lightweight reference to a person, used where a payload merely points at someone.
+     */
+    public PlatformSkillVersion withUpdatedBy(Optional<? extends PlatformPersonReference> updatedBy) {
+        Utils.checkNotNull(updatedBy, "updatedBy");
+        this.updatedBy = updatedBy;
+        return this;
+    }
+
+    /**
      * Time this version was created.
      */
     public PlatformSkillVersion withCreatedAt(OffsetDateTime createdAt) {
@@ -266,6 +304,7 @@ public class PlatformSkillVersion {
             Utils.enhancedDeepEquals(this.minorVersion, other.minorVersion) &&
             Utils.enhancedDeepEquals(this.isLatest, other.isLatest) &&
             Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
             Utils.enhancedDeepEquals(this.sourceProvenance, other.sourceProvenance);
@@ -275,8 +314,8 @@ public class PlatformSkillVersion {
     public int hashCode() {
         return Utils.enhancedHash(
             skillId, version, minorVersion,
-            isLatest, createdBy, createdAt,
-            updatedAt, sourceProvenance);
+            isLatest, createdBy, updatedBy,
+            createdAt, updatedAt, sourceProvenance);
     }
     
     @Override
@@ -287,6 +326,7 @@ public class PlatformSkillVersion {
                 "minorVersion", minorVersion,
                 "isLatest", isLatest,
                 "createdBy", createdBy,
+                "updatedBy", updatedBy,
                 "createdAt", createdAt,
                 "updatedAt", updatedAt,
                 "sourceProvenance", sourceProvenance);
@@ -304,6 +344,8 @@ public class PlatformSkillVersion {
         private Boolean isLatest;
 
         private PlatformPersonReference createdBy;
+
+        private Optional<? extends PlatformPersonReference> updatedBy = Optional.empty();
 
         private OffsetDateTime createdAt;
 
@@ -367,6 +409,25 @@ public class PlatformSkillVersion {
 
 
         /**
+         * A lightweight reference to a person, used where a payload merely points at someone.
+         */
+        public Builder updatedBy(PlatformPersonReference updatedBy) {
+            Utils.checkNotNull(updatedBy, "updatedBy");
+            this.updatedBy = Optional.ofNullable(updatedBy);
+            return this;
+        }
+
+        /**
+         * A lightweight reference to a person, used where a payload merely points at someone.
+         */
+        public Builder updatedBy(Optional<? extends PlatformPersonReference> updatedBy) {
+            Utils.checkNotNull(updatedBy, "updatedBy");
+            this.updatedBy = updatedBy;
+            return this;
+        }
+
+
+        /**
          * Time this version was created.
          */
         public Builder createdAt(OffsetDateTime createdAt) {
@@ -402,8 +463,8 @@ public class PlatformSkillVersion {
 
             return new PlatformSkillVersion(
                 skillId, version, minorVersion,
-                isLatest, createdBy, createdAt,
-                updatedAt, sourceProvenance);
+                isLatest, createdBy, updatedBy,
+                createdAt, updatedAt, sourceProvenance);
         }
 
     }
