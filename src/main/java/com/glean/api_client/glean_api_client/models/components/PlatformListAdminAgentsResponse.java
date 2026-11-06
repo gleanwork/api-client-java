@@ -23,10 +23,10 @@ import org.openapitools.jackson.nullable.JsonNullable;
  */
 public class PlatformListAdminAgentsResponse {
     /**
-     * The agents on this page, ordered by display_name and then by agent_id.
+     * The agents on this page, ordered by name and then by agent_id.
      */
     @JsonProperty("results")
-    private List<PlatformAdminAgent> results;
+    private List<PlatformAgent> results;
 
     /**
      * Whether more agents are available after this page.
@@ -49,7 +49,7 @@ public class PlatformListAdminAgentsResponse {
 
     @JsonCreator
     public PlatformListAdminAgentsResponse(
-            @JsonProperty("results") List<PlatformAdminAgent> results,
+            @JsonProperty("results") List<PlatformAgent> results,
             @JsonProperty("has_more") boolean hasMore,
             @JsonProperty("next_cursor") JsonNullable<String> nextCursor,
             @JsonProperty("request_id") String requestId) {
@@ -64,7 +64,7 @@ public class PlatformListAdminAgentsResponse {
     }
     
     public PlatformListAdminAgentsResponse(
-            List<PlatformAdminAgent> results,
+            List<PlatformAgent> results,
             boolean hasMore,
             String requestId) {
         this(results, hasMore, JsonNullable.undefined(),
@@ -72,10 +72,10 @@ public class PlatformListAdminAgentsResponse {
     }
 
     /**
-     * The agents on this page, ordered by display_name and then by agent_id.
+     * The agents on this page, ordered by name and then by agent_id.
      */
     @JsonIgnore
-    public List<PlatformAdminAgent> results() {
+    public List<PlatformAgent> results() {
         return results;
     }
 
@@ -109,9 +109,9 @@ public class PlatformListAdminAgentsResponse {
 
 
     /**
-     * The agents on this page, ordered by display_name and then by agent_id.
+     * The agents on this page, ordered by name and then by agent_id.
      */
-    public PlatformListAdminAgentsResponse withResults(List<PlatformAdminAgent> results) {
+    public PlatformListAdminAgentsResponse withResults(List<PlatformAgent> results) {
         Utils.checkNotNull(results, "results");
         this.results = results;
         return this;
@@ -188,7 +188,7 @@ public class PlatformListAdminAgentsResponse {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<PlatformAdminAgent> results;
+        private List<PlatformAgent> results;
 
         private Boolean hasMore;
 
@@ -202,9 +202,9 @@ public class PlatformListAdminAgentsResponse {
 
 
         /**
-         * The agents on this page, ordered by display_name and then by agent_id.
+         * The agents on this page, ordered by name and then by agent_id.
          */
-        public Builder results(List<PlatformAdminAgent> results) {
+        public Builder results(List<PlatformAgent> results) {
             Utils.checkNotNull(results, "results");
             this.results = results;
             return this;

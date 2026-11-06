@@ -22,21 +22,40 @@ public class GetChatResponse {
     @JsonProperty("chatResult")
     private Optional<? extends ChatResult> chatResult;
 
+    /**
+     * Pagination cursors and page flags for a getchat message page.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("pagination")
+    private Optional<? extends GetChatPagination> pagination;
+
     @JsonCreator
     public GetChatResponse(
-            @JsonProperty("chatResult") Optional<? extends ChatResult> chatResult) {
+            @JsonProperty("chatResult") Optional<? extends ChatResult> chatResult,
+            @JsonProperty("pagination") Optional<? extends GetChatPagination> pagination) {
         Utils.checkNotNull(chatResult, "chatResult");
+        Utils.checkNotNull(pagination, "pagination");
         this.chatResult = chatResult;
+        this.pagination = pagination;
     }
     
     public GetChatResponse() {
-        this(Optional.empty());
+        this(Optional.empty(), Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<ChatResult> chatResult() {
         return (Optional<ChatResult>) chatResult;
+    }
+
+    /**
+     * Pagination cursors and page flags for a getchat message page.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<GetChatPagination> pagination() {
+        return (Optional<GetChatPagination>) pagination;
     }
 
     public static Builder builder() {
@@ -57,6 +76,25 @@ public class GetChatResponse {
         return this;
     }
 
+    /**
+     * Pagination cursors and page flags for a getchat message page.
+     */
+    public GetChatResponse withPagination(GetChatPagination pagination) {
+        Utils.checkNotNull(pagination, "pagination");
+        this.pagination = Optional.ofNullable(pagination);
+        return this;
+    }
+
+
+    /**
+     * Pagination cursors and page flags for a getchat message page.
+     */
+    public GetChatResponse withPagination(Optional<? extends GetChatPagination> pagination) {
+        Utils.checkNotNull(pagination, "pagination");
+        this.pagination = pagination;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -67,25 +105,29 @@ public class GetChatResponse {
         }
         GetChatResponse other = (GetChatResponse) o;
         return 
-            Utils.enhancedDeepEquals(this.chatResult, other.chatResult);
+            Utils.enhancedDeepEquals(this.chatResult, other.chatResult) &&
+            Utils.enhancedDeepEquals(this.pagination, other.pagination);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            chatResult);
+            chatResult, pagination);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetChatResponse.class,
-                "chatResult", chatResult);
+                "chatResult", chatResult,
+                "pagination", pagination);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
         private Optional<? extends ChatResult> chatResult = Optional.empty();
+
+        private Optional<? extends GetChatPagination> pagination = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -104,10 +146,29 @@ public class GetChatResponse {
             return this;
         }
 
+
+        /**
+         * Pagination cursors and page flags for a getchat message page.
+         */
+        public Builder pagination(GetChatPagination pagination) {
+            Utils.checkNotNull(pagination, "pagination");
+            this.pagination = Optional.ofNullable(pagination);
+            return this;
+        }
+
+        /**
+         * Pagination cursors and page flags for a getchat message page.
+         */
+        public Builder pagination(Optional<? extends GetChatPagination> pagination) {
+            Utils.checkNotNull(pagination, "pagination");
+            this.pagination = pagination;
+            return this;
+        }
+
         public GetChatResponse build() {
 
             return new GetChatResponse(
-                chatResult);
+                chatResult, pagination);
         }
 
     }

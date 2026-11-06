@@ -29,6 +29,7 @@ public class PlatformProblemDetailCode {
     public static final PlatformProblemDetailCode INVALID_REQUEST = new PlatformProblemDetailCode("invalid_request");
     public static final PlatformProblemDetailCode MISSING_REQUIRED_FIELD = new PlatformProblemDetailCode("missing_required_field");
     public static final PlatformProblemDetailCode INVALID_PARAMETER = new PlatformProblemDetailCode("invalid_parameter");
+    public static final PlatformProblemDetailCode UNSUPPORTED_ACTION_TARGET = new PlatformProblemDetailCode("unsupported_action_target");
     public static final PlatformProblemDetailCode INVALID_CURSOR = new PlatformProblemDetailCode("invalid_cursor");
     public static final PlatformProblemDetailCode EXPIRED_CURSOR = new PlatformProblemDetailCode("expired_cursor");
     public static final PlatformProblemDetailCode INVALID_FILTER = new PlatformProblemDetailCode("invalid_filter");
@@ -125,6 +126,7 @@ public class PlatformProblemDetailCode {
         map.put("invalid_request", INVALID_REQUEST);
         map.put("missing_required_field", MISSING_REQUIRED_FIELD);
         map.put("invalid_parameter", INVALID_PARAMETER);
+        map.put("unsupported_action_target", UNSUPPORTED_ACTION_TARGET);
         map.put("invalid_cursor", INVALID_CURSOR);
         map.put("expired_cursor", EXPIRED_CURSOR);
         map.put("invalid_filter", INVALID_FILTER);
@@ -153,6 +155,7 @@ public class PlatformProblemDetailCode {
         map.put("invalid_request", PlatformProblemDetailCodeEnum.INVALID_REQUEST);
         map.put("missing_required_field", PlatformProblemDetailCodeEnum.MISSING_REQUIRED_FIELD);
         map.put("invalid_parameter", PlatformProblemDetailCodeEnum.INVALID_PARAMETER);
+        map.put("unsupported_action_target", PlatformProblemDetailCodeEnum.UNSUPPORTED_ACTION_TARGET);
         map.put("invalid_cursor", PlatformProblemDetailCodeEnum.INVALID_CURSOR);
         map.put("expired_cursor", PlatformProblemDetailCodeEnum.EXPIRED_CURSOR);
         map.put("invalid_filter", PlatformProblemDetailCodeEnum.INVALID_FILTER);
@@ -182,6 +185,7 @@ public class PlatformProblemDetailCode {
         INVALID_REQUEST("invalid_request"),
         MISSING_REQUIRED_FIELD("missing_required_field"),
         INVALID_PARAMETER("invalid_parameter"),
+        UNSUPPORTED_ACTION_TARGET("unsupported_action_target"),
         INVALID_CURSOR("invalid_cursor"),
         EXPIRED_CURSOR("expired_cursor"),
         INVALID_FILTER("invalid_filter"),

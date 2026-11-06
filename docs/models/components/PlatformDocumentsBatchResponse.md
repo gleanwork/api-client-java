@@ -1,0 +1,10 @@
+# PlatformDocumentsBatchResponse
+
+
+## Fields
+
+| Field                                                                                            | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `results`                                                                                        | List\<[PlatformDocumentsBatchResult](../../models/components/PlatformDocumentsBatchResult.md)>   | :heavy_check_mark:                                                                               | Found documents, correlated by index into document_specs.                                        |
+| `warnings`                                                                                       | List\<[PlatformDocumentsBatchWarning](../../models/components/PlatformDocumentsBatchWarning.md)> | :heavy_check_mark:                                                                               | Complete per-item failures. Empty when every spec was found.                                     |
+| `requestId`                                                                                      | *String*                                                                                         | :heavy_check_mark:                                                                               | Platform-generated request ID for support correlation.                                           |
