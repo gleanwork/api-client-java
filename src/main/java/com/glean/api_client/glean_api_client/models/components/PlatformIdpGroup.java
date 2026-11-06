@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
-import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 
@@ -44,30 +43,20 @@ public class PlatformIdpGroup {
     @JsonProperty("provider_instance")
     private String providerInstance;
 
-    /**
-     * Whether Glean loaded the group from the directory. A group that only a usage limit names is
-     * inactive.
-     */
-    @JsonProperty("is_active")
-    private boolean isActive;
-
     @JsonCreator
     public PlatformIdpGroup(
             @JsonProperty("idp_group_id") String idpGroupId,
             @JsonProperty("display_name") String displayName,
             @JsonProperty("provider") String provider,
-            @JsonProperty("provider_instance") String providerInstance,
-            @JsonProperty("is_active") boolean isActive) {
+            @JsonProperty("provider_instance") String providerInstance) {
         Utils.checkNotNull(idpGroupId, "idpGroupId");
         Utils.checkNotNull(displayName, "displayName");
         Utils.checkNotNull(provider, "provider");
         Utils.checkNotNull(providerInstance, "providerInstance");
-        Utils.checkNotNull(isActive, "isActive");
         this.idpGroupId = idpGroupId;
         this.displayName = displayName;
         this.provider = provider;
         this.providerInstance = providerInstance;
-        this.isActive = isActive;
     }
 
     /**
@@ -102,15 +91,6 @@ public class PlatformIdpGroup {
     @JsonIgnore
     public String providerInstance() {
         return providerInstance;
-    }
-
-    /**
-     * Whether Glean loaded the group from the directory. A group that only a usage limit names is
-     * inactive.
-     */
-    @JsonIgnore
-    public boolean isActive() {
-        return isActive;
     }
 
     public static Builder builder() {
@@ -156,16 +136,6 @@ public class PlatformIdpGroup {
         return this;
     }
 
-    /**
-     * Whether Glean loaded the group from the directory. A group that only a usage limit names is
-     * inactive.
-     */
-    public PlatformIdpGroup withIsActive(boolean isActive) {
-        Utils.checkNotNull(isActive, "isActive");
-        this.isActive = isActive;
-        return this;
-    }
-
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -179,15 +149,14 @@ public class PlatformIdpGroup {
             Utils.enhancedDeepEquals(this.idpGroupId, other.idpGroupId) &&
             Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
             Utils.enhancedDeepEquals(this.provider, other.provider) &&
-            Utils.enhancedDeepEquals(this.providerInstance, other.providerInstance) &&
-            Utils.enhancedDeepEquals(this.isActive, other.isActive);
+            Utils.enhancedDeepEquals(this.providerInstance, other.providerInstance);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             idpGroupId, displayName, provider,
-            providerInstance, isActive);
+            providerInstance);
     }
     
     @Override
@@ -196,8 +165,7 @@ public class PlatformIdpGroup {
                 "idpGroupId", idpGroupId,
                 "displayName", displayName,
                 "provider", provider,
-                "providerInstance", providerInstance,
-                "isActive", isActive);
+                "providerInstance", providerInstance);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -210,8 +178,6 @@ public class PlatformIdpGroup {
         private String provider;
 
         private String providerInstance;
-
-        private Boolean isActive;
 
         private Builder() {
           // force use of static builder() method
@@ -259,22 +225,11 @@ public class PlatformIdpGroup {
             return this;
         }
 
-
-        /**
-         * Whether Glean loaded the group from the directory. A group that only a usage limit names is
-         * inactive.
-         */
-        public Builder isActive(boolean isActive) {
-            Utils.checkNotNull(isActive, "isActive");
-            this.isActive = isActive;
-            return this;
-        }
-
         public PlatformIdpGroup build() {
 
             return new PlatformIdpGroup(
                 idpGroupId, displayName, provider,
-                providerInstance, isActive);
+                providerInstance);
         }
 
     }
