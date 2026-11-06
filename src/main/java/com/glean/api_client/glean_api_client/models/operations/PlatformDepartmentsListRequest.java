@@ -34,12 +34,11 @@ public class PlatformDepartmentsListRequest {
     private Optional<String> cursor;
 
     /**
-     * JSON-encoded filters that choose which departments are returned. The only supported field is
-     * is_active, with the values "true" and "false" and the operator EQUALS. Multiple values OR within a
-     * filter.
+     * JSON-encoded filters that choose which departments are returned. The only supported field is name,
+     * with the operator EQUALS. Multiple values OR within a filter.
      * 
-     * <p>Multiple filters AND together. Without an is_active filter, only active departments are returned. To
-     * return active and inactive departments, send [{"field":"is_active","values":["true","false"]}].
+     * <p>The field may appear in only one filter. A value that matches no department returns no departments
+     * rather than an error.
      */
     @SpeakeasyMetadata("queryParam:serialization=json,name=filters")
     private Optional<? extends List<PlatformDepartmentFilter>> filters;
@@ -79,12 +78,11 @@ public class PlatformDepartmentsListRequest {
     }
 
     /**
-     * JSON-encoded filters that choose which departments are returned. The only supported field is
-     * is_active, with the values "true" and "false" and the operator EQUALS. Multiple values OR within a
-     * filter.
+     * JSON-encoded filters that choose which departments are returned. The only supported field is name,
+     * with the operator EQUALS. Multiple values OR within a filter.
      * 
-     * <p>Multiple filters AND together. Without an is_active filter, only active departments are returned. To
-     * return active and inactive departments, send [{"field":"is_active","values":["true","false"]}].
+     * <p>The field may appear in only one filter. A value that matches no department returns no departments
+     * rather than an error.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -138,12 +136,11 @@ public class PlatformDepartmentsListRequest {
     }
 
     /**
-     * JSON-encoded filters that choose which departments are returned. The only supported field is
-     * is_active, with the values "true" and "false" and the operator EQUALS. Multiple values OR within a
-     * filter.
+     * JSON-encoded filters that choose which departments are returned. The only supported field is name,
+     * with the operator EQUALS. Multiple values OR within a filter.
      * 
-     * <p>Multiple filters AND together. Without an is_active filter, only active departments are returned. To
-     * return active and inactive departments, send [{"field":"is_active","values":["true","false"]}].
+     * <p>The field may appear in only one filter. A value that matches no department returns no departments
+     * rather than an error.
      */
     public PlatformDepartmentsListRequest withFilters(List<PlatformDepartmentFilter> filters) {
         Utils.checkNotNull(filters, "filters");
@@ -153,12 +150,11 @@ public class PlatformDepartmentsListRequest {
 
 
     /**
-     * JSON-encoded filters that choose which departments are returned. The only supported field is
-     * is_active, with the values "true" and "false" and the operator EQUALS. Multiple values OR within a
-     * filter.
+     * JSON-encoded filters that choose which departments are returned. The only supported field is name,
+     * with the operator EQUALS. Multiple values OR within a filter.
      * 
-     * <p>Multiple filters AND together. Without an is_active filter, only active departments are returned. To
-     * return active and inactive departments, send [{"field":"is_active","values":["true","false"]}].
+     * <p>The field may appear in only one filter. A value that matches no department returns no departments
+     * rather than an error.
      */
     public PlatformDepartmentsListRequest withFilters(Optional<? extends List<PlatformDepartmentFilter>> filters) {
         Utils.checkNotNull(filters, "filters");
@@ -250,12 +246,11 @@ public class PlatformDepartmentsListRequest {
 
 
         /**
-         * JSON-encoded filters that choose which departments are returned. The only supported field is
-         * is_active, with the values "true" and "false" and the operator EQUALS. Multiple values OR within a
-         * filter.
+         * JSON-encoded filters that choose which departments are returned. The only supported field is name,
+         * with the operator EQUALS. Multiple values OR within a filter.
          * 
-         * <p>Multiple filters AND together. Without an is_active filter, only active departments are returned. To
-         * return active and inactive departments, send [{"field":"is_active","values":["true","false"]}].
+         * <p>The field may appear in only one filter. A value that matches no department returns no departments
+         * rather than an error.
          */
         public Builder filters(List<PlatformDepartmentFilter> filters) {
             Utils.checkNotNull(filters, "filters");
@@ -264,12 +259,11 @@ public class PlatformDepartmentsListRequest {
         }
 
         /**
-         * JSON-encoded filters that choose which departments are returned. The only supported field is
-         * is_active, with the values "true" and "false" and the operator EQUALS. Multiple values OR within a
-         * filter.
+         * JSON-encoded filters that choose which departments are returned. The only supported field is name,
+         * with the operator EQUALS. Multiple values OR within a filter.
          * 
-         * <p>Multiple filters AND together. Without an is_active filter, only active departments are returned. To
-         * return active and inactive departments, send [{"field":"is_active","values":["true","false"]}].
+         * <p>The field may appear in only one filter. A value that matches no department returns no departments
+         * rather than an error.
          */
         public Builder filters(Optional<? extends List<PlatformDepartmentFilter>> filters) {
             Utils.checkNotNull(filters, "filters");

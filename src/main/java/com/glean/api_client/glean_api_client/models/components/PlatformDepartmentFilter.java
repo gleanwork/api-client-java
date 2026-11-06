@@ -25,7 +25,12 @@ import java.util.Optional;
  */
 public class PlatformDepartmentFilter {
     /**
-     * The department field to filter on. The only supported field is is_active.
+     * The department field to filter on. The only supported field is name, which matches departments whose
+     * display_name contains the value, ignoring case and surrounding whitespace. Each value is at most 256
+     * characters.
+     * 
+     * <p>To find the department with an exact name, such as a department_name from a usage limit response,
+     * filter by the name and compare display_name exactly.
      */
     @JsonProperty("field")
     private String field;
@@ -63,7 +68,12 @@ public class PlatformDepartmentFilter {
     }
 
     /**
-     * The department field to filter on. The only supported field is is_active.
+     * The department field to filter on. The only supported field is name, which matches departments whose
+     * display_name contains the value, ignoring case and surrounding whitespace. Each value is at most 256
+     * characters.
+     * 
+     * <p>To find the department with an exact name, such as a department_name from a usage limit response,
+     * filter by the name and compare display_name exactly.
      */
     @JsonIgnore
     public String field() {
@@ -93,7 +103,12 @@ public class PlatformDepartmentFilter {
 
 
     /**
-     * The department field to filter on. The only supported field is is_active.
+     * The department field to filter on. The only supported field is name, which matches departments whose
+     * display_name contains the value, ignoring case and surrounding whitespace. Each value is at most 256
+     * characters.
+     * 
+     * <p>To find the department with an exact name, such as a department_name from a usage limit response,
+     * filter by the name and compare display_name exactly.
      */
     public PlatformDepartmentFilter withField(String field) {
         Utils.checkNotNull(field, "field");
@@ -173,7 +188,12 @@ public class PlatformDepartmentFilter {
 
 
         /**
-         * The department field to filter on. The only supported field is is_active.
+         * The department field to filter on. The only supported field is name, which matches departments whose
+         * display_name contains the value, ignoring case and surrounding whitespace. Each value is at most 256
+         * characters.
+         * 
+         * <p>To find the department with an exact name, such as a department_name from a usage limit response,
+         * filter by the name and compare display_name exactly.
          */
         public Builder field(String field) {
             Utils.checkNotNull(field, "field");
