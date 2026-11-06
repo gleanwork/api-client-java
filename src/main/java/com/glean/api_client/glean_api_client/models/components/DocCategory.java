@@ -46,6 +46,7 @@ public class DocCategory {
     public static final DocCategory AGENTS = new DocCategory("AGENTS");
     public static final DocCategory AI_CONVERSATION = new DocCategory("AI_CONVERSATION");
     public static final DocCategory AI_ARTIFACT = new DocCategory("AI_ARTIFACT");
+    public static final DocCategory UGC_SKILL = new DocCategory("UGC_SKILL");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -139,6 +140,7 @@ public class DocCategory {
         map.put("AGENTS", AGENTS);
         map.put("AI_CONVERSATION", AI_CONVERSATION);
         map.put("AI_ARTIFACT", AI_ARTIFACT);
+        map.put("UGC_SKILL", UGC_SKILL);
         return map;
     }
 
@@ -164,6 +166,7 @@ public class DocCategory {
         map.put("AGENTS", DocCategoryEnum.AGENTS);
         map.put("AI_CONVERSATION", DocCategoryEnum.AI_CONVERSATION);
         map.put("AI_ARTIFACT", DocCategoryEnum.AI_ARTIFACT);
+        map.put("UGC_SKILL", DocCategoryEnum.UGC_SKILL);
         return map;
     }
     
@@ -189,7 +192,8 @@ public class DocCategory {
         CALENDAR("CALENDAR"),
         AGENTS("AGENTS"),
         AI_CONVERSATION("AI_CONVERSATION"),
-        AI_ARTIFACT("AI_ARTIFACT"),;
+        AI_ARTIFACT("AI_ARTIFACT"),
+        UGC_SKILL("UGC_SKILL"),;
 
         private final String value;
 

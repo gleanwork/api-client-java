@@ -6,12 +6,26 @@ package com.glean.api_client.glean_api_client.models.components;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 
-
+/**
+ * GetChatRequest
+ * 
+ * <p>Retrieves a Chat. Omit pagination fields to return the full message history. When paginating,
+ * messages are returned in chronological order.
+ * 
+ * <p>Allowed combinations: last alone (latest page), last with before (older messages), first alone
+ * (earliest page), or first with after (newer messages). first and last are mutually exclusive; before
+ * and after are mutually exclusive; first cannot be combined with before; last cannot be combined with
+ * after.
+ */
 public class GetChatRequest {
     /**
      * The id of the Chat to be retrieved.
@@ -19,11 +33,67 @@ public class GetChatRequest {
     @JsonProperty("id")
     private String id;
 
+    /**
+     * Maximum number of messages to return from the start of the chat, or after the cursor when after is
+     * set. Pair with after for newer messages; alone returns the earliest messages. Mutually exclusive
+     * with last and before.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("first")
+    private Optional<Integer> first;
+
+    /**
+     * An opaque message cursor from this chat. Returns messages strictly newer than this cursor. Pair with
+     * first.
+     * 
+     * <p>Mutually exclusive with before; cannot be combined with last.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("after")
+    private Optional<String> after;
+
+    /**
+     * Maximum number of messages to return from the end of the chat, or before the cursor when before is
+     * set. Alone returns the latest messages; pair with before for older messages. Mutually exclusive with
+     * first and after.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("last")
+    private Optional<Integer> last;
+
+    /**
+     * An opaque message cursor from this chat. Returns messages strictly older than this cursor. Pair with
+     * last.
+     * 
+     * <p>Mutually exclusive with after; cannot be combined with first.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("before")
+    private Optional<String> before;
+
     @JsonCreator
     public GetChatRequest(
-            @JsonProperty("id") String id) {
+            @JsonProperty("id") String id,
+            @JsonProperty("first") Optional<Integer> first,
+            @JsonProperty("after") Optional<String> after,
+            @JsonProperty("last") Optional<Integer> last,
+            @JsonProperty("before") Optional<String> before) {
         Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(first, "first");
+        Utils.checkNotNull(after, "after");
+        Utils.checkNotNull(last, "last");
+        Utils.checkNotNull(before, "before");
         this.id = id;
+        this.first = first;
+        this.after = after;
+        this.last = last;
+        this.before = before;
+    }
+    
+    public GetChatRequest(
+            String id) {
+        this(id, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -32,6 +102,48 @@ public class GetChatRequest {
     @JsonIgnore
     public String id() {
         return id;
+    }
+
+    /**
+     * Maximum number of messages to return from the start of the chat, or after the cursor when after is
+     * set. Pair with after for newer messages; alone returns the earliest messages. Mutually exclusive
+     * with last and before.
+     */
+    @JsonIgnore
+    public Optional<Integer> first() {
+        return first;
+    }
+
+    /**
+     * An opaque message cursor from this chat. Returns messages strictly newer than this cursor. Pair with
+     * first.
+     * 
+     * <p>Mutually exclusive with before; cannot be combined with last.
+     */
+    @JsonIgnore
+    public Optional<String> after() {
+        return after;
+    }
+
+    /**
+     * Maximum number of messages to return from the end of the chat, or before the cursor when before is
+     * set. Alone returns the latest messages; pair with before for older messages. Mutually exclusive with
+     * first and after.
+     */
+    @JsonIgnore
+    public Optional<Integer> last() {
+        return last;
+    }
+
+    /**
+     * An opaque message cursor from this chat. Returns messages strictly older than this cursor. Pair with
+     * last.
+     * 
+     * <p>Mutually exclusive with after; cannot be combined with first.
+     */
+    @JsonIgnore
+    public Optional<String> before() {
+        return before;
     }
 
     public static Builder builder() {
@@ -48,6 +160,102 @@ public class GetChatRequest {
         return this;
     }
 
+    /**
+     * Maximum number of messages to return from the start of the chat, or after the cursor when after is
+     * set. Pair with after for newer messages; alone returns the earliest messages. Mutually exclusive
+     * with last and before.
+     */
+    public GetChatRequest withFirst(int first) {
+        Utils.checkNotNull(first, "first");
+        this.first = Optional.ofNullable(first);
+        return this;
+    }
+
+
+    /**
+     * Maximum number of messages to return from the start of the chat, or after the cursor when after is
+     * set. Pair with after for newer messages; alone returns the earliest messages. Mutually exclusive
+     * with last and before.
+     */
+    public GetChatRequest withFirst(Optional<Integer> first) {
+        Utils.checkNotNull(first, "first");
+        this.first = first;
+        return this;
+    }
+
+    /**
+     * An opaque message cursor from this chat. Returns messages strictly newer than this cursor. Pair with
+     * first.
+     * 
+     * <p>Mutually exclusive with before; cannot be combined with last.
+     */
+    public GetChatRequest withAfter(String after) {
+        Utils.checkNotNull(after, "after");
+        this.after = Optional.ofNullable(after);
+        return this;
+    }
+
+
+    /**
+     * An opaque message cursor from this chat. Returns messages strictly newer than this cursor. Pair with
+     * first.
+     * 
+     * <p>Mutually exclusive with before; cannot be combined with last.
+     */
+    public GetChatRequest withAfter(Optional<String> after) {
+        Utils.checkNotNull(after, "after");
+        this.after = after;
+        return this;
+    }
+
+    /**
+     * Maximum number of messages to return from the end of the chat, or before the cursor when before is
+     * set. Alone returns the latest messages; pair with before for older messages. Mutually exclusive with
+     * first and after.
+     */
+    public GetChatRequest withLast(int last) {
+        Utils.checkNotNull(last, "last");
+        this.last = Optional.ofNullable(last);
+        return this;
+    }
+
+
+    /**
+     * Maximum number of messages to return from the end of the chat, or before the cursor when before is
+     * set. Alone returns the latest messages; pair with before for older messages. Mutually exclusive with
+     * first and after.
+     */
+    public GetChatRequest withLast(Optional<Integer> last) {
+        Utils.checkNotNull(last, "last");
+        this.last = last;
+        return this;
+    }
+
+    /**
+     * An opaque message cursor from this chat. Returns messages strictly older than this cursor. Pair with
+     * last.
+     * 
+     * <p>Mutually exclusive with after; cannot be combined with first.
+     */
+    public GetChatRequest withBefore(String before) {
+        Utils.checkNotNull(before, "before");
+        this.before = Optional.ofNullable(before);
+        return this;
+    }
+
+
+    /**
+     * An opaque message cursor from this chat. Returns messages strictly older than this cursor. Pair with
+     * last.
+     * 
+     * <p>Mutually exclusive with after; cannot be combined with first.
+     */
+    public GetChatRequest withBefore(Optional<String> before) {
+        Utils.checkNotNull(before, "before");
+        this.before = before;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,25 +266,42 @@ public class GetChatRequest {
         }
         GetChatRequest other = (GetChatRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.first, other.first) &&
+            Utils.enhancedDeepEquals(this.after, other.after) &&
+            Utils.enhancedDeepEquals(this.last, other.last) &&
+            Utils.enhancedDeepEquals(this.before, other.before);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id);
+            id, first, after,
+            last, before);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetChatRequest.class,
-                "id", id);
+                "id", id,
+                "first", first,
+                "after", after,
+                "last", last,
+                "before", before);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
         private String id;
+
+        private Optional<Integer> first = Optional.empty();
+
+        private Optional<String> after = Optional.empty();
+
+        private Optional<Integer> last = Optional.empty();
+
+        private Optional<String> before = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -92,10 +317,107 @@ public class GetChatRequest {
             return this;
         }
 
+
+        /**
+         * Maximum number of messages to return from the start of the chat, or after the cursor when after is
+         * set. Pair with after for newer messages; alone returns the earliest messages. Mutually exclusive
+         * with last and before.
+         */
+        public Builder first(int first) {
+            Utils.checkNotNull(first, "first");
+            this.first = Optional.ofNullable(first);
+            return this;
+        }
+
+        /**
+         * Maximum number of messages to return from the start of the chat, or after the cursor when after is
+         * set. Pair with after for newer messages; alone returns the earliest messages. Mutually exclusive
+         * with last and before.
+         */
+        public Builder first(Optional<Integer> first) {
+            Utils.checkNotNull(first, "first");
+            this.first = first;
+            return this;
+        }
+
+
+        /**
+         * An opaque message cursor from this chat. Returns messages strictly newer than this cursor. Pair with
+         * first.
+         * 
+         * <p>Mutually exclusive with before; cannot be combined with last.
+         */
+        public Builder after(String after) {
+            Utils.checkNotNull(after, "after");
+            this.after = Optional.ofNullable(after);
+            return this;
+        }
+
+        /**
+         * An opaque message cursor from this chat. Returns messages strictly newer than this cursor. Pair with
+         * first.
+         * 
+         * <p>Mutually exclusive with before; cannot be combined with last.
+         */
+        public Builder after(Optional<String> after) {
+            Utils.checkNotNull(after, "after");
+            this.after = after;
+            return this;
+        }
+
+
+        /**
+         * Maximum number of messages to return from the end of the chat, or before the cursor when before is
+         * set. Alone returns the latest messages; pair with before for older messages. Mutually exclusive with
+         * first and after.
+         */
+        public Builder last(int last) {
+            Utils.checkNotNull(last, "last");
+            this.last = Optional.ofNullable(last);
+            return this;
+        }
+
+        /**
+         * Maximum number of messages to return from the end of the chat, or before the cursor when before is
+         * set. Alone returns the latest messages; pair with before for older messages. Mutually exclusive with
+         * first and after.
+         */
+        public Builder last(Optional<Integer> last) {
+            Utils.checkNotNull(last, "last");
+            this.last = last;
+            return this;
+        }
+
+
+        /**
+         * An opaque message cursor from this chat. Returns messages strictly older than this cursor. Pair with
+         * last.
+         * 
+         * <p>Mutually exclusive with after; cannot be combined with first.
+         */
+        public Builder before(String before) {
+            Utils.checkNotNull(before, "before");
+            this.before = Optional.ofNullable(before);
+            return this;
+        }
+
+        /**
+         * An opaque message cursor from this chat. Returns messages strictly older than this cursor. Pair with
+         * last.
+         * 
+         * <p>Mutually exclusive with after; cannot be combined with first.
+         */
+        public Builder before(Optional<String> before) {
+            Utils.checkNotNull(before, "before");
+            this.before = before;
+            return this;
+        }
+
         public GetChatRequest build() {
 
             return new GetChatRequest(
-                id);
+                id, first, after,
+                last, before);
         }
 
     }

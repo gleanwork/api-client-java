@@ -230,7 +230,11 @@ public class ClientChat {
     /**
      * Retrieves a Chat
      * 
-     * <p>Retrieves the chat history between Glean Assistant and the user for a given Chat.
+     * <p>Retrieves the chat history between Glean Assistant and the user for a given Chat. Omit pagination
+     * fields to return the full message history (existing behavior). Use last alone for the latest page,
+     * last with before for older messages, or first with after for newer messages.
+     * 
+     * <p>Each page is chronological and includes pagination cursors and page flags.
      * 
      * @return The call builder
      */
@@ -241,9 +245,13 @@ public class ClientChat {
     /**
      * Retrieves a Chat
      * 
-     * <p>Retrieves the chat history between Glean Assistant and the user for a given Chat.
+     * <p>Retrieves the chat history between Glean Assistant and the user for a given Chat. Omit pagination
+     * fields to return the full message history (existing behavior). Use last alone for the latest page,
+     * last with before for older messages, or first with after for newer messages.
      * 
-     * @param getChatRequest 
+     * <p>Each page is chronological and includes pagination cursors and page flags.
+     * 
+     * @param getChatRequest Retrieves a Chat. Omit pagination fields to return the full message history. When paginating, messages are returned in chronological order. Allowed combinations: last alone (latest page), last with before (older messages), first alone (earliest page), or first with after (newer messages). first and last are mutually exclusive; before and after are mutually exclusive; first cannot be combined with before; last cannot be combined with after.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
@@ -254,11 +262,15 @@ public class ClientChat {
     /**
      * Retrieves a Chat
      * 
-     * <p>Retrieves the chat history between Glean Assistant and the user for a given Chat.
+     * <p>Retrieves the chat history between Glean Assistant and the user for a given Chat. Omit pagination
+     * fields to return the full message history (existing behavior). Use last alone for the latest page,
+     * last with before for older messages, or first with after for newer messages.
+     * 
+     * <p>Each page is chronological and includes pagination cursors and page flags.
      * 
      * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
      * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
-     * @param getChatRequest 
+     * @param getChatRequest Retrieves a Chat. Omit pagination fields to return the full message history. When paginating, messages are returned in chronological order. Allowed combinations: last alone (latest page), last with before (older messages), first alone (earliest page), or first with after (newer messages). first and last are mutually exclusive; before and after are mutually exclusive; first cannot be combined with before; last cannot be combined with after.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
