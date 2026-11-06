@@ -5,6 +5,7 @@
 ### Available Operations
 
 * [create](#create) - Create a chat response
+* [update](#update) - Update a chat
 * [createStream](#createstream) - Create a streaming chat response
 
 ## create
@@ -82,6 +83,63 @@ public class Application {
 | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
 | models/errors/PlatformProblemDetailException | 400, 401, 403, 404, 408, 413, 422, 429       | application/problem+json                     |
 | models/errors/PlatformProblemDetailException | 500, 503                                     | application/problem+json                     |
+| models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
+
+## update
+
+Update the name of a chat. Only the chat owner can update it.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="platform-chat-update" method="patch" path="/api/chats/{chat_id}" -->
+```java
+package hello.world;
+
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.PlatformChatUpdateRequest;
+import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.operations.PlatformChatUpdateResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws PlatformProblemDetailException, Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
+            .build();
+
+        PlatformChatUpdateResponse res = sdk.chat().update()
+                .chatId("{chat_id}")
+                .platformChatUpdateRequest(PlatformChatUpdateRequest.builder()
+                    .name("Quarterly planning notes")
+                    .build())
+                .call();
+
+        if (res.platformChatUpdateResponse().isPresent()) {
+            System.out.println(res.platformChatUpdateResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       | Example                                                                           |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `chatId`                                                                          | *String*                                                                          | :heavy_check_mark:                                                                | The ID of the chat to update.                                                     | {chat_id}                                                                         |
+| `platformChatUpdateRequest`                                                       | [PlatformChatUpdateRequest](../../models/components/PlatformChatUpdateRequest.md) | :heavy_check_mark:                                                                | N/A                                                                               |                                                                                   |
+
+### Response
+
+**[PlatformChatUpdateResponse](../../models/operations/PlatformChatUpdateResponse.md)**
+
+### Errors
+
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| models/errors/PlatformProblemDetailException | 400, 401, 403, 404, 405, 413, 429            | application/problem+json                     |
+| models/errors/PlatformProblemDetailException | 500                                          | application/problem+json                     |
 | models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
 
 ## createStream
