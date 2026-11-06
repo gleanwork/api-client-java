@@ -35,11 +35,11 @@ public class PlatformUsersListRequest {
     private Optional<String> cursor;
 
     /**
-     * JSON-encoded filters that choose which users are returned. The only supported field is is_active,
-     * with the values "true" and "false" and the operator EQUALS. Multiple values OR within a filter.
+     * JSON-encoded filters that choose which users are returned. The supported fields are name, email,
+     * manager_id, and department_id, each with the operator EQUALS. Multiple values OR within a filter.
      * 
-     * <p>Multiple filters AND together. Without an is_active filter, only active users are returned. To
-     * return active and inactive users, send [{"field":"is_active","values":["true","false"]}].
+     * <p>Multiple filters AND together. Each field may appear in only one filter. A value that matches no
+     * user, such as an unknown email or department_id, returns no users rather than an error.
      */
     @SpeakeasyMetadata("queryParam:serialization=json,name=filters")
     private Optional<? extends List<PlatformUserFilter>> filters;
@@ -90,11 +90,11 @@ public class PlatformUsersListRequest {
     }
 
     /**
-     * JSON-encoded filters that choose which users are returned. The only supported field is is_active,
-     * with the values "true" and "false" and the operator EQUALS. Multiple values OR within a filter.
+     * JSON-encoded filters that choose which users are returned. The supported fields are name, email,
+     * manager_id, and department_id, each with the operator EQUALS. Multiple values OR within a filter.
      * 
-     * <p>Multiple filters AND together. Without an is_active filter, only active users are returned. To
-     * return active and inactive users, send [{"field":"is_active","values":["true","false"]}].
+     * <p>Multiple filters AND together. Each field may appear in only one filter. A value that matches no
+     * user, such as an unknown email or department_id, returns no users rather than an error.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -158,11 +158,11 @@ public class PlatformUsersListRequest {
     }
 
     /**
-     * JSON-encoded filters that choose which users are returned. The only supported field is is_active,
-     * with the values "true" and "false" and the operator EQUALS. Multiple values OR within a filter.
+     * JSON-encoded filters that choose which users are returned. The supported fields are name, email,
+     * manager_id, and department_id, each with the operator EQUALS. Multiple values OR within a filter.
      * 
-     * <p>Multiple filters AND together. Without an is_active filter, only active users are returned. To
-     * return active and inactive users, send [{"field":"is_active","values":["true","false"]}].
+     * <p>Multiple filters AND together. Each field may appear in only one filter. A value that matches no
+     * user, such as an unknown email or department_id, returns no users rather than an error.
      */
     public PlatformUsersListRequest withFilters(List<PlatformUserFilter> filters) {
         Utils.checkNotNull(filters, "filters");
@@ -172,11 +172,11 @@ public class PlatformUsersListRequest {
 
 
     /**
-     * JSON-encoded filters that choose which users are returned. The only supported field is is_active,
-     * with the values "true" and "false" and the operator EQUALS. Multiple values OR within a filter.
+     * JSON-encoded filters that choose which users are returned. The supported fields are name, email,
+     * manager_id, and department_id, each with the operator EQUALS. Multiple values OR within a filter.
      * 
-     * <p>Multiple filters AND together. Without an is_active filter, only active users are returned. To
-     * return active and inactive users, send [{"field":"is_active","values":["true","false"]}].
+     * <p>Multiple filters AND together. Each field may appear in only one filter. A value that matches no
+     * user, such as an unknown email or department_id, returns no users rather than an error.
      */
     public PlatformUsersListRequest withFilters(Optional<? extends List<PlatformUserFilter>> filters) {
         Utils.checkNotNull(filters, "filters");
@@ -294,11 +294,11 @@ public class PlatformUsersListRequest {
 
 
         /**
-         * JSON-encoded filters that choose which users are returned. The only supported field is is_active,
-         * with the values "true" and "false" and the operator EQUALS. Multiple values OR within a filter.
+         * JSON-encoded filters that choose which users are returned. The supported fields are name, email,
+         * manager_id, and department_id, each with the operator EQUALS. Multiple values OR within a filter.
          * 
-         * <p>Multiple filters AND together. Without an is_active filter, only active users are returned. To
-         * return active and inactive users, send [{"field":"is_active","values":["true","false"]}].
+         * <p>Multiple filters AND together. Each field may appear in only one filter. A value that matches no
+         * user, such as an unknown email or department_id, returns no users rather than an error.
          */
         public Builder filters(List<PlatformUserFilter> filters) {
             Utils.checkNotNull(filters, "filters");
@@ -307,11 +307,11 @@ public class PlatformUsersListRequest {
         }
 
         /**
-         * JSON-encoded filters that choose which users are returned. The only supported field is is_active,
-         * with the values "true" and "false" and the operator EQUALS. Multiple values OR within a filter.
+         * JSON-encoded filters that choose which users are returned. The supported fields are name, email,
+         * manager_id, and department_id, each with the operator EQUALS. Multiple values OR within a filter.
          * 
-         * <p>Multiple filters AND together. Without an is_active filter, only active users are returned. To
-         * return active and inactive users, send [{"field":"is_active","values":["true","false"]}].
+         * <p>Multiple filters AND together. Each field may appear in only one filter. A value that matches no
+         * user, such as an unknown email or department_id, returns no users rather than an error.
          */
         public Builder filters(Optional<? extends List<PlatformUserFilter>> filters) {
             Utils.checkNotNull(filters, "filters");

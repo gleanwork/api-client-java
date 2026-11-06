@@ -34,11 +34,11 @@ public class PlatformAdminAgentsListRequest {
     private Optional<String> cursor;
 
     /**
-     * JSON-encoded filters that choose which agents are returned. The only supported field is is_active,
-     * with the values "true" and "false" and the operator EQUALS. Multiple values OR within a filter.
+     * JSON-encoded filters that choose which agents are returned. The supported fields are name and
+     * description, with the operator EQUALS. Multiple values OR within a filter.
      * 
-     * <p>Multiple filters AND together. Without an is_active filter, only active agents are returned. To
-     * return active and deleted agents, send [{"field":"is_active","values":["true","false"]}].
+     * <p>Multiple filters AND together, and each field can appear in only one filter. For example, to return
+     * agents whose name contains "HR", send [{"field":"name","values":["HR"]}].
      */
     @SpeakeasyMetadata("queryParam:serialization=json,name=filters")
     private Optional<? extends List<PlatformAdminAgentFilter>> filters;
@@ -78,11 +78,11 @@ public class PlatformAdminAgentsListRequest {
     }
 
     /**
-     * JSON-encoded filters that choose which agents are returned. The only supported field is is_active,
-     * with the values "true" and "false" and the operator EQUALS. Multiple values OR within a filter.
+     * JSON-encoded filters that choose which agents are returned. The supported fields are name and
+     * description, with the operator EQUALS. Multiple values OR within a filter.
      * 
-     * <p>Multiple filters AND together. Without an is_active filter, only active agents are returned. To
-     * return active and deleted agents, send [{"field":"is_active","values":["true","false"]}].
+     * <p>Multiple filters AND together, and each field can appear in only one filter. For example, to return
+     * agents whose name contains "HR", send [{"field":"name","values":["HR"]}].
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -136,11 +136,11 @@ public class PlatformAdminAgentsListRequest {
     }
 
     /**
-     * JSON-encoded filters that choose which agents are returned. The only supported field is is_active,
-     * with the values "true" and "false" and the operator EQUALS. Multiple values OR within a filter.
+     * JSON-encoded filters that choose which agents are returned. The supported fields are name and
+     * description, with the operator EQUALS. Multiple values OR within a filter.
      * 
-     * <p>Multiple filters AND together. Without an is_active filter, only active agents are returned. To
-     * return active and deleted agents, send [{"field":"is_active","values":["true","false"]}].
+     * <p>Multiple filters AND together, and each field can appear in only one filter. For example, to return
+     * agents whose name contains "HR", send [{"field":"name","values":["HR"]}].
      */
     public PlatformAdminAgentsListRequest withFilters(List<PlatformAdminAgentFilter> filters) {
         Utils.checkNotNull(filters, "filters");
@@ -150,11 +150,11 @@ public class PlatformAdminAgentsListRequest {
 
 
     /**
-     * JSON-encoded filters that choose which agents are returned. The only supported field is is_active,
-     * with the values "true" and "false" and the operator EQUALS. Multiple values OR within a filter.
+     * JSON-encoded filters that choose which agents are returned. The supported fields are name and
+     * description, with the operator EQUALS. Multiple values OR within a filter.
      * 
-     * <p>Multiple filters AND together. Without an is_active filter, only active agents are returned. To
-     * return active and deleted agents, send [{"field":"is_active","values":["true","false"]}].
+     * <p>Multiple filters AND together, and each field can appear in only one filter. For example, to return
+     * agents whose name contains "HR", send [{"field":"name","values":["HR"]}].
      */
     public PlatformAdminAgentsListRequest withFilters(Optional<? extends List<PlatformAdminAgentFilter>> filters) {
         Utils.checkNotNull(filters, "filters");
@@ -246,11 +246,11 @@ public class PlatformAdminAgentsListRequest {
 
 
         /**
-         * JSON-encoded filters that choose which agents are returned. The only supported field is is_active,
-         * with the values "true" and "false" and the operator EQUALS. Multiple values OR within a filter.
+         * JSON-encoded filters that choose which agents are returned. The supported fields are name and
+         * description, with the operator EQUALS. Multiple values OR within a filter.
          * 
-         * <p>Multiple filters AND together. Without an is_active filter, only active agents are returned. To
-         * return active and deleted agents, send [{"field":"is_active","values":["true","false"]}].
+         * <p>Multiple filters AND together, and each field can appear in only one filter. For example, to return
+         * agents whose name contains "HR", send [{"field":"name","values":["HR"]}].
          */
         public Builder filters(List<PlatformAdminAgentFilter> filters) {
             Utils.checkNotNull(filters, "filters");
@@ -259,11 +259,11 @@ public class PlatformAdminAgentsListRequest {
         }
 
         /**
-         * JSON-encoded filters that choose which agents are returned. The only supported field is is_active,
-         * with the values "true" and "false" and the operator EQUALS. Multiple values OR within a filter.
+         * JSON-encoded filters that choose which agents are returned. The supported fields are name and
+         * description, with the operator EQUALS. Multiple values OR within a filter.
          * 
-         * <p>Multiple filters AND together. Without an is_active filter, only active agents are returned. To
-         * return active and deleted agents, send [{"field":"is_active","values":["true","false"]}].
+         * <p>Multiple filters AND together, and each field can appear in only one filter. For example, to return
+         * agents whose name contains "HR", send [{"field":"name","values":["HR"]}].
          */
         public Builder filters(Optional<? extends List<PlatformAdminAgentFilter>> filters) {
             Utils.checkNotNull(filters, "filters");
