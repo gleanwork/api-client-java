@@ -48,6 +48,8 @@ public class AsyncGlean {
 
     private final AsyncUsers users;
 
+    private final AsyncDocuments documents;
+
     private final AsyncTriggers triggers;
 
     private final AsyncClient client;
@@ -82,6 +84,10 @@ public class AsyncGlean {
         return users;
     }
 
+    public AsyncDocuments documents() {
+        return documents;
+    }
+
     public AsyncTriggers triggers() {
         return triggers;
     }
@@ -107,6 +113,7 @@ public class AsyncGlean {
         this.admin = new AsyncAdmin(syncSDK.admin(), sdkConfiguration);
         this.departments = new AsyncDepartments(syncSDK.departments(), sdkConfiguration);
         this.users = new AsyncUsers(syncSDK.users(), sdkConfiguration);
+        this.documents = new AsyncDocuments(syncSDK.documents(), sdkConfiguration);
         this.triggers = new AsyncTriggers(syncSDK.triggers(), sdkConfiguration);
         this.client = new AsyncClient(syncSDK.client(), sdkConfiguration);
         this.indexing = new AsyncIndexing(syncSDK.indexing(), sdkConfiguration);

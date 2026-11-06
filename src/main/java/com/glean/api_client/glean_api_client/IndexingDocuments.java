@@ -397,7 +397,7 @@ public class IndexingDocuments {
      * for richer information.
      * 
      * @return The call builder
-     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2026-10-15: Endpoint is deprecated.
+     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2027-01-15: Endpoint is deprecated.
      */
     @Deprecated
     public PostApiIndexV1GetdocumentstatusRequestBuilder status() {
@@ -416,7 +416,7 @@ public class IndexingDocuments {
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
-     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2026-10-15: Endpoint is deprecated.
+     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2027-01-15: Endpoint is deprecated.
      */
     @Deprecated
     public PostApiIndexV1GetdocumentstatusResponse status(GetDocumentStatusRequest request) {
@@ -435,7 +435,7 @@ public class IndexingDocuments {
      * richer information.
      * 
      * @return The call builder
-     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2026-10-15: Endpoint is deprecated.
+     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2027-01-15: Endpoint is deprecated.
      */
     @Deprecated
     public PostApiIndexV1GetdocumentcountRequestBuilder count() {
@@ -454,7 +454,7 @@ public class IndexingDocuments {
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
-     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2026-10-15: Endpoint is deprecated.
+     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2027-01-15: Endpoint is deprecated.
      */
     @Deprecated
     public PostApiIndexV1GetdocumentcountResponse count(GetDocumentCountRequest request) {
