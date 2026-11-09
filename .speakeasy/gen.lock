@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 0359d4fe-2923-46fc-aaca-cf70b48dcfa1
 management:
-  docChecksum: 85fd0b317d248bf62455701daa45f644
+  docChecksum: 95692313381fbb5eca84b518bbfd374c
   docVersion: 0.9.0
-  speakeasyVersion: 1.806.0
+  speakeasyVersion: 1.807.0
   generationVersion: 2.956.1
-  releaseVersion: 0.17.19
-  configChecksum: 9163d8c0130541f861b383425a3803c3
+  releaseVersion: 0.17.20
+  configChecksum: fda1d5f9e9121a93478baae7b0898355
   repoURL: https://github.com/gleanwork/api-client-java.git
   installationURL: https://github.com/gleanwork/api-client-java
   published: true
 persistentEdits:
-  generation_id: 82be3ea0-479b-4707-ac37-0a6e13193121
-  pristine_commit_hash: 9f098ac1eb891d612e712563877a9a9fd4e1c102
-  pristine_tree_hash: 26506d30e4ab24c3824b16324a679b03aa62a729
+  generation_id: cc290965-b950-470f-aa67-095eb94d8ce8
+  pristine_commit_hash: 1ecc439539d96e046fc646d3840b6558ebbceccf
+  pristine_tree_hash: f178c1dda9bcf86e1455fc2690aba18902ba0674
 features:
   java:
     acceptHeaders: 2.81.2
@@ -5046,8 +5046,8 @@ trackedFiles:
     pristine_git_object: 3decbce5bd40edbe278c1c5d2dbf585808e51d9a
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:1319d6b5add02d08265c5a905415f7f67636578e
-    pristine_git_object: 822815572f078183be7aa02e2bd45cd647ce93d9
+    last_write_checksum: sha1:948b153e8ff25d9c31bfd06d7074a36b85077fed
+    pristine_git_object: 77dcad348c5844ec26c7eede8ab884e88ba719a4
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -5430,8 +5430,8 @@ trackedFiles:
     pristine_git_object: ffae914775eb41ff311371f62504344a59d090fd
   src/main/java/com/glean/api_client/glean_api_client/SDKConfiguration.java:
     id: d5fcc61f5992
-    last_write_checksum: sha1:dd2ddf50ca0cdbe31ba6730f585b4f98b2bee6b7
-    pristine_git_object: cbb2c9b5f9e2b2ecb04229528a39882b9496d1c6
+    last_write_checksum: sha1:b57caa3fd5d4c89e8d90ac1a4cf07ad9f35e73ca
+    pristine_git_object: a2e2cece11dea815d3a458c2ae6d2be2466d36c9
   src/main/java/com/glean/api_client/glean_api_client/Search.java:
     id: f22d94b920b5
     last_write_checksum: sha1:14e024607aebae4b1197445ad31984898c4735a3
@@ -15337,7 +15337,6 @@ generatedTests:
   get_/rest/api/v1/tools/list: "2025-06-09T18:03:44Z"
   post_/rest/api/v1/tools/call: "2025-06-09T18:03:44Z"
   listpolicies: "2025-06-09T18:03:44Z"
-releaseNotes: "## Java SDK Changes:\n* `glean.admin.idpgroups.list()`: \n  *  `response.results[].isActive` **Removed** (Breaking ⚠️)\n  *  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.admin.agents.list()`: \n  *  `response.results[]` **Changed** (Breaking ⚠️)\n  *  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.departments.list()`: \n  *  `response.results[].isActive` **Removed** (Breaking ⚠️)\n  *  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.users.list()`: \n  *  `response.results[].isActive` **Removed** (Breaking ⚠️)\n  *  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.chat.update()`: **Added**\n* `glean.admin.oauth.clients.list()`: **Added**\n* `glean.admin.oauth.clients.get()`: **Added**\n* `glean.admin.idpgroups.get()`: **Added**\n* `glean.departments.get()`: **Added**\n* `glean.users.get()`: **Added**\n* `glean.documents.getByUrl()`: **Added**\n* `glean.documents.getById()`: **Added**\n* `glean.documents.batch()`: **Added**\n* `glean.admin.usage.getSettings()`: **Removed** (Breaking ⚠️)\n* `glean.admin.usage.updateSettings()`: **Removed** (Breaking ⚠️)\n* `glean.agents.search()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.agents.get()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.agents.getSchemas()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.agents.createRun()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.agents.getRun()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.agents.cancelRun()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.agents.respondToRun()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.chat.create()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.chat.createStream()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.skills.create()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.skills.list()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.skills.import()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.skills.validate()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.skills.previewSource()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.skills.update()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.skills.delete()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.skills.retrieve()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.skills.retrieveContent()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.skills.sync()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.skills.createVersion()`: \n  *  `response.version.updatedBy` **Added**\n  *  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.skills.listVersions()`: \n  *  `response.results[].updatedBy` **Added**\n  *  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.skills.retrieveVersion()`: \n  *  `response.version.updatedBy` **Added**\n  *  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.skills.retrieveVersionContent()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.skills.previewSourceStream()`: \n  *  `response.[].union(ERROR).data.error.code.enum(unsupportedActionTarget)` **Added**\n  *  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.search.query()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.search.listFilters()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.triggers.create()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.triggers.list()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.triggers.get()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.triggers.update()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.triggers.delete()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.triggers.searchEvents()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.triggers.listPresets()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.triggers.getPreset()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.triggers.listPresetInputValues()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.triggers.searchPresetEvents()`:  `error.code.enum(unsupportedActionTarget)` **Added**\n* `glean.client.chat.retrieve()`: \n  *  `request.getChatRequest` **Changed**\n  *  `response.pagination` **Added**\n* `glean.client.agents.run()`:  `response.run.messages[]` **Changed**\n* `glean.client.collections.list()`: \n  *  `request.listCollectionsRequest.query` **Added**\n* `glean.client.search.retrieveFeed()`: \n  *  `request.feedRequest.categories[]` **Changed**\n  *  `response.results[]` **Changed**\n* `glean.indexing.datasources.add()`: \n  *  `request.objectDefinitions[].docCategory.enum(ugcSkill)` **Added**\n* `glean.indexing.datasources.retrieveConfig()`:  `response.objectDefinitions[].docCategory.enum(ugcSkill)` **Added**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md
