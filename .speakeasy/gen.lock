@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 0359d4fe-2923-46fc-aaca-cf70b48dcfa1
 management:
-  docChecksum: 95692313381fbb5eca84b518bbfd374c
+  docChecksum: 5d5139e3658ba7fa51c84ad4fc1ead26
   docVersion: 0.9.0
-  speakeasyVersion: 1.807.0
-  generationVersion: 2.956.1
-  releaseVersion: 0.17.20
-  configChecksum: fda1d5f9e9121a93478baae7b0898355
+  speakeasyVersion: 1.808.1
+  generationVersion: 2.960.8
+  releaseVersion: 0.17.21
+  configChecksum: cec5d74be9f37da336ed56ec5e477651
   repoURL: https://github.com/gleanwork/api-client-java.git
   installationURL: https://github.com/gleanwork/api-client-java
   published: true
 persistentEdits:
-  generation_id: cc290965-b950-470f-aa67-095eb94d8ce8
-  pristine_commit_hash: 1ecc439539d96e046fc646d3840b6558ebbceccf
-  pristine_tree_hash: f178c1dda9bcf86e1455fc2690aba18902ba0674
+  generation_id: 4079adce-290e-493f-a609-7a3b2958fa01
+  pristine_commit_hash: 8360b561c71f0bc4ea0fcbd56766dca07f819d0e
+  pristine_tree_hash: 404e58716f061e6c1ad2a2e5ba349f701f58e7e6
 features:
   java:
     acceptHeaders: 2.81.2
@@ -5046,8 +5046,8 @@ trackedFiles:
     pristine_git_object: 3decbce5bd40edbe278c1c5d2dbf585808e51d9a
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:948b153e8ff25d9c31bfd06d7074a36b85077fed
-    pristine_git_object: 77dcad348c5844ec26c7eede8ab884e88ba719a4
+    last_write_checksum: sha1:e084a514dcb85aac38fd7fe750fa863c1b865a44
+    pristine_git_object: 8b4a35ad1dcdee31a5a252f7f28b54329cdebffc
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -5430,8 +5430,8 @@ trackedFiles:
     pristine_git_object: ffae914775eb41ff311371f62504344a59d090fd
   src/main/java/com/glean/api_client/glean_api_client/SDKConfiguration.java:
     id: d5fcc61f5992
-    last_write_checksum: sha1:b57caa3fd5d4c89e8d90ac1a4cf07ad9f35e73ca
-    pristine_git_object: a2e2cece11dea815d3a458c2ae6d2be2466d36c9
+    last_write_checksum: sha1:c123004f532985d015521b989d50fd42f17a057e
+    pristine_git_object: 507524a75b291a345ba28b9a766eb4f029979d70
   src/main/java/com/glean/api_client/glean_api_client/Search.java:
     id: f22d94b920b5
     last_write_checksum: sha1:14e024607aebae4b1197445ad31984898c4735a3
@@ -9014,12 +9014,12 @@ trackedFiles:
     pristine_git_object: d41c9dd21a4325b1678875aad387a59a29ca336b
   src/main/java/com/glean/api_client/glean_api_client/models/errors/ErrorInfoResponse.java:
     id: 4db30c2f833c
-    last_write_checksum: sha1:f00db676e1c410852ea155d83a1f3d1143011478
-    pristine_git_object: 483ecaa9c58a36901bba1c33130b46794d26c6dd
+    last_write_checksum: sha1:2e26e99b14b85c855ad34e26178a5ed874339faf
+    pristine_git_object: 905ab84ae6dc92d0278f058e31b814d5a32dac37
   src/main/java/com/glean/api_client/glean_api_client/models/errors/ErrorResponse.java:
     id: f900b82c72e9
-    last_write_checksum: sha1:90b51b40e3a95d0426e977e92a83fd6509fdb97d
-    pristine_git_object: 2b138e1208ac0b577b8ce133d4f0473ece3ed99f
+    last_write_checksum: sha1:06c27c6a012069d3a28fd6af13c329dc8b7ec1e4
+    pristine_git_object: 463fcbd07d93dd916829250c2105d93236496570
   src/main/java/com/glean/api_client/glean_api_client/models/errors/ErrorType.java:
     id: 75d7de7f90a4
     last_write_checksum: sha1:1588986d7b54f5467a129d5d6a2dadcdaeab0485
@@ -9042,8 +9042,8 @@ trackedFiles:
     pristine_git_object: 11983ce076c054511ad9c3dfd829f4118a853f25
   src/main/java/com/glean/api_client/glean_api_client/models/errors/UnauthorizedAgentToolsError.java:
     id: f2f8ccb6d665
-    last_write_checksum: sha1:1665c9a946552b6db46f0679eb9a30a7b5c210e8
-    pristine_git_object: 2e16561a44f02319f319bf6d53117ec177b0772f
+    last_write_checksum: sha1:b906882b918408a11acad3aa0733c7b934c1c95f
+    pristine_git_object: d16f4bdfc73ab5ea02fc2de59ac3b2ef3f73a0e1
   src/main/java/com/glean/api_client/glean_api_client/models/operations/ActivityRequestBuilder.java:
     id: 72d1210c2827
     last_write_checksum: sha1:62ea2a45ecb144e612cd34c68feb1dc5568b6824
