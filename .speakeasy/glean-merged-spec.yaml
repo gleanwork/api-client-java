@@ -2,8 +2,8 @@ openapi: 3.1.0
 info:
   version: "0.9.0"
   title: Glean API
-  x-source-commit-sha: 77999be6fb7bac7ce1b740a5f554037282298b5d
-  x-open-api-commit-sha: ea654b06c64649ac0076b89cdcea6e0792daec11
+  x-source-commit-sha: e1fe2301db23ad70021a3d6917d5305244a76a82
+  x-open-api-commit-sha: ef052000990f0e42a74aedcb7f2df8d8b4c91d08
   description: |
     # Introduction
     In addition to the data sources that Glean has built-in support for, Glean also provides a REST API that enables customers to put arbitrary content in the search index. This is useful, for example, for doing permissions-aware search over content in internal tools that reside on-prem as well as for searching over applications that Glean does not currently support first class. In addition these APIs allow the customer to push organization data (people info, organization structure etc) into Glean.
@@ -9840,72 +9840,13 @@ components:
         content:
           type: string
           minLength: 1
-    PlatformChatTextFormat:
-      type: object
-      additionalProperties: false
-      description: Unconstrained plain-text assistant output.
-      required:
-        - type
-      properties:
-        type:
-          type: string
-          description: Discriminator. Must be TEXT.
-          enum:
-            - TEXT
-    PlatformChatJsonSchemaFormat:
-      type: object
-      additionalProperties: false
-      description: Constrains the assistant response to a caller-supplied JSON Schema.
-      required:
-        - type
-        - name
-        - schema
-      properties:
-        type:
-          type: string
-          description: Discriminator. Must be JSON_SCHEMA.
-          enum:
-            - JSON_SCHEMA
-        name:
-          type: string
-          minLength: 1
-          maxLength: 64
-          description: A stable identifier for the schema.
-        description:
-          type: string
-          maxLength: 1024
-          description: An optional human-readable description of the schema.
-        schema:
-          type: object
-          additionalProperties: true
-          description: A JSON Schema object describing the desired output shape.
-        strict:
-          type: boolean
-          default: true
-          description: |
-            When true, the provider validates the response against the schema. Unsupported by some providers; defaults to true.
     PlatformChatCreateRequest:
       type: object
       additionalProperties: false
       required:
         - input
       example:
-        input: Summarize our parental leave policy as JSON.
-        text:
-          format:
-            type: JSON_SCHEMA
-            name: policy_summary
-            schema:
-              type: object
-              properties:
-                eligible_employees:
-                  type: string
-                duration_weeks:
-                  type: integer
-              required:
-                - eligible_employees
-                - duration_weeks
-            strict: true
+        input: Summarize our parental leave policy.
       properties:
         input:
           description: |
@@ -9932,18 +9873,6 @@ components:
           minLength: 1
           description: |
             Continue an existing stored conversation. Incompatible with message-array `input` and with `store: false`.
-        text:
-          type: object
-          additionalProperties: false
-          description: |
-            Optional configuration for the assistant's text response. When `format.type` is `JSON_SCHEMA`, the response is constrained to the supplied JSON schema and returned in `output[*].content[*].structured_output`. Structured output is not supported when `stream` is true.
-          properties:
-            format:
-              description: |
-                Output format for the assistant text. TEXT is unconstrained. JSON_SCHEMA constrains the response to the supplied schema.
-              oneOf:
-                - $ref: "#/components/schemas/PlatformChatTextFormat"
-                - $ref: "#/components/schemas/PlatformChatJsonSchemaFormat"
     PlatformChatStreamResponseId:
       type: string
       minLength: 1
@@ -9963,12 +9892,6 @@ components:
             - OUTPUT_TEXT
         text:
           type: string
-        structured_output:
-          type:
-            - object
-            - "null"
-          description: |
-            Parsed and validated JSON object when structured output was requested. Present only when the request included `text.format.type: JSON_SCHEMA`.
         annotations:
           type: array
           items:
