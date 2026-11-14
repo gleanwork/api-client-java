@@ -1,0 +1,11 @@
+# PlatformSearchEnumerationResponse
+
+
+## Fields
+
+| Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `results`                                                                                     | List\<[PlatformDocumentReference](../../models/components/PlatformDocumentReference.md)>      | :heavy_check_mark:                                                                            | Document references at this cursor position.                                                  |
+| `hasMore`                                                                                     | *boolean*                                                                                     | :heavy_check_mark:                                                                            | Indicates whether additional pages of results are available.                                  |
+| `nextCursor`                                                                                  | *Optional\<String>*                                                                           | :heavy_check_mark:                                                                            | Opaque token to pass as `cursor` in the next request. Null exactly when `has_more` is false.<br/> |
+| `requestId`                                                                                   | *String*                                                                                      | :heavy_check_mark:                                                                            | Platform-generated request ID for support correlation.                                        |

@@ -20,13 +20,9 @@ Run an assistant turn. The default response is JSON. HTTP clients request server
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.PlatformChatJsonSchemaFormat;
-import com.glean.api_client.glean_api_client.models.components.PlatformChatJsonSchemaFormatType;
 import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
 import com.glean.api_client.glean_api_client.models.operations.*;
 import java.lang.Exception;
-import java.util.List;
-import java.util.Map;
 
 public class Application {
 
@@ -37,23 +33,7 @@ public class Application {
             .build();
 
         PlatformChatCreateRequest req = PlatformChatCreateRequest.builder()
-                .input(PlatformChatCreateInput.of("Summarize our parental leave policy as JSON."))
-                .text(PlatformChatCreateText.builder()
-                    .format(PlatformChatCreateFormat.of(PlatformChatJsonSchemaFormat.builder()
-                        .type(PlatformChatJsonSchemaFormatType.JSON_SCHEMA)
-                        .name("policy_summary")
-                        .schema(Map.ofEntries(
-                            Map.entry("type", "object"),
-                            Map.entry("properties", Map.ofEntries(
-                                Map.entry("eligible_employees", Map.ofEntries(
-                                    Map.entry("type", "string"))),
-                                Map.entry("duration_weeks", Map.ofEntries(
-                                    Map.entry("type", "integer"))))),
-                            Map.entry("required", List.of(
-                                "eligible_employees",
-                                "duration_weeks"))))
-                        .build()))
-                    .build())
+                .input(PlatformChatCreateInput.of("Summarize our parental leave policy."))
                 .build();
 
         PlatformChatCreateResponse res = sdk.chat().create()
@@ -154,13 +134,11 @@ SDK-only logical operation. HTTP clients must call the base path; the URL fragme
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.*;
+import com.glean.api_client.glean_api_client.models.components.PlatformChatStreamEventServerSentEvent;
 import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
 import com.glean.api_client.glean_api_client.models.operations.*;
 import com.glean.api_client.glean_api_client.utils.EventStream;
 import java.lang.Exception;
-import java.util.List;
-import java.util.Map;
 import java.util.stream.Stream;
 
 public class Application {
@@ -172,23 +150,7 @@ public class Application {
             .build();
 
         PlatformChatCreateStreamRequest req = PlatformChatCreateStreamRequest.builder()
-                .input(PlatformChatCreateStreamInput.of("Summarize our parental leave policy as JSON."))
-                .text(PlatformChatCreateStreamText.builder()
-                    .format(PlatformChatCreateStreamFormat.of(PlatformChatJsonSchemaFormat.builder()
-                        .type(PlatformChatJsonSchemaFormatType.JSON_SCHEMA)
-                        .name("policy_summary")
-                        .schema(Map.ofEntries(
-                            Map.entry("type", "object"),
-                            Map.entry("properties", Map.ofEntries(
-                                Map.entry("eligible_employees", Map.ofEntries(
-                                    Map.entry("type", "string"))),
-                                Map.entry("duration_weeks", Map.ofEntries(
-                                    Map.entry("type", "integer"))))),
-                            Map.entry("required", List.of(
-                                "eligible_employees",
-                                "duration_weeks"))))
-                        .build()))
-                    .build())
+                .input(PlatformChatCreateStreamInput.of("Summarize our parental leave policy."))
                 .build();
 
         PlatformChatCreateStreamResponse res = sdk.chat().createStream()
