@@ -6,13 +6,17 @@ package com.glean.api_client.glean_api_client;
 
 import static com.glean.api_client.glean_api_client.operations.Operations.AsyncRequestOperation;
 
+import com.glean.api_client.glean_api_client.models.components.PlatformSearchEnumerationRequest;
 import com.glean.api_client.glean_api_client.models.components.PlatformSearchRequest;
 import com.glean.api_client.glean_api_client.models.operations.PlatformSearchFiltersRequest;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformSearchEnumerationRequestBuilder;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformSearchEnumerationResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformSearchFiltersRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformSearchFiltersResponse;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformSearchRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.PlatformSearchResponse;
 import com.glean.api_client.glean_api_client.operations.PlatformSearch;
+import com.glean.api_client.glean_api_client.operations.PlatformSearchEnumeration;
 import com.glean.api_client.glean_api_client.operations.PlatformSearchFilters;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import java.lang.String;
@@ -146,6 +150,57 @@ public class AsyncSearch {
                 .build();
         AsyncRequestOperation<PlatformSearchFiltersRequest, PlatformSearchFiltersResponse> operation
               = new PlatformSearchFilters.Async(sdkConfiguration, _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Enumerate matching documents
+     * 
+     * <p>Walk every indexed document that matches a selection and that the caller is permitted to see.
+     * Returns document references with minimal metadata and never bodies; request `SNIPPETS` via `include`
+     * for query-relevant excerpts, and hydrate full documents with `POST /api/documents/batch`. Unlike
+     * `POST /api/search`, `query` is optional: omit it to enumerate by `datasources`, `filters`, and
+     * `time_range` alone.
+     * 
+     * <p>Results are ordered for completeness, not relevance.
+     * Follow `next_cursor` until `has_more` is `false`, regardless of page size. This is a live scan, not
+     * a snapshot: concurrent index changes can cause duplicates or omissions. Deduplicate by
+     * `document_id`.
+     * A page is either complete at its cursor position or an error. A shard or datasource failure returns
+     * HTTP 503 and the same cursor stays valid for retry; this endpoint never returns a partial page. A
+     * cursor reused with a different selection returns HTTP 400 `invalid_cursor`.
+     * 
+     * @return The async call builder
+     */
+    public PlatformSearchEnumerationRequestBuilder enumerate() {
+        return new PlatformSearchEnumerationRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Enumerate matching documents
+     * 
+     * <p>Walk every indexed document that matches a selection and that the caller is permitted to see.
+     * Returns document references with minimal metadata and never bodies; request `SNIPPETS` via `include`
+     * for query-relevant excerpts, and hydrate full documents with `POST /api/documents/batch`. Unlike
+     * `POST /api/search`, `query` is optional: omit it to enumerate by `datasources`, `filters`, and
+     * `time_range` alone.
+     * 
+     * <p>Results are ordered for completeness, not relevance.
+     * Follow `next_cursor` until `has_more` is `false`, regardless of page size. This is a live scan, not
+     * a snapshot: concurrent index changes can cause duplicates or omissions. Deduplicate by
+     * `document_id`.
+     * A page is either complete at its cursor position or an error. A shard or datasource failure returns
+     * HTTP 503 and the same cursor stays valid for retry; this endpoint never returns a partial page. A
+     * cursor reused with a different selection returns HTTP 400 `invalid_cursor`.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return {@code CompletableFuture<PlatformSearchEnumerationResponse>} - The async response
+     */
+    public CompletableFuture<PlatformSearchEnumerationResponse> enumerate(PlatformSearchEnumerationRequest request) {
+        AsyncRequestOperation<PlatformSearchEnumerationRequest, PlatformSearchEnumerationResponse> operation
+              = new PlatformSearchEnumeration.Async(sdkConfiguration, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
