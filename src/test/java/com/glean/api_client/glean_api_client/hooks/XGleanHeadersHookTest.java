@@ -1,15 +1,27 @@
 package com.glean.api_client.glean_api_client.hooks;
 
+import com.glean.api_client.glean_api_client.Glean;
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.SecuritySource;
+import com.glean.api_client.glean_api_client.models.components.PlatformSearchRequest;
+import com.glean.api_client.glean_api_client.utils.HTTPClient;
 import com.glean.api_client.glean_api_client.utils.Hook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
@@ -55,6 +67,148 @@ class XGleanHeadersHookTest {
             );
         }
         return config;
+    }
+
+    private SDKConfiguration createBetaConfig(Boolean includeBeta, Boolean includeExperimental) {
+        SDKConfiguration config = new SDKConfiguration();
+        GleanCustomConfigRegistry.put(
+                config,
+                new GleanCustomConfig(
+                        Optional.empty(),
+                        Optional.ofNullable(includeExperimental),
+                        Optional.ofNullable(includeBeta))
+        );
+        return config;
+    }
+
+    static Stream<Arguments> includeBetaCases() {
+        // betaEnv, experimentalEnv, includeBeta option, includeExperimental option, expected header
+        return Stream.of(
+                Arguments.of("neither option set", null, null, null, null, null),
+                Arguments.of("includeBeta alone", null, null, true, null, "true"),
+                Arguments.of("includeBeta false", null, null, false, null, null),
+                Arguments.of("includeExperimental alone", null, null, null, true, "true"),
+                Arguments.of("both options true", null, null, true, true, "true"),
+                Arguments.of("includeBeta true, includeExperimental false", null, null, true, false, "true"),
+                Arguments.of("X_GLEAN_INCLUDE_BETA alone", "true", null, null, null, "true"),
+                Arguments.of("X_GLEAN_INCLUDE_BETA is case-insensitive", " TRUE ", null, null, null, "true"),
+                Arguments.of("both env vars true", "true", "true", null, null, "true"),
+                Arguments.of("X_GLEAN_INCLUDE_BETA=false overrides includeBeta", "false", null, true, null, null),
+                Arguments.of("X_GLEAN_INCLUDE_BETA=true overrides includeBeta=false", "true", null, false, null, "true"),
+                Arguments.of("empty X_GLEAN_INCLUDE_BETA falls back to includeBeta", " ", null, true, null, "true"),
+                Arguments.of("X_GLEAN_INCLUDE_BETA=false does not turn off includeExperimental", "false", null, null, true, "true"),
+                Arguments.of("X_GLEAN_INCLUDE_BETA=false does not turn off X_GLEAN_INCLUDE_EXPERIMENTAL", "false", "true", null, null, "true"),
+                Arguments.of("X_GLEAN_INCLUDE_EXPERIMENTAL=false does not turn off includeBeta", null, "false", true, null, "true")
+        );
+    }
+
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("includeBetaCases")
+    void includeBetaAndItsIncludeExperimentalAliasSetTheSameHeader(
+            String name,
+            String betaEnv,
+            String experimentalEnv,
+            Boolean includeBeta,
+            Boolean includeExperimental,
+            String expected) throws Exception {
+        Map<String, String> env = new HashMap<>();
+        if (betaEnv != null) {
+            env.put(XGleanHeadersHook.ENV_INCLUDE_BETA, betaEnv);
+        }
+        if (experimentalEnv != null) {
+            env.put(XGleanHeadersHook.ENV_INCLUDE_EXPERIMENTAL, experimentalEnv);
+        }
+        SDKConfiguration config = createBetaConfig(includeBeta, includeExperimental);
+
+        HttpRequest syncResult = XGleanHeadersHook.createSyncHook(createEnvProvider(env))
+                .beforeRequest(createMockContext(config), createMockRequest());
+        HttpRequest asyncResult = XGleanHeadersHook.createAsyncHook(createEnvProvider(env))
+                .beforeRequest(createMockContext(config), createMockRequest())
+                .join();
+
+        for (HttpRequest result : List.of(syncResult, asyncResult)) {
+            assertEquals(expected, result.headers().firstValue(HEADER_EXPERIMENTAL).orElse(null));
+            assertFalse(result.headers().firstValue("X-Glean-Beta").isPresent());
+        }
+    }
+
+    @Test
+    void keepsTwoArgumentGleanCustomConfigConstructor() {
+        GleanCustomConfig config = new GleanCustomConfig(Optional.of("2026-10-15"), Optional.of(true));
+
+        assertEquals(Optional.of("2026-10-15"), config.excludeDeprecatedAfter());
+        assertEquals(Optional.of(true), config.includeExperimental());
+        assertEquals(Optional.empty(), config.includeBeta());
+    }
+
+    /**
+     * HTTP client that records requests and fails them, so no network call is made.
+     */
+    private static final class CapturingHttpClient implements HTTPClient {
+        final List<HttpRequest> requests = new ArrayList<>();
+
+        @Override
+        public HttpResponse<InputStream> send(HttpRequest request) throws IOException {
+            requests.add(request);
+            throw new IOException("request captured by test");
+        }
+    }
+
+    private HttpRequest sendSearch(GleanBuilder builder) {
+        CapturingHttpClient client = new CapturingHttpClient();
+        Glean glean = builder
+                .apiToken("test-token")
+                .serverURL("https://example.com")
+                .client(client)
+                .build();
+        try {
+            glean.search().query(PlatformSearchRequest.builder().query("test").build());
+        } catch (Exception e) {
+            // Expected: the capturing client fails every request.
+        }
+        assertFalse(client.requests.isEmpty(), "expected a request to be sent");
+        return client.requests.get(0);
+    }
+
+    @Nested
+    class WhenUsingGleanBuilder {
+
+        @BeforeEach
+        void requireCleanEnvironment() {
+            org.junit.jupiter.api.Assumptions.assumeTrue(
+                    System.getenv(XGleanHeadersHook.ENV_INCLUDE_BETA) == null
+                            && System.getenv(XGleanHeadersHook.ENV_INCLUDE_EXPERIMENTAL) == null,
+                    "X-Glean environment variables must be unset");
+        }
+
+        @Test
+        void includeBetaSendsIncludeExperimentalHeader() {
+            HttpRequest request = sendSearch(GleanBuilder.create().includeBeta(true));
+
+            assertEquals("true", request.headers().firstValue(HEADER_EXPERIMENTAL).orElse(null));
+            assertFalse(request.headers().firstValue("X-Glean-Beta").isPresent());
+        }
+
+        @Test
+        void includeExperimentalSendsIncludeExperimentalHeader() {
+            HttpRequest request = sendSearch(GleanBuilder.create().includeExperimental(true));
+
+            assertEquals("true", request.headers().firstValue(HEADER_EXPERIMENTAL).orElse(null));
+        }
+
+        @Test
+        void bothOptionsSendOneIncludeExperimentalHeader() {
+            HttpRequest request = sendSearch(GleanBuilder.create().includeBeta(true).includeExperimental(true));
+
+            assertEquals(List.of("true"), request.headers().allValues(HEADER_EXPERIMENTAL));
+        }
+
+        @Test
+        void neitherOptionSendsNoHeader() {
+            HttpRequest request = sendSearch(GleanBuilder.create());
+
+            assertFalse(request.headers().firstValue(HEADER_EXPERIMENTAL).isPresent());
+        }
     }
 
     /**
