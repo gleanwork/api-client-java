@@ -15,7 +15,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class PlatformChatOutputTextContent {
@@ -27,14 +26,6 @@ public class PlatformChatOutputTextContent {
     @JsonProperty("text")
     private String text;
 
-    /**
-     * Parsed and validated JSON object when structured output was requested. Present only when the request
-     * included `text.format.type: JSON_SCHEMA`.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("structured_output")
-    private JsonNullable<? extends StructuredOutput> structuredOutput;
-
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("annotations")
@@ -44,23 +35,19 @@ public class PlatformChatOutputTextContent {
     public PlatformChatOutputTextContent(
             @JsonProperty("type") PlatformChatOutputTextContentType type,
             @JsonProperty("text") String text,
-            @JsonProperty("structured_output") JsonNullable<? extends StructuredOutput> structuredOutput,
             @JsonProperty("annotations") Optional<? extends List<PlatformChatCitationAnnotation>> annotations) {
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(text, "text");
-        Utils.checkNotNull(structuredOutput, "structuredOutput");
         Utils.checkNotNull(annotations, "annotations");
         this.type = type;
         this.text = text;
-        this.structuredOutput = structuredOutput;
         this.annotations = annotations;
     }
     
     public PlatformChatOutputTextContent(
             PlatformChatOutputTextContentType type,
             String text) {
-        this(type, text, JsonNullable.undefined(),
-            Optional.empty());
+        this(type, text, Optional.empty());
     }
 
     @JsonIgnore
@@ -71,16 +58,6 @@ public class PlatformChatOutputTextContent {
     @JsonIgnore
     public String text() {
         return text;
-    }
-
-    /**
-     * Parsed and validated JSON object when structured output was requested. Present only when the request
-     * included `text.format.type: JSON_SCHEMA`.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<StructuredOutput> structuredOutput() {
-        return (JsonNullable<StructuredOutput>) structuredOutput;
     }
 
     @SuppressWarnings("unchecked")
@@ -103,26 +80,6 @@ public class PlatformChatOutputTextContent {
     public PlatformChatOutputTextContent withText(String text) {
         Utils.checkNotNull(text, "text");
         this.text = text;
-        return this;
-    }
-
-    /**
-     * Parsed and validated JSON object when structured output was requested. Present only when the request
-     * included `text.format.type: JSON_SCHEMA`.
-     */
-    public PlatformChatOutputTextContent withStructuredOutput(StructuredOutput structuredOutput) {
-        Utils.checkNotNull(structuredOutput, "structuredOutput");
-        this.structuredOutput = JsonNullable.of(structuredOutput);
-        return this;
-    }
-
-    /**
-     * Parsed and validated JSON object when structured output was requested. Present only when the request
-     * included `text.format.type: JSON_SCHEMA`.
-     */
-    public PlatformChatOutputTextContent withStructuredOutput(JsonNullable<? extends StructuredOutput> structuredOutput) {
-        Utils.checkNotNull(structuredOutput, "structuredOutput");
-        this.structuredOutput = structuredOutput;
         return this;
     }
 
@@ -151,15 +108,13 @@ public class PlatformChatOutputTextContent {
         return 
             Utils.enhancedDeepEquals(this.type, other.type) &&
             Utils.enhancedDeepEquals(this.text, other.text) &&
-            Utils.enhancedDeepEquals(this.structuredOutput, other.structuredOutput) &&
             Utils.enhancedDeepEquals(this.annotations, other.annotations);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type, text, structuredOutput,
-            annotations);
+            type, text, annotations);
     }
     
     @Override
@@ -167,7 +122,6 @@ public class PlatformChatOutputTextContent {
         return Utils.toString(PlatformChatOutputTextContent.class,
                 "type", type,
                 "text", text,
-                "structuredOutput", structuredOutput,
                 "annotations", annotations);
     }
 
@@ -177,8 +131,6 @@ public class PlatformChatOutputTextContent {
         private PlatformChatOutputTextContentType type;
 
         private String text;
-
-        private JsonNullable<? extends StructuredOutput> structuredOutput = JsonNullable.undefined();
 
         private Optional<? extends List<PlatformChatCitationAnnotation>> annotations = Optional.empty();
 
@@ -201,27 +153,6 @@ public class PlatformChatOutputTextContent {
         }
 
 
-        /**
-         * Parsed and validated JSON object when structured output was requested. Present only when the request
-         * included `text.format.type: JSON_SCHEMA`.
-         */
-        public Builder structuredOutput(StructuredOutput structuredOutput) {
-            Utils.checkNotNull(structuredOutput, "structuredOutput");
-            this.structuredOutput = JsonNullable.of(structuredOutput);
-            return this;
-        }
-
-        /**
-         * Parsed and validated JSON object when structured output was requested. Present only when the request
-         * included `text.format.type: JSON_SCHEMA`.
-         */
-        public Builder structuredOutput(JsonNullable<? extends StructuredOutput> structuredOutput) {
-            Utils.checkNotNull(structuredOutput, "structuredOutput");
-            this.structuredOutput = structuredOutput;
-            return this;
-        }
-
-
         public Builder annotations(List<PlatformChatCitationAnnotation> annotations) {
             Utils.checkNotNull(annotations, "annotations");
             this.annotations = Optional.ofNullable(annotations);
@@ -237,8 +168,7 @@ public class PlatformChatOutputTextContent {
         public PlatformChatOutputTextContent build() {
 
             return new PlatformChatOutputTextContent(
-                type, text, structuredOutput,
-                annotations);
+                type, text, annotations);
         }
 
     }
