@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 0359d4fe-2923-46fc-aaca-cf70b48dcfa1
 management:
-  docChecksum: 9d8ec68225b876cf9682078cfb491edd
+  docChecksum: b5e6aaf09569e076c7321d15cf12c515
   docVersion: 0.9.0
-  speakeasyVersion: 1.809.0
+  speakeasyVersion: 1.810.0
   generationVersion: 2.961.1
-  releaseVersion: 0.17.24
-  configChecksum: 5f548db945c56d3eae6f85c15851bd97
+  releaseVersion: 0.17.25
+  configChecksum: d8d8c155c7614860f599efd368719b3a
   repoURL: https://github.com/gleanwork/api-client-java.git
   installationURL: https://github.com/gleanwork/api-client-java
   published: true
 persistentEdits:
-  generation_id: 2fe14f28-0807-471b-8831-745242cb25c5
-  pristine_commit_hash: c560302757b5d1fbf50060dea09802c6993eeff5
-  pristine_tree_hash: 33b75298aedf57715fdbfc56ea5c70cef1c820d4
+  generation_id: 01fccd47-5737-43ac-9dfa-48e5d41a50ea
+  pristine_commit_hash: 16929e339cf2095fc3de1d45440378daf83b9359
+  pristine_tree_hash: 6989c8dd4c9c873248cd96364ec12ed99b74f0a9
 features:
   java:
     acceptHeaders: 2.81.2
@@ -2288,10 +2288,6 @@ trackedFiles:
     id: 1cb1abd5920e
     last_write_checksum: sha1:bdea332efd884515e706e40414b1f651bf843d85
     pristine_git_object: 40908d2f8c0554e10429bb5e8923f0d16714dc05
-  docs/models/components/PlatformDocumentReference.md:
-    id: d44ea4c158f9
-    last_write_checksum: sha1:c2a521b908c6e6f96563f204dc765fd0d08fa275
-    pristine_git_object: b7c76556446555ca25724903804075b69b0b7d57
   docs/models/components/PlatformDocumentsBatchRequest.md:
     id: 79ba70ac7055
     last_write_checksum: sha1:ae0e8519c7797ad36ff98c6defc5bfd9a6174d95
@@ -2468,18 +2464,6 @@ trackedFiles:
     id: b0d7a2d55a3c
     last_write_checksum: sha1:013df1ce92a61c910c4dcd8282d9ebc39834ef8b
     pristine_git_object: b3604a6d5bf75ebd2b37241c30f42f337bb192f5
-  docs/models/components/PlatformSearchEnumerationInclude.md:
-    id: 111c8bd62c18
-    last_write_checksum: sha1:bfcca596e6ac2d0c7cb215df818c51fdcdc596b5
-    pristine_git_object: 4ac5185791a9c43169f7e6b9cc1a0750ce97959d
-  docs/models/components/PlatformSearchEnumerationRequest.md:
-    id: 3e5f5f5ef916
-    last_write_checksum: sha1:27fba6bd00f43e1eed5e6cc5adbc7e8526c6e91c
-    pristine_git_object: 0bf759f477c5d8273e61f6dc6ebdaf14ef5b6843
-  docs/models/components/PlatformSearchEnumerationResponse.md:
-    id: def322510efa
-    last_write_checksum: sha1:3f232463f59a9d4d45ce601bdcc7c836d07fb023
-    pristine_git_object: 8e64ff5c1942130eda2918b78e3a5e70e6f7433c
   docs/models/components/PlatformSearchFiltersResponse.md:
     id: d42493354d32
     last_write_checksum: sha1:ea15e170612bcb56c65ba9a8e68548c5d6f05eb2
@@ -4340,10 +4324,6 @@ trackedFiles:
     id: cc89b33d8216
     last_write_checksum: sha1:f1c21bb0f4d856ddb9e72bc43587673c79f68f6a
     pristine_git_object: b3389f2a221a671988a54f2645f932feb26e4d36
-  docs/models/operations/PlatformSearchEnumerationResponse.md:
-    id: a47c50740b0d
-    last_write_checksum: sha1:c647edfce754253a2b50690cd2c7db13a30f37d7
-    pristine_git_object: c8db9890371650237f047be651a5cf404dd26d57
   docs/models/operations/PlatformSearchFiltersRequest.md:
     id: 1a4008095fc4
     last_write_checksum: sha1:cd7c15a3f2da10917713db2b6bcf26e046df624c
@@ -4998,8 +4978,8 @@ trackedFiles:
     pristine_git_object: 50cc780abca57bc36960910449cfa6491f729579
   docs/sdks/search/README.md:
     id: 5c534716244c
-    last_write_checksum: sha1:1ce1861f2c40c893c54dafeb9f583120f5e16670
-    pristine_git_object: ffeb9fc4ca0d6ae17118de9ce128f0f6fb8a0e01
+    last_write_checksum: sha1:c15f26bc7baeba7c79685e36d6eeee48b82de5ba
+    pristine_git_object: 1c5cb81cbfedf30ec20bc6c81108da494fa6f1c6
   docs/sdks/skills/README.md:
     id: 3a14a5c90791
     last_write_checksum: sha1:8709a05b5cefc3f056580d28b8203cd64daca284
@@ -5030,8 +5010,8 @@ trackedFiles:
     pristine_git_object: 3decbce5bd40edbe278c1c5d2dbf585808e51d9a
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:5fa0aaf94c87be67340367eb1089a650ad963302
-    pristine_git_object: 2ec0f45307ae79c0cb2c02c636af6e7c45c3a832
+    last_write_checksum: sha1:7825995431196ae0f4e0b5bb934a8b885eda133c
+    pristine_git_object: bc9316a165ef7f157f50637f5ef5a93900568737
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -5246,8 +5226,8 @@ trackedFiles:
     pristine_git_object: f6b22c18ff13f777e3641ec68739a3cb09365b48
   src/main/java/com/glean/api_client/glean_api_client/AsyncSearch.java:
     id: 443645b885fa
-    last_write_checksum: sha1:649b74fc79316a2826bfbca93562a593574359f4
-    pristine_git_object: a5fc09cdb7d8266c407f6cbaeb89b96efdcacdd7
+    last_write_checksum: sha1:224125d5fb976ce1d20c3a9ca99d5e4dd13e3c81
+    pristine_git_object: 280b5f35efb9f69cfcb9c97437f3bf610a83d9c5
   src/main/java/com/glean/api_client/glean_api_client/AsyncSkills.java:
     id: 809381bacfb1
     last_write_checksum: sha1:96a566c5673b78a9371867928f3bcaeeeececf4e
@@ -5414,12 +5394,12 @@ trackedFiles:
     pristine_git_object: ffae914775eb41ff311371f62504344a59d090fd
   src/main/java/com/glean/api_client/glean_api_client/SDKConfiguration.java:
     id: d5fcc61f5992
-    last_write_checksum: sha1:1236de25d5473e04cfac5de406e0db78791e56d6
-    pristine_git_object: f2496581d0a35b1782c731ea6acd8393e88ca860
+    last_write_checksum: sha1:d3352ff6d8b50aa9c4a91dba5519c9400e8abb19
+    pristine_git_object: 076875cb4c2001be1dfe83f4a6479bb7a95bc9dc
   src/main/java/com/glean/api_client/glean_api_client/Search.java:
     id: f22d94b920b5
-    last_write_checksum: sha1:1a9f311b8e47c17fafb2fe7281d3796eafbc2af5
-    pristine_git_object: acf30f6590a8d170f1c8a16e7efd711f4b574b02
+    last_write_checksum: sha1:14e024607aebae4b1197445ad31984898c4735a3
+    pristine_git_object: b9e0476022077027c9fc88d1906f3a555e47e77f
   src/main/java/com/glean/api_client/glean_api_client/SecuritySource.java:
     id: add211a7c1dd
     last_write_checksum: sha1:060fd502a5844abda3dba22f9e00ca79f8317f94
@@ -7700,10 +7680,6 @@ trackedFiles:
     id: 28f82462b349
     last_write_checksum: sha1:ed25ff286b9dabc6830d0fa452577ea0d37b897a
     pristine_git_object: ca7f488683db060c212a123c92163da8d16846ee
-  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformDocumentReference.java:
-    id: 6005daa1b97b
-    last_write_checksum: sha1:7d9307c02197f9a19e39751190d06bbb7d0630b2
-    pristine_git_object: 1a84f36072e9976cc2510360d369aed3f1272b2b
   src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformDocumentsBatchRequest.java:
     id: 661a65db952e
     last_write_checksum: sha1:efc143d813310038531282358168ee7d45da72ad
@@ -7880,18 +7856,6 @@ trackedFiles:
     id: cfedffb9bb25
     last_write_checksum: sha1:740c36f3fdf792a7323b691c6c93ee705782d086
     pristine_git_object: 4b9184d9536c41b245796815a7e2c5dc9390cc0a
-  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformSearchEnumerationInclude.java:
-    id: 4ca654431aa6
-    last_write_checksum: sha1:3753971415eed5581b1b8e9e49ac11fd8bfb7d62
-    pristine_git_object: 475ef2ba2000c091a7d515c6cfa519762b6cc6ea
-  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformSearchEnumerationRequest.java:
-    id: 14a46c86d11b
-    last_write_checksum: sha1:b4863001b40de964558712d88607b439f5b82cd0
-    pristine_git_object: a0bad2e9159c1b6f978b0634e5b9e69e8f97f5e8
-  src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformSearchEnumerationResponse.java:
-    id: 6912e242ac21
-    last_write_checksum: sha1:7d394329fd841642eaf3e8950bb91870d9f8f6e3
-    pristine_git_object: 5c7a8a4161fef626447376d0488cca7b6bdceefc
   src/main/java/com/glean/api_client/glean_api_client/models/components/PlatformSearchFiltersResponse.java:
     id: b4ffdc4b53ac
     last_write_checksum: sha1:06fab4f67d03a2c4c0492023ee54f8717ff5fe3d
@@ -10196,14 +10160,6 @@ trackedFiles:
     id: abd4eba9fb86
     last_write_checksum: sha1:5b02b91b23e7ee901104547095e3f7924dfd110e
     pristine_git_object: dcd81c1e74646ae8cb46b3a00e991f96e5c105b4
-  src/main/java/com/glean/api_client/glean_api_client/models/operations/PlatformSearchEnumerationRequestBuilder.java:
-    id: 216641149c74
-    last_write_checksum: sha1:db08a9953ec452628117a13f66aec1bc7d336fcf
-    pristine_git_object: 34b1d8826da59835fd0cecb8321ea3370b0b11f4
-  src/main/java/com/glean/api_client/glean_api_client/models/operations/PlatformSearchEnumerationResponse.java:
-    id: 9913c144d30a
-    last_write_checksum: sha1:06df62854bbfddfba2308b6d211a0140d60abea4
-    pristine_git_object: bc4ebdd6e80ef62e5eb33a7ee80bace1248e2da6
   src/main/java/com/glean/api_client/glean_api_client/models/operations/PlatformSearchFiltersRequest.java:
     id: fbf5c5a7d902
     last_write_checksum: sha1:28a9be6e4a226c76371f91ad6e0bd7d9b138e340
@@ -11860,14 +11816,6 @@ trackedFiles:
     id: 8d8ac18f1e83
     last_write_checksum: sha1:5f10d3a14bbbfdf16852dc89fd681ad09e502dc2
     pristine_git_object: f58e294fa7648982ef78f39e5292d43a45b164db
-  src/main/java/com/glean/api_client/glean_api_client/models/operations/async/PlatformSearchEnumerationRequestBuilder.java:
-    id: b3ac5a5b2998
-    last_write_checksum: sha1:11c03b890d54a96dcd8fda582cdf6bb211d61b8b
-    pristine_git_object: 0bc14385f0dea6afe89cca786e6cd7af5542731d
-  src/main/java/com/glean/api_client/glean_api_client/models/operations/async/PlatformSearchEnumerationResponse.java:
-    id: fea5fc4f4e9e
-    last_write_checksum: sha1:f475ca9f2207d39205d1a569696d424231b28f3b
-    pristine_git_object: c728f9fefc48e52c489b2d8e89bf8c6c07bd8b09
   src/main/java/com/glean/api_client/glean_api_client/models/operations/async/PlatformSearchFiltersRequestBuilder.java:
     id: d2c4c4038b1b
     last_write_checksum: sha1:3aeb9ec2b9971853b54682b28a1c798f48e5a730
@@ -12948,10 +12896,6 @@ trackedFiles:
     id: 9b5d67796029
     last_write_checksum: sha1:094ccd1b45375475466482339959aafa1db10a56
     pristine_git_object: 991532739bf948096cf103f89897de12796afc7e
-  src/main/java/com/glean/api_client/glean_api_client/operations/PlatformSearchEnumeration.java:
-    id: 3519ae5afbb9
-    last_write_checksum: sha1:166f71b2ff6a76562a112739b7173f75f1c87475
-    pristine_git_object: c42b4413b93c603c533cbd0936bb5948afc48413
   src/main/java/com/glean/api_client/glean_api_client/operations/PlatformSearchFilters.java:
     id: ea61edacaa4a
     last_write_checksum: sha1:2f3ef96efb1276c486f778d9e065514e0be22b56
@@ -15334,7 +15278,7 @@ generatedTests:
   listpolicies: "2025-06-09T18:03:44Z"
 releaseNotes: |
   ## Java SDK Changes:
-  * `glean.client.insights.retrieve()`:  `response.overviewResponse.totalSignupsWeekAgo` **Added**
+  * `glean.search.enumerate()`: **Removed** (Breaking ⚠️)
 generatedFiles:
   - .gitattributes
   - USAGE.md
