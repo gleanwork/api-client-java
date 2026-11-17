@@ -105,6 +105,14 @@ public class InsightsOverviewResponse {
     private Optional<Long> lastUpdatedTs;
 
     /**
+     * Number of current employees in the specified departments who had signed up 7 days before the latest
+     * day of insights data. Compare with totalSignups for week-over-week signup change.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("totalSignupsWeekAgo")
+    private Optional<Long> totalSignupsWeekAgo;
+
+    /**
      * Search session satisfaction rate, over the specified time period in the specified departments.
      * 
      * @deprecated field: Deprecated on 2026-05-13, removal scheduled for 2027-01-15: This property is no longer supported. Please contact Support for alternatives..
@@ -249,6 +257,7 @@ public class InsightsOverviewResponse {
             @JsonProperty("extensionSummary") Optional<? extends CurrentActiveUsers> extensionSummary,
             @JsonProperty("ugcSummary") Optional<? extends CurrentActiveUsers> ugcSummary,
             @JsonProperty("lastUpdatedTs") Optional<Long> lastUpdatedTs,
+            @JsonProperty("totalSignupsWeekAgo") Optional<Long> totalSignupsWeekAgo,
             @JsonProperty("searchSessionSatisfaction") Optional<Float> searchSessionSatisfaction,
             @JsonProperty("monthlyActiveUserTimeseries") Optional<? extends LabeledCountInfo> monthlyActiveUserTimeseries,
             @JsonProperty("weeklyActiveUserTimeseries") Optional<? extends LabeledCountInfo> weeklyActiveUserTimeseries,
@@ -286,6 +295,7 @@ public class InsightsOverviewResponse {
         Utils.checkNotNull(extensionSummary, "extensionSummary");
         Utils.checkNotNull(ugcSummary, "ugcSummary");
         Utils.checkNotNull(lastUpdatedTs, "lastUpdatedTs");
+        Utils.checkNotNull(totalSignupsWeekAgo, "totalSignupsWeekAgo");
         Utils.checkNotNull(searchSessionSatisfaction, "searchSessionSatisfaction");
         Utils.checkNotNull(monthlyActiveUserTimeseries, "monthlyActiveUserTimeseries");
         Utils.checkNotNull(weeklyActiveUserTimeseries, "weeklyActiveUserTimeseries");
@@ -323,6 +333,7 @@ public class InsightsOverviewResponse {
         this.extensionSummary = extensionSummary;
         this.ugcSummary = ugcSummary;
         this.lastUpdatedTs = lastUpdatedTs;
+        this.totalSignupsWeekAgo = totalSignupsWeekAgo;
         this.searchSessionSatisfaction = searchSessionSatisfaction;
         this.monthlyActiveUserTimeseries = monthlyActiveUserTimeseries;
         this.weeklyActiveUserTimeseries = weeklyActiveUserTimeseries;
@@ -361,7 +372,7 @@ public class InsightsOverviewResponse {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -459,6 +470,15 @@ public class InsightsOverviewResponse {
     @JsonIgnore
     public Optional<Long> lastUpdatedTs() {
         return lastUpdatedTs;
+    }
+
+    /**
+     * Number of current employees in the specified departments who had signed up 7 days before the latest
+     * day of insights data. Compare with totalSignups for week-over-week signup change.
+     */
+    @JsonIgnore
+    public Optional<Long> totalSignupsWeekAgo() {
+        return totalSignupsWeekAgo;
     }
 
     /**
@@ -840,6 +860,27 @@ public class InsightsOverviewResponse {
     }
 
     /**
+     * Number of current employees in the specified departments who had signed up 7 days before the latest
+     * day of insights data. Compare with totalSignups for week-over-week signup change.
+     */
+    public InsightsOverviewResponse withTotalSignupsWeekAgo(long totalSignupsWeekAgo) {
+        Utils.checkNotNull(totalSignupsWeekAgo, "totalSignupsWeekAgo");
+        this.totalSignupsWeekAgo = Optional.ofNullable(totalSignupsWeekAgo);
+        return this;
+    }
+
+
+    /**
+     * Number of current employees in the specified departments who had signed up 7 days before the latest
+     * day of insights data. Compare with totalSignups for week-over-week signup change.
+     */
+    public InsightsOverviewResponse withTotalSignupsWeekAgo(Optional<Long> totalSignupsWeekAgo) {
+        Utils.checkNotNull(totalSignupsWeekAgo, "totalSignupsWeekAgo");
+        this.totalSignupsWeekAgo = totalSignupsWeekAgo;
+        return this;
+    }
+
+    /**
      * Search session satisfaction rate, over the specified time period in the specified departments.
      * 
      * @deprecated field: Deprecated on 2026-05-13, removal scheduled for 2027-01-15: This property is no longer supported. Please contact Support for alternatives..
@@ -1198,6 +1239,7 @@ public class InsightsOverviewResponse {
             Utils.enhancedDeepEquals(this.extensionSummary, other.extensionSummary) &&
             Utils.enhancedDeepEquals(this.ugcSummary, other.ugcSummary) &&
             Utils.enhancedDeepEquals(this.lastUpdatedTs, other.lastUpdatedTs) &&
+            Utils.enhancedDeepEquals(this.totalSignupsWeekAgo, other.totalSignupsWeekAgo) &&
             Utils.enhancedDeepEquals(this.searchSessionSatisfaction, other.searchSessionSatisfaction) &&
             Utils.enhancedDeepEquals(this.monthlyActiveUserTimeseries, other.monthlyActiveUserTimeseries) &&
             Utils.enhancedDeepEquals(this.weeklyActiveUserTimeseries, other.weeklyActiveUserTimeseries) &&
@@ -1230,15 +1272,15 @@ public class InsightsOverviewResponse {
             employeeCount, totalSignups, searchSummary,
             chatSummary, searchActiveUsers, assistantActiveUsers,
             agentsActiveUsers, mcpActiveUsers, extensionSummary,
-            ugcSummary, lastUpdatedTs, searchSessionSatisfaction,
-            monthlyActiveUserTimeseries, weeklyActiveUserTimeseries, dailyActiveUserTimeseries,
-            searchMonthlyActiveUserTimeseries, searchWeeklyActiveUserTimeseries, searchDailyActiveUserTimeseries,
-            assistantMonthlyActiveUserTimeseries, assistantWeeklyActiveUserTimeseries, assistantDailyActiveUserTimeseries,
-            agentsMonthlyActiveUserTimeseries, agentsWeeklyActiveUserTimeseries, agentsDailyActiveUserTimeseries,
-            mcpMonthlyActiveUserTimeseries, mcpWeeklyActiveUserTimeseries, mcpDailyActiveUserTimeseries,
-            searchesTimeseries, assistantInteractionsTimeseries, agentRunsTimeseries,
-            mcpCallsTimeseries, searchDatasourceCounts, chatDatasourceCounts,
-            perUserInsights);
+            ugcSummary, lastUpdatedTs, totalSignupsWeekAgo,
+            searchSessionSatisfaction, monthlyActiveUserTimeseries, weeklyActiveUserTimeseries,
+            dailyActiveUserTimeseries, searchMonthlyActiveUserTimeseries, searchWeeklyActiveUserTimeseries,
+            searchDailyActiveUserTimeseries, assistantMonthlyActiveUserTimeseries, assistantWeeklyActiveUserTimeseries,
+            assistantDailyActiveUserTimeseries, agentsMonthlyActiveUserTimeseries, agentsWeeklyActiveUserTimeseries,
+            agentsDailyActiveUserTimeseries, mcpMonthlyActiveUserTimeseries, mcpWeeklyActiveUserTimeseries,
+            mcpDailyActiveUserTimeseries, searchesTimeseries, assistantInteractionsTimeseries,
+            agentRunsTimeseries, mcpCallsTimeseries, searchDatasourceCounts,
+            chatDatasourceCounts, perUserInsights);
     }
     
     @Override
@@ -1258,6 +1300,7 @@ public class InsightsOverviewResponse {
                 "extensionSummary", extensionSummary,
                 "ugcSummary", ugcSummary,
                 "lastUpdatedTs", lastUpdatedTs,
+                "totalSignupsWeekAgo", totalSignupsWeekAgo,
                 "searchSessionSatisfaction", searchSessionSatisfaction,
                 "monthlyActiveUserTimeseries", monthlyActiveUserTimeseries,
                 "weeklyActiveUserTimeseries", weeklyActiveUserTimeseries,
@@ -1313,6 +1356,8 @@ public class InsightsOverviewResponse {
         private Optional<? extends CurrentActiveUsers> ugcSummary = Optional.empty();
 
         private Optional<Long> lastUpdatedTs = Optional.empty();
+
+        private Optional<Long> totalSignupsWeekAgo = Optional.empty();
 
         @Deprecated
         private Optional<Float> searchSessionSatisfaction = Optional.empty();
@@ -1580,6 +1625,27 @@ public class InsightsOverviewResponse {
         public Builder lastUpdatedTs(Optional<Long> lastUpdatedTs) {
             Utils.checkNotNull(lastUpdatedTs, "lastUpdatedTs");
             this.lastUpdatedTs = lastUpdatedTs;
+            return this;
+        }
+
+
+        /**
+         * Number of current employees in the specified departments who had signed up 7 days before the latest
+         * day of insights data. Compare with totalSignups for week-over-week signup change.
+         */
+        public Builder totalSignupsWeekAgo(long totalSignupsWeekAgo) {
+            Utils.checkNotNull(totalSignupsWeekAgo, "totalSignupsWeekAgo");
+            this.totalSignupsWeekAgo = Optional.ofNullable(totalSignupsWeekAgo);
+            return this;
+        }
+
+        /**
+         * Number of current employees in the specified departments who had signed up 7 days before the latest
+         * day of insights data. Compare with totalSignups for week-over-week signup change.
+         */
+        public Builder totalSignupsWeekAgo(Optional<Long> totalSignupsWeekAgo) {
+            Utils.checkNotNull(totalSignupsWeekAgo, "totalSignupsWeekAgo");
+            this.totalSignupsWeekAgo = totalSignupsWeekAgo;
             return this;
         }
 
@@ -1925,15 +1991,15 @@ public class InsightsOverviewResponse {
                 employeeCount, totalSignups, searchSummary,
                 chatSummary, searchActiveUsers, assistantActiveUsers,
                 agentsActiveUsers, mcpActiveUsers, extensionSummary,
-                ugcSummary, lastUpdatedTs, searchSessionSatisfaction,
-                monthlyActiveUserTimeseries, weeklyActiveUserTimeseries, dailyActiveUserTimeseries,
-                searchMonthlyActiveUserTimeseries, searchWeeklyActiveUserTimeseries, searchDailyActiveUserTimeseries,
-                assistantMonthlyActiveUserTimeseries, assistantWeeklyActiveUserTimeseries, assistantDailyActiveUserTimeseries,
-                agentsMonthlyActiveUserTimeseries, agentsWeeklyActiveUserTimeseries, agentsDailyActiveUserTimeseries,
-                mcpMonthlyActiveUserTimeseries, mcpWeeklyActiveUserTimeseries, mcpDailyActiveUserTimeseries,
-                searchesTimeseries, assistantInteractionsTimeseries, agentRunsTimeseries,
-                mcpCallsTimeseries, searchDatasourceCounts, chatDatasourceCounts,
-                perUserInsights);
+                ugcSummary, lastUpdatedTs, totalSignupsWeekAgo,
+                searchSessionSatisfaction, monthlyActiveUserTimeseries, weeklyActiveUserTimeseries,
+                dailyActiveUserTimeseries, searchMonthlyActiveUserTimeseries, searchWeeklyActiveUserTimeseries,
+                searchDailyActiveUserTimeseries, assistantMonthlyActiveUserTimeseries, assistantWeeklyActiveUserTimeseries,
+                assistantDailyActiveUserTimeseries, agentsMonthlyActiveUserTimeseries, agentsWeeklyActiveUserTimeseries,
+                agentsDailyActiveUserTimeseries, mcpMonthlyActiveUserTimeseries, mcpWeeklyActiveUserTimeseries,
+                mcpDailyActiveUserTimeseries, searchesTimeseries, assistantInteractionsTimeseries,
+                agentRunsTimeseries, mcpCallsTimeseries, searchDatasourceCounts,
+                chatDatasourceCounts, perUserInsights);
         }
 
     }
