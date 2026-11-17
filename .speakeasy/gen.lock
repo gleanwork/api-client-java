@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 0359d4fe-2923-46fc-aaca-cf70b48dcfa1
 management:
-  docChecksum: 01a90b01e893a4ce756427c8d9283253
+  docChecksum: 9d8ec68225b876cf9682078cfb491edd
   docVersion: 0.9.0
   speakeasyVersion: 1.809.0
   generationVersion: 2.961.1
-  releaseVersion: 0.17.23
-  configChecksum: e22598f4f273627dd6f2c1089558d99b
+  releaseVersion: 0.17.24
+  configChecksum: 5f548db945c56d3eae6f85c15851bd97
   repoURL: https://github.com/gleanwork/api-client-java.git
   installationURL: https://github.com/gleanwork/api-client-java
   published: true
 persistentEdits:
-  generation_id: db63564b-3c7a-401f-9653-7fde20716dcc
-  pristine_commit_hash: b38bcb2addcf6d0db299f32ba77526857a0ba60f
-  pristine_tree_hash: cb37bd7193fea2eef2aa80a795a1de64a58d83d2
+  generation_id: 2fe14f28-0807-471b-8831-745242cb25c5
+  pristine_commit_hash: c560302757b5d1fbf50060dea09802c6993eeff5
+  pristine_tree_hash: 33b75298aedf57715fdbfc56ea5c70cef1c820d4
 features:
   java:
     acceptHeaders: 2.81.2
@@ -1630,8 +1630,8 @@ trackedFiles:
     pristine_git_object: 167a057779c200d56e7fd47e8aab5ddb94c680eb
   docs/models/components/InsightsOverviewResponse.md:
     id: eb8d62a9cad4
-    last_write_checksum: sha1:4136a952c0221479f46510caa06e8abe988192af
-    pristine_git_object: 0c210f7ba967ceb78388dfe2f0b9feaac0b041a9
+    last_write_checksum: sha1:a45350522fe09aff58290bc4007eac19e6ddc53d
+    pristine_git_object: 1ecdee1fef9e336997558e6b144a6cf1b8cd0e20
   docs/models/components/InsightsRequest.md:
     id: bca39583d1ca
     last_write_checksum: sha1:4dd655c1d58ec97f0d5856fdf01ccf9ee6468d33
@@ -5030,8 +5030,8 @@ trackedFiles:
     pristine_git_object: 3decbce5bd40edbe278c1c5d2dbf585808e51d9a
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:4a2c8eb79950b6d25a09ba9784a2ecee2f880a32
-    pristine_git_object: 532928b42df95488de7b7a4f5fb6358ee7b64453
+    last_write_checksum: sha1:5fa0aaf94c87be67340367eb1089a650ad963302
+    pristine_git_object: 2ec0f45307ae79c0cb2c02c636af6e7c45c3a832
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -5414,8 +5414,8 @@ trackedFiles:
     pristine_git_object: ffae914775eb41ff311371f62504344a59d090fd
   src/main/java/com/glean/api_client/glean_api_client/SDKConfiguration.java:
     id: d5fcc61f5992
-    last_write_checksum: sha1:669dfa075579c1d2a2b10416a8a235a29c2adcd5
-    pristine_git_object: a412a50b7bc99ad69b1c814a6c3d1f13e8cd8ced
+    last_write_checksum: sha1:1236de25d5473e04cfac5de406e0db78791e56d6
+    pristine_git_object: f2496581d0a35b1782c731ea6acd8393e88ca860
   src/main/java/com/glean/api_client/glean_api_client/Search.java:
     id: f22d94b920b5
     last_write_checksum: sha1:1a9f311b8e47c17fafb2fe7281d3796eafbc2af5
@@ -7034,8 +7034,8 @@ trackedFiles:
     pristine_git_object: d0a44604a6235fe14127a92f0fc09d732c9f1861
   src/main/java/com/glean/api_client/glean_api_client/models/components/InsightsOverviewResponse.java:
     id: 2df162b5c362
-    last_write_checksum: sha1:64a9736151ec75f034028737b7a2f6ff2c6222b1
-    pristine_git_object: 2c12ef711d74289484913a962b3bc7330253d33b
+    last_write_checksum: sha1:f6ba20b8c94af9160320409597543582e386d153
+    pristine_git_object: 76b02e71887ee070b669512fa584719194731e4c
   src/main/java/com/glean/api_client/glean_api_client/models/components/InsightsRequest.java:
     id: d18f487ace2b
     last_write_checksum: sha1:cee06a13f2c223ae998d01e17cd815d8c6190807
@@ -15332,7 +15332,9 @@ generatedTests:
   get_/rest/api/v1/tools/list: "2025-06-09T18:03:44Z"
   post_/rest/api/v1/tools/call: "2025-06-09T18:03:44Z"
   listpolicies: "2025-06-09T18:03:44Z"
-releaseNotes: "## Java SDK Changes:\n* `glean.chat.create()`: \n  *  `request.text` **Removed** (Breaking ⚠️)\n  *  `response.output[].content[].structuredOutput` **Removed** (Breaking ⚠️)\n* `glean.chat.createStream()`: \n  *  `request.text` **Removed** (Breaking ⚠️)\n  *  `response.[].union(RESPONSE_COMPLETED).data.response.output[].content[].structuredOutput` **Removed** (Breaking ⚠️)\n* `glean.search.enumerate()`: **Added**\n* `glean.triggers.searchEvents()`:  `response.results[].reason` **Changed**\n* `glean.triggers.searchPresetEvents()`:  `response.results[].reason` **Changed**\n"
+releaseNotes: |
+  ## Java SDK Changes:
+  * `glean.client.insights.retrieve()`:  `response.overviewResponse.totalSignupsWeekAgo` **Added**
 generatedFiles:
   - .gitattributes
   - USAGE.md
