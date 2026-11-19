@@ -15,10 +15,19 @@ public final class GleanCustomConfig {
 
     private final Optional<String> excludeDeprecatedAfter;
     private final Optional<Boolean> includeExperimental;
+    private final Optional<Boolean> includeBeta;
 
     public GleanCustomConfig(Optional<String> excludeDeprecatedAfter, Optional<Boolean> includeExperimental) {
+        this(excludeDeprecatedAfter, includeExperimental, Optional.empty());
+    }
+
+    public GleanCustomConfig(
+            Optional<String> excludeDeprecatedAfter,
+            Optional<Boolean> includeExperimental,
+            Optional<Boolean> includeBeta) {
         this.excludeDeprecatedAfter = excludeDeprecatedAfter != null ? excludeDeprecatedAfter : Optional.empty();
         this.includeExperimental = includeExperimental != null ? includeExperimental : Optional.empty();
+        this.includeBeta = includeBeta != null ? includeBeta : Optional.empty();
     }
 
     /**
@@ -31,11 +40,21 @@ public final class GleanCustomConfig {
     }
 
     /**
-     * Gets whether experimental API features should be enabled.
+     * Gets whether beta API features should be enabled through the
+     * {@code includeExperimental} alias.
      *
      * @return Optional containing the boolean value if set
      */
     public Optional<Boolean> includeExperimental() {
         return includeExperimental;
+    }
+
+    /**
+     * Gets whether beta API features should be enabled.
+     *
+     * @return Optional containing the boolean value if set
+     */
+    public Optional<Boolean> includeBeta() {
+        return includeBeta;
     }
 }

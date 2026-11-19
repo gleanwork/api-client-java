@@ -12,24 +12,28 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
 /**
- * Hook that adds X-Glean headers for experimental features and deprecation testing.
+ * Hook that adds X-Glean headers for beta features and deprecation testing.
  *
  * <p>This hook sets the following headers based on SDK options or environment variables:
  * <ul>
  *   <li>{@code X-Glean-Exclude-Deprecated-After} - Exclude API endpoints deprecated after this date</li>
- *   <li>{@code X-Glean-Include-Experimental} - Enable experimental API features</li>
+ *   <li>{@code X-Glean-Include-Experimental} - Enable beta API features. Set by either
+ *       {@code includeBeta} or its {@code includeExperimental} alias.</li>
  * </ul>
  *
  * <p>Environment variables take precedence over SDK constructor options:
  * <ul>
  *   <li>{@code X_GLEAN_EXCLUDE_DEPRECATED_AFTER} - Date in YYYY-MM-DD format</li>
- *   <li>{@code X_GLEAN_INCLUDE_EXPERIMENTAL} - "true" to enable experimental features</li>
+ *   <li>{@code X_GLEAN_INCLUDE_BETA} - "true" to enable beta features; any other non-empty
+ *       value overrides {@code includeBeta(true)}</li>
+ *   <li>{@code X_GLEAN_INCLUDE_EXPERIMENTAL} - "true" to enable beta features</li>
  * </ul>
  */
 public final class XGleanHeadersHook {
 
     static final String ENV_EXCLUDE_DEPRECATED_AFTER = "X_GLEAN_EXCLUDE_DEPRECATED_AFTER";
     static final String ENV_INCLUDE_EXPERIMENTAL = "X_GLEAN_INCLUDE_EXPERIMENTAL";
+    static final String ENV_INCLUDE_BETA = "X_GLEAN_INCLUDE_BETA";
 
     static final String HEADER_EXCLUDE_DEPRECATED_AFTER = "X-Glean-Exclude-Deprecated-After";
     static final String HEADER_EXPERIMENTAL = "X-Glean-Include-Experimental";
@@ -106,12 +110,37 @@ public final class XGleanHeadersHook {
         Optional<String> experimentalValue = getFirstNonEmpty(
                 getEnvAsBoolean(ENV_INCLUDE_EXPERIMENTAL, envProvider),
                 customConfig.flatMap(GleanCustomConfig::includeExperimental).filter(b -> b).map(b -> "true"),
-                getSdkConfigurationIncludeExperimental(sdkConfiguration).filter(b -> b).map(b -> "true")
+                getSdkConfigurationBoolean(sdkConfiguration, "includeExperimental").filter(b -> b).map(b -> "true")
         );
+
+        // includeExperimental is an alias of includeBeta. Each one resolves on its own, and
+        // either one enables the header. Disabling one never disables the other. Keep sending
+        // X-Glean-Include-Experimental for both: older deployments do not allow X-Glean-Beta
+        // in their CORS preflight.
+        boolean includeBeta = resolveBooleanOption(
+                envProvider.apply(ENV_INCLUDE_BETA),
+                customConfig.flatMap(GleanCustomConfig::includeBeta)
+                        .or(() -> getSdkConfigurationBoolean(sdkConfiguration, "includeBeta"))
+        );
+        if (includeBeta) {
+            experimentalValue = Optional.of("true");
+        }
 
         experimentalValue.ifPresent(value ->
                 builder.header(HEADER_EXPERIMENTAL, value)
         );
+    }
+
+    /**
+     * Resolves a boolean opt-in from its environment variable and SDK option. The environment
+     * variable takes precedence: "true" (case-insensitive) enables it, any other non-empty value
+     * disables it, and an unset or blank value falls back to the SDK option.
+     */
+    private static boolean resolveBooleanOption(String envValue, Optional<Boolean> optionValue) {
+        if (envValue != null && !envValue.trim().isEmpty()) {
+            return "true".equalsIgnoreCase(envValue.trim());
+        }
+        return optionValue.orElse(false);
     }
 
     /**
@@ -172,14 +201,14 @@ public final class XGleanHeadersHook {
         return Optional.empty();
     }
 
-    private static Optional<Boolean> getSdkConfigurationIncludeExperimental(SDKConfiguration sdkConfiguration) {
+    private static Optional<Boolean> getSdkConfigurationBoolean(SDKConfiguration sdkConfiguration, String methodName) {
         if (sdkConfiguration == null) {
             return Optional.empty();
         }
 
         // Use reflection to avoid a compile-time dependency on generated methods.
         try {
-            Method m = sdkConfiguration.getClass().getMethod("includeExperimental");
+            Method m = sdkConfiguration.getClass().getMethod(methodName);
             Object result = m.invoke(sdkConfiguration);
             if (result instanceof Optional) {
                 Optional<?> opt = (Optional<?>) result;

@@ -14,7 +14,7 @@ import java.util.Optional;
  * Builder wrapper for creating {@link Glean} instances with custom configuration options.
  *
  * <p>This builder extends the standard SDK builder with additional configuration options
- * for experimental features and deprecation testing that are preserved across SDK regenerations.
+ * for beta features and deprecation testing that are preserved across SDK regenerations.
  *
  * <p>Example usage:
  * <pre>{@code
@@ -22,7 +22,7 @@ import java.util.Optional;
  *         .apiToken("your-api-token")
  *         .serverURL("https://mycompany-be.glean.com")
  *         .excludeDeprecatedAfter("2026-10-15")
- *         .includeExperimental(true)
+ *         .includeBeta(true)
  *         .build();
  * }</pre>
  */
@@ -32,6 +32,7 @@ public final class GleanBuilder {
 
     private Optional<String> excludeDeprecatedAfter = Optional.empty();
     private Optional<Boolean> includeExperimental = Optional.empty();
+    private Optional<Boolean> includeBeta = Optional.empty();
 
     private GleanBuilder() {
         this.delegate = Glean.builder();
@@ -161,13 +162,32 @@ public final class GleanBuilder {
     }
 
     /**
-     * Enable experimental API features that are not yet generally available.
+     * Enable beta API features that are not yet generally available.
      * Use this to preview and test new functionality.
      *
-     * <p><strong>Warning:</strong> Experimental features may change or be removed without notice.
-     * Do not rely on experimental features in production environments.
+     * <p>This can also be set with the {@code X_GLEAN_INCLUDE_BETA} environment variable,
+     * which takes precedence over this option. {@link #includeExperimental(boolean)} is an
+     * alias: if either one is enabled, the SDK enables beta API features.
      *
-     * @param includeExperimental whether to include experimental features
+     * <p><strong>Warning:</strong> Beta features may change or be removed without notice.
+     * Do not rely on beta features in production environments.
+     *
+     * @param includeBeta whether to include beta features
+     * @return This builder instance.
+     */
+    public GleanBuilder includeBeta(boolean includeBeta) {
+        this.includeBeta = Optional.of(includeBeta);
+        return this;
+    }
+
+    /**
+     * Alias of {@link #includeBeta(boolean)}. If either one is enabled, the SDK enables
+     * beta API features.
+     *
+     * <p>This can also be set with the {@code X_GLEAN_INCLUDE_EXPERIMENTAL} environment
+     * variable, which takes precedence over this option.
+     *
+     * @param includeExperimental whether to include beta features
      * @return This builder instance.
      */
     public GleanBuilder includeExperimental(boolean includeExperimental) {
@@ -186,7 +206,7 @@ public final class GleanBuilder {
         if (sdkConfiguration != null) {
             GleanCustomConfigRegistry.put(
                     sdkConfiguration,
-                    new GleanCustomConfig(excludeDeprecatedAfter, includeExperimental)
+                    new GleanCustomConfig(excludeDeprecatedAfter, includeExperimental, includeBeta)
             );
         }
         return sdk;
