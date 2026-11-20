@@ -40,6 +40,7 @@ import com.glean.api_client.glean_api_client.operations.GetAgentSchemas;
 import com.glean.api_client.glean_api_client.operations.ImportAgent;
 import com.glean.api_client.glean_api_client.operations.SearchAgents;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.Deprecated;
 import java.lang.Long;
 import java.lang.String;
@@ -86,7 +87,8 @@ public class ClientAgents {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateAgentResponse create(CreateWorkflowRequest createWorkflowRequest) {
-        return create(Optional.empty(), Optional.empty(), createWorkflowRequest);
+        return create(Optional.empty(), Optional.empty(), createWorkflowRequest,
+            Optional.empty());
     }
 
     /**
@@ -103,6 +105,25 @@ public class ClientAgents {
     public CreateAgentResponse create(
             Optional<String> locale, Optional<Long> timezoneOffset,
             CreateWorkflowRequest createWorkflowRequest) {
+        return create(locale, timezoneOffset, createWorkflowRequest,
+            Optional.empty());
+    }
+
+    /**
+     * Create an agent
+     * 
+     * <p>Create an agent.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param createWorkflowRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateAgentResponse create(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            CreateWorkflowRequest createWorkflowRequest, Optional<Options> options) {
         CreateAgentRequest request =
             CreateAgentRequest
                 .builder()
@@ -111,7 +132,7 @@ public class ClientAgents {
                 .createWorkflowRequest(createWorkflowRequest)
                 .build();
         RequestOperation<CreateAgentRequest, CreateAgentResponse> operation
-              = new CreateAgent.Sync(sdkConfiguration, _headers);
+              = new CreateAgent.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -142,7 +163,8 @@ public class ClientAgents {
      */
     @Deprecated
     public GetAgentResponse retrieve(String agentId) {
-        return retrieve(Optional.empty(), Optional.empty(), agentId);
+        return retrieve(Optional.empty(), Optional.empty(), agentId,
+            Optional.empty());
     }
 
     /**
@@ -162,6 +184,28 @@ public class ClientAgents {
     public GetAgentResponse retrieve(
             Optional<String> locale, Optional<Long> timezoneOffset,
             String agentId) {
+        return retrieve(locale, timezoneOffset, agentId,
+            Optional.empty());
+    }
+
+    /**
+     * Retrieve an agent
+     * 
+     * <p>Returns details of an [agent](https://developers.glean.com/agents/agents-api) created in the Agent
+     * Builder.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param agentId The ID of the agent.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use GET /api/agents/{agent_id} instead..
+     */
+    @Deprecated
+    public GetAgentResponse retrieve(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            String agentId, Optional<Options> options) {
         GetAgentRequest request =
             GetAgentRequest
                 .builder()
@@ -170,7 +214,7 @@ public class ClientAgents {
                 .agentId(agentId)
                 .build();
         RequestOperation<GetAgentRequest, GetAgentResponse> operation
-              = new GetAgent.Sync(sdkConfiguration, _headers);
+              = new GetAgent.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -201,7 +245,7 @@ public class ClientAgents {
      */
     public EditAgentResponse update(String agentId, EditWorkflowRequest editWorkflowRequest) {
         return update(Optional.empty(), Optional.empty(), agentId,
-            editWorkflowRequest);
+            editWorkflowRequest, Optional.empty());
     }
 
     /**
@@ -221,6 +265,29 @@ public class ClientAgents {
     public EditAgentResponse update(
             Optional<String> locale, Optional<Long> timezoneOffset,
             String agentId, EditWorkflowRequest editWorkflowRequest) {
+        return update(locale, timezoneOffset, agentId,
+            editWorkflowRequest, Optional.empty());
+    }
+
+    /**
+     * Edit an agent
+     * 
+     * <p>Creates a draft or publishes an [agent](https://developers.glean.com/agents/agents-api). Use
+     * `isDraft=true` to save a draft, or `isDraft=false` (or omit) to publish immediately. Only draft and
+     * publish modes are supported.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param agentId The ID of the agent.
+     * @param editWorkflowRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public EditAgentResponse update(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            String agentId, EditWorkflowRequest editWorkflowRequest,
+            Optional<Options> options) {
         EditAgentRequest request =
             EditAgentRequest
                 .builder()
@@ -230,7 +297,7 @@ public class ClientAgents {
                 .editWorkflowRequest(editWorkflowRequest)
                 .build();
         RequestOperation<EditAgentRequest, EditAgentResponse> operation
-              = new EditAgent.Sync(sdkConfiguration, _headers);
+              = new EditAgent.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -261,7 +328,8 @@ public class ClientAgents {
      */
     @Deprecated
     public GetAgentSchemasResponse retrieveSchemas(String agentId) {
-        return retrieveSchemas(Optional.empty(), Optional.empty(), agentId);
+        return retrieveSchemas(Optional.empty(), Optional.empty(), agentId,
+            Optional.empty());
     }
 
     /**
@@ -281,6 +349,28 @@ public class ClientAgents {
     public GetAgentSchemasResponse retrieveSchemas(
             Optional<String> locale, Optional<Long> timezoneOffset,
             String agentId) {
+        return retrieveSchemas(locale, timezoneOffset, agentId,
+            Optional.empty());
+    }
+
+    /**
+     * List an agent's schemas
+     * 
+     * <p>Return [agent](https://developers.glean.com/agents/agents-api)'s input and output schemas. You can
+     * use these schemas to detect changes to an agent's input or output structure.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param agentId The ID of the agent.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use GET /api/agents/{agent_id}/schemas instead..
+     */
+    @Deprecated
+    public GetAgentSchemasResponse retrieveSchemas(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            String agentId, Optional<Options> options) {
         GetAgentSchemasRequest request =
             GetAgentSchemasRequest
                 .builder()
@@ -289,7 +379,7 @@ public class ClientAgents {
                 .agentId(agentId)
                 .build();
         RequestOperation<GetAgentSchemasRequest, GetAgentSchemasResponse> operation
-              = new GetAgentSchemas.Sync(sdkConfiguration, _headers);
+              = new GetAgentSchemas.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -322,7 +412,7 @@ public class ClientAgents {
      */
     public ImportAgentResponse import_(String agentId, ImportAgentRequest importAgentRequest) {
         return import_(Optional.empty(), Optional.empty(), agentId,
-            importAgentRequest);
+            importAgentRequest, Optional.empty());
     }
 
     /**
@@ -343,6 +433,30 @@ public class ClientAgents {
     public ImportAgentResponse import_(
             Optional<String> locale, Optional<Long> timezoneOffset,
             String agentId, ImportAgentRequest importAgentRequest) {
+        return import_(locale, timezoneOffset, agentId,
+            importAgentRequest, Optional.empty());
+    }
+
+    /**
+     * Import an agent
+     * 
+     * <p>Imports an [agent](https://developers.glean.com/agents/agents-api) from its on-disk folder
+     * representation (spec.yaml, instructions.md, skills/, subagents/) packaged as a zip, and creates or
+     * updates the agent. Inverse of the export flow: the folder-to-schema conversion runs server-side. The
+     * bundle must contain only regular files; symlinks are resolved by the caller at packaging time.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param agentId The ID of the agent to create or update.
+     * @param importAgentRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ImportAgentResponse import_(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            String agentId, ImportAgentRequest importAgentRequest,
+            Optional<Options> options) {
         com.glean.api_client.glean_api_client.models.operations.ImportAgentRequest request =
             com.glean.api_client.glean_api_client.models.operations.ImportAgentRequest
                 .builder()
@@ -352,7 +466,7 @@ public class ClientAgents {
                 .importAgentRequest(importAgentRequest)
                 .build();
         RequestOperation<com.glean.api_client.glean_api_client.models.operations.ImportAgentRequest, ImportAgentResponse> operation
-              = new ImportAgent.Sync(sdkConfiguration, _headers);
+              = new ImportAgent.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -381,8 +495,24 @@ public class ClientAgents {
      */
     @Deprecated
     public SearchAgentsResponse list(SearchAgentsRequest request) {
+        return list(request, Optional.empty());
+    }
+
+    /**
+     * Search agents
+     * 
+     * <p>Search for [agents](https://developers.glean.com/agents/agents-api) by agent name.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use POST /api/agents/search instead..
+     */
+    @Deprecated
+    public SearchAgentsResponse list(SearchAgentsRequest request, Optional<Options> options) {
         RequestOperation<SearchAgentsRequest, SearchAgentsResponse> operation
-              = new SearchAgents.Sync(sdkConfiguration, _headers);
+              = new SearchAgents.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -415,8 +545,26 @@ public class ClientAgents {
      */
     @Deprecated
     public CreateAndStreamRunResponse runStream(AgentRunCreate request) {
+        return runStream(request, Optional.empty());
+    }
+
+    /**
+     * Create an agent run and stream the response
+     * 
+     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the result as a
+     * stream of server-sent events (SSE). **Note**: If the agent uses an input form trigger, all form
+     * fields (including optional fields) must be included in the `input` object.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use POST /api/agents/{agent_id}/runs with stream=true instead..
+     */
+    @Deprecated
+    public CreateAndStreamRunResponse runStream(AgentRunCreate request, Optional<Options> options) {
         RequestOperation<AgentRunCreate, CreateAndStreamRunResponse> operation
-              = new CreateAndStreamRun.Sync(sdkConfiguration, _headers);
+              = new CreateAndStreamRun.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -449,8 +597,26 @@ public class ClientAgents {
      */
     @Deprecated
     public CreateAndWaitRunResponse run(AgentRunCreate request) {
+        return run(request, Optional.empty());
+    }
+
+    /**
+     * Create an agent run and wait for the response
+     * 
+     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the final
+     * response. **Note**: If the agent uses an input form trigger, all form fields (including optional
+     * fields) must be included in the `input` object.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use POST /api/agents/{agent_id}/runs instead..
+     */
+    @Deprecated
+    public CreateAndWaitRunResponse run(AgentRunCreate request, Optional<Options> options) {
         RequestOperation<AgentRunCreate, CreateAndWaitRunResponse> operation
-              = new CreateAndWaitRun.Sync(sdkConfiguration, _headers);
+              = new CreateAndWaitRun.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

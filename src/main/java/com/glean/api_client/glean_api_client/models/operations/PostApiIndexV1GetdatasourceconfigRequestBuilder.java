@@ -10,11 +10,15 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.GetDatasourceConfigRequest;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Getdatasourceconfig;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.time.Duration;
+import java.util.Optional;
 
 public class PostApiIndexV1GetdatasourceconfigRequestBuilder {
 
     private GetDatasourceConfigRequest request;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -27,11 +31,26 @@ public class PostApiIndexV1GetdatasourceconfigRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public PostApiIndexV1GetdatasourceconfigRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public PostApiIndexV1GetdatasourceconfigRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
     public PostApiIndexV1GetdatasourceconfigResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<GetDatasourceConfigRequest, PostApiIndexV1GetdatasourceconfigResponse> operation
-              = new PostApiIndexV1Getdatasourceconfig.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Getdatasourceconfig.Sync(sdkConfiguration, options, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

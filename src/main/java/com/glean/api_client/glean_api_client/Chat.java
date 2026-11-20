@@ -19,7 +19,9 @@ import com.glean.api_client.glean_api_client.operations.PlatformChatCreate;
 import com.glean.api_client.glean_api_client.operations.PlatformChatCreateStream;
 import com.glean.api_client.glean_api_client.operations.PlatformChatUpdate;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.String;
+import java.util.Optional;
 
 
 public class Chat {
@@ -68,8 +70,25 @@ public class Chat {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformChatCreateResponse create(PlatformChatCreateRequest request) {
+        return create(request, Optional.empty());
+    }
+
+    /**
+     * Create a chat response
+     * 
+     * <p>Run an assistant turn. The default response is JSON. HTTP clients request server-sent events by
+     * setting `stream` to true in the JSON body.
+     * 
+     * <p>An `Accept: text/event-stream` header does not replace `stream`.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformChatCreateResponse create(PlatformChatCreateRequest request, Optional<Options> options) {
         RequestOperation<PlatformChatCreateRequest, PlatformChatCreateResponse> operation
-              = new PlatformChatCreate.Sync(sdkConfiguration, _headers);
+              = new PlatformChatCreate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -95,6 +114,23 @@ public class Chat {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformChatUpdateResponse update(String chatId, PlatformChatUpdateRequest platformChatUpdateRequest) {
+        return update(chatId, platformChatUpdateRequest, Optional.empty());
+    }
+
+    /**
+     * Update a chat
+     * 
+     * <p>Update the name of a chat. Only the chat owner can update it.
+     * 
+     * @param chatId The ID of the chat to update.
+     * @param platformChatUpdateRequest The fields to update on a chat.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformChatUpdateResponse update(
+            String chatId, PlatformChatUpdateRequest platformChatUpdateRequest,
+            Optional<Options> options) {
         com.glean.api_client.glean_api_client.models.operations.PlatformChatUpdateRequest request =
             com.glean.api_client.glean_api_client.models.operations.PlatformChatUpdateRequest
                 .builder()
@@ -102,7 +138,7 @@ public class Chat {
                 .platformChatUpdateRequest(platformChatUpdateRequest)
                 .build();
         RequestOperation<com.glean.api_client.glean_api_client.models.operations.PlatformChatUpdateRequest, PlatformChatUpdateResponse> operation
-              = new PlatformChatUpdate.Sync(sdkConfiguration, _headers);
+              = new PlatformChatUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -133,8 +169,25 @@ public class Chat {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformChatCreateStreamResponse createStream(PlatformChatCreateStreamRequest request) {
+        return createStream(request, Optional.empty());
+    }
+
+    /**
+     * Create a streaming chat response
+     * 
+     * <p>SDK-only logical operation. HTTP clients must call the base path; the URL fragment is not sent. Run
+     * an assistant turn as server-sent events.
+     * 
+     * <p>HTTP clients request this mode by setting `stream` to true in the JSON body.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformChatCreateStreamResponse createStream(PlatformChatCreateStreamRequest request, Optional<Options> options) {
         RequestOperation<PlatformChatCreateStreamRequest, PlatformChatCreateStreamResponse> operation
-              = new PlatformChatCreateStream.Sync(sdkConfiguration, _headers);
+              = new PlatformChatCreateStream.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

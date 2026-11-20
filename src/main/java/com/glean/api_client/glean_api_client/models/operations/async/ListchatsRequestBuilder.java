@@ -10,9 +10,11 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.operations.ListchatsRequest;
 import com.glean.api_client.glean_api_client.operations.Listchats;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -20,6 +22,7 @@ public class ListchatsRequestBuilder {
 
     private Optional<String> locale = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -50,6 +53,18 @@ public class ListchatsRequestBuilder {
         this.timezoneOffset = timezoneOffset;
         return this;
     }
+                
+    public ListchatsRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public ListchatsRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private ListchatsRequest buildRequest() {
@@ -61,9 +76,12 @@ public class ListchatsRequestBuilder {
     }
 
     public CompletableFuture<ListchatsResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<ListchatsRequest, ListchatsResponse> operation
-              = new Listchats.Async(sdkConfiguration, _headers);
+              = new Listchats.Async(sdkConfiguration, options, _headers);
         ListchatsRequest request = buildRequest();
 
         return operation.doRequest(request)

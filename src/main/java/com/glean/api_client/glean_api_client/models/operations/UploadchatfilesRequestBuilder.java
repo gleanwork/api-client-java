@@ -10,9 +10,11 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.UploadChatFilesRequest;
 import com.glean.api_client.glean_api_client.operations.Uploadchatfiles;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 
 public class UploadchatfilesRequestBuilder {
@@ -20,6 +22,7 @@ public class UploadchatfilesRequestBuilder {
     private Optional<String> locale = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private UploadChatFilesRequest uploadChatFilesRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -56,6 +59,18 @@ public class UploadchatfilesRequestBuilder {
         this.uploadChatFilesRequest = uploadChatFilesRequest;
         return this;
     }
+                
+    public UploadchatfilesRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public UploadchatfilesRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private UploadchatfilesRequest buildRequest() {
@@ -68,9 +83,12 @@ public class UploadchatfilesRequestBuilder {
     }
 
     public UploadchatfilesResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<UploadchatfilesRequest, UploadchatfilesResponse> operation
-              = new Uploadchatfiles.Sync(sdkConfiguration, _headers);
+              = new Uploadchatfiles.Sync(sdkConfiguration, options, _headers);
         UploadchatfilesRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

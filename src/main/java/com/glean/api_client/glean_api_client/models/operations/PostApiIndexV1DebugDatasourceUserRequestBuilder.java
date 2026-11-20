@@ -10,13 +10,17 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.DebugUserRequest;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DebugDatasourceUser;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 
 public class PostApiIndexV1DebugDatasourceUserRequestBuilder {
 
     private String datasource;
     private DebugUserRequest debugUserRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -35,6 +39,18 @@ public class PostApiIndexV1DebugDatasourceUserRequestBuilder {
         this.debugUserRequest = debugUserRequest;
         return this;
     }
+                
+    public PostApiIndexV1DebugDatasourceUserRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public PostApiIndexV1DebugDatasourceUserRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private PostApiIndexV1DebugDatasourceUserRequest buildRequest() {
@@ -46,9 +62,12 @@ public class PostApiIndexV1DebugDatasourceUserRequestBuilder {
     }
 
     public PostApiIndexV1DebugDatasourceUserResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<PostApiIndexV1DebugDatasourceUserRequest, PostApiIndexV1DebugDatasourceUserResponse> operation
-              = new PostApiIndexV1DebugDatasourceUser.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1DebugDatasourceUser.Sync(sdkConfiguration, options, _headers);
         PostApiIndexV1DebugDatasourceUserRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

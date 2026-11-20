@@ -11,9 +11,11 @@ import com.glean.api_client.glean_api_client.models.components.GetChatRequest;
 import com.glean.api_client.glean_api_client.models.operations.GetchatRequest;
 import com.glean.api_client.glean_api_client.operations.Getchat;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -22,6 +24,7 @@ public class GetchatRequestBuilder {
     private Optional<String> locale = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private GetChatRequest getChatRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -58,6 +61,18 @@ public class GetchatRequestBuilder {
         this.getChatRequest = getChatRequest;
         return this;
     }
+                
+    public GetchatRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public GetchatRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private GetchatRequest buildRequest() {
@@ -70,9 +85,12 @@ public class GetchatRequestBuilder {
     }
 
     public CompletableFuture<GetchatResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<GetchatRequest, GetchatResponse> operation
-              = new Getchat.Async(sdkConfiguration, _headers);
+              = new Getchat.Async(sdkConfiguration, options, _headers);
         GetchatRequest request = buildRequest();
 
         return operation.doRequest(request)
