@@ -10,12 +10,16 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.BulkIndexShortcutsRequest;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Bulkindexshortcuts;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class PostApiIndexV1BulkindexshortcutsRequestBuilder {
 
     private BulkIndexShortcutsRequest request;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -28,11 +32,26 @@ public class PostApiIndexV1BulkindexshortcutsRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public PostApiIndexV1BulkindexshortcutsRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public PostApiIndexV1BulkindexshortcutsRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
     public CompletableFuture<PostApiIndexV1BulkindexshortcutsResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<BulkIndexShortcutsRequest, PostApiIndexV1BulkindexshortcutsResponse> operation
-              = new PostApiIndexV1Bulkindexshortcuts.Async(sdkConfiguration, _headers);
+              = new PostApiIndexV1Bulkindexshortcuts.Async(sdkConfiguration, options, _headers);
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

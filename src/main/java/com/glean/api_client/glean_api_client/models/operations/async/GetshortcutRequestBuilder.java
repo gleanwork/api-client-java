@@ -11,8 +11,10 @@ import com.glean.api_client.glean_api_client.models.components.GetShortcutReques
 import com.glean.api_client.glean_api_client.models.operations.GetshortcutRequest;
 import com.glean.api_client.glean_api_client.operations.Getshortcut;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -20,6 +22,7 @@ public class GetshortcutRequestBuilder {
 
     private Optional<String> locale = Optional.empty();
     private GetShortcutRequestUnion getShortcutRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -44,6 +47,18 @@ public class GetshortcutRequestBuilder {
         this.getShortcutRequest = getShortcutRequest;
         return this;
     }
+                
+    public GetshortcutRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public GetshortcutRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private GetshortcutRequest buildRequest() {
@@ -55,9 +70,12 @@ public class GetshortcutRequestBuilder {
     }
 
     public CompletableFuture<GetshortcutResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<GetshortcutRequest, GetshortcutResponse> operation
-              = new Getshortcut.Async(sdkConfiguration, _headers);
+              = new Getshortcut.Async(sdkConfiguration, options, _headers);
         GetshortcutRequest request = buildRequest();
 
         return operation.doRequest(request)

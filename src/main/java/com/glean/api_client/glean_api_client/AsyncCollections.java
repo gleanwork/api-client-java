@@ -47,6 +47,7 @@ import com.glean.api_client.glean_api_client.operations.Editcollectionitem;
 import com.glean.api_client.glean_api_client.operations.Getcollection;
 import com.glean.api_client.glean_api_client.operations.Listcollections;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -92,7 +93,7 @@ public class AsyncCollections {
      * @return {@code CompletableFuture<AddcollectionitemsResponse>} - The async response
      */
     public CompletableFuture<AddcollectionitemsResponse> addItems(AddCollectionItemsRequest addCollectionItemsRequest) {
-        return addItems(Optional.empty(), addCollectionItemsRequest);
+        return addItems(Optional.empty(), addCollectionItemsRequest, Optional.empty());
     }
 
     /**
@@ -105,6 +106,22 @@ public class AsyncCollections {
      * @return {@code CompletableFuture<AddcollectionitemsResponse>} - The async response
      */
     public CompletableFuture<AddcollectionitemsResponse> addItems(Optional<String> locale, AddCollectionItemsRequest addCollectionItemsRequest) {
+        return addItems(locale, addCollectionItemsRequest, Optional.empty());
+    }
+
+    /**
+     * Add Collection item
+     * 
+     * <p>Add items to a Collection.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param addCollectionItemsRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<AddcollectionitemsResponse>} - The async response
+     */
+    public CompletableFuture<AddcollectionitemsResponse> addItems(
+            Optional<String> locale, AddCollectionItemsRequest addCollectionItemsRequest,
+            Optional<Options> options) {
         AddcollectionitemsRequest request =
             AddcollectionitemsRequest
                 .builder()
@@ -112,7 +129,7 @@ public class AsyncCollections {
                 .addCollectionItemsRequest(addCollectionItemsRequest)
                 .build();
         AsyncRequestOperation<AddcollectionitemsRequest, AddcollectionitemsResponse> operation
-              = new Addcollectionitems.Async(sdkConfiguration, _headers);
+              = new Addcollectionitems.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -138,7 +155,7 @@ public class AsyncCollections {
      * @return {@code CompletableFuture<CreatecollectionResponse>} - The async response
      */
     public CompletableFuture<CreatecollectionResponse> create(CreateCollectionRequest createCollectionRequest) {
-        return create(Optional.empty(), createCollectionRequest);
+        return create(Optional.empty(), createCollectionRequest, Optional.empty());
     }
 
     /**
@@ -151,6 +168,22 @@ public class AsyncCollections {
      * @return {@code CompletableFuture<CreatecollectionResponse>} - The async response
      */
     public CompletableFuture<CreatecollectionResponse> create(Optional<String> locale, CreateCollectionRequest createCollectionRequest) {
+        return create(locale, createCollectionRequest, Optional.empty());
+    }
+
+    /**
+     * Create Collection
+     * 
+     * <p>Create a publicly visible (empty) Collection of documents.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param createCollectionRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<CreatecollectionResponse>} - The async response
+     */
+    public CompletableFuture<CreatecollectionResponse> create(
+            Optional<String> locale, CreateCollectionRequest createCollectionRequest,
+            Optional<Options> options) {
         CreatecollectionRequest request =
             CreatecollectionRequest
                 .builder()
@@ -158,7 +191,7 @@ public class AsyncCollections {
                 .createCollectionRequest(createCollectionRequest)
                 .build();
         AsyncRequestOperation<CreatecollectionRequest, CreatecollectionResponse> operation
-              = new Createcollection.Async(sdkConfiguration, _headers);
+              = new Createcollection.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -184,7 +217,7 @@ public class AsyncCollections {
      * @return {@code CompletableFuture<DeletecollectionResponse>} - The async response
      */
     public CompletableFuture<DeletecollectionResponse> delete(DeleteCollectionRequest deleteCollectionRequest) {
-        return delete(Optional.empty(), deleteCollectionRequest);
+        return delete(Optional.empty(), deleteCollectionRequest, Optional.empty());
     }
 
     /**
@@ -197,6 +230,22 @@ public class AsyncCollections {
      * @return {@code CompletableFuture<DeletecollectionResponse>} - The async response
      */
     public CompletableFuture<DeletecollectionResponse> delete(Optional<String> locale, DeleteCollectionRequest deleteCollectionRequest) {
+        return delete(locale, deleteCollectionRequest, Optional.empty());
+    }
+
+    /**
+     * Delete Collection
+     * 
+     * <p>Delete a Collection given the Collection's ID.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param deleteCollectionRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<DeletecollectionResponse>} - The async response
+     */
+    public CompletableFuture<DeletecollectionResponse> delete(
+            Optional<String> locale, DeleteCollectionRequest deleteCollectionRequest,
+            Optional<Options> options) {
         DeletecollectionRequest request =
             DeletecollectionRequest
                 .builder()
@@ -204,7 +253,7 @@ public class AsyncCollections {
                 .deleteCollectionRequest(deleteCollectionRequest)
                 .build();
         AsyncRequestOperation<DeletecollectionRequest, DeletecollectionResponse> operation
-              = new Deletecollection.Async(sdkConfiguration, _headers);
+              = new Deletecollection.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -230,7 +279,7 @@ public class AsyncCollections {
      * @return {@code CompletableFuture<DeletecollectionitemResponse>} - The async response
      */
     public CompletableFuture<DeletecollectionitemResponse> deleteItem(DeleteCollectionItemRequest deleteCollectionItemRequest) {
-        return deleteItem(Optional.empty(), deleteCollectionItemRequest);
+        return deleteItem(Optional.empty(), deleteCollectionItemRequest, Optional.empty());
     }
 
     /**
@@ -243,6 +292,22 @@ public class AsyncCollections {
      * @return {@code CompletableFuture<DeletecollectionitemResponse>} - The async response
      */
     public CompletableFuture<DeletecollectionitemResponse> deleteItem(Optional<String> locale, DeleteCollectionItemRequest deleteCollectionItemRequest) {
+        return deleteItem(locale, deleteCollectionItemRequest, Optional.empty());
+    }
+
+    /**
+     * Delete Collection item
+     * 
+     * <p>Delete a single item from a Collection.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param deleteCollectionItemRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<DeletecollectionitemResponse>} - The async response
+     */
+    public CompletableFuture<DeletecollectionitemResponse> deleteItem(
+            Optional<String> locale, DeleteCollectionItemRequest deleteCollectionItemRequest,
+            Optional<Options> options) {
         DeletecollectionitemRequest request =
             DeletecollectionitemRequest
                 .builder()
@@ -250,7 +315,7 @@ public class AsyncCollections {
                 .deleteCollectionItemRequest(deleteCollectionItemRequest)
                 .build();
         AsyncRequestOperation<DeletecollectionitemRequest, DeletecollectionitemResponse> operation
-              = new Deletecollectionitem.Async(sdkConfiguration, _headers);
+              = new Deletecollectionitem.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -276,7 +341,7 @@ public class AsyncCollections {
      * @return {@code CompletableFuture<EditcollectionResponse>} - The async response
      */
     public CompletableFuture<EditcollectionResponse> update(EditCollectionRequest editCollectionRequest) {
-        return update(Optional.empty(), editCollectionRequest);
+        return update(Optional.empty(), editCollectionRequest, Optional.empty());
     }
 
     /**
@@ -289,6 +354,22 @@ public class AsyncCollections {
      * @return {@code CompletableFuture<EditcollectionResponse>} - The async response
      */
     public CompletableFuture<EditcollectionResponse> update(Optional<String> locale, EditCollectionRequest editCollectionRequest) {
+        return update(locale, editCollectionRequest, Optional.empty());
+    }
+
+    /**
+     * Update Collection
+     * 
+     * <p>Update the properties of an existing Collection.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param editCollectionRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<EditcollectionResponse>} - The async response
+     */
+    public CompletableFuture<EditcollectionResponse> update(
+            Optional<String> locale, EditCollectionRequest editCollectionRequest,
+            Optional<Options> options) {
         EditcollectionRequest request =
             EditcollectionRequest
                 .builder()
@@ -296,7 +377,7 @@ public class AsyncCollections {
                 .editCollectionRequest(editCollectionRequest)
                 .build();
         AsyncRequestOperation<EditcollectionRequest, EditcollectionResponse> operation
-              = new Editcollection.Async(sdkConfiguration, _headers);
+              = new Editcollection.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -322,7 +403,7 @@ public class AsyncCollections {
      * @return {@code CompletableFuture<EditcollectionitemResponse>} - The async response
      */
     public CompletableFuture<EditcollectionitemResponse> updateItem(EditCollectionItemRequest editCollectionItemRequest) {
-        return updateItem(Optional.empty(), editCollectionItemRequest);
+        return updateItem(Optional.empty(), editCollectionItemRequest, Optional.empty());
     }
 
     /**
@@ -335,6 +416,22 @@ public class AsyncCollections {
      * @return {@code CompletableFuture<EditcollectionitemResponse>} - The async response
      */
     public CompletableFuture<EditcollectionitemResponse> updateItem(Optional<String> locale, EditCollectionItemRequest editCollectionItemRequest) {
+        return updateItem(locale, editCollectionItemRequest, Optional.empty());
+    }
+
+    /**
+     * Update Collection item
+     * 
+     * <p>Update the URL, Glean Document ID, description of an item within a Collection given its ID.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param editCollectionItemRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<EditcollectionitemResponse>} - The async response
+     */
+    public CompletableFuture<EditcollectionitemResponse> updateItem(
+            Optional<String> locale, EditCollectionItemRequest editCollectionItemRequest,
+            Optional<Options> options) {
         EditcollectionitemRequest request =
             EditcollectionitemRequest
                 .builder()
@@ -342,7 +439,7 @@ public class AsyncCollections {
                 .editCollectionItemRequest(editCollectionItemRequest)
                 .build();
         AsyncRequestOperation<EditcollectionitemRequest, EditcollectionitemResponse> operation
-              = new Editcollectionitem.Async(sdkConfiguration, _headers);
+              = new Editcollectionitem.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -368,7 +465,7 @@ public class AsyncCollections {
      * @return {@code CompletableFuture<GetcollectionResponse>} - The async response
      */
     public CompletableFuture<GetcollectionResponse> retrieve(GetCollectionRequest getCollectionRequest) {
-        return retrieve(Optional.empty(), getCollectionRequest);
+        return retrieve(Optional.empty(), getCollectionRequest, Optional.empty());
     }
 
     /**
@@ -381,6 +478,22 @@ public class AsyncCollections {
      * @return {@code CompletableFuture<GetcollectionResponse>} - The async response
      */
     public CompletableFuture<GetcollectionResponse> retrieve(Optional<String> locale, GetCollectionRequest getCollectionRequest) {
+        return retrieve(locale, getCollectionRequest, Optional.empty());
+    }
+
+    /**
+     * Read Collection
+     * 
+     * <p>Read the details of a Collection given its ID. Does not fetch items in this Collection.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param getCollectionRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<GetcollectionResponse>} - The async response
+     */
+    public CompletableFuture<GetcollectionResponse> retrieve(
+            Optional<String> locale, GetCollectionRequest getCollectionRequest,
+            Optional<Options> options) {
         GetcollectionRequest request =
             GetcollectionRequest
                 .builder()
@@ -388,7 +501,7 @@ public class AsyncCollections {
                 .getCollectionRequest(getCollectionRequest)
                 .build();
         AsyncRequestOperation<GetcollectionRequest, GetcollectionResponse> operation
-              = new Getcollection.Async(sdkConfiguration, _headers);
+              = new Getcollection.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -414,7 +527,7 @@ public class AsyncCollections {
      * @return {@code CompletableFuture<ListcollectionsResponse>} - The async response
      */
     public CompletableFuture<ListcollectionsResponse> list(ListCollectionsRequest listCollectionsRequest) {
-        return list(Optional.empty(), listCollectionsRequest);
+        return list(Optional.empty(), listCollectionsRequest, Optional.empty());
     }
 
     /**
@@ -427,6 +540,22 @@ public class AsyncCollections {
      * @return {@code CompletableFuture<ListcollectionsResponse>} - The async response
      */
     public CompletableFuture<ListcollectionsResponse> list(Optional<String> locale, ListCollectionsRequest listCollectionsRequest) {
+        return list(locale, listCollectionsRequest, Optional.empty());
+    }
+
+    /**
+     * List Collections
+     * 
+     * <p>List all existing Collections.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param listCollectionsRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<ListcollectionsResponse>} - The async response
+     */
+    public CompletableFuture<ListcollectionsResponse> list(
+            Optional<String> locale, ListCollectionsRequest listCollectionsRequest,
+            Optional<Options> options) {
         ListcollectionsRequest request =
             ListcollectionsRequest
                 .builder()
@@ -434,7 +563,7 @@ public class AsyncCollections {
                 .listCollectionsRequest(listCollectionsRequest)
                 .build();
         AsyncRequestOperation<ListcollectionsRequest, ListcollectionsResponse> operation
-              = new Listcollections.Async(sdkConfiguration, _headers);
+              = new Listcollections.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
