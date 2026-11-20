@@ -11,8 +11,10 @@ import com.glean.api_client.glean_api_client.models.components.DeleteCollectionR
 import com.glean.api_client.glean_api_client.models.operations.DeletecollectionRequest;
 import com.glean.api_client.glean_api_client.operations.Deletecollection;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -20,6 +22,7 @@ public class DeletecollectionRequestBuilder {
 
     private Optional<String> locale = Optional.empty();
     private DeleteCollectionRequest deleteCollectionRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -44,6 +47,18 @@ public class DeletecollectionRequestBuilder {
         this.deleteCollectionRequest = deleteCollectionRequest;
         return this;
     }
+                
+    public DeletecollectionRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public DeletecollectionRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private DeletecollectionRequest buildRequest() {
@@ -55,9 +70,12 @@ public class DeletecollectionRequestBuilder {
     }
 
     public CompletableFuture<DeletecollectionResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<DeletecollectionRequest, DeletecollectionResponse> operation
-              = new Deletecollection.Async(sdkConfiguration, _headers);
+              = new Deletecollection.Async(sdkConfiguration, options, _headers);
         DeletecollectionRequest request = buildRequest();
 
         return operation.doRequest(request)

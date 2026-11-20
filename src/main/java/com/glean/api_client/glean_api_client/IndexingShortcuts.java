@@ -15,6 +15,8 @@ import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1Upl
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Bulkindexshortcuts;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Uploadshortcuts;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
+import java.util.Optional;
 
 
 public class IndexingShortcuts {
@@ -67,8 +69,27 @@ public class IndexingShortcuts {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1BulkindexshortcutsResponse bulkIndex(BulkIndexShortcutsRequest request) {
+        return bulkIndex(request, Optional.empty());
+    }
+
+    /**
+     * Bulk index external shortcuts
+     * 
+     * <p>Replaces all the currently indexed shortcuts using paginated batch API calls. Note that this
+     * endpoint is used for indexing shortcuts not hosted by Glean. If you want to upload shortcuts that
+     * would be hosted by Glean, please use the `/uploadshortcuts` endpoint.
+     * 
+     * <p>For information on what you can do with Golinks, which are Glean-hosted shortcuts, please refer to
+     * [this](https://docs.glean.com/user-guide/knowledge/go-links/how-go-links-work) page.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1BulkindexshortcutsResponse bulkIndex(BulkIndexShortcutsRequest request, Optional<Options> options) {
         RequestOperation<BulkIndexShortcutsRequest, PostApiIndexV1BulkindexshortcutsResponse> operation
-              = new PostApiIndexV1Bulkindexshortcuts.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Bulkindexshortcuts.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -95,8 +116,23 @@ public class IndexingShortcuts {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1UploadshortcutsResponse upload(UploadShortcutsRequest request) {
+        return upload(request, Optional.empty());
+    }
+
+    /**
+     * Upload shortcuts
+     * 
+     * <p>Creates glean shortcuts for uploaded shortcuts info. Glean would host the shortcuts, and they can be
+     * managed in the knowledge tab once uploaded.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1UploadshortcutsResponse upload(UploadShortcutsRequest request, Optional<Options> options) {
         RequestOperation<UploadShortcutsRequest, PostApiIndexV1UploadshortcutsResponse> operation
-              = new PostApiIndexV1Uploadshortcuts.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Uploadshortcuts.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

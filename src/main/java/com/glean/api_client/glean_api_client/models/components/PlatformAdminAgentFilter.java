@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.utils.LazySingletonValue;
+import com.glean.api_client.glean_api_client.utils.SpeakeasyMetadata;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -31,12 +32,14 @@ public class PlatformAdminAgentFilter {
      * <p>Matching ignores case and surrounding whitespace. Each value is at most 256 characters.
      */
     @JsonProperty("field")
+    @SpeakeasyMetadata("queryParam:name=field")
     private String field;
 
     /**
      * The values to match. An agent matches when any value matches.
      */
     @JsonProperty("values")
+    @SpeakeasyMetadata("queryParam:name=values")
     private List<String> values;
 
     /**
@@ -44,6 +47,7 @@ public class PlatformAdminAgentFilter {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("operator")
+    @SpeakeasyMetadata("queryParam:name=operator")
     private Optional<? extends PlatformAdminAgentFilterOperator> operator;
 
     @JsonCreator

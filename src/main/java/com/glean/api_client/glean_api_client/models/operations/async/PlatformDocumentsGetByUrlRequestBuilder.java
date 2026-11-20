@@ -11,8 +11,10 @@ import com.glean.api_client.glean_api_client.models.components.PlatformDocumentI
 import com.glean.api_client.glean_api_client.models.operations.PlatformDocumentsGetByUrlRequest;
 import com.glean.api_client.glean_api_client.operations.PlatformDocumentsGetByUrl;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -21,6 +23,7 @@ public class PlatformDocumentsGetByUrlRequestBuilder {
 
     private String url;
     private Optional<? extends List<PlatformDocumentInclude>> include = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -45,6 +48,18 @@ public class PlatformDocumentsGetByUrlRequestBuilder {
         this.include = include;
         return this;
     }
+                
+    public PlatformDocumentsGetByUrlRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public PlatformDocumentsGetByUrlRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private PlatformDocumentsGetByUrlRequest buildRequest() {
@@ -56,9 +71,12 @@ public class PlatformDocumentsGetByUrlRequestBuilder {
     }
 
     public CompletableFuture<PlatformDocumentsGetByUrlResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<PlatformDocumentsGetByUrlRequest, PlatformDocumentsGetByUrlResponse> operation
-              = new PlatformDocumentsGetByUrl.Async(sdkConfiguration, _headers);
+              = new PlatformDocumentsGetByUrl.Async(sdkConfiguration, options, _headers);
         PlatformDocumentsGetByUrlRequest request = buildRequest();
 
         return operation.doRequest(request)

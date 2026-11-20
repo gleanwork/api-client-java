@@ -13,7 +13,9 @@ import java.lang.String;
 
 
 public class PlatformAgentGetResponse {
-
+    /**
+     * An agent available to the authenticated user.
+     */
     @JsonProperty("agent")
     private PlatformAgent agent;
 
@@ -33,6 +35,9 @@ public class PlatformAgentGetResponse {
         this.requestId = requestId;
     }
 
+    /**
+     * An agent available to the authenticated user.
+     */
     @JsonIgnore
     public PlatformAgent agent() {
         return agent;
@@ -51,6 +56,9 @@ public class PlatformAgentGetResponse {
     }
 
 
+    /**
+     * An agent available to the authenticated user.
+     */
     public PlatformAgentGetResponse withAgent(PlatformAgent agent) {
         Utils.checkNotNull(agent, "agent");
         this.agent = agent;
@@ -105,6 +113,9 @@ public class PlatformAgentGetResponse {
         }
 
 
+        /**
+         * An agent available to the authenticated user.
+         */
         public Builder agent(PlatformAgent agent) {
             Utils.checkNotNull(agent, "agent");
             this.agent = agent;

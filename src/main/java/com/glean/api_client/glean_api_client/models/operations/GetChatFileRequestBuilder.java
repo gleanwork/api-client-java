@@ -9,15 +9,18 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.operations.GetChatFile;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Boolean;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 
 public class GetChatFileRequestBuilder {
 
     private String fileId;
     private Optional<Boolean> preview = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -42,6 +45,18 @@ public class GetChatFileRequestBuilder {
         this.preview = preview;
         return this;
     }
+                
+    public GetChatFileRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public GetChatFileRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private GetChatFileRequest buildRequest() {
@@ -53,9 +68,12 @@ public class GetChatFileRequestBuilder {
     }
 
     public GetChatFileResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<GetChatFileRequest, GetChatFileResponse> operation
-              = new GetChatFile.Sync(sdkConfiguration, _headers);
+              = new GetChatFile.Sync(sdkConfiguration, options, _headers);
         GetChatFileRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

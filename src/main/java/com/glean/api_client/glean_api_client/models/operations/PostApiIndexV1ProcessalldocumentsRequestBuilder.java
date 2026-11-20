@@ -10,12 +10,15 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.ProcessAllDocumentsRequest;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Processalldocuments;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.time.Duration;
 import java.util.Optional;
 
 public class PostApiIndexV1ProcessalldocumentsRequestBuilder {
 
     private Optional<? extends ProcessAllDocumentsRequest> request = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -34,11 +37,26 @@ public class PostApiIndexV1ProcessalldocumentsRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public PostApiIndexV1ProcessalldocumentsRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public PostApiIndexV1ProcessalldocumentsRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
     public PostApiIndexV1ProcessalldocumentsResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<Optional<? extends ProcessAllDocumentsRequest>, PostApiIndexV1ProcessalldocumentsResponse> operation
-              = new PostApiIndexV1Processalldocuments.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Processalldocuments.Sync(sdkConfiguration, options, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

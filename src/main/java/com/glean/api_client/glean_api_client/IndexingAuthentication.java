@@ -10,6 +10,8 @@ import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1Rot
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1RotatetokenResponse;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Rotatetoken;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
+import java.util.Optional;
 
 
 public class IndexingAuthentication {
@@ -63,8 +65,27 @@ public class IndexingAuthentication {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1RotatetokenResponse rotateTokenDirect() {
+        return rotateToken(Optional.empty());
+    }
+
+    /**
+     * Rotate token
+     * 
+     * <p>Rotates the secret value inside the Indexing API token and returns the new raw secret. All other
+     * properties of the token are unchanged. In order to rotate the secret value, include the token as the
+     * bearer token in the `/rotatetoken` request.
+     * 
+     * <p>Please refer to [Token
+     * rotation](https://developers.glean.com/indexing/authentication/token-rotation) documentation for
+     * more information.
+     * 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1RotatetokenResponse rotateToken(Optional<Options> options) {
         RequestlessOperation<PostApiIndexV1RotatetokenResponse> operation
-            = new PostApiIndexV1Rotatetoken.Sync(sdkConfiguration, _headers);
+            = new PostApiIndexV1Rotatetoken.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 

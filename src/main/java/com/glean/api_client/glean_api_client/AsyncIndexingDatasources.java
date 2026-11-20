@@ -19,6 +19,7 @@ import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Adddatasou
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Getdatasourceconfig;
 import com.glean.api_client.glean_api_client.operations.PostRestApiIndexSubmissionsDatasourceInstanceType;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
@@ -66,8 +67,21 @@ public class AsyncIndexingDatasources {
      * @return {@code CompletableFuture<PostApiIndexV1AdddatasourceResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1AdddatasourceResponse> add(CustomDatasourceConfig request) {
+        return add(request, Optional.empty());
+    }
+
+    /**
+     * Add or update datasource
+     * 
+     * <p>Add or update a custom datasource and its schema.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return {@code CompletableFuture<PostApiIndexV1AdddatasourceResponse>} - The async response
+     */
+    public CompletableFuture<PostApiIndexV1AdddatasourceResponse> add(CustomDatasourceConfig request, Optional<Options> options) {
         AsyncRequestOperation<CustomDatasourceConfig, PostApiIndexV1AdddatasourceResponse> operation
-              = new PostApiIndexV1Adddatasource.Async(sdkConfiguration, _headers);
+              = new PostApiIndexV1Adddatasource.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -93,8 +107,21 @@ public class AsyncIndexingDatasources {
      * @return {@code CompletableFuture<PostApiIndexV1GetdatasourceconfigResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1GetdatasourceconfigResponse> retrieveConfig(GetDatasourceConfigRequest request) {
+        return retrieveConfig(request, Optional.empty());
+    }
+
+    /**
+     * Get datasource config
+     * 
+     * <p>Fetches the datasource config for the specified custom datasource.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return {@code CompletableFuture<PostApiIndexV1GetdatasourceconfigResponse>} - The async response
+     */
+    public CompletableFuture<PostApiIndexV1GetdatasourceconfigResponse> retrieveConfig(GetDatasourceConfigRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetDatasourceConfigRequest, PostApiIndexV1GetdatasourceconfigResponse> operation
-              = new PostApiIndexV1Getdatasourceconfig.Async(sdkConfiguration, _headers);
+              = new PostApiIndexV1Getdatasourceconfig.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -126,7 +153,7 @@ public class AsyncIndexingDatasources {
             Map<String, Object> requestBody) {
         return submit(
                 datasourceInstance, type, requestBody,
-                Optional.empty());
+                Optional.empty(), Optional.empty());
     }
 
     /**
@@ -143,6 +170,27 @@ public class AsyncIndexingDatasources {
     public CompletableFuture<PostRestApiIndexSubmissionsDatasourceInstanceTypeResponse> submit(
             String datasourceInstance, String type,
             Map<String, Object> requestBody, Optional<String> serverURL) {
+        return submit(
+                datasourceInstance, type, requestBody,
+                serverURL, Optional.empty());
+    }
+
+    /**
+     * Submit datasource data
+     * 
+     * <p>Validates and asynchronously processes a datasource-specific submission.
+     * 
+     * @param datasourceInstance Datasource instance that should process the submission
+     * @param type Submission type registered for the datasource
+     * @param requestBody 
+     * @param serverURL Overrides the server URL.
+     * @param options additional options
+     * @return {@code CompletableFuture<PostRestApiIndexSubmissionsDatasourceInstanceTypeResponse>} - The async response
+     */
+    public CompletableFuture<PostRestApiIndexSubmissionsDatasourceInstanceTypeResponse> submit(
+            String datasourceInstance, String type,
+            Map<String, Object> requestBody, Optional<String> serverURL,
+            Optional<Options> options) {
         PostRestApiIndexSubmissionsDatasourceInstanceTypeRequest request =
             PostRestApiIndexSubmissionsDatasourceInstanceTypeRequest
                 .builder()
@@ -151,7 +199,9 @@ public class AsyncIndexingDatasources {
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<PostRestApiIndexSubmissionsDatasourceInstanceTypeRequest, PostRestApiIndexSubmissionsDatasourceInstanceTypeResponse> operation
-              = new PostRestApiIndexSubmissionsDatasourceInstanceType.Async(sdkConfiguration, serverURL, _headers);
+              = new PostRestApiIndexSubmissionsDatasourceInstanceType.Async(
+                                    sdkConfiguration, serverURL, options,
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

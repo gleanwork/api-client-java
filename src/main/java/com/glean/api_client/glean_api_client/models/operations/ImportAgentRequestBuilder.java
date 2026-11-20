@@ -10,9 +10,11 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.ImportAgentRequest;
 import com.glean.api_client.glean_api_client.operations.ImportAgent;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 
 public class ImportAgentRequestBuilder {
@@ -21,6 +23,7 @@ public class ImportAgentRequestBuilder {
     private Optional<Long> timezoneOffset = Optional.empty();
     private String agentId;
     private ImportAgentRequest importAgentRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -63,6 +66,18 @@ public class ImportAgentRequestBuilder {
         this.importAgentRequest = importAgentRequest;
         return this;
     }
+                
+    public ImportAgentRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public ImportAgentRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private com.glean.api_client.glean_api_client.models.operations.ImportAgentRequest buildRequest() {
@@ -76,9 +91,12 @@ public class ImportAgentRequestBuilder {
     }
 
     public ImportAgentResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<com.glean.api_client.glean_api_client.models.operations.ImportAgentRequest, ImportAgentResponse> operation
-              = new ImportAgent.Sync(sdkConfiguration, _headers);
+              = new ImportAgent.Sync(sdkConfiguration, options, _headers);
         com.glean.api_client.glean_api_client.models.operations.ImportAgentRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
