@@ -10,8 +10,10 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.CustomMetadataSchema;
 import com.glean.api_client.glean_api_client.operations.PutRestApiIndexCustomMetadataSchemaGroupName;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 
 public class PutRestApiIndexCustomMetadataSchemaGroupNameRequestBuilder {
@@ -19,6 +21,7 @@ public class PutRestApiIndexCustomMetadataSchemaGroupNameRequestBuilder {
     private String groupName;
     private CustomMetadataSchema customMetadataSchema;
     private Optional<String> serverURL = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -49,6 +52,18 @@ public class PutRestApiIndexCustomMetadataSchemaGroupNameRequestBuilder {
         this.serverURL = serverURL;
         return this;
     }
+                
+    public PutRestApiIndexCustomMetadataSchemaGroupNameRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public PutRestApiIndexCustomMetadataSchemaGroupNameRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private PutRestApiIndexCustomMetadataSchemaGroupNameRequest buildRequest() {
@@ -60,9 +75,14 @@ public class PutRestApiIndexCustomMetadataSchemaGroupNameRequestBuilder {
     }
 
     public PutRestApiIndexCustomMetadataSchemaGroupNameResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<PutRestApiIndexCustomMetadataSchemaGroupNameRequest, PutRestApiIndexCustomMetadataSchemaGroupNameResponse> operation
-              = new PutRestApiIndexCustomMetadataSchemaGroupName.Sync(sdkConfiguration, serverURL, _headers);
+              = new PutRestApiIndexCustomMetadataSchemaGroupName.Sync(
+                                    sdkConfiguration, serverURL, options,
+                                    _headers);
         PutRestApiIndexCustomMetadataSchemaGroupNameRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

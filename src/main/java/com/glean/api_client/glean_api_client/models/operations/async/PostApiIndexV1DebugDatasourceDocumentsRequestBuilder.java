@@ -11,14 +11,18 @@ import com.glean.api_client.glean_api_client.models.components.DebugDocumentsReq
 import com.glean.api_client.glean_api_client.models.operations.PostApiIndexV1DebugDatasourceDocumentsRequest;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1DebugDatasourceDocuments;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class PostApiIndexV1DebugDatasourceDocumentsRequestBuilder {
 
     private String datasource;
     private DebugDocumentsRequest debugDocumentsRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -37,6 +41,18 @@ public class PostApiIndexV1DebugDatasourceDocumentsRequestBuilder {
         this.debugDocumentsRequest = debugDocumentsRequest;
         return this;
     }
+                
+    public PostApiIndexV1DebugDatasourceDocumentsRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public PostApiIndexV1DebugDatasourceDocumentsRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private PostApiIndexV1DebugDatasourceDocumentsRequest buildRequest() {
@@ -48,9 +64,12 @@ public class PostApiIndexV1DebugDatasourceDocumentsRequestBuilder {
     }
 
     public CompletableFuture<PostApiIndexV1DebugDatasourceDocumentsResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<PostApiIndexV1DebugDatasourceDocumentsRequest, PostApiIndexV1DebugDatasourceDocumentsResponse> operation
-              = new PostApiIndexV1DebugDatasourceDocuments.Async(sdkConfiguration, _headers);
+              = new PostApiIndexV1DebugDatasourceDocuments.Async(sdkConfiguration, options, _headers);
         PostApiIndexV1DebugDatasourceDocumentsRequest request = buildRequest();
 
         return operation.doRequest(request)

@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.glean.api_client.glean_api_client.utils.LazySingletonValue;
+import com.glean.api_client.glean_api_client.utils.SpeakeasyMetadata;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -39,12 +40,14 @@ public class PlatformUserFilter {
      * department.department_id.
      */
     @JsonProperty("field")
+    @SpeakeasyMetadata("queryParam:name=field")
     private String field;
 
     /**
      * The values to match. A user matches when any value matches.
      */
     @JsonProperty("values")
+    @SpeakeasyMetadata("queryParam:name=values")
     private List<String> values;
 
     /**
@@ -52,6 +55,7 @@ public class PlatformUserFilter {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("operator")
+    @SpeakeasyMetadata("queryParam:name=operator")
     private Optional<? extends PlatformUserFilterOperator> operator;
 
     @JsonCreator

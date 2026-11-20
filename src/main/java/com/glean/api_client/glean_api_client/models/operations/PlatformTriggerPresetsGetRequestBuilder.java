@@ -9,12 +9,16 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.operations.PlatformTriggerPresetsGet;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 
 public class PlatformTriggerPresetsGetRequestBuilder {
 
     private String presetId;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -27,6 +31,18 @@ public class PlatformTriggerPresetsGetRequestBuilder {
         this.presetId = presetId;
         return this;
     }
+                
+    public PlatformTriggerPresetsGetRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public PlatformTriggerPresetsGetRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private PlatformTriggerPresetsGetRequest buildRequest() {
@@ -37,9 +53,12 @@ public class PlatformTriggerPresetsGetRequestBuilder {
     }
 
     public PlatformTriggerPresetsGetResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<PlatformTriggerPresetsGetRequest, PlatformTriggerPresetsGetResponse> operation
-              = new PlatformTriggerPresetsGet.Sync(sdkConfiguration, _headers);
+              = new PlatformTriggerPresetsGet.Sync(sdkConfiguration, options, _headers);
         PlatformTriggerPresetsGetRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

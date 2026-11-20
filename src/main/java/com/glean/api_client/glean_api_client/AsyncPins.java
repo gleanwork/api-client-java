@@ -30,6 +30,7 @@ import com.glean.api_client.glean_api_client.operations.Getpin;
 import com.glean.api_client.glean_api_client.operations.Listpins;
 import com.glean.api_client.glean_api_client.operations.Pin;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -75,7 +76,7 @@ public class AsyncPins {
      * @return {@code CompletableFuture<EditpinResponse>} - The async response
      */
     public CompletableFuture<EditpinResponse> update(EditPinRequest editPinRequest) {
-        return update(Optional.empty(), editPinRequest);
+        return update(Optional.empty(), editPinRequest, Optional.empty());
     }
 
     /**
@@ -88,6 +89,22 @@ public class AsyncPins {
      * @return {@code CompletableFuture<EditpinResponse>} - The async response
      */
     public CompletableFuture<EditpinResponse> update(Optional<String> locale, EditPinRequest editPinRequest) {
+        return update(locale, editPinRequest, Optional.empty());
+    }
+
+    /**
+     * Update pin
+     * 
+     * <p>Update an existing user-generated pin.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param editPinRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<EditpinResponse>} - The async response
+     */
+    public CompletableFuture<EditpinResponse> update(
+            Optional<String> locale, EditPinRequest editPinRequest,
+            Optional<Options> options) {
         EditpinRequest request =
             EditpinRequest
                 .builder()
@@ -95,7 +112,7 @@ public class AsyncPins {
                 .editPinRequest(editPinRequest)
                 .build();
         AsyncRequestOperation<EditpinRequest, EditpinResponse> operation
-              = new Editpin.Async(sdkConfiguration, _headers);
+              = new Editpin.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -121,7 +138,7 @@ public class AsyncPins {
      * @return {@code CompletableFuture<GetpinResponse>} - The async response
      */
     public CompletableFuture<GetpinResponse> retrieve(GetPinRequest getPinRequest) {
-        return retrieve(Optional.empty(), getPinRequest);
+        return retrieve(Optional.empty(), getPinRequest, Optional.empty());
     }
 
     /**
@@ -134,6 +151,22 @@ public class AsyncPins {
      * @return {@code CompletableFuture<GetpinResponse>} - The async response
      */
     public CompletableFuture<GetpinResponse> retrieve(Optional<String> locale, GetPinRequest getPinRequest) {
+        return retrieve(locale, getPinRequest, Optional.empty());
+    }
+
+    /**
+     * Read pin
+     * 
+     * <p>Read pin details given its ID.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param getPinRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<GetpinResponse>} - The async response
+     */
+    public CompletableFuture<GetpinResponse> retrieve(
+            Optional<String> locale, GetPinRequest getPinRequest,
+            Optional<Options> options) {
         GetpinRequest request =
             GetpinRequest
                 .builder()
@@ -141,7 +174,7 @@ public class AsyncPins {
                 .getPinRequest(getPinRequest)
                 .build();
         AsyncRequestOperation<GetpinRequest, GetpinResponse> operation
-              = new Getpin.Async(sdkConfiguration, _headers);
+              = new Getpin.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -167,7 +200,7 @@ public class AsyncPins {
      * @return {@code CompletableFuture<ListpinsResponse>} - The async response
      */
     public CompletableFuture<ListpinsResponse> list(ListpinsRequestBody requestBody) {
-        return list(Optional.empty(), requestBody);
+        return list(Optional.empty(), requestBody, Optional.empty());
     }
 
     /**
@@ -180,6 +213,22 @@ public class AsyncPins {
      * @return {@code CompletableFuture<ListpinsResponse>} - The async response
      */
     public CompletableFuture<ListpinsResponse> list(Optional<String> locale, ListpinsRequestBody requestBody) {
+        return list(locale, requestBody, Optional.empty());
+    }
+
+    /**
+     * List pins
+     * 
+     * <p>Lists all pins.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param requestBody List pins request
+     * @param options additional options
+     * @return {@code CompletableFuture<ListpinsResponse>} - The async response
+     */
+    public CompletableFuture<ListpinsResponse> list(
+            Optional<String> locale, ListpinsRequestBody requestBody,
+            Optional<Options> options) {
         ListpinsRequest request =
             ListpinsRequest
                 .builder()
@@ -187,7 +236,7 @@ public class AsyncPins {
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<ListpinsRequest, ListpinsResponse> operation
-              = new Listpins.Async(sdkConfiguration, _headers);
+              = new Listpins.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -213,7 +262,7 @@ public class AsyncPins {
      * @return {@code CompletableFuture<PinResponse>} - The async response
      */
     public CompletableFuture<PinResponse> create(PinRequest pinRequest) {
-        return create(Optional.empty(), pinRequest);
+        return create(Optional.empty(), pinRequest, Optional.empty());
     }
 
     /**
@@ -226,6 +275,22 @@ public class AsyncPins {
      * @return {@code CompletableFuture<PinResponse>} - The async response
      */
     public CompletableFuture<PinResponse> create(Optional<String> locale, PinRequest pinRequest) {
+        return create(locale, pinRequest, Optional.empty());
+    }
+
+    /**
+     * Create pin
+     * 
+     * <p>Pin a document as a result for a given search query.Pin results that are known to be a good match.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param pinRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<PinResponse>} - The async response
+     */
+    public CompletableFuture<PinResponse> create(
+            Optional<String> locale, PinRequest pinRequest,
+            Optional<Options> options) {
         com.glean.api_client.glean_api_client.models.operations.PinRequest request =
             com.glean.api_client.glean_api_client.models.operations.PinRequest
                 .builder()
@@ -233,7 +298,7 @@ public class AsyncPins {
                 .pinRequest(pinRequest)
                 .build();
         AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.PinRequest, PinResponse> operation
-              = new Pin.Async(sdkConfiguration, _headers);
+              = new Pin.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -259,7 +324,7 @@ public class AsyncPins {
      * @return {@code CompletableFuture<UnpinResponse>} - The async response
      */
     public CompletableFuture<UnpinResponse> remove(Unpin unpin) {
-        return remove(Optional.empty(), unpin);
+        return remove(Optional.empty(), unpin, Optional.empty());
     }
 
     /**
@@ -272,6 +337,22 @@ public class AsyncPins {
      * @return {@code CompletableFuture<UnpinResponse>} - The async response
      */
     public CompletableFuture<UnpinResponse> remove(Optional<String> locale, Unpin unpin) {
+        return remove(locale, unpin, Optional.empty());
+    }
+
+    /**
+     * Delete pin
+     * 
+     * <p>Unpin a previously pinned result.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param unpin 
+     * @param options additional options
+     * @return {@code CompletableFuture<UnpinResponse>} - The async response
+     */
+    public CompletableFuture<UnpinResponse> remove(
+            Optional<String> locale, Unpin unpin,
+            Optional<Options> options) {
         UnpinRequest request =
             UnpinRequest
                 .builder()
@@ -279,7 +360,7 @@ public class AsyncPins {
                 .unpin(unpin)
                 .build();
         AsyncRequestOperation<UnpinRequest, UnpinResponse> operation
-              = new com.glean.api_client.glean_api_client.operations.Unpin.Async(sdkConfiguration, _headers);
+              = new com.glean.api_client.glean_api_client.operations.Unpin.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

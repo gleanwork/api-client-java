@@ -35,6 +35,7 @@ import com.glean.api_client.glean_api_client.operations.GetToolServerAuthStatus;
 import com.glean.api_client.glean_api_client.operations.GetToolServerTools;
 import com.glean.api_client.glean_api_client.operations.PostRestApiV1ToolsCall;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -81,7 +82,7 @@ public class Tools {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetRestApiV1ToolsListResponse listDirect() {
-        return list(Optional.empty());
+        return list(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -95,13 +96,28 @@ public class Tools {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetRestApiV1ToolsListResponse list(Optional<? extends List<String>> toolNames) {
+        return list(toolNames, Optional.empty());
+    }
+
+    /**
+     * List available tools
+     * 
+     * <p>Returns a filtered set of available tools based on optional tool name parameters. If no filters are
+     * provided, all available tools are returned.
+     * 
+     * @param toolNames Optional array of tool names to filter by
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetRestApiV1ToolsListResponse list(Optional<? extends List<String>> toolNames, Optional<Options> options) {
         GetRestApiV1ToolsListRequest request =
             GetRestApiV1ToolsListRequest
                 .builder()
                 .toolNames(toolNames)
                 .build();
         RequestOperation<GetRestApiV1ToolsListRequest, GetRestApiV1ToolsListResponse> operation
-              = new GetRestApiV1ToolsList.Sync(sdkConfiguration, _headers);
+              = new GetRestApiV1ToolsList.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -126,8 +142,22 @@ public class Tools {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostRestApiV1ToolsCallResponse run(ToolsCallRequest request) {
+        return run(request, Optional.empty());
+    }
+
+    /**
+     * Execute the specified tool
+     * 
+     * <p>Execute the specified tool with provided parameters
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostRestApiV1ToolsCallResponse run(ToolsCallRequest request, Optional<Options> options) {
         RequestOperation<ToolsCallRequest, PostRestApiV1ToolsCallResponse> operation
-              = new PostRestApiV1ToolsCall.Sync(sdkConfiguration, _headers);
+              = new PostRestApiV1ToolsCall.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -156,13 +186,29 @@ public class Tools {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetActionPackAuthStatusResponse retrieveActionPackAuthStatus(String actionPackId) {
+        return retrieveActionPackAuthStatus(actionPackId, Optional.empty());
+    }
+
+    /**
+     * Get end-user authentication status for an action pack.
+     * 
+     * <p>Reports whether the calling user is already authenticated against the third-party
+     * tool backing the specified action pack. Intended for headless / server-driven clients
+     * that render an "Authorize" prompt when the user has not yet consented to the tool.
+     * 
+     * @param actionPackId ID of the action pack to query or authorize.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetActionPackAuthStatusResponse retrieveActionPackAuthStatus(String actionPackId, Optional<Options> options) {
         GetActionPackAuthStatusRequest request =
             GetActionPackAuthStatusRequest
                 .builder()
                 .actionPackId(actionPackId)
                 .build();
         RequestOperation<GetActionPackAuthStatusRequest, GetActionPackAuthStatusResponse> operation
-              = new GetActionPackAuthStatus.Sync(sdkConfiguration, _headers);
+              = new GetActionPackAuthStatus.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -200,6 +246,29 @@ public class Tools {
      * @throws RuntimeException subclass if the API call fails
      */
     public AuthorizeActionPackResponse authorizeActionPack(String actionPackId, AuthorizeActionPackRequest authorizeActionPackRequest) {
+        return authorizeActionPack(actionPackId, authorizeActionPackRequest, Optional.empty());
+    }
+
+    /**
+     * Start the OAuth authorization flow for an action pack.
+     * 
+     * <p>Starts the third-party OAuth flow for the specified action pack and returns the
+     * redirect URL that the client should navigate the end user to. After the OAuth
+     * callback completes, the user's browser is redirected back to `returnUrl` with a
+     * status query parameter (`?glean_action_auth=success|error&amp;actionPackId=...`).
+     * 
+     * <p>`returnUrl` must match the tenant's configured return URL allowlist; otherwise the
+     * request is rejected with 400.
+     * 
+     * @param actionPackId ID of the action pack to query or authorize.
+     * @param authorizeActionPackRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AuthorizeActionPackResponse authorizeActionPack(
+            String actionPackId, AuthorizeActionPackRequest authorizeActionPackRequest,
+            Optional<Options> options) {
         com.glean.api_client.glean_api_client.models.operations.AuthorizeActionPackRequest request =
             com.glean.api_client.glean_api_client.models.operations.AuthorizeActionPackRequest
                 .builder()
@@ -207,7 +276,7 @@ public class Tools {
                 .authorizeActionPackRequest(authorizeActionPackRequest)
                 .build();
         RequestOperation<com.glean.api_client.glean_api_client.models.operations.AuthorizeActionPackRequest, AuthorizeActionPackResponse> operation
-              = new AuthorizeActionPack.Sync(sdkConfiguration, _headers);
+              = new AuthorizeActionPack.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -234,13 +303,28 @@ public class Tools {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetToolServerAuthStatusResponse retrieveToolServerAuthStatus(String serverId) {
+        return retrieveToolServerAuthStatus(serverId, Optional.empty());
+    }
+
+    /**
+     * Get end-user authentication status for a tool server.
+     * 
+     * <p>Returns display information and the calling user's current authentication status
+     * for the specified tool server.
+     * 
+     * @param serverId Unique identifier of the tool server.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetToolServerAuthStatusResponse retrieveToolServerAuthStatus(String serverId, Optional<Options> options) {
         GetToolServerAuthStatusRequest request =
             GetToolServerAuthStatusRequest
                 .builder()
                 .serverId(serverId)
                 .build();
         RequestOperation<GetToolServerAuthStatusRequest, GetToolServerAuthStatusResponse> operation
-              = new GetToolServerAuthStatus.Sync(sdkConfiguration, _headers);
+              = new GetToolServerAuthStatus.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -278,6 +362,29 @@ public class Tools {
      * @throws RuntimeException subclass if the API call fails
      */
     public AuthorizeToolServerResponse authorizeToolServer(String serverId, AuthorizeToolServerRequest authorizeToolServerRequest) {
+        return authorizeToolServer(serverId, authorizeToolServerRequest, Optional.empty());
+    }
+
+    /**
+     * Start the OAuth authorization flow for a tool server.
+     * 
+     * <p>Initiates the third-party OAuth flow for the specified tool server and returns the
+     * authorization URL that the client should navigate the end user to. After the OAuth
+     * callback completes, the user's browser is redirected back to `returnUrl` with query
+     * parameters indicating the result.
+     * 
+     * <p>`returnUrl` must match the tenant's configured return URL allowlist; otherwise the
+     * request is rejected with 400.
+     * 
+     * @param serverId Unique identifier of the tool server.
+     * @param authorizeToolServerRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AuthorizeToolServerResponse authorizeToolServer(
+            String serverId, AuthorizeToolServerRequest authorizeToolServerRequest,
+            Optional<Options> options) {
         com.glean.api_client.glean_api_client.models.operations.AuthorizeToolServerRequest request =
             com.glean.api_client.glean_api_client.models.operations.AuthorizeToolServerRequest
                 .builder()
@@ -285,7 +392,7 @@ public class Tools {
                 .authorizeToolServerRequest(authorizeToolServerRequest)
                 .build();
         RequestOperation<com.glean.api_client.glean_api_client.models.operations.AuthorizeToolServerRequest, AuthorizeToolServerResponse> operation
-              = new AuthorizeToolServer.Sync(sdkConfiguration, _headers);
+              = new AuthorizeToolServer.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -329,6 +436,32 @@ public class Tools {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetToolServerToolsResponse getToolServerTools(String serverId, List<String> toolNames) {
+        return getToolServerTools(serverId, toolNames, Optional.empty());
+    }
+
+    /**
+     * Get tool definitions from a tool server.
+     * 
+     * <p>Returns the name, description and JSON input schema for the named tools on the
+     * specified tool server. Works for Glean's built-in tools, tool packs and MCP
+     * servers.
+     * 
+     * <p>`toolNames` is required. Names that do not exist on the server are returned in
+     * `notFound` rather than failing the request, so a single bad name does not force
+     * callers into one-at-a-time retries. Matching is case-insensitive and treats `-`
+     * and `_` as equivalent.
+     * 
+     * <p>Use `serverId=native` for Glean's built-in tools.
+     * 
+     * @param serverId Unique identifier of the tool server.
+     * @param toolNames Tool names to look up on this server. Maximum 100.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetToolServerToolsResponse getToolServerTools(
+            String serverId, List<String> toolNames,
+            Optional<Options> options) {
         GetToolServerToolsRequest request =
             GetToolServerToolsRequest
                 .builder()
@@ -336,7 +469,7 @@ public class Tools {
                 .toolNames(toolNames)
                 .build();
         RequestOperation<GetToolServerToolsRequest, GetToolServerToolsResponse> operation
-              = new GetToolServerTools.Sync(sdkConfiguration, _headers);
+              = new GetToolServerTools.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

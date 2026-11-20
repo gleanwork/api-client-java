@@ -11,8 +11,10 @@ import com.glean.api_client.glean_api_client.models.components.CreateCollectionR
 import com.glean.api_client.glean_api_client.models.operations.CreatecollectionRequest;
 import com.glean.api_client.glean_api_client.operations.Createcollection;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -20,6 +22,7 @@ public class CreatecollectionRequestBuilder {
 
     private Optional<String> locale = Optional.empty();
     private CreateCollectionRequest createCollectionRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -44,6 +47,18 @@ public class CreatecollectionRequestBuilder {
         this.createCollectionRequest = createCollectionRequest;
         return this;
     }
+                
+    public CreatecollectionRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public CreatecollectionRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private CreatecollectionRequest buildRequest() {
@@ -55,9 +70,12 @@ public class CreatecollectionRequestBuilder {
     }
 
     public CompletableFuture<CreatecollectionResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<CreatecollectionRequest, CreatecollectionResponse> operation
-              = new Createcollection.Async(sdkConfiguration, _headers);
+              = new Createcollection.Async(sdkConfiguration, options, _headers);
         CreatecollectionRequest request = buildRequest();
 
         return operation.doRequest(request)

@@ -9,14 +9,17 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.operations.Getdocvisibility;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
 
 public class GetdocvisibilityRequestBuilder {
 
     private Optional<? extends List<String>> docIds = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -35,6 +38,18 @@ public class GetdocvisibilityRequestBuilder {
         this.docIds = docIds;
         return this;
     }
+                
+    public GetdocvisibilityRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public GetdocvisibilityRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private GetdocvisibilityRequest buildRequest() {
@@ -45,9 +60,12 @@ public class GetdocvisibilityRequestBuilder {
     }
 
     public GetdocvisibilityResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<GetdocvisibilityRequest, GetdocvisibilityResponse> operation
-              = new Getdocvisibility.Sync(sdkConfiguration, _headers);
+              = new Getdocvisibility.Sync(sdkConfiguration, options, _headers);
         GetdocvisibilityRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -10,14 +10,18 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.operations.GetDatasourceInstanceConfigurationRequest;
 import com.glean.api_client.glean_api_client.operations.GetDatasourceInstanceConfiguration;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class GetDatasourceInstanceConfigurationRequestBuilder {
 
     private String datasourceId;
     private String instanceId;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -36,6 +40,18 @@ public class GetDatasourceInstanceConfigurationRequestBuilder {
         this.instanceId = instanceId;
         return this;
     }
+                
+    public GetDatasourceInstanceConfigurationRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public GetDatasourceInstanceConfigurationRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private GetDatasourceInstanceConfigurationRequest buildRequest() {
@@ -47,9 +63,12 @@ public class GetDatasourceInstanceConfigurationRequestBuilder {
     }
 
     public CompletableFuture<GetDatasourceInstanceConfigurationResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<GetDatasourceInstanceConfigurationRequest, GetDatasourceInstanceConfigurationResponse> operation
-              = new GetDatasourceInstanceConfiguration.Async(sdkConfiguration, _headers);
+              = new GetDatasourceInstanceConfiguration.Async(sdkConfiguration, options, _headers);
         GetDatasourceInstanceConfigurationRequest request = buildRequest();
 
         return operation.doRequest(request)
