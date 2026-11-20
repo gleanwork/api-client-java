@@ -10,9 +10,11 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.operations.ListpoliciesRequest;
 import com.glean.api_client.glean_api_client.operations.Listpolicies;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Boolean;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -20,6 +22,7 @@ public class ListpoliciesRequestBuilder {
 
     private Optional<Boolean> autoHide = Optional.empty();
     private Optional<String> frequency = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -50,6 +53,18 @@ public class ListpoliciesRequestBuilder {
         this.frequency = frequency;
         return this;
     }
+                
+    public ListpoliciesRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public ListpoliciesRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private ListpoliciesRequest buildRequest() {
@@ -61,9 +76,12 @@ public class ListpoliciesRequestBuilder {
     }
 
     public CompletableFuture<ListpoliciesResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<ListpoliciesRequest, ListpoliciesResponse> operation
-              = new Listpolicies.Async(sdkConfiguration, _headers);
+              = new Listpolicies.Async(sdkConfiguration, options, _headers);
         ListpoliciesRequest request = buildRequest();
 
         return operation.doRequest(request)

@@ -11,8 +11,10 @@ import com.glean.api_client.glean_api_client.models.components.GetPinRequest;
 import com.glean.api_client.glean_api_client.models.operations.GetpinRequest;
 import com.glean.api_client.glean_api_client.operations.Getpin;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -20,6 +22,7 @@ public class GetpinRequestBuilder {
 
     private Optional<String> locale = Optional.empty();
     private GetPinRequest getPinRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -44,6 +47,18 @@ public class GetpinRequestBuilder {
         this.getPinRequest = getPinRequest;
         return this;
     }
+                
+    public GetpinRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public GetpinRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private GetpinRequest buildRequest() {
@@ -55,9 +70,12 @@ public class GetpinRequestBuilder {
     }
 
     public CompletableFuture<GetpinResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<GetpinRequest, GetpinResponse> operation
-              = new Getpin.Async(sdkConfiguration, _headers);
+              = new Getpin.Async(sdkConfiguration, options, _headers);
         GetpinRequest request = buildRequest();
 
         return operation.doRequest(request)

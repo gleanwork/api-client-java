@@ -76,6 +76,13 @@ public class ChatMetadata {
     @JsonProperty("icon")
     private Optional<? extends IconConfig> icon;
 
+    /**
+     * The status of the Chat.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("status")
+    private Optional<? extends ChatStatus> status;
+
     @JsonCreator
     public ChatMetadata(
             @JsonProperty("id") Optional<String> id,
@@ -85,7 +92,8 @@ public class ChatMetadata {
             @JsonProperty("name") Optional<String> name,
             @JsonProperty("applicationId") Optional<String> applicationId,
             @JsonProperty("applicationName") Optional<String> applicationName,
-            @JsonProperty("icon") Optional<? extends IconConfig> icon) {
+            @JsonProperty("icon") Optional<? extends IconConfig> icon,
+            @JsonProperty("status") Optional<? extends ChatStatus> status) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(createTime, "createTime");
         Utils.checkNotNull(createdBy, "createdBy");
@@ -94,6 +102,7 @@ public class ChatMetadata {
         Utils.checkNotNull(applicationId, "applicationId");
         Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(icon, "icon");
+        Utils.checkNotNull(status, "status");
         this.id = id;
         this.createTime = createTime;
         this.createdBy = createdBy;
@@ -102,12 +111,13 @@ public class ChatMetadata {
         this.applicationId = applicationId;
         this.applicationName = applicationName;
         this.icon = icon;
+        this.status = status;
     }
     
     public ChatMetadata() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -171,6 +181,15 @@ public class ChatMetadata {
     @JsonIgnore
     public Optional<IconConfig> icon() {
         return (Optional<IconConfig>) icon;
+    }
+
+    /**
+     * The status of the Chat.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ChatStatus> status() {
+        return (Optional<ChatStatus>) status;
     }
 
     public static Builder builder() {
@@ -324,6 +343,25 @@ public class ChatMetadata {
         return this;
     }
 
+    /**
+     * The status of the Chat.
+     */
+    public ChatMetadata withStatus(ChatStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = Optional.ofNullable(status);
+        return this;
+    }
+
+
+    /**
+     * The status of the Chat.
+     */
+    public ChatMetadata withStatus(Optional<? extends ChatStatus> status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -341,7 +379,8 @@ public class ChatMetadata {
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.applicationId, other.applicationId) &&
             Utils.enhancedDeepEquals(this.applicationName, other.applicationName) &&
-            Utils.enhancedDeepEquals(this.icon, other.icon);
+            Utils.enhancedDeepEquals(this.icon, other.icon) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
@@ -349,7 +388,7 @@ public class ChatMetadata {
         return Utils.enhancedHash(
             id, createTime, createdBy,
             updateTime, name, applicationId,
-            applicationName, icon);
+            applicationName, icon, status);
     }
     
     @Override
@@ -362,7 +401,8 @@ public class ChatMetadata {
                 "name", name,
                 "applicationId", applicationId,
                 "applicationName", applicationName,
-                "icon", icon);
+                "icon", icon,
+                "status", status);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -383,6 +423,8 @@ public class ChatMetadata {
         private Optional<String> applicationName = Optional.empty();
 
         private Optional<? extends IconConfig> icon = Optional.empty();
+
+        private Optional<? extends ChatStatus> status = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -534,12 +576,31 @@ public class ChatMetadata {
             return this;
         }
 
+
+        /**
+         * The status of the Chat.
+         */
+        public Builder status(ChatStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        /**
+         * The status of the Chat.
+         */
+        public Builder status(Optional<? extends ChatStatus> status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
         public ChatMetadata build() {
 
             return new ChatMetadata(
                 id, createTime, createdBy,
                 updateTime, name, applicationId,
-                applicationName, icon);
+                applicationName, icon, status);
         }
 
     }
