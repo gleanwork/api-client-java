@@ -10,9 +10,11 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.operations.ListverificationsRequest;
 import com.glean.api_client.glean_api_client.operations.Listverifications;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -20,6 +22,7 @@ public class ListverificationsRequestBuilder {
 
     private Optional<Long> count = Optional.empty();
     private Optional<String> locale = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -50,6 +53,18 @@ public class ListverificationsRequestBuilder {
         this.locale = locale;
         return this;
     }
+                
+    public ListverificationsRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public ListverificationsRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private ListverificationsRequest buildRequest() {
@@ -61,9 +76,12 @@ public class ListverificationsRequestBuilder {
     }
 
     public CompletableFuture<ListverificationsResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<ListverificationsRequest, ListverificationsResponse> operation
-              = new Listverifications.Async(sdkConfiguration, _headers);
+              = new Listverifications.Async(sdkConfiguration, options, _headers);
         ListverificationsRequest request = buildRequest();
 
         return operation.doRequest(request)

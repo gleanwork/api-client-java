@@ -24,7 +24,9 @@ import com.glean.api_client.glean_api_client.operations.GetDatasourceInstanceCon
 import com.glean.api_client.glean_api_client.operations.RotateDatasourceCredentials;
 import com.glean.api_client.glean_api_client.operations.UpdateDatasourceInstanceConfiguration;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
@@ -71,6 +73,23 @@ public class AsyncClientDatasources {
      * @return {@code CompletableFuture<GetDatasourceInstanceConfigurationResponse>} - The async response
      */
     public CompletableFuture<GetDatasourceInstanceConfigurationResponse> retrieveConfiguration(String datasourceId, String instanceId) {
+        return retrieveConfiguration(datasourceId, instanceId, Optional.empty());
+    }
+
+    /**
+     * Get datasource instance configuration
+     * 
+     * <p>Gets the greenlisted configuration values for a datasource instance. Returns only configuration keys
+     * that are exposed via the public API greenlist.
+     * 
+     * @param datasourceId The datasource type identifier (e.g. o365sharepoint)
+     * @param instanceId The datasource instance identifier
+     * @param options additional options
+     * @return {@code CompletableFuture<GetDatasourceInstanceConfigurationResponse>} - The async response
+     */
+    public CompletableFuture<GetDatasourceInstanceConfigurationResponse> retrieveConfiguration(
+            String datasourceId, String instanceId,
+            Optional<Options> options) {
         GetDatasourceInstanceConfigurationRequest request =
             GetDatasourceInstanceConfigurationRequest
                 .builder()
@@ -78,7 +97,7 @@ public class AsyncClientDatasources {
                 .instanceId(instanceId)
                 .build();
         AsyncRequestOperation<GetDatasourceInstanceConfigurationRequest, GetDatasourceInstanceConfigurationResponse> operation
-              = new GetDatasourceInstanceConfiguration.Async(sdkConfiguration, _headers);
+              = new GetDatasourceInstanceConfiguration.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -113,6 +132,28 @@ public class AsyncClientDatasources {
     public CompletableFuture<UpdateDatasourceInstanceConfigurationResponse> updateConfiguration(
             String datasourceId, String instanceId,
             UpdateDatasourceConfigurationRequest updateDatasourceConfigurationRequest) {
+        return updateConfiguration(
+                datasourceId, instanceId, updateDatasourceConfigurationRequest,
+                Optional.empty());
+    }
+
+    /**
+     * Update datasource instance configuration
+     * 
+     * <p>Updates the greenlisted configuration values for a datasource instance. Only configuration keys that
+     * are exposed via the public API greenlist may be set. Returns the full greenlisted configuration
+     * after the update is applied.
+     * 
+     * @param datasourceId The datasource type identifier (e.g. o365sharepoint)
+     * @param instanceId The datasource instance identifier
+     * @param updateDatasourceConfigurationRequest Request to update greenlisted configuration values for a datasource instance. Only keys that are exposed via the public API greenlist may be set.
+     *         
+     * @param options additional options
+     * @return {@code CompletableFuture<UpdateDatasourceInstanceConfigurationResponse>} - The async response
+     */
+    public CompletableFuture<UpdateDatasourceInstanceConfigurationResponse> updateConfiguration(
+            String datasourceId, String instanceId,
+            UpdateDatasourceConfigurationRequest updateDatasourceConfigurationRequest, Optional<Options> options) {
         UpdateDatasourceInstanceConfigurationRequest request =
             UpdateDatasourceInstanceConfigurationRequest
                 .builder()
@@ -121,7 +162,7 @@ public class AsyncClientDatasources {
                 .updateDatasourceConfigurationRequest(updateDatasourceConfigurationRequest)
                 .build();
         AsyncRequestOperation<UpdateDatasourceInstanceConfigurationRequest, UpdateDatasourceInstanceConfigurationResponse> operation
-              = new UpdateDatasourceInstanceConfiguration.Async(sdkConfiguration, _headers);
+              = new UpdateDatasourceInstanceConfiguration.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -149,13 +190,27 @@ public class AsyncClientDatasources {
      * @return {@code CompletableFuture<GetDatasourceCredentialStatusResponse>} - The async response
      */
     public CompletableFuture<GetDatasourceCredentialStatusResponse> retrieveCredentialStatus(String datasourceInstanceId) {
+        return retrieveCredentialStatus(datasourceInstanceId, Optional.empty());
+    }
+
+    /**
+     * Get datasource instance credential status
+     * 
+     * <p>Returns the current credential status for a datasource instance. Access is limited to callers with
+     * the ADMIN scope; the handler enforces this check.
+     * 
+     * @param datasourceInstanceId The full datasource instance identifier (e.g. o365sharepoint_abc123)
+     * @param options additional options
+     * @return {@code CompletableFuture<GetDatasourceCredentialStatusResponse>} - The async response
+     */
+    public CompletableFuture<GetDatasourceCredentialStatusResponse> retrieveCredentialStatus(String datasourceInstanceId, Optional<Options> options) {
         GetDatasourceCredentialStatusRequest request =
             GetDatasourceCredentialStatusRequest
                 .builder()
                 .datasourceInstanceId(datasourceInstanceId)
                 .build();
         AsyncRequestOperation<GetDatasourceCredentialStatusRequest, GetDatasourceCredentialStatusResponse> operation
-              = new GetDatasourceCredentialStatus.Async(sdkConfiguration, _headers);
+              = new GetDatasourceCredentialStatus.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -198,6 +253,31 @@ public class AsyncClientDatasources {
      * @return {@code CompletableFuture<RotateDatasourceCredentialsResponse>} - The async response
      */
     public CompletableFuture<RotateDatasourceCredentialsResponse> rotateCredentials(String datasourceInstanceId, RotateDatasourceCredentialsRequest rotateDatasourceCredentialsRequest) {
+        return rotateCredentials(datasourceInstanceId, rotateDatasourceCredentialsRequest, Optional.empty());
+    }
+
+    /**
+     * Rotate datasource instance credentials
+     * 
+     * <p>Rotates the credentials that a datasource instance uses to connect to its upstream system. Replaces
+     * the active credential material with the supplied values and returns the credential status after
+     * rotation. Access is limited to callers with the ADMIN scope; the handler enforces this check.
+     * Only keys recognized as credential material for the datasource type may be set in
+     * `credentials.values` (e.g. `clientSecret`, `apiToken`, `privateKey`, depending on the configured
+     * auth method). Unrecognized keys, or keys that correspond to non-credential configuration, cause a
+     * 400; other instance configuration must be updated via PATCH
+     * /configure/datasources/{datasourceId}/instances/{instanceId}.
+     * 
+     * @param datasourceInstanceId The full datasource instance identifier (e.g. o365sharepoint_abc123)
+     * @param rotateDatasourceCredentialsRequest Request to rotate the credentials used by a datasource instance. Replaces the active credential material with the supplied values.
+     *         `credentials.values` must contain only keys recognized as credential material for the datasource type (for example `clientSecret` for OAuth, `apiToken` for API-token auth, `privateKey` for certificate auth). Unrecognized keys, or keys that correspond to non-credential configuration, cause a 400; use the configure endpoint to change non-credential config.
+     *         
+     * @param options additional options
+     * @return {@code CompletableFuture<RotateDatasourceCredentialsResponse>} - The async response
+     */
+    public CompletableFuture<RotateDatasourceCredentialsResponse> rotateCredentials(
+            String datasourceInstanceId, RotateDatasourceCredentialsRequest rotateDatasourceCredentialsRequest,
+            Optional<Options> options) {
         com.glean.api_client.glean_api_client.models.operations.RotateDatasourceCredentialsRequest request =
             com.glean.api_client.glean_api_client.models.operations.RotateDatasourceCredentialsRequest
                 .builder()
@@ -205,7 +285,7 @@ public class AsyncClientDatasources {
                 .rotateDatasourceCredentialsRequest(rotateDatasourceCredentialsRequest)
                 .build();
         AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.RotateDatasourceCredentialsRequest, RotateDatasourceCredentialsResponse> operation
-              = new RotateDatasourceCredentials.Async(sdkConfiguration, _headers);
+              = new RotateDatasourceCredentials.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

@@ -11,8 +11,10 @@ import com.glean.api_client.glean_api_client.models.components.AddCollectionItem
 import com.glean.api_client.glean_api_client.models.operations.AddcollectionitemsRequest;
 import com.glean.api_client.glean_api_client.operations.Addcollectionitems;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -20,6 +22,7 @@ public class AddcollectionitemsRequestBuilder {
 
     private Optional<String> locale = Optional.empty();
     private AddCollectionItemsRequest addCollectionItemsRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -44,6 +47,18 @@ public class AddcollectionitemsRequestBuilder {
         this.addCollectionItemsRequest = addCollectionItemsRequest;
         return this;
     }
+                
+    public AddcollectionitemsRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public AddcollectionitemsRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private AddcollectionitemsRequest buildRequest() {
@@ -55,9 +70,12 @@ public class AddcollectionitemsRequestBuilder {
     }
 
     public CompletableFuture<AddcollectionitemsResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<AddcollectionitemsRequest, AddcollectionitemsResponse> operation
-              = new Addcollectionitems.Async(sdkConfiguration, _headers);
+              = new Addcollectionitems.Async(sdkConfiguration, options, _headers);
         AddcollectionitemsRequest request = buildRequest();
 
         return operation.doRequest(request)

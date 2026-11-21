@@ -10,14 +10,17 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.DeleteAnswerRequest;
 import com.glean.api_client.glean_api_client.operations.Deleteanswer;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 
 public class DeleteanswerRequestBuilder {
 
     private Optional<String> locale = Optional.empty();
     private DeleteAnswerRequest deleteAnswerRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -42,6 +45,18 @@ public class DeleteanswerRequestBuilder {
         this.deleteAnswerRequest = deleteAnswerRequest;
         return this;
     }
+                
+    public DeleteanswerRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public DeleteanswerRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private DeleteanswerRequest buildRequest() {
@@ -53,9 +68,12 @@ public class DeleteanswerRequestBuilder {
     }
 
     public DeleteanswerResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<DeleteanswerRequest, DeleteanswerResponse> operation
-              = new Deleteanswer.Sync(sdkConfiguration, _headers);
+              = new Deleteanswer.Sync(sdkConfiguration, options, _headers);
         DeleteanswerRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

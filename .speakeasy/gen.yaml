@@ -31,7 +31,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 0.17.25
+  version: 0.17.26
   additionalDependencies: []
   additionalPlugins: []
   artifactID: glean-api-client
@@ -46,6 +46,7 @@ java:
   enableFormatting: false
   enableSlf4jLogging: false
   enableStreamingUploads: false
+  enforceOperationTimeout: false
   envVarPrefix: GLEAN
   explicitDocImports: false
   flattenGlobalSecurity: true
