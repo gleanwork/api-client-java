@@ -10,14 +10,17 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.InsightsRequest;
 import com.glean.api_client.glean_api_client.operations.Insights;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 
 public class InsightsRequestBuilder {
 
     private Optional<String> locale = Optional.empty();
     private InsightsRequest insightsRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -42,6 +45,18 @@ public class InsightsRequestBuilder {
         this.insightsRequest = insightsRequest;
         return this;
     }
+                
+    public InsightsRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public InsightsRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private com.glean.api_client.glean_api_client.models.operations.InsightsRequest buildRequest() {
@@ -53,9 +68,12 @@ public class InsightsRequestBuilder {
     }
 
     public InsightsResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<com.glean.api_client.glean_api_client.models.operations.InsightsRequest, InsightsResponse> operation
-              = new Insights.Sync(sdkConfiguration, _headers);
+              = new Insights.Sync(sdkConfiguration, options, _headers);
         com.glean.api_client.glean_api_client.models.operations.InsightsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

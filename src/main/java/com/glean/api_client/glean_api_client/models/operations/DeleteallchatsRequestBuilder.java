@@ -9,15 +9,18 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.operations.Deleteallchats;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 
 public class DeleteallchatsRequestBuilder {
 
     private Optional<String> locale = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -48,6 +51,18 @@ public class DeleteallchatsRequestBuilder {
         this.timezoneOffset = timezoneOffset;
         return this;
     }
+                
+    public DeleteallchatsRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public DeleteallchatsRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private DeleteallchatsRequest buildRequest() {
@@ -59,9 +74,12 @@ public class DeleteallchatsRequestBuilder {
     }
 
     public DeleteallchatsResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<DeleteallchatsRequest, DeleteallchatsResponse> operation
-              = new Deleteallchats.Sync(sdkConfiguration, _headers);
+              = new Deleteallchats.Sync(sdkConfiguration, options, _headers);
         DeleteallchatsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -10,14 +10,17 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.PlatformTriggerPresetEventSearchRequest;
 import com.glean.api_client.glean_api_client.operations.PlatformTriggerPresetsEventsSearch;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 
 public class PlatformTriggerPresetsEventsSearchRequestBuilder {
 
     private String presetId;
     private Optional<? extends PlatformTriggerPresetEventSearchRequest> platformTriggerPresetEventSearchRequest = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -42,6 +45,18 @@ public class PlatformTriggerPresetsEventsSearchRequestBuilder {
         this.platformTriggerPresetEventSearchRequest = platformTriggerPresetEventSearchRequest;
         return this;
     }
+                
+    public PlatformTriggerPresetsEventsSearchRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public PlatformTriggerPresetsEventsSearchRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private PlatformTriggerPresetsEventsSearchRequest buildRequest() {
@@ -53,9 +68,12 @@ public class PlatformTriggerPresetsEventsSearchRequestBuilder {
     }
 
     public PlatformTriggerPresetsEventsSearchResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<PlatformTriggerPresetsEventsSearchRequest, PlatformTriggerPresetsEventsSearchResponse> operation
-              = new PlatformTriggerPresetsEventsSearch.Sync(sdkConfiguration, _headers);
+              = new PlatformTriggerPresetsEventsSearch.Sync(sdkConfiguration, options, _headers);
         PlatformTriggerPresetsEventsSearchRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

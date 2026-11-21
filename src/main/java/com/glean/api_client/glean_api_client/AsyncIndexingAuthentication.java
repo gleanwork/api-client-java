@@ -10,6 +10,8 @@ import com.glean.api_client.glean_api_client.models.operations.async.PostApiInde
 import com.glean.api_client.glean_api_client.models.operations.async.PostApiIndexV1RotatetokenResponse;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Rotatetoken;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
@@ -64,8 +66,26 @@ public class AsyncIndexingAuthentication {
      * @return {@code CompletableFuture<PostApiIndexV1RotatetokenResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1RotatetokenResponse> rotateTokenDirect() {
+        return rotateToken(Optional.empty());
+    }
+
+    /**
+     * Rotate token
+     * 
+     * <p>Rotates the secret value inside the Indexing API token and returns the new raw secret. All other
+     * properties of the token are unchanged. In order to rotate the secret value, include the token as the
+     * bearer token in the `/rotatetoken` request.
+     * 
+     * <p>Please refer to [Token
+     * rotation](https://developers.glean.com/indexing/authentication/token-rotation) documentation for
+     * more information.
+     * 
+     * @param options additional options
+     * @return {@code CompletableFuture<PostApiIndexV1RotatetokenResponse>} - The async response
+     */
+    public CompletableFuture<PostApiIndexV1RotatetokenResponse> rotateToken(Optional<Options> options) {
         AsyncRequestlessOperation<PostApiIndexV1RotatetokenResponse> operation
-            = new PostApiIndexV1Rotatetoken.Async(sdkConfiguration, _headers);
+            = new PostApiIndexV1Rotatetoken.Async(sdkConfiguration, options, _headers);
         return operation.doRequest()
             .thenCompose(operation::handleResponse);
     }

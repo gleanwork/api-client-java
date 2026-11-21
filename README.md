@@ -68,7 +68,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.glean.api-client:glean-api-client:0.17.25'
+implementation 'com.glean.api-client:glean-api-client:0.17.26'
 ```
 
 Maven:
@@ -76,7 +76,7 @@ Maven:
 <dependency>
     <groupId>com.glean.api-client</groupId>
     <artifactId>glean-api-client</artifactId>
-    <version>0.17.25</version>
+    <version>0.17.26</version>
 </dependency>
 ```
 
@@ -577,7 +577,7 @@ For more information on obtaining the appropriate token type, please contact you
 
 ### [Indexing.Datasource](docs/sdks/datasource/README.md)
 
-* [status](docs/sdks/datasource/README.md#status) - Beta: Get datasource status
+* [status](docs/sdks/datasource/README.md#status) - Get datasource status
 
 
 ### [Indexing.Datasources](docs/sdks/indexingdatasources/README.md)
@@ -593,19 +593,19 @@ For more information on obtaining the appropriate token type, please contact you
 * [bulkIndex](docs/sdks/indexingdocuments/README.md#bulkindex) - Bulk index documents
 * [processAll](docs/sdks/indexingdocuments/README.md#processall) - Schedules the processing of uploaded documents
 * [delete](docs/sdks/indexingdocuments/README.md#delete) - Delete document
-* [debug](docs/sdks/indexingdocuments/README.md#debug) - Beta: Get document information
+* [debug](docs/sdks/indexingdocuments/README.md#debug) - Get document information
 
-* [debugMany](docs/sdks/indexingdocuments/README.md#debugmany) - Beta: Get information of a batch of documents
+* [debugMany](docs/sdks/indexingdocuments/README.md#debugmany) - Get information of a batch of documents
 
 * [checkAccess](docs/sdks/indexingdocuments/README.md#checkaccess) - Check document access
 * [~~status~~](docs/sdks/indexingdocuments/README.md#status) - Get document upload and indexing status :warning: **Deprecated**
 * [~~count~~](docs/sdks/indexingdocuments/README.md#count) - Get document count :warning: **Deprecated**
-* [debugEvents](docs/sdks/indexingdocuments/README.md#debugevents) - Beta: Get document lifecycle events
+* [debugEvents](docs/sdks/indexingdocuments/README.md#debugevents) - Get document lifecycle events
 
 
 ### [Indexing.People](docs/sdks/people/README.md)
 
-* [debug](docs/sdks/people/README.md#debug) - Beta: Get user information
+* [debug](docs/sdks/people/README.md#debug) - Get user information
 
 * [~~count~~](docs/sdks/people/README.md#count) - Get user count :warning: **Deprecated**
 * [index](docs/sdks/people/README.md#index) - Index employee

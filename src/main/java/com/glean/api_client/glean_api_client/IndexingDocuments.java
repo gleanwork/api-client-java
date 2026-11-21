@@ -54,6 +54,7 @@ import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Indexdocum
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Indexdocuments;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Processalldocuments;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.Deprecated;
 import java.lang.String;
 import java.util.Optional;
@@ -99,8 +100,22 @@ public class IndexingDocuments {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1IndexdocumentResponse addOrUpdate(IndexDocumentRequest request) {
+        return addOrUpdate(request, Optional.empty());
+    }
+
+    /**
+     * Index document
+     * 
+     * <p>Adds a document to the index or updates an existing document.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1IndexdocumentResponse addOrUpdate(IndexDocumentRequest request, Optional<Options> options) {
         RequestOperation<IndexDocumentRequest, PostApiIndexV1IndexdocumentResponse> operation
-              = new PostApiIndexV1Indexdocument.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Indexdocument.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -129,8 +144,24 @@ public class IndexingDocuments {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1IndexdocumentsResponse index(IndexDocumentsRequest request) {
+        return index(request, Optional.empty());
+    }
+
+    /**
+     * Index documents
+     * 
+     * <p>Adds or updates multiple documents in the index. Please refer to the [bulk
+     * indexing](https://developers.glean.com/indexing/documents/bulk-indexing/choosing-indexdocuments-vs-bulkindexdocuments)
+     * documentation for an explanation of when to use this endpoint.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1IndexdocumentsResponse index(IndexDocumentsRequest request, Optional<Options> options) {
         RequestOperation<IndexDocumentsRequest, PostApiIndexV1IndexdocumentsResponse> operation
-              = new PostApiIndexV1Indexdocuments.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Indexdocuments.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,8 +190,24 @@ public class IndexingDocuments {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1BulkindexdocumentsResponse bulkIndex(BulkIndexDocumentsRequest request) {
+        return bulkIndex(request, Optional.empty());
+    }
+
+    /**
+     * Bulk index documents
+     * 
+     * <p>Replaces the documents in a datasource using paginated batch API calls. Please refer to the [bulk
+     * indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an
+     * explanation of how to use bulk endpoints.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1BulkindexdocumentsResponse bulkIndex(BulkIndexDocumentsRequest request, Optional<Options> options) {
         RequestOperation<BulkIndexDocumentsRequest, PostApiIndexV1BulkindexdocumentsResponse> operation
-              = new PostApiIndexV1Bulkindexdocuments.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Bulkindexdocuments.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -214,7 +261,7 @@ public class IndexingDocuments {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1ProcessalldocumentsResponse processAllDirect() {
-        return processAll(Optional.empty());
+        return processAll(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -242,8 +289,37 @@ public class IndexingDocuments {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1ProcessalldocumentsResponse processAll(Optional<? extends ProcessAllDocumentsRequest> request) {
+        return processAll(request, Optional.empty());
+    }
+
+    /**
+     * Schedules the processing of uploaded documents
+     * 
+     * <p>Schedules the immediate processing of documents uploaded through the indexing API. By default the
+     * uploaded documents will be processed asynchronously but this API can be used to schedule processing
+     * of all documents on demand.
+     * 
+     * <p>If a `datasource` parameter is specified, processing is limited to that custom datasource. Without
+     * it, processing applies to all documents across all custom datasources.
+     * #### Rate Limits
+     * This endpoint is rate-limited to one usage every 3 hours. Exceeding this limit results in a 429
+     * response code. Here's how the rate limit works:
+     * 1. Calling `/processalldocuments` for datasource `foo` prevents another call for `foo` for 3 hours.
+     * 2. Calling `/processalldocuments` for datasource `foo` doesn't affect immediate calls for `bar`.
+     * 3. Calling `/processalldocuments` for all datasources prevents any datasource calls for 3 hours.
+     * 4. Calling `/processalldocuments` for datasource `foo` doesn't affect immediate calls for all
+     * datasources.
+     * 
+     * <p>For more frequent document processing, contact Glean support.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1ProcessalldocumentsResponse processAll(Optional<? extends ProcessAllDocumentsRequest> request, Optional<Options> options) {
         RequestOperation<Optional<? extends ProcessAllDocumentsRequest>, PostApiIndexV1ProcessalldocumentsResponse> operation
-              = new PostApiIndexV1Processalldocuments.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Processalldocuments.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -268,16 +344,29 @@ public class IndexingDocuments {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1DeletedocumentResponse delete(DeleteDocumentRequest request) {
+        return delete(request, Optional.empty());
+    }
+
+    /**
+     * Delete document
+     * 
+     * <p>Deletes the specified document from the index. Succeeds if document is not present.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1DeletedocumentResponse delete(DeleteDocumentRequest request, Optional<Options> options) {
         RequestOperation<DeleteDocumentRequest, PostApiIndexV1DeletedocumentResponse> operation
-              = new PostApiIndexV1Deletedocument.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Deletedocument.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
-     * Beta: Get document information
+     * Get document information
      * 
-     * <p>Gives various information that would help in debugging related to a particular document. Currently
-     * in beta, might undergo breaking changes without prior notice.
+     * <p>Gives various information that would help in debugging related to a particular document.
      * 
      * <p>Tip: Refer to the [Troubleshooting
      * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
@@ -289,10 +378,9 @@ public class IndexingDocuments {
     }
 
     /**
-     * Beta: Get document information
+     * Get document information
      * 
-     * <p>Gives various information that would help in debugging related to a particular document. Currently
-     * in beta, might undergo breaking changes without prior notice.
+     * <p>Gives various information that would help in debugging related to a particular document.
      * 
      * <p>Tip: Refer to the [Troubleshooting
      * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
@@ -303,6 +391,26 @@ public class IndexingDocuments {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1DebugDatasourceDocumentResponse debug(String datasource, DebugDocumentRequest debugDocumentRequest) {
+        return debug(datasource, debugDocumentRequest, Optional.empty());
+    }
+
+    /**
+     * Get document information
+     * 
+     * <p>Gives various information that would help in debugging related to a particular document.
+     * 
+     * <p>Tip: Refer to the [Troubleshooting
+     * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
+     * 
+     * @param datasource The datasource to which the document belongs
+     * @param debugDocumentRequest Describes the request body of the /debug/{datasource}/document API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1DebugDatasourceDocumentResponse debug(
+            String datasource, DebugDocumentRequest debugDocumentRequest,
+            Optional<Options> options) {
         PostApiIndexV1DebugDatasourceDocumentRequest request =
             PostApiIndexV1DebugDatasourceDocumentRequest
                 .builder()
@@ -310,15 +418,14 @@ public class IndexingDocuments {
                 .debugDocumentRequest(debugDocumentRequest)
                 .build();
         RequestOperation<PostApiIndexV1DebugDatasourceDocumentRequest, PostApiIndexV1DebugDatasourceDocumentResponse> operation
-              = new PostApiIndexV1DebugDatasourceDocument.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1DebugDatasourceDocument.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
-     * Beta: Get information of a batch of documents
+     * Get information of a batch of documents
      * 
-     * <p>Gives various information that would help in debugging related to a batch of documents. Currently in
-     * beta, might undergo breaking changes without prior notice.
+     * <p>Gives various information that would help in debugging related to a batch of documents.
      * 
      * <p>Tip: Refer to the [Troubleshooting
      * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
@@ -330,10 +437,9 @@ public class IndexingDocuments {
     }
 
     /**
-     * Beta: Get information of a batch of documents
+     * Get information of a batch of documents
      * 
-     * <p>Gives various information that would help in debugging related to a batch of documents. Currently in
-     * beta, might undergo breaking changes without prior notice.
+     * <p>Gives various information that would help in debugging related to a batch of documents.
      * 
      * <p>Tip: Refer to the [Troubleshooting
      * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
@@ -344,6 +450,26 @@ public class IndexingDocuments {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1DebugDatasourceDocumentsResponse debugMany(String datasource, DebugDocumentsRequest debugDocumentsRequest) {
+        return debugMany(datasource, debugDocumentsRequest, Optional.empty());
+    }
+
+    /**
+     * Get information of a batch of documents
+     * 
+     * <p>Gives various information that would help in debugging related to a batch of documents.
+     * 
+     * <p>Tip: Refer to the [Troubleshooting
+     * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
+     * 
+     * @param datasource The datasource to which the document belongs
+     * @param debugDocumentsRequest Describes the request body of the /debug/{datasource}/documents API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1DebugDatasourceDocumentsResponse debugMany(
+            String datasource, DebugDocumentsRequest debugDocumentsRequest,
+            Optional<Options> options) {
         PostApiIndexV1DebugDatasourceDocumentsRequest request =
             PostApiIndexV1DebugDatasourceDocumentsRequest
                 .builder()
@@ -351,7 +477,7 @@ public class IndexingDocuments {
                 .debugDocumentsRequest(debugDocumentsRequest)
                 .build();
         RequestOperation<PostApiIndexV1DebugDatasourceDocumentsRequest, PostApiIndexV1DebugDatasourceDocumentsResponse> operation
-              = new PostApiIndexV1DebugDatasourceDocuments.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1DebugDatasourceDocuments.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -382,8 +508,25 @@ public class IndexingDocuments {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1CheckdocumentaccessResponse checkAccess(CheckDocumentAccessRequest request) {
+        return checkAccess(request, Optional.empty());
+    }
+
+    /**
+     * Check document access
+     * 
+     * <p>Check if a given user has access to access a document in a custom datasource
+     * 
+     * <p>Tip: Refer to the [Troubleshooting
+     * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1CheckdocumentaccessResponse checkAccess(CheckDocumentAccessRequest request, Optional<Options> options) {
         RequestOperation<CheckDocumentAccessRequest, PostApiIndexV1CheckdocumentaccessResponse> operation
-              = new PostApiIndexV1Checkdocumentaccess.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Checkdocumentaccess.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -420,8 +563,28 @@ public class IndexingDocuments {
      */
     @Deprecated
     public PostApiIndexV1GetdocumentstatusResponse status(GetDocumentStatusRequest request) {
+        return status(request, Optional.empty());
+    }
+
+    /**
+     * Get document upload and indexing status
+     * 
+     * <p>Intended for debugging/validation. Fetches the current upload and indexing status of documents.
+     * 
+     * <p>Tip: Use
+     * [/debug/{datasource}/document](https://developers.glean.com/indexing/debugging/datasource-document)
+     * for richer information.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2027-01-15: Endpoint is deprecated.
+     */
+    @Deprecated
+    public PostApiIndexV1GetdocumentstatusResponse status(GetDocumentStatusRequest request, Optional<Options> options) {
         RequestOperation<GetDocumentStatusRequest, PostApiIndexV1GetdocumentstatusResponse> operation
-              = new PostApiIndexV1Getdocumentstatus.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Getdocumentstatus.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -458,17 +621,36 @@ public class IndexingDocuments {
      */
     @Deprecated
     public PostApiIndexV1GetdocumentcountResponse count(GetDocumentCountRequest request) {
+        return count(request, Optional.empty());
+    }
+
+    /**
+     * Get document count
+     * 
+     * <p>Fetches document count for the specified custom datasource.
+     * 
+     * <p>Tip: Use
+     * [/debug/{datasource}/status](https://developers.glean.com/indexing/debugging/datasource-status) for
+     * richer information.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2027-01-15: Endpoint is deprecated.
+     */
+    @Deprecated
+    public PostApiIndexV1GetdocumentcountResponse count(GetDocumentCountRequest request, Optional<Options> options) {
         RequestOperation<GetDocumentCountRequest, PostApiIndexV1GetdocumentcountResponse> operation
-              = new PostApiIndexV1Getdocumentcount.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Getdocumentcount.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
-     * Beta: Get document lifecycle events
+     * Get document lifecycle events
      * 
      * <p>Retrieves lifecycle events for a specific document including upload time, index times and deletions.
-     * Rate limited to 1 request per minute per datasource. Currently in beta, might undergo breaking
-     * changes without prior notice.
+     * Rate limited to 1 request per minute per datasource.
      * 
      * @return The call builder
      */
@@ -477,11 +659,10 @@ public class IndexingDocuments {
     }
 
     /**
-     * Beta: Get document lifecycle events
+     * Get document lifecycle events
      * 
      * <p>Retrieves lifecycle events for a specific document including upload time, index times and deletions.
-     * Rate limited to 1 request per minute per datasource. Currently in beta, might undergo breaking
-     * changes without prior notice.
+     * Rate limited to 1 request per minute per datasource.
      * 
      * @param datasource The datasource to which the document belongs
      * @param debugDocumentLifecycleRequest Describes the request body of the /debug/{datasource}/document/events API call.
@@ -489,6 +670,24 @@ public class IndexingDocuments {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1DebugDatasourceDocumentEventsResponse debugEvents(String datasource, DebugDocumentLifecycleRequest debugDocumentLifecycleRequest) {
+        return debugEvents(datasource, debugDocumentLifecycleRequest, Optional.empty());
+    }
+
+    /**
+     * Get document lifecycle events
+     * 
+     * <p>Retrieves lifecycle events for a specific document including upload time, index times and deletions.
+     * Rate limited to 1 request per minute per datasource.
+     * 
+     * @param datasource The datasource to which the document belongs
+     * @param debugDocumentLifecycleRequest Describes the request body of the /debug/{datasource}/document/events API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1DebugDatasourceDocumentEventsResponse debugEvents(
+            String datasource, DebugDocumentLifecycleRequest debugDocumentLifecycleRequest,
+            Optional<Options> options) {
         PostApiIndexV1DebugDatasourceDocumentEventsRequest request =
             PostApiIndexV1DebugDatasourceDocumentEventsRequest
                 .builder()
@@ -496,7 +695,7 @@ public class IndexingDocuments {
                 .debugDocumentLifecycleRequest(debugDocumentLifecycleRequest)
                 .build();
         RequestOperation<PostApiIndexV1DebugDatasourceDocumentEventsRequest, PostApiIndexV1DebugDatasourceDocumentEventsResponse> operation
-              = new PostApiIndexV1DebugDatasourceDocumentEvents.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1DebugDatasourceDocumentEvents.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

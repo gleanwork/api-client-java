@@ -10,13 +10,17 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.PlatformAgentRunResponsesRequest;
 import com.glean.api_client.glean_api_client.operations.PlatformAgentsCreateRunResponses;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 
 public class PlatformAgentsCreateRunResponsesRequestBuilder {
 
     private String agentId;
     private PlatformAgentRunResponsesRequest platformAgentRunResponsesRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -35,6 +39,18 @@ public class PlatformAgentsCreateRunResponsesRequestBuilder {
         this.platformAgentRunResponsesRequest = platformAgentRunResponsesRequest;
         return this;
     }
+                
+    public PlatformAgentsCreateRunResponsesRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public PlatformAgentsCreateRunResponsesRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private PlatformAgentsCreateRunResponsesRequest buildRequest() {
@@ -46,9 +62,12 @@ public class PlatformAgentsCreateRunResponsesRequestBuilder {
     }
 
     public PlatformAgentsCreateRunResponsesResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<PlatformAgentsCreateRunResponsesRequest, PlatformAgentsCreateRunResponsesResponse> operation
-              = new PlatformAgentsCreateRunResponses.Sync(sdkConfiguration, _headers);
+              = new PlatformAgentsCreateRunResponses.Sync(sdkConfiguration, options, _headers);
         PlatformAgentsCreateRunResponsesRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

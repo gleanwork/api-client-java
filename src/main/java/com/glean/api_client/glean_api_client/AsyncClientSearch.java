@@ -27,6 +27,7 @@ import com.glean.api_client.glean_api_client.operations.Feed;
 import com.glean.api_client.glean_api_client.operations.Recommendations;
 import com.glean.api_client.glean_api_client.operations.Search;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -74,7 +75,7 @@ public class AsyncClientSearch {
      * @return {@code CompletableFuture<AdminsearchResponse>} - The async response
      */
     public CompletableFuture<AdminsearchResponse> queryAsAdmin(SearchRequest searchRequest) {
-        return queryAsAdmin(Optional.empty(), searchRequest);
+        return queryAsAdmin(Optional.empty(), searchRequest, Optional.empty());
     }
 
     /**
@@ -88,6 +89,23 @@ public class AsyncClientSearch {
      * @return {@code CompletableFuture<AdminsearchResponse>} - The async response
      */
     public CompletableFuture<AdminsearchResponse> queryAsAdmin(Optional<String> locale, SearchRequest searchRequest) {
+        return queryAsAdmin(locale, searchRequest, Optional.empty());
+    }
+
+    /**
+     * Search the index (admin)
+     * 
+     * <p>Retrieves results for search query without respect for permissions. This is available only to
+     * privileged users.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param searchRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<AdminsearchResponse>} - The async response
+     */
+    public CompletableFuture<AdminsearchResponse> queryAsAdmin(
+            Optional<String> locale, SearchRequest searchRequest,
+            Optional<Options> options) {
         AdminsearchRequest request =
             AdminsearchRequest
                 .builder()
@@ -95,7 +113,7 @@ public class AsyncClientSearch {
                 .searchRequest(searchRequest)
                 .build();
         AsyncRequestOperation<AdminsearchRequest, AdminsearchResponse> operation
-              = new Adminsearch.Async(sdkConfiguration, _headers);
+              = new Adminsearch.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -121,7 +139,7 @@ public class AsyncClientSearch {
      * @return {@code CompletableFuture<AutocompleteResponse>} - The async response
      */
     public CompletableFuture<AutocompleteResponse> autocomplete(AutocompleteRequest autocompleteRequest) {
-        return autocomplete(Optional.empty(), autocompleteRequest);
+        return autocomplete(Optional.empty(), autocompleteRequest, Optional.empty());
     }
 
     /**
@@ -134,6 +152,22 @@ public class AsyncClientSearch {
      * @return {@code CompletableFuture<AutocompleteResponse>} - The async response
      */
     public CompletableFuture<AutocompleteResponse> autocomplete(Optional<String> locale, AutocompleteRequest autocompleteRequest) {
+        return autocomplete(locale, autocompleteRequest, Optional.empty());
+    }
+
+    /**
+     * Autocomplete
+     * 
+     * <p>Retrieve query suggestions, operators and documents for the given partially typed query.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param autocompleteRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<AutocompleteResponse>} - The async response
+     */
+    public CompletableFuture<AutocompleteResponse> autocomplete(
+            Optional<String> locale, AutocompleteRequest autocompleteRequest,
+            Optional<Options> options) {
         com.glean.api_client.glean_api_client.models.operations.AutocompleteRequest request =
             com.glean.api_client.glean_api_client.models.operations.AutocompleteRequest
                 .builder()
@@ -141,7 +175,7 @@ public class AsyncClientSearch {
                 .autocompleteRequest(autocompleteRequest)
                 .build();
         AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.AutocompleteRequest, AutocompleteResponse> operation
-              = new Autocomplete.Async(sdkConfiguration, _headers);
+              = new Autocomplete.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -169,7 +203,7 @@ public class AsyncClientSearch {
      * @return {@code CompletableFuture<FeedResponse>} - The async response
      */
     public CompletableFuture<FeedResponse> retrieveFeed(FeedRequest feedRequest) {
-        return retrieveFeed(Optional.empty(), feedRequest);
+        return retrieveFeed(Optional.empty(), feedRequest, Optional.empty());
     }
 
     /**
@@ -183,6 +217,23 @@ public class AsyncClientSearch {
      * @return {@code CompletableFuture<FeedResponse>} - The async response
      */
     public CompletableFuture<FeedResponse> retrieveFeed(Optional<String> locale, FeedRequest feedRequest) {
+        return retrieveFeed(locale, feedRequest, Optional.empty());
+    }
+
+    /**
+     * Feed of documents and events
+     * 
+     * <p>The personalized feed/home includes different types of contents including suggestions, recents,
+     * calendar events and many more.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param feedRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<FeedResponse>} - The async response
+     */
+    public CompletableFuture<FeedResponse> retrieveFeed(
+            Optional<String> locale, FeedRequest feedRequest,
+            Optional<Options> options) {
         com.glean.api_client.glean_api_client.models.operations.FeedRequest request =
             com.glean.api_client.glean_api_client.models.operations.FeedRequest
                 .builder()
@@ -190,7 +241,7 @@ public class AsyncClientSearch {
                 .feedRequest(feedRequest)
                 .build();
         AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.FeedRequest, FeedResponse> operation
-              = new Feed.Async(sdkConfiguration, _headers);
+              = new Feed.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -216,7 +267,7 @@ public class AsyncClientSearch {
      * @return {@code CompletableFuture<RecommendationsResponse>} - The async response
      */
     public CompletableFuture<RecommendationsResponse> recommendations(RecommendationsRequest recommendationsRequest) {
-        return recommendations(Optional.empty(), recommendationsRequest);
+        return recommendations(Optional.empty(), recommendationsRequest, Optional.empty());
     }
 
     /**
@@ -229,6 +280,22 @@ public class AsyncClientSearch {
      * @return {@code CompletableFuture<RecommendationsResponse>} - The async response
      */
     public CompletableFuture<RecommendationsResponse> recommendations(Optional<String> locale, RecommendationsRequest recommendationsRequest) {
+        return recommendations(locale, recommendationsRequest, Optional.empty());
+    }
+
+    /**
+     * Recommend documents
+     * 
+     * <p>Retrieve recommended documents for the given URL or Glean Document ID.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param recommendationsRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<RecommendationsResponse>} - The async response
+     */
+    public CompletableFuture<RecommendationsResponse> recommendations(
+            Optional<String> locale, RecommendationsRequest recommendationsRequest,
+            Optional<Options> options) {
         com.glean.api_client.glean_api_client.models.operations.RecommendationsRequest request =
             com.glean.api_client.glean_api_client.models.operations.RecommendationsRequest
                 .builder()
@@ -236,7 +303,7 @@ public class AsyncClientSearch {
                 .recommendationsRequest(recommendationsRequest)
                 .build();
         AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.RecommendationsRequest, RecommendationsResponse> operation
-              = new Recommendations.Async(sdkConfiguration, _headers);
+              = new Recommendations.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -262,7 +329,7 @@ public class AsyncClientSearch {
      * @return {@code CompletableFuture<SearchResponse>} - The async response
      */
     public CompletableFuture<SearchResponse> query(SearchRequest searchRequest) {
-        return query(Optional.empty(), searchRequest);
+        return query(Optional.empty(), searchRequest, Optional.empty());
     }
 
     /**
@@ -275,6 +342,22 @@ public class AsyncClientSearch {
      * @return {@code CompletableFuture<SearchResponse>} - The async response
      */
     public CompletableFuture<SearchResponse> query(Optional<String> locale, SearchRequest searchRequest) {
+        return query(locale, searchRequest, Optional.empty());
+    }
+
+    /**
+     * Search
+     * 
+     * <p>Retrieve results from the index for the given query and filters.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param searchRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<SearchResponse>} - The async response
+     */
+    public CompletableFuture<SearchResponse> query(
+            Optional<String> locale, SearchRequest searchRequest,
+            Optional<Options> options) {
         com.glean.api_client.glean_api_client.models.operations.SearchRequest request =
             com.glean.api_client.glean_api_client.models.operations.SearchRequest
                 .builder()
@@ -282,7 +365,7 @@ public class AsyncClientSearch {
                 .searchRequest(searchRequest)
                 .build();
         AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.SearchRequest, SearchResponse> operation
-              = new Search.Async(sdkConfiguration, _headers);
+              = new Search.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

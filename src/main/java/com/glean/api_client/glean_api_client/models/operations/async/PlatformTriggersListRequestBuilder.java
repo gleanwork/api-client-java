@@ -12,9 +12,11 @@ import com.glean.api_client.glean_api_client.models.operations.PlatformTriggersL
 import com.glean.api_client.glean_api_client.operations.PlatformTriggersList;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.LazySingletonValue;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -25,6 +27,7 @@ public class PlatformTriggersListRequestBuilder {
                             "50",
                             new TypeReference<Optional<Long>>() {});
     private Optional<String> cursor = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -55,6 +58,18 @@ public class PlatformTriggersListRequestBuilder {
         this.cursor = cursor;
         return this;
     }
+                
+    public PlatformTriggersListRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public PlatformTriggersListRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private PlatformTriggersListRequest buildRequest() {
@@ -69,9 +84,12 @@ public class PlatformTriggersListRequestBuilder {
     }
 
     public CompletableFuture<PlatformTriggersListResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<PlatformTriggersListRequest, PlatformTriggersListResponse> operation
-              = new PlatformTriggersList.Async(sdkConfiguration, _headers);
+              = new PlatformTriggersList.Async(sdkConfiguration, options, _headers);
         PlatformTriggersListRequest request = buildRequest();
 
         return operation.doRequest(request)

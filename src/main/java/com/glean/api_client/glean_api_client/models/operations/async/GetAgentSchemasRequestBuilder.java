@@ -10,9 +10,11 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.operations.GetAgentSchemasRequest;
 import com.glean.api_client.glean_api_client.operations.GetAgentSchemas;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -21,6 +23,7 @@ public class GetAgentSchemasRequestBuilder {
     private Optional<String> locale = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private String agentId;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -57,6 +60,18 @@ public class GetAgentSchemasRequestBuilder {
         this.agentId = agentId;
         return this;
     }
+                
+    public GetAgentSchemasRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public GetAgentSchemasRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private GetAgentSchemasRequest buildRequest() {
@@ -69,9 +84,12 @@ public class GetAgentSchemasRequestBuilder {
     }
 
     public CompletableFuture<GetAgentSchemasResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<GetAgentSchemasRequest, GetAgentSchemasResponse> operation
-              = new GetAgentSchemas.Async(sdkConfiguration, _headers);
+              = new GetAgentSchemas.Async(sdkConfiguration, options, _headers);
         GetAgentSchemasRequest request = buildRequest();
 
         return operation.doRequest(request)

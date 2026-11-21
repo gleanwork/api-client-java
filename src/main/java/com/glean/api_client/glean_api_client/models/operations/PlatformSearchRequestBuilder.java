@@ -10,11 +10,15 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.PlatformSearchRequest;
 import com.glean.api_client.glean_api_client.operations.PlatformSearch;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.time.Duration;
+import java.util.Optional;
 
 public class PlatformSearchRequestBuilder {
 
     private PlatformSearchRequest request;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -27,11 +31,26 @@ public class PlatformSearchRequestBuilder {
         this.request = request;
         return this;
     }
+                
+    public PlatformSearchRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public PlatformSearchRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
     public PlatformSearchResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<PlatformSearchRequest, PlatformSearchResponse> operation
-              = new PlatformSearch.Sync(sdkConfiguration, _headers);
+              = new PlatformSearch.Sync(sdkConfiguration, options, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

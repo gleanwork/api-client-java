@@ -44,8 +44,10 @@ import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Indexemplo
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Indexteam;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Processallemployeesandteams;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.Deprecated;
 import java.lang.String;
+import java.util.Optional;
 
 
 public class People {
@@ -68,10 +70,9 @@ public class People {
     }
 
     /**
-     * Beta: Get user information
+     * Get user information
      * 
-     * <p>Gives various information that would help in debugging related to a particular user. Currently in
-     * beta, might undergo breaking changes without prior notice.
+     * <p>Gives various information that would help in debugging related to a particular user.
      * 
      * <p>Tip: Refer to the [Troubleshooting
      * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
@@ -83,10 +84,9 @@ public class People {
     }
 
     /**
-     * Beta: Get user information
+     * Get user information
      * 
-     * <p>Gives various information that would help in debugging related to a particular user. Currently in
-     * beta, might undergo breaking changes without prior notice.
+     * <p>Gives various information that would help in debugging related to a particular user.
      * 
      * <p>Tip: Refer to the [Troubleshooting
      * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
@@ -97,6 +97,26 @@ public class People {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1DebugDatasourceUserResponse debug(String datasource, DebugUserRequest debugUserRequest) {
+        return debug(datasource, debugUserRequest, Optional.empty());
+    }
+
+    /**
+     * Get user information
+     * 
+     * <p>Gives various information that would help in debugging related to a particular user.
+     * 
+     * <p>Tip: Refer to the [Troubleshooting
+     * tutorial](https://developers.glean.com/indexing/debugging/datasource-config) for more information.
+     * 
+     * @param datasource The datasource to which the user belongs
+     * @param debugUserRequest Describes the request body of the /debug/{datasource}/user API call
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1DebugDatasourceUserResponse debug(
+            String datasource, DebugUserRequest debugUserRequest,
+            Optional<Options> options) {
         PostApiIndexV1DebugDatasourceUserRequest request =
             PostApiIndexV1DebugDatasourceUserRequest
                 .builder()
@@ -104,7 +124,7 @@ public class People {
                 .debugUserRequest(debugUserRequest)
                 .build();
         RequestOperation<PostApiIndexV1DebugDatasourceUserRequest, PostApiIndexV1DebugDatasourceUserResponse> operation
-              = new PostApiIndexV1DebugDatasourceUser.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1DebugDatasourceUser.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -141,8 +161,28 @@ public class People {
      */
     @Deprecated
     public PostApiIndexV1GetusercountResponse count(GetUserCountRequest request) {
+        return count(request, Optional.empty());
+    }
+
+    /**
+     * Get user count
+     * 
+     * <p>Fetches user count for the specified custom datasource.
+     * 
+     * <p>Tip: Use
+     * [/debug/{datasource}/status](https://developers.glean.com/indexing/debugging/datasource-status) for
+     * richer information.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2027-01-15: Endpoint is deprecated.
+     */
+    @Deprecated
+    public PostApiIndexV1GetusercountResponse count(GetUserCountRequest request, Optional<Options> options) {
         RequestOperation<GetUserCountRequest, PostApiIndexV1GetusercountResponse> operation
-              = new PostApiIndexV1Getusercount.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Getusercount.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -167,8 +207,22 @@ public class People {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1IndexemployeeResponse index(IndexEmployeeRequest request) {
+        return index(request, Optional.empty());
+    }
+
+    /**
+     * Index employee
+     * 
+     * <p>Adds an employee or replaces the existing information about an employee.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1IndexemployeeResponse index(IndexEmployeeRequest request, Optional<Options> options) {
         RequestOperation<IndexEmployeeRequest, PostApiIndexV1IndexemployeeResponse> operation
-              = new PostApiIndexV1Indexemployee.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Indexemployee.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -201,8 +255,26 @@ public class People {
      */
     @Deprecated
     public PostApiIndexV1BulkindexemployeesResponse bulkIndex(BulkIndexEmployeesRequest request) {
+        return bulkIndex(request, Optional.empty());
+    }
+
+    /**
+     * Bulk index employees
+     * 
+     * <p>Replaces all the currently indexed employees using paginated batch API calls. Please refer to the
+     * [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for
+     * an explanation of how to use bulk endpoints.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     * @deprecated method: Deprecated on 2026-02-03, removal scheduled for 2027-04-15: Endpoint is deprecated.
+     */
+    @Deprecated
+    public PostApiIndexV1BulkindexemployeesResponse bulkIndex(BulkIndexEmployeesRequest request, Optional<Options> options) {
         RequestOperation<BulkIndexEmployeesRequest, PostApiIndexV1BulkindexemployeesResponse> operation
-              = new PostApiIndexV1Bulkindexemployees.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Bulkindexemployees.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -230,8 +302,23 @@ public class People {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1ProcessallemployeesandteamsResponse processAllEmployeesAndTeamsDirect() {
+        return processAllEmployeesAndTeams(Optional.empty());
+    }
+
+    /**
+     * Schedules the processing of uploaded employees and teams
+     * 
+     * <p>Schedules the immediate processing of employees and teams uploaded through the indexing API. By
+     * default all uploaded people data will be processed asynchronously but this API can be used to
+     * schedule its processing on demand.
+     * 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1ProcessallemployeesandteamsResponse processAllEmployeesAndTeams(Optional<Options> options) {
         RequestlessOperation<PostApiIndexV1ProcessallemployeesandteamsResponse> operation
-            = new PostApiIndexV1Processallemployeesandteams.Sync(sdkConfiguration, _headers);
+            = new PostApiIndexV1Processallemployeesandteams.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -256,8 +343,22 @@ public class People {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1DeleteemployeeResponse delete(DeleteEmployeeRequest request) {
+        return delete(request, Optional.empty());
+    }
+
+    /**
+     * Delete employee
+     * 
+     * <p>Delete an employee. Silently succeeds if employee is not present.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1DeleteemployeeResponse delete(DeleteEmployeeRequest request, Optional<Options> options) {
         RequestOperation<DeleteEmployeeRequest, PostApiIndexV1DeleteemployeeResponse> operation
-              = new PostApiIndexV1Deleteemployee.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Deleteemployee.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -282,8 +383,22 @@ public class People {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1IndexteamResponse indexTeam(IndexTeamRequest request) {
+        return indexTeam(request, Optional.empty());
+    }
+
+    /**
+     * Index team
+     * 
+     * <p>Adds a team or updates information about a team
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1IndexteamResponse indexTeam(IndexTeamRequest request, Optional<Options> options) {
         RequestOperation<IndexTeamRequest, PostApiIndexV1IndexteamResponse> operation
-              = new PostApiIndexV1Indexteam.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Indexteam.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -308,8 +423,22 @@ public class People {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1DeleteteamResponse deleteTeam(DeleteTeamRequest request) {
+        return deleteTeam(request, Optional.empty());
+    }
+
+    /**
+     * Delete team
+     * 
+     * <p>Delete a team based on provided id.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1DeleteteamResponse deleteTeam(DeleteTeamRequest request, Optional<Options> options) {
         RequestOperation<DeleteTeamRequest, PostApiIndexV1DeleteteamResponse> operation
-              = new PostApiIndexV1Deleteteam.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Deleteteam.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -338,8 +467,24 @@ public class People {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1BulkindexteamsResponse bulkIndexTeams(BulkIndexTeamsRequest request) {
+        return bulkIndexTeams(request, Optional.empty());
+    }
+
+    /**
+     * Bulk index teams
+     * 
+     * <p>Replaces all the currently indexed teams using paginated batch API calls. Please refer to the [bulk
+     * indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an
+     * explanation of how to use bulk endpoints.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1BulkindexteamsResponse bulkIndexTeams(BulkIndexTeamsRequest request, Optional<Options> options) {
         RequestOperation<BulkIndexTeamsRequest, PostApiIndexV1BulkindexteamsResponse> operation
-              = new PostApiIndexV1Bulkindexteams.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Bulkindexteams.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

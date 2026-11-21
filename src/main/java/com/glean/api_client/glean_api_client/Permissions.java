@@ -55,6 +55,7 @@ import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Indexuser;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Processallmemberships;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Updatepermissions;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.util.Optional;
 
 
@@ -98,8 +99,22 @@ public class Permissions {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1UpdatepermissionsResponse updatePermissions(UpdatePermissionsRequest request) {
+        return updatePermissions(request, Optional.empty());
+    }
+
+    /**
+     * Update document permissions
+     * 
+     * <p>Updates the permissions for a given document without modifying document content.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1UpdatepermissionsResponse updatePermissions(UpdatePermissionsRequest request, Optional<Options> options) {
         RequestOperation<UpdatePermissionsRequest, PostApiIndexV1UpdatepermissionsResponse> operation
-              = new PostApiIndexV1Updatepermissions.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Updatepermissions.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -124,8 +139,22 @@ public class Permissions {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1IndexuserResponse indexUser(IndexUserRequest request) {
+        return indexUser(request, Optional.empty());
+    }
+
+    /**
+     * Index user
+     * 
+     * <p>Adds a datasource user or updates an existing user.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1IndexuserResponse indexUser(IndexUserRequest request, Optional<Options> options) {
         RequestOperation<IndexUserRequest, PostApiIndexV1IndexuserResponse> operation
-              = new PostApiIndexV1Indexuser.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Indexuser.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -158,8 +187,26 @@ public class Permissions {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1BulkindexusersResponse bulkIndexUsers(BulkIndexUsersRequest request) {
+        return bulkIndexUsers(request, Optional.empty());
+    }
+
+    /**
+     * Bulk index users
+     * 
+     * <p>Replaces the users in a datasource using paginated batch API calls. Please refer to the [bulk
+     * indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an
+     * explanation of how to use bulk endpoints.
+     * Note: Any users deleted from the existing set will have their associated memberships deleted as
+     * well.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1BulkindexusersResponse bulkIndexUsers(BulkIndexUsersRequest request, Optional<Options> options) {
         RequestOperation<BulkIndexUsersRequest, PostApiIndexV1BulkindexusersResponse> operation
-              = new PostApiIndexV1Bulkindexusers.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Bulkindexusers.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -184,8 +231,22 @@ public class Permissions {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1IndexgroupResponse indexGroup(IndexGroupRequest request) {
+        return indexGroup(request, Optional.empty());
+    }
+
+    /**
+     * Index group
+     * 
+     * <p>Add or update a group in the datasource.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1IndexgroupResponse indexGroup(IndexGroupRequest request, Optional<Options> options) {
         RequestOperation<IndexGroupRequest, PostApiIndexV1IndexgroupResponse> operation
-              = new PostApiIndexV1Indexgroup.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Indexgroup.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -218,8 +279,26 @@ public class Permissions {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1BulkindexgroupsResponse bulkIndexGroups(BulkIndexGroupsRequest request) {
+        return bulkIndexGroups(request, Optional.empty());
+    }
+
+    /**
+     * Bulk index groups
+     * 
+     * <p>Replaces the groups in a datasource using paginated batch API calls. Please refer to the [bulk
+     * indexing](https://developers.glean.com/indexing/documents/bulk-upload-model) documentation for an
+     * explanation of how to use bulk endpoints.
+     * Note: Any groups deleted from the existing set will have their associated memberships deleted as
+     * well.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1BulkindexgroupsResponse bulkIndexGroups(BulkIndexGroupsRequest request, Optional<Options> options) {
         RequestOperation<BulkIndexGroupsRequest, PostApiIndexV1BulkindexgroupsResponse> operation
-              = new PostApiIndexV1Bulkindexgroups.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Bulkindexgroups.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -244,8 +323,22 @@ public class Permissions {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1IndexmembershipResponse indexMembership(IndexMembershipRequest request) {
+        return indexMembership(request, Optional.empty());
+    }
+
+    /**
+     * Index membership
+     * 
+     * <p>Add the memberships of a group in the datasource.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1IndexmembershipResponse indexMembership(IndexMembershipRequest request, Optional<Options> options) {
         RequestOperation<IndexMembershipRequest, PostApiIndexV1IndexmembershipResponse> operation
-              = new PostApiIndexV1Indexmembership.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Indexmembership.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -274,8 +367,24 @@ public class Permissions {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1BulkindexmembershipsResponse bulkIndexMemberships(BulkIndexMembershipsRequest request) {
+        return bulkIndexMemberships(request, Optional.empty());
+    }
+
+    /**
+     * Bulk index memberships for a group
+     * 
+     * <p>Replaces the memberships for a group in a datasource using paginated batch API calls. Please refer
+     * to the [bulk indexing](https://developers.glean.com/indexing/documents/bulk-upload-model)
+     * documentation for an explanation of how to use bulk endpoints.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1BulkindexmembershipsResponse bulkIndexMemberships(BulkIndexMembershipsRequest request, Optional<Options> options) {
         RequestOperation<BulkIndexMembershipsRequest, PostApiIndexV1BulkindexmembershipsResponse> operation
-              = new PostApiIndexV1Bulkindexmemberships.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Bulkindexmemberships.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -303,7 +412,7 @@ public class Permissions {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1ProcessallmembershipsResponse processMembershipsDirect() {
-        return processMemberships(Optional.empty());
+        return processMemberships(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -318,8 +427,24 @@ public class Permissions {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1ProcessallmembershipsResponse processMemberships(Optional<? extends ProcessAllMembershipsRequest> request) {
+        return processMemberships(request, Optional.empty());
+    }
+
+    /**
+     * Schedules the processing of group memberships
+     * 
+     * <p>Schedules the immediate processing of all group memberships uploaded through the indexing API. By
+     * default the uploaded group memberships will be processed asynchronously but this API can be used to
+     * schedule processing of all memberships on demand.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1ProcessallmembershipsResponse processMemberships(Optional<? extends ProcessAllMembershipsRequest> request, Optional<Options> options) {
         RequestOperation<Optional<? extends ProcessAllMembershipsRequest>, PostApiIndexV1ProcessallmembershipsResponse> operation
-              = new PostApiIndexV1Processallmemberships.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Processallmemberships.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -346,8 +471,23 @@ public class Permissions {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1DeleteuserResponse deleteUser(DeleteUserRequest request) {
+        return deleteUser(request, Optional.empty());
+    }
+
+    /**
+     * Delete user
+     * 
+     * <p>Delete the user from the datasource. Silently succeeds if user is not present.
+     * Note: All memberships associated with the deleted user will also be deleted.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1DeleteuserResponse deleteUser(DeleteUserRequest request, Optional<Options> options) {
         RequestOperation<DeleteUserRequest, PostApiIndexV1DeleteuserResponse> operation
-              = new PostApiIndexV1Deleteuser.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Deleteuser.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -374,8 +514,23 @@ public class Permissions {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1DeletegroupResponse deleteGroup(DeleteGroupRequest request) {
+        return deleteGroup(request, Optional.empty());
+    }
+
+    /**
+     * Delete group
+     * 
+     * <p>Delete group from the datasource. Silently succeeds if group is not present.
+     * Note: All memberships associated with the deleted group will also be deleted.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1DeletegroupResponse deleteGroup(DeleteGroupRequest request, Optional<Options> options) {
         RequestOperation<DeleteGroupRequest, PostApiIndexV1DeletegroupResponse> operation
-              = new PostApiIndexV1Deletegroup.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Deletegroup.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -402,8 +557,23 @@ public class Permissions {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1DeletemembershipResponse deleteMembership(DeleteMembershipRequest request) {
+        return deleteMembership(request, Optional.empty());
+    }
+
+    /**
+     * Delete membership
+     * 
+     * <p>Delete membership to a group in the specified datasource. Silently succeeds if membership is not
+     * present.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1DeletemembershipResponse deleteMembership(DeleteMembershipRequest request, Optional<Options> options) {
         RequestOperation<DeleteMembershipRequest, PostApiIndexV1DeletemembershipResponse> operation
-              = new PostApiIndexV1Deletemembership.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Deletemembership.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -430,8 +600,23 @@ public class Permissions {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1BetausersResponse authorizeBetaUsers(GreenlistUsersRequest request) {
+        return authorizeBetaUsers(request, Optional.empty());
+    }
+
+    /**
+     * Beta users
+     * 
+     * <p>Allow the datasource be visible to the specified beta users. The default behaviour is datasource
+     * being visible to all users if it is enabled and not visible to any user if it is not enabled.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1BetausersResponse authorizeBetaUsers(GreenlistUsersRequest request, Optional<Options> options) {
         RequestOperation<GreenlistUsersRequest, PostApiIndexV1BetausersResponse> operation
-              = new PostApiIndexV1Betausers.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Betausers.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
