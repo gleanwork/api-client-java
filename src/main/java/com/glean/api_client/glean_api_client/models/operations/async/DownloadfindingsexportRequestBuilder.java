@@ -10,13 +10,17 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.operations.DownloadfindingsexportRequest;
 import com.glean.api_client.glean_api_client.operations.Downloadfindingsexport;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class DownloadfindingsexportRequestBuilder {
 
     private String id;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -29,6 +33,18 @@ public class DownloadfindingsexportRequestBuilder {
         this.id = id;
         return this;
     }
+                
+    public DownloadfindingsexportRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public DownloadfindingsexportRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private DownloadfindingsexportRequest buildRequest() {
@@ -39,9 +55,12 @@ public class DownloadfindingsexportRequestBuilder {
     }
 
     public CompletableFuture<DownloadfindingsexportResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<DownloadfindingsexportRequest, DownloadfindingsexportResponse> operation
-              = new Downloadfindingsexport.Async(sdkConfiguration, _headers);
+              = new Downloadfindingsexport.Async(sdkConfiguration, options, _headers);
         DownloadfindingsexportRequest request = buildRequest();
 
         return operation.doRequest(request)

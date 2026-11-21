@@ -50,6 +50,7 @@ import com.glean.api_client.glean_api_client.operations.PlatformTriggersGet;
 import com.glean.api_client.glean_api_client.operations.PlatformTriggersList;
 import com.glean.api_client.glean_api_client.operations.PlatformTriggersUpdate;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
@@ -96,8 +97,21 @@ public class AsyncTriggers {
      * @return {@code CompletableFuture<PlatformTriggersCreateResponse>} - The async response
      */
     public CompletableFuture<PlatformTriggersCreateResponse> create(PlatformTriggerCreateRequest request) {
+        return create(request, Optional.empty());
+    }
+
+    /**
+     * Create trigger
+     * 
+     * <p>Create a trigger from a preset and return it with its signing secret.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return {@code CompletableFuture<PlatformTriggersCreateResponse>} - The async response
+     */
+    public CompletableFuture<PlatformTriggersCreateResponse> create(PlatformTriggerCreateRequest request, Optional<Options> options) {
         AsyncRequestOperation<PlatformTriggerCreateRequest, PlatformTriggersCreateResponse> operation
-              = new PlatformTriggersCreate.Async(sdkConfiguration, _headers);
+              = new PlatformTriggersCreate.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -122,7 +136,7 @@ public class AsyncTriggers {
      * @return {@code CompletableFuture<PlatformTriggersListResponse>} - The async response
      */
     public CompletableFuture<PlatformTriggersListResponse> listDirect() {
-        return list(Optional.empty(), Optional.empty());
+        return list(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -135,6 +149,22 @@ public class AsyncTriggers {
      * @return {@code CompletableFuture<PlatformTriggersListResponse>} - The async response
      */
     public CompletableFuture<PlatformTriggersListResponse> list(Optional<Long> pageSize, Optional<String> cursor) {
+        return list(pageSize, cursor, Optional.empty());
+    }
+
+    /**
+     * List triggers
+     * 
+     * <p>List triggers owned by the authenticated caller.
+     * 
+     * @param pageSize Maximum number of triggers to return.
+     * @param cursor Opaque pagination cursor from a previous response.
+     * @param options additional options
+     * @return {@code CompletableFuture<PlatformTriggersListResponse>} - The async response
+     */
+    public CompletableFuture<PlatformTriggersListResponse> list(
+            Optional<Long> pageSize, Optional<String> cursor,
+            Optional<Options> options) {
         PlatformTriggersListRequest request =
             PlatformTriggersListRequest
                 .builder()
@@ -142,7 +172,7 @@ public class AsyncTriggers {
                 .cursor(cursor)
                 .build();
         AsyncRequestOperation<PlatformTriggersListRequest, PlatformTriggersListResponse> operation
-              = new PlatformTriggersList.Async(sdkConfiguration, _headers);
+              = new PlatformTriggersList.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -168,13 +198,26 @@ public class AsyncTriggers {
      * @return {@code CompletableFuture<PlatformTriggersGetResponse>} - The async response
      */
     public CompletableFuture<PlatformTriggersGetResponse> get(String triggerId) {
+        return get(triggerId, Optional.empty());
+    }
+
+    /**
+     * Get trigger
+     * 
+     * <p>Retrieve a trigger owned by the authenticated caller.
+     * 
+     * @param triggerId ID of the trigger to retrieve.
+     * @param options additional options
+     * @return {@code CompletableFuture<PlatformTriggersGetResponse>} - The async response
+     */
+    public CompletableFuture<PlatformTriggersGetResponse> get(String triggerId, Optional<Options> options) {
         PlatformTriggersGetRequest request =
             PlatformTriggersGetRequest
                 .builder()
                 .triggerId(triggerId)
                 .build();
         AsyncRequestOperation<PlatformTriggersGetRequest, PlatformTriggersGetResponse> operation
-              = new PlatformTriggersGet.Async(sdkConfiguration, _headers);
+              = new PlatformTriggersGet.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -201,6 +244,22 @@ public class AsyncTriggers {
      * @return {@code CompletableFuture<PlatformTriggersUpdateResponse>} - The async response
      */
     public CompletableFuture<PlatformTriggersUpdateResponse> update(String triggerId, PlatformTriggerUpdateRequest platformTriggerUpdateRequest) {
+        return update(triggerId, platformTriggerUpdateRequest, Optional.empty());
+    }
+
+    /**
+     * Update trigger
+     * 
+     * <p>Update a trigger.
+     * 
+     * @param triggerId ID of the trigger to update.
+     * @param platformTriggerUpdateRequest Partial update. Only the supplied fields are changed.
+     * @param options additional options
+     * @return {@code CompletableFuture<PlatformTriggersUpdateResponse>} - The async response
+     */
+    public CompletableFuture<PlatformTriggersUpdateResponse> update(
+            String triggerId, PlatformTriggerUpdateRequest platformTriggerUpdateRequest,
+            Optional<Options> options) {
         PlatformTriggersUpdateRequest request =
             PlatformTriggersUpdateRequest
                 .builder()
@@ -208,7 +267,7 @@ public class AsyncTriggers {
                 .platformTriggerUpdateRequest(platformTriggerUpdateRequest)
                 .build();
         AsyncRequestOperation<PlatformTriggersUpdateRequest, PlatformTriggersUpdateResponse> operation
-              = new PlatformTriggersUpdate.Async(sdkConfiguration, _headers);
+              = new PlatformTriggersUpdate.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -234,13 +293,26 @@ public class AsyncTriggers {
      * @return {@code CompletableFuture<PlatformTriggersDeleteResponse>} - The async response
      */
     public CompletableFuture<PlatformTriggersDeleteResponse> delete(String triggerId) {
+        return delete(triggerId, Optional.empty());
+    }
+
+    /**
+     * Delete trigger
+     * 
+     * <p>Delete a trigger.
+     * 
+     * @param triggerId ID of the trigger to delete.
+     * @param options additional options
+     * @return {@code CompletableFuture<PlatformTriggersDeleteResponse>} - The async response
+     */
+    public CompletableFuture<PlatformTriggersDeleteResponse> delete(String triggerId, Optional<Options> options) {
         PlatformTriggersDeleteRequest request =
             PlatformTriggersDeleteRequest
                 .builder()
                 .triggerId(triggerId)
                 .build();
         AsyncRequestOperation<PlatformTriggersDeleteRequest, PlatformTriggersDeleteResponse> operation
-              = new PlatformTriggersDelete.Async(sdkConfiguration, _headers);
+              = new PlatformTriggersDelete.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -268,7 +340,7 @@ public class AsyncTriggers {
      * @return {@code CompletableFuture<PlatformTriggersEventsSearchResponse>} - The async response
      */
     public CompletableFuture<PlatformTriggersEventsSearchResponse> searchEvents(String triggerId) {
-        return searchEvents(triggerId, Optional.empty());
+        return searchEvents(triggerId, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -282,6 +354,23 @@ public class AsyncTriggers {
      * @return {@code CompletableFuture<PlatformTriggersEventsSearchResponse>} - The async response
      */
     public CompletableFuture<PlatformTriggersEventsSearchResponse> searchEvents(String triggerId, Optional<? extends PlatformTriggerEventSearchRequest> platformTriggerEventSearchRequest) {
+        return searchEvents(triggerId, platformTriggerEventSearchRequest, Optional.empty());
+    }
+
+    /**
+     * Search events for a trigger
+     * 
+     * <p>Search recent content events an existing trigger matches. Read-only — no webhook delivery is made.
+     * Covers the last seven days.
+     * 
+     * @param triggerId ID of the trigger whose events to search.
+     * @param platformTriggerEventSearchRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<PlatformTriggersEventsSearchResponse>} - The async response
+     */
+    public CompletableFuture<PlatformTriggersEventsSearchResponse> searchEvents(
+            String triggerId, Optional<? extends PlatformTriggerEventSearchRequest> platformTriggerEventSearchRequest,
+            Optional<Options> options) {
         PlatformTriggersEventsSearchRequest request =
             PlatformTriggersEventsSearchRequest
                 .builder()
@@ -289,7 +378,7 @@ public class AsyncTriggers {
                 .platformTriggerEventSearchRequest(platformTriggerEventSearchRequest)
                 .build();
         AsyncRequestOperation<PlatformTriggersEventsSearchRequest, PlatformTriggersEventsSearchResponse> operation
-              = new PlatformTriggersEventsSearch.Async(sdkConfiguration, _headers);
+              = new PlatformTriggersEventsSearch.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -316,7 +405,9 @@ public class AsyncTriggers {
      * @return {@code CompletableFuture<PlatformTriggerPresetsListResponse>} - The async response
      */
     public CompletableFuture<PlatformTriggerPresetsListResponse> listPresetsDirect() {
-        return listPresets(Optional.empty(), Optional.empty(), Optional.empty());
+        return listPresets(
+                Optional.empty(), Optional.empty(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -333,6 +424,26 @@ public class AsyncTriggers {
     public CompletableFuture<PlatformTriggerPresetsListResponse> listPresets(
             Optional<String> datasource, Optional<Long> pageSize,
             Optional<String> cursor) {
+        return listPresets(
+                datasource, pageSize, cursor,
+                Optional.empty());
+    }
+
+    /**
+     * List trigger presets
+     * 
+     * <p>List the trigger presets available to the caller. A preset is a curated content-trigger template
+     * (e.g. a new Jira ticket) which is passed when creating a trigger.
+     * 
+     * @param datasource Restrict results to presets for a single datasource (e.g. github).
+     * @param pageSize Maximum number of presets to return.
+     * @param cursor Opaque pagination cursor from a previous response.
+     * @param options additional options
+     * @return {@code CompletableFuture<PlatformTriggerPresetsListResponse>} - The async response
+     */
+    public CompletableFuture<PlatformTriggerPresetsListResponse> listPresets(
+            Optional<String> datasource, Optional<Long> pageSize,
+            Optional<String> cursor, Optional<Options> options) {
         PlatformTriggerPresetsListRequest request =
             PlatformTriggerPresetsListRequest
                 .builder()
@@ -341,7 +452,7 @@ public class AsyncTriggers {
                 .cursor(cursor)
                 .build();
         AsyncRequestOperation<PlatformTriggerPresetsListRequest, PlatformTriggerPresetsListResponse> operation
-              = new PlatformTriggerPresetsList.Async(sdkConfiguration, _headers);
+              = new PlatformTriggerPresetsList.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -367,13 +478,26 @@ public class AsyncTriggers {
      * @return {@code CompletableFuture<PlatformTriggerPresetsGetResponse>} - The async response
      */
     public CompletableFuture<PlatformTriggerPresetsGetResponse> getPreset(String presetId) {
+        return getPreset(presetId, Optional.empty());
+    }
+
+    /**
+     * Get trigger preset
+     * 
+     * <p>Retrieve a single trigger preset by id.
+     * 
+     * @param presetId ID of the preset to retrieve.
+     * @param options additional options
+     * @return {@code CompletableFuture<PlatformTriggerPresetsGetResponse>} - The async response
+     */
+    public CompletableFuture<PlatformTriggerPresetsGetResponse> getPreset(String presetId, Optional<Options> options) {
         PlatformTriggerPresetsGetRequest request =
             PlatformTriggerPresetsGetRequest
                 .builder()
                 .presetId(presetId)
                 .build();
         AsyncRequestOperation<PlatformTriggerPresetsGetRequest, PlatformTriggerPresetsGetResponse> operation
-              = new PlatformTriggerPresetsGet.Async(sdkConfiguration, _headers);
+              = new PlatformTriggerPresetsGet.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -404,7 +528,9 @@ public class AsyncTriggers {
      * @return {@code CompletableFuture<PlatformTriggerPresetsInputValuesListResponse>} - The async response
      */
     public CompletableFuture<PlatformTriggerPresetsInputValuesListResponse> listPresetInputValues(String presetId, String field) {
-        return listPresetInputValues(presetId, field, Optional.empty());
+        return listPresetInputValues(
+                presetId, field, Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -423,6 +549,28 @@ public class AsyncTriggers {
     public CompletableFuture<PlatformTriggerPresetsInputValuesListResponse> listPresetInputValues(
             String presetId, String field,
             Optional<String> query) {
+        return listPresetInputValues(
+                presetId, field, query,
+                Optional.empty());
+    }
+
+    /**
+     * Search trigger preset input values
+     * 
+     * <p>Return up to 300 selectable values for a single picklist input on a preset. Results are intended for
+     * typeahead selection and are not cursor-paginated. When `is_truncated` is true, refine `query` to
+     * narrow the result set.
+     * 
+     * @param presetId ID of the preset the input belongs to.
+     * @param field Field identifier of the input whose values to list.
+     * @param query Prefix filter over the input's option values, for typeahead. Matching is on the option value, not its display name.
+     *         
+     * @param options additional options
+     * @return {@code CompletableFuture<PlatformTriggerPresetsInputValuesListResponse>} - The async response
+     */
+    public CompletableFuture<PlatformTriggerPresetsInputValuesListResponse> listPresetInputValues(
+            String presetId, String field,
+            Optional<String> query, Optional<Options> options) {
         PlatformTriggerPresetsInputValuesListRequest request =
             PlatformTriggerPresetsInputValuesListRequest
                 .builder()
@@ -431,7 +579,7 @@ public class AsyncTriggers {
                 .query(query)
                 .build();
         AsyncRequestOperation<PlatformTriggerPresetsInputValuesListRequest, PlatformTriggerPresetsInputValuesListResponse> operation
-              = new PlatformTriggerPresetsInputValuesList.Async(sdkConfiguration, _headers);
+              = new PlatformTriggerPresetsInputValuesList.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -461,7 +609,7 @@ public class AsyncTriggers {
      * @return {@code CompletableFuture<PlatformTriggerPresetsEventsSearchResponse>} - The async response
      */
     public CompletableFuture<PlatformTriggerPresetsEventsSearchResponse> searchPresetEvents(String presetId) {
-        return searchPresetEvents(presetId, Optional.empty());
+        return searchPresetEvents(presetId, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -476,6 +624,24 @@ public class AsyncTriggers {
      * @return {@code CompletableFuture<PlatformTriggerPresetsEventsSearchResponse>} - The async response
      */
     public CompletableFuture<PlatformTriggerPresetsEventsSearchResponse> searchPresetEvents(String presetId, Optional<? extends PlatformTriggerPresetEventSearchRequest> platformTriggerPresetEventSearchRequest) {
+        return searchPresetEvents(presetId, platformTriggerPresetEventSearchRequest, Optional.empty());
+    }
+
+    /**
+     * Search events for a trigger preset
+     * 
+     * <p>Search recent content events an unsaved trigger built from this preset would match, to preview it
+     * before creating the trigger. Read-only — no trigger is created and no webhook delivery is made.
+     * Covers the last seven days.
+     * 
+     * @param presetId ID of the preset to preview.
+     * @param platformTriggerPresetEventSearchRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<PlatformTriggerPresetsEventsSearchResponse>} - The async response
+     */
+    public CompletableFuture<PlatformTriggerPresetsEventsSearchResponse> searchPresetEvents(
+            String presetId, Optional<? extends PlatformTriggerPresetEventSearchRequest> platformTriggerPresetEventSearchRequest,
+            Optional<Options> options) {
         PlatformTriggerPresetsEventsSearchRequest request =
             PlatformTriggerPresetsEventsSearchRequest
                 .builder()
@@ -483,7 +649,7 @@ public class AsyncTriggers {
                 .platformTriggerPresetEventSearchRequest(platformTriggerPresetEventSearchRequest)
                 .build();
         AsyncRequestOperation<PlatformTriggerPresetsEventsSearchRequest, PlatformTriggerPresetsEventsSearchResponse> operation
-              = new PlatformTriggerPresetsEventsSearch.Async(sdkConfiguration, _headers);
+              = new PlatformTriggerPresetsEventsSearch.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

@@ -57,6 +57,7 @@ import com.glean.api_client.glean_api_client.operations.Getchatfiles;
 import com.glean.api_client.glean_api_client.operations.Listchats;
 import com.glean.api_client.glean_api_client.operations.Uploadchatfiles;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
@@ -103,7 +104,8 @@ public class ClientChat {
      * @throws RuntimeException subclass if the API call fails
      */
     public ChatResponse create(ChatRequest chatRequest) {
-        return create(Optional.empty(), Optional.empty(), chatRequest);
+        return create(Optional.empty(), Optional.empty(), chatRequest,
+            Optional.empty());
     }
 
     /**
@@ -120,6 +122,25 @@ public class ClientChat {
     public ChatResponse create(
             Optional<String> locale, Optional<Long> timezoneOffset,
             ChatRequest chatRequest) {
+        return create(locale, timezoneOffset, chatRequest,
+            Optional.empty());
+    }
+
+    /**
+     * Chat
+     * 
+     * <p>Have a conversation with Glean AI.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param chatRequest The minimal set of fields that form a chat request.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ChatResponse create(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            ChatRequest chatRequest, Optional<Options> options) {
         com.glean.api_client.glean_api_client.models.operations.ChatRequest request =
             com.glean.api_client.glean_api_client.models.operations.ChatRequest
                 .builder()
@@ -128,7 +149,7 @@ public class ClientChat {
                 .chatRequest(chatRequest)
                 .build();
         RequestOperation<com.glean.api_client.glean_api_client.models.operations.ChatRequest, ChatResponse> operation
-              = new Chat.Sync(sdkConfiguration, _headers);
+              = new Chat.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -152,7 +173,7 @@ public class ClientChat {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeleteallchatsResponse deleteAllDirect() {
-        return deleteAll(Optional.empty(), Optional.empty());
+        return deleteAll(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -166,6 +187,23 @@ public class ClientChat {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeleteallchatsResponse deleteAll(Optional<String> locale, Optional<Long> timezoneOffset) {
+        return deleteAll(locale, timezoneOffset, Optional.empty());
+    }
+
+    /**
+     * Deletes all saved Chats owned by a user
+     * 
+     * <p>Deletes all saved Chats a user has had and all their contained conversational content.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeleteallchatsResponse deleteAll(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            Optional<Options> options) {
         DeleteallchatsRequest request =
             DeleteallchatsRequest
                 .builder()
@@ -173,7 +211,7 @@ public class ClientChat {
                 .timezoneOffset(timezoneOffset)
                 .build();
         RequestOperation<DeleteallchatsRequest, DeleteallchatsResponse> operation
-              = new Deleteallchats.Sync(sdkConfiguration, _headers);
+              = new Deleteallchats.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -198,7 +236,8 @@ public class ClientChat {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeletechatsResponse delete(DeleteChatsRequest deleteChatsRequest) {
-        return delete(Optional.empty(), Optional.empty(), deleteChatsRequest);
+        return delete(Optional.empty(), Optional.empty(), deleteChatsRequest,
+            Optional.empty());
     }
 
     /**
@@ -215,6 +254,25 @@ public class ClientChat {
     public DeletechatsResponse delete(
             Optional<String> locale, Optional<Long> timezoneOffset,
             DeleteChatsRequest deleteChatsRequest) {
+        return delete(locale, timezoneOffset, deleteChatsRequest,
+            Optional.empty());
+    }
+
+    /**
+     * Deletes saved Chats
+     * 
+     * <p>Deletes saved Chats and all their contained conversational content.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param deleteChatsRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeletechatsResponse delete(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            DeleteChatsRequest deleteChatsRequest, Optional<Options> options) {
         DeletechatsRequest request =
             DeletechatsRequest
                 .builder()
@@ -223,7 +281,7 @@ public class ClientChat {
                 .deleteChatsRequest(deleteChatsRequest)
                 .build();
         RequestOperation<DeletechatsRequest, DeletechatsResponse> operation
-              = new Deletechats.Sync(sdkConfiguration, _headers);
+              = new Deletechats.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -256,7 +314,8 @@ public class ClientChat {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetchatResponse retrieve(GetChatRequest getChatRequest) {
-        return retrieve(Optional.empty(), Optional.empty(), getChatRequest);
+        return retrieve(Optional.empty(), Optional.empty(), getChatRequest,
+            Optional.empty());
     }
 
     /**
@@ -277,6 +336,29 @@ public class ClientChat {
     public GetchatResponse retrieve(
             Optional<String> locale, Optional<Long> timezoneOffset,
             GetChatRequest getChatRequest) {
+        return retrieve(locale, timezoneOffset, getChatRequest,
+            Optional.empty());
+    }
+
+    /**
+     * Retrieves a Chat
+     * 
+     * <p>Retrieves the chat history between Glean Assistant and the user for a given Chat. Omit pagination
+     * fields to return the full message history (existing behavior). Use last alone for the latest page,
+     * last with before for older messages, or first with after for newer messages.
+     * 
+     * <p>Each page is chronological and includes pagination cursors and page flags.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param getChatRequest Retrieves a Chat. Omit pagination fields to return the full message history. When paginating, messages are returned in chronological order. Allowed combinations: last alone (latest page), last with before (older messages), first alone (earliest page), or first with after (newer messages). first and last are mutually exclusive; before and after are mutually exclusive; first cannot be combined with before; last cannot be combined with after.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetchatResponse retrieve(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            GetChatRequest getChatRequest, Optional<Options> options) {
         GetchatRequest request =
             GetchatRequest
                 .builder()
@@ -285,7 +367,7 @@ public class ClientChat {
                 .getChatRequest(getChatRequest)
                 .build();
         RequestOperation<GetchatRequest, GetchatResponse> operation
-              = new Getchat.Sync(sdkConfiguration, _headers);
+              = new Getchat.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -311,7 +393,7 @@ public class ClientChat {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListchatsResponse listDirect() {
-        return list(Optional.empty(), Optional.empty());
+        return list(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -326,6 +408,24 @@ public class ClientChat {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListchatsResponse list(Optional<String> locale, Optional<Long> timezoneOffset) {
+        return list(locale, timezoneOffset, Optional.empty());
+    }
+
+    /**
+     * Retrieves all saved Chats
+     * 
+     * <p>Retrieves all the saved Chats between Glean Assistant and the user. The returned Chats contain only
+     * metadata and no conversational content.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListchatsResponse list(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            Optional<Options> options) {
         ListchatsRequest request =
             ListchatsRequest
                 .builder()
@@ -333,7 +433,7 @@ public class ClientChat {
                 .timezoneOffset(timezoneOffset)
                 .build();
         RequestOperation<ListchatsRequest, ListchatsResponse> operation
-              = new Listchats.Sync(sdkConfiguration, _headers);
+              = new Listchats.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -358,7 +458,8 @@ public class ClientChat {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetchatapplicationResponse retrieveApplication(GetChatApplicationRequest getChatApplicationRequest) {
-        return retrieveApplication(Optional.empty(), Optional.empty(), getChatApplicationRequest);
+        return retrieveApplication(Optional.empty(), Optional.empty(), getChatApplicationRequest,
+            Optional.empty());
     }
 
     /**
@@ -375,6 +476,25 @@ public class ClientChat {
     public GetchatapplicationResponse retrieveApplication(
             Optional<String> locale, Optional<Long> timezoneOffset,
             GetChatApplicationRequest getChatApplicationRequest) {
+        return retrieveApplication(locale, timezoneOffset, getChatApplicationRequest,
+            Optional.empty());
+    }
+
+    /**
+     * Gets the metadata for a custom Chat application
+     * 
+     * <p>Gets the Chat application details for the specified application ID.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param getChatApplicationRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetchatapplicationResponse retrieveApplication(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            GetChatApplicationRequest getChatApplicationRequest, Optional<Options> options) {
         GetchatapplicationRequest request =
             GetchatapplicationRequest
                 .builder()
@@ -383,7 +503,7 @@ public class ClientChat {
                 .getChatApplicationRequest(getChatApplicationRequest)
                 .build();
         RequestOperation<GetchatapplicationRequest, GetchatapplicationResponse> operation
-              = new Getchatapplication.Sync(sdkConfiguration, _headers);
+              = new Getchatapplication.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -408,7 +528,8 @@ public class ClientChat {
      * @throws RuntimeException subclass if the API call fails
      */
     public UploadchatfilesResponse uploadFiles(UploadChatFilesRequest uploadChatFilesRequest) {
-        return uploadFiles(Optional.empty(), Optional.empty(), uploadChatFilesRequest);
+        return uploadFiles(Optional.empty(), Optional.empty(), uploadChatFilesRequest,
+            Optional.empty());
     }
 
     /**
@@ -425,6 +546,25 @@ public class ClientChat {
     public UploadchatfilesResponse uploadFiles(
             Optional<String> locale, Optional<Long> timezoneOffset,
             UploadChatFilesRequest uploadChatFilesRequest) {
+        return uploadFiles(locale, timezoneOffset, uploadChatFilesRequest,
+            Optional.empty());
+    }
+
+    /**
+     * Upload files for Chat
+     * 
+     * <p>Upload files for Chat.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param uploadChatFilesRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UploadchatfilesResponse uploadFiles(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            UploadChatFilesRequest uploadChatFilesRequest, Optional<Options> options) {
         UploadchatfilesRequest request =
             UploadchatfilesRequest
                 .builder()
@@ -433,7 +573,7 @@ public class ClientChat {
                 .uploadChatFilesRequest(uploadChatFilesRequest)
                 .build();
         RequestOperation<UploadchatfilesRequest, UploadchatfilesResponse> operation
-              = new Uploadchatfiles.Sync(sdkConfiguration, _headers);
+              = new Uploadchatfiles.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -458,7 +598,8 @@ public class ClientChat {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetchatfilesResponse retrieveFiles(GetChatFilesRequest getChatFilesRequest) {
-        return retrieveFiles(Optional.empty(), Optional.empty(), getChatFilesRequest);
+        return retrieveFiles(Optional.empty(), Optional.empty(), getChatFilesRequest,
+            Optional.empty());
     }
 
     /**
@@ -475,6 +616,25 @@ public class ClientChat {
     public GetchatfilesResponse retrieveFiles(
             Optional<String> locale, Optional<Long> timezoneOffset,
             GetChatFilesRequest getChatFilesRequest) {
+        return retrieveFiles(locale, timezoneOffset, getChatFilesRequest,
+            Optional.empty());
+    }
+
+    /**
+     * Get files uploaded by a user for Chat
+     * 
+     * <p>Get files uploaded by a user for Chat.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param getChatFilesRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetchatfilesResponse retrieveFiles(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            GetChatFilesRequest getChatFilesRequest, Optional<Options> options) {
         GetchatfilesRequest request =
             GetchatfilesRequest
                 .builder()
@@ -483,7 +643,7 @@ public class ClientChat {
                 .getChatFilesRequest(getChatFilesRequest)
                 .build();
         RequestOperation<GetchatfilesRequest, GetchatfilesResponse> operation
-              = new Getchatfiles.Sync(sdkConfiguration, _headers);
+              = new Getchatfiles.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -508,7 +668,8 @@ public class ClientChat {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeletechatfilesResponse deleteFiles(DeleteChatFilesRequest deleteChatFilesRequest) {
-        return deleteFiles(Optional.empty(), Optional.empty(), deleteChatFilesRequest);
+        return deleteFiles(Optional.empty(), Optional.empty(), deleteChatFilesRequest,
+            Optional.empty());
     }
 
     /**
@@ -525,6 +686,25 @@ public class ClientChat {
     public DeletechatfilesResponse deleteFiles(
             Optional<String> locale, Optional<Long> timezoneOffset,
             DeleteChatFilesRequest deleteChatFilesRequest) {
+        return deleteFiles(locale, timezoneOffset, deleteChatFilesRequest,
+            Optional.empty());
+    }
+
+    /**
+     * Delete files uploaded by a user for chat
+     * 
+     * <p>Delete files uploaded by a user for Chat.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param deleteChatFilesRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeletechatfilesResponse deleteFiles(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            DeleteChatFilesRequest deleteChatFilesRequest, Optional<Options> options) {
         DeletechatfilesRequest request =
             DeletechatfilesRequest
                 .builder()
@@ -533,7 +713,7 @@ public class ClientChat {
                 .deleteChatFilesRequest(deleteChatFilesRequest)
                 .build();
         RequestOperation<DeletechatfilesRequest, DeletechatfilesResponse> operation
-              = new Deletechatfiles.Sync(sdkConfiguration, _headers);
+              = new Deletechatfiles.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -562,7 +742,7 @@ public class ClientChat {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetChatFileResponse retrieveFile(String fileId) {
-        return retrieveFile(fileId, Optional.empty());
+        return retrieveFile(fileId, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -579,6 +759,26 @@ public class ClientChat {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetChatFileResponse retrieveFile(String fileId, Optional<Boolean> preview) {
+        return retrieveFile(fileId, preview, Optional.empty());
+    }
+
+    /**
+     * Download a chat file
+     * 
+     * <p>Download the raw content of a file generated or uploaded during a chat session (for example, an
+     * image produced by the assistant). Returns the file bytes with a Content-Type header matching the
+     * file's MIME type.
+     * 
+     * @param fileId Identifier of the chat file to download.
+     * @param preview When true and the file is a PDF, the response is served inline (Content-Disposition: inline) instead of as an attachment.
+     *         
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetChatFileResponse retrieveFile(
+            String fileId, Optional<Boolean> preview,
+            Optional<Options> options) {
         GetChatFileRequest request =
             GetChatFileRequest
                 .builder()
@@ -586,7 +786,7 @@ public class ClientChat {
                 .preview(preview)
                 .build();
         RequestOperation<GetChatFileRequest, GetChatFileResponse> operation
-              = new GetChatFile.Sync(sdkConfiguration, _headers);
+              = new GetChatFile.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -611,7 +811,7 @@ public class ClientChat {
      * @throws RuntimeException subclass if the API call fails
      */
     public ChatStreamResponse createStream(ChatRequest chatRequest) {
-        return createStream(Optional.empty(), chatRequest);
+        return createStream(Optional.empty(), chatRequest, Optional.empty());
     }
 
     /**
@@ -625,6 +825,23 @@ public class ClientChat {
      * @throws RuntimeException subclass if the API call fails
      */
     public ChatStreamResponse createStream(Optional<Long> timezoneOffset, ChatRequest chatRequest) {
+        return createStream(timezoneOffset, chatRequest, Optional.empty());
+    }
+
+    /**
+     * Chat
+     * 
+     * <p>Have a conversation with Glean AI.
+     * 
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param chatRequest The minimal set of fields that form a chat request.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ChatStreamResponse createStream(
+            Optional<Long> timezoneOffset, ChatRequest chatRequest,
+            Optional<Options> options) {
         ChatStreamRequest request =
             ChatStreamRequest
                 .builder()
@@ -632,7 +849,7 @@ public class ClientChat {
                 .chatRequest(chatRequest)
                 .build();
         RequestOperation<ChatStreamRequest, ChatStreamResponse> operation
-              = new ChatStream.Sync(sdkConfiguration, _headers);
+              = new ChatStream.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

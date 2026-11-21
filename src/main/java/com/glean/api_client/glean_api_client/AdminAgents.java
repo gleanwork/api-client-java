@@ -12,6 +12,7 @@ import com.glean.api_client.glean_api_client.models.operations.PlatformAdminAgen
 import com.glean.api_client.glean_api_client.models.operations.PlatformAdminAgentsListResponse;
 import com.glean.api_client.glean_api_client.operations.PlatformAdminAgentsList;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.Long;
 import java.lang.String;
 import java.util.List;
@@ -67,7 +68,8 @@ public class AdminAgents {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformAdminAgentsListResponse listDirect() {
-        return list(Optional.empty(), Optional.empty(), Optional.empty());
+        return list(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -90,6 +92,31 @@ public class AdminAgents {
     public PlatformAdminAgentsListResponse list(
             Optional<Long> pageSize, Optional<String> cursor,
             Optional<? extends List<PlatformAdminAgentFilter>> filters) {
+        return list(pageSize, cursor, filters,
+            Optional.empty());
+    }
+
+    /**
+     * List all agents
+     * 
+     * <p>List every agent in the workspace, ordered by name and then by agent_id. Each agent has the same
+     * shape that Get agent returns. Unlike agent search, the list does not depend on who an agent is
+     * shared with, so it includes private and disabled agents.
+     * 
+     * <p>Deleted agents are left out. Use the agent_id with other Platform APIs, for example as a usage limit
+     * target. The caller must be able to read all agents, administer agents, or read workspace billing.
+     * 
+     * @param pageSize Maximum number of agents to return. Defaults to 50. Maximum is 100.
+     * @param cursor Opaque pagination cursor from a previous response. Send the same filters that the previous request used.
+     *         
+     * @param filters 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformAdminAgentsListResponse list(
+            Optional<Long> pageSize, Optional<String> cursor,
+            Optional<? extends List<PlatformAdminAgentFilter>> filters, Optional<Options> options) {
         PlatformAdminAgentsListRequest request =
             PlatformAdminAgentsListRequest
                 .builder()
@@ -98,7 +125,7 @@ public class AdminAgents {
                 .filters(filters)
                 .build();
         RequestOperation<PlatformAdminAgentsListRequest, PlatformAdminAgentsListResponse> operation
-              = new PlatformAdminAgentsList.Sync(sdkConfiguration, _headers);
+              = new PlatformAdminAgentsList.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

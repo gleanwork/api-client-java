@@ -21,9 +21,11 @@ import com.glean.api_client.glean_api_client.operations.PlatformChatCreate;
 import com.glean.api_client.glean_api_client.operations.PlatformChatCreateStream;
 import com.glean.api_client.glean_api_client.operations.PlatformChatUpdate;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import com.glean.api_client.glean_api_client.utils.reactive.EventStream;
 import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
@@ -73,8 +75,24 @@ public class AsyncChat {
      * @return {@code CompletableFuture<PlatformChatCreateResponse>} - The async response
      */
     public CompletableFuture<PlatformChatCreateResponse> create(PlatformChatCreateRequest request) {
+        return create(request, Optional.empty());
+    }
+
+    /**
+     * Create a chat response
+     * 
+     * <p>Run an assistant turn. The default response is JSON. HTTP clients request server-sent events by
+     * setting `stream` to true in the JSON body.
+     * 
+     * <p>An `Accept: text/event-stream` header does not replace `stream`.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return {@code CompletableFuture<PlatformChatCreateResponse>} - The async response
+     */
+    public CompletableFuture<PlatformChatCreateResponse> create(PlatformChatCreateRequest request, Optional<Options> options) {
         AsyncRequestOperation<PlatformChatCreateRequest, PlatformChatCreateResponse> operation
-              = new PlatformChatCreate.Async(sdkConfiguration, _headers);
+              = new PlatformChatCreate.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -101,6 +119,22 @@ public class AsyncChat {
      * @return {@code CompletableFuture<PlatformChatUpdateResponse>} - The async response
      */
     public CompletableFuture<PlatformChatUpdateResponse> update(String chatId, PlatformChatUpdateRequest platformChatUpdateRequest) {
+        return update(chatId, platformChatUpdateRequest, Optional.empty());
+    }
+
+    /**
+     * Update a chat
+     * 
+     * <p>Update the name of a chat. Only the chat owner can update it.
+     * 
+     * @param chatId The ID of the chat to update.
+     * @param platformChatUpdateRequest The fields to update on a chat.
+     * @param options additional options
+     * @return {@code CompletableFuture<PlatformChatUpdateResponse>} - The async response
+     */
+    public CompletableFuture<PlatformChatUpdateResponse> update(
+            String chatId, PlatformChatUpdateRequest platformChatUpdateRequest,
+            Optional<Options> options) {
         com.glean.api_client.glean_api_client.models.operations.PlatformChatUpdateRequest request =
             com.glean.api_client.glean_api_client.models.operations.PlatformChatUpdateRequest
                 .builder()
@@ -108,7 +142,7 @@ public class AsyncChat {
                 .platformChatUpdateRequest(platformChatUpdateRequest)
                 .build();
         AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.PlatformChatUpdateRequest, PlatformChatUpdateResponse> operation
-              = new PlatformChatUpdate.Async(sdkConfiguration, _headers);
+              = new PlatformChatUpdate.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -137,12 +171,28 @@ public class AsyncChat {
      * <p>HTTP clients request this mode by setting `stream` to true in the JSON body.
      * 
      * @param request The request object containing all the parameters for the API call.
+     * @return {@code EventStream<PlatformChatCreateStreamResponse, PlatformChatStreamEventServerSentEvent>} - The async response
+     */
+    public EventStream<PlatformChatCreateStreamResponse, PlatformChatStreamEventServerSentEvent> createStream(PlatformChatCreateStreamRequest request) {
+        return createStream(request, Optional.empty());
+    }
+
+    /**
+     * Create a streaming chat response
+     * 
+     * <p>SDK-only logical operation. HTTP clients must call the base path; the URL fragment is not sent. Run
+     * an assistant turn as server-sent events.
+     * 
+     * <p>HTTP clients request this mode by setting `stream` to true in the JSON body.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
      * @return A reactive SSE publisher that emits events from the server.
      * Can be consumed using reactive streams toolkits such as RxJava, Project Reactor, or Java 9+ Flow API.
      */
-    public EventStream<PlatformChatCreateStreamResponse, PlatformChatStreamEventServerSentEvent> createStream(PlatformChatCreateStreamRequest request) {
+    public EventStream<PlatformChatCreateStreamResponse, PlatformChatStreamEventServerSentEvent> createStream(PlatformChatCreateStreamRequest request, Optional<Options> options) {
         AsyncRequestOperation<PlatformChatCreateStreamRequest, PlatformChatCreateStreamResponse> operation
-              = new PlatformChatCreateStream.Async(sdkConfiguration, _headers);
+              = new PlatformChatCreateStream.Async(sdkConfiguration, options, _headers);
         return EventStream.forSSE(
                 operation.doRequest(request).thenCompose(operation::handleResponse),
                 new TypeReference<>() {

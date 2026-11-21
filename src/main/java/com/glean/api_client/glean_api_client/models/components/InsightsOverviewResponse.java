@@ -106,7 +106,8 @@ public class InsightsOverviewResponse {
 
     /**
      * Number of current employees in the specified departments who had signed up 7 days before the latest
-     * day of insights data. Compare with totalSignups for week-over-week signup change.
+     * day of insights data. Compare with totalSignups for week-over-week signup change. Included even when
+     * zero.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("totalSignupsWeekAgo")
@@ -474,7 +475,8 @@ public class InsightsOverviewResponse {
 
     /**
      * Number of current employees in the specified departments who had signed up 7 days before the latest
-     * day of insights data. Compare with totalSignups for week-over-week signup change.
+     * day of insights data. Compare with totalSignups for week-over-week signup change. Included even when
+     * zero.
      */
     @JsonIgnore
     public Optional<Long> totalSignupsWeekAgo() {
@@ -861,7 +863,8 @@ public class InsightsOverviewResponse {
 
     /**
      * Number of current employees in the specified departments who had signed up 7 days before the latest
-     * day of insights data. Compare with totalSignups for week-over-week signup change.
+     * day of insights data. Compare with totalSignups for week-over-week signup change. Included even when
+     * zero.
      */
     public InsightsOverviewResponse withTotalSignupsWeekAgo(long totalSignupsWeekAgo) {
         Utils.checkNotNull(totalSignupsWeekAgo, "totalSignupsWeekAgo");
@@ -872,7 +875,8 @@ public class InsightsOverviewResponse {
 
     /**
      * Number of current employees in the specified departments who had signed up 7 days before the latest
-     * day of insights data. Compare with totalSignups for week-over-week signup change.
+     * day of insights data. Compare with totalSignups for week-over-week signup change. Included even when
+     * zero.
      */
     public InsightsOverviewResponse withTotalSignupsWeekAgo(Optional<Long> totalSignupsWeekAgo) {
         Utils.checkNotNull(totalSignupsWeekAgo, "totalSignupsWeekAgo");
@@ -1631,7 +1635,8 @@ public class InsightsOverviewResponse {
 
         /**
          * Number of current employees in the specified departments who had signed up 7 days before the latest
-         * day of insights data. Compare with totalSignups for week-over-week signup change.
+         * day of insights data. Compare with totalSignups for week-over-week signup change. Included even when
+         * zero.
          */
         public Builder totalSignupsWeekAgo(long totalSignupsWeekAgo) {
             Utils.checkNotNull(totalSignupsWeekAgo, "totalSignupsWeekAgo");
@@ -1641,7 +1646,8 @@ public class InsightsOverviewResponse {
 
         /**
          * Number of current employees in the specified departments who had signed up 7 days before the latest
-         * day of insights data. Compare with totalSignups for week-over-week signup change.
+         * day of insights data. Compare with totalSignups for week-over-week signup change. Included even when
+         * zero.
          */
         public Builder totalSignupsWeekAgo(Optional<Long> totalSignupsWeekAgo) {
             Utils.checkNotNull(totalSignupsWeekAgo, "totalSignupsWeekAgo");

@@ -23,6 +23,7 @@ import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Hook.AfterErrorContextImpl;
 import com.glean.api_client.glean_api_client.utils.Hook.AfterSuccessContextImpl;
 import com.glean.api_client.glean_api_client.utils.Hook.BeforeRequestContextImpl;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.io.InputStream;
 import java.lang.Exception;
@@ -30,6 +31,8 @@ import java.lang.String;
 import java.lang.Throwable;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.Duration;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -49,12 +52,13 @@ public class DeleteRestApiIndexDocumentDocIdCustomMetadataGroupName {
         final SDKConfiguration sdkConfiguration;
         final String baseUrl;
         final SecuritySource securitySource;
+        final Optional<Duration> timeout;
         final HTTPClient client;
         final Headers _headers;
 
         public Base(
                 SDKConfiguration sdkConfiguration, Optional<String> serverURL,
-                Headers _headers) {
+                Optional<Options> options, Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
             this._headers =_headers;
             this.baseUrl = serverURL
@@ -63,6 +67,9 @@ public class DeleteRestApiIndexDocumentDocIdCustomMetadataGroupName {
                         DELETE_REST_API_INDEX_DOCUMENT_DOC_ID_CUSTOM_METADATA_GROUP_NAME_SERVERS[0], 
                         Map.of("instance", "instance-name")));
             this.securitySource = this.sdkConfiguration.securitySource();
+            options
+                    .ifPresent(o -> o.validate(List.of(Options.Option.TIMEOUT)));
+            this.timeout = options.flatMap(Options::timeout).or(sdkConfiguration::timeout);
             this.client = this.sdkConfiguration.client();
         }
 
@@ -102,7 +109,8 @@ public class DeleteRestApiIndexDocumentDocIdCustomMetadataGroupName {
                     this.baseUrl,
                     "/rest/api/index/document/{docId}/custom-metadata/{groupName}",
                     request, null);
-            HTTPRequest req = new HTTPRequest(url, "DELETE");
+            HTTPRequest req = new HTTPRequest(url, "DELETE")
+                    .timeout(this.timeout);
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
@@ -117,9 +125,16 @@ public class DeleteRestApiIndexDocumentDocIdCustomMetadataGroupName {
         public Sync(
                 SDKConfiguration sdkConfiguration, Optional<String> serverURL,
                 Headers _headers) {
+            this(sdkConfiguration, serverURL,
+                    Optional.empty(), _headers);
+        }
+
+        public Sync(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Optional<Options> options, Headers _headers) {
             super(
                   sdkConfiguration, serverURL,
-                  _headers);
+                  options, _headers);
         }
 
         private HttpRequest onBuildRequest(DeleteRestApiIndexDocumentDocIdCustomMetadataGroupNameRequest request) throws Exception {
@@ -206,13 +221,19 @@ public class DeleteRestApiIndexDocumentDocIdCustomMetadataGroupName {
     }
     public static class Async extends Base
             implements AsyncRequestOperation<DeleteRestApiIndexDocumentDocIdCustomMetadataGroupNameRequest, com.glean.api_client.glean_api_client.models.operations.async.DeleteRestApiIndexDocumentDocIdCustomMetadataGroupNameResponse> {
-
         public Async(
                 SDKConfiguration sdkConfiguration, Optional<String> serverURL,
                 Headers _headers) {
+            this(sdkConfiguration, serverURL,
+                    Optional.empty(), _headers);
+        }
+
+        public Async(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Optional<Options> options, Headers _headers) {
             super(
                   sdkConfiguration, serverURL,
-                  _headers);
+                  options, _headers);
         }
 
         private CompletableFuture<HttpRequest> onBuildRequest(DeleteRestApiIndexDocumentDocIdCustomMetadataGroupNameRequest request) throws Exception {
