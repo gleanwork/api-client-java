@@ -11,7 +11,11 @@ import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
-
+/**
+ * PlatformSkillSourcePreviewFile
+ * 
+ * <p>A supporting file bundled with a skill.
+ */
 public class PlatformSkillSourcePreviewFile {
     /**
      * Relative path within the skill bundle.

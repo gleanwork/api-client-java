@@ -40,6 +40,7 @@ import com.glean.api_client.glean_api_client.operations.GetAgentSchemas;
 import com.glean.api_client.glean_api_client.operations.ImportAgent;
 import com.glean.api_client.glean_api_client.operations.SearchAgents;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.Deprecated;
 import java.lang.Long;
 import java.lang.String;
@@ -87,7 +88,9 @@ public class AsyncClientAgents {
      * @return {@code CompletableFuture<CreateAgentResponse>} - The async response
      */
     public CompletableFuture<CreateAgentResponse> create(CreateWorkflowRequest createWorkflowRequest) {
-        return create(Optional.empty(), Optional.empty(), createWorkflowRequest);
+        return create(
+                Optional.empty(), Optional.empty(), createWorkflowRequest,
+                Optional.empty());
     }
 
     /**
@@ -103,6 +106,25 @@ public class AsyncClientAgents {
     public CompletableFuture<CreateAgentResponse> create(
             Optional<String> locale, Optional<Long> timezoneOffset,
             CreateWorkflowRequest createWorkflowRequest) {
+        return create(
+                locale, timezoneOffset, createWorkflowRequest,
+                Optional.empty());
+    }
+
+    /**
+     * Create an agent
+     * 
+     * <p>Create an agent.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param createWorkflowRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<CreateAgentResponse>} - The async response
+     */
+    public CompletableFuture<CreateAgentResponse> create(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            CreateWorkflowRequest createWorkflowRequest, Optional<Options> options) {
         CreateAgentRequest request =
             CreateAgentRequest
                 .builder()
@@ -111,7 +133,7 @@ public class AsyncClientAgents {
                 .createWorkflowRequest(createWorkflowRequest)
                 .build();
         AsyncRequestOperation<CreateAgentRequest, CreateAgentResponse> operation
-              = new CreateAgent.Async(sdkConfiguration, _headers);
+              = new CreateAgent.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -143,7 +165,9 @@ public class AsyncClientAgents {
      */
     @Deprecated
     public CompletableFuture<GetAgentResponse> retrieve(String agentId) {
-        return retrieve(Optional.empty(), Optional.empty(), agentId);
+        return retrieve(
+                Optional.empty(), Optional.empty(), agentId,
+                Optional.empty());
     }
 
     /**
@@ -162,6 +186,28 @@ public class AsyncClientAgents {
     public CompletableFuture<GetAgentResponse> retrieve(
             Optional<String> locale, Optional<Long> timezoneOffset,
             String agentId) {
+        return retrieve(
+                locale, timezoneOffset, agentId,
+                Optional.empty());
+    }
+
+    /**
+     * Retrieve an agent
+     * 
+     * <p>Returns details of an [agent](https://developers.glean.com/agents/agents-api) created in the Agent
+     * Builder.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param agentId The ID of the agent.
+     * @param options additional options
+     * @return {@code CompletableFuture<GetAgentResponse>} - The async response
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use GET /api/agents/{agent_id} instead..
+     */
+    @Deprecated
+    public CompletableFuture<GetAgentResponse> retrieve(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            String agentId, Optional<Options> options) {
         GetAgentRequest request =
             GetAgentRequest
                 .builder()
@@ -170,7 +216,7 @@ public class AsyncClientAgents {
                 .agentId(agentId)
                 .build();
         AsyncRequestOperation<GetAgentRequest, GetAgentResponse> operation
-              = new GetAgent.Async(sdkConfiguration, _headers);
+              = new GetAgent.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +249,7 @@ public class AsyncClientAgents {
     public CompletableFuture<EditAgentResponse> update(String agentId, EditWorkflowRequest editWorkflowRequest) {
         return update(
                 Optional.empty(), Optional.empty(), agentId,
-                editWorkflowRequest);
+                editWorkflowRequest, Optional.empty());
     }
 
     /**
@@ -222,6 +268,29 @@ public class AsyncClientAgents {
     public CompletableFuture<EditAgentResponse> update(
             Optional<String> locale, Optional<Long> timezoneOffset,
             String agentId, EditWorkflowRequest editWorkflowRequest) {
+        return update(
+                locale, timezoneOffset, agentId,
+                editWorkflowRequest, Optional.empty());
+    }
+
+    /**
+     * Edit an agent
+     * 
+     * <p>Creates a draft or publishes an [agent](https://developers.glean.com/agents/agents-api). Use
+     * `isDraft=true` to save a draft, or `isDraft=false` (or omit) to publish immediately. Only draft and
+     * publish modes are supported.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param agentId The ID of the agent.
+     * @param editWorkflowRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<EditAgentResponse>} - The async response
+     */
+    public CompletableFuture<EditAgentResponse> update(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            String agentId, EditWorkflowRequest editWorkflowRequest,
+            Optional<Options> options) {
         EditAgentRequest request =
             EditAgentRequest
                 .builder()
@@ -231,7 +300,7 @@ public class AsyncClientAgents {
                 .editWorkflowRequest(editWorkflowRequest)
                 .build();
         AsyncRequestOperation<EditAgentRequest, EditAgentResponse> operation
-              = new EditAgent.Async(sdkConfiguration, _headers);
+              = new EditAgent.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -263,7 +332,9 @@ public class AsyncClientAgents {
      */
     @Deprecated
     public CompletableFuture<GetAgentSchemasResponse> retrieveSchemas(String agentId) {
-        return retrieveSchemas(Optional.empty(), Optional.empty(), agentId);
+        return retrieveSchemas(
+                Optional.empty(), Optional.empty(), agentId,
+                Optional.empty());
     }
 
     /**
@@ -282,6 +353,28 @@ public class AsyncClientAgents {
     public CompletableFuture<GetAgentSchemasResponse> retrieveSchemas(
             Optional<String> locale, Optional<Long> timezoneOffset,
             String agentId) {
+        return retrieveSchemas(
+                locale, timezoneOffset, agentId,
+                Optional.empty());
+    }
+
+    /**
+     * List an agent's schemas
+     * 
+     * <p>Return [agent](https://developers.glean.com/agents/agents-api)'s input and output schemas. You can
+     * use these schemas to detect changes to an agent's input or output structure.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param agentId The ID of the agent.
+     * @param options additional options
+     * @return {@code CompletableFuture<GetAgentSchemasResponse>} - The async response
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use GET /api/agents/{agent_id}/schemas instead..
+     */
+    @Deprecated
+    public CompletableFuture<GetAgentSchemasResponse> retrieveSchemas(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            String agentId, Optional<Options> options) {
         GetAgentSchemasRequest request =
             GetAgentSchemasRequest
                 .builder()
@@ -290,7 +383,7 @@ public class AsyncClientAgents {
                 .agentId(agentId)
                 .build();
         AsyncRequestOperation<GetAgentSchemasRequest, GetAgentSchemasResponse> operation
-              = new GetAgentSchemas.Async(sdkConfiguration, _headers);
+              = new GetAgentSchemas.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -325,7 +418,7 @@ public class AsyncClientAgents {
     public CompletableFuture<ImportAgentResponse> import_(String agentId, ImportAgentRequest importAgentRequest) {
         return import_(
                 Optional.empty(), Optional.empty(), agentId,
-                importAgentRequest);
+                importAgentRequest, Optional.empty());
     }
 
     /**
@@ -345,6 +438,30 @@ public class AsyncClientAgents {
     public CompletableFuture<ImportAgentResponse> import_(
             Optional<String> locale, Optional<Long> timezoneOffset,
             String agentId, ImportAgentRequest importAgentRequest) {
+        return import_(
+                locale, timezoneOffset, agentId,
+                importAgentRequest, Optional.empty());
+    }
+
+    /**
+     * Import an agent
+     * 
+     * <p>Imports an [agent](https://developers.glean.com/agents/agents-api) from its on-disk folder
+     * representation (spec.yaml, instructions.md, skills/, subagents/) packaged as a zip, and creates or
+     * updates the agent. Inverse of the export flow: the folder-to-schema conversion runs server-side. The
+     * bundle must contain only regular files; symlinks are resolved by the caller at packaging time.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param timezoneOffset The offset of the client's timezone in minutes from UTC. e.g. PDT is -420 because it's 7 hours behind UTC.
+     * @param agentId The ID of the agent to create or update.
+     * @param importAgentRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<ImportAgentResponse>} - The async response
+     */
+    public CompletableFuture<ImportAgentResponse> import_(
+            Optional<String> locale, Optional<Long> timezoneOffset,
+            String agentId, ImportAgentRequest importAgentRequest,
+            Optional<Options> options) {
         com.glean.api_client.glean_api_client.models.operations.ImportAgentRequest request =
             com.glean.api_client.glean_api_client.models.operations.ImportAgentRequest
                 .builder()
@@ -354,7 +471,7 @@ public class AsyncClientAgents {
                 .importAgentRequest(importAgentRequest)
                 .build();
         AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.ImportAgentRequest, ImportAgentResponse> operation
-              = new ImportAgent.Async(sdkConfiguration, _headers);
+              = new ImportAgent.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -384,8 +501,23 @@ public class AsyncClientAgents {
      */
     @Deprecated
     public CompletableFuture<SearchAgentsResponse> list(SearchAgentsRequest request) {
+        return list(request, Optional.empty());
+    }
+
+    /**
+     * Search agents
+     * 
+     * <p>Search for [agents](https://developers.glean.com/agents/agents-api) by agent name.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return {@code CompletableFuture<SearchAgentsResponse>} - The async response
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use POST /api/agents/search instead..
+     */
+    @Deprecated
+    public CompletableFuture<SearchAgentsResponse> list(SearchAgentsRequest request, Optional<Options> options) {
         AsyncRequestOperation<SearchAgentsRequest, SearchAgentsResponse> operation
-              = new SearchAgents.Async(sdkConfiguration, _headers);
+              = new SearchAgents.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -419,8 +551,25 @@ public class AsyncClientAgents {
      */
     @Deprecated
     public CompletableFuture<CreateAndStreamRunResponse> runStream(AgentRunCreate request) {
+        return runStream(request, Optional.empty());
+    }
+
+    /**
+     * Create an agent run and stream the response
+     * 
+     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the result as a
+     * stream of server-sent events (SSE). **Note**: If the agent uses an input form trigger, all form
+     * fields (including optional fields) must be included in the `input` object.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return {@code CompletableFuture<CreateAndStreamRunResponse>} - The async response
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use POST /api/agents/{agent_id}/runs with stream=true instead..
+     */
+    @Deprecated
+    public CompletableFuture<CreateAndStreamRunResponse> runStream(AgentRunCreate request, Optional<Options> options) {
         AsyncRequestOperation<AgentRunCreate, CreateAndStreamRunResponse> operation
-              = new CreateAndStreamRun.Async(sdkConfiguration, _headers);
+              = new CreateAndStreamRun.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -454,8 +603,25 @@ public class AsyncClientAgents {
      */
     @Deprecated
     public CompletableFuture<CreateAndWaitRunResponse> run(AgentRunCreate request) {
+        return run(request, Optional.empty());
+    }
+
+    /**
+     * Create an agent run and wait for the response
+     * 
+     * <p>Executes an [agent](https://developers.glean.com/agents/agents-api) run and returns the final
+     * response. **Note**: If the agent uses an input form trigger, all form fields (including optional
+     * fields) must be included in the `input` object.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return {@code CompletableFuture<CreateAndWaitRunResponse>} - The async response
+     * @deprecated method: Deprecated on 2026-08-25, removal scheduled for 2027-04-15: Use POST /api/agents/{agent_id}/runs instead..
+     */
+    @Deprecated
+    public CompletableFuture<CreateAndWaitRunResponse> run(AgentRunCreate request, Optional<Options> options) {
         AsyncRequestOperation<AgentRunCreate, CreateAndWaitRunResponse> operation
-              = new CreateAndWaitRun.Async(sdkConfiguration, _headers);
+              = new CreateAndWaitRun.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

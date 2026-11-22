@@ -10,14 +10,17 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.GetCollectionRequest;
 import com.glean.api_client.glean_api_client.operations.Getcollection;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 
 public class GetcollectionRequestBuilder {
 
     private Optional<String> locale = Optional.empty();
     private GetCollectionRequest getCollectionRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -42,6 +45,18 @@ public class GetcollectionRequestBuilder {
         this.getCollectionRequest = getCollectionRequest;
         return this;
     }
+                
+    public GetcollectionRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public GetcollectionRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private GetcollectionRequest buildRequest() {
@@ -53,9 +68,12 @@ public class GetcollectionRequestBuilder {
     }
 
     public GetcollectionResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<GetcollectionRequest, GetcollectionResponse> operation
-              = new Getcollection.Sync(sdkConfiguration, _headers);
+              = new Getcollection.Sync(sdkConfiguration, options, _headers);
         GetcollectionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

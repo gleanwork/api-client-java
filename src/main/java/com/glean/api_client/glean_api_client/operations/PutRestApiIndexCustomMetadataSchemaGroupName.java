@@ -23,6 +23,7 @@ import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.Hook.AfterErrorContextImpl;
 import com.glean.api_client.glean_api_client.utils.Hook.AfterSuccessContextImpl;
 import com.glean.api_client.glean_api_client.utils.Hook.BeforeRequestContextImpl;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.SerializedBody;
 import com.glean.api_client.glean_api_client.utils.Utils.JsonShape;
 import com.glean.api_client.glean_api_client.utils.Utils;
@@ -34,6 +35,8 @@ import java.lang.String;
 import java.lang.Throwable;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.Duration;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -53,12 +56,13 @@ public class PutRestApiIndexCustomMetadataSchemaGroupName {
         final SDKConfiguration sdkConfiguration;
         final String baseUrl;
         final SecuritySource securitySource;
+        final Optional<Duration> timeout;
         final HTTPClient client;
         final Headers _headers;
 
         public Base(
                 SDKConfiguration sdkConfiguration, Optional<String> serverURL,
-                Headers _headers) {
+                Optional<Options> options, Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
             this._headers =_headers;
             this.baseUrl = serverURL
@@ -67,6 +71,9 @@ public class PutRestApiIndexCustomMetadataSchemaGroupName {
                         PUT_REST_API_INDEX_CUSTOM_METADATA_SCHEMA_GROUP_NAME_SERVERS[0], 
                         Map.of("instance", "instance-name")));
             this.securitySource = this.sdkConfiguration.securitySource();
+            options
+                    .ifPresent(o -> o.validate(List.of(Options.Option.TIMEOUT)));
+            this.timeout = options.flatMap(Options::timeout).or(sdkConfiguration::timeout);
             this.client = this.sdkConfiguration.client();
         }
 
@@ -106,7 +113,8 @@ public class PutRestApiIndexCustomMetadataSchemaGroupName {
                     this.baseUrl,
                     "/rest/api/index/custom-metadata/schema/{groupName}",
                     request, null);
-            HTTPRequest req = new HTTPRequest(url, "PUT");
+            HTTPRequest req = new HTTPRequest(url, "PUT")
+                    .timeout(this.timeout);
             Object convertedRequest = Utils.convertToShape(
                     request,
                     JsonShape.DEFAULT,
@@ -134,9 +142,16 @@ public class PutRestApiIndexCustomMetadataSchemaGroupName {
         public Sync(
                 SDKConfiguration sdkConfiguration, Optional<String> serverURL,
                 Headers _headers) {
+            this(sdkConfiguration, serverURL,
+                    Optional.empty(), _headers);
+        }
+
+        public Sync(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Optional<Options> options, Headers _headers) {
             super(
                   sdkConfiguration, serverURL,
-                  _headers);
+                  options, _headers);
         }
 
         private HttpRequest onBuildRequest(PutRestApiIndexCustomMetadataSchemaGroupNameRequest request) throws Exception {
@@ -223,13 +238,19 @@ public class PutRestApiIndexCustomMetadataSchemaGroupName {
     }
     public static class Async extends Base
             implements AsyncRequestOperation<PutRestApiIndexCustomMetadataSchemaGroupNameRequest, com.glean.api_client.glean_api_client.models.operations.async.PutRestApiIndexCustomMetadataSchemaGroupNameResponse> {
-
         public Async(
                 SDKConfiguration sdkConfiguration, Optional<String> serverURL,
                 Headers _headers) {
+            this(sdkConfiguration, serverURL,
+                    Optional.empty(), _headers);
+        }
+
+        public Async(
+                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
+                Optional<Options> options, Headers _headers) {
             super(
                   sdkConfiguration, serverURL,
-                  _headers);
+                  options, _headers);
         }
 
         private CompletableFuture<HttpRequest> onBuildRequest(PutRestApiIndexCustomMetadataSchemaGroupNameRequest request) throws Exception {

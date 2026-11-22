@@ -10,14 +10,17 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.AutocompleteRequest;
 import com.glean.api_client.glean_api_client.operations.Autocomplete;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 
 public class AutocompleteRequestBuilder {
 
     private Optional<String> locale = Optional.empty();
     private AutocompleteRequest autocompleteRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -42,6 +45,18 @@ public class AutocompleteRequestBuilder {
         this.autocompleteRequest = autocompleteRequest;
         return this;
     }
+                
+    public AutocompleteRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public AutocompleteRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private com.glean.api_client.glean_api_client.models.operations.AutocompleteRequest buildRequest() {
@@ -53,9 +68,12 @@ public class AutocompleteRequestBuilder {
     }
 
     public AutocompleteResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<com.glean.api_client.glean_api_client.models.operations.AutocompleteRequest, AutocompleteResponse> operation
-              = new Autocomplete.Sync(sdkConfiguration, _headers);
+              = new Autocomplete.Sync(sdkConfiguration, options, _headers);
         com.glean.api_client.glean_api_client.models.operations.AutocompleteRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

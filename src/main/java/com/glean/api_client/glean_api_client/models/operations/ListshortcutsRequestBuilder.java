@@ -10,14 +10,17 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.ListShortcutsPaginatedRequest;
 import com.glean.api_client.glean_api_client.operations.Listshortcuts;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 
 public class ListshortcutsRequestBuilder {
 
     private Optional<String> locale = Optional.empty();
     private ListShortcutsPaginatedRequest listShortcutsPaginatedRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -42,6 +45,18 @@ public class ListshortcutsRequestBuilder {
         this.listShortcutsPaginatedRequest = listShortcutsPaginatedRequest;
         return this;
     }
+                
+    public ListshortcutsRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public ListshortcutsRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private ListshortcutsRequest buildRequest() {
@@ -53,9 +68,12 @@ public class ListshortcutsRequestBuilder {
     }
 
     public ListshortcutsResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<ListshortcutsRequest, ListshortcutsResponse> operation
-              = new Listshortcuts.Sync(sdkConfiguration, _headers);
+              = new Listshortcuts.Sync(sdkConfiguration, options, _headers);
         ListshortcutsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

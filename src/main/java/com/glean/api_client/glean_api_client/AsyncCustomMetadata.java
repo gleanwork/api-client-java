@@ -29,6 +29,7 @@ import com.glean.api_client.glean_api_client.operations.GetRestApiIndexCustomMet
 import com.glean.api_client.glean_api_client.operations.PutRestApiIndexCustomMetadataSchemaGroupName;
 import com.glean.api_client.glean_api_client.operations.PutRestApiIndexDocumentDocIdCustomMetadataGroupName;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -82,7 +83,7 @@ public class AsyncCustomMetadata {
             CustomMetadataPutRequest customMetadataPutRequest) {
         return upsert(
                 docId, groupName, customMetadataPutRequest,
-                Optional.empty());
+                Optional.empty(), Optional.empty());
     }
 
     /**
@@ -100,6 +101,28 @@ public class AsyncCustomMetadata {
     public CompletableFuture<PutRestApiIndexDocumentDocIdCustomMetadataGroupNameResponse> upsert(
             String docId, String groupName,
             CustomMetadataPutRequest customMetadataPutRequest, Optional<String> serverURL) {
+        return upsert(
+                docId, groupName, customMetadataPutRequest,
+                serverURL, Optional.empty());
+    }
+
+    /**
+     * Add or update custom metadata
+     * 
+     * <p>Associates custom metadata with a specific document. Custom metadata enables you to enrich documents
+     * with additional structured information that can be used for search, filtering, and faceting.
+     * 
+     * @param docId Unique Glean identifier of the document
+     * @param groupName Name of the metadata group as specified while adding schema
+     * @param customMetadataPutRequest Request body for adding or updating custom metadata on a document
+     * @param serverURL Overrides the server URL.
+     * @param options additional options
+     * @return {@code CompletableFuture<PutRestApiIndexDocumentDocIdCustomMetadataGroupNameResponse>} - The async response
+     */
+    public CompletableFuture<PutRestApiIndexDocumentDocIdCustomMetadataGroupNameResponse> upsert(
+            String docId, String groupName,
+            CustomMetadataPutRequest customMetadataPutRequest, Optional<String> serverURL,
+            Optional<Options> options) {
         PutRestApiIndexDocumentDocIdCustomMetadataGroupNameRequest request =
             PutRestApiIndexDocumentDocIdCustomMetadataGroupNameRequest
                 .builder()
@@ -108,7 +131,9 @@ public class AsyncCustomMetadata {
                 .customMetadataPutRequest(customMetadataPutRequest)
                 .build();
         AsyncRequestOperation<PutRestApiIndexDocumentDocIdCustomMetadataGroupNameRequest, PutRestApiIndexDocumentDocIdCustomMetadataGroupNameResponse> operation
-              = new PutRestApiIndexDocumentDocIdCustomMetadataGroupName.Async(sdkConfiguration, serverURL, _headers);
+              = new PutRestApiIndexDocumentDocIdCustomMetadataGroupName.Async(
+                                    sdkConfiguration, serverURL, options,
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -135,7 +160,9 @@ public class AsyncCustomMetadata {
      * @return {@code CompletableFuture<DeleteRestApiIndexDocumentDocIdCustomMetadataGroupNameResponse>} - The async response
      */
     public CompletableFuture<DeleteRestApiIndexDocumentDocIdCustomMetadataGroupNameResponse> delete(String docId, String groupName) {
-        return delete(docId, groupName, Optional.empty());
+        return delete(
+                docId, groupName, Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -151,6 +178,25 @@ public class AsyncCustomMetadata {
     public CompletableFuture<DeleteRestApiIndexDocumentDocIdCustomMetadataGroupNameResponse> delete(
             String docId, String groupName,
             Optional<String> serverURL) {
+        return delete(
+                docId, groupName, serverURL,
+                Optional.empty());
+    }
+
+    /**
+     * Remove custom metadata
+     * 
+     * <p>Removes all custom metadata for the specified metadata group from a document.
+     * 
+     * @param docId Unique Glean identifier of the document
+     * @param groupName Name of the metadata group as specified while adding schema
+     * @param serverURL Overrides the server URL.
+     * @param options additional options
+     * @return {@code CompletableFuture<DeleteRestApiIndexDocumentDocIdCustomMetadataGroupNameResponse>} - The async response
+     */
+    public CompletableFuture<DeleteRestApiIndexDocumentDocIdCustomMetadataGroupNameResponse> delete(
+            String docId, String groupName,
+            Optional<String> serverURL, Optional<Options> options) {
         DeleteRestApiIndexDocumentDocIdCustomMetadataGroupNameRequest request =
             DeleteRestApiIndexDocumentDocIdCustomMetadataGroupNameRequest
                 .builder()
@@ -158,7 +204,9 @@ public class AsyncCustomMetadata {
                 .groupName(groupName)
                 .build();
         AsyncRequestOperation<DeleteRestApiIndexDocumentDocIdCustomMetadataGroupNameRequest, DeleteRestApiIndexDocumentDocIdCustomMetadataGroupNameResponse> operation
-              = new DeleteRestApiIndexDocumentDocIdCustomMetadataGroupName.Async(sdkConfiguration, serverURL, _headers);
+              = new DeleteRestApiIndexDocumentDocIdCustomMetadataGroupName.Async(
+                                    sdkConfiguration, serverURL, options,
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -184,7 +232,7 @@ public class AsyncCustomMetadata {
      * @return {@code CompletableFuture<GetRestApiIndexCustomMetadataSchemaGroupNameResponse>} - The async response
      */
     public CompletableFuture<GetRestApiIndexCustomMetadataSchemaGroupNameResponse> getSchema(String groupName) {
-        return getSchema(groupName, Optional.empty());
+        return getSchema(groupName, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -197,13 +245,31 @@ public class AsyncCustomMetadata {
      * @return {@code CompletableFuture<GetRestApiIndexCustomMetadataSchemaGroupNameResponse>} - The async response
      */
     public CompletableFuture<GetRestApiIndexCustomMetadataSchemaGroupNameResponse> getSchema(String groupName, Optional<String> serverURL) {
+        return getSchema(groupName, serverURL, Optional.empty());
+    }
+
+    /**
+     * Retrieve metadata schema
+     * 
+     * <p>Retrieves the current schema definition for a metadata group.
+     * 
+     * @param groupName Name of the metadata group schema
+     * @param serverURL Overrides the server URL.
+     * @param options additional options
+     * @return {@code CompletableFuture<GetRestApiIndexCustomMetadataSchemaGroupNameResponse>} - The async response
+     */
+    public CompletableFuture<GetRestApiIndexCustomMetadataSchemaGroupNameResponse> getSchema(
+            String groupName, Optional<String> serverURL,
+            Optional<Options> options) {
         GetRestApiIndexCustomMetadataSchemaGroupNameRequest request =
             GetRestApiIndexCustomMetadataSchemaGroupNameRequest
                 .builder()
                 .groupName(groupName)
                 .build();
         AsyncRequestOperation<GetRestApiIndexCustomMetadataSchemaGroupNameRequest, GetRestApiIndexCustomMetadataSchemaGroupNameResponse> operation
-              = new GetRestApiIndexCustomMetadataSchemaGroupName.Async(sdkConfiguration, serverURL, _headers);
+              = new GetRestApiIndexCustomMetadataSchemaGroupName.Async(
+                                    sdkConfiguration, serverURL, options,
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -232,7 +298,9 @@ public class AsyncCustomMetadata {
      * @return {@code CompletableFuture<PutRestApiIndexCustomMetadataSchemaGroupNameResponse>} - The async response
      */
     public CompletableFuture<PutRestApiIndexCustomMetadataSchemaGroupNameResponse> upsertSchema(String groupName, CustomMetadataSchema customMetadataSchema) {
-        return upsertSchema(groupName, customMetadataSchema, Optional.empty());
+        return upsertSchema(
+                groupName, customMetadataSchema, Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -249,6 +317,26 @@ public class AsyncCustomMetadata {
     public CompletableFuture<PutRestApiIndexCustomMetadataSchemaGroupNameResponse> upsertSchema(
             String groupName, CustomMetadataSchema customMetadataSchema,
             Optional<String> serverURL) {
+        return upsertSchema(
+                groupName, customMetadataSchema, serverURL,
+                Optional.empty());
+    }
+
+    /**
+     * Create or update metadata schema
+     * 
+     * <p>Defines or updates the schema for a metadata group. Schemas should be defined before indexing
+     * metadata.
+     * 
+     * @param groupName Name of the metadata group schema
+     * @param customMetadataSchema Schema for custom metadata containing metadata key definitions
+     * @param serverURL Overrides the server URL.
+     * @param options additional options
+     * @return {@code CompletableFuture<PutRestApiIndexCustomMetadataSchemaGroupNameResponse>} - The async response
+     */
+    public CompletableFuture<PutRestApiIndexCustomMetadataSchemaGroupNameResponse> upsertSchema(
+            String groupName, CustomMetadataSchema customMetadataSchema,
+            Optional<String> serverURL, Optional<Options> options) {
         PutRestApiIndexCustomMetadataSchemaGroupNameRequest request =
             PutRestApiIndexCustomMetadataSchemaGroupNameRequest
                 .builder()
@@ -256,7 +344,9 @@ public class AsyncCustomMetadata {
                 .customMetadataSchema(customMetadataSchema)
                 .build();
         AsyncRequestOperation<PutRestApiIndexCustomMetadataSchemaGroupNameRequest, PutRestApiIndexCustomMetadataSchemaGroupNameResponse> operation
-              = new PutRestApiIndexCustomMetadataSchemaGroupName.Async(sdkConfiguration, serverURL, _headers);
+              = new PutRestApiIndexCustomMetadataSchemaGroupName.Async(
+                                    sdkConfiguration, serverURL, options,
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -284,7 +374,7 @@ public class AsyncCustomMetadata {
      * @return {@code CompletableFuture<DeleteRestApiIndexCustomMetadataSchemaGroupNameResponse>} - The async response
      */
     public CompletableFuture<DeleteRestApiIndexCustomMetadataSchemaGroupNameResponse> deleteSchema(String groupName) {
-        return deleteSchema(groupName, Optional.empty());
+        return deleteSchema(groupName, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -298,13 +388,32 @@ public class AsyncCustomMetadata {
      * @return {@code CompletableFuture<DeleteRestApiIndexCustomMetadataSchemaGroupNameResponse>} - The async response
      */
     public CompletableFuture<DeleteRestApiIndexCustomMetadataSchemaGroupNameResponse> deleteSchema(String groupName, Optional<String> serverURL) {
+        return deleteSchema(groupName, serverURL, Optional.empty());
+    }
+
+    /**
+     * Remove metadata schema
+     * 
+     * <p>Deletes the schema definition for a metadata group. This does not delete existing metadata values on
+     * documents.
+     * 
+     * @param groupName Name of the metadata group schema
+     * @param serverURL Overrides the server URL.
+     * @param options additional options
+     * @return {@code CompletableFuture<DeleteRestApiIndexCustomMetadataSchemaGroupNameResponse>} - The async response
+     */
+    public CompletableFuture<DeleteRestApiIndexCustomMetadataSchemaGroupNameResponse> deleteSchema(
+            String groupName, Optional<String> serverURL,
+            Optional<Options> options) {
         DeleteRestApiIndexCustomMetadataSchemaGroupNameRequest request =
             DeleteRestApiIndexCustomMetadataSchemaGroupNameRequest
                 .builder()
                 .groupName(groupName)
                 .build();
         AsyncRequestOperation<DeleteRestApiIndexCustomMetadataSchemaGroupNameRequest, DeleteRestApiIndexCustomMetadataSchemaGroupNameResponse> operation
-              = new DeleteRestApiIndexCustomMetadataSchemaGroupName.Async(sdkConfiguration, serverURL, _headers);
+              = new DeleteRestApiIndexCustomMetadataSchemaGroupName.Async(
+                                    sdkConfiguration, serverURL, options,
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

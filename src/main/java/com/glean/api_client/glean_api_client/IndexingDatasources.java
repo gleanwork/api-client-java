@@ -19,6 +19,7 @@ import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Adddatasou
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Getdatasourceconfig;
 import com.glean.api_client.glean_api_client.operations.PostRestApiIndexSubmissionsDatasourceInstanceType;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
@@ -65,8 +66,22 @@ public class IndexingDatasources {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1AdddatasourceResponse add(CustomDatasourceConfig request) {
+        return add(request, Optional.empty());
+    }
+
+    /**
+     * Add or update datasource
+     * 
+     * <p>Add or update a custom datasource and its schema.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1AdddatasourceResponse add(CustomDatasourceConfig request, Optional<Options> options) {
         RequestOperation<CustomDatasourceConfig, PostApiIndexV1AdddatasourceResponse> operation
-              = new PostApiIndexV1Adddatasource.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Adddatasource.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -91,8 +106,22 @@ public class IndexingDatasources {
      * @throws RuntimeException subclass if the API call fails
      */
     public PostApiIndexV1GetdatasourceconfigResponse retrieveConfig(GetDatasourceConfigRequest request) {
+        return retrieveConfig(request, Optional.empty());
+    }
+
+    /**
+     * Get datasource config
+     * 
+     * <p>Fetches the datasource config for the specified custom datasource.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostApiIndexV1GetdatasourceconfigResponse retrieveConfig(GetDatasourceConfigRequest request, Optional<Options> options) {
         RequestOperation<GetDatasourceConfigRequest, PostApiIndexV1GetdatasourceconfigResponse> operation
-              = new PostApiIndexV1Getdatasourceconfig.Sync(sdkConfiguration, _headers);
+              = new PostApiIndexV1Getdatasourceconfig.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -122,7 +151,7 @@ public class IndexingDatasources {
             String datasourceInstance, String type,
             Map<String, Object> requestBody) {
         return submit(datasourceInstance, type, requestBody,
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -140,6 +169,27 @@ public class IndexingDatasources {
     public PostRestApiIndexSubmissionsDatasourceInstanceTypeResponse submit(
             String datasourceInstance, String type,
             Map<String, Object> requestBody, Optional<String> serverURL) {
+        return submit(datasourceInstance, type, requestBody,
+            serverURL, Optional.empty());
+    }
+
+    /**
+     * Submit datasource data
+     * 
+     * <p>Validates and asynchronously processes a datasource-specific submission.
+     * 
+     * @param datasourceInstance Datasource instance that should process the submission
+     * @param type Submission type registered for the datasource
+     * @param requestBody 
+     * @param serverURL Overrides the server URL.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PostRestApiIndexSubmissionsDatasourceInstanceTypeResponse submit(
+            String datasourceInstance, String type,
+            Map<String, Object> requestBody, Optional<String> serverURL,
+            Optional<Options> options) {
         PostRestApiIndexSubmissionsDatasourceInstanceTypeRequest request =
             PostRestApiIndexSubmissionsDatasourceInstanceTypeRequest
                 .builder()
@@ -148,7 +198,9 @@ public class IndexingDatasources {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<PostRestApiIndexSubmissionsDatasourceInstanceTypeRequest, PostRestApiIndexSubmissionsDatasourceInstanceTypeResponse> operation
-              = new PostRestApiIndexSubmissionsDatasourceInstanceType.Sync(sdkConfiguration, serverURL, _headers);
+              = new PostRestApiIndexSubmissionsDatasourceInstanceType.Sync(
+                                    sdkConfiguration, serverURL, options,
+                                    _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -9,14 +9,17 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.operations.DeleteRestApiIndexCustomMetadataSchemaGroupName;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 
 public class DeleteRestApiIndexCustomMetadataSchemaGroupNameRequestBuilder {
 
     private String groupName;
     private Optional<String> serverURL = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -41,6 +44,18 @@ public class DeleteRestApiIndexCustomMetadataSchemaGroupNameRequestBuilder {
         this.serverURL = serverURL;
         return this;
     }
+                
+    public DeleteRestApiIndexCustomMetadataSchemaGroupNameRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public DeleteRestApiIndexCustomMetadataSchemaGroupNameRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private DeleteRestApiIndexCustomMetadataSchemaGroupNameRequest buildRequest() {
@@ -51,9 +66,14 @@ public class DeleteRestApiIndexCustomMetadataSchemaGroupNameRequestBuilder {
     }
 
     public DeleteRestApiIndexCustomMetadataSchemaGroupNameResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<DeleteRestApiIndexCustomMetadataSchemaGroupNameRequest, DeleteRestApiIndexCustomMetadataSchemaGroupNameResponse> operation
-              = new DeleteRestApiIndexCustomMetadataSchemaGroupName.Sync(sdkConfiguration, serverURL, _headers);
+              = new DeleteRestApiIndexCustomMetadataSchemaGroupName.Sync(
+                                    sdkConfiguration, serverURL, options,
+                                    _headers);
         DeleteRestApiIndexCustomMetadataSchemaGroupNameRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
