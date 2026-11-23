@@ -16,6 +16,7 @@ import com.glean.api_client.glean_api_client.models.operations.PlatformDepartmen
 import com.glean.api_client.glean_api_client.operations.PlatformDepartmentsGet;
 import com.glean.api_client.glean_api_client.operations.PlatformDepartmentsList;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.Long;
 import java.lang.String;
 import java.util.List;
@@ -71,7 +72,8 @@ public class Departments {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformDepartmentsListResponse listDirect() {
-        return list(Optional.empty(), Optional.empty(), Optional.empty());
+        return list(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -94,6 +96,31 @@ public class Departments {
     public PlatformDepartmentsListResponse list(
             Optional<Long> pageSize, Optional<String> cursor,
             Optional<? extends List<PlatformDepartmentFilter>> filters) {
+        return list(pageSize, cursor, filters,
+            Optional.empty());
+    }
+
+    /**
+     * List departments
+     * 
+     * <p>List the departments in the Glean directory, ordered by display_name and then by department_id. The
+     * list includes every department that at least one user belongs to or that a usage limit names, so a
+     * caller can show the name of a department that a usage limit still names after its users leave it.
+     * Department names are exact, so names that differ only by case are different departments.
+     * 
+     * <p>Send a name filter to return only the departments whose display_name contains a value.
+     * 
+     * @param pageSize Maximum number of departments to return. Defaults to 50. Maximum is 100.
+     * @param cursor Opaque pagination cursor from a previous response. Send the same filters that the previous request used.
+     *         
+     * @param filters 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformDepartmentsListResponse list(
+            Optional<Long> pageSize, Optional<String> cursor,
+            Optional<? extends List<PlatformDepartmentFilter>> filters, Optional<Options> options) {
         PlatformDepartmentsListRequest request =
             PlatformDepartmentsListRequest
                 .builder()
@@ -102,7 +129,7 @@ public class Departments {
                 .filters(filters)
                 .build();
         RequestOperation<PlatformDepartmentsListRequest, PlatformDepartmentsListResponse> operation
-              = new PlatformDepartmentsList.Sync(sdkConfiguration, _headers);
+              = new PlatformDepartmentsList.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -138,13 +165,33 @@ public class Departments {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformDepartmentsGetResponse get(String departmentId) {
+        return get(departmentId, Optional.empty());
+    }
+
+    /**
+     * Get a department
+     * 
+     * <p>Get one department by its department_id. The department can be any department that the list returns,
+     * including one that only a usage limit names. A department_id that is not valid, or that no user and
+     * no usage limit uses, returns 404 resource_not_found.
+     * 
+     * <p>A department_id comes from the exact department name, so a renamed department gets a new ID, and a
+     * name that is used again gets its old ID back.
+     * 
+     * @param departmentId The department_id from a list departments response or from a user's department. IDs are opaque. Do not parse or build them.
+     *         
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformDepartmentsGetResponse get(String departmentId, Optional<Options> options) {
         PlatformDepartmentsGetRequest request =
             PlatformDepartmentsGetRequest
                 .builder()
                 .departmentId(departmentId)
                 .build();
         RequestOperation<PlatformDepartmentsGetRequest, PlatformDepartmentsGetResponse> operation
-              = new PlatformDepartmentsGet.Sync(sdkConfiguration, _headers);
+              = new PlatformDepartmentsGet.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

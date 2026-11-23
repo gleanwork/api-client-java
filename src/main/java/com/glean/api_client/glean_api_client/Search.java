@@ -15,6 +15,7 @@ import com.glean.api_client.glean_api_client.models.operations.PlatformSearchRes
 import com.glean.api_client.glean_api_client.operations.PlatformSearch;
 import com.glean.api_client.glean_api_client.operations.PlatformSearchFilters;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -72,8 +73,28 @@ public class Search {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformSearchResponse query(PlatformSearchRequest request) {
+        return query(request, Optional.empty());
+    }
+
+    /**
+     * Search
+     * 
+     * <p>Search your organization's connected content and return ranked document results with cursor
+     * pagination. Use `GET /api/search/filters` to discover datasource identifiers and common filter
+     * fields. Built-in filter names are validated; other field names are accepted as custom filters and
+     * behavior depends on your Glean configuration and connected sources.
+     * Errors: HTTP 422 `unprocessable_query` returns no `results` or `next_cursor`. See `warnings` on the
+     * response for non-blocking issues such as partially available results. Not every query issue produces
+     * a warning or error.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformSearchResponse query(PlatformSearchRequest request, Optional<Options> options) {
         RequestOperation<PlatformSearchRequest, PlatformSearchResponse> operation
-              = new PlatformSearch.Sync(sdkConfiguration, _headers);
+              = new PlatformSearch.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +134,7 @@ public class Search {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformSearchFiltersResponse listFiltersDirect() {
-        return listFilters(Optional.empty(), Optional.empty());
+        return listFilters(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -137,6 +158,33 @@ public class Search {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformSearchFiltersResponse listFilters(Optional<? extends List<String>> datasources, Optional<String> query) {
+        return listFilters(datasources, query, Optional.empty());
+    }
+
+    /**
+     * List search filters
+     * 
+     * <p>List datasources and common built-in filter fields visible to the authenticated user. This is a
+     * best-effort catalog, not an exhaustive list of every filter search accepts.
+     * Without `query`, returns field metadata only and does not run a search. With a nonblank `query`,
+     * provide exactly one `datasources` value to request suggested filter values for that query; no
+     * documents are returned and this endpoint does not include warning objects. See
+     * `FilterFieldInfo.values` for limitations on suggested values.
+     * 
+     * <p>Rate-limited requests return HTTP 429 with `Retry-After`; temporary backend unavailability returns
+     * HTTP 503.
+     * 
+     * @param datasources Restrict metadata to one or more datasource identifiers as returned by this endpoint (for example, `jira`). With a nonblank `query`, exactly one datasource is required. Unknown or inaccessible identifiers return `invalid_datasource`.
+     *         
+     * @param query Optional search query that requests suggested filter values for the selected datasource. Must be nonblank when present. Triggers a search for facet values only; does not return documents.
+     *         
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformSearchFiltersResponse listFilters(
+            Optional<? extends List<String>> datasources, Optional<String> query,
+            Optional<Options> options) {
         PlatformSearchFiltersRequest request =
             PlatformSearchFiltersRequest
                 .builder()
@@ -144,7 +192,7 @@ public class Search {
                 .query(query)
                 .build();
         RequestOperation<PlatformSearchFiltersRequest, PlatformSearchFiltersResponse> operation
-              = new PlatformSearchFilters.Sync(sdkConfiguration, _headers);
+              = new PlatformSearchFilters.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

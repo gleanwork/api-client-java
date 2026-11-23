@@ -13,6 +13,8 @@ import com.glean.api_client.glean_api_client.models.operations.async.Createautht
 import com.glean.api_client.glean_api_client.operations.Checkdatasourceauth;
 import com.glean.api_client.glean_api_client.operations.Createauthtoken;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
@@ -67,8 +69,26 @@ public class AsyncClientAuthentication {
      * @return {@code CompletableFuture<CheckdatasourceauthResponse>} - The async response
      */
     public CompletableFuture<CheckdatasourceauthResponse> checkDatasourceAuthDirect() {
+        return checkDatasourceAuth(Optional.empty());
+    }
+
+    /**
+     * Check datasource authorization
+     * 
+     * <p>Returns all datasource instances that require per-user OAuth authorization
+     * for the authenticated user, along with a transient auth token that can be
+     * appended to auth URLs to complete OAuth flows.
+     * 
+     * <p>Clients construct the full OAuth URL by combining the backend base URL,
+     * the `authUrlRelativePath` from each instance, and the transient auth token:
+     * `<backend>/&lt;authUrlRelativePath&gt;?transient_auth_token=&lt;token&gt;`.
+     * 
+     * @param options additional options
+     * @return {@code CompletableFuture<CheckdatasourceauthResponse>} - The async response
+     */
+    public CompletableFuture<CheckdatasourceauthResponse> checkDatasourceAuth(Optional<Options> options) {
         AsyncRequestlessOperation<CheckdatasourceauthResponse> operation
-            = new Checkdatasourceauth.Async(sdkConfiguration, _headers);
+            = new Checkdatasourceauth.Async(sdkConfiguration, options, _headers);
         return operation.doRequest()
             .thenCompose(operation::handleResponse);
     }
@@ -101,8 +121,24 @@ public class AsyncClientAuthentication {
      * @return {@code CompletableFuture<CreateauthtokenResponse>} - The async response
      */
     public CompletableFuture<CreateauthtokenResponse> createTokenDirect() {
+        return createToken(Optional.empty());
+    }
+
+    /**
+     * Create authentication token
+     * 
+     * <p>Creates an authentication token for the authenticated user. These are
+     * specifically intended to be used with the [Web SDK](https://developers.glean.com/web).
+     * 
+     * <p>Note: The tokens generated from this endpoint are **not** valid tokens
+     * for use with the Client API (e.g. `/rest/api/v1/*`).
+     * 
+     * @param options additional options
+     * @return {@code CompletableFuture<CreateauthtokenResponse>} - The async response
+     */
+    public CompletableFuture<CreateauthtokenResponse> createToken(Optional<Options> options) {
         AsyncRequestlessOperation<CreateauthtokenResponse> operation
-            = new Createauthtoken.Async(sdkConfiguration, _headers);
+            = new Createauthtoken.Async(sdkConfiguration, options, _headers);
         return operation.doRequest()
             .thenCompose(operation::handleResponse);
     }

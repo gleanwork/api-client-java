@@ -10,6 +10,7 @@ import com.glean.api_client.glean_api_client.models.components.InsightsRequest;
 import com.glean.api_client.glean_api_client.models.operations.async.InsightsRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.InsightsResponse;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -55,7 +56,7 @@ public class AsyncInsights {
      * @return {@code CompletableFuture<InsightsResponse>} - The async response
      */
     public CompletableFuture<InsightsResponse> retrieve(InsightsRequest insightsRequest) {
-        return retrieve(Optional.empty(), insightsRequest);
+        return retrieve(Optional.empty(), insightsRequest, Optional.empty());
     }
 
     /**
@@ -68,6 +69,22 @@ public class AsyncInsights {
      * @return {@code CompletableFuture<InsightsResponse>} - The async response
      */
     public CompletableFuture<InsightsResponse> retrieve(Optional<String> locale, InsightsRequest insightsRequest) {
+        return retrieve(locale, insightsRequest, Optional.empty());
+    }
+
+    /**
+     * Get insights
+     * 
+     * <p>Gets the aggregate usage insights data displayed in the Insights Dashboards.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param insightsRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<InsightsResponse>} - The async response
+     */
+    public CompletableFuture<InsightsResponse> retrieve(
+            Optional<String> locale, InsightsRequest insightsRequest,
+            Optional<Options> options) {
         com.glean.api_client.glean_api_client.models.operations.InsightsRequest request =
             com.glean.api_client.glean_api_client.models.operations.InsightsRequest
                 .builder()
@@ -75,7 +92,7 @@ public class AsyncInsights {
                 .insightsRequest(insightsRequest)
                 .build();
         AsyncRequestOperation<com.glean.api_client.glean_api_client.models.operations.InsightsRequest, InsightsResponse> operation
-              = new com.glean.api_client.glean_api_client.operations.Insights.Async(sdkConfiguration, _headers);
+              = new com.glean.api_client.glean_api_client.operations.Insights.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

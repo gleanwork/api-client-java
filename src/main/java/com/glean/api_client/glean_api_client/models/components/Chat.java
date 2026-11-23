@@ -77,6 +77,13 @@ public class Chat {
     @JsonProperty("icon")
     private Optional<? extends IconConfig> icon;
 
+    /**
+     * The status of the Chat.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("status")
+    private Optional<? extends ChatStatus> status;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("permissions")
@@ -106,6 +113,7 @@ public class Chat {
             @JsonProperty("applicationId") Optional<String> applicationId,
             @JsonProperty("applicationName") Optional<String> applicationName,
             @JsonProperty("icon") Optional<? extends IconConfig> icon,
+            @JsonProperty("status") Optional<? extends ChatStatus> status,
             @JsonProperty("permissions") Optional<? extends ObjectPermissions> permissions,
             @JsonProperty("messages") Optional<? extends List<ChatMessage>> messages,
             @JsonProperty("roles") Optional<? extends List<UserRoleSpecification>> roles) {
@@ -117,6 +125,7 @@ public class Chat {
         Utils.checkNotNull(applicationId, "applicationId");
         Utils.checkNotNull(applicationName, "applicationName");
         Utils.checkNotNull(icon, "icon");
+        Utils.checkNotNull(status, "status");
         Utils.checkNotNull(permissions, "permissions");
         Utils.checkNotNull(messages, "messages");
         Utils.checkNotNull(roles, "roles");
@@ -128,6 +137,7 @@ public class Chat {
         this.applicationId = applicationId;
         this.applicationName = applicationName;
         this.icon = icon;
+        this.status = status;
         this.permissions = permissions;
         this.messages = messages;
         this.roles = roles;
@@ -137,7 +147,7 @@ public class Chat {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -201,6 +211,15 @@ public class Chat {
     @JsonIgnore
     public Optional<IconConfig> icon() {
         return (Optional<IconConfig>) icon;
+    }
+
+    /**
+     * The status of the Chat.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ChatStatus> status() {
+        return (Optional<ChatStatus>) status;
     }
 
     @SuppressWarnings("unchecked")
@@ -378,6 +397,25 @@ public class Chat {
         return this;
     }
 
+    /**
+     * The status of the Chat.
+     */
+    public Chat withStatus(ChatStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = Optional.ofNullable(status);
+        return this;
+    }
+
+
+    /**
+     * The status of the Chat.
+     */
+    public Chat withStatus(Optional<? extends ChatStatus> status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
     public Chat withPermissions(ObjectPermissions permissions) {
         Utils.checkNotNull(permissions, "permissions");
         this.permissions = Optional.ofNullable(permissions);
@@ -447,6 +485,7 @@ public class Chat {
             Utils.enhancedDeepEquals(this.applicationId, other.applicationId) &&
             Utils.enhancedDeepEquals(this.applicationName, other.applicationName) &&
             Utils.enhancedDeepEquals(this.icon, other.icon) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.permissions, other.permissions) &&
             Utils.enhancedDeepEquals(this.messages, other.messages) &&
             Utils.enhancedDeepEquals(this.roles, other.roles);
@@ -457,8 +496,8 @@ public class Chat {
         return Utils.enhancedHash(
             id, createTime, createdBy,
             updateTime, name, applicationId,
-            applicationName, icon, permissions,
-            messages, roles);
+            applicationName, icon, status,
+            permissions, messages, roles);
     }
     
     @Override
@@ -472,6 +511,7 @@ public class Chat {
                 "applicationId", applicationId,
                 "applicationName", applicationName,
                 "icon", icon,
+                "status", status,
                 "permissions", permissions,
                 "messages", messages,
                 "roles", roles);
@@ -495,6 +535,8 @@ public class Chat {
         private Optional<String> applicationName = Optional.empty();
 
         private Optional<? extends IconConfig> icon = Optional.empty();
+
+        private Optional<? extends ChatStatus> status = Optional.empty();
 
         private Optional<? extends ObjectPermissions> permissions = Optional.empty();
 
@@ -653,6 +695,25 @@ public class Chat {
         }
 
 
+        /**
+         * The status of the Chat.
+         */
+        public Builder status(ChatStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        /**
+         * The status of the Chat.
+         */
+        public Builder status(Optional<? extends ChatStatus> status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
+
         public Builder permissions(ObjectPermissions permissions) {
             Utils.checkNotNull(permissions, "permissions");
             this.permissions = Optional.ofNullable(permissions);
@@ -708,8 +769,8 @@ public class Chat {
             return new Chat(
                 id, createTime, createdBy,
                 updateTime, name, applicationId,
-                applicationName, icon, permissions,
-                messages, roles);
+                applicationName, icon, status,
+                permissions, messages, roles);
         }
 
     }

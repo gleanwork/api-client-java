@@ -28,6 +28,7 @@ import com.glean.api_client.glean_api_client.operations.Getpolicy;
 import com.glean.api_client.glean_api_client.operations.Listpolicies;
 import com.glean.api_client.glean_api_client.operations.Updatepolicy;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
@@ -75,7 +76,7 @@ public class AsyncPolicies {
      * @return {@code CompletableFuture<GetpolicyResponse>} - The async response
      */
     public CompletableFuture<GetpolicyResponse> retrieve(String id) {
-        return retrieve(id, Optional.empty());
+        return retrieve(id, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -88,6 +89,22 @@ public class AsyncPolicies {
      * @return {@code CompletableFuture<GetpolicyResponse>} - The async response
      */
     public CompletableFuture<GetpolicyResponse> retrieve(String id, Optional<Long> version) {
+        return retrieve(id, version, Optional.empty());
+    }
+
+    /**
+     * Gets specified policy
+     * 
+     * <p>Fetches the specified policy version, or the latest if no version is provided.
+     * 
+     * @param id The id of the policy to fetch.
+     * @param version The version of the policy to fetch. Each time a policy is updated, the older version is still stored. If this is left empty, the latest policy is fetched.
+     * @param options additional options
+     * @return {@code CompletableFuture<GetpolicyResponse>} - The async response
+     */
+    public CompletableFuture<GetpolicyResponse> retrieve(
+            String id, Optional<Long> version,
+            Optional<Options> options) {
         GetpolicyRequest request =
             GetpolicyRequest
                 .builder()
@@ -95,7 +112,7 @@ public class AsyncPolicies {
                 .version(version)
                 .build();
         AsyncRequestOperation<GetpolicyRequest, GetpolicyResponse> operation
-              = new Getpolicy.Async(sdkConfiguration, _headers);
+              = new Getpolicy.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -122,6 +139,22 @@ public class AsyncPolicies {
      * @return {@code CompletableFuture<UpdatepolicyResponse>} - The async response
      */
     public CompletableFuture<UpdatepolicyResponse> update(String id, UpdateDlpReportRequest updateDlpReportRequest) {
+        return update(id, updateDlpReportRequest, Optional.empty());
+    }
+
+    /**
+     * Updates an existing policy
+     * 
+     * <p>Updates an existing policy.
+     * 
+     * @param id The id of the policy to fetch.
+     * @param updateDlpReportRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<UpdatepolicyResponse>} - The async response
+     */
+    public CompletableFuture<UpdatepolicyResponse> update(
+            String id, UpdateDlpReportRequest updateDlpReportRequest,
+            Optional<Options> options) {
         UpdatepolicyRequest request =
             UpdatepolicyRequest
                 .builder()
@@ -129,7 +162,7 @@ public class AsyncPolicies {
                 .updateDlpReportRequest(updateDlpReportRequest)
                 .build();
         AsyncRequestOperation<UpdatepolicyRequest, UpdatepolicyResponse> operation
-              = new Updatepolicy.Async(sdkConfiguration, _headers);
+              = new Updatepolicy.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -154,7 +187,7 @@ public class AsyncPolicies {
      * @return {@code CompletableFuture<ListpoliciesResponse>} - The async response
      */
     public CompletableFuture<ListpoliciesResponse> listDirect() {
-        return list(Optional.empty(), Optional.empty());
+        return list(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -167,6 +200,22 @@ public class AsyncPolicies {
      * @return {@code CompletableFuture<ListpoliciesResponse>} - The async response
      */
     public CompletableFuture<ListpoliciesResponse> list(Optional<Boolean> autoHide, Optional<String> frequency) {
+        return list(autoHide, frequency, Optional.empty());
+    }
+
+    /**
+     * Lists policies
+     * 
+     * <p>Lists policies with filtering.
+     * 
+     * @param autoHide Filter to return reports with a given value of auto-hide.
+     * @param frequency Filter to return reports with a given frequency.
+     * @param options additional options
+     * @return {@code CompletableFuture<ListpoliciesResponse>} - The async response
+     */
+    public CompletableFuture<ListpoliciesResponse> list(
+            Optional<Boolean> autoHide, Optional<String> frequency,
+            Optional<Options> options) {
         ListpoliciesRequest request =
             ListpoliciesRequest
                 .builder()
@@ -174,7 +223,7 @@ public class AsyncPolicies {
                 .frequency(frequency)
                 .build();
         AsyncRequestOperation<ListpoliciesRequest, ListpoliciesResponse> operation
-              = new Listpolicies.Async(sdkConfiguration, _headers);
+              = new Listpolicies.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -200,8 +249,21 @@ public class AsyncPolicies {
      * @return {@code CompletableFuture<CreatepolicyResponse>} - The async response
      */
     public CompletableFuture<CreatepolicyResponse> create(CreateDlpReportRequest request) {
+        return create(request, Optional.empty());
+    }
+
+    /**
+     * Creates new policy
+     * 
+     * <p>Creates a new policy with specified specifications and returns its id.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return {@code CompletableFuture<CreatepolicyResponse>} - The async response
+     */
+    public CompletableFuture<CreatepolicyResponse> create(CreateDlpReportRequest request, Optional<Options> options) {
         AsyncRequestOperation<CreateDlpReportRequest, CreatepolicyResponse> operation
-              = new Createpolicy.Async(sdkConfiguration, _headers);
+              = new Createpolicy.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -227,13 +289,26 @@ public class AsyncPolicies {
      * @return {@code CompletableFuture<DownloadpolicycsvResponse>} - The async response
      */
     public CompletableFuture<DownloadpolicycsvResponse> download(String id) {
+        return download(id, Optional.empty());
+    }
+
+    /**
+     * Downloads violations CSV for policy
+     * 
+     * <p>Downloads CSV violations report for a specific policy id. This does not support continuous policies.
+     * 
+     * @param id The id of the policy to download violations for.
+     * @param options additional options
+     * @return {@code CompletableFuture<DownloadpolicycsvResponse>} - The async response
+     */
+    public CompletableFuture<DownloadpolicycsvResponse> download(String id, Optional<Options> options) {
         DownloadpolicycsvRequest request =
             DownloadpolicycsvRequest
                 .builder()
                 .id(id)
                 .build();
         AsyncRequestOperation<DownloadpolicycsvRequest, DownloadpolicycsvResponse> operation
-              = new Downloadpolicycsv.Async(sdkConfiguration, _headers);
+              = new Downloadpolicycsv.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

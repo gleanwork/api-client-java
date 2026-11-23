@@ -13,6 +13,7 @@ import com.glean.api_client.glean_api_client.models.operations.FeedbackRequest;
 import com.glean.api_client.glean_api_client.models.operations.FeedbackRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.FeedbackResponse;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.String;
 import java.util.Optional;
 
@@ -59,8 +60,23 @@ public class Activity {
      * @throws RuntimeException subclass if the API call fails
      */
     public ActivityResponse report(com.glean.api_client.glean_api_client.models.components.Activity request) {
+        return report(request, Optional.empty());
+    }
+
+    /**
+     * Report document activity
+     * 
+     * <p>Report user activity that occurs on indexed documents such as viewing or editing. This signal
+     * improves search quality.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ActivityResponse report(com.glean.api_client.glean_api_client.models.components.Activity request, Optional<Options> options) {
         RequestOperation<com.glean.api_client.glean_api_client.models.components.Activity, ActivityResponse> operation
-              = new com.glean.api_client.glean_api_client.operations.Activity.Sync(sdkConfiguration, _headers);
+              = new com.glean.api_client.glean_api_client.operations.Activity.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -86,7 +102,7 @@ public class Activity {
      * @throws RuntimeException subclass if the API call fails
      */
     public FeedbackResponse feedbackDirect() {
-        return feedback(Optional.empty(), Optional.empty());
+        return feedback(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -101,6 +117,24 @@ public class Activity {
      * @throws RuntimeException subclass if the API call fails
      */
     public FeedbackResponse feedback(Optional<String> feedbackQueryParameter, Optional<? extends Feedback> feedback1) {
+        return feedback(feedbackQueryParameter, feedback1, Optional.empty());
+    }
+
+    /**
+     * Report client activity
+     * 
+     * <p>Report events that happen to results within a Glean client UI, such as search result views and
+     * clicks. This signal improves search quality.
+     * 
+     * @param feedbackQueryParameter A URL encoded versions of Feedback. This is useful for requests.
+     * @param feedback1 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public FeedbackResponse feedback(
+            Optional<String> feedbackQueryParameter, Optional<? extends Feedback> feedback1,
+            Optional<Options> options) {
         FeedbackRequest request =
             FeedbackRequest
                 .builder()
@@ -108,7 +142,7 @@ public class Activity {
                 .feedback1(feedback1)
                 .build();
         RequestOperation<FeedbackRequest, FeedbackResponse> operation
-              = new com.glean.api_client.glean_api_client.operations.Feedback.Sync(sdkConfiguration, _headers);
+              = new com.glean.api_client.glean_api_client.operations.Feedback.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
