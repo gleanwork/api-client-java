@@ -10,13 +10,17 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.AuthorizeToolServerRequest;
 import com.glean.api_client.glean_api_client.operations.AuthorizeToolServer;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 
 public class AuthorizeToolServerRequestBuilder {
 
     private String serverId;
     private AuthorizeToolServerRequest authorizeToolServerRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -35,6 +39,18 @@ public class AuthorizeToolServerRequestBuilder {
         this.authorizeToolServerRequest = authorizeToolServerRequest;
         return this;
     }
+                
+    public AuthorizeToolServerRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public AuthorizeToolServerRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private com.glean.api_client.glean_api_client.models.operations.AuthorizeToolServerRequest buildRequest() {
@@ -46,9 +62,12 @@ public class AuthorizeToolServerRequestBuilder {
     }
 
     public AuthorizeToolServerResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<com.glean.api_client.glean_api_client.models.operations.AuthorizeToolServerRequest, AuthorizeToolServerResponse> operation
-              = new AuthorizeToolServer.Sync(sdkConfiguration, _headers);
+              = new AuthorizeToolServer.Sync(sdkConfiguration, options, _headers);
         com.glean.api_client.glean_api_client.models.operations.AuthorizeToolServerRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

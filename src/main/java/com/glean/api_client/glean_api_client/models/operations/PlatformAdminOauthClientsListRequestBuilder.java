@@ -12,9 +12,11 @@ import com.glean.api_client.glean_api_client.models.components.PlatformOAuthClie
 import com.glean.api_client.glean_api_client.operations.PlatformAdminOauthClientsList;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.LazySingletonValue;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.String;
+import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +28,7 @@ public class PlatformAdminOauthClientsListRequestBuilder {
                             new TypeReference<Optional<Long>>() {});
     private Optional<String> cursor = Optional.empty();
     private Optional<? extends List<PlatformOAuthClientFilter>> filters = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -68,6 +71,18 @@ public class PlatformAdminOauthClientsListRequestBuilder {
         this.filters = filters;
         return this;
     }
+                
+    public PlatformAdminOauthClientsListRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public PlatformAdminOauthClientsListRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private PlatformAdminOauthClientsListRequest buildRequest() {
@@ -83,9 +98,12 @@ public class PlatformAdminOauthClientsListRequestBuilder {
     }
 
     public PlatformAdminOauthClientsListResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<PlatformAdminOauthClientsListRequest, PlatformAdminOauthClientsListResponse> operation
-              = new PlatformAdminOauthClientsList.Sync(sdkConfiguration, _headers);
+              = new PlatformAdminOauthClientsList.Sync(sdkConfiguration, options, _headers);
         PlatformAdminOauthClientsListRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

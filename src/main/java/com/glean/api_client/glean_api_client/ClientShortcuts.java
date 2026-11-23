@@ -32,6 +32,7 @@ import com.glean.api_client.glean_api_client.operations.Getshortcut;
 import com.glean.api_client.glean_api_client.operations.Listshortcuts;
 import com.glean.api_client.glean_api_client.operations.Updateshortcut;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.String;
 import java.util.Optional;
 
@@ -76,7 +77,7 @@ public class ClientShortcuts {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateshortcutResponse create(CreateShortcutRequest createShortcutRequest) {
-        return create(Optional.empty(), createShortcutRequest);
+        return create(Optional.empty(), createShortcutRequest, Optional.empty());
     }
 
     /**
@@ -90,6 +91,23 @@ public class ClientShortcuts {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateshortcutResponse create(Optional<String> locale, CreateShortcutRequest createShortcutRequest) {
+        return create(locale, createShortcutRequest, Optional.empty());
+    }
+
+    /**
+     * Create shortcut
+     * 
+     * <p>Create a user-generated shortcut that contains an alias and destination URL.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param createShortcutRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateshortcutResponse create(
+            Optional<String> locale, CreateShortcutRequest createShortcutRequest,
+            Optional<Options> options) {
         CreateshortcutRequest request =
             CreateshortcutRequest
                 .builder()
@@ -97,7 +115,7 @@ public class ClientShortcuts {
                 .createShortcutRequest(createShortcutRequest)
                 .build();
         RequestOperation<CreateshortcutRequest, CreateshortcutResponse> operation
-              = new Createshortcut.Sync(sdkConfiguration, _headers);
+              = new Createshortcut.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -122,7 +140,7 @@ public class ClientShortcuts {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeleteshortcutResponse delete(DeleteShortcutRequest deleteShortcutRequest) {
-        return delete(Optional.empty(), deleteShortcutRequest);
+        return delete(Optional.empty(), deleteShortcutRequest, Optional.empty());
     }
 
     /**
@@ -136,6 +154,23 @@ public class ClientShortcuts {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeleteshortcutResponse delete(Optional<String> locale, DeleteShortcutRequest deleteShortcutRequest) {
+        return delete(locale, deleteShortcutRequest, Optional.empty());
+    }
+
+    /**
+     * Delete shortcut
+     * 
+     * <p>Delete an existing user-generated shortcut.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param deleteShortcutRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeleteshortcutResponse delete(
+            Optional<String> locale, DeleteShortcutRequest deleteShortcutRequest,
+            Optional<Options> options) {
         DeleteshortcutRequest request =
             DeleteshortcutRequest
                 .builder()
@@ -143,7 +178,7 @@ public class ClientShortcuts {
                 .deleteShortcutRequest(deleteShortcutRequest)
                 .build();
         RequestOperation<DeleteshortcutRequest, DeleteshortcutResponse> operation
-              = new Deleteshortcut.Sync(sdkConfiguration, _headers);
+              = new Deleteshortcut.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -168,7 +203,7 @@ public class ClientShortcuts {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetshortcutResponse retrieve(GetShortcutRequestUnion getShortcutRequest) {
-        return retrieve(Optional.empty(), getShortcutRequest);
+        return retrieve(Optional.empty(), getShortcutRequest, Optional.empty());
     }
 
     /**
@@ -182,6 +217,23 @@ public class ClientShortcuts {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetshortcutResponse retrieve(Optional<String> locale, GetShortcutRequestUnion getShortcutRequest) {
+        return retrieve(locale, getShortcutRequest, Optional.empty());
+    }
+
+    /**
+     * Read shortcut
+     * 
+     * <p>Read a particular shortcut's details given its ID.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param getShortcutRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetshortcutResponse retrieve(
+            Optional<String> locale, GetShortcutRequestUnion getShortcutRequest,
+            Optional<Options> options) {
         GetshortcutRequest request =
             GetshortcutRequest
                 .builder()
@@ -189,7 +241,7 @@ public class ClientShortcuts {
                 .getShortcutRequest(getShortcutRequest)
                 .build();
         RequestOperation<GetshortcutRequest, GetshortcutResponse> operation
-              = new Getshortcut.Sync(sdkConfiguration, _headers);
+              = new Getshortcut.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -214,7 +266,7 @@ public class ClientShortcuts {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListshortcutsResponse list(ListShortcutsPaginatedRequest listShortcutsPaginatedRequest) {
-        return list(Optional.empty(), listShortcutsPaginatedRequest);
+        return list(Optional.empty(), listShortcutsPaginatedRequest, Optional.empty());
     }
 
     /**
@@ -228,6 +280,23 @@ public class ClientShortcuts {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListshortcutsResponse list(Optional<String> locale, ListShortcutsPaginatedRequest listShortcutsPaginatedRequest) {
+        return list(locale, listShortcutsPaginatedRequest, Optional.empty());
+    }
+
+    /**
+     * List shortcuts
+     * 
+     * <p>List shortcuts editable/owned by the currently authenticated user.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param listShortcutsPaginatedRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListshortcutsResponse list(
+            Optional<String> locale, ListShortcutsPaginatedRequest listShortcutsPaginatedRequest,
+            Optional<Options> options) {
         ListshortcutsRequest request =
             ListshortcutsRequest
                 .builder()
@@ -235,7 +304,7 @@ public class ClientShortcuts {
                 .listShortcutsPaginatedRequest(listShortcutsPaginatedRequest)
                 .build();
         RequestOperation<ListshortcutsRequest, ListshortcutsResponse> operation
-              = new Listshortcuts.Sync(sdkConfiguration, _headers);
+              = new Listshortcuts.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -260,7 +329,7 @@ public class ClientShortcuts {
      * @throws RuntimeException subclass if the API call fails
      */
     public UpdateshortcutResponse update(UpdateShortcutRequest updateShortcutRequest) {
-        return update(Optional.empty(), updateShortcutRequest);
+        return update(Optional.empty(), updateShortcutRequest, Optional.empty());
     }
 
     /**
@@ -274,6 +343,23 @@ public class ClientShortcuts {
      * @throws RuntimeException subclass if the API call fails
      */
     public UpdateshortcutResponse update(Optional<String> locale, UpdateShortcutRequest updateShortcutRequest) {
+        return update(locale, updateShortcutRequest, Optional.empty());
+    }
+
+    /**
+     * Update shortcut
+     * 
+     * <p>Updates the shortcut with the given ID.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param updateShortcutRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UpdateshortcutResponse update(
+            Optional<String> locale, UpdateShortcutRequest updateShortcutRequest,
+            Optional<Options> options) {
         UpdateshortcutRequest request =
             UpdateshortcutRequest
                 .builder()
@@ -281,7 +367,7 @@ public class ClientShortcuts {
                 .updateShortcutRequest(updateShortcutRequest)
                 .build();
         RequestOperation<UpdateshortcutRequest, UpdateshortcutResponse> operation
-              = new Updateshortcut.Sync(sdkConfiguration, _headers);
+              = new Updateshortcut.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

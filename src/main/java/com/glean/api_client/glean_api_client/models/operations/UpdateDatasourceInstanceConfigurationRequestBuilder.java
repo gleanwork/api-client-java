@@ -10,14 +10,18 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.UpdateDatasourceConfigurationRequest;
 import com.glean.api_client.glean_api_client.operations.UpdateDatasourceInstanceConfiguration;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 
 public class UpdateDatasourceInstanceConfigurationRequestBuilder {
 
     private String datasourceId;
     private String instanceId;
     private UpdateDatasourceConfigurationRequest updateDatasourceConfigurationRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -42,6 +46,18 @@ public class UpdateDatasourceInstanceConfigurationRequestBuilder {
         this.updateDatasourceConfigurationRequest = updateDatasourceConfigurationRequest;
         return this;
     }
+                
+    public UpdateDatasourceInstanceConfigurationRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public UpdateDatasourceInstanceConfigurationRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private UpdateDatasourceInstanceConfigurationRequest buildRequest() {
@@ -54,9 +70,12 @@ public class UpdateDatasourceInstanceConfigurationRequestBuilder {
     }
 
     public UpdateDatasourceInstanceConfigurationResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<UpdateDatasourceInstanceConfigurationRequest, UpdateDatasourceInstanceConfigurationResponse> operation
-              = new UpdateDatasourceInstanceConfiguration.Sync(sdkConfiguration, _headers);
+              = new UpdateDatasourceInstanceConfiguration.Sync(sdkConfiguration, options, _headers);
         UpdateDatasourceInstanceConfigurationRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

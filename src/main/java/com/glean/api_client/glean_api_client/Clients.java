@@ -16,6 +16,7 @@ import com.glean.api_client.glean_api_client.models.operations.PlatformAdminOaut
 import com.glean.api_client.glean_api_client.operations.PlatformAdminOauthClientsGet;
 import com.glean.api_client.glean_api_client.operations.PlatformAdminOauthClientsList;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.Long;
 import java.lang.String;
 import java.util.List;
@@ -75,7 +76,8 @@ public class Clients {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformAdminOauthClientsListResponse listDirect() {
-        return list(Optional.empty(), Optional.empty(), Optional.empty());
+        return list(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -100,6 +102,33 @@ public class Clients {
     public PlatformAdminOauthClientsListResponse list(
             Optional<Long> pageSize, Optional<String> cursor,
             Optional<? extends List<PlatformOAuthClientFilter>> filters) {
+        return list(pageSize, cursor, filters,
+            Optional.empty());
+    }
+
+    /**
+     * List OAuth clients
+     * 
+     * <p>List the static OAuth clients that admins created for this workspace, ordered by display_name and
+     * then by client_id. Dynamically registered clients and Glean's own clients, such as Glean Desktop,
+     * are not listed. Disabled clients are left out unless an is_enabled filter includes the value
+     * "false".
+     * 
+     * <p>Use filters to find clients by name, client_id, usage_client_id, LLM Gateway access, or supported
+     * app. To set a usage limit for a client, send its ai_gateway.usage_client_id, not its client_id, to
+     * the usage APIs. The caller needs admin read or billing read permission.
+     * 
+     * @param pageSize Maximum number of clients to return. Defaults to 50. Maximum is 100.
+     * @param cursor Opaque pagination cursor from a previous response. Send the same filters that the previous request used.
+     *         
+     * @param filters 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformAdminOauthClientsListResponse list(
+            Optional<Long> pageSize, Optional<String> cursor,
+            Optional<? extends List<PlatformOAuthClientFilter>> filters, Optional<Options> options) {
         PlatformAdminOauthClientsListRequest request =
             PlatformAdminOauthClientsListRequest
                 .builder()
@@ -108,7 +137,7 @@ public class Clients {
                 .filters(filters)
                 .build();
         RequestOperation<PlatformAdminOauthClientsListRequest, PlatformAdminOauthClientsListResponse> operation
-              = new PlatformAdminOauthClientsList.Sync(sdkConfiguration, _headers);
+              = new PlatformAdminOauthClientsList.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -143,13 +172,32 @@ public class Clients {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformAdminOauthClientsGetResponse get(String clientId) {
+        return get(clientId, Optional.empty());
+    }
+
+    /**
+     * Get an OAuth client
+     * 
+     * <p>Get one static OAuth client that an admin created for this workspace. A client that an admin
+     * disabled is returned with is_enabled false. A deleted client, a dynamically registered client, one
+     * of Glean's own clients, such as Glean Desktop, and an unknown client_id all return 404.
+     * 
+     * <p>The path takes the OAuth client_id, not ai_gateway.usage_client_id. The caller needs admin read or
+     * billing read permission.
+     * 
+     * @param clientId The OAuth client_id of the client.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformAdminOauthClientsGetResponse get(String clientId, Optional<Options> options) {
         PlatformAdminOauthClientsGetRequest request =
             PlatformAdminOauthClientsGetRequest
                 .builder()
                 .clientId(clientId)
                 .build();
         RequestOperation<PlatformAdminOauthClientsGetRequest, PlatformAdminOauthClientsGetResponse> operation
-              = new PlatformAdminOauthClientsGet.Sync(sdkConfiguration, _headers);
+              = new PlatformAdminOauthClientsGet.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

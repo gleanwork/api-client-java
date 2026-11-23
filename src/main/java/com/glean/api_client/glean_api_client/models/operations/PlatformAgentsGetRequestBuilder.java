@@ -9,12 +9,16 @@ import static com.glean.api_client.glean_api_client.operations.Operations.Reques
 import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.operations.PlatformAgentsGet;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 
 public class PlatformAgentsGetRequestBuilder {
 
     private String agentId;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -27,6 +31,18 @@ public class PlatformAgentsGetRequestBuilder {
         this.agentId = agentId;
         return this;
     }
+                
+    public PlatformAgentsGetRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public PlatformAgentsGetRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private PlatformAgentsGetRequest buildRequest() {
@@ -37,9 +53,12 @@ public class PlatformAgentsGetRequestBuilder {
     }
 
     public PlatformAgentsGetResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<PlatformAgentsGetRequest, PlatformAgentsGetResponse> operation
-              = new PlatformAgentsGet.Sync(sdkConfiguration, _headers);
+              = new PlatformAgentsGet.Sync(sdkConfiguration, options, _headers);
         PlatformAgentsGetRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

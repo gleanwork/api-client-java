@@ -22,6 +22,7 @@ import com.glean.api_client.glean_api_client.operations.Createannouncement;
 import com.glean.api_client.glean_api_client.operations.Deleteannouncement;
 import com.glean.api_client.glean_api_client.operations.Updateannouncement;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.String;
 import java.util.Optional;
 
@@ -66,7 +67,7 @@ public class Announcements {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateannouncementResponse create(CreateAnnouncementRequest createAnnouncementRequest) {
-        return create(Optional.empty(), createAnnouncementRequest);
+        return create(Optional.empty(), createAnnouncementRequest, Optional.empty());
     }
 
     /**
@@ -80,6 +81,23 @@ public class Announcements {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateannouncementResponse create(Optional<String> locale, CreateAnnouncementRequest createAnnouncementRequest) {
+        return create(locale, createAnnouncementRequest, Optional.empty());
+    }
+
+    /**
+     * Create Announcement
+     * 
+     * <p>Create a textual announcement visible to some set of users based on department and location.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param createAnnouncementRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateannouncementResponse create(
+            Optional<String> locale, CreateAnnouncementRequest createAnnouncementRequest,
+            Optional<Options> options) {
         CreateannouncementRequest request =
             CreateannouncementRequest
                 .builder()
@@ -87,7 +105,7 @@ public class Announcements {
                 .createAnnouncementRequest(createAnnouncementRequest)
                 .build();
         RequestOperation<CreateannouncementRequest, CreateannouncementResponse> operation
-              = new Createannouncement.Sync(sdkConfiguration, _headers);
+              = new Createannouncement.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -112,7 +130,7 @@ public class Announcements {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeleteannouncementResponse delete(DeleteAnnouncementRequest deleteAnnouncementRequest) {
-        return delete(Optional.empty(), deleteAnnouncementRequest);
+        return delete(Optional.empty(), deleteAnnouncementRequest, Optional.empty());
     }
 
     /**
@@ -126,6 +144,23 @@ public class Announcements {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeleteannouncementResponse delete(Optional<String> locale, DeleteAnnouncementRequest deleteAnnouncementRequest) {
+        return delete(locale, deleteAnnouncementRequest, Optional.empty());
+    }
+
+    /**
+     * Delete Announcement
+     * 
+     * <p>Delete an existing user-generated announcement.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param deleteAnnouncementRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeleteannouncementResponse delete(
+            Optional<String> locale, DeleteAnnouncementRequest deleteAnnouncementRequest,
+            Optional<Options> options) {
         DeleteannouncementRequest request =
             DeleteannouncementRequest
                 .builder()
@@ -133,7 +168,7 @@ public class Announcements {
                 .deleteAnnouncementRequest(deleteAnnouncementRequest)
                 .build();
         RequestOperation<DeleteannouncementRequest, DeleteannouncementResponse> operation
-              = new Deleteannouncement.Sync(sdkConfiguration, _headers);
+              = new Deleteannouncement.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -158,7 +193,7 @@ public class Announcements {
      * @throws RuntimeException subclass if the API call fails
      */
     public UpdateannouncementResponse update(UpdateAnnouncementRequest updateAnnouncementRequest) {
-        return update(Optional.empty(), updateAnnouncementRequest);
+        return update(Optional.empty(), updateAnnouncementRequest, Optional.empty());
     }
 
     /**
@@ -172,6 +207,23 @@ public class Announcements {
      * @throws RuntimeException subclass if the API call fails
      */
     public UpdateannouncementResponse update(Optional<String> locale, UpdateAnnouncementRequest updateAnnouncementRequest) {
+        return update(locale, updateAnnouncementRequest, Optional.empty());
+    }
+
+    /**
+     * Update Announcement
+     * 
+     * <p>Update a textual announcement visible to some set of users based on department and location.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param updateAnnouncementRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public UpdateannouncementResponse update(
+            Optional<String> locale, UpdateAnnouncementRequest updateAnnouncementRequest,
+            Optional<Options> options) {
         UpdateannouncementRequest request =
             UpdateannouncementRequest
                 .builder()
@@ -179,7 +231,7 @@ public class Announcements {
                 .updateAnnouncementRequest(updateAnnouncementRequest)
                 .build();
         RequestOperation<UpdateannouncementRequest, UpdateannouncementResponse> operation
-              = new Updateannouncement.Sync(sdkConfiguration, _headers);
+              = new Updateannouncement.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

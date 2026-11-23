@@ -13,6 +13,7 @@ import com.glean.api_client.glean_api_client.models.operations.async.ActivityRes
 import com.glean.api_client.glean_api_client.models.operations.async.FeedbackRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.async.FeedbackResponse;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -60,8 +61,22 @@ public class AsyncActivity {
      * @return {@code CompletableFuture<ActivityResponse>} - The async response
      */
     public CompletableFuture<ActivityResponse> report(com.glean.api_client.glean_api_client.models.components.Activity request) {
+        return report(request, Optional.empty());
+    }
+
+    /**
+     * Report document activity
+     * 
+     * <p>Report user activity that occurs on indexed documents such as viewing or editing. This signal
+     * improves search quality.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return {@code CompletableFuture<ActivityResponse>} - The async response
+     */
+    public CompletableFuture<ActivityResponse> report(com.glean.api_client.glean_api_client.models.components.Activity request, Optional<Options> options) {
         AsyncRequestOperation<com.glean.api_client.glean_api_client.models.components.Activity, ActivityResponse> operation
-              = new com.glean.api_client.glean_api_client.operations.Activity.Async(sdkConfiguration, _headers);
+              = new com.glean.api_client.glean_api_client.operations.Activity.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -88,7 +103,7 @@ public class AsyncActivity {
      * @return {@code CompletableFuture<FeedbackResponse>} - The async response
      */
     public CompletableFuture<FeedbackResponse> feedbackDirect() {
-        return feedback(Optional.empty(), Optional.empty());
+        return feedback(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -102,6 +117,23 @@ public class AsyncActivity {
      * @return {@code CompletableFuture<FeedbackResponse>} - The async response
      */
     public CompletableFuture<FeedbackResponse> feedback(Optional<String> feedbackQueryParameter, Optional<? extends Feedback> feedback1) {
+        return feedback(feedbackQueryParameter, feedback1, Optional.empty());
+    }
+
+    /**
+     * Report client activity
+     * 
+     * <p>Report events that happen to results within a Glean client UI, such as search result views and
+     * clicks. This signal improves search quality.
+     * 
+     * @param feedbackQueryParameter A URL encoded versions of Feedback. This is useful for requests.
+     * @param feedback1 
+     * @param options additional options
+     * @return {@code CompletableFuture<FeedbackResponse>} - The async response
+     */
+    public CompletableFuture<FeedbackResponse> feedback(
+            Optional<String> feedbackQueryParameter, Optional<? extends Feedback> feedback1,
+            Optional<Options> options) {
         FeedbackRequest request =
             FeedbackRequest
                 .builder()
@@ -109,7 +141,7 @@ public class AsyncActivity {
                 .feedback1(feedback1)
                 .build();
         AsyncRequestOperation<FeedbackRequest, FeedbackResponse> operation
-              = new com.glean.api_client.glean_api_client.operations.Feedback.Async(sdkConfiguration, _headers);
+              = new com.glean.api_client.glean_api_client.operations.Feedback.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

@@ -20,6 +20,7 @@ import com.glean.api_client.glean_api_client.operations.GetPersonPhoto;
 import com.glean.api_client.glean_api_client.operations.Listentities;
 import com.glean.api_client.glean_api_client.operations.People;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.String;
 import java.util.Optional;
 
@@ -70,7 +71,7 @@ public class Entities {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListentitiesResponse list(ListEntitiesRequest listEntitiesRequest) {
-        return list(Optional.empty(), listEntitiesRequest);
+        return list(Optional.empty(), listEntitiesRequest, Optional.empty());
     }
 
     /**
@@ -87,6 +88,26 @@ public class Entities {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListentitiesResponse list(Optional<String> locale, ListEntitiesRequest listEntitiesRequest) {
+        return list(locale, listEntitiesRequest, Optional.empty());
+    }
+
+    /**
+     * List entities
+     * 
+     * <p>List some set of details for all entities that fit the given criteria and return in the requested
+     * order. Does not support negation in filters, assumes relation type EQUALS. There is a limit of 10000
+     * entities that can be retrieved via this endpoint, except when using FULL_DIRECTORY request type for
+     * people entities.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param listEntitiesRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListentitiesResponse list(
+            Optional<String> locale, ListEntitiesRequest listEntitiesRequest,
+            Optional<Options> options) {
         ListentitiesRequest request =
             ListentitiesRequest
                 .builder()
@@ -94,7 +115,7 @@ public class Entities {
                 .listEntitiesRequest(listEntitiesRequest)
                 .build();
         RequestOperation<ListentitiesRequest, ListentitiesResponse> operation
-              = new Listentities.Sync(sdkConfiguration, _headers);
+              = new Listentities.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -119,7 +140,7 @@ public class Entities {
      * @throws RuntimeException subclass if the API call fails
      */
     public PeopleResponse readPeople(PeopleRequest peopleRequest) {
-        return readPeople(Optional.empty(), peopleRequest);
+        return readPeople(Optional.empty(), peopleRequest, Optional.empty());
     }
 
     /**
@@ -133,6 +154,23 @@ public class Entities {
      * @throws RuntimeException subclass if the API call fails
      */
     public PeopleResponse readPeople(Optional<String> locale, PeopleRequest peopleRequest) {
+        return readPeople(locale, peopleRequest, Optional.empty());
+    }
+
+    /**
+     * Read people
+     * 
+     * <p>Read people details for the given IDs.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param peopleRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PeopleResponse readPeople(
+            Optional<String> locale, PeopleRequest peopleRequest,
+            Optional<Options> options) {
         com.glean.api_client.glean_api_client.models.operations.PeopleRequest request =
             com.glean.api_client.glean_api_client.models.operations.PeopleRequest
                 .builder()
@@ -140,7 +178,7 @@ public class Entities {
                 .peopleRequest(peopleRequest)
                 .build();
         RequestOperation<com.glean.api_client.glean_api_client.models.operations.PeopleRequest, PeopleResponse> operation
-              = new People.Sync(sdkConfiguration, _headers);
+              = new People.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -175,7 +213,7 @@ public class Entities {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetPersonPhotoResponse retrievePersonPhoto(String personId) {
-        return retrievePersonPhoto(personId, Optional.empty());
+        return retrievePersonPhoto(personId, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -195,6 +233,29 @@ public class Entities {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetPersonPhotoResponse retrievePersonPhoto(String personId, Optional<String> ds) {
+        return retrievePersonPhoto(personId, ds, Optional.empty());
+    }
+
+    /**
+     * Get person photo
+     * 
+     * <p>Returns the profile photo bytes for a person whose photo is stored in Glean (crawled from an
+     * identity source or user-uploaded via admin console). Photos hosted externally (e.g. Slack CDN) are
+     * not served by this endpoint; callers should follow the photoUrl from /people or /listentities
+     * directly.
+     * 
+     * <p>Responses include a Cache-Control header (max-age=3600) to reduce redundant fetches.
+     * 
+     * @param personId The obfuscated ID of the person whose photo to retrieve.
+     * @param ds Optional datasource override for crawled photos (e.g. AZURE, GDRIVE, OKTA). When omitted, the datasource is derived from the person's stored photo URL or the deployment's primary person datasource.
+     *         
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetPersonPhotoResponse retrievePersonPhoto(
+            String personId, Optional<String> ds,
+            Optional<Options> options) {
         GetPersonPhotoRequest request =
             GetPersonPhotoRequest
                 .builder()
@@ -202,7 +263,7 @@ public class Entities {
                 .ds(ds)
                 .build();
         RequestOperation<GetPersonPhotoRequest, GetPersonPhotoResponse> operation
-              = new GetPersonPhoto.Sync(sdkConfiguration, _headers);
+              = new GetPersonPhoto.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

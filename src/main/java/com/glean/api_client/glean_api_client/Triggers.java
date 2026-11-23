@@ -50,6 +50,7 @@ import com.glean.api_client.glean_api_client.operations.PlatformTriggersGet;
 import com.glean.api_client.glean_api_client.operations.PlatformTriggersList;
 import com.glean.api_client.glean_api_client.operations.PlatformTriggersUpdate;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
@@ -95,8 +96,22 @@ public class Triggers {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformTriggersCreateResponse create(PlatformTriggerCreateRequest request) {
+        return create(request, Optional.empty());
+    }
+
+    /**
+     * Create trigger
+     * 
+     * <p>Create a trigger from a preset and return it with its signing secret.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformTriggersCreateResponse create(PlatformTriggerCreateRequest request, Optional<Options> options) {
         RequestOperation<PlatformTriggerCreateRequest, PlatformTriggersCreateResponse> operation
-              = new PlatformTriggersCreate.Sync(sdkConfiguration, _headers);
+              = new PlatformTriggersCreate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -120,7 +135,7 @@ public class Triggers {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformTriggersListResponse listDirect() {
-        return list(Optional.empty(), Optional.empty());
+        return list(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -134,6 +149,23 @@ public class Triggers {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformTriggersListResponse list(Optional<Long> pageSize, Optional<String> cursor) {
+        return list(pageSize, cursor, Optional.empty());
+    }
+
+    /**
+     * List triggers
+     * 
+     * <p>List triggers owned by the authenticated caller.
+     * 
+     * @param pageSize Maximum number of triggers to return.
+     * @param cursor Opaque pagination cursor from a previous response.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformTriggersListResponse list(
+            Optional<Long> pageSize, Optional<String> cursor,
+            Optional<Options> options) {
         PlatformTriggersListRequest request =
             PlatformTriggersListRequest
                 .builder()
@@ -141,7 +173,7 @@ public class Triggers {
                 .cursor(cursor)
                 .build();
         RequestOperation<PlatformTriggersListRequest, PlatformTriggersListResponse> operation
-              = new PlatformTriggersList.Sync(sdkConfiguration, _headers);
+              = new PlatformTriggersList.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -166,13 +198,27 @@ public class Triggers {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformTriggersGetResponse get(String triggerId) {
+        return get(triggerId, Optional.empty());
+    }
+
+    /**
+     * Get trigger
+     * 
+     * <p>Retrieve a trigger owned by the authenticated caller.
+     * 
+     * @param triggerId ID of the trigger to retrieve.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformTriggersGetResponse get(String triggerId, Optional<Options> options) {
         PlatformTriggersGetRequest request =
             PlatformTriggersGetRequest
                 .builder()
                 .triggerId(triggerId)
                 .build();
         RequestOperation<PlatformTriggersGetRequest, PlatformTriggersGetResponse> operation
-              = new PlatformTriggersGet.Sync(sdkConfiguration, _headers);
+              = new PlatformTriggersGet.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -198,6 +244,23 @@ public class Triggers {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformTriggersUpdateResponse update(String triggerId, PlatformTriggerUpdateRequest platformTriggerUpdateRequest) {
+        return update(triggerId, platformTriggerUpdateRequest, Optional.empty());
+    }
+
+    /**
+     * Update trigger
+     * 
+     * <p>Update a trigger.
+     * 
+     * @param triggerId ID of the trigger to update.
+     * @param platformTriggerUpdateRequest Partial update. Only the supplied fields are changed.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformTriggersUpdateResponse update(
+            String triggerId, PlatformTriggerUpdateRequest platformTriggerUpdateRequest,
+            Optional<Options> options) {
         PlatformTriggersUpdateRequest request =
             PlatformTriggersUpdateRequest
                 .builder()
@@ -205,7 +268,7 @@ public class Triggers {
                 .platformTriggerUpdateRequest(platformTriggerUpdateRequest)
                 .build();
         RequestOperation<PlatformTriggersUpdateRequest, PlatformTriggersUpdateResponse> operation
-              = new PlatformTriggersUpdate.Sync(sdkConfiguration, _headers);
+              = new PlatformTriggersUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -230,13 +293,27 @@ public class Triggers {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformTriggersDeleteResponse delete(String triggerId) {
+        return delete(triggerId, Optional.empty());
+    }
+
+    /**
+     * Delete trigger
+     * 
+     * <p>Delete a trigger.
+     * 
+     * @param triggerId ID of the trigger to delete.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformTriggersDeleteResponse delete(String triggerId, Optional<Options> options) {
         PlatformTriggersDeleteRequest request =
             PlatformTriggersDeleteRequest
                 .builder()
                 .triggerId(triggerId)
                 .build();
         RequestOperation<PlatformTriggersDeleteRequest, PlatformTriggersDeleteResponse> operation
-              = new PlatformTriggersDelete.Sync(sdkConfiguration, _headers);
+              = new PlatformTriggersDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -263,7 +340,7 @@ public class Triggers {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformTriggersEventsSearchResponse searchEvents(String triggerId) {
-        return searchEvents(triggerId, Optional.empty());
+        return searchEvents(triggerId, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -278,6 +355,24 @@ public class Triggers {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformTriggersEventsSearchResponse searchEvents(String triggerId, Optional<? extends PlatformTriggerEventSearchRequest> platformTriggerEventSearchRequest) {
+        return searchEvents(triggerId, platformTriggerEventSearchRequest, Optional.empty());
+    }
+
+    /**
+     * Search events for a trigger
+     * 
+     * <p>Search recent content events an existing trigger matches. Read-only — no webhook delivery is made.
+     * Covers the last seven days.
+     * 
+     * @param triggerId ID of the trigger whose events to search.
+     * @param platformTriggerEventSearchRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformTriggersEventsSearchResponse searchEvents(
+            String triggerId, Optional<? extends PlatformTriggerEventSearchRequest> platformTriggerEventSearchRequest,
+            Optional<Options> options) {
         PlatformTriggersEventsSearchRequest request =
             PlatformTriggersEventsSearchRequest
                 .builder()
@@ -285,7 +380,7 @@ public class Triggers {
                 .platformTriggerEventSearchRequest(platformTriggerEventSearchRequest)
                 .build();
         RequestOperation<PlatformTriggersEventsSearchRequest, PlatformTriggersEventsSearchResponse> operation
-              = new PlatformTriggersEventsSearch.Sync(sdkConfiguration, _headers);
+              = new PlatformTriggersEventsSearch.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -311,7 +406,8 @@ public class Triggers {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformTriggerPresetsListResponse listPresetsDirect() {
-        return listPresets(Optional.empty(), Optional.empty(), Optional.empty());
+        return listPresets(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -329,6 +425,26 @@ public class Triggers {
     public PlatformTriggerPresetsListResponse listPresets(
             Optional<String> datasource, Optional<Long> pageSize,
             Optional<String> cursor) {
+        return listPresets(datasource, pageSize, cursor,
+            Optional.empty());
+    }
+
+    /**
+     * List trigger presets
+     * 
+     * <p>List the trigger presets available to the caller. A preset is a curated content-trigger template
+     * (e.g. a new Jira ticket) which is passed when creating a trigger.
+     * 
+     * @param datasource Restrict results to presets for a single datasource (e.g. github).
+     * @param pageSize Maximum number of presets to return.
+     * @param cursor Opaque pagination cursor from a previous response.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformTriggerPresetsListResponse listPresets(
+            Optional<String> datasource, Optional<Long> pageSize,
+            Optional<String> cursor, Optional<Options> options) {
         PlatformTriggerPresetsListRequest request =
             PlatformTriggerPresetsListRequest
                 .builder()
@@ -337,7 +453,7 @@ public class Triggers {
                 .cursor(cursor)
                 .build();
         RequestOperation<PlatformTriggerPresetsListRequest, PlatformTriggerPresetsListResponse> operation
-              = new PlatformTriggerPresetsList.Sync(sdkConfiguration, _headers);
+              = new PlatformTriggerPresetsList.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -362,13 +478,27 @@ public class Triggers {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformTriggerPresetsGetResponse getPreset(String presetId) {
+        return getPreset(presetId, Optional.empty());
+    }
+
+    /**
+     * Get trigger preset
+     * 
+     * <p>Retrieve a single trigger preset by id.
+     * 
+     * @param presetId ID of the preset to retrieve.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformTriggerPresetsGetResponse getPreset(String presetId, Optional<Options> options) {
         PlatformTriggerPresetsGetRequest request =
             PlatformTriggerPresetsGetRequest
                 .builder()
                 .presetId(presetId)
                 .build();
         RequestOperation<PlatformTriggerPresetsGetRequest, PlatformTriggerPresetsGetResponse> operation
-              = new PlatformTriggerPresetsGet.Sync(sdkConfiguration, _headers);
+              = new PlatformTriggerPresetsGet.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -398,7 +528,8 @@ public class Triggers {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformTriggerPresetsInputValuesListResponse listPresetInputValues(String presetId, String field) {
-        return listPresetInputValues(presetId, field, Optional.empty());
+        return listPresetInputValues(presetId, field, Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -418,6 +549,28 @@ public class Triggers {
     public PlatformTriggerPresetsInputValuesListResponse listPresetInputValues(
             String presetId, String field,
             Optional<String> query) {
+        return listPresetInputValues(presetId, field, query,
+            Optional.empty());
+    }
+
+    /**
+     * Search trigger preset input values
+     * 
+     * <p>Return up to 300 selectable values for a single picklist input on a preset. Results are intended for
+     * typeahead selection and are not cursor-paginated. When `is_truncated` is true, refine `query` to
+     * narrow the result set.
+     * 
+     * @param presetId ID of the preset the input belongs to.
+     * @param field Field identifier of the input whose values to list.
+     * @param query Prefix filter over the input's option values, for typeahead. Matching is on the option value, not its display name.
+     *         
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformTriggerPresetsInputValuesListResponse listPresetInputValues(
+            String presetId, String field,
+            Optional<String> query, Optional<Options> options) {
         PlatformTriggerPresetsInputValuesListRequest request =
             PlatformTriggerPresetsInputValuesListRequest
                 .builder()
@@ -426,7 +579,7 @@ public class Triggers {
                 .query(query)
                 .build();
         RequestOperation<PlatformTriggerPresetsInputValuesListRequest, PlatformTriggerPresetsInputValuesListResponse> operation
-              = new PlatformTriggerPresetsInputValuesList.Sync(sdkConfiguration, _headers);
+              = new PlatformTriggerPresetsInputValuesList.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -455,7 +608,7 @@ public class Triggers {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformTriggerPresetsEventsSearchResponse searchPresetEvents(String presetId) {
-        return searchPresetEvents(presetId, Optional.empty());
+        return searchPresetEvents(presetId, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -471,6 +624,25 @@ public class Triggers {
      * @throws RuntimeException subclass if the API call fails
      */
     public PlatformTriggerPresetsEventsSearchResponse searchPresetEvents(String presetId, Optional<? extends PlatformTriggerPresetEventSearchRequest> platformTriggerPresetEventSearchRequest) {
+        return searchPresetEvents(presetId, platformTriggerPresetEventSearchRequest, Optional.empty());
+    }
+
+    /**
+     * Search events for a trigger preset
+     * 
+     * <p>Search recent content events an unsaved trigger built from this preset would match, to preview it
+     * before creating the trigger. Read-only — no trigger is created and no webhook delivery is made.
+     * Covers the last seven days.
+     * 
+     * @param presetId ID of the preset to preview.
+     * @param platformTriggerPresetEventSearchRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PlatformTriggerPresetsEventsSearchResponse searchPresetEvents(
+            String presetId, Optional<? extends PlatformTriggerPresetEventSearchRequest> platformTriggerPresetEventSearchRequest,
+            Optional<Options> options) {
         PlatformTriggerPresetsEventsSearchRequest request =
             PlatformTriggerPresetsEventsSearchRequest
                 .builder()
@@ -478,7 +650,7 @@ public class Triggers {
                 .platformTriggerPresetEventSearchRequest(platformTriggerPresetEventSearchRequest)
                 .build();
         RequestOperation<PlatformTriggerPresetsEventsSearchRequest, PlatformTriggerPresetsEventsSearchResponse> operation
-              = new PlatformTriggerPresetsEventsSearch.Sync(sdkConfiguration, _headers);
+              = new PlatformTriggerPresetsEventsSearch.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

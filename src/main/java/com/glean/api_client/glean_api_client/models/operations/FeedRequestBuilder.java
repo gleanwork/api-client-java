@@ -10,14 +10,17 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.FeedRequest;
 import com.glean.api_client.glean_api_client.operations.Feed;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 
 public class FeedRequestBuilder {
 
     private Optional<String> locale = Optional.empty();
     private FeedRequest feedRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -42,6 +45,18 @@ public class FeedRequestBuilder {
         this.feedRequest = feedRequest;
         return this;
     }
+                
+    public FeedRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public FeedRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private com.glean.api_client.glean_api_client.models.operations.FeedRequest buildRequest() {
@@ -53,9 +68,12 @@ public class FeedRequestBuilder {
     }
 
     public FeedResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<com.glean.api_client.glean_api_client.models.operations.FeedRequest, FeedResponse> operation
-              = new Feed.Sync(sdkConfiguration, _headers);
+              = new Feed.Sync(sdkConfiguration, options, _headers);
         com.glean.api_client.glean_api_client.models.operations.FeedRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
