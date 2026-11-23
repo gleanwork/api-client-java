@@ -13,9 +13,11 @@ import com.glean.api_client.glean_api_client.models.operations.PlatformDepartmen
 import com.glean.api_client.glean_api_client.operations.PlatformDepartmentsList;
 import com.glean.api_client.glean_api_client.utils.Headers;
 import com.glean.api_client.glean_api_client.utils.LazySingletonValue;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.String;
+import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -28,6 +30,7 @@ public class PlatformDepartmentsListRequestBuilder {
                             new TypeReference<Optional<Long>>() {});
     private Optional<String> cursor = Optional.empty();
     private Optional<? extends List<PlatformDepartmentFilter>> filters = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -70,6 +73,18 @@ public class PlatformDepartmentsListRequestBuilder {
         this.filters = filters;
         return this;
     }
+                
+    public PlatformDepartmentsListRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public PlatformDepartmentsListRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private PlatformDepartmentsListRequest buildRequest() {
@@ -85,9 +100,12 @@ public class PlatformDepartmentsListRequestBuilder {
     }
 
     public CompletableFuture<PlatformDepartmentsListResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<PlatformDepartmentsListRequest, PlatformDepartmentsListResponse> operation
-              = new PlatformDepartmentsList.Async(sdkConfiguration, _headers);
+              = new PlatformDepartmentsList.Async(sdkConfiguration, options, _headers);
         PlatformDepartmentsListRequest request = buildRequest();
 
         return operation.doRequest(request)

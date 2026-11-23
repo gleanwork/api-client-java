@@ -32,6 +32,7 @@ import com.glean.api_client.glean_api_client.operations.Editanswer;
 import com.glean.api_client.glean_api_client.operations.Getanswer;
 import com.glean.api_client.glean_api_client.operations.Listanswers;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.Deprecated;
 import java.lang.String;
 import java.util.Optional;
@@ -78,7 +79,7 @@ public class AsyncAnswers {
      * @return {@code CompletableFuture<CreateanswerResponse>} - The async response
      */
     public CompletableFuture<CreateanswerResponse> create(CreateAnswerRequest createAnswerRequest) {
-        return create(Optional.empty(), createAnswerRequest);
+        return create(Optional.empty(), createAnswerRequest, Optional.empty());
     }
 
     /**
@@ -91,6 +92,22 @@ public class AsyncAnswers {
      * @return {@code CompletableFuture<CreateanswerResponse>} - The async response
      */
     public CompletableFuture<CreateanswerResponse> create(Optional<String> locale, CreateAnswerRequest createAnswerRequest) {
+        return create(locale, createAnswerRequest, Optional.empty());
+    }
+
+    /**
+     * Create Answer
+     * 
+     * <p>Create a user-generated Answer that contains a question and answer.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param createAnswerRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<CreateanswerResponse>} - The async response
+     */
+    public CompletableFuture<CreateanswerResponse> create(
+            Optional<String> locale, CreateAnswerRequest createAnswerRequest,
+            Optional<Options> options) {
         CreateanswerRequest request =
             CreateanswerRequest
                 .builder()
@@ -98,7 +115,7 @@ public class AsyncAnswers {
                 .createAnswerRequest(createAnswerRequest)
                 .build();
         AsyncRequestOperation<CreateanswerRequest, CreateanswerResponse> operation
-              = new Createanswer.Async(sdkConfiguration, _headers);
+              = new Createanswer.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -124,7 +141,7 @@ public class AsyncAnswers {
      * @return {@code CompletableFuture<DeleteanswerResponse>} - The async response
      */
     public CompletableFuture<DeleteanswerResponse> delete(DeleteAnswerRequest deleteAnswerRequest) {
-        return delete(Optional.empty(), deleteAnswerRequest);
+        return delete(Optional.empty(), deleteAnswerRequest, Optional.empty());
     }
 
     /**
@@ -137,6 +154,22 @@ public class AsyncAnswers {
      * @return {@code CompletableFuture<DeleteanswerResponse>} - The async response
      */
     public CompletableFuture<DeleteanswerResponse> delete(Optional<String> locale, DeleteAnswerRequest deleteAnswerRequest) {
+        return delete(locale, deleteAnswerRequest, Optional.empty());
+    }
+
+    /**
+     * Delete Answer
+     * 
+     * <p>Delete an existing user-generated Answer.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param deleteAnswerRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<DeleteanswerResponse>} - The async response
+     */
+    public CompletableFuture<DeleteanswerResponse> delete(
+            Optional<String> locale, DeleteAnswerRequest deleteAnswerRequest,
+            Optional<Options> options) {
         DeleteanswerRequest request =
             DeleteanswerRequest
                 .builder()
@@ -144,7 +177,7 @@ public class AsyncAnswers {
                 .deleteAnswerRequest(deleteAnswerRequest)
                 .build();
         AsyncRequestOperation<DeleteanswerRequest, DeleteanswerResponse> operation
-              = new Deleteanswer.Async(sdkConfiguration, _headers);
+              = new Deleteanswer.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -170,7 +203,7 @@ public class AsyncAnswers {
      * @return {@code CompletableFuture<EditanswerResponse>} - The async response
      */
     public CompletableFuture<EditanswerResponse> update(EditAnswerRequest editAnswerRequest) {
-        return update(Optional.empty(), editAnswerRequest);
+        return update(Optional.empty(), editAnswerRequest, Optional.empty());
     }
 
     /**
@@ -183,6 +216,22 @@ public class AsyncAnswers {
      * @return {@code CompletableFuture<EditanswerResponse>} - The async response
      */
     public CompletableFuture<EditanswerResponse> update(Optional<String> locale, EditAnswerRequest editAnswerRequest) {
+        return update(locale, editAnswerRequest, Optional.empty());
+    }
+
+    /**
+     * Update Answer
+     * 
+     * <p>Update an existing user-generated Answer.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param editAnswerRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<EditanswerResponse>} - The async response
+     */
+    public CompletableFuture<EditanswerResponse> update(
+            Optional<String> locale, EditAnswerRequest editAnswerRequest,
+            Optional<Options> options) {
         EditanswerRequest request =
             EditanswerRequest
                 .builder()
@@ -190,7 +239,7 @@ public class AsyncAnswers {
                 .editAnswerRequest(editAnswerRequest)
                 .build();
         AsyncRequestOperation<EditanswerRequest, EditanswerResponse> operation
-              = new Editanswer.Async(sdkConfiguration, _headers);
+              = new Editanswer.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -216,7 +265,7 @@ public class AsyncAnswers {
      * @return {@code CompletableFuture<GetanswerResponse>} - The async response
      */
     public CompletableFuture<GetanswerResponse> retrieve(GetAnswerRequest getAnswerRequest) {
-        return retrieve(Optional.empty(), getAnswerRequest);
+        return retrieve(Optional.empty(), getAnswerRequest, Optional.empty());
     }
 
     /**
@@ -229,6 +278,22 @@ public class AsyncAnswers {
      * @return {@code CompletableFuture<GetanswerResponse>} - The async response
      */
     public CompletableFuture<GetanswerResponse> retrieve(Optional<String> locale, GetAnswerRequest getAnswerRequest) {
+        return retrieve(locale, getAnswerRequest, Optional.empty());
+    }
+
+    /**
+     * Read Answer
+     * 
+     * <p>Read the details of a particular Answer given its ID.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param getAnswerRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<GetanswerResponse>} - The async response
+     */
+    public CompletableFuture<GetanswerResponse> retrieve(
+            Optional<String> locale, GetAnswerRequest getAnswerRequest,
+            Optional<Options> options) {
         GetanswerRequest request =
             GetanswerRequest
                 .builder()
@@ -236,7 +301,7 @@ public class AsyncAnswers {
                 .getAnswerRequest(getAnswerRequest)
                 .build();
         AsyncRequestOperation<GetanswerRequest, GetanswerResponse> operation
-              = new Getanswer.Async(sdkConfiguration, _headers);
+              = new Getanswer.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -266,7 +331,7 @@ public class AsyncAnswers {
      */
     @Deprecated
     public CompletableFuture<ListanswersResponse> list(ListAnswersRequest listAnswersRequest) {
-        return list(Optional.empty(), listAnswersRequest);
+        return list(Optional.empty(), listAnswersRequest, Optional.empty());
     }
 
     /**
@@ -281,6 +346,24 @@ public class AsyncAnswers {
      */
     @Deprecated
     public CompletableFuture<ListanswersResponse> list(Optional<String> locale, ListAnswersRequest listAnswersRequest) {
+        return list(locale, listAnswersRequest, Optional.empty());
+    }
+
+    /**
+     * List Answers
+     * 
+     * <p>List Answers created by the current user.
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param listAnswersRequest 
+     * @param options additional options
+     * @return {@code CompletableFuture<ListanswersResponse>} - The async response
+     * @deprecated method: Deprecated on 2026-01-21, removal scheduled for 2027-01-15: Answer boards have been removed and this endpoint no longer serves a purpose.
+     */
+    @Deprecated
+    public CompletableFuture<ListanswersResponse> list(
+            Optional<String> locale, ListAnswersRequest listAnswersRequest,
+            Optional<Options> options) {
         ListanswersRequest request =
             ListanswersRequest
                 .builder()
@@ -288,7 +371,7 @@ public class AsyncAnswers {
                 .listAnswersRequest(listAnswersRequest)
                 .build();
         AsyncRequestOperation<ListanswersRequest, ListanswersResponse> operation
-              = new Listanswers.Async(sdkConfiguration, _headers);
+              = new Listanswers.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

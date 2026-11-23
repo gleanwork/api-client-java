@@ -11,8 +11,10 @@ import com.glean.api_client.glean_api_client.models.components.GetAnswerRequest;
 import com.glean.api_client.glean_api_client.models.operations.GetanswerRequest;
 import com.glean.api_client.glean_api_client.operations.Getanswer;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -20,6 +22,7 @@ public class GetanswerRequestBuilder {
 
     private Optional<String> locale = Optional.empty();
     private GetAnswerRequest getAnswerRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -44,6 +47,18 @@ public class GetanswerRequestBuilder {
         this.getAnswerRequest = getAnswerRequest;
         return this;
     }
+                
+    public GetanswerRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public GetanswerRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private GetanswerRequest buildRequest() {
@@ -55,9 +70,12 @@ public class GetanswerRequestBuilder {
     }
 
     public CompletableFuture<GetanswerResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<GetanswerRequest, GetanswerResponse> operation
-              = new Getanswer.Async(sdkConfiguration, _headers);
+              = new Getanswer.Async(sdkConfiguration, options, _headers);
         GetanswerRequest request = buildRequest();
 
         return operation.doRequest(request)

@@ -11,8 +11,10 @@ import com.glean.api_client.glean_api_client.models.components.UpdateAnnouncemen
 import com.glean.api_client.glean_api_client.models.operations.UpdateannouncementRequest;
 import com.glean.api_client.glean_api_client.operations.Updateannouncement;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -20,6 +22,7 @@ public class UpdateannouncementRequestBuilder {
 
     private Optional<String> locale = Optional.empty();
     private UpdateAnnouncementRequest updateAnnouncementRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -44,6 +47,18 @@ public class UpdateannouncementRequestBuilder {
         this.updateAnnouncementRequest = updateAnnouncementRequest;
         return this;
     }
+                
+    public UpdateannouncementRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public UpdateannouncementRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private UpdateannouncementRequest buildRequest() {
@@ -55,9 +70,12 @@ public class UpdateannouncementRequestBuilder {
     }
 
     public CompletableFuture<UpdateannouncementResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<UpdateannouncementRequest, UpdateannouncementResponse> operation
-              = new Updateannouncement.Async(sdkConfiguration, _headers);
+              = new Updateannouncement.Async(sdkConfiguration, options, _headers);
         UpdateannouncementRequest request = buildRequest();
 
         return operation.doRequest(request)

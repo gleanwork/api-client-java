@@ -10,8 +10,10 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.operations.GetRestApiV1ToolsListRequest;
 import com.glean.api_client.glean_api_client.operations.GetRestApiV1ToolsList;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -19,6 +21,7 @@ import java.util.concurrent.CompletableFuture;
 public class GetRestApiV1ToolsListRequestBuilder {
 
     private Optional<? extends List<String>> toolNames = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -37,6 +40,18 @@ public class GetRestApiV1ToolsListRequestBuilder {
         this.toolNames = toolNames;
         return this;
     }
+                
+    public GetRestApiV1ToolsListRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public GetRestApiV1ToolsListRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private GetRestApiV1ToolsListRequest buildRequest() {
@@ -47,9 +62,12 @@ public class GetRestApiV1ToolsListRequestBuilder {
     }
 
     public CompletableFuture<GetRestApiV1ToolsListResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<GetRestApiV1ToolsListRequest, GetRestApiV1ToolsListResponse> operation
-              = new GetRestApiV1ToolsList.Async(sdkConfiguration, _headers);
+              = new GetRestApiV1ToolsList.Async(sdkConfiguration, options, _headers);
         GetRestApiV1ToolsListRequest request = buildRequest();
 
         return operation.doRequest(request)

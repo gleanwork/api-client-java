@@ -10,13 +10,17 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.operations.DownloadpolicycsvRequest;
 import com.glean.api_client.glean_api_client.operations.Downloadpolicycsv;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class DownloadpolicycsvRequestBuilder {
 
     private String id;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -29,6 +33,18 @@ public class DownloadpolicycsvRequestBuilder {
         this.id = id;
         return this;
     }
+                
+    public DownloadpolicycsvRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public DownloadpolicycsvRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private DownloadpolicycsvRequest buildRequest() {
@@ -39,9 +55,12 @@ public class DownloadpolicycsvRequestBuilder {
     }
 
     public CompletableFuture<DownloadpolicycsvResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<DownloadpolicycsvRequest, DownloadpolicycsvResponse> operation
-              = new Downloadpolicycsv.Async(sdkConfiguration, _headers);
+              = new Downloadpolicycsv.Async(sdkConfiguration, options, _headers);
         DownloadpolicycsvRequest request = buildRequest();
 
         return operation.doRequest(request)

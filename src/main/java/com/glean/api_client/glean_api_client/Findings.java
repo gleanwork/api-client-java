@@ -23,7 +23,9 @@ import com.glean.api_client.glean_api_client.operations.Deletefindingsexport;
 import com.glean.api_client.glean_api_client.operations.Downloadfindingsexport;
 import com.glean.api_client.glean_api_client.operations.Listfindingsexports;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.String;
+import java.util.Optional;
 
 
 public class Findings {
@@ -66,8 +68,22 @@ public class Findings {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreatefindingsexportResponse create(DlpExportFindingsRequest request) {
+        return create(request, Optional.empty());
+    }
+
+    /**
+     * Creates findings export
+     * 
+     * <p>Creates a new DLP findings export job.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreatefindingsexportResponse create(DlpExportFindingsRequest request, Optional<Options> options) {
         RequestOperation<DlpExportFindingsRequest, CreatefindingsexportResponse> operation
-              = new Createfindingsexport.Sync(sdkConfiguration, _headers);
+              = new Createfindingsexport.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -91,8 +107,21 @@ public class Findings {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListfindingsexportsResponse listDirect() {
+        return list(Optional.empty());
+    }
+
+    /**
+     * Lists findings exports
+     * 
+     * <p>Lists all DLP findings exports.
+     * 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ListfindingsexportsResponse list(Optional<Options> options) {
         RequestlessOperation<ListfindingsexportsResponse> operation
-            = new Listfindingsexports.Sync(sdkConfiguration, _headers);
+            = new Listfindingsexports.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest());
     }
 
@@ -117,13 +146,27 @@ public class Findings {
      * @throws RuntimeException subclass if the API call fails
      */
     public DownloadfindingsexportResponse download(String id) {
+        return download(id, Optional.empty());
+    }
+
+    /**
+     * Downloads findings export
+     * 
+     * <p>Downloads a DLP findings export as a CSV file.
+     * 
+     * @param id The ID of the export to download.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DownloadfindingsexportResponse download(String id, Optional<Options> options) {
         DownloadfindingsexportRequest request =
             DownloadfindingsexportRequest
                 .builder()
                 .id(id)
                 .build();
         RequestOperation<DownloadfindingsexportRequest, DownloadfindingsexportResponse> operation
-              = new Downloadfindingsexport.Sync(sdkConfiguration, _headers);
+              = new Downloadfindingsexport.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -148,13 +191,27 @@ public class Findings {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeletefindingsexportResponse delete(long id) {
+        return delete(id, Optional.empty());
+    }
+
+    /**
+     * Deletes findings export
+     * 
+     * <p>Deletes a DLP findings export.
+     * 
+     * @param id The ID of the export to delete.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public DeletefindingsexportResponse delete(long id, Optional<Options> options) {
         DeletefindingsexportRequest request =
             DeletefindingsexportRequest
                 .builder()
                 .id(id)
                 .build();
         RequestOperation<DeletefindingsexportRequest, DeletefindingsexportResponse> operation
-              = new Deletefindingsexport.Sync(sdkConfiguration, _headers);
+              = new Deletefindingsexport.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

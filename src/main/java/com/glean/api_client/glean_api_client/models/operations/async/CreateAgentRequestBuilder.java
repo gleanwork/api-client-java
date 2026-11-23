@@ -11,9 +11,11 @@ import com.glean.api_client.glean_api_client.models.components.CreateWorkflowReq
 import com.glean.api_client.glean_api_client.models.operations.CreateAgentRequest;
 import com.glean.api_client.glean_api_client.operations.CreateAgent;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.Long;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -22,6 +24,7 @@ public class CreateAgentRequestBuilder {
     private Optional<String> locale = Optional.empty();
     private Optional<Long> timezoneOffset = Optional.empty();
     private CreateWorkflowRequest createWorkflowRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -58,6 +61,18 @@ public class CreateAgentRequestBuilder {
         this.createWorkflowRequest = createWorkflowRequest;
         return this;
     }
+                
+    public CreateAgentRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public CreateAgentRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private CreateAgentRequest buildRequest() {
@@ -70,9 +85,12 @@ public class CreateAgentRequestBuilder {
     }
 
     public CompletableFuture<CreateAgentResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<CreateAgentRequest, CreateAgentResponse> operation
-              = new CreateAgent.Async(sdkConfiguration, _headers);
+              = new CreateAgent.Async(sdkConfiguration, options, _headers);
         CreateAgentRequest request = buildRequest();
 
         return operation.doRequest(request)

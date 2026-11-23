@@ -15,6 +15,8 @@ import com.glean.api_client.glean_api_client.models.operations.async.PostApiInde
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Bulkindexshortcuts;
 import com.glean.api_client.glean_api_client.operations.PostApiIndexV1Uploadshortcuts;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
@@ -68,8 +70,26 @@ public class AsyncIndexingShortcuts {
      * @return {@code CompletableFuture<PostApiIndexV1BulkindexshortcutsResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1BulkindexshortcutsResponse> bulkIndex(BulkIndexShortcutsRequest request) {
+        return bulkIndex(request, Optional.empty());
+    }
+
+    /**
+     * Bulk index external shortcuts
+     * 
+     * <p>Replaces all the currently indexed shortcuts using paginated batch API calls. Note that this
+     * endpoint is used for indexing shortcuts not hosted by Glean. If you want to upload shortcuts that
+     * would be hosted by Glean, please use the `/uploadshortcuts` endpoint.
+     * 
+     * <p>For information on what you can do with Golinks, which are Glean-hosted shortcuts, please refer to
+     * [this](https://docs.glean.com/user-guide/knowledge/go-links/how-go-links-work) page.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return {@code CompletableFuture<PostApiIndexV1BulkindexshortcutsResponse>} - The async response
+     */
+    public CompletableFuture<PostApiIndexV1BulkindexshortcutsResponse> bulkIndex(BulkIndexShortcutsRequest request, Optional<Options> options) {
         AsyncRequestOperation<BulkIndexShortcutsRequest, PostApiIndexV1BulkindexshortcutsResponse> operation
-              = new PostApiIndexV1Bulkindexshortcuts.Async(sdkConfiguration, _headers);
+              = new PostApiIndexV1Bulkindexshortcuts.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -97,8 +117,22 @@ public class AsyncIndexingShortcuts {
      * @return {@code CompletableFuture<PostApiIndexV1UploadshortcutsResponse>} - The async response
      */
     public CompletableFuture<PostApiIndexV1UploadshortcutsResponse> upload(UploadShortcutsRequest request) {
+        return upload(request, Optional.empty());
+    }
+
+    /**
+     * Upload shortcuts
+     * 
+     * <p>Creates glean shortcuts for uploaded shortcuts info. Glean would host the shortcuts, and they can be
+     * managed in the knowledge tab once uploaded.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return {@code CompletableFuture<PostApiIndexV1UploadshortcutsResponse>} - The async response
+     */
+    public CompletableFuture<PostApiIndexV1UploadshortcutsResponse> upload(UploadShortcutsRequest request, Optional<Options> options) {
         AsyncRequestOperation<UploadShortcutsRequest, PostApiIndexV1UploadshortcutsResponse> operation
-              = new PostApiIndexV1Uploadshortcuts.Async(sdkConfiguration, _headers);
+              = new PostApiIndexV1Uploadshortcuts.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

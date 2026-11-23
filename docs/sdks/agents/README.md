@@ -4,6 +4,7 @@
 
 ### Available Operations
 
+* [create](#create) - Create agent
 * [search](#search) - Search agents
 * [get](#get) - Get agent
 * [getSchemas](#getschemas) - Get agent schemas
@@ -11,6 +12,65 @@
 * [getRun](#getrun) - Get agent run
 * [cancelRun](#cancelrun) - Cancel an agent run
 * [respondToRun](#respondtorun) - Respond to agent run approvals
+
+## create
+
+Create and publish an agent from its complete definition.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="platform-agents-create" method="post" path="/api/agents" -->
+```java
+package hello.world;
+
+import com.glean.api_client.glean_api_client.Glean;
+import com.glean.api_client.glean_api_client.models.components.PlatformAgentCreateRequest;
+import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsCreateResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws PlatformProblemDetailException, Exception {
+
+        Glean sdk = Glean.builder()
+                .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
+            .build();
+
+        PlatformAgentCreateRequest req = PlatformAgentCreateRequest.builder()
+                .name("HR Policy Agent")
+                .instructions("Answer employee questions about HR policies and benefits.")
+                .build();
+
+        PlatformAgentsCreateResponse res = sdk.agents().create()
+                .request(req)
+                .call();
+
+        if (res.platformAgentGetResponse().isPresent()) {
+            System.out.println(res.platformAgentGetResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `request`                                                                       | [PlatformAgentCreateRequest](../../models/shared/PlatformAgentCreateRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+
+### Response
+
+**[PlatformAgentsCreateResponse](../../models/operations/PlatformAgentsCreateResponse.md)**
+
+### Errors
+
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| models/errors/PlatformProblemDetailException | 400, 401, 403, 404, 408, 409, 413, 422, 429  | application/problem+json                     |
+| models/errors/PlatformProblemDetailException | 500, 503                                     | application/problem+json                     |
+| models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
 
 ## search
 

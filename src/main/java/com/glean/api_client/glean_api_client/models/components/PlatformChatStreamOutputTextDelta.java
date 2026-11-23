@@ -6,10 +6,14 @@ package com.glean.api_client.glean_api_client.models.components;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.glean.api_client.glean_api_client.utils.Utils;
+import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 
 
 public class PlatformChatStreamOutputTextDelta {
@@ -28,17 +32,46 @@ public class PlatformChatStreamOutputTextDelta {
     @JsonProperty("delta")
     private String delta;
 
+    /**
+     * The ID of the chat the event belongs to, when the chat is stored.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("conversation_id")
+    private Optional<String> conversationId;
+
+    /**
+     * Position of this event's source message in the chat stream. Pass the last one you received as
+     * `last_seen_sequence_id` when resuming.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("sequence_id")
+    private Optional<Long> sequenceId;
+
     @JsonCreator
     public PlatformChatStreamOutputTextDelta(
             @JsonProperty("type") PlatformChatStreamOutputTextDeltaType type,
             @JsonProperty("response_id") String responseId,
-            @JsonProperty("delta") String delta) {
+            @JsonProperty("delta") String delta,
+            @JsonProperty("conversation_id") Optional<String> conversationId,
+            @JsonProperty("sequence_id") Optional<Long> sequenceId) {
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(responseId, "responseId");
         Utils.checkNotNull(delta, "delta");
+        Utils.checkNotNull(conversationId, "conversationId");
+        Utils.checkNotNull(sequenceId, "sequenceId");
         this.type = type;
         this.responseId = responseId;
         this.delta = delta;
+        this.conversationId = conversationId;
+        this.sequenceId = sequenceId;
+    }
+    
+    public PlatformChatStreamOutputTextDelta(
+            PlatformChatStreamOutputTextDeltaType type,
+            String responseId,
+            String delta) {
+        this(type, responseId, delta,
+            Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -58,6 +91,23 @@ public class PlatformChatStreamOutputTextDelta {
     @JsonIgnore
     public String delta() {
         return delta;
+    }
+
+    /**
+     * The ID of the chat the event belongs to, when the chat is stored.
+     */
+    @JsonIgnore
+    public Optional<String> conversationId() {
+        return conversationId;
+    }
+
+    /**
+     * Position of this event's source message in the chat stream. Pass the last one you received as
+     * `last_seen_sequence_id` when resuming.
+     */
+    @JsonIgnore
+    public Optional<Long> sequenceId() {
+        return sequenceId;
     }
 
     public static Builder builder() {
@@ -87,6 +137,46 @@ public class PlatformChatStreamOutputTextDelta {
         return this;
     }
 
+    /**
+     * The ID of the chat the event belongs to, when the chat is stored.
+     */
+    public PlatformChatStreamOutputTextDelta withConversationId(String conversationId) {
+        Utils.checkNotNull(conversationId, "conversationId");
+        this.conversationId = Optional.ofNullable(conversationId);
+        return this;
+    }
+
+
+    /**
+     * The ID of the chat the event belongs to, when the chat is stored.
+     */
+    public PlatformChatStreamOutputTextDelta withConversationId(Optional<String> conversationId) {
+        Utils.checkNotNull(conversationId, "conversationId");
+        this.conversationId = conversationId;
+        return this;
+    }
+
+    /**
+     * Position of this event's source message in the chat stream. Pass the last one you received as
+     * `last_seen_sequence_id` when resuming.
+     */
+    public PlatformChatStreamOutputTextDelta withSequenceId(long sequenceId) {
+        Utils.checkNotNull(sequenceId, "sequenceId");
+        this.sequenceId = Optional.ofNullable(sequenceId);
+        return this;
+    }
+
+
+    /**
+     * Position of this event's source message in the chat stream. Pass the last one you received as
+     * `last_seen_sequence_id` when resuming.
+     */
+    public PlatformChatStreamOutputTextDelta withSequenceId(Optional<Long> sequenceId) {
+        Utils.checkNotNull(sequenceId, "sequenceId");
+        this.sequenceId = sequenceId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -99,13 +189,16 @@ public class PlatformChatStreamOutputTextDelta {
         return 
             Utils.enhancedDeepEquals(this.type, other.type) &&
             Utils.enhancedDeepEquals(this.responseId, other.responseId) &&
-            Utils.enhancedDeepEquals(this.delta, other.delta);
+            Utils.enhancedDeepEquals(this.delta, other.delta) &&
+            Utils.enhancedDeepEquals(this.conversationId, other.conversationId) &&
+            Utils.enhancedDeepEquals(this.sequenceId, other.sequenceId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type, responseId, delta);
+            type, responseId, delta,
+            conversationId, sequenceId);
     }
     
     @Override
@@ -113,7 +206,9 @@ public class PlatformChatStreamOutputTextDelta {
         return Utils.toString(PlatformChatStreamOutputTextDelta.class,
                 "type", type,
                 "responseId", responseId,
-                "delta", delta);
+                "delta", delta,
+                "conversationId", conversationId,
+                "sequenceId", sequenceId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -124,6 +219,10 @@ public class PlatformChatStreamOutputTextDelta {
         private String responseId;
 
         private String delta;
+
+        private Optional<String> conversationId = Optional.empty();
+
+        private Optional<Long> sequenceId = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -154,10 +253,51 @@ public class PlatformChatStreamOutputTextDelta {
             return this;
         }
 
+
+        /**
+         * The ID of the chat the event belongs to, when the chat is stored.
+         */
+        public Builder conversationId(String conversationId) {
+            Utils.checkNotNull(conversationId, "conversationId");
+            this.conversationId = Optional.ofNullable(conversationId);
+            return this;
+        }
+
+        /**
+         * The ID of the chat the event belongs to, when the chat is stored.
+         */
+        public Builder conversationId(Optional<String> conversationId) {
+            Utils.checkNotNull(conversationId, "conversationId");
+            this.conversationId = conversationId;
+            return this;
+        }
+
+
+        /**
+         * Position of this event's source message in the chat stream. Pass the last one you received as
+         * `last_seen_sequence_id` when resuming.
+         */
+        public Builder sequenceId(long sequenceId) {
+            Utils.checkNotNull(sequenceId, "sequenceId");
+            this.sequenceId = Optional.ofNullable(sequenceId);
+            return this;
+        }
+
+        /**
+         * Position of this event's source message in the chat stream. Pass the last one you received as
+         * `last_seen_sequence_id` when resuming.
+         */
+        public Builder sequenceId(Optional<Long> sequenceId) {
+            Utils.checkNotNull(sequenceId, "sequenceId");
+            this.sequenceId = sequenceId;
+            return this;
+        }
+
         public PlatformChatStreamOutputTextDelta build() {
 
             return new PlatformChatStreamOutputTextDelta(
-                type, responseId, delta);
+                type, responseId, delta,
+                conversationId, sequenceId);
         }
 
     }

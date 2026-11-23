@@ -19,7 +19,9 @@ import com.glean.api_client.glean_api_client.operations.Createreport;
 import com.glean.api_client.glean_api_client.operations.Downloadreportcsv;
 import com.glean.api_client.glean_api_client.operations.Getreportstatus;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.String;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
@@ -63,8 +65,21 @@ public class AsyncReports {
      * @return {@code CompletableFuture<CreatereportResponse>} - The async response
      */
     public CompletableFuture<CreatereportResponse> create(UpdateDlpConfigRequest request) {
+        return create(request, Optional.empty());
+    }
+
+    /**
+     * Creates new one-time report
+     * 
+     * <p>Creates a new one-time report and executes its batch job.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return {@code CompletableFuture<CreatereportResponse>} - The async response
+     */
+    public CompletableFuture<CreatereportResponse> create(UpdateDlpConfigRequest request, Optional<Options> options) {
         AsyncRequestOperation<UpdateDlpConfigRequest, CreatereportResponse> operation
-              = new Createreport.Async(sdkConfiguration, _headers);
+              = new Createreport.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -90,13 +105,26 @@ public class AsyncReports {
      * @return {@code CompletableFuture<DownloadreportcsvResponse>} - The async response
      */
     public CompletableFuture<DownloadreportcsvResponse> download(String id) {
+        return download(id, Optional.empty());
+    }
+
+    /**
+     * Downloads violations CSV for report
+     * 
+     * <p>Downloads CSV violations report for a specific report id.
+     * 
+     * @param id The id of the report to download violations for.
+     * @param options additional options
+     * @return {@code CompletableFuture<DownloadreportcsvResponse>} - The async response
+     */
+    public CompletableFuture<DownloadreportcsvResponse> download(String id, Optional<Options> options) {
         DownloadreportcsvRequest request =
             DownloadreportcsvRequest
                 .builder()
                 .id(id)
                 .build();
         AsyncRequestOperation<DownloadreportcsvRequest, DownloadreportcsvResponse> operation
-              = new Downloadreportcsv.Async(sdkConfiguration, _headers);
+              = new Downloadreportcsv.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -122,13 +150,26 @@ public class AsyncReports {
      * @return {@code CompletableFuture<GetreportstatusResponse>} - The async response
      */
     public CompletableFuture<GetreportstatusResponse> status(String id) {
+        return status(id, Optional.empty());
+    }
+
+    /**
+     * Fetches report run status
+     * 
+     * <p>Fetches the status of the run corresponding to the report-id.
+     * 
+     * @param id The id of the report to get run status for.
+     * @param options additional options
+     * @return {@code CompletableFuture<GetreportstatusResponse>} - The async response
+     */
+    public CompletableFuture<GetreportstatusResponse> status(String id, Optional<Options> options) {
         GetreportstatusRequest request =
             GetreportstatusRequest
                 .builder()
                 .id(id)
                 .build();
         AsyncRequestOperation<GetreportstatusRequest, GetreportstatusResponse> operation
-              = new Getreportstatus.Async(sdkConfiguration, _headers);
+              = new Getreportstatus.Async(sdkConfiguration, options, _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

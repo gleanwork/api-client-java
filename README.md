@@ -68,7 +68,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.glean.api-client:glean-api-client:0.17.25'
+implementation 'com.glean.api-client:glean-api-client:0.17.26'
 ```
 
 Maven:
@@ -76,7 +76,7 @@ Maven:
 <dependency>
     <groupId>com.glean.api-client</groupId>
     <artifactId>glean-api-client</artifactId>
-    <version>0.17.25</version>
+    <version>0.17.26</version>
 </dependency>
 ```
 
@@ -180,8 +180,8 @@ package hello.world;
 
 import com.glean.api_client.glean_api_client.AsyncGlean;
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.PlatformAgentsSearchRequest;
-import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsSearchResponse;
+import com.glean.api_client.glean_api_client.models.components.PlatformAgentCreateRequest;
+import com.glean.api_client.glean_api_client.models.operations.async.PlatformAgentsCreateResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class Application {
@@ -193,17 +193,18 @@ public class Application {
             .build()
             .async();
 
-        PlatformAgentsSearchRequest req = PlatformAgentsSearchRequest.builder()
+        PlatformAgentCreateRequest req = PlatformAgentCreateRequest.builder()
                 .name("HR Policy Agent")
+                .instructions("Answer employee questions about HR policies and benefits.")
                 .build();
 
-        CompletableFuture<PlatformAgentsSearchResponse> resFut = sdk.agents().search()
+        CompletableFuture<PlatformAgentsCreateResponse> resFut = sdk.agents().create()
                 .request(req)
                 .call();
 
         resFut.thenAccept(res -> {
-            if (res.platformAgentsSearchResponse().isPresent()) {
-                System.out.println(res.platformAgentsSearchResponse().get());
+            if (res.platformAgentGetResponse().isPresent()) {
+                System.out.println(res.platformAgentGetResponse().get());
             }
         });
     }
@@ -304,9 +305,9 @@ To authenticate with the API the `apiToken` parameter must be set when initializ
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.PlatformAgentsSearchRequest;
+import com.glean.api_client.glean_api_client.models.components.PlatformAgentCreateRequest;
 import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
-import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsSearchResponse;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsCreateResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -317,16 +318,17 @@ public class Application {
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        PlatformAgentsSearchRequest req = PlatformAgentsSearchRequest.builder()
+        PlatformAgentCreateRequest req = PlatformAgentCreateRequest.builder()
                 .name("HR Policy Agent")
+                .instructions("Answer employee questions about HR policies and benefits.")
                 .build();
 
-        PlatformAgentsSearchResponse res = sdk.agents().search()
+        PlatformAgentsCreateResponse res = sdk.agents().create()
                 .request(req)
                 .call();
 
-        if (res.platformAgentsSearchResponse().isPresent()) {
-            System.out.println(res.platformAgentsSearchResponse().get());
+        if (res.platformAgentGetResponse().isPresent()) {
+            System.out.println(res.platformAgentGetResponse().get());
         }
     }
 }
@@ -384,6 +386,7 @@ For more information on obtaining the appropriate token type, please contact you
 
 ### [Agents](docs/sdks/agents/README.md)
 
+* [create](docs/sdks/agents/README.md#create) - Create agent
 * [search](docs/sdks/agents/README.md#search) - Search agents
 * [get](docs/sdks/agents/README.md#get) - Get agent
 * [getSchemas](docs/sdks/agents/README.md#getschemas) - Get agent schemas
@@ -577,7 +580,7 @@ For more information on obtaining the appropriate token type, please contact you
 
 ### [Indexing.Datasource](docs/sdks/datasource/README.md)
 
-* [status](docs/sdks/datasource/README.md#status) - Beta: Get datasource status
+* [status](docs/sdks/datasource/README.md#status) - Get datasource status
 
 
 ### [Indexing.Datasources](docs/sdks/indexingdatasources/README.md)
@@ -593,19 +596,19 @@ For more information on obtaining the appropriate token type, please contact you
 * [bulkIndex](docs/sdks/indexingdocuments/README.md#bulkindex) - Bulk index documents
 * [processAll](docs/sdks/indexingdocuments/README.md#processall) - Schedules the processing of uploaded documents
 * [delete](docs/sdks/indexingdocuments/README.md#delete) - Delete document
-* [debug](docs/sdks/indexingdocuments/README.md#debug) - Beta: Get document information
+* [debug](docs/sdks/indexingdocuments/README.md#debug) - Get document information
 
-* [debugMany](docs/sdks/indexingdocuments/README.md#debugmany) - Beta: Get information of a batch of documents
+* [debugMany](docs/sdks/indexingdocuments/README.md#debugmany) - Get information of a batch of documents
 
 * [checkAccess](docs/sdks/indexingdocuments/README.md#checkaccess) - Check document access
 * [~~status~~](docs/sdks/indexingdocuments/README.md#status) - Get document upload and indexing status :warning: **Deprecated**
 * [~~count~~](docs/sdks/indexingdocuments/README.md#count) - Get document count :warning: **Deprecated**
-* [debugEvents](docs/sdks/indexingdocuments/README.md#debugevents) - Beta: Get document lifecycle events
+* [debugEvents](docs/sdks/indexingdocuments/README.md#debugevents) - Get document lifecycle events
 
 
 ### [Indexing.People](docs/sdks/people/README.md)
 
-* [debug](docs/sdks/people/README.md#debug) - Beta: Get user information
+* [debug](docs/sdks/people/README.md#debug) - Get user information
 
 * [~~count~~](docs/sdks/people/README.md#count) - Get user count :warning: **Deprecated**
 * [index](docs/sdks/people/README.md#index) - Index employee
@@ -802,10 +805,10 @@ Handling errors in this SDK should largely match your expectations. All operatio
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.PlatformAgentsSearchRequest;
+import com.glean.api_client.glean_api_client.models.components.PlatformAgentCreateRequest;
 import com.glean.api_client.glean_api_client.models.errors.GleanError;
 import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
-import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsSearchResponse;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsCreateResponse;
 import java.io.UncheckedIOException;
 import java.lang.Exception;
 import java.lang.String;
@@ -820,16 +823,17 @@ public class Application {
             .build();
         try {
 
-            PlatformAgentsSearchRequest req = PlatformAgentsSearchRequest.builder()
+            PlatformAgentCreateRequest req = PlatformAgentCreateRequest.builder()
                     .name("HR Policy Agent")
+                    .instructions("Answer employee questions about HR policies and benefits.")
                     .build();
 
-            PlatformAgentsSearchResponse res = sdk.agents().search()
+            PlatformAgentsCreateResponse res = sdk.agents().create()
                     .request(req)
                     .call();
 
-            if (res.platformAgentsSearchResponse().isPresent()) {
-                System.out.println(res.platformAgentsSearchResponse().get());
+            if (res.platformAgentGetResponse().isPresent()) {
+                System.out.println(res.platformAgentGetResponse().get());
             }
         } catch (GleanError ex) { // all SDK exceptions inherit from GleanError
 
@@ -882,14 +886,14 @@ public class Application {
 many more subclasses in the JDK platform).
 
 **Inherit from [`GleanError`](./src/main/java/models/errors/GleanError.java)**:
-* [`com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException.java): Error response following RFC 9457, extended with `code` and `documentation_url` for machine-readable classification and self-service remediation. Applicable to 49 of 184 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.ErrorResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorResponse.java): Error response returned for failed requests. Applicable to 10 of 184 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse.java): Error response for custom metadata operations. Applicable to 6 of 184 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.PlatformUnauthorizedAgentToolsProblemException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.PlatformUnauthorizedAgentToolsProblemException.java): Problem detail extended with `authentication_suggestions` naming each tool the caller must authorize. Status code `422`. Applicable to 5 of 184 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.CollectionError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.CollectionError.java): Semantic error. Status code `422`. Applicable to 3 of 184 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.GleanDataError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.GleanDataError.java): Forbidden. Applicable to 2 of 184 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.UnauthorizedAgentToolsError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.UnauthorizedAgentToolsError.java): Returned when the agent has tools the caller must authorize before the run can start. Each entry in `authenticationSuggestions` names one such tool; POST its `serverId` to `/tool-servers/{serverId}/auth` with `returnUrl` in the request body to obtain an `authorizationUrl` to redirect the end user to, then retry the run once OAuth completes. Status code `422`. Applicable to 2 of 184 methods.*
-* [`com.glean.api_client.glean_api_client.models.errors.AccessRequestPermissionDeniedResponseException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.AccessRequestPermissionDeniedResponseException.java): Forbidden. Status code `403`. Applicable to 1 of 184 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException.java): Error response following RFC 9457, extended with `code` and `documentation_url` for machine-readable classification and self-service remediation. Applicable to 50 of 185 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.ErrorResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorResponse.java): Error response returned for failed requests. Applicable to 10 of 185 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.ErrorInfoResponse.java): Error response for custom metadata operations. Applicable to 6 of 185 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.PlatformUnauthorizedAgentToolsProblemException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.PlatformUnauthorizedAgentToolsProblemException.java): Problem detail extended with `authentication_suggestions` naming each tool the caller must authorize. Status code `422`. Applicable to 5 of 185 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.CollectionError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.CollectionError.java): Semantic error. Status code `422`. Applicable to 3 of 185 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.GleanDataError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.GleanDataError.java): Forbidden. Applicable to 2 of 185 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.UnauthorizedAgentToolsError`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.UnauthorizedAgentToolsError.java): Returned when the agent has tools the caller must authorize before the run can start. Each entry in `authenticationSuggestions` names one such tool; POST its `serverId` to `/tool-servers/{serverId}/auth` with `returnUrl` in the request body to obtain an `authorizationUrl` to redirect the end user to, then retry the run once OAuth completes. Status code `422`. Applicable to 2 of 185 methods.*
+* [`com.glean.api_client.glean_api_client.models.errors.AccessRequestPermissionDeniedResponseException`](./src/main/java/models/errors/com.glean.api_client.glean_api_client.models.errors.AccessRequestPermissionDeniedResponseException.java): Forbidden. Status code `403`. Applicable to 1 of 185 methods.*
 
 
 </details>
@@ -914,9 +918,9 @@ The default server `https://{instance}-be.glean.com` contains variables and is s
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.PlatformAgentsSearchRequest;
+import com.glean.api_client.glean_api_client.models.components.PlatformAgentCreateRequest;
 import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
-import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsSearchResponse;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsCreateResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -929,16 +933,17 @@ public class Application {
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        PlatformAgentsSearchRequest req = PlatformAgentsSearchRequest.builder()
+        PlatformAgentCreateRequest req = PlatformAgentCreateRequest.builder()
                 .name("HR Policy Agent")
+                .instructions("Answer employee questions about HR policies and benefits.")
                 .build();
 
-        PlatformAgentsSearchResponse res = sdk.agents().search()
+        PlatformAgentsCreateResponse res = sdk.agents().create()
                 .request(req)
                 .call();
 
-        if (res.platformAgentsSearchResponse().isPresent()) {
-            System.out.println(res.platformAgentsSearchResponse().get());
+        if (res.platformAgentGetResponse().isPresent()) {
+            System.out.println(res.platformAgentGetResponse().get());
         }
     }
 }
@@ -951,9 +956,9 @@ The default server can be overridden globally using the `.serverURL(String serve
 package hello.world;
 
 import com.glean.api_client.glean_api_client.Glean;
-import com.glean.api_client.glean_api_client.models.components.PlatformAgentsSearchRequest;
+import com.glean.api_client.glean_api_client.models.components.PlatformAgentCreateRequest;
 import com.glean.api_client.glean_api_client.models.errors.PlatformProblemDetailException;
-import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsSearchResponse;
+import com.glean.api_client.glean_api_client.models.operations.PlatformAgentsCreateResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -965,16 +970,17 @@ public class Application {
                 .apiToken(System.getenv().getOrDefault("GLEAN_API_TOKEN", ""))
             .build();
 
-        PlatformAgentsSearchRequest req = PlatformAgentsSearchRequest.builder()
+        PlatformAgentCreateRequest req = PlatformAgentCreateRequest.builder()
                 .name("HR Policy Agent")
+                .instructions("Answer employee questions about HR policies and benefits.")
                 .build();
 
-        PlatformAgentsSearchResponse res = sdk.agents().search()
+        PlatformAgentsCreateResponse res = sdk.agents().create()
                 .request(req)
                 .call();
 
-        if (res.platformAgentsSearchResponse().isPresent()) {
-            System.out.println(res.platformAgentsSearchResponse().get());
+        if (res.platformAgentGetResponse().isPresent()) {
+            System.out.println(res.platformAgentGetResponse().get());
         }
     }
 }

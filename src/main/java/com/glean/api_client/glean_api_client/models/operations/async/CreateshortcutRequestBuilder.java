@@ -11,8 +11,10 @@ import com.glean.api_client.glean_api_client.models.components.CreateShortcutReq
 import com.glean.api_client.glean_api_client.models.operations.CreateshortcutRequest;
 import com.glean.api_client.glean_api_client.operations.Createshortcut;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -20,6 +22,7 @@ public class CreateshortcutRequestBuilder {
 
     private Optional<String> locale = Optional.empty();
     private CreateShortcutRequest createShortcutRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -44,6 +47,18 @@ public class CreateshortcutRequestBuilder {
         this.createShortcutRequest = createShortcutRequest;
         return this;
     }
+                
+    public CreateshortcutRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public CreateshortcutRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private CreateshortcutRequest buildRequest() {
@@ -55,9 +70,12 @@ public class CreateshortcutRequestBuilder {
     }
 
     public CompletableFuture<CreateshortcutResponse> call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         AsyncRequestOperation<CreateshortcutRequest, CreateshortcutResponse> operation
-              = new Createshortcut.Async(sdkConfiguration, _headers);
+              = new Createshortcut.Async(sdkConfiguration, options, _headers);
         CreateshortcutRequest request = buildRequest();
 
         return operation.doRequest(request)

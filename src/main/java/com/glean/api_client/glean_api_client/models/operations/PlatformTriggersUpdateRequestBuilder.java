@@ -10,13 +10,17 @@ import com.glean.api_client.glean_api_client.SDKConfiguration;
 import com.glean.api_client.glean_api_client.models.components.PlatformTriggerUpdateRequest;
 import com.glean.api_client.glean_api_client.operations.PlatformTriggersUpdate;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import com.glean.api_client.glean_api_client.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
+import java.util.Optional;
 
 public class PlatformTriggersUpdateRequestBuilder {
 
     private String triggerId;
     private PlatformTriggerUpdateRequest platformTriggerUpdateRequest;
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -35,6 +39,18 @@ public class PlatformTriggersUpdateRequestBuilder {
         this.platformTriggerUpdateRequest = platformTriggerUpdateRequest;
         return this;
     }
+                
+    public PlatformTriggersUpdateRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public PlatformTriggersUpdateRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private PlatformTriggersUpdateRequest buildRequest() {
@@ -46,9 +62,12 @@ public class PlatformTriggersUpdateRequestBuilder {
     }
 
     public PlatformTriggersUpdateResponse call() {
-        
+        Optional<Options> options = Optional.of(Options.builder()
+            .timeout(timeout)
+            .build());
+
         RequestOperation<PlatformTriggersUpdateRequest, PlatformTriggersUpdateResponse> operation
-              = new PlatformTriggersUpdate.Sync(sdkConfiguration, _headers);
+              = new PlatformTriggersUpdate.Sync(sdkConfiguration, options, _headers);
         PlatformTriggersUpdateRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

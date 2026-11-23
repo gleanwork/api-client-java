@@ -10,6 +10,7 @@ import com.glean.api_client.glean_api_client.models.components.MessagesRequest;
 import com.glean.api_client.glean_api_client.models.operations.MessagesRequestBuilder;
 import com.glean.api_client.glean_api_client.models.operations.MessagesResponse;
 import com.glean.api_client.glean_api_client.utils.Headers;
+import com.glean.api_client.glean_api_client.utils.Options;
 import java.lang.String;
 import java.util.Optional;
 
@@ -54,7 +55,7 @@ public class Messages {
      * @throws RuntimeException subclass if the API call fails
      */
     public MessagesResponse retrieve(MessagesRequest messagesRequest) {
-        return retrieve(Optional.empty(), messagesRequest);
+        return retrieve(Optional.empty(), messagesRequest, Optional.empty());
     }
 
     /**
@@ -68,6 +69,23 @@ public class Messages {
      * @throws RuntimeException subclass if the API call fails
      */
     public MessagesResponse retrieve(Optional<String> locale, MessagesRequest messagesRequest) {
+        return retrieve(locale, messagesRequest, Optional.empty());
+    }
+
+    /**
+     * Read messages
+     * 
+     * <p>Retrieves list of messages from messaging/chat datasources (e.g. Slack, Teams).
+     * 
+     * @param locale The client's preferred locale in rfc5646 format (e.g. `en`, `ja`, `pt-BR`). If omitted, the `Accept-Language` will be used. If not present or not supported, defaults to the closest match or `en`.
+     * @param messagesRequest 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public MessagesResponse retrieve(
+            Optional<String> locale, MessagesRequest messagesRequest,
+            Optional<Options> options) {
         com.glean.api_client.glean_api_client.models.operations.MessagesRequest request =
             com.glean.api_client.glean_api_client.models.operations.MessagesRequest
                 .builder()
@@ -75,7 +93,7 @@ public class Messages {
                 .messagesRequest(messagesRequest)
                 .build();
         RequestOperation<com.glean.api_client.glean_api_client.models.operations.MessagesRequest, MessagesResponse> operation
-              = new com.glean.api_client.glean_api_client.operations.Messages.Sync(sdkConfiguration, _headers);
+              = new com.glean.api_client.glean_api_client.operations.Messages.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
